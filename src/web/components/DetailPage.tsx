@@ -37,6 +37,9 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
   if (item.publishedAt) cells.push({ label: '发布时间', value: formatDate(item.publishedAt) });
   if (item.stats) cells.push(...item.stats);
 
+  const showLongDesc = Boolean(item.longDescription && item.longDescription !== item.description);
+  const showExternal = Boolean(item.externalUrl && item.externalUrl !== item.url);
+
   return (
     <main className="min-h-screen bg-paper text-ink">
       <div className="mx-auto max-w-3xl px-4 py-8">
@@ -97,27 +100,53 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
             )}
           </div>
 
+          {/* 完整描述 / 正文 */}
+          {showLongDesc && (
+            <section className="mt-7 border-t border-line pt-5">
+              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">详情</h2>
+              <p className="mt-3 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink/90">
+                {item.longDescription}
+              </p>
+            </section>
+          )}
+
           {/* 信息网格（hairline 分隔） */}
           {cells.length > 0 && (
-            <div className="mt-8 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
+            <div className="mt-7 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
               {cells.map((c) => (
                 <Stat key={c.label + c.value} label={c.label} value={c.value} />
               ))}
             </div>
           )}
 
-          {/* 打开原链接 */}
+          {/* 链接 */}
           <div className="mt-8 border-t border-line pt-6">
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-accent px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-dark"
-            >
-              打开原链接
-              <span aria-hidden>↗</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 bg-accent px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-dark"
+              >
+                打开原链接
+                <span aria-hidden>↗</span>
+              </a>
+              {showExternal && (
+                <a
+                  href={item.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 border border-ink px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-paper"
+                >
+                  访问原文
+                  <span aria-hidden>↗</span>
+                </a>
+              )}
+            </div>
             <p className="mt-3 break-all font-mono text-xs text-muted">{item.url}</p>
+            {showExternal && (
+              <p className="mt-1 break-all font-mono text-xs text-muted">{item.externalUrl}</p>
+            )}
           </div>
         </article>
       </div>

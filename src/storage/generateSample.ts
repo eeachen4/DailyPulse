@@ -67,6 +67,12 @@ function isoDate(base: number, i: number): string {
   return new Date(base - i * 3_600_000).toISOString();
 }
 
+function externalFor(catId: string, title: string, i: number): string {
+  if (catId === 'ai') return `https://arxiv.org/abs/24${String(10 + (i % 89)).padStart(2, '0')}.${String(10000 + i)}`;
+  if (catId === 'tools') return `https://news.ycombinator.com/item?id=${30_000_000 + i}`;
+  return `https://github.com/${slugify(title)}/v${(i % 5) + 1}`;
+}
+
 function buildItems(): FeedItem[] {
   const items: FeedItem[] = [];
   const base = Date.now() - 24 * 3600 * 1000;
@@ -92,6 +98,7 @@ function buildItems(): FeedItem[] {
             id: `appstore-${cat.id}-${i}`,
             title,
             description: `${genre} · 热门推荐`,
+            longDescription: `${title} 是一款 ${genre} 类应用，界面简洁、上手容易。它帮助用户在 ${cat.label} 相关场景中更高效地完成任务，支持跨设备同步与离线使用，并持续更新以带来更好的体验，深受全球用户好评。`,
             url: `https://apps.apple.com/us/app/${slugify(title)}/id${1_000_000_000 + i}`,
             source,
             category: cat.label,
@@ -105,6 +112,8 @@ function buildItems(): FeedItem[] {
             stats: [
               { label: '版本', value: `1.${i % 9}.${i % 10}` },
               { label: '大小', value: `${rnd(seq, 2, 18, 320)} MB` },
+              { label: '发布日期', value: publishedAt.slice(0, 10) },
+              { label: '内容分级', value: '4+' },
             ],
           });
         } else if (source === 'googleplay') {
@@ -113,6 +122,7 @@ function buildItems(): FeedItem[] {
             id: `googleplay-${cat.id}-${i}`,
             title,
             description: `${genre} · 热门推荐`,
+            longDescription: `${title} 是一款 ${genre} 类应用。它提供流畅的使用体验与丰富的功能，帮助用户在 ${cat.label} 相关场景中提升效率，并定期更新以修复问题、引入新特性，在 Google Play 上广受好评。`,
             url: `https://play.google.com/store/apps/details?id=com.${slugify(dev)}.${slugify(title)}`,
             source,
             category: cat.label,
@@ -128,6 +138,8 @@ function buildItems(): FeedItem[] {
               { label: '版本', value: `2.${i % 9}.${i % 10}` },
               { label: '大小', value: `${rnd(seq, 6, 8, 220)} MB` },
               { label: '安装量', value: installs },
+              { label: '更新日期', value: publishedAt.slice(0, 10) },
+              { label: '内容分级', value: 'Everyone' },
             ],
           });
         } else if (source === 'producthunt') {
@@ -135,6 +147,7 @@ function buildItems(): FeedItem[] {
             id: `producthunt-${cat.id}-${i}`,
             title,
             description: `${title} 的标语：让${cat.label}相关的工作更简单、更快。`,
+            longDescription: `${title} 的标语：让 ${cat.label} 相关的工作更简单、更快。团队可以更快地协作、自动化重复流程，并把精力集中在真正重要的事情上。它于今日在 Product Hunt 上线，已获得众多用户的投票与好评。`,
             url: `https://www.producthunt.com/posts/${slugify(title)}`,
             source,
             category: cat.label,
@@ -144,13 +157,17 @@ function buildItems(): FeedItem[] {
             comments: rnd(seq, 8, 4, 420),
             publishedAt,
             tags: pool.topics,
+            stats: [{ label: '官网', value: `https://${slugify(title)}.com` }],
           });
         } else {
+          const postTitle = pool.posts[i % pool.posts.length];
           items.push({
             id: `reddit-${cat.id}-${i}`,
-            title: pool.posts[i % pool.posts.length],
+            title: postTitle,
             description: '点击查看完整讨论与网友观点。',
-            url: `https://www.reddit.com/r/${sub}/comments/${slugify(pool.posts[i % pool.posts.length])}/`,
+            longDescription: `本文围绕「${postTitle}」展开讨论，包含作者的第一手实践、踩坑记录，以及评论区网友的补充观点与经验分享，适合对 ${cat.label} 感兴趣的读者深入阅读。`,
+            externalUrl: externalFor(cat.id, title, i),
+            url: `https://www.reddit.com/r/${sub}/comments/${slugify(postTitle)}/`,
             source,
             category: cat.label,
             rank: i + 1,
@@ -159,6 +176,7 @@ function buildItems(): FeedItem[] {
             developer: `u/${slugify(dev)}`,
             publishedAt,
             tags: [`r/${sub}`],
+            stats: [{ label: '域名', value: `reddit.com` }],
           });
         }
       }

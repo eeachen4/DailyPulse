@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { toNumber, toIso } from './utils';
+import { toNumber, toIso, kv } from './utils';
 import type { FeedItem } from '../types';
 import type { CategoryDef } from '../categories';
 
@@ -57,16 +57,35 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
   if (!title) return null;
 
   const permalink = typeof d.permalink === 'string' ? d.permalink : '';
-  const url = permalink ? `https://www.reddit.com${permalink}` : String(d.url ?? 'https://www.reddit.com/');
+  const discussionUrl = permalink ? `https://www.reddit.com${permalink}` : String(d.url ?? 'https://www.reddit.com/');
 
   const thumbnail = typeof d.thumbnail === 'string' && d.thumbnail.startsWith('http') ? d.thumbnail : undefined;
   const author = typeof d.author === 'string' ? d.author : undefined;
+  const selftext = typeof d.selftext === 'string' ? d.selftext : '';
+
+  // 外部目标链接：帖子指向的原文（非 reddit.com 时）
+  let externalUrl: string | undefined;
+  const rawUrl = typeof d.url === 'string' ? d.url : '';
+  if (/^https?:\/\//.test(rawUrl)) {
+    try {
+      const host = new URL(rawUrl).hostname.replace(/^www\./, '');
+      if (!host.endsWith('reddit.com') && rawUrl !== discussionUrl) externalUrl = rawUrl;
+    } catch {
+      /* 忽略非法 URL */
+    }
+  }
+
+  const stats = [
+    kv('域名', typeof d.domain === 'string' ? d.domain : undefined),
+  ].filter((x): x is { label: string; value: string } => x !== null);
 
   return {
     id: `reddit-${String(d.id ?? d.name ?? `${sub}-${title}`)}`,
     title,
-    description: typeof d.selftext === 'string' && d.selftext.trim() !== '' ? d.selftext.slice(0, 200) : undefined,
-    url,
+    description: selftext.trim() !== '' ? selftext.slice(0, 200) : undefined,
+    longDescription: selftext.trim() !== '' ? selftext : undefined,
+    externalUrl,
+    url: discussionUrl,
     source: 'reddit',
     category: categoryLabel,
     score: toNumber(d.ups),
@@ -75,5 +94,6 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
     thumbnail,
     publishedAt: toIso(typeof d.created_utc === 'number' ? d.created_utc * 1000 : d.created_utc),
     tags: [`r/${sub}`],
+    stats: stats.length ? stats : undefined,
   };
 }

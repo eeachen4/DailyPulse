@@ -1,5 +1,5 @@
 import { runApifyActor } from './apify';
-import { pickStr, pickNum, pickValue, toIso, toJoined } from './utils';
+import { pickStr, pickNum, pickValue, toIso, toJoined, kv } from './utils';
 import type { FeedItem } from '../types';
 import type { CategoryDef } from '../categories';
 
@@ -38,10 +38,15 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
   const topics = toJoined(pickValue(raw, ['topics', 'tags', 'categories']));
   const makers = toJoined(pickValue(raw, ['makers', 'makerNames', 'makers_names']));
 
+  const stats = [
+    kv('官网', pickStr(raw, ['website', 'websiteUrl', 'productUrl'])),
+  ].filter((x): x is { label: string; value: string } => x !== null);
+
   return {
     id: `producthunt-${categoryLabel}-${id}`,
     title,
-    description: pickStr(raw, ['tagline', 'description', 'subtitle']),
+    description: pickStr(raw, ['tagline']),
+    longDescription: pickStr(raw, ['description', 'subtitle']),
     url,
     source: 'producthunt',
     category: categoryLabel,
@@ -54,5 +59,6 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
     thumbnail: pickStr(raw, ['thumbnailUrl', 'thumbnail', 'imageUrl', 'image', 'logo', 'logoUrl']),
     publishedAt: toIso(pickValue(raw, ['createdAt', 'launchedAt', 'featuredAt', 'featured_at'])),
     tags: topics ? topics.split(', ').map((s) => s.trim()).filter(Boolean) : undefined,
+    stats: stats.length ? stats : undefined,
   };
 }

@@ -33,6 +33,10 @@ export interface FeedItem {
   comments?: number;
   /** 附加键值信息（版本、大小、下载量等） */
   stats?: Array<{ label: string; value: string }>;
+  /** 完整描述 / 正文（详情页展示） */
+  longDescription?: string;
+  /** 外部目标链接（如 Reddit 帖子指向的原文），区别于讨论页链接 */
+  externalUrl?: string;
 }
 
 export interface FeedData {

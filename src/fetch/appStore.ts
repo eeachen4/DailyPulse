@@ -46,12 +46,17 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
   const stats = [
     kv('版本', pickStr(raw, ['version', 'currentVersion'])),
     kv('大小', pickStr(raw, ['size', 'fileSizeBytes', 'formattedSize'])),
+    kv('发布日期', pickStr(raw, ['releaseDate', 'release_date'])),
+    kv('更新日期', pickStr(raw, ['currentVersionReleaseDate'])),
+    kv('内容分级', pickStr(raw, ['contentRating', 'trackContentRating'])),
+    kv('最低系统', pickStr(raw, ['minimumOsVersion'])),
   ].filter((x): x is { label: string; value: string } => x !== null);
 
   return {
     id: `appstore-${categoryLabel}-${id}`,
     title,
-    description: pickStr(raw, ['subtitle', 'description']),
+    description: pickStr(raw, ['subtitle']),
+    longDescription: pickStr(raw, ['description', 'notes']),
     url,
     source: 'appstore',
     category: categoryLabel,

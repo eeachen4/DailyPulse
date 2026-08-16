@@ -46,12 +46,16 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
     kv('版本', pickStr(raw, ['version', 'versionName'])),
     kv('大小', pickStr(raw, ['size', 'formattedSize'])),
     kv('安装量', pickStr(raw, ['installs', 'downloads'])),
+    kv('发布日期', pickStr(raw, ['released', 'releaseDate'])),
+    kv('更新日期', pickStr(raw, ['updated', 'updatedDate', 'lastUpdated'])),
+    kv('内容分级', pickStr(raw, ['contentRating', 'content_rating'])),
   ].filter((x): x is { label: string; value: string } => x !== null);
 
   return {
     id: `googleplay-${categoryLabel}-${id}`,
     title,
-    description: pickStr(raw, ['summary', 'description']),
+    description: pickStr(raw, ['summary']),
+    longDescription: pickStr(raw, ['description']),
     url,
     source: 'googleplay',
     category: categoryLabel,
