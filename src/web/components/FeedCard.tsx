@@ -9,9 +9,7 @@ export default function FeedCard({ item }: { item: FeedItem }) {
 
   return (
     <a
-      href={item.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={`#/item/${encodeURIComponent(item.id)}`}
       className="group flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
     >
       {/* 缩略图：加载失败时自动回退到 emoji */}
@@ -77,6 +75,13 @@ export default function FeedCard({ item }: { item: FeedItem }) {
           )}
           {item.publishedAt && <span className="ml-auto">{formatDate(item.publishedAt)}</span>}
         </div>
+      </div>
+
+      {/* 右侧箭头，提示可进入详情 */}
+      <div className="flex shrink-0 items-center text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-500">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
       </div>
     </a>
   );

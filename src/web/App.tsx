@@ -5,17 +5,30 @@ import { CATEGORIES } from '../categories';
 import CategoryFilter from './components/CategoryFilter';
 import SourceFilter from './components/SourceFilter';
 import FeedList from './components/FeedList';
+import DetailPage from './components/DetailPage';
 import { formatDate } from './format';
 
 type SortKey = 'score' | 'rank' | 'title' | 'publishedAt';
 
 const EMPTY: FeedData = { fetchedAt: null, items: [] };
 
+/** 轻量 hash 路由，兼容 GitHub Pages 子路径（无需服务端配置） */
+function useHashRoute(): string {
+  const [hash, setHash] = useState(() => window.location.hash);
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  return hash;
+}
+
 export default function App() {
   const [data, setData] = useState<FeedData>(() => window.__DAILY_DATA__ ?? EMPTY);
   const [category, setCategory] = useState<string>('all');
   const [source, setSource] = useState<Source | 'all'>('all');
   const [sort, setSort] = useState<SortKey>('score');
+  const hash = useHashRoute();
 
   // 开发模式兜底：若构建产物未注入数据，则尝试相对路径读取 data/daily.json。
   useEffect(() => {
@@ -63,6 +76,25 @@ export default function App() {
     return c;
   }, [data]);
 
+  // 路由解析：列表页 或 详情页 #/item/<id>
+  const prefix = '#/item/';
+  let selectedId: string | null = null;
+  if (hash.startsWith(prefix)) {
+    try {
+      selectedId = decodeURIComponent(hash.slice(prefix.length));
+    } catch {
+      selectedId = hash.slice(prefix.length);
+    }
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedId]);
+
+  if (selectedId !== null) {
+    return <DetailPage item={data.items.find((it) => it.id === selectedId)} />;
+  }
+
   const isEmpty = data.items.length === 0;
 
   return (
@@ -108,10 +140,7 @@ export default function App() {
               {CATEGORIES.map((c) => (
                 <div key={c.id} className="rounded-2xl border border-slate-200 bg-white p-4">
                   <div className="flex items-center gap-2 text-sm text-slate-500">
-                    <span
-                      className="h-2 w-2 rounded-full"
-                      style={{ backgroundColor: c.hex }}
-                    />
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.hex }} />
                     <span>
                       {c.emoji} {c.label}
                     </span>
