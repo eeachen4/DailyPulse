@@ -134,26 +134,8 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* 类别统计 */}
-            <div className="grid grid-cols-2 border-b border-line sm:grid-cols-4">
-              {CATEGORIES.map((c, i) => (
-                <div
-                  key={c.id}
-                  className={`px-4 py-5 ${i > 0 ? 'sm:border-l sm:border-line' : ''}`}
-                >
-                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-                    <span className="h-2 w-2" style={{ backgroundColor: c.hex }} />
-                    {c.label}
-                  </div>
-                  <div className="mt-1.5 font-mono text-3xl font-semibold tracking-tight">
-                    {categoryCounts[c.label] ?? 0}
-                  </div>
-                </div>
-              ))}
-            </div>
-
             {/* 类别筛选 */}
-            <div className="mt-6">
+            <div>
               <CategoryFilter value={category} onChange={setCategory} counts={categoryCounts} />
             </div>
 
