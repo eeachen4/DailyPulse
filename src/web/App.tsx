@@ -92,7 +92,9 @@ export default function App() {
   }, [selectedId]);
 
   if (selectedId !== null) {
-    return <DetailPage item={data.items.find((it) => it.id === selectedId)} />;
+    return (
+      <DetailPage item={data.items.find((it) => it.id === selectedId)} items={data.items} />
+    );
   }
 
   const isEmpty = data.items.length === 0;

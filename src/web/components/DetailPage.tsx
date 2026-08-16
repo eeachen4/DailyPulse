@@ -2,8 +2,9 @@ import type { FeedItem } from '../../types';
 import { SOURCE_META } from '../../types';
 import { CATEGORY_META } from '../../categories';
 import { formatNumber, formatDate } from '../format';
+import ExpandableText from './ExpandableText';
 
-export default function DetailPage({ item }: { item?: FeedItem }) {
+export default function DetailPage({ item, items }: { item?: FeedItem; items: FeedItem[] }) {
   if (!item) {
     return (
       <main className="min-h-screen bg-paper text-ink">
@@ -37,8 +38,13 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
   if (item.publishedAt) cells.push({ label: '发布时间', value: formatDate(item.publishedAt) });
   if (item.stats) cells.push(...item.stats);
 
-  const showLongDesc = Boolean(item.longDescription && item.longDescription !== item.description);
-  const showExternal = Boolean(item.externalUrl && item.externalUrl !== item.url);
+  const longDesc = item.longDescription && item.longDescription !== item.description ? item.longDescription : undefined;
+  const externalUrl = item.externalUrl && item.externalUrl !== item.url ? item.externalUrl : undefined;
+
+  const related = items
+    .filter((it) => it.id !== item.id && it.category === item.category)
+    .sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY))
+    .slice(0, 6);
 
   return (
     <main className="min-h-screen bg-paper text-ink">
@@ -101,12 +107,13 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
           </div>
 
           {/* 完整描述 / 正文 */}
-          {showLongDesc && (
+          {longDesc && (
             <section className="mt-7 border-t border-line pt-5">
               <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">详情</h2>
-              <p className="mt-3 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink/90">
-                {item.longDescription}
-              </p>
+              <ExpandableText
+                text={longDesc}
+                className="mt-3 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink/90"
+              />
             </section>
           )}
 
@@ -131,9 +138,9 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
                 打开原链接
                 <span aria-hidden>↗</span>
               </a>
-              {showExternal && (
+              {externalUrl && (
                 <a
-                  href={item.externalUrl}
+                  href={externalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center gap-2 border border-ink px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-paper"
@@ -144,10 +151,54 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
               )}
             </div>
             <p className="mt-3 break-all font-mono text-xs text-muted">{item.url}</p>
-            {showExternal && (
-              <p className="mt-1 break-all font-mono text-xs text-muted">{item.externalUrl}</p>
-            )}
+            {externalUrl && <p className="mt-1 break-all font-mono text-xs text-muted">{externalUrl}</p>}
           </div>
+
+          {/* 相关推荐 */}
+          {related.length > 0 && (
+            <section className="mt-8 border-t border-line pt-6">
+              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">
+                相关推荐 · {cat.label}
+              </h2>
+              <div className="mt-1">
+                {related.map((r) => {
+                  const rMeta = SOURCE_META[r.source];
+                  const rCat = CATEGORY_META[r.category] ?? { label: r.category, emoji: '', hex: '#6E675A' };
+                  return (
+                    <a
+                      key={r.id}
+                      href={`#/item/${encodeURIComponent(r.id)}`}
+                      className="group flex items-center gap-3 border-b border-line py-3 last:border-b-0 transition hover:bg-cream/50"
+                    >
+                      <span className="h-1.5 w-1.5 shrink-0" style={{ backgroundColor: rCat.hex }} />
+                      <span className="shrink-0 font-mono text-[11px] uppercase text-muted">{rMeta.short}</span>
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-ink transition group-hover:text-accent">
+                        {r.title}
+                      </span>
+                      {r.score !== undefined && (
+                        <span className="shrink-0 font-mono text-sm tabular-nums text-muted">
+                          {formatNumber(r.score)}
+                        </span>
+                      )}
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="shrink-0 text-line transition group-hover:translate-x-0.5 group-hover:text-accent"
+                      >
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </a>
+                  );
+                })}
+              </div>
+            </section>
+          )}
         </article>
       </div>
     </main>
