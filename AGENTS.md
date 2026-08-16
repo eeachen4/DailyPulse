@@ -58,7 +58,7 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
 3. **`generateHtml` 必须幂等**：注入前先移除旧的 `window.__DAILY_DATA__`（见 `INJECTED_SCRIPT_RE`），重复运行不累积。
 4. **Vite `base: './'`**：保证 GitHub Pages 任意子路径可用，不要改成绝对路径。
 5. **App Store / Google Play 无需 key**：分别走官方 iTunes API 与 `google-play-scraper`；Apify 仅用于 Product Hunt 兜底，其 Actor ID 用 `~` 分隔（如 `glassventures~product-hunt-scraper`）。
-6. **Reddit 可能 403**：云主机 / 数据中心 IP 常见，已做浏览器 UA + `www`/`old.reddit` 双主机回退。
+6. **Reddit 可能 403**：CI 优先用 OAuth（`REDDIT_CLIENT_ID/SECRET`，见 `src/fetch/reddit.ts`），或 `REDDIT_PROXY` 代理兜底；本地直连通常可用。
 7. **cron 使用 UTC**：`'0 0 * * *'` 即北京时间 8:00。
 8. **Product Hunt 优先官方 API**：读 `PRODUCT_HUNT_TOKEN`（兼容 `PH_DEVELOPER_TOKEN`）；无 token 才回退 Apify，勿删除回退逻辑。
 9. **详情抓取可关**：`SCRAPE_DETAILS=false` 跳过；抓取失败应保留原数据，勿让异常中断整体。

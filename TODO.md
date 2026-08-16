@@ -26,9 +26,9 @@
 ## 二、已知问题
 
 - [x] **Reddit 403（数据中心 / 云主机 IP）**
-  - 现象：云主机、GitHub Actions runner 上 `reddit.com/.../top.json` 可能 403（Reddit 策略，非代码 bug）。
-  - 已做：浏览器 UA + `www`/`old.reddit` 双主机回退 + `REDDIT_PROXY` 代理出口（`src/fetch/proxy.ts`）。
-  - 使用：在 Secrets 添加 `REDDIT_PROXY=http://user:pass@host:port`（住宅代理或自建）后，CI 即可抓 Reddit。
+  - 现象：GitHub Actions runner 上 `reddit.com` 公共 JSON 会 403。
+  - 已做：官方 OAuth（`REDDIT_CLIENT_ID/SECRET`，推荐，免代理）+ `REDDIT_PROXY` 代理兜底 + `www`/`old.reddit` 双主机回退（`src/fetch/reddit.ts`）。
+  - 使用：Secrets 添加 `REDDIT_CLIENT_ID` + `REDDIT_CLIENT_SECRET`（创建 Reddit installed app），或 `REDDIT_PROXY`。
 
 - [ ] **Apify 免费额度（仅 Product Hunt 兜底）**
   - 配置 `PRODUCT_HUNT_TOKEN` 后不再依赖 Apify；仅未配 token 时 PH 走 Apify 兜底。

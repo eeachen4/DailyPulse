@@ -38,6 +38,9 @@ jobs:
           # 仅 Product Hunt 兜底需要，其余源（App Store/Google Play/Reddit）无需
           APIFY_API_KEY: ${{ secrets.APIFY_API_KEY }}
           APIFY_PRODUCT_HUNT_ACTOR_ID: ${{ secrets.APIFY_PRODUCT_HUNT_ACTOR_ID }}
+          # Reddit OAuth（推荐，CI 免代理抓 Reddit）
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
           # Reddit 代理出口（可选）：数据中心 IP 会被 Reddit 403
           REDDIT_PROXY: ${{ secrets.REDDIT_PROXY }}
 

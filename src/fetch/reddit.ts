@@ -10,56 +10,136 @@ const USER_AGENT =
 
 /**
  * Reddit：按类别采集（每个类别对应若干子版块），合并去重后按热度排序。
- * 使用公共 JSON API（无需认证）。
- *
- * 注意：Reddit 对数据中心 / 云主机 IP 可能直接返回 403，属于 Reddit 的访问策略。
+ * 采集优先级：
+ *   1. 官方 OAuth API（配置 REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET 时，CI 友好、免代理）
+ *   2. 公共 JSON API 直连（本地 / 家庭 IP；配置 REDDIT_PROXY 时走代理）
  */
 export async function fetchReddit(category: CategoryDef): Promise<FeedItem[]> {
-  const limit = Number(process.env.REDDIT_LIMIT || 30);
+  const clientId = process.env.REDDIT_CLIENT_ID || '';
+  const clientSecret = process.env.REDDIT_CLIENT_SECRET || '';
+
+  if (clientId && clientSecret) {
+    const items = await fetchViaOAuth(category, clientId, clientSecret);
+    if (items.length > 0) return items;
+    console.warn('[reddit] OAuth 无结果，回退直连');
+  }
+
+  const items = await fetchDirect(category);
+  if (items.length > 0) return items;
+  throw new Error(`Reddit「${category.label}」采集失败（OAuth / 直连均无结果，可能被限流或 IP 被封禁）`);
+}
+
+function limitPerCategory(): number {
+  return Number(process.env.REDDIT_LIMIT || 30);
+}
+
+/* ------------------------------ OAuth ------------------------------ */
+
+async function getOAuthToken(clientId: string, clientSecret: string): Promise<string> {
+  const resp = await axios.post(
+    'https://www.reddit.com/api/v1/access_token',
+    'grant_type=client_credentials',
+    {
+      auth: { username: clientId, password: clientSecret },
+      headers: { 'User-Agent': USER_AGENT, 'Content-Type': 'application/x-www-form-urlencoded' },
+      timeout: 30_000,
+    },
+  );
+  const token = resp.data?.access_token;
+  if (!token) throw new Error('Reddit OAuth 获取 access_token 失败');
+  return token as string;
+}
+
+async function fetchViaOAuth(
+  category: CategoryDef,
+  clientId: string,
+  clientSecret: string,
+): Promise<FeedItem[]> {
+  const token = await getOAuthToken(clientId, clientSecret);
+  const limit = limitPerCategory();
   const subs = category.redditSubreddits;
   const perSub = Math.max(1, Math.ceil(limit / subs.length));
 
   const results: FeedItem[] = [];
   const seen = new Set<string>();
-  let lastError: unknown;
-
   for (const sub of subs) {
-    const url = `https://www.reddit.com/r/${sub}/top.json?t=day&limit=${perSub}&raw_json=1`;
     try {
-      const resp = await axios.get(url, {
-        headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
+      const resp = await axios.get(`https://oauth.reddit.com/r/${sub}/top`, {
+        params: { t: 'day', limit: perSub },
+        headers: { Authorization: `Bearer ${token}`, 'User-Agent': USER_AGENT },
         timeout: 30_000,
-        proxy: redditProxy(),
       });
       const children: unknown[] = resp.data?.data?.children ?? [];
-      for (let i = 0; i < children.length; i++) {
-        const data = (children[i] as { data?: Record<string, unknown> })?.data ?? {};
+      for (const c of children) {
+        const data = (c as { data?: Record<string, unknown> })?.data ?? {};
         const item = normalize(data, category.label, sub);
         if (item && !seen.has(item.id)) {
           seen.add(item.id);
           results.push(item);
         }
       }
-    } catch (err) {
-      lastError = err;
-      // 继续尝试下一个子版块
+    } catch {
+      // 继续下一个子版块
     }
   }
-
-  if (results.length === 0) {
-    const reason = lastError instanceof Error ? lastError.message : String(lastError);
-    throw new Error(`Reddit「${category.label}」采集失败（可能被限流或 IP 被封禁）：${reason}`);
-  }
-
-  return results.sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY)).slice(0, limit);
+  return results
+    .sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY))
+    .slice(0, limit);
 }
+
+/* ------------------------------ 直连（可走代理） ------------------------------ */
+
+async function fetchDirect(category: CategoryDef): Promise<FeedItem[]> {
+  const limit = limitPerCategory();
+  const subs = category.redditSubreddits;
+  const perSub = Math.max(1, Math.ceil(limit / subs.length));
+
+  const results: FeedItem[] = [];
+  const seen = new Set<string>();
+  const endpoints = (sub: string) => [
+    `https://www.reddit.com/r/${sub}/top.json?t=day&limit=${perSub}&raw_json=1`,
+    `https://old.reddit.com/r/${sub}/top.json?t=day&limit=${perSub}&raw_json=1`,
+  ];
+
+  for (const sub of subs) {
+    for (const url of endpoints(sub)) {
+      try {
+        const resp = await axios.get(url, {
+          headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
+          timeout: 30_000,
+          proxy: redditProxy(),
+        });
+        const children: unknown[] = resp.data?.data?.children ?? [];
+        if (children.length === 0) continue;
+        for (const c of children) {
+          const data = (c as { data?: Record<string, unknown> })?.data ?? {};
+          const item = normalize(data, category.label, sub);
+          if (item && !seen.has(item.id)) {
+            seen.add(item.id);
+            results.push(item);
+          }
+        }
+        break; // 该子版块成功，跳到下一个
+      } catch {
+        // 尝试下一个端点
+      }
+    }
+  }
+  return results
+    .sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY))
+    .slice(0, limit);
+}
+
+/* ------------------------------ 归一化 ------------------------------ */
 
 function normalize(d: Record<string, unknown>, categoryLabel: string, sub: string): FeedItem | null {
   const title = typeof d.title === 'string' ? d.title : '';
   if (!title) return null;
 
   const permalink = typeof d.permalink === 'string' ? d.permalink : '';
-  const discussionUrl = permalink ? `https://www.reddit.com${permalink}` : String(d.url ?? 'https://www.reddit.com/');
+  const discussionUrl = permalink
+    ? `https://www.reddit.com${permalink}`
+    : String(d.url ?? 'https://www.reddit.com/');
 
   const thumbnail = typeof d.thumbnail === 'string' && d.thumbnail.startsWith('http') ? d.thumbnail : undefined;
   const author = typeof d.author === 'string' ? d.author : undefined;
@@ -90,7 +170,7 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
     url: discussionUrl,
     source: 'reddit',
     category: categoryLabel,
-    score: toNumber(d.ups),
+    score: toNumber(d.ups ?? d.score),
     comments: toNumber(d.num_comments ?? d.comments),
     developer: author,
     thumbnail,
