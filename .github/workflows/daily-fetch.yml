@@ -1,0 +1,55 @@
+name: DailyPulse Daily Fetch
+
+on:
+  schedule:
+    # UTC 0:00 = 北京时间 08:00
+    - cron: '0 0 * * *'
+  # 支持在 Actions 页面手动触发
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dailypulse-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch data
+        run: npm run fetch
+        env:
+          APIFY_API_KEY: ${{ secrets.APIFY_API_KEY }}
+          # 以下为可选，未在仓库 Secrets 中配置时会回退到代码内置默认值
+          APIFY_APP_STORE_ACTOR_ID: ${{ secrets.APIFY_APP_STORE_ACTOR_ID }}
+          APIFY_GOOGLE_PLAY_ACTOR_ID: ${{ secrets.APIFY_GOOGLE_PLAY_ACTOR_ID }}
+          APIFY_PRODUCT_HUNT_ACTOR_ID: ${{ secrets.APIFY_PRODUCT_HUNT_ACTOR_ID }}
+
+      - name: Build site
+        run: npm run build:all
+
+      - name: Commit & push generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/daily.json dist
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update daily data $(date -u +%Y-%m-%d)"
+            git push
+          fi
