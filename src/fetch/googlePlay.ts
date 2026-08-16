@@ -1,5 +1,5 @@
 import { runApifyActor } from './apify';
-import { pickStr, pickNum } from './utils';
+import { pickStr, pickNum, kv } from './utils';
 import type { FeedItem } from '../types';
 import type { CategoryDef } from '../categories';
 
@@ -10,7 +10,7 @@ const DEFAULT_ACTOR = 'haketa~google-play-scraper';
  */
 export async function fetchGooglePlay(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
   const actorId = process.env.APIFY_GOOGLE_PLAY_ACTOR_ID || DEFAULT_ACTOR;
-  const maxItems = Number(process.env.APIFY_GOOGLE_PLAY_MAX_ITEMS || 20);
+  const maxItems = Number(process.env.APIFY_GOOGLE_PLAY_MAX_ITEMS || 30);
   const spec = category.googlePlay;
 
   const input: Record<string, unknown> = {
@@ -40,11 +40,18 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
 
   const id = pickStr(raw, ['id', 'appId', 'packageName', 'package_name', 'bundleId']) ?? String(i);
   const genre = pickStr(raw, ['category', 'genre', 'genres', 'categoryName']);
+  const developer = pickStr(raw, ['developer', 'publisher', 'developerName']);
+
+  const stats = [
+    kv('版本', pickStr(raw, ['version', 'versionName'])),
+    kv('大小', pickStr(raw, ['size', 'formattedSize'])),
+    kv('安装量', pickStr(raw, ['installs', 'downloads'])),
+  ].filter((x): x is { label: string; value: string } => x !== null);
 
   return {
     id: `googleplay-${categoryLabel}-${id}`,
     title,
-    description: pickStr(raw, ['summary', 'description', 'developer', 'publisher', 'developerName']),
+    description: pickStr(raw, ['summary', 'description']),
     url,
     source: 'googleplay',
     category: categoryLabel,
@@ -58,7 +65,12 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
       'ratingCount',
       'reviewsCount',
     ]),
+    rating: pickNum(raw, ['rating', 'score', 'averageRating']),
+    price: pickStr(raw, ['price', 'priceText']),
+    developer,
+    comments: pickNum(raw, ['reviewsCount', 'commentsCount', 'ratingCount']),
     thumbnail: pickStr(raw, ['icon', 'iconUrl', 'thumbnail', 'image', 'coverImage']),
     tags: genre ? [genre] : undefined,
+    stats: stats.length ? stats : undefined,
   };
 }

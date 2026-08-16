@@ -46,6 +46,13 @@ export function toIso(value: unknown): string | undefined {
   return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
 }
 
+/** 构造附加键值对，值为空时返回 null。 */
+export function kv(label: string, value: unknown): { label: string; value: string } | null {
+  if (value === undefined || value === null || value === '') return null;
+  const s = String(value).trim();
+  return s ? { label, value: s } : null;
+}
+
 /** 将「字符串数组 / 对象数组 / 单个字符串」统一合并为逗号分隔的字符串。 */
 export function toJoined(value: unknown): string | undefined {
   if (Array.isArray(value)) {

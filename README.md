@@ -209,6 +209,11 @@ interface FeedItem {
   thumbnail?: string;         // 缩略图 URL
   publishedAt?: string;       // 发布时间
   tags?: string[];            // 平台附加标签（App 分类 / r/subreddit / PH topics）
+  rating?: number;            // 评分（0–5）
+  price?: string;             // 价格
+  developer?: string;         // 开发者 / 作者
+  comments?: number;          // 评论数
+  stats?: Array<{ label: string; value: string }>;  // 附加信息（版本、大小等）
 }
 ```
 

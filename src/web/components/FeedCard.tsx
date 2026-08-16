@@ -35,6 +35,7 @@ export default function FeedCard({ item }: { item: FeedItem }) {
           <span className="font-medium text-ink">{meta.label}</span>
           <span style={{ color: cat.hex }}>{cat.label}</span>
           {item.rank !== undefined && <span>No.{item.rank}</span>}
+          {item.rating !== undefined && <span className="text-ink">★ {item.rating.toFixed(1)}</span>}
           {item.publishedAt && (
             <span className="hidden sm:inline">{formatDate(item.publishedAt)}</span>
           )}

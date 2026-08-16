@@ -23,6 +23,16 @@ export interface FeedItem {
   category: string;
   /** 平台附加标签（如 App 分类、r/subreddit、Product Hunt topics） */
   tags?: string[];
+  /** 评分（0–5，App Store / Google Play） */
+  rating?: number;
+  /** 价格（如 "Free" / "$0.99"） */
+  price?: string;
+  /** 开发者 / 发布者 / 作者 */
+  developer?: string;
+  /** 评论数 */
+  comments?: number;
+  /** 附加键值信息（版本、大小、下载量等） */
+  stats?: Array<{ label: string; value: string }>;
 }
 
 export interface FeedData {

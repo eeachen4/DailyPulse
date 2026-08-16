@@ -112,6 +112,8 @@ function renderCard(item: FeedItem): string {
     : `<div class="thumb mono">${escapeHtml(meta.short)}</div>`;
   const rank = item.rank !== undefined ? `<span>No.${item.rank}</span>` : '';
   const time = item.publishedAt ? `<span>${fmtDate(item.publishedAt)}</span>` : '';
+  const rating = item.rating !== undefined ? `<span>★${item.rating.toFixed(1)}</span>` : '';
+  const price = item.price ? `<span>${escapeHtml(item.price)}</span>` : '';
   const desc = item.description
     ? `<p class="desc">${escapeHtml(item.description)}</p>`
     : item.tags && item.tags.length
@@ -126,7 +128,7 @@ function renderCard(item: FeedItem): string {
       <a class="row" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
         ${thumb}
         <div class="body">
-          <div class="meta"><b>${escapeHtml(meta.label)}</b><span style="color:${cat.hex}">${escapeHtml(cat.label)}</span>${rank}${time}</div>
+          <div class="meta"><b>${escapeHtml(meta.label)}</b><span style="color:${cat.hex}">${escapeHtml(cat.label)}</span>${rank}${rating}${price}${time}</div>
           <h3>${escapeHtml(item.title)}</h3>
           ${desc}
         </div>

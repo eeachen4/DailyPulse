@@ -25,6 +25,18 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
   const meta = SOURCE_META[item.source];
   const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
 
+  // 信息网格单元（含附加 stats）
+  const cells: Array<{ label: string; value: string }> = [];
+  if (item.score !== undefined) cells.push({ label: `热度 · ${meta.scoreLabel}`, value: formatNumber(item.score) });
+  if (item.rank !== undefined) cells.push({ label: '排名', value: `No.${item.rank}` });
+  if (item.rating !== undefined) cells.push({ label: '评分', value: `★ ${item.rating.toFixed(1)}` });
+  if (item.price) cells.push({ label: '价格', value: item.price });
+  if (item.comments !== undefined) cells.push({ label: '评论', value: formatNumber(item.comments) });
+  cells.push({ label: '来源', value: meta.label });
+  cells.push({ label: '类别', value: cat.label });
+  if (item.publishedAt) cells.push({ label: '发布时间', value: formatDate(item.publishedAt) });
+  if (item.stats) cells.push(...item.stats);
+
   return (
     <main className="min-h-screen bg-paper text-ink">
       <div className="mx-auto max-w-3xl px-4 py-8">
@@ -41,12 +53,19 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
             <span className="font-medium text-ink">{meta.label}</span>
             <span style={{ color: cat.hex }}>{cat.label}</span>
             {item.rank !== undefined && <span>No.{item.rank}</span>}
+            {item.rating !== undefined && <span className="text-ink">★ {item.rating.toFixed(1)}</span>}
+            {item.price && <span>{item.price}</span>}
             {item.publishedAt && <span>{formatDate(item.publishedAt)}</span>}
           </div>
 
           <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
             {item.title}
           </h1>
+
+          {item.developer && (
+            <p className="mt-3 font-mono text-sm text-muted">开发者 / 作者 · {item.developer}</p>
+          )}
+
           {item.description && (
             <p className="mt-4 text-lg leading-relaxed text-muted">{item.description}</p>
           )}
@@ -79,15 +98,13 @@ export default function DetailPage({ item }: { item?: FeedItem }) {
           </div>
 
           {/* 信息网格（hairline 分隔） */}
-          <div className="mt-8 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
-            {item.score !== undefined && (
-              <Stat label={`热度 · ${meta.scoreLabel}`} value={formatNumber(item.score)} />
-            )}
-            {item.rank !== undefined && <Stat label="排名" value={`No.${item.rank}`} />}
-            <Stat label="来源" value={meta.label} />
-            <Stat label="类别" value={cat.label} />
-            {item.publishedAt && <Stat label="发布时间" value={formatDate(item.publishedAt)} />}
-          </div>
+          {cells.length > 0 && (
+            <div className="mt-8 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
+              {cells.map((c) => (
+                <Stat key={c.label + c.value} label={c.label} value={c.value} />
+              ))}
+            </div>
+          )}
 
           {/* 打开原链接 */}
           <div className="mt-8 border-t border-line pt-6">
@@ -112,7 +129,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-paper p-3">
       <div className="font-mono text-[11px] uppercase tracking-wide text-muted">{label}</div>
-      <div className="mt-1 font-mono text-base font-semibold">{value}</div>
+      <div className="mt-1 break-words font-mono text-base font-semibold">{value}</div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ const USER_AGENT =
  * 注意：Reddit 对数据中心 / 云主机 IP 可能直接返回 403，属于 Reddit 的访问策略。
  */
 export async function fetchReddit(category: CategoryDef): Promise<FeedItem[]> {
-  const limit = Number(process.env.REDDIT_LIMIT || 20);
+  const limit = Number(process.env.REDDIT_LIMIT || 30);
   const subs = category.redditSubreddits;
   const perSub = Math.max(1, Math.ceil(limit / subs.length));
 
@@ -60,6 +60,7 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
   const url = permalink ? `https://www.reddit.com${permalink}` : String(d.url ?? 'https://www.reddit.com/');
 
   const thumbnail = typeof d.thumbnail === 'string' && d.thumbnail.startsWith('http') ? d.thumbnail : undefined;
+  const author = typeof d.author === 'string' ? d.author : undefined;
 
   return {
     id: `reddit-${String(d.id ?? d.name ?? `${sub}-${title}`)}`,
@@ -69,6 +70,8 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
     source: 'reddit',
     category: categoryLabel,
     score: toNumber(d.ups),
+    comments: toNumber(d.num_comments ?? d.comments),
+    developer: author,
     thumbnail,
     publishedAt: toIso(typeof d.created_utc === 'number' ? d.created_utc * 1000 : d.created_utc),
     tags: [`r/${sub}`],

@@ -6,11 +6,11 @@ import type { CategoryDef } from '../categories';
 const DEFAULT_ACTOR = 'glassventures~product-hunt-scraper';
 
 /**
- * Product Hunt：按 topic 采集今日热门产品（每个类别对应一个或多个 topic slug）。
+ * Product Hunt：按 topic 采集热门产品（每个类别对应一个或多个 topic slug）。
  */
 export async function fetchProductHunt(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
   const actorId = process.env.APIFY_PRODUCT_HUNT_ACTOR_ID || DEFAULT_ACTOR;
-  const maxItems = Number(process.env.APIFY_PRODUCT_HUNT_MAX_ITEMS || 10);
+  const maxItems = Number(process.env.APIFY_PRODUCT_HUNT_MAX_ITEMS || 20);
 
   const raw = await runApifyActor({
     actorId,
@@ -36,6 +36,7 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
 
   const id = pickStr(raw, ['id', 'productId', 'slug']) ?? String(i);
   const topics = toJoined(pickValue(raw, ['topics', 'tags', 'categories']));
+  const makers = toJoined(pickValue(raw, ['makers', 'makerNames', 'makers_names']));
 
   return {
     id: `producthunt-${categoryLabel}-${id}`,
@@ -46,6 +47,10 @@ function normalize(raw: Record<string, unknown>, i: number, categoryLabel: strin
     category: categoryLabel,
     rank: pickNum(raw, ['rank', 'position']) ?? i + 1,
     score: pickNum(raw, ['votes', 'votesCount', 'upvotes', 'upvoteCount', 'votes_count']),
+    rating: pickNum(raw, ['rating', 'averageRating']),
+    price: pickStr(raw, ['pricingType', 'pricing', 'price']),
+    developer: makers,
+    comments: pickNum(raw, ['commentsCount', 'commentCount', 'comments', 'comments_count']),
     thumbnail: pickStr(raw, ['thumbnailUrl', 'thumbnail', 'imageUrl', 'image', 'logo', 'logoUrl']),
     publishedAt: toIso(pickValue(raw, ['createdAt', 'launchedAt', 'featuredAt', 'featured_at'])),
     tags: topics ? topics.split(', ').map((s) => s.trim()).filter(Boolean) : undefined,
