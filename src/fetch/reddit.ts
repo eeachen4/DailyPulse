@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toNumber, toIso, kv } from './utils';
+import { redditProxy } from './proxy';
 import type { FeedItem } from '../types';
 import type { CategoryDef } from '../categories';
 
@@ -28,6 +29,7 @@ export async function fetchReddit(category: CategoryDef): Promise<FeedItem[]> {
       const resp = await axios.get(url, {
         headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
         timeout: 30_000,
+        proxy: redditProxy(),
       });
       const children: unknown[] = resp.data?.data?.children ?? [];
       for (let i = 0; i < children.length; i++) {

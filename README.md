@@ -161,6 +161,7 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `REDDIT_LIMIT` | 可选 | 每类别 Reddit 采集数（默认 30） |
 | `APP_STORE_COUNTRY` | 可选 | App Store 地区（默认 `us`） |
 | `GOOGLE_PLAY_COUNTRY` | 可选 | Google Play 地区（默认 `us`） |
+| `REDDIT_PROXY` | 可选 | Reddit 代理出口（解决 CI 403） |
 | `SCRAPE_DETAILS` | 可选 | 是否抓取来源网页详情（默认 `true`） |
 | `SCRAPE_DETAILS_CONCURRENCY` | 可选 | 详情抓取并发数（默认 4） |
 
@@ -202,6 +203,22 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `PRODUCT_HUNT_TOKEN` | 推荐 | Product Hunt 官方 API Token |
 | `APIFY_API_KEY` | 可选 | 仅 Product Hunt 兜底 |
 | `APIFY_PRODUCT_HUNT_ACTOR_ID` | 可选 | Product Hunt 兜底 Actor |
+| `REDDIT_PROXY` | 可选 | Reddit 代理出口（解决 CI 403） |
+
+## 🕸️ Reddit 代理（解决 CI 403）
+
+GitHub Actions 是数据中心 IP，访问 `reddit.com` 会被 403。给 Reddit 单独配一个 HTTP 代理出口即可：
+
+1. 准备一个「干净 IP」的 HTTP 代理（住宅代理或自建）：
+   - 商业住宅代理：Bright Data / Oxylabs / Smartproxy / ScraperAPI 等，提供 `http://user:pass@host:port`。
+   - 自建：在家庭网络（非机房 IP）或 VPS 上跑 HTTP 代理（如 squid / tinyproxy），对外开放。
+2. 在仓库 Secrets 添加 `REDDIT_PROXY`，值为代理 URL：
+   ```
+   http://username:password@host:port
+   ```
+3. 重新触发采集即可，Reddit 请求走该代理，其余源不受影响。
+
+> 免代理替代：把 Reddit 源换成镜像/第三方 API（如 PullPush `api.pullpush.io` 或 Redlib 实例）也能避开 403，但实时性与稳定性略差。
 
 ## 🌐 部署到 GitHub Pages
 

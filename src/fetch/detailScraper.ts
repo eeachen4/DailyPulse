@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 import { toNumber } from './utils';
+import { redditProxy } from './proxy';
 import type { FeedItem } from '../types';
 
 /**
@@ -27,8 +28,16 @@ export interface ScrapedDetail {
 type Cheerio = ReturnType<typeof load>;
 
 async function fetchHtml(url: string): Promise<string> {
+  // 仅 Reddit 详情走代理（其余源直连）
+  let isReddit = false;
+  try {
+    isReddit = /(^|\.)reddit\.com$/.test(new URL(url).hostname);
+  } catch {
+    /* 忽略非法 URL */
+  }
   const resp = await axios.get(url, {
     headers: { 'User-Agent': UA, Accept: 'text/html,application/xhtml+xml,text/html;q=0.9,*/*;q=0.8' },
+    proxy: isReddit ? redditProxy() : undefined,
     timeout: 15_000,
     maxRedirects: 5,
     validateStatus: (s) => s >= 200 && s < 400,
