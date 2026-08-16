@@ -62,14 +62,23 @@ function normalize(r: ITunesResult, rank: number | undefined, categoryLabel: str
   if (released) stats.push({ label: '更新日期', value: released.slice(0, 10) });
 
   return {
-    id: `appstore-${categoryLabel}-${r.trackId}`,
+    id: 'appstore:' + r.trackId,
+    sourceItemId: String(r.trackId),
     title: r.trackName,
     longDescription: r.description,
     url: r.trackViewUrl ?? `https://apps.apple.com/us/app/id${r.trackId}`,
     source: 'appstore',
     category: categoryLabel,
+    categoryId: categoryLabel,
+    categoryIds: [categoryLabel],
     rank,
     score: r.userRatingCount,
+    metrics: {
+      rawScore: r.userRatingCount,
+      rawScoreLabel: '评分人数',
+      rating: r.averageUserRating,
+      ratingCount: r.userRatingCount,
+    },
     rating: r.averageUserRating,
     price,
     developer: r.sellerName ?? r.artistName,

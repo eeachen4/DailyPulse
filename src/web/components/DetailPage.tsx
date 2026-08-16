@@ -1,6 +1,7 @@
 import type { FeedItem } from '../../types';
 import { SOURCE_META } from '../../types';
-import { CATEGORY_META } from '../../categories';
+import { CATEGORY_META_BY_ID } from '../../categories';
+import { categoryIdsFor, primaryCategoryId } from '../../dataModel';
 import { formatNumber, formatDate } from '../format';
 import ExpandableText from './ExpandableText';
 
@@ -15,21 +16,22 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
   }
 
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#ff6b45' };
+  const cat = CATEGORY_META_BY_ID[primaryCategoryId(item)] ?? { label: primaryCategoryId(item), emoji: '', hex: '#ff6b45' };
   const index = items.findIndex((entry) => entry.id === item.id);
   const previous = index > 0 ? items[index - 1] : undefined;
   const next = index >= 0 && index < items.length - 1 ? items[index + 1] : undefined;
   const related = items
-    .filter((entry) => entry.id !== item.id && entry.category === item.category)
-    .sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity))
+    .filter((entry) => entry.id !== item.id && categoryIdsFor(entry).some((id) => categoryIdsFor(item).includes(id)))
+    .sort((a, b) => (b.heatScore ?? -Infinity) - (a.heatScore ?? -Infinity))
     .slice(0, 5);
   const longDesc = item.longDescription && item.longDescription !== item.description ? item.longDescription : undefined;
   const externalUrl = item.externalUrl && item.externalUrl !== item.url ? item.externalUrl : undefined;
   const stats = [
-    item.score !== undefined ? { label: meta.scoreLabel, value: formatNumber(item.score) } : undefined,
+    item.heatScore !== undefined ? { label: 'Normalized heat', value: item.heatScore.toFixed(0) } : undefined,
+    item.metrics?.rawScore !== undefined ? { label: meta.scoreLabel, value: formatNumber(item.metrics.rawScore) } : item.score !== undefined ? { label: meta.scoreLabel, value: formatNumber(item.score) } : undefined,
     item.rank !== undefined ? { label: 'Rank', value: 'No.' + item.rank } : undefined,
-    item.rating !== undefined ? { label: 'Rating', value: '★ ' + item.rating.toFixed(1) } : undefined,
-    item.comments !== undefined ? { label: 'Comments', value: formatNumber(item.comments) } : undefined,
+    item.metrics?.rating !== undefined ? { label: 'Rating', value: '★ ' + item.metrics.rating.toFixed(1) } : item.rating !== undefined ? { label: 'Rating', value: '★ ' + item.rating.toFixed(1) } : undefined,
+    item.metrics?.comments !== undefined ? { label: 'Comments', value: formatNumber(item.metrics.comments) } : item.comments !== undefined ? { label: 'Comments', value: formatNumber(item.comments) } : undefined,
     item.price ? { label: 'Price', value: item.price } : undefined,
     item.publishedAt ? { label: 'Published', value: formatDate(item.publishedAt) } : undefined,
     ...(item.stats ?? []),
@@ -97,7 +99,7 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
                     <a key={entry.id} href={'#/item/' + encodeURIComponent(entry.id)} className="group flex items-center gap-3 border-b border-line py-3 hover:bg-panel">
                       <span className="h-1.5 w-1.5" style={{ backgroundColor: cat.hex }} />
                       <span className="min-w-0 flex-1 truncate text-sm font-medium group-hover:text-accent">{entry.title}</span>
-                      <span className="font-mono text-xs text-muted">{entry.score !== undefined ? formatNumber(entry.score) : '—'}</span>
+                      <span className="font-mono text-xs text-muted">{entry.heatScore !== undefined ? entry.heatScore.toFixed(0) : '—'}</span>
                       <span className="text-muted group-hover:text-accent">→</span>
                     </a>
                   ))}

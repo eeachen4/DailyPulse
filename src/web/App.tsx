@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { FeedData, Source } from '../types';
+import type { FeedData, FeedDetail, Source } from '../types';
 import { SOURCES, SOURCE_META } from '../types';
 import { CATEGORIES } from '../categories';
+import { categoryIdsFor, rawScoreFor } from '../dataModel';
 import CategoryFilter from './components/CategoryFilter';
 import SourceFilter from './components/SourceFilter';
 import FeedList from './components/FeedList';
 import DetailPage from './components/DetailPage';
-import { formatDate, formatNumber } from './format';
+import { formatDate } from './format';
 
-type SortKey = 'score' | 'rank' | 'title' | 'publishedAt';
+type SortKey = 'heat' | 'rank' | 'title' | 'publishedAt';
 type Theme = 'dark' | 'light';
 type HistoryEntry = { date: string; fetchedAt: string; count: number; path: string };
 
@@ -31,7 +32,8 @@ export default function App() {
   const [selectedDate, setSelectedDate] = useState('');
   const [category, setCategory] = useState('all');
   const [source, setSource] = useState<Source | 'all'>('all');
-  const [sort, setSort] = useState<SortKey>('score');
+  const [sort, setSort] = useState<SortKey>('heat');
+  const [selectedDetail, setSelectedDetail] = useState<FeedDetail | null>(null);
   const [query, setQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(48);
   const [theme, setTheme] = useState<Theme>(() => {
@@ -82,14 +84,13 @@ export default function App() {
   const items = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
     let list = data.items;
-    if (category !== 'all') list = list.filter((item) => item.category === category);
+    if (category !== 'all') list = list.filter((item) => categoryIdsFor(item).includes(category));
     if (source !== 'all') list = list.filter((item) => item.source === source);
     if (normalizedQuery) {
       list = list.filter((item) => {
         const haystack = [
           item.title,
           item.description,
-          item.longDescription,
           item.developer,
           ...(item.tags ?? []),
         ]
@@ -108,7 +109,7 @@ export default function App() {
         case 'publishedAt':
           return (b.publishedAt ?? '').localeCompare(a.publishedAt ?? '');
         default:
-          return (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY);
+          return (b.heatScore ?? rawScoreFor(b) ?? Number.NEGATIVE_INFINITY) - (a.heatScore ?? rawScoreFor(a) ?? Number.NEGATIVE_INFINITY);
       }
     });
   }, [data, category, source, sort, query]);
@@ -119,8 +120,10 @@ export default function App() {
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    for (const categoryDef of CATEGORIES) counts[categoryDef.label] = 0;
-    for (const item of data.items) counts[item.category] = (counts[item.category] ?? 0) + 1;
+    for (const categoryDef of CATEGORIES) counts[categoryDef.id] = 0;
+    for (const item of data.items) {
+      for (const categoryId of categoryIdsFor(item)) counts[categoryId] = (counts[categoryId] ?? 0) + 1;
+    }
     return counts;
   }, [data]);
 
@@ -131,7 +134,7 @@ export default function App() {
   }, [data]);
 
   const topItem = useMemo(
-    () => [...data.items].sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity))[0],
+    () => [...data.items].sort((a, b) => (b.heatScore ?? rawScoreFor(b) ?? -Infinity) - (a.heatScore ?? rawScoreFor(a) ?? -Infinity))[0],
     [data],
   );
   const activeSourceCount = SOURCES.filter((item) => sourceCounts[item] > 0).length;
@@ -149,8 +152,26 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [selectedId]);
 
+  useEffect(() => {
+    setSelectedDetail(null);
+    const selectedItem = selectedId ? data.items.find((item) => item.id === selectedId) : undefined;
+    if (!selectedItem?.detailRef) return;
+    let cancelled = false;
+    fetch(selectedItem.detailRef)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((json: { detail?: FeedDetail } | null) => {
+        if (!cancelled && json?.detail) setSelectedDetail(json.detail);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, [data, selectedId]);
+
   if (selectedId !== null) {
-    return <DetailPage item={data.items.find((item) => item.id === selectedId)} items={data.items} />;
+    const selectedItem = data.items.find((item) => item.id === selectedId);
+    const detailedItem = selectedItem && selectedDetail ? { ...selectedItem, ...selectedDetail } : selectedItem;
+    return <DetailPage item={detailedItem} items={data.items} />;
   }
 
   const isEmpty = data.items.length === 0;
@@ -213,7 +234,7 @@ export default function App() {
                 </div>
                 <div className="mt-4 flex items-end justify-between border-t border-line pt-4">
                   <span className="font-mono text-xs text-muted">{topItem ? SOURCE_META[topItem.source].label : '—'}</span>
-                  <span className="font-mono text-2xl font-semibold text-accent">{topItem?.score !== undefined ? formatNumber(topItem.score) : '—'}</span>
+                  <span className="font-mono text-2xl font-semibold text-accent">{topItem?.heatScore !== undefined ? topItem.heatScore.toFixed(0) : '—'}</span>
                 </div>
               </a>
             </div>
@@ -277,7 +298,7 @@ export default function App() {
                     onChange={(event) => setSort(event.target.value as SortKey)}
                     className="h-11 border border-line bg-panel px-3 font-mono text-xs text-ink outline-none"
                   >
-                    <option value="score">Heat</option>
+                    <option value="heat">Heat</option>
                     <option value="rank">Rank</option>
                     <option value="title">Title</option>
                     <option value="publishedAt">Newest</option>
@@ -287,7 +308,7 @@ export default function App() {
 
               <div className="mt-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                 <span>{items.length} matching signals</span>
-                <span>Sorted by {sort === 'score' ? 'heat' : sort}</span>
+                <span>Sorted by {sort === 'heat' ? 'heat' : sort}</span>
               </div>
               <div className="mt-3">
                 <FeedList items={displayedItems} />

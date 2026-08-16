@@ -92,15 +92,25 @@ function normalize(a: GpFull, rank: number, categoryLabel: string): FeedItem | n
   if (a.updated) stats.push({ label: '更新日期', value: new Date(a.updated).toISOString().slice(0, 10) });
 
   return {
-    id: `googleplay-${categoryLabel}-${a.appId}`,
+    id: 'googleplay:' + a.appId,
+    sourceItemId: a.appId,
     title: a.title,
     description: a.summary,
     longDescription: a.description,
     url: a.url ?? `https://play.google.com/store/apps/details?id=${a.appId}`,
     source: 'googleplay',
     category: categoryLabel,
+    categoryId: categoryLabel,
+    categoryIds: [categoryLabel],
     rank,
     score: a.maxInstalls ?? a.minInstalls,
+    metrics: {
+      rawScore: a.maxInstalls ?? a.minInstalls,
+      rawScoreLabel: '下载量',
+      rating: a.score,
+      comments: a.reviews,
+      installs: a.maxInstalls ?? a.minInstalls,
+    },
     rating: a.score,
     price,
     developer: a.developer,

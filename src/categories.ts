@@ -75,3 +75,6 @@ export const CATEGORIES: CategoryDef[] = [
 
 export const CATEGORY_META: Record<string, { label: string; emoji: string; hex: string }> =
   Object.fromEntries(CATEGORIES.map((c) => [c.label, { label: c.label, emoji: c.emoji, hex: c.hex }]));
+
+export const CATEGORY_META_BY_ID: Record<string, { id: string; label: string; emoji: string; hex: string }> =
+  Object.fromEntries(CATEGORIES.map((c) => [c.id, { id: c.id, label: c.label, emoji: c.emoji, hex: c.hex }]));

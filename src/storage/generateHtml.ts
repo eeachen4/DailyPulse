@@ -3,7 +3,8 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { FeedData, FeedItem } from '../types';
 import { SOURCE_META } from '../types';
-import { CATEGORIES, CATEGORY_META } from '../categories';
+import { CATEGORIES, CATEGORY_META_BY_ID } from '../categories';
+import { categoryIdsFor, primaryCategoryId, rawScoreFor } from '../dataModel';
 
 /**
  * 生成最终静态页面 dist/index.html：
@@ -37,6 +38,7 @@ export async function generateHtml(): Promise<string> {
 
   await writeFile(indexPath, html, 'utf-8');
   await syncHistory(distDir);
+  await syncDetails(distDir);
   console.log(`[generateHtml] ${injected ? '已注入数据到' : '已生成独立静态页'} dist/index.html`);
   return indexPath;
 }
@@ -55,15 +57,31 @@ async function syncHistory(distDir: string): Promise<void> {
   }
 }
 
+async function syncDetails(distDir: string): Promise<void> {
+  const sourceDir = path.resolve(process.cwd(), 'data/details');
+  const targetDir = path.join(distDir, 'details');
+  try {
+    const files = (await readdir(sourceDir)).filter((file) => file.endsWith('.json'));
+    if (!files.length) return;
+    await mkdir(targetDir, { recursive: true });
+    await Promise.all(files.map((file) => copyFile(path.join(sourceDir, file), path.join(targetDir, file))));
+    console.log('[generateHtml] 已同步 ' + files.length + ' 个详情文件');
+  } catch {
+    // 首次采集前没有详情目录，不影响当前页面生成。
+  }
+}
+
 async function readData(): Promise<FeedData> {
   const p = path.resolve(process.cwd(), 'data/daily.json');
   try {
     const raw = await readFile(p, 'utf-8');
     const parsed = JSON.parse(raw) as Partial<FeedData>;
     return {
+      schemaVersion: parsed.schemaVersion,
       fetchedAt: parsed.fetchedAt ?? null,
       isSample: parsed.isSample,
       items: Array.isArray(parsed.items) ? parsed.items : [],
+      runs: Array.isArray(parsed.runs) ? parsed.runs : undefined,
     };
   } catch {
     return { fetchedAt: null, items: [] };
@@ -120,8 +138,9 @@ function fmtDate(iso?: string | null): string {
 }
 
 function renderCard(item: FeedItem): string {
+  item = { ...item, score: item.heatScore, rating: item.metrics?.rating ?? item.rating };
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
+  const cat = CATEGORY_META_BY_ID[primaryCategoryId(item)] ?? { label: primaryCategoryId(item), emoji: '', hex: '#6E675A' };
   const thumb = item.thumbnail
     ? `<img class="thumb" src="${escapeHtml(item.thumbnail)}" loading="lazy" onerror="this.style.display='none'" alt="">`
     : `<div class="thumb mono">${escapeHtml(meta.short)}</div>`;
@@ -153,8 +172,10 @@ function renderCard(item: FeedItem): string {
 
 function countByCategory(items: FeedItem[]): Record<string, number> {
   const c: Record<string, number> = {};
-  for (const cat of CATEGORIES) c[cat.label] = 0;
-  for (const it of items) c[it.category] = (c[it.category] ?? 0) + 1;
+  for (const cat of CATEGORIES) c[cat.id] = 0;
+  for (const it of items) {
+    for (const categoryId of categoryIdsFor(it)) c[categoryId] = (c[categoryId] ?? 0) + 1;
+  }
   return c;
 }
 
@@ -165,7 +186,7 @@ function renderStandalone(data: FeedData): string {
     (c, i) => `
         <div class="stat"${i > 0 ? ' style="border-left:1px solid #E3DDCE"' : ''}>
           <span class="stat-label"><i class="dot" style="background:${c.hex}"></i>${c.label}</span>
-          <span class="stat-num">${counts[c.label] ?? 0}</span>
+          <span class="stat-num">${counts[c.id] ?? 0}</span>
         </div>`,
   ).join('');
 

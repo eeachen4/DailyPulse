@@ -20,8 +20,10 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 - 🧾 **详情页**：点击条目进入详情页，展示完整描述、截图图集、评分 / 价格 / 评论 / 开发者等元信息，并支持「打开原链接」「访问原文」。
 - 🔍 **详情抓取**：采集后自动逐个抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分等。
 - 🔗 **相关推荐 + 展开收起**：详情页按类别推荐同主题条目；长正文支持展开 / 收起。
-- 📦 **统一数据格式**：所有源归一化为 `FeedItem`。
-- 🖼️ **静态页面生成**：数据写入 `data/daily.json`，并注入 `dist/index.html` 的 `window.__DAILY_DATA__`，前端无需二次请求。
+- 📦 **统一数据格式**：所有源归一化为 schema v2 `FeedItem`，用稳定的 `sourceItemId`、`categoryId` 和结构化 `metrics` 消除来源差异。
+- 🔥 **可比热度**：各平台原始指标保留在 `metrics.rawScore`，同时按来源归一化为 0–100 的 `heatScore`，用于跨平台排序。
+- 🖼️ **摘要 / 详情分离**：列表只加载 `data/daily.json` 的轻量摘要，完整描述、截图和附加信息写入 `data/details/`，点击详情时按 `detailRef` 懒加载。
+- 🗓️ **历史快照**：每日摘要写入 `data/history/YYYY-MM-DD.json`，`data/history/index.json` 提供日期索引，前端支持往期切换。
 - 🔍 **筛选与排序**：按类别、按平台筛选，按热度 / 排名 / 标题 / 时间排序。
 - 🎨 **编辑风设计**：暖纸色底 + 近黑墨色 + 等宽数据字体 + 细线分隔（「Morning Pulse」）。
 - ⏰ **定时自动化**：GitHub Actions cron 每天 UTC 0:00（北京时间 8:00）自动采集、回写并部署。
@@ -72,9 +74,12 @@ daily-pulse/
 │   │   ├── detailScraper.ts            # 来源网页详情抓取（og:meta + JSON-LD）
 │   │   └── utils.ts                    # 防御性字段归一化工具
 │   ├── storage/
-│   │   ├── saveData.ts                 # 写入 data/daily.json
+│   │   ├── saveData.ts                 # 写入摘要、详情和历史快照
 │   │   ├── generateHtml.ts             # 生成 / 注入静态 HTML
-│   │   └── generateSample.ts           # 生成示例数据（npm run sample）
+│   │   ├── generateSample.ts           # 生成示例数据（npm run sample）
+│   │   ├── migrateData.ts              # 旧数据迁移到 schema v2
+│   │   └── validateData.ts             # 数据结构和详情引用校验
+│   ├── dataModel.ts                    # ID、类别、指标、热度和详情模型
 │   ├── web/                            # React 前端
 │   │   ├── App.tsx                     # 入口 + 路由 + 列表页
 │   │   ├── main.tsx
@@ -91,7 +96,9 @@ daily-pulse/
 │   ├── types.ts                        # 共享类型 + 平台元信息
 │   └── index.ts                        # 主入口（采集 + 详情抓取 + 生成）
 ├── data/
-│   └── daily.json                      # 采集结果（含内置示例数据）
+│   ├── daily.json                      # 当日摘要数据
+│   ├── details/                        # 按 detailRef 拆分的详情文件
+│   └── history/                        # 每日摘要快照和索引
 ├── dist/                               # 构建产物（含注入数据的 index.html）
 ├── package.json
 ├── tsconfig.json
@@ -138,10 +145,12 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `npm run dev` | 启动 Vite 开发服务器（读 `data/daily.json`） |
 | `npm run fetch` | 采集 → 来源网页详情抓取 → 生成静态页 |
 | `npm run sample` | 生成 440 条示例数据（每类别 110） |
+| `npm run migrate:data` | 将旧版 `data/daily.json` 迁移为 schema v2，并拆分详情 |
 | `npm run build` | 构建前端到 `dist/` |
 | `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
 | `npm run build:all` | 构建 + 注入数据（生产链路） |
 | `npm run typecheck` | TypeScript 类型检查 |
+| `npm run validate:data` | 校验 schema、ID、类别、热度和详情文件引用 |
 | `npm run preview` | 本地预览 `dist/` 构建产物 |
 
 > **提示**：未配置 `APIFY_API_KEY` 时，`npm run fetch` 仍会抓取 Reddit（无需认证），其余源跳过并在日志中提示。
@@ -194,7 +203,7 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 工作流文件：`.github/workflows/daily-fetch.yml`
 
 - 触发：`schedule: cron '0 0 * * *'`（**UTC 0:00 = 北京时间 8:00**）+ `workflow_dispatch` 手动触发。
-- 流程：Checkout → 装依赖 → `npm run fetch`（采集 + 详情抓取）→ `npm run build:all` → 提交并推送 `data/daily.json` 与 `dist/`。
+- 流程：Checkout → 装依赖 → `npm run fetch`（采集 + 详情抓取）→ `npm run build:all` → 校验 → 提交并推送 `data/daily.json`、`data/details/`、`data/history/` 与 `dist/`。
 
 ### 配置 Secrets
 
@@ -249,29 +258,50 @@ gh api repos/<owner>/<repo>/pages -X POST -f build_type=workflow
 
 ## 📄 数据格式
 
-采集结果统一为 `FeedItem`，写入 `data/daily.json`：
+采集结果使用 schema v2。`data/daily.json` 只保存列表摘要，详情文件位于 `data/details/`：
 
 ```typescript
 interface FeedItem {
-  id: string;                 // 唯一标识
+  id: string;                 // source:sourceItemId，全局稳定唯一标识
+  sourceItemId?: string;     // 来源内稳定 ID
   title: string;              // 标题
   description?: string;       // 简短描述（列表用）
-  longDescription?: string;   // 完整描述 / 正文（详情页用）
   url: string;                // 原文链接（讨论 / 产品页）
   externalUrl?: string;       // 外部目标链接（如 Reddit 原文、PH 官网）
   source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit';
-  category: string;           // 兴趣类别（AI / 工具 / 代码 / Agent）
+  category?: string;          // 旧数据兼容字段
+  categoryId?: string;        // 主类别 ID
+  categoryIds?: string[];     // 所属类别 ID
   rank?: number;              // 排名
-  score?: number;             // 热度分数（下载量 / 点赞数等）
-  rating?: number;            // 评分（0–5）
-  price?: string;             // 价格
-  developer?: string;         // 开发者 / 作者
-  comments?: number;          // 评论数
+  heatScore?: number;         // 按来源归一化的 0–100 热度
+  metrics?: {                 // 来源指标，保留原始量纲
+    rawScore?: number;
+    rawScoreLabel?: string;
+    rating?: number;
+    ratingCount?: number;
+    comments?: number;
+    installs?: number;
+    votes?: number;
+  };
+  detailRef?: string;          // 详情文件相对路径
   thumbnail?: string;         // 缩略图 URL
-  screenshots?: string[];     // 截图 / 图集
   publishedAt?: string;       // 发布时间
   tags?: string[];            // 平台附加标签
-  stats?: Array<{ label: string; value: string }>;  // 附加信息（版本、大小等）
+}
+
+interface DetailFile {
+  schemaVersion: 2;
+  id: string;
+  detail: {
+    longDescription?: string;
+    externalUrl?: string;
+    screenshots?: string[];
+    rating?: number;
+    price?: string;
+    developer?: string;
+    comments?: number;
+    stats?: Array<{ label: string; value: string }>;
+  };
 }
 ```
 

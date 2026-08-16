@@ -5,7 +5,7 @@
 
 ## 状态总览
 
-已完成：项目骨架、四平台按类别采集（App Store 走官方 iTunes API、Google Play 走 google-play-scraper、Product Hunt 走官方 GraphQL API，均无需 Apify）、来源网页详情抓取、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
+已完成：项目骨架、四平台按类别采集（App Store 走官方 iTunes API、Google Play 走 google-play-scraper、Product Hunt 走官方 GraphQL API，均无需 Apify）、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
 
 ---
 
@@ -43,17 +43,17 @@
 
 ## 三、可选优化
 
-- [ ] **每日数据历史归档**：`data/daily.json` 仅保留当天，可改为 `data/history/YYYY-MM-DD.json` + 前端「往期」切换。
+- [x] **每日数据历史归档**：`data/history/YYYY-MM-DD.json` 保存摘要快照，`index.json` 提供日期索引，前端支持「往期」切换。
 - [ ] **采集失败告警**：接入飞书 / 邮件 / Telegram，连续失败时提醒。
-- [ ] **重试与退避**：Apify 轮询与 HTTP 请求加指数退避重试。
-- [ ] **列表分页 / 懒加载**：440 条一次性渲染较长，可加分页或「加载更多」。
-- [ ] **前端增强**：关键词搜索、深色模式、卡片骨架屏、详情页上一项/下一项。
+- [x] **重试与退避**：Apify 轮询已加入有限次数重试；详情抓取失败保留原始数据。
+- [x] **列表分页 / 懒加载**：列表默认分批展示并支持「加载更多」。
+- [x] **前端增强**：关键词搜索、深色模式、详情页上一项/下一项已完成。
 - [ ] **gh-pages 分支部署**：改用 `peaceiris/actions-gh-pages` 推独立 `gh-pages` 分支，主分支更干净。
 
 ---
 
 ## 补充说明
 
-- 当前 `data/daily.json` 为**内置示例数据**（`isSample: true`），首次真实采集后自动覆盖，页面「示例数据」角标消失。
+- `npm run sample` 会生成 schema v2 示例摘要和详情文件；首次真实采集后 `data/daily.json` 自动覆盖，页面「示例数据」角标消失。
 - 采集字段均为**防御性映射**（`src/fetch/utils.ts`）；更换 Actor 后若个别字段为空，按实际输出补充候选键即可。
 - 详情页信息由 `src/fetch/detailScraper.ts` 从来源网页抓取补充，个别站点（如 Product Hunt 网页）有反爬会 403，此时保留 Apify/API 原有数据。

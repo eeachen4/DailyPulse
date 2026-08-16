@@ -1,8 +1,42 @@
 export type Source = 'appstore' | 'googleplay' | 'producthunt' | 'reddit';
+export const DATA_SCHEMA_VERSION = 2;
+
+export interface FeedMetrics {
+  rawScore?: number;
+  rawScoreLabel?: string;
+  rating?: number;
+  ratingCount?: number;
+  comments?: number;
+  installs?: number;
+  votes?: number;
+}
+
+export interface FeedDetail {
+  longDescription?: string;
+  externalUrl?: string;
+  screenshots?: string[];
+  rating?: number;
+  price?: string;
+  developer?: string;
+  comments?: number;
+  stats?: Array<{ label: string; value: string }>;
+}
+
+export interface FetchRun {
+  source: Source;
+  categoryId: string;
+  fetchedAt: string;
+  status: 'success' | 'partial' | 'failed';
+  count: number;
+  durationMs?: number;
+  error?: string;
+}
 
 export interface FeedItem {
   /** 唯一标识 */
   id: string;
+  /** 来源内稳定 ID，不包含类别和展示文案 */
+  sourceItemId?: string;
   /** 标题 */
   title: string;
   /** 简短描述 */
@@ -13,14 +47,24 @@ export interface FeedItem {
   source: Source;
   /** 排名（若有） */
   rank?: number;
+  /** 跨来源归一化热度（0–100） */
+  heatScore?: number;
   /** 热度分数（下载量 / 评分人数 / 点赞数 / 评论数） */
   score?: number;
   /** 缩略图 URL */
   thumbnail?: string;
   /** 发布时间（ISO 字符串） */
   publishedAt?: string;
-  /** 兴趣类别 label（如 "AI" / "工具" / "代码" / "Agent"），用于分类筛选 */
-  category: string;
+  /** 兴趣类别 label（旧数据兼容字段） */
+  category?: string;
+  /** 稳定类别 ID */
+  categoryId?: string;
+  /** 一个条目可以同时属于多个类别 */
+  categoryIds?: string[];
+  /** 结构化指标 */
+  metrics?: FeedMetrics;
+  /** 详情文件相对路径 */
+  detailRef?: string;
   /** 平台附加标签（如 App 分类、r/subreddit、Product Hunt topics） */
   tags?: string[];
   /** 评分（0–5，App Store / Google Play） */
@@ -42,11 +86,13 @@ export interface FeedItem {
 }
 
 export interface FeedData {
+  schemaVersion?: number;
   /** 采集时间（ISO 字符串），首次未采集时为 null */
   fetchedAt: string | null;
   /** 是否为内置示例数据 */
   isSample?: boolean;
   items: FeedItem[];
+  runs?: FetchRun[];
 }
 
 export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit'];
