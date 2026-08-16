@@ -14,11 +14,11 @@ DailyPulse 是一个每日自动聚合全球热门内容的 MVP 工具。每天�
 
 ## ✨ 功能特性
 
-- 🌍 **多平台聚合**：App Store（美国区免费榜 Top 50）、Google Play（美国区热门免费 Top 50）、Product Hunt（今日热门 Top 10）、Reddit（r/all 每日热门 Top 20）。
-- 🛡️ **容错采集**：每个数据源独立 `try-catch`，单个源失败不影响其他源，也不会导致整体崩溃；详细日志便于排查。
-- 📦 **统一数据格式**：所有源归一化为统一的 `FeedItem`，含标题、链接、排名、热度、缩略图、发布时间、分类。
+- 🗂️ **按类别采集**：内置 AI、工具、代码、Agent 四个兴趣类别，每个类别在四个平台按对应榜单 / 主题 / 子版块采集，类别可在 `src/categories.ts` 中增删改。
+- 🌍 **多平台聚合**：App Store、Google Play、Product Hunt、Reddit 四源，每源独立 `try-catch` 容错，单个源失败不影响整体。
+- 📦 **统一数据格式**：所有源归一化为统一的 `FeedItem`，含类别、标题、链接、排名、热度、缩略图、发布时间、标签。
 - 🖼️ **静态页面生成**：采集完成后写入 `data/daily.json`，并将数据注入 `dist/index.html` 的 `window.__DAILY_DATA__`，前端无需二次请求。
-- 🔍 **筛选与排序**：按平台筛选、按热度 / 排名 / 标题 / 时间排序。
+- 🔍 **筛选与排序**：按类别、按平台筛选，按热度 / 排名 / 标题 / 时间排序。
 - 📱 **响应式设计**：适配桌面与移动端，简洁现代、以深蓝/白为主色调。
 - ⏰ **定时自动化**：GitHub Actions cron 每天 UTC 0:00（北京时间 8:00）自动执行并回写仓库。
 
@@ -34,11 +34,26 @@ DailyPulse 是一个每日自动聚合全球热门内容的 MVP 工具。每天�
 | 定时执行 | GitHub Actions（cron） |
 | 部署 | GitHub Pages（静态托管） |
 
+## 🗂️ 类别配置
+
+默认内置四个兴趣类别，集中定义在 [`src/categories.ts`](./src/categories.ts)：
+
+| 类别 | App Store | Google Play | Product Hunt topic | Reddit 子版块 |
+| --- | --- | --- | --- | --- |
+| AI | 搜索 "AI assistant" | 搜索 "AI assistant" | `artificial-intelligence` | `artificial` / `MachineLearning` / `ChatGPT` |
+| 工具 | 榜单 `UTILITIES` | 榜单 `TOOLS` | `productivity` | `software` / `productivity` |
+| 代码 | 搜索 "code editor" | 搜索 "code editor" | `developer-tools` | `programming` / `coding` / `webdev` |
+| Agent | 搜索 "AI agent" | 搜索 "AI agent" | `ai-agents` | `AI_Agents` / `LLMDevs` / `LangChain` |
+
+> 增删类别：编辑 `src/categories.ts` 的 `CATEGORIES` 数组。App Store / Google Play 的 `mode` 支持 `rankings`（榜单，需 `collection` + `category`）或 `search`（关键词，需 `searchTerms`）。
+
 ## 📁 项目结构
 
 ```
 daily-pulse/
-├── .github/workflows/daily-fetch.yml   # GitHub Actions 定时任务
+├── .github/workflows/
+│   ├── daily-fetch.yml                 # 定时采集工作流
+│   └── deploy.yml                      # 部署到 GitHub Pages
 ├── src/
 │   ├── fetch/                          # 采集模块
 │   │   ├── apify.ts                    # 通用 Apify Actor 调用封装
@@ -58,7 +73,9 @@ daily-pulse/
 │   │   └── components/
 │   │       ├── FeedCard.tsx            # 单条卡片
 │   │       ├── FeedList.tsx            # 列表容器
-│   │       └── SourceFilter.tsx        # 平台筛选
+│   │       ├── SourceFilter.tsx        # 平台筛选
+│   │       └── CategoryFilter.tsx      # 类别筛选
+│   ├── categories.ts                   # 兴趣类别配置
 │   ├── types.ts                        # 共享类型 + 平台元信息
 │   └── index.ts                        # 主入口（采集 + 生成）
 ├── data/
@@ -186,11 +203,12 @@ interface FeedItem {
   description?: string;       // 简短描述
   url: string;                // 原文链接
   source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit';
+  category: string;           // 兴趣类别（AI / 工具 / 代码 / Agent）
   rank?: number;              // 排名（若有）
   score?: number;             // 热度分数（下载量 / 评分人数 / 点赞数）
   thumbnail?: string;         // 缩略图 URL
   publishedAt?: string;       // 发布时间
-  category?: string;          // 分类 / 标签
+  tags?: string[];            // 平台附加标签（App 分类 / r/subreddit / PH topics）
 }
 ```
 

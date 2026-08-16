@@ -19,8 +19,10 @@ export interface FeedItem {
   thumbnail?: string;
   /** 发布时间（ISO 字符串） */
   publishedAt?: string;
-  /** 分类 / 标签 */
-  category?: string;
+  /** 兴趣类别 label（如 "AI" / "工具" / "代码" / "Agent"），用于分类筛选 */
+  category: string;
+  /** 平台附加标签（如 App 分类、r/subreddit、Product Hunt topics） */
+  tags?: string[];
 }
 
 export interface FeedData {

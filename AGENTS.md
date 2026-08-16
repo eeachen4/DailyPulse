@@ -41,6 +41,7 @@ src/web/*               React 前端（读 window.__DAILY_DATA__）
 - 共享类型在 `src/types.ts`（`FeedItem` / `FeedData` / `Source` / `SOURCE_META`）。
 - 采集字段统一用 `src/fetch/utils.ts` 的防御性取值（`pickStr` / `pickNum` / `pickValue` / `toIso` / `toJoined`），兼容不同 Actor 的输出字段名差异。
 - 每个数据源独立 `try-catch`，单个源失败不中断整体；顺序执行以规避 Apify 免费账号并发限制。
+- 兴趣类别在 `src/categories.ts`（`CATEGORIES`）集中定义，各源按「类别 × 源」采集；`FeedItem.category` 存类别 label，`tags` 存平台附加标签。
 
 ## 重要约束与易错点
 
@@ -58,6 +59,7 @@ src/web/*               React 前端（读 window.__DAILY_DATA__）
   1. 在 `src/fetch/` 新建 `fetchXxx()`，返回 `FeedItem[]`；
   2. 在 `src/index.ts` 的 `tasks` 列表注册；
   3. 在 `src/types.ts` 的 `Source` / `SOURCES` / `SOURCE_META` 中补充对应元信息（label、颜色、emoji、scoreLabel）。
+- **新增/调整类别**：编辑 `src/categories.ts` 的 `CATEGORIES`（每类含四源采集参数），前端类别筛选自动生效。
 - **调整展示**：改 `src/web/`（`App.tsx` 及 `components/`）。
 - **更换 Actor**：改 `.env` 的 `APIFY_*_ACTOR_ID`，必要时在对应 `src/fetch/*.ts` 调整输入参数与字段映射候选键。
 

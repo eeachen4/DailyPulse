@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { FeedData, Source } from '../types';
-import { SOURCES, SOURCE_META } from '../types';
+import { SOURCES } from '../types';
+import { CATEGORIES } from '../categories';
+import CategoryFilter from './components/CategoryFilter';
 import SourceFilter from './components/SourceFilter';
 import FeedList from './components/FeedList';
 import { formatDate } from './format';
@@ -11,7 +13,8 @@ const EMPTY: FeedData = { fetchedAt: null, items: [] };
 
 export default function App() {
   const [data, setData] = useState<FeedData>(() => window.__DAILY_DATA__ ?? EMPTY);
-  const [filter, setFilter] = useState<Source | 'all'>('all');
+  const [category, setCategory] = useState<string>('all');
+  const [source, setSource] = useState<Source | 'all'>('all');
   const [sort, setSort] = useState<SortKey>('score');
 
   // 开发模式兜底：若构建产物未注入数据，则尝试相对路径读取 data/daily.json。
@@ -29,7 +32,9 @@ export default function App() {
   }, []);
 
   const items = useMemo(() => {
-    const list = filter === 'all' ? data.items : data.items.filter((it) => it.source === filter);
+    let list = data.items;
+    if (category !== 'all') list = list.filter((it) => it.category === category);
+    if (source !== 'all') list = list.filter((it) => it.source === source);
     return [...list].sort((a, b) => {
       switch (sort) {
         case 'rank':
@@ -43,9 +48,16 @@ export default function App() {
           return (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY);
       }
     });
-  }, [data, filter, sort]);
+  }, [data, category, source, sort]);
 
-  const counts = useMemo(() => {
+  const categoryCounts = useMemo(() => {
+    const c: Record<string, number> = {};
+    for (const cat of CATEGORIES) c[cat.label] = 0;
+    for (const it of data.items) c[it.category] = (c[it.category] ?? 0) + 1;
+    return c;
+  }, [data]);
+
+  const sourceCounts = useMemo(() => {
     const c: Record<Source, number> = { appstore: 0, googleplay: 0, producthunt: 0, reddit: 0 };
     for (const it of data.items) c[it.source] += 1;
     return c;
@@ -91,22 +103,32 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* 统计栏 */}
+            {/* 类别统计栏 */}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {SOURCES.map((s) => (
-                <div key={s} className="rounded-2xl border border-slate-200 bg-white p-4">
+              {CATEGORIES.map((c) => (
+                <div key={c.id} className="rounded-2xl border border-slate-200 bg-white p-4">
                   <div className="flex items-center gap-2 text-sm text-slate-500">
-                    <span className={`h-2 w-2 rounded-full ${SOURCE_META[s].dotClass}`} />
-                    {SOURCE_META[s].label}
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: c.hex }}
+                    />
+                    <span>
+                      {c.emoji} {c.label}
+                    </span>
                   </div>
-                  <div className="mt-1 text-2xl font-bold">{counts[s]}</div>
+                  <div className="mt-1 text-2xl font-bold">{categoryCounts[c.label] ?? 0}</div>
                 </div>
               ))}
             </div>
 
-            {/* 筛选 + 排序 */}
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <SourceFilter value={filter} onChange={setFilter} counts={counts} />
+            {/* 类别筛选 */}
+            <div className="mt-6">
+              <CategoryFilter value={category} onChange={setCategory} counts={categoryCounts} />
+            </div>
+
+            {/* 来源筛选 + 排序 */}
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <SourceFilter value={source} onChange={setSource} counts={sourceCounts} />
               <div className="flex items-center gap-2 text-sm">
                 <label htmlFor="sort" className="text-slate-500">
                   排序

@@ -1,8 +1,9 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import type { FeedData, FeedItem, Source } from '../types';
+import type { FeedData, FeedItem } from '../types';
 import { SOURCE_META } from '../types';
+import { CATEGORIES, CATEGORY_META } from '../categories';
 
 /**
  * 生成最终静态页面 dist/index.html：
@@ -105,15 +106,23 @@ function fmtDate(iso?: string | null): string {
 
 function renderCard(item: FeedItem): string {
   const meta = SOURCE_META[item.source];
+  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '🏷️', hex: '#64748b' };
   const thumb = item.thumbnail
     ? `<img class="thumb" src="${escapeHtml(item.thumbnail)}" loading="lazy" onerror="this.style.display='none'" alt="">`
-    : `<div class="thumb emoji">${meta.emoji}</div>`;
+    : `<div class="thumb emoji">${cat.emoji}</div>`;
   const rank = item.rank !== undefined ? `<span class="rank">#${item.rank}</span>` : '';
   const score =
     item.score !== undefined
       ? `<span class="score">${fmtNum(item.score)} <i>${escapeHtml(meta.scoreLabel)}</i></span>`
       : '';
   const desc = item.description ? `<p class="desc">${escapeHtml(item.description)}</p>` : '';
+  const tags =
+    item.tags && item.tags.length
+      ? `<div class="tags">${item.tags
+          .slice(0, 3)
+          .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+          .join('')}</div>`
+      : '';
   const time = item.publishedAt ? `<span class="time">${fmtDate(item.publishedAt)}</span>` : '';
 
   return `
@@ -122,27 +131,34 @@ function renderCard(item: FeedItem): string {
         <div class="card-body">
           <div class="meta">
             <span class="badge" style="background:${meta.hex}1a;color:${meta.hex}">${escapeHtml(meta.label)}</span>
+            <span class="badge" style="background:${cat.hex}1a;color:${cat.hex}">${cat.emoji} ${escapeHtml(cat.label)}</span>
             ${rank}
           </div>
           <h3>${escapeHtml(item.title)}</h3>
           ${desc}
+          ${tags}
           <div class="foot">${score}${time}</div>
         </div>
       </a>`;
 }
 
+function countByCategory(items: FeedItem[]): Record<string, number> {
+  const c: Record<string, number> = {};
+  for (const cat of CATEGORIES) c[cat.label] = 0;
+  for (const it of items) c[it.category] = (c[it.category] ?? 0) + 1;
+  return c;
+}
+
 function renderStandalone(data: FeedData): string {
   const cards = data.items.map(renderCard).join('');
-  const counts = countBySource(data.items);
-  const stats = (Object.keys(counts) as Source[])
-    .map(
-      (s) => `
+  const counts = countByCategory(data.items);
+  const stats = CATEGORIES.map(
+    (c) => `
         <div class="stat">
-          <span class="stat-label"><i class="dot" style="background:${SOURCE_META[s].hex}"></i>${SOURCE_META[s].label}</span>
-          <span class="stat-num">${counts[s]}</span>
+          <span class="stat-label"><i class="dot" style="background:${c.hex}"></i>${c.emoji} ${c.label}</span>
+          <span class="stat-num">${counts[c.label] ?? 0}</span>
         </div>`,
-    )
-    .join('');
+  ).join('');
 
   const fetched = data.fetchedAt ? `<p class="fetched">采集时间：${fmtDate(data.fetchedAt)}</p>` : '';
   const sample = data.isSample ? '<span class="sample">示例数据</span>' : '';
@@ -178,12 +194,14 @@ function renderStandalone(data: FeedData): string {
       .thumb { width: 52px; height: 52px; flex: none; border-radius: 12px; background: #f1f5f9; object-fit: cover; }
       .emoji { display: flex; align-items: center; justify-content: center; font-size: 24px; }
       .card-body { min-width: 0; flex: 1; }
-      .meta { display: flex; align-items: center; gap: 8px; }
+      .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
       .badge { padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
       .rank { color: #94a3b8; font-size: 12px; font-weight: 600; }
       h3 { font-size: 15px; font-weight: 600; margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .desc { color: #64748b; font-size: 13px; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2;
               -webkit-box-orient: vertical; overflow: hidden; }
+      .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+      .tag { background: #f1f5f9; color: #64748b; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
       .foot { display: flex; gap: 12px; margin-top: 8px; color: #64748b; font-size: 12px; }
       .score { font-weight: 600; color: #334155; } .score i { font-style: normal; color: #94a3b8; }
       .empty { border: 1px dashed #cbd5e1; border-radius: 16px; background: #fff; padding: 48px 16px;
@@ -207,12 +225,6 @@ function renderStandalone(data: FeedData): string {
     </div>
   </body>
 </html>`;
-}
-
-function countBySource(items: FeedItem[]): Record<Source, number> {
-  const c: Record<Source, number> = { appstore: 0, googleplay: 0, producthunt: 0, reddit: 0 };
-  for (const it of items) c[it.source] += 1;
-  return c;
 }
 
 /* ------------------------------ 脚本直跑 ------------------------------ */
