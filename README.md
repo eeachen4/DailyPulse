@@ -34,6 +34,8 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 | HTTP 请求 | axios |
 | HTML 解析 | cheerio |
 | 采集执行 | `tsx` 直接运行 TS |
+| App Store | 官方 iTunes API（RSS + Search + Lookup） |
+| Google Play | `google-play-scraper` |
 | Product Hunt | 官方 GraphQL API（Apify 兜底） |
 | 前端框架 | React 18 + Vite 5 |
 | 样式 | TailwindCSS 3 |
@@ -48,10 +50,10 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 | --- | --- | --- | --- | --- |
 | AI | 搜索 AI / assistant / ChatGPT | 搜索 AI assistant / chatbot | `artificial-intelligence` | artificial / MachineLearning / ChatGPT |
 | 工具 | 榜单 `UTILITIES` | 榜单 `TOOLS` | `productivity` | software / productivity |
-| 代码 | 搜索 code editor / developer / IDE | 搜索 code editor / programming | `developer-tools` | programming / coding / webdev |
+| 代码 | 榜单 Developer Tools (6026) | 搜索 code editor / programming | `developer-tools` | programming / coding / webdev |
 | Agent | 搜索 AI agent / autonomous agent | 搜索 AI agent | `ai-agents` | AI_Agents / LLMDevs / LangChain |
 
-> 增删类别：编辑 `src/categories.ts` 的 `CATEGORIES`。App Store / Google Play 的 `mode` 支持 `rankings`（榜单，需 `collection` + `category`）或 `search`（关键词，需 `searchTerms`）。
+> 增删类别：编辑 `src/categories.ts` 的 `CATEGORIES`。`mode` 支持 `rankings`（榜单：App Store 填 `genreId`，Google Play 填 `category`）或 `search`（填 `searchTerms`）。
 
 ## 📁 项目结构
 
@@ -122,11 +124,11 @@ npm install
 cp .env.example .env
 ```
 
-编辑 `.env`，至少配置 `APIFY_API_KEY`（Product Hunt 走官方 API 时可不配 Apify PH Actor）：
+编辑 `.env`。App Store / Google Play / Reddit **无需任何 key**，只需配置 Product Hunt：
 
 ```
-APIFY_API_KEY=apify_api_xxxxxxxxxxxxxxxx
-PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API，可选
+PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
+# APIFY_API_KEY=apify_api_xxx          # 可选，Product Hunt 兜底
 ```
 
 ### 4. 常用命令
@@ -150,32 +152,33 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API，可选
 
 | 变量 | 必填 | 说明 |
 | --- | --- | --- |
-| `APIFY_API_KEY` | ✅ | Apify Token（App Store / Google Play 及 PH 兜底） |
-| `PRODUCT_HUNT_TOKEN` | 可选 | Product Hunt 官方 GraphQL API Token |
-| `APIFY_APP_STORE_ACTOR_ID` | 可选 | 覆盖默认 App Store Actor |
-| `APIFY_GOOGLE_PLAY_ACTOR_ID` | 可选 | 覆盖默认 Google Play Actor |
-| `APIFY_PRODUCT_HUNT_ACTOR_ID` | 可选 | 覆盖默认 Product Hunt Actor |
-| `APIFY_APP_STORE_MAX_ITEMS` | 可选 | 每类别 App Store 采集数（默认 30） |
-| `APIFY_GOOGLE_PLAY_MAX_ITEMS` | 可选 | 每类别 Google Play 采集数（默认 30） |
-| `APIFY_PRODUCT_HUNT_MAX_ITEMS` | 可选 | 每类别 Product Hunt 采集数（默认 20） |
+| `PRODUCT_HUNT_TOKEN` | 推荐 | Product Hunt 官方 GraphQL API Token |
+| `APIFY_API_KEY` | 可选 | 仅 Product Hunt 兜底（其余源无需） |
+| `APIFY_PRODUCT_HUNT_ACTOR_ID` | 可选 | Product Hunt 兜底 Actor |
+| `APP_STORE_MAX_ITEMS` | 可选 | 每类别 App Store 采集数（默认 30） |
+| `GOOGLE_PLAY_MAX_ITEMS` | 可选 | 每类别 Google Play 采集数（默认 30） |
+| `PRODUCT_HUNT_MAX_ITEMS` | 可选 | 每类别 Product Hunt 采集数（默认 20） |
 | `REDDIT_LIMIT` | 可选 | 每类别 Reddit 采集数（默认 30） |
+| `APP_STORE_COUNTRY` | 可选 | App Store 地区（默认 `us`） |
+| `GOOGLE_PLAY_COUNTRY` | 可选 | Google Play 地区（默认 `us`） |
 | `SCRAPE_DETAILS` | 可选 | 是否抓取来源网页详情（默认 `true`） |
 | `SCRAPE_DETAILS_CONCURRENCY` | 可选 | 详情抓取并发数（默认 4） |
-| `APIFY_RUN_TIMEOUT_SECS` | 可选 | 单次 Apify run 最长等待（默认 300） |
 
-### 获取 Apify API Key
+### App Store / Google Play（无需 key）
+
+- **App Store** 走苹果官方 iTunes API（榜单 RSS + Search + Lookup），免费、稳定、无需 key。
+- **Google Play** 走社区标准库 `google-play-scraper`，无需 key。
+
+### 获取 Product Hunt Token（推荐）
+
+1. 打开 [Product Hunt API 应用管理](https://www.producthunt.com/v2/oauth/applications)。
+2. 创建一个应用，复制其 **Developer Token**，填入 `PRODUCT_HUNT_TOKEN`。
+
+### 获取 Apify API Key（可选，仅 Product Hunt 兜底）
 
 1. 注册 [Apify](https://apify.com/)。
 2. **Console → Settings → Integrations → Personal API tokens**。
-3. 新建 Token，填入 `APIFY_API_KEY`。
-
-本仓库默认 Actor（已验证公开可用）：
-
-| 平台 | Actor |
-| --- | --- |
-| App Store | `haketa~app-store-scraper` |
-| Google Play | `haketa~google-play-scraper` |
-| Product Hunt（兜底） | `glassventures~product-hunt-scraper` |
+3. 新建 Token，填入 `APIFY_API_KEY`（仅当未配置 `PRODUCT_HUNT_TOKEN` 时用于 Product Hunt 兜底，Actor 为 `glassventures~product-hunt-scraper`）。
 
 ### 获取 Product Hunt Token
 
@@ -196,11 +199,9 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API，可选
 
 | Secret 名 | 是否必填 | 说明 |
 | --- | --- | --- |
-| `APIFY_API_KEY` | ✅ | Apify API Token |
-| `PRODUCT_HUNT_TOKEN` | 可选 | Product Hunt 官方 API Token |
-| `APIFY_APP_STORE_ACTOR_ID` | 可选 | 覆盖默认 App Store Actor |
-| `APIFY_GOOGLE_PLAY_ACTOR_ID` | 可选 | 覆盖默认 Google Play Actor |
-| `APIFY_PRODUCT_HUNT_ACTOR_ID` | 可选 | 覆盖默认 Product Hunt Actor |
+| `PRODUCT_HUNT_TOKEN` | 推荐 | Product Hunt 官方 API Token |
+| `APIFY_API_KEY` | 可选 | 仅 Product Hunt 兜底 |
+| `APIFY_PRODUCT_HUNT_ACTOR_ID` | 可选 | Product Hunt 兜底 Actor |
 
 ## 🌐 部署到 GitHub Pages
 
@@ -249,7 +250,7 @@ interface FeedItem {
 ## 🛠️ 常见问题
 
 **Q：App Store / Google Play 没有数据？**
-A：检查 `APIFY_API_KEY` 是否正确、Apify 是否有可用额度；查看日志 `[source] ❌`。Reddit 不受影响。
+A：这两个源走官方 iTunes API / `google-play-scraper`，无需 key。若失败多为网络问题或接口变动，查看日志 `[source] ❌`。
 
 **Q：Product Hunt 没有数据？**
 A：优先用 `PRODUCT_HUNT_TOKEN`（官方 API）；未配置时回退 Apify（需 `APIFY_API_KEY`）。

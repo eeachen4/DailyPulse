@@ -32,8 +32,10 @@ DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Goo
 ```
 src/index.ts（主入口）
   ├─ fetch/*.ts             各源 fetchXxx() -> FeedItem[]
-  │   ├─ fetch/apify.ts        runApifyActor()：通用 Apify 启动/轮询/取数
+  │   ├─ fetch/appStore.ts     官方 iTunes API（RSS + Search + Lookup，无需 key）
+  │   ├─ fetch/googlePlay.ts   google-play-scraper（无需 key）
   │   ├─ fetch/productHunt.ts  GraphQL API（优先）/ Apify 兜底
+  │   ├─ fetch/apify.ts        runApifyActor()：仅 Product Hunt 兜底使用
   │   └─ fetch/detailScraper.ts 来源网页详情抓取（og:meta + JSON-LD，cheerio）
   ├─ storage/saveData.ts       写 data/daily.json（含时间戳）
   ├─ storage/generateHtml.ts   注入或生成 dist/index.html
@@ -45,7 +47,7 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
 
 - 共享类型在 `src/types.ts`（`FeedItem` / `FeedData` / `Source` / `SOURCE_META`）。
 - 采集字段统一用 `src/fetch/utils.ts` 的防御性取值（`pickStr` / `pickNum` / `pickValue` / `toIso` / `toJoined` / `kv`），兼容不同 Actor 输出字段名差异。
-- 每个数据源独立 `try-catch`，单个源失败不中断整体；顺序执行以规避 Apify 免费账号并发限制。
+- 每个数据源独立 `try-catch`，单个源失败不中断整体；顺序执行以降低对目标站点的压力。
 - 兴趣类别在 `src/categories.ts`（`CATEGORIES`）集中定义，各源按「类别 × 源」采集；`FeedItem.category` 存类别 label，`tags` 存平台附加标签。
 - 详情页信息经 `detailScraper` 从来源网页补充（`longDescription` / `externalUrl` / `screenshots` / `rating` / `price` / `developer` / `comments` / `stats`）。
 
@@ -55,7 +57,7 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
 2. **`data/daily.json` 与 `dist/` 需提交**：不要加入 `.gitignore`（定时任务回写、Pages 托管依赖它们）。
 3. **`generateHtml` 必须幂等**：注入前先移除旧的 `window.__DAILY_DATA__`（见 `INJECTED_SCRIPT_RE`），重复运行不累积。
 4. **Vite `base: './'`**：保证 GitHub Pages 任意子路径可用，不要改成绝对路径。
-5. **Apify Actor ID 用 `~` 分隔**（如 `haketa~app-store-scraper`），网页 URL 中才是 `/`。
+5. **App Store / Google Play 无需 key**：分别走官方 iTunes API 与 `google-play-scraper`；Apify 仅用于 Product Hunt 兜底，其 Actor ID 用 `~` 分隔（如 `glassventures~product-hunt-scraper`）。
 6. **Reddit 可能 403**：云主机 / 数据中心 IP 常见，已做浏览器 UA + `www`/`old.reddit` 双主机回退。
 7. **cron 使用 UTC**：`'0 0 * * *'` 即北京时间 8:00。
 8. **Product Hunt 优先官方 API**：读 `PRODUCT_HUNT_TOKEN`（兼容 `PH_DEVELOPER_TOKEN`）；无 token 才回退 Apify，勿删除回退逻辑。
@@ -69,7 +71,7 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
   3. 在 `src/types.ts` 的 `Source` / `SOURCES` / `SOURCE_META` 中补充元信息（label、short、颜色、scoreLabel）。
 - **新增/调整类别**：编辑 `src/categories.ts` 的 `CATEGORIES`（每类含四源采集参数），前端类别筛选自动生效。
 - **调整展示**：改 `src/web/`（`App.tsx` 与 `components/`，含 `DetailPage` / `ExpandableText` / `CategoryFilter` 等）。
-- **更换 Actor**：改 `.env` 的 `APIFY_*_ACTOR_ID`，必要时在对应 `src/fetch/*.ts` 调整输入参数与字段映射候选键。
+- **更换数据来源**：App Store 改 `src/categories.ts` 的 `genreId`/`searchTerms`；Google Play 改 `category`/`searchTerms`；Product Hunt 兜底改 `.env` 的 `APIFY_PRODUCT_HUNT_ACTOR_ID`。
 - **调整详情抓取**：改 `src/fetch/detailScraper.ts`（og:meta / JSON-LD 字段提取与合并逻辑）。
 - **重新生成示例数据**：改 `src/storage/generateSample.ts` 后运行 `npm run sample`。
 

@@ -72,8 +72,11 @@ async function fetchGraphQL(token: string, topic: string, first: number): Promis
  * 无 token 时回退到 Apify Actor。
  */
 export async function fetchProductHunt(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
-  const maxItems = Number(process.env.APIFY_PRODUCT_HUNT_MAX_ITEMS || 20);
+  const maxItems = Number(process.env.PRODUCT_HUNT_MAX_ITEMS || 20);
   const token = phToken();
+  if (!token && !apiKey) {
+    throw new Error('未配置 PRODUCT_HUNT_TOKEN 或 APIFY_API_KEY');
+  }
 
   if (token) {
     const nodes: PhNode[] = [];
@@ -146,7 +149,7 @@ function normalizeGraphQL(n: PhNode, i: number, categoryLabel: string): FeedItem
 
 async function fetchViaApify(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
   const actorId = process.env.APIFY_PRODUCT_HUNT_ACTOR_ID || DEFAULT_ACTOR;
-  const maxItems = Number(process.env.APIFY_PRODUCT_HUNT_MAX_ITEMS || 20);
+  const maxItems = Number(process.env.PRODUCT_HUNT_MAX_ITEMS || 20);
 
   const raw = await runApifyActor({
     actorId,

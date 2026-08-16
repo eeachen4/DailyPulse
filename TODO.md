@@ -5,20 +5,17 @@
 
 ## 状态总览
 
-已完成：项目骨架、四平台按类别采集（Product Hunt 走官方 GraphQL API）、来源网页详情抓取、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
+已完成：项目骨架、四平台按类别采集（App Store 走官方 iTunes API、Google Play 走 google-play-scraper、Product Hunt 走官方 GraphQL API，均无需 Apify）、来源网页详情抓取、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
 
 ---
 
 ## 一、上线前待办
 
-- [ ] **配置 Apify API Key（Secret）**
-  - 本地：`cp .env.example .env`，填入 `APIFY_API_KEY`。
-  - 线上：仓库 **Settings → Secrets and variables → Actions** 添加 `APIFY_API_KEY`。
-  - 未配置时 App Store / Google Play 会被跳过（仅 Reddit 可用）。
-
-- [ ] **配置 Product Hunt Token（Secret，可选）**
-  - 本地 zsh 已有 `PRODUCT_HUNT_TOKEN`；线上在 Secrets 添加同名变量。
-  - 未配置时 Product Hunt 回退 Apify。
+- [ ] **配置 Product Hunt Token（Secret，推荐）**
+  - 本地：`cp .env.example .env`，填入 `PRODUCT_HUNT_TOKEN`（你的 zsh 已有）。
+  - 线上：仓库 **Settings → Secrets and variables → Actions** 添加 `PRODUCT_HUNT_TOKEN`。
+  - 未配置时 Product Hunt 回退 Apify（需 `APIFY_API_KEY`）。
+  - App Store / Google Play / Reddit 无需任何 key。
 
 - [ ] **验证定时任务**
   - 到 **Actions** 页手动 `Run workflow` 一次，确认「采集 → 详情抓取 → 构建 → 回写 → 部署」全链路正常。
@@ -33,8 +30,8 @@
   - 已做：浏览器 UA + `www`/`old.reddit` 双主机回退（`src/fetch/reddit.ts`）。
   - 缓解：本地家用网络跑 `npm run fetch`；或在 Actions 给 Reddit 加代理出口。
 
-- [ ] **Apify 免费额度与并发限制**
-  - 采集按顺序执行各源；额度不足时日志打印 `[source] ❌`，其余源不受影响。
+- [ ] **Apify 免费额度（仅 Product Hunt 兜底）**
+  - 配置 `PRODUCT_HUNT_TOKEN` 后不再依赖 Apify；仅未配 token 时 PH 走 Apify 兜底。
 
 - [ ] **cron 时区与首次触发延迟**
   - GitHub Actions `schedule` 用 UTC，`'0 0 * * *'` 即北京时间 8:00；首次触发可能延迟，属正常行为。

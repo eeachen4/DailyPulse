@@ -28,8 +28,9 @@ async function safeFetch(label: string, fn: () => Promise<FeedItem[]>): Promise<
  */
 export async function main(): Promise<void> {
   const apiKey = process.env.APIFY_API_KEY || '';
-  if (!apiKey) {
-    console.warn('⚠️  未配置 APIFY_API_KEY，App Store / Google Play / Product Hunt 将被跳过（仅 Reddit 可用）。');
+  const phToken = process.env.PRODUCT_HUNT_TOKEN || process.env.PH_DEVELOPER_TOKEN || '';
+  if (!phToken && !apiKey) {
+    console.warn('⚠️  未配置 PRODUCT_HUNT_TOKEN / APIFY_API_KEY，Product Hunt 将被跳过（其余源不受影响）。');
   }
 
   console.log(`DailyPulse 开始采集…（${new Date().toISOString()}）`);
@@ -37,17 +38,13 @@ export async function main(): Promise<void> {
   const collected: FeedItem[] = [];
   for (const category of CATEGORIES) {
     console.log(`\n▶ 类别「${category.label}」`);
-    const tasks: Array<[string, boolean, () => Promise<FeedItem[]>]> = [
-      ['appstore', true, () => fetchAppStore(apiKey, category)],
-      ['googleplay', true, () => fetchGooglePlay(apiKey, category)],
-      ['producthunt', true, () => fetchProductHunt(apiKey, category)],
-      ['reddit', false, () => fetchReddit(category)],
+    const tasks: Array<[string, () => Promise<FeedItem[]>]> = [
+      ['appstore', () => fetchAppStore(category)],
+      ['googleplay', () => fetchGooglePlay(category)],
+      ['producthunt', () => fetchProductHunt(apiKey, category)],
+      ['reddit', () => fetchReddit(category)],
     ];
-    for (const [source, needsKey, fn] of tasks) {
-      if (needsKey && !apiKey) {
-        console.warn(`[${category.label}/${source}] ⚠️ 跳过（未配置 APIFY_API_KEY）`);
-        continue;
-      }
+    for (const [source, fn] of tasks) {
       collected.push(...(await safeFetch(`${category.label}/${source}`, fn)));
     }
   }

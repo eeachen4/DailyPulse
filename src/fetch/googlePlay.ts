@@ -1,80 +1,136 @@
-import { runApifyActor } from './apify';
-import { pickStr, pickNum, kv } from './utils';
+import gplay from 'google-play-scraper';
 import type { FeedItem } from '../types';
 import type { CategoryDef } from '../categories';
 
-const DEFAULT_ACTOR = 'haketa~google-play-scraper';
-
 /**
- * Google Play：按类别采集（美国区）。
+ * Google Play：使用 google-play-scraper（社区标准库，无需 key）。
+ *   - rankings 模式：Top Free 榜单（按分类）
+ *   - search 模式：关键词搜索
+ * 榜单/搜索先拿 appId 与顺序，再逐个 gplay.app 补全详情（描述/截图/评分/安装量等）。
  */
-export async function fetchGooglePlay(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
-  const actorId = process.env.APIFY_GOOGLE_PLAY_ACTOR_ID || DEFAULT_ACTOR;
-  const maxItems = Number(process.env.APIFY_GOOGLE_PLAY_MAX_ITEMS || 30);
-  const spec = category.googlePlay;
 
-  const input: Record<string, unknown> = {
-    mode: spec.mode,
-    country: 'us',
-    maxItems,
-    fullDetail: true,
-    proxyConfiguration: { useApifyProxy: true },
-  };
-  if (spec.mode === 'rankings') {
-    if (spec.collection) input.collection = spec.collection;
-    if (spec.category) input.category = spec.category;
-  } else {
-    input.searchTerms = spec.searchTerms ?? [];
-  }
-
-  const raw = await runApifyActor({ actorId, apiKey, input });
-  return raw
-    .map((r, i) => normalize(r as Record<string, unknown>, i, category.label))
-    .filter((x): x is FeedItem => Boolean(x && x.title && x.url));
+function country(): string {
+  return process.env.GOOGLE_PLAY_COUNTRY || 'us';
 }
 
-function normalize(raw: Record<string, unknown>, i: number, categoryLabel: string): FeedItem | null {
-  const title = pickStr(raw, ['name', 'title', 'appName', 'app_name', 'title']);
-  const url = pickStr(raw, ['url', 'appUrl', 'app_url', 'link', 'storeUrl', 'playStoreUrl']);
-  if (!title || !url) return null;
+interface GpSummary {
+  appId?: string;
+  title?: string;
+}
 
-  const id = pickStr(raw, ['id', 'appId', 'packageName', 'package_name', 'bundleId']) ?? String(i);
-  const genre = pickStr(raw, ['category', 'genre', 'genres', 'categoryName']);
-  const developer = pickStr(raw, ['developer', 'publisher', 'developerName']);
+interface GpFull {
+  appId?: string;
+  title?: string;
+  summary?: string;
+  description?: string;
+  url?: string;
+  score?: number;
+  reviews?: number;
+  installs?: string;
+  minInstalls?: number;
+  maxInstalls?: number;
+  priceText?: string;
+  free?: boolean;
+  developer?: string;
+  icon?: string;
+  screenshots?: string[];
+  released?: string;
+  updated?: number;
+  genre?: string;
+  version?: string;
+  size?: string;
+  contentRating?: string;
+}
 
-  const stats = [
-    kv('版本', pickStr(raw, ['version', 'versionName'])),
-    kv('大小', pickStr(raw, ['size', 'formattedSize'])),
-    kv('安装量', pickStr(raw, ['installs', 'downloads'])),
-    kv('发布日期', pickStr(raw, ['released', 'releaseDate'])),
-    kv('更新日期', pickStr(raw, ['updated', 'updatedDate', 'lastUpdated'])),
-    kv('内容分级', pickStr(raw, ['contentRating', 'content_rating'])),
-  ].filter((x): x is { label: string; value: string } => x !== null);
+async function appIdsFor(category: CategoryDef, maxItems: number): Promise<GpSummary[]> {
+  const c = country();
+  const spec = category.googlePlay;
+  const ids: GpSummary[] = [];
+
+  if (spec.mode === 'rankings') {
+    const res = (await gplay.list({
+      collection: gplay.collection.TOP_FREE,
+      category: spec.category as never,
+      country: c,
+      num: maxItems,
+    })) as unknown as GpSummary[];
+    ids.push(...res);
+  } else {
+    for (const term of spec.searchTerms ?? []) {
+      const res = (await gplay.search({ term, num: maxItems, country: c })) as unknown as GpSummary[];
+      ids.push(...res);
+    }
+  }
+
+  // 去重保序
+  const seen = new Set<string>();
+  return ids
+    .filter((x) => typeof x.appId === 'string')
+    .filter((x) => (seen.has(x.appId as string) ? false : (seen.add(x.appId as string), true)))
+    .slice(0, maxItems);
+}
+
+async function detail(appId: string): Promise<GpFull | null> {
+  try {
+    return (await gplay.app({ appId, country: country() })) as unknown as GpFull;
+  } catch {
+    return null; // 单个 app 详情失败则跳过
+  }
+}
+
+function normalize(a: GpFull, rank: number, categoryLabel: string): FeedItem | null {
+  if (!a.title || !a.appId) return null;
+
+  const free = a.free === true;
+  const price = free ? 'Free' : a.priceText;
+
+  const stats: Array<{ label: string; value: string }> = [];
+  if (a.version) stats.push({ label: '版本', value: a.version });
+  if (a.size) stats.push({ label: '大小', value: a.size });
+  if (a.installs) stats.push({ label: '安装量', value: a.installs });
+  if (a.contentRating) stats.push({ label: '内容分级', value: a.contentRating });
+  if (a.updated) stats.push({ label: '更新日期', value: new Date(a.updated).toISOString().slice(0, 10) });
 
   return {
-    id: `googleplay-${categoryLabel}-${id}`,
-    title,
-    description: pickStr(raw, ['summary']),
-    longDescription: pickStr(raw, ['description']),
-    url,
+    id: `googleplay-${categoryLabel}-${a.appId}`,
+    title: a.title,
+    description: a.summary,
+    longDescription: a.description,
+    url: a.url ?? `https://play.google.com/store/apps/details?id=${a.appId}`,
     source: 'googleplay',
     category: categoryLabel,
-    rank: pickNum(raw, ['rank', 'position', 'rankPosition', 'chartPosition']),
-    score: pickNum(raw, [
-      'downloads',
-      'downloadCount',
-      'installs',
-      'installCount',
-      'ratingsCount',
-      'ratingCount',
-      'reviewsCount',
-    ]),
-    rating: pickNum(raw, ['rating', 'score', 'averageRating']),
-    price: pickStr(raw, ['price', 'priceText']),
-    developer,
-    comments: pickNum(raw, ['reviewsCount', 'commentsCount', 'ratingCount']),
-    thumbnail: pickStr(raw, ['icon', 'iconUrl', 'thumbnail', 'image', 'coverImage']),
-    tags: genre ? [genre] : undefined,
+    rank,
+    score: a.maxInstalls ?? a.minInstalls,
+    rating: a.score,
+    price,
+    developer: a.developer,
+    comments: a.reviews,
+    thumbnail: a.icon,
+    screenshots: a.screenshots,
+    publishedAt: a.released,
+    tags: a.genre ? [a.genre] : undefined,
     stats: stats.length ? stats : undefined,
   };
+}
+
+export async function fetchGooglePlay(category: CategoryDef): Promise<FeedItem[]> {
+  const maxItems = Number(process.env.GOOGLE_PLAY_MAX_ITEMS || 30);
+  const ids = await appIdsFor(category, maxItems);
+
+  const items: FeedItem[] = [];
+  let rank = 0;
+  for (const { appId } of ids) {
+    if (!appId) continue;
+    const a = await detail(appId);
+    if (!a) continue;
+    rank += 1;
+    const it = normalize(a, rank, category.label);
+    if (it) items.push(it);
+  }
+
+  // 搜索模式按安装量排序（榜单保持原顺序）
+  if (category.googlePlay.mode === 'search') {
+    items.sort((x, y) => (y.score ?? 0) - (x.score ?? 0));
+  }
+  return items.slice(0, maxItems);
 }

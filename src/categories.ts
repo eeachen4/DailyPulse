@@ -5,10 +5,13 @@
  */
 
 export interface StoreSpec {
-  /** rankings：按榜单类别（需要 collection + category）；search：按关键词 */
+  /** rankings：按榜单；search：按关键词 */
   mode: 'rankings' | 'search';
-  collection?: string;
+  /** App Store iTunes 分类 ID（rankings 模式） */
+  genreId?: string;
+  /** Google Play 分类（rankings 模式，如 TOOLS） */
   category?: string;
+  /** 搜索关键词（search 模式） */
   searchTerms?: string[];
 }
 
@@ -31,8 +34,8 @@ export const CATEGORIES: CategoryDef[] = [
     label: 'AI',
     emoji: '🤖',
     hex: '#7c3aed',
-    appStore: { mode: 'search', searchTerms: ['AI', 'AI assistant', 'ChatGPT', 'AI chatbot'] },
-    googlePlay: { mode: 'search', searchTerms: ['AI assistant', 'AI chatbot', 'AI'] },
+    appStore: { mode: 'search', searchTerms: ['AI', 'AI assistant', 'ChatGPT'] },
+    googlePlay: { mode: 'search', searchTerms: ['AI assistant', 'AI chatbot'] },
     productHuntTopics: ['artificial-intelligence'],
     redditSubreddits: ['artificial', 'MachineLearning', 'ChatGPT'],
   },
@@ -41,8 +44,9 @@ export const CATEGORIES: CategoryDef[] = [
     label: '工具',
     emoji: '🧰',
     hex: '#0284c7',
-    appStore: { mode: 'rankings', collection: 'TOP_FREE_IOS', category: 'UTILITIES' },
-    googlePlay: { mode: 'rankings', collection: 'TOP_FREE', category: 'TOOLS' },
+    // App Store iTunes 分类 6002 = Utilities
+    appStore: { mode: 'rankings', genreId: '6002' },
+    googlePlay: { mode: 'rankings', category: 'TOOLS' },
     productHuntTopics: ['productivity'],
     redditSubreddits: ['software', 'productivity'],
   },
@@ -51,8 +55,9 @@ export const CATEGORIES: CategoryDef[] = [
     label: '代码',
     emoji: '💻',
     hex: '#059669',
-    appStore: { mode: 'search', searchTerms: ['code editor', 'developer', 'programming', 'IDE'] },
-    googlePlay: { mode: 'search', searchTerms: ['code editor', 'programming', 'developer'] },
+    // App Store iTunes 分类 6026 = Developer Tools
+    appStore: { mode: 'rankings', genreId: '6026' },
+    googlePlay: { mode: 'search', searchTerms: ['code editor', 'programming'] },
     productHuntTopics: ['developer-tools'],
     redditSubreddits: ['programming', 'coding', 'webdev'],
   },
@@ -61,8 +66,8 @@ export const CATEGORIES: CategoryDef[] = [
     label: 'Agent',
     emoji: '🧠',
     hex: '#f59e0b',
-    appStore: { mode: 'search', searchTerms: ['AI agent', 'autonomous agent', 'agent'] },
-    googlePlay: { mode: 'search', searchTerms: ['AI agent', 'agent'] },
+    appStore: { mode: 'search', searchTerms: ['AI agent', 'agent'] },
+    googlePlay: { mode: 'search', searchTerms: ['AI agent'] },
     productHuntTopics: ['ai-agents'],
     redditSubreddits: ['AI_Agents', 'LLMDevs', 'LangChain'],
   },
