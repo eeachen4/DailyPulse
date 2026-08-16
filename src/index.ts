@@ -6,6 +6,10 @@ import { fetchAppStore } from './fetch/appStore';
 import { fetchGooglePlay } from './fetch/googlePlay';
 import { fetchProductHunt } from './fetch/productHunt';
 import { fetchReddit } from './fetch/reddit';
+import { fetchBluesky } from './fetch/bluesky';
+import { fetchMastodon } from './fetch/mastodon';
+import { fetchGdelt } from './fetch/gdelt';
+import { fetchHackerNews } from './fetch/hackerNews';
 import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
@@ -34,6 +38,10 @@ export async function main(): Promise<void> {
       ['googleplay', () => fetchGooglePlay(category)],
       ['producthunt', () => fetchProductHunt(apiKey, category)],
       ['reddit', () => fetchReddit(category)],
+      ['bluesky', () => fetchBluesky(category)],
+      ['mastodon', () => fetchMastodon(category)],
+      ['gdelt', () => fetchGdelt(category)],
+      ['hackernews', () => fetchHackerNews(category)],
     ];
     for (const [source, fn] of tasks) {
       const startedAt = Date.now();

@@ -46,6 +46,9 @@ jobs:
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
           # Reddit 代理出口（可选）：数据中心 IP 会被 Reddit 403
           REDDIT_PROXY: ${{ secrets.REDDIT_PROXY }}
+          # Bluesky 公共搜索被限流时，可用免费 App Password 认证
+          BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
 
       - name: Build site
         run: npm run build:all

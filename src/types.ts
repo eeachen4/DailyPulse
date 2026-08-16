@@ -1,4 +1,4 @@
-export type Source = 'appstore' | 'googleplay' | 'producthunt' | 'reddit';
+export type Source = 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews';
 export const DATA_SCHEMA_VERSION = 2;
 
 export interface FeedMetrics {
@@ -95,7 +95,7 @@ export interface FeedData {
   runs?: FetchRun[];
 }
 
-export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit'];
+export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews'];
 
 export interface SourceMeta {
   label: string;
@@ -151,6 +151,46 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
     badgeClass: 'bg-rose-100 text-rose-700',
     dotClass: 'bg-rose-500',
     textClass: 'text-rose-600',
+  },
+  bluesky: {
+    label: 'Bluesky',
+    short: 'BS',
+    scoreLabel: '互动热度',
+    emoji: '🦋',
+    hex: '#0284c7',
+    badgeClass: 'bg-sky-100 text-sky-700',
+    dotClass: 'bg-sky-500',
+    textClass: 'text-sky-600',
+  },
+  mastodon: {
+    label: 'Mastodon',
+    short: 'MD',
+    scoreLabel: '互动热度',
+    emoji: '🐘',
+    hex: '#6364ff',
+    badgeClass: 'bg-indigo-100 text-indigo-700',
+    dotClass: 'bg-indigo-500',
+    textClass: 'text-indigo-600',
+  },
+  gdelt: {
+    label: 'GDELT',
+    short: 'GD',
+    scoreLabel: '媒体热度',
+    emoji: '🌐',
+    hex: '#0f766e',
+    badgeClass: 'bg-teal-100 text-teal-700',
+    dotClass: 'bg-teal-500',
+    textClass: 'text-teal-600',
+  },
+  hackernews: {
+    label: 'Hacker News',
+    short: 'HN',
+    scoreLabel: '积分 + 评论',
+    emoji: '🟠',
+    hex: '#f97316',
+    badgeClass: 'bg-orange-100 text-orange-700',
+    dotClass: 'bg-orange-500',
+    textClass: 'text-orange-600',
   },
 };
 

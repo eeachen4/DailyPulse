@@ -2,7 +2,7 @@
 
 > 名称寓意：**Daily**（每日）+ **Pulse**（脉搏）——每天早上，感受全球热点跳动的脉搏。
 
-DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上 **08:00（UTC+8）**，它自动从 **App Store、Google Play、Product Hunt、Reddit** 按兴趣类别抓取热门话题与热门 App / 产品，生成一个简洁的静态网页，让你一瞥即知全球正在发生什么。
+DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上 **08:00（UTC+8）**，它自动从 **App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News** 按兴趣类别抓取热门话题、新闻、产品与讨论，生成一个简洁的静态网页，让你一瞥即知全球正在发生什么。
 
 ![tech](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)
 ![tech](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
@@ -14,8 +14,8 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 
 ## ✨ 功能特性
 
-- 🗂️ **按类别采集**：内置 AI、工具、代码、Agent 四个兴趣类别，每类约 **110 条**（App Store 30 + Google Play 30 + Product Hunt 20 + Reddit 30），类别可在 `src/categories.ts` 增删改。
-- 🌍 **多平台聚合**：App Store、Google Play、Product Hunt、Reddit 四源，每源独立 `try-catch` 容错，单个源失败不影响整体。
+- 🗂️ **按类别采集**：内置 AI、工具、代码、Agent 四个兴趣类别，类别可在 `src/categories.ts` 增删改。
+- 🌍 **多平台聚合**：App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News 八源，每源独立 `try-catch` 容错，单个源失败不影响整体。
 - 🪄 **Product Hunt 官方 API**：优先使用 Product Hunt GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 时回退 Apify。
 - 🧾 **详情页**：点击条目进入详情页，展示完整描述、截图图集、评分 / 价格 / 评论 / 开发者等元信息，并支持「打开原链接」「访问原文」。
 - 🔍 **详情抓取**：采集后自动逐个抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分等。
@@ -39,6 +39,10 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 | App Store | 官方 iTunes API（RSS + Search + Lookup） |
 | Google Play | `google-play-scraper` |
 | Product Hunt | 官方 GraphQL API（Apify 兜底） |
+| Bluesky | 公共 AppView API（无需 token） |
+| Mastodon | 可配置实例的公开 hashtag 时间线 |
+| GDELT | DOC 2.0 实时新闻 API |
+| Hacker News | Algolia 公共搜索 API |
 | 前端框架 | React 18 + Vite 5 |
 | 样式 | TailwindCSS 3 |
 | 定时执行 | GitHub Actions（cron） |
@@ -48,12 +52,12 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 
 默认内置四个兴趣类别，集中定义在 [`src/categories.ts`](./src/categories.ts)：
 
-| 类别 | App Store | Google Play | Product Hunt topic | Reddit 子版块 |
+| 类别 | App Store | Google Play | Reddit | Bluesky / Mastodon / GDELT / Hacker News |
 | --- | --- | --- | --- | --- |
-| AI | 搜索 AI / assistant / ChatGPT | 搜索 AI assistant / chatbot | `artificial-intelligence` | artificial / MachineLearning / ChatGPT |
-| 工具 | 榜单 `UTILITIES` | 榜单 `TOOLS` | `productivity` | software / productivity |
-| 代码 | 榜单 Developer Tools (6026) | 搜索 code editor / programming | `developer-tools` | programming / coding / webdev |
-| Agent | 搜索 AI agent / autonomous agent | 搜索 AI agent | `ai-agents` | AI_Agents / LLMDevs / LangChain |
+| AI | 搜索 AI / assistant / ChatGPT | 搜索 AI assistant / chatbot | artificial / MachineLearning / ChatGPT | AI / LLM / ChatGPT |
+| 工具 | 榜单 `UTILITIES` | 榜单 `TOOLS` | software / productivity | productivity / opensource |
+| 代码 | 榜单 Developer Tools (6026) | 搜索 code editor / programming | programming / coding / webdev | programming / developer tools |
+| Agent | 搜索 AI agent / autonomous agent | 搜索 AI agent | AI_Agents / LLMDevs / LangChain | AI agent / agentic / LangChain |
 
 > 增删类别：编辑 `src/categories.ts` 的 `CATEGORIES`。`mode` 支持 `rankings`（榜单：App Store 填 `genreId`，Google Play 填 `category`）或 `search`（填 `searchTerms`）。
 
@@ -71,6 +75,10 @@ daily-pulse/
 │   │   ├── googlePlay.ts               # Google Play 采集
 │   │   ├── productHunt.ts              # Product Hunt 采集（GraphQL + Apify 兜底）
 │   │   ├── reddit.ts                   # Reddit 采集
+│   │   ├── bluesky.ts                   # Bluesky 公共搜索
+│   │   ├── mastodon.ts                  # Mastodon hashtag 时间线
+│   │   ├── gdelt.ts                     # GDELT 新闻搜索
+│   │   ├── hackerNews.ts                # Hacker News 热门搜索
 │   │   ├── detailScraper.ts            # 来源网页详情抓取（og:meta + JSON-LD）
 │   │   └── utils.ts                    # 防御性字段归一化工具
 │   ├── storage/
@@ -131,7 +139,7 @@ npm install
 cp .env.example .env
 ```
 
-编辑 `.env`。App Store / Google Play / Reddit **无需任何 key**，只需配置 Product Hunt：
+编辑 `.env`。Bluesky / Mastodon / GDELT / Hacker News 无需 token；App Store / Google Play 无需 key；Product Hunt 和 Reddit 按需配置：
 
 ```
 PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
@@ -144,7 +152,7 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | --- | --- |
 | `npm run dev` | 启动 Vite 开发服务器（读 `data/daily.json`） |
 | `npm run fetch` | 采集 → 来源网页详情抓取 → 生成静态页 |
-| `npm run sample` | 生成 440 条示例数据（每类别 110） |
+| `npm run sample` | 生成八个来源的示例数据（共约 760 条） |
 | `npm run migrate:data` | 将旧版 `data/daily.json` 迁移为 schema v2，并拆分详情 |
 | `npm run build` | 构建前端到 `dist/` |
 | `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
@@ -168,6 +176,13 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `GOOGLE_PLAY_MAX_ITEMS` | 可选 | 每类别 Google Play 采集数（默认 30） |
 | `PRODUCT_HUNT_MAX_ITEMS` | 可选 | 每类别 Product Hunt 采集数（默认 20） |
 | `REDDIT_LIMIT` | 可选 | 每类别 Reddit 采集数（默认 30） |
+| `BLUESKY_LIMIT` | 可选 | 每类别 Bluesky 采集数（默认 25） |
+| `BSKY_IDENTIFIER` | 可选 | Bluesky handle 或邮箱（搜索 403 时配置） |
+| `BSKY_APP_PASSWORD` | 可选 | Bluesky App Password（不要使用主账号密码） |
+| `MASTODON_LIMIT` | 可选 | 每类别 Mastodon 采集数（默认 25） |
+| `GDELT_LIMIT` | 可选 | 每类别 GDELT 采集数（默认 25） |
+| `HACKER_NEWS_LIMIT` | 可选 | 每类别 Hacker News 采集数（默认 25） |
+| `MASTODON_INSTANCE` | 可选 | Mastodon 实例（默认 `mastodon.social`） |
 | `APP_STORE_COUNTRY` | 可选 | App Store 地区（默认 `us`） |
 | `GOOGLE_PLAY_COUNTRY` | 可选 | Google Play 地区（默认 `us`） |
 | `REDDIT_CLIENT_ID` | 可选 | Reddit OAuth client_id（CI 抓 Reddit 推荐） |
@@ -180,6 +195,11 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 
 - **App Store** 走苹果官方 iTunes API（榜单 RSS + Search + Lookup），免费、稳定、无需 key。
 - **Google Play** 走社区标准库 `google-play-scraper`，无需 key。
+- **Bluesky** 走 `public.api.bsky.app` 公共 AppView API，无需 token。
+  若公共搜索端点受限，可配置 `BSKY_IDENTIFIER` + `BSKY_APP_PASSWORD` 使用免费 App Password 登录。
+- **Mastodon** 读取配置实例的公开 hashtag 时间线；实例可通过 `MASTODON_INSTANCE` 更换。
+- **GDELT** 走 DOC 2.0 API，按类别关键词检索最近 1 天的全球新闻。
+- **Hacker News** 走 Algolia 的公开搜索接口，按类别关键词检索最近 3 天的技术讨论。
 
 ### 获取 Product Hunt Token（推荐）
 
@@ -217,6 +237,8 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `REDDIT_CLIENT_ID` | 推荐 | Reddit OAuth client_id |
 | `REDDIT_CLIENT_SECRET` | 推荐 | Reddit OAuth client_secret |
 | `REDDIT_PROXY` | 可选 | Reddit 代理出口（备用） |
+| `BSKY_IDENTIFIER` | 可选 | Bluesky handle 或邮箱（搜索 403 时配置） |
+| `BSKY_APP_PASSWORD` | 可选 | Bluesky App Password |
 
 ## 🕸️ Reddit 在 CI 中抓取（OAuth / 代理）
 
@@ -268,7 +290,7 @@ interface FeedItem {
   description?: string;       // 简短描述（列表用）
   url: string;                // 原文链接（讨论 / 产品页）
   externalUrl?: string;       // 外部目标链接（如 Reddit 原文、PH 官网）
-  source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit';
+  source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews';
   category?: string;          // 旧数据兼容字段
   categoryId?: string;        // 主类别 ID
   categoryIds?: string[];     // 所属类别 ID

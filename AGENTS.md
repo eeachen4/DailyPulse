@@ -5,7 +5,7 @@
 
 ## 项目概述
 
-DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Google Play / Product Hunt / Reddit** 热门内容的「信息早餐」。
+DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News** 热门内容的「信息早餐」。
 
 - **采集**：Node.js + TypeScript（`tsx` 运行）按「类别 × 源」采集 → 来源网页详情抓取 → 写入 `data/daily.json` → 生成/注入 `dist/index.html`。
 - **Product Hunt**：优先官方 GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 回退 Apify。
@@ -36,6 +36,10 @@ src/index.ts（主入口）
   │   ├─ fetch/googlePlay.ts   google-play-scraper（无需 key）
   │   ├─ fetch/productHunt.ts  GraphQL API（优先）/ Apify 兜底
   │   ├─ fetch/apify.ts        runApifyActor()：仅 Product Hunt 兜底使用
+  │   ├─ fetch/bluesky.ts      Bluesky 公共搜索 / App Password 认证
+  │   ├─ fetch/mastodon.ts     Mastodon hashtag 时间线
+  │   ├─ fetch/gdelt.ts        GDELT DOC 2.0 新闻搜索
+  │   ├─ fetch/hackerNews.ts   Hacker News Algolia 搜索
   │   └─ fetch/detailScraper.ts 来源网页详情抓取（og:meta + JSON-LD，cheerio）
   ├─ storage/saveData.ts       写 data/daily.json（含时间戳）
   ├─ storage/generateHtml.ts   注入或生成 dist/index.html

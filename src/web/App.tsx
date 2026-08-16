@@ -128,7 +128,7 @@ export default function App() {
   }, [data]);
 
   const sourceCounts = useMemo(() => {
-    const counts: Record<Source, number> = { appstore: 0, googleplay: 0, producthunt: 0, reddit: 0 };
+    const counts = Object.fromEntries(SOURCES.map((source) => [source, 0])) as Record<Source, number>;
     for (const item of data.items) counts[item.source] += 1;
     return counts;
   }, [data]);
@@ -328,7 +328,7 @@ export default function App() {
 
         <footer className="mt-12 flex flex-col gap-2 border-t border-line pt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted sm:flex-row sm:items-center sm:justify-between">
           <span>DailyPulse / intelligence desk</span>
-          <span>App Store · Google Play · Product Hunt · Reddit</span>
+          <span>App Store · Google Play · Product Hunt · Reddit · Bluesky · Mastodon · GDELT · Hacker News</span>
         </footer>
       </div>
     </main>

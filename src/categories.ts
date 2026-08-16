@@ -1,6 +1,6 @@
 /**
  * 兴趣类别配置。
- * 每个类别集中定义四个数据源的采集参数，便于增删改。
+ * 每个类别集中定义各数据源的采集参数，便于增删改。
  * 前端按 `label` 做分类筛选与展示。
  */
 
@@ -26,6 +26,14 @@ export interface CategoryDef {
   productHuntTopics: string[];
   /** Reddit 子版块（不含 r/ 前缀） */
   redditSubreddits: string[];
+  /** Bluesky 搜索词 */
+  blueskyQueries: string[];
+  /** Mastodon hashtag（不含 # 前缀） */
+  mastodonTags: string[];
+  /** GDELT 新闻检索词 */
+  gdeltQueries: string[];
+  /** Hacker News 搜索词 */
+  hackerNewsQueries: string[];
 }
 
 export const CATEGORIES: CategoryDef[] = [
@@ -38,6 +46,10 @@ export const CATEGORIES: CategoryDef[] = [
     googlePlay: { mode: 'search', searchTerms: ['AI assistant', 'AI chatbot'] },
     productHuntTopics: ['artificial-intelligence'],
     redditSubreddits: ['artificial', 'MachineLearning', 'ChatGPT'],
+    blueskyQueries: ['AI', 'LLM', 'ChatGPT'],
+    mastodonTags: ['artificialintelligence', 'machinelearning', 'chatgpt'],
+    gdeltQueries: ['"artificial intelligence" OR ChatGPT OR LLM'],
+    hackerNewsQueries: ['AI', 'LLM', 'ChatGPT'],
   },
   {
     id: 'tools',
@@ -49,6 +61,10 @@ export const CATEGORIES: CategoryDef[] = [
     googlePlay: { mode: 'rankings', category: 'TOOLS' },
     productHuntTopics: ['productivity'],
     redditSubreddits: ['software', 'productivity'],
+    blueskyQueries: ['productivity', 'opensource tool'],
+    mastodonTags: ['productivity', 'opensource'],
+    gdeltQueries: ['productivity software OR automation'],
+    hackerNewsQueries: ['productivity', 'automation tool'],
   },
   {
     id: 'code',
@@ -60,6 +76,10 @@ export const CATEGORIES: CategoryDef[] = [
     googlePlay: { mode: 'search', searchTerms: ['code editor', 'programming'] },
     productHuntTopics: ['developer-tools'],
     redditSubreddits: ['programming', 'coding', 'webdev'],
+    blueskyQueries: ['programming', 'developer tools', 'opensource'],
+    mastodonTags: ['programming', 'webdev', 'opensource'],
+    gdeltQueries: ['programming OR "developer tools" OR opensource'],
+    hackerNewsQueries: ['programming', 'developer tools', 'open source'],
   },
   {
     id: 'agent',
@@ -70,6 +90,10 @@ export const CATEGORIES: CategoryDef[] = [
     googlePlay: { mode: 'search', searchTerms: ['AI agent'] },
     productHuntTopics: ['ai-agents'],
     redditSubreddits: ['AI_Agents', 'LLMDevs', 'LangChain'],
+    blueskyQueries: ['AI agent', 'agentic', 'LangChain'],
+    mastodonTags: ['aiagents', 'agenticai', 'langchain'],
+    gdeltQueries: ['"AI agent" OR agentic OR LangChain'],
+    hackerNewsQueries: ['AI agents', 'agentic', 'LangChain'],
   },
 ];
 

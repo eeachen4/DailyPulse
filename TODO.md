@@ -5,7 +5,7 @@
 
 ## 状态总览
 
-已完成：项目骨架、四平台按类别采集（App Store 走官方 iTunes API、Google Play 走 google-play-scraper、Product Hunt 走官方 GraphQL API，均无需 Apify）、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
+已完成：项目骨架、八平台按类别采集（App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News）、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
 
 ---
 
@@ -15,7 +15,7 @@
   - 本地：`cp .env.example .env`，填入 `PRODUCT_HUNT_TOKEN`（你的 zsh 已有）。
   - 线上：仓库 **Settings → Secrets and variables → Actions** 添加 `PRODUCT_HUNT_TOKEN`。
   - 未配置时 Product Hunt 回退 Apify（需 `APIFY_API_KEY`）。
-  - App Store / Google Play / Reddit 无需任何 key。
+  - App Store / Google Play / Bluesky / Mastodon / GDELT / Hacker News 无需 key；Reddit 推荐配置 OAuth。
 
 - [ ] **验证定时任务**
   - 到 **Actions** 页手动 `Run workflow` 一次，确认「采集 → 详情抓取 → 构建 → 回写 → 部署」全链路正常。
@@ -37,7 +37,7 @@
   - GitHub Actions `schedule` 用 UTC，`'0 0 * * *'` 即北京时间 8:00；首次触发可能延迟，属正常行为。
 
 - [ ] **详情抓取耗时**
-  - 440 条逐个抓取来源页约需数分钟；可用 `SCRAPE_DETAILS=false` 关闭、`SCRAPE_DETAILS_CONCURRENCY` 调并发、或后续加缓存。
+  - 多源合计条目较多时逐个抓取来源页可能需要数分钟；可用 `SCRAPE_DETAILS=false` 关闭、`SCRAPE_DETAILS_CONCURRENCY` 调并发、或后续加缓存。
 
 ---
 

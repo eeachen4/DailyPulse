@@ -1,10 +1,8 @@
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { FeedData, Source } from '../types';
-import { DATA_SCHEMA_VERSION } from '../types';
+import type { FeedData } from '../types';
+import { DATA_SCHEMA_VERSION, SOURCES } from '../types';
 import { categoryIdsFor } from '../dataModel';
-
-const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit'];
 
 async function main(): Promise<void> {
   const filePath = path.resolve(process.cwd(), 'data/daily.json');

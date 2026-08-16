@@ -261,7 +261,7 @@ function renderStandalone(data: FeedData): string {
       </header>
       <div class="stats">${stats}</div>
       ${data.items.length ? `<div class="list">${rows}</div>` : '<div class="empty">暂无采集数据，请配置 APIFY_API_KEY 后运行 npm run fetch。</div>'}
-      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · App Store / Google Play / Product Hunt / Reddit</footer>
+      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News</footer>
     </div>
   </body>
 </html>`;

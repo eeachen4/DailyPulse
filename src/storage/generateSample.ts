@@ -5,8 +5,17 @@ import { DATA_SCHEMA_VERSION } from '../types';
 import { CATEGORIES } from '../categories';
 import { canonicalizeItems, detailSlug, toDetailFile, toSummary, withHeatScores } from '../dataModel';
 
-// 每个类别下各源生成的示例条数（合计 110 / 类别）
-const COUNTS: Record<Source, number> = { appstore: 30, googleplay: 30, producthunt: 20, reddit: 30 };
+// 每个类别下各源生成的示例条数（真实采集数量由各源环境变量控制）
+const COUNTS: Record<Source, number> = {
+  appstore: 30,
+  googleplay: 30,
+  producthunt: 20,
+  reddit: 30,
+  bluesky: 20,
+  mastodon: 20,
+  gdelt: 20,
+  hackernews: 20,
+};
 
 interface Pool {
   names: string[];
@@ -84,7 +93,7 @@ function buildItems(): FeedItem[] {
     const pool = POOLS[cat.id];
     if (!pool) continue;
 
-    (['appstore', 'googleplay', 'producthunt', 'reddit'] as Source[]).forEach((source) => {
+    (['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews'] as Source[]).forEach((source) => {
       const count = COUNTS[source];
       for (let i = 0; i < count; i++) {
         seq++;
@@ -164,7 +173,7 @@ function buildItems(): FeedItem[] {
             tags: pool.topics,
             stats: [{ label: '官网', value: `https://${slugify(title)}.com` }],
           });
-        } else {
+        } else if (source === 'reddit') {
           const postTitle = pool.posts[i % pool.posts.length];
           items.push({
             id: `reddit-${cat.id}-${i}`,
@@ -183,6 +192,25 @@ function buildItems(): FeedItem[] {
             publishedAt,
             tags: [`r/${sub}`],
             stats: [{ label: '域名', value: `reddit.com` }],
+          });
+        } else {
+          const genericTitle = pool.posts[i % pool.posts.length];
+          const host = source === 'bluesky' ? 'bsky.app' : source === 'mastodon' ? 'mastodon.social' : source === 'gdelt' ? 'example-news.com' : 'news.ycombinator.com';
+          items.push({
+            id: `${source}-${cat.id}-${i}`,
+            sourceItemId: `${cat.id}-${i}`,
+            title: genericTitle,
+            description: `${genre} · ${source} 热门讨论`,
+            longDescription: `${genericTitle} 是一条来自 ${source} 的示例热点，围绕 ${cat.label} 主题整理了讨论上下文和相关信息。`,
+            url: `https://${host}/${slugify(genericTitle)}?id=${30_000_000 + i}`,
+            source,
+            category: cat.label,
+            score: rnd(seq, 11, 20, 20_000),
+            comments: rnd(seq, 12, 2, 2_000),
+            developer: dev,
+            publishedAt,
+            tags: [genre, source],
+            stats: [{ label: '来源', value: source }],
           });
         }
       }
