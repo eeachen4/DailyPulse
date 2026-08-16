@@ -117,6 +117,26 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
             </section>
           )}
 
+          {/* 截图 */}
+          {item.screenshots && item.screenshots.length > 0 && (
+            <section className="mt-7 border-t border-line pt-5">
+              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">截图</h2>
+              <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+                {item.screenshots.map((s) => (
+                  <img
+                    key={s}
+                    src={s}
+                    alt=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="h-44 w-auto shrink-0 border border-line bg-cream object-contain"
+                    onError={(e) => e.currentTarget.remove()}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* 信息网格（hairline 分隔） */}
           {cells.length > 0 && (
             <div className="mt-7 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">

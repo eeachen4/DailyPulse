@@ -5,6 +5,7 @@ import { fetchAppStore } from './fetch/appStore';
 import { fetchGooglePlay } from './fetch/googlePlay';
 import { fetchProductHunt } from './fetch/productHunt';
 import { fetchReddit } from './fetch/reddit';
+import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
 import type { FeedItem } from './types';
@@ -50,9 +51,17 @@ export async function main(): Promise<void> {
     }
   }
 
+  // 从来源网页抓取详情（完整描述 / 截图 / 评分等），可关闭
+  let allItems = collected;
+  if (process.env.SCRAPE_DETAILS !== 'false' && allItems.length > 0) {
+    console.log(`[scrape] 开始从来源网站抓取详情（${allItems.length} 条）…`);
+    allItems = await enrichFeed(allItems);
+    console.log('[scrape] 详情抓取完成');
+  }
+
   const fetchedAt = new Date().toISOString();
-  const filePath = await saveData(collected, fetchedAt);
-  console.log(`✅ 已保存 ${collected.length} 条数据到 ${filePath}`);
+  const filePath = await saveData(allItems, fetchedAt);
+  console.log(`✅ 已保存 ${allItems.length} 条数据到 ${filePath}`);
 
   await generateHtml();
   console.log('✅ DailyPulse 采集与生成完成。');

@@ -134,6 +134,8 @@ APIFY_API_KEY=apify_api_xxxxxxxxxxxxxxxx
 
 > **提示**：未配置 `APIFY_API_KEY` 时，`npm run fetch` 仍会抓取 Reddit 数据（无需认证），App Store / Google Play / Product Hunt 会被跳过并在日志中提示。
 
+> **详情抓取**：采集完成后会自动逐个抓取来源网页（解析 `og:meta` 与 JSON-LD），提取完整描述、高清图、截图、评分、价格、作者等写入 `data/daily.json`，供详情页展示。可用 `SCRAPE_DETAILS=false` 关闭，`SCRAPE_DETAILS_CONCURRENCY` 调整并发；个别源（如 Product Hunt）有反爬会返回 403，抓取失败时自动保留原有数据。
+
 ## 🔑 获取 Apify API Key
 
 1. 注册 [Apify](https://apify.com/) 账号。
