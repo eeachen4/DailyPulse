@@ -8,51 +8,49 @@ interface Props {
 }
 
 export default function SourceFilter({ value, onChange, counts }: Props) {
-  const total = Object.values(counts).reduce((a, b) => a + b, 0);
-
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Chip active={value === 'all'} label="全部" count={total} onClick={() => onChange('all')} />
-      {SOURCES.map((s) => (
-        <Chip
-          key={s}
-          active={value === s}
-          label={SOURCE_META[s].label}
-          count={counts[s]}
-          hex={SOURCE_META[s].hex}
-          onClick={() => onChange(s)}
+    <div className="space-y-1">
+      <SourceRow active={value === 'all'} label="全部来源" count={Object.values(counts).reduce((a, b) => a + b, 0)} onClick={() => onChange('all')} />
+      {SOURCES.map((source) => (
+        <SourceRow
+          key={source}
+          active={value === source}
+          label={SOURCE_META[source].label}
+          count={counts[source]}
+          color={SOURCE_META[source].hex}
+          onClick={() => onChange(source)}
         />
       ))}
     </div>
   );
 }
 
-function Chip({
+function SourceRow({
   active,
   label,
   count,
-  hex,
+  color,
   onClick,
 }: {
   active: boolean;
   label: string;
   count: number;
-  hex?: string;
+  color?: string;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex min-h-11 items-center gap-1.5 border px-3 py-1.5 font-mono text-xs uppercase tracking-wide transition ${
-        active
-          ? 'border-ink bg-ink text-paper'
-          : 'border-line text-muted hover:border-muted hover:text-ink'
-      }`}
+      className={active
+        ? 'flex min-h-11 w-full items-center justify-between border border-line bg-cream px-3 text-left font-mono text-xs text-ink transition'
+        : 'flex min-h-11 w-full items-center justify-between border border-transparent px-3 text-left font-mono text-xs text-muted transition hover:border-line hover:text-ink'}
     >
-      {hex && <span className="h-1.5 w-1.5" style={{ backgroundColor: hex }} />}
-      {label}
-      <span className={active ? 'opacity-60' : 'text-muted/70'}>{count}</span>
+      <span className="flex items-center gap-2">
+        <span className="h-1.5 w-1.5" style={{ backgroundColor: color ?? 'rgb(var(--muted))' }} />
+        {label}
+      </span>
+      <span>{String(count).padStart(2, '0')}</span>
     </button>
   );
 }

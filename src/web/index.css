@@ -3,12 +3,38 @@
 @tailwind utilities;
 
 /*
-  System — "Morning Pulse"（瑞士编辑风 × 实时行情）
-  Type   : Sora（UI / 标题，字重对比）· IBM Plex Mono（数据 / 元信息）
-  Scale  : 品牌 40 / 统计 30 / 标题 15 / 正文 14 / 元信息 11–12 / 数据 13–18
-  Color  : paper #FAF8F3 · ink #17150F · muted #6E675A · line #E3DDCE · accent #E8542E
-  Rhythm : 4 / 8 / 12 / 24 / 48；细线（hairline）为分区主语言
+  Daily Intelligence Desk
+  Type   : Sora for editorial hierarchy · IBM Plex Mono for telemetry
+  Scale  : 11 / 13 / 15 / 20 / 32 / 56
+  Rhythm : 4 / 8 / 12 / 16 / 24 / 32 / 48
+  Color  : deep navy workspace · cool steel surfaces · signal orange
 */
+
+:root {
+  --paper: 11 18 31;
+  --cream: 20 32 50;
+  --ink: 239 244 250;
+  --muted: 145 162 183;
+  --line: 43 61 84;
+  --panel: 17 29 47;
+  --panel-strong: 23 39 62;
+  --accent: 255 107 69;
+  --accent-dark: 224 79 48;
+  --accent-soft: 61 38 37;
+}
+
+:root.light {
+  --paper: 246 248 251;
+  --cream: 232 237 244;
+  --ink: 20 31 48;
+  --muted: 91 108 130;
+  --line: 205 215 227;
+  --panel: 255 255 255;
+  --panel-strong: 238 243 248;
+  --accent: 224 79 48;
+  --accent-dark: 185 56 33;
+  --accent-soft: 255 233 226;
+}
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -17,6 +43,8 @@ html {
 
 body {
   @apply bg-paper text-ink font-sans;
+  min-width: 320px;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 ::selection {
@@ -32,4 +60,27 @@ h3 {
 
 p {
   text-wrap: pretty;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+}
+
+.feed-card {
+  animation: rise-in 420ms both cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }

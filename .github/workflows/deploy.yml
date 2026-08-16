@@ -3,11 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # 「DailyPulse Daily Fetch」采集工作流完成后自动重新部署最新 dist/
-  workflow_run:
-    workflows: ['DailyPulse Daily Fetch']
-    types:
-      - completed
   workflow_dispatch: {}
 
 permissions:

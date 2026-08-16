@@ -179,18 +179,19 @@ function applyDetail(item: FeedItem, d: ScrapedDetail): FeedItem {
  */
 export async function enrichFeed(items: FeedItem[], concurrency?: number): Promise<FeedItem[]> {
   const limit = concurrency ?? Number(process.env.SCRAPE_DETAILS_CONCURRENCY || 4);
-  const queue = [...items];
-  const results: FeedItem[] = [];
+  const queue = items.map((_, index) => index);
+  const results: FeedItem[] = new Array(items.length);
   let done = 0;
 
   const worker = async (): Promise<void> => {
     while (queue.length) {
-      const item = queue.shift()!;
+      const index = queue.shift()!;
+      const item = items[index];
       try {
         const d = await scrapeDetail(item.url);
-        results.push(applyDetail(item, d));
+        results[index] = applyDetail(item, d);
       } catch (err) {
-        results.push(item); // 抓取失败则保留原数据
+        results[index] = item; // 抓取失败则保留原数据
         if (process.env.DEBUG) {
           console.warn(`[scrape] ${item.url} 失败：${err instanceof Error ? err.message : err}`);
         }

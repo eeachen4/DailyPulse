@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, copyFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { FeedData, FeedItem } from '../types';
@@ -36,8 +36,23 @@ export async function generateHtml(): Promise<string> {
   }
 
   await writeFile(indexPath, html, 'utf-8');
+  await syncHistory(distDir);
   console.log(`[generateHtml] ${injected ? '已注入数据到' : '已生成独立静态页'} dist/index.html`);
   return indexPath;
+}
+
+async function syncHistory(distDir: string): Promise<void> {
+  const sourceDir = path.resolve(process.cwd(), 'data/history');
+  const targetDir = path.join(distDir, 'history');
+  try {
+    const files = (await readdir(sourceDir)).filter((file) => file.endsWith('.json'));
+    if (!files.length) return;
+    await mkdir(targetDir, { recursive: true });
+    await Promise.all(files.map((file) => copyFile(path.join(sourceDir, file), path.join(targetDir, file))));
+    console.log('[generateHtml] 已同步 ' + files.length + ' 份历史快照');
+  } catch {
+    // 历史目录在首次采集前不存在，不影响当前页面生成。
+  }
 }
 
 async function readData(): Promise<FeedData> {

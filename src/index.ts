@@ -36,6 +36,7 @@ export async function main(): Promise<void> {
   console.log(`DailyPulse 开始采集…（${new Date().toISOString()}）`);
 
   const collected: FeedItem[] = [];
+  let successfulTasks = 0;
   for (const category of CATEGORIES) {
     console.log(`\n▶ 类别「${category.label}」`);
     const tasks: Array<[string, () => Promise<FeedItem[]>]> = [
@@ -45,8 +46,23 @@ export async function main(): Promise<void> {
       ['reddit', () => fetchReddit(category)],
     ];
     for (const [source, fn] of tasks) {
-      collected.push(...(await safeFetch(`${category.label}/${source}`, fn)));
+      try {
+        const items = await fn();
+        successfulTasks += 1;
+        console.log(`[${category.label}/${source}] ✅ 采集 ${items.length} 条`);
+        collected.push(...items);
+      } catch (err) {
+        console.error(
+          `[${category.label}/${source}] ❌ 采集失败：`,
+          err instanceof Error ? err.message : err,
+        );
+      }
     }
+  }
+
+  // 所有源都失败或返回空结果时，禁止用空数据覆盖上一次有效快照。
+  if (successfulTasks === 0 || collected.length === 0) {
+    throw new Error('本次采集没有得到任何数据，已保留上一份 daily.json');
   }
 
   // 从来源网页抓取详情（完整描述 / 截图 / 评分等），可关闭

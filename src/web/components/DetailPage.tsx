@@ -7,218 +7,118 @@ import ExpandableText from './ExpandableText';
 export default function DetailPage({ item, items }: { item?: FeedItem; items: FeedItem[] }) {
   if (!item) {
     return (
-      <main className="min-h-screen bg-paper text-ink">
-        <div className="mx-auto max-w-3xl px-4 py-10">
-          <a
-            href="#/"
-            className="font-mono text-xs uppercase tracking-wider text-muted transition hover:text-ink"
-          >
-            ← 返回
-          </a>
-          <div className="mt-6 border-y border-line py-16 text-center font-mono text-sm text-muted">
-            未找到该条目（数据可能已更新），请返回列表查看。
-          </div>
-        </div>
+      <main className="min-h-screen bg-paper px-4 py-10 text-ink">
+        <a href="#/" className="font-mono text-xs uppercase tracking-wider text-muted hover:text-accent">← Back to desk</a>
+        <div className="mx-auto mt-16 max-w-3xl border border-line bg-panel px-6 py-20 text-center font-mono text-sm text-muted">This signal is no longer in the current snapshot.</div>
       </main>
     );
   }
 
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
-
-  // 信息网格单元（含附加 stats）
-  const cells: Array<{ label: string; value: string }> = [];
-  if (item.score !== undefined) cells.push({ label: `热度 · ${meta.scoreLabel}`, value: formatNumber(item.score) });
-  if (item.rank !== undefined) cells.push({ label: '排名', value: `No.${item.rank}` });
-  if (item.rating !== undefined) cells.push({ label: '评分', value: `★ ${item.rating.toFixed(1)}` });
-  if (item.price) cells.push({ label: '价格', value: item.price });
-  if (item.comments !== undefined) cells.push({ label: '评论', value: formatNumber(item.comments) });
-  cells.push({ label: '来源', value: meta.label });
-  cells.push({ label: '类别', value: cat.label });
-  if (item.publishedAt) cells.push({ label: '发布时间', value: formatDate(item.publishedAt) });
-  if (item.stats) cells.push(...item.stats);
-
+  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#ff6b45' };
+  const index = items.findIndex((entry) => entry.id === item.id);
+  const previous = index > 0 ? items[index - 1] : undefined;
+  const next = index >= 0 && index < items.length - 1 ? items[index + 1] : undefined;
+  const related = items
+    .filter((entry) => entry.id !== item.id && entry.category === item.category)
+    .sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity))
+    .slice(0, 5);
   const longDesc = item.longDescription && item.longDescription !== item.description ? item.longDescription : undefined;
   const externalUrl = item.externalUrl && item.externalUrl !== item.url ? item.externalUrl : undefined;
-
-  const related = items
-    .filter((it) => it.id !== item.id && it.category === item.category)
-    .sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY))
-    .slice(0, 6);
+  const stats = [
+    item.score !== undefined ? { label: meta.scoreLabel, value: formatNumber(item.score) } : undefined,
+    item.rank !== undefined ? { label: 'Rank', value: 'No.' + item.rank } : undefined,
+    item.rating !== undefined ? { label: 'Rating', value: '★ ' + item.rating.toFixed(1) } : undefined,
+    item.comments !== undefined ? { label: 'Comments', value: formatNumber(item.comments) } : undefined,
+    item.price ? { label: 'Price', value: item.price } : undefined,
+    item.publishedAt ? { label: 'Published', value: formatDate(item.publishedAt) } : undefined,
+    ...(item.stats ?? []),
+  ].filter((value): value is { label: string; value: string } => Boolean(value));
 
   return (
     <main className="min-h-screen bg-paper text-ink">
-      <div className="mx-auto max-w-3xl px-4 py-8">
-        <a
-          href="#/"
-          className="font-mono text-xs uppercase tracking-wider text-muted transition hover:text-ink"
-        >
-          ← 返回
-        </a>
+      <header className="border-b border-line">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+          <a href="#/" className="flex items-center gap-3 font-mono text-sm font-semibold tracking-[0.12em]">
+            <span className="flex h-9 w-9 items-center justify-center bg-accent text-white">DP</span>
+            DAILYPULSE
+          </a>
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{String(index + 1).padStart(2, '0')} / {items.length}</span>
+        </div>
+      </header>
 
-        <article className="mt-6 border-t-2 border-ink pt-6">
-          {/* 元信息 */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-wide text-muted">
-            <span className="font-medium text-ink">{meta.label}</span>
-            <span style={{ color: cat.hex }}>{cat.label}</span>
-            {item.rank !== undefined && <span>No.{item.rank}</span>}
-            {item.rating !== undefined && <span className="text-ink">★ {item.rating.toFixed(1)}</span>}
-            {item.price && <span>{item.price}</span>}
-            {item.publishedAt && <span>{formatDate(item.publishedAt)}</span>}
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <a href="#/" className="font-mono text-xs uppercase tracking-wider text-muted transition hover:text-accent">← Back to desk</a>
+          <div className="flex gap-2">
+            {previous && <a href={'#/item/' + encodeURIComponent(previous.id)} className="border border-line px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-muted hover:border-accent hover:text-accent">← Previous</a>}
+            {next && <a href={'#/item/' + encodeURIComponent(next.id)} className="border border-line px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-muted hover:border-accent hover:text-accent">Next →</a>}
           </div>
+        </div>
 
-          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            {item.title}
-          </h1>
-
-          {item.developer && (
-            <p className="mt-3 font-mono text-sm text-muted">开发者 / 作者 · {item.developer}</p>
-          )}
-
-          {item.description && (
-            <p className="mt-4 text-lg leading-relaxed text-muted">{item.description}</p>
-          )}
-
-          {/* 缩略图 + 标签 */}
-          <div className="mt-6 flex items-center gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-line bg-cream">
-              <span className="absolute inset-0 flex items-center justify-center font-mono text-sm font-semibold text-muted">
-                {meta.short}
-              </span>
-              {item.thumbnail && (
-                <img
-                  src={item.thumbnail}
-                  alt=""
-                  referrerPolicy="no-referrer"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  onError={(e) => e.currentTarget.remove()}
-                />
-              )}
+        <article className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+          <div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+              <span className="text-ink">{meta.label}</span>
+              <span style={{ color: cat.hex }}>{cat.label}</span>
+              {item.publishedAt && <span>{formatDate(item.publishedAt)}</span>}
             </div>
-            {item.tags && item.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {item.tags.map((t) => (
-                  <span key={t} className="border border-line px-2 py-0.5 font-mono text-xs text-muted">
-                    {t}
-                  </span>
-                ))}
-              </div>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-6xl">{item.title}</h1>
+            {item.developer && <p className="mt-5 font-mono text-xs uppercase tracking-wider text-muted">By {item.developer}</p>}
+            {item.description && <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{item.description}</p>}
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {item.tags?.map((tag) => <span key={tag} className="border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-muted">{tag}</span>)}
+            </div>
+
+            {longDesc && (
+              <section className="mt-10 border-t border-line pt-6">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Full brief</h2>
+                <ExpandableText text={longDesc} className="mt-4 whitespace-pre-wrap break-words text-[15px] leading-8 text-ink/90" />
+              </section>
+            )}
+
+            {item.screenshots && item.screenshots.length > 0 && (
+              <section className="mt-10 border-t border-line pt-6">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Screenshots</h2>
+                <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
+                  {item.screenshots.map((screenshot) => (
+                    <img key={screenshot} src={screenshot} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-52 w-auto shrink-0 border border-line bg-cream object-contain" onError={(event) => event.currentTarget.remove()} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {related.length > 0 && (
+              <section className="mt-10 border-t border-line pt-6">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">More from {cat.label}</h2>
+                <div className="mt-3 border-t border-line">
+                  {related.map((entry) => (
+                    <a key={entry.id} href={'#/item/' + encodeURIComponent(entry.id)} className="group flex items-center gap-3 border-b border-line py-3 hover:bg-panel">
+                      <span className="h-1.5 w-1.5" style={{ backgroundColor: cat.hex }} />
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium group-hover:text-accent">{entry.title}</span>
+                      <span className="font-mono text-xs text-muted">{entry.score !== undefined ? formatNumber(entry.score) : '—'}</span>
+                      <span className="text-muted group-hover:text-accent">→</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
             )}
           </div>
 
-          {/* 完整描述 / 正文 */}
-          {longDesc && (
-            <section className="mt-7 border-t border-line pt-5">
-              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">详情</h2>
-              <ExpandableText
-                text={longDesc}
-                className="mt-3 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink/90"
-              />
-            </section>
-          )}
-
-          {/* 截图 */}
-          {item.screenshots && item.screenshots.length > 0 && (
-            <section className="mt-7 border-t border-line pt-5">
-              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">截图</h2>
-              <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-                {item.screenshots.map((s) => (
-                  <img
-                    key={s}
-                    src={s}
-                    alt=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    className="h-44 w-auto shrink-0 border border-line bg-cream object-contain"
-                    onError={(e) => e.currentTarget.remove()}
-                  />
-                ))}
+          <aside className="self-start lg:sticky lg:top-6">
+            <div className="border border-line bg-panel">
+              <div className="border-b border-line px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Signal data</div>
+              <div className="grid grid-cols-2">
+                {stats.map((stat) => <Stat key={stat.label + stat.value} label={stat.label} value={stat.value} />)}
               </div>
-            </section>
-          )}
-
-          {/* 信息网格（hairline 分隔） */}
-          {cells.length > 0 && (
-            <div className="mt-7 grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
-              {cells.map((c) => (
-                <Stat key={c.label + c.value} label={c.label} value={c.value} />
-              ))}
             </div>
-          )}
-
-          {/* 链接 */}
-          <div className="mt-8 border-t border-line pt-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 bg-accent px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-accent-dark"
-              >
-                打开原链接
-                <span aria-hidden>↗</span>
-              </a>
-              {externalUrl && (
-                <a
-                  href={externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center gap-2 border border-ink px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-paper"
-                >
-                  访问原文
-                  <span aria-hidden>↗</span>
-                </a>
-              )}
+            <div className="mt-4 flex flex-col gap-2">
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between bg-accent px-4 font-mono text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent-dark">Open source <span>↗</span></a>
+              {externalUrl && <a href={externalUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between border border-line px-4 font-mono text-xs uppercase tracking-wider text-muted hover:border-accent hover:text-accent">Open external link <span>↗</span></a>}
             </div>
-            <p className="mt-3 break-all font-mono text-xs text-muted">{item.url}</p>
-            {externalUrl && <p className="mt-1 break-all font-mono text-xs text-muted">{externalUrl}</p>}
-          </div>
-
-          {/* 相关推荐 */}
-          {related.length > 0 && (
-            <section className="mt-8 border-t border-line pt-6">
-              <h2 className="font-mono text-[11px] uppercase tracking-wider text-muted">
-                相关推荐 · {cat.label}
-              </h2>
-              <div className="mt-1">
-                {related.map((r) => {
-                  const rMeta = SOURCE_META[r.source];
-                  const rCat = CATEGORY_META[r.category] ?? { label: r.category, emoji: '', hex: '#6E675A' };
-                  return (
-                    <a
-                      key={r.id}
-                      href={`#/item/${encodeURIComponent(r.id)}`}
-                      className="group flex items-center gap-3 border-b border-line py-3 last:border-b-0 transition hover:bg-cream/50"
-                    >
-                      <span className="h-1.5 w-1.5 shrink-0" style={{ backgroundColor: rCat.hex }} />
-                      <span className="shrink-0 font-mono text-[11px] uppercase text-muted">{rMeta.short}</span>
-                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-ink transition group-hover:text-accent">
-                        {r.title}
-                      </span>
-                      {r.score !== undefined && (
-                        <span className="shrink-0 font-mono text-sm tabular-nums text-muted">
-                          {formatNumber(r.score)}
-                        </span>
-                      )}
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="shrink-0 text-line transition group-hover:translate-x-0.5 group-hover:text-accent"
-                      >
-                        <path d="M9 18l6-6-6-6" />
-                      </svg>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          )}
+            <p className="mt-4 break-all font-mono text-[10px] leading-5 text-muted">{item.url}</p>
+          </aside>
         </article>
       </div>
     </main>
@@ -227,9 +127,9 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-paper p-3">
-      <div className="font-mono text-[11px] uppercase tracking-wide text-muted">{label}</div>
-      <div className="mt-1 break-words font-mono text-base font-semibold">{value}</div>
+    <div className="border-b border-r border-line p-3 last:border-r-0">
+      <div className="font-mono text-[9px] uppercase tracking-wider text-muted">{label}</div>
+      <div className="mt-2 break-words font-mono text-sm font-semibold text-ink">{value}</div>
     </div>
   );
 }

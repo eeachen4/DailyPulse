@@ -3,17 +3,19 @@ import { SOURCE_META } from '../../types';
 import { CATEGORY_META } from '../../categories';
 import { formatNumber, formatDate } from '../format';
 
-export default function FeedCard({ item }: { item: FeedItem }) {
+export default function FeedCard({ item, index }: { item: FeedItem; index: number }) {
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
+  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#ff6b45' };
 
   return (
     <a
-      href={`#/item/${encodeURIComponent(item.id)}`}
-      className="group flex items-center gap-3 px-1 py-4 transition hover:bg-cream/60 sm:gap-4"
+      href={'#/item/' + encodeURIComponent(item.id)}
+      className="feed-card group grid grid-cols-[34px_64px_minmax(0,1fr)_auto_16px] items-center gap-3 border-b border-line bg-panel px-4 py-4 transition hover:bg-panel-strong sm:grid-cols-[42px_72px_minmax(0,1fr)_92px_18px] sm:gap-4 sm:px-5"
+      style={{ animationDelay: Math.min(index, 12) * 28 + 'ms' }}
     >
-      {/* 缩略图 / 短名占位 */}
-      <div className="relative h-11 w-11 shrink-0 overflow-hidden border border-line bg-cream">
+      <div className="font-mono text-xs tabular-nums text-muted">{String(index + 1).padStart(2, '0')}</div>
+
+      <div className="relative h-16 w-16 overflow-hidden border border-line bg-cream sm:h-[72px] sm:w-[72px]">
         <span className="absolute inset-0 flex items-center justify-center font-mono text-[11px] font-semibold text-muted">
           {meta.short}
         </span>
@@ -23,60 +25,38 @@ export default function FeedCard({ item }: { item: FeedItem }) {
             alt=""
             loading="lazy"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 h-full w-full object-cover"
-            onError={(e) => e.currentTarget.remove()}
+            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            onError={(event) => event.currentTarget.remove()}
           />
         )}
       </div>
 
-      {/* 主体 */}
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[11px] uppercase tracking-wide text-muted">
-          <span className="font-medium text-ink">{meta.label}</span>
+      <div className="min-w-0 self-stretch py-0.5">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+          <span className="text-ink">{meta.label}</span>
           <span style={{ color: cat.hex }}>{cat.label}</span>
-          {item.rank !== undefined && <span>No.{item.rank}</span>}
-          {item.rating !== undefined && <span className="text-ink">★ {item.rating.toFixed(1)}</span>}
-          {item.publishedAt && (
-            <span className="hidden sm:inline">{formatDate(item.publishedAt)}</span>
-          )}
+          {item.publishedAt && <span className="hidden sm:inline">{formatDate(item.publishedAt)}</span>}
         </div>
-        <h3 className="mt-1 truncate text-[15px] font-semibold text-ink transition-colors group-hover:text-accent">
+        <h3 className="mt-2 line-clamp-2 text-[15px] font-semibold leading-snug text-ink transition-colors group-hover:text-accent sm:text-base">
           {item.title}
         </h3>
-        {item.description ? (
-          <p className="mt-0.5 truncate text-sm text-muted">{item.description}</p>
-        ) : item.tags?.length ? (
-          <p className="mt-0.5 truncate font-mono text-xs text-muted">{item.tags.join(' · ')}</p>
-        ) : null}
+        <p className="mt-1 line-clamp-1 text-xs leading-relaxed text-muted sm:line-clamp-2 sm:text-sm">
+          {item.description || item.tags?.join(' · ') || '打开条目查看完整详情'}
+        </p>
       </div>
 
-      {/* 热度 */}
-      {item.score !== undefined && (
-        <div className="shrink-0 text-right">
-          <div className="font-mono text-lg font-semibold tabular-nums leading-none text-ink">
-            {formatNumber(item.score)}
-          </div>
-          <div className="mt-1 hidden font-mono text-[10px] uppercase tracking-wide text-muted sm:block">
-            {meta.scoreLabel}
-          </div>
+      <div className="hidden text-right sm:block">
+        <div className="font-mono text-lg font-semibold tabular-nums text-ink">
+          {item.score !== undefined ? formatNumber(item.score) : '—'}
         </div>
-      )}
-
-      {/* 箭头 */}
-      <div className="shrink-0 text-line transition group-hover:translate-x-0.5 group-hover:text-accent">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M9 18l6-6-6-6" />
-        </svg>
+        <div className="mt-1 font-mono text-[9px] uppercase tracking-wider text-muted">
+          {item.score !== undefined ? meta.scoreLabel : '暂无热度'}
+        </div>
       </div>
+
+      <span className="text-muted transition group-hover:translate-x-1 group-hover:text-accent" aria-hidden>
+        →
+      </span>
     </a>
   );
 }
