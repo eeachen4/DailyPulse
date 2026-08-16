@@ -10,21 +10,13 @@ export default function CategoryFilter({ value, onChange, counts }: Props) {
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <CatButton
-        active={value === 'all'}
-        label="全部"
-        emoji="🗂️"
-        count={total}
-        hex="#0f172a"
-        onClick={() => onChange('all')}
-      />
+    <div className="flex flex-wrap items-center gap-x-7 gap-y-1 border-b border-line">
+      <Tab active={value === 'all'} label="全部" count={total} onClick={() => onChange('all')} />
       {CATEGORIES.map((c) => (
-        <CatButton
+        <Tab
           key={c.id}
           active={value === c.label}
           label={c.label}
-          emoji={c.emoji}
           count={counts[c.label] ?? 0}
           hex={c.hex}
           onClick={() => onChange(c.label)}
@@ -34,38 +26,30 @@ export default function CategoryFilter({ value, onChange, counts }: Props) {
   );
 }
 
-function CatButton({
+function Tab({
   active,
   label,
-  emoji,
   count,
   hex,
   onClick,
 }: {
   active: boolean;
   label: string;
-  emoji: string;
   count: number;
-  hex: string;
+  hex?: string;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition"
-      style={
-        active
-          ? { backgroundColor: `${hex}1a`, color: hex, borderColor: hex }
-          : { backgroundColor: '#fff', color: '#475569', borderColor: '#e2e8f0' }
-      }
+      className={`relative flex min-h-11 items-center gap-2 border-b-2 px-1 font-mono text-sm transition ${
+        active ? 'border-accent text-ink' : 'border-transparent text-muted hover:text-ink'
+      }`}
     >
-      <span>{emoji}</span>
+      {hex && <span className="h-1.5 w-1.5" style={{ backgroundColor: hex }} />}
       {label}
-      <span
-        className="rounded-full px-1.5 text-xs font-semibold"
-        style={{ backgroundColor: active ? `${hex}26` : '#f1f5f9', color: active ? hex : '#64748b' }}
-      >
+      <span className={`text-xs tabular-nums ${active ? 'text-accent' : 'text-muted/70'}`}>
         {count}
       </span>
     </button>

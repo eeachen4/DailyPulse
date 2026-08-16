@@ -12,20 +12,14 @@ export default function SourceFilter({ value, onChange, counts }: Props) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <FilterButton
-        active={value === 'all'}
-        activeClass="bg-slate-900 text-white border-slate-900"
-        label="全部"
-        count={total}
-        onClick={() => onChange('all')}
-      />
+      <Chip active={value === 'all'} label="全部" count={total} onClick={() => onChange('all')} />
       {SOURCES.map((s) => (
-        <FilterButton
+        <Chip
           key={s}
           active={value === s}
-          activeClass={SOURCE_META[s].badgeClass}
           label={SOURCE_META[s].label}
           count={counts[s]}
+          hex={SOURCE_META[s].hex}
           onClick={() => onChange(s)}
         />
       ))}
@@ -33,31 +27,32 @@ export default function SourceFilter({ value, onChange, counts }: Props) {
   );
 }
 
-function FilterButton({
+function Chip({
   active,
-  activeClass,
   label,
   count,
+  hex,
   onClick,
 }: {
   active: boolean;
-  activeClass: string;
   label: string;
   count: number;
+  hex?: string;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+      className={`inline-flex min-h-11 items-center gap-1.5 border px-3 py-1.5 font-mono text-xs uppercase tracking-wide transition ${
         active
-          ? `${activeClass} border-transparent shadow-sm`
-          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
+          ? 'border-ink bg-ink text-paper'
+          : 'border-line text-muted hover:border-muted hover:text-ink'
       }`}
     >
+      {hex && <span className="h-1.5 w-1.5" style={{ backgroundColor: hex }} />}
       {label}
-      <span className="rounded-full bg-black/10 px-1.5 text-xs font-semibold">{count}</span>
+      <span className={active ? 'opacity-60' : 'text-muted/70'}>{count}</span>
     </button>
   );
 }

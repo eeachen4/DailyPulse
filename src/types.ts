@@ -37,6 +37,8 @@ export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'redd
 
 export interface SourceMeta {
   label: string;
+  /** 短名（如 AS / GP / PH / RD），用于缩略图占位 */
+  short: string;
   scoreLabel: string;
   emoji: string;
   /** 品牌主色（十六进制），供独立静态页使用 */
@@ -50,6 +52,7 @@ export interface SourceMeta {
 export const SOURCE_META: Record<Source, SourceMeta> = {
   appstore: {
     label: 'App Store',
+    short: 'AS',
     scoreLabel: '评分人数',
     emoji: '🍎',
     hex: '#4f46e5',
@@ -59,6 +62,7 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
   },
   googleplay: {
     label: 'Google Play',
+    short: 'GP',
     scoreLabel: '下载热度',
     emoji: '🤖',
     hex: '#059669',
@@ -68,6 +72,7 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
   },
   producthunt: {
     label: 'Product Hunt',
+    short: 'PH',
     scoreLabel: '点赞',
     emoji: '🐱',
     hex: '#ea580c',
@@ -77,6 +82,7 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
   },
   reddit: {
     label: 'Reddit',
+    short: 'RD',
     scoreLabel: '点赞',
     emoji: '👽',
     hex: '#e11d48',

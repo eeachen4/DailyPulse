@@ -106,39 +106,31 @@ function fmtDate(iso?: string | null): string {
 
 function renderCard(item: FeedItem): string {
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '🏷️', hex: '#64748b' };
+  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
   const thumb = item.thumbnail
     ? `<img class="thumb" src="${escapeHtml(item.thumbnail)}" loading="lazy" onerror="this.style.display='none'" alt="">`
-    : `<div class="thumb emoji">${cat.emoji}</div>`;
-  const rank = item.rank !== undefined ? `<span class="rank">#${item.rank}</span>` : '';
+    : `<div class="thumb mono">${escapeHtml(meta.short)}</div>`;
+  const rank = item.rank !== undefined ? `<span>No.${item.rank}</span>` : '';
+  const time = item.publishedAt ? `<span>${fmtDate(item.publishedAt)}</span>` : '';
+  const desc = item.description
+    ? `<p class="desc">${escapeHtml(item.description)}</p>`
+    : item.tags && item.tags.length
+      ? `<p class="desc mono">${escapeHtml(item.tags.join(' · '))}</p>`
+      : '';
   const score =
     item.score !== undefined
-      ? `<span class="score">${fmtNum(item.score)} <i>${escapeHtml(meta.scoreLabel)}</i></span>`
+      ? `<div class="score"><b>${fmtNum(item.score)}</b><i>${escapeHtml(meta.scoreLabel)}</i></div>`
       : '';
-  const desc = item.description ? `<p class="desc">${escapeHtml(item.description)}</p>` : '';
-  const tags =
-    item.tags && item.tags.length
-      ? `<div class="tags">${item.tags
-          .slice(0, 3)
-          .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
-          .join('')}</div>`
-      : '';
-  const time = item.publishedAt ? `<span class="time">${fmtDate(item.publishedAt)}</span>` : '';
 
   return `
-      <a class="card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+      <a class="row" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
         ${thumb}
-        <div class="card-body">
-          <div class="meta">
-            <span class="badge" style="background:${meta.hex}1a;color:${meta.hex}">${escapeHtml(meta.label)}</span>
-            <span class="badge" style="background:${cat.hex}1a;color:${cat.hex}">${cat.emoji} ${escapeHtml(cat.label)}</span>
-            ${rank}
-          </div>
+        <div class="body">
+          <div class="meta"><b>${escapeHtml(meta.label)}</b><span style="color:${cat.hex}">${escapeHtml(cat.label)}</span>${rank}${time}</div>
           <h3>${escapeHtml(item.title)}</h3>
           ${desc}
-          ${tags}
-          <div class="foot">${score}${time}</div>
         </div>
+        ${score}
       </a>`;
 }
 
@@ -150,17 +142,17 @@ function countByCategory(items: FeedItem[]): Record<string, number> {
 }
 
 function renderStandalone(data: FeedData): string {
-  const cards = data.items.map(renderCard).join('');
+  const rows = data.items.map(renderCard).join('');
   const counts = countByCategory(data.items);
   const stats = CATEGORIES.map(
-    (c) => `
-        <div class="stat">
-          <span class="stat-label"><i class="dot" style="background:${c.hex}"></i>${c.emoji} ${c.label}</span>
+    (c, i) => `
+        <div class="stat"${i > 0 ? ' style="border-left:1px solid #E3DDCE"' : ''}>
+          <span class="stat-label"><i class="dot" style="background:${c.hex}"></i>${c.label}</span>
           <span class="stat-num">${counts[c.label] ?? 0}</span>
         </div>`,
   ).join('');
 
-  const fetched = data.fetchedAt ? `<p class="fetched">采集时间：${fmtDate(data.fetchedAt)}</p>` : '';
+  const fetched = data.fetchedAt ? `<span>采集 ${fmtDate(data.fetchedAt)}</span>` : '';
   const sample = data.isSample ? '<span class="sample">示例数据</span>' : '';
 
   return `<!doctype html>
@@ -169,59 +161,69 @@ function renderStandalone(data: FeedData): string {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DailyPulse · 每日全球热点</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-             background: #f8fafc; color: #0f172a; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-      .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 48px; }
-      header { display: flex; align-items: center; gap: 12px; }
-      .logo { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg,#2563eb,#4f46e5);
-              color: #fff; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; }
-      h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
-      .sub { color: #64748b; font-size: 14px; }
-      .sample { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px;
-                background: #fef3c7; color: #b45309; font-size: 12px; font-weight: 500; }
-      .fetched { margin-top: 12px; color: #94a3b8; font-size: 13px; }
-      .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0; }
-      .stat { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px; }
-      .stat-label { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 13px; }
-      .dot { width: 8px; height: 8px; border-radius: 50%; }
-      .stat-num { display: block; font-size: 24px; font-weight: 700; margin-top: 4px; }
-      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-      .card { display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px;
-              padding: 14px; text-decoration: none; color: inherit; transition: box-shadow .15s, transform .15s; }
-      .card:hover { box-shadow: 0 6px 18px rgba(15,23,42,.08); transform: translateY(-2px); }
-      .thumb { width: 52px; height: 52px; flex: none; border-radius: 12px; background: #f1f5f9; object-fit: cover; }
-      .emoji { display: flex; align-items: center; justify-content: center; font-size: 24px; }
-      .card-body { min-width: 0; flex: 1; }
-      .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-      .badge { padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
-      .rank { color: #94a3b8; font-size: 12px; font-weight: 600; }
-      h3 { font-size: 15px; font-weight: 600; margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .desc { color: #64748b; font-size: 13px; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical; overflow: hidden; }
-      .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-      .tag { background: #f1f5f9; color: #64748b; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
-      .foot { display: flex; gap: 12px; margin-top: 8px; color: #64748b; font-size: 12px; }
-      .score { font-weight: 600; color: #334155; } .score i { font-style: normal; color: #94a3b8; }
-      .empty { border: 1px dashed #cbd5e1; border-radius: 16px; background: #fff; padding: 48px 16px;
-               text-align: center; color: #64748b; }
-      footer { text-align: center; color: #94a3b8; font-size: 12px; margin-top: 32px; }
+      body { font-family: "Sora", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+             background: #FAF8F3; color: #17150F; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+      .mono, .meta, .stat-label, .stat-num, .score, .kicker, .meta-line, footer { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 44px 20px 48px; }
+      header { border-bottom: 1px solid #E3DDCE; padding-bottom: 28px; }
+      .kicker { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #6E675A; }
+      h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; margin-top: 10px; }
+      .sample { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 400; text-transform: uppercase;
+                letter-spacing: .1em; color: #6E675A; border: 1px solid #E3DDCE; padding: 2px 8px; vertical-align: 4px; margin-left: 12px; }
+      .meta-line { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 18px; font-size: 12px; color: #6E675A; }
+      .meta-line .live { display: inline-flex; align-items: center; gap: 6px; }
+      .live i { width: 6px; height: 6px; border-radius: 50%; background: #E8542E; }
+      .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #E3DDCE; }
+      .stat { padding: 18px 16px; }
+      .stat-label { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #6E675A; }
+      .dot { width: 8px; height: 8px; }
+      .stat-num { display: block; font-size: 28px; font-weight: 600; margin-top: 6px; }
+      .list { border-bottom: 1px solid #E3DDCE; }
+      .row { display: flex; align-items: center; gap: 14px; padding: 14px 4px; border-bottom: 1px solid #E3DDCE;
+             text-decoration: none; color: inherit; transition: background .12s; }
+      .row:last-child { border-bottom: none; }
+      .row:hover { background: #F1EDE4; }
+      .thumb { width: 44px; height: 44px; flex: none; border: 1px solid #E3DDCE; background: #F1EDE4;
+               object-fit: cover; display: flex; align-items: center; justify-content: center;
+               font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; color: #6E675A; }
+      .body { min-width: 0; flex: 1; }
+      .meta { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #6E675A; }
+      .meta b { color: #17150F; font-weight: 500; }
+      h3 { font-size: 15px; font-weight: 600; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .desc { color: #6E675A; font-size: 13px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .desc.mono { font-size: 12px; }
+      .score { flex: none; text-align: right; }
+      .score b { display: block; font-size: 18px; font-weight: 600; }
+      .score i { font-style: normal; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #6E675A; }
+      .empty { border: 1px solid #E3DDCE; padding: 64px 16px; text-align: center; color: #6E675A; }
+      footer { border-top: 1px solid #E3DDCE; margin-top: 40px; padding-top: 20px; text-align: center; font-size: 12px; color: #6E675A; }
+      @media (max-width: 640px) {
+        h1 { font-size: 32px; }
+        .stats { grid-template-columns: repeat(2, 1fr); }
+        .stat:nth-child(3) { border-left: none !important; }
+        .score i { display: none; }
+      }
     </style>
   </head>
   <body>
     <div class="wrap">
       <header>
-        <div class="logo">DP</div>
-        <div>
-          <h1>DailyPulse ${sample}</h1>
-          <div class="sub">每日全球热点「信息早餐」</div>
+        <p class="kicker">Daily Pulse · 每日全球热点「信息早餐」</p>
+        <h1>DailyPulse${sample}</h1>
+        <div class="meta-line">
+          ${fetched}
+          <span>共 ${data.items.length} 条</span>
+          <span class="live"><i></i>Live</span>
         </div>
       </header>
-      ${fetched}
       <div class="stats">${stats}</div>
-      ${data.items.length ? `<div class="grid">${cards}</div>` : '<div class="empty">暂无采集数据，请配置 APIFY_API_KEY 后运行 npm run fetch。</div>'}
-      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · 数据来源：App Store / Google Play / Product Hunt / Reddit</footer>
+      ${data.items.length ? `<div class="list">${rows}</div>` : '<div class="empty">暂无采集数据，请配置 APIFY_API_KEY 后运行 npm run fetch。</div>'}
+      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · App Store / Google Play / Product Hunt / Reddit</footer>
     </div>
   </body>
 </html>`;

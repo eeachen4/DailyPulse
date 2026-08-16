@@ -2,11 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  System — "Morning Pulse"（瑞士编辑风 × 实时行情）
+  Type   : Sora（UI / 标题，字重对比）· IBM Plex Mono（数据 / 元信息）
+  Scale  : 品牌 40 / 统计 30 / 标题 15 / 正文 14 / 元信息 11–12 / 数据 13–18
+  Color  : paper #FAF8F3 · ink #17150F · muted #6E675A · line #E3DDCE · accent #E8542E
+  Rhythm : 4 / 8 / 12 / 24 / 48；细线（hairline）为分区主语言
+*/
+
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-paper text-ink font-sans;
+}
+
+::selection {
+  background: #e8542e;
+  color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }

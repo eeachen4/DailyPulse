@@ -98,54 +98,56 @@ export default function App() {
   const isEmpty = data.items.length === 0;
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-lg font-black text-white shadow">
-              DP
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">
-                DailyPulse
-                {data.isSample && (
-                  <span className="ml-2 inline-block translate-y-[-2px] rounded-full bg-amber-100 px-2 py-0.5 align-middle text-xs font-medium text-amber-700">
-                    示例数据
-                  </span>
-                )}
-              </h1>
-              <p className="text-sm text-slate-500">每日全球热点「信息早餐」</p>
-            </div>
+    <main className="min-h-screen bg-paper text-ink">
+      {/* 刊头 */}
+      <header className="border-b border-line">
+        <div className="mx-auto max-w-4xl px-4 pb-8 pt-12">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+            Daily Pulse · 每日全球热点「信息早餐」
+          </p>
+          <div className="mt-3 flex items-center gap-3">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">DailyPulse</h1>
+            {data.isSample && (
+              <span className="inline-block border border-line px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-muted">
+                示例数据
+              </span>
+            )}
           </div>
-          {data.fetchedAt && (
-            <p className="mt-4 text-sm text-slate-400">采集时间：{formatDate(data.fetchedAt)}</p>
-          )}
+          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-xs text-muted">
+            {data.fetchedAt && <span>采集 {formatDate(data.fetchedAt)}</span>}
+            <span>共 {data.items.length} 条</span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+              Live
+            </span>
+          </div>
         </div>
       </header>
 
-      <section className="mx-auto max-w-5xl px-4 py-6">
+      <section className="mx-auto max-w-4xl px-4 py-6">
         {isEmpty ? (
-          <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
-            <p className="text-lg font-semibold text-slate-700">还没有采集数据</p>
-            <p className="mt-2 text-sm text-slate-500">
-              配置 <code className="rounded bg-slate-100 px-1 py-0.5">APIFY_API_KEY</code> 后运行{' '}
-              <code className="rounded bg-slate-100 px-1 py-0.5">npm run fetch</code>
-              ，或等待 GitHub Actions 每日定时任务（北京时间 08:00）自动执行。
+          <div className="border-y border-line py-16 text-center">
+            <p className="font-semibold">还没有采集数据</p>
+            <p className="mt-2 font-mono text-sm text-muted">
+              配置 APIFY_API_KEY 后运行 npm run fetch，或等待每日 08:00 定时任务。
             </p>
           </div>
         ) : (
           <>
-            {/* 类别统计栏 */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {CATEGORIES.map((c) => (
-                <div key={c.id} className="rounded-2xl border border-slate-200 bg-white p-4">
-                  <div className="flex items-center gap-2 text-sm text-slate-500">
-                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.hex }} />
-                    <span>
-                      {c.emoji} {c.label}
-                    </span>
+            {/* 类别统计 */}
+            <div className="grid grid-cols-2 border-b border-line sm:grid-cols-4">
+              {CATEGORIES.map((c, i) => (
+                <div
+                  key={c.id}
+                  className={`px-4 py-5 ${i > 0 ? 'sm:border-l sm:border-line' : ''}`}
+                >
+                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+                    <span className="h-2 w-2" style={{ backgroundColor: c.hex }} />
+                    {c.label}
                   </div>
-                  <div className="mt-1 text-2xl font-bold">{categoryCounts[c.label] ?? 0}</div>
+                  <div className="mt-1.5 font-mono text-3xl font-semibold tracking-tight">
+                    {categoryCounts[c.label] ?? 0}
+                  </div>
                 </div>
               ))}
             </div>
@@ -158,15 +160,13 @@ export default function App() {
             {/* 来源筛选 + 排序 */}
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <SourceFilter value={source} onChange={setSource} counts={sourceCounts} />
-              <div className="flex items-center gap-2 text-sm">
-                <label htmlFor="sort" className="text-slate-500">
-                  排序
-                </label>
+              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-muted">
+                <label htmlFor="sort">排序</label>
                 <select
                   id="sort"
                   value={sort}
                   onChange={(e) => setSort(e.target.value as SortKey)}
-                  className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-slate-700 outline-none focus:border-blue-500"
+                  className="border-b border-line bg-transparent py-1 font-mono text-sm text-ink outline-none focus:border-accent"
                 >
                   <option value="score">按热度</option>
                   <option value="rank">按排名</option>
@@ -176,16 +176,16 @@ export default function App() {
               </div>
             </div>
 
-            {/* 卡片列表 */}
-            <div className="mt-4">
+            {/* 列表 */}
+            <div className="mt-2">
               <FeedList items={items} />
             </div>
           </>
         )}
 
-        <footer className="mt-10 pb-10 text-center text-xs text-slate-400">
-          DailyPulse · 每天 08:00 (UTC+8) 自动更新 · 数据来源：App Store / Google Play / Product
-          Hunt / Reddit
+        <footer className="mt-12 border-t border-line pb-12 pt-6 text-center font-mono text-xs text-muted">
+          DailyPulse · 每天 08:00 (UTC+8) 自动更新 · App Store / Google Play / Product Hunt /
+          Reddit
         </footer>
       </section>
     </main>

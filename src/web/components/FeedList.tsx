@@ -4,14 +4,14 @@ import FeedCard from './FeedCard';
 export default function FeedList({ items }: { items: FeedItem[] }) {
   if (items.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500">
+      <div className="border-y border-line py-16 text-center font-mono text-sm text-muted">
         当前筛选条件下暂无内容。
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+    <div className="divide-y divide-line border-b border-line">
       {items.map((item) => (
         <FeedCard key={item.id} item={item} />
       ))}

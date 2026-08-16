@@ -5,17 +5,17 @@ import { formatNumber, formatDate } from '../format';
 
 export default function FeedCard({ item }: { item: FeedItem }) {
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '🏷️', hex: '#64748b' };
+  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#6E675A' };
 
   return (
     <a
       href={`#/item/${encodeURIComponent(item.id)}`}
-      className="group flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+      className="group flex items-center gap-3 px-1 py-4 transition hover:bg-cream/60 sm:gap-4"
     >
-      {/* 缩略图：加载失败时自动回退到 emoji */}
-      <div className="relative h-14 w-14 shrink-0">
-        <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-slate-100 text-2xl">
-          {cat.emoji}
+      {/* 缩略图 / 短名占位 */}
+      <div className="relative h-11 w-11 shrink-0 overflow-hidden border border-line bg-cream">
+        <span className="absolute inset-0 flex items-center justify-center font-mono text-[11px] font-semibold text-muted">
+          {meta.short}
         </span>
         {item.thumbnail && (
           <img
@@ -23,63 +23,56 @@ export default function FeedCard({ item }: { item: FeedItem }) {
             alt=""
             loading="lazy"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 h-full w-full rounded-xl object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             onError={(e) => e.currentTarget.remove()}
           />
         )}
       </div>
 
+      {/* 主体 */}
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span
-            className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${meta.badgeClass}`}
-          >
-            <span className={`h-1.5 w-1.5 rounded-full ${meta.dotClass}`} />
-            {meta.label}
-          </span>
-          <span
-            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
-            style={{ backgroundColor: `${cat.hex}1a`, color: cat.hex }}
-          >
-            {cat.emoji} {cat.label}
-          </span>
-          {item.rank !== undefined && (
-            <span className="text-xs font-semibold text-slate-400">#{item.rank}</span>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[11px] uppercase tracking-wide text-muted">
+          <span className="font-medium text-ink">{meta.label}</span>
+          <span style={{ color: cat.hex }}>{cat.label}</span>
+          {item.rank !== undefined && <span>No.{item.rank}</span>}
+          {item.publishedAt && (
+            <span className="hidden sm:inline">{formatDate(item.publishedAt)}</span>
           )}
         </div>
-
-        <h3 className="mt-1 truncate font-semibold text-slate-900 transition group-hover:text-blue-600">
+        <h3 className="mt-1 truncate text-[15px] font-semibold text-ink transition-colors group-hover:text-accent">
           {item.title}
         </h3>
-
-        {item.description && (
-          <p className="mt-0.5 line-clamp-2 text-sm text-slate-500">{item.description}</p>
-        )}
-
-        {item.tags && item.tags.length > 0 && (
-          <div className="mt-1.5 flex flex-wrap gap-1">
-            {item.tags.slice(0, 3).map((t) => (
-              <span key={t} className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-500">
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
-          {item.score !== undefined && (
-            <>
-              <span className="font-semibold text-slate-800">{formatNumber(item.score)}</span>
-              <span className="text-slate-400">{meta.scoreLabel}</span>
-            </>
-          )}
-          {item.publishedAt && <span className="ml-auto">{formatDate(item.publishedAt)}</span>}
-        </div>
+        {item.description ? (
+          <p className="mt-0.5 truncate text-sm text-muted">{item.description}</p>
+        ) : item.tags?.length ? (
+          <p className="mt-0.5 truncate font-mono text-xs text-muted">{item.tags.join(' · ')}</p>
+        ) : null}
       </div>
 
-      {/* 右侧箭头，提示可进入详情 */}
-      <div className="flex shrink-0 items-center text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-500">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* 热度 */}
+      {item.score !== undefined && (
+        <div className="shrink-0 text-right">
+          <div className="font-mono text-lg font-semibold tabular-nums leading-none text-ink">
+            {formatNumber(item.score)}
+          </div>
+          <div className="mt-1 hidden font-mono text-[10px] uppercase tracking-wide text-muted sm:block">
+            {meta.scoreLabel}
+          </div>
+        </div>
+      )}
+
+      {/* 箭头 */}
+      <div className="shrink-0 text-line transition group-hover:translate-x-0.5 group-hover:text-accent">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M9 18l6-6-6-6" />
         </svg>
       </div>
