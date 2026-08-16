@@ -34,6 +34,8 @@ jobs:
         run: npm run fetch
         env:
           APIFY_API_KEY: ${{ secrets.APIFY_API_KEY }}
+          # Product Hunt 官方 API（未配置时回退 Apify）
+          PRODUCT_HUNT_TOKEN: ${{ secrets.PRODUCT_HUNT_TOKEN }}
           # 以下为可选，未在仓库 Secrets 中配置时会回退到代码内置默认值
           APIFY_APP_STORE_ACTOR_ID: ${{ secrets.APIFY_APP_STORE_ACTOR_ID }}
           APIFY_GOOGLE_PLAY_ACTOR_ID: ${{ secrets.APIFY_GOOGLE_PLAY_ACTOR_ID }}
