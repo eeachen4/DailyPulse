@@ -9,7 +9,7 @@ DailyPulse —— 每日 08:00（UTC+8）自动聚合 **App Store / Google Play 
 
 - **采集**：Node.js + TypeScript（经 `tsx` 运行），抓取数据 → 写入 `data/daily.json` → 生成/注入 `dist/index.html`。
 - **前端**：React 18 + Vite 5 + TailwindCSS 3，从 `window.__DAILY_DATA__` 读取数据渲染（无需二次请求）。
-- **调度**：GitHub Actions cron（UTC 0:00），产物回写仓库并托管到 GitHub Pages。
+- **调度**：GitHub Actions cron（UTC 0:00）采集并回写仓库；`.github/workflows/deploy.yml` 自动把 `dist/` 部署到 GitHub Pages。
 
 ## 常用命令
 

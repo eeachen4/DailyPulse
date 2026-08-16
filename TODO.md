@@ -32,9 +32,9 @@
   - `APIFY_APP_STORE_ACTOR_ID`、`APIFY_GOOGLE_PLAY_ACTOR_ID`、`APIFY_PRODUCT_HUNT_ACTOR_ID`
   - 不配置时自动回退到代码内置默认值。
 
-- [ ] **启用 GitHub Pages**
-  - **Settings → Pages → Source: Deploy from a branch → main / `/dist`** → Save。
-  - 访问 `https://<用户名>.github.io/<仓库名>/`。
+- [x] **启用 GitHub Pages**
+  - 已通过 `gh api .../pages -X POST -f build_type=workflow` 启用，由 `.github/workflows/deploy.yml` 自动部署 `dist/`。
+  - 访问：`https://eeachen4.github.io/DailyPulse/`。
 
 - [ ] **验证定时任务**
   - 到 **Actions** 页手动点 `Run workflow`（`workflow_dispatch`）触发一次，确认采集 → 构建 → 回写提交全链路正常。
@@ -69,8 +69,8 @@
   - 备选：接入 `https://api.producthunt.com/v2/api/graphql`（需 Product Hunt Developer Token），在 Apify 失败时兜底。
 
 - [ ] **gh-pages 分支部署**
-  - 现状：`dist/` 提交到 `main`，Pages 直接读 `main` 分支的 `/dist`。
-  - 备选：工作流末尾追加 `peaceiris/actions-gh-pages`，把 `dist/` 推到 `gh-pages` 分支，主分支更干净。
+  - 现状：已用 GitHub Actions（`deploy.yml`）把 `dist/` 部署为 Pages 产物。
+  - 备选：改用 `peaceiris/actions-gh-pages` 把 `dist/` 推到独立 `gh-pages` 分支，主分支更干净。
 
 - [ ] **每日数据历史归档**
   - 现状：`data/daily.json` 只保留当天数据（覆盖式写入）。

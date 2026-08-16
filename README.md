@@ -155,17 +155,25 @@ APIFY_API_KEY=apify_api_xxxxxxxxxxxxxxxx
 
 ## 🌐 部署到 GitHub Pages
 
-本项目的 `dist/` 会被定时任务回写提交到仓库主分支，因此可直接用「从分支部署」的方式托管。
+本项目通过 **GitHub Actions** 自动部署到 GitHub Pages（`build_type = workflow`），由工作流 `.github/workflows/deploy.yml` 把 `dist/` 上传为 Pages 产物并部署。
 
-1. 进入仓库 **Settings → Pages**。
-2. **Build and deployment → Source** 选择 **Deploy from a branch**。
-3. **Branch** 选择 `main`，文件夹选择 **`/dist`**，保存。
+触发时机：
 
-稍等片刻即可通过 `https://<你的用户名>.github.io/<仓库名>/` 访问。
+- 推送到 `main` 分支；
+- 「DailyPulse Daily Fetch」采集工作流完成后自动重新部署；
+- 手动触发（`workflow_dispatch`）。
+
+**首次启用（只需一次）**，在仓库根目录执行：
+
+```bash
+gh api repos/<owner>/<repo>/pages -X POST -f build_type=workflow
+```
+
+或进入 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
+
+部署完成后即可通过 `https://<你的用户名>.github.io/<仓库名>/` 访问。
 
 > 因为 `vite.config.ts` 中设置了 `base: './'`，资源使用相对路径，因此部署在任意子路径都能正常加载。
-
-> **进阶**：如偏好部署到独立的 `gh-pages` 分支，也可在工作流末尾追加 `peaceiris/actions-gh-pages` 之类的 deploy 步骤，把 `dist/` 推到 `gh-pages` 分支。
 
 ## 📄 数据格式
 
