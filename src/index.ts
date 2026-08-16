@@ -9,18 +9,7 @@ import { fetchReddit } from './fetch/reddit';
 import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
-import type { FeedItem } from './types';
-
-async function safeFetch(label: string, fn: () => Promise<FeedItem[]>): Promise<FeedItem[]> {
-  try {
-    const items = await fn();
-    console.log(`[${label}] ✅ 采集 ${items.length} 条`);
-    return items;
-  } catch (err) {
-    console.error(`[${label}] ❌ 采集失败：`, err instanceof Error ? err.message : err);
-    return [];
-  }
-}
+import type { FeedItem, FetchRun } from './types';
 
 /**
  * 主入口：按「类别 × 数据源」顺序采集 -> 合并 -> 写入 JSON -> 生成静态页面。
@@ -36,6 +25,7 @@ export async function main(): Promise<void> {
   console.log(`DailyPulse 开始采集…（${new Date().toISOString()}）`);
 
   const collected: FeedItem[] = [];
+  const runs: FetchRun[] = [];
   let successfulTasks = 0;
   for (const category of CATEGORIES) {
     console.log(`\n▶ 类别「${category.label}」`);
@@ -46,12 +36,31 @@ export async function main(): Promise<void> {
       ['reddit', () => fetchReddit(category)],
     ];
     for (const [source, fn] of tasks) {
+      const startedAt = Date.now();
+      const runFetchedAt = new Date().toISOString();
       try {
         const items = await fn();
         successfulTasks += 1;
+        runs.push({
+          source: source as FetchRun['source'],
+          categoryId: category.id,
+          fetchedAt: runFetchedAt,
+          status: items.length > 0 ? 'success' : 'partial',
+          count: items.length,
+          durationMs: Date.now() - startedAt,
+        });
         console.log(`[${category.label}/${source}] ✅ 采集 ${items.length} 条`);
         collected.push(...items);
       } catch (err) {
+        runs.push({
+          source: source as FetchRun['source'],
+          categoryId: category.id,
+          fetchedAt: runFetchedAt,
+          status: 'failed',
+          count: 0,
+          durationMs: Date.now() - startedAt,
+          error: err instanceof Error ? err.message : String(err),
+        });
         console.error(
           `[${category.label}/${source}] ❌ 采集失败：`,
           err instanceof Error ? err.message : err,
@@ -74,7 +83,7 @@ export async function main(): Promise<void> {
   }
 
   const fetchedAt = new Date().toISOString();
-  const filePath = await saveData(allItems, fetchedAt);
+  const filePath = await saveData(allItems, fetchedAt, runs);
   console.log(`✅ 已保存 ${allItems.length} 条数据到 ${filePath}`);
 
   await generateHtml();

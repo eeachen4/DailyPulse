@@ -1,11 +1,12 @@
 import type { FeedItem } from '../../types';
 import { SOURCE_META } from '../../types';
-import { CATEGORY_META } from '../../categories';
-import { formatNumber, formatDate } from '../format';
+import { CATEGORY_META_BY_ID } from '../../categories';
+import { primaryCategoryId } from '../../dataModel';
+import { formatDate } from '../format';
 
 export default function FeedCard({ item, index }: { item: FeedItem; index: number }) {
   const meta = SOURCE_META[item.source];
-  const cat = CATEGORY_META[item.category] ?? { label: item.category, emoji: '', hex: '#ff6b45' };
+  const cat = CATEGORY_META_BY_ID[primaryCategoryId(item)] ?? { label: primaryCategoryId(item), emoji: '', hex: '#ff6b45' };
 
   return (
     <a
@@ -47,10 +48,10 @@ export default function FeedCard({ item, index }: { item: FeedItem; index: numbe
 
       <div className="hidden text-right sm:block">
         <div className="font-mono text-lg font-semibold tabular-nums text-ink">
-          {item.score !== undefined ? formatNumber(item.score) : '—'}
+          {item.heatScore !== undefined ? item.heatScore.toFixed(0) : '—'}
         </div>
         <div className="mt-1 font-mono text-[9px] uppercase tracking-wider text-muted">
-          {item.score !== undefined ? meta.scoreLabel : '暂无热度'}
+          {item.heatScore !== undefined ? 'normalized heat' : '暂无热度'}
         </div>
       </div>
 

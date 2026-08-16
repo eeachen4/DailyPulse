@@ -1,7 +1,9 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import type { FeedData, FeedItem, Source } from '../types';
+import { DATA_SCHEMA_VERSION } from '../types';
 import { CATEGORIES } from '../categories';
+import { canonicalizeItems, detailSlug, toDetailFile, toSummary, withHeatScores } from '../dataModel';
 
 // 每个类别下各源生成的示例条数（合计 110 / 类别）
 const COUNTS: Record<Source, number> = { appstore: 30, googleplay: 30, producthunt: 20, reddit: 30 };
@@ -96,6 +98,7 @@ function buildItems(): FeedItem[] {
         if (source === 'appstore') {
           items.push({
             id: `appstore-${cat.id}-${i}`,
+            sourceItemId: `${cat.id}-${i}`,
             title,
             description: `${genre} · 热门推荐`,
             longDescription: `${title} 是一款 ${genre} 类应用，界面简洁、上手容易。它帮助用户在 ${cat.label} 相关场景中更高效地完成任务，支持跨设备同步与离线使用，并持续更新以带来更好的体验，深受全球用户好评。`,
@@ -120,6 +123,7 @@ function buildItems(): FeedItem[] {
           const installs = ['10万+', '50万+', '100万+', '500万+', '1000万+', '1亿+'][i % 6];
           items.push({
             id: `googleplay-${cat.id}-${i}`,
+            sourceItemId: `${cat.id}-${i}`,
             title,
             description: `${genre} · 热门推荐`,
             longDescription: `${title} 是一款 ${genre} 类应用。它提供流畅的使用体验与丰富的功能，帮助用户在 ${cat.label} 相关场景中提升效率，并定期更新以修复问题、引入新特性，在 Google Play 上广受好评。`,
@@ -145,6 +149,7 @@ function buildItems(): FeedItem[] {
         } else if (source === 'producthunt') {
           items.push({
             id: `producthunt-${cat.id}-${i}`,
+            sourceItemId: `${cat.id}-${i}`,
             title,
             description: `${title} 的标语：让${cat.label}相关的工作更简单、更快。`,
             longDescription: `${title} 的标语：让 ${cat.label} 相关的工作更简单、更快。团队可以更快地协作、自动化重复流程，并把精力集中在真正重要的事情上。它于今日在 Product Hunt 上线，已获得众多用户的投票与好评。`,
@@ -163,6 +168,7 @@ function buildItems(): FeedItem[] {
           const postTitle = pool.posts[i % pool.posts.length];
           items.push({
             id: `reddit-${cat.id}-${i}`,
+            sourceItemId: `${cat.id}-${i}`,
             title: postTitle,
             description: '点击查看完整讨论与网友观点。',
             longDescription: `本文围绕「${postTitle}」展开讨论，包含作者的第一手实践、踩坑记录，以及评论区网友的补充观点与经验分享，适合对 ${cat.label} 感兴趣的读者深入阅读。`,
@@ -188,15 +194,36 @@ function buildItems(): FeedItem[] {
 
 async function main(): Promise<void> {
   const items = buildItems();
-  const data: FeedData = { fetchedAt: new Date().toISOString(), isSample: true, items };
+  const normalizedItems = withHeatScores(canonicalizeItems(items));
+  const summaries = normalizedItems.map(toSummary);
+  const data: FeedData = {
+    schemaVersion: DATA_SCHEMA_VERSION,
+    fetchedAt: new Date().toISOString(),
+    isSample: true,
+    items: summaries,
+  };
   const dir = path.resolve(process.cwd(), 'data');
   await mkdir(dir, { recursive: true });
   const p = path.join(dir, 'daily.json');
   await writeFile(p, JSON.stringify(data, null, 2), 'utf-8');
+  const detailsDir = path.join(dir, 'details');
+  await mkdir(detailsDir, { recursive: true });
+  await Promise.all(
+    normalizedItems.map((item) =>
+      writeFile(
+        path.join(detailsDir, detailSlug(item.id) + '.json'),
+        JSON.stringify(toDetailFile(item), null, 2),
+        'utf-8',
+      ),
+    ),
+  );
 
   const perCat: Record<string, number> = {};
-  for (const it of items) perCat[it.category] = (perCat[it.category] ?? 0) + 1;
-  console.log(`[sample] 生成 ${items.length} 条示例数据 -> ${p}`);
+  for (const it of normalizedItems) {
+    const key = it.categoryId ?? it.category ?? 'uncategorized';
+    perCat[key] = (perCat[key] ?? 0) + 1;
+  }
+  console.log(`[sample] 生成 ${summaries.length} 条摘要和 ${normalizedItems.length} 个详情文件 -> ${p}`);
   console.log('[sample] 各类别数量：', perCat);
 }
 

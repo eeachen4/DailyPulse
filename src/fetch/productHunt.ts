@@ -125,7 +125,8 @@ function normalizeGraphQL(n: PhNode, i: number, categoryLabel: string): FeedItem
   if (n.reviewsCount) stats.push({ label: '评价数', value: String(n.reviewsCount) });
 
   return {
-    id: `producthunt-${categoryLabel}-${n.id}`,
+    id: 'producthunt:' + n.id,
+    sourceItemId: n.id,
     title: n.name ?? '',
     description: n.tagline,
     longDescription: n.description,
@@ -133,8 +134,17 @@ function normalizeGraphQL(n: PhNode, i: number, categoryLabel: string): FeedItem
     externalUrl: website,
     source: 'producthunt',
     category: categoryLabel,
+    categoryId: categoryLabel,
+    categoryIds: [categoryLabel],
     rank: i + 1,
     score: n.votesCount,
+    metrics: {
+      rawScore: n.votesCount,
+      rawScoreLabel: '点赞',
+      votes: n.votesCount,
+      comments: n.commentsCount,
+      rating: n.reviewsRating,
+    },
     rating: n.reviewsRating && n.reviewsRating > 0 ? n.reviewsRating : undefined,
     comments: n.commentsCount,
     developer: makers || undefined,
@@ -175,15 +185,25 @@ function normalizeApify(raw: Record<string, unknown>, i: number, categoryLabel: 
   const makers = toJoined(pickValue(raw, ['makers', 'makerNames', 'makers_names']));
 
   return {
-    id: `producthunt-${categoryLabel}-${id}`,
+    id: 'producthunt:' + id,
+    sourceItemId: id,
     title,
     description: pickStr(raw, ['tagline']),
     longDescription: pickStr(raw, ['description', 'subtitle']),
     url,
     source: 'producthunt',
     category: categoryLabel,
+    categoryId: categoryLabel,
+    categoryIds: [categoryLabel],
     rank: pickNum(raw, ['rank', 'position']) ?? i + 1,
     score: pickNum(raw, ['votes', 'votesCount', 'upvotes', 'upvoteCount', 'votes_count']),
+    metrics: {
+      rawScore: pickNum(raw, ['votes', 'votesCount', 'upvotes', 'upvoteCount', 'votes_count']),
+      rawScoreLabel: '点赞',
+      votes: pickNum(raw, ['votes', 'votesCount', 'upvotes', 'upvoteCount', 'votes_count']),
+      comments: pickNum(raw, ['commentsCount', 'commentCount', 'comments', 'comments_count']),
+      rating: pickNum(raw, ['rating', 'averageRating']),
+    },
     rating: pickNum(raw, ['rating', 'averageRating']),
     price: pickStr(raw, ['pricingType', 'pricing', 'price']),
     developer: makers,

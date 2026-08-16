@@ -162,7 +162,8 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
   ].filter((x): x is { label: string; value: string } => x !== null);
 
   return {
-    id: `reddit-${String(d.id ?? d.name ?? `${sub}-${title}`)}`,
+    id: 'reddit:' + String(d.id ?? d.name ?? (sub + '-' + title)),
+    sourceItemId: String(d.id ?? d.name ?? (sub + '-' + title)),
     title,
     description: selftext.trim() !== '' ? selftext.slice(0, 200) : undefined,
     longDescription: selftext.trim() !== '' ? selftext : undefined,
@@ -170,7 +171,15 @@ function normalize(d: Record<string, unknown>, categoryLabel: string, sub: strin
     url: discussionUrl,
     source: 'reddit',
     category: categoryLabel,
+    categoryId: categoryLabel,
+    categoryIds: [categoryLabel],
     score: toNumber(d.ups ?? d.score),
+    metrics: {
+      rawScore: toNumber(d.ups ?? d.score),
+      rawScoreLabel: '点赞',
+      votes: toNumber(d.ups ?? d.score),
+      comments: toNumber(d.num_comments ?? d.comments),
+    },
     comments: toNumber(d.num_comments ?? d.comments),
     developer: author,
     thumbnail,

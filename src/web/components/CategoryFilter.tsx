@@ -14,11 +14,11 @@ export default function CategoryFilter({ value, onChange, counts }: Props) {
       {CATEGORIES.map((category) => (
         <FilterRow
           key={category.id}
-          active={value === category.label}
+          active={value === category.id}
           label={category.label}
-          count={counts[category.label] ?? 0}
+          count={counts[category.id] ?? 0}
           color={category.hex}
-          onClick={() => onChange(category.label)}
+          onClick={() => onChange(category.id)}
         />
       ))}
     </div>
