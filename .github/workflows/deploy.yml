@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch: {}
+  # GITHUB_TOKEN 推送的采集结果不会再次触发 push workflow，
+  # 因此在每日采集成功后显式部署最新的 dist/。
+  workflow_run:
+    workflows: ["DailyPulse Daily Fetch"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -16,6 +21,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -23,6 +29,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # workflow_run.head_sha 是采集开始前的 SHA；采集成功后生成的
+          # data/dist 提交已经推到 main，因此这里必须取最新 main。
+          ref: main
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
