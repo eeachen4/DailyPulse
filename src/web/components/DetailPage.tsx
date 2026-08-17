@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { FeedItem } from '../../types';
 import { SOURCE_META } from '../../types';
 import { CATEGORY_META_BY_ID } from '../../categories';
@@ -6,6 +7,25 @@ import { formatNumber, formatDate } from '../format';
 import ExpandableText from './ExpandableText';
 
 export default function DetailPage({ item, items }: { item?: FeedItem; items: FeedItem[] }) {
+  const screenshotCount = item?.screenshots?.length ?? 0;
+  const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedScreenshot === null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedScreenshot(null);
+      if (event.key === 'ArrowLeft') setSelectedScreenshot((index) => index === null ? null : (index - 1 + screenshotCount) % screenshotCount);
+      if (event.key === 'ArrowRight') setSelectedScreenshot((index) => index === null ? null : (index + 1) % screenshotCount);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [selectedScreenshot, screenshotCount]);
+
   if (!item) {
     return (
       <main className="min-h-screen bg-paper px-4 py-10 text-ink">
@@ -36,6 +56,9 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
     item.publishedAt ? { label: 'Published', value: formatDate(item.publishedAt) } : undefined,
     ...(item.stats ?? []),
   ].filter((value): value is { label: string; value: string } => Boolean(value));
+
+  const screenshots = item.screenshots ?? [];
+  const activeScreenshot = selectedScreenshot !== null ? screenshots[selectedScreenshot] : undefined;
 
   return (
     <main className="min-h-screen bg-paper text-ink">
@@ -80,12 +103,21 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
               </section>
             )}
 
-            {item.screenshots && item.screenshots.length > 0 && (
+            {screenshots.length > 0 && (
               <section className="mt-10 border-t border-line pt-6">
                 <h2 className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Screenshots</h2>
                 <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
-                  {item.screenshots.map((screenshot) => (
-                    <img key={screenshot} src={screenshot} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-52 w-auto shrink-0 border border-line bg-cream object-contain" onError={(event) => event.currentTarget.remove()} />
+                  {screenshots.map((screenshot, index) => (
+                    <button
+                      key={screenshot}
+                      type="button"
+                      aria-label={`查看第 ${index + 1} 张截图大图`}
+                      className="group relative h-52 shrink-0 overflow-hidden border border-line bg-cream focus:outline-none focus:ring-2 focus:ring-accent"
+                      onClick={() => setSelectedScreenshot(index)}
+                    >
+                      <img src={screenshot} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-full w-auto object-contain transition duration-200 group-hover:scale-[1.03]" onError={(event) => event.currentTarget.parentElement?.remove()} />
+                      <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-black/55 px-2 py-1 text-left font-mono text-[9px] uppercase tracking-wider text-white opacity-0 transition group-hover:opacity-100">View larger ↗</span>
+                    </button>
                   ))}
                 </div>
               </section>
@@ -123,6 +155,54 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
           </aside>
         </article>
       </div>
+
+      {activeScreenshot && selectedScreenshot !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label="截图大图预览"
+          onClick={() => setSelectedScreenshot(null)}
+        >
+          <button
+            type="button"
+            aria-label="关闭大图"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/30 font-mono text-xl text-white transition hover:border-white hover:bg-white/10 sm:right-8 sm:top-8"
+            onClick={() => setSelectedScreenshot(null)}
+          >
+            ×
+          </button>
+          {screenshots.length > 1 && (
+            <>
+              <button
+                type="button"
+                aria-label="上一张截图"
+                className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/30 font-mono text-xl text-white transition hover:border-white hover:bg-white/10 sm:left-8"
+                onClick={(event) => { event.stopPropagation(); setSelectedScreenshot((index) => index === null ? null : (index - 1 + screenshots.length) % screenshots.length); }}
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                aria-label="下一张截图"
+                className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/30 font-mono text-xl text-white transition hover:border-white hover:bg-white/10 sm:right-8"
+                onClick={(event) => { event.stopPropagation(); setSelectedScreenshot((index) => index === null ? null : (index + 1) % screenshots.length); }}
+              >
+                →
+              </button>
+            </>
+          )}
+          <img
+            src={activeScreenshot}
+            alt=""
+            className="max-h-[calc(100vh-5rem)] max-w-[calc(100vw-5rem)] object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-wider text-white/70 sm:bottom-8">
+            {selectedScreenshot + 1} / {screenshots.length} · Esc to close
+          </div>
+        </div>
+      )}
     </main>
   );
 }
