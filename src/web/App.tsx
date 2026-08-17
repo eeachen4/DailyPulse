@@ -15,6 +15,14 @@ type HistoryEntry = { date: string; fetchedAt: string; count: number; path: stri
 
 const EMPTY: FeedData = { fetchedAt: null, items: [] };
 
+/**
+ * 详情文件名由 encodeURIComponent 生成并以字面量 `%3A` 等形式保存。
+ * GitHub Pages 会在路由时再解码一次，因此请求 URL 需要把 `%` 编码为 `%25`。
+ */
+function detailRequestPath(detailRef: string): string {
+  return detailRef.replace(/%/g, '%25');
+}
+
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash);
   useEffect(() => {
@@ -157,7 +165,7 @@ export default function App() {
     const selectedItem = selectedId ? data.items.find((item) => item.id === selectedId) : undefined;
     if (!selectedItem?.detailRef) return;
     let cancelled = false;
-    fetch(selectedItem.detailRef)
+    fetch(detailRequestPath(selectedItem.detailRef))
       .then((response) => (response.ok ? response.json() : null))
       .then((json: { detail?: FeedDetail } | null) => {
         if (!cancelled && json?.detail) setSelectedDetail(json.detail);
