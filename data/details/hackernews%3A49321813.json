@@ -6,15 +6,15 @@
     "longDescription": "I built a specialized package of DeepSeek V4 Flash 0731 (originally 284B total parameters, 13B active), preserving reasoning, tool calling and coding capabilities: https:&#x2F;&#x2F;huggingface.co&#x2F;steadfastgaze&#x2F;DeepSeek-V4-Flash-0731-... I let it write a minimal C compiler targeting ARM64, then test the result with Fibonacci and FizzBuzz programs, and it succeeded in less than 1 hour, with the full recording at: https:&#x2F;&#x2F;youtu.be&#x2F;XiwSilmV8B0 You can run it on Silicon Macs with my engine https:&#x2F;&#x2F;github.com&#x2F;steadfastgaze&#x2F;MoEspresso , while one of the core libraries developed to obtain this result is available at https:&#x2F;&#x2F;github.com&#x2F;steadfastgaze&#x2F;mlx-iqk . The above recording was on a 128GB memory MacBook M3 Max, but you can also run it on 32GB MacBooks with a very usable context (128K tokens) and projected 5 tok&#x2F;s. I did try it on a fanless 16GB memory MacBook Air M1 (1.39 tok&#x2F;s), but unfortunately the available context was very small. How: - First, efficient quantisation: mlx-iqk takes advantage of IQ_K tensor encoding, more efficient than the ones available via llama.cpp or barebones MLX, originally designed by Iwan Kawrakow - I also changed the layout to a k-contiguous one, to make it faster, at least in this Metal setup. - Second, expert pruning: each of the 40 learned-router layers had 256 experts, and not all of them are equally important for the coding use cases. I removed 80B parameters - this is a known technique called REAP, shared at https:&#x2F;&#x2F;www.cerebras.ai&#x2F;blog&#x2F;reap . - Third: balancing the cheapest IQ1_S_R4 tensor encoding (~1.5 bits per weight), selectively promoting projections to IQ2_KS or IQ2_K where the measured error reduction justified the bytes. One of the main ideas was not only to save relevant knowledge, but also to not make it forget how to... stop thinking, how to use reasoning. In the first experiments, it would sometimes reason for thousands of tokens without closing its thinking section, or it would go in loops. Then I solved this by heavily weighting tool-calling traces and structured reasoning in the calibration mix.",
     "externalUrl": "https://huggingface.co/steadfastgaze/DeepSeek-V4-Flash-0731-Coder-56.8GB-MoEspressoV2",
     "developer": "hacklas",
-    "comments": 0,
+    "comments": 3,
     "stats": [
       {
         "label": "积分",
-        "value": "2"
+        "value": "20"
       },
       {
         "label": "评论",
-        "value": "0"
+        "value": "3"
       }
     ]
   }

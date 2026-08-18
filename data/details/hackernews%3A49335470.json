@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49335470",
+  "sourceItemId": "49335470",
+  "detail": {
+    "longDescription": "Hi HN, Nick here, founder at OpenKnowledge. We built an open source library, Visimer, for editing Mermaid diagrams with a what-you-see-is-what-you-get visual editor. Try the playground at https:&#x2F;&#x2F;visimer.com&#x2F;playground . You can rename labels, change shapes, add new nodes, etc. by clicking and dragging the visual canvas. We set out to build this originally for OpenKnowledge, our markdown wysiwyg editor, then realized it’d be great to share it as a proper embeddable component library so that other apps can leverage it as well. Our general take is that AI is great for generating content, but whenever you want to tweak fine details, for example to create an artifact sharable with others, point-edit functionality is much better. We built Visimer to bring that to Mermaid diagrams, just like we did for markdown. Some technical bits: - Leverages the native Mermaid.js renderer for visualizing the Mermaid diagram true to how it’s intended. We add point-edit functionality on top. - We tried re-generating the entire file on every edit, but found that it would eat comments and formatting, etc. The final approach maps the rendered SVG elements back to a CST, so we can then edit only the parts of the file that should change. You can pair the visual editor with any text-editor so you can have both visual and code-level editor experiences. The library provides bindings for Monaco and CodeMirror and is extensible. There&#x27;s also a low-level headless version. If you just care about being able to edit your Mermaid diagrams in your markdown, you can try it in the OpenKnowledge app (our OSS markdown IDE, available as Mac&#x2F;Linux&#x2F;Windows apps). Let us know what you think.",
+    "externalUrl": "https://github.com/inkeep/visimer",
+    "developer": "engomez",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "14"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}
