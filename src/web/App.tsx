@@ -336,7 +336,7 @@ export default function App() {
 
         <footer className="mt-12 flex flex-col gap-2 border-t border-line pt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted sm:flex-row sm:items-center sm:justify-between">
           <span>DailyPulse / intelligence desk</span>
-          <span>App Store · Google Play · Product Hunt · Reddit · Bluesky · Mastodon · GDELT · Hacker News</span>
+          <span>{SOURCES.map((item) => SOURCE_META[item].label).join(' · ')}</span>
         </footer>
       </div>
     </main>

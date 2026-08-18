@@ -10,6 +10,11 @@ import { fetchBluesky } from './fetch/bluesky';
 import { fetchMastodon } from './fetch/mastodon';
 import { fetchGdelt } from './fetch/gdelt';
 import { fetchHackerNews } from './fetch/hackerNews';
+import { fetchGitHub } from './fetch/github';
+import { fetchHuggingFace } from './fetch/huggingFace';
+import { fetchStackOverflow } from './fetch/stackOverflow';
+import { fetchArxiv } from './fetch/arxiv';
+import { fetchRss } from './fetch/rss';
 import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
@@ -42,6 +47,11 @@ export async function main(): Promise<void> {
       ['mastodon', () => fetchMastodon(category)],
       ['gdelt', () => fetchGdelt(category)],
       ['hackernews', () => fetchHackerNews(category)],
+      ['github', () => fetchGitHub(category)],
+      ['huggingface', () => fetchHuggingFace(category)],
+      ['stackoverflow', () => fetchStackOverflow(category)],
+      ['arxiv', () => fetchArxiv(category)],
+      ['rss', () => fetchRss(category)],
     ];
     for (const [source, fn] of tasks) {
       const startedAt = Date.now();

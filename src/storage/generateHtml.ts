@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir, readdir, copyFile } from 'node:fs/promises'
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { FeedData, FeedItem } from '../types';
-import { SOURCE_META } from '../types';
+import { SOURCES, SOURCE_META } from '../types';
 import { CATEGORIES, CATEGORY_META_BY_ID } from '../categories';
 import { categoryIdsFor, primaryCategoryId, rawScoreFor } from '../dataModel';
 
@@ -199,6 +199,9 @@ function renderStandalone(data: FeedData): string {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DailyPulse · 每日全球热点</title>
+    <!-- Cloudflare Web Analytics -->
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "42f834881a60415bb99371644825e450"}'></script>
+    <!-- End Cloudflare Web Analytics -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -261,7 +264,7 @@ function renderStandalone(data: FeedData): string {
       </header>
       <div class="stats">${stats}</div>
       ${data.items.length ? `<div class="list">${rows}</div>` : '<div class="empty">暂无采集数据，请配置 APIFY_API_KEY 后运行 npm run fetch。</div>'}
-      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News</footer>
+      <footer>DailyPulse · 每天 08:00 (UTC+8) 自动更新 · ${SOURCES.map((source) => SOURCE_META[source].label).join(' / ')}</footer>
     </div>
   </body>
 </html>`;

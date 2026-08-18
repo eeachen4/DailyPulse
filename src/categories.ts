@@ -34,6 +34,16 @@ export interface CategoryDef {
   gdeltQueries: string[];
   /** Hacker News 搜索词 */
   hackerNewsQueries: string[];
+  /** GitHub 仓库搜索词 */
+  githubQueries: string[];
+  /** Hugging Face 模型搜索词 */
+  huggingFaceQueries: string[];
+  /** Stack Exchange 标签 */
+  stackExchangeTags: string[];
+  /** arXiv 检索式 */
+  arxivQueries: string[];
+  /** 官方博客 RSS / Atom 地址 */
+  rssFeeds: string[];
 }
 
 export const CATEGORIES: CategoryDef[] = [
@@ -50,6 +60,11 @@ export const CATEGORIES: CategoryDef[] = [
     mastodonTags: ['artificialintelligence', 'machinelearning', 'chatgpt'],
     gdeltQueries: ['"artificial intelligence" OR ChatGPT OR LLM'],
     hackerNewsQueries: ['AI', 'LLM', 'ChatGPT'],
+    githubQueries: ['artificial intelligence', 'large language model', 'llm'],
+    huggingFaceQueries: ['text generation', 'large language model', 'chatbot'],
+    stackExchangeTags: ['machine-learning', 'deep-learning', 'large-language-model'],
+    arxivQueries: ['cat:cs.AI', 'cat:cs.LG', 'cat:cs.CL'],
+    rssFeeds: ['https://openai.com/news/rss.xml', 'https://www.anthropic.com/news/rss.xml', 'https://blog.google/technology/ai/rss/'],
   },
   {
     id: 'tools',
@@ -65,6 +80,11 @@ export const CATEGORIES: CategoryDef[] = [
     mastodonTags: ['productivity', 'opensource'],
     gdeltQueries: ['productivity software OR automation'],
     hackerNewsQueries: ['productivity', 'automation tool'],
+    githubQueries: ['productivity', 'automation', 'workflow'],
+    huggingFaceQueries: ['productivity', 'document question answering'],
+    stackExchangeTags: ['productivity', 'automation', 'software-recommendations'],
+    arxivQueries: ['all:"human-computer interaction"', 'all:automation'],
+    rssFeeds: ['https://github.blog/changelog/feed/', 'https://zapier.com/blog/feed/'],
   },
   {
     id: 'code',
@@ -80,6 +100,11 @@ export const CATEGORIES: CategoryDef[] = [
     mastodonTags: ['programming', 'webdev', 'opensource'],
     gdeltQueries: ['programming OR "developer tools" OR opensource'],
     hackerNewsQueries: ['programming', 'developer tools', 'open source'],
+    githubQueries: ['developer tools', 'programming language', 'cli'],
+    huggingFaceQueries: ['code generation', 'text-to-code', 'code completion'],
+    stackExchangeTags: ['javascript', 'typescript', 'python', 'rust'],
+    arxivQueries: ['cat:cs.SE', 'all:"programming language"'],
+    rssFeeds: ['https://github.blog/changelog/feed/', 'https://stackoverflow.blog/feed/'],
   },
   {
     id: 'agent',
@@ -94,6 +119,68 @@ export const CATEGORIES: CategoryDef[] = [
     mastodonTags: ['aiagents', 'agenticai', 'langchain'],
     gdeltQueries: ['"AI agent" OR agentic OR LangChain'],
     hackerNewsQueries: ['AI agents', 'agentic', 'LangChain'],
+    githubQueries: ['AI agent', 'agentic', 'MCP'],
+    huggingFaceQueries: ['agent', 'tool use', 'text generation'],
+    stackExchangeTags: ['llm', 'openai-api', 'langchain', 'autogpt'],
+    arxivQueries: ['all:"AI agent"', 'all:agentic'],
+    rssFeeds: ['https://github.blog/changelog/feed/', 'https://huggingface.co/blog/feed.xml'],
+  },
+  {
+    id: 'research',
+    label: '模型研究',
+    emoji: '🔬',
+    hex: '#8b5cf6',
+    appStore: { mode: 'search', searchTerms: ['machine learning', 'AI research', 'scientific'] },
+    googlePlay: { mode: 'search', searchTerms: ['machine learning', 'AI research'] },
+    productHuntTopics: ['artificial-intelligence', 'developer-tools'],
+    redditSubreddits: ['MachineLearning', 'LocalLLaMA', 'LanguageTechnology'],
+    blueskyQueries: ['AI research', 'machine learning paper', 'benchmark'],
+    mastodonTags: ['machinelearning', 'airesearch', 'research'],
+    gdeltQueries: ['"AI research" OR "machine learning paper" OR benchmark'],
+    hackerNewsQueries: ['machine learning paper', 'AI research', 'benchmark'],
+    githubQueries: ['machine learning', 'benchmark', 'research paper'],
+    huggingFaceQueries: ['machine learning', 'benchmark', 'dataset'],
+    stackExchangeTags: ['machine-learning', 'deep-learning', 'nlp'],
+    arxivQueries: ['cat:cs.AI', 'cat:cs.LG', 'cat:cs.CL'],
+    rssFeeds: ['https://huggingface.co/blog/feed.xml', 'https://blog.arxiv.org/feed/'],
+  },
+  {
+    id: 'opensource',
+    label: '开源',
+    emoji: '🌱',
+    hex: '#10b981',
+    appStore: { mode: 'search', searchTerms: ['open source', 'GitHub'] },
+    googlePlay: { mode: 'search', searchTerms: ['open source', 'GitHub'] },
+    productHuntTopics: ['open-source', 'developer-tools'],
+    redditSubreddits: ['opensource', 'selfhosted', 'github'],
+    blueskyQueries: ['open source', 'GitHub project', 'self hosted'],
+    mastodonTags: ['opensource', 'selfhosted', 'github'],
+    gdeltQueries: ['opensource OR "open source" OR self-hosted'],
+    hackerNewsQueries: ['open source', 'self hosted', 'GitHub'],
+    githubQueries: ['topic:open-source', 'self-hosted', 'open source'],
+    huggingFaceQueries: ['open source model', 'open source dataset'],
+    stackExchangeTags: ['open-source', 'git', 'github'],
+    arxivQueries: ['all:"open source"', 'all:"software ecosystem"'],
+    rssFeeds: ['https://github.blog/changelog/feed/', 'https://opensource.googleblog.com/feeds/posts/default'],
+  },
+  {
+    id: 'infrastructure',
+    label: '基础设施',
+    emoji: '🏗️',
+    hex: '#f97316',
+    appStore: { mode: 'search', searchTerms: ['server monitoring', 'cloud infrastructure', 'DevOps'] },
+    googlePlay: { mode: 'search', searchTerms: ['server monitoring', 'DevOps'] },
+    productHuntTopics: ['devops', 'developer-tools'],
+    redditSubreddits: ['devops', 'kubernetes', 'docker'],
+    blueskyQueries: ['Kubernetes', 'Docker', 'observability'],
+    mastodonTags: ['kubernetes', 'docker', 'devops'],
+    gdeltQueries: ['Kubernetes OR Docker OR observability OR DevOps'],
+    hackerNewsQueries: ['Kubernetes', 'Docker', 'observability'],
+    githubQueries: ['Kubernetes', 'Docker', 'observability', 'database'],
+    huggingFaceQueries: ['infrastructure', 'observability'],
+    stackExchangeTags: ['docker', 'kubernetes', 'devops', 'amazon-web-services'],
+    arxivQueries: ['all:cloud computing', 'all:distributed systems'],
+    rssFeeds: ['https://blog.cloudflare.com/rss/', 'https://kubernetes.io/feed.xml'],
   },
 ];
 

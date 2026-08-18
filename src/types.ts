@@ -1,4 +1,4 @@
-export type Source = 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews';
+export type Source = 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews' | 'github' | 'huggingface' | 'stackoverflow' | 'arxiv' | 'rss';
 export const DATA_SCHEMA_VERSION = 2;
 
 export interface FeedMetrics {
@@ -95,7 +95,7 @@ export interface FeedData {
   runs?: FetchRun[];
 }
 
-export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews'];
+export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews', 'github', 'huggingface', 'stackoverflow', 'arxiv', 'rss'];
 
 export interface SourceMeta {
   label: string;
@@ -191,6 +191,56 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
     badgeClass: 'bg-orange-100 text-orange-700',
     dotClass: 'bg-orange-500',
     textClass: 'text-orange-600',
+  },
+  github: {
+    label: 'GitHub',
+    short: 'GH',
+    scoreLabel: 'Star + Fork',
+    emoji: '◉',
+    hex: '#24292f',
+    badgeClass: 'bg-slate-200 text-slate-800',
+    dotClass: 'bg-slate-700',
+    textClass: 'text-slate-800',
+  },
+  huggingface: {
+    label: 'Hugging Face',
+    short: 'HF',
+    scoreLabel: '下载 + 点赞',
+    emoji: 'HF',
+    hex: '#fbbf24',
+    badgeClass: 'bg-amber-100 text-amber-800',
+    dotClass: 'bg-amber-500',
+    textClass: 'text-amber-700',
+  },
+  stackoverflow: {
+    label: 'Stack Overflow',
+    short: 'SO',
+    scoreLabel: '分数 + 回答',
+    emoji: '▴',
+    hex: '#f48024',
+    badgeClass: 'bg-orange-100 text-orange-800',
+    dotClass: 'bg-orange-500',
+    textClass: 'text-orange-700',
+  },
+  arxiv: {
+    label: 'arXiv',
+    short: 'AX',
+    scoreLabel: '论文新鲜度',
+    emoji: '∑',
+    hex: '#b31b1b',
+    badgeClass: 'bg-red-100 text-red-800',
+    dotClass: 'bg-red-700',
+    textClass: 'text-red-700',
+  },
+  rss: {
+    label: '官方 RSS',
+    short: 'RSS',
+    scoreLabel: '新鲜度',
+    emoji: '◌',
+    hex: '#0f766e',
+    badgeClass: 'bg-teal-100 text-teal-800',
+    dotClass: 'bg-teal-600',
+    textClass: 'text-teal-700',
   },
 };
 

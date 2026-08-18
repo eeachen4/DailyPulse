@@ -49,6 +49,8 @@ jobs:
           # Bluesky 公共搜索被限流时，可用免费 App Password 认证
           BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          # GitHub 公共 API 未认证额度较低；可配置 PAT 提高限额
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
 
       - name: Build site
         run: npm run build:all

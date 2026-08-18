@@ -15,6 +15,11 @@ const COUNTS: Record<Source, number> = {
   mastodon: 20,
   gdelt: 20,
   hackernews: 20,
+  github: 20,
+  huggingface: 20,
+  stackoverflow: 20,
+  arxiv: 20,
+  rss: 20,
 };
 
 interface Pool {
@@ -59,6 +64,30 @@ const POOLS: Record<string, Pool> = {
     topics: ['ai-agents'],
     genres: ['效率', '开发者工具'],
   },
+  research: {
+    names: ['Scaling Laws for Reasoning', 'MTEB', 'Llama', 'Qwen', 'DeepSeek', 'Gemma', 'Whisper', 'CLIP', 'DiffusionDB', 'LoRA'],
+    developers: ['OpenAI', 'Google DeepMind', 'Meta AI', 'Qwen Team', 'DeepSeek', 'Hugging Face', 'Stanford', 'Berkeley', 'Allen AI', 'Mistral AI'],
+    subreddits: ['MachineLearning', 'LocalLLaMA', 'LanguageTechnology'],
+    posts: ['一篇新论文重新讨论了 Agent 的长期记忆问题', '开源模型在最新 Benchmark 上取得明显提升', '如何正确比较不同模型的推理能力', '研究者发布了一个更容易复现的多模态数据集'],
+    topics: ['research', 'machine-learning'],
+    genres: ['研究', '模型', '数据集'],
+  },
+  opensource: {
+    names: ['Ollama', 'Supabase', 'Cal.com', 'AppFlowy', 'Immich', 'Home Assistant', 'Penpot', 'Jellyfin', 'RustDesk', 'Continue'],
+    developers: ['Ollama', 'Supabase', 'Cal.com', 'AppFlowy', 'Immich', 'Home Assistant', 'Penpot', 'Jellyfin', 'RustDesk', 'Continue Dev'],
+    subreddits: ['opensource', 'selfhosted', 'github'],
+    posts: ['一个值得长期维护的开源替代品发布了新版本', '自托管服务的备份、升级与安全实践', '这个 GitHub 项目最近增长很快，值得关注', '开源项目如何建立可持续的贡献者社区'],
+    topics: ['open-source', 'self-hosted'],
+    genres: ['开源', '自托管', '开发工具'],
+  },
+  infrastructure: {
+    names: ['Kubernetes', 'Docker', 'Grafana', 'Prometheus', 'Terraform', 'PostgreSQL', 'ClickHouse', 'Cloudflare', 'Caddy', 'MinIO'],
+    developers: ['Cloud Native Computing Foundation', 'Docker', 'Grafana Labs', 'HashiCorp', 'PostgreSQL', 'ClickHouse', 'Cloudflare', 'Caddy', 'MinIO', 'Redis'],
+    subreddits: ['devops', 'kubernetes', 'docker'],
+    posts: ['如何把一套服务稳定地部署到 Kubernetes', '低成本可观测性方案的实践对比', '数据库扩展、备份与故障恢复经验分享', '一个轻量级自托管基础设施工具发布了新版本'],
+    topics: ['devops', 'infrastructure'],
+    genres: ['云原生', '数据库', '运维'],
+  },
 };
 
 function slugify(s: string): string {
@@ -93,7 +122,7 @@ function buildItems(): FeedItem[] {
     const pool = POOLS[cat.id];
     if (!pool) continue;
 
-    (['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews'] as Source[]).forEach((source) => {
+    (['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews', 'github', 'huggingface', 'stackoverflow', 'arxiv', 'rss'] as Source[]).forEach((source) => {
       const count = COUNTS[source];
       for (let i = 0; i < count; i++) {
         seq++;
@@ -195,7 +224,23 @@ function buildItems(): FeedItem[] {
           });
         } else {
           const genericTitle = pool.posts[i % pool.posts.length];
-          const host = source === 'bluesky' ? 'bsky.app' : source === 'mastodon' ? 'mastodon.social' : source === 'gdelt' ? 'example-news.com' : 'news.ycombinator.com';
+          const host = source === 'bluesky'
+            ? 'bsky.app'
+            : source === 'mastodon'
+              ? 'mastodon.social'
+              : source === 'gdelt'
+                ? 'example-news.com'
+                : source === 'hackernews'
+                  ? 'news.ycombinator.com'
+                  : source === 'github'
+                    ? 'github.com'
+                    : source === 'huggingface'
+                      ? 'huggingface.co'
+                      : source === 'stackoverflow'
+                        ? 'stackoverflow.com'
+                        : source === 'arxiv'
+                          ? 'arxiv.org'
+                          : 'official.example.com';
           items.push({
             id: `${source}-${cat.id}-${i}`,
             sourceItemId: `${cat.id}-${i}`,
