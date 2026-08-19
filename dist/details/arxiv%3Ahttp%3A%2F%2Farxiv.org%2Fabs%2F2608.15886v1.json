@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:http://arxiv.org/abs/2608.15886v1",
+  "sourceItemId": "http://arxiv.org/abs/2608.15886v1",
+  "detail": {
+    "longDescription": "Software developers rely on packages to reuse existing functionality instead of implementing everything from scratch. Python developers commonly provide package and interpreter dependencies using configuration files, such as requirements.txt or setup.py. Package managers in Python, such as pip, can install packages according to dependency and interpreter version constraints specified in configuration files. However, Python dependency resolution remains challenging: (1) different packages may require incompatible versions of the same dependency; (2) dependencies may require a Python interpreter version that is incompatible with the interpreter used for the project, making a valid environment impossible; and (3) pip, the most popular Python package manager, resolves conflicts via backtracking, repeatedly trying candidate versions without knowing whether a valid execution environment exists or not. To address these challenges, we present SMTpip, an interpreter-aware environment inference technique for improving the executability of Python source-code artifacts. SMTpip constructs a dependency knowledge graph using metadata stored in the Python Package Index (PyPI) that hosts millions of package releases, encodes both package version constraints and interpreter compatibility constraints specified in configuration files into Satisfiability Modulo Theories (SMT) formulas. Solving these formulas identifies a set of package versions and an interpreter version that jointly satisfy all declared constraints. Empirical evaluation on multiple datasets from open-source Python projects shows that SMTpip achieves substantial speedups -- $6.9\\times$ over pip, $9.6\\times$ over Conda, $3.2\\times$ over smartPip, and $4\\times$ over PyEGo -- while consistently producing constraint-consistent environments.",
+    "developer": "Sadman Jashim Sakib",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "3"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.LO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sadman Jashim Sakib"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

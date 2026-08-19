@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49346044",
+  "sourceItemId": "49346044",
+  "detail": {
+    "longDescription": "A little context, I&#x27;ve been working on Contra for the last 6 years. It&#x27;s a marketplace-network – an application that&#x27;s comparable to the likes of LinkedIn, UpWork, and similar in terms of its surface area. That&#x27;s hundreds of routes, thousands of components, and tens of thousands of styles. Over the last year, we have been obsessed with performance. We have optimized every layer of our infrastructure to the point where profiling the application increasingly started to surface bottlenecks in client-side (bundle size, and metrics like TBT, LCP, and INP). That&#x27;s where CSS-in-JS comes in. 6 years ago, we started with styled-components. Then zero-runtime alternatives emerged and we started to experiment with them, eventually landing on Panda CSS. Panda took us a long way, but... they aren&#x27;t _actually_ zero-runtime. Panda extracts CSS at build time, but it uses ~15KB runtime to map those style objects at runtime. This overhead surfaced repeatedly when profiling pages with lots of components (server-side and client-side). That&#x27;s where I ended up writing Bamboo to solve this. Bamboo folds styles at build-time achieving _near_ zero-runtime (0.5KB vs 15 KB). If you write: &lt;div className={css({ fontSize: &#x27;lg&#x27;, fontWeight: &#x27;bold&#x27; })}&gt;Title&lt;&#x2F;div&gt; it becomes: &lt;div className=&quot;fs_lg fw_bold&quot;&gt;Title&lt;&#x2F;div&gt; at build time. If the variant is dynamic, then bundle is inlined with pre-computed map of classes. &lt;span className={pick(status, { ok: &quot;d_inline-flex px_8px bg_successSoft c_success&quot;, warn: &quot;d_inline-flex px_8px bg_warningSoft c_warning&quot;, err: &quot;d_inline-flex px_8px bg_dangerSoft c_danger&quot;, })} &#x2F;&gt; That&#x27;s the main idea behind Bamboo. Thanks to folding, we were able to improve our server-side and client-side performance. I built CSS-in-JS Arena as a sanity benchmark to track how we compare to Panda, but also to any other emerging frameworks.",
+    "externalUrl": "https://github.com/gajus/css-in-js-arena",
+    "developer": "gajus",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

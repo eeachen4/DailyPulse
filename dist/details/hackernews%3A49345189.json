@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49345189",
+  "sourceItemId": "49345189",
+  "detail": {
+    "longDescription": "Hi, I&#x27;m the author. Quick tour before the comments do it for me. StuntAPI, `stunt` for CLI friends, runs local, stateful stand-ins for the public APIs your code talks to. `brew install --cask stuntapi&#x2F;tap&#x2F;stunt`, then `stunt demo` — you get a Stripe-style sim on a local port, and the curl it prints actually means it: create a charge, list it back (the charge is there — state persists across requests and restarts), capture it, and watch the signed webhook fire at a local sink. All synthetic, all offline, no Stripe account. Why I built it: I&#x27;ve spent twenty-odd years integrating other people&#x27;s APIs — commodities trading and market data in London, fintech, payments, blockchain RPC infra — and the test story never got better. Sandbox accounts, live secrets in CI, rate limits, flaky suites because the mock didn&#x27;t behave like the real thing. WireMock&#x2F;Prism&#x2F;MSW are great at static and schema-shaped mocks; what I always wanted was a runnable stand-in — create, list, mutate, webhooks, auth expiry, cursor pagination, state machines — without writing it all myself. So: 95 adapters (Stripe, Twilio, GitHub, S3, Salesforce, ...), each one YAML + sandboxed Starlark handlers + synthetic fixtures. The part I&#x27;d genuinely like holes poked in: adapters run in a Starlark VM with no host I&#x2F;O or network — that&#x27;s the property that makes it safe to `stunt catalog add` a stranger&#x27;s adapter, the way you&#x27;d install an npm package. State lives in engine primitives (SQLite collections, KV, blob store, HMAC tokens, webhook emitter with real provider signature schemes), and everything is deterministic — injectable clock, seeded RNG. Yes, this works great in tests of course. To keep the adapters honest, CI drives the real provider SDKs against them: stripe-go, aws-sdk-go-v2 (real SigV4), go-github, twilio-go, go-shopify, and the Node trio (stripe-node, octokit, twilio-node) through the actual binary. And this is just the beginning, if there&#x27;s traction, we&#x27;ll see more and more of these. I&#x27;ll just keep adding the ones I use personally for now. That harness caught real bugs: Stripe money fields coming back as JSON strings (typed SDKs just reject the response), GitHub pagination Link headers pointing at production — octokit followed them straight to the real api.github.com. Honest limits: adapters are unofficial and fidelity-ranked, not API-complete; I&#x27;d rather nail the flows real integrations actually exercise than checkbox every endpoint. Windows is currently a script install rather than the default winget source. And if you integrate an API that&#x27;s missing, `stunt adapter import openapi|har|proto` scaffolds one — PRs welcome. Docs @ https:&#x2F;&#x2F;stuntapi.com What should adapter #96 be? I&#x27;m Alessandro BTW ( https:&#x2F;&#x2F;polymatto.com&#x2F;about , @polyMatto on X) — engineer for two decades+, Italy to London and now raising my young family in exile, surrounded by trees and&#x2F;or beach as much as possible, trading floors to web3 infra and everything in between, now spending my open-source time directing clankers in various ambitious projects adn no, this one wasn&#x27;t ambitious at all, just useful and one that I am expecting to &quot;flop&quot; in here since it&#x27;s literally my first post. I know, I should feel ashamed! But more is coming soon, wintty is probably going to be my next post. Stay tuned! Happy to answer anything and to intercept the, hopefully, fresh virtual tomatoes you&#x27;d throw at me. Ciao!",
+    "externalUrl": "https://github.com/stuntapi/stunt",
+    "developer": "polymatto",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

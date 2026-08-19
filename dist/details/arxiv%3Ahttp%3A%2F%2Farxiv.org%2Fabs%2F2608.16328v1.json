@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:http://arxiv.org/abs/2608.16328v1",
+  "sourceItemId": "http://arxiv.org/abs/2608.16328v1",
+  "detail": {
+    "longDescription": "Instruction-based general video editing seeks to unify diverse editing operations within a single, intuitive interface. Existing approaches often rely on resource-intensive conditioning, using either heavyweight branches or costly source concatenation. Is there any efficient way to model editing intent? Thus, we introduce GRNEdit, a lightweight two-stage framework. GRN inspires our approach by encoding visual semantics through combinations of bits. Through task-specific fine-tuning, we take this representation further and recast editing semantics as local retain-or-flip decisions over individual bits. Source information is consequently modeled as coordinate-wise evidence supporting the observed binary states, while the GRN backbone remains responsible for resolving their global composition into coherent generative semantics. In Stage I, a compact encoder translates discrete source codes into continuous evidence signals, which GRN assimilates throughout binary refinement. Inspired by null-prompt training for classifier-free guidance, we further assign the null condition an editing-specific meaning: an empty instruction denotes no edit and is supervised through source reconstruction. This identity pathway not only implicitly strengthens evidence utilization and content preservation in Stage I, but also produces a source-preserving state in the same representation space as the edited state. Stage II can therefore directly compare each edited state with its source-preserving counterpart and use their discrepancy to revise unresolved target-bit decisions. Trained on only 0.6M pairs with less than 3\\% conditioning parameters, GRNEdit-2B and GRNEdit-8B achieve scores of 4.03 and 4.18 on OpenVE-Bench. The 2B model outperforms multiple 14B open-source editors, while the 8B model performs on par with leading open-source editors.",
+    "developer": "Feng Xie",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "8"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CV"
+      },
+      {
+        "label": "第一作者",
+        "value": "Feng Xie"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
