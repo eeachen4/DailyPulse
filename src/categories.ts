@@ -83,7 +83,7 @@ export const CATEGORIES: CategoryDef[] = [
     githubQueries: ['productivity', 'automation', 'workflow'],
     huggingFaceQueries: ['productivity', 'document question answering'],
     stackExchangeTags: ['productivity', 'automation', 'software-recommendations'],
-    arxivQueries: ['all:"human-computer interaction"', 'all:automation'],
+    arxivQueries: ['cat:cs.HC', 'cat:cs.SE'],
     rssFeeds: ['https://github.blog/changelog/feed/', 'https://zapier.com/blog/feed/'],
   },
   {
@@ -103,7 +103,7 @@ export const CATEGORIES: CategoryDef[] = [
     githubQueries: ['developer tools', 'programming language', 'cli'],
     huggingFaceQueries: ['code generation', 'text-to-code', 'code completion'],
     stackExchangeTags: ['javascript', 'typescript', 'python', 'rust'],
-    arxivQueries: ['cat:cs.SE', 'all:"programming language"'],
+    arxivQueries: ['cat:cs.PL', 'cat:cs.SE'],
     rssFeeds: ['https://github.blog/changelog/feed/', 'https://stackoverflow.blog/feed/'],
   },
   {
@@ -122,7 +122,7 @@ export const CATEGORIES: CategoryDef[] = [
     githubQueries: ['AI agent', 'agentic', 'MCP'],
     huggingFaceQueries: ['agent', 'tool use', 'text generation'],
     stackExchangeTags: ['llm', 'openai-api', 'langchain', 'autogpt'],
-    arxivQueries: ['all:"AI agent"', 'all:agentic'],
+    arxivQueries: ['cat:cs.AI'],
     rssFeeds: ['https://github.blog/changelog/feed/', 'https://huggingface.co/blog/feed.xml'],
   },
   {
@@ -160,7 +160,7 @@ export const CATEGORIES: CategoryDef[] = [
     githubQueries: ['topic:open-source', 'self-hosted', 'open source'],
     huggingFaceQueries: ['open source model', 'open source dataset'],
     stackExchangeTags: ['open-source', 'git', 'github'],
-    arxivQueries: ['all:"open source"', 'all:"software ecosystem"'],
+    arxivQueries: ['cat:cs.SE'],
     rssFeeds: ['https://github.blog/changelog/feed/', 'https://opensource.googleblog.com/feeds/posts/default'],
   },
   {
@@ -179,7 +179,7 @@ export const CATEGORIES: CategoryDef[] = [
     githubQueries: ['Kubernetes', 'Docker', 'observability', 'database'],
     huggingFaceQueries: ['infrastructure', 'observability'],
     stackExchangeTags: ['docker', 'kubernetes', 'devops', 'amazon-web-services'],
-    arxivQueries: ['all:cloud computing', 'all:distributed systems'],
+    arxivQueries: ['cat:cs.DC', 'cat:cs.NI'],
     rssFeeds: ['https://blog.cloudflare.com/rss/', 'https://kubernetes.io/feed.xml'],
   },
 ];

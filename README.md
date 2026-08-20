@@ -2,7 +2,7 @@
 
 > 名称寓意：**Daily**（每日）+ **Pulse**（脉搏）——每天早上，感受全球热点跳动的脉搏。
 
-DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上 **08:00（UTC+8）**，它自动从 **App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News** 按兴趣类别抓取热门话题、新闻、产品与讨论，生成一个简洁的静态网页，让你一瞥即知全球正在发生什么。
+DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上 **08:00（UTC+8）**，它自动从 **App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News、GitHub、Hugging Face、Stack Overflow、arXiv、官方 RSS** 按兴趣类别抓取热门话题、新闻、产品、论文与开发者讨论，生成一个简洁的静态网页，让你一瞥即知全球正在发生什么。
 
 ![tech](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)
 ![tech](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
@@ -14,8 +14,8 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 
 ## ✨ 功能特性
 
-- 🗂️ **按类别采集**：内置 AI、工具、代码、Agent 四个兴趣类别，类别可在 `src/categories.ts` 增删改。
-- 🌍 **多平台聚合**：App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News 八源，每源独立 `try-catch` 容错，单个源失败不影响整体。
+- 🗂️ **按类别采集**：内置 AI、工具、代码、Agent、模型研究、开源、基础设施七个兴趣类别，类别可在 `src/categories.ts` 增删改。
+- 🌍 **多平台聚合**：十三个来源，每源独立 `try-catch` 容错，单个源失败不影响整体。
 - 🪄 **Product Hunt 官方 API**：优先使用 Product Hunt GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 时回退 Apify。
 - 🧾 **详情页**：点击条目进入详情页，展示完整描述、截图图集、评分 / 价格 / 评论 / 开发者等元信息，并支持「打开原链接」「访问原文」。
 - 🔍 **详情抓取**：采集后自动逐个抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分等。
@@ -43,6 +43,11 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 | Mastodon | 可配置实例的公开 hashtag 时间线 |
 | GDELT | DOC 2.0 实时新闻 API |
 | Hacker News | Algolia 公共搜索 API |
+| GitHub | REST Search API（仓库、Star、Fork、Issue） |
+| Hugging Face | Hub Models API（模型、下载、点赞） |
+| Stack Overflow | Stack Exchange API v2.3（问题、回答、标签） |
+| arXiv | 官方分类 RSS / Atom API（论文、作者、分类） |
+| 官方 RSS | 官方博客 RSS / Atom（产品与工程动态） |
 | 前端框架 | React 18 + Vite 5 |
 | 样式 | TailwindCSS 3 |
 | 定时执行 | GitHub Actions（cron） |
@@ -50,14 +55,17 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 
 ## 🗂️ 类别配置
 
-默认内置四个兴趣类别，集中定义在 [`src/categories.ts`](./src/categories.ts)：
+默认内置七个兴趣类别，集中定义在 [`src/categories.ts`](./src/categories.ts)：
 
-| 类别 | App Store | Google Play | Reddit | Bluesky / Mastodon / GDELT / Hacker News |
-| --- | --- | --- | --- | --- |
-| AI | 搜索 AI / assistant / ChatGPT | 搜索 AI assistant / chatbot | artificial / MachineLearning / ChatGPT | AI / LLM / ChatGPT |
-| 工具 | 榜单 `UTILITIES` | 榜单 `TOOLS` | software / productivity | productivity / opensource |
-| 代码 | 榜单 Developer Tools (6026) | 搜索 code editor / programming | programming / coding / webdev | programming / developer tools |
-| Agent | 搜索 AI agent / autonomous agent | 搜索 AI agent | AI_Agents / LLMDevs / LangChain | AI agent / agentic / LangChain |
+| 类别 | 重点关注 |
+| --- | --- |
+| AI | AI 产品、模型、LLM 与通用讨论 |
+| 工具 | 效率、自动化与工作流 |
+| 代码 | 编程语言、开发工具与工程实践 |
+| Agent | Agent、MCP、工具调用与 Agent 框架 |
+| 模型研究 | 论文、Benchmark、数据集与模型评测 |
+| 开源 | GitHub 项目、自托管与开源生态 |
+| 基础设施 | Kubernetes、Docker、数据库、云原生与可观测性 |
 
 > 增删类别：编辑 `src/categories.ts` 的 `CATEGORIES`。`mode` 支持 `rankings`（榜单：App Store 填 `genreId`，Google Play 填 `category`）或 `search`（填 `searchTerms`）。
 
@@ -79,6 +87,11 @@ daily-pulse/
 │   │   ├── mastodon.ts                  # Mastodon hashtag 时间线
 │   │   ├── gdelt.ts                     # GDELT 新闻搜索
 │   │   ├── hackerNews.ts                # Hacker News 热门搜索
+│   │   ├── github.ts                    # GitHub 仓库搜索
+│   │   ├── huggingFace.ts               # Hugging Face 模型搜索
+│   │   ├── stackOverflow.ts             # Stack Overflow 问题搜索
+│   │   ├── arxiv.ts                     # arXiv 分类 RSS / API
+│   │   ├── rss.ts                        # 官方 RSS / Atom
 │   │   ├── detailScraper.ts            # 来源网页详情抓取（og:meta + JSON-LD）
 │   │   └── utils.ts                    # 防御性字段归一化工具
 │   ├── storage/
@@ -152,7 +165,7 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | --- | --- |
 | `npm run dev` | 启动 Vite 开发服务器（读 `data/daily.json`） |
 | `npm run fetch` | 采集 → 来源网页详情抓取 → 生成静态页 |
-| `npm run sample` | 生成八个来源的示例数据（共约 760 条） |
+| `npm run sample` | 生成十三个来源的示例数据（按七个类别生成） |
 | `npm run migrate:data` | 将旧版 `data/daily.json` 迁移为 schema v2，并拆分详情 |
 | `npm run build` | 构建前端到 `dist/` |
 | `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
@@ -182,6 +195,12 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `MASTODON_LIMIT` | 可选 | 每类别 Mastodon 采集数（默认 25） |
 | `GDELT_LIMIT` | 可选 | 每类别 GDELT 采集数（默认 25） |
 | `HACKER_NEWS_LIMIT` | 可选 | 每类别 Hacker News 采集数（默认 25） |
+| `GITHUB_API_TOKEN` | 可选 | GitHub API Token（提高公共 API 限额） |
+| `GITHUB_LIMIT` | 可选 | 每类别 GitHub 采集数（默认 25） |
+| `HUGGING_FACE_LIMIT` | 可选 | 每类别 Hugging Face 采集数（默认 25） |
+| `STACKOVERFLOW_LIMIT` | 可选 | 每类别 Stack Overflow 采集数（默认 25） |
+| `ARXIV_LIMIT` | 可选 | 每类别 arXiv 采集数（默认 25） |
+| `RSS_LIMIT` | 可选 | 每类别官方 RSS 采集数（默认 25） |
 | `MASTODON_INSTANCE` | 可选 | Mastodon 实例（默认 `mastodon.social`） |
 | `APP_STORE_COUNTRY` | 可选 | App Store 地区（默认 `us`） |
 | `GOOGLE_PLAY_COUNTRY` | 可选 | Google Play 地区（默认 `us`） |
@@ -200,6 +219,11 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 - **Mastodon** 读取配置实例的公开 hashtag 时间线；实例可通过 `MASTODON_INSTANCE` 更换。
 - **GDELT** 走 DOC 2.0 API，按类别关键词检索最近 1 天的全球新闻。
 - **Hacker News** 走 Algolia 的公开搜索接口，按类别关键词检索最近 3 天的技术讨论。
+- **GitHub** 走 REST Search API，按类别搜索最近更新的公共仓库；未认证额度较低，CI 建议配置 `GITHUB_API_TOKEN`。
+- **Hugging Face** 走 Hub Models API，按下载量搜索模型，保留下载量、点赞、任务和许可证。
+- **Stack Overflow** 走 Stack Exchange API v2.3，按标签逐组检索最近活跃的问题，避免多标签 AND 查询导致结果为空。
+- **arXiv** 优先使用官方分类 RSS，API 作为非分类检索式的兜底；请求带间隔与退避，降低公共接口限流风险。
+- **官方 RSS** 读取配置在 `src/categories.ts` 中的官方博客 Feed，仅保留最近 14 天内容。
 
 ### 获取 Product Hunt Token（推荐）
 
@@ -290,7 +314,7 @@ interface FeedItem {
   description?: string;       // 简短描述（列表用）
   url: string;                // 原文链接（讨论 / 产品页）
   externalUrl?: string;       // 外部目标链接（如 Reddit 原文、PH 官网）
-  source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews';
+  source: 'appstore' | 'googleplay' | 'producthunt' | 'reddit' | 'bluesky' | 'mastodon' | 'gdelt' | 'hackernews' | 'github' | 'huggingface' | 'stackoverflow' | 'arxiv' | 'rss';
   category?: string;          // 旧数据兼容字段
   categoryId?: string;        // 主类别 ID
   categoryIds?: string[];     // 所属类别 ID
