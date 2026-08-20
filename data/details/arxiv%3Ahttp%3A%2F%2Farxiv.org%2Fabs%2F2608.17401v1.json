@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:http://arxiv.org/abs/2608.17401v1",
+  "sourceItemId": "http://arxiv.org/abs/2608.17401v1",
+  "detail": {
+    "longDescription": "Modern software systems evolve through frequent commits that implement bug fixes, features, and security patches. Although code review and testing are widely used to check these changes, they often provide limited assurance for memory-safety issues. Code reviewers may miss subtle boundary, lifetime, or initialization errors, while existing tests may not exercise the specific paths affected by a commit. Fuzzing is effective at exposing such bugs, but applying it to every commit remains impractical because whole-program fuzzing is expensive, requires suitable harnesses, and may still fail to reach the code changed by a commit.\n  In this paper, we introduce COMMITGUARD, a commit-aware differential slice-based fuzzing approach for verifying code changes. The key insight behind COMMITGUARD is that the pre-commit version of a modified function can serve as a behavioral baseline for interpreting bugs found after the commit. For each target commit, COMMITGUARD identifies modified functions, extracts compilable code slices from both the pre-commit and post-commit versions, and fuzzes the paired slices independently. It then compares sanitizer reports across the two versions and reports bugs that emerge only in the post-commit version as candidate commit-induced bugs. We evaluate COMMITGUARD on 300 commits from openSSL, libpcap and leptonica. Slice fuzzing initially produces 518 sanitizer reports across these commits. By comparing pre-commit and post-commit slices, COMMITGUARD narrows this large output to 7 candidate commit-induced bug reports that require manual triage. Manual validation confirms 5 of these reports as real bugs that were fixed by developers of the examined projects after we reported them, while only 2 reports were classified as false positives. COMMITGUARD analyzes a commit in 32.4 minutes on average and achieves 75.36% average coverage of modified functions.",
+    "developer": "Aniruddhan Murali",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "4"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Aniruddhan Murali"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

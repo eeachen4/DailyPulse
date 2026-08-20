@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117122773154540459",
+  "sourceItemId": "mastodon.social/117122773154540459",
+  "detail": {
+    "longDescription": "@benjamineskola@hachyderm.io Indeed it is!\n\nHere is the full report on it. The incident started with an Istio sidecar reaching its concurrency limit. An autoscaling configuration was monitoring the wrong capacity metric, preventing the system from scaling as expected.\n\nThat initial capacity problem cascaded into HAProxy connection exhaustion and gateway authentication failures.\n\nThen came the multiplier: retries.\n\nFailed requests triggered additional retries, creating a significant traffic surge. GitHub reported Copilot Token Service traffic jumping from roughly 7–9K requests/sec to 70–100K requests/sec. A latent retry issue in VS Code further amplified the problem.\n\nThe key lesson:\n\nRetries can turn a localized failure into a cascading outage.\n\nDistributed systems need more than redundancy and autoscaling. They also need carefully designed retry limits, exponential backoff, jitter, circuit breakers, rate limiting, load shedding, and accurate capacity metrics.\n\nThis is a great real-world example of how seemingly small configuration issues can combine with retry behavior to create a much larger failure.\n\nFull GitHub incident report:\nhttps://www.githubstatus.com/incidents/zkxwbgr0cnmx\n\n#GitHub #DevOps #CloudComputing #DistributedSystems #Microservices #ReliabilityEngineering #SRE #SoftwareEngineering #CloudArchitecture #Observability #Istio #Kubernetes #Resilience #APIs",
+    "developer": "@psoheil@c.im",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "C.IM"
+      }
+    ]
+  }
+}

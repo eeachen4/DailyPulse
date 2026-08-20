@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:http://arxiv.org/abs/2608.17485v1",
+  "sourceItemId": "http://arxiv.org/abs/2608.17485v1",
+  "detail": {
+    "longDescription": "Large language model (LLM) API relays authenticate customers separately but often forward requests through shared provider credentials. Providers scope prompt caches to upstream principals and namespaces, so relay customers mapped to one cache identity can observe each other's cache state. Prior work showed cache sharing at selected endpoints but did not identify which credential, pool, adapter, or nested hop controls the finalidentity. We present KeyPooling, a measurement method that traces customer identity through cache lookup and write, verifies runtime transformations, and tests one predicted identity component at a time. Across five open-source gateways connected to OpenAI and Anthropic, none bound customers to upstream credentials by default; under a shared credential, all five exposed cross-customer cache reads for both providers. Principal and namespace splits, pool associations, and adapter and nested-relay contrasts localized the controlling transformations. In an outcome-independent weekly OpenRouter frame, tests covered 80.5% of eligible token volume and found cross-account reads for 12 of 28 labels carrying 33.7% of volume. On one production route, a controlled procedure recovered eight consecutive target positions without target access. Broader tests identify cache granularity, routing, rate limits, attribution, and budget as conditions for token-by-token recovery, not security controls. We derive a defense contract: every customer must enter a provider-enforced domain, or a namespace derived from authenticated identity must survive every final cache lookup and write. Placing this split after reusable public prefixes preserved most modeled reuse at a 1.7-2.5% cost increase.",
+    "developer": "Bowen Sun",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "6"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Bowen Sun"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
