@@ -5,7 +5,7 @@
 
 ## 项目概述
 
-DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News** 热门内容的「信息早餐」。
+DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News / GitHub / Hugging Face / Stack Overflow / arXiv / RSS** 热门内容的「信息早餐」。
 
 - **采集**：Node.js + TypeScript（`tsx` 运行）按「类别 × 源」采集 → 来源网页详情抓取 → 写入 `data/daily.json` → 生成/注入 `dist/index.html`。
 - **Product Hunt**：优先官方 GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 回退 Apify。
@@ -18,7 +18,7 @@ DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Goo
 | --- | --- |
 | `npm run dev` | 启动 Vite 开发服务器 |
 | `npm run fetch` | 采集 → 详情抓取 → 生成静态页 |
-| `npm run sample` | 生成 440 条示例数据（每类别 110） |
+| `npm run sample` | 生成十三来源示例数据（每类别约 290 条） |
 | `npm run build` | Vite 构建到 `dist/` |
 | `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
 | `npm run build:all` | 构建 + 注入（生产链路） |
@@ -40,6 +40,11 @@ src/index.ts（主入口）
   │   ├─ fetch/mastodon.ts     Mastodon hashtag 时间线
   │   ├─ fetch/gdelt.ts        GDELT DOC 2.0 新闻搜索
   │   ├─ fetch/hackerNews.ts   Hacker News Algolia 搜索
+  │   ├─ fetch/github.ts        GitHub REST 仓库搜索
+  │   ├─ fetch/huggingFace.ts   Hugging Face 模型搜索
+  │   ├─ fetch/stackOverflow.ts Stack Exchange 问题搜索
+  │   ├─ fetch/arxiv.ts         arXiv 分类 RSS / API
+  │   ├─ fetch/rss.ts           官方 RSS / Atom
   │   └─ fetch/detailScraper.ts 来源网页详情抓取（og:meta + JSON-LD，cheerio）
   ├─ storage/saveData.ts       写 data/daily.json（含时间戳）
   ├─ storage/generateHtml.ts   注入或生成 dist/index.html
@@ -73,7 +78,7 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
   1. 在 `src/fetch/` 新建 `fetchXxx()`，返回 `FeedItem[]`；
   2. 在 `src/index.ts` 的 `tasks` 列表注册；
   3. 在 `src/types.ts` 的 `Source` / `SOURCES` / `SOURCE_META` 中补充元信息（label、short、颜色、scoreLabel）。
-- **新增/调整类别**：编辑 `src/categories.ts` 的 `CATEGORIES`（每类含四源采集参数），前端类别筛选自动生效。
+- **新增/调整类别**：编辑 `src/categories.ts` 的 `CATEGORIES`（每类含各源采集参数），前端类别筛选自动生效。
 - **调整展示**：改 `src/web/`（`App.tsx` 与 `components/`，含 `DetailPage` / `ExpandableText` / `CategoryFilter` 等）。
 - **更换数据来源**：App Store 改 `src/categories.ts` 的 `genreId`/`searchTerms`；Google Play 改 `category`/`searchTerms`；Product Hunt 兜底改 `.env` 的 `APIFY_PRODUCT_HUNT_ACTOR_ID`。
 - **调整详情抓取**：改 `src/fetch/detailScraper.ts`（og:meta / JSON-LD 字段提取与合并逻辑）。

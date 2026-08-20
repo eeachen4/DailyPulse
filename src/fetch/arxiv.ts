@@ -3,7 +3,8 @@ import { load } from 'cheerio';
 import type { CategoryDef } from '../categories';
 import type { FeedItem } from '../types';
 
-const API = 'https://export.arxiv.org/api/query';
+const API = 'https://arxiv.org/api/query';
+let lastRequestAt = 0;
 
 function clean(value: string): string {
   return value.replace(/\s+/g, ' ').trim();
@@ -13,45 +14,113 @@ function searchQuery(queries: string[]): string {
   return queries.map((query) => (query.startsWith('cat:') || query.startsWith('all:') ? query : `all:"${query}"`)).join(' OR ');
 }
 
+interface ArxivEntry {
+  id: string;
+  title: string;
+  summary?: string;
+  publishedAt?: string;
+  authors: string[];
+  categories: string[];
+}
+
+async function waitForRateLimit(): Promise<void> {
+  const waitMs = Math.max(0, 3_500 - (Date.now() - lastRequestAt));
+  if (waitMs > 0) await new Promise((resolve) => setTimeout(resolve, waitMs));
+  lastRequestAt = Date.now();
+}
+
+async function request(query: string, limit: number): Promise<string> {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    await waitForRateLimit();
+    try {
+      const response = await axios.get<string>(API, {
+        params: { search_query: query, start: 0, max_results: limit, sortBy: 'submittedDate', sortOrder: 'descending' },
+        timeout: 45_000,
+        headers: { Accept: 'application/atom+xml', 'User-Agent': 'DailyPulse/1.0 (mailto:dailypulse@example.com)' },
+        responseType: 'text',
+      });
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 429 && attempt === 0) {
+        await new Promise((resolve) => setTimeout(resolve, 5_000));
+        continue;
+      }
+      throw error;
+    }
+  }
+  throw new Error('arXiv 请求失败');
+}
+
+async function requestCategoryFeed(category: string): Promise<string> {
+  const response = await axios.get<string>(`https://arxiv.org/rss/${encodeURIComponent(category)}`, {
+    timeout: 30_000,
+    responseType: 'text',
+    headers: { Accept: 'application/rss+xml, application/xml', 'User-Agent': 'DailyPulse/1.0 (mailto:dailypulse@example.com)' },
+  });
+  return response.data;
+}
+
+function parseEntries(xml: string, limit: number): ArxivEntry[] {
+  const $ = load(xml, { xmlMode: true });
+  const entries: ArxivEntry[] = [];
+  const nodes = $('entry').length ? $('entry') : $('item');
+  nodes.each((index, element) => {
+    if (index >= limit) return;
+    const node = $(element);
+    const id = clean(node.find('id').first().text()) || clean(node.find('guid').first().text()) || clean(node.find('link').first().text());
+    const title = clean(node.find('title').first().text());
+    const summary = clean(node.find('summary, description').first().text());
+    const publishedAt = clean(node.find('published, pubDate, dc\\:date').first().text()) || undefined;
+    const authors = node.find('author name, dc\\:creator').map((_, author) => clean($(author).text())).get().filter(Boolean);
+    const categories = node.find('category').map((_, categoryNode) => $(categoryNode).attr('term') || clean($(categoryNode).text())).get().filter(Boolean);
+    if (id && title) entries.push({ id: id.replace('http://', 'https://'), title, summary, publishedAt, authors, categories });
+  });
+  return entries;
+}
+
 export async function fetchArxiv(category: CategoryDef): Promise<FeedItem[]> {
   const limit = Math.min(100, Math.max(1, Number(process.env.ARXIV_LIMIT || 25)));
-  const response = await axios.get<string>(API, {
-    params: { search_query: searchQuery(category.arxivQueries), start: 0, max_results: limit, sortBy: 'submittedDate', sortOrder: 'descending' },
-    timeout: 45_000,
-    headers: { Accept: 'application/atom+xml', 'User-Agent': 'DailyPulse/1.0 (contact: github.com/eeachen4/DailyPulse)' },
-    responseType: 'text',
-  });
-  const $ = load(response.data, { xmlMode: true });
+  const categoryFeeds = category.arxivQueries
+    .filter((query) => query.startsWith('cat:'))
+    .map((query) => query.slice(4));
+  const entries = new Map<string, ArxivEntry>();
+  if (categoryFeeds.length > 0) {
+    for (const feedCategory of categoryFeeds) {
+      try {
+        for (const entry of parseEntries(await requestCategoryFeed(feedCategory), limit)) {
+          if (!entries.has(entry.id)) entries.set(entry.id, entry);
+        }
+      } catch (error) {
+        if (process.env.DEBUG) console.warn(`[arxiv] 分类 ${feedCategory} 失败：${error instanceof Error ? error.message : error}`);
+      }
+    }
+  } else {
+    for (const entry of parseEntries(await request(searchQuery(category.arxivQueries), limit), limit)) entries.set(entry.id, entry);
+  }
+
   const items: FeedItem[] = [];
-  $('entry').each((index, element) => {
-    const id = clean($(element).find('id').first().text());
-    const title = clean($(element).find('title').first().text());
-    const summary = clean($(element).find('summary').first().text());
-    if (!id || !title) return;
-    const absUrl = id.replace('http://', 'https://');
-    const authors = $(element).find('author name').map((_, author) => clean($(author).text())).get();
-    const categories = $(element).find('category').map((_, categoryNode) => $(categoryNode).attr('term')).get().filter((term): term is string => Boolean(term));
+  [...entries.values()].slice(0, limit).forEach((entry, index) => {
     const rawScore = Math.max(1, limit - index);
     items.push({
-      id: 'arxiv:' + id,
-      sourceItemId: id,
-      title,
-      description: summary,
-      longDescription: summary,
-      url: absUrl,
+      id: 'arxiv:' + entry.id,
+      sourceItemId: entry.id,
+      title: entry.title,
+      description: entry.summary,
+      longDescription: entry.summary,
+      url: entry.id,
       source: 'arxiv',
       category: category.label,
       categoryId: category.id,
       categoryIds: [category.id],
       score: rawScore,
       metrics: { rawScore, rawScoreLabel: '论文新鲜度' },
-      developer: authors[0],
-      publishedAt: clean($(element).find('published').first().text()) || undefined,
-      tags: [...category.arxivQueries, ...categories].filter(Boolean),
+      developer: entry.authors[0],
+      publishedAt: entry.publishedAt,
+      tags: [...category.arxivQueries, ...entry.categories].filter(Boolean),
       stats: [
-        { label: '作者', value: String(authors.length) },
-        { label: '分类', value: categories.join(', ') },
-        authors.length ? { label: '第一作者', value: authors[0] } : undefined,
+        { label: '作者', value: String(entry.authors.length) },
+        { label: '分类', value: entry.categories.join(', ') },
+        entry.authors.length ? { label: '第一作者', value: entry.authors[0] } : undefined,
       ].filter((value): value is { label: string; value: string } => Boolean(value?.value)),
     });
   });

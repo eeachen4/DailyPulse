@@ -76,20 +76,31 @@ function normalize(question: StackQuestion, category: CategoryDef): FeedItem | n
 export async function fetchStackOverflow(category: CategoryDef): Promise<FeedItem[]> {
   const limit = Math.min(100, Math.max(1, Number(process.env.STACKOVERFLOW_LIMIT || 25)));
   const fromdate = Math.floor(Date.now() / 1000) - 7 * 24 * 60 * 60;
-  const response = await axios.get<{ items?: StackQuestion[] }>(API, {
-    params: {
-      site: 'stackoverflow',
-      tagged: category.stackExchangeTags.join(';'),
-      sort: 'activity',
-      order: 'desc',
-      fromdate,
-      pagesize: limit,
-      filter: 'withbody',
-    },
-    timeout: 30_000,
-    headers: { Accept: 'application/json', 'User-Agent': 'DailyPulse/1.0' },
-  });
-  return (response.data?.items ?? [])
+  const questions = new Map<number, StackQuestion>();
+  for (const tag of category.stackExchangeTags) {
+    try {
+      const response = await axios.get<{ items?: StackQuestion[] }>(API, {
+        params: {
+          site: 'stackoverflow',
+          tagged: tag,
+          sort: 'activity',
+          order: 'desc',
+          fromdate,
+          pagesize: limit,
+          filter: 'withbody',
+        },
+        timeout: 30_000,
+        headers: { Accept: 'application/json', 'User-Agent': 'DailyPulse/1.0' },
+      });
+      for (const question of response.data?.items ?? []) {
+        if (question.question_id && !questions.has(question.question_id)) questions.set(question.question_id, question);
+      }
+    } catch (error) {
+      if (process.env.DEBUG) console.warn(`[stackoverflow] 标签 ${tag} 失败：${error instanceof Error ? error.message : error}`);
+    }
+  }
+
+  return [...questions.values()]
     .map((question) => normalize(question, category))
     .filter((item): item is FeedItem => Boolean(item))
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
