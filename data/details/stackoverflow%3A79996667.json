@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996667",
+  "sourceItemId": "79996667",
+  "detail": {
+    "longDescription": "I have created two functions that yield expressions, each function works in with_columns individually, but when put together fails. Is there a way to run these within the same with_columns, or am I forced to use pipe? def clip_columns(args: list[tuple[str,dict[str,float]]]): \"\"\" example input args = [ ('rain',{'lower_bound'=0.0,'upper_bound'=100}), ('hurs',{'lower_bound'=0.0}) ] \"\"\" for (col, kwargs) in args: yield pl.col(col).clip(**kwargs).name.keep() def max_across_cols(args: dict[str,tuple[str,str]]): \"\"\" example {\"max_temp\":(\"min_temp\",\"max_temp\")} \"\"\" for col_name, arg_cols in args.items(): yield pl.max_horizontal(arg_cols[0], arg_cols[1]).alias(col_name) ## Below Fails df = df.with_columns( clip_columns( [ ('rain', {'lower_bound':0}), ('hursmin', {'lower_bound':0}), ('radn', {'lower_bound':2}) ] ), max_across_cols({\"hursmax\":(\"hursmin\",\"hursmax\")}) ) ## This works (likewise only clip_columns works) df = df.with_columns( max_across_cols({\"hursmax\":(\"hursmin\",\"hursmax\")}) ) Error message: return wrap_expr(plr.lit(item, allow_object, is_scalar=True)) ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ TypeError: cannot create expression literal for value of type generator. Hint: Pass `allow_object=True` to accept any value and create a literal of type Object. Unclear if this is a bug or I'm missing a step.",
+    "developer": "thefrollickingnerd",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "66"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

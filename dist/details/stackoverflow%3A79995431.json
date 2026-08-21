@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995431",
+  "sourceItemId": "79995431",
+  "detail": {
+    "longDescription": "I am building a VS Code extension that automatically generates workspace files. I want to create a new file at a specific path inside the user's open workspace and insert generated text content into it. I tried using Node's fs.writeFileSync , but it doesn't always refresh the VS Code Explorer UI immediately. I want to use the native VS Code API ( vscode.workspace.fs ). Here is my current approach: import * as vscode from 'vscode'; export async function createFile(fileName: string, content: string) { const workspaceFolders = vscode.workspace.workspaceFolders; if (!workspaceFolders) { vscode.window.showErrorMessage('No workspace open'); return; } const uri = vscode.Uri.joinPath(workspaceFolders\\[0\\].uri, fileName); const writeData = Buffer.from(content, 'utf8'); await vscode.workspace.fs.writeFile (uri, writeData); }",
+    "developer": "Muhammad",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "62"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

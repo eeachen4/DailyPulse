@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996787",
+  "sourceItemId": "79996787",
+  "detail": {
+    "longDescription": "I created a small applet to solve a simple PDE (1D advection) and create a GIF to display within it. It seems to work, but the GIF appears to have a mess of colors. How is this possible? I'm attaching the main code. import numpy as np import matplotlib.pyplot as plt from matplotlib.widgets import TextBox, Button, RadioButtons from matplotlib.animation import FuncAnimation from PIL import Image import os from avvezione1D import run # 1. Valori di default C_init, dt_init, Nt_init = 1.0, 0.01, 150 anim = None # 2. Configurazione della figura GUI # Diamo alla figura l'ID \"99\" così il solver non ci disegna sopra! fig = plt.figure(num=99, figsize=(10, 6)) fig.canvas.manager.set_window_title('Pannello di Simulazione Avvezione') # Asse per mostrare la GIF (Metà sinistra) ax_gif = plt.axes([0.05, 0.1, 0.5, 0.8]) ax_gif.axis('off') ax_gif.set_title(\"Risultato Simulazione\", fontsize=14, fontweight='bold') # 3. Interfaccia (Metà destra) # Radio Buttons per gli schemi ax_radio = plt.axes([0.65, 0.65, 0.25, 0.2], facecolor='#e8e8e8') ax_radio.set_title('Schema Numerico') radio_scheme = RadioButtons(ax_radio, ('LW', 'LF', 'Leap', 'UP')) # Caselle di testo (Spostate a x=0.75 per fare spazio alle etichette) axbox_c = plt.axes([0.75, 0.50, 0.15, 0.05]) text_box_c = TextBox(axbox_c, 'Courant (C): ', initial=str(C_init)) axbox_dt = plt.axes([0.75, 0.40, 0.15, 0.05]) text_box_dt = TextBox(axbox_dt, 'Time step (dt): ', initial=str(dt_init)) axbox_nt = plt.axes([0.75, 0.30, 0.15, 0.05]) text_box_nt = TextBox(axbox_nt, 'Step (Nt): ', initial=str(Nt_init)) # Pulsante ax_button = plt.axes([0.65, 0.15, 0.25, 0.08]) btn_run = Button(ax_button, 'Avvia Simulazione', color='lightgreen', hovercolor='0.8') # 4. Funzione per riprodurre la GIF def riproduci_gif(percorso_gif): global anim try: img = Image.open(percorso_gif) frames = [] while True: frames.append(np.array(img.convert(\"RGBA\"))) img.seek(img.tell() + 1) except EOFError: pass ax_gif.clear() ax_gif.axis('off') im = ax_gif.imshow(frames[0]) def update(frame_idx): im.set_array(frames[frame_idx]) return [im] anim = FuncAnimation(fig, update, frames=len(frames), interval=50, blit=True) fig.canvas.draw_idle() # 5. Funzione di esecuzione def avvia_simulazione(event): global anim if anim is not None: anim.event_source.stop() try: schema_scelto = radio_scheme.value_selected C_val = float(text_box_c.text) dt_val = float(text_box_dt.text) Nt_val = int(text_box_nt.text) # Riporta il focus sulla finestra 99 (la GUI) plt.figure(99) # Avvia il solver (che lavorerà sulle figure 1 e 2 di nascosto) run(scheme=schema_scelto, C=C_val, dt=dt_val) # Ritorna alla GUI plt.figure(99) file_gif = 'movie.gif' if os.path.exists(file_gif): riproduci_gif(file_gif) else: print(\"Errore: file GIF non trovato.\") except ValueError: print(\"Errore: Inserisci valori numerici validi.\") btn_run.on_clicked(avvia_simulazione) plt.show() In the figure you can see that the gif is created in a grainy way inside the appropriate box Here there is the gif.",
+    "developer": "Antonino Roccaforte",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "107"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

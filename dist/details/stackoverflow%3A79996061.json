@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996061",
+  "sourceItemId": "79996061",
+  "detail": {
+    "longDescription": "I'm currently working on a React application with TypeScript where I need to manage a list of military commanders. My goal is to create a custom two-step deletion process for the items in the list. Specifically, when a user clicks on a commander card for the first time, it should just select that element. If the user clicks on the exact same card for the second time, the application should delete this item from the array. I want to find a clean way to implement this logic using only my existing component states. I am trying to avoid adding a fifth state to my component because I want to keep the architecture simple and easy to maintain. Here are my actual four states and the deletion function I am currently trying to use: const [commanders, setCommanders] = useState<Commander[]>(initialCommanders); const [isOpen, setIsOpen] = useState(false); const [selectedCountry, setSelectedCountry] = useState<Country | 'All'>('All'); const [selectedCommanders, setSelectedCommanders] = useState<Commander[]>(commanders); function handleDelete(id: number): void { if (selectedCountry !== 'All' && selectedCountry?.Id === id) { setCommanders((prevCountry: any) => prevCountry.filter((item: any) => item.Id !== id)); setSelectedCountry('All'); } } Could anyone please show me how to correctly rewrite this handleDelete function? I need it to handle both selecting the item on the first click and deleting it on the second click, using only the selectedCountry state and completely avoiding any extra states.",
+    "developer": "user22414499",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "171"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

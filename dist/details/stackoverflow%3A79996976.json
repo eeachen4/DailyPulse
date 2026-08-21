@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996976",
+  "sourceItemId": "79996976",
+  "detail": {
+    "longDescription": "I have a custom build profile named custom-release , which inherits the release build profile and also sets some extra flags. However when I try to access the build profile via the environment variable PROFILE in the build script build.rs it shows as release instead of custom-release . Is this the intended behavior or something is wrong in here? Cargo.toml [package] name = \"build_profile\" version = \"0.1.0\" edition = \"2024\" [profile.release] opt-level = 2 lto = true [profile.custom-release] inherits = \"release\" lto = false [build-dependencies] build-print = \"1.0.1\" [dependencies] build.rs use std::env; use build_print::println; fn main() { let profile = env::var(\"PROFILE\").unwrap_or_default(); println!(\"build profile: {profile}\"); } src/main.rs fn main() { println!(\"Hello, world!\"); } cargo command cargo build --profile release output Compiling build-print v1.0.1 Compiling build_profile v0.1.0 (/home/harsha/build_profile) build profile: release Finished `release` profile [optimized] target(s) in 2.42s cargo command cargo build --profile custom-release current output Compiling build-print v1.0.1 Compiling build_profile v0.1.0 (/home/harsha/build_profile) build profile: release Finished `custom-release` profile [optimized] target(s) in 0.27s cargo command cargo build --profile custom-release expected output Compiling build-print v1.0.1 Compiling build_profile v0.1.0 (/home/harsha/build_profile) build profile: custom-release Finished `custom-release` profile [optimized] target(s) in 0.27s",
+    "developer": "Harry",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "56"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

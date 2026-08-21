@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996888",
+  "sourceItemId": "79996888",
+  "detail": {
+    "longDescription": "I have a docker container currently running, listening on a port. I need to forward websocket requests from a remote server to my local machine. I've tried using smee , but whenever I use it, when I call the smee websocket link: TypeError: fetch failed at Object.processResponse (/home/maus/.nvm/versions/node/v26.7.0/lib/node_modules/smee-client/node_modules/undici/lib/web/fetch/index.js:237:16) at /home/maus/.nvm/versions/node/v26.7.0/lib/node_modules/smee-client/node_modules/undici/lib/web/fetch/index.js:1081:19 at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at /home/maus/.nvm/versions/node/v26.7.0/lib/node_modules/smee-client/node_modules/undici/index.js:157:7 at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async #onmessage (file:///home/maus/.nvm/versions/node/v26.7.0/lib/node_modules/smee-client/index.js:63:30) { [cause]: Error: connect ECONNREFUSED 127.0.0.1:3000 at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2017:16) { errno: -111, code: 'ECONNREFUSED', syscall: 'connect', address: '127.0.0.1', port: 3000 } } I've tried using different ports with both smee and the program running locally. I'm using WSL2, running Ubuntu. I've tried making sure windows firewall is allowing docker. Are there any other ways to do this websocket forwarding? There's like, no documentation or help really for smee. I know the websocket is firing, as I only get the error in smee when it gets a hit.",
+    "developer": "SpaceMouse",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

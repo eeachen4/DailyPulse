@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117132480362664572",
+  "sourceItemId": "mastodon.social/117132480362664572",
+  "detail": {
+    "longDescription": "Attached: 1 image\n\nToday my Termix answered with a 404 this morning 🫠  CloudFront was fine, EC2 was fine (obviously since 404 was returned from nginx). There was just nothing behind it.\n\nTermix on :latest, the host updates everything at night, and by morning it was exit 1, restart, 1, restart.\n\nIt is a Graviton box, so I went at the architecture first and the architecture was innocent. docker inspect said linux/arm64. Right image, right machine.\n\nThe mismatch was inside it. better-sqlite3 ships a prebuilt binary linked against GLIBC 2.38 and the image has 2.36, so the linker refuses and node never starts.\n\nPinned 2.6.1 and it came back (AWS Sessions Manager saved me).\n\nI put :latest there on purpose a year ago, FOMO, and because it is only a homelab. A homelab I route every other server through.\n\nntfy has been sending me those logs every night. I read them.\n\nI am clearly going to keep reading them exactly the same way. The hard lesson learned.\n\nBug Report is still open BTW: https://github.com/Termix-SSH/Support/issues/1184\n\n#Linux #Docker #AWS #Graviton #SelfHosting #Blog #Thoughts #DevOps #Fediverse #Termix",
+    "developer": "@dima@dol.social",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "DOL Social"
+      }
+    ]
+  }
+}

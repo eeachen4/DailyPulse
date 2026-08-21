@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.19677",
+  "sourceItemId": "2608.19677",
+  "detail": {
+    "longDescription": "arXiv:2608.19677v1 Announce Type: new Abstract: Prefix caching avoids prefill only when a repeated request returns to a server that still holds the prefix KV. Cache-blind balancing disperses that reuse; fixed affinity preserves it but can overload a server. CacheRoute resolves this tradeoff with a periodic routing plan. It admits high-rate keys to a stable warm set and places their assignments by expected load. Hot keys may use more than one destination, although every key in our primary semi-synthetic aggregate uses exactly one. On Llama-3.3-70B in fp8 across 60 H100 GPUs, CacheRoute sustains 176+/-11 QPS at a 3.5-s p99 SLO, 2.3x the strongest of five baselines. Served KV-cache hit rate rises from 64.1+/-1.3% under cache-blind balancing to 93.2+/-0.5%. A second semi-synthetic aggregate and controlled 8B and burst experiments separate the effects of affinity and placement. Two 32B workloads provide the counterexamples: when affinity recovers too little KV work, its residual load skew reduces or erases the improvement. We therefore recommend gating any deployment with a shadow replay rather than enabling affinity from workload statistics alone.",
+    "developer": "Huang Cheng",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Huang Cheng"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

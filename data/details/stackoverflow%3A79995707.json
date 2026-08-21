@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995707",
+  "sourceItemId": "79995707",
+  "detail": {
+    "longDescription": "I am running a Python BACnet client using BAC0 inside a Kubernetes pod. The BACnet devices are on the same physical network as the Kubernetes server. If I run the Python BAC0 client directly on the Kubernetes server (outside Kubernetes), device discovery works correctly. However, when I run the same application inside a Kubernetes pod, BAC0 fails during initialization/discovery with an error similar to: IP Address provided (10.x.x.x) invalid. Check if another software is using port 47808 on this network interface. If so, you can define multiple IP per interface. Or specify another IP using BAC0.lite(ip='IP/mask'). For example, I have tried: import BAC0 bacnet = BAC0.lite(ip=\"10.x.x.x/24\") bacnet.discover() I cannot use: hostNetwork: true because of requirements/restrictions in our Kubernetes environment. I also do not have a BBMD available on the BACnet network. I am looking for the recommended architecture for running BAC0/BACnet/IP discovery in Kubernetes when hostNetwork and BBMD are not available.",
+    "developer": "Meet Bedmutha",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "145"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

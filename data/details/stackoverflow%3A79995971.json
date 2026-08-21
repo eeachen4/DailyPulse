@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995971",
+  "sourceItemId": "79995971",
+  "detail": {
+    "longDescription": "Running a WebSocket script on startup using NodeJS or Python causes the WebSocket to be unable to connect securely. It doesn't fail, it just sits there unable to receive messages. NodeJS example: import WebSocket from \"ws\"; const TUNNEL_ENDPOINT = \"https://api.example.com/v1/createWebsocketTunnel/\"; const TARGET_URL = \"wss://api.example.com/v1/computerWebSocket/\"; const AUTH_TOKEN = \"...\"; function sleep(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); } async function createTunnel() { const response = await fetch(TUNNEL_ENDPOINT, { method: \"POST\", headers: { \"Content-Type\": \"application/json\", Authorization: AUTH_TOKEN, }, body: JSON.stringify({ url: TARGET_URL }), }); console.log(`Status for tunnel: ${response.status}`); if (response.status !== 200) { throw new Error(\"Tunnel creation failed\"); } const data = await response.json(); return String(data.url); } function connectWebSocket(uri) { return new Promise((resolve, reject) => { const ws = new WebSocket(uri); ws.on(\"open\", () => { console.log(\"Connected to websocket\"); }); ws.on(\"message\", (message) => { try { const j = JSON.parse(message.toString()); console.log(\"Got message: \", j); } catch (e) { console.log(\"Failed to parse message:\", message.toString()); } }); ws.on(\"close\", () => { console.log(\"Connection closed, retrying in 5s\"); resolve(); }); ws.on(\"error\", (err) => { console.log(\"Connection failed, retrying in 5s:\", err.message); resolve(); }); }); } async function tryConnect() { console.log(\"Waiting until computer starts internet service...\"); await sleep(60_000); while (true) { let uri; try { uri = await createTunnel(); } catch (e) { console.log(\"Tunnel creation failed, retrying in 5s\"); await sleep(5000); continue; } await connectWebSocket(uri); await sleep(5000); } } tryConnect(); What it returns: Waiting until computer starts internet service... Status for tunnel: 200 Connected to websocket My server sees the connection, but sending data doesn't work. Interestingly, this script works fine when run manually, but doesn't work when run at startup. This code is run using node script.js inside a shortcut inside shell:startup .",
+    "developer": "Yoinkyest Sploinkiest",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "111"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

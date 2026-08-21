@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2508.18193",
+  "sourceItemId": "2508.18193",
+  "detail": {
+    "longDescription": "arXiv:2508.18193v3 Announce Type: replace Abstract: Replication ensures data availability in fault-prone distributed systems. The celebrated CAP theorem stipulates that replicas cannot guarantee both strong consistency and availability under network partitions. A popular alternative, adopted by CRDTs, is to relax consistency to be eventual. It enables progress to be wait-free, as replicas can serve requests immediately, based on their local states. Yet, wait-free replication faces a key challenge: due to asynchrony and concurrency, operations may be constantly reordered, leading to results inconsistent with their original contexts and preventing them from stabilizing over time. Moreover, a particular client may experience starvation when, from some point on, each of its operations is reordered at least once. This may lead to pathological scenarios, when the locally observed effect of each of the client's operation is later rejected by the system. We make two contributions. First, we formalize the problem addressed by wait-free replicated data types (e.g., CRDTs) as eventual state-machine replication. We then augment it with stability and fairness ensuring, respectively, that (1) all replicas share a growing stable prefix of operations, and (2) no client starves. Second, we present a generic DAG-based framework to achieve eventual state-machine replication for any replicated data type, where replicas exchange their local views and merge them using a reconciliation function. We then propose reconciliation functions ensuring stability and fairness.",
+    "developer": "Petr Kuznetsov, Maxence Perion, Sara Tucci-Piergiovanni",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Petr Kuznetsov, Maxence Perion, Sara Tucci-Piergiovanni"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

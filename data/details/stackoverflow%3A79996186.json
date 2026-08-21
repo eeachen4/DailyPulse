@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996186",
+  "sourceItemId": "79996186",
+  "detail": {
+    "longDescription": "I am running Python 3.13.14 on Windows 11, using VS Code 1.100.3 with the ms-python extension, inside a conda environment managed by Miniforge3. matplotlib version is 3.11.1, PyQt5 (pyqt 5.15.11) is installed. I am running scripts from the PowerShell terminal, not from a Jupyter notebook or the VS Code integrated debugger. The problem is that plt.savefig() silently kills the process with exit code 1 after plt.plot() completes successfully. No exception is raised, no traceback is printed, and the try/except block catches nothing. The output file is never written. I can reproduce the issue exactly with this one-liner run directly from PowerShell: & C:\\Users\\tziokas.conda\\envs\\bo-xgb\\python.exe -c \"print('start'); import matplotlib; matplotlib.use('Agg'); print('matplotlib OK'); import matplotlib.pyplot as plt; print('pyplot OK'); plt.figure(); print('figure OK'); plt.plot(r_2_python_conv...codes.docx +2 ); print('plot OK'); plt.savefig(r'H:\\list_data\\python_version_list\\test_plot.png'); print('saved OK')\" The output is: start matplotlib OK pyplot OK figure OK plot OK then the process exits with code 1. The line print('saved OK') is never reached, meaning the crash happens inside plt.savefig() itself, not during import, figure creation, or plotting. The same behaviour occurs when the code is saved as a .py file saved as UTF-8 without BOM with CRLF line endings: import matplotlib matplotlib.use(\"Agg\") import matplotlib.pyplot as plt try: plt.plot(r_2_python_conv...codes.docx +3 ) plt.ylabel(\"some numbers\") plt.savefig(r\"H:\\list_data\\python_version_list\\test_plot.png\", dpi=150) plt.close() print(\"Plot saved.\") except Exception as e: print(f\"ERROR: {type(e).name}: {e}\") import traceback traceback.print_exc() Output: nothing. Exit code 1. The try/except catches nothing. What I have already tried: setting matplotlib.use(\"Agg\") explicitly before any pyplot import — no change. Uninstalling and reinstalling matplotlib via conda — no change. Installing PyQt5 via conda in case a missing Qt backend was the cause — no change. Verified all three imports succeed individually in isolation. Verified plt.figure() and plt.plot() both succeed and print their confirmation lines. The output directory exists and is writable. The crash happens specifically between plt.plot() completing and plt.savefig() being called, on the Agg backend, with no exception raised anywhere in Python. Is there a known issue with matplotlib 3.11.x on Python 3.13 on Windows that causes crash during the render or save step specifically? Edit 1 based on Fred Bill comment -X faulthandler : Windows fatal exception: code 0xc06d007f Current thread 0x00007ff0 (most recent call first): File \"...\\matplotlib\\transforms.py\", line 2496 in get_affine File \"...\\matplotlib\\transforms.py\", line 2497 in get_affine File \"...\\matplotlib\\patches.py\", line 743 in draw File \"...\\matplotlib\\artist.py\", line 71 in draw_wrapper File \"...\\matplotlib\\figure.py\", line 3281 in draw File \"...\\matplotlib\\artist.py\", line 71 in draw_wrapper File \"...\\matplotlib\\artist.py\", line 94 in draw_wrapper File \"...\\matplotlib\\backends\\backend_agg.py\", line 438 in draw File \"...\\matplotlib\\backends\\backend_agg.py\", line 485 in _print_pil File \"...\\matplotlib\\backends\\backend_agg.py\", line 537 in print_png File \"...\\matplotlib\\backend_bases.py\", line 2146 in <lambda> File \"...\\matplotlib\\backend_bases.py\", line 2289 in print_figure File \"...\\matplotlib\\figure.py\", line 3515 in savefig File \"...\\matplotlib\\pyplot.py\", line 1346 in savefig File \"<string>\", line 1 in <module> -X dev : same 0xc06d007f crash, plus a heap corruption dump before it: Debug memory block at address p=00000292AD1C9D70: API '▀' 15016155004819931136 bytes originally requested The 7 pad bytes at p-7 are not all FORBIDDENBYTE (0xfd): at p-7: 0x79 *** OUCH at p-6: 0xfb *** OUCH at p-5: 0xde *** OUCH at p-4: 0x61 *** OUCH at p-3: 0x11 *** OUCH at p-2: 0x00 *** OUCH at p-1: 0x88 *** OUCH",
+    "developer": "Nikos",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "105"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.19935",
+  "sourceItemId": "2608.19935",
+  "detail": {
+    "longDescription": "arXiv:2608.19935v1 Announce Type: new Abstract: Modern web applications increasingly require computationally intensive processing, yet JavaScript, the dominant language of the web, has traditionally been limited to a single-threaded execution model. Node.js Worker Threads and browser Web Workers provide low-level mechanisms for parallel execution, but developers lack high-level abstractions that capture recurring parallel structures as reusable patterns. In this paper, we present ParaWeb, a TypeScript library that implements ten parallel programming patterns for server-side Node.js, client-side browser environments, and WebGPU compute shaders. ParaWeb provides three implementation variants for each pattern: a message-passing (MP) variant based on structured cloning via postMessage, a shared-buffer (Shared) variant that uses SharedArrayBuffer with typed array views, and a GPU variant that uses WebGPU compute shaders for hardware-accelerated execution. We describe the architecture, design decisions, and pattern-specific implementation strategies, and we evaluate the performance of all thirty implementations across three data sizes. Experimental evaluation results show that the CPU-based variants achieve speedups of up to 11.6x with 16 threads for compute-bound patterns, while the GPU variants reach speedups of up to 260x for compute-bound patterns with high arithmetic intensity such as Farm, Scatter, Reduce, and Map. A case study on five image-convolution filters further shows that GPU acceleration reaches up to 414x speedup over single-threaded CPU on non-separable kernels, with consistent scaling across 1024x1024$, 2048x2048$, and 4K images.",
+    "developer": "Suejb Memeti",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Suejb Memeti"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

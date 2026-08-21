@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996740",
+  "sourceItemId": "79996740",
+  "detail": {
+    "longDescription": "I have three web apps. Located in the directories appA , appB and appC . However, application A uses some files from ../appB , and application B includes some files (a different set) from ../appC . I want all three directories appA , appB and appC to be git repos for these three apps. (These were not version controlled until now) And now I have a problem. Let's assume that application A requires ../appB/file1 and ../appB/file2 (it literally refers to the files with these paths). Is it possible to somehow include these two files in both repos for applications A and B? So that when I clone/pull the repo A, these two files also get installed (in a proper directory), along with other files for app A, and when I clone/pull repo B, these two files get installed along with other files for app B? In other words, git clone repoA should produce: somefile1 somefile2 ... ../appB/file1 ../appB/file2 and git clone repoB should produce: somefilea somefileb ... file1 file2 If it is possible, please tell me how.",
+    "developer": "raj",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "111"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

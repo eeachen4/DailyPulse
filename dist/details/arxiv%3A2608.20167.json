@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.20167",
+  "sourceItemId": "2608.20167",
+  "detail": {
+    "longDescription": "arXiv:2608.20167v1 Announce Type: new Abstract: Open-source libraries play an important role in software development by providing reusable features that expedite the development process. As libraries evolve, they release new versions that add features, fix bugs, or apply security patches. In this process, they may break the contract established with their clients by introducing breaking changes (BCs) that alter the runtime behavior and break client applications. Client-side test suites often fail to detect these BCs because of limited library coverage that does not exercise all library methods used in the client's codebase. We propose BreakGuard, an approach that generates a test suite to detect breaking changes in clients. BreakGuard statically extracts every client method (focal method) that invokes the target library method (call site), then generates tests per focal method. A test detects a BC if it passes on the pre-breaking version and fails on the breaking version. We evaluate our approach on 89 real-world breaking changes from the BUMP dataset, using 3 LLMs (GPT4o, Qwen3-coder-480B, GPT-OSS-120B) and three context levels: minimal, method, and class. Using the best-performing configuration, BreakGuard detects 30.3% of breaking changes (27 of 89) at a mean cost of roughly $0.90 USD per detected breaking change. We successfully detected BCs from different library categories (e.g., JSON libraries, logging, parsing), but we find LLM-generated tests to be more reliable for detecting crash-type breaking changes as opposed to behavioural BCs.",
+    "developer": "Rachna Raj, Benoit Baudry, Diego Elias Costa",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Rachna Raj, Benoit Baudry, Diego Elias Costa"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.21021",
+  "sourceItemId": "2607.21021",
+  "detail": {
+    "longDescription": "arXiv:2607.21021v3 Announce Type: replace Abstract: To meet the throughput demands of modern blockchain systems, protocols for State Machine Replication (SMR) increasingly have many processors disseminate blocks of transactions in parallel, with consensus then establishing a total ordering on the blocks of all producers. Such designs face a choice as to when a block may enter the ordering. Certified approaches wait for a quorum to attest a block's availability, which is robust but adds message delays to every transaction. Uncertified approaches let proposals reference blocks immediately, which is fast but degrades rapidly when referenced data must be fetched on the critical path. Raptr, the state of the art, takes a middle course, finalising the longest prefix of the leader's proposal that a quorum holds, so that no processor ever blocks or fetches. The remaining weakness is sensitivity to order: if the data behind a single early batch is withheld, the proposal finalises little or nothing, so individual faulty producers can still deny the system its optimistic path. We present Multimmit, a protocol for $n \\ge 5f+1$ processors combining a consensus layer requiring one round of voting per view with multi-chain data dissemination. Votes are cast relative to the leader's proposal, reporting per chain how far the voter can support it, and may themselves attest fresh blocks beyond it. A transaction block disseminated at time $t$ is ordered by $t+3\\delta$ in expectation and $t+2\\delta$ at best, measured from the block's dissemination rather than the leader's proposal. Degradation under faults is graceful: a faulty producer delays only its own chain's blocks, costing other chains at most a one-view wait for placement. No leader can both finalise its leader block and exclude a fresh, well-circulated block of an honest chain. Consensus traffic is tens of kilobytes per view, independent of transaction volume.",
+    "developer": "Andrew Lewis-Pye, Patrick O'Grady",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Andrew Lewis-Pye, Patrick O'Grady"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

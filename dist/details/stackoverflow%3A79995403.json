@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995403",
+  "sourceItemId": "79995403",
+  "detail": {
+    "longDescription": "I am working on a web app with the following architecture: The frontend is a React app written in TypeScript. The \"backend\" is written in Go, and compiled to WASM for distribution with the frontend. (The WASM is for performance reasons.) The Go documentation on WASM say to use Go's JS support file, which I used in my HTML-only prototype of this app, in <script src=\"wasm_exec.js\"></script> and to call it with const go = new Go(); WebAssembly.instantiateStreaming(fetch(\"main.wasm\"), go.importObject).then((result) => { go.run(result.instance); }); in a <script> in the HTML. However, now that I've ported the prototype frontend to React, I'm hitting the following snags: The provided wasm_exec.js is an anonymous function that runs on inclusion in the HTML page. This function just dumps everything into globalThis (which includes the Go class, which is what I need to access). Attempting to access globalThis from TypeScript gives a Element implicitly has an 'any' type because type 'typeof globalThis' has no index signature.ts(7017) . I'm seeing some places that say to use a .d.ts to declare global {} but then TypeScript says it can't be declared in a module. How can I trigger my Go-compiled-to-WASM from my TypeScript/React?",
+    "developer": "bigyihsuan",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "111"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

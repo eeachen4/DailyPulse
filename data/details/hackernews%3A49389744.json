@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49389744",
+  "sourceItemId": "49389744",
+  "detail": {
+    "longDescription": "Hi friends, Author here. Like to present a project I&#x27;ve been working on - Otelcol-GenAI-Sketches, a Otel connector that works on genai&#x2F;agent traces, and summarizes them (via sketches), to produce: ( ) exact request counts&#x2F;totals for tokens; ( ) distinct users&#x2F;prompts (estimates) (*) &#x27;heavy&#x27; items in terms of tokens Why does this exist: I&#x27;m a data scientist by profession, and needed to look at Otel traces, but soon ran into cardinality and portability issues, along with privacy issues (raw prompts being transported elsewhere, like for analysis in a notebook env is a no-no). I wrote a sketchlib first (llm-sketchkit) and then the connector for Otel collectors. To try it out, just: (i) git clone https:&#x2F;&#x2F;github.com&#x2F;llm-measurement&#x2F;otelcol-genai-sketches.gi... (ii) cd otelcol-genai-sketches (iii) export GENAI_SKETCH_SECRET=&quot;$(openssl rand -hex 32)&quot; (iv) make example-up (v) profit! This would start a demo app that includes a Otel collector, prometheus server&#x2F;db and a grafana dashboard. The repos contain benchmarks, accuracy results and some hopefully helpful answers to the obvious question -- why not just use Datasketches?! Either way, will be grateful if you can try it out, specially on your workloads, and give me any&#x2F;all feedback. Thanks for reading!",
+    "externalUrl": "https://github.com/llm-measurement/otelcol-genai-sketches",
+    "developer": "kwisatzh",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

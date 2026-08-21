@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995772",
+  "sourceItemId": "79995772",
+  "detail": {
+    "longDescription": "I'm trying to narrow prop types using generics, but I'm running into the following error in the terminal when I'm building the project using npm run build , and I'm not sure if I understand what it's exactly saying. How can font not exist after explicit declaration? Error in the terminal during build Type '{ font: string; weight: string; }' is not assignable to type 'IntrinsicAttributes'. Property 'font' does not exist on type 'IntrinsicAttributes'. Code used Here is my child component. --- const fontConfig = Object.freeze({ \"Inter\": [\"100\", \"200\", \"300\", \"400\", \"500\", \"600\", \"700\", \"800\", \"900\"], \"Manrope\": [\"200\", \"300\", \"400\", \"500\", \"600\", \"700\", \"800\"], } as const); type FontName = keyof typeof fontConfig; type WeightFor<F extends FontName> = (typeof fontConfig)[F][number]; type Props<F extends FontName> = { font: F, weight?: WeightFor<F> } const {font, weight} = Astro.props; --- <h1> Font Family: {font} <br /> Weight: {weight} </h1> Parent component code example. --- import Font from \"./Font.astro\"; --- <Font font=\"Manrope\" weight=\"100\" /> <Font font=\"Inter\" weight=\"100\" /> Expected outcome The idea is that <Font font=\"Manrope\" weight=\"100\" /> should fail since the \"100\" weight is invalid as it's not in the config object while <Font font=\"Inter\" weight=\"100\" /> is a valid prop combination.",
+    "developer": "Rashiq",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "68"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

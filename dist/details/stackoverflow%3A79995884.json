@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995884",
+  "sourceItemId": "79995884",
+  "detail": {
+    "longDescription": "I’m trying to clone a private GitHub repository over SSH from inside WSL2 (Ubuntu) : git clone git@github.com:username/repository.git The command starts normally: Cloning into 'repository'... but then it hangs indefinitely with no further output. The important part is that Git and SSH work correctly from Windows PowerShell . I can use the repository normally there, but the same SSH-based Git operation hangs when I run it inside WSL2. Running SSH in verbose mode inside WSL: ssh -vvv -T git@github.com shows that the TCP connection is established and SSH negotiation starts, but it usually stops around: debug3: send packet: type 30 debug1: expecting SSH2_MSG_KEX_ECDH_REPLY I also tested GitHub SSH over port 443: ssh -vvv -T -p 443 git@ssh.github.com and saw similar behavior. In some attempts the connection progressed further into authentication, but then ended with: Connection reset by <remote host> port 443 Things I have already tried: SSH over both ports 22 and 443 Verified and added my SSH public key to GitHub Forced curve25519-sha256 as the key-exchange algorithm Tried IPQoS=none Changed WSL MTU from 1500 to 1350 Tested WSL2 NAT and mirrored networking Tested different SSH clients Verified TCP connectivity to GitHub ports 22 and 443 Reverted the temporary networking/SSH changes afterward HTTPS works correctly inside WSL. For example: git ls-remote https://github.com/username/repository.git returns the repository refs immediately. So the key difference is: Windows PowerShell + SSH Git operations -> works WSL2 + SSH Git operations -> hangs WSL2 + HTTPS Git operations -> works What could cause SSH connections from WSL2 to establish successfully but then hang during key exchange ( SSH2_MSG_KEX_ECDH_REPLY ) or get reset during authentication, while the same Git/SSH workflow works correctly from Windows PowerShell? Could this be related to WSL2 networking, firewall rules, MTU/fragmentation, VPN/filtering, or another network-level issue? Also, this is not limited to git clone . Almost all Git commands (push, pull, ...)inside WSL either do not work at all, or, when they do eventually complete, they can take around 10–15 minutes for operations that should normally finish within seconds.",
+    "developer": "Nima",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "116"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}
