@@ -17,7 +17,7 @@ export default function FeedCard({ item, index }: { item: FeedItem; index: numbe
       <div className="font-mono text-xs tabular-nums text-muted">{String(index + 1).padStart(2, '0')}</div>
 
       <div className="relative h-16 w-16 overflow-hidden border border-line bg-cream sm:h-[72px] sm:w-[72px]">
-        <span className="absolute inset-0 flex items-center justify-center font-mono text-[11px] font-semibold text-muted">
+        <span className="absolute inset-0 flex items-center justify-center font-mono text-sm font-bold tracking-[0.08em] text-muted sm:text-base">
           {meta.short}
         </span>
         {item.thumbnail && (

@@ -16,11 +16,30 @@ function searchQuery(queries: string[]): string {
 
 interface ArxivEntry {
   id: string;
+  url: string;
   title: string;
   summary?: string;
   publishedAt?: string;
   authors: string[];
   categories: string[];
+}
+
+function extractArxivId(value: string): string | undefined {
+  const normalized = clean(value);
+  if (!normalized) return undefined;
+
+  const oaiMatch = normalized.match(/^oai:arxiv\.org:(.+)$/i);
+  if (oaiMatch?.[1]) return oaiMatch[1].replace(/\.pdf$/i, '');
+
+  const urlMatch = normalized.match(/arxiv\.org\/(?:abs|pdf)\/([^?#]+)/i);
+  if (urlMatch?.[1]) return urlMatch[1].replace(/\.pdf$/i, '');
+
+  return normalized.includes('/') || /^\d{4}\.\d{4,5}(?:v\d+)?$/i.test(normalized) ? normalized : undefined;
+}
+
+function canonicalArxivUrl(value: string, id: string): string {
+  const extractedId = extractArxivId(value) ?? id;
+  return `https://arxiv.org/abs/${extractedId}`;
 }
 
 async function waitForRateLimit(): Promise<void> {
@@ -67,13 +86,16 @@ function parseEntries(xml: string, limit: number): ArxivEntry[] {
   nodes.each((index, element) => {
     if (index >= limit) return;
     const node = $(element);
-    const id = clean(node.find('id').first().text()) || clean(node.find('guid').first().text()) || clean(node.find('link').first().text());
+    const linkNode = node.find('link').first();
+    const link = clean(linkNode.text()) || clean(linkNode.attr('href') || '');
+    const rawId = clean(node.find('id').first().text()) || link || clean(node.find('guid').first().text());
+    const id = extractArxivId(rawId);
     const title = clean(node.find('title').first().text());
     const summary = clean(node.find('summary, description').first().text());
     const publishedAt = clean(node.find('published, pubDate, dc\\:date').first().text()) || undefined;
     const authors = node.find('author name, dc\\:creator').map((_, author) => clean($(author).text())).get().filter(Boolean);
     const categories = node.find('category').map((_, categoryNode) => $(categoryNode).attr('term') || clean($(categoryNode).text())).get().filter(Boolean);
-    if (id && title) entries.push({ id: id.replace('http://', 'https://'), title, summary, publishedAt, authors, categories });
+    if (id && title) entries.push({ id, url: canonicalArxivUrl(link || rawId, id), title, summary, publishedAt, authors, categories });
   });
   return entries;
 }
@@ -107,7 +129,7 @@ export async function fetchArxiv(category: CategoryDef): Promise<FeedItem[]> {
       title: entry.title,
       description: entry.summary,
       longDescription: entry.summary,
-      url: entry.id,
+      url: entry.url,
       source: 'arxiv',
       category: category.label,
       categoryId: category.id,
