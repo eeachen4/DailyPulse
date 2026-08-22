@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117134984664357370",
+  "sourceItemId": "mastodon.social/117134984664357370",
+  "detail": {
+    "longDescription": "#SQL knowers: There's something I don't understand, and if you can explain I would appreciate it. I got something right, but I don't know why it worked.\n\nI just did an exercise (in Datacamp) where I needed to inner join some columns selected from two separate tables.\n\nTable: cities (columns selected: name, country_code)\nTable: countries (columns selected: name, region, code)\n(As shown below, the column for matching had a different name in each table)\n\nThis worked:\n\n     SELECT cities.name AS city,\n             countries.name AS country, \n             countries.region \n     FROM cities\n     INNER JOIN countries\n     ON cities.country_code = countries.code;\n\nbut I don't understand exactly why, or why something that seems more logical to me did not work. The SELECT statement names three columns, one from *cities* and two others from *countries*, followed by the statement *FROM cities* . It's as if I'm saying \"select these three columns from the *cities* table even though two of them aren't even in there\".\n\nI understand that the columns are uniquely identified by prepending the table name, so I don't think it's any sort of problem; I just would have thought (and did, incorrectly) that I would need two SELECT statements, one for the columns from the first table and another for the columns in the second. Doing it the way it is shown above seems very weird, which makes me realize I don't understand how some basic SQL things work (I'm fairly new to SQL).\n\nCan someone explain what's going on in a way that maybe helps me not screw this up in the future? Maybe a way that shows the mechanics (without too much detail; if you start talking about memory registers or machine code, I'm cooked).\n\n#help #coding #programming",
+    "developer": "@guyjantic@infosec.exchange",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}
