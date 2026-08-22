@@ -5,8 +5,25 @@ import { CATEGORY_META_BY_ID } from '../../categories';
 import { categoryIdsFor, primaryCategoryId } from '../../dataModel';
 import { formatNumber, formatDate } from '../format';
 import ExpandableText from './ExpandableText';
+import { displayDescription, displayTitle, type ContentLanguage } from '../preferences';
 
-export default function DetailPage({ item, items }: { item?: FeedItem; items: FeedItem[] }) {
+export default function DetailPage({
+  item,
+  items,
+  language,
+  isFavorite,
+  detailState,
+  onToggleFavorite,
+  onShare,
+}: {
+  item?: FeedItem;
+  items: FeedItem[];
+  language: ContentLanguage;
+  isFavorite: boolean;
+  detailState: 'idle' | 'loading' | 'loaded' | 'error';
+  onToggleFavorite: (item: FeedItem) => void;
+  onShare: (item: FeedItem) => void;
+}) {
   const screenshotCount = item?.screenshots?.length ?? 0;
   const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
 
@@ -87,10 +104,14 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
               <span className="text-ink">{meta.label}</span>
               <span style={{ color: cat.hex }}>{cat.label}</span>
               {item.publishedAt && <span>{formatDate(item.publishedAt)}</span>}
+              {item.stale && <span className="border border-accent/50 px-2 py-1 text-accent">Archived signal · {item.staleFrom ? formatDate(item.staleFrom) : 'recent snapshot'}</span>}
             </div>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-6xl">{item.title}</h1>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-6xl">{displayTitle(item, language)}</h1>
             {item.developer && <p className="mt-5 font-mono text-xs uppercase tracking-wider text-muted">By {item.developer}</p>}
-            {item.description && <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{item.description}</p>}
+            {displayDescription(item, language) && <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{displayDescription(item, language)}</p>}
+
+            {detailState === 'loading' && <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-muted">Loading extended detail…</p>}
+            {detailState === 'error' && <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-muted">Extended detail is unavailable; the captured summary remains readable.</p>}
 
             <div className="mt-8 flex flex-wrap gap-2">
               {item.tags?.map((tag) => <span key={tag} className="border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-muted">{tag}</span>)}
@@ -150,6 +171,11 @@ export default function DetailPage({ item, items }: { item?: FeedItem; items: Fe
             <div className="mt-4 flex flex-col gap-2">
               <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between bg-accent px-4 font-mono text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent-dark">Open source <span>↗</span></a>
               {externalUrl && <a href={externalUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between border border-line px-4 font-mono text-xs uppercase tracking-wider text-muted hover:border-accent hover:text-accent">Open external link <span>↗</span></a>}
+              {item.topicId && <a href={'#/topic/' + encodeURIComponent(item.topicId)} className="flex min-h-12 items-center justify-between border border-line px-4 font-mono text-xs uppercase tracking-wider text-muted hover:border-accent hover:text-accent">Open topic trail <span>→</span></a>}
+              <div className="grid grid-cols-2 gap-2">
+                <button type="button" onClick={() => onToggleFavorite(item)} className={`min-h-12 border font-mono text-xs uppercase tracking-wider ${isFavorite ? 'border-accent bg-accent text-white' : 'border-line text-muted hover:border-accent hover:text-accent'}`}>{isFavorite ? 'Saved' : 'Save'}</button>
+                <button type="button" onClick={() => onShare(item)} className="min-h-12 border border-line font-mono text-xs uppercase tracking-wider text-muted hover:border-accent hover:text-accent">Share</button>
+              </div>
             </div>
             <p className="mt-4 break-all font-mono text-[10px] leading-5 text-muted">{item.url}</p>
           </aside>

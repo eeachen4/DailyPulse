@@ -18,6 +18,8 @@ import { fetchRss } from './fetch/rss';
 import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
+import { applySourceHealth } from './sourceHealth';
+import { translateFeedItems } from './translation';
 import type { FeedItem, FetchRun } from './types';
 
 /**
@@ -30,12 +32,20 @@ export async function main(): Promise<void> {
   if (!phToken && !apiKey) {
     console.warn('⚠️  未配置 PRODUCT_HUNT_TOKEN / APIFY_API_KEY，Product Hunt 将被跳过（其余源不受影响）。');
   }
+  if (!(process.env.REDDIT_CLIENT_ID && process.env.REDDIT_CLIENT_SECRET) && !process.env.REDDIT_PROXY) {
+    console.warn('⚠️  未配置 Reddit OAuth 或 REDDIT_PROXY；CI 数据中心出口可能持续 403。');
+  }
+  if (!(process.env.BSKY_IDENTIFIER && process.env.BSKY_APP_PASSWORD)) {
+    console.warn('⚠️  未配置 Bluesky App Password；公共 AppView 被 CI 出口限制时无法切换认证链路。');
+  }
+  if (!(process.env.GITHUB_API_TOKEN || process.env.GITHUB_TOKEN)) {
+    console.warn('⚠️  未配置 GitHub Token，将使用较低的匿名 API 限额。');
+  }
 
   console.log(`DailyPulse 开始采集…（${new Date().toISOString()}）`);
 
   const collected: FeedItem[] = [];
   const runs: FetchRun[] = [];
-  let successfulTasks = 0;
   for (const category of CATEGORIES) {
     console.log(`\n▶ 类别「${category.label}」`);
     const tasks: Array<[string, () => Promise<FeedItem[]>]> = [
@@ -58,7 +68,6 @@ export async function main(): Promise<void> {
       const runFetchedAt = new Date().toISOString();
       try {
         const items = await fn();
-        successfulTasks += 1;
         runs.push({
           source: source as FetchRun['source'],
           categoryId: category.id,
@@ -87,21 +96,30 @@ export async function main(): Promise<void> {
     }
   }
 
-  // 所有源都失败或返回空结果时，禁止用空数据覆盖上一次有效快照。
-  if (successfulTasks === 0 || collected.length === 0) {
-    throw new Error('本次采集没有得到任何数据，已保留上一份 daily.json');
+  const healthResult = await applySourceHealth(collected, runs);
+  for (const entry of healthResult.health) {
+    const fallback = entry.fallbackUsed ? `，回退 ${entry.publishedCount} 条` : '';
+    console.log(
+      `[health/${entry.source}] ${entry.status} · 当前 ${entry.currentCount}/${entry.minCount}${fallback} · 连续失败 ${entry.consecutiveFailures}`,
+    );
+  }
+
+  // 当前数据和历史保底都为空时，禁止覆盖上一份 daily.json。
+  if (healthResult.currentItems.length === 0 && healthResult.fallbackItems.length === 0) {
+    throw new Error('本次采集没有得到任何数据，且没有可用历史保底，已保留上一份 daily.json');
   }
 
   // 从来源网页抓取详情（完整描述 / 截图 / 评分等），可关闭
-  let allItems = collected;
-  if (process.env.SCRAPE_DETAILS !== 'false' && allItems.length > 0) {
-    console.log(`[scrape] 开始从来源网站抓取详情（${allItems.length} 条）…`);
-    allItems = await enrichFeed(allItems);
+  let currentItems = healthResult.currentItems;
+  if (process.env.SCRAPE_DETAILS !== 'false' && currentItems.length > 0) {
+    console.log(`[scrape] 开始从来源网站抓取详情（${currentItems.length} 条）…`);
+    currentItems = await enrichFeed(currentItems);
     console.log('[scrape] 详情抓取完成');
   }
+  const allItems = await translateFeedItems([...currentItems, ...healthResult.fallbackItems]);
 
   const fetchedAt = new Date().toISOString();
-  const filePath = await saveData(allItems, fetchedAt, runs);
+  const filePath = await saveData(allItems, fetchedAt, runs, healthResult.health);
   console.log(`✅ 已保存 ${allItems.length} 条数据到 ${filePath}`);
 
   await generateHtml();

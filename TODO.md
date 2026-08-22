@@ -5,15 +5,15 @@
 
 ## 状态总览
 
-已完成：项目骨架、十三平台按类别采集（App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News、GitHub、Hugging Face、Stack Overflow、arXiv、官方 RSS）、七个兴趣类别、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、详情页（完整描述 / 截图 / 相关推荐 / 展开收起）、静态页生成、React 前端、GitHub Actions 定时任务与 Pages 自动部署、本地构建与类型检查验证。
+已完成：项目骨架、十三平台按类别采集、七个兴趣类别、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、类别级健康门禁与限时保底、详情增量缓存、话题聚类、每日摘要、双语搜索、个人偏好、收藏/已读/分享、RSS/JSON、PR CI、部署二次门禁与外部告警。
 
 ---
 
 ## 一、上线前待办
 
-- [ ] **配置 Product Hunt Token（Secret，推荐）**
+- [x] **配置 Product Hunt Token（Secret，推荐）**
   - 本地：`cp .env.example .env`，填入 `PRODUCT_HUNT_TOKEN`（你的 zsh 已有）。
-  - 线上：仓库 **Settings → Secrets and variables → Actions** 添加 `PRODUCT_HUNT_TOKEN`。
+  - 线上：仓库已配置 `PRODUCT_HUNT_TOKEN`。
   - 未配置时 Product Hunt 回退 Apify（需 `APIFY_API_KEY`）。
   - App Store / Google Play / Bluesky / Mastodon / GDELT / Hacker News / Hugging Face / Stack Overflow / arXiv / RSS 无需必填 key；Reddit 推荐配置 OAuth，GitHub 推荐配置 Token。
 
@@ -36,18 +36,21 @@
 - [ ] **cron 时区与首次触发延迟**
   - GitHub Actions `schedule` 用 UTC，`'0 0 * * *'` 即北京时间 8:00；首次触发可能延迟，属正常行为。
 
-- [ ] **详情抓取耗时**
-  - 多源合计条目较多时逐个抓取来源页可能需要数分钟；可用 `SCRAPE_DETAILS=false` 关闭、`SCRAPE_DETAILS_CONCURRENCY` 调并发、或后续加缓存。
+- [x] **详情抓取耗时**
+  - 已加入详情 TTL 缓存、过期缓存失败保底和无引用详情清理；可用 `SCRAPE_DETAILS_CACHE_DAYS`、`SCRAPE_DETAILS_CONCURRENCY` 调整。
 
 ---
 
 ## 三、可选优化
 
 - [x] **每日数据历史归档**：`data/history/YYYY-MM-DD.json` 保存摘要快照，`index.json` 提供日期索引，前端支持「往期」切换。
-- [ ] **采集失败告警**：接入飞书 / 邮件 / Telegram，连续失败时提醒。
+- [x] **采集健康门禁**：来源低于最低产量时回退上一份有效数据；关键来源连续超限时 Actions 失败并阻止退化快照部署。
+- [x] **外部失败告警**：支持通用 Webhook、飞书与 Telegram；配置相应 Secrets 后启用。
 - [x] **重试与退避**：Apify 轮询已加入有限次数重试；详情抓取失败保留原始数据。
 - [x] **列表分页 / 懒加载**：列表默认分批展示并支持「加载更多」。
 - [x] **前端增强**：关键词搜索、深色模式、详情页上一项/下一项已完成。
+- [x] **话题与每日摘要**：跨来源语义聚类、话题详情、今日三件事、为什么热和昨日趋势。
+- [x] **个人化与开放订阅**：收藏、已读、分享、类别/关键词/来源权重、RSS 和 JSON 导出。
 - [ ] **gh-pages 分支部署**：改用 `peaceiris/actions-gh-pages` 推独立 `gh-pages` 分支，主分支更干净。
 
 ---

@@ -13,6 +13,8 @@ export interface DetailFile {
   schemaVersion: number;
   id: string;
   sourceItemId?: string;
+  fetchedAt?: string;
+  sourceUrl?: string;
   detail: FeedDetail;
 }
 
@@ -161,7 +163,20 @@ export function withHeatScores(items: FeedItem[]): FeedItem[] {
 
 export function toSummary(item: FeedItem): FeedItem {
   const detail = detailForItem(item);
-  const { longDescription, externalUrl, screenshots, rating, price, developer, comments, stats, score, ...summary } = item;
+  const {
+    longDescription,
+    externalUrl,
+    screenshots,
+    rating,
+    price,
+    developer,
+    comments,
+    stats,
+    score,
+    detailFetchedAt,
+    detailSourceUrl,
+    ...summary
+  } = item;
   const sourceItemId = sourceItemIdFor(item);
   const id = canonicalId(item.source, sourceItemId);
   return {
@@ -172,7 +187,7 @@ export function toSummary(item: FeedItem): FeedItem {
     categoryIds: categoryIdsFor(item),
     metrics: metricsFor(item),
     heatScore: item.heatScore,
-    detailRef: hasDetail(detail) ? detailRefFor(id) : undefined,
+    detailRef: hasDetail(detail) ? detailRefFor(id) : item.detailRef,
   };
 }
 
@@ -182,6 +197,8 @@ export function toDetailFile(item: FeedItem): DetailFile {
     schemaVersion: DATA_SCHEMA_VERSION,
     id: canonicalId(item.source, sourceItemId),
     sourceItemId,
+    fetchedAt: item.detailFetchedAt,
+    sourceUrl: item.detailSourceUrl ?? item.url,
     detail: detailForItem(item),
   };
 }

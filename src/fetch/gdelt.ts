@@ -47,28 +47,57 @@ function normalize(article: GdeltArticle, category: CategoryDef, query: string, 
 }
 
 async function waitForRateLimit(): Promise<void> {
-  const waitMs = Math.max(0, 5_500 - (Date.now() - lastRequestAt));
+  const configured = Number(process.env.GDELT_MIN_INTERVAL_MS || 12_000);
+  const intervalMs = Number.isFinite(configured) ? Math.max(5_500, configured) : 12_000;
+  const waitMs = Math.max(0, intervalMs - (Date.now() - lastRequestAt));
   if (waitMs > 0) await new Promise((resolve) => setTimeout(resolve, waitMs));
   lastRequestAt = Date.now();
+}
+
+function retryDelay(error: unknown, attempt: number): number {
+  if (axios.isAxiosError(error)) {
+    const retryAfter = Number(error.response?.headers?.['retry-after']);
+    if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1_000;
+  }
+  return 15_000 * 2 ** attempt;
+}
+
+async function requestArticles(query: string, limit: number): Promise<GdeltArticle[]> {
+  const configured = Number(process.env.GDELT_RETRIES || 2);
+  const retries = Number.isInteger(configured) ? Math.max(0, configured) : 2;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    await waitForRateLimit();
+    try {
+      const response = await axios.get<{ articles?: GdeltArticle[] }>(API, {
+        params: {
+          query,
+          mode: 'artlist',
+          maxrecords: limit,
+          timespan: '1day',
+          sort: 'HybridRel',
+          format: 'json',
+        },
+        timeout: 45_000,
+        headers: { Accept: 'application/json', 'User-Agent': 'DailyPulse/1.0' },
+      });
+      return response.data?.articles ?? [];
+    } catch (error) {
+      const status = axios.isAxiosError(error) ? error.response?.status : undefined;
+      const retryable = status === 429 || (status !== undefined && status >= 500);
+      if (!retryable || attempt === retries) throw error;
+      const delay = retryDelay(error, attempt);
+      console.warn(`[gdelt] 请求受限（${status}），${delay}ms 后重试（${attempt + 1}/${retries}）`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+  return [];
 }
 
 export async function fetchGdelt(category: CategoryDef): Promise<FeedItem[]> {
   const limit = Math.min(250, Math.max(1, Number(process.env.GDELT_LIMIT || 25)));
   const articles = new Map<string, { article: GdeltArticle; query: string; rank: number }>();
   for (const query of category.gdeltQueries) {
-    await waitForRateLimit();
-    const response = await axios.get<{ articles?: GdeltArticle[] }>(API, {
-      params: {
-        query,
-        mode: 'artlist',
-        maxrecords: limit,
-        timespan: '1day',
-        sort: 'HybridRel',
-        format: 'json',
-      },
-      timeout: 45_000,
-    });
-    (response.data?.articles ?? []).forEach((article, index) => {
+    (await requestArticles(query, limit)).forEach((article, index) => {
       if (article.url && !articles.has(article.url)) articles.set(article.url, { article, query, rank: index });
     });
   }

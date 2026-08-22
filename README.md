@@ -24,6 +24,13 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 - 🔥 **可比热度**：各平台原始指标保留在 `metrics.rawScore`，同时按来源归一化为 0–100 的 `heatScore`，用于跨平台排序。
 - 🖼️ **摘要 / 详情分离**：列表只加载 `data/daily.json` 的轻量摘要，完整描述、截图和附加信息写入 `data/details/`，点击详情时按 `detailRef` 懒加载。
 - 🗓️ **历史快照**：每日摘要写入 `data/history/YYYY-MM-DD.json`，`data/history/index.json` 提供日期索引，前端支持往期切换。
+- 🩺 **来源健康与保底**：按来源检查最低产量和连续失败次数；来源异常时复用上一份有效数据并标记为 `stale`，关键来源连续超限会阻止退化快照部署。
+- ♻️ **增量详情缓存**：详情默认缓存 7 天，仅抓取新增或过期条目；重新抓取失败时继续使用旧详情，并自动清理保留期外的历史与无引用详情。
+- 🧭 **跨来源话题**：用标题语义与类别边界聚合同一事件的产品、讨论、新闻和论文，并提供独立话题详情页。
+- 🗞️ **每日编辑摘要**：自动生成「今日三件事」「为什么热」和相对昨日的趋势变化。
+- 🌐 **双语内容**：支持 LibreTranslate 兼容接口的增量中文翻译与缓存，搜索同时覆盖中英文。
+- ★ **个人信号桌**：收藏、已读、分享、类别开关、关注词、屏蔽词和来源权重均保存在浏览器本地。
+- 📡 **开放订阅**：构建时生成 `rss.xml` 与 `feed.json`。
 - 🔍 **筛选与排序**：按类别、按平台筛选，按热度 / 排名 / 标题 / 时间排序。
 - 🎨 **编辑风设计**：暖纸色底 + 近黑墨色 + 等宽数据字体 + 细线分隔（「Morning Pulse」）。
 - ⏰ **定时自动化**：GitHub Actions cron 每天 UTC 0:00（北京时间 8:00）自动采集、回写并部署。
@@ -172,11 +179,13 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `npm run build:all` | 构建 + 注入数据（生产链路） |
 | `npm run typecheck` | TypeScript 类型检查 |
 | `npm run validate:data` | 校验 schema、ID、类别、热度和详情文件引用 |
+| `npm run check:health` | 输出来源健康表并执行关键来源连续失败门禁 |
+| `npm test` | 运行话题、偏好和健康保底自动化测试 |
 | `npm run preview` | 本地预览 `dist/` 构建产物 |
 
-> **提示**：未配置 `APIFY_API_KEY` 时，`npm run fetch` 仍会抓取 Reddit（无需认证），其余源跳过并在日志中提示。
+> **提示**：绝大多数来源无需密钥；Product Hunt 优先使用官方 Token。CI 中 Reddit 和 Bluesky 容易受数据中心出口限制，建议配置对应凭据。
 
-> **详情抓取**：采集完成后会自动并发抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分、价格、作者等，供详情页展示。`SCRAPE_DETAILS=false` 关闭，`SCRAPE_DETAILS_CONCURRENCY` 调并发；抓取失败自动保留原数据。
+> **详情抓取**：采集完成后会自动并发抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分、价格、作者等。详情默认缓存 7 天；`SCRAPE_DETAILS=false` 关闭，`SCRAPE_DETAILS_CONCURRENCY` 调并发，`SCRAPE_DETAILS_CACHE_DAYS` 调 TTL；抓取失败自动使用缓存或原数据。
 
 ## 🔑 环境变量参考
 
@@ -194,6 +203,8 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `BSKY_APP_PASSWORD` | 可选 | Bluesky App Password（不要使用主账号密码） |
 | `MASTODON_LIMIT` | 可选 | 每类别 Mastodon 采集数（默认 25） |
 | `GDELT_LIMIT` | 可选 | 每类别 GDELT 采集数（默认 25） |
+| `GDELT_MIN_INTERVAL_MS` | 可选 | GDELT 请求最小间隔（默认 12000ms） |
+| `GDELT_RETRIES` | 可选 | GDELT 429 / 5xx 重试次数（默认 2） |
 | `HACKER_NEWS_LIMIT` | 可选 | 每类别 Hacker News 采集数（默认 25） |
 | `GITHUB_API_TOKEN` | 可选 | GitHub API Token（提高公共 API 限额） |
 | `GITHUB_LIMIT` | 可选 | 每类别 GitHub 采集数（默认 25） |
@@ -209,6 +220,17 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `REDDIT_PROXY` | 可选 | Reddit 代理出口（备用） |
 | `SCRAPE_DETAILS` | 可选 | 是否抓取来源网页详情（默认 `true`） |
 | `SCRAPE_DETAILS_CONCURRENCY` | 可选 | 详情抓取并发数（默认 4） |
+| `SCRAPE_DETAILS_CACHE_DAYS` | 可选 | 详情缓存有效期（默认 7 天） |
+| `DATA_RETENTION_DAYS` | 可选 | 历史快照保留期（默认 30 天） |
+| `SOURCE_HEALTH_MIN_<SOURCE>` | 可选 | 覆盖指定来源的最低采集条数，例如 `SOURCE_HEALTH_MIN_GITHUB` |
+| `SOURCE_HEALTH_MAX_FAILURES_<SOURCE>` | 可选 | 覆盖指定来源允许的连续失败次数 |
+| `SOURCE_HEALTH_MIN_CATEGORY_<SOURCE>` | 可选 | 覆盖指定来源每个类别的最低采集条数 |
+| `SOURCE_HEALTH_MAX_STALE_DAYS` | 可选 | 历史保底最长可使用天数（默认按来源 3–7 天） |
+| `TRANSLATION_API_URL` | 可选 | LibreTranslate 兼容服务地址；不配置时跳过新增翻译 |
+| `TRANSLATION_API_KEY` | 可选 | 翻译实例需要认证时使用 |
+| `TRANSLATION_MAX_ITEMS_PER_RUN` | 可选 | 单次最多新增翻译条数（默认 300） |
+| `TRANSLATION_CONCURRENCY` | 可选 | 翻译请求并发数（默认 3） |
+| `SITE_URL` | 可选 | RSS channel 对应的网站地址 |
 
 ### App Store / Google Play（无需 key）
 
@@ -247,7 +269,13 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 工作流文件：`.github/workflows/daily-fetch.yml`
 
 - 触发：`schedule: cron '0 0 * * *'`（**UTC 0:00 = 北京时间 8:00**）+ `workflow_dispatch` 手动触发。
-- 流程：Checkout → 装依赖 → `npm run fetch`（采集 + 详情抓取）→ `npm run build:all` → 校验 → 提交并推送 `data/daily.json`、`data/details/`、`data/history/` 与 `dist/`。
+- 流程：Checkout → 装依赖 → 采集与类别级保底 → 增量详情/翻译 → 话题与摘要 → 构建 → 数据校验 → 来源健康检查 → 回写数据 → 健康门禁 → 失败告警。Pages 部署前会再次执行数据与健康门禁，避免后续普通 push 误部署退化快照。
+
+### 翻译与告警
+
+翻译使用 LibreTranslate 兼容的 `/translate` 接口。可自托管后把地址写入仓库 Variable `TRANSLATION_API_URL`，需要认证时再配置 `TRANSLATION_API_KEY` Secret。翻译结果增量缓存在 `data/translations.json`。
+
+外部告警支持通用 `ALERT_WEBHOOK_URL`、飞书 `FEISHU_WEBHOOK_URL`，或 Telegram 的 `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`；均通过仓库 Secrets 配置。
 
 ### 配置 Secrets
 

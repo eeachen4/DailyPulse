@@ -4,6 +4,7 @@ import type { FeedData, FeedItem, Source } from '../types';
 import { DATA_SCHEMA_VERSION } from '../types';
 import { CATEGORIES } from '../categories';
 import { canonicalizeItems, detailSlug, toDetailFile, toSummary, withHeatScores } from '../dataModel';
+import { buildIntelligence } from '../intelligence';
 
 // 每个类别下各源生成的示例条数（真实采集数量由各源环境变量控制）
 const COUNTS: Record<Source, number> = {
@@ -268,12 +269,16 @@ function buildItems(): FeedItem[] {
 async function main(): Promise<void> {
   const items = buildItems();
   const normalizedItems = withHeatScores(canonicalizeItems(items));
-  const summaries = normalizedItems.map(toSummary);
+  const fetchedAt = new Date().toISOString();
+  const intelligence = buildIntelligence(normalizedItems, fetchedAt);
+  const summaries = intelligence.items.map(toSummary);
   const data: FeedData = {
     schemaVersion: DATA_SCHEMA_VERSION,
-    fetchedAt: new Date().toISOString(),
+    fetchedAt,
     isSample: true,
     items: summaries,
+    topics: intelligence.topics,
+    brief: intelligence.brief,
   };
   const dir = path.resolve(process.cwd(), 'data');
   await mkdir(dir, { recursive: true });
@@ -282,7 +287,7 @@ async function main(): Promise<void> {
   const detailsDir = path.join(dir, 'details');
   await mkdir(detailsDir, { recursive: true });
   await Promise.all(
-    normalizedItems.map((item) =>
+    intelligence.items.map((item) =>
       writeFile(
         path.join(detailsDir, detailSlug(item.id) + '.json'),
         JSON.stringify(toDetailFile(item), null, 2),

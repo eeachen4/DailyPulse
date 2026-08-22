@@ -103,6 +103,10 @@ export async function fetchProductHunt(apiKey: string, category: CategoryDef): P
       .map((n, i) => normalizeGraphQL(n, i, category.label));
 
     if (items.length > 0) return items;
+    if (!apiKey) {
+      console.warn('[producthunt] GraphQL 无结果，且未配置 APIFY_API_KEY，返回空结果交由来源保底处理');
+      return [];
+    }
     console.warn('[producthunt] GraphQL 无结果，回退 Apify');
   }
 
@@ -158,6 +162,7 @@ function normalizeGraphQL(n: PhNode, i: number, categoryLabel: string): FeedItem
 /* ------------------------------ Apify 回退 ------------------------------ */
 
 async function fetchViaApify(apiKey: string, category: CategoryDef): Promise<FeedItem[]> {
+  if (!apiKey) throw new Error('Product Hunt 回退需要 APIFY_API_KEY');
   const actorId = process.env.APIFY_PRODUCT_HUNT_ACTOR_ID || DEFAULT_ACTOR;
   const maxItems = Number(process.env.PRODUCT_HUNT_MAX_ITEMS || 20);
 
