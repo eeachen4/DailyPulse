@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, readdir, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, copyFile, unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { FeedData, FeedItem } from '../types';
@@ -48,8 +48,8 @@ async function syncHistory(distDir: string): Promise<void> {
   const targetDir = path.join(distDir, 'history');
   try {
     const files = (await readdir(sourceDir)).filter((file) => file.endsWith('.json'));
-    if (!files.length) return;
     await mkdir(targetDir, { recursive: true });
+    await removeExtraJsonFiles(targetDir, new Set(files));
     await Promise.all(files.map((file) => copyFile(path.join(sourceDir, file), path.join(targetDir, file))));
     console.log('[generateHtml] 已同步 ' + files.length + ' 份历史快照');
   } catch {
@@ -62,13 +62,18 @@ async function syncDetails(distDir: string): Promise<void> {
   const targetDir = path.join(distDir, 'details');
   try {
     const files = (await readdir(sourceDir)).filter((file) => file.endsWith('.json'));
-    if (!files.length) return;
     await mkdir(targetDir, { recursive: true });
+    await removeExtraJsonFiles(targetDir, new Set(files));
     await Promise.all(files.map((file) => copyFile(path.join(sourceDir, file), path.join(targetDir, file))));
     console.log('[generateHtml] 已同步 ' + files.length + ' 个详情文件');
   } catch {
     // 首次采集前没有详情目录，不影响当前页面生成。
   }
+}
+
+async function removeExtraJsonFiles(targetDir: string, expected: Set<string>): Promise<void> {
+  const existing = (await readdir(targetDir)).filter((file) => file.endsWith('.json'));
+  await Promise.all(existing.filter((file) => !expected.has(file)).map((file) => unlink(path.join(targetDir, file))));
 }
 
 async function readData(): Promise<FeedData> {
@@ -82,6 +87,7 @@ async function readData(): Promise<FeedData> {
       isSample: parsed.isSample,
       items: Array.isArray(parsed.items) ? parsed.items : [],
       runs: Array.isArray(parsed.runs) ? parsed.runs : undefined,
+      sourceHealth: Array.isArray(parsed.sourceHealth) ? parsed.sourceHealth : undefined,
     };
   } catch {
     return { fetchedAt: null, items: [] };

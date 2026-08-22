@@ -5,7 +5,14 @@ import type { FeedItem } from '../types';
 const API = 'https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts';
 const SESSION_API = 'https://bsky.social/xrpc/com.atproto.server.createSession';
 
-let sessionToken: string | undefined;
+interface BlueskySession {
+  accessJwt?: string;
+  didDoc?: {
+    service?: Array<{ id?: string; type?: string; serviceEndpoint?: string }>;
+  };
+}
+
+let session: { token: string; endpoint: string } | undefined;
 
 interface BlueskyPost {
   uri?: string;
@@ -26,14 +33,34 @@ function postRkey(uri: string): string {
   return uri.split('/').pop() ?? uri;
 }
 
-async function authHeaders(): Promise<Record<string, string>> {
-  if (sessionToken) return { Authorization: `Bearer ${sessionToken}` };
+function pdsEndpoint(data: BlueskySession): string {
+  const service = data.didDoc?.service?.find((entry) => entry.id?.endsWith('#atproto_pds'));
+  return service?.serviceEndpoint?.replace(/\/$/, '') || 'https://bsky.social';
+}
+
+async function requestContext(): Promise<{ endpoint: string; headers: Record<string, string> }> {
+  if (session) {
+    return {
+      endpoint: `${session.endpoint}/xrpc/app.bsky.feed.searchPosts`,
+      headers: {
+        Authorization: `Bearer ${session.token}`,
+        'atproto-proxy': 'did:web:api.bsky.app#bsky_appview',
+      },
+    };
+  }
   const identifier = process.env.BSKY_IDENTIFIER;
   const password = process.env.BSKY_APP_PASSWORD;
-  if (!identifier || !password) return {};
-  const response = await axios.post<{ accessJwt?: string }>(SESSION_API, { identifier, password }, { timeout: 30_000 });
-  sessionToken = response.data?.accessJwt;
-  return sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {};
+  if (!identifier || !password) return { endpoint: API, headers: {} };
+  const response = await axios.post<BlueskySession>(SESSION_API, { identifier, password }, { timeout: 30_000 });
+  if (!response.data?.accessJwt) throw new Error('Bluesky 登录成功但未返回 accessJwt');
+  session = { token: response.data.accessJwt, endpoint: pdsEndpoint(response.data) };
+  return {
+    endpoint: `${session.endpoint}/xrpc/app.bsky.feed.searchPosts`,
+    headers: {
+      Authorization: `Bearer ${session.token}`,
+      'atproto-proxy': 'did:web:api.bsky.app#bsky_appview',
+    },
+  };
 }
 
 function normalize(post: BlueskyPost, category: CategoryDef, query: string): FeedItem | null {
@@ -80,9 +107,9 @@ function normalize(post: BlueskyPost, category: CategoryDef, query: string): Fee
 export async function fetchBluesky(category: CategoryDef): Promise<FeedItem[]> {
   const limit = Math.min(100, Math.max(1, Number(process.env.BLUESKY_LIMIT || 25)));
   const posts = new Map<string, { post: BlueskyPost; query: string }>();
-  const headers = await authHeaders();
+  const { endpoint, headers } = await requestContext();
   for (const query of category.blueskyQueries) {
-    const response = await axios.get<{ posts?: BlueskyPost[] }>(API, {
+    const response = await axios.get<{ posts?: BlueskyPost[] }>(endpoint, {
       params: { q: query, limit, sort: 'top' },
       headers,
       timeout: 30_000,

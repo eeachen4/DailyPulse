@@ -32,6 +32,20 @@ export interface FetchRun {
   error?: string;
 }
 
+export interface SourceHealth {
+  source: Source;
+  status: 'healthy' | 'stale' | 'degraded' | 'failed';
+  currentCount: number;
+  publishedCount: number;
+  minCount: number;
+  critical: boolean;
+  consecutiveFailures: number;
+  maxConsecutiveFailures: number;
+  fallbackUsed: boolean;
+  staleFrom?: string;
+  errors?: string[];
+}
+
 export interface FeedItem {
   /** 唯一标识 */
   id: string;
@@ -65,6 +79,14 @@ export interface FeedItem {
   metrics?: FeedMetrics;
   /** 详情文件相对路径 */
   detailRef?: string;
+  /** 当前条目来自上一份有效快照 */
+  stale?: boolean;
+  /** 回退快照的采集时间 */
+  staleFrom?: string;
+  /** 详情抓取或缓存刷新时间，仅在采集管线内部使用 */
+  detailFetchedAt?: string;
+  /** 详情缓存对应的来源 URL，仅在采集管线内部使用 */
+  detailSourceUrl?: string;
   /** 平台附加标签（如 App 分类、r/subreddit、Product Hunt topics） */
   tags?: string[];
   /** 评分（0–5，App Store / Google Play） */
@@ -93,6 +115,7 @@ export interface FeedData {
   isSample?: boolean;
   items: FeedItem[];
   runs?: FetchRun[];
+  sourceHealth?: SourceHealth[];
 }
 
 export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews', 'github', 'huggingface', 'stackoverflow', 'arxiv', 'rss'];

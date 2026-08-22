@@ -1,8 +1,18 @@
 import axios from 'axios';
 import { load } from 'cheerio';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { toNumber } from './utils';
 import { redditProxy } from './proxy';
-import type { FeedItem } from '../types';
+import {
+  canonicalId,
+  detailForItem,
+  detailSlug,
+  hasDetail,
+  sourceItemIdFor,
+  type DetailFile,
+} from '../dataModel';
+import type { FeedDetail, FeedItem } from '../types';
 
 /**
  * 从条目的来源网页抓取详情：解析 og:meta 与 JSON-LD 结构化数据，
@@ -174,24 +184,95 @@ function applyDetail(item: FeedItem, d: ScrapedDetail): FeedItem {
   return next;
 }
 
+function applyCachedDetail(item: FeedItem, detail: FeedDetail): FeedItem {
+  const next: FeedItem = { ...item };
+  if (detail.longDescription && (!next.longDescription || detail.longDescription.length > next.longDescription.length)) {
+    next.longDescription = detail.longDescription;
+  }
+  if (!next.externalUrl && detail.externalUrl) next.externalUrl = detail.externalUrl;
+  if ((!next.screenshots || next.screenshots.length === 0) && detail.screenshots?.length) next.screenshots = detail.screenshots;
+  if (next.rating === undefined && detail.rating !== undefined) next.rating = detail.rating;
+  if (!next.price && detail.price) next.price = detail.price;
+  if (!next.developer && detail.developer) next.developer = detail.developer;
+  if (next.comments === undefined && detail.comments !== undefined) next.comments = detail.comments;
+  if ((!next.stats || next.stats.length === 0) && detail.stats?.length) next.stats = detail.stats;
+  return next;
+}
+
+function detailCachePath(item: FeedItem): string {
+  const id = canonicalId(item.source, sourceItemIdFor(item));
+  return path.resolve(process.cwd(), 'data/details', detailSlug(id) + '.json');
+}
+
+async function readCachedDetail(item: FeedItem): Promise<DetailFile | undefined> {
+  try {
+    return JSON.parse(await readFile(detailCachePath(item), 'utf-8')) as DetailFile;
+  } catch {
+    return undefined;
+  }
+}
+
+function cacheIsFresh(cache: DetailFile, item: FeedItem, now: number): boolean {
+  if (cache.sourceUrl && cache.sourceUrl !== item.url) return false;
+  // 兼容尚未写入 fetchedAt 的旧详情；首次命中后会自动迁移为带时间戳的新格式。
+  if (!cache.fetchedAt) return true;
+  const fetchedAt = new Date(cache.fetchedAt).getTime();
+  if (!Number.isFinite(fetchedAt)) return false;
+  const configured = Number(process.env.SCRAPE_DETAILS_CACHE_DAYS || 7);
+  const cacheDays = Number.isFinite(configured) ? Math.max(0, configured) : 7;
+  return now - fetchedAt <= cacheDays * 24 * 60 * 60 * 1_000;
+}
+
 /**
  * 并发抓取一批条目的来源网页详情。单个失败不影响整体（保留原数据）。
  */
 export async function enrichFeed(items: FeedItem[], concurrency?: number): Promise<FeedItem[]> {
-  const limit = concurrency ?? Number(process.env.SCRAPE_DETAILS_CONCURRENCY || 4);
+  const configured = concurrency ?? Number(process.env.SCRAPE_DETAILS_CONCURRENCY || 4);
+  const limit = Number.isInteger(configured) ? Math.max(1, configured) : 4;
   const queue = items.map((_, index) => index);
   const results: FeedItem[] = new Array(items.length);
+  const now = Date.now();
+  const refreshedAt = new Date(now).toISOString();
   let done = 0;
+  let cacheHits = 0;
+  let cacheFallbacks = 0;
+  let networkFetches = 0;
 
   const worker = async (): Promise<void> => {
     while (queue.length) {
       const index = queue.shift()!;
       const item = items[index];
+      const cache = await readCachedDetail(item);
+      if (cache && cacheIsFresh(cache, item, now)) {
+        const cachedItem = applyCachedDetail(item, cache.detail);
+        results[index] = {
+          ...cachedItem,
+          detailFetchedAt: cache.fetchedAt ?? refreshedAt,
+          detailSourceUrl: item.url,
+        };
+        cacheHits += 1;
+        done += 1;
+        if (done % 50 === 0) console.log(`[scrape] 进度 ${done}/${items.length}`);
+        continue;
+      }
       try {
+        networkFetches += 1;
         const d = await scrapeDetail(item.url);
-        results[index] = applyDetail(item, d);
+        const enriched = applyDetail(item, d);
+        results[index] = hasDetail(detailForItem(enriched))
+          ? { ...enriched, detailFetchedAt: refreshedAt, detailSourceUrl: item.url }
+          : enriched;
       } catch (err) {
-        results[index] = item; // 抓取失败则保留原数据
+        if (cache) {
+          results[index] = {
+            ...applyCachedDetail(item, cache.detail),
+            detailFetchedAt: cache.fetchedAt,
+            detailSourceUrl: cache.sourceUrl ?? item.url,
+          };
+          cacheFallbacks += 1;
+        } else {
+          results[index] = item; // 抓取失败则保留原数据
+        }
         if (process.env.DEBUG) {
           console.warn(`[scrape] ${item.url} 失败：${err instanceof Error ? err.message : err}`);
         }
@@ -202,5 +283,6 @@ export async function enrichFeed(items: FeedItem[], concurrency?: number): Promi
   };
 
   await Promise.all(Array.from({ length: Math.max(1, Math.min(limit, items.length)) }, () => worker()));
+  console.log(`[scrape] 缓存命中 ${cacheHits}，网络抓取 ${networkFetches}，过期缓存保底 ${cacheFallbacks}`);
   return results;
 }

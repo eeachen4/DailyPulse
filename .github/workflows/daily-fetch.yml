@@ -58,6 +58,11 @@ jobs:
       - name: Validate generated data
         run: npm run validate:data
 
+      - name: Check source health
+        id: source_health
+        continue-on-error: true
+        run: npm run check:health
+
       - name: Commit & push generated files
         run: |
           git config user.name "github-actions[bot]"
@@ -69,3 +74,9 @@ jobs:
             git commit -m "chore: update daily data $(date -u +%Y-%m-%d)"
             git push
           fi
+
+      # 健康报告与生成数据先回写；关键来源连续超限时再令任务失败，
+      # 这样 GitHub 会告警，但 workflow_run 不会部署退化快照。
+      - name: Enforce source health gate
+        if: steps.source_health.outcome == 'failure'
+        run: exit 1

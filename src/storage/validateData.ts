@@ -39,6 +39,15 @@ async function main(): Promise<void> {
     }
   }
 
+  for (const health of data.sourceHealth ?? []) {
+    if (!SOURCES.includes(health.source) || health.minCount < 0 || health.currentCount < 0 || health.publishedCount < 0) {
+      throw new Error(`来源健康记录不完整：${JSON.stringify(health)}`);
+    }
+    if (health.fallbackUsed && health.status !== 'stale') {
+      throw new Error(`来源保底状态不一致：${health.source}`);
+    }
+  }
+
   console.log(`[validate:data] 通过：${data.items.length} 条，${ids.size} 个唯一 ID`);
 }
 
