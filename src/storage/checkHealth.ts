@@ -24,13 +24,14 @@ function markdownTable(health: SourceHealth[]): string {
     String(entry.publishedCount),
     entry.fallbackUsed ? `是（${entry.staleFrom ?? 'unknown'}）` : '否',
     `${entry.consecutiveFailures} / ${entry.maxConsecutiveFailures}`,
+    String(entry.categories?.filter((category) => category.status !== 'healthy').length ?? 0),
     entry.critical ? '是' : '否',
   ]);
   return [
     '## DailyPulse 来源健康',
     '',
-    '| 来源 | 状态 | 当前 / 门槛 | 发布条数 | 历史保底 | 连续失败 / 上限 | 关键来源 |',
-    '| --- | --- | ---: | ---: | --- | ---: | --- |',
+    '| 来源 | 状态 | 当前 / 门槛 | 发布条数 | 历史保底 | 连续失败 / 上限 | 异常类别 | 关键来源 |',
+    '| --- | --- | ---: | ---: | --- | ---: | ---: | --- |',
     ...rows.map((row) => `| ${row.join(' | ')} |`),
     '',
   ].join('\n');
@@ -41,6 +42,7 @@ async function main(): Promise<void> {
   const data = JSON.parse(await readFile(filePath, 'utf-8')) as FeedData;
   const health = data.sourceHealth ?? [];
   if (!health.length) {
+    if (process.env.REQUIRE_SOURCE_HEALTH === 'true') throw new Error('生产快照缺少 sourceHealth');
     console.warn('[check:health] 当前数据没有 sourceHealth，跳过健康门禁。');
     return;
   }

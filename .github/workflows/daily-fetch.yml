@@ -51,6 +51,10 @@ jobs:
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
           # GitHub 公共 API 未认证额度较低；可配置 PAT 提高限额
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+          # 可选：LibreTranslate 兼容翻译服务
+          TRANSLATION_API_URL: ${{ vars.TRANSLATION_API_URL }}
+          TRANSLATION_API_KEY: ${{ secrets.TRANSLATION_API_KEY }}
+          TRANSLATION_MAX_ITEMS_PER_RUN: ${{ vars.TRANSLATION_MAX_ITEMS_PER_RUN }}
 
       - name: Build site
         run: npm run build:all
@@ -67,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/daily.json data/details data/history dist
+          git add data dist
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
@@ -80,3 +84,13 @@ jobs:
       - name: Enforce source health gate
         if: steps.source_health.outcome == 'failure'
         run: exit 1
+
+      - name: Notify external channels
+        if: failure()
+        continue-on-error: true
+        run: npm run notify:failure
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

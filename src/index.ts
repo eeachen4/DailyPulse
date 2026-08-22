@@ -19,6 +19,7 @@ import { enrichFeed } from './fetch/detailScraper';
 import { saveData } from './storage/saveData';
 import { generateHtml } from './storage/generateHtml';
 import { applySourceHealth } from './sourceHealth';
+import { translateFeedItems } from './translation';
 import type { FeedItem, FetchRun } from './types';
 
 /**
@@ -115,7 +116,7 @@ export async function main(): Promise<void> {
     currentItems = await enrichFeed(currentItems);
     console.log('[scrape] 详情抓取完成');
   }
-  const allItems = [...currentItems, ...healthResult.fallbackItems];
+  const allItems = await translateFeedItems([...currentItems, ...healthResult.fallbackItems]);
 
   const fetchedAt = new Date().toISOString();
   const filePath = await saveData(allItems, fetchedAt, runs, healthResult.health);

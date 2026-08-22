@@ -4,10 +4,10 @@ interface Props {
   value: string;
   onChange: (v: string) => void;
   counts: Record<string, number>;
+  total: number;
 }
 
-export default function CategoryFilter({ value, onChange, counts }: Props) {
-  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+export default function CategoryFilter({ value, onChange, counts, total }: Props) {
   return (
     <div className="space-y-1">
       <FilterRow active={value === 'all'} label="全部信号" count={total} onClick={() => onChange('all')} />

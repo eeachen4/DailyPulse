@@ -39,6 +39,7 @@ export async function generateHtml(): Promise<string> {
   await writeFile(indexPath, html, 'utf-8');
   await syncHistory(distDir);
   await syncDetails(distDir);
+  await writeExports(distDir, data);
   console.log(`[generateHtml] ${injected ? '已注入数据到' : '已生成独立静态页'} dist/index.html`);
   return indexPath;
 }
@@ -88,10 +89,51 @@ async function readData(): Promise<FeedData> {
       items: Array.isArray(parsed.items) ? parsed.items : [],
       runs: Array.isArray(parsed.runs) ? parsed.runs : undefined,
       sourceHealth: Array.isArray(parsed.sourceHealth) ? parsed.sourceHealth : undefined,
+      topics: Array.isArray(parsed.topics) ? parsed.topics : undefined,
+      brief: parsed.brief,
     };
   } catch {
     return { fetchedAt: null, items: [] };
   }
+}
+
+function xmlEscape(value: string): string {
+  return value.replace(/[<>&"']/g, (character) => ({
+    '<': '&lt;',
+    '>': '&gt;',
+    '&': '&amp;',
+    '"': '&quot;',
+    "'": '&apos;',
+  })[character] ?? character);
+}
+
+async function writeExports(distDir: string, data: FeedData): Promise<void> {
+  await writeFile(path.join(distDir, 'feed.json'), JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  const siteUrl = (process.env.SITE_URL || 'https://eeachen4.github.io/DailyPulse/').replace(/\/?$/, '/');
+  const entries = [...data.items]
+    .sort((left, right) => (right.heatScore ?? 0) - (left.heatScore ?? 0))
+    .slice(0, 100)
+    .map((item) => `    <item>
+      <title>${xmlEscape(item.titleZh ?? item.title)}</title>
+      <link>${xmlEscape(item.url)}</link>
+      <guid isPermaLink="false">${xmlEscape(item.id)}</guid>
+${item.publishedAt ? `      <pubDate>${new Date(item.publishedAt).toUTCString()}</pubDate>\n` : ''}      <description>${xmlEscape(item.descriptionZh ?? item.description ?? '')}</description>
+      <category>${xmlEscape(item.category ?? item.categoryId ?? '')}</category>
+    </item>`)
+    .join('\n');
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>DailyPulse</title>
+    <link>${xmlEscape(siteUrl)}</link>
+    <description>Daily global product, developer and AI signals.</description>
+    <lastBuildDate>${new Date(data.fetchedAt ?? Date.now()).toUTCString()}</lastBuildDate>
+${entries}
+  </channel>
+</rss>
+`;
+  await writeFile(path.join(distDir, 'rss.xml'), rss, 'utf-8');
+  console.log('[generateHtml] 已生成 feed.json 与 rss.xml');
 }
 
 function dataScript(data: FeedData): string {

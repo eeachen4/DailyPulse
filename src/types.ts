@@ -41,9 +41,22 @@ export interface SourceHealth {
   critical: boolean;
   consecutiveFailures: number;
   maxConsecutiveFailures: number;
+  maxStaleDays?: number;
   fallbackUsed: boolean;
   staleFrom?: string;
   errors?: string[];
+  categories?: CategoryHealth[];
+}
+
+export interface CategoryHealth {
+  categoryId: string;
+  status: 'healthy' | 'stale' | 'degraded' | 'failed';
+  currentCount: number;
+  publishedCount: number;
+  minCount: number;
+  fallbackUsed: boolean;
+  staleFrom?: string;
+  error?: string;
 }
 
 export interface FeedItem {
@@ -55,6 +68,10 @@ export interface FeedItem {
   title: string;
   /** 简短描述 */
   description?: string;
+  /** 中文标题（翻译服务可用时生成） */
+  titleZh?: string;
+  /** 中文摘要（翻译服务可用时生成） */
+  descriptionZh?: string;
   /** 原文链接 */
   url: string;
   /** 数据来源平台 */
@@ -75,6 +92,8 @@ export interface FeedItem {
   categoryId?: string;
   /** 一个条目可以同时属于多个类别 */
   categoryIds?: string[];
+  /** 语义聚类后的话题 ID */
+  topicId?: string;
   /** 结构化指标 */
   metrics?: FeedMetrics;
   /** 详情文件相对路径 */
@@ -116,6 +135,48 @@ export interface FeedData {
   items: FeedItem[];
   runs?: FetchRun[];
   sourceHealth?: SourceHealth[];
+  topics?: TopicCluster[];
+  brief?: DailyBrief;
+}
+
+export interface TopicTrend {
+  direction: 'up' | 'down' | 'new' | 'steady';
+  delta: number;
+  label: string;
+}
+
+export interface TopicCluster {
+  id: string;
+  title: string;
+  titleZh?: string;
+  summary: string;
+  summaryZh?: string;
+  whyHot: string;
+  whyHotZh?: string;
+  itemIds: string[];
+  sources: Source[];
+  categoryIds: string[];
+  heatScore: number;
+  publishedAt?: string;
+  trend: TopicTrend;
+}
+
+export interface DailyBriefHighlight {
+  topicId: string;
+  title: string;
+  titleZh?: string;
+  whyHot: string;
+  whyHotZh?: string;
+  trend: TopicTrend;
+}
+
+export interface DailyBrief {
+  generatedAt: string;
+  headline: string;
+  headlineZh: string;
+  overview: string;
+  overviewZh: string;
+  highlights: DailyBriefHighlight[];
 }
 
 export const SOURCES: Source[] = ['appstore', 'googleplay', 'producthunt', 'reddit', 'bluesky', 'mastodon', 'gdelt', 'hackernews', 'github', 'huggingface', 'stackoverflow', 'arxiv', 'rss'];

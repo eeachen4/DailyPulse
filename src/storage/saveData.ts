@@ -10,6 +10,7 @@ import {
   withHeatScores,
 } from '../dataModel';
 import { DATA_SCHEMA_VERSION, type FeedData, type FeedItem, type FetchRun, type SourceHealth } from '../types';
+import { buildIntelligence } from '../intelligence';
 
 /**
  * 将采集结果规范化后写入轻量摘要、详情文件和每日历史快照。
@@ -21,7 +22,16 @@ export async function saveData(
   sourceHealth: SourceHealth[] = [],
 ): Promise<string> {
   const canonicalItems = withHeatScores(canonicalizeItems(items));
-  const summaries = canonicalItems.map(toSummary);
+  const dataDir = path.resolve(process.cwd(), 'data');
+  const filePath = path.join(dataDir, 'daily.json');
+  let previous: FeedData | undefined;
+  try {
+    previous = JSON.parse(await readFile(filePath, 'utf-8')) as FeedData;
+  } catch {
+    previous = undefined;
+  }
+  const intelligence = buildIntelligence(canonicalItems, fetchedAt, previous);
+  const summaries = intelligence.items.map(toSummary);
   const data: FeedData = {
     schemaVersion: DATA_SCHEMA_VERSION,
     fetchedAt,
@@ -29,15 +39,15 @@ export async function saveData(
     items: summaries,
     runs,
     sourceHealth,
+    topics: intelligence.topics,
+    brief: intelligence.brief,
   };
-  const dataDir = path.resolve(process.cwd(), 'data');
   await mkdir(dataDir, { recursive: true });
-  const filePath = path.join(dataDir, 'daily.json');
 
   const detailDir = path.join(dataDir, 'details');
   await mkdir(detailDir, { recursive: true });
   await Promise.all(
-    canonicalItems
+    intelligence.items
       // 历史保底条目是轻量摘要，不能用它覆盖原有完整详情文件。
       .filter((item) => !item.stale && hasDetail(detailForItem(item)))
       .map((item) => writeJsonAtomic(path.join(detailDir, detailSlug(item.id) + '.json'), toDetailFile(item))),

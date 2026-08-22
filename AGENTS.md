@@ -24,6 +24,7 @@ DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Goo
 | `npm run build:all` | 构建 + 注入（生产链路） |
 | `npm run typecheck` | `tsc --noEmit` 类型检查 |
 | `npm run check:health` | 输出来源健康报告并执行连续失败门禁 |
+| `npm test` | 运行核心数据与偏好逻辑测试 |
 | `npm run preview` | 预览 `dist/` 构建产物 |
 
 提交前至少应通过 `npm run typecheck`。
@@ -52,6 +53,8 @@ src/index.ts（主入口）
   ├─ storage/generateHtml.ts   注入或生成 dist/index.html
   └─ storage/generateSample.ts 生成示例数据（npm run sample）
 src/sourceHealth.ts           来源最低产量、连续失败与历史保底策略
+src/intelligence.ts          跨来源话题聚类、趋势与每日编辑摘要
+src/translation.ts           LibreTranslate 兼容翻译与增量缓存
 src/web/*                    React 前端（hash 路由：列表 + 详情页）
 ```
 
@@ -60,7 +63,9 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
 - 共享类型在 `src/types.ts`（`FeedItem` / `FeedData` / `Source` / `SOURCE_META`）。
 - 采集字段统一用 `src/fetch/utils.ts` 的防御性取值（`pickStr` / `pickNum` / `pickValue` / `toIso` / `toJoined` / `kv`），兼容不同 Actor 输出字段名差异。
 - 每个数据源独立 `try-catch`，单个源失败不中断整体；顺序执行以降低对目标站点的压力。
-- 来源健康策略集中在 `src/sourceHealth.ts`；低于 `minCount` 时优先回退上一份有效来源数据，关键来源连续超限由 `npm run check:health` 阻止部署。
+- 来源健康策略集中在 `src/sourceHealth.ts`；按「来源 × 类别」保留本次成功条目并补齐失败类别，超过陈旧上限不再保底，关键来源连续超限由 `npm run check:health` 阻止部署。
+- `src/intelligence.ts` 只用确定性规则生成话题与摘要，话题 ID 必须稳定且不可跨类别误聚类。
+- 中文翻译为可选增强：未配置 `TRANSLATION_API_URL` 时必须无损跳过，不能阻断采集。
 - 兴趣类别在 `src/categories.ts`（`CATEGORIES`）集中定义，各源按「类别 × 源」采集；`FeedItem.category` 存类别 label，`tags` 存平台附加标签。
 - 详情页信息经 `detailScraper` 从来源网页补充（`longDescription` / `externalUrl` / `screenshots` / `rating` / `price` / `developer` / `comments` / `stats`）。
 

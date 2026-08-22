@@ -8,6 +8,7 @@ import {
   withHeatScores,
 } from '../dataModel';
 import { DATA_SCHEMA_VERSION, type FeedData } from '../types';
+import { buildIntelligence } from '../intelligence';
 
 async function main(): Promise<void> {
   const dataDir = path.resolve(process.cwd(), 'data');
@@ -18,19 +19,24 @@ async function main(): Promise<void> {
     return;
   }
   const items = withHeatScores(canonicalizeItems(oldData.items ?? []));
-  const summaries = items.map(toSummary);
+  const fetchedAt = oldData.fetchedAt ?? new Date().toISOString();
+  const intelligence = buildIntelligence(items, fetchedAt, oldData);
+  const summaries = intelligence.items.map(toSummary);
   const data: FeedData = {
     schemaVersion: DATA_SCHEMA_VERSION,
-    fetchedAt: oldData.fetchedAt ?? new Date().toISOString(),
+    fetchedAt,
     isSample: oldData.isSample,
     items: summaries,
     runs: oldData.runs,
+    sourceHealth: oldData.sourceHealth,
+    topics: intelligence.topics,
+    brief: intelligence.brief,
   };
 
   const detailsDir = path.join(dataDir, 'details');
   await mkdir(detailsDir, { recursive: true });
   await Promise.all(
-    items.map((item) =>
+    intelligence.items.map((item) =>
       writeJsonAtomic(path.join(detailsDir, detailSlug(item.id) + '.json'), toDetailFile(item)),
     ),
   );

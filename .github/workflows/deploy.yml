@@ -34,6 +34,25 @@ jobs:
           # data/dist 提交已经推到 main，因此这里必须取最新 main。
           ref: main
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate deployment snapshot
+        run: npm run validate:data
+        env:
+          REQUIRE_ENRICHED_DATA: 'true'
+
+      - name: Enforce deployment health gate
+        run: npm run check:health
+        env:
+          REQUIRE_SOURCE_HEALTH: 'true'
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
