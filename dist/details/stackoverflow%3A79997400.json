@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997400",
+  "sourceItemId": "79997400",
+  "sourceUrl": "https://stackoverflow.com/questions/79997400/unable-to-open-3-vs-code-windows-attached-to-the-same-docker-container",
+  "detail": {
+    "longDescription": "I have a Docker container with OrbStack that contains a directory repos with a repository app-main and worktrees like app-feature-a to develop in parallel. Configuration is done in order to prevent modification of the container configuration file in the running Docker. project/ ├── .devcontainer/ # outside the mount, on purpose │ └── devcontainer.json └── repos/ ├── app-main/ ├── app-feature-a/ └── app-feature-b/ MWE for devcontainer.js : { \"name\": \"myproject\", \"image\": \"mcr.microsoft.com/devcontainers/base:ubuntu\", \"workspaceMount\": \"source=${localWorkspaceFolder}/repos,target=${localWorkspaceFolder}/repos,type=bind\", \"workspaceFolder\": \"${localWorkspaceFolder}/repos\", \"remoteUser\": \"vscode\" } source and target are identical to support the absolute paths linking the worktrees. Steps I have followed: Open a first VS Code window and use it to create the container using Dev Containers: Reopen in Container . The badge on the bottom left reads Dev Container: myproject Open a second window, run Dev Containers: Attach to Running Container , choose the container and open folder app-feature-a . The badge reads Container vsc-... (I don't really know why the badge is different by the way). Try to repeat step 2 but instead of connecting the third window, it just focuses back to the second window. Or from one of either 2 windows, run Open Folder in Container but it then asks to add a configuration, so it won't connect to the existing container. Is there a way to have more windows connected onto the same container, in order to work on more than 2 worktrees in parallel? Using one container for each worktree could work but would be a hassle.",
+    "developer": "Codoscope",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "21"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

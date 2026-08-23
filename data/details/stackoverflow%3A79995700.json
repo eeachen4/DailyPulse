@@ -2,6 +2,8 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79995700",
   "sourceItemId": "79995700",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79995700/the-event-loop-call-stack-and-settimeout-of-0-or-some-small-value",
   "detail": {
     "longDescription": "In this example, is it guaranteed that the setTimeout in function Second() will always execute immediately after all the synchronous code in its caller (here, First() ) completes? That is barring, any additions to the call stack after First is invoked and before it invokes Second . Is there any way that the setTimeout could execute before the synchronous code of First() completes. function First() { console.log(\"Invoked First which is now invoking second\"); let a = []; let x = Second(); console.log(\"First after return from Second\"); let start = Date.now(); /* Synchronous garbage code to take more time that 1ms. */ for(let i=0; i<100000;i++) { a.push(i % 276);} a = a.join('-'); console.log(`Elapsed synchronous delay is ${Date.now()-start}ms`); console.log(`x is ${x}`); } function Second() { console.log(\"Invoked Second which is now setting 1ms timeout to invoke CallBack.\"); setTimeout( CallBack,0); return \"Return from second.\" } function CallBack() { console.log(\"Hello, from the CallBack.\"); } First();",
     "developer": "Gary",
@@ -17,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "90"
+        "value": "92"
       },
       {
         "label": "状态",

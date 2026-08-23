@@ -2,6 +2,8 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79996812",
   "sourceItemId": "79996812",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79996812/e0277-pinboxdyn-future-is-not-a-future-when-awaiting-stored-handler-in-rus",
   "detail": {
     "longDescription": "I'm trying to create a basic async web framework in Rust. I stored Pin<Box<dyn Future<Output=\"String\">>> inside a HashMap within my Router struct, but I run into compiler errors when trying to .await a route handler inside run(&self) . use std::collections::HashMap; use std::pin::Pin; use std::future::Future; pub struct Router { routes: HashMap<String, Pin<Box<dyn Future<Output = String>>>>, } impl Router { pub fn new() -> Self { Self { routes: HashMap::new() } } pub fn route<H>(&mut self, uri: &str, handler: H) where H: Future<Output = String> + Send + 'static, { self.routes.insert(uri.to_string(), Box::pin(handler)); } pub async fn run(&self, uri: &str) -> Option<String> { let function = self.routes.get(uri)?; Some(function.await) // Error happens here } } Compiler output: error[E0277]: `&Pin<Box<dyn Future<Output = String>>>` is not a future Since Future::poll requires Pin<&mut Self> , simply getting a shared reference & from the HashMap doesn't allow me to .await it. What is the idiomatic way in Rust to store and invoke async handlers repeatedly without consuming the router? Rust Version(rustc --version): rustc 1.97.0 (2d8144b78 2026-07-07)",
     "developer": "Synth",
@@ -17,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "82"
+        "value": "87"
       },
       {
         "label": "状态",

@@ -2,10 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79996935",
   "sourceItemId": "79996935",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79996935/pylance-type-error-when-using-classic-attrs-library-with-type-comments-in-py-3",
   "detail": {
     "longDescription": "I am using python 3.5. Since dataclasses doesn't exist in 3.5, I'm using attrs as an alternative (namely, the classic attr namespace with attrs==26.4.0 , which supports 3.5). However, when I write the following (using type comments because 3.5 doesn't support variable annotations): import attr from typing import List @attr.s class Foo: names = attr.ib() # type: List[str] Foo(['James']) I get a Pylance error \"Expected 0 positional arguments\" in the Foo instantiation. The program raises no errors when run. I am using the latest version of Pylance (2026.3.1). Note that the program satisfies Pylance if I switch Python interpreter to a newer version, like 3.10. I have tried using names = attr.ib(type=List[str]) and even names = attr.ib(type=List[str]) # type: List[str] but to no avail. It turns out, per this issue , that annotations specified via the type arg are ignored. I'm not even sure if the issue has to do with the type hints themselves. Is this something I'll just have to type: ignore ? Do I have to downgrade Pylance to type check python 3.5? Or is this some other issue? EDIT: Using kwargs, Foo(names=['James']) raises No parameter named \"names\" from Pylance. EDIT: This may be entirely unrelated, but I noticed that my interpreter in vscode is showing Python instead of Python 3.5 (64-bit) : EDIT: I'm fairly sure the issue is that Pylance is ignoring attr 's generated __init__ method. This fixes it: @attr.s class Foo: names = attr.ib() # type: List[str] if TYPE_CHECKING: def __init__(self, names: List[str]) -> None: self.names = names Foo(names=['James']) Foo(['James']) But that kind of defeats the purpose for using attrs . It seems like I have two options: type: ignore whenever I instantiate an attrib.s class, or manually fill in __init__ with a TYPE_CHECKING guard - neither of which I want to do. Any help would be greatly appreciated.",
     "developer": "JadenV15",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -13,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "114"
+        "value": "135"
       },
       {
         "label": "状态",

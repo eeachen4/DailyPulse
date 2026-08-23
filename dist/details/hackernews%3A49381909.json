@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49381909",
+  "sourceItemId": "49381909",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49381909",
+  "detail": {
+    "longDescription": "Most graph analytics packages have a mutable graph implementation that uses a heap allocated vector to store the graph. It works for toy graphs. But if you&#x27;re loading a billion edge graph using G.add_edge() it&#x27;s going to take a while. We don&#x27;t need to invent new standards. Such interoperable, immutable memory standards already exist: Apache Arrow and Compressed Sparse Rows (CSR). CSR is widely used in scipy, cugraph and columnar graph databases among others. Both on CPUs and GPUs. icebug-format combines both into a on-disk standard based on Apache Parquet and an in-memory format based on Apache Arrow. Bindings available in many popular languages including python, typescript and rust. The package ships with convenience scripts to convert flat tables such as vertex.parquet and edges.parquet to this format in RAM&#x2F;disk constrained environments. Sample graphs: https:&#x2F;&#x2F;huggingface.co&#x2F;datasets&#x2F;ladybugdb&#x2F;ldbc-csr&#x2F;tree&#x2F;main Converted from: https:&#x2F;&#x2F;ldbcouncil.org&#x2F;benchmarks&#x2F;graphalytics&#x2F;datasets&#x2F; Largest converted graph has 3B edges. License: MIT Quick Start: uv tool install icebug-format icebug-format --source-dir wiki-Talk lbug -i wiki-Talk-csr&#x2F;schema.cypher",
+    "externalUrl": "https://github.com/Ladybug-Memory/icebug-format",
+    "developer": "adsharma",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

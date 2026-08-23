@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997327",
+  "sourceItemId": "79997327",
+  "sourceUrl": "https://stackoverflow.com/questions/79997327/how-to-make-github-actions-checkout-always-merge-into-main-master-tip-instead-of",
+  "detail": {
+    "longDescription": "TL;DR : How to configure GitHub actions/checkout to always merge the pull requests into the default branch actual head, even in workflow re-runs? GitHub's actions/checkout does not always merge pull requests at current main/master tip, In fact, it is not the default behaviour. To be exact, when a pull request is opened in GitHub, it creates an refs/remotes/pull/NUMBER/merge reference that points to a merge commit between the pull request and the related repository. actions/checkout uses this reference when doing checkouts of the repository related to the PR. After being created, this reference is only updated in a very specific case. In fact this merge point is only updated on the pull request synchronize event. Or, in other words, the merge point is only updated when the pull request branch receives a push. Note, however, that the merge point is not updated: when the default branch receive commits; or on workflow re-runs. It's worth mentioning that this merge point is not used when actions/checkout is operating on repositories unrelated to the pull request. This may cause subtle unexpected behaviours. When a workflow checks out various repositories, then: the checkout of unrelated repositories will always get the main/master tip; the checkout of the pull request will almost never merge at the main/master tip, in busy repositories. This gets further confusing when workflows are re-run. In the case where both the related and unrelated repositories receives pushes in their respective default branches, then will be possible to observe in re-runs that: changes in unrelated repositories are always visible and available; but no changes are observed in the merged clone of pull request. Remember, the merge point of pull requests are not updated if changes are done in branches outside to the pull request . That includes not observing any changes that occurred in the default branch of any repository. So, changes in the default branch of the pull request repository are ignored by already open pull requests in the same repository . This means that incompatible changes introduced into an unrelated repository will show on workflow re-runs, but incompatible changes introduced into the repository of pull request will not, generating a false positive result . Also, introducing an insignificant change into the pull request, say, changing a comment, may turn a green result into a red result, or vice-versa, even in the case where a single repository is involved. As any changes in the related repository also updates the merge point, then other changes in the default branch are pulled in: changes that were ignored before, are now being included, changing results altogether.",
+    "developer": "Andr&#233; LFS Bacci",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

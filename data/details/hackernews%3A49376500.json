@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49376500",
+  "sourceItemId": "49376500",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49376500",
+  "detail": {
+    "longDescription": "I wanted all of my sessions preserved in one S3 storage dump I could access from anywhere. I couldn&#x27;t find anything that could store sessions from multiple machines in one remote S3 bucket without running a database service anywhere, make them available as an MCP for my agent, and efficiently search through them. pond was born out of this, and out of my necessity to stop being locked to my laptop. I&#x27;m convinced that the sessions we generate with agents are one of the most precious assets we have and it still feels so odd to me that we throw them away like we couldn&#x27;t care less. With pond you just point it at an S3 bucket or a local directory. Under the hood is in-process Lance. It also supports safe concurrent writes, so I just collect all my sessions from all my local machines, remote VMs and telegram agent setups in one bucket dir. Right now that is 14,861 sessions, 2.83M messages, 10.6 GiB, from 8 tools (Claude Code, Codex, opencode, pi, Claude Desktop, oh-my-pi and a few more). The one thing I really want to get optimized is remote storage read speeds. Local queries run in milliseconds to two seconds on my whole corpus, while remote storage is still 20-30 seconds per call. My goal is to get them on par. What I would really want to know is which client to support next, and whether keeping the vector search and all of that embedded-model hassle is worth its keep. FTS-only would have been much faster, and there is hardly any good benchmark I can find that could help me close this question.",
+    "externalUrl": "https://github.com/tenequm/pond",
+    "developer": "opwizardx",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

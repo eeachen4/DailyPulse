@@ -2,6 +2,8 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79996919",
   "sourceItemId": "79996919",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79996919/get-pandas-to-accept-an-arbitrary-string-of-spaces-as-nan",
   "detail": {
     "longDescription": "I'm trying to read a mass of data files into appropriate pandas data frames, but some of them have missing values. For most, this isn't a problem, but some files were generated to produce equally spaced columns by inserting spaces as necessary. So I get some columns that I want to be read as float64 types (should be decimal values), but this fails with the pandas.read_csv function, reporting: ValueError: could not convert string to float: ' ' I can hack around this by passing: na_values=' ' to the read_csv function which then flags them all as NaN, which would be fine. But that hard-codes the import script to expect a row of exactly 13 space characters, and I doubt that I can count on that. So to speak. What I want is to tell the function that for that column, any value which is nothing but space characters should be considered an na value. Is there a way to do this?",
     "developer": "maab",
@@ -17,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "124"
+        "value": "143"
       },
       {
         "label": "状态",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997191",
+  "sourceItemId": "79997191",
+  "sourceUrl": "https://stackoverflow.com/questions/79997191/unable-to-generate-audio-element-on-an-html-page-using-javascript",
+  "detail": {
+    "longDescription": "I'm trying to have an audio element/audio player be generated upon the user clicking a button, however upon clicking the button, nothing happens. I've linked my main.js file in the header of the HTML file (My JS file is also in the same folder as my HTML and CSS files) <head> <meta charset=\"UTF-8\"> <title>Guess the Language</title> <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\"> <script src=\"main.js\" defer></script> </head> Here's the relevant HTML lines: <button id=\"playButton\" type=\"button\">Play</button> <div id=\"audioPlayerID\"></div> And here's the JavaScript code: const hawaiian = new Map([ [\"langName\", \"Hawaiian\"], [\"audioClip\", new Audio(\"audiofiles/hawaiian0.mp3\")], [\"langFamily\", \"Austronesian\"], [\"infoBlurb\", \"Hawaiian is a polynesian language spoken in Hawaii\"] ]); function playButtonClicked(){ const audioPlayer = document.createElement('audio'); audioPlayer.controls=\"controls\"; audioPlayer.src=hawaiian.get(audioClip); audioPlayer.type=\"audio/mpeg\"; document.getElementById(\"audioPlayerID\").appendChild(audioPlayer); } document.querySelector('playButton').onclick = playButtonClicked; (My audiofiles folder is also in the same folder as my HTML, CSS, and JS files are) My ultimate goal is to have a bunch of different maps for a bunch of different languages, and then have a map be randomly chosen, and then play the audio file pertaining to that map, however I decided that I should test out the functionality with a single map first to see if I can get the audio element generation working, however obviously so far it has been unsuccessful. Edit: When I test my site through the Live Server extension and press ctrl + shift + i to open the console, there's an error which says \"Uncaught TypeError: Cannot set properties of null (setting 'onclick') at main.js:16:46\" Edit 2: Based on what I've been told in the comments, the error seems to have to do with CSS selectors. So I'll add the relevant CSS code here: #playButton{ *various info that I've ommitted for this post* } Edit 3: In the last line, I changed ('playButton') to (\"#playButton\"), however is still doesn't work. This time however I didn't see any error in the dev console after ctrl + shift + i Edit 4: I fixed the hawaiian.get(audioClip) missing quotation marks issue, the non-existing selector issue, and I changed audioPlayer.controls parameter to true. Now when I click the button, the audio player pops up, however there's no audio file to be played. It just says 0:00/0:00 on the audio player, and the play button and volume button are greyed out.",
+    "developer": "Nomad1004",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "97"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

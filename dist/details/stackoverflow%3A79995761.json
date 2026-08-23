@@ -2,6 +2,8 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79995761",
   "sourceItemId": "79995761",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79995761/how-to-populate-an-html-input-value-from-a-text-file-using-javascript",
   "detail": {
     "longDescription": "I have 5 html inputs as below, I can load & display the detail of a text file as per image above. host: 192.168.0.189 -port: 9000 username: wan password: ssssssssssss topic_p: tester How can I populate an HTML input value from a text file using JavaScript? I want to populate the host, port, user, password detail from a text file into the HTML input value. This is not a program to be displayed on the internet, but only on a local network within one room, so security of the displayed data is not an issue. The program runs within a webserver on an RPi Pico board. I have read the suggested Q&As on this platform, but cannot find answer that works. The code I have so far is as below: <form id=\"connection-information-form\"> <b>Host:&nbsp;</b> <label for=\"host\"></label><input id=\"host\" type=\"text\" name=\"host\" placeholder=\"broker address\" value='192.168.0.154' style=\"width: 100px\"> <b>Port:</b> <label for=\"port\"></label><input id=\"port\" type=\"text\" name=\"port\" placeholder=\"port\" value=\"9001\" style=\"width: 100px\"> <b>User:</b> <label for=\"username\"></label><input id=\"username\" type=\"text\" name=\"Username\" placeholder=\"Username\" value=\"E_Wan\" style=\"width: 100px\"> <input type=\"button\" onclick=\"startConnect()\" value=\" Connect \"><br> <b>Pub Topic:</b> <label for=\"topic_s\"></label><input id=\"topic_s\" type=\"text\" name=\"topic_s\" placeholder=\"Subscribe topic\" value=\"test\" style=\"width: 100px\"> <b>Sub Topic:</b> <label for=\"topic_p\"></label><input id=\"topic_p\" type=\"text\" name=\"topic_p\" placeholder=\"Publish topic\" value=\"test\" style=\"width: 100px\"> <b>Pass:</b> <label for=\"password\"></label><input id=\"password\" type=\"password\" name=\"password\" placeholder=\"password\" value=\"root\" style=\"width: 100px\"> <input type=\"button\" onclick=\"startDisconnect()\" value=\" Disconnect\"> </form> <label for=\"bt\" id=\"bt\"> <input type=\"button\" value=\"Save data to file\" onclick=\"saveFile()\" /> </label> <label for=\"inputfile\"> <input type=\"file\" id=\"inputfile\" placeholder=\"Select a text file:\" /> </label> <pre id=\"output\"></pre> <div id=\"messages\"></div> <script type=\"text/javascript\"> document.getElementById('inputfile') .addEventListener('change', function () { let fr = new FileReader(); fr.onload = function () { document.getElementById('output') .textContent = fr.result; } fr.readAsText(this.files[0]); }) </script>",
     "developer": "Ian Webb",
@@ -17,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "148"
+        "value": "150"
       },
       {
         "label": "状态",

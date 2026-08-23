@@ -2,6 +2,8 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79995572",
   "sourceItemId": "79995572",
+  "fetchedAt": "2026-08-23T00:53:22.035Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79995572/connecting-to-s3-bucket-using-snowflake",
   "detail": {
     "longDescription": "I a trying to connect to an s3 bucket from snowflake. I tried everything in the documentation but still get the error: Error assuming AWS_ROLE: User: arn:aws:iam::998493219094:user/96d42000-s is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::272175291647:role/snowflake-s3-role Here is my staging SQL and the permission policy and trust policy { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Action\": [ \"s3:GetObject\", \"s3:GetObjectVersion\" ], \"Resource\": \"arn:aws:s3:::zomato-pipeline-alan/*\" }, { \"Effect\": \"Allow\", \"Action\": [ \"s3:ListBucket\", \"s3:GetBucketLocation\" ], \"Resource\": \"arn:aws:s3:::zomato-pipeline-alan\" } ] } { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Sid\": \"\", \"Effect\": \"Allow\", \"Principal\": { \"AWS\": \"arn:aws:iam::998493219094:user/96d42000-s\" }, \"Action\": \"sts:AssumeRole\", \"Condition\": { \"StringEquals\": { \"sts:ExternalId\": \"OH46159_SFCRole=2_tHiHZDxc/BO+ICv3tUFLk227iVc=\" } } } ] } -- <BUCKET> = your bucket, e.g. zomato-dl-yourname CREATE OR REPLACE STORAGE INTEGRATION ZOMATO_S3_INT TYPE = EXTERNAL_STAGE STORAGE_PROVIDER = 'S3' ENABLED = TRUE STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::272175291647:role/snowflake-s3-role' STORAGE_ALLOWED_LOCATIONS = ('s3://zomato-pipeline-alan/'); CREATE OR REPLACE STAGE ZOMATO.RAW.ZOMATO_RAW_STAGE STORAGE_INTEGRATION = ZOMATO_S3_INT URL = 's3://zomato-pipeline-alan/raw/' FILE_FORMAT = ZOMATO.RAW.CSV_FMT; -- Confirm Snowflake can see your files (should list the seven table folders). LIST @ZOMATO.RAW.ZOMATO_RAW_STAGE;",
     "developer": "Alan George",
@@ -17,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "60"
       },
       {
         "label": "状态",
