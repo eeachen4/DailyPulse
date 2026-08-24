@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997571",
+  "sourceItemId": "79997571",
+  "sourceUrl": "https://stackoverflow.com/questions/79997571/how-do-i-get-typing-to-work-on-generic-class-when-creating-a-property-with-a-fun",
+  "detail": {
+    "longDescription": "Below I created a function create_value_property which defines a set and get method and returns a property. How do I define this in such a way that the attributes val1 , val2 and val3 show as type V ( int in the example)? As it stands, custom.valn report type Any . I'm pretty sure it's because I'm using getattr and I don't know if I can specify the type that it will output. Is there a way to hint the property type? Python 3.14.6 IDE: VS Code Version 1.134.0 (Pylance) class EventHandler: def post_event(self, event: str): print(event) def create_value_property[V](name: str) -> property: def get(self) -> V: return getattr(self, f\"_{name}\") def set(self, value: V) -> None: prev_value = getattr(self, f\"_{name}\") if value == prev_value: return setattr(self, f\"_{name}\", value) self.event_handler.post_event(f\"{name} value changed: {value}\") return property(get, set) class Custom[V]: def __init__(self, val1: V, val2: V, val3: V) -> None: self._val1: V = val1 self._val2: V = val2 self._val3: V = val3 self.event_handler: EventHandler = EventHandler() val1: property = create_value_property('val1') val2: property = create_value_property('val2') val3: property = create_value_property('val3') custom = Custom[int](1,1,1) a = custom.val1 # a and custom.val1 report type Any custom.val1 = 2 custom.val2 = 3 custom.val3 = 4 I was able to figure out a middle ground. I was trying to avoid defining the same @setter for each property by using create_value_property . Instead I can do something like this and the typing works. I'm still curious if I can get the initial method working as it is much cleaner. def set_value[V](self, attr: V, value: V) -> None: if attr == value: return prev_val = attr attr = value self.event_handler.post_event(f\"{attr} value changed: {value}\") class Rev2[V]: def __init__(self, val1: V) -> None: self._val1: V = val1 self.event_handler: EventHandler = EventHandler() @property def val1(self) -> V: return self._val1 @val1.setter def val1(self, value: V) -> None: set_value(self, self._val1, value)",
+    "developer": "iamthebull",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "67"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

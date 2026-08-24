@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995993",
+  "sourceItemId": "79995993",
+  "sourceUrl": "https://stackoverflow.com/questions/79995993/can-i-make-choosing-a-file-count-as-a-user-gesture",
+  "detail": {
+    "longDescription": "I am making a very simple video player. I want the video to display in full screen mode. I give the user two ways to choose a file to play. One works and one does not. The way that works listens to a div for a 'drop' event. The even triggers a routine that enters full screen and loads the video. In the way that does not work, the user clicks a button that opens the file picker. The javascript listens for the 'change' event and triggers a similar routine, but I get an error message that a user gesture is required for full screen. (The file still loads and plays, just not in full screen...) HTML <div id=\"dropBox\"> <video id=\"theVideo\"></video> <div id=\"loaderDiv\"> <div id=\"loadInstr\">Drag and drop a video here or...</div> <label class=\"loadButton\"> <input type=\"file\" id=\"file-selector\" accept=\".mp4,.mov\" style=\"display: none\" /> Choose a file </label> </div> </div> listeners: dropBox.addEventListener(\"drop\", drop); fileSelector.addEventListener('change', readFile); The routines: function drop(e) { document.getElementById('vidContainer').requestFullscreen(); vidLoading = true; e.stopPropagation(); e.preventDefault(); var dt = e.dataTransfer; var files = dt.files; loadVideo(files); } function readFile(e) { document.getElementById('vidContainer').requestFullscreen(); var files = e.target.files; loadVideo(files); }",
+    "developer": "Geoff Nunes",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "88"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

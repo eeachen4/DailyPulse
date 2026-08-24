@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79996959",
   "sourceItemId": "79996959",
+  "fetchedAt": "2026-08-24T00:49:58.566Z",
   "sourceUrl": "https://stackoverflow.com/questions/79996959/elementor-free-javascript-changes-tab-specific-background-image-but-disables-t",
   "detail": {
     "longDescription": "I’m using WordPress + Elementor Free and an Elementor Nested Tabs widget. The website is aquariustile.com I have a Services page with five tabs: Bathrooms — #bathrooms Kitchen — #kitchen Flooring — #flooring Pool — #pool Showers — #showers Each tab should change the background image of a header container above the tabs. The header container has the Elementor class: <div class=\"elementor-element elementor-element-4842995 services-header e-flex e-con e-parent\"> Elementor generates the background image on the container's ::before pseudo-element: .elementor-761 .elementor-element.elementor-element-4842995::before { background-image: url(https://aquariustile.com/wp-content/uploads/2026/08/20230725_115505.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover; } What works I have JavaScript that successfully: Opens the correct Elementor tab when arriving from Home page services cards buttons with a URL hash, for example: /services#pool Changes the header background when clicking the tabs directly. The image itself works. I confirmed this by manually adding the following in Chrome DevTools: background-image: url(\"https://aquariustile.com/wp-content/uploads/2026/08/20251010_142557.jpg\") !important; The image immediately appears. The problem If I click Services in the site's main navigation, the page loads as: /services with no URL hash . The original Elementor background image should appear, but instead the header background is blank. In DevTools I found that Elementor's original rule: background-image: url(...20230725_115505.jpg); is crossed out. I previously used this custom CSS: .elementor-761 .elementor-element-4842995::before { background-image: var(--aquarius-header-image) !important; background-position: center center !important; background-repeat: no-repeat !important; background-size: cover !important; } When the page is opened normally from the main menu, --aquarius-header-image is not defined , so the custom rule effectively disables Elementor's original background. I understand why that particular rule is problematic, but I'm looking for the correct way to implement this. What I want I want Elementor's original background image to remain active when visiting: /services Then: /services#bathrooms should open the Bathrooms tab and change the header image. Likewise: /services#kitchen /services#flooring /services#pool /services#showers should open the corresponding tab and change the header image. And clicking the tabs while already on /services should also change the header image. Question What is the correct way to override Elementor's generated ::before background image only when a specific tab is selected, while leaving Elementor's original background completely untouched when the page is loaded without a URL hash? I'm using Elementor Free , so I'm doing this with an HTML widget and JavaScript rather than Elementor Pro Custom CSS. I can provide the complete JavaScript I'm currently using below. I'm particularly interested in whether I should: modify the ::before pseudo-element with JavaScript, inject a CSS rule dynamically, use a different Elementor selector, remove the !important rule, or use Elementor's existing background overlay system instead.",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "67"
+        "value": "70"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

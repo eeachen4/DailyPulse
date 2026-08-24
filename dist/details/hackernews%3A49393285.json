@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:49393285",
   "sourceItemId": "49393285",
+  "fetchedAt": "2026-08-24T00:49:58.566Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49393285",
   "detail": {
     "longDescription": "zroar is a ground-up implementation of Roaring Bitmaps data structure in Zig. zroar stores both the keys and (array, bitmap) containers in a single flat byte buffer, making the in-memory representation equal to the on-disk or over-the-network representation, eliminating the serialization&#x2F;deserialization step entirely. The design was originally aimed at systems which keep their posting lists on disk, but zroar performs faster than CRoaring even for purely in-memory ops, due to CPU cache locality. Against CRoaring 5.0&#x27;s benchmarking suite (ported to Zig), zroar is faster in 339 out of 360 tests, being 2x-9x faster (geometric mean), and up to 600x faster on serialize&#x2F;deserialize. zroar avoids complex mechanism (like adaptive radix trees), uses Zig native SIMD ops and is simpler. The main logic is written in ~2000 lines of code, while CRoaring&#x27;s 64-bit bitmap codebase is over 17000 LOC. Not yet: By choice, zroar doesn&#x27;t support run containers, and is 64-bit only. There are more details in the GitHub README. Try it out! I&#x27;d love feedback on the API and design. zroar is a Zig-based successor to my other project, sroar in Go, which showed a similar boost. So, I think this design should show performance gains in any language.",

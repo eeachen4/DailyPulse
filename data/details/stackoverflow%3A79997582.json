@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997582",
+  "sourceItemId": "79997582",
+  "sourceUrl": "https://stackoverflow.com/questions/79997582/dataframe-sorting-and-column-count",
+  "detail": {
+    "longDescription": "I have a dataset which looks like this: UserID Age Gender CoffeeType SweetnessLevel MilkType CaffineStrength \\ 0 1 69 Female Espresso None Skim Strong 1 2 32 Male Americano Medium Almond Strong 2 3 78 Female Latte Low Almond Strong 3 4 38 Male Latte None Whole Strong 4 5 41 Male Americano Medium Whole Decaf TimeOfDay DayOfWeek Weather Mood PreviousOrder UserRating 0 Afternoon Sunday Snowy Annoyed None 4 1 Morning Saturday Windy Annoyed None 2 2 Evening Thursday Foggy Relaxed None 4 3 Evening Monday Sunny Relaxed None 1 4 Evening Saturday Windy Excited None 4 I wish to create a dataframe that looks like: DayOfWeek CoffeeType Count Monday Americano 39 Monday Cappucino 44 Monday Espresso 42 Monday Latte 36 etc, etc, for each day of the week sorted from Monday to Sunday. Instead my code: print(coffee_dataset.groupby(['DayOfWeek', 'CoffeeType'], as_index=False) .agg({'CoffeeType':'count'})) Produces: DayOfWeek CoffeeType 0 Friday 36 1 Friday 33 2 Friday 38 3 Friday 28 4 Monday 39 5 Monday 44 6 Monday 42 7 Monday 36 8 Saturday 57 9 Saturday 28 10 Saturday 36 11 Saturday 33 12 Sunday 31 13 Sunday 39 14 Sunday 35 15 Sunday 37 16 Thursday 31 17 Thursday 42 18 Thursday 40 19 Thursday 36 20 Tuesday 35 21 Tuesday 29 22 Tuesday 39 23 Tuesday 33 24 Wednesday 40 25 Wednesday 38 26 Wednesday 33 27 Wednesday 36 Any help on sorting the day of the week, being able to print the CoffeeType name and count would be greatly appreciated.",
+    "developer": "Jam One",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "67"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

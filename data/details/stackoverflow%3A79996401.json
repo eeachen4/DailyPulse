@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79996401",
+  "sourceItemId": "79996401",
+  "sourceUrl": "https://stackoverflow.com/questions/79996401/google-chat-api-apps-script-cant-handle-the-apps-response-error-when-click",
+  "detail": {
+    "longDescription": "I'm building a Google Chat Bot integration using Google Apps Script and GCP Service Account (OAuth2). The Flow: Form submitted -> Apps Script sends a Card message to a Google Chat space using UrlFetchApp and OAuth2 token. (This step works fine!). The user inputs text into the Card's textInput and clicks the \"Submit\" button. The card button calls processarRespostaChat / doPost . The Issue: When the button is clicked, Google Chat shows an error in the UI and Cloud Logging records Code 3: Can't handle the app's response. If your Chat app is configured as an add-on, see \"Chat actions\"... Configuration in Google Cloud Chat API: Interactive features: Turned ON Functionality: Receive 1:1 and Join Spaces Connection settings: HTTP URL (pointing to my Web App deployment URL [https://script.google.com/macros/s/.../exec](https://script.google.com/macros/s/.../exec) ) Deployment settings: Executed as Me, Access: Anyone. My Apps Script Code (Sanitized): var CHAT_WEBHOOK = \"https://chat.googleapis.com/v1/spaces/XXX/messages?key=XXX&token=XXX\"; var ID_ESPACO = \"spaces/XXX\"; var SERVICE_ACCOUNT_EMAIL = \"bot@my-project.iam.gserviceaccount.com\"; var PRIVATE_KEY = \"-----BEGIN PRIVATE KEY-----\\nMY_KEY\\n-----END PRIVATE KEY-----\\n\"; function doGet(e) { return ContentService.createTextOutput(\"Bot Active\"); } function doPost(e) { var data = JSON.parse(e.postData.contents); var response = processarCliqueCard(data); return ContentService.createTextOutput(JSON.stringify(response)) .setMimeType(ContentService.MimeType.JSON); } function processarCliqueCard(evento) { // Processes spreadsheet data and sends email... return { \"actionResponse\": { \"type\": \"UPDATE_MESSAGE\" }, \"text\": \"Success message\" }; } Has anyone faced a similar Code 3 error when handling interactive cards via Web App HTTP URL in Google Chat? What am I missing in the response structure?",
+    "developer": "Lucas Sousa",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "68"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

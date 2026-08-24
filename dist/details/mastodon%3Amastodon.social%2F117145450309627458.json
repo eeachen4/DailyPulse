@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117145450309627458",
+  "sourceItemId": "mastodon.social/117145450309627458",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-ec8049f3-c6c43a04476c6a03",
+  "detail": {
+    "longDescription": "If/else statements - We all know and love them. While they are incredibly powerful, there comes a point where a long chain of conditions only makes your code look messy. Choosing between if/else and switch depends on readability, but there's a hidden pro tip that makes switch much more powerful than many people think at first. Traditional Approach: If/Else Normally, we use if/else when our logic depends on complex ranges and multiple variables: // Hard to scan, bulky, and prone to typos let weatherAdvice = \"\"; if (temperature < 15 && isRaining) { weatherAdvice = \"Grab a heavy coat and an umbrella! 🌧️🧥\"; } else if (temperature < 15 && !isRaining) { weatherAdvice = \"It's cold but dry. Just a jacket is fine! 🧥\"; } else if (temperature >= 15 && isRaining && isNightTime) { weatherAdvice = \"Warm, rainy night. Stay indoors if you can! 🌧️🌃\"; } else if (temperature >= 15 && isRaining && !isNightTime) { weatherAdvice = \"Warm rain during the day. Don't forget your umbrella! 🌧️🌦️\"; } else if (temperature >= 30 && !isRaining) { weatherAdvice = \"It's scorching hot! Stay hydrated! ☀️🥤\"; } else { weatherAdvice = \"Weather seems pleasant today! 😎\"; } Pro Tip: Using switch(true) Many developers think you can only use switch when you're checking a single variable against fixed values. However, you can use a switch statement for complex ranges by passing the boolean value true into the switch condition. Here is a cleaner switch statement version of the above code block: // Much easier on the eyes let weatherAdvice = \"\"; switch (true) { case (temperature < 15 && isRaining): weatherAdvice = \"Grab a heavy coat and an umbrella! 🌧️🧥\"; break; case (temperature < 15 && !isRaining): weatherAdvice = \"It's cold but dry. Just a jacket is fine! 🧥\"; break; case (temperature >= 15 && isRaining && isNightTime): weatherAdvice = \"Warm, rainy night. Stay indoors if you can! 🌧️🌃\"; break; case (temperature >= 15 && isRaining && !isNightTime): weatherAdvice = \"Warm rain during the day. Don't forget your umbrella! 🌧️🌦️\"; break; case (temperature >= 30 && !isRaining): weatherAdvice = \"It's scorching hot! Stay hydrated! ☀️🥤\"; break; default: weatherAdvice = \"Weather seems pleasant today! 😎\"; } By shifting to this pattern, you can handle multiple variables while keeping your code clean and easy to scan. If your else if chains start getting too long, test out this hack. Your future self will thank you! # webdev # productivity # javascript # learning # software # coding # development # engineering # inclusive # community Knowing When to Use If/Else vs. Switch in JavaScript",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}
