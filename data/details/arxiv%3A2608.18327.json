@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.18327",
+  "sourceItemId": "2608.18327",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.18327",
+  "detail": {
+    "longDescription": "arXiv:2608.18327v2 Announce Type: replace Abstract: Concolic execution is a variant of symbolic execution that runs a program simultaneously with concrete and symbolic inputs. It records the symbolic constraints encountered along a concrete execution path, then solves those constraints to generate inputs that explore new paths. Existing concolic engines generally follow one of two implementation strategies: Interpreter-based systems are comparatively simple to build but incur substantial interpretation overhead, while instrumentation-based systems avoid this overhead but typically re-execute the program from the beginning for each new input. In this paper, we develop a new approach that achieves the best of both worlds. Starting from the concrete semantics of the target language, we first develop a definitional concolic interpreter and stage it to compile away interpretation overhead while retaining the simplicity of an interpretation-based implementation. By expressing the staged interpreter in continuation-passing style, we can capture execution snapshots at branch points and resume from them when exploring alternative paths, avoiding repeated execution from the program entry. Because snapshot-reuse can itself incur overhead, we further develop a heuristic that favors snapshot-reuse only when it is expected to be beneficial. We instantiate this approach for WebAssembly and implement it in a new concolic-execution compiler GenWasym. Across 184 benchmarks, GenWasym with staging alone achieves a $29.4\\times$ average speedup over the interpreter-based WASP; heuristic snapshot-reuse further increases the speedup to $44.9\\times$.",
+    "developer": "Dinghong Zhong, Alexander Bai, Mikail Khan, Guannan Wei",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dinghong Zhong, Alexander Bai, Mikail Khan, Guannan Wei"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

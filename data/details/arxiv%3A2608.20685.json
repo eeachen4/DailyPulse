@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.20685",
+  "sourceItemId": "2608.20685",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.20685",
+  "detail": {
+    "longDescription": "arXiv:2608.20685v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) has no model of time: when a fact changes across a coding session - a function is renamed, an endpoint moves, a dependency is bumped - RAG retrieves both the old and new value with near-identical similarity and cannot tell which is current, so it serves the superseded value. Paper 1 showed, on synthetic single-value benchmarks, that a deterministic (subject, relation, object) supersession memory eliminates this failure. Here we validate it end-to-end on real software history. From 707 real GitHub issues (SWE-bench Lite + Verified) we extract 130 clean atomic state transitions, a fix that changes one identifiable value from a pre-fix to a post-fix form, and render each marker-free (the stale and current statements differ only in the value). On this set, MemStrata reaches 0.91 answer accuracy versus RAG's 0.57-0.59; and, the structural result, when forced to answer RAG serves the superseded value 36-38% of the time (an LLM reranker does not help) while MemStrata drives this to ~0, at RAG retrieval latency (~2.1 s vs ~18 s for the reranker). We are explicit about scope: only ~18% of real fixes are clean atomic transitions; Paper 2 isolates the memory mechanism on that class, and extraction coverage of the remaining fixes is the orthogonal problem we defer to follow-on work. A real product bug surfaced and was fixed during the study (a case/punctuation-insensitive value comparison), with the moat property (deterministic-supersession accuracy on clean code mutations) preserved and verified.",
+    "developer": "Neeraj Yadav",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.AI, cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Neeraj Yadav"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

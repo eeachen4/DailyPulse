@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.21163",
+  "sourceItemId": "2608.21163",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.21163",
+  "detail": {
+    "longDescription": "arXiv:2608.21163v1 Announce Type: new Abstract: Modern Approximate Nearest Neighbour Search (ANNS) applications operate over continuously evolving vector collections and require graph indexes that sustain high-throughput searches while incorporating insertions and deletions with high recall. However, most GPU graph indexes are static or provide limited update support. Updates require neighbour discovery, reverse-edge creation, pruning, and deletion-induced graph repair; executing these operations concurrently introduces redundant distance computations and conflicting accesses to shared adjacency lists. Background-rebuild-based deletion further incurs substantial computation, additional memory consumption, and interference with foreground queries. We present GrAND (GPU-based Dynamic Graph Indexes for Approximate Nearest Neighbour Search), a GPU-native collection of dynamic-update algorithms for two popular graph indexes, Vamana and CAGRA. GrAND consolidates graph repair across a batch, eliminating redundant pruning computations, and employs a lock-free find-and-replace strategy for parallel adjacency-list updates. For reliable in-place deletion, GrAND constructs an on-demand reverse graph on the GPU, accurately identifying incoming edges without permanently duplicating the index. We evaluate GrAND on seven real-world datasets across five streaming workloads, comparing it against SVFusion and FreshDiskANN-GPU (our GPU adaptation of FreshDiskANN). GrAND improves overall workload throughput by 2.2x-8.7x and 6.5x-25.4x, respectively, while maintaining high search throughput and recall over sustained updates.",
+    "developer": "Karthik Venkatasubba, Shivendra Deshpande, Shivram S, Jyothi Vedurada",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.DB"
+      },
+      {
+        "label": "第一作者",
+        "value": "Karthik Venkatasubba, Shivendra Deshpande, Shivram S, Jyothi Vedurada"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

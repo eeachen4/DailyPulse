@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997721",
+  "sourceItemId": "79997721",
+  "sourceUrl": "https://stackoverflow.com/questions/79997721/why-does-diskann-with-max-sim-cosine-return-a-negative-self-similarity-score-for",
+  "detail": {
+    "longDescription": "I am using a FLOAT16_VECTOR sub-field inside a StructArray in Milvus. The vector dimension is 64, and I created a DISKANN index with MAX_SIM_COSINE . A simplified version of my schema looks like this: import random import numpy as np from pymilvus import DataType, MilvusClient from pymilvus.client.embedding_list import EmbeddingList client = MilvusClient(uri=\"http://localhost:19530\") collection_name = \"struct_float16_diskann\" schema = client.create_schema( auto_id=False, enable_dynamic_field=False, ) schema.add_field( \"id\", DataType.INT64, is_primary=True, ) struct = client.create_struct_field_schema() struct.add_field( \"vector\", DataType.FLOAT16_VECTOR, dim=64, ) struct.add_field( \"label\", DataType.VARCHAR, max_length=64, ) schema.add_field( \"embeddings\", DataType.ARRAY, element_type=DataType.STRUCT, struct_schema=struct, ) client.create_collection( collection_name=collection_name, schema=schema, ) I generate normalized vectors and insert them into the StructArray: def make_vector(pk): rng = random.Random(pk) value = np.asarray( [rng.random() for _ in range(64)], dtype=np.float32, ) value /= np.linalg.norm(value) return value.astype(np.float16) for start in range(0, 5000, 100): rows = [] for pk in range(start, start + 100): rows.append( { \"id\": pk, \"embeddings\": [ { \"vector\": make_vector(pk), \"label\": f\"label_{pk}\", } ], } ) client.insert( collection_name=collection_name, data=rows, ) Then I create the index: client.flush(collection_name) index_params = client.prepare_index_params() index_params.add_index( field_name=\"embeddings[vector]\", index_name=\"embeddings_vector\", index_type=\"DISKANN\", metric_type=\"MAX_SIM_COSINE\", params={ \"search_list_size\": 64, }, ) client.create_index( collection_name=collection_name, index_params=index_params, ) client.load_collection(collection_name) Finally, I search using the exact vector stored for id=0 : query = EmbeddingList() query.add(make_vector(0)) result = client.search( collection_name=collection_name, data=[query], anns_field=\"embeddings[vector]\", filter=\"id == 0\", limit=5, search_params={ \"metric_type\": \"MAX_SIM_COSINE\", \"params\": { \"search_list_size\": 64, }, }, ) print(result) Milvus returns the correct primary key, but the score is close to -1 : id: 0 distance: -0.999978 Since the query vector is the same vector stored for id=0 , I expected a cosine similarity close to +1.0 . Why does MAX_SIM_COSINE return a negative score for an exact self-match when the StructArray FLOAT16_VECTOR field uses a DISKANN index?",
+    "developer": "Cubkm Ewaybk",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "51"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

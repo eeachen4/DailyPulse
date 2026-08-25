@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997597",
   "sourceItemId": "79997597",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997597/squashing-commits-after-local-remote-history-diverged-best-approach",
   "detail": {
     "longDescription": "My git history looks like: X - Y - B - C - D (HEAD -> master) \\ A (origin/master) A and B are the commits that I want to squash into one but local and remote both are diverged. I have an approach that works but is too many steps: Since branches are diverged and I don't want merge commit, I simply replay B through D on top of origin/master i.e. A using: git rebase origin/master I now have: X - Y - A - B' - C' - D' (HEAD -> master) | (origin/master) Now, squashing: git rebase -i Y pick ing, squash ing done and now: X - Y - B\" - C\" - D\" (HEAD -> master) \\ A (origin/master) Pushing the change: git push --force-with-lease And finally, got the history I want: X - Y - B\" - C\" - D\" (HEAD -> master, origin/master) Since it involves multiple steps — it is easy to forget. I believe there is a better way of solving this? Is there a shorter solution to this?",
     "developer": "lesrock",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
-      },
-      {
-        "label": "回答",
         "value": "1"
       },
       {
+        "label": "回答",
+        "value": "2"
+      },
+      {
         "label": "浏览",
-        "value": "62"
+        "value": "104"
       },
       {
         "label": "状态",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.22180",
+  "sourceItemId": "2606.22180",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.22180",
+  "detail": {
+    "longDescription": "arXiv:2606.22180v3 Announce Type: replace Abstract: Graph embedding maps graph nodes into low-dimensional vectors to support applications such as recommendation, fraud detection, and graph-based retrieval-augmented generation (GraphRAG). As graphs scale to billions of edges, scalable and efficient graph embedding has become increasingly important. Existing frameworks commonly adopt a sampling-training paradigm, in which mini-batches are constructed by sampling nodes and their neighbors. However, sampling is typically decoupled from evolving embedding quality, causing redundant exploration of well-trained regions while under-sampling undertrained nodes. At the system level, such decoupling further leads to excessive communication, serialized execution, and low resource utilization in distributed environments. We present FeLoG, a feedback loop-driven system for scalable distributed graph embedding. (1) FeLoG introduces feedback-coupled sampling and training, dynamically prioritizing undertrained nodes according to real-time embedding-quality feedback, thereby reducing redundant computation and accelerating convergence. (2) It employs activity-aware communication that compresses frequently occurring node sequences to reduce intra-machine PCIe traffic and selectively synchronizes frequently updated embeddings to reduce inter-machine communication. (3) It adopts a round-interleaved pipeline that overlaps next-round sampling with current-round training to improve CPU-GPU utilization. Experiments against six state-of-the-art baselines on large-scale graphs show that FeLoG achieves an average speedup of 27.9x, reduces communication cost by more than 53.1%, and sustains over 80% CPU-GPU utilization.",
+    "developer": "Peng Fang, Arijit Khan, Ziqiang Wu, Zhenli Li, Yibo Zhou, Fang Wang, Dan Feng",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Peng Fang, Arijit Khan, Ziqiang Wu, Zhenli Li, Yibo Zhou, Fang Wang, Dan Feng"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

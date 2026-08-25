@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997784",
+  "sourceItemId": "79997784",
+  "sourceUrl": "https://stackoverflow.com/questions/79997784/how-to-restrict-clickable-area-to-button",
+  "detail": {
+    "longDescription": "I am using Plotly/Dash to build a web app. I want to upload a file and for that I am using html.Button() from dash import Dash, dcc, html from dash.dependencies import Input, Output import plotly.express as px app = Dash() # Create the layout of the app app.layout = html.Div([ html.B('Please select a file'), html.P(), dcc.Upload( id=\"upload-data\", children=html.Div([html.Button('Choose File')]), multiple=False, ) ]) if __name__ == '__main__': app.run(debug=True) Output: The code works well, but I notice that clickable area of the Button exceeds the breath of the Button. When I click within the area of Button 'Choose File', import window opens and that's what is expected - OK When I click just above or below the Button, the import window doesn't open. This is also as expected - OK But when I click just on the right side of the button, the window opens as well - not OK How to restrict clickable area to the Button only? I tried many things with style , but nothing has worked. For example: html.Button(..... style={\"display\": \"inline-block\"} ) What changes do I need to make?",
+    "developer": "cph_sto",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "77"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

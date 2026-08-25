@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.10079",
+  "sourceItemId": "2608.10079",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.10079",
+  "detail": {
+    "longDescription": "arXiv:2608.10079v2 Announce Type: replace-cross Abstract: Thread scaling in Hexaly on the Time-Dependent Vehicle Routing Problem with Time Windows (TDVRPTW) depends on modeling, and on the language binding through which the model reaches the solver. We compare two encodings, both reaching the solver through its C++ binding: one evaluates continuous travel-time functions exactly through external callbacks, which that binding evaluates concurrently, while the other approximates them with time slices evaluated natively by the solver. Independent CPU accounting confirms that both use the cores they are allocated, but they respond differently to width. The external-function encoding stabilizes, reducing its seed dispersion by about 30% up to 8 threads before widening again, yet its pooled quality barely moves, because nine of the ten instances improve while the hardest one degrades by enough to cancel them. For the time-sliced encoding we first select a discretization on feasibility under the original travel-time functions rather than on approximation error, and the retained setting then improves monotonically with the thread count, gaining about a quarter of its final gap and reducing the seed dispersion by nearly half between 1 and 16 threads. At equal single-threaded budget the two encodings are close, and the small pooled edge of exact evaluation comes from that same hardest instance, so the practical advantage of the discretization is thread scaling rather than fidelity traded for speed. These descriptive results support multi-threading as a way to improve solution quality and stability when the model can exploit it, and they show that binding-level constraints on external evaluation must be measured, not assumed.",
+    "developer": "Florian Rascoussier",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.OC, cs.DC, cs.MS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Florian Rascoussier"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

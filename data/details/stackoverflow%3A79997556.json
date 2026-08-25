@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997556",
   "sourceItemId": "79997556",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997556/how-to-setup-a-rag-pipeline-with-a-local-llm-model-running-on-a-microcontroller",
   "detail": {
     "longDescription": "I am exploring the possibility of building a completely offline AI assistant on an ESP32-S3, where both the knowledge base and a small language model run directly on the microcontroller. I recently came across projects demonstrating that small local LLMs can run on ESP32-class microcontrollers by efficiently using flash and limited RAM. This made me wonder whether a RAG pipeline could also be implemented alongside such a model . The basic idea is: User query → retrieve relevant information from a locally stored knowledge base → provide it as context → local LLM → response My intended use case is a small offline assistant based on a fixed knowledge base, such as the Bhagavad Gita. I am not concerned about the size or intelligence of the LLM; even a very small model would be sufficient if it can summarize and respond based on the retrieved context. What I am trying to understand is how RAG would actually be implemented in this environment. Since a microcontroller does not have a conventional operating system or the resources available on a PC/server, what would be the practical approach for storing the documents/embeddings, performing retrieval, constructing the context, and passing it to the local LLM? I have found examples of LLMs running on microcontrollers / on PC and RAG running on conventional computers , but very little about combining the two. Is it feasible to implement a complete, offline RAG pipeline alongside a local LLM on an ESP32-S3? If so, what kind of architecture or approach should I look into?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-3"
+        "value": "-5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "62"
+        "value": "82"
       },
       {
         "label": "状态",

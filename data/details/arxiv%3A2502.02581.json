@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2502.02581",
+  "sourceItemId": "2502.02581",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2502.02581",
+  "detail": {
+    "longDescription": "arXiv:2502.02581v2 Announce Type: replace Abstract: Mixture-of-Experts (MoE) scales large language models cost-effectively, but expert-parallel training suffers severe straggler effects from skewed expert loads. Current systems frequently rearrange expert placement to mitigate stragglers, inflating memory footprint and migration overhead, potentially negating the benefits of load balancing. We present Fully Sharded Sparse Data Parallelism (FSSDP), a sparse-native MoE training approach that enables in-situ load balancing on every training iteration, overlapping the balancing with computation and eliminating explicit expert rearrangement together with its migration traffic and memory reserves. FSSDP keeps MoE layers sharded and sparsely materializes an ephemeral, load-balancing placement each iteration, with re-materialization to reuse available memory across layers. FSSDP is complemented by heterogeneous sharding to shift memory imbalance from the device level to the layer level, maintaining uniform memory budgets while enabling per-layer placement optimization. We realize FSSDP in Themis with co-designed topology-aware placement algorithms. Across 2 clusters and diverse workloads, Themis achieves 1.26-2.42x speedup over state-of-the-art expert-rearrangement systems.",
+    "developer": "Yuhao Qing, Guichao Zhu, Lintian Lei, Fanxin Li, Shixiong Zhao, Zekai Sun, Xiuxian Guan, Xusheng Chen, Dong Huang, Ping Luo, Yiming Qiu, Heming Cui",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuhao Qing, Guichao Zhu, Lintian Lei, Fanxin Li, Shixiong Zhao, Zekai Sun, Xiuxian Guan, Xusheng Chen, Dong Huang, Ping Luo, Yiming Qiu, Heming Cui"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

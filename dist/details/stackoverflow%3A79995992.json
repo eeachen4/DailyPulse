@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79995992",
+  "sourceItemId": "79995992",
+  "sourceUrl": "https://stackoverflow.com/questions/79995992/how-to-expose-a-multi-model-case-scoped-detail-read-in-drf-without-adding-a-n",
+  "detail": {
+    "longDescription": "I have a Django REST Framework app with an established pattern: a generic detail view dispatches by an entity string to one of ~14 model/serializer/service triples, looked up by that record's own primary key: class HandleEntityDetails(APIView): MODELS = {\"foo\": Foo, \"bar\": Bar, ...} # ~14 entries SERIALIZERS = {\"foo\": FooSerializer, ...} def get(self, request, entity, object_uuid): model_class = self.MODELS[entity.lower()] obj = model_class.objects.get(uuid=object_uuid) # this row's OWN pk return Response(self.SERIALIZERS[entity.lower()](obj).data) A sibling view shares the same dispatch table but is scoped by a parent \"case\" uuid instead of a row's own uuid, returning a paginated array: class HandleEntityList(APIView): def get(self, request, entity, case_uuid): case = Case.objects.get(uuid=case_uuid) service = self.SERVICES[entity.lower()] records = service.list(case) # queryset, many rows return Response(self.paginate(records)) And a third view already does writes for a handful of \"tab\" concepts, dispatching on a tab_name string in the request body to a per-tab ingestion service: class RecordsView(APIView): def post(self, request, case_uuid): case = Case.objects.get(uuid=case_uuid) tab_name = request.data.get(\"tab_name\") # e.g. \"creditSummary\" result = TabIngestService.ingest(tab_name, request.data, case) return Response(result, status=201) I now need to read back what that last one writes for one tab: not one row in one table, but the most recent row from model A filtered by provider , merged with the most recent row from related model B (also filtered by provider ), reshaped into camelCase keys that don't match either model's own field names 1:1. What I don't want is a fourth generic-dispatch view purely to read this back — it feels like it should reuse something that already exists rather than growing yet another {entity: ...} table alongside the three above. Why not just add ?tab_name=creditSummary as a query param on a new GET on RecordsView , symmetric with how POST reads it from the body? I keep landing on \"no\" for a few reasons and want to sanity-check them: Every other identifier in this app's URLs ( entity , object_uuid , case_uuid ) is a path segment , not a query string — a query param here would be the one inconsistent identifier in the whole API surface, for what's conceptually the same kind of thing (which fixed sub-resource of this case am I addressing). tab_name isn't a filter over a collection (which is what query params are idiomatically for — ?status=active , ?ordering=-created ) — it's a required, closed-enum identifier of a specific derived resource. A resource identifier that's optional/absent by default (as query params conventionally are) doesn't reflect that this parameter is mandatory and load-bearing. It reads better as a URL: GET /cases/<uuid>/records/creditSummary/ names the thing you're fetching; GET /cases/<uuid>/records/?tab_name=creditSummary makes it look like records/ is the resource and tab_name is incidentally narrowing it, when actually there's no meaningful records/ response without it. Concretely, I'm considering just adding GET to RecordsView with tab_name as a second URL kwarg (via a second path() entry pointing at the same view, since the existing POST URL has no trailing segment and I don't want to change it): # urls.py path(\"cases/<uuid:case_uuid>/records/\", RecordsView.as_view()), # existing POST path(\"cases/<uuid:case_uuid>/records/<str:tab_name>/\", RecordsView.as_view()), # new GET # views.py class RecordsView(APIView): def get(self, request, case_uuid, tab_name): case = Case.objects.get(uuid=case_uuid) return Response(TabReadService.read(tab_name, case)) # new, read-side twin of TabIngestService def post(self, request, case_uuid): ... # unchanged Is this — same view class, same dispatch concept, mirrored write/read service pair, path segment not query param — the idiomatic way to close this kind of read/write asymmetry in DRF? Or is there a cleaner pattern (a dedicated read-only viewset, a custom action, something else) that avoids bolting a GET onto a view whose name ( RecordsView ) and existing method ( post ) were written with only \"create\" in mind?",
+    "developer": "Paul 054m41",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "89"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

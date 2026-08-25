@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997698",
+  "sourceItemId": "79997698",
+  "sourceUrl": "https://stackoverflow.com/questions/79997698/class-decorator-with-arguments-using-the-decorator-syntax-not-working",
+  "detail": {
+    "longDescription": "Is it possible to decorate a function with a class decorator with arguments using the @decorator syntax? Note : Our class needs to store the function. Therefore we pass it in the __init__ method. The example below has been reduced to show only the important things. import functools class decorator_class: def __init__(self, func, *args0, **kwargs0): self.func = func # <- note: we need the function in the class self.args0 = args0 self.kwargs0 = kwargs0 functools.update_wrapper(self, func) def __call__(self, *args, **kwargs): print(self.func.__name__, self.args0, self.kwargs0, args, kwargs) return self.func(*args, **kwargs) # @decorator_class(\"arg\", key=\"value\") # <- this is not working def f(*args, **kwargs): # do something print(\"f\", args, kwargs) f = decorator_class(f, \"decorator arg\", decorator_kwarg=\"value\") # <- this works f(\"some_arg\", some_kwarg=\"some_value\") This decorator class works fine as decorator with arguments when using following syntax: f = decorator_class(f, \"decorator arg\", decorator_kwarg=\"value\") But not with the @decorator syntax: # @decorator_class(\"arg\", key=\"value\") # <- this is not working When used with the @decorator syntax the __init__ method gets the first argument \"arg\" passed to its func argument. What do I miss here?",
+    "developer": "wolfrevo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "91"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

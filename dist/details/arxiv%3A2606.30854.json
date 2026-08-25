@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.30854",
+  "sourceItemId": "2606.30854",
+  "fetchedAt": "2026-08-25T00:47:38.421Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.30854",
+  "detail": {
+    "longDescription": "arXiv:2606.30854v2 Announce Type: replace Abstract: Multi-stage programming with quotations has long provided a powerful way to generate and manipulate code. By treating code as data, programmers can write multi-stage programs in which earlier stages produce specialized code from inputs available at generation time. Modern typed multi-stage languages (e.g., MetaML, MetaOCaml, Template Haskell, and Scala 3) adopt quotation/splicing constructs while enforcing the well-typedness of generated code. However, manipulating code fragments syntactically can subtly change evaluation order, leading to semantic discrepancies between a staged program and its unstaged counterpart, which is intended to serve as a reference implementation in many cases. The inconsistency complicates reasoning about correctness, and prevents staged code from being a drop-in replacement for its unstaged counterpart. In this paper, we study the design of multi-stage languages with semantics preservation guarantees. We develop two statically typed two-stage calculi, $\\lambda_{|2|}$ and $\\lambda^{ref}_{|2|}$, the latter supporting mutable references in the second stage. Their dynamic semantics models automatic let-insertion, tracked as a control effect in a lightweight type-and-effect system, enabling type-safe and semantics-preserving manipulation of effectful code fragments. We develop binary logical relations to prove strong semantics-preservation theorems: if a well-typed two-stage program $t_1$ evaluates to a value $\\mathsf{code} t_2$, then $t_2$ is contextually equivalent to the stage-erasure of $t_1$. Our calculi and their mechanized metatheory provide a simple and definitive answer to the question posed by Inoue and Taha of when staging annotations preserve semantics, and lay a foundation for future work on semantics-preserving multi-stage programming.",
+    "developer": "Jun Tan, Guannan Wei",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jun Tan, Guannan Wei"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
