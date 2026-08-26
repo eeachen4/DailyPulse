@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998224",
+  "sourceItemId": "79998224",
+  "sourceUrl": "https://stackoverflow.com/questions/79998224/how-to-merge-specific-rows-in-a-pandas-dataframe",
+  "detail": {
+    "longDescription": "I'm cleaning up a dataset and some of the values are disjointed. It looks kind of like this: every city is in it's own row, and the columns show population. I want to merge A old and A new column values, without touching B. I don't know the row index that A old and A new are in, just the names. So I need to identify the rows through a conditional on the value of column name , and then adjust the value for each entry. Also, the entries might be numbers written as strings, or even left blank instead of zero. name 2000 2001 2002 2003 A old 3 2 0 0 A new 0 2 1 B 5 6 7 8 And desired result is: name 2000 2001 2002 2003 A old 3 2 0 0 A new 3 2 2 1 B 5 6 7 8 So far I have tried this: for k in range(2000,2004): df.loc[df['name']==\"A new\",str(k)]=df.loc[df['name']==\"A new\"][str(k)].replace('',0).astype(int)+df.loc[df['name']==\"A old\"][str(k)].replace('',0).astype(int) But this gives the result: name 2000 2001 2002 2003 A old 3 2 0 0 A new NaN NaN NaN NaN B 5 6 7 8 Any advice appreciated.",
+    "developer": "fazan",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "29"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2507.15154",
+  "sourceItemId": "2507.15154",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://arxiv.org/abs/2507.15154",
+  "detail": {
+    "longDescription": "arXiv:2507.15154v2 Announce Type: replace Abstract: State Machine Replication (SMR) is a technique for achieving fault tolerance in distributed services by replicating the service state across multiple servers. Leader-based consensus algorithms, e.g., Raft and Multi-Paxos, are commonly used to implement SMR, where one server acts as a leader to coordinate consensus among the others. When the leader fails, a failover process is triggered to select a new leader. During this period, called out-of-service (OTS) time, the service temporarily becomes unavailable. The OTS time depends on the time required for both leader failure detection and election, particularly on election parameters, i.e., the interval of heartbeat messages and the timeout for triggering the election. If these parameters are improperly configured, the OTS time may increase or a new leader may fail to be elected, resulting in a loss of availability. Moreover, setting appropriate parameters is difficult under fluctuating network conditions, as suitable parameters change with variations in network latency and packet loss rates. We propose Dynatune, which dynamically tunes election parameters for timely and stable leader failover according to network conditions by measuring latency and packet loss rates between servers. Experimental results show that Dynatune reduces leader failure detection time by 78% and OTS time by 45% for Raft, and by 79% and 75% for Multi-Paxos, while maintaining availability under fluctuating networks. These results demonstrate that Dynatune effectively enhances failover performance in leader-based SMR.",
+    "developer": "Kohya Shiozaki, Junya Nakamura",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kohya Shiozaki, Junya Nakamura"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

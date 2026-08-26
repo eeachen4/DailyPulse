@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997697",
   "sourceItemId": "79997697",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997697/xmlhttprequest-to-php-and-fake-parameters",
   "detail": {
     "longDescription": "I have following script on my server (in user panel) javascript triggers XMLHttpRequest to php: var setting_product_updates document.getElementById('receive_product_updates_email').change = function(e){ //peevent checkbox check if working! if(setting_product_updates)return false; setting_product_updates = true; var receive_product_updates_email = e.target.checked ? '1' : '0'; var url = 'product_management.php'; var xhr = new XMLHttpRequest; xhr.onreadystatechange = function() { if (this.readyState === 4){ if (this.status === 200) { setting_product_updates = false; } } } xhr.onerror = function() { setting_product_updates = false; } xhr.open(\"POST\", url, true); xhr.setRequestHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"); var user_id = userLicencesTable.getAttribute('data-user-id') var params = '' + 'update_receive_product_updates=1' + 'receive_product_updates_email=' + receive_product_updates_email + '&user_id=' + user_id xhr.send(params); } php: if (isset($_POST['update_receive_product_updates']) && isset($_POST['user_id']) ) { // connect to the database $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); $user_id = $_POST['user_id']; $receive_product_updates_email = trim($_POST['receive_product_updates_email']); $query = \"UPDATE users SET receive_product_updates_email='$receive_product_updates_email' WHERE id=?\"; $stmt = $db->prepare($query); $stmt->bind_param(\"s\", $user_id); $stmt->execute(); echo json_encode('1'); } My question: If XMLHttpRequest can be faked with fake parameters, how can I make sure user does not abuse this?",
     "developer": "Toniq",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "89"
+        "value": "102"
       },
       {
         "label": "状态",

@@ -4,14 +4,14 @@
     <title>DailyPulse</title>
     <link>https://eeachen4.github.io/DailyPulse/</link>
     <description>Daily global product, developer and AI signals.</description>
-    <lastBuildDate>Tue, 25 Aug 2026 00:48:01 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 00:51:12 GMT</lastBuildDate>
     <item>
-      <title>Instagram</title>
-      <link>https://apps.apple.com/us/app/instagram/id389801252?uo=4</link>
-      <guid isPermaLink="false">appstore:389801252</guid>
-      <pubDate>Fri, 21 Aug 2026 12:30:29 GMT</pubDate>
+      <title>ChatGPT</title>
+      <link>https://apps.apple.com/us/app/chatgpt/id6448311069?uo=4</link>
+      <guid isPermaLink="false">appstore:6448311069</guid>
+      <pubDate>Sat, 22 Aug 2026 01:20:24 GMT</pubDate>
       <description></description>
-      <category>AI</category>
+      <category>开源</category>
     </item>
     <item>
       <title>Google Assistant</title>
@@ -30,19 +30,19 @@
       <category>基础设施</category>
     </item>
     <item>
-      <title>His Research on Pregnant Opioid Users Was Widely Celebrated. Auditors and Experts Found Major Flaws. --- Dr. Craig Towers was hailed as a he</title>
-      <link>https://newsie.social/@ProPublica/117150961321082682</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117150964576563840</guid>
-      <pubDate>Mon, 24 Aug 2026 14:30:07 GMT</pubDate>
-      <description>@ProPublica@newsie.social · His Research on Pregnant Opioid Users Was Widely Celebrated. Auditors and Experts Found Major Flaws. --- Dr. Craig Towers was hailed as a hero for his research on detoxing pregnant opioid users. After he published a study that found naltrexone could help patients stay off drugs, addiction specialists started asking if his work was too good to be true. https://www. propublica.org/article/craig-t owers-knoxville-tennessee-newborn-withdrawal-study?utm_source=mastodon&amp;utm_medium=social&amp;utm_campaign=mastodon-post # News # Pregnancy # Women # Drugs # Health # Medicine # Research # Science</description>
+      <title>New research shows how psychedelics reorganise the patterns in your&amp;nbsp;brain # Science # Psychology # Nature # Psilocybin # Psychedelics #</title>
+      <link>https://mastodon.world/@The14/117129444506359074</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117129444554784667</guid>
+      <pubDate>Thu, 20 Aug 2026 19:18:06 GMT</pubDate>
+      <description>@The14@mastodon.world · New research shows how psychedelics reorganise the patterns in your&amp;nbsp;brain # Science # Psychology # Nature # Psilocybin # Psychedelics # Brain # MentalHealth # BrainImaging # MRI # EEG # Consciousness # AIResearch # BrainResearch # Neuroscience # HealthResearch # MedicalScience https:// the-14.com/new-research-shows- how-psychedelics-reorganise-the-patterns-in-your-brain/</description>
       <category>模型研究</category>
     </item>
     <item>
-      <title>Xiaomi: New CPU matches Apple cores single threaded, much faster multithreaded</title>
-      <link>https://news.ycombinator.com/item?id=49420873</link>
-      <guid isPermaLink="false">hackernews:49420873</guid>
-      <pubDate>Mon, 24 Aug 2026 15:08:17 GMT</pubDate>
-      <description>https:&amp;#x2F;&amp;#x2F;xcancel.com&amp;#x2F;lemire&amp;#x2F;status&amp;#x2F;2091894299289874926</description>
+      <title>OpenAI restores 5-hour Codex and Work limits for ChatGPT Plus users</title>
+      <link>https://news.ycombinator.com/item?id=49432879</link>
+      <guid isPermaLink="false">hackernews:49432879</guid>
+      <pubDate>Tue, 25 Aug 2026 12:33:00 GMT</pubDate>
+      <description>由 MC995 发布</description>
       <category>AI</category>
     </item>
     <item>
@@ -61,52 +61,76 @@
       <category>Agent</category>
     </item>
     <item>
-      <title>How to expose a multi-model, case-scoped &amp;quot;detail&amp;quot; read in DRF without adding a new endpoint?</title>
-      <link>https://stackoverflow.com/questions/79995992/how-to-expose-a-multi-model-case-scoped-detail-read-in-drf-without-adding-a-n</link>
-      <guid isPermaLink="false">stackoverflow:79995992</guid>
-      <pubDate>Mon, 24 Aug 2026 18:48:05 GMT</pubDate>
-      <description>I have a Django REST Framework app with an established pattern: a generic detail view dispatches by an entity string to one of ~14 model/serializer/service triples, looked up by that record&apos;s own primary key: class HandleEntityDetails(APIView): MODELS = {&quot;foo&quot;: Foo, &quot;bar&quot;: Bar, ...} # ~14 entries SERIALIZERS = {&quot;foo&quot;: FooSerializer, ...} def get(self, request, entity, object_uuid): model_class = self.MODELS[entity.lower()] obj = model_class.objects.get(uuid=object_uuid) # this row&apos;s OWN pk return Response(self.SERIALIZERS[entity.lower()](obj).data) A sibling view shares the same dispatch table but is scoped by a parent &quot;case&quot; uuid instead of a row&apos;s own uuid, returning a paginated array: class HandleEntityList(APIView): def get(self, request, entity, case_uuid): case = Case.objects.get(uuid=case_uuid) service = self.SERVICES[entity.lower()] records = service.list(case) # queryset, many rows return Response(self.paginate(records)) And a third view already does writes for a handful of &quot;tab&quot; concepts, dispatching on a tab_name string in the request body to a per-tab ingestion service: class RecordsView(APIView): def post(self, request, case_uuid): case = Case.objects.get(uuid=case_uuid) tab_name = request.data.get(&quot;tab_name&quot;) # e.g. &quot;creditSummary&quot; result = TabIngestService.ingest(tab_name, request.data, case) return Response(result, status=201) I now need to read back what that last one writes for one tab: not one row in one table, but the most recent row from model A filtered by provider , merged with the most recent row from related model B (also filtered by provider ), reshaped into camelCase keys that don&apos;t match either model&apos;s own field names 1:1. What I don&apos;t want is a fourth generic-dispatch view purely to read this back — it feels like it should reuse something that already exists rather than growing yet another {entity: ...} table alongside the three above. Why not just add ?tab_name=creditSummary as a query param on a new GET on RecordsView , symmetric with how POST reads it from the body? I keep landing on &quot;no&quot; for a few reasons and want to sanity-check them: Every other identifier in this app&apos;s URLs ( entity , object_uuid , case_uuid ) is a path segment , not a query string — a query param here would be the one inconsistent identifier in the whole API surface, for what&apos;s conceptually the same kind of thing (which fixed sub-resource of this case am I addressing). tab_name isn&apos;t a filter over a collection (which is what query params are idiomatically for — ?status=active , ?ordering=-created ) — it&apos;s a required, closed-enum identifier of a specific derived resource. A resource identifier that&apos;s optional/absent by default (as query params conventionally are) doesn&apos;t reflect that this parameter is mandatory and load-bearing. It reads better as a URL: GET /cases/&lt;uuid&gt;/records/creditSummary/ names the thing you&apos;re fetching; GET /cases/&lt;uuid&gt;/records/?tab_name=creditSummary makes it look like records/ is the resource and tab_name is incidentally narrowing it, when actually there&apos;s no meaningful records/ response without it. Concretely, I&apos;m considering just adding GET to RecordsView with tab_name as a second URL kwarg (via a second path() entry pointing at the same view, since the existing POST URL has no trailing segment and I don&apos;t want to change it): # urls.py path(&quot;cases/&lt;uuid:case_uuid&gt;/records/&quot;, RecordsView.as_view()), # existing POST path(&quot;cases/&lt;uuid:case_uuid&gt;/records/&lt;str:tab_name&gt;/&quot;, RecordsView.as_view()), # new GET # views.py class RecordsView(APIView): def get(self, request, case_uuid, tab_name): case = Case.objects.get(uuid=case_uuid) return Response(TabReadService.read(tab_name, case)) # new, read-side twin of TabIngestService def post(self, request, case_uuid): ... # unchanged Is this — same view class, same dispatch concept, mirrored write/read service pair, path segment not query param — the idiomatic way to close this kind of read/write asymmetry in DRF? Or is there a cleaner pattern (a dedicated read-only viewset, a custom action, something else) that avoids bolting a GET onto a view whose name ( RecordsView ) and existing method ( post ) were written with only &quot;create&quot; in mind?</description>
+      <title>Can&amp;#39;t Call Action method using JavaScript,the request is not even reaching the Action method</title>
+      <link>https://stackoverflow.com/questions/79997810/cant-call-action-method-using-javascript-the-request-is-not-even-reaching-the-a</link>
+      <guid isPermaLink="false">stackoverflow:79997810</guid>
+      <pubDate>Tue, 25 Aug 2026 06:22:49 GMT</pubDate>
+      <description>I have Action method named Import which is inside the Admin Controller. I have JavaScript code inside a view that needs to send a request to the Import . Here is the view code: @{ ViewData[&quot;Title&quot;] = &quot;Products page&quot;; } &lt;h1&gt;Products Page&lt;/h1&gt; &lt;label for=&quot;avatar&quot;&gt;Choose a file:&lt;/label&gt; &lt;input class=&quot;form-control form-control-lg&quot; id=&quot;formFileLg&quot; type=&quot;file&quot; accept=&quot;.xlsx&quot; /&gt; &lt;script&gt; document.getElementById(&quot;formFileLg&quot;).addEventListener(&quot;change&quot;, importFile); console.log(&quot;hello world&quot;); async function importFile() { console.log(&quot;The JS handler was started...&quot;) const formData = new FormData(); formData.append(&quot;file&quot;, this.files[0]); try { console.log(&quot;Try block executed.&quot;) response = await fetch(&apos;Admin/Import&apos;, { method: &apos;POST&apos;, body: formData, }) if (!response.ok) { console.log(&quot;response is not ok&quot;) throw new Error(`Response status: ${response.status}`); return; } console.log(&quot;response is ok&quot;); const result = await response.json(); console.log(result); } catch (error) { alert(&quot;catch block executed&quot;); console.log(&quot;&apos;nCatch block executed\n&quot;) console.error(error.message); } } &lt;/script&gt; and here is the Import Action&apos;s code [HttpPost] [Route(&quot;Admin/Import&quot;)] public IActionResult Import([FromBody] IFormFile file) { Console.Write(&quot;Action method is called&quot;); //// don&apos;t forget to refactor the code. if (file == null || file.Length == 0) { return BadRequest(&quot;Please upload a valid Excel file.&quot;); } return Ok(); } I inspected the result in the Dev tools , the result is shown in the below image:</description>
       <category>代码</category>
     </item>
     <item>
-      <title>Me Among Us: Affective Framing in Data Donation</title>
-      <link>https://arxiv.org/abs/2608.20523</link>
-      <guid isPermaLink="false">arxiv:2608.20523</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20523v1 Announce Type: new Abstract: This study investigates how different framing approaches influence the affective aspects of data donation decision-making. Although framing effects are well studied in charitable giving, how affective framing shapes data donation, especially through data visualization, remains poorly understood. Using a theoretical framework based on the functions of affect in decision-making, we examine how three distinct framing approaches, an individual-donor lens (Group A), an individual-collective lens (Group B), and a collective-institutional lens (Group C), shape participants&apos; affective experiences and subsequent donation decisions. Through a real-world data donation study (N=24), we found that framing designs substantially influenced donation outcomes, with the individual-collective lens generating the most favorable responses. Our analysis illustrates how affect can functions as information, motivation, and as a spotlight during the decision-making process, providing insights for designing more informed data donation interfaces and communications. This research contributes to understanding the complex interplay between framing designs, affective responses, and decision outcomes in data donation contexts.</description>
+      <title>How do I get typing to work on generic class when creating a property with a function?</title>
+      <link>https://stackoverflow.com/questions/79997571/how-do-i-get-typing-to-work-on-generic-class-when-creating-a-property-with-a-fun</link>
+      <guid isPermaLink="false">stackoverflow:79997571</guid>
+      <pubDate>Mon, 24 Aug 2026 13:51:12 GMT</pubDate>
+      <description>Below I created a function create_value_property which defines a set and get method and returns a property. How do I define this in such a way that the attributes val1 , val2 and val3 show as type V ( int in the example)? As it stands, custom.valn report type Any . I&apos;m pretty sure it&apos;s because I&apos;m using getattr and I don&apos;t know if I can specify the type that it will output. Is there a way to hint the property type? Python 3.14.6 IDE: VS Code Version 1.134.0 (Pylance) class EventHandler: def post_event(self, event: str): print(event) def create_value_property[V](name: str) -&gt; property: def get(self) -&gt; V: return getattr(self, f&quot;_{name}&quot;) def set(self, value: V) -&gt; None: prev_value = getattr(self, f&quot;_{name}&quot;) if value == prev_value: return setattr(self, f&quot;_{name}&quot;, value) self.event_handler.post_event(f&quot;{name} value changed: {value}&quot;) return property(get, set) class Custom[V]: def __init__(self, val1: V, val2: V, val3: V) -&gt; None: self._val1: V = val1 self._val2: V = val2 self._val3: V = val3 self.event_handler: EventHandler = EventHandler() val1: property = create_value_property(&apos;val1&apos;) val2: property = create_value_property(&apos;val2&apos;) val3: property = create_value_property(&apos;val3&apos;) custom = Custom[int](1,1,1) a = custom.val1 # a and custom.val1 report type Any custom.val1 = 2 custom.val2 = 3 custom.val3 = 4 I was able to figure out a middle ground. I was trying to avoid defining the same @setter for each property by using create_value_property . Instead I can do something like this and the typing works. I&apos;m still curious if I can get the initial method working as it is much cleaner. def set_value[V](self, attr: V, value: V) -&gt; None: if attr == value: return prev_val = attr attr = value self.event_handler.post_event(f&quot;{attr} value changed: {value}&quot;) class Rev2[V]: def __init__(self, val1: V) -&gt; None: self._val1: V = val1 self.event_handler: EventHandler = EventHandler() @property def val1(self) -&gt; V: return self._val1 @val1.setter def val1(self, value: V) -&gt; None: set_value(self, self._val1, value) An attempt with descriptors as suggested in the comments (with some functionality stripped out). Now the type inferred by the type checker for val1 is Unknown . class Prop[V]: def __set_name__(self, owner, name) -&gt; None: self.name = name def __get__(self, instance, owner) -&gt; V: return instance.__dict__.get(self.name) def __set__(self, instance, value) -&gt; None: instance.__dict__[self.name] = value print(f&quot;value set&quot;) class Rev3[V]: Val1 = Prop() rev3 = Rev3() rev3.Val1</description>
+      <category>代码</category>
+    </item>
+    <item>
+      <title>Exploring Agentic Approaches for Data Issue Detection and Repair in AI-Assisted Visualization</title>
+      <link>https://arxiv.org/abs/2608.21602</link>
+      <guid isPermaLink="false">arxiv:2608.21602</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21602v1 Announce Type: new Abstract: AI is increasingly lowering the barrier to data analysis and creating visualization scripts. However, a key obstacle in AI-assisted visualization is that certain data issues can lead to visualizations that are plausible, but misrepresent the underlying data. These \textit{visualization defects} are elusive and difficult to fix, particularly for non-experts who may not know what data issues cause them or how to guide AI systems to resolve them. We present findings of a preliminary empirical investigation of how commercial LLMs identify and repair defect-inducing data issues. Using a curated subset of the 911 emergency-call dataset with five injected data issues, we evaluated GPT-5, GPT-4o, GPT-4, and Claude Sonnet 4.6 under a three-stage prompting protocol, including zero-shot, guided issue-identification, and guided issue-repair. We executed this protocol under two conditions: single-agent and a multi-agent orchestration that separates data issue detection, review, repair planning, data repair, and repair quality assurance. We observed that across both conditions, LLMs identified and repaired single-field issues (e.g., missing values) but struggled to identify and repair temporal, geographic, and semantic issues. Based on these observations, we discuss design implications for agentic visualization systems, including explicit representation of data assumptions, selective human intervention for ambiguous decisions, and evidence-based repair.</description>
       <category>工具</category>
     </item>
     <item>
-      <title>Vibe Coding: Practice, Performance, Productivity, and Risk -A State-of-the-Art Review</title>
-      <link>https://arxiv.org/abs/2608.20446</link>
-      <guid isPermaLink="false">arxiv:2608.20446</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20446v1 Announce Type: new Abstract: Vibe coding - AI-assisted software development in which the developer describes intent in natural language and validates results by running rather than reading the generated code - was named by Andrej Karpathy in February 2025 and produced its first body of empirical evidence within seventeen months. This state-of-the-art review assembles that evidence across a cross-disciplinary corpus spanning software engineering, human-computer interaction, labour economics, security research, governance, and education. We survey the model landscape, the tool ecosystem, and the performance record by task type, finding the early benchmarks saturated but task-level capability uneven: reliable code generation alongside weak fault detection and hard-to-audit documentation. The productivity record is at first contradictory: peer-reviewed field experiments report +26% more tasks per week, independent randomised trials measure a 19% slowdown, and team-level telemetry shows code-review time up +441%. We argue these readings are consistent once measurement method, scope, and time horizon are held constant, and identify six patterns behind the dispersion, among them effect-shrinkage under broader measurement, self-report diverging from independent measurement, output volume conflated with productivity, and bold claims walked back once tested over longer horizons. We further document security failures in deployed applications, code-quality degradation visible in large-scale code and developer telemetry, unsettled copyright exposure, and evidence of skill atrophy. The review closes with the open research questions and one falsifiable conjecture: that the gains are real on new code and shrink or reverse on mature codebases, which would account for most of the disagreement in the record.</description>
+      <title>SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent</title>
+      <link>https://arxiv.org/abs/2608.21458</link>
+      <guid isPermaLink="false">arxiv:2608.21458</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21458v1 Announce Type: new Abstract: In a software architecture, each service can obey its own conventions and each handoff between adjacent services can hold, and yet a semantic inconsistency may remain that appears only on a full traversal of the system. This paper independently constructs two cohomologies measuring this gap between local and global correctness, and proves that they agree. The first construction speaks the language of repair: from the semantic repair options admitted in each local context and their equivalence relation, it generates the coefficient $M_{\mathrm{sem}}$. The second speaks the language of equations: it organizes the constraints of the architecture as a simultaneous equation system and generates the quotient coefficient $Q_E$ by its obstruction ideal. Over a selected finite cover $U$ in Algebraic Architecture Theory (AAT), which constructs software architecture as algebraic geometry, and under finitely many selection conditions matching the local data, the comparison map induces the isomorphism $H^1_{\mathrm{sem}}(U) \cong \check{H}^1(U, Q_E)$ together with a correspondence of residual classes. We call this the SAGA comparison theorem. The obstructions measured in the two languages are the same cohomology class, so semantic diagnosis and geometric computation translate into each other. Moreover, when the family of repair states satisfies the sheaf condition, a global repair exists if and only if the obstruction class vanishes on both sides. The paper presents this result in three layers: the mathematical proof; the Lean formalization status at release time; and a diagnosis in which the measurement tool ArchSig, on a real open-source microservice system, reproducibly walks the full circle from a measured nonzero obstruction to its disappearance after repair. The three layers refer to the same release identity, and each claim is connected to primary evidence.</description>
+      <category>代码</category>
+    </item>
+    <item>
+      <title>From Subjective Judgments to Auditable Standards:Protocol-Guided AI Auditing of Website Redundancy</title>
+      <link>https://arxiv.org/abs/2608.21476</link>
+      <guid isPermaLink="false">arxiv:2608.21476</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21476v1 Announce Type: new Abstract: Website redundancy does not have a single fixed meaning. The same repeated element may distract during one task and provide backup during another. We introduce CORA (Counterfactual, Observable Redundancy Audit), which measures repetition load, normal-use tax, and failure-domain recovery reserve separately. Each run retains screenshots, stable element identities, and task traces. A versioned vision-language model proposes the annotations. Typed validation and release checks then determine whether a calibrated dimension can be reported; failed or malformed outputs stay in the fixed denominator. On a transparent mechanistic testbed, the factorized CORA representation separated reserve from normal-use tax and predicted perturbed success more accurately than scalar-load baselines. The model studies then showed why repeatability is not enough: two small local vision-language models produced recurring outputs, but neither instrument met all release requirements. CORA therefore withheld automated scores from both instruments while retaining the raw responses and failure records. Separate checker fixtures confirmed that the typed validator and hardened release gates implement their specifications; these tests do not establish semantic grounding or accuracy on production sites. Taken together, the results position CORA as an auditable candidate procedure for the controlled benchmark studied here rather than a general standard. Human agreement, AI-versus-human accuracy, and validation on independent production sites remain open empirical questions.</description>
       <category>开源</category>
     </item>
     <item>
-      <title>Scalpel3: A High-Performance Data Carving Architecture for Recovery of Fragmented Files</title>
-      <link>https://arxiv.org/abs/2608.20363</link>
-      <guid isPermaLink="false">arxiv:2608.20363</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20363v1 Announce Type: new Abstract: File carving recovers files from raw storage media without relying on filesystem metadata, a key capability in digital forensics, data recovery, and digital exploration. Traditional tools such as Foremost, Scalpel v1/2, and PhotoRec handle contiguous files effectively, and some support fragmented recovery for specific formats under simplifying assumptions, but no publicly available tool provides a general-purpose, high-performance framework for developing and deploying fragmented recovery strategies across many file types at scale. This paper presents Scalpel3, the first general-purpose, open source, massively parallel file carving framework designed to support both contiguous and fragmented recovery at scale. Its primary contribution is an extensible, high-performance architecture that enables researchers to develop, test, and deploy new carving strategies without implementing their own multithreaded backends or I/O infrastructure. Adding support for new file types typically requires only development of single-threaded file validation logic and, where useful, block validation or custom reassembly logic -- the Scalpel3 backend manages parallelization, synchronization, and fast I/O automatically. The architecture also integrates the ONNX Runtime, allowing learned classifiers to participate in block validation and reassembly when useful. Beyond raw performance, Scalpel3 introduces practical features for real-world investigations: persistent checkpointing for long-running jobs, human-in-the-loop control allowing operators to monitor progress and redirect effort interactively, and block-level deduplication to shrink the search space. By making this framework publicly available, we aim to lower barriers to experimentation and help translate file carving research into practitioner-ready tools.</description>
+      <title>PowerSlider: Exploiting Phase Asymmetry for LLM Serving under Demand Response</title>
+      <link>https://arxiv.org/abs/2608.21719</link>
+      <guid isPermaLink="false">arxiv:2608.21719</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21719v1 Announce Type: new Abstract: AI inference clusters are increasingly constrained by instantaneous power, not just energy: grid operators condition new capacity on demand response, imposing time-varying power caps. Existing LLM serving systems optimize a static energy objective or shed fixed priority tiers under load; either way, goodput collapses when the power envelope moves. An LLM pipeline is not a uniform load: compute-bound prefill loses throughput almost linearly with GPU frequency, memory-bound answer decode sustains it down to $0.57\times$ nominal, and reasoning&apos;s thinking phase couples KV-cache capacity to scheduling -- so a cap should be steered to where each watt costs the least performance. \sys{} does so with a new Flex SLO contract that turns bounded user slack into an optimization constraint, prefill--think--answer disaggregation exposing per-stage frequency and KV control, and a Karush--Kuhn--Tucker (KKT) online solver re-solving within 7.7 ms of every cap change, backed by a consolidated fail-safe that power-gates drained instances when DVFS bottoms out on static power. On SGLang with production traces, \sys{} sustains 78.3\% online goodput at a 30\% cap reduction versus 47.6\% for the best of five baselines ($1.64\times$), holds latency-critical tails within $1.3\times$ of nominal (baselines: $2.3$--$6\times$, up to $12\times$), and delivers 92\% mean goodput through a replayed CAISO grid-emergency day bottoming at $0.41\times$ (54\% at the trough; every baseline below 7\%).</description>
       <category>基础设施</category>
     </item>
     <item>
-      <title>The Cloudflare Blog – Brought to you by EmDash</title>
-      <link>https://blog.cloudflare.com/cloudflare-blog-uses-emdash/</link>
-      <guid isPermaLink="false">rss:https://blog.cloudflare.com/cloudflare-blog-uses-emdash/</guid>
-      <pubDate>Mon, 24 Aug 2026 19:00:00 GMT</pubDate>
-      <description>We migrated the Cloudflare Blog to EmDash to prove our stack at massive scale. Here is how we stress-tested performance, safely routed production traffic, and redesigned the frontend experience.</description>
-      <category>基础设施</category>
+      <title>Rule insights dashboard generally available</title>
+      <link>https://github.blog/changelog/2026-08-25-rule-insights-dashboard-generally-available</link>
+      <guid isPermaLink="false">rss:https://github.blog/changelog/2026-08-25-rule-insights-dashboard-generally-available</guid>
+      <pubDate>Tue, 25 Aug 2026 20:05:35 GMT</pubDate>
+      <description>&lt;p&gt;The rule insights dashboard is now generally available at both the repository and organization levels. You get a visual, high-level view of how GitHub evaluates and enforces your GitHub repository&amp;#8230;&lt;/p&gt; &lt;p&gt;The post &lt;a href=&quot;https://github.blog/changelog/2026-08-25-rule-insights-dashboard-generally-available&quot;&gt;Rule insights dashboard generally available&lt;/a&gt; appeared first on &lt;a href=&quot;https://github.blog&quot;&gt;The GitHub Blog&lt;/a&gt;.&lt;/p&gt;</description>
+      <category>开源</category>
     </item>
     <item>
-      <title>ChatGPT</title>
-      <link>https://apps.apple.com/us/app/chatgpt/id6448311069?uo=4</link>
-      <guid isPermaLink="false">appstore:6448311069</guid>
-      <pubDate>Sat, 22 Aug 2026 01:20:24 GMT</pubDate>
+      <title>GitHub Copilot app Customize tab is generally available</title>
+      <link>https://github.blog/changelog/2026-08-25-github-copilot-app-customize-tab-is-generally-available</link>
+      <guid isPermaLink="false">rss:https://github.blog/changelog/2026-08-25-github-copilot-app-customize-tab-is-generally-available</guid>
+      <pubDate>Tue, 25 Aug 2026 20:05:26 GMT</pubDate>
+      <description>&lt;p&gt;GitHub Copilot is more useful when it works with the tools, knowledge, and workflows your team already relies on. The new Customize tab in the GitHub Copilot app brings MCP&amp;#8230;&lt;/p&gt; &lt;p&gt;The post &lt;a href=&quot;https://github.blog/changelog/2026-08-25-github-copilot-app-customize-tab-is-generally-available&quot;&gt;GitHub Copilot app Customize tab is generally available&lt;/a&gt; appeared first on &lt;a href=&quot;https://github.blog&quot;&gt;The GitHub Blog&lt;/a&gt;.&lt;/p&gt;</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>My Verizon</title>
+      <link>https://apps.apple.com/us/app/my-verizon/id416023011?uo=4</link>
+      <guid isPermaLink="false">appstore:416023011</guid>
+      <pubDate>Mon, 24 Aug 2026 18:45:15 GMT</pubDate>
       <description></description>
-      <category>开源</category>
+      <category>工具</category>
     </item>
     <item>
       <title>unsloth/Qwen-AgentWorld-35B-A3B-GGUF</title>
@@ -124,44 +148,44 @@
       <category>AI</category>
     </item>
     <item>
-      <title>New research shows how psychedelics reorganise the patterns in your&amp;nbsp;brain # Science # Psychology # Nature # Psilocybin # Psychedelics #</title>
-      <link>https://mastodon.world/@The14/117129444506359074</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117129444554784667</guid>
-      <pubDate>Thu, 20 Aug 2026 19:18:06 GMT</pubDate>
-      <description>@The14@mastodon.world · New research shows how psychedelics reorganise the patterns in your&amp;nbsp;brain # Science # Psychology # Nature # Psilocybin # Psychedelics # Brain # MentalHealth # BrainImaging # MRI # EEG # Consciousness # AIResearch # BrainResearch # Neuroscience # HealthResearch # MedicalScience https:// the-14.com/new-research-shows- how-psychedelics-reorganise-the-patterns-in-your-brain/</description>
+      <title>via # LLRX The EPA’s data on # cancer risk from # airpollution has gone dark. Grist reporter Sachi Kitajima Mulkey explains how EPA’s data o</title>
+      <link>https://newsie.social/@bespacific/117157763702142870</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117157764017926457</guid>
+      <pubDate>Tue, 25 Aug 2026 19:20:03 GMT</pubDate>
+      <description>@bespacific@newsie.social · via # LLRX The EPA’s data on # cancer risk from # airpollution has gone dark. Grist reporter Sachi Kitajima Mulkey explains how EPA’s data on # cancer # risk from air # pollution has gone dark. For decades, communities have relied on the agency’s cancer risk estimates to hold # polluters accountable. And this year, it’s missing. # government # politics # maga # trump # censorship # healthcare # EPA # datasets # research # education https://www. llrx.com/2026/08/the-epas-data -on-cancer-risk-from-air-pollution-has-gone-dark/ # publichealth # medicine # energy</description>
+      <category>模型研究</category>
+    </item>
+    <item>
+      <title>The family of the # Ebola patient—including his children—faced a high risk of infection. With Ebola often deadly in young children, the # Ch</title>
+      <link>https://wisskomm.social/@ChariteBerlin/117156488165673718</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117156488770681898</guid>
+      <pubDate>Tue, 25 Aug 2026 13:55:40 GMT</pubDate>
+      <description>@ChariteBerlin@wisskomm.social · The family of the # Ebola patient—including his children—faced a high risk of infection. With Ebola often deadly in young children, the # CharitéBerlin team decided to use a preventive treatment for the first time. In our second Paper spotlight, the researchers share what they learned: 👉 https://www. charite.de/en/research/paper_s potlight/new_findings_on_preventive_treatment_after_exposure_to_bundibugyo_ebola_virus/ # CharitéPaper # Bundibugyo # MBP134 # medicine # science # research # ScienceMastodon</description>
       <category>模型研究</category>
     </item>
     <item>
       <title>freeCodeCamp/freeCodeCamp</title>
       <link>https://github.com/freeCodeCamp/freeCodeCamp</link>
       <guid isPermaLink="false">github:freeCodeCamp/freeCodeCamp</guid>
-      <pubDate>Mon, 24 Aug 2026 15:35:18 GMT</pubDate>
+      <pubDate>Tue, 25 Aug 2026 09:47:05 GMT</pubDate>
       <description>freeCodeCamp.org&apos;s open-source codebase and curriculum. Learn math, programming, and computer science for free.</description>
       <category>开源</category>
     </item>
     <item>
-      <title>A website for debloated open source alternatives</title>
-      <link>https://news.ycombinator.com/item?id=49410362</link>
-      <guid isPermaLink="false">hackernews:49410362</guid>
-      <pubDate>Sun, 23 Aug 2026 16:54:10 GMT</pubDate>
-      <description>由 ryanvogel 发布</description>
+      <title>Bookshelf – Self-hosted eBook library that runs on object storage</title>
+      <link>https://news.ycombinator.com/item?id=49427001</link>
+      <guid isPermaLink="false">hackernews:49427001</guid>
+      <pubDate>Mon, 24 Aug 2026 23:00:37 GMT</pubDate>
+      <description>由 arbayi 发布</description>
       <category>开源</category>
     </item>
     <item>
-      <title>My Verizon</title>
-      <link>https://apps.apple.com/us/app/my-verizon/id416023011?uo=4</link>
-      <guid isPermaLink="false">appstore:416023011</guid>
-      <pubDate>Mon, 24 Aug 2026 18:45:15 GMT</pubDate>
+      <title>Google</title>
+      <link>https://apps.apple.com/us/app/google/id284815942?uo=4</link>
+      <guid isPermaLink="false">appstore:284815942</guid>
+      <pubDate>Mon, 24 Aug 2026 00:06:56 GMT</pubDate>
       <description></description>
       <category>工具</category>
-    </item>
-    <item>
-      <title>Responsible AI adoption needs developer workflow design</title>
-      <link>https://stackoverflow.blog/2026/08/24/responsible-ai-adoption-needs-developer-workflow-design/</link>
-      <guid isPermaLink="false">rss:https://stackoverflow.blog/2026/08/24/responsible-ai-adoption-needs-developer-workflow-design/</guid>
-      <pubDate>Mon, 24 Aug 2026 14:00:00 GMT</pubDate>
-      <description>Organizations cannot solve shadow AI with a document employees read once. They need to make responsible use easier than improvised use.</description>
-      <category>代码</category>
     </item>
     <item>
       <title>InternScience/Agents-A1-4B</title>
@@ -179,14 +203,6 @@
       <category>工具</category>
     </item>
     <item>
-      <title>The # tech sector and the elite # programming and # computing culture are boiling over with nerdbros who babble about &quot;debate&quot; and &quot;logic&quot; a</title>
-      <link>https://cyberpunk.lol/@mxchara/117152393949713967</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117152394010937692</guid>
-      <pubDate>Mon, 24 Aug 2026 20:34:27 GMT</pubDate>
-      <description>@mxchara@cyberpunk.lol · The # tech sector and the elite # programming and # computing culture are boiling over with nerdbros who babble about &quot;debate&quot; and &quot;logic&quot; and &quot;rationality&quot; while--exactly like E. Z. Yudkowsky--preferring the monologue as their method of discourse. They&apos;re isolated, insular, frankly very lonely people who out of psychological necessity have convinced themselves that they ought to be able to reason out the nature of reality without leaving their computer desk. (cont&apos;d)</description>
-      <category>代码</category>
-    </item>
-    <item>
       <title>ultraworkers/claw-code</title>
       <link>https://github.com/ultraworkers/claw-code</link>
       <guid isPermaLink="false">github:ultraworkers/claw-code</guid>
@@ -195,26 +211,26 @@
       <category>Agent</category>
     </item>
     <item>
-      <title>Google</title>
-      <link>https://apps.apple.com/us/app/google/id284815942?uo=4</link>
-      <guid isPermaLink="false">appstore:284815942</guid>
-      <pubDate>Mon, 24 Aug 2026 00:06:56 GMT</pubDate>
+      <title>Google Chrome</title>
+      <link>https://apps.apple.com/us/app/google-chrome/id535886823?uo=4</link>
+      <guid isPermaLink="false">appstore:535886823</guid>
+      <pubDate>Tue, 25 Aug 2026 15:40:29 GMT</pubDate>
       <description></description>
       <category>工具</category>
     </item>
     <item>
-      <title>NN-Dataset/tflite</title>
-      <link>https://huggingface.co/NN-Dataset/tflite</link>
-      <guid isPermaLink="false">huggingface:NN-Dataset/tflite</guid>
-      <description>Hugging Face 模型</description>
-      <category>模型研究</category>
+      <title>A new ceiling for Λ: the de Bruijn–Newman constant</title>
+      <link>https://news.ycombinator.com/item?id=49437165</link>
+      <guid isPermaLink="false">hackernews:49437165</guid>
+      <pubDate>Tue, 25 Aug 2026 16:59:31 GMT</pubDate>
+      <description>由 judegomila 发布</description>
+      <category>AI</category>
     </item>
     <item>
-      <title>Anger, Anxiety and Agency</title>
-      <link>https://news.ycombinator.com/item?id=49424082</link>
-      <guid isPermaLink="false">hackernews:49424082</guid>
-      <pubDate>Mon, 24 Aug 2026 18:37:24 GMT</pubDate>
-      <description>由 lumpa 发布</description>
+      <title>Qwen/Qwen-AgentWorld-35B-A3B</title>
+      <link>https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B</link>
+      <guid isPermaLink="false">huggingface:Qwen/Qwen-AgentWorld-35B-A3B</guid>
+      <description>Hugging Face 模型 · text-generation</description>
       <category>Agent</category>
     </item>
     <item>
@@ -234,6 +250,14 @@
       <category>Agent</category>
     </item>
     <item>
+      <title>Hey Noah</title>
+      <link>https://www.producthunt.com/products/hey-noah/launches/hey-noah</link>
+      <guid isPermaLink="false">producthunt:1090720</guid>
+      <pubDate>Tue, 04 Aug 2026 07:01:00 GMT</pubDate>
+      <description>A proactive AI executive assistant for founders</description>
+      <category>模型研究</category>
+    </item>
+    <item>
       <title>AdAnt AI</title>
       <link>https://www.producthunt.com/products/adant-ai/launches/adant-ai</link>
       <guid isPermaLink="false">producthunt:1212030</guid>
@@ -242,42 +266,42 @@
       <category>模型研究</category>
     </item>
     <item>
-      <title>Google Chrome</title>
-      <link>https://apps.apple.com/us/app/google-chrome/id535886823?uo=4</link>
-      <guid isPermaLink="false">appstore:535886823</guid>
-      <pubDate>Wed, 19 Aug 2026 16:27:38 GMT</pubDate>
+      <title>My Spectrum</title>
+      <link>https://apps.apple.com/us/app/my-spectrum/id942608209?uo=4</link>
+      <guid isPermaLink="false">appstore:942608209</guid>
+      <pubDate>Mon, 24 Aug 2026 17:18:49 GMT</pubDate>
       <description></description>
       <category>工具</category>
-    </item>
-    <item>
-      <title>How do I get typing to work on generic class when creating a property with a function?</title>
-      <link>https://stackoverflow.com/questions/79997571/how-do-i-get-typing-to-work-on-generic-class-when-creating-a-property-with-a-fun</link>
-      <guid isPermaLink="false">stackoverflow:79997571</guid>
-      <pubDate>Mon, 24 Aug 2026 13:51:12 GMT</pubDate>
-      <description>Below I created a function create_value_property which defines a set and get method and returns a property. How do I define this in such a way that the attributes val1 , val2 and val3 show as type V ( int in the example)? As it stands, custom.valn report type Any . I&apos;m pretty sure it&apos;s because I&apos;m using getattr and I don&apos;t know if I can specify the type that it will output. Is there a way to hint the property type? Python 3.14.6 IDE: VS Code Version 1.134.0 (Pylance) class EventHandler: def post_event(self, event: str): print(event) def create_value_property[V](name: str) -&gt; property: def get(self) -&gt; V: return getattr(self, f&quot;_{name}&quot;) def set(self, value: V) -&gt; None: prev_value = getattr(self, f&quot;_{name}&quot;) if value == prev_value: return setattr(self, f&quot;_{name}&quot;, value) self.event_handler.post_event(f&quot;{name} value changed: {value}&quot;) return property(get, set) class Custom[V]: def __init__(self, val1: V, val2: V, val3: V) -&gt; None: self._val1: V = val1 self._val2: V = val2 self._val3: V = val3 self.event_handler: EventHandler = EventHandler() val1: property = create_value_property(&apos;val1&apos;) val2: property = create_value_property(&apos;val2&apos;) val3: property = create_value_property(&apos;val3&apos;) custom = Custom[int](1,1,1) a = custom.val1 # a and custom.val1 report type Any custom.val1 = 2 custom.val2 = 3 custom.val3 = 4 I was able to figure out a middle ground. I was trying to avoid defining the same @setter for each property by using create_value_property . Instead I can do something like this and the typing works. I&apos;m still curious if I can get the initial method working as it is much cleaner. def set_value[V](self, attr: V, value: V) -&gt; None: if attr == value: return prev_val = attr attr = value self.event_handler.post_event(f&quot;{attr} value changed: {value}&quot;) class Rev2[V]: def __init__(self, val1: V) -&gt; None: self._val1: V = val1 self.event_handler: EventHandler = EventHandler() @property def val1(self) -&gt; V: return self._val1 @val1.setter def val1(self, value: V) -&gt; None: set_value(self, self._val1, value) An attempt with descriptors as suggested in the comments (with some functionality stripped out). Now the type inferred by the type checker for val1 is Unknown . class Prop[V]: def __set_name__(self, owner, name) -&gt; None: self.name = name def __get__(self, instance, owner) -&gt; V: return instance.__dict__.get(self.name) def __set__(self, instance, value) -&gt; None: instance.__dict__[self.name] = value print(f&quot;value set&quot;) class Rev3[V]: Val1 = Prop() rev3 = Rev3() rev3.Val1</description>
-      <category>代码</category>
     </item>
     <item>
       <title>tensorflow/tensorflow</title>
       <link>https://github.com/tensorflow/tensorflow</link>
       <guid isPermaLink="false">github:tensorflow/tensorflow</guid>
-      <pubDate>Tue, 25 Aug 2026 00:41:45 GMT</pubDate>
+      <pubDate>Wed, 26 Aug 2026 00:47:46 GMT</pubDate>
       <description>An Open Source Machine Learning Framework for Everyone</description>
       <category>开源</category>
     </item>
     <item>
-      <title>Advancing price-performance for developers with GPT‑5.6 in Kiro</title>
-      <link>https://openai.com/index/gpt-5-6-in-kiro</link>
-      <guid isPermaLink="false">rss:https://openai.com/index/gpt-5-6-in-kiro</guid>
-      <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
-      <description>GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.</description>
-      <category>AI</category>
+      <title>Block users directly from security advisories</title>
+      <link>https://github.blog/changelog/2026-08-25-block-users-directly-from-security-advisories</link>
+      <guid isPermaLink="false">rss:https://github.blog/changelog/2026-08-25-block-users-directly-from-security-advisories</guid>
+      <pubDate>Tue, 25 Aug 2026 18:38:57 GMT</pubDate>
+      <description>&lt;p&gt;You can now block a user directly from a security advisory page in public repositories owned by either an organization or a personal account. This brings the streamlined moderation experience&amp;#8230;&lt;/p&gt; &lt;p&gt;The post &lt;a href=&quot;https://github.blog/changelog/2026-08-25-block-users-directly-from-security-advisories&quot;&gt;Block users directly from security advisories&lt;/a&gt; appeared first on &lt;a href=&quot;https://github.blog&quot;&gt;The GitHub Blog&lt;/a&gt;.&lt;/p&gt;</description>
+      <category>开源</category>
     </item>
     <item>
       <title>yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2</title>
       <link>https://huggingface.co/yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2</link>
       <guid isPermaLink="false">huggingface:yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2</guid>
       <description>Hugging Face 模型 · text-generation</description>
+      <category>Agent</category>
+    </item>
+    <item>
+      <title>Pgbot: A 5.9 MB read-only Postgres tool for humans and agents</title>
+      <link>https://news.ycombinator.com/item?id=49438492</link>
+      <guid isPermaLink="false">hackernews:49438492</guid>
+      <pubDate>Tue, 25 Aug 2026 18:30:57 GMT</pubDate>
+      <description>由 sashash 发布</description>
       <category>Agent</category>
     </item>
     <item>
@@ -289,83 +313,12 @@
       <category>AI</category>
     </item>
     <item>
-      <title>My Spectrum</title>
-      <link>https://apps.apple.com/us/app/my-spectrum/id942608209?uo=4</link>
-      <guid isPermaLink="false">appstore:942608209</guid>
-      <pubDate>Mon, 24 Aug 2026 17:18:49 GMT</pubDate>
-      <description></description>
-      <category>工具</category>
-    </item>
-    <item>
-      <title>We&apos;ve been getting some great answers to our survey about # gamifying # climateaction with # AugmentedReality and we would love to hear your</title>
-      <link>https://mastodon.green/@fastfrwrd/117151758443442377</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117151758514164270</guid>
-      <pubDate>Mon, 24 Aug 2026 17:52:50 GMT</pubDate>
-      <description>@fastfrwrd@mastodon.green · We&apos;ve been getting some great answers to our survey about # gamifying # climateaction with # AugmentedReality and we would love to hear your opinion too! If you haven&apos;t yet, feel free to check out our questionnaire all about imagining a fun way to combat the # climateCrisis Link: https:// fastfrwrd.info/blog/qsm_quiz/f astfrwrd-augmented-reality-upgrade/ # Climate # climateChange # environment # plants # eco # green # sustainable # sustainability # drought # gaming # game # games # research # solarpunk # lunarpunk # mastodon # askmastodon</description>
+      <title>MIT has built a tool that generates plausible worst-case weather maps without requiring historical examples. Could this help to plan infrast</title>
+      <link>https://techhub.social/@gadgetry/117156963786985945</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117156963842102640</guid>
+      <pubDate>Tue, 25 Aug 2026 15:56:37 GMT</pubDate>
+      <description>@gadgetry@techhub.social · MIT has built a tool that generates plausible worst-case weather maps without requiring historical examples. Could this help to plan infrastructure for extreme events that have never happened before? https://www. artificialintelligence-news.co m/news/mit-ai-forecasts-extreme-weather-without-historical-data/ # mit # ai # machinelearning # climate # environment # tech</description>
       <category>模型研究</category>
-    </item>
-    <item>
-      <title>PrimeAgentOrchestrator: Memory-Primed Agent Spawning for Personal AI Infrastructure</title>
-      <link>https://arxiv.org/abs/2608.20342</link>
-      <guid isPermaLink="false">arxiv:2608.20342</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20342v1 Announce Type: new Abstract: Large language model (LLM) coding agents start each session with an empty context window, discarding accumulated knowledge from prior work. We present PrimeAgentOrchestrator (PAO), a system that spawns new instances of Claude Code -- Anthropic&apos;s terminal-based coding agent -- pre-loaded with relevant memories compiled from the user&apos;s existing personal databases. At spawn time, PAO queries two independently-operated memory backends in parallel (a PostgreSQL entity-observation database and a Cloudflare Worker semantic search index), fuses results using backend-specific retrieval strategies, and delivers the compiled briefing via filesystem injection that exploits the host agent&apos;s configuration auto-read behavior. PAO manages the full agent lifecycle including trust pre-seeding, readiness polling with error detection, and adaptive terminal text injection. We report on four months of regular deployment (December 2025 through March 2026) as an experience report, documenting three generations of context delivery mechanisms, the failure modes that motivated each redesign, and the engineering tradeoffs of bridging heterogeneous memory systems rather than building a unified one.</description>
-      <category>模型研究</category>
-    </item>
-    <item>
-      <title>Disentangling Threads: Exploring the Potential of LLM-Supported Discussion Forum Analysis for Community Insight</title>
-      <link>https://arxiv.org/abs/2608.20591</link>
-      <guid isPermaLink="false">arxiv:2608.20591</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20591v1 Announce Type: new Abstract: Online discussion forums enable people from diverse backgrounds to share ideas, feedback, and perspectives. These organic discussions can help researchers understand communities&apos; collective viewpoints, but insights are often difficult to uncover given their freeform reply structure. Large language models (LLMs) support qualitative text analysis but can misalign with researchers&apos; analytical intent and miss key insights. To inform design considerations for forum sensemaking tools, we manually analyzed a forum discussion, synthesized an exploratory analysis framework from relevant literature, built a design probe, and interviewed 21 researchers to uncover perceived opportunities and barriers with LLM representations of collective discussions. We provide recommendations for community sensemaking tools to support flexible analytical goals grounded in raw user data and enable follow-up research processes, while balancing anonymous free expression with the desire for contextual information on commenters.</description>
-      <category>工具</category>
-    </item>
-    <item>
-      <title>Symbolic Basic Block Profiling for Machine Learning Kernels</title>
-      <link>https://arxiv.org/abs/2608.20605</link>
-      <guid isPermaLink="false">arxiv:2608.20605</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20605v1 Announce Type: new Abstract: Current basic block profiling techniques obtain the count of executions of each basic block in a program using dynamic instrumentation. These profiling counters create runtime overheads and also require the execution of the program, which, for large input sizes, can take substantial time. We propose symbolic program profiling that generates symbolic formulae for a basic block&apos;s count with inputs as the independent variables. Our technique is limited in applicability to a certain class of programs, namely machine learning (ML) kernels. We implement our technique in the LLVM compiler and evaluate it on 78 ML operators from 50 different ML models. These operators are generated by TVM, a machine learning compiler. Our symbolic profiles deliver exactly the same results as dynamic instrumentation for 73 out of 78 kernels with a median speedup of 15093x.</description>
-      <category>代码</category>
-    </item>
-    <item>
-      <title>Making Deployments Safe at Meta: Health Checks for Continuous Change-Safety</title>
-      <link>https://arxiv.org/abs/2608.20513</link>
-      <guid isPermaLink="false">arxiv:2608.20513</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20513v1 Announce Type: new Abstract: Continuous deployment to large scale production systems creates a tension between release velocity and reliability. Every change is a potential reliability incident, yet every delay is a missed opportunity. This paper describes the deployment time health check infrastructure that Meta uses to mediate this tension across thousands of heterogeneous services. We summarize the architecture of this prevention based distributed system&apos;s service called Service Health Checker, explain how check authors compose templated metric queries, thresholds, and workflow predicates; and discuss how the system is integrated with tiered and phased rollouts so that regressions trigger automatic rollback. We then describe the operational problems that emerged at scale, such as noise, alert fatigue, drift, and uncovered regressions, and the program of measurement, tooling, and improved defaults we deployed to address them. We close with lessons learned from years of operating deployment health checks at Meta, and the directions we are exploring next, including AI assisted health check tuning. Index Terms: deployment safety, continuous deployment, monitoring, software reliability, release engineering, software reliability engineering, AIOps, anomaly detection</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Benchmarking LLM Serving Systems for Agentic AI Workloads with XPerf</title>
-      <link>https://arxiv.org/abs/2608.20370</link>
-      <guid isPermaLink="false">arxiv:2608.20370</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20370v1 Announce Type: new Abstract: We present XPerf, a benchmarking framework that load-tests LLM serving systems with diverse agentic AI workloads. It provides detailed profiling of the serving system and hardware, enabling users to identify performance bottlenecks introduced by agentic workloads. Benchmarking LLM serving systems under agentic workloads is challenging - agentic applications rely on nondeterministic LLM outputs to guide their control flow; therefore, workload patterns vary unpredictably from run to run. XPerf minimizes this workload variation with a fine-grained trace replay approach: it enables users to easily collect traces from real agentic applications, synthesize new workloads with various patterns if needed, and reproducibly replay them on different LLM serving systems. XPerf includes eight agentic applications across diverse use cases (e.g., coding, deep research, and Q&amp;A) by default. Our empirical study using these workloads shows that XPerf accurately replays agentic workloads, provides detailed performance breakdowns, scales to larger serving systems, and assists in serving system debugging. We will open-source XPerf on GitHub.</description>
-      <category>基础设施</category>
-    </item>
-    <item>
-      <title>We must not grant AI agents legal personhood</title>
-      <link>https://news.ycombinator.com/item?id=49410628</link>
-      <guid isPermaLink="false">hackernews:49410628</guid>
-      <pubDate>Sun, 23 Aug 2026 17:25:03 GMT</pubDate>
-      <description>由 andsoitis 发布</description>
-      <category>Agent</category>
-    </item>
-    <item>
-      <title>awesome-selfhosted/awesome-selfhosted</title>
-      <link>https://github.com/awesome-selfhosted/awesome-selfhosted</link>
-      <guid isPermaLink="false">github:awesome-selfhosted/awesome-selfhosted</guid>
-      <pubDate>Sat, 22 Aug 2026 18:55:56 GMT</pubDate>
-      <description>A list of Free Software network services and web applications which can be hosted on your own servers</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Qwen/Qwen-AgentWorld-35B-A3B</title>
-      <link>https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B</link>
-      <guid isPermaLink="false">huggingface:Qwen/Qwen-AgentWorld-35B-A3B</guid>
-      <description>Hugging Face 模型 · text-generation</description>
-      <category>Agent</category>
     </item>
     <item>
       <title>DuckDuckGo, optional Duck.ai</title>
@@ -376,50 +329,18 @@
       <category>工具</category>
     </item>
     <item>
-      <title>Google Translate</title>
-      <link>https://play.google.com/store/apps/details?id=com.google.android.apps.translate&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:com.google.android.apps.translate</guid>
-      <description>The world is closer than ever with over 100 languages</description>
-      <category>工具</category>
+      <title>awesome-selfhosted/awesome-selfhosted</title>
+      <link>https://github.com/awesome-selfhosted/awesome-selfhosted</link>
+      <guid isPermaLink="false">github:awesome-selfhosted/awesome-selfhosted</guid>
+      <pubDate>Sat, 22 Aug 2026 18:55:56 GMT</pubDate>
+      <description>A list of Free Software network services and web applications which can be hosted on your own servers</description>
+      <category>开源</category>
     </item>
     <item>
-      <title>Woodpecker CI v3.18.0 is live! 🎉 🔒 Enhanced k8s security 📥 Pipeline log downloads ⚙️ Configurable Kubernetes domains ✏️ Custom manual pip</title>
-      <link>https://floss.social/@WoodpeckerCI/117149967829309191</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117149967944278694</guid>
-      <pubDate>Mon, 24 Aug 2026 10:17:27 GMT</pubDate>
-      <description>@WoodpeckerCI@floss.social · Woodpecker CI v3.18.0 is live! 🎉 🔒 Enhanced k8s security 📥 Pipeline log downloads ⚙️ Configurable Kubernetes domains ✏️ Custom manual pipeline messages Upgrade your CI/CD stack! 🚀 # WoodpeckerCI # release # DevOps # CICD # OpenSource</description>
-      <category>基础设施</category>
-    </item>
-    <item>
-      <title>The 5 best Intercom alternatives in 2026</title>
-      <link>https://zapier.com/blog/intercom-alternatives</link>
-      <guid isPermaLink="false">rss:https://zapier.com/blog/intercom-alternatives</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>Intercom is an impressive platform, designed to handle the entire customer lifecycle, across every touchpoint, from onboarding through retention. But not every business needs that level of commitment from its help desk. If you&apos;re looking for something a little less complex or a little less eerily omniscient, there are plenty of Intercom alternatives for customer support, customer engagement, and customer experience. The Zapier team and I have spent hundreds of hours in these apps, and based on</description>
-      <category>工具</category>
-    </item>
-    <item>
-      <title>Claude for small business: What it is and how to use it</title>
-      <link>https://zapier.com/blog/claude-for-small-business</link>
-      <guid isPermaLink="false">rss:https://zapier.com/blog/claude-for-small-business</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>My friend runs a small dog boarding and training business. It&apos;s not a casual side hustle, either. She has a waitlist, a roster of regulars, and the kind of five-star reviews that take years to earn. She also has a full-time job. And somehow, she remains unburdened by the common stressors that keep small business owners up at night. So, on behalf of all of us who are barely holding it together, working just one 9-to-5 (it&apos;s me—I am &quot;us&quot;), I asked her how she does it all. Her answer: Claude Cowor</description>
-      <category>工具</category>
-    </item>
-    <item>
-      <title>Gemini connected apps: How to connect Gemini to other apps</title>
-      <link>https://zapier.com/blog/gemini-connected-apps</link>
-      <guid isPermaLink="false">rss:https://zapier.com/blog/gemini-connected-apps</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>Google&apos;s product launch events have always been a quirky grab-bag of Pixel phone updates and smartwatch announcements, with celebrity hosts like Trevor Noah doing their darndest to squeeze laughs out of teleprompter-reading Google product managers. But lately, there&apos;s been a new addition to these events: Google has begun spotlighting Gemini connections to apps like Wix, Zocdoc, and Ticketmaster. You can currently find ~18 of these third-party Gemini connected apps, and there are a couple dozen m</description>
-      <category>工具</category>
-    </item>
-    <item>
-      <title>NousResearch/hermes-agent</title>
-      <link>https://github.com/NousResearch/hermes-agent</link>
-      <guid isPermaLink="false">github:NousResearch/hermes-agent</guid>
-      <pubDate>Mon, 24 Aug 2026 22:18:09 GMT</pubDate>
-      <description>The agent that grows with you</description>
+      <title>InternScience/Agents-A1-4B-Q8_0-GGUF</title>
+      <link>https://huggingface.co/InternScience/Agents-A1-4B-Q8_0-GGUF</link>
+      <guid isPermaLink="false">huggingface:InternScience/Agents-A1-4B-Q8_0-GGUF</guid>
+      <description>Hugging Face 模型 · text-generation</description>
       <category>Agent</category>
     </item>
     <item>
@@ -431,43 +352,83 @@
       <category>开源</category>
     </item>
     <item>
-      <title>r0b0tlab/Agents-A1-NVFP4</title>
-      <link>https://huggingface.co/r0b0tlab/Agents-A1-NVFP4</link>
-      <guid isPermaLink="false">huggingface:r0b0tlab/Agents-A1-NVFP4</guid>
-      <description>Hugging Face 模型 · text-generation</description>
-      <category>Agent</category>
+      <title>Google Translate</title>
+      <link>https://play.google.com/store/apps/details?id=com.google.android.apps.translate&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.google.android.apps.translate</guid>
+      <description>The world is closer than ever with over 100 languages</description>
+      <category>工具</category>
     </item>
     <item>
-      <title>Your Open Source Model Could Have a Hidden Time-Release Backdoor</title>
-      <link>https://news.ycombinator.com/item?id=49415854</link>
-      <guid isPermaLink="false">hackernews:49415854</guid>
-      <pubDate>Mon, 24 Aug 2026 06:25:42 GMT</pubDate>
-      <description>由 llmbababoom 发布</description>
-      <category>开源</category>
+      <title>The term &quot;AI&quot; has become almost meaningless. While it&apos;s easy to dismiss this as marketing hype, you can&apos;t restrict what you can&apos;t define. ht</title>
+      <link>https://mastodon.world/@plagiarismtoday/117157969491503160</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117157969568728402</guid>
+      <pubDate>Tue, 25 Aug 2026 20:12:23 GMT</pubDate>
+      <description>@plagiarismtoday@mastodon.world · The term &quot;AI&quot; has become almost meaningless. While it&apos;s easy to dismiss this as marketing hype, you can&apos;t restrict what you can&apos;t define. https://www. plagiarismtoday.com/2026/08/25 /what-the-hell-is-ai-anyway/ # AI # ArtificialIntelligence # Marketing # MachineLearning</description>
+      <category>模型研究</category>
     </item>
     <item>
-      <title>Microsoft Copilot</title>
-      <link>https://play.google.com/store/apps/details?id=com.microsoft.office.officehubrow&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:com.microsoft.office.officehubrow</guid>
-      <pubDate>Sun, 16 Feb 2020 00:00:00 GMT</pubDate>
-      <description>Create content, explore ideas, and get answers with Copilot.</description>
-      <category>AI</category>
+      <title>Behaviorally fingerprinting Ox Alpha&apos;s provenance</title>
+      <link>https://news.ycombinator.com/item?id=49435641</link>
+      <guid isPermaLink="false">hackernews:49435641</guid>
+      <pubDate>Tue, 25 Aug 2026 15:18:22 GMT</pubDate>
+      <description>由 cgorlla 发布</description>
+      <category>模型研究</category>
     </item>
     <item>
-      <title>New comiCSS cartoon: Yellows https:// comicss.art/comics/255/ # css # cartoon # webdev # humor</title>
-      <link>https://front-end.social/@alvaromontoro/117151444457119300</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117151444571416730</guid>
-      <pubDate>Mon, 24 Aug 2026 16:32:59 GMT</pubDate>
-      <description>@alvaromontoro@front-end.social · New comiCSS cartoon: Yellows https:// comicss.art/comics/255/ # css # cartoon # webdev # humor</description>
+      <title>AIREP: A Protocol for Per-Decision Evidence in AI Runtime Governance</title>
+      <link>https://arxiv.org/abs/2608.21363</link>
+      <guid isPermaLink="false">arxiv:2608.21363</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21363v1 Announce Type: new Abstract: A protocol is presented for recording the governance decisions of automated AI runtimes. When a runtime releases, blocks, defers, redacts, or escalates an individual output, AIREP records that decision as a single signed object that any party can check offline, independent of the runtime that produced it. A record carries the decision as one of a closed set of verbs under a stated policy basis, references its input, output, and evidence by hash rather than by value, and declares both what its evidence covers and what it does not. Records form a SHA-256 hash chain that binds each record to its position, so that tampering and gaps are detectable by recomputation. Vendor-, model-, and domain-specific content is confined to a single optional namespace, and a mechanical neutrality test keeps the shared format free of it. A reference implementation and a two-language conformance kit are described. Some implementation issues are considered, and problems such as alignment of the canonical form across implementations, freshness witnesses, and multi-runtime chains are exposed. The format is offered for adoption by any AI runtime that records governance decisions.</description>
+      <category>模型研究</category>
+    </item>
+    <item>
+      <title>Who Bears the Cost of Honesty? A FAccT Workshop Synthesis and Research Agenda for Equitable AI Disclosure</title>
+      <link>https://arxiv.org/abs/2608.21671</link>
+      <guid isPermaLink="false">arxiv:2608.21671</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21671v1 Announce Type: new Abstract: AI disclosure is increasingly promoted and sometimes required as a route to transparency, accountability, provenance, and trust. Yet disclosure can also expose AI users to suspicion, stigma (e.g., competence penalties), and surveillance, affecting minoritized groups in particular. This paper reports on Who Bears the Cost of Honesty?, a CRAFT workshop at the 2026 ACM Conference on Fairness, Accountability, and Transparency that used scenario-anchored power mapping and design fiction to explore the benefits, harms, tensions, and power asymmetries that emerge under AI disclosure norms and mandates. We document the workshop design and analyze the disclosure approaches participants co-created, comprising four completed power maps, three context cards, and one interface prototype. These artifacts span education, workplace, politics/journalism, and interpersonal contexts. They depict disclosure as a multi-actor accountability process, surface concerns that the use of accessibility-related AI could be held against workers in performance evaluations, and explore how context-specific, bottom-up disclosures may support transparency while mitigating some risks of stigma and misinterpretation. We contribute (1) a documented two-stage workshop method; (2) an artifact-grounded thematic synthesis; and (3) a diagnostic framework, the Cost-of-Honesty Stack, with provisional design suggestions and research directions.</description>
+      <category>工具</category>
+    </item>
+    <item>
+      <title>Tensor Seeks Layout: Formalizing Layout Selection for ML Compilers</title>
+      <link>https://arxiv.org/abs/2608.21555</link>
+      <guid isPermaLink="false">arxiv:2608.21555</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21555v1 Announce Type: new Abstract: Modern machine learning compilers select tensor memory layouts to minimize execution cost under hardware constraints. Layout selection is global: an operator may be fastest under one layout while its consumers prefer another, and aligning these preferences requires explicit layout conversions that can hurt model performance. Despite its practical importance, layout selection lacks a formal basis, so current compilers rely on ad-hoc heuristics. This paper presents the first formal study of layout selection in machine learning compilers. We formulate the problem as combinatorial optimization over dataflow graphs, minimizing the sum of operator execution costs and the per-tensor cost of these conversions. Our theoretical analysis shows that optimal layout selection is computationally hard, even for programs containing only matrix multiplications over two-dimensional tensors. We design an optimal polynomial-time algorithm for dataflow graphs of bounded treewidth. For general instances, we give a weighted MaxSAT encoding that an off-the-shelf solver can optimize. The formulation unifies several existing layout optimization strategies, including XLA&apos;s layout assignment, partition dimension selection in systolic array compilers, and layout planning in mobile GPU optimizers. We implement the formalization in a production compiler for an AI accelerator and measure the execution time of the compiled models under greedy heuristics, the compiler&apos;s rule-based strategy, and an optimal solver. Simple heuristics degrade execution time by up to $5\times$ on some workloads. Where the compiler&apos;s cost model is accurate, the solver matches or beats the rule-based strategy. On workloads with complex data movement it falls behind, and since the solver minimizes the stated objective exactly, that gap isolates cost-model error from search quality, showing where compiler effort actually pays off.</description>
       <category>代码</category>
     </item>
     <item>
-      <title>SKI</title>
-      <link>https://www.producthunt.com/products/ski/launches/ski</link>
-      <guid isPermaLink="false">producthunt:1208711</guid>
-      <pubDate>Thu, 30 Jul 2026 07:01:00 GMT</pubDate>
-      <description>Free voice coding for Claude Code, Codex and more</description>
+      <title>SLICE: Specification-Level Isolation of Contract Enforcement</title>
+      <link>https://arxiv.org/abs/2608.21483</link>
+      <guid isPermaLink="false">arxiv:2608.21483</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21483v1 Announce Type: new Abstract: Programming problems commonly specify both the computation a function should perform and the conditions that its inputs must satisfy. Large language models are widely used to generate code from these problem specifications, and the generated function must implement the required computation while enforcing the stated input conditions. The stated input conditions collectively form an input contract. Enforcing this contract is difficult: incomplete enforcement accepts inputs that should be rejected, whereas overly restrictive enforcement rejects inputs that should be accepted. Existing code generation methods do not provide a generation process that identifies both the input contract and the functional requirements and generates code that satisfies them jointly. We therefore introduce SLICE, a generation framework that identifies both requirements and addresses them through separate generation stages. SLICE consists of three stages: (i) Graph-based specification structuring, which grounds contract conditions to description segments in a specification graph and removes contract-only segments to form a functional view; (ii) Functional body generation, which produces multiple candidate function bodies through greedy and sampled decoding, ranks them using execution scores, and resolves ties using difference-region log probabilities; and (iii) Contract assertion generation, which generates input-validation assertions from the identified contract conditions and attaches them to the selected function body. We evaluate SLICE on ContractEval across four LLMs and compare it with six competing methods. Relative to the strongest evaluated baseline for each model, SLICE improves performance in generating code that satisfies both the functional requirements and the input contract by an average of 6.58%. Our code is available at https://github.com/suhanmen/SLICE.</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Rapid Earthquake-to-Tsunami Waveform Generation via Large-Scale Multi-GPU FFT Convolution Applied to the Cascadia Subduction Zone</title>
+      <link>https://arxiv.org/abs/2608.21763</link>
+      <guid isPermaLink="false">arxiv:2608.21763</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21763v1 Announce Type: new Abstract: Data-driven methods for earthquake and tsunami early warning rely on large ensembles of rupture scenarios and their resulting waveforms, but generating such datasets with repeated high-fidelity seismic and tsunami simulations is prohibitively expensive. We exploit the linear time-invariant structure of both dynamics to precompute elastic Green&apos;s functions and acoustic-gravity adjoint responses, reducing the source-to-waveform map to two consecutive convolution operators. We evaluate these convolutions with a distributed, FFT-accelerated GPU pipeline that partitions the large seafloor grid across GPUs and directly generates the final observation waveforms. We demonstrate the scalability of this pipeline for the Cascadia Subduction Zone with 963 subfaults, 2,416,530 seafloor grid points, 64 observation locations, and 256 timesteps, requiring 9.45 TiB of aggregate GPU memory. On 64 GB200 GPUs within one NVL72 domain, the pipeline generates waveforms in 24 ms per rupture once the response operators are resident, enabling large rupture ensembles to be evaluated within minutes.</description>
       <category>基础设施</category>
+    </item>
+    <item>
+      <title>Push rules in rulesets now support path exceptions</title>
+      <link>https://github.blog/changelog/2026-08-25-push-rules-in-rulesets-now-support-path-exceptions</link>
+      <guid isPermaLink="false">rss:https://github.blog/changelog/2026-08-25-push-rules-in-rulesets-now-support-path-exceptions</guid>
+      <pubDate>Tue, 25 Aug 2026 17:40:15 GMT</pubDate>
+      <description>&lt;p&gt;You can now configure push rules more granularly by exempting specific file paths, so a rule applies everywhere in scope except the paths you choose. Path exceptions are in public&amp;#8230;&lt;/p&gt; &lt;p&gt;The post &lt;a href=&quot;https://github.blog/changelog/2026-08-25-push-rules-in-rulesets-now-support-path-exceptions&quot;&gt;Push rules in rulesets now support path exceptions&lt;/a&gt; appeared first on &lt;a href=&quot;https://github.blog&quot;&gt;The GitHub Blog&lt;/a&gt;.&lt;/p&gt;</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NousResearch/hermes-agent</title>
+      <link>https://github.com/NousResearch/hermes-agent</link>
+      <guid isPermaLink="false">github:NousResearch/hermes-agent</guid>
+      <pubDate>Wed, 26 Aug 2026 00:22:17 GMT</pubDate>
+      <description>The agent that grows with you</description>
+      <category>Agent</category>
     </item>
     <item>
       <title>Calculator₊</title>
@@ -478,36 +439,43 @@
       <category>模型研究</category>
     </item>
     <item>
-      <title>XMLHttpRequest to php and fake parameters</title>
-      <link>https://stackoverflow.com/questions/79997697/xmlhttprequest-to-php-and-fake-parameters</link>
-      <guid isPermaLink="false">stackoverflow:79997697</guid>
-      <pubDate>Mon, 24 Aug 2026 17:35:56 GMT</pubDate>
-      <description>I have following script on my server (in user panel) javascript triggers XMLHttpRequest to php: var setting_product_updates document.getElementById(&apos;receive_product_updates_email&apos;).change = function(e){ //peevent checkbox check if working! if(setting_product_updates)return false; setting_product_updates = true; var receive_product_updates_email = e.target.checked ? &apos;1&apos; : &apos;0&apos;; var url = &apos;product_management.php&apos;; var xhr = new XMLHttpRequest; xhr.onreadystatechange = function() { if (this.readyState === 4){ if (this.status === 200) { setting_product_updates = false; } } } xhr.onerror = function() { setting_product_updates = false; } xhr.open(&quot;POST&quot;, url, true); xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;); var user_id = userLicencesTable.getAttribute(&apos;data-user-id&apos;) var params = &apos;&apos; + &apos;update_receive_product_updates=1&apos; + &apos;receive_product_updates_email=&apos; + receive_product_updates_email + &apos;&amp;user_id=&apos; + user_id xhr.send(params); } php: if (isset($_POST[&apos;update_receive_product_updates&apos;]) &amp;&amp; isset($_POST[&apos;user_id&apos;]) ) { // connect to the database $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); $user_id = $_POST[&apos;user_id&apos;]; $receive_product_updates_email = trim($_POST[&apos;receive_product_updates_email&apos;]); $query = &quot;UPDATE users SET receive_product_updates_email=&apos;$receive_product_updates_email&apos; WHERE id=?&quot;; $stmt = $db-&gt;prepare($query); $stmt-&gt;bind_param(&quot;s&quot;, $user_id); $stmt-&gt;execute(); echo json_encode(&apos;1&apos;); } My question: If XMLHttpRequest can be faked with fake parameters, how can I make sure user does not abuse this?</description>
-      <category>代码</category>
-    </item>
-    <item>
-      <title>Can&amp;#39;t Call Action method using JavaScript,the request is not even reaching the Action method</title>
-      <link>https://stackoverflow.com/questions/79997810/cant-call-action-method-using-javascript-the-request-is-not-even-reaching-the-a</link>
-      <guid isPermaLink="false">stackoverflow:79997810</guid>
-      <pubDate>Mon, 24 Aug 2026 16:05:42 GMT</pubDate>
-      <description>I have Action method named Import which is inside the Admin Controller. I have JavaScript code inside a view that needs to send a request to the Import . Here is the view code: @{ ViewData[&quot;Title&quot;] = &quot;Products page&quot;; } &lt;h1&gt;Products Page&lt;/h1&gt; &lt;label for=&quot;avatar&quot;&gt;Choose a file:&lt;/label&gt; &lt;input class=&quot;form-control form-control-lg&quot; id=&quot;formFileLg&quot; type=&quot;file&quot; accept=&quot;.xlsx&quot; /&gt; &lt;script&gt; document.getElementById(&quot;formFileLg&quot;).addEventListener(&quot;change&quot;, importFile); console.log(&quot;hello world&quot;); async function importFile() { console.log(&quot;The JS handler was started...&quot;) const formData = new FormData(); formData.append(&quot;file&quot;, this.files[0]); try { console.log(&quot;Try block executed.&quot;) response = await fetch(&apos;Admin/Import&apos;, { method: &apos;POST&apos;, body: formData, }) if (!response.ok) { console.log(&quot;response is not ok&quot;) throw new Error(`Response status: ${response.status}`); return; } console.log(&quot;response is ok&quot;); const result = await response.json(); console.log(result); } catch (error) { alert(&quot;catch block executed&quot;); console.log(&quot;&apos;nCatch block executed\n&quot;) console.error(error.message); } } &lt;/script&gt; and here is the Import Action&apos;s code [HttpPost] [Route(&quot;Admin/Import&quot;)] public IActionResult Import([FromBody] IFormFile file) { Console.Write(&quot;Action method is called&quot;); //// don&apos;t forget to refactor the code. if (file == null || file.Length == 0) { return BadRequest(&quot;Please upload a valid Excel file.&quot;); } return Ok(); } I inspected the result in the Dev tools , the result is shown in the below image:</description>
-      <category>代码</category>
-    </item>
-    <item>
-      <title>Dataframe sorting and column count</title>
-      <link>https://stackoverflow.com/questions/79997582/dataframe-sorting-and-column-count</link>
-      <guid isPermaLink="false">stackoverflow:79997582</guid>
-      <pubDate>Mon, 24 Aug 2026 22:18:43 GMT</pubDate>
-      <description>I have a dataset which looks like this: UserID Age Gender CoffeeType SweetnessLevel MilkType CaffineStrength \ 0 1 69 Female Espresso None Skim Strong 1 2 32 Male Americano Medium Almond Strong 2 3 78 Female Latte Low Almond Strong 3 4 38 Male Latte None Whole Strong 4 5 41 Male Americano Medium Whole Decaf TimeOfDay DayOfWeek Weather Mood PreviousOrder UserRating 0 Afternoon Sunday Snowy Annoyed None 4 1 Morning Saturday Windy Annoyed None 2 2 Evening Thursday Foggy Relaxed None 4 3 Evening Monday Sunny Relaxed None 1 4 Evening Saturday Windy Excited None 4 I wish to create a dataframe that looks like ( desired output ): DayOfWeek CoffeeType Count Monday Americano 39 Monday Cappucino 44 Monday Espresso 42 Monday Latte 36 # etc. for each day of the week sorted from Monday to Sunday However, my code: print(coffee_dataset.groupby([&apos;DayOfWeek&apos;, &apos;CoffeeType&apos;], as_index=False) .agg({&apos;CoffeeType&apos;:&apos;count&apos;})) Produces: DayOfWeek CoffeeType 0 Friday 36 1 Friday 33 2 Friday 38 3 Friday 28 4 Monday 39 5 Monday 44 6 Monday 42 7 Monday 36 8 Saturday 57 9 Saturday 28 10 Saturday 36 11 Saturday 33 12 Sunday 31 13 Sunday 39 14 Sunday 35 15 Sunday 37 16 Thursday 31 17 Thursday 42 18 Thursday 40 19 Thursday 36 20 Tuesday 35 21 Tuesday 29 22 Tuesday 39 23 Tuesday 33 24 Wednesday 40 25 Wednesday 38 26 Wednesday 33 27 Wednesday 36 How can I get the desired output shown above?</description>
-      <category>代码</category>
-    </item>
-    <item>
-      <title>How to resolve the validation error which has come while running the code involving Docling which has been configured</title>
-      <link>https://stackoverflow.com/questions/79996703/how-to-resolve-the-validation-error-which-has-come-while-running-the-code-involv</link>
-      <guid isPermaLink="false">stackoverflow:79996703</guid>
-      <pubDate>Thu, 20 Aug 2026 15:06:21 GMT</pubDate>
-      <description>Unable to inspect the data present in the respective pdf files. After resolving the cv2 dependency issue and diagnosed the Docling/PyTorch cl.exe[Microsoft C++ compiler] compiler error by installing the required Microsoft C++ build tools and simplifying the Docling configuration. Even through the error has been resolved, the PDF processing takes considerable time owing to its layout/model processing capabilities. from pathlib import Path from langchain_docling.loader import DoclingLoader from docling.datamodel.pipeline_options import PdfPipelineOptions from docling.datamodel.base_models import InputFormat from docling.document_converter import PdfFormatOption data_dir = Path( r&quot;C:\Users\Quadrant\AWS-S3-Assistant\data&quot; ) pdf_files = list(data_dir.glob(&quot;*.pdf&quot;)) # Find all PDF files in the data directory pipeline_options = PdfPipelineOptions( # Configure the Docling PDF processing pipeline do_ocr=False, do_table_structure=False, do_picture_classification=False, do_picture_description=False, do_chart_extraction=False, do_code_enrichment=False, do_formula_enrichment=False, generate_page_images=False, generate_picture_images=False, generate_table_images=False, ) for file_path in pdf_files: print(f&quot;\nProcessing: {file_path.name}&quot;) loader = DoclingLoader( # Initialize the Docling document loader file_path=str(file_path), export_type=&quot;markdown&quot;, convert_kwargs={ &quot;format_options&quot;: { InputFormat.PDF: PdfFormatOption( pipeline_options=pipeline_options ) } } ) docs = loader.load() # Convert the PDF into LangChain documents print(f&quot;Documents loaded: {len(docs)}&quot;) for d in docs[:3]: # Inspect the first three documents print(d.page_content[:500]) #Output (venv) PS C:\Users\Quadrant\AWS-S3-Assistant\tools&gt; python document_loader.py Processing: Amazon Simple Storage Service - Developer Guide.pdf Traceback (most recent call last): File &quot;C:\Users\Quadrant\AWS-S3-Assistant\tools\document_loader.py&quot;, line 42, in &lt;module&gt; docs = loader.load() ^^^^^^^^^^^^^ File &quot;C:\Users\Quadrant\AWS-S3-Assistant\venv\Lib\site-packages\langchain_core\document_loaders\base.py&quot;, line 43, in load return list(self.lazy_load()) ^^^^^^^^^^^^^^^^^^^^^^ File &quot;C:\Users\Quadrant\AWS-S3-Assistant\venv\Lib\site-packages\langchain_docling\loader.py&quot;, line 134, in lazy_load conv_res = self._converter.convert( ^^^^^^^^^^^^^^^^^^^^^^^^ File &quot;C:\Users\Quadrant\AWS-S3-Assistant\venv\Lib\site-packages\pydantic\_internal\_validate_call.py&quot;, line 40, in wrapper_function return wrapper(*args, **kwargs) ^^^^^^^^^^^^^^^^^^^^^^^^ File &quot;C:\Users\Quadrant\AWS-S3-Assistant\venv\Lib\site-packages\pydantic\_internal\_validate_call.py&quot;, line 137, in __call__ res = self.__pydantic_validator__.validate_python(pydantic_core.ArgsKwargs(args, kwargs)) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ pydantic_core._pydantic_core.ValidationError: 1 validation error for DocumentConverter.convert format_options Unexpected keyword argument [type=unexpected_keyword_argument, input_value={&lt;InputFormat.PDF: &apos;pdf&apos;&gt;..., backend_options=None)}, input_type=dict] For further information visit https://errors.pydantic.dev/2.13/v/unexpected_keyword_argument</description>
+      <title>r0b0tlab/Agents-A1-NVFP4</title>
+      <link>https://huggingface.co/r0b0tlab/Agents-A1-NVFP4</link>
+      <guid isPermaLink="false">huggingface:r0b0tlab/Agents-A1-NVFP4</guid>
+      <description>Hugging Face 模型 · text-generation</description>
       <category>Agent</category>
+    </item>
+    <item>
+      <title>Microsoft Copilot</title>
+      <link>https://play.google.com/store/apps/details?id=com.microsoft.office.officehubrow&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.microsoft.office.officehubrow</guid>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 GMT</pubDate>
+      <description>Create content, explore ideas, and get answers with Copilot.</description>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>I’m Leaving WhatsApp I’m leaving WhatsApp. It’s an integral part of the Meta / Facebook empire, which is currently being sued by 29 states f</title>
+      <link>https://mastodon.nz/@davemosk/117158754538785550</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117158754665193205</guid>
+      <pubDate>Tue, 25 Aug 2026 23:32:02 GMT</pubDate>
+      <description>@davemosk@mastodon.nz · I’m Leaving WhatsApp I’m leaving WhatsApp. It’s an integral part of the Meta / Facebook empire, which is currently being sued by 29 states for the harm that it causes to children. While WhatsApp claims end-to-end encryption, they retain your metadata, which forms part of your social graph which they then use as part of their marketing efforts…. https:// dave.moskovitz.co.nz/2026/08/2 6/im-leaving-whatsapp/ # OpenSource # privacy # signal # facebook # meta</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Gauth: AI Study Companion</title>
+      <link>https://apps.apple.com/us/app/gauth-ai-study-companion/id1542571008?uo=4</link>
+      <guid isPermaLink="false">appstore:1542571008</guid>
+      <pubDate>Sat, 22 Aug 2026 12:31:25 GMT</pubDate>
+      <description></description>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Show HN: TeXbrain, a LaTeX editor that runs pdfTeX in the browser via WASM</title>
+      <link>https://news.ycombinator.com/item?id=49441375</link>
+      <guid isPermaLink="false">hackernews:49441375</guid>
+      <pubDate>Tue, 25 Aug 2026 22:08:50 GMT</pubDate>
+      <description>I&amp;#x27;m a master&amp;#x27;s engineering student and a big fan of LaTeX, which I used for my thesis and research articles. I have used Overleaf and that was fine until I wanted to git sync, which unfortunately sits behind a paywall. Since I didn&amp;#x27;t want to pay subscriptions for things that should simply just work, I built the editor I wanted in my free time, where you open a tab, write LaTeX, get your PDF and the files stay all in one folder on my disk. TeXbrain is a static site with no backend. pdfTeX is compiled to WebAssembly (SwiftLaTeX) and runs in your browser. The editor can read and write your project folder through the File System Access API, so you can use git, any local TeX install, local AI Agents, or any other editor on the same files. Git is built in through isomorphic-git for anyone who would rather not touch a terminal and clone, branch, commit, push or pull via commands. No account is needed, no analytics, and everything works offline after the first load. Try it out: https:&amp;#x2F;&amp;#x2F;tex.swimmingbrain.dev&amp;#x2F; (Chromium browsers get direct folder access, while Firefox or Safari fall back to a virtual filesystem) Or for self-hosting&amp;#x2F;contributing: https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;swimmingbrain&amp;#x2F;texbrain (MIT, the pdfTeX engine is EPL 2.0 &amp;#x2F; GPL 2.0 and is listed in the THIRD_PARTY_LICENSES file). The part I&amp;#x27;m most proud of getting to work is the package loading. The engine itself is only 1.8 MB. When it asks for a file it doesn&amp;#x27;t have, then a service worker intercepts the request and resolves it through Cache Storage first, then a small bundled subset, then a TeX Live tree mirrored on jsDelivr, then a SwiftLaTeX style server as a last resort. Every file is fetched once at most and after the first successful compilation, the core subset is prefetched in the background so that the offline story actually holds. Only file names go over the network, never any document content. So far, it only supports pdfTeX (no XeTeX or LuaTeX), so fontspec or polyglossia won&amp;#x27;t work, packages are pinned to the TeX Live 2020 era to stay coherent with the engine&amp;#x27;s format file and there is no bibtex or biber in the engine yet, which is maybe the roughest edge. This is should be a good solution for people on a work laptop, a Chromebook, or a university lab PC where installing TeX Live isn&amp;#x27;t always an option, and people who don&amp;#x27;t want to maintain a TeX install at all. If you already have a local setup you like, keep it. This isn&amp;#x27;t necessarily thought as a replacement for that. Some people have already used it for their thesis in the past months and their bug reports (which I would never have hit on my own) were then most of the summer&amp;#x27;s work. The first outside PR also landed recently, so if something doesn&amp;#x27;t compile for you, an issue with the package name or the bug itself is the most useful thing you can send me!</description>
+      <category>开源</category>
     </item>
     <item>
       <title>obra/superpowers</title>
@@ -518,43 +486,59 @@
       <category>Agent</category>
     </item>
     <item>
-      <title>InternScience/Agents-A1-4B-Q8_0-GGUF</title>
-      <link>https://huggingface.co/InternScience/Agents-A1-4B-Q8_0-GGUF</link>
-      <guid isPermaLink="false">huggingface:InternScience/Agents-A1-4B-Q8_0-GGUF</guid>
-      <description>Hugging Face 模型 · text-generation</description>
-      <category>Agent</category>
+      <title>How to restrict clickable area to Button</title>
+      <link>https://stackoverflow.com/questions/79997784/how-to-restrict-clickable-area-to-button</link>
+      <guid isPermaLink="false">stackoverflow:79997784</guid>
+      <pubDate>Wed, 26 Aug 2026 00:38:00 GMT</pubDate>
+      <description>I am using Plotly/Dash to build a web app. I want to upload a file and for that I am using html.Button() from dash import Dash, dcc, html from dash.dependencies import Input, Output import plotly.express as px app = Dash() # Create the layout of the app app.layout = html.Div([ html.B(&apos;Please select a file&apos;), html.P(), dcc.Upload( id=&quot;upload-data&quot;, children=html.Div([html.Button(&apos;Choose File&apos;)]), multiple=False, ) ]) if __name__ == &apos;__main__&apos;: app.run(debug=True) Output: The code works well, but I notice that clickable area of the Button exceeds the breath of the Button. When I click within the area of Button &apos;Choose File&apos;, import window opens and that&apos;s what is expected - OK When I click just above or below the Button, the import window doesn&apos;t open. This is also as expected - OK But when I click just on the right side of the button, the window opens as well - not OK How to restrict clickable area to the Button only? I tried many things with style , but nothing has worked. For example: html.Button(..... style={&quot;display&quot;: &quot;inline-block&quot;} ) What changes do I need to make?</description>
+      <category>代码</category>
     </item>
     <item>
-      <title>Google’s Find Hub</title>
-      <link>https://play.google.com/store/apps/details?id=com.google.android.apps.adm&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:com.google.android.apps.adm</guid>
-      <pubDate>Wed, 11 Dec 2013 00:00:00 GMT</pubDate>
-      <description>Find devices, other items, and share location with friends and family.</description>
-      <category>工具</category>
+      <title>Get Pandas to accept an arbitrary string of spaces as &amp;#39;NaN&amp;#39;</title>
+      <link>https://stackoverflow.com/questions/79996919/get-pandas-to-accept-an-arbitrary-string-of-spaces-as-nan</link>
+      <guid isPermaLink="false">stackoverflow:79996919</guid>
+      <pubDate>Tue, 25 Aug 2026 10:19:31 GMT</pubDate>
+      <description>I&apos;m trying to read a mass of data files into appropriate pandas data frames, but some of them have missing values. For most, this isn&apos;t a problem, but some files were generated to produce equally spaced columns by inserting spaces as necessary. So I get some columns that I want to be read as float64 types (should be decimal values), but this fails with the pandas.read_csv function, reporting: ValueError: could not convert string to float: &apos; &apos; I can hack around this by passing: na_values=&apos; &apos; to the read_csv function which then flags them all as NaN, which would be fine. But that hard-codes the import script to expect a row of exactly 13 space characters, and I doubt that I can count on that. So to speak. What I want is to tell the function that for that column, any value which is nothing but space characters should be considered an na value. Is there a way to do this?</description>
+      <category>代码</category>
     </item>
     <item>
-      <title>@ Lana and # chatgpt does not &quot;believe&quot; that the answers are correct. It gives answers that have a probability of being correct. It tremendo</title>
-      <link>https://mastodon.social/@carstenfranke/117151943060042079</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117151943060042079</guid>
-      <pubDate>Mon, 24 Aug 2026 18:39:47 GMT</pubDate>
-      <description>@carstenfranke · @ Lana and # chatgpt does not &quot;believe&quot; that the answers are correct. It gives answers that have a probability of being correct. It tremendously annoys me if I see the LLM output start with &quot;I believe&quot;, &quot;I can help you do&quot;...</description>
-      <category>AI</category>
-    </item>
-    <item>
-      <title>NanoGPT Speedrun Frontier</title>
-      <link>https://news.ycombinator.com/item?id=49404380</link>
-      <guid isPermaLink="false">hackernews:49404380</guid>
-      <pubDate>Sat, 22 Aug 2026 22:14:27 GMT</pubDate>
-      <description>由 stared 发布</description>
+      <title>NN-Dataset/tflite</title>
+      <link>https://huggingface.co/NN-Dataset/tflite</link>
+      <guid isPermaLink="false">huggingface:NN-Dataset/tflite</guid>
+      <description>Hugging Face 模型</description>
       <category>模型研究</category>
     </item>
     <item>
-      <title>Gauth: AI Study Companion</title>
-      <link>https://apps.apple.com/us/app/gauth-ai-study-companion/id1542571008?uo=4</link>
-      <guid isPermaLink="false">appstore:1542571008</guid>
-      <pubDate>Sat, 22 Aug 2026 12:31:25 GMT</pubDate>
-      <description></description>
+      <title>ChatGPT</title>
+      <link>https://play.google.com/store/apps/details?id=com.openai.chatgpt&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.openai.chatgpt</guid>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 GMT</pubDate>
+      <description>Your AI assistant for writing, search, image generation, and more</description>
+      <category>Agent</category>
+    </item>
+    <item>
+      <title>What are some cool webdev groups that are on the fediverse? Boosts and recs welcomed. # indieweb # webdev</title>
+      <link>https://ioc.exchange/@rye/117158825726695279</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117158825848786276</guid>
+      <pubDate>Tue, 25 Aug 2026 23:50:08 GMT</pubDate>
+      <description>@rye@ioc.exchange · What are some cool webdev groups that are on the fediverse? Boosts and recs welcomed. # indieweb # webdev</description>
+      <category>代码</category>
+    </item>
+    <item>
+      <title>5 ways to upgrade your home decor with Google Search</title>
+      <link>https://blog.google/products-and-platforms/products/search/home-decor-tips/</link>
+      <guid isPermaLink="false">rss:https://blog.google/products-and-platforms/products/search/home-decor-tips/</guid>
+      <pubDate>Tue, 25 Aug 2026 16:00:00 GMT</pubDate>
+      <description>&lt;img src=&quot;https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Home_Decor.max-600x600.format-webp.webp&quot;&gt;Learn how to use Google Search tools to find home decor inspiration, shop for furniture, and tackle DIY projects.</description>
       <category>AI</category>
+    </item>
+    <item>
+      <title>Xfinity</title>
+      <link>https://apps.apple.com/us/app/xfinity/id1178765645?uo=4</link>
+      <guid isPermaLink="false">appstore:1178765645</guid>
+      <pubDate>Fri, 14 Aug 2026 13:31:20 GMT</pubDate>
+      <description></description>
+      <category>工具</category>
     </item>
     <item>
       <title>InternScience/Agents-A1-4B-Q4_K_M-GGUF</title>
@@ -567,33 +551,49 @@
       <title>n8n-io/n8n</title>
       <link>https://github.com/n8n-io/n8n</link>
       <guid isPermaLink="false">github:n8n-io/n8n</guid>
-      <pubDate>Mon, 24 Aug 2026 22:49:03 GMT</pubDate>
+      <pubDate>Tue, 25 Aug 2026 23:55:55 GMT</pubDate>
       <description>Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.</description>
       <category>开源</category>
     </item>
     <item>
-      <title>ChatGPT</title>
-      <link>https://play.google.com/store/apps/details?id=com.openai.chatgpt&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:com.openai.chatgpt</guid>
-      <pubDate>Fri, 21 Jul 2023 00:00:00 GMT</pubDate>
-      <description>Your AI assistant for writing, search, image generation, and more</description>
+      <title>How I Read Books</title>
+      <link>https://news.ycombinator.com/item?id=49426275</link>
+      <guid isPermaLink="false">hackernews:49426275</guid>
+      <pubDate>Mon, 24 Aug 2026 21:47:14 GMT</pubDate>
+      <description>I think many people misunderstand how to use books generally. They&amp;#x27;re such simple things. Many people think you have to read every page of a book starting at the first page and go to the last page, before moving on to the next. Maybe because that&amp;#x27;s what they were taught in school? How I read: - as many books as I want concurrently (from 0 to infinity) - sometimes I skip entire chapters to get to the bits I find important - sometimes I read parts of a book and decide it&amp;#x27;s a bad book, or not useful to me, so I put it aside - sometimes I read the same paragraphs&amp;#x2F;pages&amp;#x2F;chapters&amp;#x2F;books multiple times, rarely, but occasionally, many, many times (e.g. some essays I read approximately every 3 months, since they&amp;#x27;re so important to keep front of mind). - very often, I take notes, often many pages of notes. These are an amazing resource for years to come</description>
       <category>AI</category>
     </item>
     <item>
-      <title>Xfinity</title>
-      <link>https://apps.apple.com/us/app/xfinity/id1178765645?uo=4</link>
-      <guid isPermaLink="false">appstore:1178765645</guid>
-      <pubDate>Fri, 14 Aug 2026 13:31:20 GMT</pubDate>
-      <description></description>
+      <title>Run Minecraft in a Windows sandbox for computer use agents</title>
+      <link>https://news.ycombinator.com/item?id=49436400</link>
+      <guid isPermaLink="false">hackernews:49436400</guid>
+      <pubDate>Tue, 25 Aug 2026 16:09:48 GMT</pubDate>
+      <description>由 someguy101010 发布</description>
+      <category>Agent</category>
+    </item>
+    <item>
+      <title>Google’s Find Hub</title>
+      <link>https://play.google.com/store/apps/details?id=com.google.android.apps.adm&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.google.android.apps.adm</guid>
+      <pubDate>Wed, 11 Dec 2013 00:00:00 GMT</pubDate>
+      <description>Find devices, other items, and share location with friends and family.</description>
       <category>工具</category>
     </item>
     <item>
-      <title>The # selfhosting journey continues. When I setup my # linux server, I went with # docker Desktop. I am now ready to migrate to the Docker e</title>
-      <link>https://techhub.social/@potentengineer/117148120950633392</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117148120996631693</guid>
-      <pubDate>Mon, 24 Aug 2026 02:27:46 GMT</pubDate>
-      <description>@potentengineer@techhub.social · The # selfhosting journey continues. When I setup my # linux server, I went with # docker Desktop. I am now ready to migrate to the Docker engine. Aside from a few less than helpful Reddit posts, I am not finding any guides on doing this. Everything is built using docker compose, so that should help. It seems like the path is Backup my containers &gt; Uninstall Docker desktop &gt; Install docker engine &gt; import containers. Does this seem right? It sure would be nice if there was an easy migration utility.</description>
+      <title>Neuer Blogpost: Mein Smarthome bekommt ein solides Fundament! 🏠⚡ Ich habe # HomeAssistant containerisiert hinter # Traefik v3 auf einem Ras</title>
+      <link>https://social.purrucker.de/@kristian/117155751648100393</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117155751771416011</guid>
+      <pubDate>Tue, 25 Aug 2026 10:48:21 GMT</pubDate>
+      <description>@kristian@social.purrucker.de · Neuer Blogpost: Mein Smarthome bekommt ein solides Fundament! 🏠⚡ Ich habe # HomeAssistant containerisiert hinter # Traefik v3 auf einem Raspberry Pi 5 mit nativer NVMe-SSD aufgesetzt. Im ausführlichen Erfahrungsbericht gibt es: 🛠️ Hardware-Stack &amp; NVMe-Boot-Workflow 🔒 Traefik v3.7 Ingress &amp; TLS-Setup im getrennten Docker-Netzwerk 📶 SSH-Latenz-Tuning am Raspberry Pi Zum kompletten Artikel: 🔗 https://www. purrucker.de/2026/08/25/home-a ssistant-hinter-traefik-im-docker-container/ # SmartHome # Docker # RaspberryPi # Selfhosted # Linux # TraefikProxy # DevOps</description>
       <category>基础设施</category>
+    </item>
+    <item>
+      <title>Grok AI</title>
+      <link>https://apps.apple.com/us/app/grok-ai/id6670324846?uo=4</link>
+      <guid isPermaLink="false">appstore:6670324846</guid>
+      <pubDate>Fri, 21 Aug 2026 23:07:46 GMT</pubDate>
+      <description></description>
+      <category>开源</category>
     </item>
     <item>
       <title>InternScience/Agents-A1</title>
@@ -603,18 +603,10 @@
       <category>Agent</category>
     </item>
     <item>
-      <title>LLMs could control their host machines by exploiting inference engines</title>
-      <link>https://news.ycombinator.com/item?id=49424387</link>
-      <guid isPermaLink="false">hackernews:49424387</guid>
-      <pubDate>Mon, 24 Aug 2026 19:03:06 GMT</pubDate>
-      <description>由 zdw 发布</description>
-      <category>AI</category>
-    </item>
-    <item>
       <title>affaan-m/ECC</title>
       <link>https://github.com/affaan-m/ECC</link>
       <guid isPermaLink="false">github:affaan-m/ECC</guid>
-      <pubDate>Tue, 25 Aug 2026 00:41:19 GMT</pubDate>
+      <pubDate>Tue, 25 Aug 2026 21:27:27 GMT</pubDate>
       <description>The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</description>
       <category>Agent</category>
     </item>
@@ -627,35 +619,12 @@
       <category>工具</category>
     </item>
     <item>
-      <title>Grok AI</title>
-      <link>https://apps.apple.com/us/app/grok-ai/id6670324846?uo=4</link>
-      <guid isPermaLink="false">appstore:6670324846</guid>
-      <pubDate>Fri, 21 Aug 2026 23:07:46 GMT</pubDate>
-      <description></description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Does anyone know of a really good introduction to RSS, for users who aren&apos;t super technically-inclined? #RSS #IndieWeb #WebDev</title>
-      <link>https://bark.wolp.chat/fediverse/post/7133d0e0-d5e5-42f9-becf-31e1d42e2f23</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117152174262081525</guid>
-      <pubDate>Mon, 24 Aug 2026 19:38:33 GMT</pubDate>
-      <description>@maypop@bark.wolp.chat · Does anyone know of a really good introduction to RSS, for users who aren&apos;t super technically-inclined? #RSS #IndieWeb #WebDev</description>
-      <category>代码</category>
-    </item>
-    <item>
-      <title>Prefactor</title>
-      <link>https://www.producthunt.com/products/prefactor/launches/prefactor</link>
-      <guid isPermaLink="false">producthunt:1190808</guid>
-      <pubDate>Tue, 28 Jul 2026 07:01:00 GMT</pubDate>
-      <description>Evaluate your AI Agents in real-time</description>
-      <category>基础设施</category>
-    </item>
-    <item>
-      <title>agentica-org/DeepScaleR-1.5B-Preview</title>
-      <link>https://huggingface.co/agentica-org/DeepScaleR-1.5B-Preview</link>
-      <guid isPermaLink="false">huggingface:agentica-org/DeepScaleR-1.5B-Preview</guid>
-      <description>Hugging Face 模型 · text-generation</description>
-      <category>Agent</category>
+      <title>Granite 4.2 LLMs: How They&apos;re Built</title>
+      <link>https://huggingface.co/blog/ibm-granite/granite-4-2</link>
+      <guid isPermaLink="false">rss:https://huggingface.co/blog/ibm-granite/granite-4-2</guid>
+      <pubDate>Tue, 25 Aug 2026 15:14:14 GMT</pubDate>
+      <description>来自 huggingface.co 的官方更新</description>
+      <category>模型研究</category>
     </item>
     <item>
       <title>Microsoft Copilot</title>
@@ -666,36 +635,36 @@
       <category>AI</category>
     </item>
     <item>
-      <title>TeraBox: 1TB Cloud &amp; AI Space</title>
-      <link>https://play.google.com/store/apps/details?id=com.dubox.drive&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:com.dubox.drive</guid>
-      <pubDate>Wed, 29 Apr 2020 00:00:00 GMT</pubDate>
-      <description>Get 1TB Cloud Storage Space with One-Click. Unlock AI Tools in One Smart Space.</description>
-      <category>工具</category>
+      <title># Armbian 26.8 Released with # Linux Kernel 7.1, Revamped Installer, Support for New # ARM Boards, and UEFI ISO Images https:// 9to5linux.co</title>
+      <link>https://floss.social/@9to5linux/117158739888207812</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117158740272616561</guid>
+      <pubDate>Tue, 25 Aug 2026 23:28:18 GMT</pubDate>
+      <description>@9to5linux@floss.social · # Armbian 26.8 Released with # Linux Kernel 7.1, Revamped Installer, Support for New # ARM Boards, and UEFI ISO Images https:// 9to5linux.com/armbian-26-8-rel eased-with-linux-7-1-revamped-installer-and-uefi-iso-images @ armbian # OpenSource</description>
+      <category>开源</category>
     </item>
     <item>
-      <title>Significant-Gravitas/AutoGPT</title>
-      <link>https://github.com/Significant-Gravitas/AutoGPT</link>
-      <guid isPermaLink="false">github:Significant-Gravitas/AutoGPT</guid>
-      <pubDate>Mon, 24 Aug 2026 19:12:39 GMT</pubDate>
-      <description>AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</description>
-      <category>AI</category>
+      <title>💁🏻‍♀️ TIL: 🐬🎶 Scientists have found that bottlenose # dolphins use individually distinctive signature whistles, and playback # experimen</title>
+      <link>https://fediscience.org/@tksst/117156859371900070</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117156859564939617</guid>
+      <pubDate>Tue, 25 Aug 2026 15:30:04 GMT</pubDate>
+      <description>@tksst@fediscience.org · 💁🏻‍♀️ TIL: 🐬🎶 Scientists have found that bottlenose # dolphins use individually distinctive signature whistles, and playback # experiments suggest African # elephants and spectacled # parrots call one another with specific # sounds . But researchers disagree about whether these calls count as names, and a recent # paper proposes three criteria for deciding. Dolphins show the strongest evidence, while other species need more # research . 👉 https://www. livescience.com/animals/do-oth er-animals-call-each-other-by-name # animals # wildlife # nature # science # marmosets # behavior # weather # evolution # language # primates # birds # mammals</description>
+      <category>模型研究</category>
     </item>
     <item>
-      <title>Hot Chips 2026: CUDA Targets RISC-V – By Chester Lam</title>
-      <link>https://news.ycombinator.com/item?id=49422548</link>
-      <guid isPermaLink="false">hackernews:49422548</guid>
-      <pubDate>Mon, 24 Aug 2026 16:52:01 GMT</pubDate>
-      <description>由 rbanffy 发布</description>
-      <category>AI</category>
+      <title>In June we discharged the U.S. # Ebola patient fully recovered. Now # CharitéBerlin researchers share findings from his experimental treatme</title>
+      <link>https://wisskomm.social/@ChariteBerlin/117156471191489040</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117156471216933358</guid>
+      <pubDate>Tue, 25 Aug 2026 13:51:21 GMT</pubDate>
+      <description>@ChariteBerlin@wisskomm.social · In June we discharged the U.S. # Ebola patient fully recovered. Now # CharitéBerlin researchers share findings from his experimental treatment. Learn about symptoms, viral loads, and immune responses in our Paper spotlight: 👉 https://www. charite.de/en/research/paper_s potlight/new_findings_on_treating_a_bundibugyo_ebola_virus_infection/ # CharitéPaper # Bundibugyo # MBP134 # remdesivir # medicine # science # research # ScienceMastodon</description>
+      <category>模型研究</category>
     </item>
     <item>
-      <title>&quot;Arvind Narayanan has spent years puncturing Silicon Valley’s grandest claims about artificial intelligence. The Princeton computer-science </title>
-      <link>https://tldr.nettime.org/@remixtures/117139217546020916</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117139217797783716</guid>
-      <pubDate>Sat, 22 Aug 2026 12:43:31 GMT</pubDate>
-      <description>@remixtures@tldr.nettime.org · &quot;Arvind Narayanan has spent years puncturing Silicon Valley’s grandest claims about artificial intelligence. The Princeton computer-science professor co-wrote AI Snake Oil, a book that challenges the notion that algorithms can reliably predict who will be a good employee, which patients will get sick, or who might commit crimes. He has also pushed back on the idea that generative AI is about to eliminate vast swaths of white-collar work, calling work something like a “sandwich” whose bun is growing even as the meat shrinks. But Narayanan does not dismiss the public’s mounting hostility toward AI. He thinks the backlash is real, understandable—and far more complicated than any one thing. It’s a coalition of different fears, he said: “many different kinds of anxieties have all kind of pushed together into one sort of generalized opposition to AI.” What looks like AI phobia, he argued, is really a collection of anxieties about fear of job loss; distrust of powerful technology companies; anger over the influence of billionaires; concern about environmental costs; unease over the technology’s social effects; and, for younger people, uncertainty over what skills they need to retain in a labor market increasingly built around AI.&quot; https:// fortune.com/article/princeton- ai-snake-oil-author-future-of-work-thinking-machines/ # AI # GenerativeAI # AgenticAI # LLMs # Automation # Productivity</description>
-      <category>Agent</category>
+      <title>SKI</title>
+      <link>https://www.producthunt.com/products/ski/launches/ski</link>
+      <guid isPermaLink="false">producthunt:1208711</guid>
+      <pubDate>Thu, 30 Jul 2026 07:01:00 GMT</pubDate>
+      <description>Free voice coding for Claude Code, Codex and more</description>
+      <category>基础设施</category>
     </item>
     <item>
       <title>nerkyor/Qwen3.6-35B-A3B-DSV4Pro-SFT-GPT56Sol-RL-Agent-GGUF</title>
@@ -713,35 +682,28 @@
       <category>工具</category>
     </item>
     <item>
-      <title>Say it once: introducing Bot Preference Sync</title>
-      <link>https://blog.cloudflare.com/bot-preference-sync/</link>
-      <guid isPermaLink="false">rss:https://blog.cloudflare.com/bot-preference-sync/</guid>
-      <pubDate>Fri, 21 Aug 2026 23:19:57 GMT</pubDate>
-      <description>Cloudflare&apos;s new Bot Preference Sync automatically aligns your robots.txt file with your AI bot policies for Search, Agent, and Training. Easily manage which bots access your content without maintaining static files.</description>
-      <category>基础设施</category>
+      <title>TeraBox: 1TB Cloud &amp; AI Space</title>
+      <link>https://play.google.com/store/apps/details?id=com.dubox.drive&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.dubox.drive</guid>
+      <pubDate>Wed, 29 Apr 2020 00:00:00 GMT</pubDate>
+      <description>Get 1TB Cloud Storage Space with One-Click. Unlock AI Tools in One Smart Space.</description>
+      <category>工具</category>
     </item>
     <item>
-      <title>Deezer: Music &amp; Podcast Player</title>
-      <link>https://play.google.com/store/apps/details?id=deezer.android.app&amp;hl=en&amp;gl=us</link>
-      <guid isPermaLink="false">googleplay:deezer.android.app</guid>
-      <description>Your music, your playlists, and more—offline and unlimited.</description>
-      <category>开源</category>
+      <title>Significant-Gravitas/AutoGPT</title>
+      <link>https://github.com/Significant-Gravitas/AutoGPT</link>
+      <guid isPermaLink="false">github:Significant-Gravitas/AutoGPT</guid>
+      <pubDate>Wed, 26 Aug 2026 00:41:36 GMT</pubDate>
+      <description>AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</description>
+      <category>AI</category>
     </item>
     <item>
-      <title>mattpocock/skills</title>
-      <link>https://github.com/mattpocock/skills</link>
-      <guid isPermaLink="false">github:mattpocock/skills</guid>
-      <pubDate>Mon, 24 Aug 2026 14:20:17 GMT</pubDate>
-      <description>Skills for Real Engineers. Straight from my .agents directory.</description>
-      <category>Agent</category>
-    </item>
-    <item>
-      <title>KI ENTSCHLÜSSELT: WARUM EIN GROSSES KONTEXTFENSTER KEIN GUTES GEDÄCHTNIS GARANTIERT https:// gadgetchecks.de/ki-entschluess elt-warum-ein-gr</title>
-      <link>https://burningboard.net/@gadgetchecks/117151572234245041</link>
-      <guid isPermaLink="false">mastodon:mastodon.social/117151572315745263</guid>
-      <pubDate>Mon, 24 Aug 2026 17:05:29 GMT</pubDate>
-      <description>@gadgetchecks@burningboard.net · KI ENTSCHLÜSSELT: WARUM EIN GROSSES KONTEXTFENSTER KEIN GUTES GEDÄCHTNIS GARANTIERT https:// gadgetchecks.de/ki-entschluess elt-warum-ein-grosses-kontextfenster-kein-gutes-gedaechtnis-garantiert/ # kientschlüsselt # ai # artificialintelligence # generativeai # llm # machinelearning # gadgetchecks</description>
-      <category>模型研究</category>
+      <title>Ripping Off the Hey.com Band-Aid</title>
+      <link>https://news.ycombinator.com/item?id=49441042</link>
+      <guid isPermaLink="false">hackernews:49441042</guid>
+      <pubDate>Tue, 25 Aug 2026 21:39:24 GMT</pubDate>
+      <description>由 sosodev 发布</description>
+      <category>AI</category>
     </item>
     <item>
       <title>TestFlight</title>
@@ -752,6 +714,45 @@
       <category>代码</category>
     </item>
     <item>
+      <title>agentica-org/DeepScaleR-1.5B-Preview</title>
+      <link>https://huggingface.co/agentica-org/DeepScaleR-1.5B-Preview</link>
+      <guid isPermaLink="false">huggingface:agentica-org/DeepScaleR-1.5B-Preview</guid>
+      <description>Hugging Face 模型 · text-generation</description>
+      <category>Agent</category>
+    </item>
+    <item>
+      <title>Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original</title>
+      <link>https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing</link>
+      <guid isPermaLink="false">rss:https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing</guid>
+      <pubDate>Tue, 25 Aug 2026 11:39:24 GMT</pubDate>
+      <description>来自 huggingface.co 的官方更新</description>
+      <category>模型研究</category>
+    </item>
+    <item>
+      <title>Google Authenticator</title>
+      <link>https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.google.android.apps.authenticator2</guid>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 GMT</pubDate>
+      <description>Enable 2-step verification to protect your account from hijacking.</description>
+      <category>工具</category>
+    </item>
+    <item>
+      <title>mattpocock/skills</title>
+      <link>https://github.com/mattpocock/skills</link>
+      <guid isPermaLink="false">github:mattpocock/skills</guid>
+      <pubDate>Mon, 24 Aug 2026 14:20:17 GMT</pubDate>
+      <description>Skills for Real Engineers. Straight from my .agents directory.</description>
+      <category>Agent</category>
+    </item>
+    <item>
+      <title>Cleanup: Phone Storage Cleaner</title>
+      <link>https://apps.apple.com/us/app/cleanup-phone-storage-cleaner/id1510944943?uo=4</link>
+      <guid isPermaLink="false">appstore:1510944943</guid>
+      <pubDate>Wed, 12 Aug 2026 09:33:48 GMT</pubDate>
+      <description></description>
+      <category>工具</category>
+    </item>
+    <item>
       <title>AgentAnon/flux-klein-9b-Biglove-Collection</title>
       <link>https://huggingface.co/AgentAnon/flux-klein-9b-Biglove-Collection</link>
       <guid isPermaLink="false">huggingface:AgentAnon/flux-klein-9b-Biglove-Collection</guid>
@@ -759,36 +760,36 @@
       <category>Agent</category>
     </item>
     <item>
-      <title>Truth Lies Deep: Countering Semantic Camouflage via Latent Intent Verification</title>
-      <link>https://arxiv.org/abs/2608.20378</link>
-      <guid isPermaLink="false">arxiv:2608.20378</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20378v1 Announce Type: new Abstract: Safety alignment in Large Language Models (LLMs) is often superficial, relying on refusal mechanisms that trigger only at the final stages of generation without erasing the foundational knowledge of harmful concepts acquired during pretraining. This study demonstrates that this architectural disconnect leaves models vulnerable to Semantic Camouflage -- adversarial attacks that wrap harmful intent in benign narrative contexts (e.g., creative writing), effectively bypassing standard input and output guardrails. By analyzing the latent activation trajectories of three distinct Small Language Model (SLM) families (Phi-3, Qwen2.5, and Gemma-2b) under adversarial stress, this research identifies a universal ``Intent Horizon&apos;&apos; -- a critical depth (typically 15--20\% of total layers) where the model&apos;s distinct, pre-trained representation of harmful intent collapses as it contextualizes the query into a ``safe&apos;&apos; narrative. Results indicate that while late-layer representations of camouflaged attacks are mathematically indistinguishable from safe queries (Detection Rate $&lt; 20\%$), early-layer representations retain a distinct, detectable ``harm signature.&apos;&apos; Leveraging this insight, this paper proposes Latent Intent Verification (LIV), a lightweight probing defense. Experiments on the PKU-SafeRLHF dataset demonstrate that LIV outperforms standard guardrails by a margin of 20--50\% across all tested architectures, effectively neutralizing zero-day semantic attacks without requiring model retraining.</description>
-      <category>模型研究</category>
+      <title>Ask ChatGPT to pick a number between 1 and 30. It&apos;ll always say 17 or 23</title>
+      <link>https://news.ycombinator.com/item?id=49419318</link>
+      <guid isPermaLink="false">hackernews:49419318</guid>
+      <pubDate>Mon, 24 Aug 2026 13:13:56 GMT</pubDate>
+      <description>由 lebed2045 发布</description>
+      <category>AI</category>
     </item>
     <item>
-      <title>Pneumatic Units for Logic-based Sequential Excitation (PULSE) in Wearable Haptic Devices</title>
-      <link>https://arxiv.org/abs/2608.20626</link>
-      <guid isPermaLink="false">arxiv:2608.20626</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20626v1 Announce Type: new Abstract: Soft, wearable robotic devices can deliver haptic feedback to support a wide range of tasks, such as extended reality, training various skills, and rehabilitation. Pneumatic actuation can deliver complex haptic feedback, is lightweight and compliant, and can be incorporated into textiles, making it promising for wearable applications. These soft pneumatic devices, however, typically require a valve and input for each pneumatic actuator, making it challenging to develop fully portable devices for at-home use. In this work we present a pneumatic unit for logic-based sequential excitation (PULSE). The PULSE is a flat, textile-based pneumatic actuator with embedded fluidic logic. By combining these actuators into a fluidic ring oscillator, we decreased the typical amount of required pneumatic inputs for a haptic forearm sleeve by 60%, with the ability to scale. We built the ring oscillator by optimizing design variables to reach desired periods of oscillation. We demonstrated a set of tactile stroking cues with periods ranging from 1.16 to 1.56 s and forces ranging from 1.07 to 2.04 N. We assessed the sleeve&apos;s ability to render differentiable, pleasant, and continuous haptic cues in a user study. The forearm sleeve containing PULSEs successfully delivered four directional cues and guided users to target wrist angles with fast reaction times, low overshoot amounts, and a 93.3% average accuracy of correct initial directions.</description>
+      <title>Move to iOS</title>
+      <link>https://play.google.com/store/apps/details?id=com.apple.movetoios&amp;hl=en&amp;gl=us</link>
+      <guid isPermaLink="false">googleplay:com.apple.movetoios</guid>
+      <pubDate>Wed, 16 Sep 2015 00:00:00 GMT</pubDate>
+      <description>Transfer your data securely from Android to iPhone and iPad.</description>
       <category>工具</category>
     </item>
     <item>
-      <title>A Design Space Exploration of Async/Await</title>
-      <link>https://arxiv.org/abs/2608.20677</link>
-      <guid isPermaLink="false">arxiv:2608.20677</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20677v1 Announce Type: new Abstract: Many modern programming languages include some form of asynchronous programming. In particular, a growing number now have what we call straight-line asynchrony: attempts to provide asynchronous functions that look similar to synchronous functions, thereby enabling asynchrony without introducing complex control. These languages often share construct names like &quot;async&quot; and &quot;await,&quot; which suggests that they have deep semantic similarities. Yet, a close examination reveals that these languages are quite different along several dimensions, often subtly. These differences have real semantic consequences: similar-looking programs can exhibit divergent behavior, confusing developers and language designers alike. This paper therefore presents a design space exploration of straight-line asynchrony. We dissect several existing languages, and show how no two of them agree as a whole on design decisions that affect the presence and ordering of execution. We articulate a design space with nine dimensions covering the full lifecycle of an asynchronous computation, covering questions such as: What precise guarantees does a language give upon calling an asynchronous function? What happens at the end of a task&apos;s life? How can a task handle being cancelled? We explore these questions through concrete examples, informal design discussion, and a formal semantics. Our ultimate goal is to help programmers, language designers, and language theorists all better understand the emerging landscape of straight-line asynchrony.</description>
+      <title>“The idea-expression dichotomy means that copyright has traditionally been understood to exist only for human-created work, and copyright ha</title>
+      <link>https://tldr.nettime.org/@remixtures/117158070966584128</link>
+      <guid isPermaLink="false">mastodon:mastodon.social/117158071215881166</guid>
+      <pubDate>Tue, 25 Aug 2026 20:38:11 GMT</pubDate>
+      <description>@remixtures@tldr.nettime.org · “The idea-expression dichotomy means that copyright has traditionally been understood to exist only for human-created work, and copyright has been similarly understood to be owned only by human beings. Up until recent technological developments, creative implementation has for the most part always had to be executed by humans. The introduction of generative LLMs however disrupts this traditional workflow of idea-expression, as (in the case of wholly LLM-generated work) a human being can now contribute merely the idea, with the implementation and expression of that idea performed by the LLM. Nevertheless, we can see that copyright law across multiple jurisdictions remains mostly clear: the copyright owner has to be a human being, and the copyright should only extend to human-created work.” https:// fsfe.org/news/2026/news-202608 25-01.html # AI # GenerativeAI # LLMs # VibeCoding # Copyright # SoftwareDevelopment # Programming # FLOSS # FreeSoftware # OpenSource</description>
       <category>代码</category>
     </item>
     <item>
-      <title>Testing and Evaluation of Agentic AI Systems In Military Command and Control</title>
-      <link>https://arxiv.org/abs/2608.20597</link>
-      <guid isPermaLink="false">arxiv:2608.20597</guid>
-      <pubDate>Mon, 24 Aug 2026 04:00:00 GMT</pubDate>
-      <description>arXiv:2608.20597v1 Announce Type: new Abstract: Agentic AI systems are being procured for military command and control (C2) under public commitments to rigorous testing and human oversight. Whether such commitments can be discharged depends on their supporting assurance case, which requires three elements: claims specifying the conditions for acceptability, evidence bearing on those claims, and an argument connecting the two. Through a structured review of 240 documented Testing and Evaluation (T&amp;E) practices, spanning eight evaluation dimensions and three lifecycle stages, we identify eight assumptions that established methods make about their test article, grouped into four clusters: system specifiability, stability, composability, and supervisability. Agentic properties weaken all eight assumptions. This erosion affects the argument connecting evidence to claims, not the claims or evidence themselves. As a result, test results may satisfy process requirements, but they do not warrant the inference from tested to fielded behavior. We derive ten assurance claims for the first three assumption clusters and assess whether current and emerging methods can address each, mapping operational consequences through five C2 scenarios. Supervisability is identified but not assessed here, since evidencing it depends on system stability results and human factors T&amp;E methods beyond the present scope. The documented record does not support broad claims about system-level behavior, but narrower claims remain recoverable in principle, contingent on mature methods: bounded mission envelopes, trajectory-grounded correctness, executable runtime constraints, and characterized run-to-run variance. Part of the evidentiary burden shifts into deployment, making the determination to field a continuing act. Where evidence cannot be generated, the residual uncertainty can be governed through defined expiry conditions and assigned ownership.</description>
-      <category>开源</category>
+      <title>Reviewing Model Collapse and Countermeasures</title>
+      <link>https://arxiv.org/abs/2608.21366</link>
+      <guid isPermaLink="false">arxiv:2608.21366</guid>
+      <pubDate>Tue, 25 Aug 2026 04:00:00 GMT</pubDate>
+      <description>arXiv:2608.21366v1 Announce Type: new Abstract: Driven by massive amounts of web-scale data, generative AI (GenAI) has achieved remarkable progress, enabling various applications in diverse sectors. The advances of GenAI have actuated practitioners to use AI-synthesized data for training next-generation AI models. Undeniably, using synthetic data has alleviated the increasing stringent demand for data supply. Unfortunately, it also introduces a new critical issue: in a self-consuming cycle between model and data, the model ultimately collapse, raising more trustworthiness concerns to GenAI. In recent years, increasingly more studies have investigated the phenomenon of model collapse (MC) and explored potential solutions to mitigate it. However, the review of the phenomenon of MC still remains blank. To fill this gap, this paper provides an up-to-date overview of these studies for consolidating and reviewing the progress of MC in different application scenarios and countermeasures for mitigating MC. We also highlight challenges and future research opportunities.</description>
+      <category>模型研究</category>
     </item>
   </channel>
 </rss>

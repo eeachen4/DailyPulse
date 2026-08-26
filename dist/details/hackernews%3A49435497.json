@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49435497",
+  "sourceItemId": "49435497",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49435497",
+  "detail": {
+    "longDescription": "SDI protocol defines a reasoning computer for AI. The computer runs an LLM one turn at a time, guiding it through a reasoning grammar; the grammar, which is both natural language and algebraic, allows it to be checked at a compile gate. The gate validates safety, a workfloor, and alignment with the grammar before it commits. What commits is a hash-chain ledger of the agent&#x27;s reasoning, forming a longitudinal data set that becomes the agent&#x27;s functional memory&#x2F;system state. Chromite, the protocol&#x27;s public agent, has been reasoning on one continuous hash chain since springtime this year and has used multiple models through three frontier providers to do so. What makes it more than a log of its reasoning is an argumentation graph. The graph is the memory and is retrieved and fed to the agent during its call sequence. The agent can hold or defeat prior acts, keeping the memory calibrated and the context window under control. Anyone can pull an act and recompute the seals for Chromite; it exists to be examined; that is what this post is requesting. No account, no SDK, curl and Python. I spent 20+ years as a Marine working in command and control, learning decision doctrine and intelligence gathering. I have been working on this system for roughly three years and its a solo build. I have a lineage page on the site to show the computing and reasoning traditions this system uses, but that was all discovered along the way or after the build. This system really comes from taking decision doctrine and turning it into a computable syntax and taking intelligence-gathering techniques for evidence handling. Ten seconds, if you just want to see the gate work: curl -s https:&#x2F;&#x2F;www.sdi-protocol.org&#x2F;_functions&#x2F;der | python3 -c &quot;import json,sys; print(json.dumps(json.load(sys.stdin)[&#x27;golden_example&#x27;]))&quot; &gt; example.json curl -s -X POST https:&#x2F;&#x2F;www.sdi-protocol.org&#x2F;_functions&#x2F;compile -H &quot;Content-Type: application&#x2F;json&quot; -d @example.json Returns PASS. What you just submitted is a complete reasoning record, with every required block, which is why it passes. Delete one field and resubmit; the error names the specific failure. To examine system liveness, pull Chromite&#x27;s last 5 reasoning acts. You will see the full reasoning act. The grammar, cited sources, and reasoned positions. curl -s &quot;https:&#x2F;&#x2F;api.sdi-protocol.org&#x2F;ledger&#x2F;recent&#x2F;SDI-5AA8C82A2537?n=5&quot; | python3 -m json.tool Fifteen minutes, if you want to verify the chain: sdi-protocol.org&#x2F;verify walks through pulling a live record and recomputing its hashes, work score, and admissibility index from scratch. The repo has the same scripts, check summed, plus a committed record you can test them against offline first: github.com&#x2F;StructuredDecisionIntelligence&#x2F;Structured_Decision_Intelligence Three ethical floors at the gate. DECLARATION_INTEGRITY has fired. The two conjunction-based safety guards, PRIMUM and Absolute Value Guard, that admit no human attestation by permanent design have not fired yet. No act has ever declared the conditions to trip them. Refusal path is a separate hash chain ledger, and the DECLARATION_INTEGRITY check is inspectable. Schema Eras: The reasoning metrics that work at the gate have evolved, the chain remains unbroken, and sealed records permanently carry their eras formulas; sealed records can&#x27;t be rewritten. The verify script detects each entry&#x27;s era and applies the right math. The sdi-protocol.org exists to provide transparency over the reasoning protocol that produces transparent AI reasoning. The idea is that both must be transparent to trust either. Disclosure: This will be a commercial product at sdireckoner.com, commissioning a private Reckoner in late fall 2026, but everything in this post is about the free open protocol layer; nothing requires a paid side to verify anything. Chromite exists to be examined by the public as part of the transparency of the protocol itself. Feedback welcome at support@sdi-protocol.org.",
+    "externalUrl": "https://www.sdi-protocol.org",
+    "developer": "dj_johnsonMid",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

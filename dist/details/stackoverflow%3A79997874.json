@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997874",
   "sourceItemId": "79997874",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997874/coder-workspace-container-not-able-to-connect-to-host-docker-socket-deployed-vi",
   "detail": {
     "longDescription": "I am self-hosting Coder on an Ubuntu 24.04 server using Docker Compose and Traefik. I am building a Terraform template to spin up sibling Docker containers for a Aspire (using .NET ) and Node.js environment. My goal is: Mount the host's /var/run/docker.sock into the workspace container so Aspire can manage its own sibling containers. Use mise via a coder_script to persistently install .NET 10 and Node.js into the user's /home/coder directory. However, when I start the workspace and open the web terminal, neither works: coder@workspace:~$ dotnet --version bash: dotnet: command not found coder@workspace:~$ docker ps failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory My Coder Server compose.yaml (snippet): services: coder: image: ghcr.io/coder/coder:latest group_add: - \"988\" # My host's docker GID volumes: - /var/run/docker.sock:/var/run/docker.sock - /opt/docker/data/coder/home:/home/coder My Template main.tf (snippet): resource \"coder_script\" \"install_tools\" { agent_id = coder_agent.main.id run_on_start = true start_blocks_login = true script = <<-EOT #!/usr/bin/env bash set -e if [ ! -x \"$HOME/.local/bin/mise\" ]; then curl -fsSL https://mise.run | sh fi export PATH=\"$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH\" mise use -g dotnet@10.0 node@24 if ! grep -qs 'mise activate' \"$HOME/.bashrc\"; then echo 'eval \"$(mise activate bash)\"' >> \"$HOME/.bashrc\" fi EOT } resource \"docker_container\" \"workspace\" { count = data.coder_workspace.me.start_count image = \"codercom/enterprise-base:ubuntu\" name = \"coder-${local.username}-${lower(data.coder_workspace.me.name)}\" volumes { container_path = \"/home/coder\" volume_name = docker_volume.home_volume.name } volumes { container_path = \"/var/run/docker.sock\" host_path = \"/var/run/docker.sock\" } } Questions: Why is the socket throwing no such file or directory inside the docker_container workspace? Why are the mise installed tools not showing up? Reference: https://coder.com/docs/get-started/customize-your-template/install-command-line-tools#final-code",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "42"
+        "value": "59"
       },
       {
         "label": "状态",

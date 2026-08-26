@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.21555",
+  "sourceItemId": "2608.21555",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.21555",
+  "detail": {
+    "longDescription": "arXiv:2608.21555v1 Announce Type: new Abstract: Modern machine learning compilers select tensor memory layouts to minimize execution cost under hardware constraints. Layout selection is global: an operator may be fastest under one layout while its consumers prefer another, and aligning these preferences requires explicit layout conversions that can hurt model performance. Despite its practical importance, layout selection lacks a formal basis, so current compilers rely on ad-hoc heuristics. This paper presents the first formal study of layout selection in machine learning compilers. We formulate the problem as combinatorial optimization over dataflow graphs, minimizing the sum of operator execution costs and the per-tensor cost of these conversions. Our theoretical analysis shows that optimal layout selection is computationally hard, even for programs containing only matrix multiplications over two-dimensional tensors. We design an optimal polynomial-time algorithm for dataflow graphs of bounded treewidth. For general instances, we give a weighted MaxSAT encoding that an off-the-shelf solver can optimize. The formulation unifies several existing layout optimization strategies, including XLA's layout assignment, partition dimension selection in systolic array compilers, and layout planning in mobile GPU optimizers. We implement the formalization in a production compiler for an AI accelerator and measure the execution time of the compiled models under greedy heuristics, the compiler's rule-based strategy, and an optimal solver. Simple heuristics degrade execution time by up to $5\\times$ on some workloads. Where the compiler's cost model is accurate, the solver matches or beats the rule-based strategy. On workloads with complex data movement it falls behind, and since the solver minimizes the stated objective exactly, that gap isolates cost-model error from search quality, showing where compiler effort actually pays off.",
+    "developer": "Clemens Eisenhofer, Yuwen Jia, Daniel Kroening, Sergey Pupyrev",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.DS, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Clemens Eisenhofer, Yuwen Jia, Daniel Kroening, Sergey Pupyrev"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

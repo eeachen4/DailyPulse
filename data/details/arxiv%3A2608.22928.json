@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.22928",
+  "sourceItemId": "2608.22928",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.22928",
+  "detail": {
+    "longDescription": "arXiv:2608.22928v1 Announce Type: new Abstract: Agent runtimes can Checkpoint an execution, Fork it, Restore a checkpoint, or Merge branches without restarting a task. We call these operations execution edits, with Checkpoint recording the current execution for later use and Fork, Restore, and Merge changing what the Agent will do next. An execution edit cannot undo an earlier authorization or a tool request already sent. An unsafe edit can therefore authorize the same tool action twice, discard a result the task still requires, or conflict with a call that began before the edit. The Agent is untrusted, so the runtime uses its execution record to determine which past actions an edit must account for and which required results it must preserve to keep the subsequent execution safe. Yet existing Agent systems support such operations without deriving what each edit must preserve from the running execution, whereas prior methods for computing safe behavior take that requirement as input. We give an algorithm that decides exactly whether an edit is safe. It returns all safe ways to continue, or proves that none exists. To make this decision, the algorithm lists every way the task can finish without violating policy. It removes any way that could make a still-required result impossible to finish later. If none remain, it returns a checkable proof that no safe implementation exists. Otherwise, the remaining ways describe exactly what the runtime may allow. Our formal results cover Checkpoint and the six forms of Fork, Restore, and Merge, together with extensions, atomic enforcement, and the information every exact checker needs. Lean mechanizes the finite checker and runtime invariant, and tests validate all six edit forms. The source code, Lean proofs, and executable tests are available in the public GitHub repository at https://github.com/eunomia-bpf/agent-check-restore-safety.",
+    "developer": "Yusheng Zheng, Xiaoyu Song, Yanpeng Hu, Lebin Cheng, Yuxi Huang, Wei Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yusheng Zheng, Xiaoyu Song, Yanpeng Hu, Lebin Cheng, Yuxi Huang, Wei Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

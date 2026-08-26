@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2509.04719",
+  "sourceItemId": "2509.04719",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://arxiv.org/abs/2509.04719",
+  "detail": {
+    "longDescription": "arXiv:2509.04719v3 Announce Type: replace Abstract: The widespread adoption of diffusion models for image generation necessitates efficient parallel inference to manage their substantial computational overhead. However, current parallel inference paradigms primarily target homogeneous clusters, often failing to maintain high efficiency in realistic, heterogeneous multi-GPU environments where hardware disparities and fluctuating background workloads cause severe straggler effects. This paper introduces Orchestra, a robust framework that orchestrates fine-grained parallelism across both temporal and spatial dimensions to harmonize computational loads in such settings. Temporally, Orchestra employs a novel computation-aware step allocator using a tiered step reduction strategy, intelligently pruning denoising steps on slower devices after warmup phases and execution synchronization. Spatially, Orchestra performs an elastic patch parallelism mechanism which adaptively adjusts the spatial workload intensity by assigning non-uniform image patches tailored to GPUs according to their computational capability. Extensive experiments on load-imbalanced and heterogeneous clusters validate Orchestra's efficacy in mitigating performance bottlenecks. Compared to patch parallelism, a state-of-the-art diffusion inference framework, our method reduces end-to-end latency by up to 45% and significantly boosts resource utilization on heterogeneous GPUs.",
+    "developer": "Han Liang, Jiahui Zhou, Zicheng Zhou, Xiaoxi Zhang, Xu Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.CV"
+      },
+      {
+        "label": "第一作者",
+        "value": "Han Liang, Jiahui Zhou, Zicheng Zhou, Xiaoxi Zhang, Xu Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

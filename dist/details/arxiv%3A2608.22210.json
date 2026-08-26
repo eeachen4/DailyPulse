@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.22210",
+  "sourceItemId": "2608.22210",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.22210",
+  "detail": {
+    "longDescription": "arXiv:2608.22210v1 Announce Type: cross Abstract: Managed Kubernetes pod deployment is often presented as a choice between VPC-native and overlay networking. Public EKS documentation describes prefix-mode capacity and configuration, while prior CNI studies primarily measure steady-state throughput and latency. This paper presents an operational measurement study of fleet-scale pod deployment across three VPC-native modes on Amazon EKS: individual secondary-IP allocation, ENI preallocation, and IPv4 prefix delegation, using Cilium and Calico as overlay baselines. We compare representative mode-specific warm-pool settings, so the results describe combined operating points. At 400 nodes, the tested three-address secondary-IP warm pool required 7,403 seconds to place 80,000 pods. With the tested ENI-preallocation and prefix-delegation settings, the same workload completed in approximately 495 seconds, moving address provisioning off the pod-creation critical path. In the reported 400-node runs, prefix delegation achieved approximately 162 pods/s, within the same observed range as the fastest overlay baseline and ENI-preallocation runs, while requiring fewer successful EC2 provisioning calls per pod than individual-IP allocation by allocating addresses in /28 blocks. Because each /28 contains 16 addresses and occupies one IPv4 slot, an interface with 30 slots carries 29 prefixes, representing up to 464 potential pod addresses, compared with approximately 30 IPv4 slots per ENI for individual-IP allocation when kubelet and CNI limits are configured accordingly. Prefix delegation also has lower documented network-address usage and retains direct VPC reachability and flow-log visibility but the trade-off is that /28 allocations require contiguous subnet space.",
+    "developer": "Sri Saran Balaji Vellore Rajakumar, Jayanth Varavani, Murat Parlakisik, Pavani Panakanti",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sri Saran Balaji Vellore Rajakumar, Jayanth Varavani, Murat Parlakisik, Pavani Panakanti"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

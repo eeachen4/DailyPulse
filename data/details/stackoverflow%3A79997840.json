@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997840",
   "sourceItemId": "79997840",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997840/how-to-extract-valid-python-code-from-ipynb-cells",
   "detail": {
     "longDescription": "I wrote a Python script that reads .ipynb files, extracts the cells that contain Python code, and then parses them with ast and does something with them: try: with ipynb_path.open( \"r\", encoding=\"utf-8\", errors=\"ignore\", ) as f: notebook = json.load(f) except (OSError, json.JSONDecodeError): return sources = [] # Only code cells contain executable source code for cell in notebook.get(\"cells\", []): if cell.get(\"cell_type\") != \"code\": continue source = cell.get(\"source\", \"\") if isinstance(source, list): source = \"\".join(source) if source: yield source And then I use ast to parse them like this: ast.parse( source ) But I realized that cells can contain statements that aren't Python code, and ast throws an error when parsing them, such as: !nvidia-smi , %time , %matplotlib inline , %%bash To solve this problem, I used try/except for SyntaxError and ignored these cells. But there may be valid Python code before or after these statements, so by doing this I lose some information and code. And reading the cells line by line and removing lines that start with !, %, etc. is not correct either, because code may still be lost: %time import pandas %time x = some_function() %timeit import numpy output = !nvidia-smi files = !ls Is there a way I can convert these cells into Python code that can be parsed by ast?",
     "developer": "ArianNa",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "62"
+        "value": "92"
       },
       {
         "label": "状态",

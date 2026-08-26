@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998181",
+  "sourceItemId": "79998181",
+  "sourceUrl": "https://stackoverflow.com/questions/79998181/how-to-improve-deep-learning-model-sensitivity-for-subtle-ordinal-class-transiti",
+  "detail": {
+    "longDescription": "I am training a Deep Learning model on a Diabetic Retinopathy dataset with sequential grading (Grade 0 to Grade 4). My model is struggling significantly with neighboring classes where the clinical differences are highly subtle (specifically misclassifying Grade 0 as Grade 1, Grade 1 as Grade 2, etc.). The confusion matrix shows high overlap between adjacent classes, while distant classes (e.g., Grade 0 vs Grade 4) are separated perfectly. Since standard Categorical Cross-Entropy treats all misclassifications equally, a mistake between Grade 0 and Grade 1 is penalized the same as a mistake between Grade 0 and Grade 4. What loss functions, architecture tweaks, or training paradigms do ML/DL experts use to force a convolutional network or vision transformer to capture these highly subtle, sequential differences? **What I have tried so far:** * Standard `CategoricalCrossentropy` loss. * Heavy data augmentation (Random crops, color jittering to mimic different camera exposures, and contrast enhancement). * Transfer learning using pre-trained EfficientNet and ResNet backbones. **Specific constraints:** * The dataset is ordinal (the classes have a natural progression). * The dataset is imbalanced, with more samples in Grade 0 than in higher severity grades. I am looking for proven engineering methods (e.g., specific custom loss functions, ordinal regression layers, or multi-task learning setups) that address this \"neighboring class confusion\" problem in medical imaging. Framework-agnostic concepts or PyTorch/TensorFlow implementations are both welcome.",
+    "developer": "Purujit Piyal Sana",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "60"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

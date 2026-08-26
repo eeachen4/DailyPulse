@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49410310",
+  "sourceItemId": "49410310",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49410310",
+  "detail": {
+    "longDescription": "I have been benchmarking local LLMs on a Mac M4 Pro 24 GB RAM using LM Studio. I&#x27;ve tested mostly with 4-bit quantization, both MLX and GGUF, from 4b to 35b models, with speeds of 3 to 40 tokens&#x2F;second. Results briefly: - fast small model -&gt; extraction&#x2F;classification - Gemma -&gt; summarization - gpt-oss -&gt; transcript consultation - large Qwen -&gt; difficult reasoning&#x2F;code interpretation There wasn&#x27;t a single best LLM for all tasks. Best summarizer: I took a transcript and asked an LLM to summarize, then graded the summarization. Gemma 4 e4b was the best and took only 30s. qwen3.6-35b-a3b-ud q2_K_XL took around 2 minutes and incurred in a few omissions. Best &quot;answerer from files&quot; (RAG): I added some transcript files and asked questions about facts that should be grounded on the files. gpt-oss-20b answered questions perfectly in about 4s. BTL 4 Compact and Gemma 4 e4b did too but took around a minute. Best PII identifier: I asked to identify names of people and organizations plus PII (emails, phones, etc) in a text file. Qwen 3 4B MLX (not a thinking model) took less than 3s. Others were good too: BTL 4 Compact, Gemma 4 e4b, Qwen 3.5 9b 4-bit - but they took between 11s and 30s. Best &quot;code interpreter&quot;: I gave a class file and asked an LLM to identify certain methods and result values and tell whether the code would compile and run. Qwen 3.8 27B was by far the best at difficult code interpretation, but at the cost of 30 minutes (~5 tok&#x2F;s). BTL 4 Compact and Gemma 4 e4b took around a minute and responded with a couple of mistakes. I did not test code generation or any other types. In these examples more thinking didn&#x27;t result in better answers. Some models spent 45 minutes and still got something wrong. Qwen 3.8 27B may need a reasoning budget to make it usable in 24Gb RAM (it was exhausting the context with thinking over and over until I experimented with a budget of 1k tokens). Sometimes a Q2 Qwen 3.6 variant can beat a Q3 variant. I would be interested in comparable test results from other machines, especially Mac Studio, AMD Strix Halo, DGX Spark, and consumer NVIDIA GPUs. What models and workloads are working well for yall?",
+    "developer": "felineflock",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "7"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

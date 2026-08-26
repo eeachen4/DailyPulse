@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997810",
   "sourceItemId": "79997810",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997810/cant-call-action-method-using-javascript-the-request-is-not-even-reaching-the-a",
   "detail": {
     "longDescription": "I have Action method named Import which is inside the Admin Controller. I have JavaScript code inside a view that needs to send a request to the Import . Here is the view code: @{ ViewData[\"Title\"] = \"Products page\"; } <h1>Products Page</h1> <label for=\"avatar\">Choose a file:</label> <input class=\"form-control form-control-lg\" id=\"formFileLg\" type=\"file\" accept=\".xlsx\" /> <script> document.getElementById(\"formFileLg\").addEventListener(\"change\", importFile); console.log(\"hello world\"); async function importFile() { console.log(\"The JS handler was started...\") const formData = new FormData(); formData.append(\"file\", this.files[0]); try { console.log(\"Try block executed.\") response = await fetch('Admin/Import', { method: 'POST', body: formData, }) if (!response.ok) { console.log(\"response is not ok\") throw new Error(`Response status: ${response.status}`); return; } console.log(\"response is ok\"); const result = await response.json(); console.log(result); } catch (error) { alert(\"catch block executed\"); console.log(\"'nCatch block executed\\n\") console.error(error.message); } } </script> and here is the Import Action's code [HttpPost] [Route(\"Admin/Import\")] public IActionResult Import([FromBody] IFormFile file) { Console.Write(\"Action method is called\"); //// don't forget to refactor the code. if (file == null || file.Length == 0) { return BadRequest(\"Please upload a valid Excel file.\"); } return Ok(); } I inspected the result in the Dev tools , the result is shown in the below image:",
     "developer": "abd klaib",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "68"
+        "value": "90"
       },
       {
         "label": "状态",

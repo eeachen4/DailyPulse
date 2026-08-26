@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117158223864597225",
+  "sourceItemId": "mastodon.social/117158223864597225",
+  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "sourceUrl": "https://lemmy.today/post/58983802",
+  "detail": {
+    "longDescription": "If it helps others this was my config. To be honest I have a weak grasp of what\nit actually does so there might be some security issues with it. Apparently you\ncan also add lemmy as a search engine. Will work on that later. ::: spoiler\nconfig # docker-compose.yml name: searxng services: core: container_name:\nsearxng-core image: docker.io/searxng/searxng:latest restart: always\nnetwork_mode: \"service:gluetun\" volumes: - ./core-config:/etc/searxng -\ncore-data:/var/cache/searxng gluetun: image: qmcgaw/gluetun:v3.41.3\ncontainer_name: gluetun cap_add: - NET_ADMIN environment: -\nVPN_SERVICE_PROVIDER=custom - VPN_TYPE=openvpn -\nOPENVPN_CUSTOM_CONFIG=/gluetun/custom.conf ports: - 8080:8080 restart: always\nvolumes: - ./gluetun:/gluetun devices: - /dev/net/tun:/dev/net/tun nginx:\ncontainer_name: nginx image: nginx:latest ports: - 80:80 - 443:443 volumes: -\n./nginx:/etc/nginx/conf.d - ./cert:/etc/nginx/cert valkey: container_name:\nsearxng-valkey image: docker.io/valkey/valkey:9-alpine command: valkey-server\n--save 30 1 --loglevel warning restart: always volumes: - valkey-data:/data/\nvolumes: core-data: valkey-data: # nginx/default.conf server { server_name\nlocalhost; listen 443 ssl; ssl_certificate /etc/nginx/cert/cert.pem;\nssl_certificate_key /etc/nginx/cert/private.key; location / { proxy_pass\nhttp://gluetun:8080/; proxy_set_header Host $host; proxy_set_header Connection\n$http_connection; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header\nX-Real-IP $remote_addr; proxy_set_header X-Forwarded-For\n$proxy_add_x_forwarded_for; } } server { server_name localhost; listen 80;\nlocation / { return 301 https://$host$request_uri; } } :::",
+    "developer": "@rounding_error@lemmy.today",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "5"
+      }
+    ]
+  }
+}
