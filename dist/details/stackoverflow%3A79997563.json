@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997563",
   "sourceItemId": "79997563",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997563/why-is-iterating-over-a-typedarray-of-bitmasks-4x-slower-than-a-boolean-array-in",
   "detail": {
     "longDescription": "I'm working on an in-memory indexing engine and tried switching from a Uint8Array to a bit-packed Uint32Array to save memory. The memory usage dropped by about 70%, but the bitmask version is consistently around 4x slower when scanning the flags in Node.js (v20 / V8 11.3). Here's a small benchmark that reproduces it: import { performance } from 'node:perf_hooks'; const SIZE = 10_000_000; const rawBools = new Uint8Array(SIZE); const bitmask = new Uint32Array(Math.ceil(SIZE / 32)); for (let i = 0; i < SIZE; i++) { const val = (i % 3 === 0) ? 1 : 0; rawBools[i] = val; if (val) { bitmask[i >> 5] |= (1 << (i & 31)); } } const t0 = performance.now(); let countA = 0; for (let i = 0; i < SIZE; i++) { if (rawBools[i] === 1) countA++; } const timeA = performance.now() - t0; const t1 = performance.now(); let countB = 0; for (let i = 0; i < SIZE; i++) { if ((bitmask[i >> 5] & (1 << (i & 31))) !== 0) countB++; } const timeB = performance.now() - t1; console.log(`Uint8Array: ${timeA.toFixed(2)}ms (count: ${countA})`); console.log(`Uint32Array: ${timeB.toFixed(2)}ms (count: ${countB})`); On my machine I'm seeing roughly: Uint8Array: ~7.8ms Uint32Array: ~31.4ms I expected the smaller bitset to have better cache locality, since the buffer is much smaller. Is the shift or mask overhead really enough to explain the difference, or is V8 just not optimizing this loop very well? Also, is there a better way to scan a bitset like this in Node or V8 without giving up so much throughput?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "118"
+        "value": "129"
       },
       {
         "label": "状态",

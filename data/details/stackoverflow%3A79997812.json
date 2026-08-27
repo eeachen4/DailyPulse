@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79997812",
   "sourceItemId": "79997812",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
   "sourceUrl": "https://stackoverflow.com/questions/79997812/playwright-works-locally-but-gets-cloudflare-turnstile-403-on-aws-lambda",
   "detail": {
     "longDescription": "I am using Playwright with Python to scrape Avito. The same Playwright code works correctly on my local machine, but when I run it on AWS Lambda, Avito returns a Cloudflare Turnstile challenge with HTTP 403. My environment is: Python Playwright Chromium AWS Lambda Docker container 2048 MB memory 5 minutes timeout Locally, the page loads correctly and I can scrape the listing successfully. On AWS Lambda, I get: HTTP status : 403 Title : Un instant… The final URL contains a Cloudflare challenge parameter: ?__cf_chl_rt_tk=... The Cloudflare page contains: <h2>Vérification de sécurité en cours</h2> <p> Ce site utilise un service de sécurité pour se protéger contre les bots malveillants. </p> <input type=\"hidden\" name=\"cf-turnstile-response\" id=\"cf-chl-widget-..._response\"> It also loads the Cloudflare Turnstile script from challenges.cloudflare.com . I have already tried: JavaScript enabled Chrome user-agent fr-FR locale Africa/Casablanca timezone hiding navigator.webdriver different Chromium launch arguments different Playwright browser contexts waiting for the Cloudflare challenge to complete An important observation is that the same website works with Playwright locally. My question is: Could the difference be caused by the AWS Lambda IP/network environment rather than Playwright itself? What would be the best way to diagnose whether the problem is related to the AWS Lambda network/IP reputation? I am looking for a legitimate diagnostic approach rather than a way to bypass Cloudflare's security mechanism.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "69"
+        "value": "71"
       },
       {
         "label": "状态",

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49452037",
+  "sourceItemId": "49452037",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49452037",
+  "detail": {
+    "longDescription": "I built an agent that helps you build Rollercoaster Tycoon-influenced theme parks. You can prompt something like “Build me a cool theme park” and it’ll build a cohesive theme park with multiple worlds and connected with paths and rides. The weird part is that I built it using the same ideas we use to make AI-generated websites follow a company’s design system. I work as an engineer at Magic Patterns, focused on building our Design System Agent, aimed to use your existing brand, components, and conventions instead of producing something that looks like generic AI-generated UI. By default, models tend to converge on similar-looking designs. This is part of that “vibe coded slop” feeling: the same typography treatments, shadows, cards, icons, animations, etc… My job is to figure out the right context and guardrails so that when you prompt “Build me a dashboard,” the result actually looks like your existing product. At some point I realized those same ideas could be applied to RCT. While in web, you might have rules about which typography, colors, spacing, and components should be used together. In a theme park, you need rules like: rollercoasters need complete tracks, rides need entrances connected to paths, paths need to connect different areas of the park, and a pirate-themed world should actually use pirate-themed scenery. It was interesting seeing how closely the problem of building a coherent theme park resembled the problem of building a coherent product UI. Similarly with web design, simply giving the model the right components wasn&#x27;t enough. I ended up building an eval loop where Magic Patterns would generate a park, another agent would grade it against a rubric, and then the agent would update its rules and skill files before trying again. The rubric checked things like whether rollercoasters formed valid tracks with at least one drop, whether rides were accessible by paths, whether each world used the appropriate themed scenery, and whether the park worked as a whole. After a lot of iterations, you can now prompt something as simple as “Build me a cool theme park.” and you should get back a fully functioning park with guests, rides, paths, rollercoasters, and themed worlds. Best yet, you can also follow the guests, listen to their thoughts, and watch them ride the rides in RCT fashion. Happy to answer any questions, but would love to see the parks you all create!",
+    "externalUrl": "https://www.magicpatterns.com/theme-park",
+    "developer": "thealexanderlee",
+    "comments": 18,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "42"
+      },
+      {
+        "label": "评论",
+        "value": "18"
+      }
+    ]
+  }
+}

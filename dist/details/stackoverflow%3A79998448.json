@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998448",
+  "sourceItemId": "79998448",
+  "sourceUrl": "https://stackoverflow.com/questions/79998448/zsh-segmentation-fault-error-using-pyqt6-and-macbook",
+  "detail": {
+    "longDescription": "I'm building a habit tracker application using PyQt6 in Python. I have a few different subclasses of QDialog, QWidget, and 1 subclass of QMainWindow in order to build out this application. From my main window, I open a SettingsWindow, which inherits from QWidget, and then from that window I use two QPushButton to either open AddHabitWindow or DeleteHabitWindow, both of which inherit from QDialog. AddHabitWindow works. When I try to open DeleteHabitWindow, I run into this error: zsh: segmentation fault /Users/myusername/.pyenv/versions/3.12.2/bin/python Here is the minimal working code: from PyQt6.QtWidgets import ( QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QComboBox, QDialog, QDialogButtonBox, ) class DeleteHabitWindow(QDialog): def __init__(self): super().__init__() button_layout = QHBoxLayout() window_layout = QVBoxLayout() self.select_habit = QComboBox() self.select_habit.addItems([\"test1\",\"test2\"]) window_layout.addWidget(self.select_habit) QBtn = ( QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel ) self.buttonBox = QDialogButtonBox(QBtn) self.buttonBox.accepted.connect(self.accept) self.buttonBox.rejected.connect(self.reject) button_layout.addWidget(self.buttonBox) window_layout.addLayout(button_layout) self.setLayout(window_layout) class SettingsWindow(QWidget): def __init__(self): super().__init__() settings_buttons_layout = QVBoxLayout() delete_button = QPushButton(\"Delete\") delete_button.clicked.connect(delete_button.clicked) settings_buttons_layout.addWidget(delete_button) self.setLayout(settings_buttons_layout) def delete_button_clicked(self): self.delete_habit_window = DeleteHabitWindow() if self.delete_habit_window.exec(): pass class MainWindow(QMainWindow): def __init__(self): super().__init__() self.settings_window = None self.update_ui() def update_ui(self): self.setFixedSize(800,600) title_layer = QHBoxLayout() settings_icon = QPushButton(\"Settings\") settings_icon.clicked.connect(self.settings_icon_clicked) title_layer.addWidget(settings_icon) widget = QWidget() widget.setLayout(title_layer) self.setCentralWidget(widget) def settings_icon_clicked(self): if(self.settings_window is None): self.settings_window = SettingsWindow() self.settings_window.show() else: self.settings_window.close() self.settings_window = None app = QApplication([]) w = MainWindow() w.show() app.exec() I have tried: Changing the DeleteHabitWindow class to a new file Doubling the soft resource limit using: resource.setrlimit(resource.RLIMIT_STACK, (new_soft, hard)) Commented out AddHabitWindow, as I thought I might have too many potential windows to open in the application. None of these worked so far. Do I have too many windows open? I would have thought PyQt6 and Python would have been able to handle a lot more. Also, I might have set up my virtual environment incorrectly. I tried using conda, but I'm in VS Code and hit Select Interpreter and couldn't connect it to conda.",
+    "developer": "Lorenzo Gurrola",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "61"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49448299",
+  "sourceItemId": "49448299",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49448299",
+  "detail": {
+    "longDescription": "I wanted to share fake-bpy-module, a collection of fake Blender Python API stubs designed to enable code auto-completion and type hinting in external IDEs like VSCode. I have been maintaining this open-source project for over 8 years, tracking Blender&#x27;s active ecosystem from Blender version 2.78 to 5.2+. -- The Pain Point for Development in Blender Python -- Blender does not expose its Python API (bpy) as standard Python files outside of its built-in text editor. This makes add-on development in external IDEs tedious and prone to type errors. -- Solution &amp; How it Works -- Instead of relying on the starndard inspect module which often fails to handle edge cases in Blender&#x27;s dynamic environment. fake-bpy-module parses the official Blender Python API documentation to generate .pyi stub files. Of course, documentation parsing comes with its own challenges. Some APIs are undocumented, and others cannot be used as-is (such as the bpy_prop_collection class). To address this, the generator internally transforms and patches the types during the stub generation phase to ensure strict compatibility. -- Availability &amp; Daily CI&#x2F;CD -- The stubs are available via PyPI (ex. pip install fake-bpy-module-5.2) and support a wide range of Blender versions. The latest stubs based on the latest Blender code are also available (pip install fake-bpy-module). To realize this, our custom CI&#x2F;CD system builds the Blender binary daily from the latest source code. -- Sub-project: fake-bge-module -- UPBGE is an open-source game engine fork based on Blender. I have also created a dedicated sub-project fake-bge-module, for the UPBGE Python API (bge). https:&#x2F;&#x2F;github.com&#x2F;nutti&#x2F;fake-bge-module I would love to hear your feedback on these tools!",
+    "externalUrl": "https://github.com/nutti/fake-bpy-module",
+    "developer": "nutti",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

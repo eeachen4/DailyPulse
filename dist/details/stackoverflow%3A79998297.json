@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998297",
+  "sourceItemId": "79998297",
+  "sourceUrl": "https://stackoverflow.com/questions/79998297/maze-generator-in-python-with-the-turtle-library-using-the-dfs-algorithm",
+  "detail": {
+    "longDescription": "The turtle moves to draw out a maze, in DFS it is not supposed to move to a place it has already gone to. I try to solve this by saving wherever it goes to in the 'visited' list, this works most of the time but sometimes it still goes in a loop and overlaps. You can run the code to see the problem, it keeps overlapping itself. I didn't add the part where it goes back a step if there are no more possible paths, but I will after fixing this problem. import turtle as t import random as r visited = [] def empty(pos): #checks if a position is not already visited or out of bounds x = pos[0] y = pos[1] if x < -100 or x > 100 or y < -100 or y > 100 or pos in visited: return False else: return True moves = 0 t.bgcolor(\"black\") maze = t.Turtle() maze.color(\"white\") maze.shape(\"square\") #maze.hideturtle() maze.speed(1) maze.pencolor(\"white\") maze.pensize(16) maze.penup() maze.goto(-100,-100) maze.pendown() while moves < 100: rotation = r.randint(1,3) if rotation == 1: maze.penup() maze.left(90) maze.forward(20) if empty(maze.pos()): visited.append(maze.pos()) maze.backward(20) maze.pendown() maze.forward(20) moves += 1 else: maze.penup() maze.backward(20) maze.left(-90) if rotation == 2: maze.penup() maze.forward(20) if empty(maze.pos()): visited.append(maze.pos()) maze.backward(20) maze.pendown() maze.forward(20) moves += 1 else: maze.penup() maze.backward(20) if rotation == 3: maze.penup() maze.right(90) maze.forward(20) if empty(maze.pos()): visited.append(maze.pos()) maze.backward(20) maze.pendown() maze.forward(20) moves += 1 else: maze.penup() maze.backward(20) maze.right(-90) print(visited) for i in range(0,99): print(empty(visited[i])) print(\"rep\") print(len(visited) != len(set(visited))) t.done()",
+    "developer": "sourcat",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "89"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

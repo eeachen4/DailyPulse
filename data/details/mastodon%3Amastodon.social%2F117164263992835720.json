@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117164263992835720",
+  "sourceItemId": "mastodon.social/117164263992835720",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
+  "sourceUrl": "https://fedinet.waltuh.cyou/objects/197dfdbe-415c-417a-b590-e1d165468a5c",
+  "detail": {
+    "longDescription": "I am managed to run the Podman to be have a access like what Docker does by default, which involves touching the system root/daemon. What I am doing is just: # First, enable the daemon and services. sudo systemctl enable --now podman.service sudo systemctl enable --now podman.socket # Make sure it looks like this. [jimedrand@archie ~]$ sudo systemctl status podman.socket ● podman.socket - Podman API Socket Loaded: loaded (/usr/lib/systemd/system/podman.socket; enabled; preset: disabled) Active: active (listening) since Thu 2026-08-27 05:25:23 WIB; 19min ago Invocation: 8b994fb7d3374210917b553157b6af21 Triggers: ● podman.service Docs: man:podman-system-service(1) Listen: /run/podman/podman.sock (Stream) Aug 27 05:25:23 archie systemd[1]: Listening on Podman API Socket. # Then, make the symlink for compatibility and install the Docker command emulator (install the podman-docker packages from your distro's package manager). sudo ln -s /run/podman/podman.sock /var/run/docker.sock # Lastly, test the socket after the symlink. sudo curl -H \"Content-Type: application/json\" --unix-socket /var/run/docker.sock http://localhost/_ping It gives you the same power as Docker’s default behaviour, which means Podman now has the ability to access the root/daemon. #podman #container #sysadmin #docker #devops #opensource",
+    "developer": "@jimedrand@waltuh.cyou",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

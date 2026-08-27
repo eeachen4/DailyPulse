@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998534",
+  "sourceItemId": "79998534",
+  "sourceUrl": "https://stackoverflow.com/questions/79998534/why-does-the-typing-break-when-i-split-one-operation-into-two",
+  "detail": {
+    "longDescription": "Below the arguments passed to func2 are identical only in the second instance there's an intermediate variable assignment step. My type checker is complaining about the second... but why? from enum import Enum from dataclasses import dataclass from typing import Literal, Callable, Iterable type T1 = tuple[Literal[ItemType.ONE], Callable[[Item], None]] type T2 = tuple[Literal[ItemType.TWO], Callable[[Item], str]] type T = T1 | T2 type TI = Iterable[T] class ItemType(Enum): ONE = 1 TWO = 2 @dataclass(frozen=True, slots=True) class Item: name: str item_type: str def func1(input: Item) -> None: pass def func2(input: TI): pass func2(((ItemType.ONE, func1),)) # this is ok t = ((ItemType.ONE, func1),) # this is not func2(t) # <--- doesn't like this but functionally they are identical Argument of type \"tuple[tuple[ItemType, (input: Item) -> None]]\" cannot be assigned to parameter \"input\" of type \"TI\" in function \"func2\" \"tuple[tuple[ItemType, (input: Item) -> None]]\" is not assignable to \"Iterable[T]\" Type parameter \"_T_co@Iterable\" is covariant, but \"tuple[ItemType, (input: Item) -> None]\" is not a subtype of \"T\" Type \"tuple[ItemType, (input: Item) -> None]\" is not assignable to type \"T\" \"tuple[ItemType, (input: Item) -> None]\" is not assignable to \"tuple[Literal[ItemType.ONE], (Item) -> None]\" Tuple entry 1 is incorrect type \"tuple[ItemType, (input: Item) -> None]\" is not assignable to \"tuple[Literal[ItemType.TWO], (Item) -> str]\" Tuple entry 1 is incorrect type Python 3.14.6 Pylance 2026.3.1",
+    "developer": "iamthebull",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "32"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

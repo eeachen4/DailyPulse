@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.25403",
+  "sourceItemId": "2608.25403",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.25403",
+  "detail": {
+    "longDescription": "arXiv:2608.25403v1 Announce Type: new Abstract: Retry mechanisms are a standard component of resilient distributed systems, but their collective behavior, when every tier in a call path retries concurrently, is less well understood than the per-client guidance that produced them. This paper introduces the retry amplification factor (RAF), a metric quantifying the additional request volume that retry policies generate during partial failures. In a study of 200 open-source Python microservice projects, explicit retry logic is detected in 11.5%, and an audit of our own false negatives places true prevalence near 41%. Among the projects detected, 60.9% contain at least one configuration without backoff, and after manual verification exactly one of 113 production configurations randomizes its delay. We then evaluate these policies in simulation (n = 100 trials per strategy). Under correlated failures, a naive standard retry policy reduces the success rate from 55.4% to 41.5% relative to performing no retries at all. We catalog five recurring anti-patterns, propose Adaptive Retry Budgeting (ARB), and show that budget-constrained retries maintain success rates close to the no-retry baseline while still recovering from transient faults. These results indicate that retry behavior should be designed as a system-level property rather than configured locally at each call site.",
+    "developer": "Rishabh Mehan, Jasmit Kaur Saluja",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Rishabh Mehan, Jasmit Kaur Saluja"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

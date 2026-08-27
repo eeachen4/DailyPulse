@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998545",
+  "sourceItemId": "79998545",
+  "sourceUrl": "https://stackoverflow.com/questions/79998545/kubernetes-rke2-new-worker-nodes-get-imagepullbackoff-and-unexpected-eof-from-p",
+  "detail": {
+    "longDescription": "I’m facing an interesting issue while expanding an existing Kubernetes/RKE2 cluster and would appreciate advice from the DevOps/Kubernetes community. My environment: Initially, I had: 1 Master node 1 Worker node Private Docker Registry Multiple applications/services running successfully The cluster had been running well for several months. All applications were working normally, and the existing worker node could pull images from the private registry without any issues. Recently, I decided to scale the cluster by adding 2 additional worker nodes . The new worker nodes joined the cluster successfully and appear healthy. However, when applications are scheduled on the new workers, some pods fail with: ImagePullBackOff The image pull error is: short read: expected 17087203 bytes but got 0: unexpected EOF The private registry is reachable from the new workers, and authentication is successful. The registry log shows: GET /v2/.../blobs/sha256:... HTTP 200 http.response.written=0 So the request reaches the registry successfully, but the registry returns 0 bytes for the requested blob , causing containerd to fail with unexpected EOF . There was also an HTTP/HTTPS configuration issue on the new workers, which I identified and corrected. After correcting that, the error changed from an HTTPS/HTTP mismatch to the current unexpected EOF error. I also discovered that some old Docker Registry blobs had been manually removed several months ago, so I’m considering whether there could be an image manifest/blob consistency issue. What is confusing me The existing master and worker continue to run the applications normally , while the newly added workers encounter image-pull problems. I’m trying to determine whether the root cause is related to: New worker/containerd configuration Registry storage/blob integrity Network communication between the new workers and registry Image manifest and blob consistency Registry configuration Something specific to RKE2/containerd on the newly added nodes I would appreciate recommendations on the safest troubleshooting and recovery approach , especially from anyone experienced with: RKE2 + Kubernetes + containerd + Private Docker Registry I want to resolve the issue without manually deleting registry blobs or performing unsafe garbage collection.",
+    "developer": "Sumitra Ghimire",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "19"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

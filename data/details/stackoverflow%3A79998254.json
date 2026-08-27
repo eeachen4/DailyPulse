@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998254",
+  "sourceItemId": "79998254",
+  "sourceUrl": "https://stackoverflow.com/questions/79998254/can-i-use-overload-to-fix-this-typing-issue",
+  "detail": {
+    "longDescription": "I'm trying to write a function that takes an input that can be one of three types: an asyncio.Queue of Item a function that takes Item as an input a coroutine function that takes Item as an input The input type is specified in a separate input (I figured it would be faster and easier to do it this way). I can't get the type checker to stop complaining at me though. On this line: func1(input) it complains: Argument of type \"ItemQueue | ((Item) -> None) | ((Item) -> Coroutine[Any, Any, None])\" cannot be assigned to parameter \"input\" of type \"ItemQueue\" in function \"func1\" Type \"ItemQueue | ((Item) -> None) | ((Item) -> Coroutine[Any, Any, None])\" is not assignable to type \"ItemQueue\" \"FunctionType\" is not assignable to \"ItemQueue\" On this line: input(item) it complains: Object of type \"ItemQueue\" is not callable Attribute \"__call__\" is unknown and this line: coro = input(item) it complains: Object of type \"ItemQueue\" is not callable Attribute \"__call__\" is unknown I tried defining different type signatures with @overload (from what I understand that's exactly what it's for) but that didn't work. How can I fix this? Or... is this a situation where I should just use Any and avoid specific types? Python 3.14.6 Pylance 2026.3.1 import asyncio from dataclasses import dataclass from typing import Hashable, Callable, Coroutine, Any, overload from enum import Enum class InputType(Enum): QUEUE = 1 CALLBACK = 2 CORO = 3 @dataclass(frozen=True, slots=True) class Item: item_type: Hashable value: int class ItemQueue(asyncio.Queue[Item | None]): ... def func1(input: ItemQueue): ... @overload def some_func(input: ItemQueue, input_type: InputType) -> None: ... @overload def some_func(input: Callable[[Item], None], input_type: InputType) -> None: ... @overload def some_func(input: Callable[[Item], Coroutine[Any, Any, None]], input_type: InputType) -> None: ... def some_func(input: ItemQueue | Callable[[Item], None] | Callable[[Item], Coroutine[Any, Any, None]], input_type: InputType) -> None: item = Item('type', 1) if input_type == InputType.QUEUE: func1(input) elif input_type == InputType.CALLBACK: input(item) elif input_type == InputType.CORO: coro = input(item) asyncio.create_task(coro, name = 'item task') queue = ItemQueue() def callback_fn(item: Item): print(item) async def callback_coro(item: Item): print(item) some_func(queue, InputType.QUEUE) some_func(callback_fn, InputType.CALLBACK) some_func(callback_coro, InputType.CORO)",
+    "developer": "iamthebull",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "221"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.25474",
+  "sourceItemId": "2608.25474",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.25474",
+  "detail": {
+    "longDescription": "arXiv:2608.25474v1 Announce Type: cross Abstract: A system that authorizes an action must see enough of it to decide, and a system that attests to its decision must record enough to be audited. Both pressures push raw action parameters -- recipients, payment memos, record identifiers -- into an append-only ledger that cannot delete them. We show the two are separable. We classify each parameter field, not each action class, into three tiers: fields a policy may legitimately match on, which cross raw; fields that are policy-relevant but identifying, which cross only as projections such as an email domain or a templated route shape; and fields with no legitimate policy use, which never leave the workload. The central property is that the ledger's commitment is a canonical digest of the full, unminimized parameters, computed before minimization runs. The commitment is therefore independent of the tier table: reclassifying a field changes what is disclosed without invalidating a historical entry, reopening a hash, or altering what an offline verifier checks. Tier table, policy schema and wire schema are generated from one per-action declaration, so the deciding and recording parties cannot hold different rules. We then address a question the architecture forces: which party should compute each attested fact? We argue it is settled by which party could lie about it undetectably, and derive three answers within one request -- the client computes the parameter digest, being the only party holding the data; it is structurally prevented from naming the definition that governed it, since that would write a false statement into a signed ledger; and it attests which tier table it applied, so divergence is detectable. We give a leakage analysis of each projection, report an incident in which a first-cut projection preserved the identifier it was written to remove, and state the residual trust the design does not eliminate.",
+    "developer": "Jiten Oswal, John Cadeddu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jiten Oswal, John Cadeddu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

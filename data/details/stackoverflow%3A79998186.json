@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79998186",
   "sourceItemId": "79998186",
+  "fetchedAt": "2026-08-27T05:55:19.764Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998186/django-channels-redis-exceptions-timeouterror-timeout-reading-from-127-0-0-163",
   "detail": {
     "longDescription": "My program worked fine when using InMemoryChannelLayer, but now that I've switched to redis just opening the WebSocket (not even sending or receiving any messages) causes a timeout error. Redis cli ping returns a pong, and $ python manage.py shell import channels.layers channel_layer = channels.layers.get_channel_layer() from asgiref.sync import async_to_sync async_to_sync(channel_layer.send)('test_channel', {'type': 'hello'}) async_to_sync(channel_layer.receive)('test_channel') Works exactly like I'd expect. My Settings looks like CHANNEL_LAYERS = { 'default': { 'BACKEND': 'channels_redis.core.RedisChannelLayer', 'CONFIG': { \"hosts\": [('127.0.0.1', 6379)] }, }, } My Consumers.py class DashboardConsumer(WebsocketConsumer): def connect(self): # Triggered when a client opens a WebSocket connection self.accept() def receive(self, text_data): # Triggered every time the client sends a message data = json.loads(text_data) message = data[\"message\"] self.send(text_data=json.dumps({\"message\": message}))",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "48"
+        "value": "73"
       },
       {
         "label": "状态",
-        "value": "已回答"
+        "value": "未回答"
       }
     ]
   }
