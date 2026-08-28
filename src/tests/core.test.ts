@@ -9,7 +9,7 @@ import { promisify } from 'node:util';
 import { strToU8, zipSync } from 'fflate';
 import { buildIntelligence } from '../intelligence';
 import { applySourceHealth, coverageGateFailures } from '../sourceHealth';
-import { parseGkgArchive } from '../fetch/gdelt';
+import { parseGkgArchive, secureGdeltAssetUrl } from '../fetch/gdelt';
 import { fetchReddit } from '../fetch/reddit';
 import { blueskyQueryMatches } from '../fetch/bluesky';
 import { CATEGORIES } from '../categories';
@@ -223,6 +223,10 @@ test('GDELT GKG fallback parses the official tab-separated archive', () => {
   assert.equal(record.domain, 'example.com');
   assert.equal(record.tone, '1.25');
   assert.equal(record.image, fields[18]);
+  assert.equal(
+    secureGdeltAssetUrl('http://data.gdeltproject.org/gdeltv2/sample.gkg.csv.zip'),
+    'https://data.gdeltproject.org/gdeltv2/sample.gkg.csv.zip',
+  );
 });
 
 test('coverage gate requires current items and does not accept historical fallback as fresh coverage', () => {

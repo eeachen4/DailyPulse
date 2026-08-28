@@ -141,6 +141,10 @@ export function parseGkgArchive(archive: Uint8Array): GkgRecord[] {
   return parseGkgText(new TextDecoder().decode(entry[1]));
 }
 
+export function secureGdeltAssetUrl(url: string): string {
+  return url.replace(/^http:/i, 'https:');
+}
+
 async function getWithRetries<T>(url: string, config: AxiosRequestConfig, attempts = 3): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt < attempts; attempt += 1) {
@@ -162,11 +166,13 @@ async function fetchLiveGkg(): Promise<GkgRecord[]> {
         responseType: 'text',
         headers: { Accept: 'text/plain', 'User-Agent': 'DailyPulse/1.0' },
       });
-      const gkgUrl = update
+      const listedGkgUrl = update
         .split(/\r?\n/)
         .map((line) => line.trim().split(/\s+/).at(-1))
         .find((url) => url?.endsWith('.gkg.csv.zip'));
-      if (!gkgUrl) throw new Error('GDELT lastupdate.txt 未提供 GKG 文件');
+      if (!listedGkgUrl) throw new Error('GDELT lastupdate.txt 未提供 GKG 文件');
+      // 官方清单仍返回 http://；GitHub-hosted runner 对该明文跳转可能返回 404。
+      const gkgUrl = secureGdeltAssetUrl(listedGkgUrl);
       const archive = await getWithRetries<ArrayBuffer>(gkgUrl, {
         timeout: 60_000,
         responseType: 'arraybuffer',
