@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2603.22774",
+  "sourceItemId": "2603.22774",
+  "fetchedAt": "2026-08-28T08:07:19.195Z",
+  "sourceUrl": "https://arxiv.org/abs/2603.22774",
+  "detail": {
+    "longDescription": "arXiv:2603.22774v3 Announce Type: replace-cross Abstract: Large-scale machine learning workloads increasingly rely on multi-GPU systems, yet their performance is often limited by an overlooked component: the CPU. Through a detailed study of modern large language model (LLM) serving workloads, we find that multi-GPU performance often degrades not because GPUs are saturated, but because CPUs fail to keep them busy. Under limited CPU allocations, systems exhibit symptoms such as delayed kernel launch, stalled communication, and increased tokenization latency, leading to severe GPU underutilization even when ample GPU resources are available. The problem becomes more severe in agentic LLM serving, where long accumulated contexts increase CPU-side tokenization work while high prefix-cache reuse across multi-turn interactions reduces GPU-side prefill work. These bottlenecks persist even in serving stacks that employ process-level separation and modern GPU-side optimizations such as CUDA Graphs. Since CPU cores cost orders of magnitude less than GPUs, provisioning additional cores is a highly cost-effective mitigation. Under moderate serving load, we observe that CPU-starved configurations frequently time out, while providing adequate CPU resources restores responsiveness and reduces time-to-first-token (TTFT) latency by 1.47-7.11x across configurations, all without requiring additional GPUs.",
+    "developer": "Euijun Chung, Yuxiao Jia, Aaron Jezghani, Hyesoon Kim",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Euijun Chung, Yuxiao Jia, Aaron Jezghani, Hyesoon Kim"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

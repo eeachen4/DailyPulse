@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.26575",
+  "sourceItemId": "2608.26575",
+  "fetchedAt": "2026-08-28T08:07:19.195Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.26575",
+  "detail": {
+    "longDescription": "arXiv:2608.26575v1 Announce Type: new Abstract: This paper measures the performance impact of running large language model inference and training inside a Trusted Execution Environment (TEE) on NVIDIA B200 GPUs, using Intel Trust Domain Extensions (TDX) confidential VMs together with NVIDIA Confidential Computing (CC) on Blackwell GPUs. The performance impact is derived from paired confidential versus non-confidential runs on a single physical host where the only variable is the GPU CC bit and the TDX guest object in the VM launch. The main result is that confidential inference on Blackwell achieves low single-digit throughput overhead when the stack is configured correctly, at about 1-3%. Stock inference stacks incur 30 to 40% penalties due to avoidable configurations rather than the achievable operating point. The cost is not fully represented by a single number because it is governed by two independent axes, a fixed per-host-operation cost that amortizes as batch size grows and a per-NVLink-traffic cost that tracks the share of the step spent in encrypted collectives, and which of the two dominates is set by the workload and the software. We localize each cost to a specific encrypted boundary, give a microbenchmark that predicts the serving penalty to within a submission count, and end with concrete deployment guidance. GPU compute, energy draw, and usable memory capacity are unaffected by CC.",
+    "developer": "Daniyal Khan, Amean Asad, Ansgar Grunseid",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Daniyal Khan, Amean Asad, Ansgar Grunseid"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

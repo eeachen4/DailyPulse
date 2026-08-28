@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49466204",
+  "sourceItemId": "49466204",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49466204",
+  "detail": {
+    "longDescription": "Hi folks, Alex here from ThunderPhone. Today we&#x27;re launching v2. Voice AI has been a hot topic for the past year or two, both for automating phone calls and for adding voice features to apps. Most of the voice agents deployed have been using a &quot;3 step pipeline&quot;: a transcription model to turn user speech into text, an LLM to generate a response in text, and a TTS model to turn the response text into audio. But the performance of these 3-step voice agents has often been so-so, largely for 3 reasons: 1) Voice agents have to be fast, usually requiring non-thinking LLMs to handle the conversation. Non-thinking LLMs make mistakes, leading to dumb behavior that derails conversations. 2) Today&#x27;s voice AI stacks typically rely on a single transcription model to turn what the user says into text. This step loses a ton of information from the audio, and if the transcription model makes a mistake, the LLM often has no way to recover. This also leads to a lot of dumb behavior that breaks calls. 3) Natural conversation handling is a hard problem - filtering out noise like background voices, knowing when to allow the AI to be interrupted by a &quot;uh, wait&quot; but not by an &quot;uh-huh&quot;, etc. - this also leads to awkward conversations. The &quot;bitter lesson-pilled&quot; solution to all of these is most likely going to be a &quot;full duplex&quot; model that receives and emits audio at all times, allowing for fluid back-and-forth, while also calling a smarter model behind the scenes. OpenAI appears to have been the first to make real progress towards this architecture with their latest GPT-Live release, but that tech is not yet ready to plug into phone calls. In the meantime, we&#x27;ve stitched together a stack that improves the performance of phone calls far beyond what&#x27;s possible with a 3-step pipeline. The ThunderPhone stack combines a few insights: 1) Grabbing signal from audio in more than one way, including running multiple transcription models at once, and piping audio directly into LLMs. This hugely reduces mistake rates, especially on challenging problems like data entry, multilingual calls, etc. 2) Combining thinking and non-thinking LLMs: in a conversation, it&#x27;s natural to respond to some things more quickly than others, and sometimes even say things like &quot;oh, let me think about that&quot; - to indicate that it&#x27;ll take longer to get back to someone with a final answer. ThunderPhone does the same thing. 3) This is less unique to us but we&#x27;ve stitched together a very big swarm of small (and in a few cases large) models to help make conversation handling more natural, even in hard environments like loud places, speakerphone, etc. We&#x27;ve made the ThunderPhone stack available at 3 price points - 2c&#x2F;min, 5c&#x2F;min, and 9c&#x2F;min, each with their own level of capability. The 2c&#x2F;min model (&quot;Spark&quot;) is the cheapest on the market to our knowledge, and is smart enough to handle simple transactional calls. Bolt at 5c&#x2F;min is a middle ground, and the fastest model we offer. Storm at 9c&#x2F;min (+3c&#x2F;min for extra intelligence) is our flagship model, able to handle even quite complex calls with very few mistakes. With extra intelligence turned on, it sets the record on the Big Bench Audio benchmark at 99.4% accuracy. ThunderPhone is mostly aimed at B2B applications, but is also useful if you want to do something like setting up a smart voicemail for yourself, or calling around restaurants to make a reservation, calling around pharmacies to find a prescription, etc. for personal use. Let me know if you have questions - happy to answer anything about ThunderPhone except a few &quot;trade secret&quot; specifics, and about the voice AI space more broadly, including where we think the tech is going. And comment here or email me at alex@thunderphone.com if you want to get set up with some credits to try it out. Alex",
+    "externalUrl": "https://thunderphone.com",
+    "developer": "kolchinski",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

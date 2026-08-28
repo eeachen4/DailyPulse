@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998787",
+  "sourceItemId": "79998787",
+  "sourceUrl": "https://stackoverflow.com/questions/79998787/how-do-i-a-save-root-variable-toggle-to-local-storage",
+  "detail": {
+    "longDescription": "I am working on a website which has a CRT effect over the main page, however I would like to give the users the option to turn it off. I'm new to JS but I've managed to set up a checkbox toggle which works, but I'm having trouble getting it to save to local storage. When I load the page, it defaults to CRT on and the checkbox unchecked, and if I toggle it off and reload I need to click the checkbox twice to see any change again. This is the current code I'm using (with help from here and here ): :root { --crt: block; } /* crt fx */ #pagecontainer::before, #pagecontainer::after { display: var(--crt); pointer-events: none; content: \"\"; position: absolute; } #pagecontainer::before { width: 100%; height: 3px; z-index: 1000; background: rgba(0, 0, 0, 0.3); opacity: 0.75; } #pagecontainer::after { top: 0; right: 0; bottom: 0; left: 0; z-index: 1000; background: linear-gradient( to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 51% ); background-size: 100% 3px; } <html> <body> <div id=\"pagecontainer\"> <input type=\"checkbox\" id=\"data-crt\" checked> <!-- default is on --> </div> </body> </html> const root = document.querySelector(\":root\"); const toggle = document.getElementById(\"data-crt\"); const storedTheme = localStorage.getItem('theme'); if (storedTheme) { document.documentElement.setAttribute('data-crt', storedTheme) } toggle.onclick = function() { const currentTheme = document.documentElement.getAttribute(\"data-crt\"); let targetTheme = \"nocrt\"; root.style.setProperty(\"--crt\", 'none'); if (currentTheme === \"nocrt\") { targetTheme = \"crt\"; root.style.setProperty(\"--crt\", 'block'); } document.documentElement.setAttribute('data-crt', targetTheme) localStorage.setItem('theme', targetTheme); };",
+    "developer": "ve.",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

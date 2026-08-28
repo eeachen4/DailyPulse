@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998680",
+  "sourceItemId": "79998680",
+  "sourceUrl": "https://stackoverflow.com/questions/79998680/how-to-calculate-time-between-log-events-using-cwli",
+  "detail": {
+    "longDescription": "I am trying to figure out how often my lambda function is invoked, here is the basic query that I am using to get the gap between invocations: filter @type = \"REPORT\" | fields @timestamp | sort @timestamp asc | autoregress @timestamp as prev_ts p=1 | fields (toMillis(@timestamp) - toMillis(prev_ts)) as gap_ms | display @timestamp, prev_ts, gap_ms | limit 100 However, even though the results show values for @timestamp and prev_ts , gap_ms is always empty. I've checked with different LLMs and none have any suggestions that work. In fact, 'Amazon Q' suggests something that doesn't work either. Any ideas why I am getting an empty gap_ms ?",
+    "developer": "Pablo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "47"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998608",
+  "sourceItemId": "79998608",
+  "sourceUrl": "https://stackoverflow.com/questions/79998608/timestamp-ordering-and-cursor-pagination-with-13-digit-unix-timestamps",
+  "detail": {
+    "longDescription": "I'm having trouble implementing cursor-based pagination with timestamp ordering in an Apollo Server application using postgres.js. My posts table has a created_at column of type timestamp. I want to paginate posts using after and before cursors and order the results by created_at. The after and before values are received as strings containing 13-digit Unix timestamps in milliseconds, for example: 1787758015041 However, the query below does not behave as expected. Depending on the parameters, it either returns no results or returns the same results instead of correctly paginating/sorting by created_at. CREATE TABLE posts ( content TEXT NOT NULL, created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, creator VARCHAR(255) NOT NULL REFERENCES users(email) ON DELETE CASCADE, detected_language VARCHAR(10), id SERIAL PRIMARY KEY, is_suspended BOOLEAN NOT NULL DEFAULT FALSE, response_root_post INT REFERENCES posts(id) ON DELETE CASCADE, type VARCHAR(50) NOT NULL ); async getPosts( first?: number | null, after?: string | null, last?: number | null, before?: string | null ) { try { const result = await this.dbConnection` select content, created_at, creator, detected_language, id, is_suspended, response_root_post, type from posts where is_suspended = false and type = 'public' ${after ? this.dbConnection`and created_at > to_timestamp(${after})` : this.dbConnection``} ${before ? this.dbConnection`and created_at < to_timestamp(${before})` : this.dbConnection``} order by created_at ${last ?? before ? this.dbConnection`desc` : this.dbConnection`asc`} limit ${first ?? last ?? 10} `; return result; } catch (error) { throw new Error(this.dictionary.errors.retrievePosts); } } I have also tried passing the value explicitly as a number: to_timestamp(${Number(after)}) and: to_timestamp(${after}) Neither approach produced the expected pagination/order behavior. I suspect the main issue may be related to the fact that to_timestamp() expects Unix time in seconds, while my cursors contain Unix time in milliseconds, but I'm not sure what the correct approach should be when using postgres.js. What is the recommended way to implement this? Specifically: How should I convert a 13-digit Unix timestamp in milliseconds to a PostgreSQL timestamp for comparison? What is the correct way to implement after / before cursor pagination with created_at? Is there anything incorrect about the ORDER BY expression or the way I'm using postgres.js to dynamically specify ASC / DESC? Should I use created_at alone as the cursor, or should I include id as a secondary cursor to handle posts with identical timestamps?",
+    "developer": "erkanunluturk",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "109"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49468613",
+  "sourceItemId": "49468613",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49468613",
+  "detail": {
+    "longDescription": "Hey there, I’m Brian. I&#x27;ve been shipping conversational models over here at Tavus for the past two years. I want to tell you about our new audio-understanding model: Sparrow-2! It’s a new category of model and a unique new approach to conversational audio. Earlier this year we launched Sparrow-1, (at the time) our SoTA turn taking model. Since our Sparrow-1 launch, I’ve spent a lot of time listening to humans talking and trying to really understand how people know when to talk, when to listen, and when to wait. I’ve also been hunting down failure modes of the current SoTA models. And while Sparrow-1 is great, there are some failure patterns I see. We tried solving the problems with existing approaches, but solving one problem only created another. Sparrow-1 and a lot of the existing turn taking models require noise cancellation to isolate the speaker’s audio from background noise. After removing the “noise” these models rely on simple prosodic and phonetic cues from spoken words to decide when a turn has ended. They throw out information and then pay attention to a small set of verbal and prosodic cues. This approach ignores a ton of important information. Non-verbal cues, sounds, and environmental noise impact turn taking. Noise cancellation models assume everything non-transcribable is noise, but that’s wrong. Humans use breath, sighs, and other sounds to hold the conversational floor or bid for a turn. There are constant micro-interruptions, affirmations, quiet human and environmental sounds that add to the conversational scenario. That sound is part of what we use to understand the nuanced space of the conversational floor! Cancelling out the “noise” has the ruinous side-effect of cancelling out the flow. Now, with Sparrow-2, instead of modelling just the primary speaker’s transcribable audio, we’ve been training a model on all the sounds and letting it decide what matters and what does not when it comes to conversational flow. Our new model continuously streams in audio and is able to understand semantics, prosody, timing, speaker identity, sighs, breaths, backchannels, interruptions, background speech, and unintelligible audio with the goal of understanding what the agent should do given the state of the audio. Sparrow-2 fits into our larger model family and unlocks new conversational behavior, not seen before in production-ready conversational pipelines. It can pass signals to different parts of the conversation. For example if the user is in a room that’s too noisy, the bot will ask the user to move to a quieter space. Also, Sparrow-2 is semi-duplex: it considers the timing of sound in relation to the AI speech as well as the user’s. Our main objective with Sparrow-2 is to finally crack the Cocktail Party Problem: how can we have a human-like conversation 1:1 with a user in noisy environments. I wrote up some technical details about the model architecture here: https:&#x2F;&#x2F;www.tavus.io&#x2F;blog&#x2F;sparrow-2 I’d love for you guys to give it a try and let me know what you think and feel.",
+    "externalUrl": "https://www.tavus.io/blog/sparrow-2",
+    "developer": "code_brian",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "8"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

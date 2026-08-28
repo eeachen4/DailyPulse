@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79998427",
   "sourceItemId": "79998427",
+  "fetchedAt": "2026-08-28T08:07:19.195Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998427/how-to-run-buildah-in-gitlab-ci-without-seccompunconfined",
   "detail": {
     "longDescription": "We have been using Kaniko in our GitLab CI pipelines for a while now, but with Kaniko going the way of the dodo, I figured it was time to switch to something else. It seems like BuildKit or Buildah are the recommended alternatives these days, so I decided to try out Buildah. It seems promising. I started fairly simply by following the GitLab guidance here # sample from gitlab docs: https://docs.gitlab.com/ci/docker/using_docker_build/#buildah-example build: stage: build image: quay.io/buildah/stable:latest variables: # Use vfs with buildah. Docker offers overlayfs as a default, but Buildah # cannot stack overlayfs on top of another overlayfs filesystem. STORAGE_DRIVER: vfs # Write all image metadata in the docker format, not the standard OCI format. # Newer versions of docker can handle the OCI format, but older versions, like # the one shipped with Fedora 30, cannot handle the format. BUILDAH_FORMAT: docker FQ_IMAGE_NAME: \"${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_SHORT_SHA}\" before_script: # GitLab container registry credentials taken from the # [predefined CI/CD variables](../variables/_index.md#predefined-cicd-variables) # to authenticate to the registry. - echo \"$CI_REGISTRY_PASSWORD\" | buildah login -u \"$CI_REGISTRY_USER\" --password-stdin $CI_REGISTRY script: - buildah images - buildah build -t $FQ_IMAGE_NAME - buildah images - buildah push $FQ_IMAGE_NAME Seems straightforward... but my job fails and I get this error in my output Error during unshare(CLONE_NEWUSER): Operation not permitted The official GitLab troubleshooting step here , suggests to add this to my runner config, effectively making it a privileged container. [runners.docker] security_opt = [\"seccomp:unconfined\", \"apparmor:unconfined\"] What?? Isn't the whole point of this to allow me to build and publish my containers rootless and unprivileged? It was working fine with Kaniko, why do I have to add unconfined security options for Buildah when Kaniko doesn't need them? After some research I came across a couple of links by Dan Walsh talking about how to use rootless with Buildah here and here This suggests that setting the environment variable _BUILDAH_STARTED_IN_USERNS=\"\" should help me. Also, the rootless article by GitLab here looks similar to what buildah shows here . So I tried a custom image that included this: # source: https://github.com/podman-container-tools/buildah/blob/main/docs/tutorials/05-openshift-rootless-build.md # source: https://docs.gitlab.com/ci/docker/buildah_rootless_tutorial/ # source: https://www.redhat.com/en/blog/building-buildah # source: https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container FROM quay.io/buildah/stable:v1.43.2 # Set up environment variables to note that this is # not starting with usernamespace and default to # isolate the filesystem with chroot. # Use VFS because fuse does not work RUN touch /etc/subgid /etc/subuid \\ && chmod g=u /etc/subgid /etc/subuid /etc/passwd \\ && echo build:10000:65536 > /etc/subuid \\ && echo build:10000:65536 > /etc/subgid \\ && mkdir -p /home/build/.config/containers \\ && (echo '[storage]';echo 'driver = \"vfs\"') > /home/build/.config/containers/storage.conf \\ && echo \"export BUILDAH_ISOLATION=chroot\" >> /home/build/.bashrc \\ && echo 'export _BUILDAH_STARTED_IN_USERNS=\"\"' >> /home/build/.bashrc # The buildah container will run as `build` user USER build WORKDIR /home/build No luck, the same error. At this point after a lot of googling and a few more attempts... I'm not finding anything else helpful. Is it possible to use Buildah in an unprivileged container? If so, how do I do it? Is there an alternative to Buildah and Kaniko that I can use?",
     "developer": "CrossBound",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "21"
+        "value": "32"
       },
       {
         "label": "状态",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998871",
+  "sourceItemId": "79998871",
+  "sourceUrl": "https://stackoverflow.com/questions/79998871/django-silently-ignores-settings-that-were-removed-in-older-versions-how-do-i",
+  "detail": {
+    "longDescription": "I maintain a Django project that has been around since Django 1.11 and has been upgraded step by step to 5.2. The upgrades themselves went fine — tests are green, everything runs. What worries me is settings.py . It has grown for years and I'm fairly sure there are leftovers in there that do absolutely nothing anymore: # settings.py (excerpt) TEMPLATE_DIRS = [BASE_DIR / \"templates\"] # ??? SEND_BROKEN_LINK_EMAILS = True # ??? USE_L10N = True FILE_CHARSET = \"utf-8\" DEFAULT_FILE_STORAGE = \"storages.backends.s3boto3.S3Boto3Storage\" The problem is that Django never complains about any of this. The settings object is essentially a namespace — if nothing reads an attribute, the attribute is just dead weight. python manage.py check is happy, runserver is happy, the tests are happy. TEMPLATE_DIRS has been ignored since 1.10 and I only found out by accident. What I tried: Deprecation warnings ( python -Wall manage.py check ). These only help while a feature is deprecated. Once it's actually removed, the code that emitted the warning is gone too, so you get silence. For a project that skipped several versions, that window has long closed. django-upgrade / pyupgrade . Great tools, but they rewrite code patterns ( ugettext , url() , ...). They don't tell me that a settings variable stopped having any effect five versions ago. Reading the release notes. The \"Features removed in X\" section exists for every release, but going through 30+ releases by hand and diffing that against my settings is not something I want to do again on the next upgrade. Is there a way to get this checked automatically — ideally as part of the regular manage.py check run so I can wire it into CI?",
+    "developer": "Ron",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "28"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

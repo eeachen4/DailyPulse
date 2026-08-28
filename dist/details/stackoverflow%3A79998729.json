@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998729",
+  "sourceItemId": "79998729",
+  "sourceUrl": "https://stackoverflow.com/questions/79998729/safe-alternative-to-new-function-for-executing-compiled-js-string-in-browser",
+  "detail": {
+    "longDescription": "I'm building a custom language that compiles to JavaScript. My compiler generates a plain JS string. Currently, I execute it like this: function DRL(){ dgsknlr = {}; fonksiyonlar = {}; var code = document.getElementById(\"kd1\").value; var tokens = TKNRZ(code); var ast = PRS(tokens); var jskod = derle(ast.body); try{ var calistirfn = new Function( \"dgsknlr\", \"fonksiyonlar\", \"ifadeHesapla\", \"matematikHesapla\", \"kosulDegerlendir\", \"cozArg\", \"hmbh\", jskod ); calistirfn(dgsknlr, fonksiyonlar, ifadeHesapla, matematikHesapla, kosulDegerlendir, cozArg, hmbh); }catch (e){ console.error(\"Execution error:\", e.message); } } The problem: new Function() runs in the global scope. Users can access window , document , and fetch , which is a security risk. Since I already have the compiled string, I don't want to rewrite everything as an AST interpreter. Question: What is the safest way to run this generated JS string in a browser sandbox, without eval or new Function , while still allowing me to pass specific variables (like a custom env object) into it? For context, the full source code of my interpreter is available on GitHub: https://github.com/turkum-webci/seairscriptv2.6",
+    "developer": "kapikulu",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "61"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}
