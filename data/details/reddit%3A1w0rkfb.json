@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0rkfb",
+  "sourceItemId": "1w0rkfb",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w0rkfb/i_think_persistent_memory_makes_prompt_injection/",
+  "detail": {
+    "longDescription": "Most prompt-injection examples I see end when the current run ends. That's not the version that worries me most.\n\n\n\nOnce an agent has persistent project memory, a hostile README, ticket, or tool response can be summarized and stored. Three sessions later it may come back as “known project context” after the original source has disappeared from view. The bad instruction has effectively been laundered into memory.\n\n\n\nThe design I'm working through treats context as more than text. Each item keeps its source, version, authority, and where it came from. A README can be relevant without becoming policy. A newer chat note doesn't automatically outrank a stable contract. Replaced information can remain in history without being used for new work.\n\n\n\nThat still doesn't solve prompt injection. A model can be influenced by an untrusted source even when the label is correct. Any real external action still needs a separate authorization check that retrieved context can't rewrite. I don't have benchmark results for this yet. The next step is testing whether poisoned context survives retrieval, summarization, and consolidation across multiple sessions.\n\n\n\nHas anyone tested prompt injection over that longer lifecycle? Most evaluations I have found seem to stop before the poisoned context has a chance to become institutional memory.",
+    "developer": "jonah_omninode",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0u8vn",
+  "sourceItemId": "1w0u8vn",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w0u8vn/are_we_paying_the_same_platform_tax_every_time_we/",
+  "detail": {
+    "longDescription": "I've noticed that the actual agent logic is often a pretty small part of the overall system.\n\nYou start with an agent, and pretty quickly you're also adding:\n\nauth → tools → memory → retries → evals → tracing → deployment → logging\n\nThen the next agent needs most of the same things.\n\nAt some point, I'm wondering whether these should stop being **agent features** and become shared platform infrastructure.\n\nFor example:\n\n**Agent-specific:** reasoning, prompts, task logic  \n**Shared:** identity, tools, observability, evals, deployment, policy\n\nBut I'm not sure where the boundary should be.\n\nI've been looking at different approaches - LangGraph/CrewAI on the framework side, TrueFoundry on the infrastructure side, and Lyzr's Agentic OS taking a broader shared-layer approach.\n\n**For people who've actually built multiple agents: when did you start feeling that a shared platform was worth it instead of just rebuilding the same pieces for every agent?**",
+    "externalUrl": "https://i.redd.it/6tpfxmsxz4mh1.png",
+    "developer": "rio_ARC",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

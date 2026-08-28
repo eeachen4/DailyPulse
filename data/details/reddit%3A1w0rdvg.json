@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0rdvg",
+  "sourceItemId": "1w0rdvg",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w0rdvg/i_measured_451_subagent_runs_on_my_own_machine/",
+  "detail": {
+    "longDescription": "I orchestrate a lot of agents and I kept debugging runs from the orchestrator's transcript, because that is the file with the obvious name. Last night I actually measured what is in it. It is about a third of the run.\n\nMethod, so you can check it rather than believe me. Claude Code writes every session to `~/.claude/projects/<slug>/<session>.jsonl`, one JSON object per line, and every subagent it spawns gets its own sidecar file under `<session>/subagents/agent-<id>.jsonl`. I walked all of them, took `message.usage` off each assistant line, and keyed it on the **last** line carrying a given message id — a streamed response is rewritten as it arrives, so taking the first line undercounts badly (56% on my corpus).\n\n35 orchestrated sessions, 451 subagents:\n\n- **66.9% of all output tokens were produced inside children** — 18.3M in the sidecars against 9.0M in the parents. The orchestrator's own log is a third of the story, and it is the file everyone opens.\n- **Every child pays a cold cache before it does any work.** Its first response writes ~39k tokens of context: 17.6M across 451 children, 20.4% of everything they ever wrote to cache. Fan-out has a fixed entry fee per agent, and it is charged whether the split helped or not.\n- **6.4B cache-read tokens against 27.4M output tokens** — 235 read per 1 written. Reads are cheap per token, but that ratio is where a budget actually goes. Not the code you got back.\n- Median child: 43 tool calls, 712 seconds. Median 6 children per run. Biggest single run: 108 children, 80 of them alive at once.\n- **One child sat for 622 seconds and emitted zero assistant messages.** A silent stall. From the parent's side there is nothing to see — no error, no timeout, just an agent that reads as busy.\n\nWhat I take from it:\n\n1. \"Where did it break\" is not answerable from the main transcript. If you copy a run off a remote box, copy the directory, not the file.\n2. Before splitting a task N ways, price the N cold starts. Splitting for speed can be right; splitting because it feels tidier is 39k tokens per agent for tidiness.\n3. Duration is not liveness. If you have a watchdog, it should be measuring whether the child is *writing*, not whether it is running.\n\nOne honest negative, because I went looking for it: I expected to find agents reporting work they never did. On this corpus that is not a thing — 2 of 451 made zero tool calls, and one of those is the stall above. The failure mode is silence, not fabrication.\n\nReproduce it on your own machine: the sidecars are under the session directory, `usage` is on the assistant lines, and the only trick is keying on the last line per message id.",
+    "developer": "ClaudeCdGuy",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

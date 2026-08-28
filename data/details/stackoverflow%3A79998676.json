@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79998676",
   "sourceItemId": "79998676",
+  "fetchedAt": "2026-08-28T16:28:55.039Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998676/scipy-spsolve-superlu-superlu-malloc-failure-despite-available-ram",
   "detail": {
     "longDescription": "I am trying to solve a large sparse linear system in Python3.12 using SciPy. The linux server has 48 threads and 192 GB RAM . My code uses scipy.sparse.linalg.spsolve() on a sparse matrix i solved N = 3000 on my laptop which has 16GB of ram, then i get server with 48GB of ram and solve N=3500 and it consumed about 30Gb of ram then solve N=4000 and it consumed about 40GB of ram then i get a server with 96GB of ram and solve N = 4500 , and i don't remember its ram consumption. after that i try to solve N=5000 which lead to SuperLU fails as following then i tried server with 192GB of ram and again SuperLU fails as follow: computing N = 5000 ... Traceback (most recent call last): File \"/home/Xxlonely/Desktop/code/./chamekon.py\", line 113, in <module> p = fixation_probability(N) ^^^^^^^^^^^^^^^^^^^^^^^ File \"/home/Xxlonely/Desktop/code/./chamekon.py\", line 97, in fixation_probability solution = spsolve(A, rhs) ^^^^^^^^^^^^^^^ File \"/home/Xxlonely/Desktop/code/.venv/lib/python3.12/site-packages/scipy/sparse/linalg/_dsolve/linsolve.py\", line 289, in spsolve x, info = _superlu.gssv(N, A.nnz, A.data, indices, indptr, ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ RuntimeError: SUPERLU_MALLOC fails for buf in intCalloc() at line 173 in file ../scipy/sparse/linalg/_dsolve/SuperLU/SRC/memory.c At the time of the error, the system was only showing around 3% RAM usage , so there appeared to be plenty of free memory. The my original code is: import numpy as np from scipy.sparse import lil_matrix from scipy.sparse.linalg import spsolve def fixation_probability(N): M = N + 2 # All non-monochromatic states are transient. states = [] for r in range(M + 1): for b in range(M - r + 1): g = M - r - b # Exclude the three monochromatic states. if (r == M and b == 0 and g == 0): continue if (r == 0 and b == M and g == 0): continue if (r == 0 and b == 0 and g == M): continue states.append((r, b, g)) index = {state: i for i, state in enumerate(states)} nstates = len(states) A = lil_matrix((nstates, nstates), dtype=float) rhs = np.zeros(nstates) def boundary_value(state): \"\"\"Return P_R on a state with exactly two colours.\"\"\" r, b, g = state # Monochromatic states if r == M and b == 0 and g == 0: return 1.0 if r == 0 and b == M and g == 0: return 0.0 if r == 0 and b == 0 and g == M: return 0.0 # Red-green boundary: b = 0 if b == 0: return 0 # Red-blue boundary: g = 0 if g == 0: return 1 # Blue-green boundary: r = 0 if r == 0: return 0.0 return None for state, i in index.items(): r, b, g = state w1 = r * b w2 = b * g w3 = g * r total = w1 + w2 + w3 # Diagonal coefficient. A[i, i] = total transitions = [ (w1, (r + 1, b - 1, g)), (w2, (r, b + 1, g - 1)), (w3, (r - 1, b, g + 1)), ] for weight, new_state in transitions: if weight == 0: continue value = boundary_value(new_state) if value is not None: # Absorbing or two-colour boundary state. rhs[i] += weight * value else: # Interior transient state. j = index[new_state] A[i, j] -= weight # Convert to CSR for the sparse solver. A = A.tocsr() solution = spsolve(A, rhs) return solution[index[(1, 1, N)]] # ------------------------------------------------------------ # Compute the table # ------------------------------------------------------------ Ns = [5000] print(f\"{'N':>6} {'P_R(1,1,N)':>20} {'N*P_R(1,1,N)':>20}\") print(\"-\" * 50) for N in Ns: print(f\"computing N = {N} ...\") p = fixation_probability(N) print(f\"{N:6d} {p:20.12f} {N*p:20.12f}\") print() print(\"Conjectured limit:\") C = 2 * np.pi / (3 * np.sqrt(3)) print(f\"C = {C:.12f}\") How could I solve a larger instance (e.g., N = 5000 )? Since SciPy is essentially a wrapper around lower-level libraries, what would be the best way to address this problem?",
     "developer": "Xxlonely",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "4"
+        "value": "3"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "88"
+        "value": "103"
       },
       {
         "label": "状态",
