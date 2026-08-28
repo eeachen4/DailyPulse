@@ -194,13 +194,13 @@ test('daily freshness skips a recent Shanghai-day snapshot and fetches an expire
     await writeFile(path.join(tempDir, 'data/daily.json'), JSON.stringify({ fetchedAt: '2026-08-27T23:45:00.000Z' }));
     const recent = await execFileAsync(process.execPath, [scriptPath], {
       cwd: tempDir,
-      env: { ...process.env, FRESHNESS_NOW: '2026-08-28T00:17:00.000Z' },
+      env: { ...process.env, GITHUB_OUTPUT: '', FRESHNESS_NOW: '2026-08-28T00:17:00.000Z' },
     });
     assert.match(recent.stdout, /should_fetch=false/);
 
     const expired = await execFileAsync(process.execPath, [scriptPath], {
       cwd: tempDir,
-      env: { ...process.env, FRESHNESS_NOW: '2026-08-28T12:17:00.000Z', FRESHNESS_MAX_AGE_HOURS: '12' },
+      env: { ...process.env, GITHUB_OUTPUT: '', FRESHNESS_NOW: '2026-08-28T12:17:00.000Z', FRESHNESS_MAX_AGE_HOURS: '12' },
     });
     assert.match(expired.stdout, /should_fetch=true/);
   } finally {
