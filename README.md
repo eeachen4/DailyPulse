@@ -4,10 +4,10 @@
 
 DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上 **08:00（UTC+8）**，它自动从 **App Store、Google Play、Product Hunt、Reddit、Bluesky、Mastodon、GDELT、Hacker News、GitHub、Hugging Face、Stack Overflow、arXiv、官方 RSS** 按兴趣类别抓取热门话题、新闻、产品、论文与开发者讨论，生成一个简洁的静态网页，让你一瞥即知全球正在发生什么。
 
-![tech](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)
-![tech](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![tech](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
+![tech](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![tech](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
-![tech](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![tech](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![tech](https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwindcss&logoColor=white)
 
 ---
@@ -22,40 +22,41 @@ DailyPulse 是一个每日自动聚合全球热门内容的工具。每天早上
 - 🔗 **相关推荐 + 展开收起**：详情页按类别推荐同主题条目；长正文支持展开 / 收起。
 - 📦 **统一数据格式**：所有源归一化为 schema v2 `FeedItem`，用稳定的 `sourceItemId`、`categoryId` 和结构化 `metrics` 消除来源差异。
 - 🔥 **可比热度**：各平台原始指标保留在 `metrics.rawScore`，同时按来源归一化为 0–100 的 `heatScore`，用于跨平台排序。
-- 🖼️ **摘要 / 详情分离**：列表只加载 `data/daily.json` 的轻量摘要，完整描述、截图和附加信息写入 `data/details/`，点击详情时按 `detailRef` 懒加载。
+- 🖼️ **摘要 / 详情分离**：生产首页异步加载可缓存的 `feed.json`，完整描述、截图和附加信息写入 `data/details/`，点击详情时按 `detailRef` 懒加载。
 - 🗓️ **历史快照**：每日摘要写入 `data/history/YYYY-MM-DD.json`，`data/history/index.json` 提供日期索引，前端支持往期切换。
 - 🩺 **来源健康与保底**：按来源检查最低产量和连续失败次数；来源异常时复用上一份有效数据并标记为 `stale`，关键来源连续超限会阻止退化快照部署。
 - ♻️ **增量详情缓存**：详情默认缓存 7 天，仅抓取新增或过期条目；重新抓取失败时继续使用旧详情，并自动清理保留期外的历史与无引用详情。
 - 🧭 **跨来源话题**：用标题语义与类别边界聚合同一事件的产品、讨论、新闻和论文，并提供独立话题详情页。
 - 🗞️ **每日编辑摘要**：自动生成「今日三件事」「为什么热」和相对昨日的趋势变化。
-- 🌐 **双语内容**：支持 LibreTranslate 兼容接口的增量中文翻译与缓存，搜索同时覆盖中英文。
+- 🌐 **双语内容**：支持自托管 LibreTranslate；未配置时每天用 MyMemory 免费匿名额度增量翻译少量标题，搜索同时覆盖中英文。
 - ★ **个人信号桌**：收藏、已读、分享、类别开关、关注词、屏蔽词和来源权重均保存在浏览器本地。
-- 📡 **开放订阅**：构建时生成 `rss.xml` 与 `feed.json`。
+- 📡 **开放订阅与指标**：构建时生成 `rss.xml`、`feed.json` 与数据质量 `metrics.json`。
 - 🔍 **筛选与排序**：按类别、按平台筛选，按热度 / 排名 / 标题 / 时间排序。
 - 🎨 **编辑风设计**：暖纸色底 + 近黑墨色 + 等宽数据字体 + 细线分隔（「Morning Pulse」）。
-- ⏰ **定时自动化**：GitHub Actions cron 每天 UTC 0:00（北京时间 8:00）自动采集、回写并部署。
+- ⏰ **定时自动化**：GitHub Actions 在北京时间 07:37 主触发、08:17 兜底；同一上海自然日已有新鲜快照时自动跳过。
 
 ## 🧱 技术栈
 
 | 层 | 技术 |
 | --- | --- |
-| 运行环境 | Node.js 20+ · TypeScript |
+| 运行环境 | Node.js 22 · TypeScript 7 |
 | HTTP 请求 | axios |
 | HTML 解析 | cheerio |
 | 采集执行 | `tsx` 直接运行 TS |
 | App Store | 官方 iTunes API（RSS + Search + Lookup） |
 | Google Play | `google-play-scraper` |
 | Product Hunt | 官方 GraphQL API（Apify 兜底） |
-| Bluesky | 公共 AppView API（无需 token） |
+| Reddit | OAuth / 公共 JSON + Arctic Shift 近期公开归档降级 |
+| Bluesky | 公共 / 认证 AppView 搜索 + 官方 Jetstream 实时流降级 |
 | Mastodon | 可配置实例的公开 hashtag 时间线 |
-| GDELT | DOC 2.0 实时新闻 API |
+| GDELT | DOC 2.0 API + 官方 15 分钟 GKG 文件降级 |
 | Hacker News | Algolia 公共搜索 API |
 | GitHub | REST Search API（仓库、Star、Fork、Issue） |
 | Hugging Face | Hub Models API（模型、下载、点赞） |
 | Stack Overflow | Stack Exchange API v2.3（问题、回答、标签） |
 | arXiv | 官方分类 RSS / Atom API（论文、作者、分类） |
 | 官方 RSS | 官方博客 RSS / Atom（产品与工程动态） |
-| 前端框架 | React 18 + Vite 5 |
+| 前端框架 | React 18 + Vite 8 |
 | 样式 | TailwindCSS 3 |
 | 定时执行 | GitHub Actions（cron） |
 | 部署 | GitHub Pages（静态托管） |
@@ -127,7 +128,7 @@ daily-pulse/
 │   ├── daily.json                      # 当日摘要数据
 │   ├── details/                        # 按 detailRef 拆分的详情文件
 │   └── history/                        # 每日摘要快照和索引
-├── dist/                               # 构建产物（含注入数据的 index.html）
+├── dist/                               # 构建产物（轻量 index.html + feed/metrics/RSS）
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
@@ -175,15 +176,16 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `npm run sample` | 生成十三个来源的示例数据（按七个类别生成） |
 | `npm run migrate:data` | 将旧版 `data/daily.json` 迁移为 schema v2，并拆分详情 |
 | `npm run build` | 构建前端到 `dist/` |
-| `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
-| `npm run build:all` | 构建 + 注入数据（生产链路） |
+| `npm run generate` | 生成 feed/metrics/RSS，并同步历史与详情 |
+| `npm run build:all` | 构建 + 静态数据导出（生产链路） |
 | `npm run typecheck` | TypeScript 类型检查 |
 | `npm run validate:data` | 校验 schema、ID、类别、热度和详情文件引用 |
+| `npm run validate:dist` | 校验轻量 HTML、独立 feed/metrics/RSS 与静态资源引用 |
 | `npm run check:health` | 输出来源健康表并执行关键来源连续失败门禁 |
 | `npm test` | 运行话题、偏好和健康保底自动化测试 |
 | `npm run preview` | 本地预览 `dist/` 构建产物 |
 
-> **提示**：绝大多数来源无需密钥；Product Hunt 优先使用官方 Token。CI 中 Reddit 和 Bluesky 容易受数据中心出口限制，建议配置对应凭据。
+> **提示**：绝大多数来源无需密钥；Product Hunt 优先使用官方 Token。Reddit / Bluesky 在 CI 出口受限时会自动降级到 Arctic Shift / Jetstream，配置官方凭据后可获得更完整的互动排序。
 
 > **详情抓取**：采集完成后会自动并发抓取来源网页（解析 `og:meta` 与 JSON-LD），补充完整描述、高清图、截图、评分、价格、作者等。详情默认缓存 7 天；`SCRAPE_DETAILS=false` 关闭，`SCRAPE_DETAILS_CONCURRENCY` 调并发，`SCRAPE_DETAILS_CACHE_DAYS` 调 TTL；抓取失败自动使用缓存或原数据。
 
@@ -218,6 +220,8 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `REDDIT_CLIENT_ID` | 可选 | Reddit OAuth client_id（CI 抓 Reddit 推荐） |
 | `REDDIT_CLIENT_SECRET` | 可选 | Reddit OAuth client_secret |
 | `REDDIT_PROXY` | 可选 | Reddit 代理出口（备用） |
+| `REDDIT_ARCHIVE_API_URL` | 可选 | Reddit 公开归档降级地址（默认 Arctic Shift） |
+| `BLUESKY_JETSTREAM_URL` | 可选 | Bluesky Jetstream 降级实例 |
 | `SCRAPE_DETAILS` | 可选 | 是否抓取来源网页详情（默认 `true`） |
 | `SCRAPE_DETAILS_CONCURRENCY` | 可选 | 详情抓取并发数（默认 4） |
 | `SCRAPE_DETAILS_CACHE_DAYS` | 可选 | 详情缓存有效期（默认 7 天） |
@@ -226,7 +230,7 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 | `SOURCE_HEALTH_MAX_FAILURES_<SOURCE>` | 可选 | 覆盖指定来源允许的连续失败次数 |
 | `SOURCE_HEALTH_MIN_CATEGORY_<SOURCE>` | 可选 | 覆盖指定来源每个类别的最低采集条数 |
 | `SOURCE_HEALTH_MAX_STALE_DAYS` | 可选 | 历史保底最长可使用天数（默认按来源 3–7 天） |
-| `TRANSLATION_API_URL` | 可选 | LibreTranslate 兼容服务地址；不配置时跳过新增翻译 |
+| `TRANSLATION_API_URL` | 可选 | LibreTranslate 兼容服务地址；工作流未配置时默认 MyMemory |
 | `TRANSLATION_API_KEY` | 可选 | 翻译实例需要认证时使用 |
 | `TRANSLATION_MAX_ITEMS_PER_RUN` | 可选 | 单次最多新增翻译条数（默认 300） |
 | `TRANSLATION_CONCURRENCY` | 可选 | 翻译请求并发数（默认 3） |
@@ -236,10 +240,11 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 
 - **App Store** 走苹果官方 iTunes API（榜单 RSS + Search + Lookup），免费、稳定、无需 key。
 - **Google Play** 走社区标准库 `google-play-scraper`，无需 key。
+- **Reddit** 优先 OAuth，其次公共 JSON；数据中心出口被拒时自动读取 Arctic Shift 最近 24 小时公开归档并按分数排序。
 - **Bluesky** 走 `public.api.bsky.app` 公共 AppView API，无需 token。
-  若公共搜索端点受限，可配置 `BSKY_IDENTIFIER` + `BSKY_APP_PASSWORD` 使用免费 App Password 登录。
+  若公共搜索端点受限，优先配置 `BSKY_IDENTIFIER` + `BSKY_APP_PASSWORD` 使用免费 App Password 登录；未配置时自动降级到官方 Jetstream 近期关键词流。
 - **Mastodon** 读取配置实例的公开 hashtag 时间线；实例可通过 `MASTODON_INSTANCE` 更换。
-- **GDELT** 走 DOC 2.0 API，按类别关键词检索最近 1 天的全球新闻。
+- **GDELT** 优先走 DOC 2.0 API；超时或无结果时熔断并读取官方 15 分钟 GKG 压缩文件，同轮只下载解析一次。
 - **Hacker News** 走 Algolia 的公开搜索接口，按类别关键词检索最近 3 天的技术讨论。
 - **GitHub** 走 REST Search API，按类别搜索最近更新的公共仓库；未认证额度较低，CI 建议配置 `GITHUB_API_TOKEN`。
 - **Hugging Face** 走 Hub Models API，按下载量搜索模型，保留下载量、点赞、任务和许可证。
@@ -268,12 +273,14 @@ PRODUCT_HUNT_TOKEN=ph_token_xxxxxxxx   # Product Hunt 官方 API（推荐）
 
 工作流文件：`.github/workflows/daily-fetch.yml`
 
-- 触发：`schedule: cron '0 0 * * *'`（**UTC 0:00 = 北京时间 8:00**）+ `workflow_dispatch` 手动触发。
+- 触发：`23:37 UTC`（北京时间 07:37）主任务 + `00:17 UTC`（北京时间 08:17）兜底 + `workflow_dispatch` / `repository_dispatch`。兜底先检查上海自然日和 12 小时新鲜度，避免重复采集。
 - 流程：Checkout → 装依赖 → 采集与类别级保底 → 增量详情/翻译 → 话题与摘要 → 构建 → 数据校验 → 来源健康检查 → 回写数据 → 健康门禁 → 失败告警。Pages 部署前会再次执行数据与健康门禁，避免后续普通 push 误部署退化快照。
 
 ### 翻译与告警
 
-翻译使用 LibreTranslate 兼容的 `/translate` 接口。可自托管后把地址写入仓库 Variable `TRANSLATION_API_URL`，需要认证时再配置 `TRANSLATION_API_KEY` Secret。翻译结果增量缓存在 `data/translations.json`。
+翻译优先使用 LibreTranslate 兼容的 `/translate` 接口。可自托管后把地址写入仓库 Variable `TRANSLATION_API_URL`，需要认证时再配置 `TRANSLATION_API_KEY` Secret。未配置时工作流默认使用 MyMemory 免费匿名接口，每天最多翻译 20 个标题；结果增量缓存在 `data/translations.json`。
+
+每次验证都会把描述、图片、发布时间、中文标题和跨来源话题覆盖率写入 Actions Summary；生产构建同时发布 `metrics.json`，便于外部监控读取。
 
 外部告警支持通用 `ALERT_WEBHOOK_URL`、飞书 `FEISHU_WEBHOOK_URL`，或 Telegram 的 `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`；均通过仓库 Secrets 配置。
 

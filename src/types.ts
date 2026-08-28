@@ -330,7 +330,7 @@ export const SOURCE_META: Record<Source, SourceMeta> = {
 
 declare global {
   interface Window {
-    /** 由 generateHtml 在构建后注入到 dist/index.html 的数据 */
+    /** 兼容旧版内联快照；生产构建默认异步读取 feed.json。 */
     __DAILY_DATA__?: FeedData;
   }
 }

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0shqf",
+  "sourceItemId": "1w0shqf",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w0shqf/an_even_smaller_tool_for_llamaserver_websearching/",
+  "detail": {
+    "longDescription": "I just added **batsearch,** a tiny CLI tool intended as a sidegrade to llama-cli that lets the LLM perform web searches, to the ratsearch [repo](https://github.com/gbkorr/ratsearch/blob/main/batsearch.sh) I recently posted. Been having a lot of fun lately making extremely tiny \"harnesses\".\n\nUnlike llama-cli, it: 1.) outputs a single response directly to stdout for easy piping, 2.) isn't interactive (similar to \\`llama-cli -st\\`), and 3.) requires a llama-server (or other API) endpoint to be running. It gives the LLM access to a very simple web tool and lets it keep using it until it decides to give a response. Qwen works great with it (see image), and LMF2.5-2B correctly told me who won the world cup; I think this is a pretty useful tool.\n\nTo make it fun I shrunk it down to just 30 lines (all handwritten, ofc), though this comes at the cost of comments and a little error handling. I think it's still pretty readable if you know bash, though, and should be a good basis if you want to build a more powerful tool. My previous [writeup](https://gbkorr.github.io/r-bites/ratsearch/ratsearch.html) on ratsearch covers a lot of what's going on in the JSON/API calling, and the websearching goes through duckduckgo (via `w3m -dump duckduckgo.com/<query>`) since google is a pain to access (and DDG works well enough). (The tool also automatically handles urls vs. search queries, so models can and will visit links they see in the search when necessary)",
+    "externalUrl": "https://i.redd.it/2xn4jh98n4mh1.png",
+    "developer": "mantisalt",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

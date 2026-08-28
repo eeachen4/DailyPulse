@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FeedData, FeedDetail, FeedItem, Source } from '../types';
 import { SOURCES, SOURCE_META } from '../types';
 import { CATEGORIES } from '../categories';
@@ -70,9 +70,13 @@ function routeId(hash: string, prefix: string): string | null {
 export default function App() {
   const liveData = useMemo(() => window.__DAILY_DATA__ ?? EMPTY, []);
   const [data, setData] = useState<FeedData>(liveData);
+  const [latestData, setLatestData] = useState<FeedData>(liveData);
+  const [dataState, setDataState] = useState<LoadState>(window.__DAILY_DATA__ ? 'loaded' : 'loading');
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [historyState, setHistoryState] = useState<LoadState>('loading');
   const [selectedDate, setSelectedDate] = useState('');
+  const selectedDateRef = useRef(selectedDate);
+  selectedDateRef.current = selectedDate;
   const [category, setCategory] = useState('all');
   const [source, setSource] = useState<Source | 'all'>('all');
   const [sort, setSort] = useState<SortKey>('heat');
@@ -103,6 +107,25 @@ export default function App() {
   useEffect(() => window.localStorage.setItem('dailypulse-read', JSON.stringify([...readItems])), [readItems]);
 
   useEffect(() => {
+    if (window.__DAILY_DATA__) return;
+    let cancelled = false;
+    fetch(LOCAL_PREVIEW ? 'data/daily.json' : 'feed.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(String(response.status));
+        return response.json();
+      })
+      .then((json: FeedData) => {
+        if (!cancelled && Array.isArray(json.items)) {
+          setLatestData(json);
+          if (!selectedDateRef.current) setData(json);
+          setDataState('loaded');
+        }
+      })
+      .catch(() => { if (!cancelled) setDataState('error'); });
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
     fetch(dataAssetPath('history/index.json'))
       .then((response) => {
         if (!response.ok) throw new Error(String(response.status));
@@ -120,7 +143,7 @@ export default function App() {
 
   useEffect(() => {
     if (!selectedDate) {
-      setData(liveData);
+      setData(latestData);
       return;
     }
     let cancelled = false;
@@ -140,21 +163,7 @@ export default function App() {
         if (!cancelled) setHistoryState('error');
       });
     return () => { cancelled = true; };
-  }, [liveData, selectedDate]);
-
-  useEffect(() => {
-    if (!window.__DAILY_DATA__ && !selectedDate) {
-      fetch('data/daily.json')
-        .then((response) => {
-          if (!response.ok) throw new Error(String(response.status));
-          return response.json();
-        })
-        .then((json: FeedData) => {
-          if (Array.isArray(json.items)) setData(json);
-        })
-        .catch(() => setHistoryState('error'));
-    }
-  }, [selectedDate]);
+  }, [latestData, selectedDate]);
 
   const itemId = routeId(hash, '#/item/');
   const topicId = routeId(hash, '#/topic/');
@@ -331,8 +340,10 @@ export default function App() {
 
         <DailyBriefPanel brief={personalizedBrief} topics={topics} language={preferences.language} />
 
-        {data.items.length === 0 ? (
-          <div className="border border-line bg-panel px-6 py-24 text-center"><p className="text-xl font-semibold">还没有采集数据</p><p className="mt-3 font-mono text-sm text-muted">运行 npm run fetch，或等待每日 08:00 定时任务。</p></div>
+        {dataState === 'loading' && !selectedDate ? (
+          <div className="border border-line bg-panel px-6 py-24 text-center"><p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Loading today’s pulse…</p></div>
+        ) : data.items.length === 0 ? (
+          <div className="border border-line bg-panel px-6 py-24 text-center"><p className="text-xl font-semibold">还没有采集数据</p><p className="mt-3 font-mono text-sm text-muted">{dataState === 'error' ? '数据加载失败，请稍后刷新。' : '运行 npm run fetch，或等待每日 08:00 定时任务。'}</p></div>
         ) : (
           <div className="grid gap-8 pt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
             <aside className="space-y-8 lg:sticky lg:top-6 lg:self-start">

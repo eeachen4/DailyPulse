@@ -1,7 +1,7 @@
 import { appendFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { healthGateFailures } from '../sourceHealth';
-import { SOURCE_META, type FeedData, type SourceHealth } from '../types';
+import { coverageGateFailures, healthGateFailures } from '../sourceHealth';
+import { SOURCES, SOURCE_META, type FeedData, type Source, type SourceHealth } from '../types';
 
 function statusLabel(entry: SourceHealth): string {
   switch (entry.status) {
@@ -54,11 +54,22 @@ async function main(): Promise<void> {
   }
 
   const failures = healthGateFailures(health);
-  if (failures.length) {
-    throw new Error(
-      `关键来源超过连续失败上限：${failures.map((entry) => `${entry.source}(${entry.consecutiveFailures})`).join(', ')}`,
-    );
-  }
+  const configuredRequired = process.env.REQUIRED_SOURCES?.split(',')
+    .map((source) => source.trim())
+    .filter((source): source is Source => SOURCES.includes(source as Source));
+  const requiredSources = process.env.REQUIRE_ALL_SOURCES === 'true'
+    ? SOURCES
+    : configuredRequired ?? [];
+  const missing = coverageGateFailures(health, requiredSources);
+  const reasons = [
+    failures.length
+      ? `关键来源超过连续失败上限：${failures.map((entry) => `${entry.source}(${entry.consecutiveFailures})`).join(', ')}`
+      : undefined,
+    missing.length
+      ? `本轮来源覆盖不足：${missing.map((entry) => entry.source).join(', ')}（${SOURCES.length - missing.length}/${SOURCES.length}）`
+      : undefined,
+  ].filter(Boolean);
+  if (reasons.length) throw new Error(reasons.join('；'));
   console.log('[check:health] 通过');
 }
 

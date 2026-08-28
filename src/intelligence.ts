@@ -2,9 +2,9 @@ import { categoryIdsFor } from './dataModel';
 import { SOURCE_META, type DailyBrief, type FeedData, type FeedItem, type Source, type TopicCluster, type TopicTrend } from './types';
 
 const STOP_WORDS = new Set([
-  'about', 'after', 'again', 'agent', 'agents', 'against', 'also', 'among', 'another', 'because', 'been',
+  'about', 'after', 'again', 'agent', 'agents', 'against', 'also', 'among', 'another', 'app', 'artificial', 'assistant', 'because', 'been',
   'before', 'being', 'build', 'building', 'built', 'could', 'from', 'have', 'into', 'just', 'latest', 'more',
-  'most', 'new', 'news', 'open', 'opensourced', 'release', 'released', 'source', 'than', 'that', 'their',
+  'chat', 'chatbot', 'intelligence', 'model', 'most', 'new', 'news', 'open', 'opensourced', 'release', 'released', 'software', 'source', 'than', 'that', 'their',
   'there', 'these', 'they', 'this', 'today', 'tool', 'tools', 'using', 'what', 'when', 'where', 'which',
   'with', 'would', 'your', '一个', '一种', '这个', '最新', '发布', '开源', '工具', '如何', '为什么', '可以',
 ]);
@@ -23,7 +23,7 @@ function stem(word: string): string {
   return word.replace(/(ing|ers|ies|ied|ed|es|s)$/i, '');
 }
 
-export function semanticTokens(item: Pick<FeedItem, 'title' | 'titleZh'>): string[] {
+export function semanticTokens(item: Pick<FeedItem, 'title' | 'titleZh'> & Partial<Pick<FeedItem, 'description' | 'descriptionZh'>>): string[] {
   const text = normalizedTitle([item.title, item.titleZh].filter(Boolean).join(' '));
   const words = text
     .split(/\s+/)
@@ -37,16 +37,25 @@ export function semanticTokens(item: Pick<FeedItem, 'title' | 'titleZh'>): strin
   return [...new Set(words)].slice(0, 24);
 }
 
-function similarity(left: Set<string>, right: Set<string>, leftTitle: string, rightTitle: string): number {
-  const shared = [...left].filter((token) => right.has(token)).length;
-  const union = new Set([...left, ...right]).size;
-  const overlap = shared / Math.max(1, Math.min(left.size, right.size));
-  const jaccard = shared / Math.max(1, union);
+function similarity(
+  left: Set<string>,
+  right: Set<string>,
+  leftTitle: string,
+  rightTitle: string,
+  tokenWeights: Map<string, number>,
+): number {
+  const sharedTokens = [...left].filter((token) => right.has(token));
+  const shared = sharedTokens.length;
+  const weight = (tokens: Iterable<string>) => [...tokens].reduce((sum, token) => sum + (tokenWeights.get(token) ?? 1), 0);
+  const weightedShared = weight(sharedTokens);
+  const weightedOverlap = weightedShared / Math.max(1, Math.min(weight(left), weight(right)));
+  const union = new Set([...left, ...right]);
+  const weightedJaccard = weightedShared / Math.max(1, weight(union));
   const contained = leftTitle.length >= 16 && rightTitle.length >= 16
     && (leftTitle.includes(rightTitle) || rightTitle.includes(leftTitle));
   if (contained) return 1;
   if (shared < 2) return 0;
-  return Math.max(overlap, jaccard);
+  return Math.max(weightedOverlap, weightedJaccard);
 }
 
 function hash(value: string): string {
@@ -133,6 +142,12 @@ export function buildIntelligence(items: FeedItem[], fetchedAt: string, previous
 
   const tokenSets = items.map((item) => new Set(semanticTokens(item)));
   const normalizedTitles = items.map((item) => normalizedTitle(item.title));
+  const documentFrequency = new Map<string, number>();
+  for (const tokens of tokenSets) for (const token of tokens) documentFrequency.set(token, (documentFrequency.get(token) ?? 0) + 1);
+  const tokenWeights = new Map([...documentFrequency].map(([token, count]) => [
+    token,
+    Math.log((items.length + 1) / (count + 1)) + 1,
+  ]));
   const inverted = new Map<string, number[]>();
   tokenSets.forEach((tokens, index) => {
     for (const token of tokens) {
@@ -153,7 +168,13 @@ export function buildIntelligence(items: FeedItem[], fetchedAt: string, previous
         const key = `${leftIndex}:${rightIndex}`;
         if (compared.has(key)) continue;
         compared.add(key);
-        if (similarity(tokenSets[leftIndex], tokenSets[rightIndex], normalizedTitles[leftIndex], normalizedTitles[rightIndex]) >= 0.7) {
+        if (similarity(
+          tokenSets[leftIndex],
+          tokenSets[rightIndex],
+          normalizedTitles[leftIndex],
+          normalizedTitles[rightIndex],
+          tokenWeights,
+        ) >= 0.6) {
           unite(leftIndex, rightIndex);
         }
       }

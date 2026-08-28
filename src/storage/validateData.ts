@@ -1,4 +1,4 @@
-import { access, readFile } from 'node:fs/promises';
+import { access, appendFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { FeedData } from '../types';
 import { DATA_SCHEMA_VERSION, SOURCES } from '../types';
@@ -73,6 +73,40 @@ async function main(): Promise<void> {
   }
   for (const highlight of data.brief?.highlights ?? []) {
     if (!topicIds.has(highlight.topicId)) throw new Error(`每日摘要引用不存在的话题：${highlight.topicId}`);
+  }
+
+  const total = data.items.length;
+  const ratio = (count: number) => count / Math.max(1, total);
+  const descriptions = data.items.filter((item) => Boolean(item.description?.trim())).length;
+  const thumbnails = data.items.filter((item) => Boolean(item.thumbnail)).length;
+  const published = data.items.filter((item) => Boolean(item.publishedAt)).length;
+  const translated = data.items.filter((item) => Boolean(item.titleZh)).length;
+  const crossSourceTopics = (data.topics ?? []).filter((topic) => topic.sources.length > 1).length;
+  const report = [
+    '## DailyPulse 数据质量',
+    '',
+    '| 指标 | 结果 |',
+    '| --- | ---: |',
+    `| 描述覆盖 | ${descriptions}/${total} (${(ratio(descriptions) * 100).toFixed(1)}%) |`,
+    `| 图片覆盖 | ${thumbnails}/${total} (${(ratio(thumbnails) * 100).toFixed(1)}%) |`,
+    `| 发布时间覆盖 | ${published}/${total} (${(ratio(published) * 100).toFixed(1)}%) |`,
+    `| 中文标题覆盖 | ${translated}/${total} (${(ratio(translated) * 100).toFixed(1)}%) |`,
+    `| 跨来源话题 | ${crossSourceTopics} |`,
+    '',
+  ].join('\n');
+  console.log(report);
+  if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, report + '\n', 'utf-8');
+
+  if (process.env.REQUIRE_DATA_QUALITY === 'true') {
+    const minDescriptionRatio = Number(process.env.MIN_DESCRIPTION_RATIO || 0.75);
+    const minPublishedRatio = Number(process.env.MIN_PUBLISHED_RATIO || 0.75);
+    const minCrossSourceTopics = Number(process.env.MIN_CROSS_SOURCE_TOPICS || 5);
+    const failures = [
+      ratio(descriptions) < minDescriptionRatio ? `描述覆盖 ${(ratio(descriptions) * 100).toFixed(1)}% < ${(minDescriptionRatio * 100).toFixed(1)}%` : undefined,
+      ratio(published) < minPublishedRatio ? `发布时间覆盖 ${(ratio(published) * 100).toFixed(1)}% < ${(minPublishedRatio * 100).toFixed(1)}%` : undefined,
+      crossSourceTopics < minCrossSourceTopics ? `跨来源话题 ${crossSourceTopics} < ${minCrossSourceTopics}` : undefined,
+    ].filter(Boolean);
+    if (failures.length) throw new Error(`数据质量门禁失败：${failures.join('；')}`);
   }
 
   console.log(`[validate:data] 通过：${data.items.length} 条，${ids.size} 个唯一 ID`);

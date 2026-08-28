@@ -7,12 +7,14 @@ import type { CategoryDef } from '../categories';
 // Reddit 会拒绝默认/明显的爬虫 UA，使用浏览器 UA 可显著提升成功率。
 const USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36';
+let directUnavailableUntil = 0;
 
 /**
  * Reddit：按类别采集（每个类别对应若干子版块），合并去重后按热度排序。
  * 采集优先级：
  *   1. 官方 OAuth API（配置 REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET 时，CI 友好、免代理）
  *   2. 公共 JSON API 直连（本地 / 家庭 IP；配置 REDDIT_PROXY 时走代理）
+ *   3. Arctic Shift 公共归档（无需认证，仅作 CI 出口被 Reddit 拒绝时的近期帖子降级）
  */
 export async function fetchReddit(category: CategoryDef): Promise<FeedItem[]> {
   const clientId = process.env.REDDIT_CLIENT_ID || '';
@@ -26,7 +28,11 @@ export async function fetchReddit(category: CategoryDef): Promise<FeedItem[]> {
 
   const items = await fetchDirect(category);
   if (items.length > 0) return items;
-  throw new Error(`Reddit「${category.label}」采集失败（OAuth / 直连均无结果，可能被限流或 IP 被封禁）`);
+  directUnavailableUntil = Date.now() + 15 * 60 * 1_000;
+  console.warn(`[reddit] ${category.label} OAuth / 直连无结果，改用 Arctic Shift 近期公开归档`);
+  const archived = await fetchViaArchive(category);
+  if (archived.length > 0) return archived;
+  throw new Error(`Reddit「${category.label}」采集失败（OAuth / 直连 / Arctic Shift 均无结果）`);
 }
 
 function limitPerCategory(): number {
@@ -90,6 +96,8 @@ async function fetchViaOAuth(
 /* ------------------------------ 直连（可走代理） ------------------------------ */
 
 async function fetchDirect(category: CategoryDef): Promise<FeedItem[]> {
+  if (process.env.REDDIT_DISABLE_DIRECT === 'true') return [];
+  if (Date.now() < directUnavailableUntil) return [];
   const limit = limitPerCategory();
   const subs = category.redditSubreddits;
   const perSub = Math.max(1, Math.ceil(limit / subs.length));
@@ -101,12 +109,13 @@ async function fetchDirect(category: CategoryDef): Promise<FeedItem[]> {
     `https://old.reddit.com/r/${sub}/top.json?t=day&limit=${perSub}&raw_json=1`,
   ];
 
-  for (const sub of subs) {
+  for (const [subIndex, sub] of subs.entries()) {
+    const beforeSub = results.length;
     for (const url of endpoints(sub)) {
       try {
         const resp = await axios.get(url, {
           headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
-          timeout: 30_000,
+          timeout: Number(process.env.REDDIT_DIRECT_TIMEOUT_MS || 10_000),
           proxy: redditProxy(),
         });
         const children: unknown[] = resp.data?.data?.children ?? [];
@@ -124,9 +133,47 @@ async function fetchDirect(category: CategoryDef): Promise<FeedItem[]> {
         // 尝试下一个端点
       }
     }
+    // 首个已知活跃子版块在两个主机都无结果时，通常是出口被封；尽快切换归档，避免逐个超时。
+    if (subIndex === 0 && results.length === beforeSub) return [];
   }
   return results
     .sort((a, b) => (b.score ?? Number.NEGATIVE_INFINITY) - (a.score ?? Number.NEGATIVE_INFINITY))
+    .slice(0, limit);
+}
+
+/* ------------------------------ Arctic Shift 降级 ------------------------------ */
+
+async function fetchViaArchive(category: CategoryDef): Promise<FeedItem[]> {
+  const limit = limitPerCategory();
+  const perSub = Math.max(3, Math.ceil(limit / category.redditSubreddits.length));
+  const api = process.env.REDDIT_ARCHIVE_API_URL || 'https://arctic-shift.photon-reddit.com/api/posts/search';
+  const after = new Date(Date.now() - 24 * 60 * 60 * 1_000).toISOString();
+  const results: FeedItem[] = [];
+  const seen = new Set<string>();
+  for (const sub of category.redditSubreddits) {
+    try {
+      const response = await axios.get<{ data?: Array<Record<string, unknown>> }>(api, {
+        params: { subreddit: sub, after, sort: 'desc', limit: Math.min(100, perSub * 2) },
+        timeout: 25_000,
+        headers: { Accept: 'application/json', 'User-Agent': 'DailyPulse/1.0' },
+      });
+      for (const data of response.data?.data ?? []) {
+        const item = normalize(data, category.label, sub);
+        if (item && !seen.has(item.id)) {
+          seen.add(item.id);
+          results.push({
+            ...item,
+            tags: [...(item.tags ?? []), 'Arctic Shift fallback'],
+            stats: [...(item.stats ?? []), { label: '采集', value: '公开归档降级' }],
+          });
+        }
+      }
+    } catch {
+      // 单个子版块归档失败不影响其它子版块。
+    }
+  }
+  return results
+    .sort((left, right) => (right.score ?? 0) - (left.score ?? 0) || (right.publishedAt ?? '').localeCompare(left.publishedAt ?? ''))
     .slice(0, limit);
 }
 

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0sd43",
+  "sourceItemId": "1w0sd43",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w0sd43/i_think_the_newest_update_to_iisexpress_broke/",
+  "detail": {
+    "longDescription": "Yes, classic ASP. Lame I know, but that's the code I'm maintaining.\n\nThe error reproduction steps I've created rule out my code, or Visual Studio\n\n* Verify IIS Express is installed with Command Prompt `if exist \"%ProgramFiles%\\IIS Express\\iisexpress.exe\" (echo IIS Express installed) else (echo IIS Express not installed)`\n* Create a test folder with a minimal classic ASP page `C:\\Temp\\AspDirectTest\\test.asp`\n* Fill in the contents of test.asp with `<% Response.Write \"Hello\" %>` or `<script language=\"JScript\" runat=\"server\"> Response.Write(\"JScript Test\"); </script>`\n* Launch IIS Express directly using Command Prompt `\"%ProgramFiles%\\IIS Express\\iisexpress.exe\" /path:\"C:\\Temp\\AspDirectTest\" /port:8088`\n* Browse to the site `http://localhost:8088/test.asp`\n\n**Result in browser:**\n\nActive Server Pages error '00000000'  \n  \nCreate object failed  \n  \n?  \n  \nAn error occurred while creating object 'WSH'.  \n  \nActive Server Pages error '00000000'  \n  \nCreate object failed  \n  \n?  \n  \nAn error occurred while creating object 'WSCRIPT'.Hello\n\n**Result in Command Prompt:**\n\n`Request started: \"GET\"` `http://localhost:8088/test.asp`  \n`Response sent:` `http://localhost:8088/test.asp` `with HTTP status 500.0`  \n\n\nYou can get the File version of vbscript.dll and wshom.ocx using powershell\n\n`(Get-Item 'C:\\Windows\\System32\\wshom.ocx').VersionInfo.FileVersion`\n\nmy version of wshom.ocx is 10.0.26100.4768\n\n`(Get-Item 'C:\\Windows\\System32\\vbscript.dll').VersionInfo.FileVersion`\n\nmy version of vbscript.dll is 10.0.26100.8457\n\nOlder versions do not create the issue.\n\n  \nI have recreated this error on two machines with the current version, and showed that it doesn't appear on one machine with older versions.\n\n  \nI have an issue reported here [https://developercommunity.visualstudio.com/t/IIS-Express-fails-to-execute-classic-ASP/11144474](https://developercommunity.visualstudio.com/t/IIS-Express-fails-to-execute-classic-ASP/11144474)\n\nIf you can or can not recreate the issue I would love to know about it and what versions of wshom.ocx and vbscript.dll you have.\n\n  \n",
+    "externalUrl": "https://i.redd.it/d4zsqiv0k4mh1.png",
+    "developer": "IamTheGoodest",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

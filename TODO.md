@@ -5,7 +5,7 @@
 
 ## 状态总览
 
-已完成：项目骨架、十三平台按类别采集、七个兴趣类别、来源网页详情抓取、schema v2 数据模型、跨来源 heatScore、摘要 / 详情拆分、历史快照、类别级健康门禁与限时保底、详情增量缓存、话题聚类、每日摘要、双语搜索、个人偏好、收藏/已读/分享、RSS/JSON、PR CI、部署二次门禁与外部告警。
+已完成：十三平台采集框架、七个兴趣类别、详情抓取、schema v2、跨来源 heatScore、摘要 / 详情拆分、历史快照、来源健康保底、话题聚类、每日摘要、双语搜索、个人偏好、RSS/JSON/metrics 导出、PR CI、覆盖与数据质量门禁、外部告警、双时点调度、新鲜度门控、GDELT GKG 降级、首屏数据拆包，以及 Node 22 / TypeScript 7 / Vite 8 工程升级。
 
 ---
 
@@ -17,9 +17,16 @@
   - 未配置时 Product Hunt 回退 Apify（需 `APIFY_API_KEY`）。
   - App Store / Google Play / Bluesky / Mastodon / GDELT / Hacker News / Hugging Face / Stack Overflow / arXiv / RSS 无需必填 key；Reddit 推荐配置 OAuth，GitHub 推荐配置 Token。
 
-- [ ] **验证定时任务**
-  - 到 **Actions** 页手动 `Run workflow` 一次，确认「采集 → 详情抓取 → 构建 → 回写 → 部署」全链路正常。
-  - 确认 cron 在 `UTC 0:00 = 北京时间 8:00` 生效。
+- [x] **运行线上采集并验证 13/13**
+  - 2026-08-29 手动运行 Daily Fetch 已通过：1,430 条数据、13/13 来源覆盖；Reddit / Bluesky / GDELT 分别通过 Arctic Shift / Jetstream / GKG 官方存储降级取得本轮数据。
+  - 可选配置 Reddit OAuth 与 Bluesky App Password，以恢复官方接口和更完整的互动排序。
+
+- [ ] **完成 HTTPS 强制跳转**
+  - 页面已有 HTTP → HTTPS 客户端兜底，HTTPS 本身可访问。
+  - GitHub Pages 暂无源站证书，Cloudflare API Token 又限制当前出口 IP；需在 Cloudflare 启用 **Always Use HTTPS**，或临时关闭代理让 GitHub 完成证书签发后再开启 `https_enforced`。
+
+- [x] **确认访问量统计归属**
+  - 已在 Cloudflare 创建 `dailypulse.kitdesk.site` Web Analytics 站点，并将页面 Beacon Token 替换为该站点专属 Token；部署后开始积累 PV/访问量。
 
 ---
 
@@ -27,14 +34,13 @@
 
 - [x] **Reddit 403（数据中心 / 云主机 IP）**
   - 现象：GitHub Actions runner 上 `reddit.com` 公共 JSON 会 403。
-  - 已做：官方 OAuth（`REDDIT_CLIENT_ID/SECRET`，推荐，免代理）+ `REDDIT_PROXY` 代理兜底 + `www`/`old.reddit` 双主机回退（`src/fetch/reddit.ts`）。
-  - 使用：Secrets 添加 `REDDIT_CLIENT_ID` + `REDDIT_CLIENT_SECRET`（创建 Reddit installed app），或 `REDDIT_PROXY`。
+  - 已做：官方 OAuth + `REDDIT_PROXY` + `www`/`old.reddit` 双主机；均失败时自动读取 Arctic Shift 最近 24 小时公开归档。
 
 - [ ] **Apify 免费额度（仅 Product Hunt 兜底）**
   - 配置 `PRODUCT_HUNT_TOKEN` 后不再依赖 Apify；仅未配 token 时 PH 走 Apify 兜底。
 
-- [ ] **cron 时区与首次触发延迟**
-  - GitHub Actions `schedule` 用 UTC，`'0 0 * * *'` 即北京时间 8:00；首次触发可能延迟，属正常行为。
+- [x] **cron 时区与触发延迟**
+  - 已避开整点拥塞，使用北京时间 07:37 主触发、08:17 兜底，并按上海自然日与快照年龄跳过重复采集。
 
 - [x] **详情抓取耗时**
   - 已加入详情 TTL 缓存、过期缓存失败保底和无引用详情清理；可用 `SCRAPE_DETAILS_CACHE_DAYS`、`SCRAPE_DETAILS_CONCURRENCY` 调整。
@@ -51,6 +57,7 @@
 - [x] **前端增强**：关键词搜索、深色模式、详情页上一项/下一项已完成。
 - [x] **话题与每日摘要**：跨来源语义聚类、话题详情、今日三件事、为什么热和昨日趋势。
 - [x] **个人化与开放订阅**：收藏、已读、分享、类别/关键词/来源权重、RSS 和 JSON 导出。
+- [x] **首屏与质量指标**：生产 HTML 不再内联 1MB+ JSON；异步读取 `feed.json`，并输出 `metrics.json` 与 Actions 数据质量报告。
 - [ ] **gh-pages 分支部署**：改用 `peaceiris/actions-gh-pages` 推独立 `gh-pages` 分支，主分支更干净。
 
 ---

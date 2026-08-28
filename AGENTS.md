@@ -7,10 +7,10 @@
 
 DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Google Play / Product Hunt / Reddit / Bluesky / Mastodon / GDELT / Hacker News / GitHub / Hugging Face / Stack Overflow / arXiv / RSS** 热门内容的「信息早餐」。
 
-- **采集**：Node.js + TypeScript（`tsx` 运行）按「类别 × 源」采集 → 来源网页详情抓取 → 写入 `data/daily.json` → 生成/注入 `dist/index.html`。
+- **采集**：Node.js + TypeScript（`tsx` 运行）按「类别 × 源」采集 → 来源网页详情抓取 → 写入 `data/daily.json` → 生成 `dist/feed.json` 等静态导出。
 - **Product Hunt**：优先官方 GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 回退 Apify。
-- **前端**：React 18 + Vite 5 + TailwindCSS 3，hash 路由（列表 + 详情页），从 `window.__DAILY_DATA__` 读取数据。
-- **调度**：GitHub Actions cron（UTC 0:00）采集并回写；`.github/workflows/deploy.yml` 自动部署 `dist/` 到 Pages。
+- **前端**：React 18 + Vite 8 + TailwindCSS 3，hash 路由（列表 + 详情页），生产环境异步读取 `feed.json`。
+- **调度**：GitHub Actions 在北京时间 07:37 主触发、08:17 兜底，新鲜度检查避免重复采集；`.github/workflows/deploy.yml` 自动部署 `dist/` 到 Pages。
 
 ## 常用命令
 
@@ -20,9 +20,10 @@ DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Goo
 | `npm run fetch` | 采集 → 详情抓取 → 生成静态页 |
 | `npm run sample` | 生成十三来源示例数据（每类别约 290 条） |
 | `npm run build` | Vite 构建到 `dist/` |
-| `npm run generate` | 将 `data/daily.json` 注入 `dist/index.html` |
-| `npm run build:all` | 构建 + 注入（生产链路） |
+| `npm run generate` | 生成 `feed.json` / `metrics.json` / RSS，并同步历史与详情 |
+| `npm run build:all` | 构建 + 静态导出（生产链路） |
 | `npm run typecheck` | `tsc --noEmit` 类型检查 |
+| `npm run validate:dist` | 校验轻量 HTML 与 feed/metrics/RSS 生产产物 |
 | `npm run check:health` | 输出来源健康报告并执行连续失败门禁 |
 | `npm test` | 运行核心数据与偏好逻辑测试 |
 | `npm run preview` | 预览 `dist/` 构建产物 |
@@ -38,9 +39,9 @@ src/index.ts（主入口）
   │   ├─ fetch/googlePlay.ts   google-play-scraper（无需 key）
   │   ├─ fetch/productHunt.ts  GraphQL API（优先）/ Apify 兜底
   │   ├─ fetch/apify.ts        runApifyActor()：仅 Product Hunt 兜底使用
-  │   ├─ fetch/bluesky.ts      Bluesky 公共搜索 / App Password 认证
+  │   ├─ fetch/bluesky.ts      Bluesky AppView 搜索 / App Password / Jetstream 降级
   │   ├─ fetch/mastodon.ts     Mastodon hashtag 时间线
-  │   ├─ fetch/gdelt.ts        GDELT DOC 2.0 新闻搜索
+  │   ├─ fetch/gdelt.ts        GDELT DOC 2.0 + 官方 GKG 文件降级
   │   ├─ fetch/hackerNews.ts   Hacker News Algolia 搜索
   │   ├─ fetch/github.ts        GitHub REST 仓库搜索
   │   ├─ fetch/huggingFace.ts   Hugging Face 模型搜索
@@ -50,7 +51,7 @@ src/index.ts（主入口）
   │   └─ fetch/detailScraper.ts 来源网页详情抓取（og:meta + JSON-LD，cheerio）
   ├─ storage/saveData.ts       写 data/daily.json（含时间戳）
   ├─ storage/checkHealth.ts    输出来源健康表并执行关键来源门禁
-  ├─ storage/generateHtml.ts   注入或生成 dist/index.html
+  ├─ storage/generateHtml.ts   生成轻量入口并同步静态数据导出
   └─ storage/generateSample.ts 生成示例数据（npm run sample）
 src/sourceHealth.ts           来源最低产量、连续失败与历史保底策略
 src/intelligence.ts          跨来源话题聚类、趋势与每日编辑摘要
@@ -73,10 +74,10 @@ src/web/*                    React 前端（hash 路由：列表 + 详情页）
 
 1. **依赖锁定**：CI 使用 `npm ci`，改依赖后需同步提交 `package-lock.json`。
 2. **`data/daily.json` 与 `dist/` 需提交**：不要加入 `.gitignore`（定时任务回写、Pages 托管依赖它们）。
-3. **`generateHtml` 必须幂等**：注入前先移除旧的 `window.__DAILY_DATA__`（见 `INJECTED_SCRIPT_RE`），重复运行不累积。
+3. **`generateHtml` 必须幂等**：构建后清理旧的 `window.__DAILY_DATA__` 注入（见 `INJECTED_SCRIPT_RE`），生产数据只写入独立 `feed.json`。
 4. **Vite `base: './'`**：保证 GitHub Pages 任意子路径可用，不要改成绝对路径。
 5. **App Store / Google Play 无需 key**：分别走官方 iTunes API 与 `google-play-scraper`；Apify 仅用于 Product Hunt 兜底，其 Actor ID 用 `~` 分隔（如 `glassventures~product-hunt-scraper`）。
-6. **Reddit 可能 403**：CI 优先用 OAuth（`REDDIT_CLIENT_ID/SECRET`，见 `src/fetch/reddit.ts`），或 `REDDIT_PROXY` 代理兜底；本地直连通常可用。
+6. **Reddit 可能 403**：CI 优先用 OAuth（`REDDIT_CLIENT_ID/SECRET`），其次代理 / 公共 JSON；都失败时降级到 Arctic Shift 最近 24 小时公开归档。
 7. **cron 使用 UTC**：`'0 0 * * *'` 即北京时间 8:00。
 8. **Product Hunt 优先官方 API**：读 `PRODUCT_HUNT_TOKEN`（兼容 `PH_DEVELOPER_TOKEN`）；无 token 才回退 Apify，勿删除回退逻辑。
 9. **详情抓取可关且有缓存**：`SCRAPE_DETAILS=false` 跳过；默认缓存 7 天，抓取失败应保留缓存或原数据，勿让异常中断整体。

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0sepz",
+  "sourceItemId": "1w0sepz",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w0sepz/web_draw_drive_a_real_browser_from_a_textonly/",
+  "detail": {
+    "longDescription": "Sharing a tool I built, relevant here because it removes the vision requirement from browser use.\n\nMost browser automation for models assumes screenshots, which rules out text-only models entirely and costs several thousand tokens per observation for those that can see. Web Draw renders the visible page as text with a stable handle on every control, so the loop is observe, act by handle, observe again. A 7B or 8B text model can run that loop.\n\nWhat a page looks like:\n\n    [form]\n    e18 textbox \"Tracking Number\" required invalid=\"Please fill out this field.\"\n    e29 combobox \"Sort by:\" =\"Featured\" collapsed haspopup\n    e47 button \"Continue\" disabled\n    e52 button \"Buy now\" covered-by:\"Cookie notice\"\n\nAn Amazon search page is about 750 tokens. A full checkout page is about 550. Data tables render as markdown, repeated structures like feed posts collapse into groups, and an off-screen line tells the model what is above and below the fold so it knows whether to scroll.\n\nSmall models fail differently from large ones, so most of the work went into removing ambiguity. A control covered by an overlay is flagged rather than clicked. An ambiguous target name fails with the matching candidates listed rather than picking one silently. A refused form submit reports what the page said instead of looking like success.\n\nIt runs against your normal browser with your existing logins, and talks only to 127.0.0.1. Free, no account.\n\nhttps://chromewebstore.google.com/detail/goknikkadndlonalcpjmnfpnljdehaim",
+    "developer": "ahstanin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

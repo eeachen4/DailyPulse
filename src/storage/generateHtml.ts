@@ -8,8 +8,8 @@ import { categoryIdsFor, primaryCategoryId, rawScoreFor } from '../dataModel';
 
 /**
  * 生成最终静态页面 dist/index.html：
- *   - 若 dist/index.html 已由 Vite 构建生成，则把数据序列化后注入到
- *     window.__DAILY_DATA__，供前端 React 组件读取（无需二次请求）。
+ *   - 若 dist/index.html 已由 Vite 构建生成，则移除旧版内联数据；前端异步读取
+ *     feed.json，避免 1MB+ JSON 阻塞 HTML 解析和首屏资源发现。
  *   - 若尚未构建，则直接生成一个独立的静态 HTML（内联样式 + 服务端渲染），
  *     保证「只跑 npm run fetch」也能产出可浏览的页面。
  */
@@ -19,18 +19,12 @@ export async function generateHtml(): Promise<string> {
   const indexPath = path.join(distDir, 'index.html');
 
   let html: string;
-  let injected = false;
+  let builtApp = false;
   try {
     html = await readFile(indexPath, 'utf-8');
     // 先移除历史注入，保证重复运行不会累积多份数据脚本
     html = html.replace(INJECTED_SCRIPT_RE, '');
-    const headRe = /<head([^>]*)>/i;
-    if (headRe.test(html)) {
-      html = html.replace(headRe, `<head$1>\n    ${dataScript(data)}`);
-    } else {
-      html = `${dataScript(data)}\n${html}`;
-    }
-    injected = true;
+    builtApp = true;
   } catch {
     html = renderStandalone(data);
     await mkdir(distDir, { recursive: true });
@@ -40,7 +34,7 @@ export async function generateHtml(): Promise<string> {
   await syncHistory(distDir);
   await syncDetails(distDir);
   await writeExports(distDir, data);
-  console.log(`[generateHtml] ${injected ? '已注入数据到' : '已生成独立静态页'} dist/index.html`);
+  console.log(`[generateHtml] ${builtApp ? '已生成轻量应用入口' : '已生成独立静态页'} dist/index.html`);
   return indexPath;
 }
 
@@ -108,7 +102,25 @@ function xmlEscape(value: string): string {
 }
 
 async function writeExports(distDir: string, data: FeedData): Promise<void> {
-  await writeFile(path.join(distDir, 'feed.json'), JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  // 生产数据单独缓存与传输；保持单行可进一步降低未压缩体积。
+  await writeFile(path.join(distDir, 'feed.json'), JSON.stringify(data) + '\n', 'utf-8');
+  const sourceCounts = Object.fromEntries(SOURCES.map((source) => [
+    source,
+    data.items.filter((item) => item.source === source).length,
+  ]));
+  const metrics = {
+    fetchedAt: data.fetchedAt,
+    totalItems: data.items.length,
+    activeSources: Object.values(sourceCounts).filter((count) => count > 0).length,
+    sourceCounts,
+    translatedTitles: data.items.filter((item) => Boolean(item.titleZh)).length,
+    descriptionCoverage: Number((data.items.filter((item) => Boolean(item.description)).length / Math.max(1, data.items.length)).toFixed(4)),
+    thumbnailCoverage: Number((data.items.filter((item) => Boolean(item.thumbnail)).length / Math.max(1, data.items.length)).toFixed(4)),
+    publishedAtCoverage: Number((data.items.filter((item) => Boolean(item.publishedAt)).length / Math.max(1, data.items.length)).toFixed(4)),
+    topicCount: data.topics?.length ?? 0,
+    crossSourceTopics: data.topics?.filter((topic) => topic.sources.length > 1).length ?? 0,
+  };
+  await writeFile(path.join(distDir, 'metrics.json'), JSON.stringify(metrics, null, 2) + '\n', 'utf-8');
   const siteUrl = (process.env.SITE_URL || 'https://eeachen4.github.io/DailyPulse/').replace(/\/?$/, '/');
   const entries = [...data.items]
     .sort((left, right) => (right.heatScore ?? 0) - (left.heatScore ?? 0))
@@ -133,13 +145,7 @@ ${entries}
 </rss>
 `;
   await writeFile(path.join(distDir, 'rss.xml'), rss, 'utf-8');
-  console.log('[generateHtml] 已生成 feed.json 与 rss.xml');
-}
-
-function dataScript(data: FeedData): string {
-  // 转义 "<" 防止序列化结果中的 "</script>" 提前闭合标签
-  const json = JSON.stringify(data).replace(/</g, '\\u003c');
-  return `<script>window.__DAILY_DATA__ = ${json};</script>`;
+  console.log('[generateHtml] 已生成 feed.json、metrics.json 与 rss.xml');
 }
 
 // 匹配此前注入的数据脚本，用于幂等清理（序列化后不含 "</script>"，故可安全非贪婪匹配）

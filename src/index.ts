@@ -36,7 +36,7 @@ export async function main(): Promise<void> {
     console.warn('⚠️  未配置 Reddit OAuth 或 REDDIT_PROXY；CI 数据中心出口可能持续 403。');
   }
   if (!(process.env.BSKY_IDENTIFIER && process.env.BSKY_APP_PASSWORD)) {
-    console.warn('⚠️  未配置 Bluesky App Password；公共 AppView 被 CI 出口限制时无法切换认证链路。');
+    console.warn('⚠️  未配置 Bluesky App Password；公共 AppView 受限时将降级为 Jetstream 近期关键词流（无互动排行）。');
   }
   if (!(process.env.GITHUB_API_TOKEN || process.env.GITHUB_TOKEN)) {
     console.warn('⚠️  未配置 GitHub Token，将使用较低的匿名 API 限额。');

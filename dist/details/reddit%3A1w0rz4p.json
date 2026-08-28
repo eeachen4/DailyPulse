@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0rz4p",
+  "sourceItemId": "1w0rz4p",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w0rz4p/kubernetes_137_new_security_features/",
+  "detail": {
+    "longDescription": "Hi, all, a bit later than usual, but my usual roundup of new Kubernetes security features is finally published:\n\n* [https://www.sysdig.com/blog/kubernetes-1-37-new-security-features](https://www.sysdig.com/blog/kubernetes-1-37-new-security-features)\n\nHope you find it useful.\n\n**What may break things**\n\n* [\\#1710](https://github.com/kubernetes/enhancements/issues/1710) Speed up recursive SELinux label change\n* [\\#5343](https://github.com/kubernetes/enhancements/issues/5343) Make nftables the default kube-proxy backend\n* [\\#140226](https://github.com/kubernetes/kubernetes/issues/140226) Kubelet: Static Pods can no longer reference Secrets or ConfigMaps\n\n**Net new enhancements**\n\n* [\\#4939](https://github.com/kubernetes/enhancements/issues/4939) Support TLS credentials in gRPC probe\n* [\\#5502](https://github.com/kubernetes/enhancements/issues/5502) Add stickyBit support for emptydir volumes\n* [\\#5823](https://github.com/kubernetes/enhancements/issues/5823) Pod-level checkpoint/restore\n* [\\#5855](https://github.com/kubernetes/enhancements/issues/5855) Add bind mount options (noexec, nodev, nosuid) support on volumeMounts\n* [\\#5936](https://github.com/kubernetes/enhancements/issues/5936) Add user fields to atomic write volumes\n* [\\#5943](https://github.com/kubernetes/enhancements/issues/5943) Topology for volume snapshots\n* [\\#6060](https://github.com/kubernetes/enhancements/issues/6060) API server authentication to webhooks\n\n**Enabled by default**\n\n* [\\#2033](https://github.com/kubernetes/enhancements/issues/2033) Kubelet-in-userns, aka rootless mode\n* [\\#5541](https://github.com/kubernetes/enhancements/issues/5541) Report last used time on a PVC\n* [\\#5793](https://github.com/kubernetes/enhancements/issues/5793) Manifest-based admission control config\n\n**Changes in other existing features**\n\n* [\\#4412](https://github.com/kubernetes/enhancements/issues/4412) Projected service account tokens for Kubelet image credential providers\n* [\\#3257](https://github.com/kubernetes/enhancements/issues/3257) ClusterTrustBundles (previously Trust Anchor Sets)\n* [\\#4317](https://github.com/kubernetes/enhancements/issues/4317) Pod certificates\n* [\\#4762](https://github.com/kubernetes/enhancements/issues/4762) Allows setting any FQDN as the pod's hostname\n* [\\#5295](https://github.com/kubernetes/enhancements/issues/5295) KYAML",
+    "developer": "capitangolo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

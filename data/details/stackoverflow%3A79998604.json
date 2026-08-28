@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998604",
+  "sourceItemId": "79998604",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://stackoverflow.com/questions/79998604/fastapi-form-with-listtype-sends-array-as-comma-separated-string-2-5-cau",
+  "detail": {
+    "longDescription": "Here's a Minimal, Reproducible Example: from fastapi import FastAPI, Form from typing import Annotated, List app = FastAPI() @app.post('/') def create(arr: Annotated[List[int], Form()] = []): return arr Sending a request with 2 or more elements in arr yields this response: { \"detail\": [ { \"type\": \"int_parsing\", \"loc\": [ \"body\", \"arr\", 0 ], \"msg\": \"Input should be a valid integer, unable to parse string as an integer\", \"input\": \"1,5\" } ] } but sending a request where arr contains no elements or exactly 1 element yields the expected response where the array itself is returned. I tried changing the Form() to Form(...) but nothing changes. interestingly enough changing List[int] to List[str] and sending an array with multiple strings doesn't return a 422 but rather returns an array with exactly one string element containing the comma separated elements: [ \"First String,2nd String,Number 3\" ] Somebody else experienced this issue HERE .",
+    "developer": "buzzbuzz20xx",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "80"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

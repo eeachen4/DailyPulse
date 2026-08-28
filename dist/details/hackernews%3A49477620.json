@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49477620",
+  "sourceItemId": "49477620",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49477620",
+  "detail": {
+    "longDescription": "OP here: this project was born out of the frustration&#x2F;paranoia that AI providers are throttling their models when their server load is too high. So, I set out to model and study the problem mathematically to understand what was happening, what I found was quite surprising. The idea seems natural: as the data center demand increases momentarily through the day, throttling their models (either using quantized versions, reducing the context window or lowering the tier of the model to a smaller one) seems appealing as the replacement model in principle uses less electricity. The problem is that this can cause the opposite effect: as users are trying to solve a question, if the degraded AI model gives a bad answer, the user is likely to keep re-asking. On the AI provider side this looks paradoxical: throttling to a lower model creates in fact more demand for their data center. This problem is even worse for agentic workflows, as these are more likely to create a re-ask storm, and maybe explains the outages and anecdotal experiences of users that feel the models are degraded. The model: I used mainly queueing theory arguments solving the optimal scheduling serving for an AI fleet with heterogeneous users solving a finite horizon Dynamic Programming optimization problem. Insights: The industry standard practice of throttling once the number of users in system exceeds a given threshold is in fact what’s causing the problem, the optimal rule implies separating users that won’t feel degradation as much with users that are very sensitive to it (agents and power users vs users doing simple tasks). Limitations: The visualization and paper examples are a toy example to illustrate the problem, only the providers have enough data to properly calibrate these instances. In the paper there are some interesting calibrated instances. Technical Details: The visualization is around 100 lines of flask plus js frontend (LLM assisted with ground truth based on the original numerical example of the paper). Paper with proofs&#x2F;theory: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2608.23986",
+    "externalUrl": "https://throttle.staffinganalytics.io/?src=hn",
+    "developer": "eliotho",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

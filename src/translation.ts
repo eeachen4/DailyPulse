@@ -12,6 +12,7 @@ interface TranslationEntry {
 }
 
 type TranslationCache = Record<string, TranslationEntry>;
+type TranslationProvider = { kind: 'libretranslate'; apiUrl: string } | { kind: 'mymemory'; apiUrl: string };
 
 function fingerprint(item: FeedItem): string {
   const value = `${item.title}\n${item.description ?? ''}`;
@@ -31,10 +32,21 @@ function containsChinese(value: string | undefined): boolean {
   return Boolean(value && /[\p{Script=Han}]/u.test(value));
 }
 
-function endpoint(): string | undefined {
+function provider(): TranslationProvider | undefined {
   const configured = process.env.TRANSLATION_API_URL?.trim();
-  if (!configured) return undefined;
-  return configured.endsWith('/translate') ? configured : configured.replace(/\/$/, '') + '/translate';
+  if (configured) {
+    return {
+      kind: 'libretranslate',
+      apiUrl: configured.endsWith('/translate') ? configured : configured.replace(/\/$/, '') + '/translate',
+    };
+  }
+  if (process.env.TRANSLATION_PROVIDER === 'mymemory') {
+    return {
+      kind: 'mymemory',
+      apiUrl: process.env.TRANSLATION_MYMEMORY_API_URL || 'https://api.mymemory.translated.net/get',
+    };
+  }
+  return undefined;
 }
 
 async function readCache(filePath: string): Promise<TranslationCache> {
@@ -52,7 +64,29 @@ async function writeCache(filePath: string, cache: TranslationCache): Promise<vo
   await rename(tempPath, filePath);
 }
 
-async function translateText(apiUrl: string, values: string[]): Promise<string[]> {
+async function translateText(translationProvider: TranslationProvider, values: string[]): Promise<string[]> {
+  if (translationProvider.kind === 'mymemory') {
+    return Promise.all(values.map(async (value) => {
+      const response = await axios.get<{ responseData?: { translatedText?: string }; responseStatus?: number }>(
+        translationProvider.apiUrl,
+        {
+          params: {
+            q: value.slice(0, 450),
+            langpair: `${process.env.TRANSLATION_SOURCE_LANGUAGE || 'en'}|${process.env.TRANSLATION_TARGET_LANGUAGE || 'zh-CN'}`,
+            mt: 1,
+          },
+          timeout: 30_000,
+        },
+      );
+      const translated = response.data?.responseData?.translatedText;
+      if (!translated || (response.data.responseStatus && response.data.responseStatus >= 400)) {
+        throw new Error('MyMemory 没有返回可用译文');
+      }
+      return translated;
+    }));
+  }
+
+  const apiUrl = translationProvider.apiUrl;
   const payload = (q: string | string[]) => ({
     q,
     source: process.env.TRANSLATION_SOURCE_LANGUAGE || 'auto',
@@ -76,8 +110,8 @@ async function translateText(apiUrl: string, values: string[]): Promise<string[]
 }
 
 export async function translateFeedItems(items: FeedItem[]): Promise<FeedItem[]> {
-  const apiUrl = endpoint();
-  if (!apiUrl) {
+  const translationProvider = provider();
+  if (!translationProvider) {
     console.log('[translation] 未配置 TRANSLATION_API_URL，保留已有中文字段并跳过新增翻译');
     return items;
   }
@@ -122,9 +156,10 @@ export async function translateFeedItems(items: FeedItem[]): Promise<FeedItem[]>
       const itemFingerprint = fingerprint(item);
       const key = cacheKey(item);
       const values = [item.title];
-      if (item.description) values.push(item.description.slice(0, 800));
+      // 公共 MyMemory 匿名额度较小，只翻译标题；自托管 LibreTranslate 继续补充描述。
+      if (translationProvider.kind === 'libretranslate' && item.description) values.push(item.description.slice(0, 800));
       try {
-        const translated = await translateText(apiUrl, values);
+        const translated = await translateText(translationProvider, values);
         const next = {
           ...item,
           titleZh: translated[0] || item.titleZh,

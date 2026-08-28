@@ -164,9 +164,12 @@ export async function scrapeDetail(url: string): Promise<ScrapedDetail> {
 function applyDetail(item: FeedItem, d: ScrapedDetail): FeedItem {
   const next: FeedItem = { ...item };
 
+  // GKG 实时文件没有标题字段，先使用 URL slug；详情页可访问时以站点正式标题覆盖。
+  if (item.source === 'gdelt' && d.title) next.title = d.title;
   if (d.description && (!item.longDescription || d.description.length > item.longDescription.length)) {
     next.longDescription = d.description;
   }
+  if (d.description && !item.description) next.description = d.description.slice(0, 280);
   if (d.image && !item.thumbnail) next.thumbnail = d.image;
   if (d.screenshots && d.screenshots.length) next.screenshots = d.screenshots.slice(0, 8);
   if (d.rating !== undefined && item.rating === undefined) next.rating = d.rating;
