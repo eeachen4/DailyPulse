@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79998735",
   "sourceItemId": "79998735",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998735/how-should-playwright-handle-a-locator-when-the-ui-changes-but-the-user-flow-sta",
   "detail": {
     "longDescription": "I’m exploring Playwright test maintenance and came across a situation I’m curious about. Suppose a test originally uses: await page.getByRole('button', { name: 'Submit' }).click(); Later, the UI is updated and the button text changes from Submit to Continue, while the underlying user action remains the same. The original locator now fails, even though the functionality being tested may not have changed. Updating the locator to match the new UI is straightforward. The difficult part is determining whether the new element is actually the intended replacement. For example, if there are multiple similar elements on the page, simply choosing another matching element could make the test pass while it is actually interacting with the wrong element. How do you handle this situation in Playwright?",

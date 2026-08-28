@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "reddit:1w0q8le",
   "sourceItemId": "1w0q8le",
+  "fetchedAt": "2026-08-28T16:35:51.777Z",
   "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w0q8le/won_a_bot_battle/",
   "detail": {
     "longDescription": "We support a client site with ~20,000 pages. It has an SSR search page that uses the url querystring to execute the search/sort/filter.\n\nWe have of course disallowed bots on that page because the 20k pages are meaningful and should be scraped/indexed, but the billions of possible query combinations on a search page are not.  Most of the bots just ignore the robots rule and this results in waves of traffic hammering every possible query combination on the search page.  These waves are 10x-50x the human traffic. \n\nRather than let the bill autoscale along with the server cluster, I wrote a little bash script that crons 1/m:\n\n- Hits DO's metrics endpoint to check the CPU usage on the VPSs/DBs\n- Each minute any of the CPUs stays above the threshold, bump CF's security level, eventually ending in \"under attack\" + \"bot fight\"\n- When the cpu drops below the threshold for a given amount of time, start backing off until we're back to normal operation.\n\nWorks a treat.  It's nothing particularly flashy or sophisticated, but it was satisfying to think through an under-engineered solution to a problem that a lot of people end up just chucking money/clusters at.",
