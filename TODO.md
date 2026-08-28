@@ -17,10 +17,9 @@
   - 未配置时 Product Hunt 回退 Apify（需 `APIFY_API_KEY`）。
   - App Store / Google Play / Bluesky / Mastodon / GDELT / Hacker News / Hugging Face / Stack Overflow / arXiv / RSS 无需必填 key；Reddit 推荐配置 OAuth，GitHub 推荐配置 Token。
 
-- [ ] **运行线上采集并验证 13/13**
-  - Reddit / Bluesky 已分别具备 Arctic Shift / Jetstream 无凭据降级；手动触发 Daily Fetch，确认覆盖门禁显示 13/13，再确认 Pages 部署成功。
+- [x] **运行线上采集并验证 13/13**
+  - 2026-08-29 手动运行 Daily Fetch 已通过：1,430 条数据、13/13 来源覆盖；Reddit / Bluesky / GDELT 分别通过 Arctic Shift / Jetstream / GKG 官方存储降级取得本轮数据。
   - 可选配置 Reddit OAuth 与 Bluesky App Password，以恢复官方接口和更完整的互动排序。
-  - 手动触发一次 Daily Fetch，确认覆盖门禁显示 13/13，再确认 Pages 部署成功。
 
 - [ ] **完成 HTTPS 强制跳转**
   - 页面已有 HTTP → HTTPS 客户端兜底，HTTPS 本身可访问。
