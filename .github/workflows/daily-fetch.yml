@@ -2,10 +2,15 @@ name: DailyPulse Daily Fetch
 
 on:
   schedule:
-    # UTC 0:00 = 北京时间 08:00
-    - cron: '0 0 * * *'
+    # 避开 GitHub Actions 整点高峰：北京时间 07:37 主触发，08:17 兜底。
+    # 第二次触发会先检查上海自然日快照，已有新鲜数据时自动跳过。
+    - cron: '37 23 * * *'
+    - cron: '17 0 * * *'
   # 支持在 Actions 页面手动触发
   workflow_dispatch: {}
+  # 可由外部可靠调度器调用 GitHub API 触发。
+  repository_dispatch:
+    types: [daily-fetch]
 
 permissions:
   contents: write
@@ -19,21 +24,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Check snapshot freshness
+        id: freshness
+        run: node .github/scripts/check-freshness.mjs
+        env:
+          FORCE_FETCH: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          FRESHNESS_MAX_AGE_HOURS: '12'
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        if: steps.freshness.outputs.should_fetch == 'true'
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: npm ci
 
       - name: Typecheck
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: npm run typecheck
 
       - name: Fetch data
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: npm run fetch
         env:
           # Product Hunt 官方 API（未配置时回退 Apify）
@@ -54,20 +70,34 @@ jobs:
           # 可选：LibreTranslate 兼容翻译服务
           TRANSLATION_API_URL: ${{ vars.TRANSLATION_API_URL }}
           TRANSLATION_API_KEY: ${{ secrets.TRANSLATION_API_KEY }}
-          TRANSLATION_MAX_ITEMS_PER_RUN: ${{ vars.TRANSLATION_MAX_ITEMS_PER_RUN }}
+          # 未配置自托管服务时，用 MyMemory 免费匿名额度每天增量翻译少量标题。
+          TRANSLATION_PROVIDER: ${{ vars.TRANSLATION_PROVIDER || 'mymemory' }}
+          TRANSLATION_MAX_ITEMS_PER_RUN: ${{ vars.TRANSLATION_MAX_ITEMS_PER_RUN || '20' }}
 
       - name: Build site
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: npm run build:all
 
+      - name: Validate production bundle
+        if: steps.freshness.outputs.should_fetch == 'true'
+        run: npm run validate:dist
+
       - name: Validate generated data
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: npm run validate:data
+        env:
+          REQUIRE_DATA_QUALITY: 'true'
 
       - name: Check source health
+        if: steps.freshness.outputs.should_fetch == 'true'
         id: source_health
         continue-on-error: true
         run: npm run check:health
+        env:
+          REQUIRE_ALL_SOURCES: 'true'
 
       - name: Commit & push generated files
+        if: steps.freshness.outputs.should_fetch == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -75,7 +105,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore: update daily data $(date -u +%Y-%m-%d)"
+            git commit -m "chore: update daily data $(TZ=Asia/Shanghai date +%Y-%m-%d)"
             git push
           fi
 

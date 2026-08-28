@@ -251,3 +251,9 @@ export function healthGateFailures(health: SourceHealth[]): SourceHealth[] {
       && entry.consecutiveFailures > entry.maxConsecutiveFailures,
   );
 }
+
+/** 当前采集必须实际覆盖的来源；历史保底条目不能冒充本轮成功。 */
+export function coverageGateFailures(health: SourceHealth[], requiredSources: readonly Source[] = SOURCES): SourceHealth[] {
+  const required = new Set(requiredSources);
+  return health.filter((entry) => required.has(entry.source) && entry.currentCount < 1);
+}

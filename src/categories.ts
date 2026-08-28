@@ -113,7 +113,8 @@ export const CATEGORIES: CategoryDef[] = [
     hex: '#f59e0b',
     appStore: { mode: 'search', searchTerms: ['AI agent', 'agent'] },
     googlePlay: { mode: 'search', searchTerms: ['AI agent'] },
-    productHuntTopics: ['ai-agents'],
+    // ai-agents 偶尔返回空集；artificial-intelligence 保证官方 API 仍有可用降级结果。
+    productHuntTopics: ['ai-agents', 'artificial-intelligence'],
     redditSubreddits: ['AI_Agents', 'LLMDevs', 'LangChain'],
     blueskyQueries: ['AI agent', 'agentic', 'LangChain'],
     mastodonTags: ['aiagents', 'agenticai', 'langchain'],

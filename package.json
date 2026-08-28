@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "DailyPulse — 每日自动聚合 App Store / Google Play / Product Hunt / Reddit 全球热门内容的「信息早餐」",
+  "description": "DailyPulse — 每日聚合 13 个产品、社区、新闻、代码与论文来源的「信息早餐」",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,6 +13,7 @@
     "migrate:data": "tsx src/storage/migrateData.ts",
     "fetch": "tsx src/index.ts",
     "validate:data": "tsx src/storage/validateData.ts",
+    "validate:dist": "tsx src/storage/validateDist.ts",
     "check:health": "tsx src/storage/checkHealth.ts",
     "notify:failure": "tsx src/storage/notifyFailure.ts",
     "test": "tsx --test src/tests/*.test.ts",
@@ -23,20 +24,21 @@
     "axios": "^1.7.2",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
+    "fflate": "^0.8.3",
     "google-play-scraper": "^9.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.2",
+    "@types/node": "^22.20.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^6.1.1",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "tsx": "^4.15.6",
-    "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
   }
 }

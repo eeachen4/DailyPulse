@@ -28,39 +28,44 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # workflow_run.head_sha 是采集开始前的 SHA；采集成功后生成的
           # data/dist 提交已经推到 main，因此这里必须取最新 main。
           ref: main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate production bundle
+        run: npm run validate:dist
+
       - name: Validate deployment snapshot
         run: npm run validate:data
         env:
           REQUIRE_ENRICHED_DATA: 'true'
+          REQUIRE_DATA_QUALITY: 'true'
 
       - name: Enforce deployment health gate
         run: npm run check:health
         env:
           REQUIRE_SOURCE_HEALTH: 'true'
+          REQUIRE_ALL_SOURCES: 'true'
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
