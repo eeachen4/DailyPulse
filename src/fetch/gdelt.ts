@@ -145,6 +145,45 @@ export function secureGdeltAssetUrl(url: string): string {
   return url.replace(/^http:/i, 'https:');
 }
 
+function formatGdeltTimestamp(date: Date): string {
+  return [
+    date.getUTCFullYear(),
+    String(date.getUTCMonth() + 1).padStart(2, '0'),
+    String(date.getUTCDate()).padStart(2, '0'),
+    String(date.getUTCHours()).padStart(2, '0'),
+    String(date.getUTCMinutes()).padStart(2, '0'),
+    String(date.getUTCSeconds()).padStart(2, '0'),
+  ].join('');
+}
+
+export function gdeltAssetCandidates(listedUrl: string, intervals = 4): string[] {
+  const secured = secureGdeltAssetUrl(listedUrl);
+  const parsed = new URL(secured);
+  const match = parsed.pathname.match(/(\d{14})(\.gkg\.csv\.zip)$/i);
+  const paths = [parsed.pathname];
+
+  if (match) {
+    const timestamp = match[1];
+    const base = new Date(Date.UTC(
+      Number(timestamp.slice(0, 4)),
+      Number(timestamp.slice(4, 6)) - 1,
+      Number(timestamp.slice(6, 8)),
+      Number(timestamp.slice(8, 10)),
+      Number(timestamp.slice(10, 12)),
+      Number(timestamp.slice(12, 14)),
+    ));
+    for (let offset = 1; offset < Math.max(1, intervals); offset += 1) {
+      const previous = new Date(base.getTime() - offset * 15 * 60 * 1_000);
+      paths.push(parsed.pathname.replace(match[0], `${formatGdeltTimestamp(previous)}${match[2]}`));
+    }
+  }
+
+  return paths.flatMap((path) => [
+    `https://storage.googleapis.com/data.gdeltproject.org${path}`,
+    `${parsed.origin}${path}`,
+  ]);
+}
+
 async function getWithRetries<T>(url: string, config: AxiosRequestConfig, attempts = 3): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt < attempts; attempt += 1) {
@@ -161,7 +200,7 @@ async function getWithRetries<T>(url: string, config: AxiosRequestConfig, attemp
 async function fetchLiveGkg(): Promise<GkgRecord[]> {
   if (!liveGkgPromise) {
     liveGkgPromise = (async () => {
-      const update = await getWithRetries<string>(LAST_UPDATE, {
+      const update = await getWithRetries<string>(`${LAST_UPDATE}?_=${Date.now()}`, {
         timeout: 15_000,
         responseType: 'text',
         headers: { Accept: 'text/plain', 'User-Agent': 'DailyPulse/1.0' },
@@ -171,14 +210,26 @@ async function fetchLiveGkg(): Promise<GkgRecord[]> {
         .map((line) => line.trim().split(/\s+/).at(-1))
         .find((url) => url?.endsWith('.gkg.csv.zip'));
       if (!listedGkgUrl) throw new Error('GDELT lastupdate.txt 未提供 GKG 文件');
-      // 官方清单仍返回 http://；GitHub-hosted runner 对该明文跳转可能返回 404。
-      const gkgUrl = secureGdeltAssetUrl(listedGkgUrl);
-      const archive = await getWithRetries<ArrayBuffer>(gkgUrl, {
-        timeout: 60_000,
-        responseType: 'arraybuffer',
-        maxContentLength: 30 * 1024 * 1024,
-        headers: { Accept: 'application/zip', 'User-Agent': 'DailyPulse/1.0' },
-      });
+      // 公开域名在托管 Runner 上偶发 404；优先读取其官方 GCS 后端，
+      // 并回退到此前的 15 分钟时间片，避开清单与对象同步的短暂竞态。
+      let archive: ArrayBuffer | undefined;
+      let lastError: unknown;
+      for (const gkgUrl of gdeltAssetCandidates(listedGkgUrl)) {
+        try {
+          archive = await getWithRetries<ArrayBuffer>(gkgUrl, {
+            timeout: 60_000,
+            responseType: 'arraybuffer',
+            maxContentLength: 30 * 1024 * 1024,
+            headers: { Accept: 'application/zip', 'User-Agent': 'DailyPulse/1.0' },
+          }, 1);
+          break;
+        } catch (error) {
+          lastError = error;
+          const status = axios.isAxiosError(error) ? error.response?.status : undefined;
+          console.warn(`[gdelt/gkg] 下载失败 ${status ?? 'network'}：${gkgUrl}`);
+        }
+      }
+      if (!archive) throw lastError ?? new Error('GDELT GKG 实时文件不可用');
       return parseGkgArchive(new Uint8Array(archive));
     })().catch((error) => {
       liveGkgPromise = undefined;

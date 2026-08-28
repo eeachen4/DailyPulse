@@ -9,7 +9,7 @@ import { promisify } from 'node:util';
 import { strToU8, zipSync } from 'fflate';
 import { buildIntelligence } from '../intelligence';
 import { applySourceHealth, coverageGateFailures } from '../sourceHealth';
-import { parseGkgArchive, secureGdeltAssetUrl } from '../fetch/gdelt';
+import { gdeltAssetCandidates, parseGkgArchive, secureGdeltAssetUrl } from '../fetch/gdelt';
 import { fetchReddit } from '../fetch/reddit';
 import { blueskyQueryMatches } from '../fetch/bluesky';
 import { CATEGORIES } from '../categories';
@@ -226,6 +226,18 @@ test('GDELT GKG fallback parses the official tab-separated archive', () => {
   assert.equal(
     secureGdeltAssetUrl('http://data.gdeltproject.org/gdeltv2/sample.gkg.csv.zip'),
     'https://data.gdeltproject.org/gdeltv2/sample.gkg.csv.zip',
+  );
+});
+
+test('GDELT live assets use the official storage backend and earlier time slices', () => {
+  assert.deepEqual(
+    gdeltAssetCandidates('http://data.gdeltproject.org/gdeltv2/20260828164500.gkg.csv.zip', 2),
+    [
+      'https://storage.googleapis.com/data.gdeltproject.org/gdeltv2/20260828164500.gkg.csv.zip',
+      'https://data.gdeltproject.org/gdeltv2/20260828164500.gkg.csv.zip',
+      'https://storage.googleapis.com/data.gdeltproject.org/gdeltv2/20260828163000.gkg.csv.zip',
+      'https://data.gdeltproject.org/gdeltv2/20260828163000.gkg.csv.zip',
+    ],
   );
 });
 
