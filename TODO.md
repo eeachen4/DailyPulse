@@ -25,8 +25,8 @@
   - 页面已有 HTTP → HTTPS 客户端兜底，HTTPS 本身可访问。
   - GitHub Pages 暂无源站证书，Cloudflare API Token 又限制当前出口 IP；需在 Cloudflare 启用 **Always Use HTTPS**，或临时关闭代理让 GitHub 完成证书签发后再开启 `https_enforced`。
 
-- [ ] **确认访问量统计归属**
-  - 页面已加载 Cloudflare Web Analytics beacon，但需在拥有 `kitdesk.site` 的 Cloudflare 账号确认对应站点与 Token，才能读取真实 PV/UV。
+- [x] **确认访问量统计归属**
+  - 已在 Cloudflare 创建 `dailypulse.kitdesk.site` Web Analytics 站点，并将页面 Beacon Token 替换为该站点专属 Token；部署后开始积累 PV/访问量。
 
 ---
 
