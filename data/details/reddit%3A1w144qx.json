@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w144qx",
+  "sourceItemId": "1w144qx",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w144qx/followup_yall_tore_apart_my_openapitomcp_tool_so/",
+  "detail": {
+    "longDescription": "Hey — yesterday I shared a small tool I built: mcpify, turns any OpenAPI spec\n\ninto an MCP server. Didn't expect much from the post, but the comments here\n\nwere genuinely useful, so instead of letting it die in my post history, here's\n\nwhat actually changed.\n\nWhat came out of the feedback:\n\n• \"GET-only isn't side-effect-free\" — that comment was right on the money. I\n\n  tested it myself with a mutating GET endpoint and it sailed right through.\n\n  There's now a proper policy layer: --deny REGEX hides anything sketchy\n\n  (including that GET /admin/reset-cache), and --allow REGEX brings back\n\n  read-style POST endpoints like /search. Deny always wins over allow.\n\n• \"just tell the agent to use curl\" — fair point for CLI agents like Claude\n\n  Code. Less true for Claude Desktop, which has no shell — MCP tools are the\n\n  only way it can reach your API at all. And pasting endpoint docs into\n\n  context every session is its own token tax.\n\n• \"MCP is a contract, shouldn't be dynamic\" — partially accepted this one.\n\n  Tools are built once at startup and never change while the process runs, so\n\n  if you serve a pinned spec file, the surface is as static as a handwritten\n\n  server. If your spec changes under you, that's your API's breaking change —\n\n  you'd inherit it either way. Docs now say this plainly instead of me\n\n  hand-waving it.\n\nWhat's new since the last post:\n\n• Proper PyPI package: pipx install mcpify-openapi\n\n  (the command is still \\`mcpify\\` — long story, the name was taken)\n\n• Listed in the official MCP Registry: io.github.furkan708/mcpify — one git\n\n  tag now publishes PyPI + registry + GitHub release automatically\n\n• 60 tests including real end-to-end MCP protocol tests, mypy strict, CodeQL\n\n• It reads specs directly from URLs, so you can point it at your team's\n\n  spec service without committing or generating anything\n\nStill true / still missing: no OpenAPI doc = no tools (I don't write your\n\nspecs for you), stdio only — no remote/SSE transport yet.\n\nRepo: https://github.com/furkan708/mcpify\n\nFull usage guide and architecture docs are in the repo; there's also a small\n\nsite if you just want the pitch: https://furkan708.github.io/mcpify-site/\n\nSame question as last time, because the answers genuinely shaped the roadmap:\n\nwhich API would you point this at first?",
+    "developer": "BeneficialPenalty589",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

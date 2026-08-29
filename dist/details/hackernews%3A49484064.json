@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49484064",
+  "sourceItemId": "49484064",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49484064",
+  "detail": {
+    "longDescription": "I live in the Bay Area, and so the weather cools down to a comfy temperature in the evenings. Opening up the windows to let the fresh air in has saved me a decent amount on A&#x2F;C bills. Checking a forecast every hour to catch that moment is exactly the kind of job a computer should do. PorchWeather watches one saved location and a set of conditions you pick (temperature range, wind, rain, dew point, air quality) and sends you a notification when conditions become nice, and another when they stop. That&#x27;s the whole product. It&#x27;s free, web-native (not an app), and notifications are browser push or email. Some implementation details HN might find interesting: Stack: SvelteKit SPA, Rust backend, DynamoDB, Cognito for auth, SES for email, Self-hosted Open-Meteo for weather all on ECS Fargate. The weather layer serves ECMWF global plus NOAA HRRR at 3 km resolution for the US. Notifications are primarily through web push. I&#x27;d love to do SMS through twilio, but it seems prohibitively expensive for a free service unfortunately. iOS devices make this a little harder because you have to &quot;install&quot; the app on the home screen to get push notifications. I may end up creating an app at some point to make this easier if there&#x27;s demand.",
+    "externalUrl": "https://porchweather.com/",
+    "developer": "gregable",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

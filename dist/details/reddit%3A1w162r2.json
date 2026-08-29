@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w162r2",
+  "sourceItemId": "1w162r2",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w162r2/oss_convert_pdf_to_html_with_100_visual_parity/",
+  "detail": {
+    "longDescription": "I ran into two problems using unpdf and PDF.js in edge functions: RAM usage and visual accuracy. Both load the entire file into a byte array before processing.\n\nSo I built a dependency-free, low-memory reader for edge workers:  [https://github.com/earonesty/streaming-pdf-reader](https://github.com/earonesty/streaming-pdf-reader)\n\nThe trick was using PDFium as the reference renderer:  \n[https://pdfium.googlesource.com/pdfium/+/master/README.md](https://pdfium.googlesource.com/pdfium/+/master/README.md)\n\nI pulled down more than 100 test PDFs from various open-source projects and rendered them with PDFium. Then I converted each PDF to HTML, rendered that HTML in a browser, and compared the resulting pixels. I used deterministic pixel matching rather than a VLM, so visual regressions were reproducible.\n\nThat led to a separation between two kinds of output:\n\n  \\- **Visual HTML** preserves the PDF’s presentation as closely as possible.  \n  \\- **Semantic HTML** reflows the content into a simpler reading order.\n\nThe visual representation came first because a PDF’s apparent reading order is encoded in its geometry. If you simplify too early, you lose the evidence needed to distinguish a table from a newspaper column or group an image with its caption.\n\nThe reader uses HTTP range requests and bounded caches, so it can render the first page without downloading a huge document into memory.\n\nThe semantic side is still evolving. It uses statistical layout evidence - font size, alignment, indentation, spacing, repeated headers, hanging indents, and page-to-page continuity. The goal is to produce simplified, reflowed, lossless HTML.  Unfortunately there is no good \"oracle\" for this, or clear and obvious \"correctness\", other than \"reading order must be correct\".  This is useful for LLMs and data extraction (and is the second reason I had to write this thing, aside from RAM).\n\nThis is a follow up to my earlier low-memory PDF writer package (similar reasons there too), so the emerging package layout is:\n\n      - @boxpdf/reader: streaming PDF → document model\n      - @boxpdf/html-writer: document model → visual or semantic HTML\n      - @boxpdf/writer: document model → PDF\n      - @boxpdf/html-reader: HTML → document model\n\nThe PDF-to-HTML accuracy became an ordinary testing problem once PDFium was treated as the oracle. Render both versions, compare the pixels, inspect the failure, improve the general rule.\n\nIt’s early, but it now handles a pretty hostile corpus: embedded fonts, Type 3 glyphs, clipping paths, vector graphics, raster images, forms, rotations, tables, multi-column papers, and very large streamed documents.\n\nI’d be especially interested in difficult PDFs that break other converters. Weird fonts, charts, scanned documents, malformed files, enormous files - anything unpleasant makes a useful fixture.  ",
+    "developer": "earonesty",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w19hjv",
+  "sourceItemId": "1w19hjv",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w19hjv/qwen38flashnext_opens_up_new_doors/",
+  "detail": {
+    "longDescription": "When seeing the 51B engram embedding, an idea struck me - can I change the engram data based on my usage, basically customising the model with “memories” that will change the model responses and behaviour over time?\n\nFollowing is an AI explanation of my idea, as it might be more structured and clear than what I would write.\n\nPlease join this discussion, ideas are open!!\n\nI’ve been thinking about whether Qwen3.8-Flash-Next’s new 51B Engram could be turned into something more interesting than a fixed pretrained memory: a genuinely persistent, continually learning memory for the model. The Engram is essentially a huge hashed bigram/trigram embedding table injected very early in the network, so unlike RAG it doesn’t retrieve text—it changes the representation that the model itself sees. My idea would be to leave the original 51B Engram completely frozen and add a relatively small sparse “delta Engram” in RAM/SSD. The delta would associate frequently encountered patterns with learned vector modifications, allowing the model’s behaviour to gradually adapt without retraining the 125B backbone.  \nThe memory writer would sit outside the model and process conversations, outputs, feedback and post-processing results. Rather than blindly learning from every token, it would identify durable facts, preferences, terminology, coding conventions and behavioural patterns, assign confidence and persistence/decay, and update the relevant Engram entries. Repeatedly reinforced memories would become stronger, while uncertain or contradictory memories would decay or be revised. I’d probably separate permanent, adaptive and session memory, with only high-confidence information making it into the persistent layer. Most importantly, I would use a sparse delta overlay rather than overwriting the pretrained Engram, so the base model remains recoverable and the memory can be enabled, disabled, versioned or rolled back.  \nThis also fits nicely with the n-gram/speculative-decoding experiments I’ve been doing locally. On my 64GB M1 Max, a static n-gram cache with a 16-8-16 configuration gives roughly a 5% decode improvement, and I’ve been considering a continuously updated dynamic n-gram table in perhaps 256–512MB of RAM, periodically checkpointed to SSD. That cache is useful because it learns which continuations are actually predictable for my workload, whereas the Engram memory would go one level deeper: instead of merely predicting the next tokens faster, persistent Engram deltas could actually alter the model’s subsequent probability distribution. The two could coexist: static n-gram + dynamic n-gram for speculative decoding, and persistent Engram deltas for long-term behavioural adaptation.  \nThe architecture I’m imagining is therefore: frozen Qwen weights + frozen pretrained Engram + sparse 256–512MB-ish adaptive Engram overlay + memory writer/validator + SSD checkpoints. The writer could learn from successful interactions and post-processing rather than requiring full backprop through the huge model. The interesting research question is whether small, carefully controlled vector updates can stay within the representation manifold expected by the downstream network and produce useful persistent behaviour without causing model drift. If that works, it would be a very different kind of local AI memory: not a database that gets pasted into the context, but a model whose behaviour itself gradually adapts to its accumulated experience.",
+    "developer": "memeka",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

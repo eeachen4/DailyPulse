@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w15gix",
+  "sourceItemId": "1w15gix",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w15gix/is_my_deployment_flow_sound/",
+  "detail": {
+    "longDescription": "I read kustomize a fews days ago. Looks like it's going to help us with organizing deployments in argocd\n\nHere's an example I found:\n\n`my-update-project:`  \n  `stage: gitdeploy`  \n  `image: alpine:latest`  \n  `script:`  \n`- apk add --no-cache git curl kustomize`  \n  \n`# Clone GitOps repo`  \n`- git clone` [`https://deploy-bot:${DEPLOY_TOKEN}@gitlab.com/myorg/gitops-repo.git`](https://deploy-bot:${DEPLOY_TOKEN}@gitlab.com/myorg/gitops-repo.git)  \n`- cd gitops-repo/my-app/overlays/${DEPLOY_ENV}`  \n  \n`# Update image tag`  \n`- kustomize edit set image myregistry/my-app:$CI_COMMIT_SHORT_SHA`  \n  \n`# Commit & push`  \n`- git config user.email \"ci-bot@myorg.com\"`  \n`- git config` [`user.name`](http://user.name) `\"CI Bot\"`  \n`- git commit -am \"Deploy ${DEPLOY_ENV} my-app:$CI_COMMIT_SHORT_SHA [skip ci]\"`  \n`- git push`  \n  \nHowever, I believe this can encounter an issue like several devs making updates and pipeline almost running at the same time. How did you solve this?",
+    "developer": "Oxffff0000",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

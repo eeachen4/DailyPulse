@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w0wstn",
+  "sourceItemId": "1w0wstn",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w0wstn/how_are_you_all_managing_cpumemory_requests/",
+  "detail": {
+    "longDescription": "How do you decide the numbers, and how do you keep them right over time?\n\n**Before I did any research:** low requests → performance problems, high requests → huge cost. Felt like a lose-lose.\n\n**After digging into my own monitoring data, here's where I landed (tell me if this is wrong):**\n\nWhat I'm running today, and what I now think is off about it:\n\n* **CPU request too high (200–500m).** My services barely use 20m steady-state. This is pure waste and it's what's driving my node count.\n* **CPU limit only a bit above request (800m–1000m).** Causing two problems: (1) Java services are slow / crash-loop at **startup**, because the JVM needs a big CPU burst to boot (JIT + class loading + Spring context); (2) occasional **slow requests from CPU throttling**.\n* **Memory request is fine (600Mi–1000Mi).** Matches what monitoring shows.\n* **Memory limit higher than request** — and I now think this is a mistake. Unlike CPU, memory isn't reversible: once a pod grabs memory above its request it *keeps* it (a JVM especially never gives heap back). So the burst headroom just risks **OOMKills for other pods** on the node, with no real upside.\n\n**Am I thinking about this correctly now?**\n\nIf yes, my plan:\n\n* **CPU:** drop request low (30–50m) and set the limit very high (3–4 cores) or remove it entirely — should fix both the throttling and the slow startup.\n* **Memory:** set request to real usage and keep the limit \\~equal to the request.\n\n**My one worry:** if I remove the CPU limit, won't a pod grab all the node's CPU during a spike and starve everything else?\n\nWould love to hear how people actually run this in prod — especially anyone running Java with no CPU limit. Does this hold up, or am I about to learn something the hard way?",
+    "developer": "ankitjindal9404",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

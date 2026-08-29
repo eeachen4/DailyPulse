@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w16r8u",
+  "sourceItemId": "1w16r8u",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w16r8u/gave_an_agent_30_tools_it_got_worse_at_using_the/",
+  "detail": {
+    "longDescription": "Was building an agent for a support workflow and kept adding tools as new cases came up. Ticket lookup, refund processing, order history, escalation, a dozen others. Seemed harmless, more capability, more coverage. Somewhere past tool 20 something shifted. The agent started picking the wrong tool for straightforward requests it used to handle fine back when it only had five options.\n\nWent back and tested the same requests against an earlier version of the agent with fewer tools. Higher accuracy on the exact same prompts. Nothing about the underlying model changed, nothing about the task changed. Just more options sitting in front of it at decision time.\n\nMakes sense once you think about what tool selection actually is for the model, a classification problem over whatever's in the tool list, and classification gets harder as the number of plausible-looking options grows, especially when several tools have overlapping descriptions that all sound reasonably relevant to a given request. Refund processing and order history can both look like the right call for \"customer wants their money back,\" depending on how the descriptions are worded, and the agent has to guess which one actually fits without much to disambiguate on.\n\nWhat helped more than I expected: splitting into smaller agents each with a narrow toolset, routed to by a lightweight first step, instead of one agent holding everything. Fewer choices at the point where the choice actually gets made. Doesn't feel as elegant as one agent that can do everything, but it's the version that's actually reliable.",
+    "developer": "ClickOk5811",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

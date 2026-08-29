@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999095",
+  "sourceItemId": "79999095",
+  "sourceUrl": "https://stackoverflow.com/questions/79999095/python-match-case-vs-dictionary-performance-internals",
+  "detail": {
+    "longDescription": "When conditional branching logic grows large in Python, the advice has always been to map keys to functions or values using a dictionary lookup mapping.get(key) to achieve O(1) time complexity, rather than using a long, O(n) sequence of if-elif statements. However, with structural pattern matching ( match-case ) in Python 3.10+, the syntax looks pretty clean for these types of large branch choices: match status_code: case 200: return \"OK\" case 404: return \"Not Found\" case 500: return \"Internal Server Error\" # ... dozens of cases Does the compiler optimize a match-case block with literal values into a jump table or an internal hash map lookup, or does it evaluate sequentially like a traditional if-elif loop? Does match-case create any transient runtime overhead compared to keeping a persistent dictionary configuration in memory? A direct look at the bytecode and performance benchmarks helps clarify when to choose one over the other for fast applications.",
+    "developer": "lowchess",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "5"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "52"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

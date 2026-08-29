@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w12m61",
+  "sourceItemId": "1w12m61",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w12m61/oc_trackarr_a_lightweight_selfhosted_media/",
+  "detail": {
+    "longDescription": "Hey r/selfhosted!\n\nI’m excited to share **Trackarr**, an open-source project I’ve been developing over the past months to solve my own homelab media tracking needs.\n\n# 💡 Why Trackarr?\n\n1. **⚡ Ultra-Lightweight & Fast**\n   * Written in **Go 1.24** with an embedded **SQLite database (WAL mode + FTS5 full-text search)** and a **Preact SPA frontend**.\n   * Idles at **under 30 MB of RAM** — ideal for low-power NAS setups (Synology, Unraid, TrueNAS, Raspberry Pi).\n2. **📡 Universal Scrobbling (Plex & Jellyfin)**\n   * Real-time webhook ingestion for **Plex** and **Jellyfin**.\n   * Tracks watch progress, episode toggles, completion badges, and complete watch history.\n3. **🌸 Advanced Anime & Multi-Part Seasons**\n   * Seamlessly solves the classic anime split-season issue (e.g. Cour 1 / Cour 2) with multi-part mapping.\n   * Automated 2-way sync with **AniList** (watch progress, status, and personal ratings).\n4. **🧠 Smart Multi-Tier Matching Pipeline**\n   * Automatically enriches titles using a multi-step pipeline: Plex GUIDs ➔ Cross-Ref ➔ TMDB ➔ TVDB ➔ AniList.\n   * Optional **Gemini AI fuzzy resolver** for stubborn or strangely-named media.\n5. \\**⚡ arr Stack Automation (Radarr / Sonarr / Prowlarr)*\n   * Check library availability at a glance.\n   * Search indexer releases via **Prowlarr** and push missing items or seasons directly to **Radarr** or **Sonarr**.\n6. **📱 Mobile-First PWA UI**\n   * Designed for smartphones and tablets: swipe actions, haptic feedback, pull-to-refresh, dark mode, and dynamic poster accent colors.\n   * Multi-language support (**English & French**) and Web Push notifications.\n7. **🔄 Easy Migration**\n   * Built-in import tool for **Simkl** backup archives so you can migrate existing history without starting from scratch.\n\n# 🚀 Quickstart (Docker Compose)\n\nTrackarr runs in a single multi-arch container (`linux/amd64`, `linux/arm64`):\n\n    services:\n      trackarr:\n        image: ghcr.io/soviann/trackarr:latest\n        container_name: trackarr\n        restart: unless-stopped\n        ports:\n          - \"8080:8080\"\n        environment:\n          - PUID=1000\n          - PGID=1000\n          - TZ=Europe/Paris\n          - DATA_DIR=/data\n        volumes:\n          - ./data:/data\n\n# 📦 Source Code & Documentation\n\n* **GitHub Repository**: [https://github.com/Soviann/trackarr](https://github.com/Soviann/trackarr)\n* **Docker Image**: `ghcr.io/soviann/trackarr:latest` (or `:v1.4.1`)\n* **License**: MIT\n\nI built Trackarr primarily for my own everyday use, but I've polished and documented it so the homelab community can benefit from it. Feedback, feature requests, and PRs are warmly welcome!",
+    "developer": "Sovian",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

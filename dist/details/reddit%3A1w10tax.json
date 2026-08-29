@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w10tax",
+  "sourceItemId": "1w10tax",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w10tax/i_implemented_a_very_tiny_image_generation_model/",
+  "detail": {
+    "longDescription": "Its a 2.4-4 million parameter model, quantized to int8, that can be fully executed on the microcontroller in \\~20s with the longest generation. The generated image will then be displayed on a monitor or transferred via usb.\n\nIts a latent flow transformer with 12 layers using AdaLN-Zero for conditioning. CFG is also supported and boosted the image quality a lot. The inference engine streams the weight via DMA from the flash while the previous layer is computed. Relu² activation was used to increase sparsity, which the engine can use to skip calculations.\n\nTook a lot of ablations to get it right and I am quite astonished I got so far with so few parameters. Will post the repo below\n\nhttps://preview.redd.it/psu567et66mh1.png?width=1167&format=png&auto=webp&s=8b69dfe5caf5a0cde79f03f23fb5843c940bf993\n\n",
+    "developer": "cpldcpu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

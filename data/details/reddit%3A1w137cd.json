@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w137cd",
+  "sourceItemId": "1w137cd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w137cd/was_tired_of_complicated_setups_to_access_ollama/",
+  "detail": {
+    "longDescription": "**The story/problem:**  \nI built an open-source chat interface which people can use to use their local Ollama instance. After building it I quickly realized that it's not that easy to connect to an Ollama instance on the SAME machine and it gets a lot more difficult to connect to a REMOTE Ollama instance.\n\n**What I tried:**  \n**Tailscale**: Works well enough for most people but asking the users to create a tailscale account, install it on machine 1, install on machine 2 and set everything up that you can access Ollama over the network is quite a hassle and too much to ask for.\n\n**Cloudflare tunnels**: Not feasible for end users since it would again require an account and then you need a domain or get rotating endpoints.\n\n**ngrok**: This was the first feasible option since, again, you have to create an account but the url is stable at least with a free account.\n\nSo i went ahead and built a simple reverse proxy where you put your ngrok key in and it gave you a url that you could put into another tool. So far so good.\n\nAfter using it myself for a while I ran into the message limit of ngrok and I also was not happy with the account creation my users needed.\n\n**My solution:**  \nSo I decided to build my own desktop app for remote Ollama connections that is easy to install and runs in the system tray.\n\nI called it Amallo (reverse Ollama since it's basically a reverse proxy) and a server part called Relay to which the client connects using websockets and which provides the public endpoint URL. So now my users only have to install the Amallo app and then they get an openai-compatible URL and an API key which they can plug into my app or any other openai-compatible app to make their Ollama instance available remotely.\n\n\n\nNot sure if this might be useful to others as well? Anyhow, both projects are open-source and available on Github:  \n**Amallo**: [https://github.com/41tunnels/amallo](https://github.com/41tunnels/amallo)  \n**Relay**: [https://github.com/41tunnels/relay](https://github.com/41tunnels/relay)\n\n",
+    "developer": "tehfonsi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

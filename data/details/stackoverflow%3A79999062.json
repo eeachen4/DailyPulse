@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999062",
+  "sourceItemId": "79999062",
+  "sourceUrl": "https://stackoverflow.com/questions/79999062/how-to-plot-specific-data-types-in-matplotlib",
+  "detail": {
+    "longDescription": "enter image description here import matplotlib.pyplot as plt import pandas as pd import matplotlib import csv import numpy as np import seaborn as sns # Show the figure. data = pd.read_csv(\"/Users/hiuhiu/Downloads/Data_for_analysis.csv\") N2O_flux= data['N2O_flux'] CO2_flux = data['CO2_flux'] moisture = data['SoilMoisture'] replicate = data['Replicate'] temp = data['SoilTemperature'] time = data['datetime'] genotype = data['Genotype'] treat = data['Trt'] tick = np.arange(0, 4364, 300) plt.figure(figsize=(25,10)) plt.subplot(2, 1, 1) plt.xticks(tick) plt.scatter(time, N2O_flux) plt.legend() plt.xlabel('datetime') plt.ylabel('N2O_flux') plt.title(\"N2O_flux(August)\") plt.figure(figsize=(25,10)) plt.subplot(2, 1, 1) plt.xticks(tick) plt.scatter(time, CO2_flux, label='N2O') plt.xlabel('datetime') plt.ylabel('CO2_flux') plt.title(\"CO2_flux (August)\") I want to plot variables against timedate but i want different graphs for different types of data. For example N2O_flux against time but the the graphs only shows data point of fertilizer LowN. This is a version of my code, i can get all of the data plotted but i want to have multiple graphs where each graphs are about a different treatment or fertilizer or genotype. please check the image to understand what i'm talking about",
+    "developer": "Hieu M",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "62"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999108",
+  "sourceItemId": "79999108",
+  "sourceUrl": "https://stackoverflow.com/questions/79999108/how-can-i-prevent-duplicate-celery-tasks-when-a-fastapi-endpoint-is-retried",
+  "detail": {
+    "longDescription": "I'm using FastAPI + Celery + Redis + PostgreSQL for a document-processing workflow. A FastAPI endpoint creates a processing job and then sends a Celery task: @app.post(\"/reports/{report_id}/process\") async def process_report(report_id: int, db: Session = Depends(get_db)): job = ProcessingJob( report_id=report_id, status=\"queued\" ) db.add(job) db.commit() db.refresh(job) process_report_task.delay(job.id) return {\"job_id\": job.id} The problem is that if the client retries the request because of a timeout or network issue, multiple ProcessingJob records and multiple Celery tasks can be created for the same report. I need the operation to behave idempotently: POST /reports/123/process POST /reports/123/process POST /reports/123/process should result in only one active processing job for report 123 . I considered: Checking for an existing queued/running job before inserting Using a Redis distributed lock Adding a PostgreSQL unique constraint Passing an idempotency key from the client A simple application-level check seems vulnerable to race conditions when two requests arrive at almost the same time. For example: existing = ( db.query(ProcessingJob) .filter( ProcessingJob.report_id == report_id, ProcessingJob.status.in_([\"queued\", \"running\"]) ) .first() ) if existing: return {\"job_id\": existing.id} Two concurrent requests can both pass this check before either transaction inserts the new row. What is the recommended way to make this workflow idempotent? Specifically, should this be enforced primarily at the PostgreSQL level, Redis/Celery level, or through an API idempotency key? I also need to allow the same report to be processed again after the previous job reaches completed or failed . Stack: FastAPI SQLAlchemy PostgreSQL Celery Redis",
+    "developer": "Diventra Labs",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "26"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w14mpa",
+  "sourceItemId": "1w14mpa",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w14mpa/mcpify_is_on_pypi_now_thanks_for_the_beating_last/",
+  "detail": {
+    "longDescription": "Posted this tool a while back, it turns an OpenAPI spec into an MCP server. Made an update post because a lot of the criticism here actually turned into changes.\n\nThe one that stung the most was \"read-only mode isn't really read only, GET can mutate stuff\". Tested it and yeah, a GET that resets a cache went through just fine. Embarrassing. There's a policy layer now: --deny hides whatever paths you give it and --allow brings back the POST endpoints that are actually just reads, like search. deny wins over allow so it's easy to reason about.\n\nAlso did the boring part, it's on PyPI:\n\npipx install mcpify-openapi\n\ncommand is still just mcpify, the name was taken on PyPI by some other project which was annoying to find out two weeks late. It's also in the official MCP registry now, and it can read the spec straight from a URL so if your team already hosts it somewhere you don't generate or commit anything.\n\nTest count went from 53 to 60, the new ones are all for that policy layer because I didn't want to ship another \"trust me\" feature.\n\nStill can't do anything without an OpenAPI doc, and still stdio only, no remote transport yet. Not pretending otherwise.\n\nRepo: github.com/furkan708/mcpify\n\nSame question as last time since the answers genuinely shaped this: what API would you connect first?",
+    "developer": "BeneficialPenalty589",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

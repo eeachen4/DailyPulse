@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w1arwr",
+  "sourceItemId": "1w1arwr",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w1arwr/oss_one_databaseprovider_interface_for_postgres/",
+  "detail": {
+    "longDescription": "I kept hitting the same wall with desktop DB tools in a team that lives in the browser: nobody wants another Electron app, and \"just use the vendor console\" falls apart the moment you have Postgres plus Redis plus Mongo in the same VPC.\n\n\n\nSo I maintain LibreDB Studio, a self-hosted web SQL IDE. The part that actually took the work is not the editor chrome. It's making seventeen engines look like one API without a forest of \\`if (type === 'mongodb')\\` checks in the UI.\n\n\n\nThe trick was treating each engine as a strategy, not a special case:\n\n\n\n\\- SQL engines extend one SQL base (pools, timeouts, schema).\n\n\\- Document/KV engines extend a thinner base and map onto the same QueryResult / getSchema() shape.\n\n\\- The factory dynamic-imports the provider so the browser bundle doesn't drag in oracledb + duckdb + cassandra just to open SQLite.\n\n\n\nThat mapping is lossy on purpose. Redis SCAN prefixes become \"tables\"; Mongo collections look like tables; health/metrics still come from INFO / serverStatus. Once the UI only speaks capabilities, adding ClickHouse or Trino is a provider + a doc + an integration test, the triad has to ship in the same PR or it drifts.\n\n\n\nThe reason this lives in a browser at all is the cluster. I didn't want another Electron app on a laptop while the databases sat in Kubernetes. \"Just helm install a GUI\" sounds solved until you look at what most charts actually are: a wrapper around a desktop-era tool, or a vendor console that speaks one engine.\n\n\n\nSo the app ships as a chart (OCI on GHCR, first-boot secrets, PVC for sqlite storage) next to the providers, same repo, not a separate \"enterprise\" product. That's a different post; here the interesting part is still the engine interface.\n\n\n\nThere's a second split that bit me later: the same codebase is both a Next.js app and an npm package (\\`npx \"@libredb/studio\"\\` / embed). \\`next build\\` does not produce the library dist. Forgetting \\`build:lib\\` is how you ship a UI fix that the embedded users never see.\n\n\n\nIt's early in the \"every engine feels first-class\" sense. Hostile cases I still want: weird Oracle TNS, huge Cassandra traces, Redis with no prefix convention, DuckDB files that aren't files. If a converter/GUI has ever lied to you about a schema, that fixture is useful.\n\n\n\nSource: [https://github.com/libredb/libredb-studio](https://github.com/libredb/libredb-studio)",
+    "developer": "cevheribozoglan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

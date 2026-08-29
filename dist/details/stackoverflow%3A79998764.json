@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998764",
+  "sourceItemId": "79998764",
+  "sourceUrl": "https://stackoverflow.com/questions/79998764/how-to-prevent-googles-recaptcha-v2-box-to-load-multiple-times-onclick-script",
+  "detail": {
+    "longDescription": "I get this error, if I click my script multiple times: Uncaught (in promise) Error: reCAPTCHA has already been rendered in this element. I know, that error is correct, but how can I fix this? I have got a cookie-icon that shows a banner to accept or to reject the recaptcha/form. I hide or show the recaptcha/form onclick, but if the user clicks multiple times the accept button i get this error in console and he can not send the form. Hard to explain here is my code :) Edit: Here is a jsfiddle: https://jsfiddle.net/fzd74p8s/22/ javascript: if (sessionStorage.getItem(\"test_Cookie\") !== null) { var recaptchaShow = document.createElement('script'); recaptchaShow.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'; recaptchaShow.type = 'text/javascript'; recaptchaShow.id = 'recaptcha-script'; recaptchaShow.async = true; recaptchaShow.defer = true; if (!document.getElementById('recaptcha-script')) { document.body.appendChild(recaptchaShow); } } cookieBanner.addEventListener('click', function() { document.querySelector(\".hide-form\").style.display = \"block\"; var recaptcha = document.createElement('script'); recaptcha.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'; recaptcha.type = 'text/javascript'; recaptcha.id = 'recaptcha-script'; recaptcha.async = true; recaptcha.defer = true; if (!document.getElementById('recaptcha-script')) { document.body.appendChild(recaptcha); } }); I have switched the id's so both function have the same id now.",
+    "developer": "Malte K",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "68"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

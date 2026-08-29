@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w169gq",
+  "sourceItemId": "1w169gq",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w169gq/when_your_subagent_calls_a_real_tool_how_does_the/",
+  "detail": {
+    "longDescription": "I'm doing a market-validation experiment and want technical answers, not hype.\n\nConsider this:\n\nA user authorizes:\n\n\"Refund Customer A up to $300.\"\n\nThe system becomes:\n\nHuman\n\n→ Orchestrator\n\n→ Agent A\n\n→ Sub-agent B\n\n→ MCP/API tool\n\nNow Sub-agent B calls the payment tool.\n\nThe payment system needs to know more than:\n\n\"Is B authenticated?\"\n\nIt may need to verify:\n\n• Was this originally authorized by the correct user?\n\n• Was B actually delegated authority?\n\n• Was the delegated authority narrower than the parent's?\n\n• Is the limit still $300?\n\n• Is this Customer A?\n\n• Are these the exact authorized arguments?\n\n• Has the authorization expired?\n\n• Has the authorization already been used?\n\n• Is a valid authorization from another execution being transplanted here?\n\nThere are obviously existing building blocks:\n\nOAuth/token exchange\n\nSPIFFE\n\nOPA/Cedar\n\nshort-lived/JIT credentials\n\nMacaroons/Biscuit\n\nAPI gateways\n\nI'm trying to determine whether developers still have to build too much\n\ncustom glue between these pieces for real multi-agent tool execution.\n\nThe architecture I'm testing would NOT replace those systems.\n\nIt would provide cryptographically verified authorization evidence to the\n\nexisting policy/authorization decision layer immediately before sensitive\n\ntool execution.\n\nI'm trying to answer one question:\n\nIs this a painful enough production problem that you would actually evaluate\n\na prototype?\n\nIf you think this is unnecessary, already solved, or badly framed, please\n\ntell me exactly how you'd implement the $300 example today.\n\nThat feedback is as valuable as a signup.",
+    "developer": "MiddleExchange577",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

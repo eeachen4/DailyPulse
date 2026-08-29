@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w1a9lb",
+  "sourceItemId": "1w1a9lb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w1a9lb/why_dont_we_engineer_reasoning_processes_with_the/",
+  "detail": {
+    "longDescription": "**Why don’t we engineer reasoning the way we engineer control systems?**\n\nI’ve been wondering whether we’re treating reasoning as something far more mysterious than it needs to be.\n\nDecades ago, engineers had to make aircraft maintain orientation and trajectory in three-dimensional space without anything remotely resembling modern AI.\n\nThey couldn’t tell an autopilot:  \n“Keep the airplane where it should be.”\n\nThey had to decompose the problem.  \n\\- What is attitude?  \n\\- What is heading?  \n\\- What is rate of change?  \n\\- What is deviation from the desired state?  \n\\- Which sensor tells us what?  \n\\- What happens when that sensor degrades?  \n\\- Which control surface can correct which deviation?  \n\\- What happens when two signals disagree?  \n\\- How much correction authority should a subsystem possess?  \n\\- When should automation disengage?  \n\\- How does the operator know what state the system believes it is in?  \nAnd crucially:  \n**-What capabilities must remain intact when individual components become unreliable?**\n\nThe resulting systems didn’t need omniscience.  \nThey needed enough independent references and feedback to continuously answer something like:  \n**- Where am I?**  \n**- Where should I be?**  \n**- How am I moving?**  \n**- How certain am I?**  \n**- What correction is available?**  \n**- Did the correction work?**\n\nThat makes me wonder why we don’t approach reasoning itself this way more often.  \n\\- A reasoning system also occupies an estimated state.  \n\\- It has observations.  \n\\- It has uncertainty.  \n\\- It has assumptions.  \n\\- It has a desired state or question it is trying to resolve.  \n\\- It receives contradictory signals.  \n\\- Its information sources have different reliability.  \n\\- Corrections can overshoot.  \n\\- Errors can accumulate.  \n\\- Feedback can be mistaken for confirmation.  \n\\- And some errors reduce the system’s future ability to detect that it is wrong.\n\nYet instead of explicitly engineering those functions, we often seem to ask whether a person, organization, or AI is simply “good at reasoning.”  \nMaybe that’s the wrong level of abstraction.\n\nPerhaps the better questions are:  \n\\- What functions does reliable reasoning require?  \n\\- Which of those functions must remain independent?  \n\\- How does each one degrade?  \n\\-What happens when one disappears?  \n\\- What compensates for its loss?  \n\\- How does the reasoner estimate its own position relative to reality?  \n\\- And what preserves enough corrective capability to recover when its estimate is wrong?\n\nI’m not suggesting that an aircraft autopilot “thinks.”  \nI’m suggesting that engineers learned a long time ago how to preserve navigability in a partially observed, continuously changing environment by decomposing the problem into functions that could be observed, tested, degraded, corrected, and replaced.\n\n**Why don’t we apply the same engineering discipline to reasoning?**",
+    "developer": "WillowEmberly",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

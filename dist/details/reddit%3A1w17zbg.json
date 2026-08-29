@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w17zbg",
+  "sourceItemId": "1w17zbg",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w17zbg/atomicchatqwen38flashnextgguf_is_really_good/",
+  "detail": {
+    "longDescription": "# specs\n\n* hardware: M4 Max 128GB Studio\n* inference engine: llama.cpp (qwen4exp branch)\n* judge: claude-opus-4-6\n\n# AtomicChat/Qwen3.8-Flash-Next-GGUF\n\n`Qwen3.8-Flash-Next` is a great model I benched in [my previous post](https://www.reddit.com/r/LocalLLaMA/comments/1vzspz6/qwen38flashnext_time_to_update_those_benchmarks/), but it is very tight, since all n-grams / PLE are loaded along with the experts, taking 106GB, leaving very little room for K/V, context, etc. Offloading PLE to SSD currently slows down prefill from 600 t/s to 180 t/s on oMLX.\n\nu/erikdhoward suggested to try the [Atomic Chat](https://huggingface.co/AtomicChat/Qwen3.8-Flash-Next-GGUF) quant which I did not know anything about. I tried it, and it is... really good.\n\nAtomicChat's quant uses llama.cpp mmap (through GGUF shard layout vs. in the runtime) and keeps the PLE table (n-grams) pageable backed by a file. Because of this the same **model that took 106GB, now takes 65GB** (starts from 55GB) in RAM. And since PLE is pageable the prefill is actually not that bad, cold start is about 500 t/s.\n\n# oMLX \"right behind you!\"\n\n`Qwen3.8-Flash-Next` just came out, and there are many open PRs in oMLX to address the size and performance, including [this one](https://github.com/jundot/omlx/pull/3235) that makes PLE offload SSD cold prefill almost 3 times faster 🎉 ",
+    "externalUrl": "https://i.redd.it/zbnyc5jif7mh1.png",
+    "developer": "tolitius",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

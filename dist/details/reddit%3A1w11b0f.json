@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w11b0f",
+  "sourceItemId": "1w11b0f",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w11b0f/my_first_experience_with_ml_p/",
+  "detail": {
+    "longDescription": "I'm self-taught, and this is my first Python and ML project:\n\n[https://github.com/delefrati/aion](https://github.com/delefrati/aion)\n\nThis project is a cost-first / local-first AI project, split in two parts:\n\n* An SLM research lab you can train locally, on Colab, or on Kaggle (no external models or APIs)\n* A local-first conversational AI product that runs on a weak laptop\n\nIt has two model families, both built from scratch - no HuggingFace weights:\n\n* Mamba (SSM / state-space)\n* A custom Transformer (RoPE + SDPA attention)\n\nSeparately, the backend has a pluggable provider system, so you can also drop in any off-the-shelf HuggingFace model (Qwen, SmolLM2, etc.) as a local inference backend and swap between it and your own trained model with a single env var. Handy for comparing your model against a known-good baseline.\n\nConcepts in play:\n\n* Two-phase pipeline: multi-session pretrain on Wikipedia + SlimPajama, then a fine-tune on chat/instruction data\n* Custom BPE tokenizer (vocab 4096 for small models, 16384 for the larger ones) with a .bin memmap token cache\n* Curriculum seq-len, gradient checkpointing, cosine LR w/ warmup, 8-bit optimizer\n* Multi-backend training: CPU, CUDA (GTX 1650 4GB - my laptop :D), and TPU (torch\\_xla, single + multi-core data-parallel via xmp.spawn)\n\nModel sizes I've trained/tested:\n\n* Mamba \\~28M\n* Mamba \\~47-105M\n* Transformer 110M\n* Transformer 235M\n\nI haven't had time to train the larger model enough - locally it takes forever on my weak laptop, and I keep hitting quota limits on Kaggle and Colab.\n\nMy goal (suggested by Claude) is 50,000 steps of pretraining and 20,000 of fine-tuning. Right now I'm at \\~25,000 pretraining and \\~5,000 chat fine-tuning, and that's already enough to make it kind of conversational - it hallucinates a lot, but it can answer simple questions.\n\nIt's open source, and I'd love suggestions on how to improve it and where to take it next.",
+    "developer": "jdelefrati",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
