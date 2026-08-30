@@ -1,11 +1,13 @@
 name: DailyPulse Daily Fetch
+run-name: Daily Fetch · ${{ github.event.schedule || github.event_name }}
 
 on:
   schedule:
-    # 避开 GitHub Actions 整点高峰：北京时间 07:37 主触发，08:17 兜底。
-    # 第二次触发会先检查上海自然日快照，已有新鲜数据时自动跳过。
-    - cron: '37 23 * * *'
-    - cron: '17 0 * * *'
+    # GitHub cron 可能延迟甚至丢失单次事件，因此在北京时间 07:37–09:17
+    # 使用离峰的 10 分钟滚动窗口。首个成功快照后，后续运行会在新鲜度检查处跳过。
+    - cron: '37,47,57 23 * * *'
+    - cron: '7,17,27,37,47,57 0 * * *'
+    - cron: '7,17 1 * * *'
   # 支持在 Actions 页面手动触发
   workflow_dispatch: {}
   # 可由外部可靠调度器调用 GitHub API 触发。
