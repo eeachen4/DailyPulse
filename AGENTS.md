@@ -10,7 +10,7 @@ DailyPulse —— 每日 08:00（UTC+8）按类别自动聚合 **App Store / Goo
 - **采集**：Node.js + TypeScript（`tsx` 运行）按「类别 × 源」采集 → 来源网页详情抓取 → 写入 `data/daily.json` → 生成 `dist/feed.json` 等静态导出。
 - **Product Hunt**：优先官方 GraphQL API（`PRODUCT_HUNT_TOKEN`），无 token 回退 Apify。
 - **前端**：React 18 + Vite 8 + TailwindCSS 3，hash 路由（列表 + 详情页），生产环境异步读取 `feed.json`。
-- **调度**：GitHub Actions 在北京时间 07:37 主触发、08:17 兜底，新鲜度检查避免重复采集；`.github/workflows/deploy.yml` 自动部署 `dist/` 到 Pages。
+- **调度**：GitHub Actions 在北京时间 07:37–09:17 使用离峰滚动窗口，新鲜度检查保证每天只采集一次；`.github/workflows/deploy.yml` 自动部署 `dist/` 到 Pages。
 
 ## 常用命令
 
