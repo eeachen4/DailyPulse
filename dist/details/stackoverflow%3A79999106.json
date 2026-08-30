@@ -2,9 +2,10 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999106",
   "sourceItemId": "79999106",
+  "fetchedAt": "2026-08-30T01:38:33.675Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999106/hiding-multiple-selections-of-a-drop-down",
   "detail": {
-    "longDescription": "So I have a script that can hide various id elements in a select drop-down based on a radio button. But it currently only hides one of the ids in the dropdown. How do I hide the others. I click on \"Human\", I want all the IDs that are NOT human to vanish. But it only vanishes the FIRST of each ID. So if I click \"Human\", it just removes \"Diablo\", \"Dracula\" and \"London\". I need it to ALSO remove \"Messenger\", \"Daeva\" and \"Irraka\" I'm using Javascript Edit: The code: <script> var raceArray=[\"Human\",\"Demon\",\"Vampire\",\"Werewolf\"]; function species(z){ for (x=0;x<raceArray.length();x++) { var hide_race = document.getElementById(raceArray[x]); hide_race.hidden=true; } var show_race = document.getElementById(raceArray[z]); show_race.hidden=false; } HTML: <input type=\"radio\" onclick=\"species(0)\">Human <input type=\"radio\" onclick=\"species(1)\">Demon <input type=\"radio\" onclick=\"species(1)\">Vampire <input type=\"radio\" onclick=\"species(2)\">Werewolf <select id=\"race\"> <option id=\"Human\">Human</option> <option id=\"Demon\">Diablo</option> <option id=\"Demon\">Messenger</option> <option id=\"Vampire\">Dracula</option> <option id=\"Vampire\">Daeva</option> <option id=\"Werewolf\">London</option> <option id=\"Werewolf\">Irraka</option> </select>",
+    "longDescription": "So I have a script that can hide various id elements in a select drop-down based on a radio button. But it currently only hides one of the ids in the dropdown. How do I hide the others? I click on \"Human\", I want all the IDs that are NOT human to vanish. But it only vanishes the FIRST of each ID. So if I click \"Human\", it just removes \"Demon 1\", \"Vampire 1\" and \"Werewolf 1\". I need it to also remove \"Demon 2\", \"Vampire 2\" and \"Werewolf 2\" I'm using Javascript, running it from the browser. The code: var raceArray = [\"Human\", \"Demon\", \"Vampire\", \"Werewolf\"]; function species(z) { for (x = 0; x <4; x++) { //x<4 is actually x<raceArray.length var hide_race = document.getElementById(raceArray[x]); hide_race.hidden = true; } var show_race = document.getElementById(raceArray[z]); //Should show every option for whatever was selected. Even if it was previously hidden. show_race.hidden = false; } <input type=\"radio\" onclick=\"species(0)\" name=\"ruleset\">Human <input type=\"radio\" onclick=\"species(1)\" name=\"ruleset\">Demon <input type=\"radio\" onclick=\"species(1)\" name=\"ruleset\">Vampire <input type=\"radio\" onclick=\"species(2)\" name=\"ruleset\">Werewolf <select id=\"race\"> <option id=\"Human\">Human</option> <option id=\"Demon\">Demon 1</option> <option id=\"Demon\">Demon 2</option> <option id=\"Vampire\">Vampire 1</option> <option id=\"Vampire\">Vampire 2</option> <option id=\"Werewolf\">Werewolf 1</option> <option id=\"Werewolf\">Werewolf 2</option> </select> Edit: Added names to the radio buttons and changed .length to be 4 to be simpler. If need be, I can post the FULL code instead of a more simplified version.",
     "developer": "Firestar001",
     "comments": 1,
     "stats": [
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "25"
+        "value": "57"
       },
       {
         "label": "状态",

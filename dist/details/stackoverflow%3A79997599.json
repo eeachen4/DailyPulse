@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79997599",
+  "sourceItemId": "79997599",
+  "sourceUrl": "https://stackoverflow.com/questions/79997599/phaser-3-arcade-physics-sprite-following-a-precomputed-waypoint-path-stalls-d",
+  "detail": {
+    "longDescription": "I'm building an automated \"level solver\" for a top-down Phaser 3 game: a bot walks a precomputed path (array of {x, y} pixel waypoints) to test whether a level is completable with the game's actual physics/speed/hitbox parameters, before a human player tries it. The path itself is verified correct (I draw it with Graphics and it matches the maze exactly, avoiding walls and enemy patrol zones). The problem is purely getting the sprite to actually follow it during gameplay — it stalls / jitters in place instead of moving smoothly along the waypoints. What I've tried 1. Digital controls (left/right/up/down booleans) , translated elsewhere into setVelocityX / setVelocityY : typescript const dx = target.x - state.player.x; const dy = target.y - state.player.y; const dist = Math.hypot(dx, dy); if (dist < ARRIVE_THRESHOLD) { pathIndex++; return stop(); } return { left: dx < 0, right: dx > 0, up: dy < 0, down: dy > 0, }; Result: sprite oscillates near a waypoint instead of settling (flips left/right every frame) — presumably overshooting ARRIVE_THRESHOLD each frame. 2. Direct velocity vector ( body.setVelocity(vx, vy) ), normalized direction * known speed: typescript const vx = (dx / dist) * SPEED; const vy = (dy / dist) * SPEED; return { vx, vy }; Also didn't behave as expected — not obviously better, and I couldn't isolate whether the problem was in this code or in how something else in the scene also touches the body's velocity in the same frame. 3. Directly setting position ( setPosition(x, y) ), computed from delta time and known speed, bypassing physics velocity entirely: typescript const maxStep = SPEED * (deltaMs / 1000); if (maxStep >= dist) return { x: target.x, y: target.y }; return { x: state.player.x + (dx / dist) * maxStep, y: state.player.y + (dy / dist) * maxStep, }; This one passes in an isolated Node.js simulation of the frame loop (no Phaser, just plugging numbers through the same math) — the position converges correctly to the final waypoint. I haven't yet tested this specific version inside the actual Phaser scene. Setup Phaser 3, Arcade Physics Player: Phaser.Physics.Arcade.Sprite , circular body via body.setCircle(6, offsetX, offsetY) Movement is normally driven by keyboard input for a human player; for the bot, I want to drive the same sprite from a precomputed path instead, one waypoint at a time Fixed known \"logical\" speed: 200 px/s path is a flat array like: json [ { \"x\": 112, \"y\": 240 }, { \"x\": 132, \"y\": 240 }, { \"x\": 132, \"y\": 230 }, { \"x\": 146.14, \"y\": 244.14 } ] Question What's the correct/idiomatic way in Phaser 3 Arcade Physics to move a sprite precisely along a list of predetermined waypoints (not just \"toward a target forever\", but actually arriving at and advancing through each point in order), in a way that: Doesn't fight with Arcade Physics' own velocity/position integration Doesn't overshoot/oscillate near each waypoint Works predictably regardless of frame rate (variable delta ) Should I be using setPosition (and if so, do I need body.reset(x, y) instead, to avoid the physics engine \"pulling it back\"?), setVelocity with a specific approach to avoid overshoot, or something else entirely (e.g. Phaser.Curves.Path follow , or tweens)? Is there a standard pattern for this kind of \"replay a recorded path exactly\" bot in Arcade Physics that I'm missing?",
+    "developer": "Vector",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "104"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

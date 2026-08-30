@@ -5,9 +5,9 @@
   "fetchedAt": "2026-08-28T16:35:51.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998735/how-should-playwright-handle-a-locator-when-the-ui-changes-but-the-user-flow-sta",
   "detail": {
-    "longDescription": "I’m exploring Playwright test maintenance and came across a situation I’m curious about. Suppose a test originally uses: await page.getByRole('button', { name: 'Submit' }).click(); Later, the UI is updated and the button text changes from Submit to Continue, while the underlying user action remains the same. The original locator now fails, even though the functionality being tested may not have changed. Updating the locator to match the new UI is straightforward. The difficult part is determining whether the new element is actually the intended replacement. For example, if there are multiple similar elements on the page, simply choosing another matching element could make the test pass while it is actually interacting with the wrong element. How do you handle this situation in Playwright?",
+    "longDescription": "I’m trying to understand how Playwright locators behave when a page re-renders an element after an action. For example: const button = page.getByRole('button', { name: 'Submit' }); await button.click(); // The application re-renders the button here. await button.click(); In this example, the application replaces the original button element in the DOM after the first click. I understand that Playwright locators are evaluated when an action is performed rather than storing a reference to a particular DOM element. Does the second click resolve the locator again and target the newly rendered button? If so, is there any situation where I should create a new locator after the re-render? I’m trying to understand the recommended Playwright behavior when an element matched by a locator is replaced during a test.",
     "developer": "Sri Ramya",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "64"
+        "value": "89"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

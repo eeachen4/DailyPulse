@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w215qm",
+  "sourceItemId": "1w215qm",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w215qm/humaneval_benchmark_for_deepseek_v4_flash_0731_vs/",
+  "detail": {
+    "longDescription": " I have a 2 DGX Spark setup recently and I have been happily running Deepseek V4 Flash 0731. Since the release of GLM5.3 Flash and Qwen 3.8 Flash Next this week, a lot of folks are still waiting to see what model to run given their own hardware situations. I am very interested in running a GLM model locally and looks like nvfp4 would be a good option for my setup, but I have been hearing a lot of conflicting opinions (mostly negative) about GLM5.3 Flash on nvfp4 quant which gave me pause. So I decided to do a simple benchmark myself and hopefully this is useful for folks with the same setup:\n\n  \n[Deepseek V4 Flash 0731 recipe ](https://github.com/eugr/spark-vllm-docker/blob/main/recipes/deepseek-v4-flash.yaml): official checkpoint from deepseek, fp8 kv, 1M context, 4 concurrent streams\n\n[GLM 5.3 Flash recipe](https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark) : [NVFP4 quant](https://huggingface.co/LibertAIDAI/GLM-5.3-Flash-NVFP4), fp8\\_e4m3 kv, 256k context, 6C\n\n\n\nSo raw numbers tell you GLM 5.3f is a decent upgrade over DSv4f 0731 especially with thinking enabled. Unsloth saying their Q4 quant has around 92% accuracy but looks like nvfp4 still holds up pretty well (97% is a SOTA score not that long ago, this is crazy!). The major trade off is the 256 context. I am pretty sure 512GB+ VRAM (or 4x sparks) people will be able to run full model + 1M context without issues and I am jealous 🥹 Regardless, you own experience matters more than any benchmark out there.  \n",
+    "developer": "serige",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

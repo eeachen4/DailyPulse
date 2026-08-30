@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w20i89",
+  "sourceItemId": "1w20i89",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w20i89/why_does_lighthouse_flag_a_responsive_srcset/",
+  "detail": {
+    "longDescription": "I’m trying to understand a Lighthouse/PageSpeed Insights warning about “properly size images” that seems somewhat contradictory to how responsive images are supposed to work.\n\nSimplified example:\n\n    <img\n      src=\"image-300.jpg\"\n      srcset=\"\n        image-250.jpg 250w,\n        image-300.jpg 300w,\n        image-400.jpg 400w,\n        image-768.jpg 768w,\n        image-1024.jpg 1024w\n      \"\n      sizes=\"(max-width: 480px) calc(100vw - 2rem),\n             (max-width: 991px) calc(50vw - 2rem),\n             360px\"\n    >\n\nOn a typical mobile viewport around `412px`, the actual image/card width is roughly `380 CSS px`.\n\nAs I understand it, the browser does not simply compare the image's intrinsic width against those 380 CSS pixels. It takes the device pixel ratio into account:\n\n    required resource width ≈ CSS width × DPR\n\nSo, for example:\n\n    380 × DPR 1.75 ≈ 665 px\n    380 × DPR 2.0  ≈ 760 px\n    380 × DPR 3.0  ≈ 1140 px\n\nWith the `srcset` above, at DPR 1.75 the browser therefore selects the `768w` candidate. On a DPR 2 device, `768w` is almost exactly what I would expect. On a DPR 3 device, even the `1024w` version isn't particularly excessive.\n\nHowever, Lighthouse may report the `768×768` image as oversized because the rendered image is only around `300–380 CSS px` wide.\n\nThis is the part I don't understand.\n\nGoogle's own responsive-image guidance recommends supplying sufficiently high-resolution candidates for high-DPI displays. Yet Lighthouse appears to penalize the browser for selecting exactly such a candidate.\n\nThere are also smaller `250w`, `300w`, and `400w` candidates available, so this isn't a case where the browser is forced to download an unnecessarily large original image. The browser has all of those choices and intentionally selects `768w` based on `sizes` and DPR.\n\nSo my questions are:\n\n1. Is Lighthouse's “properly size images” audit effectively comparing intrinsic/device pixels against rendered CSS pixels without fully accounting for DPR?\n2. If so, isn't this expected to produce false positives for correctly configured `srcset` images on the DPR used by Lighthouse's mobile emulation?\n3. Is there actually anything developers are expected to change in this situation, or should this warning simply be treated as a heuristic?\n4. Would removing the `768w` candidate just to satisfy Lighthouse actually be counterproductive, since real DPR 2–3 devices could then receive a visibly softer image?\n\nI feel like I’m missing something, because optimizing the `srcset` specifically for the Lighthouse warning seems to conflict with Google's own recommendation to serve sufficiently dense images to high-DPI displays.",
+    "developer": "Prestigiouspite",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

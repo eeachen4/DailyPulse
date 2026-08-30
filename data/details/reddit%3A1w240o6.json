@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w240o6",
+  "sourceItemId": "1w240o6",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w240o6/a_multistep_ai_system_isnt_automatically_an_agent/",
+  "detail": {
+    "longDescription": "One architectural distinction I keep coming back to: people often confuse complexity with agency.\n\nA system has multiple tools? -> “Use an agent.” OR It has five steps? -> “Definitely an agent.”\n\nBut neither of those things actually requires one. The more useful question is: who determines the execution path?\n\nConsider an insurance assistant. If someone asks, “Am I eligible for this treatment?”, and the answer exists in internal policy documents, that's primarily a retrieval problem. And if they ask, “Check my claim status and tell me whether the rejected amount is covered under my policy.”\n\nThat might require more tools and more steps. But if those steps happen in a predictable order, is it still an agent ?\n\nThe interesting shift happens when the request is something like: “My claim was rejected. Find out why and tell me what I should do next.”\n\nNow the path may not be known in advance. That's where an agent earns its complexity: when the system needs to help determine what to do next.\n\nAnd Multi-agent can only consider it when there are genuinely distinct specialties, tools, or permission boundaries.\n\nI think the common mistake is choosing “agent” as the starting point and then designing a problem around it. A better approach is to start with the responsibility:\n\nDoes the system need to know something? Decide something? Act? Verify the result?\n\nThen add only the architecture required to support those responsibilities.\n\nI mapped the complete e2e architectures and escalating examples out in more detail here, with visual breakdown: [https://youtu.be/kf5rSab4rcg](https://youtu.be/kf5rSab4rcg)\n\nFor people building real AI systems: where do you draw the boundary between a complex workflow and an agent? Is dynamic tool selection alone enough for you, or do you require a more explicit decision loop before calling something an agent?",
+    "developer": "SKD_Sumit",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

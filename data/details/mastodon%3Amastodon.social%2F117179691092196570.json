@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117179691092196570",
+  "sourceItemId": "mastodon.social/117179691092196570",
+  "fetchedAt": "2026-08-30T01:38:33.675Z",
+  "sourceUrl": "https://mastodon.com.pl/@Belzebubik/117179691063511308",
+  "detail": {
+    "longDescription": "Local LLM Arena #2 — dlaczego akurat te 5 modeli?\n\nNie szukam modeli najlepszych „na papierze”. Szukam takich, które realnie da się uruchomić lokalnie na MacBooku M4 z 16 GB Unified Memory i które mogą być przydatne na co dzień.\n\nDlatego testuję:\n\n- Gemma 4 12B — Q4_0, 7.15 GB\nNajmniejszy z zestawu i punkt odniesienia. Sprawdzam, czy mniejszy model może nadrobić szybkością i mniejszym zużyciem pamięci.\n\n- Ternary Bonsai 27B — MLX 2-bit, 8.49 GB\nNajbardziej nietypowy zawodnik. 27B upakowane dzięki ternary/2-bit. Jego integracja wymagała nawet osobnego mostu MLX w Arenie.\n\n- GPT-OSS-20B — MXFP4, 11.28 GB\nJeden z cięższych, ale we wcześniejszych testach zdecydowanie najszybszy. Ciekawe, czy szybkość pójdzie w parze z jakością.\n\n- Qwen3.8-27B — IQ3_XXS, 10.18 GB\nNajwiększe wyzwanie dla M4 16 GB. Przed benchmarkiem przeszedł osobny test 20 zapytań. Pamięć dochodziła do ~15.3 GB i pojawiał się swap, ale bez dalszego narastania. Wynik: STABLE_WITH_SWAP.\n\n- Mistral Small 3.2 24B — IQ3_XXS, 8.76 GB\nMocniejsza quantyzacja była świadomym wyborem, żeby pozostawić miejsce dla KV cache i macOS.\n\nI właśnie o to chodzi w eksperymencie.\n\nNie porównuję idealnych modeli na serwerze. Porównuję kompromisy:\n\nparametry, quantyzacja, jakość, szybkość a pamięć\n\nna zwykłym laptopie. \n\nMoże wygrać 27B. Ale może się też okazać, że do codziennej pracy znacznie lepszy będzie szybszy 12B lub 20B.\n\nObecnie trwa pełny benchmark: 180 zadań — 36 dla każdego modelu.\n\n#LocalLLM #LLM #AI #MLX #GGUF #AppleSilicon #SelfHosted",
+    "developer": "@Belzebubik@mastodon.com.pl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      },
+      {
+        "label": "网站",
+        "value": "Mastodon Poland"
+      }
+    ]
+  }
+}

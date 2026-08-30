@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w21zim",
+  "sourceItemId": "1w21zim",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1w21zim/fix_for_deleted_chats_stuck_in_recents_in_the_new/",
+  "detail": {
+    "longDescription": "I had deleted ChatGPT conversations that stayed permanently under Recents in the new Windows desktop app. Clicking them produced “Could not load this ChatGPT conversation.” Repair, Reset, reinstalling, signing out, and restarting did not clear them.\n\n\n\nI fixed it by removing only the orphaned rows from the desktop app’s local Recents catalog. This preserved active chats, pinned chats, Codex/Work sessions, projects, credentials, and settings.\n\n\n\nUnofficial workaround — back up first and close ChatGPT before editing anything.\n\n\n\nThe relevant database was:\n\n\n\n%USERPROFILE%\\\\.codex\\\\sqlite\\\\codex-dev.db\n\n\n\nThe stale entries were rows in the local\\_thread\\_catalog table where source\\_kind = 'chatgpt'. I compared those cached rows against chats that still loaded. Only four entries returned not found/deleted, and those four IDs appeared nowhere else in the database.\n\n\n\nSafe procedure:\n\n\n\n1. Close ChatGPT completely.\n\n2. Make a consistent SQLite backup of codex-dev.db. Do not delete your whole .codex folder.\n\n3. Inspect the ChatGPT catalog rows:\n\n\n\nSELECT host\\_id, thread\\_id, display\\_title, source\\_updated\\_at\n\nFROM local\\_thread\\_catalog\n\nWHERE source\\_kind = 'chatgpt'\n\nORDER BY source\\_updated\\_at DESC;\n\n\n\n4. Identify only the entries that are visibly stuck in Recents and produce the deleted/not-found error. Record their exact thread\\_id values.\n\n5. In a transaction, delete only those exact IDs:\n\n\n\nBEGIN;\n\nDELETE FROM local\\_thread\\_catalog\n\nWHERE thread\\_id IN ('EXACT-DELETED-ID-1', 'EXACT-DELETED-ID-2');\n\nUPDATE local\\_thread\\_catalog\\_metadata\n\nSET catalog\\_revision = catalog\\_revision + 1\n\nWHERE id = 1;\n\nCOMMIT;\n\n\n\n6. Run PRAGMA integrity\\_check; — it should return “ok.”\n\n7. Reopen ChatGPT.\n\n\n\nAfter restart, the ghost entries were gone and all active ChatGPT conversations plus my Work/Codex sessions and projects were intact.\n\n\n\nImportant: Do not delete state\\_5.sqlite, session folders, auth.json, or the entire .codex directory. Do not delete every ChatGPT row. The narrow local\\_thread\\_catalog cleanup is enough.\n\n\n\nThis was tested on the new unified ChatGPT/Codex Windows desktop app on August 29, 2026. The schema may change in later releases, so restore your backup if anything looks wrong.",
+    "developer": "ValuableRevolution94",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

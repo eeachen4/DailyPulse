@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117179557928935769",
+  "sourceItemId": "mastodon.social/117179557928935769",
+  "fetchedAt": "2026-08-30T01:38:33.675Z",
+  "sourceUrl": "https://mastodon.com.pl/@Belzebubik/117179557904389167",
+  "detail": {
+    "longDescription": "Buduję własną Local LLM Arena na MacBooku M4 16 GB.\n\nChciałem sprawdzić coś, czego zwykłe internetowe benchmarki mi nie powiedzą: który lokalny model AI jest rzeczywiście najlepszy do moich zastosowań i na moim sprzęcie.\n\nDlatego zamiast porównywać tabelki z Internetu, zbudowałem własny system benchmarkowy.\n\nTestuję obecnie 5 lokalnych modeli:\n• Qwen3.8-27B • Ternary Bonsai 27B • GPT-OSS-20B • Gemma 4 12B • Mistral Small 3.2 24B\n\nKażdy dostaje te same 36 zadań — łącznie 180 testów. Wszystkie modele pracują przy tym samym context length 4096, żeby porównanie było możliwie uczciwe.\n\nNie interesuje mnie tylko „który model ma więcej punktów”.\n\nArena sprawdza m.in.:\n- jakość języka polskiego - reasoning i rozwiązywanie problemów - analizę dokumentów - tłumaczenia i komunikację PL/DE - programowanie i zadania agentowe - szybkość, TTFT, pamięć, swap i stabilność\n\nSystem zapisuje checkpoint po każdym zadaniu, zbiera telemetrykę, potrafi wznowić przerwany benchmark i generuje raport. Sam benchmark działa jako niezależny proces w macOS, więc nie jest uzależniony od sesji agenta AI.\n\nCo ważne — modele działają lokalnie na MacBooku, a LM Studio jest dostępne wyłącznie przez localhost.\n\nW projekcie rozdzieliłem też role AI: Gemini Antigravity jest wykonawcą/deweloperem, a Codex niezależnym audytorem/QA, żeby ten sam agent nie był jednocześnie autorem zmian i ich ostatecznym recenzentem.\n\nW tej chwili trwa pierwszy pełny benchmark: 36 zadań × 5 modeli.\n\nJak się skończy, pokażę wyniki — zarówno który model okazał się „najmądrzejszy”, jak i który jest najbardziej praktyczny do codziennego lokalnego używania na M4 z 16 GB RAM.\n#LocalLLM #LLM #AI #OpenSourceAI #MacOS #AppleSilicon #MachineLearning #SelfHosted",
+    "developer": "@Belzebubik@mastodon.com.pl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      },
+      {
+        "label": "网站",
+        "value": "Mastodon Poland"
+      }
+    ]
+  }
+}

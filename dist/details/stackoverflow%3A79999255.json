@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999255",
+  "sourceItemId": "79999255",
+  "sourceUrl": "https://stackoverflow.com/questions/79999255/using-ast-parse-to-evaluate-arithmetic-expression-safely",
+  "detail": {
+    "longDescription": "_OPS = { ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv, ast.Pow: operator.pow, ast.USub: operator.neg, ast.UAdd: operator.pos, ast.Mod: operator.mod, } def _eval(node): if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)): return node.value if isinstance(node, ast.BinOp): return _OPS[type(node.op)](_eval(node.left), _eval(node.right)) if isinstance(node, ast.UnaryOp): return _OPS[type(node.op)](_eval(node.operand)) if ( isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == \"log\" and not node.keywords ): return math.log(*[_eval(arg) for arg in node.args]) raise ValueError(f\"Unsupported expression node: {ast.dump(node)}\") def evaluate(expression: str) -> float: \"\"\"Safely evaluate an arithmetic expression. Supports + - * / ** % log() and parentheses.\"\"\" tree = ast.parse(expression, mode=\"eval\") return _eval(tree.body) Given my Python implementation, I want to create an eval function for my AI agent to run calculation and eval. My approach is like this: First parse the expression into an AST, then walk the tree and execute binary or unary operations recursively until we hit a literal. I think the safety is achieved through my predefined whitelist of operations to run. What do you think of this implementation to achieve safe evaluation?",
+    "developer": "jason lo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "47"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

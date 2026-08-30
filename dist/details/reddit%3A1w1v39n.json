@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w1v39n",
+  "sourceItemId": "1w1v39n",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w1v39n/i_found_a_completely_free_web_search_for_ai/",
+  "detail": {
+    "longDescription": "First contribution I made, just got merged, sharing it because it is too good to be true.\n\nSIMURG (https://github.com/doofzoff/SIMURG) guards small and local models from\n\nderailing mid answer (loops, language drift, garbage). The new update gives\n\nyour agent a completely free web search, powered by TinyFish: 30 requests per\n\nminute, $0, no card, no wallet.\n\n\n\nThe model rechecks its facts on the web before it answers and gets a verdict:\n\nattested, thin, or no record. No record means the subject is probably\n\nfabricated, so the agent abstains instead of confidently inventing things. In\n\nour internal checks on factual prompts, hallucinations dropped to the 1-5%\n\nrange.\n\nWorks right after pip install simurg, zero setup (there is a bundled free\n\nkey):\n\npython3 -m simurg.websearch \"What is SIMURG on GitHub?\" --ground\n\n\n\nIt returns the verdict plus the evidence, which you feed straight into your\n\nagent's context. One honest detail: generic hits do not attest a subject, if\n\nsearch only finds unrelated docs the verdict downgrades to thin.\n\n\n\nWould love feedback from people running small or quantized models, that is\n\nexactly who this is for.",
+    "developer": "Desperate-Message351",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

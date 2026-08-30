@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49490148",
+  "sourceItemId": "49490148",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49490148",
+  "detail": {
+    "longDescription": "My company stopped allowing Navicat because of compliance policy. DBeaver worked, but I don&#x27;t like it. I kept running into two recurring issues. First, production investigations often require several queries across different databases. I would query one table, copy an ID into another query, wait for the result, and repeat the process several times. I started wondering if there was a way to handle this without writing a separate script for every case. What if I had a simple form where I could enter the query parameters I already knew, and then run a sequence of SQL statements? Following that line of thought, I ended up building Workflow. Superset is a great tool, but as a developer who mostly needed to put together a few reports for my boss, deploying and maintaining a full Superset stack felt like overkill. So I ended up building a simple Dashboards feature for saved SQL queries and reports. When Navicat stopped being an option at work, I started looking for an open-source alternative. I also wanted to solve the two recurring problems described above. That eventually led me to build DataZen, a GPLv3-licensed desktop database client built with Tauri v2, Rust, React, and TypeScript. It also includes: - A SQL editor and schema browser - Natural-language SQL using the current schema as context - SQL error diagnosis and EXPLAIN analysis - Charts from query results - MCP server&#x2F;client support - An extensible database driver API - Schema diff, data sync, and data transfer tools The core database workflow works without AI. Once an AI provider is configured, it extends that same workflow with access to the active schema, query errors, execution plans, and workflow context. It can draft SQL, diagnose failures, explain plans, and automate parts of a multi-step workflow. When AI is enabled, it uses the provider configured by the user and the database context already available in DataZen. This is an early v0.1.0 release and there are still rough edges. I would especially like feedback on: - Whether YAML is a good interface for cross-database workflows - How read-only access and write approvals should work - Whether database driver extensibility is useful in practice - Which everyday database tasks are still unnecessarily repetitive GitHub: https:&#x2F;&#x2F;github.com&#x2F;flyxl&#x2F;datazen Downloads: https:&#x2F;&#x2F;github.com&#x2F;flyxl&#x2F;datazen&#x2F;releases",
+    "externalUrl": "https://flyxl.github.io/datazen/",
+    "developer": "flyxl",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}
