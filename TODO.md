@@ -5,7 +5,7 @@
 
 ## 状态总览
 
-已完成：十三平台采集框架、七个兴趣类别、详情抓取、schema v2、跨来源 heatScore、摘要 / 详情拆分、历史快照、来源健康保底、话题聚类、每日摘要、双语搜索、个人偏好、RSS/JSON/metrics 导出、PR CI、覆盖与数据质量门禁、外部告警、滚动窗口调度、新鲜度门控、GDELT GKG 降级、首屏数据拆包，以及 Node 22 / TypeScript 7 / Vite 8 工程升级。
+已完成：十三平台采集框架、七个兴趣类别、详情抓取、schema v2、跨来源 heatScore、摘要 / 详情拆分、历史快照、来源健康保底、话题聚类、每日摘要、双语搜索、个人偏好、RSS/JSON/metrics 导出、PR CI、覆盖与数据质量门禁、外部告警、滚动窗口调度、新鲜度门控、HTTPS 强制跳转、GDELT GKG 降级、首屏数据拆包，以及 Node 22 / TypeScript 7 / Vite 8 工程升级。
 
 ---
 
@@ -21,9 +21,9 @@
   - 2026-08-29 手动运行 Daily Fetch 已通过：1,430 条数据、13/13 来源覆盖；Reddit / Bluesky / GDELT 分别通过 Arctic Shift / Jetstream / GKG 官方存储降级取得本轮数据。
   - 可选配置 Reddit OAuth 与 Bluesky App Password，以恢复官方接口和更完整的互动排序。
 
-- [ ] **完成 HTTPS 强制跳转**
-  - 页面已有 HTTP → HTTPS 客户端兜底，HTTPS 本身可访问。
-  - GitHub Pages 暂无源站证书，Cloudflare API Token 又限制当前出口 IP；需在 Cloudflare 启用 **Always Use HTTPS**，或临时关闭代理让 GitHub 完成证书签发后再开启 `https_enforced`。
+- [x] **完成 HTTPS 强制跳转**
+  - 2026-08-30 已在 Cloudflare 为 `kitdesk.site` 启用 **Always Use HTTPS**。
+  - 公网验证：`http://dailypulse.kitdesk.site/` 返回 `301` 并跳转到 HTTPS，HTTPS 入口返回 `200`。
 
 - [x] **确认访问量统计归属**
   - 已在 Cloudflare 创建 `dailypulse.kitdesk.site` Web Analytics 站点，并将页面 Beacon Token 替换为该站点专属 Token；部署后开始积累 PV/访问量。
