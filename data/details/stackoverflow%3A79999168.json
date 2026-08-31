@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999168",
   "sourceItemId": "79999168",
+  "fetchedAt": "2026-08-31T01:35:12.621Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999168/how-to-perform-a-rebase-without-touching-any-worktree-or-tree-blob-object",
   "detail": {
     "longDescription": "How can I perform a rebase without altering a worktree? There are already a bunch of questions how to get git not to touch some specific worktree. That's not my question. I want git to not touch any worktree at all. Some answers contain the information, that that's not possible, because git performs merges and similar operations in the worktree and can't compute them in memory. However that is exactly what I want to achieve. I do want git to not perform any merges, but to simply use the existing tree objects. So essentially I want a rebase, but only for the commit objects, tree and blob objects should be not altered at all (theoretically git wouldn't even need to read their contents, other than to know they exist), but simply be the same as for the corresponding pre- rebase -commit. Motivation The reason to ask the question how to not alter some specific worktree seems to be tools using the shared filesystem directory, or the need to do different parallel operations. I know that this can be solved with more worktree s. There are two reasons for this question, asking for less worktree : the checkout is way to expensive, a single checkout is several gigabytes and does not necessarily share any tree/blob object with the previous checkout, resulting in costly and timely work, which simply can not be done, while having reasonable time and space constraints. the data stored in a commit is not to be interpreted as a diff/patch, but as a precious state which must not altered, because it contains user data not necessarily being authorized to change. Ideally there is some porcelain way to achieve this. -s ours could be what I request, but for a rebase that ours refers to the already rebase d commits and a -s theirs doesn't exist. -X theirs starts a checkout.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "61"
+        "value": "72"
       },
       {
         "label": "状态",

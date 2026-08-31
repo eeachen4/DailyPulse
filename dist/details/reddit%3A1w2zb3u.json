@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2zb3u",
+  "sourceItemId": "1w2zb3u",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w2zb3u/is_your_rag_pipeline_eating_garbage_html/",
+  "detail": {
+    "longDescription": "  \nBeen working on a thing that fetches + cleans web content for feeding into LLM pipelines, and what surprised me most was not the obvious stuff (ads, cookie banners, nav menus). it was the frequency of \"clean\" extraction tools quietly stripping real content and just giving you less. not even an error,  just a shorter article than should be.\n\nLearned this the hard way testing against MDN and the rust doc site. both are simple server-rendered pages, nothing fancy, and my extraction was coming back pretty empty on them. I was embarrassed at how long it took me to figure out why,  The extraction library was deleting any content block that contained the word “sidebar” in the CSS class name, regardless of context. both sites just happen to wrap their main article in a layout wrapper with \"sidebar\" somewhere in the class list. so it nuked the entire page.\n\nOnce I found the fix it was easy. What I took away was that if I hadn’t manually diffed the raw HTML against what came out, I would have just quietly shipped truncated content into whatever pipeline was using it. no exceptions thrown, nothing.\n\nmakes me wonder how much of the RAG \"hallucination\" people debug for weeks is actually just missing context that got silently stripped upstream somewhere in the scraping/cleaning step, not a model problem at all.\n\nHave others seen these types of silent failure extraction issues? I wonder how people verify that the scraped content really contains what it should.",
+    "developer": "Ok_Fox_5823",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

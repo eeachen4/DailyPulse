@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2xjk7",
+  "sourceItemId": "1w2xjk7",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1w2xjk7/cshop_gpu_accelerated_image_editor_in_rust_that/",
+  "detail": {
+    "longDescription": "[https://github.com/stubbb/c-shop](https://github.com/stubbb/c-shop)\n\n# Status\n\nActive development, beta. I looking into patching up a few bugs but there is a lot of them that I haven't found yet. Feature requests are welcome. \n\n# What I wanted to build\n\n**One: quick and capable image editor.** Every image editor I could actually use was either an enormous proprietary suite or a web app wearing a desktop costume. I wanted something that starts instantly, needs no system packages beyond a GPU driver, and behaves the way my hands already expect — layers, masks, blend modes, non-destructive adjustments, the same keyboard shortcuts. X11 is opened through dlopen, Vulkan through ash, everything else is pure Rust, so cargo run --release is the whole install. It uses less than 100 MB of RAM idle compared to 2.5 GB from Photopea.\n\n**Two: agentic integration.** I kept wanting to hand image work to an agent but the LLM cant natively see images. The approach I selected is that the editor drives from a script, headless, and it's the same application the buttons drive — anything the UI gains is reachable from a script.\n\nExample script:\n\n    cshop --run 'new 400 240 background=#20304a\n    text 40 154 \"Hello\" size=54 color=#ffffff bold\n    effect drop-shadow distance=6 size=8\n    export out.png'\n\nThe part that makes this usable by something blind is that every run answers with a **report** — where each layer landed, what each step did, what failed and why — and that `measure` will size a piece of text *before* anything is drawn. So a caller places things by number instead of rendering and guessing. Nothing fails silently: a bad command is a failed step with a reason, and the run carries on so one typo doesn't discard the rest.\n\nIt can be run locally by an agent on your computer or deployed to a server and interacted with over network as an MCP server. \n\n# What's in it\n\nRaster/group/fill/type/shape/adjustment layers; layer and clipping masks; 27 blend modes. Marquee, lasso and magic wand selections with feather, expand, contract, border, grow. Brush, pencil, eraser and clone stamp on one stroke engine. Re-editable type from your installed fonts. Eleven layer effects, all driven off one distance field. Vector shapes and Bézier paths from SDFs. Fourteen adjustments, each available destructively *and* as an adjustment layer. Thirty filters. Lens correction as one resampling pass rather than four. ICC profiles, real CMYK, 16-bit export. A native `.cshop` project format, plus PSD in and out.\n\n# Deep learning features are an optional add-on (heavy stuff)\n\nThere's a pack you opt into that adds seven models — detect, segment, depth, inpaint, semantic separation, denoise, upscale. It exists because \"cut the dog out of this picture\" and \"clean up this sky\" should be things you *ask for*, not things you do by hand. The whole cut-out is:\n\n    detect                        # → dog 90% at 4,303 632x501\n    segment class=dog feather=1   # the dog becomes the selection\n    layer via-copy\n\nThey run in a separate process behind a line of JSON, deliberately. A neural runtime is tens of megabytes of platform-specific machine code that changes every few months; putting it inside the binary would cost the binary its whole character for a feature most sessions never touch. Not installing it costs nothing and breaks nothing. At least I hope :)\n\nToday the detection model holds only 80 classes and it works well for basic concepts: person, dog, vehicle but it wont be useful for anything nuanced. Segmentation and depth are nice, generative fill is surprisingly good. Noise removal is world-class but takes long time. I used the SOTA model. ",
+    "developer": "Stubbby",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

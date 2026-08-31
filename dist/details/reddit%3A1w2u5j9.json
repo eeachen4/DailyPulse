@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2u5j9",
+  "sourceItemId": "1w2u5j9",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w2u5j9/meriyadh1_outbound_https_to_anthropic_is_100/",
+  "detail": {
+    "longDescription": "Posting this both to ask if anyone else in \\*\\*me-riyadh-1\\*\\* is hitting it, and so the next person googling \"OCI curl timeout Riyadh\" finds something useful.\n\n\n\n\\*\\*Setup:\\*\\* Ubuntu compute instance, public subnet, default route → Internet Gateway, stateful egress allow-all, VCN resolver for DNS. Running a Laravel app in Docker. Nothing exotic.\n\n\n\n\\*\\*Symptoms\\*\\*\n\n\n\n\\- \\`curl [https://api.anthropic.com\\`](https://api.anthropic.com`) → times out every single time (TCP connect, \\~10s). Claude Code installer obviously fails too.\n\n\\- \\`curl [https://deb.debian.org\\`](https://deb.debian.org`) → works maybe half the time, times out the other half. So \\`apt update\\` inside Docker builds randomly fails, then \\`install-php-extensions\\` blows up with \"Unable to locate package libfreetype6 / libpq5 / libzip\" (not actually missing, just failed index fetch).\n\n\\- \\`curl [https://github.com\\`](https://github.com`) and \\`https://pecl.php.net\\` → fine, every time.\n\n\\- DNS is fine. Resolution works for everything. This is not a DNS problem.\n\n\\- IPv6 is a separate thing: DNS returns AAAA but the instance has no global v6 (never enabled at VCN/subnet/VNIC level), so anything preferring v6 stalls. Fixed that on my side with \\`precedence ::ffff:0:0/96 100\\` in \\`/etc/gai.conf\\`. Not the main issue.\n\n\n\n\\*\\*The mtr evidence\\*\\* (TCP mode, port 443, 100 probes each)\n\n\n\nAnthropic — path just dies after the upstream handoff:\n\n\n\n\\`\\`\\`\n\n 1. 84.8.76.x (OCI edge)      0.0%\n\n 2. [87.109.47.10](http://87.109.47.10)0.0%\n\n 3. ???                     100.0%\n\n\\`\\`\\`\n\n\n\nThat's it. Nothing at any TTL beyond hop 2, no SYN-ACK from the destination, ever.\n\n\n\nDebian (Fastly) — real loss starting at hop 3, carried all the way to the destination:\n\n\n\n\\`\\`\\`\n\n 1. 84.8.76.x (OCI edge)              0.0%\n\n 2. [87.109.47.10](http://87.109.47.10)0.0%\n\n 3. [87.101.252.61](http://87.101.252.61)54.0%\n\n 4. [10.0.28.13](http://10.0.28.13)47.0%\n\n 5. [fra1.decixfra.fastly.net](http://fra1.decixfra.fastly.net)51.0%   \\~80ms\n\n 6. [146.75.118.132](http://146.75.118.132) (destination)     54.0%\n\n\\`\\`\\`\n\n\n\n(Also getting routed to Fastly in \\*\\*Frankfurt\\*\\* from Riyadh, which seems wrong on its own.)\n\n\n\nGitHub control trace completes fine and real traffic works, so the path itself isn't globally broken — it's destination-specific.\n\n\n\n\\*\\*Why I'm confident it's not my config:\\*\\* hops 1 and 2 (OCI's edge + the upstream handoff) are 0% on every trace. My route table / security lists / IGW are passing everything. The loss and the blackhole both begin at the same boundary (87.109.47.10 → 87.101.252.61), i.e. regional transit/peering. I've opened an SR with all three reports.\n\n\n\n\\*\\*Questions\\*\\*\n\n\n\n1. Anyone else in me-riyadh-1 seeing Anthropic (AS399358, 160.79.104.0/21) unreachable, or Fastly flaky?\n\n2. Has anyone gotten OCI to actually escalate a transit/peering issue in a newer region? How long did it take?\n\n3. Any recommended Debian mirror that has a clean path from Riyadh? I'm currently shopping for one with curl to keep Docker builds working while this is open.\n\n\n\nInterim plan: apt mirror swap for builds, and if the Anthropic blackhole drags on, a WireGuard egress through another region for Claude Code only. Would much rather OCI just fix the route.\n\n",
+    "developer": "Healthy_Sir_2810",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

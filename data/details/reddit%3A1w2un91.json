@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2un91",
+  "sourceItemId": "1w2un91",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w2un91/i_built_an_opensource_semantic_code_graph_for_llm/",
+  "detail": {
+    "longDescription": "Disclosure: I’m the author of Kivgraph.\n\nI built Kivgraph to solve a problem I kept seeing when working with LLM coding agents on large codebases: structural questions turn into long chains of grep calls and file reads. The answer is often correct, but the context cost is high, and text search cannot reliably prove relationships across repositories.\n\nKivgraph is a local, Apache-2.0 MCP server that indexes multiple repositories into a semantic code graph. It exposes queries such as:\n\n\\- who calls this symbol?\n\n\\- what breaks if I change it?\n\n\\- which other repository consumes it?\n\nThe important design choice is that edges are resolved by language tooling rather than name matching: go/types, the TypeScript checker, rust-analyzer, and Dart Analysis Server. Python relationships remain explicitly weaker unless a semantic analyzer is configured.\n\nI benchmarked it against grep + reading across 37 repositories and 29 questions:\n\n\\- Kivgraph: 28/29 exact answers, 35,961 tokens\n\n\\- grep + reading: 28/29 exact answers, 267,980 tokens\n\nSo the graph used about 7.4x fewer tokens overall. Grep was cheaper on 5 questions, which is why I don’t think this replaces grep. The useful boundary seems to be structural, cross-repository, and identifier-free questions.\n\nKivgraph runs locally over stdio, does not require an API key, and supports Go, TypeScript, Rust, Python, and Dart.\n\nDisclosure: I’m the author of Kivgraph. This is an open-source project share, not a commercial advertisement. The linked repository is Apache-2.0, and this post contains no paid, affiliate, or referral link.\n\nKivgraph is a local MCP server for LLM coding agents. It indexes multiple repositories into a semantic code graph so an agent can query relationships such as who calls a symbol, what breaks after a change, and which other repository consumes it.\n\nThe technical problem is context waste: on large codebases, structural questions often become long chains of grep calls and file reads. Text search also cannot reliably prove relationships across repositories or distinguish same-named symbols.\n\nKivgraph resolves edges with language tooling rather than name matching: go/types, the TypeScript checker, rust-analyzer, and Dart Analysis Server. Python relationships remain explicitly weaker unless a semantic analyzer is configured.\n\nI benchmarked it against grep + reading across 37 repositories and 29 questions:\n\n\\- Kivgraph: 28/29 exact answers, 35,961 tokens\n\n\\- grep + reading: 28/29 exact answers, 267,980 tokens\n\nThe graph used about 7.4x fewer tokens overall. Grep was cheaper on 5 questions, so this is not intended as a replacement; the boundary I’m testing is structural, cross-repository, and identifier-free questions.\n\nThe project runs locally over stdio, requires no API key, and supports Go, TypeScript, Rust, Python, and Dart.\n\nRepository: [https://github.com/Luqueee/kivgraph](https://github.com/Luqueee/kivgraph)\n\nDocumentation and benchmark: [https://kivgraph.dev](https://kivgraph.dev)\n\nThe open technical question is where a semantic code graph earns its complexity over ordinary search in real LLM-assisted development workflows.Repository: [https://github.com/Luqueee/kivgraph](https://github.com/Luqueee/kivgraph)\n\nDocumentation and benchmark: [https://kivgraph.dev](https://kivgraph.dev)\n\nI’m interested in technical feedback rather than upvotes: which LLM/codebase questions are hardest for your current workflow, and what evidence would make you trust a code graph’s answers?",
+    "externalUrl": "https://v.redd.it/rj0gbjqw2lmh1",
+    "developer": "ImpressiveSecret9512",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

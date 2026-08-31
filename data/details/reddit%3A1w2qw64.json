@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2qw64",
+  "sourceItemId": "1w2qw64",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w2qw64/when_the_thing_i_built_became_the_thing_holding/",
+  "detail": {
+    "longDescription": "(Long post, skip if you're not in the mood.)\n\nI think I hit a turning point last week.\n\nWe had a support ticket from a student in Germany saying their course video kept stalling at the 12 minute mark. I spent an evening on it. Turned out to be our own encoding queue choking under load, something I built two years ago on top of S3 and a couple of ffmpeg workers, because I was convinced we could do it cheaper and better than any hosted platform. It worked, mostly, for a long time. That night it didn't, and I sat there rewriting a retry handler I'd already rewritten once in 2023.\n\nOur Head of Content has been quietly testing Kinescope for a few of our newer course modules, without asking me first, because she got tired of waiting on me to fix playback issues on mobile. She didn't frame it as a vote of no confidence. She just said the DRM and watch-depth analytics were already built in and she didn't see why we'd keep maintaining our own version of that from scratch. I didn't have a great answer.\n\nThat's the part that's been sitting with me. I built this thing because I liked building it. I liked figuring out how to chunk video for adaptive bitrate, how to lock down access so paid students couldn't just rip the mp4 and pass it around, how to get watch analytics that actually meant something instead of a play count. It was satisfying in the way infrastructure work sometimes is, when you're the only one who fully understands how the pieces fit.\n\nBut I'm the only one who fully understands how the pieces fit. That's not a flex anymore, it's a liability, and I know it. When I'm on vacation, nobody else touches the encoding pipeline. When something breaks at 11pm, it's my phone that buzzes. Meanwhile the actual job, getting courses in front of students without them stalling out or getting pirated, doesn't care who built the plumbing.\n\nSo now I'm wondering what my job even is if it isn't this. A lot of what pulled me into this kind of work was the problem-solving itself, the part where you're wrestling with CDN edge cases and encryption keys and you come out the other side with something that just works. If Kinescope or Vimeo or Wistia can do the DRM and the CDN and the LMS integration better than I can, and honestly for less than what our AWS bill looks like most months, what exactly am I for.\n\nI get the argument that I should just move up a layer, stop maintaining video infra and go focus on the actual product. I get it intellectually. But some part of me built an identity around being the person who kept this stuff running, and giving that up feels like giving up more than a codebase.\n\nWe haven't fully migrated. I'm the one dragging my feet, if I'm honest, running a side-by-side test with Gumlet too just to feel like I did my homework before admitting defeat. But watching the support tickets basically disappear on the modules already moved over has been hard to argue with.\n\nNot sure what this makes me now. Still figuring that part out.",
+    "developer": "greezy-sam",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2wogb",
+  "sourceItemId": "1w2wogb",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w2wogb/im_starting_to_think_were_framing_ai_agent/",
+  "detail": {
+    "longDescription": "I came across a discussion recently about someone building a voice AI agent that takes orders and writes to a production database. Their concern was: how do you know that a conversation actually qualifies as a lead before allowing the agent to create something in production?\n\nSomeone suggested a staging/queue layer with deterministic validation before the write. Then another question came up: what happens if the agent retries and sends the exact same write twice?\n\nThat rabbit hole got interesting pretty quickly.\n\nBecause now we're not really talking about observability anymore. We're talking about whether we can trust an agent to perform actions that have side effects.\n\nAn agent can have perfect logs. You can know exactly what tool it called, what arguments it passed, and whether the API returned a 200.\n\nAnd the system can still be wrong.\n\nThe database might not contain what the agent intended. A lead might have been created twice. A state transition might have happened when it shouldn't have. An external action might have succeeded even though the agent thinks it failed and retries it.\n\nSo maybe the reliability layer for agents shouldn't just answer “what did the agent do?”\n\nIt should also answer “did the action produce the state we actually expected?”\n\nThis is actually the problem I've been exploring with a small project I'm building.\n\nFor people running agents in production: how are you making sure agent actions with real side effects are actually reliable, rather than just observable?",
+    "developer": "Gallegos_Daniel",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

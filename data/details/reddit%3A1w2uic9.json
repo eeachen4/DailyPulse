@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2uic9",
+  "sourceItemId": "1w2uic9",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w2uic9/qwen_38_27b_ninfer_and_an_experiment_can_i_use/",
+  "detail": {
+    "longDescription": "(Thank you qwen team and ninfer).  \n  \nAs always, I am bored. Last time it was [Deepseek OCR App ](https://github.com/rdumasia303/deepseek_ocr_app)\\- which ended up being used to make me a poster boy [for the dangers of vibe coding for](https://www.scworld.com/news/rsac-2026-treat-ai-like-a-junior-developer-to-catch-coding-errors). Hence I am not sharing the code for this yet - but maybe soon, and maybe I don't need to as it's childs play anyway now. I reckon anyone could make similar.   \n  \nThus a stupid experiment: How close can I get a local setup to look like the web based frontier offering (Artifacts, Canvas, autonomous tool loops, code sandboxing) at home, on a 5090?\n\nWell, to some degree, you can blow straight past it in about six hours.\n\nYes maybe I could have used openwebui or something, but it's too fiddly. And I wanted something that's mine and does what I want.\n\nAnyway, I knocked up **Sovereign**. Built because why not, and I wanna have qwen read my pension transactions, not Dario. \n\n# Setup\n\n* **Hardware:** Single RTX 5090, the rest of the machine is immaterial. \n* **Model:** Qwen 27B dense / reasoning traces (NVFP4, [ninfer](https://github.com/Neroued/ninfer))\n* **Speed:** more than fast enough, no measurements as it isn't the point. \n* **Total Build Time:** \\~6 hours.\n* **Total Cost:** \\~£50 of free API credits using frontier models to do all the heavy lifting (gpt 5.6 sol, fable via subs) \n* **Lines of code I personally read or wrote:** **Zero.** Literally didn't look at one line of source. Sorry. Hence I'm not putting it up yet until i've actually done the due diligence. I don't want to be featured in a cyber security conference twice. \n\n# Features\n\n* **Dynamic Split-Pane Artifacts:** Full side-by-side canvas running interactive JS/HTML apps, physics sandboxes, and live parameter sliders in an isolated iframe.\n\n\n\n* **Inline Reactive Widgets:** Spits out interactive, real-time charts directly inside the chat flow instead of dumping ugly code blocks.\n\n\n\n* **Local MCP + Python Math Verification:** Hooked it to local Postgres via Model Context Protocol. In one prompt, it fired off discrete SQL queries against my UK pension transactions, passed the intermediate data into a local Python environment to sanity-check the arithmetic, and gave me back a lovely table. Yes, I am making money from adobe. And if i had held the position i'd have nearly enough to buy an RTX 6000 pro - albeit trapped in my pension. Oh well. \n\n\n\n* **Resilient (ish) Web Agent:** Scrapes live web tables. When keyless search throttled it on a sports query, it caught its own errors, pivoted to direct fetch, pulled the tables, crunched the points in Python, and drew a bar chart of the MotoGP title race without crying for help. It's not the best but it kinda works enough.\n\n\n\n* **Vision / OCR:** Drops in an image and it tells you about it. \n\n\n\n* **Zero Telemetry:** Completely air-gapped, zero cloud logging, zero rate limits, zero monthly subscriptions.\n\n# But .. why?\n\nFor the sheer comedic irony of using Dario and Sam’s own hosted APIs to write an air-gapped, zero-marginal-cost local client that completely eliminates the need to ever pay for their consumer web subscriptions again (although of course I keep paying because I'm addicted) is deeply satisfying.\n\nBut look at it. To me that is the same visual quality as their interfaces 6-12 months ago ish ... and in some ways ahead. And Qwen 3.8 ... is a god with tool use.   \n  \nI sat in a chair, ate pizza, roughly typed architectural demands at a couple of frontier models and let them build a replacement for their labs consumer facing product.\n\nConceptually, that is a result!",
+    "developer": "Putrid_Passion_6916",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2y7lq",
+  "sourceItemId": "1w2y7lq",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w2y7lq/were_almost_done_dogfooding_surestate_would/",
+  "detail": {
+    "longDescription": "I posted here recently asking people to tear apart something I’ve been building called SureState. Got some really useful feedback, especially around dependency registration being useless if everything has to be tagged manually.\n\n\nWe’re now getting close to finishing the internal pilot.\nWhat actually exists today:\n\n\nSureState is monitoring its own development repo. It tracks evidence like commits and CI at the exact version they belong to, keeps the history outside the AI, and maintains the current state of conclusions as things change.\n\n\nSo instead of an agent just remembering:\n“CI passed.”\n\n\nit can ask:\n“Is the conclusion I care about still supported for what I’m working on now?”\n\n\nStates can be supported, refuted, conflicted, or not currently warranted. There’s a human Monitor and a read-only MCP interface so an AI can check the state without being allowed to change it.\n\n\nThe current GitHub integration is built specifically around our own repo, so this is not a polished install-and-click SaaS yet.\n\n\nWhat I’m thinking about doing next is opening 5 managed early-access spots at $250/month.\n\n\nOne repo, one important engineering/release workflow. We would work with the team to configure it instead of dumping a dependency-graph builder on you and wishing you luck.\n\n\nThe kind of thing I want to test is:\nCI is green on the current SHA, but the security scan or approval belongs to the previous SHA. Does your agent/team notice before acting?\n\n\nI’m mainly interested in teams using Claude Code, Codex, Cursor, agents, etc. heavily enough that decisions are being carried across sessions and tools.\n\n\nI’m not asking for money today. I want to know whether I can find five teams that would genuinely pay $250/month once this is ready — not five people willing to click a free waitlist.\n\n\nIf that's you, tell me what your workflow looks like and what conclusion you most worry about an agent incorrectly assuming is still true.\n\n\nAnd if $250 sounds ridiculous, tell me what SureState would have to catch or prevent before it wouldn't.",
+    "developer": "Darkcraft00",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

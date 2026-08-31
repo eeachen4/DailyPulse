@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2go6l",
+  "sourceItemId": "1w2go6l",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w2go6l/reconstructing_3d_bone_geometry_from_2_xray/",
+  "detail": {
+    "longDescription": "Working on a pipeline that recovers a patient specific 3D distal femur from two orthogonal X-ray views (PA + lateral). No CT, no neural network, no massive training set.\n\napproach: build a PCA shape model from 50 CT-derived femur meshes (MedShapeNet), then fit it to two silhouettes using PyTorch3D's soft rasterizer with sigma annealing. 10 shape coefficients, Mahalanobis prior to keep things plausible, Adam optimizer, \\~1000 iterations.\n\nThe part that took the longest (and made me suffer the most too) : correspondence. Tried KD-tree nearest neighbor (50.7x roughness vs CT surface), CPD (28.2x), BCPD (47.5x), and FilterReg (couldn't even run). Finally got ShapeWorks working at 3.3x. only method that passed the 5x acceptance gate I set before testing.\n\nLOO validation on 5 held out femurs: 0.86-1.43mm on within range targets. Two extreme cases failed because they sat outside the 49-mesh model's coverage on mode 1, the optimizer can't recover a coefficient the model doesn't support. Bridge ICP alignment was also poor on those cases (0.6 inlier fraction), which accounted for more error than the shape fitting itself.\n\nInteresting finding: the sigma anneal endpoint has to match the reference render's sigma exactly. Hardcoding a constant tuned on one SSM caused an 87x accuracy degradation on another. Tying it to camera\\_extent × 1e-4 fixed it.\n\nStill working on real X-ray validation (need paired CT data) and automatic segmentation. Happy to answer questions",
+    "externalUrl": "https://youtu.be/6whd6Q8pZ1I",
+    "developer": "mxl069",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "youtu.be"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

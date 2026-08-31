@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2jp24",
+  "sourceItemId": "1w2jp24",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w2jp24/veth_to_container_mappings/",
+  "detail": {
+    "longDescription": "I'm doing a deep dive on bridges and veth devices and realized it's difficult to map a veth pair to a running container.  \n  \nDockerd will suffix a random string (crypto/rand) to \"veth\" when creating the bridge connection but doesn't save the value in the container or networks metadata.  Instead you have to map the network namespace of each veth device to each container.     \n  \nThis gist [https://gist.github.com/amf3/ca6b9106f154cfce06d71bd7012cca30](https://gist.github.com/amf3/ca6b9106f154cfce06d71bd7012cca30) explains how to map the network device to the running container. One command does need sudo access with \"lsns\" but otherwise uses normal privleges like \"ip and \"jq\".",
+    "developer": "af9_us",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

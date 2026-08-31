@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2u0ru",
+  "sourceItemId": "1w2u0ru",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w2u0ru/ci_pipeline_using_github_actions/",
+  "detail": {
+    "longDescription": "I started learning CI/CD using github actions after containerising my application and I have created CI pipeline for django app that runs test, builds and pushes image to github container registry.  \nI am sharing my yaml file for CI pipeline. Please do share your thoughts and where can i improve.\n\n    name: Test Pipeline \n    on: \n      push:\n    jobs:\n      test-backend:\n        runs-on: ubuntu-latest\n        services:\n          postgres:\n            image: postgres:14\n            ports:\n              - 5432:5432\n            env: \n              POSTGRES_USER: test_user\n              POSTGRES_DB: erp\n              POSTGRES_PASSWORD: 123456\n            \n        steps:\n          - name: Checkout repo\n            uses: actions/checkout@v4\n            \n          - name: setup python\n            uses: actions/setup-python@v5\n            with: \n              python-version: \"3.13.5\"\n          \n          - name: install dependencies\n            run: pip install -r Backend/requirement.txt\n          \n          - name: run tests\n            env: \n              DATABASE_URL: postgresql://test_user:123456@localhost:5432/erp\n              DEBUG: 'True'\n              ALLOWED_HOST: '*'\n            run: |\n              cd Backend \n              python manage.py test\n      \n      build-and-push-image:\n        needs: test-backend\n        permissions:\n          contents: read\n          packages: write\n        runs-on: ubuntu-latest\n        steps:\n          - name: login to ghcr\n            uses: docker/login-action@v3\n            with:\n              registry: ghcr.io\n              username: ${{ github.actor }}\n              password: ${{ secrets.GITHUB_TOKEN }}\n    \n    \n          - name: checkout repo\n            uses: actions/checkout@v4\n    \n    \n          - name: build image\n            run: docker build -t ghcr.io/namespace/erp:${{ github.sha }} ./Backend\n    \n    \n          - name: push image\n            run: docker push ghcr.io/namespace/erp:${{ github.sha }}",
+    "developer": "Mukul-nst",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

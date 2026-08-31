@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2xlfr",
+  "sourceItemId": "1w2xlfr",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w2xlfr/a_commenter_said_my_llm_model_comparison_was_one/",
+  "detail": {
+    "longDescription": "Two weeks ago I posted here about giving my order-parsing LLM a 29-question exam. Follow-up: I compared a cheap model (Haiku 4.5) against one that costs 3x (Sonnet 5) on that exam. Both had zero fatal errors, the expensive one got exactly one more question right, and I published \"won by exactly one question.\"\n\nA reader pointed out the obvious thing I'd missed: each question had been run only once. Zero fatal errors in 29 single tries doesn't prove the fatal rate is zero — a model that fails one time in ten can easily go 29 for 29 on one lucky pass. So I reran the whole exam 5 times per model: 290 answers, same setup as before. I left the randomness setting (temperature) as it was, because that randomness was exactly what I needed to measure.\n\n**Results**\n\n- Fatal errors: 0/145 for both models\n- Risky (confirmed something ambiguous): 1 each\n- Clean sheets: 140/145 vs 139/145\n- Clean questions per run, out of 29: cheap model 29, 28, 27, 28, 28 — expensive model 28, 28, 28, 28, 27. Pick any single run and either model can look like the winner.\n\n**The question that decided the original comparison was a coin flip.** It was a lid order: \"PET 300 bottles + white lids\" where the catalog has 300-neck and 500-neck lids. In my original single pass the expensive model inferred the 300 lid and confirmed; the cheap one asked which. In five fresh runs the expensive model never gave that winning answer again — it asked \"which lid?\" all five times. The cheap model gave the winning answer once out of five. The original result had flipped. The margin in my headline was one sample from a distribution.\n\n**Both risky trials landed on questions I had already flagged as undecidable.** My 29 questions come in two kinds: ones where the data pins down one right answer, and ones where it can't — there, \"ask a human\" is the right answer. I tag each question with its kind. On the first kind, when answers wobbled between runs they only wobbled toward asking more, which is the safe direction. The dangerous wobble — confirming an answer on a question that has no single right answer — happened only on the second kind, and only once per model in 145 tries.\n\n**Verdict:** the tie on fatal errors held, so \"take the cheap one\" stands — but on measured grounds now, not a one-question margin. One caveat from another commenter, and he's right: I ran the same 29 questions five times, not 145 different questions. So the reruns prove this exam is stable when repeated — they don't prove anything new about questions the model hasn't seen. For that I still have only 29 kinds of question, so my confidence there is what it was after one pass. Moving it needs new questions, not more reruns.\n\nTakeaway for anyone comparing models on a small exam: a single pass doesn't just blur the ranking, it can crown the outlier. Run it 5x before you publish a margin.\n\nThe full write-up with the per-item matrix, plus all 290 raw answer sheets, the 5x driver, and the aggregator are public — I'll put the links in a comment to keep this post clear of the link filter.",
+    "developer": "ActiveStriking2719",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

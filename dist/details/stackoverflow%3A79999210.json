@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999210",
   "sourceItemId": "79999210",
+  "fetchedAt": "2026-08-31T01:35:12.621Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999210/why-does-x-ratelimit-remaining-tokens-decrement-by-actual-input-tokens-instead-o",
   "detail": {
     "longDescription": "The Azure OpenAI quota documentation describes the TPM rate-limit estimate in two places with different strength: As each request is received, Azure OpenAI computes an estimated max processed-token count that includes the following: prompt text and count, the max_tokens parameter setting, the best_of parameter setting. \"Includes\" only names the inputs — a plausible reading is a worst-case ceiling, where the whole max_tokens budget is consumed as reasoning + output, all of which are processed tokens. But the 429 section commits to an actual sum: Rate limits are calculated using the estimated maximum token count (prompt + max_tokens) , not the actual tokens generated. For comparison, the OpenAI platform documentation makes max_tokens an input via a maximum , not a sum: \"the maximum of max_tokens and the estimated number of tokens based on the character count of your request.\" My measurements are consistent with neither. What I measured I logged x-ratelimit-remaining-tokens on a gpt-5-mini Global Standard deployment (1,000,000 TPM, Sweden Central, API version 2024-12-01-preview ) and computed each request's charge as limit − remaining , keeping only responses where a single request completed within ±2 seconds so the delta is attributable to one request. 29 responses paired cleanly with their own actual token usage: Charge behaviour Count Equals actual usage.prompt_tokens exactly (e.g. 8,329 / 13,605 / 40,073 / 93,837) 20 Within 5% of input + max_tokens or max(input, max_tokens) (likely coincidence) 2 Well above input — all requests retried after connection errors 7 What this establishes: The charge for a completed request is its exact tokenized input. One was charged 8,329 with max_completion_tokens = 10000 — below max_tokens itself, which no formula involving max_tokens can produce, sum or maximum. And input + completion matched 0 of 29, so completions are not counted either. Failed attempts consume budget. The retried requests were charged 1.8–6.8× their input (example: 252,781 input tokens, charged 630,582 — consistent with two attempts each charged a character-based input estimate, though attempt counts are not in my telemetry and these deltas are the least isolated in the dataset). Behaviour was identical with reasoning_effort at minimal , low , and unset — not a reasoning-budget effect. Question For a completed request, the counter visibly ends at exact input tokens, with no max_tokens component. What I cannot observe from outside is the mechanism around it: Is the counter charged when the request is received (the documented prompt + max_tokens estimate, later reconciled to actual input), or simply charged once, at completion, with the exact input? If requests are charged on receipt, what exactly do failed attempts leave behind? My retried requests' charges fit per-attempt character-based input estimates, but a max_tokens component would be within noise on prompts this large. Does the prompt + max_tokens formula exist somewhere I cannot see — for example, used only in the internal decision to reject a request with a 429, separately from the counter the headers report? (My workload drew no 429s, so I never observed a rejection.) Or does the counter I measured tell the whole story, and the documented formula no longer applies? Why it matters A client-side rate limiter that pre-reserves prompt_estimate + max_tokens per in-flight call — as the documentation suggests — over-reserves heavily against what the headers report. With 30 concurrent calls at max_tokens = 10000 , that is roughly 300k phantom tokens against a 1M TPM budget.",
     "developer": "Tom",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "32"
+        "value": "35"
       },
       {
         "label": "状态",

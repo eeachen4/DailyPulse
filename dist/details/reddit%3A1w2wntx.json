@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w2wntx",
+  "sourceItemId": "1w2wntx",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w2wntx/bazarr_providers_subs4series_greeksubtitlescom/",
+  "detail": {
+    "longDescription": "**Setup** (of my friend)**:** Bazarr running in Docker (linuxserver.io image, currently on `v1.6.0-ls361`, build 2026-08-25), paired with Sonarr, on a self-hosted Ubuntu server.\n\nFor weeks now, `subs4series` and `greeksubtitles` (both Greek-subtitle providers) fail every search with a straight 403:\n\n    Throttling subs4series for 10 minutes, until ..., because of: HTTPError.\n    Exception info: \"'403 Client Error: Forbidden for url: https://www.subs4series.com/search_repor' ~ subs4series.py@136\"\n    \n    Throttling greeksubtitles for 10 minutes, until ..., because of: HTTPError.\n    Exception info: \"'403 Client Error: Forbidden for url: https://gr.greek-subtitles.com/search.' ~ greeksubtitles.py@83\"\n\nBazarr throttles the provider for 10 minutes, retries, gets 403 again, throttles again — endless loop, zero subtitles found from either site for anything.\n\n**What my friend confirmed so far:**\n\n* It's **not** a general IP block. `curl`\\-ing the plain homepage of both sites from inside the Bazarr container returns HTTP 200 (with `server: cloudflare` in the headers). Only the *search* endpoints 403.\n* Looking at the provider source in `subliminal_patch/providers/`:\n   * [`greeksubtitles.py`](http://greeksubtitles.py) uses a plain `requests.Session()` — no Cloudflare handling at all.\n   * [`subs4series.py`](http://subs4series.py) actually imports `RetryingCFSession` from `subliminal_patch.http` (a cloudscraper-style session meant to solve the JS challenge), but it's still getting 403'd on the search endpoint. So even the provider that's *supposed* to bypass Cloudflare isn't managing it anymore.\n* Pulled the latest Bazarr image (`v1.6.0`, fresh build from 2026-08-25) hoping for a fix — same result, no change.\n* Ruled out my own config: API keys/credentials aren't the issue here (this is a \"the site itself is blocking us\" error, not an auth error). Also tried adding `xsubs` and `subdl` as extra providers — `subdl` works fine with an API key but just doesn't have hits for the specific episodes I need; `xsubs` throws its own unrelated `AttributeError` bug.\n* Restarting the container, clearing throttle state, waiting hours/days between attempts — no change. This isn't a transient rate-limit, it looks like Cloudflare's bot challenge on these two sites has gotten stricter and Bazarr's scraper can no longer solve it.\n\n**Question for the sub:** Is this a known upstream issue (I couldn't find an open GitHub issue that matches exactly), is there a config flag / cookie / user-agent trick that helps, or are these two providers just dead for the foreseeable future? Are there other providers that also offer Greek subs or multilang?",
+    "developer": "Fresh-Necessary-1021",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

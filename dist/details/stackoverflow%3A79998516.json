@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79998516",
+  "sourceItemId": "79998516",
+  "sourceUrl": "https://stackoverflow.com/questions/79998516/calling-a-method-on-a-boxed-trait-object-causes-error-due-unsatisfied-trait-boun",
+  "detail": {
+    "longDescription": "I'm trying to wrap a Redis connection in a custom struct so that I can either use an actual Redis connection or a MockRedisConnection for testing. This is what I've come up with so far: use redis::{Commands, ConnectionLike, RedisError}; struct MyRedis { connection: Box<dyn ConnectionLike>, } impl MyRedis { pub fn set_name(&self, name: &str) -> Result<(), RedisError> { let _: () = self.connection.hset(\"me\", \"name\", name); Ok(()) } } fn main() { let client = redis::Client::open(\"redis://127.0.0.1/\").unwrap(); let c = client.get_connection().unwrap(); let connection = Box::new(c); let redis = MyRedis { connection }; redis.set_name(\"bla\"); } The compiler is not amused: error[E0599]: the method `hset` exists for struct `Box<(dyn ConnectionLike + 'static)>`, but its trait bounds were not satisfied --> src/main.rs:9:37 | 9 | let _: () = self.connection.hset(\"me\", \"name\", name); | ^^^^ method cannot be called on `Box<(dyn ConnectionLike + 'static)>` due to unsatisfied trait bounds | ::: /home/gino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/redis-1.6.0/src/connection.rs:1598:1 | 1598 | pub trait ConnectionLike { | ------------------------ doesn't satisfy `(dyn ConnectionLike + 'static): Commands` or `(dyn ConnectionLike + 'static): Sized` | = note: the following trait bounds were not satisfied: `Box<(dyn ConnectionLike + 'static)>: ConnectionLike` which is required by `Box<(dyn ConnectionLike + 'static)>: Commands` `(dyn ConnectionLike + 'static): Sized` which is required by `(dyn ConnectionLike + 'static): Commands` For more information about this error, try `rustc --explain E0599`. error: could not compile `rust` (bin \"rust\") due to 1 previous error According to everything that I've been reading I need to wrap the ConnectionLike object in a Box, but it seems I'm missing something.",
+    "developer": "gino77",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "73"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}
