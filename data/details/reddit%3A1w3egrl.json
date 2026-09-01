@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3egrl",
+  "sourceItemId": "1w3egrl",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w3egrl/when_a_guardrail_blocks_an_output_is_it_on_the/",
+  "detail": {
+    "longDescription": "A guardrail fires and blocks an output. The eval that flagged it lives in another tool, the trace in a third, so to see what happened you line all three up by hand. That is normal once an agent is in production: you run four things, tracing, evals, runtime guardrails, and a gateway in front of the models, usually four separate tools.\n\nThere's a real argument for keeping them separate. Each goes deeper in its own lane. Langfuse and Phoenix are strong at tracing, Ragas and DeepEval are real eval frameworks, Guardrails AI and NeMo handle policies, and Portkey and LiteLLM are solid gateways. Nothing locks you in, and you can swap any piece the week a better one ships.\n\nThe cost shows up later: four dashboards, four logins, data that never joins. Spend sits in the gateway, quality scores in the eval tool, the guardrail's decision elsewhere, nothing keyed the same way. The all-in-one bet is the opposite: the layers share context, so a trace, its eval score, and its guardrail decision sit in one record.\n\nWe build one of these, Future AGI: it runs tracing, evals, runtime guardrails, and the model and tool gateway in one Apache-2.0 stack you can self-host, so a blocked call never leaves and the trace lines up with the eval. It is still a nightly build with rough edges, and the honest reason to run it this way is fewer moving parts, not any single piece beating the dedicated tool.\n\nSo when a guardrail blocks something, is it on the same trace as the eval that flagged it, or are you piecing it together from separate tools? And if you consolidated, did it ever cost you on depth, where the bundled piece was weaker than what you gave up?\n\n  \n",
+    "developer": "Future_AGI",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

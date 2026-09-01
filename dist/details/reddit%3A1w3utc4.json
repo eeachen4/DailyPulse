@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3utc4",
+  "sourceItemId": "1w3utc4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w3utc4/stripe_ships_65kb_of_llmstxt_so_models_describe/",
+  "detail": {
+    "longDescription": "No links in this post. Fetch /llms.txt on any of these yourself, the numbers are just content-length.\n\nServing a real llms.txt today:\n\n    posthog.com     375 KB\n    stripe.com       65 KB\n    clerk.com        19 KB\n    cursor.com       19 KB\n    linear.app       10 KB\n    resend.com      6.8 KB\n    vercel.com      3.5 KB\n    supabase.com    2.3 KB\n\nNot serving one: anthropic.com and langchain.com return 404. openai.com and perplexity.ai return 403 to a plain fetch, so I cannot tell either way from outside.\n\nSo the convention has real adoption among companies whose product is read by models. Eight of twelve, and PostHog is shipping a third of a megabyte of it.\n\nThen I checked the people who run those companies. patrickcollison.com/llms.txt returns HTTP 200 with content-type text/html and the body is the homepage, which is a soft 404. paulgraham.com/llms.txt 302s to the root. Neither has one.\n\nThat is the asymmetry I keep circling. We accepted that a model reading our docs badly is our problem to fix, and we fixed it with a file. A model reading a person badly is nobody's problem, and there is no file.\n\nIt gets worse for people than for products, because the surfaces that hold a person's facts refuse the crawlers outright. LinkedIn, Instagram and TikTok all return a flat Disallow to GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, CCBot and Google-Extended, while Googlebot gets an explicit allow list. So the model is not choosing a worse source about a person, it is using the only source it was allowed to reach: a conference bio, an old company page, a GitHub readme.\n\nTwo open questions for people building on this:\n\n1. Is llms.txt even the right shape for a person? It is a docs index. A person is a small set of claims that need provenance and a last-updated date, which is closer to a schema.org Person or a signed statement than to a link list.\n\n2. Does adding a crawlable page actually displace the stale one in a model's answer, or just join it? I have no way to measure that yet, and every claim I have seen about it is vibes. If someone has run a real before and after, I would rather read that than keep speculating.",
+    "developer": "Dry_Steak30",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3br9c",
+  "sourceItemId": "1w3br9c",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w3br9c/how_to_assess_if_there_is_a_strong_signal_in_your/",
+  "detail": {
+    "longDescription": "I'm sharing this new tabular data diagnostic tool (Entropic Scree). It can be used to estimate these properties of your high-d, real-world, dirty dataset:\n\n* The informational volume of the signal (i.e., helps you assess whether the signal is strong enough to survive the dataset's idiosyncratic volume).\n* The overall signal-to-idiosyncratic volume ratio (SNR).\n* The intrinsic rank.\n* Provides an exploratory map that allows for the identification of decoupled sub-networks of variables.\n* The linear sufficiency (i.e., does the dataset align with the linear assumptions of standard PCA?).\n\nInstead of evaluating linear variance, rank order, or Euclidean distance like traditional PCA variants, this new method evaluates a transformed mutual information metric. Relative to these baselines, it is less reliant on strong parametric or distance assumptions, making it appropriate to apply more broadly.\n\nIt also serves as a practical diagnostic of the theory explored in the *From Garbage to Gold* framework, which describes when and why uncurated, error-prone data can be used directly to create accurate prediction models.\n\nThere is a preprint that presents the full technical details, and Python and R packages will be released soon. Right now though, the original function is already available in R (see Quick Start R Function Code below).\n\n* **Entropic Scree Preprint:** [https://doi.org/10.5281/zenodo.22028087](https://doi.org/10.5281/zenodo.22028087)\n* **Entropic Scree GitHub:** [https://github.com/tjleestjohn/entropic-scree](https://github.com/tjleestjohn/entropic-scree)\n* **From Garbage to Gold Preprint:** [https://arxiv.org/abs/2603.12288](https://arxiv.org/abs/2603.12288)\n\nLet me know how it goes if you give it a try... or if you have any questions or comments of course.\n\n    ############ \n    # Quick Start R Function Code.\n    # To load the function, copy and paste the following into your R console, then hit enter. \n    ############\n    \n    # 1. Define the direct URL to the raw function script on GitHub\n    url <- \"https://raw.githubusercontent.com/tjleestjohn/entropic-scree/main/Entropic.Scree.v1.0.0%20-%20ENLI.R\"\n    \n    # 2. Define what you want to name the file on your computer\n    file_name <- \"Entropic.Scree.v1.0.0 - ENLI.R\"\n    \n    # 3. Download the script to your current working directory\n    download.file(url, destfile = file_name)\n    \n    # 4. Source the core function into your R environment\n    source(file_name)\n    \n    # 5. Ex. To run the function and extract bipolar modules:\n    # results <- Entropic.Scree(dt \n    #                         , extract_bipolar_modules = TRUE)\n    #\n    # View the extracted structural sub-networks for the primary axes:\n    # results$bipolar_modules",
+    "developer": "Chocolate_Milk_Son",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

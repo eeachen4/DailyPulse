@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.27713",
+  "sourceItemId": "2608.27713",
+  "fetchedAt": "2026-09-01T02:02:57.452Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.27713",
+  "detail": {
+    "longDescription": "arXiv:2608.27713v1 Announce Type: new Abstract: Edge intelligence systems increasingly require model training and online inference to coexist on resource-constrained devices, while inference demand can vary substantially across tasks over time. This creates two coupled challenges: sufficient computation must be reserved for inference to maintain service-level objectives (SLOs), while the remaining training capacity should adapt to task-specific demand so that frequently requested tasks can improve earlier during training. We propose an SLO-aware, demand-driven multitask federated learning framework (DART-FL) that jointly adapts the inference-training resource split and task-level training emphasis. At each scheduling interval, DART-FL uses the inference backlog and profiled service capacity to determine the minimum resource allocation required for inference. The remaining training capacity is then distributed across tasks using a queue-aware DPP-inspired scheduler, and the resulting task allocations are mapped to dynamic loss weights. This allows tasks experiencing higher inference demand to receive greater training emphasis in earlier communication rounds. Clients train a shared backbone with task-specific heads, and the complete multitask model is aggregated through FedAvg. We evaluate DART-FL using Stanford Cars and Oxford Flowers 102 under both synthetic and real Alibaba trace-derived workloads. Results show that DART-FL dynamically adapts the inference-training resource split to time-varying inference demand and shifts the learning progress of high-demand tasks toward their burst periods, improving model accuracy when those tasks are frequently requested while maintaining comparable long-term multitask performance.",
+    "developer": "Yiming Xie, Pinrui Yu, Geng Yuan, Xue Lin, Ningfang Mi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yiming Xie, Pinrui Yu, Geng Yuan, Xue Lin, Ningfang Mi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

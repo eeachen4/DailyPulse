@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.28158",
+  "sourceItemId": "2608.28158",
+  "fetchedAt": "2026-09-01T02:02:57.452Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.28158",
+  "detail": {
+    "longDescription": "arXiv:2608.28158v1 Announce Type: cross Abstract: Agentic reinforcement learning (RL) often produces irregular rollout trees with shared histories. Training root-to-leaf trajectories independently recomputes these shared prefixes. Existing systems primarily target full-attention models and lack dense, differentiable hybrid-attention execution compatible with activation recomputation. We present HARTS (Hybrid-Attention RL over Tree Structures). HARTS jointly plans microbatches, data-parallel (DP) replica assignments, and microbatch-slot schedules using non-replay compact-token work after prefix compression. For chunkwise linear attention, a linear-time algorithm coordinates chunk-boundary state recovery and replay and produces the minimum number of sequential linear-attention calls under our packed execution model. HARTS preserves the chunkwise state partitioning of trajectory-wise training: it does not repeat projections, MLP/MoE computation, or final outputs, and performs only bounded state replay for numerical alignment. Per round, HARTS batches all branches into one packed call, propagates gradients through differentiable state handoffs, supports activation recomputation, and restores per-token log-probabilities. For deterministic, no-token-drop top-$k$ MoE routing, semantic multiplicities restore MoE-objective token weights and load statistics. Existing RL objectives retain their interface. To our knowledge, HARTS is the first system to demonstrate arbitrary-rollout-tree prefix-sharing speedups on a real hybrid-attention model. On an Agentic RL workload generated from SWE-bench tasks, HARTS achieves $4.81$--$4.87\\times$ forward/backward/gradient speedup with activation recomputation across multiple parallel configurations. Its numerical differences are comparable to baseline self-rerun variation, and its reward trend is similar to the baseline over the first 120 steps of $\\tau^3$-Bench training.",
+    "developer": "Boyuan Meng (Ant Group, China), Peihua Bao (Ant Group, China), Hong Liu (Ant Group, China), Xiaowei Zhu (Ant Group, China), Chao Wang (Ant Group, China), Gen Li (Ant Group, China), Zhenxuan Pan (Ant Group, China)",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Boyuan Meng (Ant Group, China), Peihua Bao (Ant Group, China), Hong Liu (Ant Group, China), Xiaowei Zhu (Ant Group, China), Chao Wang (Ant Group, China), Gen Li (Ant Group, China), Zhenxuan Pan (Ant Group, China)"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

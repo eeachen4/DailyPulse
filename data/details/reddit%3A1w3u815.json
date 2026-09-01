@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3u815",
+  "sourceItemId": "1w3u815",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w3u815/we_have_eleven_reader_at_home/",
+  "detail": {
+    "longDescription": "I used Claude Code to help write this pipeline - Gemma4 to turn an idea into a short story, then IndexTTS 2.5 running on an NVIDIA 3080 to use voices from LibreVox and VTCK voices to pin as character voices. It uses Whisper to do Quality Control on the output clips and assigns 0-1 score if the Whisper transcribed output matches. It also has some tools it wrote for tone analysis but they're not great.  \n  \nYou can:\n\n1) Set speed and emotion for the sentence\n\n2) Insert pauses (ffmpeg) using the notation (200ms) between words\n\n2) a) adjust the pause location +/- 1 ms because a lot of the pauses would somehow end up inside a word instead of between them\n\n3) Insert Pauses between sentences\n\n4) Do fine tuning with per-word/per-phrase emotion and speed\n\n5) Chapter wide speed \n\n6) Take a particularly good take and apply that as a reference\n\n7) Re-cast characters chapter wide and book wide\n\n8) Stitch all the sentences together and play the whole chapter\n\n9) Download the completed chapter\n\n10) Add filters to a sentence (reverb, muffle, telephone)\n\n11) Bake filters into a character and make it part of the character.\n\nI started by using kokoro but I wanted something near human. I first had Claude make a LaTeX inspired tool for me to change the Index TTS settings INSIDE the book/Script but that became too unweildy, so I had it make a web UI. I kept adding features out of frustration.\n\nI have a separate agent analyzing the audio of various librevox books that are also in project gutenberg to learn the standards for tone analysis. The goal is to make a one-shot near human (or at least pleasant to listen to, and expressive) idea -> audio book by having an agent keep re-rolling takes on IndexTTS, running QC for pauses, pronunciation, tone, and sending me the final audio book when done. \n\nApart from Claude helping write the code, the actual models are self hosted.\n\nHere is a close up of the voice editing:\n\nhttps://preview.redd.it/mg2y3k4gksmh1.png?width=452&format=png&auto=webp&s=fdb1ea7e840cc2b8b8649751eef5a6708ae94b8d\n\n\n\nI was shocked that even with ultra elevenreader, YOU CAN'T DO MULTIPLE VOICES??",
+    "externalUrl": "https://i.redd.it/1qexngnpismh1.png",
+    "developer": "Last_Bad_2687",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

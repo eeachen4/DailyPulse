@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3y3lt",
+  "sourceItemId": "1w3y3lt",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1w3y3lt/linkedin_returns_http_999_to_gptbot_and_claudebot/",
+  "detail": {
+    "longDescription": "No links in this post. Everything below is reproducible with one curl per line.\n\nI fetched the same LinkedIn profile URL six times, changing only the User-Agent.\n\n    GPTBot            -> HTTP 999\n    ClaudeBot         -> HTTP 999\n    ChatGPT-User      -> HTTP 999\n    Googlebot         -> HTTP 999\n    OAI-SearchBot     -> HTTP 200\n    Claude-SearchBot  -> HTTP 200\n\n999 is LinkedIn's block code. The training crawlers are refused, the user-triggered fetchers are refused, and the two search-index bots are let in. Googlebot is refused as well, almost certainly because LinkedIn verifies it by reverse DNS and a spoofed UA fails that check. The AI search bots do not appear to be verified at all, which means the UA string alone is enough to get the page.\n\nThen I parsed what the 200 actually contains, on an ordinary mid-career profile rather than a celebrity one.\n\nThe JSON-LD graph has a WebPage node and four DiscussionForumPosting nodes. There is no Person node. The WebPage node is two fields, a name and a URL.\n\nIn the rendered markup:\n\n* no jobTitle anywhere\n* no About section at all\n* Experience renders the company name with no role and no dates\n* Education renders the school name with no dates\n* no skills, no certifications, no recommendations\n\nThe four post nodes do carry full body text. The newest is December 2024. The one before it is a July 2023 hiring post for a product that person no longer works on.\n\nFor contrast I ran a Creator-mode public figure. That profile does emit a Person node, with alumniOf carrying start and end years and worksFor carrying one company name. But its jobTitle field comes through as five empty strings, five roles and no titles, and the description is truncated mid-sentence.\n\nThe part I find interesting is not the blocking. It is the shape of what gets through. A model doing retrieval on a person gets a name, a location, one employer name, a school name, and whatever that person happened to post publicly, which for most people is old and unrepresentative. Everything that would actually answer \"what does this person do\" is either absent or an empty string.\n\nSo when an assistant answers a question about a working professional, it is not reasoning over a profile. It is reasoning over a company name and some three-year-old posts, and filling the rest in.\n\nTwo things I cannot resolve from outside:\n\n1. Whether the empty jobTitle is deliberate policy or an artifact of how the logged-out page is assembled. Every profile I checked behaves the same way, so I lean policy, but I cannot prove intent.\n\n2. Whether adding a crawlable page elsewhere actually displaces the stale sources in a model's answer, or merely joins them. That is a ranking question inside retrieval and I have no way to measure it.\n\nIf anyone has run a controlled before and after on the second one, I would rather read that than keep speculating.",
+    "developer": "Dry_Steak30",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

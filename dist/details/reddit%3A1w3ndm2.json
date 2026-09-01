@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3ndm2",
+  "sourceItemId": "1w3ndm2",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w3ndm2/validated_a_trustpropagation_rule_against_577k/",
+  "detail": {
+    "longDescription": "Short version: I built a claim-level provenance framework for multi-agent systems that caps a chain’s trust at its weakest link. The obvious objection is that weakest-link is arbitrary — so I tried to falsify it against a dataset where humans have already done the labelling, at scale, for centuries.\n\nClassical hadith scholarship graded chains of narrators and recorded verdicts. That’s a labelled corpus of transmission-chain trust judgments, 577,024 chains deep, produced independently of anything I built.\n\nResults: Cohen’s κ 0.871 strict, 0.761 lenient, against the scholars’ own verdicts. For context, inter-scholar agreement on the same chains is κ 0.331 — the rule agrees with the tradition more than the tradition agrees with itself.\n\nThe honest read on that: it’s not evidence the rule is smart, it’s evidence the rule is *consistent* where humans were noisy. That’s still useful for a machine system, but it’s a weaker claim than the number looks. The strict/lenient gap is also where the interesting failure modes live, and I report the inconclusive parts of the evaluation in §8 at the same weight as the wins.\n\nPaper: arXiv 2607.24117. Code Apache-2.0, pip install isnad. Would genuinely like to be told where the methodology is wrong.",
+    "developer": "alizahidrajaa",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

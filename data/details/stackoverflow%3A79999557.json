@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999557",
+  "sourceItemId": "79999557",
+  "sourceUrl": "https://stackoverflow.com/questions/79999557/git-file-tree-error-when-cloning-repository",
+  "detail": {
+    "longDescription": "I have a latex project initiated on macOS for which I use git for collaboration and to work on the project on different machines. The project structure is as follows: latex ├───chapters | ├───introduction.tex | ├───methods.tex | ├───discussion.tex | └───conclusion.tex ├───config | ├───logos | ├───commands.tex | ├───glossary.tex | └───preamble.tex ├───graphics └───main └───main.tex Modifying files, staging and pushing changes works without a problem. When I run git clone git@domain/project , however, on another machine (Windows), I encounter the issue error: invalid path 'main/.../config/glossary.tex' fatal: unable to checkout working tree warning: Clone succeeded, but checkout failed. You can inspect what was checked out with 'git status' and retry with 'git restore --source=HEAD :/' and running git status yields fatal: not a git repository (or any of the parent directories): .git and accordingly, on my gitea remote repository under main there is a folder ../config that is invalid. While the issue is not very pressing, I am at a loss as to why this behaviour is occurring. My tex files all compile nicely on macOS using the subfiles package. Edit : The folder created in gitea is main/.../config and not main/../config .",
+    "developer": "davidtschan",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "81"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

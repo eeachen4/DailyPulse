@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3c7yh",
+  "sourceItemId": "1w3c7yh",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w3c7yh/when_a_tool_returns_a_database_result_what_are/",
+  "detail": {
+    "longDescription": "Genuine question, I keep going back and forth on this.\n\nAgent calls a SQL tool. Query comes back with 400 rows. Obviously you don't put 400 rows in context. So what do you put.\n\nWhat I'm doing right now is dumb. Truncate to the first 20 rows and a row count. It works for \"how many customers churned\" and falls apart the second the question needs anything about the shape of the result, because the model has no idea whether those 20 rows are representative or whether the interesting stuff is in row 300.\n\nTried summarising the result with a second call. Better answers, but now every tool call is two model calls and the latency doubled on a step that used to be fast.\n\nThe other thing that bites is column names. If the query returns something like val\\_b or flag3, the model will confidently interpret it as whatever seems plausible from the question. It doesn't ask. It doesn't flag it. It just decides.\n\nSo:\n\nAre you passing raw rows, a computed summary, or some schema-plus-sample hybrid? Does anyone compute stats server-side and return those instead of rows? And has anyone found a way to make the agent say \"I don't know what this column is\" rather than guessing, without stuffing a data dictionary into every prompt?",
+    "developer": "donewitheverything26",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

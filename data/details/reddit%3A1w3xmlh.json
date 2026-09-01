@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3xmlh",
+  "sourceItemId": "1w3xmlh",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w3xmlh/stop_building_ai_ceos_the_agents_working_in/",
+  "detail": {
+    "longDescription": "Every week there’s another demo of an agent that supposedly finds leads, closes deals, runs marketing and makes strategic decisions while the founder sleeps.\n\nBut most agents that seem useful in production have a much less exciting architecture: real data access, bounded tool calling, hard constraints and a feedback loop. The LLM gets discretion over a small part of the system instead of being handed the entire business.\n\nPaid media is a good example.\n\nMadgicx operates inside a relatively constrained Meta environment: rotate creative, pause fatigued ads, adjust budgets. The action space is known, and performance gives it a measurable signal back.\n\nRyze AI is a broader version of the same pattern. Across connected Meta and Google Ads accounts, the agent can launch campaigns, adjust bids, move budgets, pause losers and rotate creative, then re-measure the result.\n\nOptmyzr approaches it differently, combining deterministic Google Ads automation with an MCP layer that lets LLM agents interact with campaign workflows without making the entire system non-deterministic.\n\nThat distinction matters. Agents are good at continuously monitoring state and choosing between bounded actions. They’re much worse when the tool space is basically unlimited and the objective is something vague like “grow the company.”\n\nMy rough production test is whether you can define:\n\n1. Goal — what exact outcome is being optimized?\n2. Data — what state can the agent actually observe?\n3. Actions — which tools or functions can it call?\n4. Guardrails — what can it never do?\n5. Feedback — how does it know whether its last action worked?\n\nIf one of those is missing, adding more autonomy usually doesn’t solve the problem.\n\nIt definitely won’t invent your positioning, repair bad unit economics, understand constraints you never provided or magically close every deal because the prompt says “increase revenue.”\n\nMaybe the useful definition of a production agent isn’t “software that can do anything.”\n\nIt’s software trusted to make a narrow class of decisions repeatedly without asking you every time.\n\nFor people actually shipping these: what decision loops have you become comfortable letting run fully autonomously?",
+    "developer": "WesternVillage4581",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

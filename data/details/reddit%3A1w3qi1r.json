@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3qi1r",
+  "sourceItemId": "1w3qi1r",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w3qi1r/codenative_generation_of_highly_programmable_3d/",
+  "detail": {
+    "longDescription": "I co-authored this paper. It's a new technique to generate 3D as source code instead of a point cloud.\nUnder the hood, it generates 3D objects with separate, sophisticated internal assembly, producing an editable \"kit of parts\" (instead of monolithic blobs).\n\nE.g. imagine you generated a 3D washing machine via this approach. It's not merely going to be just \"geometry\" that looks like a washing machine. We actually know that there is a \\`Door\\`, \\`Drum\\`, \\`Control\\_panel\\` etc. Which things belong to which assemblies. What moves and where its pivot is. And eventually what those components are supposed to do.\n\nMost current 3D GenAI cannot do this since it generates \"monolithic blobs\" that look good, but are unusable in downstream workflows (e.g. game engines). I.e. if you generate a 3D bicycle using traditional approaches, it's basically a blob. When you need the wheels to turn, a human (or another AI) must spend time cutting the blob into parts, naming them, placing pivots and rigging joints. I.e. you need post-generation segmentation workflows of some sort.\n\nThe paper breaks down the whole technique. There's a showcase you can play around with too: https://nova3d.xyz/\n\n\\*p.s. if you want to try it with BYOK, you can use the blender plugin here: https://github.com/RareSense/Nova3D/releases/tag/blender-plugin-v1.3.1\\*",
+    "externalUrl": "https://arxiv.org/abs/2607.22738",
+    "developer": "mhb-11",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "arxiv.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

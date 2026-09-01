@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3dr64",
+  "sourceItemId": "1w3dr64",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w3dr64/how_are_you_validating_ai_agent_actions_before/",
+  "detail": {
+    "longDescription": "I’ve been working on a problem I kept seeing with tool-using agents:\n\n\n\nAn agent can understand the policy and still produce the wrong tool call.\n\n\n\nIf the action is consequential — refunding money, booking something, approving a request, modifying a record, calling a production API — observability after the fact is useful, but it’s already too late.\n\n\n\nSo I built ARK, an open-source runtime supervision layer that sits before execution.\n\n\n\nThe basic flow is:\n\n\n\nagent proposes an action  \n\n→ ARK checks the applicable constraint + trusted evidence  \n\n→ ALLOW = execute  \n\n→ REJECT / REQUIRE\\_EVIDENCE = send feedback back to the agent  \n\n→ the agent decides again\n\n\n\nOne thing I intentionally avoided: ARK does not generate the replacement action.\n\n\n\nThe agent remains the author.\n\n\n\nI tested this with LangGraph + an OpenAI model:\n\n\n\nmodel proposed A  \n\n→ ARK rejected A before execution  \n\n→ feedback went back to the model  \n\n→ model authored B  \n\n→ ARK allowed B  \n\n→ only B executed\n\n\n\nI’ve also been testing it on a scoped tau-bench airline failure class.\n\n\n\nPaired K=16 result:\n\n\n\nOFF: 1/16 passed (6.25%)  \n\nON: 13/16 passed (81.25%)  \n\n9 directly attributable recoveries  \n\n0 observed regressions\n\n\n\nI want to be careful with that result: it’s one constrained recovery failure class in a research benchmark, not a claim that ARK makes all agents reliable.\n\n\n\nThe SDK is public now:\n\n\n\npip install ark-agent-runtime\n\n\n\nIt currently works with custom Python agents and has a LangGraph integration.\n\n\n\nI’m mainly curious how other people are handling this problem.\n\n\n\nIf you have an agent that can actually mutate production state, do you:\n\n\n\n\\- validate tool arguments manually?\n\n\\- use deterministic policy gates?\n\n\\- rely on another model as a judge?\n\n\\- sandbox actions?\n\n\\- require human approval?\n\n\\- just execute and monitor afterward?\n\n\n\nI’d especially like feedback from people running agents that can refund, book, approve, purchase, or modify production data.\n\n\n\nSite: [arkruntime.com](http://arkruntime.com)  \n\nGitHub: [github.com/atripati/ark](http://github.com/atripati/ark)",
+    "developer": "Aromatic-Ad-6711",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

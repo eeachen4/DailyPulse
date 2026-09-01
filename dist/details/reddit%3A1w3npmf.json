@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3npmf",
+  "sourceItemId": "1w3npmf",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w3npmf/jobhunter_an_ai_agent_skill_that_scrapes_job/",
+  "detail": {
+    "longDescription": "I built a skill for AI agents (Claude/Pi Agent) that automates the tedious part of job searching: monitoring multiple sources, extracting structured data from unstructured listings, and filtering against a target profile.\n\n\n\nWhat it does: scrapes job boards and LinkedIn via CDP, normalizes listings into structured records (title, rate, location, contract type, remote policy), cross-references rate data from other boards when the original listing doesn't publish one, and notifies you only when something matches.\n\n\n\nThe matching is configurable: primary and adjacent role titles, rate floor, location preferences, contract type, and include/exclude keywords.\n\n\n\nBuilt in Python. No framework dependencies for the core pipeline — just CDP for scraping, an LLM call for extraction of unstructured postings, and SQLite for dedup.\n\n\n\nWhat I learned: most job boards don't publish rates. But the same role appears on multiple boards, and at least one usually does. Cross-referencing gives you a rate estimate even when the original listing hides it.\n\n\n\nGitHub: [https://github.com/Deviad/job-hunter](https://github.com/Deviad/job-hunter)",
+    "developer": "Deviad",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

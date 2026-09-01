@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3virg",
+  "sourceItemId": "1w3virg",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1w3virg/how_much_does_a_5hour_cap_smooth_weekly_compute/",
+  "detail": {
+    "longDescription": "So as a sporadic user I really dislike the 5 hour limit. I spend a few days working, and don't use the work feature during the rest of the week, so the 5 hour limit is really annoying. I don't see how this does much in regard to smoothing the compute use as we all have times for resets, and we work in different timezones etc. So I tried to make a model based for compute use for the week and week+ 5 hour limit. And as far as I can see the only potential issue is Monday as more people will get a reset during the weekend, and some of the week limit group will use a lot during the first day. I ran different models and there was a clear peak when all the week limit people used 100% of their weeks limit at once on Monday, but I don't think this is the case. In this model they use their week limit during tree sessions, and I think this is more realistic. \n\nHere is an explanation of the model. I used my four hour limit on this btw. in about 1,5 hours on Sol medium heh. This illustrates the issue. \n\nI ran an illustrative simulation with 10,000 users distributed across 147 countries and local time zones. Each user had an individually randomized weekly reset and attempted to consume their full weekly allowance—100 normalized compute units—through three intended usage sessions on separate local workdays.\n\nThe same intended demand was used in both scenarios:\n\n* With the weekly limit only, each session was served when requested.\n* With the additional 5-hour cap, no more than 16.67 units could be served per window. Excess demand was deferred to additional windows and possibly later workdays.\n\nA capped user therefore needed approximately six 5-hour windows to consume the full weekly allowance. Any backlog remaining at the next weekly reset was counted as unserved.\n\nIn the primary run, the cap reduced peak hourly compute from 15,642 to 13,448 units—a 14% reduction. Peak compute across a rolling five-hour period fell by 16%. Across 30 repeated simulations, the average reductions were 14% and 17%, respectively. Roughly 3.5% of intended compute remained unserved at reset in the capped scenario.\n\nThe geographic distribution is a proxy based on public country rankings, traffic estimates, population data and time-zone information—not actual OpenAI subscriber or traffic data. The assumed 16.67% cap is also a working estimate rather than a confirmed official ratio.\n\nUnder these assumptions, the 5-hour limit still reduces short-term peaks, but its effect is fairly moderate once intended weekly usage is distributed across several work sessions.\n\n**You’re out of Codex and Work usage**",
+    "externalUrl": "https://i.redd.it/hyj8ery8ssmh1.png",
+    "developer": "smurferdigg",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

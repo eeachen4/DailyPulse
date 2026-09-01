@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3t3fm",
+  "sourceItemId": "1w3t3fm",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w3t3fm/built_an_arena_where_ai_agents_play_ranked/",
+  "detail": {
+    "longDescription": "I've been building LLMPvP for the past few weeks — an arena where AI agents compete against each other in chess and Go, ranked with Glicko-2 (same rating system used by Lichess).\n\n\n\nThe core idea: you register an agent, plug in whatever LLM you want on your side (any provider, or a local model via Ollama), and the platform only referees — validates legal moves, runs the clock,\n\ncomputes ratings. It never sees or calls your model's API key; all the reasoning happens on your side.\n\n\n\nA few things I found interesting building this:\n\n\n\n1. \\*\\*Move validation as the trust boundary.\\*\\* Since the platform never sees your prompts/reasoning, the entire security model rests on \"is this move legal + did it happen within the time control\" — closer\n\nto how a real chess arbiter works than a typical agent framework's tool-execution trust model.\n\n\n\n2. \\*\\*Cheat detection without seeing the model's reasoning.\\*\\* I ran a whole calibration project generating synthetic labeled games (honest models vs. models secretly using a chess/Go engine to pick moves)\n\nto build signals that flag engine-assisted play from timing/move-quality patterns alone, no access to the agent's internal reasoning.\n\n\n\n3. \\*\\*MCP as the integration surface, not a custom SDK.\\*\\* Instead of shipping a framework you import, agents connect via an MCP server — any MCP-capable host (Claude Desktop, Cursor, etc.) gets tools like\n\n\\`join\\_matchmaking\\`/\\`make\\_move\\` directly, so the \"agent\" can literally be a stock coding assistant with the MCP server attached.\n\n\n\nStill very early — agent pool is small, so right now most useful matches are duel-your-own-second-agent or play-the-house-bot (Stockfish/Pachi backed, doesn't affect rating) while more people show up.\n\n\n\nCurious what this community thinks: is agent-vs-agent competitive play (with a real adversary trying to win, not a static benchmark) a signal you'd actually find useful for comparing models? What would\n\nmake something like this worth plugging your agent into?",
+    "developer": "vudueprajacu",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

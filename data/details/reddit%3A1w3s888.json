@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3s888",
+  "sourceItemId": "1w3s888",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w3s888/doberman_the_guard_dog_that_stops_your_ai_when_it/",
+  "detail": {
+    "longDescription": "Hello LLMDevs! I'm Alan, and I started Doberman as a Hackathon project when I noticed a big gap in AI guardrails. I felt that we were still too focused on protecting against prompt injection, corrupt data and model protection. But sometimes due to user error, Claude misunderstands my prompt or just hallucinates and decides to go ahead and delete my project 10 minutes before I'm supposed to demo it to the hackathon judges. (Safe to say I did not win that hackathon.)\n\nI thought, “why are we so focused on only protecting the input when we can just gate the output?”. There are an endless number of inputs to misinterpret/mislead or hallucinate on, but the end result we’re trying to prevent is the same, so rather than trying to prevent every single possible bad input, we just recognize a malicious output and stop the execution.\n\nTo achieve this I'm building a two layer security system that wraps around the entire LLM as a proxy router gating every input, output, and tool call. The first layer of protection is standard static guardrails that stop obvious actions such as deleting your database and leaking your environment keys. A second layer (still a work in progress atm) continuously learns your preferences as you work, so it improves over time. \n\nHere is an example to explain my reasoning for the second subjective and dynamic layer of security: Let’s say you're a Lakers Fan and you give Claude access to your twitter. Static guardrails would have no problem letting Claude post   \n“Celtics are the best! Good job crushing the Lakers last Saturday!”   \nThere were no leaked credentials, data being deleted or anything breaking a security policy.  \nBut obviously this is something you \n\nThe subjective layer includes a stylometry engine that learns the way you write, so if it detects an odd pattern (e.g. someone else has hijacked your Claude and is sending in prompts) it will automatically gate all input output.\n\nThis project is still early but the Alpha is ready for use. Would love for people to try it out and provide feedback!.\n\nIt's completely open source with an Apache 2.0 license, and would love any contributions.   \nI also have a discord community (https://discord.gg/Sfy5XGNqty) for the project .   \nIf you wanna discuss more in depth feel free to join and reach out! \n\n",
+    "externalUrl": "https://www.trydoberman.dev/",
+    "developer": "Da_Lil_Fu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "trydoberman.dev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

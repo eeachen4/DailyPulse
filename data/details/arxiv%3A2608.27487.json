@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.27487",
+  "sourceItemId": "2608.27487",
+  "fetchedAt": "2026-09-01T02:02:57.452Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.27487",
+  "detail": {
+    "longDescription": "arXiv:2608.27487v1 Announce Type: new Abstract: Language-model agents increasingly tackle long-horizon tasks in interactive environments, yet their evaluation commonly relies on task-level success rates by reducing an entire execution trajectory to whether the task passes an official verifier. This binary score hides partial progress and is particularly limited for procedural agent skill evaluations, since a skill can alter execution without changing the final outcome. While checklists provide finer-grained evaluation by scoring individual task requirements, costly manual authoring and unreliable automatic generation make trustworthy evaluation difficult to scale. To address these challenges, we introduce Grounded Checklist Partial Credit (GCPC), a human-governed and LLM-instantiated partial-credit evaluation of agent trajectories. Humans define reusable rules once, from which an LLM instantiates a task-specific checklist grounded in the task instruction and official verifier. To keep judgment tied to evidence, a judge scores each item from execution log evidence alone and abstains when evidence is missing. A separate scripted step then applies the official verifier outcome to the score. Across a 4,455-trajectory, deduplicated SkillsBench evaluation population, GCPC better discriminates official PASS and FAIL outcomes than holistic judging on the shared subset (AUC 0.689 vs. 0.619). Human evaluation on 96 trajectories from 12 tasks shows that GCPC aligns more closely with human assessments of progress. Applied to 1,946 matched with/without-skill pairs, GCPC exposes the effects hidden by pass@1: among 879 pairs whose binary outcome does not change, 20.9% improve by more than 0.10 while 18.7% regress by the same margin. The GCPC pipeline also transfers to Terminal-Bench and SWE-bench, demonstrating applicability beyond skill-conditioned evaluation.",
+    "developer": "Suliu Qin, Lu Yin, Xilu Wang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Suliu Qin, Lu Yin, Xilu Wang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w3q1qb",
+  "sourceItemId": "1w3q1qb",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w3q1qb/i_built_a_daily_ai_news_briefing_that_emails_me/",
+  "detail": {
+    "longDescription": "I wanted a personalised morning news email without running yet another container on my\n\nNAS. It turned out to need no infrastructure at all, which is why I'm posting it here even\n\nthough \"self-hosted with no host\" is a bit of a contradiction.\n\n\n\nEvery morning an agent searches the web across the topics I configure, picks the strongest\n\nrecent stories it hasn't already sent me, summarises each one from the real source text,\n\nand emails me a newspaper-style digest. Screenshot of a real one is in the README.\n\n\n\nIt runs as a GitHub Actions job in my own repo. No VPS, no Docker, no database, nothing\n\nthat has to stay powered on. Cost is zero and stays zero: Groq and Tavily free tiers, free\n\nActions minutes on public repos, a free cron pinger. There's no paid step in the design.\n\n\n\nPrivacy, since it matters here: your keys live in your own repo's Actions secrets. The job\n\ntalks to Groq, Tavily and Gmail's SMTP server, and nothing else. No service of mine in the\n\npath, no telemetry, no account to create with me. If you'd rather not trust GitHub with\n\nthe secrets, the same code runs locally.\n\n\n\nHonest limitation: summaries are only as good as the search snippet behind them. Thin\n\nsnippet, thin summary.\n\n\n\nYou can see the output before setting anything up. \\`python [main.py](http://main.py) \\--dry-run\\` needs two\n\nfree API keys and sends nothing.\n\n\n\nArchitecture on one diagram, since \"no server\" is the part that gets questioned here:\n\n[https://raw.githubusercontent.com/tballochi/daily-briefing/main/docs/architecture.svg](https://raw.githubusercontent.com/tballochi/daily-briefing/main/docs/architecture.svg)\n\n\n\nRepo: [https://github.com/tballochi/daily-briefing](https://github.com/tballochi/daily-briefing) (MIT)",
+    "developer": "Friendly-Evening9512",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
