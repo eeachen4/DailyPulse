@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999818",
+  "sourceItemId": "79999818",
+  "sourceUrl": "https://stackoverflow.com/questions/79999818/kubernetes-cluster-integration-with-gitlab",
+  "detail": {
+    "longDescription": "I am trying to connect my self-managed K8s cluster to my GitLab using agentk GitLab for Kubernetes. When I run the command provided by the GitLab which contains the generated token and the GitLab certificate file using Helm, the GitLab UI shows it was connected but goes down directly. I checked logs for GitLab agents's pods but nothing seems problematic. kubectl logs -n test -l app.kubernetes.io/name=gitlab-agent --prefix | grep -Ei 'kas|tunnel|registrar|error|warn|failed|grpc|unauth|token|connect' [pod/test-gitlab-agent-v2-77b4cf557b-5rls2/gitlab-agent] {\"time\":\"2026-09-01T06:54:08.995033283Z\",\"level\":\"INFO\",\"msg\":\"Starting\",\"mod_name\":\"agent2kas_tunnel\"} [pod/test-gitlab-agent-v2-77b4cf557b-5rls2/gitlab-agent] {\"time\":\"2026-09-01T06:54:08.99532843Z\",\"level\":\"INFO\",\"msg\":\"Starting\",\"mod_name\":\"agent_registrar\"} [pod/test-gitlab-agent-v2-77b4cf557b-9jqqm/gitlab-agent] {\"time\":\"2026-09-01T06:54:18.712666094Z\",\"level\":\"INFO\",\"msg\":\"Starting\",\"mod_name\":\"agent_registrar\"} [pod/test-gitlab-agent-v2-77b4cf557b-9jqqm/gitlab-agent] {\"time\":\"2026-09-01T06:54:18.712666026Z\",\"level\":\"INFO\",\"msg\":\"Starting\",\"mod_name\":\"agent2kas_tunnel\"} The KAS is also reached from the cluster. Does anyone have any idea why GitLab cannot have a stable connection on the Kubernetes cluster?",
+    "developer": "Speedkillsx",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

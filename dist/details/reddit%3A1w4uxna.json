@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4uxna",
+  "sourceItemId": "1w4uxna",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w4uxna/owning_an_instinct_mi100_32gb_hasnt_turned_out_to/",
+  "detail": {
+    "longDescription": "First of all this card is really hard to keep cool.  I have a 3d printed shroud with a Phanteks t30-120 and learnt the hard way that this beast needs a high pressure flow fan, not just a high cfm fan so have it limited to 175-200w with a governor. At this TDP, the bandwidth still stays at a staggering 1.2tb/s but the cores fluctuate a lot depending what the governor governs.\n\nAnyway, running headless (haha that I am!) with linux and using Qwen3.8-27b-ud-q4-k-xl I was hitting 20t/s tops until the dflash2 model came out and now I'm running around 40t/s good right?  Well it turns out that even claude, chatgpt and gemini all seem to think that with that spec that is below the cards capabilities and worse still, the r9700 pro with half the bandwidth seems to be getting double the t/g.  Qwen3.8-27b here is slightly core rate limited.\n\nEven Qwen3.6-35b-a3b-ud-q5\\_k\\_m is getting 60t/s max at 64k context which, yes it's fast but not 1.2tb/s fast like the 3090 gets.  The model is not bandwidth limited like MOE models love. \n\nMy rant and cry for help is has anyone had any luck running either of these faster?  I haven't come across any information from any other MI100 users.  It's a 32GB card and I can generally run whatever I want, even Qwen3.8-flash-next-ud-q3-k-xl gets around 14t/s so that's respectable for such a large model but it's the two 27b/35b models I just don't get good speeds with.  My nanobot agent comes across like it doesn't like me and answers slowly on a fresh prompt.  \n\n  \nAny of you wonderful folks able to document whether you got anything faster than this?  Or should I shut up and consider myself blessed to be getting what I am getting?\n\n  \nThanks in advance",
+    "developer": "faisalkl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

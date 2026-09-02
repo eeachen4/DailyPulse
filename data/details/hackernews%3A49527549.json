@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49527549",
+  "sourceItemId": "49527549",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49527549",
+  "detail": {
+    "longDescription": "I&#x27;ve been building quite a few POCs that use LLMs at work, and something that always comes up is: &quot;OK, how much are we paying for X?&quot; Or the one that follows right after: &quot;If we use another model, would that be cheaper?&quot; So far, what we&#x27;ve used are hardcoded files or keeping the data in our DB. This won&#x27;t hold when moving to prod. It also keeps us very limited when it comes to creating price comparisons across different models&#x2F;providers. indextkn came from that. Over the past 3 weeks, I&#x27;ve spent a lot of time understanding more about pricing, when prices usually change, discounts (flex, batch, based on X number of tokens, etc.)... and it&#x27;s massive. The current state is not where I want it to be. The goal is to cover all prices and modalities offered by all providers. But right now, we have: 1. Prices fetched every couple of minutes, served via API, MCP, or you can install our SKILL. 2. Webhooks per model + provider, so you get a notification when anything changes. Most of the time went into the logic to get the prices right and the logic to validate them! We have different levels of confidence, and I&#x27;m particularly proud of how we&#x27;re double-checking when a price seems off (a combination of programmatic logic + agentic workflow). Happy to answer any questions, and I&#x27;d love to have more folks testing it than just myself at the moment. :)",
+    "externalUrl": "https://indextkn.com",
+    "developer": "lellow",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

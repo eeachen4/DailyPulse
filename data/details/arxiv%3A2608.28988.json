@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.28988",
+  "sourceItemId": "2608.28988",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.28988",
+  "detail": {
+    "longDescription": "arXiv:2608.28988v1 Announce Type: cross Abstract: Piecewise-linear (PWL) optimization problems arise in many mixed-integer programming (MIP) optimization applications, including portfolio optimization, workforce scheduling, and resource allocation. But solving them to global optimality remains computationally expensive because branch-and-bound repeatedly solves LP relaxation subproblems. Existing solvers are largely CPU-centric, leaving the scalability of modern GPUs underutilized. Few prior GPU-accelerated branch-and-bound either targets neural network which is not suitable for general PWL optimization, or accelerates only auxiliary subroutines such as strong branching heuristics within CPU-centric MIP solvers. To bridge this gap, we propose B$^3$-PWL, a GPU-centric batched branch-and-bound framework for piecewise-linear optimization with Special Ordered Set of type 2 (SOS2) constraints. Our method solves batches of LP relaxation subproblems concurrently on the GPU using a first-order primal-dual solver, enabled by a specialized batched block-tiled sparse matrix kernel. To complement bound computation, we further introduce a unified feasibility search module that combines an SOS2 repair primal heuristic with a batched feasibility pump to rapidly obtain feasible incumbents and improve pruning efficiency. On a benchmark of 43 PWL-MIP instances, B$^3$-PWL achieves a 9.25x geometric-mean speedup over NVIDIA cuOpt while reaching high-quality feasible incumbents on every tested instance. On a public valve-point unit-commitment benchmark, it further outperforms NVIDIA cuOpt and the open-source CPU solvers SCIP and HiGHS, demonstrating the potential of first-order LP methods as the central engine of GPU-accelerated branch-and-bound.",
+    "developer": "Yilin Guan, Shuqing Luo, Pingzhi Li, Tianlong Chen, Kaidi Xu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.OC, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yilin Guan, Shuqing Luo, Pingzhi Li, Tianlong Chen, Kaidi Xu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

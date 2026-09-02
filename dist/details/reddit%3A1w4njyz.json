@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4njyz",
+  "sourceItemId": "1w4njyz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w4njyz/my_openai_agents_sdk_agent_kept_missing_amazon/",
+  "detail": {
+    "longDescription": "I was building a product research agent that needed live Amazon price and stock data.\n\nI gave it `WebSearchTool` and expected it to pull the product details from the page. Instead, it found the product title and then confidently said the price was not visible.\n\nThe problem was that search returned indexed content, not the fully rendered product page. On many retail sites, prices and availability only appear after JavaScript runs, so that information was never available in the search results.\n\nI ended up giving the agent two tools.\n\n* `WebSearchTool` for discovery and finding product URLs\n* A function\\_tool for fetching the full rendered content of a known URL\n\nI used ZenRows with auto mode and Markdown output, but the same approach should work with Firecrawl, Playwright, or any browser-rendering fetch setup.\n\nThe important part was the fetch tool description. At first, the agent kept choosing search even when it already had a URL. Once I made it clear that the fetch tool was for current content from a known URL and search was for discovery, routing started working properly.\n\nNow the flow is simple. The agent searches when it needs to find a page, then fetches the rendered page when it needs live fields such as price or stock.\n\nFor anyone running something similar, do you let the model decide when to fetch, or do you enforce a fetch step once it has a URL?\n\n",
+    "developer": "InsideDebt6345",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

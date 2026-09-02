@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4soun",
+  "sourceItemId": "1w4soun",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w4soun/would_you_pay_the_idle_cost_of_local_rag_just_to/",
+  "detail": {
+    "longDescription": "I’m not convinced one always-on local RAG process should be sized for both retrieval and occasional corpus work. Serving needs predictable latency; re-embedding, deduplication, and index rebuilding are bursty and may need a different CPU, GPU, or memory profile.\n\nMy current view is to keep vector databases like Milvus on the serving path and attach separate compute only when a corpus job runs, then publish a matched data snapshot, embedding model, and index version. The risk is replacing idle capacity with orchestration and stale-artifact failures.\n\nFor people running local RAG, what workload or idle-resource threshold made separate on-demand jobs worth the extra operational complexity?",
+    "developer": "Cautious_Bit_8521",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

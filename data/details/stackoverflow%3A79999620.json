@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999620",
   "sourceItemId": "79999620",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999620/how-can-i-detect-that-an-integer-literal-will-lose-precision-in-javascript",
   "detail": {
     "longDescription": "The JSON number type does not distinguish between integers and floating-point numbers; once processed by JSON.parse , all numbers become JavaScript Number types (i.e., IEEE 754 double-precision floats). Double-precision floats can only accurately represent integers up to Number.MAX_SAFE_INTEGER (2^53 - 1, or 16 digits). Beyond this range, values ​​are silently rounded to the nearest representable float—without throwing exceptions, issuing warnings, or providing any indication in the return value that rounding occurred. JSON.parse('{\"id\": 22233344455566677788}') // { id: 22233344455566676000 } I am aware of the usual workarounds—such as using BigInt , a custom reviver function, or a third-party parser that preserves numbers as strings. However, I am looking for a different approach: How ​​can I detect—directly from the raw JSON text before calling JSON.parse —whether a specific numeric literal exceeds the safe integer range? The reason for wanting to detect this before parsing rather than after is that the original precision is lost once JSON.parse completes; no reviver or post-processing step can recover digits that were never preserved in the first place. I want to reject (or at least flag) the input before precision loss occurs, rather than trying to fix it later. Specific requirements: The detection logic must correctly ignore substrings that look like numbers but are actually part of string values ​​(e.g., UUIDs or free-text fields should not trigger false positives). It must handle both positive and negative integers. Ideally, it should not rely on external libraries, as the code needs to run in browsers and Workers/Edge Runtimes where Node.js APIs are unavailable. Has anyone found a robust solution? Or is a pre-parsing scan using regular expressions essentially the only option?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "-1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "76"
+        "value": "117"
       },
       {
         "label": "状态",

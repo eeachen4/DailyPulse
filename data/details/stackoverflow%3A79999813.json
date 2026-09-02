@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:79999813",
+  "sourceItemId": "79999813",
+  "sourceUrl": "https://stackoverflow.com/questions/79999813/gstreamer-later-version-seems-to-mis-identify-the-prepare-window-handle-message",
+  "detail": {
+    "longDescription": "We had some Python code that was working fine with GStreamer 1.26 but appears broken in 1.28. The code is in the bus sync handler where we expect the prepare-window-handle from our xvimagesink sink to be delivered when needed. The code we had for detecting it was: def on_sync_message(self, _, message): struct = message.get_structure() print(type(struct)) print(struct) print(bool(struct)) if struct: name = struct.get_name() print(f\"Sync msg '{name}', type = {message.type}\") if name == \"prepare-window-handle\": if self.window_id: print(f\"Setting window handle to {self.window_id}\") imagesink = message.src imagesink.set_window_handle(self.window_id) else: print(f\"Window handle msg received\") self.window_handle_set = True else: print(f\"Sync msg (no structure), type = {message.type}\") and that appears to be the right way to do it based on web searches and the GStreamer docs. The upshot is that, without this, the image sink opens its own fully decorated window rather than rendering into the Tk frame it used to. I originally considered a timing issue re starting the pipeline before attaching to the bus but that turned out to be false. The pipeline is created and the bus attached too well before setting the state to playing . In any case, the output of those print statement (the ones at the start were added for debugging) are: <class 'gi.overrides.Gst.Structure'> prepare-window-handle; False Sync msg (no structure), type = 32768 <class 'gi.overrides.Gst.Structure'> have-window-handle, window-handle=(guint64)29360130; True Sync msg 'have-window-handle', type = 32768 So, for some reason, it looks like the prepare-window-handle is arriving but being treated as a false value in the context of the if (and the bool cast). That explains why it no longer renders to the Tk frame. On a 1.26 system, the output for prepare-window-handle is different: <class 'gi.overrides.Gst.Structure'> prepare-window-handle; True I was wondering whether it's being treated as Falsey because it has no payload (unlike the have-window-handle one which carries a handle). But I'm having a hard time tracking through the source code for Python bindings and underlying C code. So I thought I'd ask here to see if anyone has had similar issues, or whether someone more knowledgeable about GStreamer internals has some advice. Is there some newer method other than the bool-ification of the structure by which we should detect a valid message?",
+    "developer": "paxdiablo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "49"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

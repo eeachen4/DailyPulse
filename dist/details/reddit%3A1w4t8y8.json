@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4t8y8",
+  "sourceItemId": "1w4t8y8",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w4t8y8/built_an_mcp_memory_server_that_runs_ab_tests/",
+  "detail": {
+    "longDescription": "Spent a while building a persistent memory layer for coding agents (Qwen Code, MCP-based — Qdrant + Meilisearch under the hood) mainly to stop it from re-deriving the same architectural decisions every session. Ended up with a side effect I didn't plan for: since every decision gets written as a causal graph node (`supersedes` / `superseded_by`), and there's already a nightly task runner, I could point the agent at a full A/B test lifecycle with one prompt.\n\nIt writes the feature flag, registers the hypothesis + metric target as a decision node, checks the numbers every night without peeking-induced p-hacking (test runs once, at target sample size, not daily), and once it's significant — kills the losing variant, strips the flag code, and supersedes the decision with the final result. Diff sits there for you to review in the morning. No auto-commit, no auto-deploy, agent doesn't get to touch prod on its own.\n\nWrote up the actual flow here: [https://www.udanax.org/blog/edward-j-yoon/autonomously-driven-feature-ab-testing-with-focusm](https://www.udanax.org/blog/edward-j-yoon/autonomously-driven-feature-ab-testing-with-focusm)\n\nCurious if anyone's doing something similar with decision-chain-style memory instead of flat vector recall — feels like the causal graph is doing more work than the embeddings here.",
+    "developer": "Ok-Shower7286",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

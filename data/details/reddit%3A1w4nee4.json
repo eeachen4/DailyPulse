@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4nee4",
+  "sourceItemId": "1w4nee4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w4nee4/ontologydriven_multirole_llm_loops_in_production/",
+  "detail": {
+    "longDescription": "Frank Coyle at UC Berkeley recently gave a talk called \"Why Agentic Systems Need Ontologies\" (YouTube ID Sir59K8ZDPU). His broader argument is neuro-symbolic: probabilistic LLM plus formal ontology reasoning as guardrail. One memorable line from the talk: \"Pydantic at the door, ontology at the ledger\".\n\nI've been running a lighter, schema-shape version of this for a while now (typed schema, not the full RDFS/OWL formalism), and figured the practitioner side of the story might be worth writing up.\n\nIn practice, an ontology is a schema of typed entities, their attributes, and how they relate. For example, take the query:\n\n>**What are the current pricing tiers for OpenAI, Anthropic, and Google's flagship API models?**\n\nAn ontology for it might look like:\n\n`Provider: name`  \n`Model: name, input_cost_per_1M_tokens, output_cost_per_1M_tokens, context_window`  \n`Relationship: Model belongs-to Provider`\n\nI'm using the following loop setup where every step is realized through LLM calls:\n\n1. Let LLM define an ontology based on the input prompt.\n2. LLM creates a plan, breaking down the problem or question into multiple queries.\n3. With provided tools (web search, web fetch, db search, etc.) iterate through each query.\n4. Extract results, i.e. filling the ontology shape.\n5. Create a synthesized summary at the very end.\n\nThis setup has been running against real user queries for over a month, as part of a research agent using frontier model APIs. So far I'm quite happy with the overall performance.\n\nWhat works well:\n\n* The ontology makes the query planner purpose-driven, i.e. the iterations chase exactly the signal & outcomes that are being looked for.\n* Extraction stops collapsing similar-looking things. With the ontology, step 4 keeps results separate, e.g., $X valuation, $Y to founders, and $Z to investors as three separate attributes instead of collapsing them to one number.\n* The synthesis knows the shape and produces answers that line up with the ontology and enables further processing.\n\nWhat needs to improve:\n\n* **Ontology non-determinism.** Step 1 produces a different ontology every time, even for the same question / task. Attribute names, type names, sometimes the number of types drifts. Anything downstream that depended on a stable schema doesn't get one.\n* **Cost overhead** is meaningful but capped on my workload. The inner tool-loop (search + fetch + read) dominates the pipeline so far. An ontology-driven loop (adds ontology generation + planning + typed extraction + synthesis) is roughly 20 to 30% more expensive than a \"just keep going\" generic loop at a comparable iteration depth.\n\nMy take is that ontology-driven structured multi-role loops provide quality gains while the cost overhead of \\~20-30% is manageable. Beyond the wins above, the concept also delivers advantages for debugging/tracing, and composition via multi-role (each role can use a different model).\n\nThe non-determinism is worth investigating further likely through some combination of structured-output constraints on the ontology-generation step.",
+    "developer": "serendip-ml",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

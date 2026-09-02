@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.27955",
+  "sourceItemId": "2605.27955",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.27955",
+  "detail": {
+    "longDescription": "arXiv:2605.27955v2 Announce Type: replace Abstract: Markdown skill libraries for LLM agents ship as free-form prose, forcing the agent to re-derive both the input schema and the concrete invocation syntax on every retrieval. This produces a \"confused $\\to$ re-retrieve $\\to$ still confused\" loop: the agent issues a partially-correct action, receives uninformative feedback, and re-retrieves the same prose. We propose Skill-as-Pseudocode (SaP), an automatic conversion of markdown skill libraries into typed pseudocode with deterministic quality control. From each cluster of similar procedural passages, SaP extracts a typed contract and filters it through a four-check deterministic verifier (coverage, binding, replacement, risk). Promoted contracts are inlined into a rewritten skill skeleton alongside restored action templates, giving the agent two complementary signals: a typed signature for what a skill does and a concrete template for how to invoke it. On the ALFWorld unseen split (134 games, gpt-4o-mini, three seeds), SaP wins 82/402 paired games versus 47/402 for the Graph-of-Skills (GoS) baseline (pooled McNemar $p = 8.2 \\times 10^{-5}$), at $-22.8 \\pm 6.4$% input tokens and $-14.5 \\pm 4.1$% LLM calls per game. A bundle-component ablation attributes the gain to the pairing of typed contracts with concrete action templates: the contract alone falls below the prose baseline.",
+    "developer": "Xinze Li, Yuhang Zang, Yixin Cao, Aixin Sun",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.CL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xinze Li, Yuhang Zang, Yixin Cao, Aixin Sun"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

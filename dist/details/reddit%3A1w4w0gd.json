@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4w0gd",
+  "sourceItemId": "1w4w0gd",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1w4w0gd/working_on_an_unusual_nlp_task_with_almost_no/",
+  "detail": {
+    "longDescription": "Third-year PhD student, NLP, mostly LLM-based reasoning. My PI gave me a task I'd never seen framed anywhere. Given a collection of a private organization's HR policy documents (100-500 PDFs), find all pairs of clauses that contradict each other. Honestly, I wasn't excited at first, but the more I dug, the weirder it got. There's a mountain of work on NLI-style contradiction classification, but that assumes someone gives you the sentence pair. Here, the pair is the problem. With about 1-2k clauses, you're looking at millions of candidate pairs. So brute-force pairwise LLM calls are out, and whole-document prompting fails for the usual lost-in-the-middle reasons. The closest work I found generates synthetic contradictions in synthetic corpora to test detectors. I borrowed the evaluation idea by injecting contradictions into corpora. I also used a university HR handbook and one dataset with existing external annotations, contractNLI (made for the NLI task by Stanford). I used this one as well because it has real contradictions. But this one is quite different. In this dataset, the task formulation is like hypothesis versus clause, whereas in the first two datasets, I do clause-to-clause comparison. So I built a two-stage pipeline. First, retrieval with a HyDE-style approach where the query is a hypothetical, \\*contradicting\\* version of each clause. Then, recall-based candidate retrieval (LLM), followed by precision-based verification with an LLM, where each candidate pair is re-read within its source documents. The contributions: I used contextual sentences guided by Anthropic, which helped retrieval, and showed that a document’s surrounding context helped precision. Agentic verification (tools, multi-step) actually underperformed a single prompt. As a case study, I ran the pipeline on a public government policy corpus. It found a few genuine contradictions. I have a few questions. Am I missing a community? I can't believe nobody works on this. I've looked at legal NLP (ContractNLI, etc.), requirements engineering conflict detection, and RAG-conflict work. They're all adjacent, but none does discovery over a real multi-document policy corpus. Is there a literature I don't know the name of? My PI is leaning toward a lower-tier conference or journal. Is this the kind of paper that has a chance at a first-tier NLP venue, or is my PI just being realistic? If you were strengthening this in one month, what would you add? I already have NLI, direct-prompting, and agentic baselines. Happy to share more details in comments. Mostly, I want to know whether this problem is as understudied as it looks from where I'm sitting, or whether I formulated the task the wrong way.",
+    "developer": "Sami10644",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

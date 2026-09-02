@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999518",
   "sourceItemId": "79999518",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999518/how-do-i-make-my-qmainwindows-contents-dynamically-resize-after-floating-a-qdoc",
   "detail": {
     "longDescription": "I managed to boil the problem down to a single example: from PySide6.QtCore import Qt from PySide6.QtWidgets import QApplication, QDockWidget, QLabel, QMainWindow, QPushButton class MainWindow (QMainWindow): def __init__ (self): super().__init__() btn = QPushButton('Create Dock') btn.clicked.connect(self.evt_clicked) self.setCentralWidget(btn) def evt_clicked (self) -> None: dock = QDockWidget('Dock', self) dock.setWidget(QLabel('Label')) self.addDockWidget(Qt.BottomDockWidgetArea, dock) if __name__ == '__main__': app = QApplication() window = MainWindow() window.show() app.exec() I clicked the button a few times to create a few docked widgets, then dragged one out of the QMainWindow area and onto my desktop to float it. After I did this, NONE of the QMainWindow's contents, the button and all remaining docks included, will resize when I resize the window itself. Taking any floating dock and re-attaching it to the window fixes this problem. I made a short video that showcases the problem: https://youtu.be/Gfpu0l4zN5M Does anyone else know how to fix this?",
     "developer": "Reid Litkauo",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "89"
+        "value": "100"
       },
       {
         "label": "状态",

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4qd1c",
+  "sourceItemId": "1w4qd1c",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1w4qd1c/catsactors_220_is_released/",
+  "detail": {
+    "longDescription": "Cats-Actors is a Cats Effect native actor library: typed messages, functional state, supervision, and the familiar ! operator, all in F\\[\\_\\].\n\n\n\nWhat is new in this release:\n\n\\-  ControlledTestKit, a new trait in the cats-actors-testkit module. It\n\nprovisions an ActorSystem\\[IO\\] inside Cats Effect's TestControl and ticks the\n\nsimulated clock for you, so scheduled work and timeouts resolve without real\n\nwaiting. A one hour receive timeout is now an ordinary unit test that finishes\n\nin milliseconds.\n\n  \\- Receive timeouts, the supervisor restart window and the dead letter mailbox\n\nidle check now read Clock\\[F\\].monotonic instead of System.currentTimeMillis, so\n\nthey all honour simulated time.\n\n  \\- New TestKit assertions, expectMsgTypeCountN and expectMsgTypeSingle, which\n\ncount messages of a type and do not depend on when they arrive relative to\n\nthe call.\n\n  \\- Breaking: ActorSystem.uptime is now F\\[Long\\] rather than Long.\n\n\n\nScala 2.13 and 3, on JVM, Scala.js and Scala Native.\n\n\n\n\\`\\`\\`\n\nresolvers += \"jitpack\" at \"https://jitpack.io\"\n\nlibraryDependencies += \"com.github.cloudmark.cats-actors\" %%% \"cats-actors\" % \"2.2.0\"\n\nlibraryDependencies += \"com.github.cloudmark.cats-actors\" %%% \"cats-actors-testkit\" % \"2.2.0\" % Test\n\n\\`\\`\\`\n\nWrite up: [https://cloudmark.github.io/Cats-Actors-Controlling-Time/](https://cloudmark.github.io/Cats-Actors-Controlling-Time/)\n\nRepo: [https://github.com/cloudmark/cats-actors](https://github.com/cloudmark/cats-actors)\n\n\n\nFeedback and issues welcome.",
+    "externalUrl": "https://cloudmark.github.io/Cats-Actors-Controlling-Time/",
+    "developer": "kloudmark",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "cloudmark.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

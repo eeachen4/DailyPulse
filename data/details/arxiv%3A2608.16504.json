@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.16504",
+  "sourceItemId": "2608.16504",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.16504",
+  "detail": {
+    "longDescription": "arXiv:2608.16504v2 Announce Type: replace Abstract: Digital signatures make blocks and votes transferable evidence: one party can prove to another what a third party said. Authenticated channels convince only the direct receiver, so a proposer that references another party's block cannot prove to the voters who published it. High-throughput signature-free protocols therefore complete an availability vote or a reliable broadcast for every published data block before a proposer may reference it. We present Vantage, a partially synchronous Byzantine fault-tolerant protocol for $n \\ge 3f+1$ parties, at most $f$ Byzantine, that uses only authenticated channels and collision-resistant hashing. Parties publish blocks on hash-linked author lanes; each view's proposer pairs a core manifest of lane prefixes that a quorum has acknowledged to it with an optimistic tip manifest of blocks it has just received. A new primitive, Availability-Graded Broadcast (AGB), makes the core irrevocable on a quorum of directly received acknowledgments while grading, rather than blocking on, the tip. A view that AGB leaves open or silent is decided by an on-demand instance of information-theoretic agreement. A block may thus be referenced in a proposal one message delay after publication, as in signed optimistic designs. Let $\\delta$ be the message delay after global stabilization (GST). With all parties correct, a proposal commits within $2\\delta$ of its send if all $n$ parties support it, and within $3\\delta$ on the quorum path, so a block published in time for the next proposal is sequenced $3\\delta$ to $4\\delta$ after publication. Safety holds under asynchrony; liveness holds after GST. On an emulated ten-region WAN with 100 parties, Vantage has the lowest p50 latency among compared signed and signature-free protocols at every offered load up to its peak, and sequences 250k 512-byte transactions per second at median end-to-end latency below 500 ms.",
+    "developer": "Nikita Polyanskii",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nikita Polyanskii"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4h8lc",
+  "sourceItemId": "1w4h8lc",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w4h8lc/how_do_you_handle_cicd_credentials_using_github/",
+  "detail": {
+    "longDescription": "After I first set up a deployment pipeline, I would simply drop DB passwords and API keys into GitHub Secrets and feel completely safe because they are encrypted. I recently went through a security breakdown on GitHub Actions that showed me that it could be a mistake to think that way.\n\nThe main issue is that an encrypted secret is still a static, long-lived target. Once the workflow finishes, that credential stays active indefinitely. In the breakdown, I saw a few default behaviors attackers look for, like teams forgetting to revoke access after a job runs or lacking the audit logs to even know when a key was used.\n\nThe proposed fix is shifting to dynamic orchestration where the pipeline generates a short-lived token at runtime and revokes it the second the deployment finishes.\n\nIf you're writing deployment workflows, how do you handle this, do you just use GitHub's default storage?",
+    "developer": "Plus_Station4112",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

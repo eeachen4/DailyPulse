@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4krm1",
+  "sourceItemId": "1w4krm1",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w4krm1/you_changed_one_thing_why_is_your_whole_ai/",
+  "detail": {
+    "longDescription": "I built **aimake** — an incremental build system for AI/ML pipelines, basically `make` for AI apps.\n\nGitHub: [https://github.com/arjun988/aimake](https://github.com/arjun988/aimake)\n\nThe idea is simple:\n\n    Dataset → Preprocess → Embeddings → Index → Prompt → Eval → Report\n\naimake builds a dependency graph, fingerprints inputs by **content rather than timestamps**, and only rebuilds steps whose inputs actually changed.\n\nSo if you change your prompt:\n\n    Before:\n    Dataset       ✓\n    Preprocess    ✓\n    Embeddings    ✓\n    Index         ✓\n    Prompt        ✗ changed\n    Eval          ✗\n    Report        ✗\n    \n    After:\n    2 rebuilt · 5 reused\n    \n    aimake plan     # see what would rebuild\n    aimake build    # only stale steps run\n    aimake explain  # see why a step needs rebuilding\n\nIt's **not Airflow** (orchestration) and it's **not DVC** (data versioning alone).\n\nIt's `make` for AI pipelines: **dependency graph + content fingerprints + incremental builds + caching.**\n\n# Shipped so far\n\n* Content-hash fingerprints instead of mtime-based caching\n* Incremental + parallel builds\n* `plan` / `build` / `explain` CLI\n* Experiment comparison + hyperparameter search\n* S3 cache + Hugging Face / DVC / Docker / Ollama / W&B plugins\n\nYou can try it with:\n\n    pip install aimake\n\nThe main reason I built this is that AI pipelines are expensive to rerun. Changing a prompt shouldn't mean recomputing your dataset, embeddings, vector index, etc.\n\nIf you build RAG , evaluation or any AI pipelines, **I'd love feedback: what's the most painful step you wish was cached?**\n\nAnd if you think the idea is useful, a ⭐ on GitHub would really help.",
+    "developer": "Miserable_Extent8845",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

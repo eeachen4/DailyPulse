@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4c1cl",
+  "sourceItemId": "1w4c1cl",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w4c1cl/im_struggling_with_the_evidence_side_of_secret/",
+  "detail": {
+    "longDescription": "i'm working on a decision-making problem where an agent gets a possible leaked api key and has to decide whether it's actually a prod credential and then either ignore, verify or remove/rotate it.\n\nright now i'm using repo context (file path, variable name, surrounding code), key format, git history, whether the code is active/reachable, deployment context, and last\\_used\\_at from the provider's admin api.\n\nthe problem i'm running into is that most of these signals can tell me \"this probably is a real secret\", but don't tell me much about whether it's still live or already revoked.\n\nfor people who've dealt with secret leaks in actual devops workflows, what do you normally check before deciding what to do with a flagged key?\n\ni'm especially interested in evidence you can get without actually authenticating with the discovered key.\n\ndisclosure: this is my own personal project, not a commercial/product promotion. just looking for technical feedback.",
+    "developer": "grishma_1503",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

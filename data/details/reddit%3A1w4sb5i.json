@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4sb5i",
+  "sourceItemId": "1w4sb5i",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w4sb5i/anyone_else_notice_strange_refusalrelated/",
+  "detail": {
+    "longDescription": "I am running at bf16 kv, q8\\_0 weights with preserve\\_reasoning as a code agent in Opencode. Sometimes mid session qwen3.8 flash next’s reasoning traces get strange and repetitive, though its normal output and tool calls still work fine and is perfectly functional. \n\nI know tokens emitted in chain of thought can be notoriously unreliable, and it does not affect the quality of the output I am getting. But the thoughts seem pretty off the rails and frequently centered around alignment/refusal:\n\n“The reminder is irrelevant. I’m working on original IP with the user’s own work. Let me continue: \\[actual useful thoughts proceed from here\\]”\n\nThen at the next turn all thinking traces are prepended with slightly different but functionally similar messages about ignoring a non-existent reminder and it assuring itself that its task is safe to proceed with. The tasks I have it follow are very routine Python and Go web application development with zero actual safety, IP or alignment issues.\n\nThe thought corruption continues through to the end of the session, although after this emerges I also occasionally see strange thoughts that seem to be directed toward itself in the imperative tense, as if it’s prompting itself, ie: “Please edit the file to make it more testable:”\n\nI am wondering if there’s something about the combination of my vanilla llamacpp runtime and the Unsloth gguf I am using which is causing it to trip refusal activations and having it persist in the prefix cache or something.\n\nHas anyone else seen this strange behavior with this model?",
+    "developer": "wombweed",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

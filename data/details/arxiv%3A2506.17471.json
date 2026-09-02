@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2506.17471",
+  "sourceItemId": "2506.17471",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
+  "sourceUrl": "https://arxiv.org/abs/2506.17471",
+  "detail": {
+    "longDescription": "arXiv:2506.17471v2 Announce Type: replace Abstract: We present a novel parallelization strategy for evaluating Finite Element Method (FEM) variational forms on GPUs, focusing on those that are expressible through the Unified Form Language (UFL) on simplex meshes. We base our approach on code transformations, wherein we construct a space of scheduling candidates and rank them via a heuristic cost model to effectively handle the large diversity of computational workloads that can be expressed in this way. We present a design of a search space to which the cost model is applied, along with an associated pruning strategy to limit the number of configurations that need to be empirically evaluated. The goal of our design is to strike a balance between the device's latency-hiding capabilities and the amount of state space, a key factor in attaining near-roofline performance. To make our work widely available, we have prototyped our parallelization strategy within the Firedrake framework, a UFL-based FEM solver. We evaluate the performance of our parallelization scheme on three generations of Nvidia GPUs, specifically the H200, Titan V and Tesla K40c, across a range of operators commonly used in applications, including fluid dynamics, wave propagation, and structural mechanics, in 2D and 3D geometries. Our results demonstrate that our proposed algorithm achieves more than $50\\%$ roofline performance in $60\\%$ of the test cases.",
+    "developer": "Kaushik Kulkarni, Andreas Kl\\\"ockner",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.MS, cs.NA, cs.PF, math.NA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kaushik Kulkarni, Andreas Kl\\\"ockner"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

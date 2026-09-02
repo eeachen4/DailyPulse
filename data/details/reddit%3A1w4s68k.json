@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4s68k",
+  "sourceItemId": "1w4s68k",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w4s68k/how_i_got_280_toks_on_qwen38_27b_on_2xr9700s_and/",
+  "detail": {
+    "longDescription": "2 Months ago I had made a post how I was working on my dual R9700's.  It's wild to look back at where we were then and where things now stand.\n\nSince then after many users commenting and complaining about developers doing the same thing.  I threw out a discord link and expected maybe 5 other developers to join which I thought would be fun.  The community has now grown to 1,200 users (mostly developers) and a ton of collaboration happening.  \n\nA few weeks ago I started working on building support for MXFP4 on top of DeadCode's radiance image.  This made sense to me looking at the hardware and I was happy when I had hit parity on performance between MXFP4 and FP8.  The MXFP4 kernels use W4A8 which was something new and we have now blown past the performance of FP8 and appears like this is now the hardware limits of these cards.\n\n  \nQwen3.8 27B w/ DFlash2\n\n    BetterBench decode results for Qwen3.8 27B w/ DFlash2\n    category       decode t/s   step ms   tok/update\n    json           280.0        22.92     6.17\n    math           254.2        23.08     5.81\n    file_edit      250.1        23.03     5.54\n    code           226.3        23.01     5.17\n    reasoning      194.3        23.19     4.32\n    summarization  190.6        23.01     4.40\n    chat           148.3        22.82     3.33\n    prose          116.4        23.14     2.65\n\n    \n\n    BetterBench Prefill Results\n    target depth   prompt tokens   TTFT p50   PP t/s median\n    2000           1514            323 ms     4695\n    8000           5918            1.21 s     4894\n    16000          11794           2.47 s     4779\n    32000          23543           4.98 s     4729\n    64000          47056           10.8 s     4377\n    128000         94065           24.6 s     3831\n    250000         183678          59.1 s     3106\n\nThis has been so fun working on these R9700's and driving them to peak performance.  My entire image and repo for MXFP4 is open source also: [https://codeberg.org/ggz14/radiance-vllm-mxfp4](https://codeberg.org/ggz14/radiance-vllm-mxfp4)  \n\n\n",
+    "developer": "whodoneit1",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

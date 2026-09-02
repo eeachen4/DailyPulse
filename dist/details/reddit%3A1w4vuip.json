@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4vuip",
+  "sourceItemId": "1w4vuip",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w4vuip/built_our_own_tool_after_watching_agents_silently/",
+  "detail": {
+    "longDescription": "Agents don't need mocks that pretend. They need auth failures, 429s, and retry cycles that behave exactly like your real provider does, not what you guessed it would do.\n\nWe kept running into this when building agents that handle real transactions. The agent passes every test, then fails on the first live webhook because the real provider responds differently than the mock assumed. The mock was behavioral, the real service has a memory.\n\nBuilt FetchSandbox mcp so agents run the full loop against a twin of your actual service provider. Actual recorded response patterns, not simulated ones. how others are handling this, are you mocking at all, or just testing straight against staging?",
+    "developer": "Common_Dream9420",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

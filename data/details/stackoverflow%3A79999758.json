@@ -2,27 +2,28 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999758",
   "sourceItemId": "79999758",
+  "fetchedAt": "2026-09-02T01:22:13.478Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999758/python-script-to-download-barchart-data-is-no-longer-working",
   "detail": {
-    "longDescription": "The python script in the answer to Automatic file downloading on Barchart.com using python is no longer working. This script was working a few days ago # Source - https://stackoverflow.com/a/66753863 # Posted by Andrej Kesely # Retrieved 2026-08-31, License - CC BY-SA 4.0 import json import requests from urllib.parse import unquote headers = { \"User-Agent\": \"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0\" } url = \"https://www.barchart.com/proxies/core-api/v1/quotes/get?list=options.mostActive.us&fields=symbol,symbolName,lastPrice,priceChange,percentChange,optionsTotalVolume,optionsWeightedImpliedVolatility,optionsImpliedVolatilityRank1y,optionsImpliedVolatilityPercentile1y,optionsWeightedImpliedVolatilityHigh1y,tradeTime,symbolCode,symbolType,hasOptions&between(lastPrice,.10,)=&between(tradeTime,2021-03-22,2021-03-23)=&orderBy=optionsTotalVolume&orderDir=desc&meta=field.shortName,field.type,field.description&hasOptions=true&page=1&limit=100&raw=1\" with requests.Session() as s: # get all cookies s.get( \"https://www.barchart.com/options/iv-rank-percentile/stocks\", headers=headers, ) # use one cookie as HTTP header headers[\"X-XSRF-TOKEN\"] = unquote(s.cookies[\"XSRF-TOKEN\"]) data = s.get(url, headers=headers).json() # uncomment this to print all data: # print(json.dumps(data, indent=4)) for d in data[\"data\"]: print(\"{:<8}{:<50}{}\".format(d[\"symbol\"], d[\"symbolName\"], d[\"lastPrice\"])) No cookies are returned on initial s.get so the XSRF-TOKEN is not found and script fails. I also can't find the XSRF-TOKEN when inspecting www.barchart.com/options/iv-rank-percentile/stocks webpage",
+    "longDescription": "The Python script in the answer to Automatic file downloading on Barchart.com using python is no longer working. This script was working a few days ago. # Source - https://stackoverflow.com/a/66753863 # Posted by Andrej Kesely # Retrieved 2026-08-31, License - CC BY-SA 4.0 import json import requests from urllib.parse import unquote headers = { \"User-Agent\": \"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0\" } url = \"https://www.barchart.com/proxies/core-api/v1/quotes/get?list=options.mostActive.us&fields=symbol,symbolName,lastPrice,priceChange,percentChange,optionsTotalVolume,optionsWeightedImpliedVolatility,optionsImpliedVolatilityRank1y,optionsImpliedVolatilityPercentile1y,optionsWeightedImpliedVolatilityHigh1y,tradeTime,symbolCode,symbolType,hasOptions&between(lastPrice,.10,)=&between(tradeTime,2021-03-22,2021-03-23)=&orderBy=optionsTotalVolume&orderDir=desc&meta=field.shortName,field.type,field.description&hasOptions=true&page=1&limit=100&raw=1\" with requests.Session() as s: # get all cookies s.get( \"https://www.barchart.com/options/iv-rank-percentile/stocks\", headers=headers, ) # use one cookie as HTTP header headers[\"X-XSRF-TOKEN\"] = unquote(s.cookies[\"XSRF-TOKEN\"]) data = s.get(url, headers=headers).json() # uncomment this to print all data: # print(json.dumps(data, indent=4)) for d in data[\"data\"]: print(\"{:<8}{:<50}{}\".format(d[\"symbol\"], d[\"symbolName\"], d[\"lastPrice\"])) No cookies are returned on initial s.get so the XSRF-TOKEN is not found and the script fails. I also can't find the XSRF-TOKEN when inspecting the www.barchart.com/options/iv-rank-percentile/stocks webpage How can I find the XSRF-TOKEN in order to download the Barchart data?",
     "developer": "ateene",
-    "comments": 0,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "-3"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "12"
+        "value": "172"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

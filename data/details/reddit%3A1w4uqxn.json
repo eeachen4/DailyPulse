@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4uqxn",
+  "sourceItemId": "1w4uqxn",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w4uqxn/for_agent_loops_the_cache_read_discount_is_the/",
+  "detail": {
+    "longDescription": "Ran a small side by side. Same three prompts through an agent loop on Claude Fable 5, then on Fable 5.1:\n\n* sticky ball that rolls up everything in its path\n* capybara surfing down a river, subway surfers style\n* dumpling on an endless conveyor dodge\n\nCost:\n\n* Fable 5:   $7.65\n* Fable 5.1: $7.08 (7.5% less)\n\nInput and output rates are unchanged. What moved is cache reads: $0.25/M on 5.1, 75% off input. An agent loop keeps replaying a large mostly stable context on every step, so cache reads are what actually dominate the bill on any long run. New input and output are small compared to how many times the model rereads the growing context.\n\nAnthropic claims up to 45% cheaper on highly agentic workloads. We didn't hit that, because two of our three tasks converged in a few turns and cache didn't grow. The long one ate almost all of the delta. For chat-shaped usage the cut is pennies. For long autonomous loops it's real money.\n\nPractical read for anyone here running agents: measure your own loops before quoting a percentage. If your average session is short, don't expect much. If you run overnight or minutes-long autonomous stuff, this is where the discount lives.\n\ni work on Atomic Agent (open source local runtime), repo and writeup in a comment.",
+    "developer": "GapNew4766",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

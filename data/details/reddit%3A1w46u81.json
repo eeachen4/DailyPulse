@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w46u81",
+  "sourceItemId": "1w46u81",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w46u81/how_do_you_handle_alerting_for_certmanager/",
+  "detail": {
+    "longDescription": "*We use cert-manager for cert issuance/renewal across a few clusters, and it recently hit me that there's nothing built-in to tell you when a renewal actually fails — ACME rate-limits, a broken DNS-01 challenge, CA outage, whatever. It just... doesn't renew, and you find out when the cert expires.*\n\n*From what I can tell, the \"official\" answer is: scrape the Prometheus metrics cert-manager exposes, wire up Alertmanager yourself, and write your own rules (there's a community mixin on GitHub with some pre-built ones, which helps).*\n\n*Is that basically what everyone does, or is there something simpler I'm missing? Curious how people are actually running this in prod - home-grown Prometheus setup, a SaaS/tool for it, or just... vibes and hoping renewal works.*\n\n",
+    "developer": "Tonie51ks",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

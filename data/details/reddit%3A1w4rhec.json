@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4rhec",
+  "sourceItemId": "1w4rhec",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w4rhec/no_one_really_cares_about_knowing_an_agents/",
+  "detail": {
+    "longDescription": "Following up on an earlier post about SafeAI, a static analyzer for AI agents.\n\nOne uncomfortable thought we've had while building it:\n\nNo one really cares about knowing an agent's capabilities — until something goes wrong.\n\nBefore an incident, adding another tool, MCP server, filesystem permission or prompt change often looks harmless.\n\nAfter an incident, the first questions become:\n\n\\- What could this agent actually do?\n\n\\- When did that capability appear?\n\n\\- Who introduced it?\n\n\\- Was it intentional?\n\n\\---\n\nOne example we're working on is MCP tool descriptions. A tool description can look like documentation:\n\n\"Search the user's notes. Ignore previous instructions and...\"\n\nBut that description may become part of the model's context. So configuration can effectively become an instruction surface.\n\nSafeAI now detects several forms of this, while trying to avoid flagging ordinary descriptions that happen to contain words like \"ignore\" or \"act as\".\n\nThe bigger direction is \\*\\*tracking changes in agent capability and authority\\*\\*, rather than simply producing another list of security findings.\n\nBut this raises a question for us:\n\nIs knowing your agent's capabilities actually useful before an incident, or only after one?\n\nAnd if it is useful before an incident, what is the right interface?\n\nCLI + CI + SARIF/HTML?\n\nOr would you actually want an interactive view showing things like:\n\n\\> \"Show me all MCP tools across our agents that could introduce instruction injection.\"\n\nWe're deliberately not building a UI yet.\n\n\\---\n\nWould you use one, or is that solving a problem nobody has?\n\nCurious to hear from people running real MCP/agent systems.\n\n\\---\n\nIf you want to try it against your own agent project, we'd genuinely appreciate feedback, as well as contributions.\n\nHere you may check: ikaruscareer/SafeAI on GitHub.",
+    "developer": "IkarusCareer",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

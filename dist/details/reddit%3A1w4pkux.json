@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4pkux",
+  "sourceItemId": "1w4pkux",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w4pkux/i_added_a_freshctx_pretool_hook_for_agno_29_does/",
+  "detail": {
+    "longDescription": "Update from the FreshCtx maintainer: FreshCtx now protects the same pre-action freshness boundary across Agno, LangGraph, and the OpenAI Agents SDK.\n\nThe framework changes, but the failure mode remains the same:\n1. An agent observes a file, API response, database record, approval, or other dependency.\n2. It reasons from that evidence.\n3. The dependency changes before the tool or action executes.\n4. FreshCtx revalidates the declared evidence at the action boundary and returns CURRENT, STALE_SOURCE, STALE_REASONING, or UNVERIFIABLE.\n\nRecent releases added:\n- Agno 2.9 pre-tool integration\n- LangGraph protected-node integration\n- OpenAI Agents SDK tool-boundary integration\n- A shared experimental pre-action contract\n- Async and bounded concurrent validation\n- Validation budgets and audit evidence\n- Semantic policy/configuration validation\n\nThe new policy example also distinguishes between raw-file changes and material field changes. A descriptive edit can remain CURRENT, while a change to a declared policy limit becomes STALE_SOURCE. Invalid or incomplete configuration becomes UNVERIFIABLE.\n\nFreshCtx 0.7.0 is open source:\nhttps://github.com/Hyperwise-LLC/freshctx\n\nI maintain the project. I’m looking for one specific kind of feedback: does the pre-action contract map naturally to where your framework executes tools, or would it force you to restructure the workflow?",
+    "developer": "Street-Chest2270",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

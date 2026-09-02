@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w4h6c1",
+  "sourceItemId": "1w4h6c1",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w4h6c1/i_audited_112_real_rl_posttraining_environments/",
+  "detail": {
+    "longDescription": "RL post-training (RLHF/RLAIF/GRPO) agents optimize strictly for whatever the verifier rewards. If the verifier has logic flaws, the agent learns to hack the grader instead of solving the task — recent work has catalogued this at scale (Terminal Wrench found 331 hackable environments and 15%+ of standard benchmark tasks bypassable; a SWE-bench Verified audit found 28.5% Docker-verified hackability).\n\nI built `ratctl`, a static + dynamic auditor that scans RL environments (OpenEnv, Prime Intellect `verifiers`\\-spec, Gymnasium) for these patterns before you ship them for training:\n\n* Test/assertion tampering (file deletion, pytest hook hijacking)\n* Grader manipulation (stack frame inspection, `__eq__`/`__bool__` overloading)\n* Premature termination (`sys.exit(0)`, signal suppression)\n* Environment hijacking (golden solution leaks via `.git log`, env var leaks)\n* Reward skipping (bare `except:` swallowing failures, hardcoded max rewards)\n* LLM-judge bias (verbosity/sycophancy over correctness)\n\n**Empirical results across 112 real environments** (OpenEnv Hub, `verifiers`\\-spec, Gymnasium, SWE-bench):\n\n|Metric|Result|\n|:-|:-|\n|Vulnerabilities flagged|54|\n|Precision|100% (0 false positives on 43 clean controls)|\n|Recall|78.3% (54/69 known exploit patterns caught)|\n\nStatic analysis (AST-based) runs with zero heavy dependencies; there's an optional dynamic mode that red-teams the verifier with a local LLM (Ollama, free) or a frontier API. Ships as a CLI, a GitHub Action for CI gating (`--fail-on 'gameability>0.3'`), and a Claude/Cursor/Codex agent skill.\n\nWeakest spot right now: Gymnasium detection (0/8 caught in the audit) — mostly because vanilla Gymnasium envs don't expose the same exploit surface as adapter-based ones. Working on it.\n\nRepo + full audit report: [https://github.com/FreakyAdy/Reward-Hackability-Auditor--CLI---Claude-Skill-](https://github.com/FreakyAdy/Reward-Hackability-Auditor--CLI---Claude-Skill-)\n\nFeedback and exploit patterns I missed are very welcome — especially if you've seen an agent hack a verifier in the wild that `ratctl` wouldn't catch.",
+    "developer": "Responsible_Goose535",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
