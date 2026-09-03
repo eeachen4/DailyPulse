@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5s058",
+  "sourceItemId": "1w5s058",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w5s058/qwen38_27b_q8_hallucinated_entire_plan/",
+  "detail": {
+    "longDescription": "I guess this is a reminder for everyone that as great as Qwen3.8 is, it's still a model with a recommended temperature of 1... 3.8 has been so good that I've gotten lazy and didn't watch what it was doing after telling it to implement the plan (I've been planning, making sure the plan is good, then making sure the output is good... don't usually just sit and watch it work unless it has been going for longer than expected), but 120k tokens in and it turns out that it never even read the plan and just started implementing a totally different feature that I hadn't even considered (mostly because it's not a useful feature; vaguely plausible from existing code + agent files, but never even mentioned anywhere). \n\nIs my Qwen just cursed? Using Unsloth's second Q8 release (from launch day but after the fixed template)\n\nllama.cpp version: 0.3.0-dev (build 10630, commit 2dd3922)  \npi v0.84.3\n\nArgs:\n\n    exec llama-server --host 0.0.0.0 --port 8080 \\\n    -m /home/connor/AI/LLM/Models/Qwen3.8-27B-Q8/Qwen3.8-27B-Q8_0.gguf \\\n    --mmproj /home/connor/AI/LLM/Models/Qwen3.8-27B-Q8/mmproj-F16.gguf \\\n    -np 1 \\\n    --ctx-size 200000 \\\n    -ngl 99 \\\n    -fa on \\\n    --load-mode mlock \\\n    --temp 1 \\\n    --top-p 0.95 \\\n    --top-k 20 \\\n    --min-p 0 \\\n    --presence-penalty 0 \\\n    --repeat_penalty 1 \\\n    --spec-type draft-mtp \\\n    --spec-draft-n-max 2 \\\n    -dev Vulkan0,Vulkan1",
+    "developer": "KingCpzombie",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

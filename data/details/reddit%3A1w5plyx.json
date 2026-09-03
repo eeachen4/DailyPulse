@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5plyx",
+  "sourceItemId": "1w5plyx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w5plyx/web_draw_drive_a_real_browser_from_a_textonly/",
+  "detail": {
+    "longDescription": "Sharing a tool I built, relevant here because it removes the vision requirement from browser use.\n\nMost browser automation for models assumes screenshots, which rules out text-only models entirely and costs several thousand tokens per observation for those that can see. Web Draw renders the visible page as text with a stable handle on every control, so the loop is observe, act by handle, observe again. A 7B or 8B text model can run that loop.\n\nWhat a page looks like:\n\n    [form]\n    e18 textbox \"Tracking Number\" required invalid=\"Please fill out this field.\"\n    e29 combobox \"Sort by:\" =\"Featured\" collapsed haspopup\n    e47 button \"Continue\" disabled\n    e52 button \"Buy now\" covered-by:\"Cookie notice\"\n\nAn Amazon search page is about 750 tokens. A full checkout page is about 550. Data tables render as markdown, repeated structures like feed posts collapse into groups, and an off-screen line tells the model what is above and below the fold so it knows whether to scroll.\n\nSmall models fail differently from large ones, so most of the work went into removing ambiguity: a control that is covered by an overlay is flagged rather than clicked, an ambiguous target name fails with the matching candidates listed rather than picking one, and a refused form submit reports what the page said instead of looking like success.\n\nIt runs against your normal browser with your existing logins, and talks only to 127.0.0.1. Free, no account.\n\nChrome Web Store:\nhttps://chromewebstore.google.com/detail/web-draw-by-olib-ai/goknikkadndlonalcpjmnfpnljdehaim?authuser=0&hl=en\n\nMCP config:\n\"web-draw\": { \"command\": \"npx\", \"args\": [\"-y\", \"@olib-ai/web-draw-mcp\"] }",
+    "externalUrl": "https://i.redd.it/82kto2bup6nh1.png",
+    "developer": "ahstanin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

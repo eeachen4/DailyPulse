@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.06258",
+  "sourceItemId": "2604.06258",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.06258",
+  "detail": {
+    "longDescription": "arXiv:2604.06258v2 Announce Type: replace-cross Abstract: Floating-point arithmetic is error-prone and unintuitive. Floating-point debuggers instrument programs to monitor floating-point arithmetic at run time and flag numerical issues. They estimate residues, i.e., the difference between actual floating-point and ideal real values, for every floating-point value in the program. Prior work explores various approaches for computing these residues accurately and efficiently. Unfortunately, the most efficient methods, based on \"error-free transformations\", have a high rate of false reports, while the most accurate methods, based on high-precision arithmetic, are very slow. This paper builds on error-free-transformations-based approaches and aims to improve their accuracy while preserving efficiency. To more accurately compute residues, this paper divides residue computation into two steps (rounding error computation and residue function evaluation) and shows how to perform each step accurately via careful improvements to the current state of the art. We evaluate on 44 large scientific computing workloads, focusing on the 14 benchmarks where prior tools produce false reports: our approach eliminates false reports on 10 benchmarks and substantially reduces them on the remaining 3 benchmarks. Moreover, complex numerical issues require additional care due to absorption, where two machine-precision residues cannot both be computed accurately in a single execution. This paper introduces residue override, which re-executes the program multiple times, computing different residues in different executions and assembling a final \"patchwork\" execution. We evaluate on 169 standard benchmarks drawn from numerical analysis papers and textbooks, requiring only 3.6 re-executions on average. Among 34 benchmarks with false reports in the initial run, residue override is triggered on 29 of them and reduces false reports on 25 of them, averaging 7.1 re-executions.",
+    "developer": "Yumeng He, Pavel Panchekha",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.MS, cs.NA, cs.PL, math.NA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yumeng He, Pavel Panchekha"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

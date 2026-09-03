@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.00406",
+  "sourceItemId": "2609.00406",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.00406",
+  "detail": {
+    "longDescription": "arXiv:2609.00406v1 Announce Type: cross Abstract: Distributed deployment runtimes carry a coherence obligation that classical fault-tolerance frameworks do not name directly: the live state a component is configured to run and the audit chain that records how it got there must agree at every terminal configuration. Prior works mainly focus on individual aspects of the deploy-time fault surface (canary controllers, configuration rollback, signed attestations), leaving the cross-cutting question of audit/live coherence under fail-stop crash only loosely specified. Yet a key systems question remains unresolved: how can a deployment runtime guarantee that the audit chain answers truthfully about live state even when a transition crashes mid-flight? We present audit-first rollback semantics, a fault-tolerance mechanism that guarantees audit/live coherence at every committed terminal under fail-stop crashes during transition phases. The mechanism pairs with provisional state machines, pipelines whose \"active but not yet promoted\" states carry an explicit rollback contract and a bounded deadline. We instantiate both in a runtime deployment system and run a dependability evaluation against a fail-open variant of the same pipeline across twelve fault-injection points spanning three structural failure classes. Across 1,200 injected-failure trials, audit-first rollback achieves 100% audit/live-state coherence (600/600, Wilson 95% CI [0.994,1.000]) with per-cell p95 recovery latency below 500 ms (SLO PASS in 12/12 cells); the fail-open variant preserves coherence on only 33% of trials (200/600, Wilson 95% CI [0.297,0.372]). We further lift the construction to a cross-bridge coordination protocol with a safety argument for fleets of fail-stop bridges, leaving fleet-scale empirical evaluation to follow-on work.",
+    "developer": "Xue Qin, Simin Luan, Cong Yang, Zhijun Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xue Qin, Simin Luan, Cong Yang, Zhijun Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

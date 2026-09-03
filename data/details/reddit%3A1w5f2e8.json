@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5f2e8",
+  "sourceItemId": "1w5f2e8",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1w5f2e8/mysorty_automatic_ocr_rulebased_pdf_sorting_for/",
+  "detail": {
+    "longDescription": "MySorty is three tools in one Windows app: a document sorter, a PDF editor, and an invoicing tool.\n\n# 1. OCR and automatic sorting\n\nMySorty watches a folder you choose. When a PDF, JPG or PNG appears, it runs OCR and saves a searchable PDF. It detects the document language first, so mixed-language archives stay accurate.\n\nIt then moves the file into the right folder based on tag rules you set up. A tag can be a single word, a phrase, or a full sentence. Matching ignores line breaks and spacing, so a sentence that OCR split across two lines still matches. Each rule can require all of its tags or just any one of them, and a rule can match the file name instead of the document content.\n\nTag rules define both levels of the destination. A parent folder carries its own tags that decide whether a document belongs there, and inside it an ordered list of sub-rules picks the subfolder. You order the rules to control which one wins when more than one matches, and you choose whether file name or content is checked first.\n\nFile names that already carry structure can be parsed directly. For a file called `2026-03-14_Müller_Rechnung.pdf` you set the separator, then mark which part is the parent folder and which is the subfolder. MySorty creates the nested folders and files it there. Each part can be reformatted (surname first, title case, uppercase), and every rule can hold an alias list, so `RentenV` in a file name ends up in the `Rentenversicherung` folder.\n\nIt can also monitor a mailbox over IMAP or Microsoft 365 with OAuth2 and pull PDF attachments into the same pipeline.\n\n# 2. PDF viewer and editor\n\nThe viewer is built in, and the page tools write straight to the file:\n\n* Rotate, delete, duplicate and reorder pages\n* Extract any page into its own PDF\n* Insert another PDF's pages at any position\n* Place an image on a page. Drag to position it, use the corner handle to resize, use the top handle to rotate.\n* Sign documents. Keep a library of saved signatures, or draw a new one with your mouse, pen or finger on the built-in signature pad.\n\nThere is also timed folder merging for batch jobs, and a built-in file explorer so you can check what the sorter did without leaving the app.\n\n# 3. Creating and reading e-invoices\n\nThis is the part people don't expect. MySorty doesn't only read invoices. It creates them from scratch.\n\n**Creating.** Fill in seller, buyer, line items, tax rates, payment terms and IBAN. Add document-level discounts or surcharges, either as a percentage or a fixed amount. Then export as:\n\n* An invoice PDF with your logo, a totals block, a footer, and a SEPA GiroCode that the customer can scan to pay\n* ZUGFeRD (PDF/A-3b), which is that same PDF with the structured XML embedded inside it\n* XRechnung XML\n* CSV, JSON or plain XML\n\nIt handles Skonto, and correction invoices that reference the original and negate the positions for you.\n\n**Reading.** Draw zones over a sample invoice once and save it as a vendor profile. MySorty pulls those fields off matching invoices from then on. Profiles match automatically on an identifier you tag, and they export and import so you can move a set between machines. Structured invoices can also be read in directly, both CII and UBL.\n\nIf EN 16931 doesn't apply to you, ignore this section. The sorting half works on its own.\n\n# Practical details\n\n* Windows 10/11, Windows Server 2019, 2022, 2026, .NET 8, WinUI 3. Standard installer, not in the Store.\n* Interface in English, German, Arabic, French and Spanish\n* Paid. Monthly subscription, or a one-time lifetime option for private users. Not open source.\n\n[**tkbitsupport.de**](https://www.tkbitsupport.de/)\n\nHappy to answer anything in the comments 😄 ",
+    "externalUrl": "https://i.redd.it/zk2txxheu4nh1.png",
+    "developer": "TKBITSupport",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

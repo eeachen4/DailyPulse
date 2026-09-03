@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000257",
+  "sourceItemId": "80000257",
+  "sourceUrl": "https://stackoverflow.com/questions/80000257/canonical-way-to-select-data-in-sqlalchemy",
+  "detail": {
+    "longDescription": "It appears there are several different ways to select data with the SQLAlchemy ORM: Using session.query.filter() : rows = session.query(MyTable).filter( MyTable.column1 == value1, MyTable.column2 == value2 ).all() Using session.query.filter_by() : rows = session.query(MyTable).filter_by( column1=value1, column2=value2 ).all() Using select.where() : statement = select(MyTable).where( MyTable.column1 == value1, MyTable.column2 == value2 ) rows = session.execute(statement) And possibly even more ways that I am overlooking. Is there reason to prefer one of these methods over another? I imagine some of them are \"the old way of doing it\", to provide backward compatibility with older versions of SQLAlchemy. What is the currently accepted best practice?",
+    "developer": "John Gordon",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "76"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

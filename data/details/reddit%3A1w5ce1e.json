@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5ce1e",
+  "sourceItemId": "1w5ce1e",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w5ce1e/how_would_you_implement_an_apply_recommendation/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI'm working on an open source K8s optimization tool that analyzes Prometheus+OpenCost data and generates recommendations such as CPU/memory rightsizing, idle workload detection, and other resource-efficiency improvements.\n\nI'm now thinking about how these recommendations should become actionable.\n\nThe first approach I considered was applying changes directly to the cluster. For example, updating a deployment's requests/limits through the Kubernetes API. The problem is that this requires powerful permissions on the cluster and I'm not very comfortable with an optimization tool having write access to production workloads.\n\nThe alternative I'm considering is a GitOps-based workflow:  \nRecommendation -> Git commit -> Pull Request -> review/CI -> ArgoCD -> cluster\n\nThis has some nice properties:  \n\\- no write access to the production cluster  \n\\- changes are auditable  \n\\- easy rollback  \n\\- fits naturally with GitOps workflows\n\nThe downside is obviously that not every k8s environment is GitOps-based, and implementing this properly means dealing with GitHub/GitLab, private repositories, self-hosted Git instances, different repo structures, Helm/Kustomize, etc.\n\nFor those of you running Kubernetes in production, would you prefer an optimization tool to apply changes directly through the Kubernetes API, create a Git PR, or something else?\n\nI'm building this as part of GreenKube, an open-source Kubernetes FinGreenOps project, but the question is really about the workflow itself. I'd be very interested in hearing how others approach this.",
+    "developer": "Late_Height_3133",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

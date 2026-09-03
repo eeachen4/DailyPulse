@@ -5,7 +5,7 @@
   "fetchedAt": "2026-08-28T16:28:55.039Z",
   "sourceUrl": "https://stackoverflow.com/questions/79998666/how-to-commit-change-while-leaving-all-the-staged-and-unstaged-changes",
   "detail": {
-    "longDescription": "I created a file with one line \"bug line\", initialized git repository and committed change. Then I added the second line \"staged\" and staged the change. Then I added the third line \"unstaged\". How to add a commit changing the first line to \"bug line changed\" so that I still get the second line as staged change and the third line as unstaged change without merge conflicts?",
+    "longDescription": "I created a file with one line \"bug line\", initialized git repository and committed change. Then I added the second line \"staged\" and staged the change. Then I added the third line \"unstaged\". How to add a commit changing the first line to \"bug line changed\" so that I still get the second line as staged change and the third line as unstaged change without merge conflicts? EDIT: I wrote this question under the impression that Git isolates and commits individual lines independently. I now understand that Git operates on file snapshots and \"hunk\" sections, meaning a line cannot easily bypass other uncommitted modifications in the same block. My actual goal was to commit a single urgent line fix immediately, without bundling it into the messy, half-finished edits currently sitting in my staging area and working directory.",
     "developer": "Andrey",
     "comments": 4,
     "stats": [
@@ -19,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "189"
+        "value": "203"
       },
       {
         "label": "状态",

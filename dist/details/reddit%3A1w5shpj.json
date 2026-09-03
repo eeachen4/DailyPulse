@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5shpj",
+  "sourceItemId": "1w5shpj",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w5shpj/x402_has_no_seller_vetting_yet_what_we_built_to/",
+  "detail": {
+    "longDescription": "x402 (pay-per-call HTTP, USDC on Base — a 402 status code carrying a payment challenge instead of a login wall) is growing fast as the way agents pay for API access without an account. The Coinbase-run Bazaar/discovery index that lists these services has 14,000+ self-declared listings and effectively zero vetting — anyone can list a route, and there's no independent conformance testing at the protocol level. A well-formed, signed 402 challenge tells you nothing about whether there's a real, safe, working service behind it.\n\n\n\nWe built a small deterministic check for this — /verify/seller, no LLM anywhere in the path, $0.005/call via x402 itself. Given a seller's resource URL, it probes it live (no payment made) and checks: does it actually respond with a well-formed 402 challenge right now; does its own declared Bazaar schema example actually validate against its own declared schema (catches broken/copy-pasted/abandoned listings); is its payout address on the OFAC sanctions list, checked live against an on-chain sanctions oracle; plus wallet age/tx count as a bonus signal. Honest about the ceiling: this confirms the checkable things check out, not that the seller is trustworthy — no free source can promise that yet.\n\n\n\nOne real gotcha from building this, in case it saves someone else time: the x402 Python SDK's FastAPI middleware returns {} as the 402 response body by default — the entire payment challenge lives only in the payment-required header, unless you explicitly set RouteConfig.unpaid\\_response\\_body. Reasonable default (header's the canonical carrier per spec), but any client reading the challenge from the body instead of the header — an older x402 pattern still out there — sees an empty object and fails closed with no price. The fix has its own footgun: on the async x402ResourceServer, the method you'd call from that hook is itself async def, but the hook is called synchronously by the middleware — call it wrong and you silently get an un-awaited coroutine instead of the response, which a try/except will happily swallow. The actual fix is calling x402ResourceServerBase's sync version directly (the same one x402ResourceServerSync already uses).\n\n\n\nx402 is genuinely new and a lot of this is still being worked out in public. Wanted to share what we found in case it's useful to anyone else building or paying into this ecosystem: goodsong.dev/x402-safety.",
+    "developer": "Cold_Quiet_7072",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

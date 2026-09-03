@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5sb4g",
+  "sourceItemId": "1w5sb4g",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w5sb4g/deepseekv4flash_vs_glm53flash_on_2_dgx_spark/",
+  "detail": {
+    "longDescription": "I've been having this debate with myself for the last few days, on two\nAsus Ascent GX10s (effectively the same as 2x DGX Spark):\n\n- DeepSeek-V4-Flash-0731 (official weights)\n- GLM-5.3-Flash (RedHatAI/GLM-5.3-Flash-NVFP4)\n\nQuestions to you guys:\n\n- Have any of you guys also tried both on two DGX Spark / Asus Ascent GX10?\n- What are your use cases and findings?\n- How did you ultimately decide?\n- With GLM on 2x DGX Spark, did you experience weird behavior?\n\nBelow is my report based on my experience.\n\nDeepSeek runs with more tokens/s, but GLM feels like the better *tool* for\nhow I actually work.\n\nWhere GLM wins:\n\n- Comes to conclusions faster, and often gets them more right.\n- Much better writing, especially in languages other than English and Chinese.\n  That matters a lot for writing letters.\n- Much better at \"extracting the essence of a text\".\n- Superb vision. DeepSeek's Vision-Exp model can read images just well enough to\n  score on benchmarks, but not nearly well enough for real OCR / text extraction (its vision input is token-limited (384 tokens), which renders images unsharp and text unreadable).\n- Considerably better benchmark results, at least for the full model, though\n  I'm running a quantized build, so the numbers may not carry over directly. But my empirical results prove it gets better results with fewer instructions.\n- Hallucinates much less. That's the decisive one for me: I can't run a\n  \"test and improve\" loop on text like you could on code, so office work and letters depend on one-shot\n  accuracy and a low hallucination rate.\n\nWhere DeepSeek wins:\n\n- It feels better, because it's the original official weights.\n- Much faster token generation, though not actually faster to a final result.\n\nThe core problem: there's no GLM build that runs on 2x DGX Spark with official\nweights. I wish there were.\n\nSo I keep testing and tweaking the GLM setup to get rid of the artifacts\n(which should be possible, per various sources). It feels a bit more messy\nthan the DeepSeek setup, but if it converges it should give more reliable\noutputs, with far better vision on top.\n",
+    "developer": "kuhunaxeyive",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

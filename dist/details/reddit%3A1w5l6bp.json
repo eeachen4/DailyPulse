@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5l6bp",
+  "sourceItemId": "1w5l6bp",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w5l6bp/ceph_proxmox/",
+  "detail": {
+    "longDescription": "Ceph was showing HEALTH\\_OK the entire time. Our Kubernetes control plane was crashing anyway.\n\nTurned out etcd was sharing a Ceph pool with our VM workloads. A batch job saturated the pool, pushed etcd's fsync latency past 1 second, and the control plane fell over — repeatedly — while Ceph reported nothing wrong.\n\nWrote up exactly what happened, how we found it, and the two other production gotchas that nearly wrecked us (one of them involves a single blocklist command taking down every LXC container on a host simultaneously).\n\n[https://medium.com/@mikemurango/we-thought-ceph-was-healthy-it-was-killing-our-kubernetes-control-plane-ed561095ea41?sharedUserId=mikemurango](https://medium.com/@mikemurango/we-thought-ceph-was-healthy-it-was-killing-our-kubernetes-control-plane-ed561095ea41?sharedUserId=mikemurango)",
+    "developer": "your_Devops_guy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

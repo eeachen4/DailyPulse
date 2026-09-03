@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.00843",
+  "sourceItemId": "2609.00843",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.00843",
+  "detail": {
+    "longDescription": "arXiv:2609.00843v1 Announce Type: new Abstract: We study unstable integer sorting on GPUs for arrays whose elements lie in a known integer range. Focusing on counting-sort-based methods that determine the output interval of each value from its frequency and the prefix sums of the frequencies, we propose and evaluate Range-Tiled CDF sort (RT-CDF), which partitions the possible value range into small intervals, called tiles, that fit in shared memory. For each tile, RT-CDF constructs a histogram, computes its prefix sum as a local CDF, and directly generates the output array from the local CDF. We compare RT-CDF against three baselines: CUB DeviceRadixSort, whose processed bit range is restricted to $[0,\\lceil\\log_2 R\\rceil)$ to exploit the known range size $R$; Ref-H-P sort; and an implementation based on the algorithm of Kolonias et al. Experiments on an NVIDIA GeForce RTX 4090 with range sizes from $R=2^7$ to $2^{18}$, input sizes from $n=10^6$ to $10^9$, and uniformly distributed, normally distributed, and all-equal inputs show that RT-CDF outperforms the baselines over a broad set of conditions for small to medium ranges, achieving a maximum speedup of 4.39 over the fastest baseline. For $R=2^{18}$, however, at least one baseline outperforms RT-CDF for every evaluated input size and input distribution, showing that the cost of histogram construction limits the applicability of RT-CDF to larger ranges.",
+    "developer": "Kento Ando, Kaito Takase, Noriyuki Fujimoto, Koichi Wada",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kento Ando, Kaito Takase, Noriyuki Fujimoto, Koichi Wada"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

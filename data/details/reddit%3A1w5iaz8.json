@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5iaz8",
+  "sourceItemId": "1w5iaz8",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w5iaz8/i_built_an_explainable_bonelesion_screener_for/",
+  "detail": {
+    "longDescription": "I'm a biomedical-to-CS student, and I wanted to see how far a genuinely explainable (Use of heatmapping) medical imaging prototype could get on near-zero infrastructure (the goal was for it to all cost me nothing but I ran into multiple problems with that restriction).\n\nIt's a DenseNet-121 trained on BTXRD (3,746 radiographs), three classes: normal, benign, malignant. Malignant is only 9.1% of the data, so a model predicting \"not malignant\" scores 90.9% accuracy while missing every cancer. Focal loss with inverse-frequency alpha, thresholds picked on validation only, probabilities calibrated afterwards.\n\n\n\nTwo things I'd genuinely like criticised:\n\nThe out-of-distribution gate. Upload a photo of a hotdog and it refuses rather than confidently diagnosing it. Right now that's hand-tuned heuristics with no learned component, which I'm not happy about.\n\nThe review gate. Users can flag a result as wrong, but that never becomes a training label. One account reviews every shared image and assigns ground truth, because the alternative is letting anyone poison the training set.\n\n\n\nRuns on a Cloudflare Worker. The model itself lives in a container that sleeps after 90 seconds and is metered at 5 hours of runtime a month, so the whole thing can't bill me more than the £5 subscription. The site stays up regardless; if the meter ran dry, scanning would pause and everything else would keep working.\n\n[https://osteoneuralnetwork.com](https://osteoneuralnetwork.com)",
+    "developer": "xrY-",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

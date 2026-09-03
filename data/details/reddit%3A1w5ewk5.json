@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5ewk5",
+  "sourceItemId": "1w5ewk5",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w5ewk5/brain_fart_moment_this_morning/",
+  "detail": {
+    "longDescription": "If you have a small managed K8s cluster with a single node pool and you would like to change the SKU of the VMs in that node pool, make sure to double check how your Terraform provider handles this change\n\nMaybe on AWS or Azure or whatever, this is a graceful operation where the new nodes are provisioned first and the old ones are drained before being deleted\n\nOn OVH however it will destroy the existing nodepool first then provision the new one, and during this process your cluster will have zero nodes and whatever was running on it will be down\n\nThankfully this wasn't a production cluster. At the end of the day I'm just a dev who takes care of devops because nobody else will. In hindsight I feel like I should have seen this coming, but I guess most things work automagically nowadays and it can be a surprise when something does not",
+    "developer": "Manic5PA",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

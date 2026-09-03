@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "So I have a script that can hide various id elements in a select drop-down based on a radio button. But it currently only hides one of the ids in the dropdown. How do I hide the others? I click on \"Human\", I want all the IDs that are NOT human to vanish. But it only vanishes the FIRST of each ID. So if I click \"Human\", it just removes \"Demon 1\", \"Vampire 1\" and \"Werewolf 1\". I need it to also remove \"Demon 2\", \"Vampire 2\" and \"Werewolf 2\" I'm using Javascript, running it from the browser. The code: var raceArray = [\"Human\", \"Demon\", \"Vampire\", \"Werewolf\"]; function species(z) { for (x = 0; x <4; x++) { //x<4 is actually x<raceArray.length var hide_race = document.getElementById(raceArray[x]); hide_race.hidden = true; } var show_race = document.getElementById(raceArray[z]); //Should show every option for whatever was selected. Even if it was previously hidden. show_race.hidden = false; } <input type=\"radio\" onclick=\"species(0)\" name=\"ruleset\">Human <input type=\"radio\" onclick=\"species(1)\" name=\"ruleset\">Demon <input type=\"radio\" onclick=\"species(1)\" name=\"ruleset\">Vampire <input type=\"radio\" onclick=\"species(2)\" name=\"ruleset\">Werewolf <select id=\"race\"> <option id=\"Human\">Human</option> <option id=\"Demon\">Demon 1</option> <option id=\"Demon\">Demon 2</option> <option id=\"Vampire\">Vampire 1</option> <option id=\"Vampire\">Vampire 2</option> <option id=\"Werewolf\">Werewolf 1</option> <option id=\"Werewolf\">Werewolf 2</option> </select> Edit: Added names to the radio buttons and changed .length to be 4 to be simpler. If need be, I can post the FULL code instead of a more simplified version.",
     "developer": "Firestar001",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "84"
+        "value": "94"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

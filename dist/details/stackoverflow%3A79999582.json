@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999582",
   "sourceItemId": "79999582",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999582/how-do-i-show-the-header-logo-and-footer-when-i-open-a-full-screen-nav-menu",
   "detail": {
     "longDescription": "I'm making my site responsive and, for the mobile version, I'm doing a full screen menu with a X button to close the menu. However I want my header logo and footer to also show when I open the menu. This is what it looks like currently: I want the header logo to show on the upper left corner and footer at the bottom. What is the best way to implement this? Do I just need to add the header and footer into the nav under media query so it only shows in smaller screens? Or do I need to use JavaScript to do something else? I only want my logo and footer to show, not my main body content. The color borders are there temporarily to help me see the boxes. <h1><a href=\"index.html\">LOGO</a> <button id=\"open-menu\" ><img src=\"svg/open.svg\" alt=\"\"></button> </h1> <nav id=\"sidebar\"> <!----nav----> <button id=\"close-menu\" ><img src=\"svg/close.svg\" alt=\"\"></button> <ul class=\"nav-links\"> <li><a href=\"index.html\">featured</a></li> <li><a href=\"about.html\">about</a></li> <li><a href=\"work.html\">work</a></li> <li><a href=\"mailto:EMAIL\">contact</a></li> </ul> </nav> @media screen and (max-width: 800px){ body{ grid-template-columns: 1fr; grid-template-areas: \"logo\" \"sidebar\" \"main\" \"footer\"; } h1{ top: 20px; } nav{ position: fixed; width: 300px; display: none; grid-row-start: 2; } .show{ display: block; } footer{ position: fixed; bottom: 0; width: 100%; } nav { /* Height & width depends on how you want to reveal the overlay (see JS below) */ height: 100%; width: 100%; position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ left: 0; top: 0; margin-left: 0; padding-left: 0; background-color: white; overflow-x: hidden; /* Disable horizontal scroll */ font-size: 2.5rem; } .nav-links { position: relative; top: 25%; /* 25% from the top */ width: 100%; /* 100% width */ text-align: center; /* Centered text/links */ margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */ border: 5px solid yellow; display: flex; flex-direction: column; align-items: center; } nav a:hover, nav a:focus { color: #f1f1f1; } #close-menu{ display: inline-block; position: fixed; top: 20px; right: 45px; } }",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "100"
+        "value": "101"
       },
       {
         "label": "状态",

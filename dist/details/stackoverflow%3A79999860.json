@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:79999860",
   "sourceItemId": "79999860",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
   "sourceUrl": "https://stackoverflow.com/questions/79999860/git-add-interactively-ignoring-whitespace-changes-when-selecting-hunks",
   "detail": {
-    "longDescription": "This is a variant of Add only non-whitespace changes , but it's different: This is somewhat special: I copied a function then modifying both functions. If the original I had added an if around a block of code, so a major part seems changed now there, while in the copy the code has the same indent. Now I want to commit only the new function (not the changed done to the existing function for now). Unfortunately git add --interactive is rather confused about the change. However, when I use git diff -w the new function is clearly visible a one new block. Example: Without -w the first hunk of git diff looks like this: @@ -2073,136 +2073,213 @@ sub _handle_connstat_query($$$@) { $conn, $req, [$ok, $ec, $stdout, $stderr], $id, $descr); } -# handle listener statistics query -sub _handle_listenerstats_query($$$@) +# handle listener list query +sub _handle_listenerlist_query($$$@) { my ($parent, $conn, $req, @matches) = @_; - my $me = \"$parent: _handle_listenerstats_query\"; + my $me = \"$parent: _handle_listenerlist_query\"; my ($match, $what) = @matches; - my ($id, $descr) = ('query:' . $what, 'Listener Status'); + my ($id, $descr) = ('query:' . $what, 'Listener List'); ... When useing .w the first hunk looks like this: @@ -2073,23 +2073,83 @@ sub _handle_connstat_query($$$@) { $conn, $req, [$ok, $ec, $stdout, $stderr], $id, $descr); } +# handle listener list query +sub _handle_listenerlist_query($$$@) +{ + my ($parent, $conn, $req, @matches) = @_; + my $me = \"$parent: _handle_listenerlist_query\"; + my ($match, $what) = @matches; + my ($id, $descr) = ('query:' . $what, 'Listener List'); ... What I'd like to do is select the hunk to add (with the space changes) as displayed by git diff -w . Is that possible? Im using git 2.51.0 (SLES15 SP7)",
+    "longDescription": "This is a variant of Add only non-whitespace changes , but it's different: This is somewhat special: I copied a function then modifying both functions. If the original I had added an if around a block of code, so a major part seems changed now there, while in the copy the code has the same indent. Now I want to commit only the new function (not the changed done to the existing function for now). Unfortunately git add --interactive is rather confused about the change. However, when I use git diff -w the new function is clearly visible a one new block. Example: Without -w the first hunk of git diff looks like this: @@ -2073,136 +2073,213 @@ sub _handle_connstat_query($$$@) { $conn, $req, [$ok, $ec, $stdout, $stderr], $id, $descr); } -# handle listener statistics query -sub _handle_listenerstats_query($$$@) +# handle listener list query +sub _handle_listenerlist_query($$$@) { my ($parent, $conn, $req, @matches) = @_; - my $me = \"$parent: _handle_listenerstats_query\"; + my $me = \"$parent: _handle_listenerlist_query\"; my ($match, $what) = @matches; - my ($id, $descr) = ('query:' . $what, 'Listener Status'); + my ($id, $descr) = ('query:' . $what, 'Listener List'); ... When using -w the first hunk looks like this: @@ -2073,23 +2073,83 @@ sub _handle_connstat_query($$$@) { $conn, $req, [$ok, $ec, $stdout, $stderr], $id, $descr); } +# handle listener list query +sub _handle_listenerlist_query($$$@) +{ + my ($parent, $conn, $req, @matches) = @_; + my $me = \"$parent: _handle_listenerlist_query\"; + my ($match, $what) = @matches; + my ($id, $descr) = ('query:' . $what, 'Listener List'); ... What I'd like to do is select the hunk to add (with the space changes) as displayed by git diff -w . Is that possible? Im using git 2.51.0 (SLES15 SP7) Rewording some Details As per request, here's a more elaborated version of what I did: I copied a function (because I knew that I need a similar one), and I modified the first (of the two identical versions). The I modified the second instance (because the function needed an additional if , and the if required indentation of the major part of the function). I think that's not an unusual way or working. For the reason of committing different features separately, I had decided to commit only the changes done to the new (copied and modified function that preceded the copy source)). However, git diff would think I modified the \"copy source\", thus making it very hard to extract the changes needed to add only the first copy (and modified version) of the function. If you look a bit more careful at the example, you will realize that.",
     "developer": "U. Windl",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "57"
+        "value": "71"
       },
       {
         "label": "状态",

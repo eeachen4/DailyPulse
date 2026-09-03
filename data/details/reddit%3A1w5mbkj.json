@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5mbkj",
+  "sourceItemId": "1w5mbkj",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w5mbkj/comparing_state_persistence_and_execution_control/",
+  "detail": {
+    "longDescription": "For the past few weeks I have been working on optimising long running agent workflows, and in every case the main bottleneck is memory and state management rather than the raw capabilities of the model. Each time an agent has to carry out multi-step tool calls over long sessions, the standard context windows either overflow or suffer from serious context rot.\n\nAt first we attempted to feed very long prompt histories into the GPT and Claude modelsbut performance soon deteriorated after only a few dynamic interactions. Instead we changed our method to one involving stateful tracking, experimenting with frameworks such as Lyzr together with custom Redis layers so as to keep the agent's memory confined to a structured state rather than sending the whole conversation back to the model on each iteration.\n\nIt greatly reduced both latency and token bloat, but I'm interested to know how other people are dealing with state persistence in the case of complex agentic setups. ",
+    "developer": "Deepfeet-09",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

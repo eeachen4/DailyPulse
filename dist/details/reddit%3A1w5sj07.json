@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5sj07",
+  "sourceItemId": "1w5sj07",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w5sj07/i_gave_every_user_their_own_persistent_agent/",
+  "detail": {
+    "longDescription": "I run a language-learning product where each user gets one AI friend who texts them first from a real phone number. Architecturally the choice that mattered was one agent per user, each in its own microVM, rather than a shared model with a user id in the prompt. Three things I did not expect.\n\n  \n1. Per-user agents solve memory by not having the problem.\n\n  \nThe friendship's history lives inside the agent. There is no vector store, no context reconstruction, no retrieval step I maintain. Agents sleep between messages and wake in about a second, so an idle agent costs nothing and the count is effectively unbounded. Provisioning is one API call during signup: measured signup to first message is 37 seconds.\n\n  \n2. Because the agent is a real machine, it can act, and that changes the product.\n\n  \nMine generate their own images (a selfie in their city, consistent with their portrait), hold their own phone numbers and email addresses, and can call my API to change their own user's settings. Tell your friend \"leave me alone until tonight\" and she sets do-not-disturb herself, then comes back when it expires. That behavior needed no new UI, only a documented endpoint and a token scoped to exactly one user. Capability scoped per agent means the blast radius of a misbehaving one is a single account.\n\n  \n3. Persona instructions are not a security boundary.\n\n  \nAsked what platform it ran on, my agent listed its runtime, version, model, OS and workspace path, in character-breaking detail. Strengthening the persona did nothing: the model knows what it is, and that outranks instructions to pretend otherwise. The fix was to stop negotiating and filter outputs before they reach the user, then substitute an in-character line. Worth knowing if you ship agents that are supposed to feel like people.\n\n  \nThe honest failure, since it's the useful part: my agents send about 30 proactive messages a day and get very few replies. Autonomy and personality are solved; getting a human to answer an unprompted message from someone they've never spoken to is not. If anyone has shipped proactive agents that people actually reply to, I'd like to hear what worked.\n\n  \nHappy to drop a link in the comments if anyone wants to see it.",
+    "developer": "maritime_sh",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

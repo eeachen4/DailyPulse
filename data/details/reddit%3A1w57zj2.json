@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w57zj2",
+  "sourceItemId": "1w57zj2",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w57zj2/streamlining_your_kubernetes_operations_with/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nLike many teams running Kubernetes, we noticed our platform/DevOps engineers spending hours every week triaging routine pod errors for developers—things like ImagePullBackOff, bad probes, or OOM crashes that developers didn't have the context to diagnose themselves.\n\nTo fix this, I built a full-stack Kubernetes AI Troubleshooting Agent that acts as an automated first responder.\n\nArchitecture & Tech Stack:\n\n \\* Frontend: Next.js / React (modular cluster explorer & live investigation timeline)\n\n \\* Backend: Python + FastAPI\n\n \\* Cluster Diagnostics: Automated collectors inspecting pod states, events, streaming logs, deployment specs, and DNS/service endpoints via kubectl\n\n \\* AI / Reasoning: OpenRouter-backed LLMs prompted with SRE-level diagnostic instructions\n\n \\* Database & Auth: Insforge backend handling auth, RBAC-style cluster permissions, and investigation histories\n\n \\* Local Dev: kind clusters running in Docker\n\nHow it works:\n\n \\* A developer opens the dashboard and selects their authorized cluster/namespace.\n\n \\* When an issue occurs, clicking \"Investigate\" kicks off an automated diagnostic run:\n\n   \\* Evaluates pod health & restarts\n\n   \\* Scrapes recent container logs & termination reasons\n\n   \\* Inspects Kubernetes events for scheduling/resource bottlenecks\n\n   \\* Verifies service endpoints and network policies\n\n \\* The raw diagnostic payload is passed to the LLM engine.\n\n \\* The agent returns:\n\n   \\* Root Cause Summary: Clear, plain-English explanation of why the failure occurred.\n\n   \\* Remediation Command: Concrete kubectl command or YAML patch.\n\n   \\* Confidence Score: e.g., 85% confidence if alternative configuration choices exist.\n\n   \\* Prevention Advice: Best-practice changes (e.g., CI linting, memory limit tuning).\n\nTested Failures:\n\nTested against invalid tags (ImagePullBackOff), misconfigured crash-loops, and CoreDNS readiness check issues. In all cases, it accurately flagged the error and saved \\~15-20 minutes of manual log hunting per incident.\n\nI'd love to get your thoughts: Have you implemented AI-assisted debugging in your clusters? What safety guardrails do you require before letting agents suggest or execute cluster mutations?",
+    "developer": "Diligent-Wrongdoer68",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

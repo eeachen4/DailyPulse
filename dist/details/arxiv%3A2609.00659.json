@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.00659",
+  "sourceItemId": "2609.00659",
+  "fetchedAt": "2026-09-03T01:25:28.104Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.00659",
+  "detail": {
+    "longDescription": "arXiv:2609.00659v1 Announce Type: cross Abstract: Cooperative perception allows a drone fleet to combine observations from multiple viewpoints. However, existing systems typically fix their feature-sharing policies at design time or adapt to only one context signal. This is a poor fit for aerial fleets, whose missions, bandwidth, formation geometry, and scene coverage can change during flight. We quantify the cost of context-blind sharing on UAV3D by controlling feature exchange at evaluation time using a released DiscoNet checkpoint, without retraining. Mission-aware sharing matches full-sharing accuracy while using only 5-10% of the bytes. The best tested peer selection policy changes with the byte budget, and choosing the wrong policy loses up to 7.7 AP. Moreover, under a constrained budget, two policies with the same full-scene accuracy differ by 5.9 AP within the mission region, showing that multiple context axes must be considered jointly. We therefore propose the context plane, a bounded, structured interface for runtime context. Each drone publishes a descriptor of at most 1 KB at 10 Hz, and lightweight, replaceable policies use the fleet context to decide what each drone computes, shares, and fuses. Existing sharing schemes become fixed policies within this interface. In our ROS 2 prototype on a Jetson AGX Orin, the context plane uses approximately 0.01% of the data-plane bandwidth, and each policy decision takes 0.10 ms. These results show that an explicit context interface can support low-overhead runtime adaptation without modifying or retraining the perception model.",
+    "developer": "Liangkai Liu, Xiaoxiao Wu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.RO, cs.DC, cs.ET"
+      },
+      {
+        "label": "第一作者",
+        "value": "Liangkai Liu, Xiaoxiao Wu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5nzwz",
+  "sourceItemId": "1w5nzwz",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w5nzwz/marrow_lowkey_just_give_all_your_health_info_to_ai/",
+  "detail": {
+    "longDescription": "Disclosure, I'm the dev, app is completely free with an opensource mirror.\n\nWhat it is: Marrow is an iOS app that records 178 health series (Apple Health types plus its own meal diary and set-by-set lifting log), and the mirror is a small server you run that keeps a full SQLite copy on your own hardware. The phone pushes deltas to it in the background with the app closed, and it serves that data over MCP, so your agent can answer questions about your health like \"how am I sleeping\" from your box while your phone is in your pocket.\n\nSome self-hosting notes:\n\n* Stack is one Python file, standard library only, zero dependencies. `pip install marrow-mcp`, `python3 marrow_server.py`, or `docker compose up -d`. Python 3.10+, and the container is python:3.12-slim.\n* First run prints a pairing URL. Open it, scan from the app, done. Two token files in the data dir, one for phone pushes and one for agent reads. Rotate by deleting the file.\n* Serves seven read-only MCP tools over Streamable HTTP (JSON-RPC 2.0). There's also a .mcpb bundle if you'd rather set up Claude Desktop by double-click than by hand.\n* No TLS of its own. I run `tailscale serve` in front of it and the README says the same. Don't port-forward it raw.\n* Raw pushes are staged as JSONL next to the DB, so the SQLite mirror is rebuildable if you mangle it. Budget 50 to 150 MB per year of full-fidelity history.\n* Mine has run on a small VPS behind tailscale for weeks untouched, but it's a single-file server, not a platform. No Home Assistant integration yet, which is the most requested thing so far.\n* iOS-only, since it reads HealthKit. The app is closed-source, the mirror is MIT.\n\nRepo: [https://github.com/skeletonarmytech/marrow-mcp](https://github.com/skeletonarmytech/marrow-mcp)\n\nApp if you want it, for free, no account needed: [https://apps.apple.com/us/app/marrow-health/id6800819435](https://apps.apple.com/us/app/marrow-health/id6800819435)",
+    "developer": "SpoonlessTable",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

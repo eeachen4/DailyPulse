@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5o4gi",
+  "sourceItemId": "1w5o4gi",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1w5o4gi/time_to_first_token_is_the_only_latency_number/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nA thing I got wrong for a long time: I evaluated speed by how long a response took to finish. That's the intuitive metric and it's close to irrelevant for interactive work.\n\nWhat you actually perceive is time to first token. The gap between hitting enter and seeing something happen. Once tokens are flowing, your brain treats the thing as working and you start reading. A response that begins in 300ms and finishes in 20 seconds feels fast. A response that begins in 3 seconds and finishes in 12 feels slow, despite being objectively quicker. The total is what you'd measure and the opening is what you'd feel.\n\nThis has a few consequences that took me a while to connect.\n\nBuffering anywhere in the path is much more expensive than it looks on a graph. Any layer that collects a full response before passing it on converts a fast-feeling interaction into a slow-feeling one while barely moving the total. If you're evaluating anything that sits between you and a provider, this is the property to test, and it won't show up in a benchmark that measures completion time.\n\nProvider degradation shows up here first. Before anything goes red on a status page, TTFT drifts. Elevated queueing, longer scheduling delays, the request eventually completes fine so nothing registers as an incident. If you're only watching totals and error rates you'll miss a bad hour entirely while your experience quietly gets worse.\n\nReasoning models scramble the whole framing. If a model thinks before it emits, TTFT as classically defined can be many seconds even when nothing is wrong. Whether that reads as broken or as working depends almost entirely on whether the interface shows you something during the wait. Same latency, different experience, decided by UI.\n\nAnd averages hide the thing you care about. TTFT distributions are skewed — a good median with an ugly tail feels unreliable in a way that a slightly worse median with a tight tail doesn't. People remember the bad turns. p95 is the honest number and mean is the flattering one, which is presumably why mean is the one that gets published.\n\nI watch this closely because I run a layer that adds a hop, and a hop is exactly the kind of thing that can quietly ruin TTFT if you build it lazily (routera . one, my project, stating it rather than being coy). Anything in the path has to earn its place on this metric specifically.\n\nCaveat: for batch or background work none of this applies, and optimizing TTFT there is wasted effort. Throughput and cost are the right metrics when nobody's watching the screen. It's specifically interactive coding where the opening moment dominates.\n\nWhat I haven't figured out: how to communicate provider slowness to a user without training them to ignore you. Show a warning whenever p95 ticks up and it becomes wallpaper within a week. Show nothing and people blame your product for someone else's bad afternoon. I don't think there's a clean answer but I'd like to hear from anyone who thinks they've found one.",
+    "developer": "I_am_kaizen96",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

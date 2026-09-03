@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5q5dn",
+  "sourceItemId": "1w5q5dn",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w5q5dn/how_to_stop_your_agents_from_quietly_burning/",
+  "detail": {
+    "longDescription": "Mind you, this is not 100% bulletproof.   \nMost people don't find out their agent stack is expensive until the bill shows up. The scary part with agents specifically: a single bad retry loop or an over-eager sub-agent can rack up real cost in hours while you're not even watching. Here's a simple way to get ahead of it.\n\n**1. Find your usage dashboard, not just billing**  \nEvery agent platform (Salesforce Agentforce, OpenAI, Anthropic, whatever orchestration layer you're on) splits this into two places: Usage and Billing. Usage shows you what your agents are actually doing, actions, tokens, API calls. Billing just shows the invoice. Check Usage first, it's where the surprises actually live.\n\n**2. Know what counts as a \"billable action\"**  \nThis is the part people miss. A lot of platforms bill per action, not per useful outcome. That means your agent summarizing a thread, checking a status, or retrying a failed call can all quietly count as separate billed actions, even if the end result was nothing. Read the fine print on what triggers a charge before you scale up any workflow.\n\n**3. Watch for retry loops and sub-agent sprawl**  \nThe single biggest silent cost driver in agent setups: a task that fails, retries, fails again, and spins in a loop, or a parent agent spinning up multiple sub-agents that each rack up their own action count. If your framework doesn't cap retries by default, set that limit yourself.\n\n**4. Turn on spend caps or alerts if they exist**  \nSome platforms let you set a hard usage cap or an alert at a % threshold. Turn it on immediately if it's there. If it's not there, that's itself a signal, you're on an unmetered/flat-fee tier (good) or you're flying completely blind (bad, fix this).\n\n**5. Read the renewal and unmetered fine print once**  \n\"Unmetered\" almost always means unmetered within a specific tier or SKU, not unmetered everywhere your agent touches. If any part of your workflow calls outside tools, external APIs, or a different product tier, you can fall right back into metered pricing without noticing.\n\n**6. Set a weekly check-in, not a monthly one**  \nWith agents, cost can spike in hours, not weeks. A quick weekly glance at Usage catches a runaway loop before it becomes a five-figure surprise instead of a five-dollar one.\n\nMost \"hidden AI agent costs\" aren't actually hidden, they're just billed per action in a place nobody's watching closely enough, especially once agents start calling other agents.\n\nDo feel free to DM me",
+    "developer": "Rough-Green-7067",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

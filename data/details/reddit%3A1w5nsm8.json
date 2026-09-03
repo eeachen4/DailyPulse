@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5nsm8",
+  "sourceItemId": "1w5nsm8",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w5nsm8/voxgen_an_amdoptimized_tts_inference_engine_for/",
+  "detail": {
+    "longDescription": "Hi, everyone,\n\n  \nI’ve just released VoxGen, a lightweight native inference engine for VoxCPM2, written in Rust and using Vulkan compute instead of Python/PyTorch/CUDA.\n\n**Why VoxGen?**\n\nThe main reason I started the project was because I needed a decent local text-to-speech solution.\n\nI therefore saw VoxCPM 2 as a reasonable solution. However, most frameworks are NVIDIA-first, and VoxCPM 2 is no exception; as a result, my card was severely stuttering, and my GPU was always spiking. Also, having Python and Pytorch as a dependency is absolute hell.\n\nThis is why VoxCPM was created: not only we sidestep Pytorch completely, but performance on AMD cards is buttery smooth (and if you have a XTX 7900, I have designed a mode with even more aggressive power and speed optimizations)!  \n  \nThis application can also be run from a shell, so it can be integrated with other programs and scripts!\n\n  \n**Installation:**\n\nYou'll only need voxgen.exe (or the Linux equivalent) and the following files at [https://huggingface.co/DennisHuang648/VoxCPM2-GGUF](https://huggingface.co/DennisHuang648/VoxCPM2-GGUF):\n\n    VoxCPM2-BaseLM-Q8_0.gguf\n    VoxCPM2-Acoustic-F16.gguf\n\n  \nThat's it! If you are interested, check out the Github page: [https://github.com/NullMagic2/VoxGen](https://github.com/NullMagic2/VoxGen)\n\n\n\n",
+    "developer": "Substantial_Swan_144",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

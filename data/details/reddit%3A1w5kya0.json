@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5kya0",
+  "sourceItemId": "1w5kya0",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w5kya0/my_coding_agents_kept_saying_they_were_done_when/",
+  "detail": {
+    "longDescription": "I kept running into a boring failure with coding agents: the completion report sounded much more reliable than the work behind it.\n\n\n\nSometimes the agent ran a test, but not the one that covered the change. Sometimes it misread the output. Sometimes it claimed the check passed without running it. Watching the session more closely did not fix the underlying problem, and it definitely did not scale across multiple repositories.\n\n\n\nWe changed the workflow so the implementing agent does not decide that its own work is complete. Each task starts with a definition of done containing mechanical acceptance criteria. A separate verifier inspects the artifacts and gathers the evidence: test results, contract and schema checks, policy gates, and readbacks from the actual system when the task changes live state. Completion is recorded only when that evidence satisfies the task contract.\n\n\n\nThis still does not prove everything is correct. It proves the surface we specified and tested. When a failure escapes, we record it, work out which acceptance condition was missing, and turn recurring failures into a new test, validator, or workflow constraint.\n\n\n\nHow are people handling this in their own agent workflows? Does the worker verify itself, do you use a separate pass, or is a person still reconstructing the proof from the diff and logs?",
+    "developer": "jonah_omninode",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

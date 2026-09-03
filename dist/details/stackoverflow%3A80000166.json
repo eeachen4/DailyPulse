@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000166",
+  "sourceItemId": "80000166",
+  "sourceUrl": "https://stackoverflow.com/questions/80000166/mapping-np-array-to-fortran-array-in-gdb-using-python-api",
+  "detail": {
+    "longDescription": "I want to map a Fortran array to a NumPy array on a tensor using the GDB Python API. Let's take the following program program array implicit none integer, allocatable :: a(:,:,:), flat(:) integer :: i a = reshape([(i,i=1,30)],[5,2,3]) flat = pack(a, .true.) print *, sum(a) end program array Compile it and load in gdb: gfortran -x array.x array.f90 && gdb array.x In gdb put a breakpoint and run b 6 ; run , now I want to see the address of a (gdb) py print(gdb.parse_and_eval(\"a\").address) 0x55555555a6d0 (gdb) x /15w 0x55555555a6d0 0x55555555a6d0: 1 2 3 4 0x55555555a6e0: 5 6 7 8 0x55555555a6f0: 9 10 11 12 0x55555555a700: 13 14 15 I try to take this address and give it to an ndarray with the buffer option, but I'm stuck (gdb) py import numpy as np; import ctypes as ct; print(np.ndarray(buffer=ct.c_void_p.from_address(gdb.parse_and_eval(\"a\").address.cast(gdb.lookup_type(\"int\"))), shape=(5,3,2),dtype=int)) Python Exception <class 'TypeError'>: integer expected ❌️ Error occurred in Python: integer expected As the error said, it expects an integer, and I give it an integer 🤔 Please do not redirect me toward the nice package https://github.com/aitzkora/gdb_fortran_tools . My idea is to extend the method to an arbitrary number of dimensions. So I need access to the tensor a in a flat way, I do not want to use syntax such as (gdb) py print(gdb.parse_and_eval(\"a\")[1][1][2]) The idea is to use a linear index between 0 and 29 , 11 = 6 + 3 + 2 in this case. How do I do that?",
+    "developer": "aitzkora",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "69"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

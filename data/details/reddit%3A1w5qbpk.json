@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w5qbpk",
+  "sourceItemId": "1w5qbpk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w5qbpk/qwen38flashnext_sees_corruption_everywhere/",
+  "detail": {
+    "longDescription": "Hi, I've noticed that the model often sees \"garbled text\" in its context. \n\nSometimes it declare that the tools instructions are corrupted, sometimes it is the content of some .md files, ora other files, and it freaks it out, since it start to do a lot of checks in git and the system and sees that the file are not really corrupted... But its context is I think.\n\nDid it occurred to you ?\n\nI'm on a mac m2 max 96Gb, pi agent, and llama.cpp either upstream or this fork [https://github.com/mihailescu2m/llama.cpp/tree/master](https://github.com/mihailescu2m/llama.cpp/tree/master)\n\nwith and without mtp, short ctx and long ctx, temp default\n\nI don't think it is a conf problem since it happens with different gguf at different quant I tried:\n\nAtomicChat/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-AD-4.27bpw-Q4\\_K\\_M-M64\n\nunsloth/Qwen3.8-Flash-Next-UD-Q3\\_K\\_XL/Qwen3.8-Flash-Next-UD-Q3\\_K\\_XL\n\nunsloth/Qwen3.8-Flash-Next-UD-IQ4\\_XS/Qwen3.8-Flash-Next-UD-IQ4\\_XS\n\nIt seems  a sort of internal problem, I don't really have loops or other kind of hallucinations, just some chinese characters here and there, or some misspelling, and btw it is very aware of all its errors and always tries to recover. Yes it is very much preview quality, but the architecture and the training seems very good quality.\n\nI really like the baseline of the model, it is straightforward, it follow instructions very well, a lot better than the previous models that I really didn't like very much\n\nBut this thing with the corruption is weird ...once after it declared that a certain tool was corrupted and not useable I just told it: \"did you try to launch it ? use this parameter and give it a try\" and it worked of course, and it was very surprised so it apologized and continued the work. \n\nIt is quite funny, it reminds me a stereotypical fictional character which could be the clumsy but very intelligent assistant of a powerful wizard lol",
+    "developer": "arkham00",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
