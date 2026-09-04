@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000605",
+  "sourceItemId": "80000605",
+  "sourceUrl": "https://stackoverflow.com/questions/80000605/how-should-a-react-app-handle-api-data-when-the-user-navigates-away-before-the-r",
+  "detail": {
+    "longDescription": "I am building a React application that fetches data from an API when a user opens a page. The problem is that the user can navigate to another page before the API request finishes. When the request eventually completes, I don't want the old request to update the state of the page that the user has already left. For example: useEffect(() => { fetch(\"/api/data\") .then(res => res.json()) .then(data => { setData(data); }); }, []); If the component is unmounted before fetch() finishes, what is the recommended way to handle this? Should I: Cancel the request using AbortController Simply ignore the response after unmounting Keep the response in a cache for when the user returns Use a data-fetching library such as React Query I would like to understand which approach is appropriate for a normal React application and why.",
+    "developer": "Muhammad",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

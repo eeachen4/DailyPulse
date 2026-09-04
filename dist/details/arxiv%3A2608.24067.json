@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.24067",
+  "sourceItemId": "2608.24067",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.24067",
+  "detail": {
+    "longDescription": "arXiv:2608.24067v2 Announce Type: replace-cross Abstract: Building a self-organising map at MEDLINE scale has been impractical: the best-matching-unit (BMU) search that dominates training is bound by the bandwidth needed to read the codebook every epoch. I show that this bottleneck is largely an artefact of codebook layout. Storing it feature-major with each feature's weights contiguous, W[v.M+i], recasts the search as a tiled sparse-dense product in which every loaded weight column is reused across a tile of samples. Varying only the layout, with implementation, precision and update rule held fixed, accelerates the BMU search by 4.5-8.5x, and because an exact-argmin BMU is invariant to codebook layout, this costs nothing: held-out quantisation error agrees with a cuSPARSE baseline to within 0.5% at every map size. The advantage is a crossover: cuSPARSE.SOM is faster at small maps, SparseBin.SOM is 1.5x faster at 128x128 and 2.6x at 256x256, and at 512x512 it is the only one that runs on 24 GB without re-engineering its memory path. Paired with a radius-independent box-blur update and a convergence-based stopping rule, it trains a converged map over 29.9 million MEDLINE articles in about 72 s at 64x64 on one 24 GB GPU, and fits 262,144 neurons (512x512) where every alternative I tested exceeds memory; on a 141 GB H200 it reaches 1,048,576 neurons (1024x1024), to my knowledge the largest self-organising map yet reported. Held-out error follows a smooth power law with no elbow across three decades of map size. At matched work, in the configuration benchmarked here, the design is ~82x faster than MedSOM and, at 128x128, 621x faster than the best multicore-CPU library. A post-submission addendum, tuning both implementations symmetrically, accelerates the search a further 5.6-10.1x, brings that 64x64 run to about 13 s, removes the crossover, raises those margins to ~385x and ~3,000x, and narrows two mechanism claims.",
+    "developer": "Andrew James Amos",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Andrew James Amos"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

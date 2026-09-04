@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w60ycw",
+  "sourceItemId": "1w60ycw",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w60ycw/custom_domains_for_a_multitenant_saas_cloudfront/",
+  "detail": {
+    "longDescription": "Looking for input from people who've actually shipped custom domains for a multi-tenant SaaS, because I want to avoid picking the wrong path and regretting it later.\n\n**Current setup:**\n\n* Multi-tenant events platform on AWS\n* Frontend is a React app — `dist` folder on S3, served through CloudFront\n* Today every tenant gets a platform subdomain (`tenant.stage.example.com`) via a wildcard cert on CloudFront. Frontend reads the hostname, asks the backend \"which event is this?\", renders accordingly.\n* **API calls go to a fixed, separate domain** (`api.example.com`) — so the custom domain is only needed for serving the static frontend, not the API.\n\n**What we want:**  \nClients want to bring their own domains (`portal.clientbrand.com`) instead of our subdomain. So I need per-domain TLS that issues + renews automatically, with no manual step per client.\n\n**Options I'm weighing:**\n\n1. **CloudFront manual + automation** — add each domain as an alternate domain name + ACM cert via a script. Works, but there's the \\~100 CNAMEs-per-distribution wall, and one cert per distribution feels fragile at scale.\n2. **CloudFront SaaS Manager** (the multi-tenant distribution thing from 2025) — looks purpose-built for this, up to \\~2000 domains, per-tenant ACM. Since we're already on CloudFront this seems like the least-effort path, but I haven't found many real-world reports.\n3. **Caddy on-demand TLS** — reverse proxy that issues certs on first handshake. Unlimited scale, but it's a new component to run/monitor, and I'd need the `ask` endpoint to avoid getting our Let's Encrypt limits burned by random hostnames.\n4. **Managed service** (Approximated / similar) — lowest effort, but monthly cost + another third party in the traffic path.\n\n**Questions:**\n\n* For anyone running **CloudFront SaaS Manager** in production — is it solid? Any gotchas with cert provisioning, DNS validation, or pricing at scale?\n* Given our API is already on a fixed domain (custom domain = static content only), is a reverse proxy like Caddy overkill for us?\n* Anyone regret going the manual-CloudFront-automation route and wish they'd started with something else?\n\nExpected scale is realistically low-hundreds of custom domains over time, not thousands. Trying to pick something that won't need re-architecting in a year.\n\nThanks in advance 🙏",
+    "developer": "ankitjindal9404",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

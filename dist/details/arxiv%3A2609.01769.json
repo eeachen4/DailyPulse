@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.01769",
+  "sourceItemId": "2609.01769",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.01769",
+  "detail": {
+    "longDescription": "arXiv:2609.01769v1 Announce Type: new Abstract: Automated program repair (APR) research has been constrained to design time. Current techniques localize and fix bugs in RTL or HLS designs before a chip reaches production. Once a hardware vulnerability surfaces post-silicon, the patch must be manually generated: existing automation addresses patch deployment but not patch synthesis. We study the feasibility of extending a dictionary-guided, localize-synthesize-validate APR methodology originally developed for RTL repair to this firmware layer. An automated commit-clustering miner surfaces recurring fix templates across the EDK II (UEFI) firmware repository's full commit history without depending on known CVE identifiers, recovering all three known CVE-fix campaigns and surfacing two additional candidate bug families. Grounded in real fix evidence, we build four independent localizers: missing speculation barriers in C (CVE-2017-5753, Spectre v1), missing bounds checks before array writes in C (a decompression library CVE), missing Return Stack Buffer stuffing in x86 assembly (CVE-2017-5715), and missing integer-overflow guards in Hand-Off Block creation code (surfaced by the miner itself). All four achieve 100% recall; precision ranges from 2.1-15.5% on the C families to 100% on the assembly and HOB families. Root-cause analysis of the C-family false positives attributes 77-90% to two intra-procedural causes, isolating the inter-procedural alias-analysis gap as a measured 15-20% rather than an estimate. A held-out test confirms Spectre v1 localization holds at 100% recall on unseen files; a fifth, independently built dictionary entry (CVE-2018-3630) shows the methodology extends to a new bug signature at low cost; and a naive syntactic baseline recalls at most 14% where our detector recalls 100%. We frame these results within a broader research agenda for a unified hardware-to-firmware correctness lifecycle.",
+    "developer": "Maisha Mastora, Dean Sullivan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Maisha Mastora, Dean Sullivan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

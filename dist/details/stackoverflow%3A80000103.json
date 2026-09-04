@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000103",
   "sourceItemId": "80000103",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000103/cbc-solver-reports-optimal-solution-but-pyomo-model-variables-are-none-value",
   "detail": {
     "longDescription": "I came across this problem while using the oemof.solph Python package but I think the root cause is in Pyomo. The problem is a simple energy system model with storage which seeks an optimal supply-demand solution with a constraint. I got Claude to produce a minimum reproducible example (the real problem in oemof.solph is more complex): import pyomo.environ as po DEMAND = [13.897, 16.26] SOURCE_CAPACITY = 4.419 * 1.002 + 10.649 * 1.002 STORAGE_CAPACITY = 187.176 * 1.002 INITIAL_STORAGE_LEVEL = 0.06343767352673378 MIN_STORAGE_LEVEL = 13.086996442132152 # binding; 0.0 does not reproduce it LOSS_RATE = 0.001 COST = 1.1 storage_flow_cap = STORAGE_CAPACITY / 24 content0 = INITIAL_STORAGE_LEVEL * STORAGE_CAPACITY m = po.ConcreteModel() m.T = po.RangeSet(0, 1) # intervals m.TP = po.RangeSet(0, 2) # timepoints (interval boundaries) m.source = po.Var(m.T, within=po.NonNegativeReals, bounds=(0, SOURCE_CAPACITY)) m.charge = po.Var(m.T, within=po.NonNegativeReals, bounds=(0, storage_flow_cap)) m.discharge = po.Var(m.T, within=po.NonNegativeReals, bounds=(0, storage_flow_cap)) m.content = po.Var(m.TP, within=po.NonNegativeReals, bounds=(0, STORAGE_CAPACITY)) m.storage_losses = po.Var(m.T, within=po.NonNegativeReals) m.balance = po.Constraint( m.T, rule=lambda m, t: m.source[t] - m.charge[t] + m.discharge[t] == DEMAND[t] ) m.losses_def = po.Constraint( m.T, rule=lambda m, t: m.storage_losses[t] == m.content[t] * LOSS_RATE ) m.content_recursion = po.Constraint( m.T, rule=lambda m, t: m.content[t + 1] == m.content[t] - m.storage_losses[t] + m.charge[t] - m.discharge[t], ) m.initial_content = po.Constraint(expr=m.content[0] == content0) m.min_level = po.Constraint(expr=m.content[1] >= MIN_STORAGE_LEVEL) m.obj = po.Objective(expr=COST * sum(m.source[t] for t in m.T), sense=po.minimize) solver = po.SolverFactory(\"cbc\", solver_io=\"lp\") results = solver.solve(m, tee=False) print(f\"termination_condition: {results.solver.termination_condition}\") all_vars = list(m.component_data_objects(po.Var, active=True)) none_vars = [v for v in all_vars if v.value is None] print(f\"variables with no value: {len(none_vars)} / {len(all_vars)}\") Output: termination_condition: optimal variables with no value: 11 / 11 So the solver (CBC) has reported that it found an optimal solution but none of the decision variables have a value. What could the cause of this be? One more thing we discovered. Changing CBC's \"primalTolerance\" parameter does affect whether this problem occurs. solver.solve(m, options={\"primalTolerance\": \"1e-9\"}) # tighter than the gap # -> correctly reports infeasible solver.solve(m, options={\"primalTolerance\": \"1e-5\"}) # looser than the gap # -> solves cleanly, every variable has a value solver.solve(m) # CBC's default, 1e-7 # -> optimal, but 11/11 variables have no value Environment: pyomo 6.10.1, CBC 2.10.11 (also confirmed on CBC 2.10.13).",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "51"
+        "value": "63"
       },
       {
         "label": "状态",

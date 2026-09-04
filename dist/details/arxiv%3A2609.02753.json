@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.02753",
+  "sourceItemId": "2609.02753",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.02753",
+  "detail": {
+    "longDescription": "arXiv:2609.02753v1 Announce Type: new Abstract: Python programs pay for their imports at every process start, a cost that is invisible in steady-state benchmarks but dominant for command-line tools, test workers, and serverless cold starts. Python 3.15 adds explicit lazy imports (PEP 810) largely on anecdotal evidence; no systematic measurement of the ecosystem's import cost exists. We present one: the 500 most-downloaded PyPI packages, sampled quarterly over five years of releases, measured under six CPython versions (3.9-3.14) on two platforms (Apple M5/macOS and Intel Xeon/Linux), for 63,431 measurements in total, plus direct measurement of 3.15's global lazy-import mode. Import cost is heavily skewed: half of packages import in under 6 ms, but the 99th percentile is 354 ms, the first import after installation costs 3-22x more (bytecode compilation), and importing a package's submodules costs up to 294x more than the top-level import that benchmarks report. The median package's cost grows only +1.6-2.4%/year, but the mean grows +11-13%/year: growth is concentrated in a heavy tail. Newer interpreters import the same code 1.16x slower on macOS, but not on Linux, and a single point release (3.11.5 vs. 3.11.16) swings cost by 1.34x. Global lazy mode makes import statements essentially free, yet breaks 8 of 414 top packages. Harness and dataset are available on request.",
+    "developer": "Trinath Sai Subhash Reddy Pittala",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Trinath Sai Subhash Reddy Pittala"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.20819",
+  "sourceItemId": "2604.20819",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.20819",
+  "detail": {
+    "longDescription": "arXiv:2604.20819v2 Announce Type: replace-cross Abstract: Long-context large language models are limited not only by attention cost but also by out-of-memory (OOM) failures. A selected attention call may not fit in available device memory even when the kernel is optimized. Exact and approximate attention methods reduce memory use, but every fixed implementation still has a device-specific capacity boundary. We introduce Stream-CQSA, an attention-level OOM recovery framework based on CQS decomposition, derived from the theory of cyclic quorum sets (CQS). Stream-CQSA recursively partitions an infeasible attention call into independent subsequence tasks, executes each with a compatible inner kernel, and recomposes the local statistics to recover the full attention output. This recovery is exact relative to the wrapped attention kernel, whether that kernel is exact or approximate. Compared with FlashAttention-2, the major baseline, our native Stream-CQSA kernel improves 16-bit forward-output error relative to a dense float64 reference and matches 16-bit backward-gradient error where FlashAttention-2 fits in the GPU memory. At the longest feasible baseline length, it costs $1.5$--$1.9\\times$ the forward runtime and $2.1$--$2.4\\times$ the forward--backward runtime. Beyond that sequence length boundary, our method continues to return an output while FlashAttention-2 OOMs. Stream-CQSA is therefore not a faster attention method. Instead, it converts memory-capacity failure into a recoverable execution path by trading extra compute, host-device transfer, and recomposition for completion.",
+    "developer": "Yiming Bian, Joshua M. Akey",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yiming Bian, Joshua M. Akey"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

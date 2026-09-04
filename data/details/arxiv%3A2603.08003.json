@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2603.08003",
+  "sourceItemId": "2603.08003",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2603.08003",
+  "detail": {
+    "longDescription": "arXiv:2603.08003v3 Announce Type: replace Abstract: Data replication is critical to data center design, ensuring high availability, scalability, and fault tolerance. However, replicas must be coordinated to maintain convergence and database integrity constraints under transactional workloads. Commutative Replicated Data Types (RDTs) provide convergence for conflict-free objects using relaxed consistency, and Well-coordinated Replicated Data Types (WRDTs) provide convergence and integrity for general objects using a hybrid model, relaxed when possible and strong when necessary. While state-of-the-art RDT hardware acceleration uses Remote Direct Memory Access (RDMA), recent data center architectures increasingly leverage FPGAs as application accelerators to achieve lower latency and higher throughput. In contrast to deploying an FPGA-based SmartNIC, this paper connects an FPGA accelerator card directly to the network, allowing a complete redesign of the NIC to match the needs of the FPGA-hosted application. We co-design a network-attached FPGA replication engine with an FPGA-resident network interface, enabling near-network execution of replicated transactions and direct invocation of FPGA-resident operators. We introduce SafarDB, an FPGA-accelerated system for Conflict-Free Replicated Data Types (CRDTs) and WRDTs. SafarDB accelerates relaxed and strongly ordered replication paths; when strong ordering is required, SafarDB accelerates the underlying consensus control path. In FPGA-only CRDT and WRDT experiments where the complete application state fits in FPGA-resident memory, SafarDB provides lower average response time and higher average throughput than a state-of-the-art RDMA-based implementation. Further, experiments demonstrate that SafarDB is more resilient to crash failures than existing CPU/RDMA-based CRDT and WRDT implementations, and SafarDB can detect leader failures and elect new leaders much faster than previously possible.",
+    "developer": "Javad Saberlatibari, Prithviraj Yuvaraj, Philip Brisk, Mohammad Sadoghi, Mohsen Lesani",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Javad Saberlatibari, Prithviraj Yuvaraj, Philip Brisk, Mohammad Sadoghi, Mohsen Lesani"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6puyz",
+  "sourceItemId": "1w6puyz",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w6puyz/successful_migration_from_proxmox/",
+  "detail": {
+    "longDescription": "I previously made a post a while ago about wanting to leave Proxmox for my own version of Arch using packages such as Cockpit, Podman, and other tools. Though I decided to use Debian 13 instead for this task. I only had a very basic Proxmox setup at first and did not really like the way I had configured my server. This made me wonder if I could use a more bare bones distribution like Arch or base Debian and configure my system the way I liked it to try and challenge myself more. If anyone has an suggestions of more services to deploy or things to try please let me know. Also, I do not hate Proxmox I just wanted a way to challenge myself and learn some new things.\n\nHere's an overview of my new setup:\n\nHost Specs\n\nIntel Core i7-9700K\n\n32GB DDR4-2666\n\n128GB SATA SSD x4\n\nStorage and Filesystem\n\nInstead of using a basic partitioning scheme I built out my storage to fit my needs. I used RAID for my root and gave it 20GB on each drive so I could have enough storage for my main system files. Then I dedicated the rest to my ZFS pool for /home where all my containers were to be held. My purpose for using ZFS on /home was because I wanted all the benefits of ZFS for all my containers.\n\nPartitioning Scheme\n\no   1GB EFI\n\no   8GB SWAP (RAID 10)\n\no   20GB root using BTRFS (RAID 10)\n\no   Remaining mounted on /home using a striped mirror zfs pool (essentially RAID 10)\n\nNetworking\n\nHost Interface\n\no   Statically assigned on my LAN subnet\n\nPodman Macvlan\n\no   Used to assign containers their own individual LAN IP addresses\n\nKernel Macvlan Shim\n\no   Virtual bridge to allow host-container connections and allow routing from my VPN\n\nServices\n\nCockpit Web GUI\n\no   I use this to stand in place of Proxmox’s web interface, as it allows me to remotely manage and watch my host’s status and resource utilization.\n\nUptime Kuma\n\no   I am running this application in Podman and it allows me to set a dashboard that monitors the uptime of services such as my DNS, VPN, DDNS, and more.\n\nNtopng\n\no   Used to monitor live traffic flows across my network and is run in Podman. It monitors my host’s network interface and allows me to view all egress and ingress traffic.\n\nTechnitium DNS\n\no   Configured local authoritative forward zones and reverse lookup zones with custom A/PTR records for my LAN and WireGuard peers. I also added a blocklist to my network to block trackers, telemetry, and ads.\n\nWireGuard VPN\n\nDDNS Configuration",
+    "externalUrl": "https://i.redd.it/7eaumgg2kenh1.png",
+    "developer": "xcf1ag",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

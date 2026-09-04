@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000571",
+  "sourceItemId": "80000571",
+  "sourceUrl": "https://stackoverflow.com/questions/80000571/how-to-safely-remove-older-emergency-commits-from-a-branch-with-heavy-rewrites",
+  "detail": {
+    "longDescription": "Context: A provider suspended their services, so we pushed emergency commits to our default branch ( Branch A ). These commits added customer notices, disabled services, and blocked specific data and system workflows (not CI/CD pipelines). Current State: We created Branch B off Branch A to integrate a new provider. We've done massive code rewrites in Branch B , but it still relies on those core system workflows. The Problem: Branch B is ready for testing, but it fails to run because it inherits the disabled flags and blocked data workflows from Branch A . Since Branch B is built directly on top of these disabled states, what is the safest Git strategy to strip out the original emergency commits without breaking the new implementation?",
+    "developer": "tom_57",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "85"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

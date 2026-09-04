@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000298",
   "sourceItemId": "80000298",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000298/how-do-i-design-a-multi-purpose-event-handler-without-making-it-generic",
   "detail": {
     "longDescription": "I am trying to design an event handler that can be used by different classes to manage events specific to that class. The event handler doesn't really need to know what type the events are as long as they are an Event subclass (or maybe I could use a Protocol?) Here is a simplified version which has a problem: EventHandler.add_subscription() won't accept a callback that takes a specific class of Event (i.e. a CustomEvent ) even though CustomEvent is a subclass of Event . from dataclasses import dataclass from typing import Hashable, Callable, Protocol from abc import ABC @dataclass(frozen=True, slots=True) class Event(ABC): event_type: Hashable class EventHandler: subs: dict[Hashable, dict[int, Callable[[Event], None]]] _next_id: int def __init__(self) -> None: self.subs = dict() self._next_id = 0 def add_subscription(self, event_type: Hashable, callback: Callable[[Event], None]) -> int: self._next_id += 1 if not event_type in self.subs: self.subs[event_type] = dict() self.subs[event_type][self._next_id] = callback return self._next_id def post_event(self, event: Event): for callback in self.subs[event.event_type].values(): callback(event) @dataclass(frozen=True, slots=True) class CustomEvent(Event): event_type: int value: float class CustomEventGenerator: event_handler : EventHandler def __init__(self) -> None: self.event_handler = EventHandler() def emit_event(self, value: float): self.event_handler.post_event(CustomEvent(1, value)) def callback(event: CustomEvent): print(f\"the event value is {event.value}\") event_generator = CustomEventGenerator() event_generator.event_handler.add_subscription(1, callback) # this gives an error My type checker (Pylance) is unhappy with: event_generator.event_handler.add_subscription(1, callback) # this gives an error Argument of type \"(event: CustomEvent) -> None\" cannot be assigned to parameter \"callback\" of type \"(Event) -> None\" in function \"add_subscription\" Type \"(event: CustomEvent) -> None\" is not assignable to type \"(Event) -> None\" Parameter 1: type \"Event\" is incompatible with type \"CustomEvent\" \"Event\" is not assignable to \"CustomEvent\" Why? They are both Event s. I could make EventHandler generic: from dataclasses import dataclass from typing import Hashable, Callable, Protocol from abc import ABC @dataclass(frozen=True, slots=True) class Event(ABC): event_type: Hashable class EventHandler[E: Event]: subs: dict[Hashable, dict[int, Callable[[E], None]]] _next_id: int def __init__(self) -> None: self.subs = dict() self._next_id = 0 def add_subscription(self, event_type: Hashable, callback: Callable[[E], None]) -> int: self._next_id += 1 if not event_type in self.subs: self.subs[event_type] = dict() self.subs[event_type][self._next_id] = callback return self._next_id def post_event(self, event: E): for callback in self.subs[event.event_type].values(): callback(event) @dataclass(frozen=True, slots=True) class CustomEvent(Event): event_type: int value: float class CustomEventGenerator: event_handler : EventHandler[CustomEvent] def __init__(self) -> None: self.event_handler = EventHandler() def emit_event(self, value: float): self.event_handler.post_event(CustomEvent(1, value)) def callback(event: CustomEvent): print(f\"the event value is {event.value}\") event_generator = CustomEventGenerator() event_generator.event_handler.add_subscription(1, callback) That makes the type checker happy, but each time I add an EventHandler to a class I have to parameterize it. This is tedious especially for classes that can generate several different events: event_handler: EventHandler[ThisEvent | ThatEvent | AnotherEvent | YetAnotherEvent | AreYouKiddingMeEvent] and because the EventHandler doesn't need to know which events it is handling. I did try to make Event a protocol but that gives the same error. @dataclass(frozen=True, slots=True) class Event(Protocol): event_type: Hashable Is there a better way? Is it better to define callbacks like this? def callback(event: Event): assert(isinstance(event, CustomEvent)) print(f\"the event value is {event.value}\") It just seems silly to me to have to add runtime instructions to satisfy a static type checker. Python 3.14.6 Pylance 2026.3.1",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "87"
+        "value": "134"
       },
       {
         "label": "状态",

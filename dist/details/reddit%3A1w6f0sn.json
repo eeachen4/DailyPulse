@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6f0sn",
+  "sourceItemId": "1w6f0sn",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w6f0sn/a_probabilistic_bayesian_agent_model_d/",
+  "detail": {
+    "longDescription": "I’ve been thinking a lot about what it actually means to build useful AI agents.\n\nThe more I learn about agentic systems, the more I realize that an agent isn’t just an LLM connected to a few tools.\n\nLately, I’ve been learning about what I’m starting to think of as an “agentic discipline,” and one idea has really changed how I think about LLM applications.\n\nThe traditional mental model is:\n\n**Input → Model → Output / Action**\n\nBut real-world problems rarely work that way.\n\nYou make an initial decision with incomplete information.\n\nThen you take an action.\n\nYou observe new evidence.\n\nYou update your understanding.\n\nAnd then you make a better decision.\n\nSo I’ve been exploring whether we can think about agentic systems through a probabilistic / Bayesian lens:\n\n**Initial belief (Prior)**  \n↓  \n**Choose an action**  \n↓  \n**Observe new evidence**  \n↓  \n**Evaluate the likelihood of that evidence**  \n↓  \n**Update belief (Posterior)**  \n↓  \n**Choose the next action**  \n↓  \n**Repeat**\n\nInstead of only asking an LLM:\n\n“Give me the answer.”\n\nWhat if we design the system to continuously ask:\n\n“What do I currently believe?”\n\n“What evidence would change my belief?”\n\n“What action should I take next?”\n\n“Which action would reduce my uncertainty the most?”\n\n“Did the last action actually improve my understanding?”\n\nThis feels like a much more powerful way to think about agents.\n\nThe interesting part isn’t simply adding more tools or more LLM calls.\n\nIt’s designing a system that can **reason under uncertainty, actively gather information, update its state, and make better decisions over multiple steps.**\n\nI’m still exploring this idea and trying to understand where the Bayesian framing is genuinely useful versus where it’s simply a useful analogy.\n\nI’d love to hear from people working on agents, reasoning, or probabilistic AI:\n\n**How do you think about belief updating and uncertainty in agentic systems?**",
+    "developer": "Senior_Disaster_7307",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

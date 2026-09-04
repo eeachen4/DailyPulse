@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6lk6z",
+  "sourceItemId": "1w6lk6z",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w6lk6z/increasing_active_parameters_per_token_in_moe/",
+  "detail": {
+    "longDescription": "I want to share a short paper just published exploring a simple but surprisingly effective optimization for sparse MoE reasoning models.\n\n**The idea:** Instead of retraining anything, we just tweak the router at *runtime*. Specifically, we expand the expert selection budget (N≥K*N*≥*K*) **only in the late transformer layers**, with a linear decay factor applied to the extra experts. Early layers stay untouched. So Qwen 3.6 35B A3B becomes **Qwen 3.6 35B A4B+** !\n\n**What we found — \"Succinct Convergence\":**  \nWhen you give the model more expert capacity at the decision-critical final layers, it stops rambling. It reaches the ***same*** *correct answer* via significantly **shorter reasoning** trajectories.\n\n**Results on full MMLU-Pro (714 questions, Qwen3.6-35B-A3B):**\n\n* 📉 **8.5% reduction** in mean reasoning tokens\n* ⚡ **10.9% drop in latency** (p=6.5×10−6)\n* 🎯 **Accuracy unchanged** (*84.5% vs 84.0% native, p=0.77 — statistically indistinguishable*)\n* 🆓 **Zero training cost** — pure inference-time routing modification\n\n**Links:**\n\n* 📄 Paper: [https://zenodo.org/records/22255483](https://zenodo.org/records/22255483)\n\nthere you can also take a look to my github repo (with beta version code) and the detailed json results of MMLU-Pro benchmark.\n\nIn the future i hope i can make same experimentation with a larger model like DeepSeek V4 Flash Q2.0 \n\nI'm a Non-native english speaker, part of this post was generated , for translation reason with the help of AI.  \n",
+    "developer": "Specific-Tax-6700",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

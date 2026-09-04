@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6lmmg",
+  "sourceItemId": "1w6lmmg",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w6lmmg/i_released_sanotts_smallest_complete_tts_stack_in/",
+  "detail": {
+    "longDescription": "I have been trying to squeeze TTS stack down far enough to run in a $3 chip which has 512kb of SRAM without NPU. While trying to get to that milestone i built something worth sharing \n\nA family of models with\n\n- 11 voices, 6 languages\n- params size ranging from 294k - 2.2m\n- 1.5m model has a SCOREQ of 4.13 and UTMOS of 4.10\n- 337kb for 294k model when quantized into int8\n- can be run in website with web assembly `npm install sanotts-web`\n- there is a recipe to follow so that you can extend to more languages, voice\n\nI can tell you with confidence that this family release contains the smallest neural TTS model ever with around 2% WER on whisper.\n\nPlease check it out on : https://github.com/ampixa/sanoTTS\n\nfor live demo: tts.ampixa.com/sanoTTS \nHF: https://huggingface.co/ampixa/sanoTTS\n\non SCOREQ sanoTTS-Amy(1.51m) is better than Inflect Nano(4.63m) and KittenTTS(15m) i.e \n4.13 vs 3.81 vs 3.02\n\non esp32 microcontroller we are getting RTF of 0.225 which in plain terms means 4sec of audio is generated in 1sec\n\n\nHappy to answer your queries.",
+    "externalUrl": "https://v.redd.it/blvzbk6fmdnh1",
+    "developer": "Affectionate_Hat_585",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

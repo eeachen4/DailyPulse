@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6lnw3",
+  "sourceItemId": "1w6lnw3",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w6lnw3/how_are_you_handling_semantic_rot_in_longterm/",
+  "detail": {
+    "longDescription": "We ran into an issue recently where our agent's long-term memory store started degrading on routine queries.\n\nThe core problem was semantic rot. When a user update or system change happened, the old embeddings stayed in the index. Vector search kept pulling 4-month-old facts alongside new ones because the semantic similarity score was almost identical. The model ended up getting contradictory context blocks and hallucinated mixed state.\n\nWe tried lowering top-k retrieval, but that just chopped off valid context. Simple time-decay scoring helped slightly, but it penalized stable background facts that rarely change.\n\nWhat ended up helping most was adding an explicit supersedes metadata key during ingestion to mark old state invalid, plus running a weekly deduplication sweep over active memory files.\n\nFor folks running persistent agent memory in production, how are you handling stale vector hits? Are you relying on prompt-level reconciliation, metadata filtering, or automated compaction sweeps?",
+    "developer": "PennyLawrence946",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

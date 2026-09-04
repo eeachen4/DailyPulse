@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.01781",
+  "sourceItemId": "2609.01781",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.01781",
+  "detail": {
+    "longDescription": "arXiv:2609.01781v1 Announce Type: new Abstract: Persisted machine-learning models can remain byte-identical while the software environments in which they are loaded evolve, creating a verification problem that artifact integrity checks alone cannot expose. This paper presents Modelstamp, a lightweight Python persistence library for verifying artifact integrity and represented runtime-environment state before deserialization. At persistence time, Modelstamp associates a serialized artifact with a sidecar JSON manifest containing a SHA-256 digest, runtime metadata, and installed versions from a bounded tracked-package set; a separately recorded model-relevant subset determines which package versions participate in drift comparison. Optional HMAC authentication supports workflows in which the producer and verifier share a secret key. At verification time, the artifact and represented current environment are checked against this recorded evidence before the model is deserialized. Modelstamp is evaluated using 14 controlled environment-drift scenarios, eight controlled trust-boundary scenarios, and an artifact-size scaling benchmark from 10 MiB to 1 GiB. The controlled drift experiments behaved as specified across relevant dependency changes, unchanged environments, and unrelated environmental changes, including broader noise controls. The trust-boundary experiments similarly confirmed both intended detections and expected limitations, including shared-key forgery and replay. Median verification time increased from 0.032 s at 10 MiB to 3.334 s at 1 GiB, with measured throughput of approximately 307-312 MiB/s in the benchmark environment. These results characterize Modelstamp as a complementary pre-deserialization reference-state verification control rather than as a replacement for dependency-management systems, malicious-model detection, safe deserialization, or public publisher authentication.",
+    "developer": "Anagha Dhekne",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Anagha Dhekne"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

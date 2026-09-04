@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000179",
   "sourceItemId": "80000179",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000179/why-does-a-let-chain-keep-the-let-operands-temporary-alive-in-the-body-but-dro",
   "detail": {
     "longDescription": "In Rust 2024, temporaries from the two halves of a let chain seem to have different lifetimes: struct D(&'static str); impl Drop for D { fn drop(&mut self) { println!(\"drop {}\", self.0); } } impl D { fn opt(&self) -> Option<i32> { Some(1) } } fn mk(n: &'static str) -> D { D(n) } if let Some(_x) = mk(\"B\").opt() && mk(\"C\").opt().is_some() { println!(\"body\"); } prints: drop C body drop B C (the boolean operand) is dropped before the body, B (the let operand) survives through it. With locks this is a footgun: if let Some(x) = *M.lock().unwrap() && *N.lock().unwrap() > 0 { // M is still locked here, N is not — M.lock() again deadlocks } Is this asymmetry specified somewhere, or an artifact of how if let scrutinee temporaries are extended? Is the boolean operand's early drop guaranteed, or should I not rely on it?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "34"
+        "value": "46"
       },
       {
         "label": "状态",

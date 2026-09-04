@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6n991",
+  "sourceItemId": "1w6n991",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w6n991/i_built_an_opensource_control_plane_to/",
+  "detail": {
+    "longDescription": "Hey guys, I was originally building an open source control plane that people building their own workflows (in Langchain/LangGraph for instance) could use to govern/manage them. After trying deepagents I came away thinking harnesses are the smarter and better-performing option for 99% of use cases , not to mention way less work, than writing your own agent workflows.\n\nBut my issue was that deepagents doesn't have a persistent operational layer (I wanted a persistent approval request that could live for days or more), and isn't quite production safe: for example, I can't try rolling out a new version of a prompt and then get it to auto-rollback if it leads to failures.  My other big issue was that I wanted a way to manage a fleet (aka hundreds or even more) of deepagents instances: see which ones are running/paused/rolled back and pause/delete/create them.  \n  \nMy solution: wire up deepagents into my existing agent control plane platform. Now it's as simple as: define an agent and its guardrails/rollback and autopause policy via YAML, register the worker processes that run the agent(s) wherever you want, and govern/operate them via the control plane.\n\nIts super early so probably has some bugs but can you guys tell me if this would help you all for running production-safe agents at work and whatnot: [https://github.com/boundflow/charter](https://github.com/boundflow/charter)\n\n",
+    "externalUrl": "https://i.redd.it/qkly4to1zcnh1.gif",
+    "developer": "mambalama24",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

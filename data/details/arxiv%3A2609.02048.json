@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.02048",
+  "sourceItemId": "2609.02048",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.02048",
+  "detail": {
+    "longDescription": "arXiv:2609.02048v1 Announce Type: cross Abstract: Trusted Execution Environments (TEEs) provide hardware-supported isolation through enclaves that protect code and data independently of software abstractions. However, TEEs alone cannot enforce information-flow security. This problem is further aggravated in LLVM-like low-level languages that allow unrestricted pointer manipulation and unstructured control flow. Moreover, using TEEs effectively typically requires manually partitioning applications into enclave and non-enclave components, a process that is labor-intensive, error-prone, and lacks fine-grained control. We address these challenges with a three-step approach. First, we formalize SIR, an enclave-oblivious calculus based on LLVM IR, equipped with a novel permissive type system that enforces security against low-level attackers. To obtain meaningful guarantees, SIR combines information-flow control with security-aware coarse-grained memory safety. Second, we extend SIR to SIREN, an enclave-aware calculus that enforces noninterference against stronger attackers capable of observing arbitrary non-enclave memory. Third, we develop a type-driven, type-preserving compilation from SIR to SIREN that automatically produces secure enclave-aware programs, eliminating manual partitioning while providing fine-grained control over host-enclave boundaries. We implement and evaluate SPLITR on thirteen microbenchmarks and real-world workloads, including applications from SGXGauge, on Intel SGX hardware. SPLITR scales to OpenSSL (425,953 LLVM IR instructions) and supports multiple objectives that expose trade-offs among enclave TCB size, host-enclave transitions, and boundary data movement. For OpenSSL, optimizing for transitions reduces them from 393 to 187. Runtime overhead is dominated by fixed enclave costs for short-running workloads, whereas long-running applications better amortize these costs and approach native performance.",
+    "developer": "Wesley B. Nuzzo, Samuel Dodson, Benjamin Houle, Tarakaram Gollamudi, Anitha Gollamudi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Wesley B. Nuzzo, Samuel Dodson, Benjamin Houle, Tarakaram Gollamudi, Anitha Gollamudi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

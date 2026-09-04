@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6p80u",
+  "sourceItemId": "1w6p80u",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w6p80u/spark254b_is_an_interesting_model_for_8gb_jetson/",
+  "detail": {
+    "longDescription": "Managed to get this small model to run on the $250 MSRP SoC board level computer.\n\nThe inference speed is kind usable. Used 4-bit quant, q8 kv cache, 7.4 GiB memory supports 128K context length. Device tops at 25W power, and idle less than 10W. Quite suitable for a simple agent running 24/7. \n\n  \nNeedle in a haystack test pass at 128K context length. 2046 needles passed out of 2048 needles. \n\n  \n\\- \\*\\*2048-needle (fully random unique word+number pairs, seed 20260902): 2044/2048 (99.8%) @ 90K prompt\\*\\*, finish=stop (no truncation), 4 misses (2 partial word-only). u/120K prompt: 942/2048 but truncated by the 128K KV ceiling (120,287 + 10,785 = 131,072, finish=length) — misses 99% in the 50–100% depth bands, i.e. unanswered tail, not retrieval failures. 90K is the effective ceiling where the full 2048-pair answer (\\~23K completion tokens) fits.\n\n\\- \\*\\*llama-benchy (pp2048/tg512, 3 runs, in-bench coherence check passed):\\*\\*\n\n    | conc | pp tok/s | tg agg tok/s | tg per-req tok/s | ttfr ms |\n    |---:|---:|---:|---:|---:|\n    | 1 | 571.7 | 13.7 | 13.7 | 3,857 |\n    | 2 | 384.9 | 22.6 | 11.6 | 9,653 |\n    | 4 | 373.5 | 26.4 | 7.1 | 17,436 |",
+    "developer": "Puzzleheaded_Base302",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

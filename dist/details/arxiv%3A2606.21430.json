@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.21430",
+  "sourceItemId": "2606.21430",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.21430",
+  "detail": {
+    "longDescription": "arXiv:2606.21430v3 Announce Type: replace Abstract: Many algorithms in statistics and machine learning can be parallelized in an asynchronous manner where workers need to communicate through shared state rather than execute independent tasks dispatched by a central controller. Especially in modern hyperparameter optimization and parallel black-box optimization with expensive objectives, this decentralized approach has become widespread, and several Python frameworks adopt it (e.g., Optuna, DeepHyper, and Hyperopt). However, all popular R packages for parallel computing follow a centralized controller-worker architecture that does not support this pattern. We present rush, an R package that provides a shared-state coordination layer for asynchronously parallelized iterative algorithms. rush uses a Redis database as a shared key-value store: workers read and write task data through the database and independently execute their own loops. The package provides a high-level API for managing tasks and their lifecycle, featuring sub-millisecond per-task overhead, robust error handling with automatic detection of lost workers, and efficient caching. rush optionally integrates with the mlr3 ecosystem, powering asynchronous optimization in the bbotk and mlr3tuning packages. We demonstrate the practical utility of rush by implementing asynchronous decentralized Bayesian optimization (ADBO) and benchmarking it on hyperparameter optimization of LightGBM across four datasets using 448 workers.",
+    "developer": "Marc Becker, Bernd Bischl",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Marc Becker, Bernd Bischl"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

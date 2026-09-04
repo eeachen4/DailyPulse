@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6efh7",
+  "sourceItemId": "1w6efh7",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1w6efh7/anyone_else_avoid_css_resetsnormalize/",
+  "detail": {
+    "longDescription": "It used be be that CSS resets were important to smooth over differences between default browser styling, but browsers have for the most part gotten their act together.\n\nIt's more popular nowadays to do a micro reset/normalize/whatever you want to call it to get rid of annoyances. It might contain rules such as `* { all: unset }`, or `* { margin: 0; padding: 0 }`, `input, button, textarea, select { font: inherit }`, or commonly `* { box-sizing: border-box }`.\n\nI see the appeal. But at the same time, I find a major downside to all of this that never seems to be discussed - code portability. I write a component in one UI project and want to copy it to another project or to a shared component library, and it's not so simple because the other project(s) may be using slightly different CSS resets.\n\nIt's not like it's easy to update projects to use the same resets either, it's so engrained in how everything else was built up in the project.\n\nBut there's also a natural desire to revisit what reset you're using whenever you're building a new project, as opinions change, problems are found in existing ones, etc.\n\nOr, on the flip side, maybe I'm wanting to use a third party tool, then find out that my global CSS rules cause issues with their styling.\n\nWe try hard to avoid any kind of global pollution in JavaScript, but make it a best practice to do the same in CSS.\n\nSo, I try to avoid these kinds of resets. I don't even do the \"box-sizing: border-box\" thing, it turns out that this box sizing issue doesn't come up very often (for me at least), and when it does, I just add the rule to the specific places that need it. I'll still set a default font to everything, but that's about it.\n\nBut, when I look around online, it seems that most everyone still uses some kind of reset. Guess I'm curious if I'm abnormal in my stance here or if there's others out there who also avoid them. Also curious if those who do use resets have ran into problems like the ones I've described above.",
+    "developer": "theScottyJam",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I have a static website in a private GitHub repository. Pushes to main trigger a GitHub Actions workflow that deploys to Azure Static Web Apps, so a commit is all it takes to publish. That part works. I want an AI assistant session (Claude, in its agentic/Cowork mode) to be able to edit files and commit to that repo while my own computer is powered off , so I can work from my phone. The constraint The assistant session has two execution environments, and neither can push: Local device VM (my computer, files mounted): Has the repo working tree: yes Outbound network: none — curl https://github.com returns 000 , with Received HTTP code 403 from proxy after CONNECT Alive when my PC is off: no Git credentials for my account: no Cloud sandbox (assistant's own environment): Has the repo working tree: no Outbound network: yes — curl https://github.com returns a real HTTP status Alive when my PC is off: yes Git credentials for my account: no So the environment holding the files has no network, and the environment with network has neither the files nor any credential. Pushing currently requires me to run git push manually from Windows, which defeats the purpose. What I've tried Adding the official remote GitHub MCP server as a custom connector: https://api.githubcopilot.com/mcp According to GitHub's own installation guide for Claude, this server authenticates via OAuth through a registered GitHub App, and that flow is not supported by the desktop custom-connector mechanism. Their documented alternative is a PAT supplied in an Authorization: Bearer header, but that path is documented for the Claude Code CLI, not for the connector UI, and it means storing a long-lived token with repo scope. I've also confirmed there is no first-party GitHub connector available in the client's connector directory. What I'm trying to avoid Embedding a long-lived PAT with write scope in a config that syncs across devices Any design where the credential has to be pasted into a chat transcript The question Is there a supported way to grant an MCP client scoped, OAuth-based write access to a single GitHub repository, when that client only implements the generic remote-MCP connector flow and cannot complete a GitHub App user-to-server authorisation? Specifically, I'm looking for whether any of these is a real, working pattern rather than a workaround I'd be inventing: Registering my own GitHub App and exposing it through an MCP server that handles the OAuth exchange itself, so the client only ever sees a bearer token it obtained through the standard remote-MCP authorisation flow A minimal self-hosted MCP proxy that holds the installation credential server-side and exposes only create/update file contents for one repository Triggering the deploy through something other than a push — e.g. a repository_dispatch or workflow_dispatch call authenticated by a narrowly scoped credential — so the assistant never needs repo write access at all If option 1 or 2 is the answer, I'd like to know what the minimum viable shape is: which GitHub App permissions are required for committing a file to one repo, and whether the user-to-server token refresh can be handled entirely inside the MCP server. Environment Private GitHub repository, single branch main Deployment: Azure Static Web Apps via the auto-generated Actions workflow MCP client: Claude desktop/mobile, remote (HTTP) connectors only; no ability to run a local stdio MCP server in the relevant environment",
     "developer": "Jagz S",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "66"
       },
       {
         "label": "状态",

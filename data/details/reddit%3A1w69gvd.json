@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w69gvd",
+  "sourceItemId": "1w69gvd",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w69gvd/grounding_llms_with_jepabased_world_models/",
+  "detail": {
+    "longDescription": "\nLLMs describe physics well but don't \"understand\" it in any grounded sense — they've learned statistical relationships between tokens like \"falls\" and \"gravity\", not actual physical intuition. This is basically the Mary's Room problem: Mary knows every physical fact about color but has never seen one. LLMs are Mary.\n\nThe idea I've been thinking about:\n\n1. Train a JEPA-style model inside a physics simulation (think MuJoCo or a simple 2D env). Instead of predicting pixels or tokens, the model predicts *representations* of future states in an abstract embedding space. If it gets physics wrong, the predictor fails — the loss is unforgiving in a way next-token prediction never is.\n\n2. The embedding space that emerges should encode actual physical structure — object permanence, momentum, trajectories — because that's what makes prediction possible. Not surface-level textures, just the principles.\n\n3. Freeze those representations and attach them to an LLM-style reasoning model as a conditioning signal. The LLM now has both linguistic physics knowledge AND grounded physical intuition it can actually \"run\" forward — closer to a computational primitive than a propositional fact.\n\nThe hypothesis is this makes downstream learning significantly faster — the LLM doesn't have to rediscover that objects fall, it has representations that already encode that.\n\nV-JEPA does something adjacent for video (predict future frame representations, not pixels), and DreamerV3 uses a latent world model for efficient RL — but the specific combo of JEPA-style prediction + sim-grounded physics representations + LLM attachment doesn't seem to have been done cleanly.\n\n**Questions for the community:**\n- Is there prior work I'm missing that does exactly this?\n- What's the right interface between grounded JEPA representations and a language model? Just concatenate to the prompt embedding? Cross-attention?\n- Would the sim-to-reality gap kill the transfer, or are the representations abstract enough to survive it?\n\nInterested in whether this is worth building a small prototype for.",
+    "developer": "Full_Promotion4522",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6pld2",
+  "sourceItemId": "1w6pld2",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w6pld2/advice_on_integrating_a_small_freeipa/",
+  "detail": {
+    "longDescription": "I'm trying to set up a FreeIPA instance to manage identities on my local network, and after a lot of digging through documentation (primarily the RHEL IdM docs, but also the FreeIPA wiki and some random questionably-helpful blogposts), I feel like I'm nearing a working solution.\n\nThat being said, I've hit a stumbling block. *Regardless of what I do, I can't get my display manager (SDDM) to show a list of possible users to select when logging in.*\n\nThis appears to be the result of two problems:\n\n1. SDDM only shows users within a limited ID range by default (b/w 1000 & 60000). I've solved this by changing the FreeIPA server's ID range to fall within that (but presumably could also just expand SDDM's ID range list to include the default FreeIPA ID range)\n2. SSSD, by default, DOES NOT enumerate all users within a domain for performance reasons. Per the [man page](https://linux.die.net/man/5/sssd.conf), this should just need `enumerate = true` added to `/etc/sssd/sssd.conf` to be enabled, and (presumably) shouldn't be an issue for a small (<10 user) domain.\n\nMy big issue is that **I cannot get SSSD enumeration to work for my FreeIPA domain**, and I cannot figure out why. Regardless of what I do, SDDM refuses to show anything but local users, `getent -s sss passwd` returns an empty list, and the most I see in journalctl is `laptop.local.lan sssd_nss[401]: Enumeration requested but not enabled`\n\nI _know_ I can just use an SDDM theme that has a username entry field, and I'm aware I probably want to (since AFAIK SSSD enumeration will cause _all_ of the users to be listed, not just those that can log into the machine). At this point, though, I'm curious - does anyone know what I'm missing? Or is SSSD enumeration with FreeIPA just kinda broken?",
+    "developer": "pd113",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

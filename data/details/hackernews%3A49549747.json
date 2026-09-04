@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49549747",
+  "sourceItemId": "49549747",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49549747",
+  "detail": {
+    "longDescription": "You have seen Pangolin ( https:&#x2F;&#x2F;github.com&#x2F;fosrl&#x2F;pangolin ) on here before for our open-source zero-trust network access suite of tools. We are launching a new AI gateway that takes a different approach to auth. Rather than authenticating requests to AI providers with API keys, it authenticates the network connection itself via a desktop app. Each user gets a WireGuard tunnel back to the gateway, established after they log in through their existing identity provider (Okta, Azure, Google, etc) via a desktop app. That tunnel is the auth, so there is no key to generate, embed, rotate, or leak, because the gateway already knows who&#x27;s on the other end of the connection. Compare that to most AI gateways, which are really just a proxy in front of static bearer tokens you&#x27;d get from OpenAI or Anthropic directly. This tunnel-based approach also means self-hosted and on-prem models aren&#x27;t an afterthought bolted onto the gateway. They work the same way public cloud models do. Drop a lightweight tunnel connector inside your cluster (even a DGX Spark) and it joins the same network, so on-prem models show up in the gateway next to public cloud ones. Users switch between them without changing endpoints or juggling separate credentials for internal infrastructure. For machines or users who can&#x27;t run the desktop client, we still support traditional virtual keys, plus the usual gateway features: session logging, budgets, usage analytics, and governance. It’s fully self-hostable. Community Edition is free for everyone. Enterprise Edition is free for individuals and small businesses. There is also Pangolin Cloud which is fully hosted.",
+    "externalUrl": "https://github.com/fosrl/pangolin",
+    "developer": "miloschwartz",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6npl0",
+  "sourceItemId": "1w6npl0",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w6npl0/i_built_a_jenkins_plugin_that_shows_what_changed/",
+  "detail": {
+    "longDescription": "I built **Build Change Investigator** because one of the annoying parts of Jenkins failures is that the error itself is usually obvious, but figuring out **what changed since the last successful build** can take a while.\n\nThe plugin automatically compares a failed/unstable build with the last successful one and pulls together:\n\n* commits since the last good build\n* changed files\n* build/revision metadata\n* a reduced failure-log excerpt\n* the evidence in one place so you can narrow down the likely regression faster\n\nThe core investigation works without AI. There’s also optional AI-assisted analysis if you want it, with support for OpenAI, Anthropic Claude, AWS Bedrock, Azure OpenAI, Gemini, Ollama, and OpenAI-compatible endpoints.\n\nNo Jenkinsfile changes are required. Once installed, the **Build Change Investigation** action appears on applicable failed/unstable builds.\n\nIt’s live in the Jenkins plugin ecosystem:  \n[https://plugins.jenkins.io/build-change-investigator/]()\n\nIf anyone tries it on a real pipeline, I’d genuinely like feedback on whether the change correlation is useful and what you’d want it to show differently.",
+    "developer": "Lostboy_journey",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6q8fd",
+  "sourceItemId": "1w6q8fd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w6q8fd/i_built_a_control_plane_for_ai_coding_agents_to/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nI've been experimenting with a problem that kept showing up in my AI-assisted coding workflow:\n\nNot every task needs the full agent stack.\n\nSometimes I just need an answer.\n\nSometimes it's a small, obvious change.\n\nOther times it's an auth, payment, migration, or architecture change where I actually want planning, deeper context, verification, and stronger tooling.\n\nMy first attempt at solving this was AI Workflow:\n\nhttps://github.com/Taki7980/Ai-workflow\n\nThat project was mainly the workflow and operating model I built around AI coding agents:\n\n\\- Answer / Small / Full task lanes\n\n\\- Deterministic code navigation instead of immediately grepping everything\n\n\\- Stale-safe indexes\n\n\\- Compact handoffs between agents\n\n\\- Output compression\n\n\\- Persistent project knowledge\n\nIt worked well as a set of rules and conventions, but I wanted to push the idea further.\n\nSo I built AI Workflow Control Plane v2:\n\nhttps://github.com/Taki7980/ai-workflow-control-plane-v2\n\nThe main difference is that V2 is an executable control layer, rather than primarily a workflow specification.\n\nIt tries to answer questions like:\n\n\\- How risky is this task?\n\n\\- How much context does it actually need?\n\n\\- Can a cheap local index answer this before doing source search?\n\n\\- Is this a structural question where Code Review Graph is useful?\n\n\\- Is lightweight execution enough, or should it escalate to something like Superpowers?\n\n\\- How much context should each source be allowed to consume?\n\n\\- Is the memory/index being reused still valid?\n\n\\- What needs to be verified before calling the task complete?\n\nThe context path is intentionally ordered from cheaper to more expensive:\n\n\"cache -> local indexes -> Code Review Graph -> targeted source\"\n\nV2 also includes:\n\n\\- Hard context budgets\n\n\\- BM25 + RRF + MMR retrieval\n\n\\- Risk-based escalation\n\n\\- Stale-aware durable memory\n\n\\- Provider/model tiers\n\n\\- Diagnostics\n\n\\- Verification\n\n\\- Benchmarking\n\nOne rule I care about a lot:\n\n«Indexes are accelerators, not the source of truth.»\n\nIf indexed code or stored memory is stale, I'd rather fall back to the real source than let an agent confidently operate on outdated information.\n\nI'm also not trying to build another coding agent or replace Codex, Claude, Gemini, Superpowers, Code Review Graph, etc.\n\nThe idea is to build the thin control layer above them that decides:\n\nWhat is the minimum amount of context, tooling, and execution rigor this task actually needs?\n\nBoth projects are open source:\n\nOriginal AI Workflow\n\nhttps://github.com/Taki7980/Ai-workflow\n\nAI Workflow Control Plane V2\n\nhttps://github.com/Taki7980/ai-workflow-control-plane-v2\n\nI'd be interested in feedback from anyone building similar agent workflows.\n\nEspecially around:\n\n\\- Routing failures\n\n\\- Stale context/indexes\n\n\\- Over-escalation into expensive workflows\n\n\\- Cases where aggressive context limiting could backfire\n\nIf you've built something similar, I'd also be interested in how you're handling task classification and context budgeting.",
+    "developer": "kisuke4922",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

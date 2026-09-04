@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6jusw",
+  "sourceItemId": "1w6jusw",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w6jusw/how_are_you_handling_commitments_your_agents_make/",
+  "detail": {
+    "longDescription": "Been building agents for about a year, and I keep running into the same issue: agents make commitments, but nothing actually tracks whether those commitments happen.\n\nThings like:\n\n“I’ll send the report by Friday.”\n\n“I’ll follow up with the client tomorrow.”\n\n“I’ll check this and get back to you.”\n\nThe agent output gets logged, but that doesn’t really tell you whether the commitment was eventually fulfilled. By the time something goes wrong, you’re usually digging through old traces trying to reconstruct what happened.\n\nAnd the agent itself obviously isn’t a reliable source of truth for this.\n\nI’ve been experimenting with an accountability layer that extracts commitments from agent output and tracks them through a state machine: `open → due → overdue → fulfilled/failed`.\n\nIt can also trigger webhooks when something becomes overdue or fails.\n\nThe part I’m still unsure about is the extraction/routing threshold. Right now, anything below 0.92 confidence goes into `pending_review` rather than being tracked automatically.\n\nI’m wondering whether that’s the right approach, or whether confidence thresholds are even the best way to handle this.\n\nFor people running production agents: how are you handling this today?\n\nAre you just logging outputs and reviewing them manually? Tracking commitments in your application database? Using another observability system? Or have you built something specifically for this?\n\nWould genuinely like to know whether this is a problem others are seeing, or whether I’m over-engineering something that doesn’t matter.\n\nHappy to share the data model/docs if anyone wants to dig into it.",
+    "developer": "xspyyy",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

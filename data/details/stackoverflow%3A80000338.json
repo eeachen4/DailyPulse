@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000338",
+  "sourceItemId": "80000338",
+  "sourceUrl": "https://stackoverflow.com/questions/80000338/in-the-python-socket-module-i-am-trying-to-send-http-status-codes-to-my-client",
+  "detail": {
+    "longDescription": "In an assignment for my Computer Networks class, I am tasked with using sockets to receive HTTP packets. This is my current code: import socket from socket import * import sys # In order to terminate the program serverSocket = socket(AF_INET, SOCK_STREAM) port = 2319 ip = 'localhost' # Prepare a server socket serverSocket.bind((ip, port)) serverSocket.listen(5) while True: try: #Establish the connection print('Ready to serve...') print(f\"Get the webpage at: http://{ip}:{port}/SocketServerProgrammingLab/HelloWorld.html\") connectionSocket, addr = serverSocket.accept() #This line will only run upon opening the webpage print(f\"Connected to {addr}\") connectionSocket.recv(1024) filename = \"SocketServerProgrammingLab/HelloWorld.html\" f = open(filename) outputdata = f.read() #Send on HTTP header line into socket connectionSocket.send(\"HTTP/1.1 200 OK\\r\\n\".encode()) #Send the content of the requested file to the client for i in range(0, len(outputdata)): connectionSocket.send(outputdata[i].encode()) connectionSocket.send(\"\\r\\n\".encode()) connectionSocket.close() except IOError: #Send response message for file not found connectionSocket.send(\"HTTP/1.1 404 Not Found\\r\\n\".encode()) #Close client socket connectionSocket.close() serverSocket.close() sys.exit() #Terminate the program after sending the corresponding data And currently, when opening the URL in my browser, it is completely blank, regardless of what I put after the port. If I were to comment out the line connectionSocket.send(\"HTTP/1.1 200 OK\\r\\n\".encode()) then it would properly show the contents of the HTML file, but it would show that HTML file regardless of what I put after the port. Am I incorrectly sending HTTP signals to the client socket? Why does it either always show the contents of the HTML file or never show it?",
+    "developer": "Joshua White",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "103"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.02582",
+  "sourceItemId": "2609.02582",
+  "fetchedAt": "2026-09-04T01:23:22.432Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.02582",
+  "detail": {
+    "longDescription": "arXiv:2609.02582v1 Announce Type: new Abstract: Decoding visual perception from electroencephalography (EEG) is important for non-invasive brain-computer interfaces (BCIs). However, most existing visual decoding pipelines directly align EEG features with semantic features from pretrained vision models. Those EEG signals carry information at more than one level and this practice disregards the varying neural visibility of different visual components in EEG signals, leading to cross modal mismatches and incomplete information use. In this work, we address this limitation through layer-wise contrastive learning. For each subject, the intermediate CLIP layer that maximizes retrieval performance is selected as the Neural Visibility Optimal Layer (NVOL). Built on NVOL, a hierarchical framework couples retrieval and generation through a shared intermediate representation. The retrieval branch fuses multi-NVOL features, aligns them to image embeddings via contrastive learning, and applies cross-domain similarity local scaling (CSLS) at test time to mitigate hubness. The generation branch reconstructs subject-specific NVOL features from EEG using a conditional diffusion prior, maps them to CLIP space through a lightweight adapter, and drives a pretrained Stable Diffusion XL model. Experimental validation on THINGS-EEG showed that, NVOL-based retrieval achieves 78.1\\% mean Top-1 accuracy in 200-way retrieval, rising to 86.4\\% with CSLS. Two-stage NVOL-to-semantic reconstruction also outperforms single-stage final-layer diffusion on semantic and structural metrics. By aligning EEG with layer-wise neural visibility rather than fixed high-level semantics, the proposed framework improves both retrieval accuracy and image reconstruction in EEG-based visual decoding.",
+    "developer": "Minyi Wang, Zhenqin Wu, Rihui Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.HC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Minyi Wang, Zhenqin Wu, Rihui Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
