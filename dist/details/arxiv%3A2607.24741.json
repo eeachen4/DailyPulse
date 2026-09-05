@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.24741",
+  "sourceItemId": "2607.24741",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2607.24741",
+  "detail": {
+    "longDescription": "arXiv:2607.24741v3 Announce Type: replace Abstract: Fast entropic optimal transport backends reduce the cost of each Sinkhorn update, but static batches still run at full width until the slowest problem finishes. We introduce DrainSinkhorn, a verifier-gated active-packing layer for batches of independent Sinkhorn problems. It combines candidate-axis packing, a Sinkhorn-specific one-sided screen, verifier-gated retirement under the backend's configured two-sided residual check, and physical compaction of all candidate-indexed state. The EOT objective, per-instance Sinkhorn map, and stopping rule are unchanged; later kernels run only on unfinished problems. We characterize the removable work exactly. If completion depths differ within a packed window, active execution removes the padding between the static batch rectangle and the observed survival curve. A quotient nonlinear Perron-Frobenius analysis gives a local explanation for these finite-tolerance depth differences: convergence depends on the full modal spectrum and proposal alignment, not only on the slowest mode. DrainSinkhorn achieves state-of-the-art execution performance on the tested heterogeneous batched-EOT workloads within matched backend families. The complete Flash-backed OT path is 4.110x faster on MetroPT-3, 3.798x faster on ImageNet-32 feature couplings, and 1.250-1.270x faster across a five-tolerance Packer19 sweep. Independent implementations reach 2.600x on ImageNet-32 with OTT-JAX, 3.174x on A2D2 LiDAR with PyKeOps, and 1.415x on large ImageNet-32 PyKeOps couplings. End-to-end speedups remain 4.074x on MetroPT-3 and 2.786x on ImageNet-32 feature-space OT flow matching, with all reported residual, consumer-output, and training-quality checks passing.",
+    "developer": "Xinyang Wen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xinyang Wen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

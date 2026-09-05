@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000799",
+  "sourceItemId": "80000799",
+  "sourceUrl": "https://stackoverflow.com/questions/80000799/how-to-type-hint-a-function-that-returns-as-many-values-as-in-its-input",
+  "detail": {
+    "longDescription": "I have a function that takes one or more arguments and returns the same number of values. For a single input value, it returns just one value, not a size one tuple, for multiple values it returns a tuple whose length corresponds to the number if input values. def foo(val: int, *more_vals: int) -> str | tuple[str, ...]: out = tuple(str(v) for v in (val, *more_vals)) if not more_vals: out, = out return out How do I correctly type-hint this behavior using @overload ? In particular, I want to hint that the return value is a tuple only for multiple input values. (The fact that the tuple has the same number of values as the input is less important.) The single-value case is clear: @overload def foo(val: int) -> str: ... What's unclear is how I hint the multi-argument case. Both of these tries cause Pylance to complain: @overload def foo(val: int, *more_vals: int) -> tuple[str, ...]: ... # Overlaps with single-argument case. @overload def foo(val: int, val2: int, *more_vals: int) -> tuple[str, ...]: ... # Not consistent with implementation.",
+    "developer": "schtandard",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "151"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6zhdi",
+  "sourceItemId": "1w6zhdi",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w6zhdi/i_built_a_safety_tool_for_the_aws_console_that/",
+  "detail": {
+    "longDescription": "I wrote a browser extension that adds a \"you're in PROD, are you sure?\" confirm to destructive AWS Console clicks. Capture-phase listener cancels the click, shows a dialog, replays the click if you confirm.\n\nTrouble: some actions re-render their menu between confirm and replay, so the replayed click hit a detached node and did nothing. My fix was a short bypass window after confirming — for a few seconds, clicks pass straight through so the replay works.\n\nThe window wasn't scoped to the action you confirmed. It was global. So for \\~6 seconds after confirming any destructive action, *every other* one was unguarded. Confirm a Lambda delete, click Terminate on an EC2 instance three seconds later, and it just goes.\n\nA tester reported it as \"the popup stops appearing sometimes.\" Not a UI glitch — the guardrail was switching itself off, on a timer, every time it ran.\n\nFix is one line — scope the window to the confirmed action:\n\n    // before\n    if (Date.now() < bypassUntil) return;\n    // after\n    if (Date.now() < bypassUntil && rule.label === bypassLabel) return;\n\nThe lesson that stuck: a bypass is a security control too**.** I wrote mine as a UI workaround, so I reviewed it like a rendering bug, not a security decision. Anything that turns your protection off — even briefly — deserves the same scrutiny as the protection itself.\n\nAnyone else hit this class of bug — a temporary exception that was broader than intended — in auth caches, feature flags, rate-limit bypasses?",
+    "developer": "Cowijin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

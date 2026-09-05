@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000705",
+  "sourceItemId": "80000705",
+  "sourceUrl": "https://stackoverflow.com/questions/80000705/is-git-sparse-checkout-compatible-with-submodules",
+  "detail": {
+    "longDescription": "I have a simple experiment that seems to suggest - no. But maybe I am missing something. I have a self-contained reproduction that you can run in docker run -it --rm --entrypoint sh alpine/git:v2.54.0 Some git setup to run everything locally git config --global user.email a@b git config --global user.name test git config --global protocol.file.allow always First, we setup two repos - vendor and my_repo_remote . We are making them locally, but let's imagine those are repos somewhere on github # Vendor: initial commit mkdir /vendor; cd /vendor; git init echo A > lib.c; git add lib.c; git commit -m 'Initial vendor' # Remote repo with vendor submodule mkdir /my_repo_remote; cd /my_repo_remote; git init mkdir src; echo app > src/app.c; git add src/app.c; git commit -m 'Initial project' git submodule add /vendor third_party/vendor; git commit -m 'Add submodule' Now we make a local clone and do a sparse checkout. Let's imagine the vendor repo is huge and we are trying to avoid having vendor submodule in the worktree # Local sparse checkout without vendor git clone /my_repo_remote /my_repo_local; cd /my_repo_local git sparse-checkout set src So far so good, we have a worktree with the files we need, we didn't run any exotic commands. Then there is a new release in the vendor repo and we update the submodule in the my_repo_remote repo # Update vendor cd /vendor echo B > lib.c; git commit -am 'Update vendor' # Update submodule pointer in remote repo cd /my_repo_remote/third_party/vendor; git pull cd ../..; git commit -am 'Update submodule' But when we try to fetch the changes locally we get an error cd /my_repo_local git fetch # Could not access submodule 'third_party/vendor' echo $? # 1 So, it's either submodules or sparse? I know how to work around it manually, I am not stuck, so answers like \"Just do git fetch --no-recurse-submodules \" are not really helpful. What am I missing, why do these simple commands lead to a failure? Am I misusing git somehow?",
+    "developer": "Iterokun",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "64"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

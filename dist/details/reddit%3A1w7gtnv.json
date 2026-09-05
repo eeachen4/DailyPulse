@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7gtnv",
+  "sourceItemId": "1w7gtnv",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1w7gtnv/nomoscan_authority_as_a_firstclass_primitive/",
+  "detail": {
+    "longDescription": "**I am guilty.**\n\nYesterday I made a post introducing can() as one function for authority, and I used an LLM to draft the post. \n\nIt was deleted with a stern comment: \"No content written mostly by an LLM. If you don't want to write it, we don't want to read it.\"\n\nFair enough.\n\n  \nMy proposal had gained a lot of traction and was starting to get useful input and feedback. So I hope this one finds more people who have a lot to say about this topic. \n\nNow, software has primitives for most of the hard things. \n\n1. Identity: you call an auth library. \n\n2. Data: you call a database. \n\n3. Network: you call fetch(). \n\n4. Payments: you call a payment API.\n\nBut \"is this action permitted, and on whose authority\" has no primitive. \n\n  \nToday that answer usually ends up buried in application code or a rules file someone has to maintain. Sometimes it’s in a wiki. Either way, it’s tied to the system that contains it. You can’t address the authority itself, move it between systems, or give another system a verifiable answer without giving it your logic.\n\n`nomos.can()` makes that one call:\n\n    import { can } from \"@nomosprotocol/sdk\"; \n    const r = await can({ \n    authority: \"eu-ai-act\", \n    action: \"deploy_system\", \n    facts: { risk_tier: \"high\", conformity_assessment: false }, \n    }); \n    \n    // r.verdict -> \"DENIED\" \n    // r.matched_rule_id, r.obligations, r.transcript_url\n\n\n\nThe authority is a named, addressable thing, like a hostname, not logic you copy between services. You point can() at one of three kinds:\n\n* `authority: \"<name>\"` : a published authority anyone can query. Keyless for open ones.\n* `artifact_id` : one you published yourself.\n* `artifact + key_certs + root_public_key_pem` :  you carry the authority's definition and a certificate chain, and `can()` verifies it offline against a root you pin. \n\nNo default root. Nothing calls home.\n\n  \nIt always returns the same thing: a verdict (`AUTHORIZED` / `DENIED` / `ESCALATED`), any obligations, and a signed transcript.\n\nThe transcript is important because the answer itself becomes verifiable. Someone who doesn't trust your logs can take the exact question and the exact answer and verify them offline with a public key and a short zero-dependency script.\n\n  \n`DENIED` means the authority's rules say no.\n\n  \n`NomosIssuerNotTrustedError` means `can()` couldn't establish who defined the authority.\n\nDifferent problems, different fixes. \\[cut or merge into next sentence\\] A better certificate chain fixes the second and never the first.\n\n  \nThose are different problems. A better certificate chain can fix the second. It cannot turn a denial into an authorization.\n\n  \nAn authority is defined as a sealed file, signed with Ed25519 over a JCS/SHA-256 canonicalization. It can also be revoked. The revocation list is signed and dated, published at a well-known URL, and checked before an answer is returned; if the authority has been revoked, the result says so and includes the reason.\n\nWhat's not built:\n\n* `can()` can't infer which authority applies from the facts. You name it or carry it.\n* The chain-of-trust format is published as a Draft, on purpose: one implementation exists (this one), and it shouldn't be called a standard until someone builds against the spec cold (Please I need your input here)\n* Who runs a real root is unsolved.\n\nnpm: u/nomosprotocol/sdk. \n\nI'd like to hear where the model breaks.",
+    "externalUrl": "https://www.npmjs.com/package/@nomosprotocol/sdk",
+    "developer": "DogInteresting8548",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "npmjs.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

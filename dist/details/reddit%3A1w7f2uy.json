@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7f2uy",
+  "sourceItemId": "1w7f2uy",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w7f2uy/why_multiagent_rag_pipelines_choke_on_production/",
+  "detail": {
+    "longDescription": "When you demo an AI agent querying a single vector database with 50 PDFs, performance feels instant. But when you deploy agents into a live enterprise setup with hybrid search (pgvector + Elastic), legacy SQL databases, and parallel tool calls, latency shoots through the roof.\n\nOn our recent build, users were waiting 18–25 seconds per query because our main orchestrator agent was trying to do everything at once: parse the user request, query 3 different APIs, clean the context, and generate a response.\n\nHere is what went wrong and how we fixed the infrastructure:\n\n* **The \"Smart Agent\" Antipattern:** Giving one agent access to 10+ tools confuses the LLM and quadruples context length. We broke the architecture down into micro-agents: one router agent, two specialized retriever agents, and one synthesis agent.\n* **Context Bloat:** Instead of dumping raw vector search results straight into the agent's context window, we introduced a strict ranking and deduplication layer in Redis before the synthesis step.\n* **Unmonitored Tool Calls:** Agents were making sequential blocking API calls. We moved tool execution to asynchronous background tasks using Celery and Redis locks to prevent duplicate database hits.\n\n**The Engineering Reality Check:** Building the agent logic itself took about a week. Setting up the caching layers, async worker queues, connection pooling, and CI/CD pipelines for non-deterministic code took nearly two months.\n\nBecause our internal team was focused purely on prompt logic and data models, we plugged in embedded cloud and backend engineers from Svitla Systems to build out the underlying infrastructure, Redis caching layers, and deployment pipelines. It re-emphasized a big lesson for us: agentic AI is mostly high-concurrency software engineering disguised as Machine Learning.\n\nAre you guys handling agent tool calls synchronously, or pushing execution to async queues? How are you dealing with overall pipeline latency in prod?",
+    "developer": "Odd-Relation-4587",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

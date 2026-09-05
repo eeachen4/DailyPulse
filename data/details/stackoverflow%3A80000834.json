@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000834",
+  "sourceItemId": "80000834",
+  "sourceUrl": "https://stackoverflow.com/questions/80000834/gitlab-merge-request-shows-commit-x-but-the-commits-tab-displays-there-are",
+  "detail": {
+    "longDescription": "Summary I have a Merge Request on GitLab where GitLab correctly reports that the Merge Request contains 2 commits , but the Commits tab displays: There are no commits yet Push commits to the source branch or add previously merged commits to review them. The commits definitely exist on the source branch, are present on GitLab, and are returned correctly by the repository comparison API. The issue appears to be an inconsistency between the Merge Request's commitCount and the actual commits returned by the GraphQL API / displayed in the UI. Expected behavior The Commits tab should display the two commits that are part of the Merge Request. The GraphQL commits.nodes field should also return these commits. Actual behavior The Merge Request reports: { \"commitCount\": 2 } but the GraphQL API returns: { \"commits\": { \"nodes\": [] } } Therefore, the UI displays \"Commit (2)\" , while the actual Commits page displays no commits.",
+    "developer": "Max123456",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "46"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

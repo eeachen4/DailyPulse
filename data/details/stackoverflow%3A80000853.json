@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000853",
+  "sourceItemId": "80000853",
+  "sourceUrl": "https://stackoverflow.com/questions/80000853/why-isnt-my-type-checker-pyright-complaining-about-a-clear-type-violation",
+  "detail": {
+    "longDescription": "Why isn't Pyright complaining about this? msg: Any is not a Message . (Pylance 2026.3.1) import asyncio from dataclasses import dataclass import json @dataclass(frozen=True, slots=True) class Message: sender: str msg_type: str class MessageHandler: _messages: asyncio.Queue[Message] def __init__(self) -> None: self._messages = asyncio.Queue() async def put(self, msg: Message) -> None: await self._messages.put(msg) async def main(): handler = MessageHandler() msg = json.loads(b'1010') await handler.put(msg) # why is there no error here? msg is not a Message asyncio.run(main())",
+    "developer": "iamthebull",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "65"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

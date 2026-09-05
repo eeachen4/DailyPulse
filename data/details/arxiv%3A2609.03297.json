@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.03297",
+  "sourceItemId": "2609.03297",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.03297",
+  "detail": {
+    "longDescription": "arXiv:2609.03297v1 Announce Type: new Abstract: Load shifting across geographic regions to chase intermittent renewable energy availability is commonly used in reducing cloud infrastructure carbon footprint. However, it often omits low-latency applications due to high latency variances of wide area networks (WAN) that interconnect regions. This paper addresses accommodating low-latency applications into load shifting by minimizing their shifting across the WAN. We propose a technique using a hardware-software co-design approach. At the hardware level, we conduct server load matching over renewables supply peaks and valleys by deep idling physical cores in two otherwise identical server pools, with one enabling simultaneous multi-threading (SMT) in CPUs. In return, we achieve a static set of logical cores amidst energy supply dynamics, reducing the probability of workload shifting. At the software level, we efficiently chase the static set of cores for low-latency applications within regions while prioritizing best-effort applications to accommodate shifting requirements across WANs. Our approach exploits the lower performance compromise of SMT cores due to their hardware multi-threading. We implement the proposed technique with OpenStack and CPU idle states and evaluate its performance on a real experimental testbed with Azure VM arrival traces. Results show an 80% reduction in offloading low-latency VMs and a 43.81% reduction in coefficient of variation of p90 end-user latency while having a worst-case latency compromise of 11.97% due to SMT cores.",
+    "developer": "Tharindu B. Hewage, Shashikant Ilager, Maria A. Rodriguez, Rajkumar Buyya",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Tharindu B. Hewage, Shashikant Ilager, Maria A. Rodriguez, Rajkumar Buyya"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

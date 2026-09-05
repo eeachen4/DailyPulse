@@ -2,27 +2,28 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000634",
   "sourceItemId": "80000634",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000634/why-can-moving-an-await-change-whether-a-python-object-remains-reachable-even-w",
   "detail": {
     "longDescription": "I am trying to understand a surprising difference in object lifetime in Python asyncio . Consider this simplified example: import asyncio import gc import weakref class Resource: def __init__(self, name): self.name = name def __del__(self): print(f\"destroyed: {self.name}\") async def producer(): resource = Resource(\"A\") reference = weakref.ref(resource) await asyncio.sleep(0) return reference async def main(): reference = await producer() print(\"before gc:\", reference()) gc.collect() print(\"after gc:\", reference()) asyncio.run(main()) Now consider a small variation where the suspension point is moved: async def producer(): resource = Resource(\"A\") reference = weakref.ref(resource) return reference await asyncio.sleep(0) I understand that local variables belong to a coroutine frame and that an await suspends the coroutine rather than creating a normal function call boundary. What I find difficult to reason about is the following: At exactly what point does resource cease to be strongly reachable? Does the suspended coroutine frame itself necessarily retain every local variable? When a coroutine returns, when is its frame released? Can an asyncio.Task indirectly keep local variables alive through the coroutine object or its frame? How does this interact with CPython's reference counting versus cyclic garbage collection? Is the lifetime behavior above guaranteed by Python's language semantics, or is some of it specifically an implementation detail of CPython? Is there a reliable way to inspect the reference chain responsible for keeping resource alive without relying on implementation-specific asyncio internals? I am especially interested in the distinction between: Python name ↓ coroutine frame ↓ coroutine object ↓ asyncio.Task ↓ event loop and the actual reference graph that exists while a coroutine is running, suspended, and completed. For debugging I have also tried: print(gc.get_referrers(resource)) but the results are difficult to interpret because the inspection itself creates temporary references and some objects involved in the execution machinery are not obvious from the Python source code. What is the correct mental model for determining the lifetime of a local object captured by a suspended coroutine? Observed behavior When I run the first version, I get: before gc: None destroyed: A after gc: None When I change the position of the await , I get: before gc: <__main__.Resource object at 0x...> after gc: <__main__.Resource object at 0x...> I was not expecting moving the await to change the lifetime of resource , since there is no explicit reference to it outside the coroutine. This is the part I am trying to understand: what reference is keeping the object alive, and how does moving the suspension point change the reference graph?",
     "developer": "YKT",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "5"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "53"
+        "value": "137"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

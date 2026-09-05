@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.03905",
+  "sourceItemId": "2609.03905",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.03905",
+  "detail": {
+    "longDescription": "arXiv:2609.03905v1 Announce Type: new Abstract: Distributing an AI computation across the GPUs of a multi-GPU server is one of the central problems in systems-for-AI. We present Einsummable, a prototype system that accepts a PyTorch-like description of an AI computation and automatically distributes it across a multi-GPU server, with no device assignments, sharding annotations, or communication operations written by the programmer. Einsummable models every operation as a relational join followed by an aggregation over tensor relations, in which the tuples contain sub-tensors. Each operation exposes its possible decompositions through what we call \"join-agg specs\". An optimizer then selects decompositions across the whole computation to minimize a communication-cost proxy. Because it searches decompositions rather than a menu of named strategies, Einsummable discovers plans that mesh-based auto-parallelizers cannot. Each decomposed operation is implemented by synthesizing an exchange program, which is a topology-aware generalization of Volcano's exchange operator. Einsummable invokes no canned collectives: all communication and aggregation is special-purpose, derived at compile time. Despite being fully automatic, Einsummable can outperform custom-designed implementations. For example, on LLaMA transformer blocks on an eight-GPU A100 server, Einsummable achieves a geometric-mean runtime of 8.97 ms, versus 13.80 ms for hand-tuned PyTorch and 15.90 ms for vLLM.",
+    "developer": "Zhimin Ding, Chen-Kuan Liao, Chima Adiole, Brianna Barrow, Fangzhou Du, Yu Hsiao, Ge Huang, Yicheng Jin, Ismail Syed, Chris Jermaine",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zhimin Ding, Chen-Kuan Liao, Chima Adiole, Brianna Barrow, Fangzhou Du, Yu Hsiao, Ge Huang, Yicheng Jin, Ismail Syed, Chris Jermaine"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

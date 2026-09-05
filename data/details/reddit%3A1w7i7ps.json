@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7i7ps",
+  "sourceItemId": "1w7i7ps",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w7i7ps/running_production_agent_with_sandbox_and_cli/",
+  "detail": {
+    "longDescription": "I’ve been building production-grade agent workflows, and our team moved the execution surface toward a CLI that agents can run inside sandboxes.\n\n  \nI think overall MCP/tools are still useful for bounded environments, however sandbox and CLI in general provide much more work capabilities and more efficient as a product surface. We decided to convert our API gateway and remapped it to a CLI that is friendly to agent to use. It took us few iterations to observe and improve the efficiency of it.\n\n  \nWhat made the CLI friendlier for agents:\n\n* Task-oriented commands, not endpoint wrappers\n* Inspect and dry-run modes before changes\n* `--json` for reliable parsing, readable defaults for humans\n* Errors that explain recovery and suggest the next action\n* A simple feedback path when the interface blocks an agent\n\n  \nCurious to hear other tips and learnings! When do you use MCP, and when do you give the agent a sandboxed CLI?",
+    "developer": "nguyenfamjj",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

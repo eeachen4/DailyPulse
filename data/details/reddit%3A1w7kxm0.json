@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7kxm0",
+  "sourceItemId": "1w7kxm0",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w7kxm0/langgraphs_interrupt_records_that_a_human_resumed/",
+  "detail": {
+    "longDescription": "\\`Command(resume=value)\\` says which interrupt it answers and carries a value.\n\nThere is no field for who answered, and no principal is modelled on that\n\nboundary, so any code holding the thread can resume it, including the process\n\nthat raised the pause.\n\n\n\nNot a criticism: LangGraph is a graph library, not an auth layer, and usually\n\nthe identity lives in the web layer that called \\`invoke\\`. It matters when\n\nsomebody asks months later who approved, because the record cannot tell an\n\nengineer who read the arguments from a script that resumed everything.\n\n\n\nI wrote a small adapter that records the proposal, the risk class, and the\n\napprover, and refuses to write an approval unless you supply an identity from\n\nyour own auth layer. It will not invent one, will not accept an\n\n\\`identity\\_source\\` the model could have written, and will not let the acting\n\nagent approve its own action. \\`pip install testimony-langgraph\\`, and langgraph\n\nis its only dependency.\n\n\n\nContext for why I bothered: EU AI Act Article 14 started applying to Annex III\n\nhigh-risk systems on 2 August, and the harmonised standard that says what\n\nsatisfies it is still at public comment.\n\n\n\nI also assessed eight agent frameworks and memory systems on this: of the six\n\nthat gate actions, four record no approver identity and one could not be\n\nestablished. That includes my own system, which passes, and the document says\n\nthat entry carries no evidential weight.\n\n\n\n[https://doi.org/10.5281/zenodo.22290922](https://doi.org/10.5281/zenodo.22290922)\n\n\n\nIs there an idiom for carrying approver identity across resume that I have\n\nmissed? Would rather be told it is solved than keep maintaining this.\n\n\n\n\n\n",
+    "developer": "Technical_Bench_188",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000821",
+  "sourceItemId": "80000821",
+  "sourceUrl": "https://stackoverflow.com/questions/80000821/javascript-accessing-object-value-or-name",
+  "detail": {
+    "longDescription": "I'm a bit lost in handling JavaScript objects. I understand how to access instance and class variables in other languages and was doing fine in JavaScript with my own objects but I'm a bit puzzled here, perhaps simply misunderstanding what the documentation is saying. I'm working with the OmniGraffle7 API . With this API, a Solid:Graphic object has a JavaScript instance property var textHorizontalAlignment → HorizontalTextAlignment where a HorizontalTextAlignment has instance variables of Center/Left/Right. For example: var Center → HorizontalTextAlignment read-only If I dump the textHorizontalAlignment to the console: console.log(`${graphic.textHorizontalAlignment}`) I get: [object HorizontalTextAlignment: Left] So it's giving me a HorizontalTextAlignment object as expected so I'd assume I should be able to directly access the instance variables but I somehow have the syntax wrong. What I want to do is access this object in such a way as to get back Left ? I've tried asking for values or directly accessing the property but they just return undefined. graphic.textHorizontalAlignment.values() graphic.textHorizontalAlignment.Left For the above example output, I can do console.log(`${graphic.textHorizontalAlignment == HorizontalTextAlignment.Left} `) and I get true (and false if the object was a Right or Center). So I can simply test for which version of alignment I have but I don't want to litter the code with testing each possible type. I just want the name back. I'm at a bit of a loss here. I'm sure I'm overlooking something simple but it's not coming to me Edit 2 This is quite annoying. I tried all the great suggestions and I'm still stuck. Here's my results: console.log(`1 ${graphic.textHorizontalAlignment}`) console.log(`1a: ${Object.entries(HorizontalTextAlignment)}`) // Key part of @Barmer console.log(`2 ${graphic.textHorizontalAlignment == HorizontalTextAlignment.Left} `) // Me and @Bergi console.log(`3 ${graphic.textHorizontalAlignment.toString()}`) // @JayBuckman console.log(`4 ${graphic.textHorizontalAlignment.Left}`) console.log(`5 ${getHorizontalAlignment(graphic.textHorizontalAlignment)}`) console.log(`6 ${graphic.textHorizontalAlignment.constructor.name}`)@Barmer console.log(`7 ${Object.values(graphic.textHorizontalAlignment)}`) Gives: 1 [object HorizontalTextAlignment: Left] 1a: 2 true 3 [object HorizontalTextAlignment] 4 undefined 5 undefined 6 HorizontalTextAlignment 7 So it's looking like @Bergi's guess is probably the only answer and I'll have to live with the ugly",
+    "developer": "JKomp",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "4"
+      },
+      {
+        "label": "浏览",
+        "value": "88"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

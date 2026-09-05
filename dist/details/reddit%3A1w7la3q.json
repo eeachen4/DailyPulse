@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7la3q",
+  "sourceItemId": "1w7la3q",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w7la3q/a_commerce_agent_needs_a_spending_boundary/",
+  "detail": {
+    "longDescription": "Anthropic’s commerce-agent blueprint can search a catalog, compare products, remember preferences, build a cart, and hand the order to checkout. Payment is left to the implementer.\n\nIf an agent is expected to finish the job, a prompt that says “keep it under $45” is not enough. The card has to enforce that limit.\n\nFor example:\n\n- The agent may buy only from DoorDash.\n- Each order is limited to $45.\n- The purchase pauses for approval before the card is charged.\n- Daily and total spending limits still apply.\n- Every purchase goes into one ledger.\n\nIf the agent tries another merchant, exceeds the order limit, or does not receive approval, the card declines the purchase.\n\nThis is the layer I am building with OpenSpender, so take the opinion with that disclosure. It is a card system between the agent and checkout. The user sets the rules, and the agent can purchase anything those rules allow.\n\nI have not connected OpenSpender to Anthropic’s repo yet. The blueprint just makes the integration point clear.\n\nHow are people here handling agent purchases today: shared cards, one card per agent, prepaid balances, or a separate card service?",
+    "developer": "NoFunnyMan",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

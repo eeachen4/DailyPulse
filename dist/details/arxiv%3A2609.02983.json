@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.02983",
+  "sourceItemId": "2609.02983",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.02983",
+  "detail": {
+    "longDescription": "arXiv:2609.02983v1 Announce Type: cross Abstract: Pattern-based secret scanners are commonly validated with example-based fixtures that fix one variable: the text surrounding a credential. We introduce boundary-mutation testing to vary that context, generating credentials from each rule's own regular expression, embedding them in realistic source contexts, and classifying outcomes at the rule level rather than the tool level, yielding three detection metrics. Applied to three scanners - a 43-rule open-source scanner, Gitleaks 8.21.2, and TruffleHog 3.82.13 - detection in the primary subject holds at >=0.9976 across ten contexts but collapses to 0.5233 when a credential ends in a hyphen. Five rules are affected: two, with fixed-count quantifiers, fail totally and deterministically; three, with variable-count quantifiers, backtrack and match a truncated credential; an entropy fallback rescues some failures but downgrades their severity. We validate a repair restoring full robustness with no new false positives, and report a caution: a plausible first attempt silently regressed two rules, caught only by re-running the same battery. Gitleaks has an unrelated, source-confirmed defect - a hard-coded terminator allowlist causing total misses for most credential types - while TruffleHog shows no boundary fragility but narrowest coverage. We report marginal, not conditional, failure probabilities: one common token format is structurally immune, another fails once in 64; on 292,527 lines of real code, the false-positive ordering inverts relative to the synthetic corpus. Because per-type detection is deterministic, the comparison unit is ten credential types, not hundreds of samples; no recall difference reaches significance, so we report the null result, not a ranking.",
+    "developer": "Shweta Mishra",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shweta Mishra"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

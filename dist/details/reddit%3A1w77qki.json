@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w77qki",
+  "sourceItemId": "1w77qki",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w77qki/selfhosted_coder_check_whether_you_pulled_a/",
+  "detail": {
+    "longDescription": "On Aug 31, rogue origins were added to the Cloudflare pool in front of `registry.coder.com`. For roughly 14 hours, 07:35–21:45 UTC, the real registry domain served Terraform modules carrying an extra `data \"external\" \"telemetry\"` block that shelled out to [`dlp-docker.sh`](http://dlp-docker.sh) and posted your environment to `www[.]coder-infra[.]com`.\n\n**Why nothing caught it**\n\nThere's no bad version to pin away from, because the poisoned artifact was served at a legit version. The domain allowlist passed because it was the right domain. And no CVE was assigned, so there's no NVD or OSV record for SCA to match on. The advisory exists (GHSA-vx42-ghc9-gw65) but it has no CVE and no package mapping, which is exactly why it never propagated into tooling.\n\n**What to check**\n\nThe question is whether anyone, inside that window, (a) created or updated a template, (b) ran a template dry-run, or (c) built a workspace with module caching disabled.\n\nCaching is on by default, which is why (c) has that qualifier. Cached modules saved most deployments. Most.\n\n**What leaked**\n\n* Template import: whatever is in the provisioner environment. Cloud creds, AI-tooling API keys, CI/CD tokens, config files, shell history.\n* Workspace build: all of the above plus the user's OIDC token, their SSH key, and external-auth tokens for GitHub/GitLab/Bitbucket. Refresh tokens aren't passed to the provisioner and the external-auth tokens are single-use, which helps. Single-use is still one use.\n* Provisioner running inside `coderd`: all of the above plus your database password, external auth provider config, and deployment config. Check this case first.\n\n**Hunt queries**\n\n    # provisioner job logs\n    data.external.telemetry\n    \n    # egress\n    grep -R \"coder-infra\\|199.91.220\" /var/log\n    \n    # payload on hosts and inside images\n    find / -name \"dlp*.sh\"\n    \n    # terraform state and module cache\n    rg -n 'data \"external\" \"telemetry\"' .\n    \n\nIoCs:\n\n    www[.]coder-infra[.]com          exfil domain, registered 2026-08-28\n    <http://www>[.]coder-infra[.]com/cli/check\n    X-CLI-Token                      exfil header\n    199.91.220[.]205                 rogue origin IP\n    \n    sha256:\n    7190a17c593276d7fd71c4863a4bc0b6c957ed14249288e6f64c5540e2c49398  dlp-docker.sh\n    a7f4fa5f7e33b2a6f6488cf28444584caa449144d246b083de919162f5514247  dlp.sh (common)\n    414d01f6072fbf05bef513e277f4c2b504a413c8e2aa5bae133a5cbc0cda9dc1  dlp.sh (aider)\n    a64ce3038f2a501c9735abf6a1f9f04cbddbad53371cd68bec0f7510365c8ffa  dlp.sh (rstudio-server)\n    ebbe0d2ed8cfaf9e19edb38ce44d6b407f9771b5c0813a7add27c05f66e89596  dlp.sh (windows-rdp)\n    7ef6b8c3c976fb60b3fa22e9e294ba548d9b532e060c1323a0124a3a7a647f13  dlp.sh (zed)\n    \n\nPoisoned templates named so far: `aider`, `zed`, `rstudio-server`, `windows-rdp`.\n\nThe advisory includes SQL that finds affected template versions, workspaces and provisioner jobs directly. Patched builds: 2.37.0 / 2.36.4 / 2.35.7 / 2.34.9.\n\nCoder is upfront that they have no attacker-side logs and can't identify every affected deployment. That means the check is yours.\n\n**Tooling**\n\nDoing this by hand across a fleet is miserable, so we put the checks in a single read-only Go binary: [github.com/optimuslabs-io/leakpatrol](http://github.com/optimuslabs-io/leakpatrol). It only talks to the Coder server you point it at, has an `--offline` mode, and never contacts the attacker domain. Exports the IoCs as JSON and ships YARA and Sigma rules if you'd rather use your own tooling.\n\nIf the tool misses a path or gets something wrong, tell me and I'll fix it.",
+    "externalUrl": "https://i.redd.it/dv0pdphxvinh1.jpeg",
+    "developer": "rukhrunnin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

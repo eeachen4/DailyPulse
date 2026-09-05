@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.05895",
+  "sourceItemId": "2607.05895",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2607.05895",
+  "detail": {
+    "longDescription": "arXiv:2607.05895v2 Announce Type: replace Abstract: Matrix optimizers such as Muon are attractive for large-scale training because they can improve convergence and token efficiency over coordinate-wise optimizers. Muon does this by orthogonalizing momentum-smoothed matrix updates with Newton-Schulz, producing spectrum-balanced updates that require the complete 2D matrix as input. This exposes a systems mismatch: FSDP/ZeRO-3 saves memory by making the optimizer see shards, not whole matrices. Existing systems therefore either reconstruct matrices at every optimizer step, paying weight-sized communication after backward, or make the update local by using ZeRO-1 owner placement with full parameters resident. MatrixFSDP takes a third path: it changes where ZeRO-3 shards live, not the optimizer being computed. For each 2D weight, one data-parallel rank owns the whole matrix and the other ranks hold empty shards; non-matrix tensors are packed into tail owners and stay on AdamW. The ordinary backward reduction then lands the full Muon input on the owner, so Newton-Schulz runs locally with no optimizer-step matrix collective. Forward and backward still materialize and reshard parameters; the runtime challenge is to make that uneven layout efficient and correct. MatrixFSDP does so with MatrixShard metadata, a balance-aware owner planner, deterministic owner-segment P2P collectives, owner-buffer pinning, and owner-shard checkpoint resharding. The resulting update matches full-matrix Muon while preserving ZeRO-3-scale memory: on 64 A100s, MatrixFSDP reduces optimizer-step latency over stock FSDP2-Muon by 4.2x on one node and 54.6x on eight nodes, reaches up to 2.15x end-to-end speedup, and runs model sizes where ZeRO-1 owner placement exceeds an 80 GB GPU.",
+    "developer": "Ming Gao, Yanwu Xu, Hao Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ming Gao, Yanwu Xu, Hao Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

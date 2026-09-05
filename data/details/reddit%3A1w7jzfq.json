@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7jzfq",
+  "sourceItemId": "1w7jzfq",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1w7jzfq/a_model_solved_in_one_reply_what_id_spent_two/",
+  "detail": {
+    "longDescription": "Tuesday night, race condition in a queue consumer. Two hours in Cursor with my usual model: reasonable suggestions, none of them right, several very confident theories about the lock that were all wrong. Eventually, out of pure spite, I opened a browser tab, pasted the file into the other provider's chat, and it named the actual bug in the first reply.\n\nI want to be clear this isn't a post about which model is smarter. Half the time it goes the other way, and next week it probably will. What bothered me is that I had access to both the entire time and it still took two hours and a browser tab to try the second one. Trying it inside the editor meant finding the other key, changing the base URL, restarting, and then undoing all of that afterward. Call it thirty seconds. Thirty seconds is nothing at hour two when you're already angry, and it's apparently infinite at hour zero when you're not.\n\nThat's the thing I ended up building for. Not a better model — just removing the thirty seconds. One endpoint that speaks the OpenAI shape, both models behind the same key, so Cursor and Claude Code and Codex don't know anything changed. I added prompt caching because re-sending the same context to a second model shouldn't cost full price twice, and logs because I wanted one place to see where the money went.\n\nNow switching is a dropdown, so I do it at minute ten instead of hour two. It hasn't made me a better engineer. It's just deleted a specific kind of stubbornness I didn't know was infrastructure.\n\nroutera . one, if you've had the browser-tab moment too.",
+    "developer": "danxxcruz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

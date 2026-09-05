@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.03978",
+  "sourceItemId": "2609.03978",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.03978",
+  "detail": {
+    "longDescription": "arXiv:2609.03978v1 Announce Type: new Abstract: In DAG-based consensus, all validators propose blocks concurrently, and designated leader blocks drive transaction commit. Having multiple leader slots per round cuts queuing latency, yet production deployments run a single leader because of head-of-line blocking: a slow leader stalls the pipeline for at least one leader timeout, and for several waves when its slot must wait for the fallback indirect decision rule. This risk grows with the leader count. We introduce Barnacle, an add-on that adapts the leader count at run time. Every interval, it measures on the agreed committed DAG the fraction of slots decided as commit by the direct rule, and drives the leader count with additive increase, multiplicative decrease. The measurement requires no extra messages and no cryptography, and is deterministic. Barnacle is generic over DAG protocols; we instantiate it on four protocols spanning the Byzantine (3f + 1, 5f + 1), crash-only (2c + 1), and mixed (5f + 3c + 1) fault models, with proven safety and liveness. Results show Barnacle matches the best static leader count in every regime: in a healthy network its latency is 6-13% lower than a single leader's, and under degradation it matches a single leader while remaining 35-56% below a static high count. We are currently collaborating with the Sui team to integrate Barnacle into the Sui blockchain.",
+    "developer": "Zeno De Angeli, Alexandru Ianov Vitanov, Philipp Jovanovic, Lefteris Kokoris-Kogias, Alberto Sonnino, Pasindu Tennage, Igor Zablotchi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zeno De Angeli, Alexandru Ianov Vitanov, Philipp Jovanovic, Lefteris Kokoris-Kogias, Alberto Sonnino, Pasindu Tennage, Igor Zablotchi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

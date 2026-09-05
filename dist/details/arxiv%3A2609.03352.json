@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.03352",
+  "sourceItemId": "2609.03352",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.03352",
+  "detail": {
+    "longDescription": "arXiv:2609.03352v1 Announce Type: cross Abstract: Constant optimization refines the numerical coefficients of candidate expressions in tree-based genetic programming for symbolic regression. But its per-generation cost has led modern GPU-accelerated frameworks to omit it or restrict it to lightweight forms. We present a GPU-resident, batched Levenberg--Marquardt solver that optimizes constants across a structurally heterogeneous population of expression trees using a fixed number of population-wide CUDA launches per iteration. Reverse-mode automatic differentiation assembles the per-tree Jacobian in one backward sweep, making the dominant per-iteration cost independent of the number of constants per tree, and a double-precision delivery guard guarantees that returned constants are never worse than their initial values. On early-generation populations, the solver sustains up to $5.1{\\times}10^{5}$ trees per second on an NVIDIA A100; at a GPU-saturated benchmark configuration it delivers roughly $9.9{\\times}$ the throughput of Operon running on a 64-core EPYC 7763, while matching fp64-reference quality. Integrated in-process into EvoGP, the solver enables end-to-end search to recover governing equations on $10$ of $18$ constructed problems versus 0 for stock EvoGP. Our code is at https://github.com/TensorConv/CuSR.",
+    "developer": "Hao Mao, Xu Tony Liu, Shuai Lu, Peng Zhao, Wenzheng Jiang, Yuntian Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NE, cs.DC, cs.LG, cs.MS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hao Mao, Xu Tony Liu, Shuai Lu, Peng Zhao, Wenzheng Jiang, Yuntian Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

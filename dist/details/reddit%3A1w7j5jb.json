@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7j5jb",
+  "sourceItemId": "1w7j5jb",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1w7j5jb/intermittent_error_failed_to_reach_oidc_issuer/",
+  "detail": {
+    "longDescription": "I've been encountering this error for a few weeks now and it's finally starting to bother me enough to ask for advice. I get the following error intermittently on any service protected by Pocket ID:\n\n|error|\"Failed to reach OIDC issuererror\t\"Failed to reach OIDC issuer|\n|:-|:-|\n\n\n  \nBut if I reload/refresh the page I'm able to auth. Google suggests this is a DNS issue but the recommendations on how to resolve it haven't been helpful. This is a recent issue and it was working fine before. I \\*think\\* it started when I began using the container name in the reverse proxy rather than IP address which, admittedly, points to a DNS thing. Before I go through the trouble of editing the Caddyfile and testing for weeks, wondering if anyone else has thoughts. I would also like to get this to work correctly out of pure stubborn-ness.\n\n\n\nMy setup listed below.\n\n*  Ubuntu Server and all services in Docker\n* Caddy handling reverse proxy duties, TLS, all these services are served w/ FQDN\n* All services on the same 'proxy' network accessed as \n\n&#8203;\n\n    recipes.mydomain.org {\n        reverse_proxy mealie:9000\n\n* All ports are closed. AdGuard home running on a Pi doing DNS rewrite work",
+    "developer": "GrumpyGander",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

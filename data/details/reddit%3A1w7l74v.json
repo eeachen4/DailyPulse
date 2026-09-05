@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7l74v",
+  "sourceItemId": "1w7l74v",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w7l74v/the_longer_agent_memory_lives_the_less/",
+  "detail": {
+    "longDescription": "I’m not convinced every agent memory should remain in an always-on serving index as the corpus grows. Active context needs predictable latency, while older or rarely used memories could stay lake-resident until a task needs them. A searchable namespace across data infrastructure such as Milvus may hide the storage boundary, but it does not make the two paths equally fresh or canonical.\n\nThe state transition matters more than the tier names. Promotion needs a reason such as recency, access frequency, task scope, confidence, or explicit admission. Correction and revocation need one owner. Evaluation also has to distinguish fast recall from complete recall when a slower path can return better evidence.\n\nThe tradeoff is visibility. A single namespace means the agent does not choose a retrieval backend, but it can conceal disagreement between hot and cold versions of the same memory. Whichever responds first may influence the next action. Exposing the tier is ugly, although the lifecycle policy becomes easier to inspect.\n\nMy current view is that tiering is safe only when one state remains canonical regardless of which path answered. I would likely keep that decision outside the serving tier itself. Where have others placed the correction and revocation boundary?",
+    "developer": "Cautious_Bit_8521",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

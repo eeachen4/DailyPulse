@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w6y77x",
+  "sourceItemId": "1w6y77x",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w6y77x/multiple_gateways_help/",
+  "detail": {
+    "longDescription": "Looking for advice on Docker networking / multiple Compose stacks + selective egress.\n\nI’m rebuilding the networking on my Docker host (LeopARRd) and would appreciate some architectural advice.  \nMy requirements are:  \n\\- ALL services must be reachable on my network by one of the host IP (the host has one on VLAN-10 and one on VLAN-30)  \n\\- Two independent Compose projects (2 different compose.yaml files), but containers from both projects must communicate using container/service names, e.g. http://navidrome, rather than hard-coded IPs.  \n\\- Some services need Internet egress through 192.168.30.1 (a VPN gateway on 192.168.30.0/24)  \n\\- Other services need normal Internet egress through 192.168.10.1  \n\\- Ideally, the solution should survive container/host restarts and be reasonably easy to maintain.\n\nMy current approach is to create Docker networks corresponding to VLANs 31 and 32–33 (one per composer, defined in the composer as bridge/ipam), with policy routing and two different masquerades to select the appropriate gateway  \nIt mostly works, but I’m running into issues with:  \n1) policy-routing routes and their persistence;  \n/etc/iproute2/rt\\_tables not being persistent as currently configured;  \n2) containers on 192.168.31.0/24 being unreachable from the other Docker VLANs when addressed by hostname/service name (while direct access using their actual IP works).\n\nI suspect I may be overcomplicating this and would be happy to redesign it rather than keep patching the current setup.\n\nWhat would be the cleanest Docker networking architecture for these requirements? I’m particularly interested in solutions that minimize custom routing/iptables maintenance while retaining service-name DNS between the two Compose projects.",
+    "developer": "lucads87",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

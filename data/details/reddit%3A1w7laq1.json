@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7laq1",
+  "sourceItemId": "1w7laq1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w7laq1/the_first_agent_feature_can_hide_an_entire_data/",
+  "detail": {
+    "longDescription": "Hi, I’m James Luan, CTO of Zilliz, the company behind Milvus. Milvus is an open-source vector database built to store, index, and search embeddings over unstructured data. Vector Lakebase is our next lake-native expansion around that serving path.\n\nI was reading Notion’s account of its first two years of vector-search infrastructure, and the opening chapter is a useful reminder of how quickly one AI feature becomes a platform problem. AI Q&A attracted a waitlist of millions of workspaces almost immediately. The original vector service bundled storage and compute in pod clusters and sharded data by workspace, so capacity became a routing problem within a month.\n\nThe pragmatic response was generation-based placement. New workspaces went to new index clusters while existing workspaces stayed where they were, avoiding a live reshard. Spark and Airflow changes increased daily onboarding capacity by 600x, but the generation-routing logic remained part of the architecture. Moving to serverless later decoupled storage and compute, cut costs by 50%, and removed much of that capacity-planning constraint. A subsequent provider migration still required a full re-index because serving data lived in proprietary storage.\n\nThe next improvement attacked update cost. Page State used 64-bit xxHash values in DynamoDB to distinguish content changes from metadata-only updates, while embedding generation moved from a Spark-to-S3-to-external-API path into a unified Ray pipeline. Across the sequence, costs fell 90% from their peak.\n\nWhat stands out to me is not that any decision was wrong. Each one solved the immediate bottleneck cleanly. The architectural signal is the accumulation of generation routing, batch and streaming paths, external state tracking, embedding compute, and a separate serving layer around a single product feature. That integration surface is where the harder second chapter begins.",
+    "developer": "J_Luan_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

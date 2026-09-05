@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7g16e",
+  "sourceItemId": "1w7g16e",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w7g16e/one_of_my_kubernetes_worker_nodes_went_down_and/",
+  "detail": {
+    "longDescription": "So, one of my worker nodes went down.\n\nAnd two of my running Pods went down with it.\n\nNow, this got my attention because I have **3 worker nodes** in my Kubernetes cluster.\n\nAnd for this application, I had:\n\n`replicas: 3`\n\nIn my mind, I was already doing the right thing.\n\nI have 3 worker nodes.\n\nI have 3 replicas.\n\nSo if one worker node goes down, I should still have 2 replicas running, right?\n\nWell... not exactly. 😂\n\nWhen I checked how the Pods had been scheduled, I realized something.\n\nThe 3 replicas were not distributed the way I expected.\n\nIt looked something like this:\n\n    worker-1    → Pod 1\n    worker-2    → Pod 2, Pod 3\n    worker-3    →\n    \n\nThen `worker-2` went down.\n\nAnd suddenly:\n\n    worker-1    → Pod 1\n    worker-2    → DOWN ❌\n    worker-3    →\n    \n\n**2 out of my 3 replicas were gone with one worker node.**\n\nSo even though I was trying to make the application highly available by running multiple replicas, I still had a problem.\n\nHaving multiple replicas is one thing.\n\n**Where those replicas are running also matters.**\n\nThis is where I started looking at **Topology Spread Constraints**.\n\nInstead of just telling Kubernetes:\n\n    replicas: 3\n    \n\nI can also tell the scheduler how I want those Pods distributed across my nodes.\n\nFor example:\n\n    topologySpreadConstraints:\n      - maxSkew: 1\n        topologyKey: kubernetes.io/hostname\n        whenUnsatisfiable: DoNotSchedule\n        labelSelector:\n          matchLabels:\n            app: my-app\n    \n\nThe important part for my case is:\n\n`topologyKey:` [`kubernetes.io/hostname`](http://kubernetes.io/hostname)\n\nI'm telling Kubernetes to consider the **node hostname** when spreading my application Pods.\n\nSo instead of:\n\n    worker-1    → Pod 1\n    worker-2    → Pod 2, Pod 3\n    worker-3    →\n    \n\nI want:\n\n    worker-1    → Pod 1\n    worker-2    → Pod 2\n    worker-3    → Pod 3\n    \n\nNow if one worker node goes down, I lose **one replica**, not two.\n\nAnother important part is:\n\n`maxSkew: 1`\n\nThis controls how uneven the distribution of matching Pods is allowed to become across the topology domains.\n\nAnd then:\n\n`whenUnsatisfiable: DoNotSchedule`\n\nBasically, if Kubernetes cannot place the Pod without violating my spread constraint, don't just put it somewhere and pretend everything is fine.\n\nI'd rather know that I have a scheduling problem.\n\nThis also made me realize something about **high availability in Kubernetes**.\n\nJust increasing:\n\n`replicas: 1`\n\nto:\n\n`replicas: 3`\n\ndoesn't automatically solve everything.\n\nYou also have to think about **where those replicas are running and what happens when part of your infrastructure fails.**\n\nAnd this gets even more interesting in a cloud environment.\n\nInstead of spreading across hostnames, you could spread across **Availability Zones** using:\n\n[`topology.kubernetes.io/zone`](http://topology.kubernetes.io/zone)\n\nSo now you're not only asking:\n\n**“How many replicas do I have?”**\n\nYou're also asking:\n\n**“Where are my replicas?”**\n\nSmall Kubernetes feature.\n\nBut one worker node going down made me understand exactly why it exists. 😂\n\n",
+    "externalUrl": "https://i.redd.it/qphduk2cdknh1.png",
+    "developer": "Defiant-Chard-2023",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

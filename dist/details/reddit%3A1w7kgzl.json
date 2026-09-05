@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7kgzl",
+  "sourceItemId": "1w7kgzl",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w7kgzl/parallel_vs_sequential_agent_systems_research/",
+  "detail": {
+    "longDescription": "**TLDR:** Use parallel agents when the work is read-heavy and splits into independent slices: research, searching, reviewing many files. Each worker builds its own context and nothing collides. Use one sequential agent when the work is a single chain of decisions: coding, writing, anything where step N depends on choices made in step N-1. Every measured result says parallel makes those tasks worse, not better. And even where parallel wins, keep the team small.\n\n# The case for parallel\n\n**Anthropic: \"How we built our multi-agent research system\"** (June 2025) [https://www.anthropic.com/engineering/multi-agent-research-system](https://www.anthropic.com/engineering/multi-agent-research-system)\n\n* Multi-agent research system beat a single agent by **90.2%** on their internal research eval\n* Cost: multi-agent runs burned **\\~15x** the tokens of a normal chat\n* Their own caveat: coding \"involves fewer truly parallelizable tasks\" than research\n\n**LangChain, Harrison Chase: \"How and when to build multi-agent systems\"** (June 2025) [https://www.langchain.com/blog/how-and-when-to-build-multi-agent-systems](https://www.langchain.com/blog/how-and-when-to-build-multi-agent-systems)\n\n* Read tasks can parallelize, write tasks shouldn't.\n\n# The case for sequential\n\n**Nature Machine Intelligence: \"Capable language models can outgrow the benefits of collaboration\"** (July 2026) [https://www.nature.com/articles/s42256-026-01268-y](https://www.nature.com/articles/s42256-026-01268-y)\n\n* Peer-reviewed, 260 controlled configurations: **every** multi-agent variant made coding results *worse* (−1.3% to −12.8% on SWE-bench Verified)\n* Above a **\\~45% single-agent baseline**, multi-agent gains go zero-to-negative\n* Error amplification hit **17.2x** without centralized verification\n\n**UC Berkeley (MAST): \"Why Do Multi-Agent LLM Systems Fail?\"** (NeurIPS 2025) [https://arxiv.org/abs/2503.13657](https://arxiv.org/abs/2503.13657)\n\n* Measured **41–86.7% failure rates** across 7 popular multi-agent frameworks (1,642 real traces)\n* Failures came from design and coordination faults, not model limits. Standard protocols didn't fix them\n* Repo with code and traces: [https://github.com/multi-agent-systems-failure-taxonomy/MAST](https://github.com/multi-agent-systems-failure-taxonomy/MAST)\n\n**Cognition, Walden Yan: \"Don't Build Multi-Agents\"** (June 2025) [https://cognition.com/blog/dont-build-multi-agents](https://cognition.com/blog/dont-build-multi-agents)\n\n* Parallel workers with split context make **conflicting implicit decisions** that collide when you merge\n* Their answer: one single-threaded agent plus context compression. This is how Devin works\n\n**\"Single-Agent LLMs Outperform Multi-Agent Systems on Multi-Hop Reasoning Under Equal Thinking-Token Budgets\"** (arXiv, April 2026) [https://arxiv.org/abs/2604.02460](https://arxiv.org/abs/2604.02460)\n\n* Give both sides the **same token budget** and the single agent matches or beats the team\n* Multi-agent only wins when context is degraded for the single agent\n\n**Princeton, Kapoor et al.: \"AI Agents That Matter\"** (TMLR 2025) [https://arxiv.org/abs/2407.01502](https://arxiv.org/abs/2407.01502)\n\n* Complex multi-agent setups cost **up to \\~100x more** for the same accuracy a simple baseline already achieves\n* Simple baselines Pareto-dominate: cheaper AND as good\n\n# The middle ground\n\n**OpenHands, Graham Neubig: \"Don't Sleep on Single-agent Systems\"** (September 2024) [https://www.openhands.dev/blog/dont-sleep-on-single-agent-systems](https://www.openhands.dev/blog/dont-sleep-on-single-agent-systems)\n\n* One strong generalist agent covers most of what people build multi-agent systems for\n* Go multi-agent only when you genuinely need isolation or separate responsibilities",
+    "developer": "PilgrimofHaqq2",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.03459",
+  "sourceItemId": "2609.03459",
+  "fetchedAt": "2026-09-05T01:25:13.270Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.03459",
+  "detail": {
+    "longDescription": "arXiv:2609.03459v1 Announce Type: new Abstract: Tensor-Train (TT) decomposition effectively compresses large embedding tables in recommendation models, but TT-based embedding lookup remains inefficient because partially shared computation flows across input indices are not fully reused and intermediate results are repeatedly materialized off-chip between sequential TT-core contractions. We present FlowTT, a flow-aware GPU execution framework that reformulates TT gather as a set of prefix-shared irregular computation flows. FlowTT combines flow-aligned prefix-based index grouping, a fused TT-embedding execution path with on-chip intermediate retention, and persistent-thread scheduling with chunk-based work stealing and L2 checkpointing to preserve reuse under skewed workloads. By co-designing task formation, data buffering, and scheduling with the structure of TT gather, FlowTT reduces redundant TT-core operations, global-memory traffic, and load imbalance. On Meta's synthetic recommendation benchmarks (Meta-240, Meta-480, and Meta-788), FlowTT consistently achieves the lowest latency compared to existing methods. At batch size 32,768, it reduces latency by up to 42.2% in inference and 49.2% in training relative to EcoRec, while also achieving the lowest inference peak memory usage. These results show that exposing prefix-shared computation is key to efficient TT-based embedding execution.",
+    "developer": "Jongmin Seok, Chae Eun Rhee",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jongmin Seok, Chae Eun Rhee"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

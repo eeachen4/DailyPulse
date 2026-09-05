@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000831",
+  "sourceItemId": "80000831",
+  "sourceUrl": "https://stackoverflow.com/questions/80000831/docker-builder-prune-does-not-stop",
+  "detail": {
+    "longDescription": "Yesterday I noticed that a certain system variable does not have a correct value in the working container in my skillsbench/benchflow setup. This behaviour coincides with the \"transport: Error while dialing: only one connection allowed\"` error in the journalctl docker log. I did not introduce any changes that could have caused this behavior. However, at some point of today I observed my system disk completely full. I removed some files, now it has twice much free space as a few days ago when my setup worked well. I am using this recipe to repair my setup: Step 1: Stop BuildKit Completely # Stop the buildx builder docker buildx stop # Force kill any remaining buildkitd processes sudo pkill -9 -f buildkitd # Verify it's dead ps aux | grep buildkitd | grep -v grep It's dead indeed according to this command. Step 2: Clean Up the Corrupted State rm -rf ~/.docker/buildx docker builder prune -a -f However, this command does not stop. It prints something like qieijg2011yu3i1tpijhp true 343.4MB 7 minutes ago 73xm1mlzf72o7ax6pudh0 true 0B 7 minutes ago k6u8kbmjb0pq36s458ijd true 2.472MB 7 minutes ago m5a596c0fdqp8eoq2d7ef true 0B 7 minutes ago oqe5shccqnreikniltr37 true 32.62kB 1 second ago soc5ocqzy2ytbcp4ahu8j true 32.12kB 1 second ago s9ybhb0107eg8nv2lm2uo true 31.44kB 5 minutes ago qhetf72hddlxcm4jqxsq8 true 74.28MB 2 seconds ago z17ujj4cyxfml1nlk1omp true 117.7kB 2 seconds ago as if something creates cache objects faster than I remove them. What is it ? How can I find and kill it ? I tried ps aux | egrep 'docker|build', did not find anything. How can I repair my setup ?",
+    "developer": "Stanislav Kikot",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "40"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
