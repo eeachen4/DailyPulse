@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8fgeo",
+  "sourceItemId": "1w8fgeo",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w8fgeo/an_ai_agent_can_have_permission_and_still_be/",
+  "detail": {
+    "longDescription": "Most agent permission models seem to answer a fairly static question:\n\n**Is this agent allowed to perform this action?**\n\nBut I’m increasingly interested in a harder question:\n\n**Is this agent still authorised to perform this action now, given everything that has changed since the permission was granted?**\n\nImagine an agent has permission to:\n\n* read customer records\n* update a CRM\n* call an internal API\n* send a payment request\n\nEvery individual permission may be valid.\n\nBut during the workflow:\n\n* the customer’s risk state changes\n* an approval expires\n* a previous action modifies sensitive data\n* the evidence supporting the decision becomes stale\n* another system changes the transaction state\n* the cumulative sequence crosses a threshold\n\nThe agent may still technically have permission to perform the next action.\n\nBut that does not necessarily mean the action should still proceed.\n\nSo I’m starting to separate two things:\n\n**Permission** — what actions may this agent perform in principle?\n\n**Current authority** — given the present state, evidence, approvals and transaction history, may it perform this particular action now?\n\nThat suggests consequential actions may need something stronger than a one-time permission grant.\n\nPossibly:\n\n**current state → fresh authority check → action → state change → re-evaluation**\n\nThe difficult design question is where to draw the line.\n\nRechecking before every tool call could become expensive and unnecessary.\n\nNot rechecking enough creates stale authority.\n\nFor people building real agent systems:\n\n**what events should invalidate a previous authorisation and force the agent to re-check before proceeding?**",
+    "developer": "FactivalUniverse",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8a45b",
+  "sourceItemId": "1w8a45b",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w8a45b/my_local_llm_demoscene_generator_can_now_watch/",
+  "detail": {
+    "longDescription": "I've updated my [auto\\_demo\\_scener project ](https://rowanunderwood.github.io/auto_demo_scener/)with Ninfer support and a “rewrite based on video” feature that I thought you might find interesting.\n\nThe project is basically an endless demoscene machine. A local LLM writes Three.js effects (from a library of editable prompts), you watch the code stream into a retro mock-OS editor, then the result runs fullscreen. It checks for crashes / blank frames, asks the model to fix broken attempts, and archives the working demos before starting again. An unnecessarily elaborate way to have a screensaver (you can also use it as a model benchmark as it keeps track of failures and deletions)\n\nThe new part is giving the model a look at what it actually made. With **Ninfer's optional video check enabled**, it captures 30 seconds at 2fps while the demo plays, then sends that video **along with the HTML source** back Qwen for a visual improvement pass.  I went with Ninfer for this because the speed is incredible on a single 5090\n\n    [2026-09-05 14:22:34.895] [info] ninfer-serve: throughput interval=5.000s prefill=338.0tok/s decode=110.0tok/s running=1 prefilling=0 decode_ready=1 waiting=0 avg_decode_batch=1.00\n    [2026-09-05 14:22:39.895] [info] ninfer-serve: throughput interval=5.000s prefill=0.0tok/s decode=217.0tok/s running=1 prefilling=0 decode_ready=1 waiting=0 avg_decode_batch=1.00\n    [2026-09-05 14:22:44.895] [info] ninfer-serve: throughput interval=5.000s prefill=0.0tok/s decode=219.6tok/s running=1 prefilling=0 decode_ready=1 waiting=0 avg_decode_batch=1.00\n    [2026-09-05 14:22:46.236] [info] ninfer-serve: [req 337] done finish=stop_token prompt=1690 gen=3029 cache=0 reuse=full_reset ttft=254ms prefill=6708.5tok/s decode=210.5tok/s wall=14.66s speculative=mtp 3.39to  \n\nSo the loop becomes: write the effect, run it, watch the result, then rewrite it based on what showed up onscreen. The display switches back to the coding view with “UPDATING BASED ON VIDEO…” while it works, then validates and displays the revised version before archiving it if it passes.\n\nQwen 3.8 is amazing but it still makes dumb mistakes like only using 1/4 of the screen or writing a maze walker that walks backwards through the maze :D  The video validation helps it to catch these.\n\n**Ninfer support** also adds a thinking-effort selector. LM Studio is still supported for the regular generation / repair workflow; this works pretty well even with less capable models. Also needs ffmpeg.\n\n[**GitHub / setup instructions**](https://github.com/RowanUnderwood/auto_demo_scener)\n\n[**Live static demo**](https://rowanunderwood.github.io/auto_demo_scener/) (watch out for the volumetric cloud ones :D ) This plays previously generated demos, so you can check out the results without installing anything. Space / right arrow skips to the next one. Actual generation and video rewriting happen in the locally running app.\n\nAnybody else experimenting with having local models watch their own rendered output and revise the code? Thanks!  ",
+    "developer": "jacobpederson",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

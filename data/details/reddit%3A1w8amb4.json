@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8amb4",
+  "sourceItemId": "1w8amb4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w8amb4/testing_whether_source_verification_stops_a_small/",
+  "detail": {
+    "longDescription": "Ran an experiment on my local setup (Qwen2.5-1.5B via llama.cpp, no GPU): does teaching an agent to distinguish official docs from random blogs actually change what it treats as reliable, or does it just answer confidently regardless?\n\nBuilt two versions of the same search-and-learn pipeline. The naive version — searches, answers, stores everything as \"trusted\" — gave every single answer the identical confidence label, whether the source was official docs or a random Medium post. The verified version — classifies sources by trust tier and runs a syntax check on any generated code — correctly told the difference on 7/7 saved answers.\n\nFound a real bug along the way too: a \"confident\" file-upload validator that checked file extension and MIME type, both of which are trivially spoofable. The naive pipeline would've handed that over with full confidence.\n\nAlso had to work around a real limitation of small models: standard OpenAI-style JSON tool-calling failed 0/5 on this 1.5B model even with a working template — turns out llama.cpp only verifies native tool-calling at 7B+. Switched to a dead-simple text convention (`SEARCH: <query>`) instead, which the model handled 5/5. Small models can make the right call, they just can't always format it the \"proper\" way.\n\nRepo + full debugging log (including the dead ends): [https://github.com/UzairArain2008/Self\\_learning\\_model](https://github.com/UzairArain2008/Self_learning_model)",
+    "developer": "UzairArain554",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

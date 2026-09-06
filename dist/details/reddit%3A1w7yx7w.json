@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7yx7w",
+  "sourceItemId": "1w7yx7w",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w7yx7w/tailscale_via_docker_on_ugreen_nas_exit_node_not/",
+  "detail": {
+    "longDescription": "Hello, I have tailscale has been working fine via Docker on UGREEN NAS for more than 2 month. This past 2 days it has stopped working the exit node option, I reboot the project and works for like 3 minutes and stops working.\n\nThis is my docker compose:\n\nservices:  \n  tailscale:  \nimage: tailscale/tailscale:latest  \ncontainer\\_name: tailscale  \nhostname: tailscale  \nnetwork\\_mode: host  \nenvironment:  \n\\- TS\\_AUTHKEY=tskey-auth-#########hidden########  \n\\- TS\\_EXTRA\\_ARGS=--advertise-exit-node --accept-dns=false --accept-routes=false  \n\\- TS\\_STATE\\_DIR=/var/lib/tailscale  \nvolumes:  \n\\- ./tailscale-data:/var/lib/tailscale  \n\\- /dev/net/tun:/dev/net/tun  \ncap\\_add:  \n\\- NET\\_ADMIN  \n\\- NET\\_RAW  \nrestart: unless-stopped\n\nI have rebooted my modem, my wifi, the NAS, docker itself and still is doing the same thing. One thing that I found out is that tailscale is up because I can ping the IP of Tailscale on my laptop.\n\nLet me know if there's anything else I can provide if needed  \nThanks!",
+    "developer": "YahsCE",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

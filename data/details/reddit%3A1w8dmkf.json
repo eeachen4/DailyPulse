@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8dmkf",
+  "sourceItemId": "1w8dmkf",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1w8dmkf/at_what_point_does_building_an_agent_become_a/",
+  "detail": {
+    "longDescription": "I've been playing around with agent stacks lately and keep running into the same thing.\n\nGetting the first version working is actually pretty fun.\n\nLangChain or LangGraph, a model, some tools, maybe LangSmith for tracing, and you can get something surprisingly decent up and running.\n\nThen you try to put it into production and the fun part starts to disappear.\n\nSuddenly you're thinking about:\n\n\\> evals on every meaningful change\n\n\\> tracing across multiple agent and tool calls\n\n\\> versioning prompts and datasets\n\n\\> figuring out if a new model actually improved things\n\n\\> deployment and rollback\n\n\\> keeping everything reproducible across environments\n\nAt that point, the agent itself almost feels like the easy part. It's everything around it that gets complicated.\n\nI've seen teams piece this together with GitHub Actions, LangSmith or Langfuse, custom eval scripts and whatever deployment tooling they already use.\n\nIt works, but at some point it starts feeling like we're building a CI/CD setup specifically for agents.\n\nI recently came across LangShip, which is built around bringing evals, traces, datasets and deployment into a more Git-based workflow. \n\nThe idea of treating agent changes more like software changes than one-off AI experiments makes a lot of sense to me.\n\nGot to know about this through Lyzr, which I've been looking into recently while comparing different approaches to agent infrastructure.\n\nI'm still not sure every project needs another layer.\n\nFor one small agent, it could easily be overkill. Once you have multiple agents, multiple people making changes and real users depending on them, though, the \"we'll just add another script\" approach can get messy pretty fast.\n\nFeels like there's a point where an LLM project quietly turns into a software delivery problem (I could be wrong as well)\n\n\\> Where have you seen that line show up in your own projects?",
+    "developer": "Many_Audience7660",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

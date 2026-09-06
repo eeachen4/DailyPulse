@@ -2,15 +2,16 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000876",
   "sourceItemId": "80000876",
+  "fetchedAt": "2026-09-06T01:21:31.683Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000876/docker-not-hot-reloading-when-run-on-ssh-on-wsl2",
   "detail": {
-    "longDescription": "I am using WSL2 to connect to a remote machine via SSH. I am running a Docker image on that remote machine with bind mounts that I want to hot-reload from host to container or vice versa, but neither is working. The file changes are not received in either direction. I've tried passing the following environment variables to my image as recommended in this issue , but that did not solve the problem. WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true My attempted docker run invocation looks like docker run -it --rm -e WATCHPACK_POLLING=true -e CHOKIDAR_USEPOLLING=true ...",
+    "longDescription": "I am using WSL2 to connect to a remote machine via SSH. I am running a Docker container on that remote machine with bind mounts that I want to hot-reload from host to container or vice versa, but neither is working. The file changes are not received in either direction. Topology : Window's Terminal running WSL2, connecting via SSH to a remote machine running Ubuntu. Let's refer to this remote machine as the Client . NOTE: VS Code is not involved whatsoever, nor do I want to use VS Code. I do know, however, that if I connect to the Client using VS Code's Remote SSH extension, the problem I am having does not occur. In fact, within that topology, all my Docker bind mounts are hot-reloadable without the need for any special watchers; it just works. If possible, I would like to replicate that behavior within my current topology (see Topology above). Aim : Run a Docker container on the Client whose bind mounts are all hot-reloadable. That is, whose edits on the Client are reflected in the running image or, conversely, whose edits within the container are reflected on the Cilent . Minimal reproducible example : Let's assume we are on the Client as defined in Topology . Then, run any Docker image compatible with the following invocation: docker run -it --entrypoint /bin/bash -v /home/user/<some_file>:/workspace/<some_file> where <some_file> can be any editable file. With the container running, edit <some_file> on the Client or within the container. Save the edit and observe that the other side's version of the file does not receive the update.",
     "developer": "Jonathan Lugo",
     "comments": 0,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "-1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "56"
+        "value": "94"
       },
       {
         "label": "状态",

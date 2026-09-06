@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8dkwp",
+  "sourceItemId": "1w8dkwp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w8dkwp/documentation_optimized_for_agents_and_humans/",
+  "detail": {
+    "longDescription": "I’ve been working on a small open-source project called Explicode.\n\nThe original idea was to write Markdown documentation directly inside code comments, and then generate regular Markdown files from it, somewhat like a Jupyter Notebook, but for more languages and real-world repos. The goal is to make scripts more readable for humans. I find it especially compelling in projects that are complex such code for academic papers.\n\nIt currently includes a VS Code extension with live preview, a CLI to convert scripts to Markdown, support for 15+ languages, and a skill for coding agents.\n\nI’m mainly curious whether this is actually useful for coding agents. Keeping the docs in the source code seems like it could make them easier for agents to find and keep in sync.\n\nWould be interested to hear what people think of the approach. Is this something you’d find useful, or does it just make the code/comments more complicated?\n\nRepo: [https://github.com/benatfroemming/explicode](https://github.com/benatfroemming/explicode)\n\nExample:\n\n    '''\n    # Add 2 numbers\n    - **Input**: Integers `a` and `b`\n    - **Output**: Integer `c` where $a+b=c$\n    '''\n    def add(a, b):\n      return a + b\n\nConverts to:\n\n    # Add 2 numbers\n    - **Input**: Integers `a` and `b`\n    - **Output**: Integer `c` where $a+b=c$\n    \n    ```python\n    def add(a, b):\n      return a + b\n    ```\n\n",
+    "developer": "EqualIntroduction470",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

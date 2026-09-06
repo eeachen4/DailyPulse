@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8ga7n",
+  "sourceItemId": "1w8ga7n",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1w8ga7n/has_anyone_actually_gotten_codex_working_over_ssh/",
+  "detail": {
+    "longDescription": "Setup: thin client → Windows 11 workstation over OpenSSH. Codex should run on the workstation, thin client is just the terminal.\n\nWhat I've tried:\n\n\\- VS Code Remote-SSH + Codex extension → every command dies with \\`timed out after 15000ms connecting runner pipe-in\\`\n\n\\- Codex CLI 0.153.4 over the same SSH session → same thing. \\`codex --version\\` works, but any file listing hangs forever\n\n\\- \\`\\[windows\\] sandbox = \"unelevated\"\\` and \\`sandbox\\_private\\_desktop = false\\` → no change\n\n\\- \\`danger-full-access\\` → commands finally run, but I'm not leaving that on permanently\n\n\\- Same machine locally or over RDP → everything works fine\n\nSo it looks like the Windows sandbox runner just can't start in a non-interactive OpenSSH session (Session 0 / window station stuff, matches issue #30839).\n\nDesktop app Remote isn't an option either: it only says \"SSH connection failed\" with zero detail, even though key auth and remote commands work fine from a normal terminal — and Settings > Connections doesn't even show \"Control this PC\" / \"Control other devices\" for me.\n\nQuestions:\n\n1. Has anyone got Codex running over SSH on a headless Windows host, and how?\n\n2. Does Codex CLI inside WSL2 (reached over SSH) actually dodge this, or does it hit the same wall?\n\n3. Is \"Control other devices\" rolled out to anyone on Windows yet?\n\nRDP works, but that defeats the whole point of a thin client for me.",
+    "developer": "Chance-Struggle-6285",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

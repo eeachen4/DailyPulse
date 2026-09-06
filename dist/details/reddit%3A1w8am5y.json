@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8am5y",
+  "sourceItemId": "1w8am5y",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w8am5y/moving_java_services_off_memorybased_hpa_is/",
+  "detail": {
+    "longDescription": "We're running a bunch of Java (Spring Boot) microservices on EKS, and right now **every service uses memory as its HPA metric.** After digging into it, I've started to think that's wrong, and I want a sanity check from people who've actually run this at scale before I push a change.\n\nWhat my research turned up:\n\n* The JVM allocates heap up to its max and **doesn't release it back aggressively** even after GC, so memory usage doesn't track load.\n* Because of that, **memory can be high while actual load is low, or load can be high while memory looks fine** — so memory-based HPA either never triggers or scales out permanently and never scales back in.\n\nSo the direction I'm considering is to **pick the HPA metric based on service type:**\n\n* **HTTP / request-serving services → CPU** (or better, **RPS / p95 latency** as a demand-based metric)\n* **Async / queue-consuming services → queue depth** (SQS backlog, via KEDA)\n\n**My questions:**\n\n1. Is this reasoning sound, and is type-based metric selection the right direction?\n2. For the HTTP services, is jumping straight to RPS/latency worth the custom-metrics complexity (Prometheus Adapter), or should I start with CPU and only move to RPS if CPU proves to be a bad proxy?\n3. For async workers, is KEDA + SQS queue depth the standard approach, or are people doing something else?\n4. This is the part I'm least sure about: **I already know from our architecture which services are HTTP-facing and which are async/queue-driven — but how do I actually** ***verify*** **that empirically rather than just trusting the design docs?** Is there a clean way to confirm a service's real load profile (e.g. checking whether it even has an ingress/receives HTTP traffic, whether its work is truly SQS-triggered, CPU-vs-memory correlation under load) before I assign it a metric?\n\nThanks 🙏",
+    "developer": "ankitjindal9404",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

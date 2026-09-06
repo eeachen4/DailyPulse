@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w892yo",
+  "sourceItemId": "1w892yo",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w892yo/is_k3s_good_for_this_use_case/",
+  "detail": {
+    "longDescription": "We have a customer managed node, we deploy some containers on it\n\nInitially it was supposed to be simple and thats why i went with ansible to deploy the containers, manage their state, setup their config files mounted and etc. \n\nNow it grew a lot, we seperated the application to 3 seperate sets for running in different configs. I setup alloy to scrape node metrics and ingest it to central observability stack, i setup alloy for each set of application to collect otel traces logs and metrics and push them. The applications have sqlite databases, which i periodically need to inspect for debugging, we are in poc state yet, so we also want to pull the database for debugging, and right now im writing an exporter to dump sqlite to our clickhouse which is connected to grafana, so our devs can inspect it\n\nSo now i want to write a cron job too. \n\nAlso, ansible is extremly slow to run everything. So i use tags, but tags are also a pain by itself, you cant logically group tags, so for each operation that only needs to do a subset of the playbook, i would have to tag steps accordingly and the run the tag\n\nBut if it was k3s in container, i would have better tools to organize the deployment than writing ansible. Gitops would be easy, argo might pickup the code from repo and apply to cluster. Cronjobs would be easier. Volume management is eaiser, I would have better rollback mechanisms that i dont have to write myself",
+    "developer": "Tinasour",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

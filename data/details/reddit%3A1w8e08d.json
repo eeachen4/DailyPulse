@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8e08d",
+  "sourceItemId": "1w8e08d",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w8e08d/is_3090_5070_5060s_a_good_idea/",
+  "detail": {
+    "longDescription": "I have a 5070 Ti and two 5060 Ti (all 16Gb cards).\n\nI planned to add another 5070 Ti giving me two pairs of 32Gb each but the NVidia prices have just jumped by 25% where I am and I've found a 3090 Founders Edition for a good chunk cheaper than the 5070 would cost.\n\nIt's 8Gb more VRAM and even slightly higher memory bandwidth, but I've read that mixing Ampere with Blackwell comes with a performance hit in llama.cpp using tensor parallelism. I believe TP isn't possible at all in vLLM with mismatched cards.\n\nI am getting 60 tok/s decode and 1,500 pp out of Qwen3.8-27B-IQ4-XS-MTP in llama.cpp with TP across the 5070 and one of the 5060s. I don't really want to spend a lot of money for 8Gb more VRAM in my main pair but worse performance.\n\nHas anyone got experience mixing similar cards? Would pipeline-parallelism (layer split) be faster with two high memory bandwidth cards? I know I could set the 3090 as the main card and push the K/V cache onto it.",
+    "developer": "mrgreatheart",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w88s2p",
+  "sourceItemId": "1w88s2p",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w88s2p/in_a_bit_of_a_pickle_docker_has_filled_my_root/",
+  "detail": {
+    "longDescription": "Hello folks!  \nMy docker stack has been running for quite some time, and recently i updated the host from debian 12 to debian 13. Things ran well, until today, on a reboot, docker won't start or anything. after investigating, i find that the drive is full.\n\nMain culprits for disk hogging are in /var/lib/docker : \n\n    22G     ./overlay2\n    73G     ./containers\n\n  \nI started docker manually, and can run docker system df : \n\n    root@sanakan:/var/lib/docker# docker system df\n    TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\n    Images          41        41        19.13GB   0B (0%)\n    Containers      43        36        269.7MB   1.578MB (0%)\n    Local Volumes   24        12        260.3MB   22.87MB (8%)\n    Build Cache     0         0         0B        0B\n\n  \nI managed to reclaim 2G by removing dangling images, but somehow ./overlay2 grew to 34G when i do a  `du -h | grep '[0-9\\.]\\+G'`   .\n\nI don't really know what i should do. Portainer did not start, some containers started but not all, and i don't know where to go from here.\n\nAny insights?  \nthanks in advance!\n\n",
+    "developer": "sarinkhan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

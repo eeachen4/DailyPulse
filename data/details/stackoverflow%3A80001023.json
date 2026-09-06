@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001023",
+  "sourceItemId": "80001023",
+  "sourceUrl": "https://stackoverflow.com/questions/80001023/svelte-ip-whitelisting",
+  "detail": {
+    "longDescription": "How can I whitelist users with dynamic public IP addresses behind Nginx? I'm building a SvelteKit application that should only be accessible to a small group of authorized users. Initially, I implemented an IP whitelist using Nginx. This works when users have static public IP addresses, but it doesn't work reliably for users connecting through mobile networks or ISPs that assign dynamic IPs. For example: I add a user's current public IP address to the whitelist. The user connects to the application successfully. Their phone reconnects to the mobile network, or their ISP changes their public IP. Their public IP changes. They can no longer access the application because the new IP isn't in the whitelist. I'm therefore looking for a better way to restrict access to specific users without relying on their public IP address remaining static. Current implementation: I'm using Docker Compose, Nginx, and SvelteKit. .env : WHITELISTEDIPS=000.00.0.0,000.00.0.010 10-generate-allowlist.sh #!/bin/sh set -e : > /etc/nginx/allow.conf IFS=',' for ip in $WHITELISTEDIPS; do echo \"${ip} 1;\" >> /etc/nginx/allow.conf done unset IFS nginx.conf.template : geo $http_cf_connecting_ip $allowed { default 0; include /etc/nginx/allow.conf; } upstream sveltekit_app { server server:3000; } server { listen 80 default_server; server_name _; gzip on; gzip_types text/plain text/css application/javascript application/json image/svg+xml; if ($allowed = 0) { return 302 https://www.youtube.com/watch?v=p-Bptisac1A?autoplay=1; } location / { proxy_pass http://sveltekit_app; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } location /_app/immutable/ { proxy_pass http://sveltekit_app; proxy_set_header Host $host; add_header Cache-Control \"public, max-age=31536000, immutable\"; } } I'm also using Cloudflare, which is why I'm currently checking $http_cf_connecting_ip . compose.yaml : services: server: build: context: . environment: NODE_ENV: production env_file: - .env expose: - \"3000\" nginx: image: nginx:alpine ports: - \"8080:80\" volumes: - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro - ./10-generate-allowlist.sh:/docker-entrypoint.d/10-generate-allowlist.sh:ro env_file: - .env depends_on: - server What I'm trying to achieve: I don't necessarily need to whitelist IP addresses specifically. My actual requirement is: Only specific users should be able to access the application, even if their public IP address changes. Is there a recommended way to restrict access to specific users without relying on static IP addresses? If I should continue using IP whitelisting, is there a reliable way to handle dynamic public IP addresses?",
+    "developer": "Vitor Ferreira",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "45"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

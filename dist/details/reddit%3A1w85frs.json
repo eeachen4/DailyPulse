@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w85frs",
+  "sourceItemId": "1w85frs",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w85frs/we_were_paying_for_seven_observability_saas_tools/",
+  "detail": {
+    "longDescription": "At some point we had a whole shelf of separate SaaS subscriptions doing pieces of the same job. One for uptime checks, one for the public status page, one for on-call and paging, one for incidents, one for logs, one for APM, and something stitching the alerts together. Each was fine on its own. Together they were a pile of bills, login screens, and glue to keep them in sync.\n\nSo we moved most of it to OneUptime. It is an open source observability solution (Apache 2.0) that we self-host. In one app it does the uptime and synthetic checks, the status page with subscribers, on-call scheduling with SMS, call, push, email and Slack, incident management with post-mortems, and log and APM views over OpenTelemetry data. You also get OpenTelemetry based agents for hosts, Docker, and Kubernetes, so you are not maintaining a bespoke telemetry pipeline just to get in the door.\n\nRepo: https://github.com/OneUptime/oneuptime\nSite: https://oneuptime.com\n\nDisclosed: I work with OneUptime, so treat the capability list accordingly. I would rather hear where it is not good enough for a real production stack:\n\n1. Which of those jobs (uptime, status, on-call, incidents, logs, APM) would you trust a single tool to own, and which would you keep separate no matter what?\n2. For an open source observability tool in production, what is the one thing you need before you would bet your pager on it (retention, SSO, RBAC, data residency, something else)?\n3. What would make a self-hosted option like this hard to run or hard to leave behind?\n\nHappier to answer deployment questions here or in the repo.",
+    "developer": "QuietSignalOps",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

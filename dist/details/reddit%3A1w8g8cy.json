@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8g8cy",
+  "sourceItemId": "1w8g8cy",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w8g8cy/has_anyone_actually_built_a_multimachine_agent/",
+  "detail": {
+    "longDescription": "My situation:   \nMacBook Pro where I run Claude Code (mostly from my phone via Remote Control), and a Mac mini that should host 24/7 processes. Both on Tailscale. \n\nWhat I’d like is for my MacBook session to hand work to the mini and follow up: the mini does the work, can ask a question mid-task, then reports back. Later, Codex on the mini too. And the bigger idea: a friend’s Mac mini joins with a defined role (“reviewer”, “GPU worker”) and my session can send it work within that role only.  \nWhat I’ve figured out so far, on paper:  \n\t•\tThe hard part isn’t messaging, it’s trust. Directional policy like macbook → mini auto within a verb list, mini → macbook needs my approval, default deny.  \n\t•\tWith a friend’s machine, policy has to be two-sided. His node’s inbound rules should win over anything my side says.  \n\t•\tIsolation, per-node keys, revocation, and whose subscription pays are all open.\n\nWhat I found: A2A has the task lifecycle (input-required etc.) but no peer authorization. cmesh does policy-gated delegation over Tailscale but is very early. Agent Teams is single-machine by design.  \nWhat I’m asking:  \n\t1.\tHas anyone built this, even a rough version? What did you use?  \n\t2.\tIf you were starting from zero, where would you start: git-as-queue, MCP server per machine, SSH allowlisting, a broker, something else?\n\nTrying to decide whether to build this or whether it already exists and I’m not searching for the right words.",
+    "developer": "No_Praline7219",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

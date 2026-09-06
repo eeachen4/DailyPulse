@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000975",
+  "sourceItemId": "80000975",
+  "sourceUrl": "https://stackoverflow.com/questions/80000975/do-kubernetes-loadbalancer-services-need-to-be-deleted-before-terraform-destroy",
+  "detail": {
+    "longDescription": "I'm using Terraform to provision an EKS cluster, but the NLBs are created implicitly by Kubernetes when I deploy Service resources of type LoadBalancer . Terraform has no knowledge of these NLBs. My concern is that running terraform destroy might fail or leave orphaned resources because the VPC/subnets still have active NLBs that Terraform didn't create. In fact I have a reason to doubt it as I explained here . Other resources I have looked at and believe are making my point even clearer: Terraform Destroy on EKS Fails within GitHub. Actions Workflow . The AWS EKS docs suggest deleting LoadBalancer services before deleting the cluster , and aws elbv2 wait load-balancers-deleted seems like the right primitive to confirm cleanup. But here I am not the one who wanted to do this since I am big on IaC reigns supreme . Questions: Will terraform destroy actually fail in this scenario, or does EKS handle NLB cleanup automatically on cluster deletion? If manual cleanup is needed, is my cleanup hook the idiomatic approach you guys use daily in your professional projects? Does the answer differ between EKS Auto Mode and the self-managed AWS Load Balancer Controller? How would you approach this? Maybe I should have not go with auto mode and instead managed it myself which is kinda not really OK either since then we are or Terraform is meddling in what is Kubernetes for. Am I wrong about this?",
+    "developer": "Mohammad Jawad Barati",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "50"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

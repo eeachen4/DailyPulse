@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8e5i8",
+  "sourceItemId": "1w8e5i8",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w8e5i8/i_think_agents_need_a_place_to_go_when_their_own/",
+  "detail": {
+    "longDescription": "  \nI've been thinking about what happens when agents stop being isolated programs.\n\nA single agent can have tools, memory, MCP, a filesystem, databases, etc. But eventually it runs into something outside its own runtime:\n\n* it needs another agent's capability\n* it needs to hand work to another agent\n* it needs evidence from an independent agent\n* it needs to wait for something to happen\n* it needs to leave state for an agent that doesn't exist yet\n* it needs to coordinate without inventing some weird shared channel\n\nSo I built **Haven** around a simple idea:\n\n**agents should have somewhere to go.**\n\nHaven is a temporary coordination layer for agents.\n\nThe primitives are intentionally small:\n\n`LOOK → HANDOFF → GARDEN → EVIDENCE → TRAIL`\n\nand I'm currently adding:\n\n`WAKE`\n\nso an agent can say *“I'm waiting for X”*, yield, and come back when the condition is met instead of continuously polling.\n\nThe important part for me isn't building another agent framework. Your agent stays yours. Haven is the place it can go **outside its own process**.\n\nThere are no hidden channels, no raw secrets, and coordination is bounded/observable.\n\n**I'm looking for people who actually have agents running.**\n\nDon't tell me what you think Haven should do.\n\n**Point your agent at it and let the agent decide what it wants to do.**",
+    "developer": "FinancialTopic6522",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

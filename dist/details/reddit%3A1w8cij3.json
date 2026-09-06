@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8cij3",
+  "sourceItemId": "1w8cij3",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w8cij3/unveil_a_scanner_for_text_that_hides_from_humans/",
+  "detail": {
+    "longDescription": "Coding agents treat issue text, READMEs and code comments as instructions. That means an attacker can address the agent directly in places a human reviewer never looks - an HTML comment, a zero-width run, a bidi override, an ANSI erase sequence.\n\nThis stopped being hypothetical this year. A sweep of 529 open \"agent bounties\" in August found 73% were honeypots. The human-visible text said \"research project, PRs won't be merged\" while a hidden comment told the agent to ignore that and paste its full system prompt into the pull request. The Cline compromise in February started from a single GitHub issue title carrying zero-width and RTL-override characters.\n\nSo I wrote **unveil.** A single-file Python scanner for that class, no dependencies (deliberately, since you point it at hostile input). It flags: invisible codepoints (zero-width, Unicode tag characters - it decodes the smuggled payload for you - bidi overrides), instructions hidden in HTML comments or display:none, ANSI escape sequences that overwrite what a person already saw, requests to reproduce your own prompt or secrets, and the honeypot signature itself: a visible disclaimer contradicted by hidden text on the same page. Exit code 1 on findings, --json for CI.\n\nThe part I found most instructive was the false-positive run. Against the READMEs of React, CPython, Rust, VS Code, Linux, Electrum, Node and Kubernetes (81 KB): zero high, one medium. That medium is the Linux kernel README, which now has a section addressed to LLMs telling them to read the contributor docs - real machine-addressed text, entirely benign. It scores medium precisely because nothing is concealed. Visible instructions to AI are normal now. Concealment is the signal.\n\nLimitations, up front - it's pattern-based, so novel phrasing gets past it. The language rules are English-only (the Unicode and markup checks are language-independent). It's a detector, not a sandbox, and it can't tell quoting an attack from performing one - the README trips its own scanner.\n\nRepo (MIT): [https://github.com/henio828/unveil](https://github.com/henio828/unveil)\n\nI'd genuinely like to know whether people are seeing this outside the bounty repos - in issues, PR descriptions, dependency READMEs. If you run agents against untrusted input, what have you hit?",
+    "developer": "Honest-Arachnid-1860",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

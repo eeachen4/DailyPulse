@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8h6g7",
+  "sourceItemId": "1w8h6g7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w8h6g7/i_spent_883_commits_and_8_months_building_an_llm/",
+  "detail": {
+    "longDescription": "So yeah, I spent 883 commits, 8 months and billions of tokens building this thing and eventually abandoned it:\n\n[https://github.com/DITlieD/ELAI-archive](https://github.com/DITlieD/ELAI-archive)  \n\n\nIt started as my attempt to build a better coding-agent harness, where the LLM is basically a replaceable worker instead of being trusted to control everything.\n\nThe harness was supposed to own the actual planning, state, permissions, context, verification, evidence, orchestration, etc. The model could say “I finished the task,” but the system would check what actually happened instead of just believing it.\n\nThen I kept adding shit.\n\nCode graphs, RAG, deterministic orchestration, isolated workers, crash recovery, model routing, local models, replayable runs, verification gates, self-improvement experiments, dashboards, computer use, personal automation, and a million other ideas.\n\nEventually it became a ridiculously overengineered mess. I spent more time researching, planning, and adding systems than actually using the thing to get work done. Other harnesses were already becoming much more usable while mine was still mostly a giant headless experiment.\n\nSo I killed it.\n\nI’m not posting this as a working product, and I definitely don’t recommend downloading it expecting some polished Claude Code alternative. A lot of it is incomplete, disconnected, outdated, or just plans that never became real.\n\nBut there is also a stupid amount of research, architecture, experiments, failed ideas, and code in there. Some parts might still be useful to people building agent harnesses, especially around:\n\n\\- keeping state and verification outside the model\n\n\\- deterministic/replayable agent runs\n\n\\- codebase retrieval and dependency graphs\n\n\\- orchestrator/worker separation\n\n\\- context budgeting and session handoffs\n\n\\- sandboxing and permission gates\n\n\\- checking agent claims with evidence it didn’t generate itself\n\nThe archive has the original experimental Rust/Python/Tauri code, thousands of planning and research documents, and the sanitized commit history.\n\nBasically: it failed as a product, but maybe someone can steal a good idea from the corpse.\n\nI’d be curious what people here think is actually worth salvaging, or whether the whole architecture was doomed from the moment I kept expanding the scope.\n\nI might one day finish it, but who knows if it will be necessary, i aimed at solving everything and ended up solving nothing, i hope this helps you in any means so at least its not a total loss, even if its only a lesson or confirmation of what type of shit to not do.",
+    "developer": "dancingwithlies",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

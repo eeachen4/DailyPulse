@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8dbwl",
+  "sourceItemId": "1w8dbwl",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w8dbwl/running_95_sandboxed_agent_containers_for/",
+  "detail": {
+    "longDescription": "Setup: one container per user, Claude-based agent, persistent workspace and memory, shell, nginx-routed web host. Users talk to it over Telegram, WhatsApp, SMS, or web. Keys never enter a container; all model calls go through a broker and get metered on real tokens.\n\nFirst paying user did most of his work from Telegram on his phone: agent built a listener app with live chat and a GIF picker, hosted it in his own container, pushed an iOS build to App Store review through the ASC API.\n\nThree things that bit me:\n\n1. Idle-stop counted only chat, not the traffic to the app the agent was hosting. 22 stops in 5 days. Now always-on is exempt and hosted traffic counts.\n2. The agent's own memory file grew past what it could load, and it started losing context mid-task. Cap and summarize early.\n3. A billing fallback estimator ran when token counts were missing and over-charged. Never estimate money. Meter or refuse.\n\nCurious how others handle the \"user hosts a real service inside the agent's sandbox\" case. Do you separate the runtime from the agent, or keep them together like I do?",
+    "developer": "aihudagency",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w7x4d7",
+  "sourceItemId": "1w7x4d7",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w7x4d7/authority_as_a_firstclass_primitive/",
+  "detail": {
+    "longDescription": "I've been thinking about a problem that seems increasingly important as agents move from generating information to actually taking actions.\n\nIt seems like we have primitives for most of the hard things:\n\n* call an API\n* modify a database\n* spend money\n* deploy infrastructure\n* access sensitive information\n* create another agent\n* execute actions on behalf of an organization\n\nWe have systems for identity and access.\n\nBut I'm wondering whether we're missing a separate primitive:\n\n**Is this action permitted, and on whose authority?**\n\nI don't think we currently have a general-purpose primitive for that.\n\nAn agent having access to a tool doesn't necessarily mean it should be authorized to perform every action that tool makes possible.\n\nFor example:\n\n    nomos.can({\n      authority,\n      action: \"transfer_funds\",\n      facts: {\n        amount: 5000,\n        currency: \"USD\",\n        destination: \"approved_supplier\"\n      }\n    })\n\nThe result could be:\n\n    AUTHORIZED\n    DENIED\n    ESCALATED\n\nThe interesting part isn't the API call itself.\n\nIt's the idea that the **authority to act could be represented as a portable, verifiable object**, rather than being reconstructed separately inside every system an agent interacts with.\n\nSo instead of:\n\n    Agent → Tool → Permission Check\n\nyou could have:\n\n    Agent → Authority → Action\n\nAnd the authority could be delegated:\n\n    Organization\n        ↓\n    Department\n        ↓\n    Agent\n        ↓\n    Action\n\nI'd like to hear where the model breaks.",
+    "developer": "DogInteresting8548",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
