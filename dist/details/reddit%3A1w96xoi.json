@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w96xoi",
+  "sourceItemId": "1w96xoi",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1w96xoi/deepseekv4flashvision_q8_vs_qwen38flashnext_q8/",
+  "detail": {
+    "longDescription": "I'm using DS-V4-Flash-Vision with Q8\\_K\\_XL quantization locally as my everyday engine, and for some time now I've been doing a lot of comparisons with Qwen3.8-Flash-Next, also with Q8\\_K\\_XL quantization. It took me quite a while to get Q3.8FN to work reasonably well, and here are my observations. My hardware:  2x StrixHalo 128GB, USB-C 4 connector, Llama (RPC) as inteference engine. \n\n1. DSV4FV is about 40% slower than Q38FN at the same quantization level when it comes to token generation alone.\n\n2. DSV4FV completes tasks about twice as fast as Q38FN! This means that DSV4FV “hallucinates” less (I observe this based on the obstacles the models encounter along the way).\n\n3. The Q38FN is unusable in “xhigh” mode. A simple task that the Q38FN completed in 25 minutes on “medium” mode, it failed to complete in \\~3 hours on “xhigh” mode.\n\n4. The same task that the Q38FN completed in 25 minutes, the DSV4FV completed in 12 minutes on “medium”.\n\n5. The DSV4FV completed the same task on “max” in 37 minutes in first iteration, second took 44 minutes. \n\n6. Qwen3.8 tends to overinterpret my instructions. If I don’t write them out in great detail and leave room for creative interpretation, it will take advantage of that. Perhaps this is where it gets bogged down in its own creativity. In what it does, I’ve noticed that Qwen clearly adds too much and struggles to flesh out the details.  \n  \nIn my opinion, DSV4FV is the better solution when working with professional code.\n\nJust so there’s no misunderstanding - I was a huge fan of Qwen 3.6 27B and of course now I'm Qwen 3.8 27B big fan, which I’ve been using a lot and is great! In general i’m a huge fan of Qwen, but ever since I’ve had the hardware on which I can run DSV4FV, I’ve been using it, and I’m super happy with how good this model is.\n\n",
+    "developer": "pabloodiablo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

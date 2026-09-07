@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w934ew",
+  "sourceItemId": "1w934ew",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1w934ew/point_density_not_architecture_was_the_bottleneck/",
+  "detail": {
+    "longDescription": "**Body:**\n\nHello all,\n\n**TL;DR:** point density, not model architecture, was the real bottleneck for a 5-class radar-only classifier on RadarScenes. Going from 1 to 5 points per instance roughly doubles macro F1 (0.381 → 0.764), while a whole set of architecture and feature changes all landed inside a measured noise floor. Real failure case attached: a stationary two-wheeler misread as a pedestrian.\n\n**Setup**\n\nI'm a perception / radar signal processing engineer getting into ML on radar data. Trained a 5-class classifier (car, large\\_vehicle, two\\_wheeler, pedestrian, pedestrian\\_group) on RadarScenes radar point clouds only, no camera or lidar. Per-instance histogram (16 bins) encoding into a 3-layer MLP.\n\n**Main result: point density is the ceiling**\n\n* Macro F1 goes from 0.381 to 0.764 just by increasing points per instance from 1 to 5. Same trained model, nothing else changed.\n* Why: a single point can't carry a size or velocity-spread signature. large\\_vehicle's F1 is 0.037 at n=1 vs 0.995 at n=11+.\n* Some classes still work at n=1 (car separates cleanly on RCS/Doppler alone), others don't (two\\_wheeler and pedestrian collapse to the same near-zero-velocity signature when sparse).\n\n**Ablation studies**\n\nWider/deeper networks, six alternative feature encodings, different bin edges, all landed inside the noise floor I measured with a 6-fold split sensitivity check (same train/val/test proportions, sequences reassigned per fold).\n\nClosest thing to an exception: swapping the histogram for explicit per-instance statistics (mean/median/std) actually made things slightly worse (0.658 vs baseline's 0.686), and pedestrian's own F1 fell outside its class-specific noise floor.\n\n**Data caveats**\n\n* RadarScenes is naturalistically collected, not balanced: common classes get broad coverage, rare ones don't.\n* two\\_wheeler merges two physically different speed regimes (bicycle vs a much rarer motorized variant).\n* large\\_vehicle merges large\\_vehicle/truck/train/bus, RadarScenes' own recommended scheme, mostly forced by data scarcity in the rarer classes.\n* pedestrian\\_group's own boundary, what counts as a \"group\", isn't sharply defined in the source labels either.\n* Cross-validation also caught a data quirk: a two-wheeler tracked for hundreds of scans while stopped or moving sideways at a junction can dominate one sequence's vr\\_compensated distribution near zero. Land that sequence in one split and its two-wheelers read as stationary; land it in another and the rest look like normally moving two-wheelers with different RCS, which explains f1 score variance.\n\n\\[Image 1: validation set confusion matrix\\]\n\n\\[Image 2: real scene, camera + radar ground truth vs prediction\\]  \n\n\n**A real failure case**\n\nA nearly stationary two-wheeler with a single radar point gets predicted as pedestrian, its compensated velocity is near zero, indistinguishable from someone standing still at that point count. A car in the same scene, also one point, is classified correctly, RCS and Doppler are enough for that class.\n\nFull writeup here: [https://github.com/brunopinto900/radar-ml-autonomous-driving/blob/main/MLP\\_Report.md](https://github.com/brunopinto900/radar-ml-autonomous-driving/blob/main/MLP_Report.md)\n\nCurious what people would try next, especially for the very sparse cases, alternative representations that preserve more than the histogram encoding, and better ways to confirm an improvement is real rather than just split variance.",
+    "developer": "bruno_pinto90",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49587379",
+  "sourceItemId": "49587379",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49587379",
+  "detail": {
+    "longDescription": "Discovered something very interesting by chance a few days ago, and thought it might be interesting for other people running dynamic workflows with claude code. The workflow scripts themselves are javascript. Claude code knows the format and it can make a tool that composes workflows instead of going through LLM each time. I got it to do that, and with a few more tweaks it got the token spend for workflow execution and monitoring down to about 20% of what it was before, significantly speeding it up (most of our workflows used to take 5-6 hours, they now take 20-40 minutes). We got Claude to analyze the workflows from the past few weeks (the workflow execution is on disk, in ~&#x2F;.claude&#x2F;projects) and identify commonalities between them. It turned out to be effectively 3 kinds of workflow steps, done in a million ad-hoc ways. - a code change agent&#x2F;implementer&#x2F;worker - this takes a task from the plan and does it; such agents can run in parallel - a check gate agent - this tries to figure out what the implementer agents did and evaluates things that should not be done in parallel - the final check, which deploys, runs api tests etc. It also turns out you that Claude can compose workflows out of standard &quot;agents&quot; (from .&#x2F;claude&#x2F;agents), not writing the prompts for workflow agents by LLM each time; so I asked it to figure out commonalities&#x2F;variabilities, and it wrote 3 agent scripts, which we later reduced to two: - workflow-worker - gets a piece of the plan and very tight permissions to only write and run tests for it&#x27;s own part of the plan&#x2F;file boundary, and not fix anything that others might be doing, and definitely not run the whole test suite - workflow-gate - gets the results from parallel workflow agents in a group, runs serial verifications based on what changed in git (e.g. if any www files changed run web tests; if any backend files changed, run api tests etc. This used to be custom-written by LLM each time but we moved it to a makefile with two targets, so make workflow-serial-gate checks the git tree and runs tests for changes, make workflow-final-gate runs clean tests on everything, deploys to a staging environment, runs post-deployment tests as the variability moved into the makefile, both of these agent definitions became standard 100-line markdown, that the LLM did not need to write each time. next, since the agent definitions are standardized, we got claude to actually write a tool that would read out the plan file with steps and dependencies, and write the workflow javascript directly. previously it used to take 10 minutes for something like this to come back for complex plans, now it takes a second. Since the workflow agent prompts are static and written once, no tokens get spent writing them. since the whole choreography of which tests to run when is in the makefile, based on git changes, no tokens get spent on that. since worker agents are getting the plan and a step number, no tokens are spent telling them what to do (besides them reading the specific step, but this is unavoidable). Tokens get spent pretty much only on creating the plan, narrow implementation tasks and contextually fixing issues. When a named agent runs as part of the workflow, the context passed to pre-tool use hooks includes the name of the agent (e.g. workflow-worker, workflow-gate) so we were able to constrain them significantly. For example, workflow-worker is not allowed to run make, or run the entire test suite, with a message to delegate that to the gate agent. The end result is amazing, workflows run much much faster and spend far fewer tokens than before. Claude pretty much wrote the whole thing itself, so I definitely recommend this as an experiment if you run dynamic workflows. Happy to provide any additional info if people are interested.",
+    "developer": "gojkoa",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

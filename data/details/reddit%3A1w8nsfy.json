@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8nsfy",
+  "sourceItemId": "1w8nsfy",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w8nsfy/is_a_kubernetes_cluster_using_different_vps/",
+  "detail": {
+    "longDescription": "Hi there,\n\nI want to run a kubernetes cluster using different VPS. This is for redundancy in case of failure of a VPS..\n\nI read that a cluster composed of nodes in different regions should be avoided because of latency.\n\nAre different VPS providers within the same \"region\" (e.g. west coast) considered multi-zone (or multi-region, I'm not sure about the terminology as it seems there's a difference in K8s lingo) that can have latency issues?\n\nFor some reason it doesn't make sense (in my head) to have a kubernetes \"cluster\" composed of nodes being \"simply\" VMs within the same \"machine\" as the likelihood of all VMs going down is still the same and depends on the same machine. But, this seems to be the default and I really don't get why..\n\nAlso, once the worker nodes are running and are receiving traffic.. Why should the control plane latency impact the users traffic?\n\nFor example, I don't care if \"kubernetes\" decisions (scaling a pod, etc.) take an extra 100ms..\n\nWhat am I missing?\n\nThanks.",
+    "developer": "sanjibukai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

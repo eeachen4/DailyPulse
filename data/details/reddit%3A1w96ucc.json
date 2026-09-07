@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w96ucc",
+  "sourceItemId": "1w96ucc",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w96ucc/two_weeks_of_running_an_openaicompatible_proxy_in/",
+  "detail": {
+    "longDescription": "The pitch of an OpenAI-compatible layer is that it's a translation problem. Take a request in one shape, send it in another, translate the response back. It sounds like a weekend of work. Most of it is. The last 15% is where I lost two weeks.\n\nA partial list of what bit me. Streaming: the chunk formats don't line up, and clients that parse SSE strictly will choke on a shape they didn't expect halfway through a response — you find this out when someone's editor hangs, not when your tests pass. Tool calling: the schemas are genuinely different, and a malformed argument object doesn't fail loudly, it just produces an agent that silently does nothing. Stop sequences and finish reasons don't map cleanly, so clients occasionally think a response ended when it was truncated. Token counting differs between tokenizers, which means your usage numbers and the provider's usage numbers disagree by a few percent and you have to decide which one you bill on.\n\nNone of this is hard, exactly. It's just that every single one of them looks like \"the model is being weird\" from the user's side, and you only find them by watching real sessions.\n\nI write this partly as a warning to anyone about to build the same thing for themselves, and partly as disclosure: I run routera . one, which is the hosted version of exactly this. If you'd rather build it yourself, genuinely go ahead — but budget for the 15%, not the weekend.",
+    "developer": "QueenCuriousMind",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

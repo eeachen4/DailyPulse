@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8uzoh",
+  "sourceItemId": "1w8uzoh",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w8uzoh/summ_an_oci_container_registry_in_rust_one_binary/",
+  "detail": {
+    "longDescription": "**summ** ([https://github.com/summcr/summ](https://github.com/summcr/summ)) is a container registry that passes the [OCI distribution-spec conformance suite](https://github.com/opencontainers/distribution-spec/blob/main/spec.md) and ships as a single statically linked binary. `./summ serve` and you have a registry — no database, no object store, no sidecar, and the web UI is on the same port.\n\nI started it because catalog and list operations are slow on every registry I've used, and that's structural: the spec is a transfer protocol, so registries bolt discovery onto a store designed for transfer. summ inverts it — the store is designed for discovery, transfer served out of it.\n\nEverything is one RocksDB keyspace with binary keys ordered so every list is a prefix scan that arrives sorted in the order pagination needs, under one rule: no stored value may grow with the size of the registry.\n\nThree Rust things worth passing on:\n\n* `sha2` 0.11's `SerializableState` (`crypto-common` 0.2 hazmat) — 104 bytes of hasher state for sha256. That's what makes a chunked upload resumable across a process restart: offset and hasher come back out of the metadata store and the digest still verifies. The trait doesn't exist in 0.10.\n* **RocksDB's default** `filter_policy` is nullptr — no bloom filters at all until you ask. A custom `SliceTransform` for prefix filters made the hot existence check \\~6× faster.\n* **A second engine (redb)** behind a non-default feature, existing only so the test suite runs against both. It ships in nothing, and it's what keeps the storage trait from quietly growing a RocksDB-shaped hole.\n\nBeyond the spec: pull counts per day and hour, tag history, and a cursor-paged discovery API the UI is built on. Rest is axum, tokio, postcard, oci-spec; the UI is `include_str!`'d with no framework and no CDN, so cargo build is the whole pipeline.\n\nAt `v0.1.0-rc.1`, Apache-2.0 — garbage collection isn't built yet, so don't point production at it. Happy to go into the schema design, and I'd like to hear where the API is wrong before it's locked.",
+    "developer": "Accomplished-Cat-381",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

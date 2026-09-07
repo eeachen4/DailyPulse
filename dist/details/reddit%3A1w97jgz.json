@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w97jgz",
+  "sourceItemId": "1w97jgz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w97jgz/multiple_local_llms_generating_feature_demo/",
+  "detail": {
+    "longDescription": "Once a week I publish a demo tutorial video to our YT channel about our software and having just released my 34th I wanted to share the process because it's working really well and has matured to the point where I get these videos without any human editing.  Not pitching any software here - using existing open source tools.  Today's video was meta and about how we make them - I think there's a lot of value here because each video provides a quality and capability feedback loop.\n\nIf you want to try this I list each step in the video and the tools used for it. I use a local rig with 2 5090 GPUs and assorted models for the tasks a 35B param Qwen model is the workhorse.\n\nHere's how it's done:\n\n* Brainstorm a topic and start with a boilerplate prompt to start\n* Plan mode the \"beats\" and topics the video will make - 5 second hook, 30 second problem statement, then the rest.  The result is a big yaml file with all the timings, agent notes and dialog\n* Our software runs on Ubuntu Server with apps for mobile and desktop so the first thing my agent does is create a virtual LAN internally that's sandboxed.  It spins up as many servers it needs for the demo\n* Loads the Linux Desktop app in memory - server is headless but the real app and real servers are actually running and the screen is recorded.\n* Speech is generated using ElevenLabs and we have a database of hashed speed so we never pay to generate the same text twice. There is a RAG with 20 years of my emails, texts, code, blogs so generated text is in my tone and style. \n* The demo uses an MCP service that comes with our server and should be able to control anything it can do and you'll see it in the app live. \n* It can do anything with the video at this point besides show the screen, animated info-graphics, photos and text, inline videos and anything we can think of - like star bursts and highlights on the screen.\n\nThe magic happens when something goes wrong during the production.  It could flush out a real bug, visually inspect the screen and catch an off pixel, try to complete the demo but the MCP server is missing a capability. \n\n* The agent uses a GitHub PAT to post an issue and tags a bot account which triggers a GitHub action on a different server here who runs a developer agent and model.\n* Dev agent opens a pull request which triggers a local QA agent to checkout the branch and verify the fix, approves it and it auto-merges to staging. \n* Hard problems pull in cloud frontier models or a bigger local server for help.\n* The merge goes back to the producer who pulls the new code down and re-starts production. \n* This will loop until down and the demo network is torn down.\n\nI usually watch about 4-5 takes and give feedback and tweaks and we re-run.   We also re-run videos when the app changes to the UX is always consistent. Same for screen shots. \n\nThat's a lot :) But the end result is this continuous feedback loop, up to date videos, free end to end tests with each run and the production scripts get better and more capable every week. \n\nHere's the video about making videos like this for product demos and each step lists the tools I use: [https://youtu.be/rIjQzyY76DE?si=FE9NnXH8ZSIxImbZ](https://youtu.be/rIjQzyY76DE?si=FE9NnXH8ZSIxImbZ)",
+    "developer": "Ok_Cartographer_6086",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

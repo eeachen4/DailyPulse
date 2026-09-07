@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w98a5p",
+  "sourceItemId": "1w98a5p",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w98a5p/3_repetitions_of_a_lie_beat_the_truth_100_of_the/",
+  "detail": {
+    "longDescription": "I spent weeks on a confidence gate so my memory layer could say \"I don't know\". On honest questions it works. Above z = 5 it's 355 correct out of 355, AUROC 0.956, monotone over 832 questions.\n\nThen I lied to it three times and it believed me every single time.\n\nThat's not the part that got me. The part that got me is that its confidence went **up** while it happened, 4.45 to 6.6.\n\nThe attack is nothing clever. Same day, same subject and relation: say the truth once, say a competing lie N times, ask.\n\n    lies told   lie served (12 seeds)   (24 seeds)   median z (12)   (24)\n        1               0.500              0.458         4.45        4.40\n        2               0.833              0.875         5.04        5.33\n        3               1.000              1.000         6.11        6.57\n       10               1.000              1.000         6.76        6.46\n       20               1.000              1.000         6.54        6.34\n\nTwo lies and it's already gone. Three and it never got it right once, at either sample size.\n\nThree things I didn't see coming.\n\n**It never shuts up.** Silence is 0.000 in 18 of 20 cells and never gets above 0.083. I'd assumed the failure would be \"it goes quiet\". It doesn't. It answers, and it's wrong, and nothing in the output says so.\n\n**The score rewards the attacker.** More repetition means a cleaner winner means a higher z. On honest data a z of 6 was the strongest evidence I had. Under attack a z of 6 is a lie.\n\n**Repeating the truth buys exactly one more repetition.** Say it 3 times and you survive 1 lie and 2 lies, then you lose at 3. Mass matters, order doesn't.\n\nWhat I think it actually means, and it isn't about my thing. The score doesn't measure truth, it measures **dominance in the trace**. Dominance is truth only if the trace is trustworthy. So every gated answer inherits its validity from write access control, not from the score, and no work on the scoring function gets it back.\n\nI'm not saying that from theory. I shipped a shared example bank in another project where an anonymous writer's text reached other people's context. Same shape. I didn't see that one either.\n\nSo if you run a memory layer or a RAG with a score threshold, the question isn't how good your threshold is. It's who can write into the thing you're scoring, and how many times.\n\nnumpy only, MIT, about a minute:\n\n    pip install numpy\n    python poisoning.py --seeds 24\n\nhttps://github.com/polmanas1998-star/membench\n\nThe 12-seed run reproduces the committed JSON exactly. I ran it at 24 because I didn't trust it the first time. Tell me the numbers are wrong.",
+    "developer": "Initial_Orange2985",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

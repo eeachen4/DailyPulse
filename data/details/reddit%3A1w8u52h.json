@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8u52h",
+  "sourceItemId": "1w8u52h",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w8u52h/how_are_people_managing_100s1000s_of_onpremedge/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nWe’re at \\~100 customer-site clusters today and trying to avoid painting ourselves into a corner if that grows to 1k+.\n\nMostly small clusters, some single-node, some HA. Linux containers only. Connectivity varies a lot: fully connected, heavily whitelisted, or only online occasionally.\n\nWe already use Argo CD and prefer GitOps/IaC. Licensing should ideally stay OSS/free.\n\nCurrently looking at Rancher/RKE2, Talos, KubeOne/Kubermatic, Fleet, Sveltos, etc.\n\nCurious what people actually run in production for this kind of setup:\n\n\\- cluster provisioning/lifecycle/upgrades\n\n\\- central vs per-cluster Argo CD\n\n\\- handling disconnected/restricted sites\n\n\\- per-customer config/secrets isolation\n\n\\- what becomes painful once you get into the 100s or 1000s of clusters\n\nNot really looking for vendor pitches, more interested in what has worked (or failed) in real deployments.",
+    "developer": "Lks1123",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

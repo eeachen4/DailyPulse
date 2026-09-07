@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8smho",
+  "sourceItemId": "1w8smho",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w8smho/im_designing_an_onprem_kubernetes_reference/",
+  "detail": {
+    "longDescription": "I'm a junior engineer working on a project to define a **production-oriented reference architecture for on-premises Kubernetes** and implement it as reproducible Ansible code.\n\nI'm not trying to build another \"install K8s(RKE2) with Ansible\" repository.\n\nThe idea is to start from the **failure domains and operational requirements**, define the architecture, and then encode those decisions into Ansible so that unsafe configurations can be detected before deployment.\n\nSome of the assumptions I'm currently designing around:\n\n* **Physical rack topology is part of HA** — not just Kubernetes node labels.\n* etcd members are distributed across independent racks/failure domains.\n* Control-plane, etcd, ingress, egress, and worker nodes have separate roles and taints.\n* North-south traffic is handled through dedicated ingress nodes rather than exposing every Kubernetes node.\n* **Cilium** is used for eBPF networking, BGP, network policy, and Egress Gateway.\n* **Traefik** is used for operational/internal applications, while **Istio** is reserved for workloads that actually need traffic management such as canary/blue-green/weighted routing and mTLS.\n* Stateful HA is considered beyond pod distribution — PostgreSQL, Redis, object storage, etc. are treated as separate failure domains.\n* Ansible preflight checks should **fail the deployment when the topology itself is unsafe**, rather than simply documenting the recommended topology.\n* Failure scenarios such as node/rack failure, BGP convergence, egress gateway failure, and MTU behavior will be measured rather than assumed.\n\nThe architecture is currently documented in the README, along with the reasoning and references behind the major design decisions.\n\n**This is where I'd really like the Kubernetes community to challenge it.**\n\nWhat am I getting wrong?\n\nIn particular, I'd love feedback on:\n\n1. Are the rack-aware etcd assumptions actually valid for production environments?\n2. Where are the hidden failure domains or SPOFs in this design?\n3. Is the Traefik/Istio separation reasonable, or am I over-engineering it?\n4. Are there problems with the Cilium BGP + Egress Gateway approach that I'm overlooking?\n5. Which parts of this architecture would you change if you had to operate it at scale?\n6. What would make this architecture impractical in a real enterprise environment?\n7. In a large-scale production environment, is this kind of architecture actually likely to be used for failure isolation?\n8. I'm designing this around a multi-cluster architecture. If the environment generates a large volume of metrics, would Thanos be a reasonable choice for long-term storage and cross-cluster observability?\n9. Are there any other measurements or failure tests you would recommend performing before putting this architecture into production? I've documented the current measurement and validation targets in Section 6 of the repository. I'd especially appreciate suggestions based on real-world production experience.\n\nI'm also planning to **accept Issues and Pull Requests openly** and incorporate useful feedback into the implementation.\n\nThe goal is eventually to have something like:\n\n**Architecture → Ansible → Preflight → Deploy → Failure Test → Community Review → Improve**\n\nrather than simply:\n\n**Ansible →** `kubectl get nodes` **→ Done**\n\nI'm intentionally publishing this before considering the architecture \"finished.\"\n\nSo please **tear it apart**. If you disagree with a design decision, I'd much rather have someone point it out now than discover it after deploying it in production.\n\nRepository : \\[https://github.com/jjsair0412/On-Premise\\_kubernetes\\_best\\_architecture\\]\n\n",
+    "externalUrl": "https://github.com/jjsair0412/On-Premise_kubernetes_best_architecture",
+    "developer": "HugeCommunication984",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

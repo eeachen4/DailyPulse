@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49587692",
+  "sourceItemId": "49587692",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49587692",
+  "detail": {
+    "longDescription": "Hey HN! Long time reader here. I recently spent over five months to modernize an old website I have been working on since 2008: https:&#x2F;&#x2F;whatthemovie.com . This is a simple game where people uploads screenshots from movies, and other players have to guess the title of the movie from where the image was taken. This is really images from movie scenes, not promotional stuff or whatever. We have 70k users (but most are from the 2008-2010 area so inactive), and more than 600k images uploaded by our users for 18 years. Around 30k movies in the database too. Thanks to LLMs I was about to modernize the stack which was in an awful state (Rails 4.2, Ruby 2.4 Spaghettis code, Protoytype.js and CSS code directly in HTML etc). It was exhausting to do all the refactoring and modernization but at the end I&#x27;m happy with the result. We also have now &quot;Daily challenges&quot; (like Wordle or framed.wtf) where every day a new challenge is posted and players have to find the title of the movie with a different type of challenge everyday (unzoom, cuts, focus..). It doesn&#x27;t need an account at all: https:&#x2F;&#x2F;whatthemovie.com&#x2F;daily We also have &quot;closed contests&quot; in the vault: basically we organize temporary contests where all shots uploaded must match a specific criteria (a decade, a genre, &quot;emotions&quot;, &quot;cities&quot;, &quot;phones&quot; etc) : https:&#x2F;&#x2F;whatthemovie.com&#x2F;vault Stack is simple: Bare metal on Hetzner, images on AWS S3, docker compose with around 10 micro services (Redis, MariaDB, AI sidecar in Python, Opensearch..). A little Ansible playbook to provision the machine. New relic for performance, Rollbar to track errors. I mainly used Claude models to do the work with sometimes other models to questionate the original review of the Claude model or to try to find things the other model didn&#x27;t. Thanks for your attention, and happy to answer any questions you may have! Yann",
+    "externalUrl": "https://whatthemovie.com/",
+    "developer": "hivacruz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w9adne",
+  "sourceItemId": "1w9adne",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1w9adne/built_a_deterministic_reasoning_engine_from_part/",
+  "detail": {
+    "longDescription": "Over the last month, in my spare time, I’ve been experimenting with two separate ideas: some recurrent-network maths as a possible GRU/LSTM substitute, and a separate transformerless AI project.\n\nThe transformerless project eventually became too slow to properly train and debug on the hardware I have, so I started pulling it apart to see if any individual pieces were worth keeping.\n\nOne part was: the structured memory/reasoning section. It kept behaving well in small tests, so I separated it out and turned it into its own project: THREADS.\n\nIn simple terms, THREADS is a deterministic memory and reasoning engine. You give it structured facts and relationships, and it can follow them, track changes over time, answer historical questions, handle retractions and contradictions, and keep provenance for how it reached an answer.\n\nSome current test results:\n\n\\- 200,000-hop reasoning chain — exact final answer\n\n\\- 1,000,000 irrelevant events — a 128-hop query still returned the exact answer\n\n\\- 50,000 shuffled temporal events — 5,000/5,000 historical queries matched an independent checker\n\n\\- 40,000 ambiguity/contradiction cases — 40,000/40,000\n\n\\- 60-category reasoning suite — 5,830/5,830\n\n\\- Original regression suite — 28/28\n\n\\- Bounded program induction — 2,000/2,000 held-out predictions\n\nI’m not claiming it replaces transformers, SMT solvers, or databases. It also doesn’t understand arbitrary English by itself.\n\nWhat I’m interested in is whether something like this could sit underneath an AI system as an exact memory/reasoning layer, while a neural model handles language and fuzzy interpretation.\n\nI’ve put the Python source, tests, benchmarks, and research PDF on GitHub so people can run it themselves.\n\nhttps://github.com/rickey1990/THREADS-reasoning-engine",
+    "developer": "WAMFT",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

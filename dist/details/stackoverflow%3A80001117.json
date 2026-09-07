@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001117",
+  "sourceItemId": "80001117",
+  "sourceUrl": "https://stackoverflow.com/questions/80001117/rebase-merge-an-existing-commit-to-the-reference-of-an-github-pr-with-only-one-c",
+  "detail": {
+    "longDescription": "I have set up a 3-Layer Git infrastructure, with Github as the topmost repository . In the middle is a local dispatch-only repository from where I will pull PRs from Github and push all local changes up to github. No code changes are done here, this is transitory only. The lowest tier is the development repository , where daily changes are happening. This repo's main has multiple commits a day, as there is an autocommit in each succesful complitaion. There are also several branches for new functionality or some older code as reference, which all don't belong to Github. As the main branch is a high volume repo there is one separate branch for pushing fixes and new functions to. This is an orphan branch, which gets updated from time to time, when new functions or fixes should be deployed to the upper repos. Here I create the commits, which should be finally arrive in Github. I use Conventional Commits with all the information about what the commit contains. This works already perfect. Once a new version or a fix should be deployed, all changed files are checked out into this release repo, and a single new commit is issued. This release branch gets pulled from dispatch-repository and from there it will be pushed to Github. So this direction is works just perfect for deploying new functions or fixes, which are not related to PRs. My problem are now PRs coming from Github. My workflow is here the following: From the dispatch-repo I pull a patchfile with all changes from the PR and store this patchfile into a directory, which can be accessed by the development repo. In the development repo I use the patchfile to create the needed changes and bring them to a new commit in the release branch. This commit has no reference to the Github-PR besides the information in the commit message: fix: merged (#123) to solve .... Now I need a way, to integrated this release commit into the dispatch-repository and finally to Github with just a single commit. At this time my developer release respective the corresponding main branch of the dispatch repo is likely several commits ahead of the state, when the PR-author created the PR. Therefore I need to integrate my commit into the PR branch, I have fetched with: -git fetch origin +refs/pull/*/head:refs/heads/pr/* How can I make a three way merge or a rebase, so that the PR in the pr/xxx branch is used as the reference for Github, to close the PR as solved and merged, even when my local repository is some commits ahead to the PR. This will be the usual situation for most PRs. It is very seldom, that a PR arrives, while my repo is still in that state, the PR was created from. My goal is, to get this done in one single commit, which has the ID from my development:release branch, so that the next commit from there, will fit into the chain, without the need to merge ghost commits back, to keep the line between release<->dispatch<->Github So the picture looks like: +------------------+ -->PR/x-> | GitHub | +------------------+ | ^ ^ | | | v | +----how to manage this +------------------+ ?????? << here is my problem | Dispatch | |-->pr/x branch +------------------+ ^ | ^ | patchfile x | | | new version<---+ | v | | +------------------+ | | main <-| development |--> release branch +------------------+ | | | v v v different development branches The direction from release for new versions/fixes not releated to an PR is working flawless! Only the direction, handling the speacial commit from release, which is based on the solved PRs patchfile is my problem. This commit includes all changes, integrating an PR to the current state of my repo, but contains here in the development repo no reference to the PR, which can be used by Github to close this PR in purple. My goal is, to solve this locally in my repo without media disruption, by changing for single actions to the Browser window. Thanks for useful hints. My goal is, to solve this with pure git functionality without gh or other helpers.",
+    "developer": "Erdhoernchen",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "73"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

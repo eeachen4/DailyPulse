@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w99yd5",
+  "sourceItemId": "1w99yd5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w99yd5/3_independent_llm_judges_agreed_on_only_3166/",
+  "detail": {
+    "longDescription": "While building an Arabic-first LLM security dataset (SemGuard), I ran 166 candidate \"impersonation\" examples through 3 independent LLM-as-judge models (GPT-4o, Grok-4, Llama 3.3 70B) to validate labels before training on them.\n\nSix other threat categories converged fine (5–72% disagreement, which tracks with how contested each category inherently is). Impersonation didn't: **98.2% inter-judge disagreement only 3 of 166 examples had unanimous-enough agreement.**\n\nMy first instinct was \"bad dataset, fix the prompts.\" But tightening the definition made agreement *worse*, not better. That's what made me suspect the label itself was the problem, not the data.\n\nWrote up a preprint arguing \"impersonation\" isn't one construct — it's (at least) four independent judgments getting collapsed into one label: target realism, deceptive intent, consent/context boundedness, and downstream actionability. Proposed a per-axis ambiguity index (IAI) instead of a binary flag, and ran a small pilot (n=40) to sanity-check it.\n\nSome of the pilot results confirmed what I expected. Some flatly contradicted my hypotheses (axis correlation was way higher than predicted  5/6 axis pairs above 0.6 —which is either genuine construct entanglement or an elicitation-format confound I haven't ruled out yet). I documented the failed predictions in the paper rather than hiding them, and I'm not fully sure which explanation is right.\n\nPreprint (Zenodo, DOI): [https://doi.org/10.5281/zenodo.22302106](https://doi.org/10.5281/zenodo.22302106)\n\nGenuinely curious if anyone's seen this kind of \"disagreement-as-signal\" framing applied elsewhere in trust & safety work, or has thoughts on the axis-correlation confound  happy to be told I'm wrong about something.",
+    "developer": "Strict-Result-7039",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

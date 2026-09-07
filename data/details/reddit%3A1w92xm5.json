@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w92xm5",
+  "sourceItemId": "1w92xm5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w92xm5/kubernetes_nodelevel_resource_balancing_workload/",
+  "detail": {
+    "longDescription": "Hi Everyone.\n\nI’m looking for some advice on handling node-level resource balancing in a **Rancher/RKE1 on-prem cluster**.\n\nThe issue I’m facing is that sometimes a pod consumes almost all CPU/RAM on a node. I understand that `requests` are used by the scheduler, while `limits` cap the container’s resource usage. So, should requests and limits generally be kept closer together to prevent a workload from impacting the entire node?\n\nAlso, does Kubernetes have any native mechanism to **rebalance/move pods** when a node becomes heavily utilized, or would this require something like the **descheduler**?\n\nMy concern with descheduler is that I have:\n\n* Critical **StatefulSets** where eviction could affect quorum.\n* Stateful workloads that take much longer to restart due to persistent storage.\n* Some **single-instance Deployments** (e.g. FTP) where moving/restarting the pod can cause downtime.\n\nWould the recommended approach be to use a combination of **requests/limits + taints/tolerations + node affinity + PDBs**, and isolate these critical/single-instance workloads onto dedicated nodes?\n\nWould appreciate any advice from people running production K8s and RKE1/on-prem clusters. Thanks!",
+    "developer": "Specialist_Horror400",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

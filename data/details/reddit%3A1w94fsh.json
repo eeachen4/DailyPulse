@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w94fsh",
+  "sourceItemId": "1w94fsh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w94fsh/randkv_a_pipinstallable_random_kvcache_eviction/",
+  "detail": {
+    "longDescription": "I built RandKV after trying to reproduce the Random Attention eviction policy without installing the paper’s complete research harness.\n\nGitHub: [https://github.com/DaBestCode/randkv](https://github.com/DaBestCode/randkv)  \nPyPI: [https://pypi.org/project/randkv/](https://pypi.org/project/randkv/)\n\nInstall:\n\n`pip install randkv[transformers]`\n\nThe policy protects the complete prompt, retains a recent-token buffer, and independently samples older generated tokens for every KV head. The implementation keeps absolute sequence positions separate from compacted physical cache length and derives deterministic seeds from the request, eviction round, layer, and head.\n\nCurrent scope is intentionally narrow:\n\n* Transformers 5.16\n* Batch size one\n* Full-attention decoder models\n* No beam search\n* No vLLM backend yet\n\nI also published the result that did not look good: with Qwen3-0.6B on an Apple M4, the current Python/PyTorch compaction path measured 35.48 tok/s versus 38.53 tok/s dense, or 0.921×. This is compatibility and adapter-overhead evidence—not validation of the paper’s reported vLLM throughput improvement.\n\nThe next milestone is a CUDA/vLLM backend with matched quality and serving benchmarks. Feedback on the cache interface, vLLM integration boundary, or benchmark design would be especially useful.",
+    "developer": "atease01",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

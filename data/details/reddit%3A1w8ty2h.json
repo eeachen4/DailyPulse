@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w8ty2h",
+  "sourceItemId": "1w8ty2h",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1w8ty2h/spent_40_minutes_last_week_just_correlating/",
+  "detail": {
+    "longDescription": "Last week our checkout service started throwing 5xx errors after a deploy. Monitoring caught it fine — Prometheus fired alerts within a minute. But then came the actual work: was it the deployment? A DB connection issue? A downstream dependency? I had four tabs open — Grafana, kubectl logs, our deploy history, and a Slack thread — manually piecing together a timeline to figure out what actually happened.  \nBy the time we found it (a connection pool exhaustion from the new version), the alert had been sitting there for 40 minutes. The alert did its job. Finding the *why* was the slow part.  \nThis got me wondering if this is just normal life running Kubernetes, or if teams have actually solved this well and I'm missing something.  \nSo — for people running K8s in production:  \nWhen multiple alerts fire for what's really one incident, does anything group them for you automatically, or is that still manual?  \nHow do you currently connect \"this alert\" to \"that deployment\" to \"these logs\" — any tooling, or mostly tribal knowledge and tab-switching?  \nIf something surfaced a root-cause hypothesis with the actual evidence behind it (not a black-box guess) — would that save real time, or is this already a solved problem for your team?  \nNot selling anything, just trying to figure out if this pain is common or if we're doing something wrong on our end. Curious how others handle it, even if the honest answer is \"we just deal with it.\"",
+    "developer": "Outside-Champion9078",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

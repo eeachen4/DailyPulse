@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80000828",
   "sourceItemId": "80000828",
+  "fetchedAt": "2026-09-07T01:22:30.087Z",
   "sourceUrl": "https://stackoverflow.com/questions/80000828/best-practice-for-simple-searching-item-in-a-list",
   "detail": {
     "longDescription": "Typically, I would obtain/return an item from a list of items like so: def search_in_list(search_id): for item in my_list: if item['id'] == search_id: return item return None However, I now stumbled across this code: item = next((item for item in my_list if item[\"id\"] == search_id), None) Which seems to be a condensed version of: for item in my_list: if item[\"id\"] == search_id: break else: item = None Are there any benefits for using the single line or for loop, or a PEP guide which to use when/where? Or is it really just personal preference, maintainability or readability of the code?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "123"
+        "value": "136"
       },
       {
         "label": "状态",

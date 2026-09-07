@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w97rah",
+  "sourceItemId": "1w97rah",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1w97rah/how_we_structure_company_data_for_ai_agents/",
+  "detail": {
+    "longDescription": "I think we're pretty close to a world where AI can do basically all the computer work in a company. The models can already do it, the part that's missing is the plumbing. We've been building this out for our own org so figured I'd share the rough shape of it in case it's useful. Probably going to do a longer video on it at some point.\n\n**Gateway.** One central MCP that any model can connect to. We just call it the company gateway. Anyone on the team adds one line to their system instructions pointing at it, and that means people can swap models whenever they want without redoing anything. The gateway authenticates the user, then points them to the knowledge base, the skills repo, and whatever databases are hooked up. On top of that you connect the normal tools (Gmail, Slack, Salesforce, Notion, and ideally an MCP for your own website).\n\n**What data lives where.** If something already has a working home, leave it there. Emails stay in Gmail, messages stay in Slack, tasks stay in the task manager, the AI just reads from them directly. Same with existing databases, connect straight to those. The problem is that for most tasks you don't want the model wading through thousands or millions of rows, so you need a knowledge base: a set of canonical docs with the most important stuff about the company, set up as an LLM wiki. We use the OKF standard for this. It's basically nested folders, each folder has an index file describing the markdown files in it, and each file has metadata up top saying what's in it. This has been the most efficient way we've found to hand unstructured data to a model. The catch is it only works as a source of truth if it's actually maintained, everything current and nothing duplicated. The AI can do that maintenance itself, but only if it has instructions.\n\n**Skills repo.** Same LLM wiki structure. One master skill with the core instructions and a high-level overview of the whole system, pointing to more specific skills. Same rule as the knowledge base, never duplicate. If two skills would say the same thing, one points to the other. A few types we've found we need:\n\n* one skill per internal system (we have one comprehensive skill on how our Notion is set up and how we use it, and anything else that mentions Notion just points there). You'd want the same for your website, your CRM, each database.\n* one skill for handling incoming info, e.g. someone drops in a transcript, what gets added or updated in the knowledge base, when does it draft an email vs create a task\n* one skill per process. This will eventually be hundreds or thousands, so they go in a searchable catalog, and then there's a skill explaining how to use the catalog (yes, really)\n\n**Logs.** Every decision and transcript goes in another LLM wiki repo so there's a paper trail. All of these repos just sit on GitHub or AWS.\n\nOnce it's built, someone sets up the connectors once. Any request or transcript they send, the gateway fetches the core instruction skill first, and that tells the model how to find only what it needs for that task plus the access to do it.\n\nI know the immediate reaction is security, compliance, review, etc. All of that matters and has to be built into the system. This is just the structure.",
+    "developer": "tjrobertson-seo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

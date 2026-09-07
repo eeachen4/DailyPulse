@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49587099",
+  "sourceItemId": "49587099",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49587099",
+  "detail": {
+    "longDescription": "I wanted to improve Hindi retrieval quality, particularly for longer documents ( as the current architectures don&#x27;t really have a longer context length ), and was curious how far can I push a 4090 haha :) So I trained a Hindi-first ModernBERT from scratch: 188M parameters ~28.5B Hindi tokens 8,192-token context, one of the first Hindi encoders to support 8K context ( directly benefits the retrieval capacity, for which encoder models are used for ) 1× RTX 4090 (24GB) ~5 days of training After DPR fine-tuning, it achieves SOTA on the Hindi retrieval benchmarks I evaluated: mMARCO Hindi: 0.2825 nDCG@10 MLDR Hindi: 0.2635 nDCG@10 The MLDR result is particularly interesting because it evaluates long-document retrieval, where the 8K context window can actually be used. It also achieves: Hindi NER: 0.8001 F1 MASSIVE Hindi intent: 0.4731 Macro-F1 Model and evaluation details: https:&#x2F;&#x2F;huggingface.co&#x2F;kkkamur07&#x2F;hindi-modernbert https:&#x2F;&#x2F;github.com&#x2F;kkkamur07&#x2F;indic-modernBERT My goal is to extend this to a lot of low resource languages, I would be really grateful for feedback and collaboration opportunities ;) so that I can improve this even further.",
+    "externalUrl": "https://github.com/kkkamur07/indic-modernBERT",
+    "developer": "kkkamur",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

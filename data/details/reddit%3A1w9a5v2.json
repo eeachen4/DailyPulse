@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w9a5v2",
+  "sourceItemId": "1w9a5v2",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1w9a5v2/i_put_together_a_live_demo_for_my_localfirst/",
+  "detail": {
+    "longDescription": "If you use agentic workflows with custom skills or rules (Cursor rules, Claude Code slash commands, OpenCode, etc.), you have probably run into the routing trade-off:\n\n1. Stuff every skill definition into the system prompt (destroys your context window and degrades instruction-following).\n2. Use an LLM router turn to classify the user prompt (costs money, wastes 1,000+ tokens, and adds seconds of network latency).\n\nTo solve this, I built Routed, an open-source, local-first hybrid router that resolves agent skills offline on your CPU with zero token cost.\n\nTest it live in your browser (local demo): [https://routed-demo.vercel.app/](https://routed-demo.vercel.app/)\n\nhttps://i.redd.it/tfharmmo6znh1.gif\n\n# [](https://preview.redd.it/i-put-together-a-live-demo-for-my-local-first-hybrid-ai-v0-iimrrpe96znh1.gif?width=960&auto=webp&s=5f27b15cf432435f83daeb2058355860f5b0e5a0)How it Works Under The Hood\n\nWhen installed locally, Routed indexes your skill directories and scores prompts across a 4-part hybrid pipeline:\n\n* Dense Vector Embeddings (60%): Runs quantized ONNX models (Arctic Embed S / MiniLM) locally on CPU.\n* Lexical BM25 (25%): Okapi BM25 for strict keyword relevance.\n* Exact / Alias Match (10%): Direct command and alias matching.\n* Metadata (5%): Recency and usage heuristics.\n\nThe entire lookup completes in under a second without sending a single byte of prompt data over the wire.\n\n# Supported Environments\n\nCursor, Claude Code, LM Studio, Ollama, Antigravity IDE, Hermes, Windsurf, OpenCode, Continue, and Codex.\n\n# Download & Repo\n\nIf the demo works well for your workflow, you can grab pre-built installers for macOS (.pkg), Linux (.deb), and Windows (.exe), or build from source via Node:\n\nGitHub:[https://github.com/bshea-1/Routed](https://github.com/bshea-1/Routed)",
+    "developer": "iAmQubick",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
