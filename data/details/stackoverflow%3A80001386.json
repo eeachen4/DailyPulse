@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001386",
+  "sourceItemId": "80001386",
+  "sourceUrl": "https://stackoverflow.com/questions/80001386/how-to-deal-with-implicit-transformation-into-parent-type-when-using-a-typevar",
+  "detail": {
+    "longDescription": "Consider the following code: from __future__ import annotations from typing import Generic, Self, TypeVar, overload T = TypeVar(\"T\", float, complex) class Dummy(Generic[T]): def __init__(self, value: T) -> None: self.value = value @overload def __mul__(self, other: float | T) -> Self: ... @overload def __mul__(self, other: complex) -> Dummy[complex]: ... def __mul__(self, other: float | complex) -> Self | Dummy[complex]: return Dummy(self.value * other) def some_func(self, dummy: Dummy[T]): pass def some_other_func(self, dummy: Dummy[T], other: T): self.some_func(dummy * other) The idea is to replicate the fact that if you multiply a float or a complex by a float, its \"nature\" doesn't change, but if you multiply by a complex, then you necessarily get a complex. There is one other property that kind of overlaps with this: if you multiply a float or complex by something of the same \"nature\", its nature also doesn't change. Note that the two definitions of __mul__ don't contradict each other, so it's not immediate to see this: multiplying a Dummy[complex] by a complex could take each branch, both resulting in a Dummy[complex] . However, ty complains about this. Running ty check with the configuration: [tool.ty.rules] unsound-return-statement = \"error\" unsound-assignment = \"error\" unsound-yield = \"error\" missing-type-argument = \"error\" possibly-unresolved-reference = \"error\" raises: error[invalid-argument-type]: Argument to bound method `Dummy.some_func` is incorrect --> /tmp/test.py:20:24 | 20 | self.some_func(dummy * other) | ^^^^^^^^^^^^^ Expected `Dummy[T@Dummy]`, found `Dummy[T@Dummy] | Dummy[complex]` info: element `Dummy[complex]` of union `Dummy[T@Dummy] | Dummy[int | float* | complex*]` is not assignable to `Dummy[T@Dummy]` info: └── element `complex*` of union `int | float* | complex*` is not assignable to `T@Dummy` info: └── type `complex*` is not assignable to any element of the union `int | float*` info: ├── element `complex*` of union `int | float* | complex*` is not assignable to `float` info: └── ... omitted 1 union element without additional context info: Method defined here --> /tmp/test.py:16:9 | 16 | def some_func(self, dummy: Dummy[T]): | ^^^^^^^^^ --------------- Parameter declared here Found 1 diagnostic What is the correct way of dealing with this? How should I change my stubs to carry the facts that: multiplying by a float or the same type T doesn't change the type of the object; and multiplying by a complex transforms it into a complex object?",
+    "developer": "Tristan Nemoz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "92"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

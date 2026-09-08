@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa8f5r",
+  "sourceItemId": "1wa8f5r",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wa8f5r/loop_engineering_i_turned_the_ralph_loop_into_a/",
+  "detail": {
+    "longDescription": "The Ralph loop (while :; do cat [PROMPT.md](http://PROMPT.md) | claude; done) works, but it's blind: no memory between runs, it believes the agent when it says \"done\", it never stops on its own, and nothing stops the agent from editing the tests that judge it.\n\nI think the interesting skill now is loop engineering: not what you say to the agent, but what happens after it answers. So I built loop. A [LOOP.md](http://LOOP.md) holds the goal in markdown and the loop in frontmatter: what \"done\" means  (until: \\[checklist, \"npm test\"\\]), files the agent may not touch (protect: \\[\"test/\\*\\*\"\\]), an independent critic in a fresh session that can veto (critic: codex), a metric that keeps or reverts each iteration (metric: \"node bench.js\"), and brakes.\n\nBetween iterations the agent writes a letter to its next self. That's the only memory that survives, and it turns a pile of amnesiac runs into one worker.\n\nReal run with Claude Haiku: three iterations, the loop rejected a premature \"done\" in iteration 1 because two checklist items were still open, iteration 3 finished, the critic read the diff and approved. 2m13s. \n\n Works with Claude Code, Codex, Gemini CLI, Aider, or any CLI. Zero dependencies, MIT.\n\n [github.com/raiyanyahya/loop](http://github.com/raiyanyahya/loop)\n\n",
+    "developer": "raiyanyahya",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

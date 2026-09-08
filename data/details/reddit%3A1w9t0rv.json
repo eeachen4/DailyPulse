@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w9t0rv",
+  "sourceItemId": "1w9t0rv",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1w9t0rv/macosdocker_im_building_an_opensource_docker/",
+  "detail": {
+    "longDescription": "I have started working on a new project called **macOSDocker**.\n\nThe idea is to build a lightweight and open-source Docker environment for macOS that feels like a native Mac application, while using a standard Docker Engine inside a minimal Linux VM.\n\nThe macOS side is being built with **SwiftUI and Apple's Virtualization.framework**. The goal is to keep the Linux VM mostly invisible to the user and provide a simple interface for managing containers, images, volumes and networks.\n\nOne of the main reasons I'm experimenting with this is networking.\n\nDocker on macOS normally runs inside a Linux VM, which creates some limitations compared to running Docker directly on Linux. I'd like to explore better solutions for things such as:\n\n• preserving the real client IP inside containers  \n• better LAN access to containers  \n• macvlan/ipvlan support where technically possible  \n• simple port forwarding without hiding everything behind additional NAT layers\n\nAnother important goal is native macOS folder sharing. Behind the scenes, macOSDocker would make the folder available to the Linux VM using VirtioFS and then expose it to Docker, without requiring the user to manually deal with VM paths.\n\nThe planned UI will include things like:\n\n• container start/stop/restart and status  \n• logs and terminal access  \n• images and image management  \n• Docker volumes  \n• Docker networks  \n• bind mounts to macOS folders  \n• Docker Compose / Docker run support  \n• CPU/RAM statistics  \n• easy access to published ports\n\nThe goal is **not to reimplement Docker**. Docker Engine, containerd and runc can remain standard Linux components. macOSDocker would provide the macOS integration around them: VM lifecycle, networking, filesystem sharing and a native SwiftUI interface.\n\nThe project is still at a very early stage, so I'm posting this mainly to see what other macOS Docker users think.\n\n**What is currently missing or annoying for you when running Docker on macOS (e.g. OrbStack/Docker Desktop)?**\n\nAnd especially: if you could change one thing about Docker networking on macOS, what would it be? Thanks for your input.",
+    "developer": "KeepCoolCH",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

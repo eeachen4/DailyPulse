@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001500",
+  "sourceItemId": "80001500",
+  "sourceUrl": "https://stackoverflow.com/questions/80001500/when-i-build-my-dockerfile-i-have-a-problem-like-this-it-is-called-docker-prob",
+  "detail": {
+    "longDescription": "How can I solve this problem, someone know that or faced that? When I run my docker app: Here is what happens: => CACHED [sdkimage 3/6] COPY *.csproj . 0.0s => ERROR [sdkimage 4/6] RUN dotnet restore WebApplication.csproj 6.5s ------ > [sdkimage 4/6] RUN dotnet restore WebApplication.csproj: 0.613 Determining projects to restore... 6.440 /app/WebApplication.csproj : error NU1301: Unable to load the service index for source https://api.nuget.org/v3/index.json. 6.473 Failed to restore /app/WebApplication.csproj (in 5.62 sec). ------ Dockerfile:5 -------------------- 3 | WORKDIR /app 4 | COPY *.csproj . 5 | >>> RUN dotnet restore WebApplication.csproj 6 | COPY . . 7 | RUN dotnet publish WebApplication.csproj -c Release -o out -------------------- ERROR: failed to build: failed to solve: process \"/bin/sh -c dotnet restore WebApplication.csproj\" did not complete successfully: exit code: 1 View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/w4gky437s50mwxwx3dpdt6ete What's next: Debug this build failure with Gordon → docker ai \"help me fix this build failure\" PS C:\\Users\\TTS\\Desktop\\Docker.Example3\\WebApplication> And also my docker file: FROM mcr.microsoft.com/dotnet/sdk:8.0 AS sdkimage WORKDIR /app COPY \\*.csproj . RUN dotnet restore COPY . . RUN dotnet publish WebApplication.csproj -c Release -o out FROM mcr.microsoft.com/dotnet/aspnet:8.0 WORKDIR /app COPY --from=sdkimage /app/out . ENV ASPNETCORE_URLS=\"http://+:5000\" ENTRYPOINT \\[\"dotnet\", \"WebApplication.dll\"\\] Could anyone help?",
+    "developer": "Subhan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "45"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

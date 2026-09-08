@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1waab0a",
+  "sourceItemId": "1waab0a",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1waab0a/memcontinuum_longterm_decision_memory_for_claude/",
+  "detail": {
+    "longDescription": "Hello, colleagues. I've bitten off something ambitious :)\n\nAnalyzing the problems that kept surfacing on my other project, I concluded I needed a long-term memory system.\n\nLooking at what already exists, I found nothing that solved my problems, so I built my own. After using it for a while, I decided it was worth polishing and releasing publicly.\n\n\\\\\\*\\\\\\*The problems it addresses.\\\\\\*\\\\\\*\n\nOn a long project you forget what was decided about a given question and why. The model forgets harder. Subagents know nothing at all — the orchestrator dispatches them nearly blind onto narrow tasks. The result is reinvention instead of reuse: duplicate implementations, drift, tokens burned re-solving solved problems, and settled questions resurfacing as \"wait, why is this written this way?\"\n\n\\\\\\*\\\\\\*How it differs from the memory systems I looked at:\\\\\\*\\\\\\*\n\n\\\\\\\\- Two linked layers: an indexed map of the code, and decision chains recorded against it  — what was decided, \\\\\\*\\\\\\*who\\\\\\*\\\\\\* decided it, how it changed over time, plus incidents and rejected alternatives with reasons.\n\n\\\\\\\\- Reading is automatic. Before an agent edits a file, the decision chain handling that path is injected into its prompt. Nobody has to remember to look.\n\n\\\\\\\\- Writing is unavoidable but not automatic. The agent gets a question it must answer; \"nothing to record\" is a legitimate answer. It's moderated by judgment,  not a scraper dumping everything into a pile by keyword or timestamp.\n\n\\\\\\\\- One AI handles records — the orchestrator. Subagents and external reviewers (Codex, Grok) propose records through an inbox; proposals become records after review.\n\n\\\\\\\\- Per project, local, no server. Markdown as the source of truth, SQLite as a disposable index. No cross-projects pollution.\n\nBuilt for coding projects specifically: without indexable code only half the brain works.\n\nCurrent state: 0.2.0rc4, honestly labelled a release candidate. MIT. Claude Code only for now, but can be converted for Codex (I pre-checked it). \n\nSupport a bunch of languages already, Swift and Python natively, plus a bunch of others via tree-sitter; making the system easily expandable is in the roadmap (but I believe it is no barrier for a user with Claude do do it right now).\n\nThe README is long and detailed if you want the full picture.\n\nFeedback of any kind is very welcome.\n\nBesides me, a team of authors worked on this project:\n\n\\\\\\\\- Claude Code: Fable 5/5.1 as lead engineer and project manager; Opus as inspector; Sonnet as coder; Haiku as tester\n\n\\\\\\\\- Codex: 5.6 Sol / 6 Astra as reviewer and outside consultant\n\n\\\\\\\\- Grok 4.6 as second reviewer\n\n\\\\\\[MemContinuum https://github.com/krakozavr/MemContinuum\\\\\\](https://github.com/krakozavr/MemContinuum)",
+    "developer": "ShotPorter",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

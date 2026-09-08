@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa2z88",
+  "sourceItemId": "1wa2z88",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wa2z88/qwen35_08b_on_cpu/",
+  "detail": {
+    "longDescription": "Since the Qwen3.5 0.8B model is an interesting one for small specialised finetunes, I was curious how good performance can be tweaked for CPU inference. Over the weekend I vibecoded a small engine and custom quant format with about the same Perplexity and KL difference like Unsloths Q4\\_0 (which actually mixes weights in Q5 and Q6 in), at 70MB smaller size and faster CPU inference than llama.cpp (2x prefill, 1.3x decode) and ik\\_llama.cpp (equal prefill, slightly faster decode).\n\nSince the Qwen3.5 0.8B model is an interesting one for small specialized fine tunes, I was curious how fast it can run on CPUs. Why CPUs? Mainly because I want to use it as a local dictation cleanup model when I'm using the GPU for something else.\n\nOver the weekend, I let Codex build a small C++ engine and a custom 4-bit format, **H128/Q4-G32-DOT4**, with activation-based calibration and blockwise error compensation.\n\nThe resulting model has a **425 MB weight payload**, roughly **71 MB smaller than Unsloth’s mixed-precision Q4\\_0**, with similar measured perplexity and KL divergence.\n\nComparison on my **Ryzen 9 9955HX3D, Linux, eight physical V-Cache cores**:\n\n|Engine / quant|Weight MB|Prefill|Decode B1|Decode B16|PPL ↓|KL ↓|\n|:-|:-|:-|:-|:-|:-|:-|\n|ik\\_llama.cpp IQ4\\_KS\\_R4|401|2,060|**129.2**|455|15.90|0.0906|\n|**qwen35-cpu, H128/Q4-G32-DOT4**|425|**2,758**|122.9|**642**|15.80|0.0602|\n|ik\\_llama.cpp Unsloth Q4\\_0|496|2,731|104.0|420|15.58†|0.0684†|\n|llama.cpp Unsloth Q4\\_0|496|954|93.7|373|15.58|0.0684|\n\nCompared with llama.cpp running Unsloth Q4\\_0, that’s roughly **2.9× prefill, 1.3× single-request decode and 1.7× batch-16 throughput**.\n\nAgainst IK running the same GGUF, prefill is essentially tied, single-request decode is **18% faster**, and batch-16 throughput is **53% higher**. IK’s smaller IQ4\\_KS\\_R4 wins single-request decode, but my engine delivers **41% higher batch-16 throughput**.\n\n[https://github.com/Danmoreng/qwen35-cpu](https://github.com/Danmoreng/qwen35-cpu)",
+    "developer": "Danmoreng",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

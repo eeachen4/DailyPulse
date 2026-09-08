@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04535",
+  "sourceItemId": "2609.04535",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04535",
+  "detail": {
+    "longDescription": "arXiv:2609.04535v1 Announce Type: new Abstract: Static application security testing (SAST) tools help developers find vulnerabilities before deployment, but false positives create substantial triage effort. We study whether CodeQL false positives in Java security analysis form recurring, explainable patterns that can be reduced by refining the analysis. We run CodeQL's Java security query suite on 167 CVE instances from 110 projects, focusing on the ten queries with the highest false positive rates. We manually review 500 sampled false positive paths and locations and construct a source-level taxonomy. The five categories are Missed Path Constraint or Sanitization (36.6%), Benign Execution Context (29.4%), Missing Trust Boundary Modeling (27.6%), Imprecise Concurrency Modeling (5%), and Imprecise Sink Modeling (1.4%). Guided by these findings, we implement CodeQL refinements that detect and filter recurring false positive patterns at the query level. The refinements remove 81.8% of reviewed false positives. Across the full selected-query dataset, they remove 15.8% of reported paths and locations while retaining 7 of 8 true positives. This shows that many false positives can be reduced in the analysis, although fixed refinements often depend on project-specific context. To address this generalization gap, we evaluate whether agentic coding tools can adapt refinement patterns to new projects. Given our patterns as templates, the two tools succeed on 56% and 62% of tasks, with query compile-pass rates above 90%. Without this guidance, both succeed on only 28%, while compile rates fall to 30-36%. These results support a refinement-oriented SAST workflow in which recurring false positives are modeled in CodeQL queries and automatically adapted to different project contexts, reducing repeated triage.",
+    "developer": "Amirali Sajadi, Saikat Dutta, Preetha Chatterjee",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.CR, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Amirali Sajadi, Saikat Dutta, Preetha Chatterjee"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa2yyh",
+  "sourceItemId": "1wa2yyh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wa2yyh/can_we_determine_whether_a_models_configuration/",
+  "detail": {
+    "longDescription": "I've been looking into whether a single forward/backward pass on an untrained network can tell you that a particular hyperparameter choice is likely to be a bad one, before spending an entire training run finding out.\n\nI came across this research and a couple of results caught my attention:\n\n* On one task, 2 of 3 initialization choices never converged, while the zero-training method picked the one that did, which trained in 627 steps vs. 1600+ for the alternatives.\n* On another, the selected configuration took 61 steps vs. 208 for the worst choice, roughly 3.4× faster, with the decision made in milliseconds and without a GPU.\n\nThe overall result is much more modest: 47% top-1 accuracy when choosing the best of 3 candidates, compared with 33% for random selection.But what I found more interesting than the headline number is that the method has a provable blind spot. Because of a scale-invariance issue in the underlying mathematics, it can never recommend one particular initialization, even on tasks where that initialization is actually the fastest.\n\nThe authors tried three different fixes. None improved things overall. They also publicly corrected an earlier correlation claim after rechecking it with 26× more samples.\n\nSo this is not really a \"we solved training optimization\" story. It's more interesting to me as an example of what might be possible:\n\nCan we evaluate trainability before committing expensive compute?\n\nThe current experiments are on synthetic tasks, not LLMs. Whether these signals generalize to real-world fine-tuning, such as LoRA rank or initialization choices, seems like a much more interesting open question.\n\nResearch + code/report:\n\n[https://rustnew.github.io/precog-trainability/](https://rustnew.github.io/precog-trainability/)\n\n[https://github.com/rustnew/precog-trainability](https://github.com/rustnew/precog-trainability)\n\nI'd be particularly interested in hearing from people working on training infrastructure, HPO, zero-cost proxies, or LLM fine-tuning: where do you think this kind of approach breaks down first?",
+    "developer": "Bulky-Pack8781",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

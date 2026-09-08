@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa8rj2",
+  "sourceItemId": "1wa8rj2",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wa8rj2/what_broke_when_we_pushed_our_agent_fleet_to_247/",
+  "detail": {
+    "longDescription": "Most discussions around autonomous agents focus on reasoning benchmarks or clever prompt patterns. In production, almost none of our catastrophic failures came from the LLM failing to reason. They came from harness and plumbing breakdowns.\n\nWhen you let agents run around the clock across parallel tasks, the real bottlenecks are boring distributed systems problems:\n\n1. Silent schema drift is worse than an outright crash.\nUpstream renames an API response key or adds an unexpected enum. The query still executes with a 200 OK. Instead of failing, the agent rationalizes the missing field, grabs an adjacent numeric column, and reports a hallucination with 100% confidence. If you don't fingerprint schemas at bind time and fail closed into a dead-letter queue, downstream state gets poisoned quietly.\n\n2. Uncoordinated retries trigger 429 stampedes.\nStandard exponential backoff wrappers treat rate limits like acute spikes. When 6 parallel subagents pause for backoff and wake up at roughly the same millisecond, they don't recover—they form a thundering herd and slam straight into OpenAI's `slow_down` code. Concurrency governance cannot live inside the prompt loop; it needs client-side gateway admission control with strict acceleration/ramp smoothing.\n\n3. Transcripts are audit logs, not working memory.\nPassing raw conversational history between agents is the fastest way to trigger token maxing. Downstream workers spend half their context window rediscovering decisions that were already finalized. We moved to handing down immutable artifact pointers (receipt hashes) rather than raw tool returns.\n\nCurious how other teams here are structuring production handoffs—are you passing trimmed conversation history, or treating tool returns strictly as versioned external artifacts?",
+    "developer": "ParrotIntegrated",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

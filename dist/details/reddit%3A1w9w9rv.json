@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1w9w9rv",
+  "sourceItemId": "1w9w9rv",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1w9w9rv/advice_on_deploying_a_5microservice_stack_on_a/",
+  "detail": {
+    "longDescription": "So I've been working on this microservices project ( [repo](https://github.com/Shinjon101/ticketing-system) ) for a few months.  I have it fully running locally using `kind`, now I want to learn how to deploy it on AWS or GCP following best practices to get hands on experience and record demo videos for my resume.\n\n Here's the stack:  \n\n* **Microservices:** 5 Node.js services (built and pushed to GHCR )\n* **Stateful Services:** 5 Postgres databases (one per service), Redis, and Kafka.\n* **Observability:** Prometheus, Grafana, Loki, and ( Alloy deployed using Helm charts).\n* **K8s & Networking:** I wrote custom manifests using **StatefulSets** and **Headless Services** for the stateful components. I am using the Gateway API for ingress, backed by `cloud-provider-kind` locally.\n\nBeing a college student my budget is pretty tight. My plan is to write Terraform scripts so I can spin the whole infrastructure up, record a few demos for my resume, and immediately tear it down to keep costs minimal.\n\nThe questions I have:\n\n1. **Which cloud provider to choose and how to deploy?** Should I use managed K8s like EKS, or just run Kubernetes (or lightweight K8s like k3s) myself on a single EC2/VM instance? What's actually standard practice that I'd use on a real job?\n2. **How to handle routing in the cloud cheap?** Locally I use Gateway API with `cloud-provider-kind`. What’s the most cost-effective way to handle this on AWS/GCP without getting hit with expensive cloud load balancer fees?\n3. **Is running DBs/Kafka in the cluster okay?** Is keeping Postgres, Kafka, and monitoring inside K8s fine for a portfolio project, or do recruiters/hiring managers specifically look for managed cloud services ?\n\nAny direction, best practices, or potential pitfalls to avoid would be greatly appreciated!",
+    "developer": "Lightn1ng101",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

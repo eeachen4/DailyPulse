@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04248",
+  "sourceItemId": "2609.04248",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04248",
+  "detail": {
+    "longDescription": "arXiv:2609.04248v1 Announce Type: new Abstract: Gear digital twins, hardware-in-the-loop rigs, and active vibration control close a loop around the instantaneous tooth-contact state, demanding a solver that is real-time, deterministic, and embeddable -- properties that loaded tooth contact analysis (LTCA), a data-dependent linear complementarity problem (LCP) costing seconds per mesh phase in fp64, structurally lacks; learned surrogates infer fast but spend one full LTCA solve per training sample and offer no guarantee beyond their training envelope. We instead compress the closed-form contact physics -- contact-point localization, principal-curvature extraction, and the elliptical Hertz solution -- directly into a branch-free fixed-point FPGA datapath, termed physics-direct, realized through the fully open-source openXC7 flow (no vendor tools, no floating-point IP) and validated on retired XC7K480T silicon. Four SoCs -- geometry, Hertz, and two fused paths -- pass bit-exact JTAG readback against a golden model. The on-chip preview tracks LCP body pressure to within -22% and loaded transmission error (LTE) peak-to-peak to -19%, preserving the exact $W^{1/3}$ law; with zero training it extrapolates in load more accurately than a trained network (18.9% versus 20.3%). Latency is a compile-time constant ($\\sigma = 0$ jitter), and the DSP-bound geometry kernel saturates the fabric near 63 lanes. Physics-direct is an interpretable, deterministic alternative to neural surrogacy for embedded tooth-contact estimation.",
+    "developer": "Jiacheng Miao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jiacheng Miao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

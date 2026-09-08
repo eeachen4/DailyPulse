@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa5cj5",
+  "sourceItemId": "1wa5cj5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wa5cj5/can_we_trust_agents_to_run_hospitals/",
+  "detail": {
+    "longDescription": "We are building a multi-agent system for hospital, and honestly it performs great in our dev system.\n\nWe are working with a handful of \\*\\*domain agents\\*\\* (beds, ER, ICU, pharmacy, discharge, billing), each owning their area and its own data. Above them, an \\*\\*LLM planner\\*\\* reads a situation and decides which agents to use in what order, a complete flow based on the user query, awaking only the capabilities it sees fit for each.\n\nIt's genuinely great at the boring-critical tasks: who has capacity right now, what's about to spike, what's quietly deteriorating. Then it once cheerfully recommended discharging a patient to free a bed. Efficient!\n\n\\> The agents are the easy part. The guardrails around them are the architecture.\n\nBut the guardrail we keep getting stuck on isn't \\*what the model does\\*,, it's \\*\\*how much data we even let it see\\*\\*. This is a hospital. Every row an agent touches is potentially PHI, and \"we sent the patient's full record to an LLM\" is not a sentence you want in an audit.\n\nSo our current approach is to \\*\\*never hand raw patient data to the model\\*\\*. The planner reasons over de-identified \\*\\*tokens\\*\\*, stable handles that stand in for a patient, a bed, a record, The actual value is only present at the concerning agent. The agents resolve those tokens against the real data only \\*below\\* the reasoning layer, behind the approval gate. The LLM plans the \\*flow\\*; it never actually holds the sensitive payload.\n\nIt works, but it's a constant tension: give the model too little context and its plans get dumber; give it too much and you've widened the blast radius of every hallucination and every log line.\n\nSo the real question: \\*\\*in a high-stakes, regulated domain, how much data do you actually let an LLM see?\\*\\* Do you tokenize/de-identify everything and pay the reasoning tax, or trust the model with real context and lock down everything around it? Where did you draw that line?\n\n",
+    "externalUrl": "https://i.redd.it/jypgcvqs36oh1.png",
+    "developer": "---starboy--",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

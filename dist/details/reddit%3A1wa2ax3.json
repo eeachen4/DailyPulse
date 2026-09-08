@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa2ax3",
+  "sourceItemId": "1wa2ax3",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wa2ax3/image_scans_come_back_with_a_few_hundred_cves_a/",
+  "detail": {
+    "longDescription": "I own the container images for our services and most of my security time goes into the same loop. Trivy runs on every image and comes back with a few hundred highs and criticals, most of it sitting in the base image in packages. Last cycle half the criticals traced back to something that is not even in the runtime path, pulled in by a build stage.\n\nI almost bulk closed a critical one in a lib our public API calls, on an internet facing pod that was sitting on page four of the same red list as findings in a build tool we do not even ship. A pentester caught it weeks later.\n\nNow I just want a way to rank this such that real one floats up instead of hiding in the pile. What are you doing that works?",
+    "developer": "Fuzzy-Teaching7112",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04417",
+  "sourceItemId": "2609.04417",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04417",
+  "detail": {
+    "longDescription": "arXiv:2609.04417v1 Announce Type: cross Abstract: Distributed AI training involves recurring rounds of data exchange between multiple pairs of GPU nodes. Slowdown in even one flow due to congestion can cause the entire communication round to slowdown. Current approaches for evading congestion in AI clusters assume global control over the entire workload (e.g. coordinating the schedule of all jobs) or assume infrastructural support (e.g. adaptive routing in switches). They are thus ill-suited in a shared cloud setting where AI jobs belonging to one user can face external congestion from other users' jobs or background traffic beyond its own control. In this paper, we build a system, REACT, that tunes the recurring pattern of data exchange between GPU nodes (known as communication collectives) in response to congestion. REACT works at the application (communication library) layer, where it detects congestion at runtime using readily available flow stats, and tunes the collective pattern to alleviate congestion - changing the set of incident flows while retaining the semantics of information exchange (e.g. selecting which node aggregates data in an AllReduce tree). REACT requires no explicit support from the underlying network infrastructure and can be unilaterally deployed by individual users in a shared cloud setting. We prototype REACT as a shim layer over NCCL, and evaluate it on a shared academic GPU cluster - enabling REACT improves communication performance (algorithm bandwidth) by 13%-38% under network congestion. Our simulations across a range of congestion scenarios further reveal up to 75% performance improvement, highlighting the effectiveness of our approach.",
+    "developer": "Eashan Gupta, Yongzhou Chen, Apoorve Mohan, Pavlos Maniotis, Abdullah Kayi, Radhika Mittal",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Eashan Gupta, Yongzhou Chen, Apoorve Mohan, Pavlos Maniotis, Abdullah Kayi, Radhika Mittal"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

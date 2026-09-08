@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04490",
+  "sourceItemId": "2609.04490",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04490",
+  "detail": {
+    "longDescription": "arXiv:2609.04490v1 Announce Type: new Abstract: Quantization is widely used to reduce the computational and memory demands of neural-network inference. In recurrent networks, however, the quantized state is stored and returned at the next time step, so the rule used to store that state can alter subsequent computations. Here, we introduce recurrent-state write-back to denote this rule and isolate its effect in a compact GRU encoder--decoder for fluorescence lifetime imaging, a molecular imaging modality used in quantitative biological imaging. A central task is estimating two lifetime parameters, the short-lived component {\\tau}1 and the long-lived component {\\tau}2, from high-noise time-resolved fluorescence signals. Holding the trained model fixed, replacing continuous state propagation with deterministic 4-bit state storage increases estimation errors for {\\tau}1 and {\\tau}2 by approximately 70x and 300x, respectively. Failure occurs when repeated small updates remain below the write threshold, leaving the stored state nearly fixed while the network continues to propose change. Error feedback, residual memory, and direction memory carry information from these suppressed updates across time and recover accuracy without retraining. Precision sweeps show that increasing state precision can worsen a fixed recurrent solution, while matched training shows that compatibility with the state interface can be learned. To test whether this behavior extends beyond the GRU, we repeat the post-training intervention in an independently trained LSTM, where coarse write-back reproduces the failure, error feedback restores accuracy, and state-specific interventions reveal greater sensitivity of the cell state than the hidden state. Our results establish recurrent-state write-back as a key determinant of low-precision recurrent dynamics and identify the state-storage interface as a central design consideration for quantized recurrent inference.",
+    "developer": "Ismail Erbas, Xavier Intes, Vikas Pandey",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI, cs.LG, physics.optics, q-bio.QM"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ismail Erbas, Xavier Intes, Vikas Pandey"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

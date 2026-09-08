@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2509.16248",
+  "sourceItemId": "2509.16248",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2509.16248",
+  "detail": {
+    "longDescription": "arXiv:2509.16248v5 Announce Type: replace Abstract: This paper presents GraphMend, a compiler technique that automatically fixes FX graph breaks in PyTorch 2 programs. Although PyTorch 2 introduced TorchDynamo and TorchInductor to enable just-in-time graph compilation, certain code patterns still cause graph breaks that force execution to fall back to Python eager mode, introducing costly CPU-GPU synchronization and reducing optimization opportunities. Our investigation of 195 Hugging Face models reveals that 13.8% of models exhibit graph breaks. GraphMend automatically eliminates fixable breaks through source-level program analysis and transformations. It analyzes AST-level program structure to identify graph-break patterns and applies transformations only when their semantic preservation can be statically established. These transformations enable PyTorch to capture larger, uninterrupted FX graphs without manual refactoring by developers. We evaluate GraphMend on all 27 models found to exhibit graph breaks in our investigation. GraphMend eliminates 107 of 147 graph breaks (73%), fully fixing all breaks in 21 models. In our experiments on NVIDIA GPUs, GraphMend achieves up to 26x cold-start speedup, 5x on average, and up to 1.39x steady-state forward pass speedup. These results demonstrate that semantics-aware source-level analysis and transformation are effective complements to PyTorch's dynamic JIT compilation pipeline, substantially improving both usability and performance.",
+    "developer": "Savini Kashmira, Jayanaka Dantanarayana, Thamirawaran Sathiyalogeswaran, Krisztian Flautner, Lingjia Tang, Jason Mars",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.LG, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Savini Kashmira, Jayanaka Dantanarayana, Thamirawaran Sathiyalogeswaran, Krisztian Flautner, Lingjia Tang, Jason Mars"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001174",
   "sourceItemId": "80001174",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001174/observer-fails-to-start-with-ret-4147-min-full-resource-pool-memory-out-of-r",
   "detail": {
     "longDescription": "I'm trying to start a single-node database cluster locally using the official Docker image and the default mini deployment settings. The observer process exits during startup with a configuration error. Environment OS: Ubuntu 22.04 (also reproduced on macOS with Docker Desktop) Deployment: Docker, single node, development / mini resource profile Image: oceanbase/oceanbase-ce (Community Edition) Deploy tool: OBD (OceanBase Deployer) inside the container Steps to reproduce Start the container with the documented single-node Docker run command. Let OBD bootstrap the cluster with the bundled mini configuration. Observer fails before the cluster becomes ready. Expected behavior Observer starts and I can connect on the MySQL-compatible port (e.g. 2881). Actual behavior Startup fails. The first relevant error in observer.log is: ERROR [SERVER] init_config (ob_server.cpp:832) invalid config from cmdline options Invalid config, value out of range(name=\"__min_full_resource_pool_memory\", value=\"268435456\", ret=-4147) 268435456 is 256 MiB. Earlier in the same log I also see startup options similar to: memory_limit=4G, system_memory=2G, datafile_size=8G, ... What I've tried Grepping observer.log for the first ERROR line (not just the last observer init fail(ret=-4147) ). Lowering other memory-related settings — startup still fails with the same -4147 . Searching the source tree: -4147 maps to OB_INVALID_CONFIG in ob_errno.h . I have not yet found authoritative documentation for the valid range of __min_full_resource_pool_memory for CE 4.x in a minimal local setup. Questions What is the valid range for __min_full_resource_pool_memory , and why does 268435456 (256M) fail? For a minimal local Docker deployment, what is a working set of memory-related parameters ( memory_limit , system_memory , __min_full_resource_pool_memory , etc.)? Any pointers to parameter constraints or a minimal working config snippet would help.",
     "developer": "jinglan0379",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "-1"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "46"
+        "value": "65"
       },
       {
         "label": "状态",

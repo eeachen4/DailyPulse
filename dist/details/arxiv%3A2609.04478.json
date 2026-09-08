@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04478",
+  "sourceItemId": "2609.04478",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04478",
+  "detail": {
+    "longDescription": "arXiv:2609.04478v1 Announce Type: new Abstract: Confidential serverless computing is rapidly emerg- ing as a critical paradigm for application domains requiring strong confidentiality guarantees, such as healthcare, finance, and machine learning. To enable this paradigm in untrusted cloud environments, Confidential Virtual Machines (CVMs) provide isolation by encrypting the entire guest memory, and thus securing serverless workloads against host-level access and inter- ference. However, the implications of CVMs for serverless systems remain insufficiently understood. This paper presents an empirical study of serverless work- loads in CVMs, systematically covering memory efficiency and runtime overhead on both warm-starts and cold-starts. Our results show that CVMs incur substantial memory overhead because encrypted memory disables cross-VM page deduplication and reduces memory reclaimability, thereby limiting warm- container capacity under a fixed memory budget. Runtime overhead in warm-starts is workload dependent. Workloads with frequent VMEXITs, particularly idle transitions, suffer substantial slowdowns. These slowdowns are further amplified by common serverless deployment practice that couples vCPU allocation to memory size, as higher-memory configurations expose more vCPUs than some functions can use effectively. For cold starts, the study focuses on container creation, a common and major contributor to startup latency. Motivated by the memory-efficiency results, we consider the deployments in which multiple containers of the same function are consolidated within the same CVM to improve efficiency, and show that selectively relaxing certain isolation mechanisms in this setting can substan- tially reduce startup overhead. These results clarify the main performance tradeoffs of confidential serverless computing and suggest practical ways to improve efficiency and latency.",
+    "developer": "Rikesh Niroula, Jianchen Shan, Xiaoning Ding",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Rikesh Niroula, Jianchen Shan, Xiaoning Ding"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

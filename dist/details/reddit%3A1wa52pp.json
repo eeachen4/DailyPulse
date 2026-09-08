@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa52pp",
+  "sourceItemId": "1wa52pp",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wa52pp/385_to_dublin_and_the_agent_quietly_dropped_a/",
+  "detail": {
+    "longDescription": "Five cities went into one search this morning. Four came back with a price and Lisbon came back with nothing at all.\n\nThe question was the cheapest round trip from JFK to Dublin, Lisbon, Barcelona, Madrid or Milan, leaving Jan 13 to 15 2027, seven nights, one stop maximum. It went through an MCP server I run, so I have the raw tool result next to the answer.\n\nIt made one tool call instead of fifteen, which is what the tool description asks for, and I was pleased about that. It came back with Dublin at $385 on Icelandair, Barcelona and Madrid at $519, Milan at $559, and it said the $385 was \"decent, not a steal\" because Google's tracked range for that route is $345 to $440. All of that is correct.\n\nLisbon has no price in the answer. Not \"no flights to Lisbon\". Just absent.\n\nWhat happened is that the model picked limit: 12, there were more than 12 rows, and the three Lisbon rows got cut. My server knows this can happen, so the response carries a field that spells it out:\n\n\"note\": \"\\`limit\\` was 12, which is fewer than the number of date/destination combinations that returned flights, so 3 of them have no row in \\`results\\`: 2027-01-13 to LIS, 2027-01-14 to LIS, 2027-01-15 to LIS. Those searches ran and found flights; the answer simply had no room for them. Raise \\`limit\\` to see them.\"\n\nThat sentence was in the context window. The model read it and did not pass it on. Lisbon was $599, by the way, which would not have changed the recommendation, and that is not the point.\n\nSo the thing I had wrong: putting the omission in the payload is necessary and does close to nothing on its own. A note is prose, and prose is skippable. If a gap matters, the schema has to make an answer impossible without it. Next thing I am trying is a \"missing\" array that has to be empty before search\\_status can be \"ok\".\n\nWhat have you got that actually made a model surface its own blind spot?",
+    "developer": "OtherwiseWeekend2222",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa9m61",
+  "sourceItemId": "1wa9m61",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wa9m61/for_strix_halo_official_llamacpp_isnt_ideal_and/",
+  "detail": {
+    "longDescription": "I've been making a lot of comments about optimial setup for Strix Halo (gfx1150) and from my observation, 90% of our community is using offcial llama.cpp for it, which is NOT optimized for Strix Halo at all, official llama.cpp is having extremely hard time to reach 50% hardware theory, wasting the silicon of this device.\n\nHere's alternatives that can bring the speed of Strix Halo to a totally different world, I will link to user's sastifaction comment to prove that the result is real:\n\n* [https://github.com/peonist-ai/halogen-flash-server](https://github.com/peonist-ai/halogen-flash-server) \\- [\\~50t/s decode and 1200t/s prefill](https://www.reddit.com/r/LocalLLM/comments/1w9oq3w/comment/p8d7e6k/) \\- Optimized for Strix Halo and Qwen 3.8 Flash Next (**Q38FN - The best goto model for Strix Halo**) only, if you've heard about Ninfer, this is exactly **Ninfer for Strix Halo**.\n* [https://github.com/myhacsint/llama.cpp/tree/production/strix-halo-qwen4exp-b10685](https://github.com/myhacsint/llama.cpp/tree/production/strix-halo-qwen4exp-b10685) \\- [Almost 60t/s decode and 600t/s prefill](https://www.reddit.com/r/StrixHalo/comments/1w3kbt5/comment/p71iv8b/) \\- This is an experiment fork for Q38FN, having very high decode and pretty good prefill\n* [https://github.com/halo-box/strix-llama.cpp](https://github.com/halo-box/strix-llama.cpp) \\- [Almost 30t/s decode and 800t/s prefill](https://gaetan-puleo.github.io/strix-halo-pull-18-results/#family-qwen3-8-flash-next) \\- The latest commit pushed prefill through the roof, this is r/StrixHalo very first fork that has been updating nonstop with a Discord server with a lot of users.\n\n  \n**Note:** Official llama.cpp running Qwen38FN at 2xt/s and 2xxt/s prefill.\n\nHopefully this will be helpful to the Strix Halo users.",
+    "developer": "feelspeaceman",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

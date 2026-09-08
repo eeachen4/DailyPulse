@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa5dp9",
+  "sourceItemId": "1wa5dp9",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wa5dp9/my_qwen3827b_taskaware_quant_reaches_99_of_bf16/",
+  "detail": {
+    "longDescription": "TL;DR My TAK quant of Qwen 3.8 27b scored 82.81% on reasoning, comparted with 77.34% for the byte matched Unsloth UD IQ2\\_S and 83.59% for BF16.\n\nOver the last few months, I've been exploring task aware quantization. I've now turned that work into a clean, repeatable pipeline under the reasoning domain. Coding is my next goal.\n\nFor a while I used Qlab a much more broad measurement heavy system that helped me to determine what to test and where to investigate. It was great for exploration, but it accumulated a ton of gates and operational overhead.\n\nOnce I found a reliable pipeline, I specialized it and retired the older application. The new system is called TAK: Task Aware Knapsack. I'm using TAK as both the application and models it produces.\n\nAt a high level, TAK is a blend of TASA and TAQ. It starts with an imatrix built from a task specific corpus. It then combines those measurements with tensor level allocation promoting and demoting tensors within a byte specific budget. The result is a purpose built quantization rather than a general purpose recovery.\n\nUnsloth is included as the industry standard reference. Not as a claim that the methods are equivalent. \n\nThere is no pruning, fine-tuning, model merging or anything else. This is purely an Imatrix + damage allocation process. These are all tested on a held out dataset.\n\nThese are my current winners: [https://huggingface.co/ByteOtter](https://huggingface.co/ByteOtter)\n\n* Qwen3.8-27B: **82.81%** vs **77.34%** Unsloth, **+5.47 points**\n* Qwen3.5-4B: **73.44%** vs **61.72%** Unsloth, , **+11.72 points**\n* Gemma 4 E4B: **69.53%** vs **55.47%** Unsloth, , **+14.06 points**\n* Gemma 3 4B QAT: **54.69%** vs **35.16%** Unsloth, , **+19.53 points**\n\nAcross these runs, TAK has beaten matched Unsloth Dynamic 1.0, 2.0 and now 3.0 comparators on the target reasoning benchmark. The method has worked across Gemma 3, Gemma 4, Qwen3.5 and Qwen3.8 covering both dense, QAT and MoE architectures.\n\nTaken together these results give me strong evidence that task aware precision allocation works well for reasoning. Im excited to expand the pipeline to other domains like coding and math.\n\nCharts were provided by ChatGPT on my data.\n\nYou can follow the work u/byteotter on X [https://x.com/byteotter](https://x.com/byteotter) or support it on Buy Me a Coffee. [https://buymeacoffee.com/byteotter](https://buymeacoffee.com/byteotter)",
+    "developer": "devildip",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04609",
+  "sourceItemId": "2609.04609",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04609",
+  "detail": {
+    "longDescription": "arXiv:2609.04609v1 Announce Type: new Abstract: In training Mixture-of-Experts (MoE) models, sharded data parallelism partitions each expert's parameters across GPUs, requiring an Allgather operation to reconstruct the full weight matrix before each layer executes. This communication often dominates iteration time. Prior work often reduces this overhead using lossy compression methods that sacrifice numerical fidelity, while existing lossless methods do not exploit cross-iteration exponent stability. In this paper, we propose Cross-Iteration Exponent Reuse Allgather (CIERA), a lossless, system-aware communication method for sharded MoE training. We observe that after a brief warmup phase, the exponent values of most weights remain unchanged across iterations. Based on this, we cache exponents locally and transmit only the sign and mantissa when exponents are unchanged. The receiver reconstructs the original weights exactly by combining the cached exponents with the received data. Since parameter matrices vary in shape across layers, compression is applied only when it yields net time savings. Moreover, the compression operation is overlapped with both Allgather communication and computation. Our real experiments and large-scale trace-driven simulator show that on OLMoE-1B-7B at 16 GPUs, CIERA achieves a 3.70x speedup over the lossless baseline and 3.68x over the lossy baseline, projected to reach 4.28x and 4.42x respectively at 128 GPUs, while preserving bitwise-exact parameter reconstruction in all evaluated runs.",
+    "developer": "Ali Zafar Sadiq, Haiying Shen, Masahiro Tanaka",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ali Zafar Sadiq, Haiying Shen, Masahiro Tanaka"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

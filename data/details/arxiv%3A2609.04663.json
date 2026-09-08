@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.04663",
+  "sourceItemId": "2609.04663",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.04663",
+  "detail": {
+    "longDescription": "arXiv:2609.04663v1 Announce Type: cross Abstract: Modern CPUs increasingly integrate high-throughput matrix engines optimized for low-precision AI workloads, while many scientific computing applications still rely on FP32 and FP64 GEMM to meet their numerical accuracy requirements. This mismatch motivates an algorithmic bridge that uses low-precision matrix products to emulate higher-precision GEMM. This paper presents a CPU-oriented method based on Intel Advanced Matrix Extensions (AMX) and BF16 matrix products. For FP32, each operand is decomposed into three BF16 components and six selected component products are evaluated, targeting FP32-level accuracy relative to oneMKL SGEMM without claiming elementwise or bitwise identity. For FP64 inputs within the supported BF16 exponent range, the method uses a simplified fixed six-slice Ozaki decomposition. Each retained BF16 product is first produced in FP32, then widened and accumulated in FP64. Four product-count settings retain 6, 10, 15, or 21 component products, exposing the accuracy--performance tradeoff relative to oneMKL DGEMM. The implementation combines precomputed packed component buffers, VNNI-packed $B$ panels, and an FP32 tile-resident operand-reuse schedule. On the tested square matrices, AMX-FP32 exceeds oneMKL SGEMM throughput. For AMX-FP64, low-product-count variants can exceed DGEMM at sufficiently large orders, while retaining more products improves accuracy at additional cost.",
+    "developer": "Bing Cui, Yu Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.MS, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Bing Cui, Yu Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

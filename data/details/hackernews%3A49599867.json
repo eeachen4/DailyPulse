@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49599867",
+  "sourceItemId": "49599867",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49599867",
+  "detail": {
+    "longDescription": "Roughly speaking, the way current AI coding agents&#x2F;harnesses work is by either: a) Pulling in appropriate text snippets of code across multiple files and handing them to the agent, or b) Parsing code to make high dimensional embeddings to approximate a symptom map, and hand that to the agent. Both of these approaches skyrocket the token count, add to wall clock time, contribute to context drifting, add to the model&#x27;s thinking tokens to discover the structure of the program, and then FORGET most of it when Claude Code compacts, or ALL of it if it&#x27;s a multifile refactoring because all line numbers shift and need re-grepping. Benzi is built from the ground up to AVOID reading source code in the first place. It supplies the artificial intelligence model deterministic intelligence via tool calls. For example, when a model is about to make a code change, it could query &quot;what functions feed this one?&quot; -- half the time it isn&#x27;t even necessary because the Benzi compiler already informs it of the blast radius before and after making edits, along with a complete static analysis check. Benzi Sonnet reads far less source code (9,125 lines) than Claude Code Sonnet (20,704), DeepSeek&#x27;s harness (43,598), and OpenCode (65K+ LOC -- disqualified due to repeated failure) to accomplish the same tasks faster and cheaper. (Benchmark details: https:&#x2F;&#x2F;benzi.fly.dev&#x2F;benchmark ) &quot;But what if the compiler isn&#x27;t doing its job right! Wouldn&#x27;t you mislead the AI model?&quot; - Absolutely. Benzi meticulously takes care of this by having 3 truth tiers. RESOLVED has definite evidence, CANDIDATE is what couldn&#x27;t be resolved by the static analysis, and OBSERVED is what actually happened during an execution. The artificial intelligence and the determinstic intelligence layers coordinate to reduce source hits where possible, without producing incorrect results for the sake of efficiency. It also has several bonus features such as a runtime tracer, self-aware model upgrade mid task if it thinks the job is over its pay grade, context aware model written repro, and SEVERAL more. It currently supports Python · JavaScript · TypeScript · Java · C# · C++ · C · Go · Rust · Ruby, and can handle HTML, CSS and JS -- deterministically. Claude Code clicks photos, Benzi resolves winners of CSS rules. The CodeIndex and the MarkupIndex are fairly well tested, and if something isn&#x27;t working, the model is made aware of it first. On the benchmarks side, 78.2% SWE-bench Verified for &lt;10¢ a fix (using V4flash). This score is notable because while the rest of the industry is leaning plugin-heavy and pouring millions of dollars into increasing context window sizes, Benzi&#x27;s approach might prove to be economically more valuable while improving the model&#x27;s code writing&#x2F;comprehenion abilities. If you&#x27;re curious to learn more, click https:&#x2F;&#x2F;benzi.fly.dev&#x2F;about and check out StallionSwipe. probably the best thing i ever made. It&#x27;s a Fireship inspired horse tinder app greenfielded entirely in Benzi Opus 4-8 and a little bit v4 flash. and lastly, please star on github if you like where this is headed!",
+    "externalUrl": "https://github.com/oooscoos/Benzi",
+    "developer": "tweedler290",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001205",
   "sourceItemId": "80001205",
+  "fetchedAt": "2026-09-08T01:27:07.940Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001205/bash-wrongly-resolves-userprofile-for-docker-volume",
   "detail": {
     "longDescription": "I get the following error when using .sh . It seems to me $USERPROFILE is wrongly resolved. I am not familiar with bash. fail: Microsoft.Extensions.Hosting.Internal.Host[11] Hosting failed to start System.IO.DirectoryNotFoundException: Could not find a part of the path '/app/C:/Program Files/Git/https/aspnetapp.pfx'. dotnet dev-certs https --clean mkdir -p \"$USERPROFILE/.aspnet/https\" dotnet dev-certs https \\ -ep \"$USERPROFILE/.aspnet/https/aspnetapp.pfx\" \\ -p \"this-password-must-be-kept-secret\" dotnet dev-certs https --trust docker run --rm -it \\ -p 5001:5001 \\ -e ASPNETCORE_URLS=\"https://+:5001\" \\ -e ASPNETCORE_HTTPS_PORTS=5001 \\ -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx \\ -e ASPNETCORE_Kestrel__Certificates__Default__Password=\"this-password-must-be-kept-secret\" \\ -v \"$USERPROFILE/.aspnet/https:/https/\" \\ mcr.microsoft.com/dotnet/samples:aspnetapp Interestingly it works with .bat . dotnet dev-certs https --clean mkdir \"%USERPROFILE%\\.aspnet\\https\" dotnet dev-certs https ^ -ep \"%USERPROFILE%\\.aspnet\\https\\aspnetapp.pfx\" ^ -p \"this-password-must-be-kept-secret\" dotnet dev-certs https --trust docker run --rm -it ^ -p 5001:5001 ^ -e ASPNETCORE_URLS=\"https://+:5001\" ^ -e ASPNETCORE_HTTPS_PORTS=5001 ^ -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx ^ -e ASPNETCORE_Kestrel__Certificates__Default__Password=\"this-password-must-be-kept-secret\" ^ -v \"%USERPROFILE%\\.aspnet\\https:/https/\" ^ mcr.microsoft.com/dotnet/samples:aspnetapp Question What causes this issue and how to solve it?",
     "developer": "D G",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -14,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "54"
+        "value": "96"
       },
       {
         "label": "状态",
-        "value": "已回答"
+        "value": "未回答"
       }
     ]
   }

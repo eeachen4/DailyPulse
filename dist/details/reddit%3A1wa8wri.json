@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa8wri",
+  "sourceItemId": "1wa8wri",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wa8wri/built_a_safety_layer_that_sits_between_langchain/",
+  "detail": {
+    "longDescription": "Been building with LangChain agents for a while and kept hitting the same anxiety: the agent constructs a tool call, it looks valid, schema passes, and it just... runs. No checkpoint. If the WHERE clause is wrong, if it's an rm -rf, if it's a non-idempotent API call in a retry loop — it's already done.\n\nI wanted an interception point that's outside the model, outside the prompt, that catches calls before dispatch based on what they actually are — not what the model thinks they are.\n\nBuilt agentwall for this. It wraps your existing tools and classifies each call as safe / cautious / destructive. Destructive ones require approval before executing. Everything gets logged as structured JSONL. If a session fails, registered rollback hooks run in reverse order.\n\nWorks with LangChain via `wrap_langchain_tool`. Zero runtime dependencies in the core.\n\n    from agentwall.integrations import wrap_langchain_tool\n    \n    safe_tool = wrap_langchain_tool(your_langchain_tool, wall)\n\nCurious whether the classification rule approach (regex on tool name + args) is the right abstraction for LangChain specifically, or whether people would rather define risk at the tool decorator level.\n\nGitHub: [https://github.com/anakatt/agentwall](https://github.com/anakatt/agentwall)  \npip install agentwall-sdk",
+    "developer": "Icy-Extension47",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

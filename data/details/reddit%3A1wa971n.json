@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa971n",
+  "sourceItemId": "1wa971n",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1wa971n/help_diagnosing_100_accuracy_data_leakage_on/",
+  "detail": {
+    "longDescription": "I’m classifying scientific abstracts written in Portuguese into two temporal categories: \"Old\" vs \"Recent\". I tested several models, but two of them are giving me massive red flags:\n\n* **DeBERTa (base):** Getting exactly 100% accuracy on the test set.\n* **Albertina (a Portuguese DeBERTa-based model):** Getting exactly 0% accuracy on \"Old\" and 100% on \"Recent\".\n* *Note:* Other models like mBERT, XLM, and local Portuguese BERTs (Bertimbau) are getting realistic results around 75-85%.\n\n**What I've already tried (Data Cleaning):** Knowing that 100% accuracy screams data leakage, I went aggressive on the preprocessing:\n\n1. Used regex to replace all dates, citation years (1900-2026), and any 4 consecutive digits with a `[HIDDEN_DATE]` tag.\n2. Removed all DOIs, URLs, emails, and modern copyright strings (e.g., \"Open Access\", \"Creative Commons\").\n3. Removed all `<tags>` in case the modern abstracts were scraped differently from the old PDFs.\n\nAnd Albertina is completely flipped.\n\n **So i have questions**\n\n1. What other structural artifacts in scientific abstracts could DeBERTa be exploiting to perfectly separate decades-old texts from modern ones? Length bias? OCR noise?\n\n\n\n1. Why would Albertina (and *only* Albertina) completely invert the predictions? Is there a known issue with `id2label` mapping inheritance when loading specific pre-trained models from the HF Hub? How do I force the correct mapping?\n\n\n\n1. Would running SHAP on the DeBERTa model be the best next step to highlight the exact tokens causing the 100%? Have you successfully used SHAP to debug leakage in text classification?",
+    "developer": "Typical_Sail_630",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

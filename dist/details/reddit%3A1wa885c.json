@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa885c",
+  "sourceItemId": "1wa885c",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wa885c/prompting_tips_for_38_27b/",
+  "detail": {
+    "longDescription": "Hey everyone!\n\nNot a native speaker, but I'm trying my best by writing my own post by hand. Please correct grammar mistakes or odd phrasings so I can learn from it!\n\nLast week I finally got around to set up 3.8 27B (Unsloth, Q4\\_K\\_S, 200K context Q4\\_0), it's running inside llama.cpp (tensor parallel, mtp with draft max-n 11 and draft min-p 0.1, default jinja template) with Kilo Code (VSCode extension) as harness, on dual RTX 5060 Ti 16GB (on PCIE 5.0 x8x8).\n\nI've seen \"fix\"/customized jinja templates here or it reasoning for too long, but personally I don't experience issues. I use xhigh by default and lower it to medium/low if the task needs to be fast or is simple.\n\nI gotta say it feels really impressive as a pair programmer! Catches many small mistakes I make and usually picks the right options. I do notice that when working with UI, it seems to have more trouble when going with designs that diverge from the norm.\n\nWhat I noticed is that it helped a lot to give hand-crafted text representations (ascii renditions of components, layouts and views), I had less success with providing it example images. When describing ideas, it seemed to catch on quicker when writing down classes with fields/properties and method signatures instead of writing it in words.\n\nIn the past weeks of using this model, what prompting techniques have been working well for you?What tools did or didn't work well for you?",
+    "developer": "Kahvana",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

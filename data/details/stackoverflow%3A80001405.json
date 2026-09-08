@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001405",
+  "sourceItemId": "80001405",
+  "sourceUrl": "https://stackoverflow.com/questions/80001405/ios-app-intermittently-fails-with-an-ssl-error-has-occurred-for-some-users-a",
+  "detail": {
+    "longDescription": "I have an iOS app where most users can access the app normally, but a small number of users are unable to enter the app or load its content. For affected users, the iOS logs show errors such as: An SSL error has occurred, and a secure connection to the server cannot be established. or: A TLS error caused the secure connection to fail. The failure happens during the initial API requests, particularly the guest-login request. Because guest login fails, the app cannot proceed to fetch the home-screen data. Backend setup Backend is hosted on AWS API is served over HTTPS Domain uses an A record There is currently no AAAA record TLS certificate is valid Most users can successfully connect to the API The issue appears to be intermittent and affects only some users/devices What I am trying to determine Could this be caused by something other than my AWS server itself, such as: ISP/carrier routing issues TLS handshake problems IPv4 routing DNS resolution AWS networking TLS/certificate-chain configuration iOS URLSession behavior Network path differences between regions Some IP reputation/blocking issue Since I only have an A record and no AAAA record , could IPv6/NAT64 still be relevant to this problem? What would be the best way to diagnose this systematically? I am particularly interested in knowing how to determine whether the TLS connection is failing before the request reaches AWS , versus the request reaching AWS and failing somewhere in Nginx/backend. Any suggestions for tools, tests, or logs that would help isolate this would be appreciated.",
+    "developer": "Hari",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "35"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

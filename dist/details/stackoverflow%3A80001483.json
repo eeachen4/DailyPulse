@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001483",
+  "sourceItemId": "80001483",
+  "sourceUrl": "https://stackoverflow.com/questions/80001483/what-does-normal-random-sampling-mean-in-llm-text-generation",
+  "detail": {
+    "longDescription": "I am working on research involving the numerical behavior of LLM token sampling, and I need to reproduce the ordinary stochastic next-token sampling process as faithfully as possible. At each decoding step, I obtain the model logits and convert them to probabilities: logits = model(...).logits[:, -1, :] probs = torch.softmax(logits, dim=-1) I can then sample the next token in at least two ways. Using PyTorch: next_token = torch.multinomial(probs, num_samples=1) or by explicitly implementing inverse-transform sampling: cdf = torch.cumsum(probs, dim=-1) u = torch.rand(1, device=probs.device) next_token = torch.searchsorted(cdf, u) Mathematically, both are intended to sample from the same categorical distribution. However, my question is specifically about the finite-precision implementation : With a large LLM vocabulary and float32 probabilities, I have observed cases where the explicitly accumulated CDF contains adjacent equal values: cdf[i] == cdf[i - 1] even though: probs[i] > 0 In that case, the interval width for token i becomes zero in this particular inverse-CDF implementation. I have also generated tokens using: torch.multinomial(probs, 1) and observed behavior that is not reproduced by my explicit FP32 CDF sampler. I checked the PyTorch documentation, but it appears to describe the intended sampling distribution rather than guarantee that torch.multinomial(probs, 1) is implemented as the same serial cumsum + uniform random number + searchsorted procedure shown above. So my questions are: For torch.multinomial(probs, 1) , what sampling algorithm does PyTorch actually use? Does it use inverse-transform/CDF sampling? Can the implementation differ between CPU and CUDA? Can it differ depending on dtype or num_samples ? Is this implementation: cdf = torch.cumsum(probs.float(), dim=-1) u = torch.rand(1, device=probs.device) sample = torch.searchsorted(cdf, u) expected to have the same finite-precision sampling behavior as: torch.multinomial(probs, 1) or are they only equivalent in exact arithmetic? In PyTorch-based LLM generation, when someone refers to “random sampling” or “sampling from the model distribution,” is torch.multinomial(probs, 1) the usual concrete implementation, or is the phrase intended only at the abstract distribution level? If I want to reproduce the ordinary stochastic sampling behavior of a PyTorch LLM implementation, should I use the framework’s native sampler ( torch.multinomial ) rather than assume that “random sampling” means a particular inverse-CDF implementation?",
+    "developer": "nono345",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "37"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

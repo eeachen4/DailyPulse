@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wa3gez",
+  "sourceItemId": "1wa3gez",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wa3gez/if_you_are_getting_http_400_errors_after_the/",
+  "detail": {
+    "longDescription": "Hey,\n\nI recently found Aurora (a Go-based LLM gateway) on the internet. I liked the concept but found it lacked essential production features and a proper UI. I deeply upgraded it into a stable, feature-rich fork for my own infrastructure.\n\nMost importantly, it completely fixes the early-September OpenCode Zen API updates that enforced strict session headers and broke local tools with HTTP 400 errors. I built a Session Hub engine that automates header transformation, keeps connections flawless, and preserves your Prompt Cache.\n\n\\* GitHub: [https://github.com/entitybtw/aurora](https://github.com/entitybtw/aurora)\n\n\\* Docker: entbtw/aurora:latest\n\nCore Features:\n\n\\* Fixed OpenCode API: Automatically maps client traffic into stable, valid session IDs to prevent HTTP 400 drops.\n\n\\* Prompt Cache Retention: Combined with per-provider bind\\_ip networking, it locks sessions to warm upstream nodes, saving up to 80% on token costs.\n\n\\* Web UI Administrative Dashboard: Full runtime management with instant persistence to disk config files.\n\n\\* Visual Fallback Chains: Configure and prioritize backup models visually.\n\n\\* Performance: Pure Go architecture, running up to 55x faster than LiteLLM.\n\nCheck out the repository for detailed orchestration guides and exact API curl examples. Feedback is welcome.",
+    "developer": "entitybtw",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
