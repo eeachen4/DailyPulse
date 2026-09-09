@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb5l3n",
+  "sourceItemId": "1wb5l3n",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wb5l3n/im_building_agentaction_verification_is_updated/",
+  "detail": {
+    "longDescription": "I’m building Synathic, an open-source verification layer for AI-agent tool calls, and I want to validate a design decision before shipping it.\n\nThe problem I’m trying to solve:\n\nAn agent calls a tool that should write to PostgreSQL — create a booking, persist a note, update a customer, etc. The tool may return 200 OK, but I want to verify that the intended database side effect actually happened.\n\nMy first implementation was a postcondition like this:\n\nagent/tool runs → query Postgres → matching row exists → PASS\n\nThat works for the simple case, but it has a serious false-positive problem: the matching row may have existed before this execution started. A failed write can look exactly like a successful one if stale data matches the business key.\n\nI’m considering a schema-free fallback:\n\ncapture DB time t0 → run the tool → verify updated\\_at > t0\n\nBut I don’t think that proves attribution. It only proves that the row changed after t0. A concurrent worker, retry, webhook, or human action could update the same row and make this agent execution appear successful when it actually failed.\n\nMy current model is:\n\n\\- \\`row\\_exists\\` = state observation, not proof of causality.\n\n\\- \\`updated\\_at > t0\\` = a useful best-effort freshness check, but not attribution.\n\n\\- A per-execution \\`operation\\_id\\` / idempotency key persisted in the target row, or in an audit/outbox record in the same DB transaction, is needed to prove that this invocation produced the effect.\n\nI’m also treating these as separate problems:\n\n1. Read-after-write visibility: verify after commit and read from the primary/authoritative source, not a lagging replica.\n\n2. Attribution under concurrency: use an operation-specific token, idempotency key, audit record, or explicit concurrency semantics.\n\nDoes that separation sound right to people running agents in production?\n\nWould you ever ship timestamp anchoring as a schema-free “best effort” mode, or require an operation ID from day one? I’m especially interested in failure modes involving retries, parallel agent tool calls, UPSERTs, and eventual consistency.",
+    "developer": "Gallegos_Daniel",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wapsff",
+  "sourceItemId": "1wapsff",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wapsff/flux_boot_strap_and_agent_management/",
+  "detail": {
+    "longDescription": "I manage enterprise k8s clusters and use a mono repo strategy to bootstrap a cluster which results in one flux agent per cluster. Currently in the magnitude of several thousand services per cluster. It's structured [like this](https://fluxcd.io/flux/guides/repository-structure/#repository-structure):\n\n\n\n1. Mono repo where the cluster agent is registered.\n\n2. Within that repo. use `kind: GitRepository` in the directory `apps/` to point at other projects. \n\n\n\nI'm of the opinion that less agents is better. Is there a limit to the flux agents where that would start to become a problem? Or a counter argument to not use this method and rather have an agent per microservice? I've yet to run into an issue with this approach.",
+    "developer": "No-Replacement-3501",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1watudy",
+  "sourceItemId": "1watudy",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1watudy/how_are_you_handling_api_keys_for_mcp_servers/",
+  "detail": {
+    "longDescription": "When I first looked into wiring external tools to an LLM through an MCP server, I'd simply put the API keys in environment variables and let the agent call whatever it needed. That's what I'd normally do for a normal backend service.\n\nI read around it, and what I had not thought about is that a backend service has a fixed code path. You know which line makes which call, so you know what the key gets used for. An agent picks its own tools based on a prompt, so the same key now sits behind whatever it decides to do.\n\nYour vault still tells you where the key lives and when it rotates. It just doesn't tell you who authorized a particular call or which tool it ended up reaching. \n\nThe things I keep seeing suggested are scoping credentials per server rather than one key for everything, and injecting them at runtime instead of leaving them in env vars.\n\nFor the people who are running multi-tool agent setups, how are you handling backend access do you custom guardrails around what the agent can reach, or do you treat it as a normal service and accept it?",
+    "developer": "Chris__Codes",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

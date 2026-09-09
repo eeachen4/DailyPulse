@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb782x",
+  "sourceItemId": "1wb782x",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wb782x/i_built_relyr_to_turn_space_capslock_and_mouse/",
+  "detail": {
+    "longDescription": "I used to maintain this setup in AutoHotkey: hold Space or CapsLock, then press another key to run a shortcut. I also held the right mouse button while pressing a key.\n\nIt worked so well that it became part of how I used Windows. The problem was maintenance: every small change meant editing and retesting scripts.\n\nRELYR is my attempt to make that same “hold one input, temporarily get another control layer” setup visual instead of code-driven.\n\nThe useful idea is not simply adding more shortcuts. It is keeping the familiar keyboard unchanged, then revealing a temporary set of actions only while a chosen layer key or mouse button is held. Release it and normal typing returns.\n\nFor a safe first test, start with one harmless Space-layer action:\n\n1. Temporarily disable AutoHotkey, PowerToys Keyboard Manager, and other remapping tools.\n2. Select the Space layer and an unused key.\n3. Assign one harmless action, such as launching Notepad, and save.\n4. Confirm that tapping Space still types a space, then hold Space and press the assigned key.\n\nIf an action runs twice or a key appears stuck, press `Ctrl + Alt + Shift + F12` to stop RELYR. That single-action test is more useful than configuring a whole keyboard before you know whether the interaction feels natural. CapsLock is not part of this first test because enabling its layer changes a Windows key mapping and requires a restart.\n\nRELYR also supports per-application profiles, macros, mouse gestures, watched-folder actions (including archive extraction), and an on-screen Deck for actions and launchers. It is a standalone Windows 10/11 application; it does not import or run AutoHotkey scripts. Other remapping tools should be disabled while testing it to avoid conflicting input hooks. No special hardware or account is required, and settings and macros stay on the PC.\n\nRELYR is free, open source, and MIT-licensed.\n\nSource code:\nhttps://github.com/zitan-source/RELYR\n\nLatest release:\nhttps://github.com/zitan-source/RELYR/releases/latest\n\nOne important warning: I am an independent developer and the installer is not code-signed yet, so Windows SmartScreen may show **Unknown publisher**. Please download only from the official GitHub Releases page. The source, build process, and SHA-256 checksum files are public so the package can be inspected and verified. If that warning makes you uncomfortable, please do not install it.\n\nI would especially value feedback from people who already use AutoHotkey, keyboard layers, macro pads, or similar tools:\n\n- Which one action would you move out of an AutoHotkey script first?\n- If you try RELYR, where does the one-action setup become unclear?\n\nI built RELYR because this interaction became indispensable to me. I now need to learn whether making it visual removes enough maintenance to be useful to anyone else.",
+    "developer": "ZITAN_Channel",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

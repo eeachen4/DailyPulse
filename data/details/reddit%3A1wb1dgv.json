@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb1dgv",
+  "sourceItemId": "1wb1dgv",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wb1dgv/silero_vad_too_slow_what_are_ultralowlatency/",
+  "detail": {
+    "longDescription": "I'm building a real-time voice agent with a speculative response pipeline.\n\nI was originally using Silero VAD v6, but it's just not fast enough at detecting the exact moment the user stops speaking. For my architecture, as soon as I detect *possible* silence, I want to immediately trigger speculative ASR and LLM generation.\n\nSo for my usecase **speed is much more important than perfect VAD accuracy**. I'm perfectly fine trading some false positives for ultra-low latency. That speculative work that can just be canceled if the user keeps speaking.\n\nNow I'm currently using a own lightweight detector based on RMS energy that sends an early \"possible silence\" signal. It works, but I'm curious if there's a more standard approach.\n\n**So my questions:**\n\n* What are you using for ultra-low-latency speech-offset detection?\n* Are there any VADs that react immediately to the *first* silent frame without relying on large buffer windows?\n* local, CPU-friendly solution preferred",
+    "developer": "Lonligrin",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

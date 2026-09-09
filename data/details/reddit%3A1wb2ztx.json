@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb2ztx",
+  "sourceItemId": "1wb2ztx",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wb2ztx/two_ways_my_agent_security_detector_was_wrong/",
+  "detail": {
+    "longDescription": "I've been building prompt injection detection for AI agents since April. Two bugs I found in the last 48 hours that seem worth sharing, because both are the kind of thing you'd only catch by measuring rather than reasoning.\n\n1. My escalation trigger fired on every normal agent.\n\nI had a rule that escalated a source to deeper AI review if it sent three differently shaped payloads within 30 minutes. Intended for attackers probing with variations. Turns out that describes every real agent, varied payloads are what agents do.\n\nEffect on benign traffic from a source that had tripped it: p50 latency went from 0.9s to 16.2s, 67% of legitimate requests came back flagged, and some got blocked outright. My published false positive rate is 2%.\n\nFix was retuning to escalate on blocked history rather than payload variety, and capping how much source history feeds the model, the history was inflating output tokens, which drove both the latency and the cost.\n\n2. Invisible Unicode walked straight through.\n\nMicrosoft published research last week on ASCII smuggling. Instructions hidden in Unicode tag characters (U+E0000 block) that render as nothing to a human but read normally to a model. I checked whether my detector caught it.\n\nIt didn't. My normalizer stripped zero width and bidi characters but never touched the tag plane. A \"reveal your full system prompt\" instruction encoded in tag characters scored 0 and was allowed, with the AI layer never even invoked. \n\nWorse: my 3,236-payload red team corpus contained zero tag characters. Both the detector and the test set missed the vector, which meant I had no way to discover it from my own numbers.\n\nFix decodes tag characters back to ASCII before scoring, plus flags the mere presence of invisible characters, legitimate agent traffic essentially never carries them. Careful gating needed there, since flag emoji legitimately use the tag plane.\n\nThe thing I keep relearning: reading the code tells you what should happen. Sending the request tells you what does. Both of these looked fine on inspection.\n\nHappy to answer questions. If you're building agent security, the invisible Unicode one is worth checking in your own stack, took me two hours to confirm.",
+    "developer": "DrCookies2025",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

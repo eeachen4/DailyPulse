@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb04jj",
+  "sourceItemId": "1wb04jj",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wb04jj/added_a_pii_screen_in_front_of_an_al_call_so_a/",
+  "detail": {
+    "longDescription": "Small feature, more interesting to build than expected. The tool takes pasted user input and sends it to an Al model.  \nSomeone reviewing the privacy posture asked the obvious question: what stops someone from pasting an SSN in there.  \nAnswer, before this week: nothing.\n\nFixed it by pattern-matching common SSN formats server-side and rejecting the submission with a 400 before the API call ever fires, plus a client-side mirror of the same check so people get instant feedback instead of waiting on a round trip.\n\nDeliberately scoped to just SSNs, not a general PIl scrubber  \n\\- a broad \"block anything that looks like personal data\" pass would wreck a tool whose entire input relies on personal context and detailed text to function.\n\nSame week, added country gating using the platform's edge-provided IP-country header to reject non-US traffic outright, since the product isn't ready to reason about international regulations or regional data handling yet.  \nNeither is a hard technical problem on its own. What was interesting was realizing how much of \"responsible Al feature\" work is actually just deciding what NOT to send upstream, before the model ever gets involved.\n\nAnyone else drawing that same line - screen hard before the  \nLLM call rather than trying to constrain what the model does with sensitive input after the fact?",
+    "developer": "Scholeristical",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

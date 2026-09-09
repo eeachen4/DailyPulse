@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001493",
+  "sourceItemId": "80001493",
+  "sourceUrl": "https://stackoverflow.com/questions/80001493/documentation-of-pandas-dataframe-replace-with-series-as-input",
+  "detail": {
+    "longDescription": "I am fairly new to using Pandas and I am trying to understand the functionality of the DataFrame.replace method when the input is a series. The documentation mentions that it accepts it as input but I cannot find any explanation on the functionality. The answer could be something well known in the community so please feel free to close this post if it adds no value. Say I have a df1 containing values that I would like replaced from the columns of another df2. Doing: df1 = df1.replace(df2.set_index(\"values\")[\"col1\"]) where \"values\" are the ones I want replaced from the ones in column \"col1\" has the same behaviour as if I input a dictionary, that is: df1 = df1.replace(df2.set_index(\"values\")[\"col1\"].to_dict()). Below is a minimal example of what I am talking about if you would like to run the code: import pandas as pd df1 = pd.DataFrame({ \"a\": [\"x\", \"y\", \"z\", \"x\"], \"b\": [\"z\", \"x\", \"y\", \"y\"] }) df2 = pd.DataFrame({ \"values\": [\"x\", \"y\"], \"col1\": [10, 20], \"col2\": [64, 0] }) # Series case result_series = df1.replace(df2.set_index(\"values\")[\"col1\"]) # dict case result_dict = df1.replace(df2.set_index(\"values\")[\"col1\"].to_dict()) print(result_series) print(result_dict) # Both prints return: # a b # 0 10 z # 1 20 10 # 2 z 20 # 3 10 20 print(result_series.equals(result_dict)) # returns true My questions are: 1. Does this function interpret a series input the same way as a dict? 2. Is there a reason I would want to convert the series to a dict instead of just using it as an input? The reason for the second question is after seeing some answers around the topic using exactly that (extracting the series, setting the index and then converting to a dictionary)",
+    "developer": "user33098110",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "109"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

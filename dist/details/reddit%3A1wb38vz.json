@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb38vz",
+  "sourceItemId": "1wb38vz",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wb38vz/blind_test_results_gpt6_astra_vs_claude_vs_llama/",
+  "detail": {
+    "longDescription": "We ran a blind test comparing GPT-6 Astra, Claude Fable 5.1, and Llama 4 Maverick across three real tasks from our actual stack at LaunchEngine (a web app we built to map launch platforms and draft posts). The entire test cost less than £2 on September 4th when Astra appeared on OpenRouter.\n\nInstead of benchmarks or puzzles, we used three daily jobs:\n\n1. Planning: Decompose a customer-facing feature for a builder agent, define pre-code requirements, and set completion criteria for a stack designed to catch agents reporting uncompleted work.\n2. Idea generation and self-critique: Solve a conversion problem under constraints (no headcount, no dishonest urgency), produce three different mechanisms, and critique all three.\n3. Design system: Build a visual system (palette roles, type pairing, rhythm, one engineered peak, and three forbidden AI clichés) for buyers burned by overpromising tools.\n\nTo run a clean test, outputs were shuffled into candidates A, B, and C. A model from a fourth distinct lineage scored them blind against a fixed rubric.\n\nThe final scores out of 10 and rankings:\n\nPlanning:\n1. Claude (10.0)\n2. GPT-6 Astra (6.3)\n3. Llama 4 Maverick (2.5)\n\nIdea + Critique:\n1. Claude (9.8)\n2. GPT-6 Astra (8.5)\n3. Llama 4 Maverick (3.5)\n\nDesign System:\n1. Claude (9.0)\n2. GPT-6 Astra (9.0) - tied on score, lost ranking\n3. Llama 4 Maverick (3.0)\n\nClaude took first place on every task, but the details matter. On planning, Claude earned a 10.0 because it provided a code-level blueprint with explicit sabotage-testing criteria. \n\nWe also tested Astra across reasoning effort settings. At low effort, it generated zero reasoning tokens. At high effort, it generated 1,500 to 2,000 reasoning tokens per task, lifting its planning score from 7.5 to 8.0 in a two-way test against Claude's 9.5.\n\nWhere Astra excelled was catching backend failure modes. It flagged that a transactional rollback inside a database mutation would wipe the warning state the feature existed to store, and caught a split between transactional writes and network calls in our backend framework—both real bugs we have hit.\n\nLlama 4 fell behind, proposing glowing teal accents and turning gear animations on the design brief, directly violating the requirement to avoid luminous AI tropes.",
+    "developer": "powleads",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

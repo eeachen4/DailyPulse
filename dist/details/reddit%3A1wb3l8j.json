@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb3l8j",
+  "sourceItemId": "1wb3l8j",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wb3l8j/ai_comiseration_client_replacing_production/",
+  "detail": {
+    "longDescription": "This is more of a co-miseration post than anything per the title, but maybe some of you  will laugh as well.\n\nSo our client had a security incident lately. They had a portal we built many years ago that accumulated tech debt over time and they refused to invest in a re-design and just let it go. Two incidents more or less happened at once: a hacker \"breached\" an endpoint, it exposed some data that was public domain any way, but it wasn't supposed to be access whole sale. The second was a piece of the tech debt coming home to roost by one of the services being completely shut down leaving an intake form completely unusable (the portal mostly existed for this \"intake\") which happened in the same week.\n\nNow the client could have:\n\nGathered requirements on what the portal should be (take lessons learned from existing traffic and usage plus proper UI/UX design) and create a backlog and a plan to replace it, including rearchitecting/platforming taking out tech debt/arch debt completely\n\nRebuilt the platform, reusing the current back-end (which is a separate down stream system that has full API access supports RBAC) and properly implement security measures.\n\nTemporarily fix the hole in the portal (was an easy fix with very low impact from this incident), and fixed the intake service to replace the section that was shut down with the newer version of it: it even had a bit of a migration path available.\n\nINSTEAD they did this:\n\nOne client \"webmaster\" got access to Claude (no one else does) and they decided to go \"build the portal.\" They took maybe a week or so to build a portal with some of the worst UI/UX (inconsistent styling, buttons all over the place, 5 fonts on the front page) with absolutely no accounting or design thought put in to it. Forget \"this is what people need to be able to do\" rather \"rebuild the old portal but make it AI slop.\" We looked at this (as it was just \"presented\" to us as \"the replacement\") and went \"how does this even operate?\" \n\nSo here's the extra fun that just puts the cherry on top: this \"webmaster\" is clueless on how anything works. They wouldn't know Node from Apache or PHP from Python... let alone understand a full stack. They just let Claude do whatever and then they *generated all the documentation*. So they had no way to validate the docs, it's just AI slop. The \"step-by-step do-it-as-it-says no nonsense deployment guide\" (Claude's words) describes nothing about deployment or pipelines. The guy doesn't even know what this actually runs on (could be static HTML for all I know) and it's just ... it's the absolute nightmare scenario of a company just giving the keys to AI to one guy who has no clue and just let them generate whatever. For a site that is critical to their business and has many tens of thousands unique visitors daily.\n\nOf course the \"business\" is CRAZY EXCITED about the whole thing and they are just ready to go live. They abandoned all pretense of trying to fix the old portal, even temporarily while we validate this new thing for security holes, maintainability etc. Oh did I mention that it's my job to do the analysis on this thing? No usable or even remotely realistic documentation about anything that this portal is or does. And it's so obviously a bad idea that I'm not sure how I'm going to convince the business that it's a waste of time to spend days looking at the details when the baseline architecture is deeply flawed.",
+    "developer": "badguy84",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

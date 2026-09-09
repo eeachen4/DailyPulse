@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001710",
+  "sourceItemId": "80001710",
+  "sourceUrl": "https://stackoverflow.com/questions/80001710/localstorage-data-is-removed-when-opening-a-bootstrap-modal",
+  "detail": {
+    "longDescription": "I have a Bootstrap selectpicker where I save the selected division values to localStorage when the selection changes: $(document).on(\"change\", \"#division_selectpicker_form #division_selectpicker\", function() { var value = $('#division_selectpicker_form #division_selectpicker').val(); localStorage.setItem('user_divisions', value); }); I also have a function that loads the selected divisions from localStorage : window.loadSelectedDivisions = function() { var data = window.selected_divisions(); var selectpicker_id = \"#division_selectpicker_form #division_selectpicker\"; data ? $(selectpicker_id).selectpicker('val', data) : window.bs_selectAll(selectpicker_id); } And: window.selected_divisions = function() { var data = localStorage.getItem('user_divisions'); return data ? data.split(',') : null; } The problem is that when I open a modal, the user_divisions data is removed/changed from localStorage . For example, before opening the modal: user_divisions = 2,3,15,16,17 After opening the modal, the all the value is removed and after closing the model and reload page its selecting all the divisions. I have checked that the change event is being triggered, and localStorage.setItem() is being called. How can I prevent the user_divisions value from being removed or overwritten when opening the modal?",
+    "developer": "Shadir Amjard",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "93"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wauccw",
+  "sourceItemId": "1wauccw",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wauccw/why_i_started_piping_cli_outputs_into_a_local/",
+  "detail": {
+    "longDescription": "I got tired of manually copying codebase context and raw execution logs into my AI agents. Since my entire workflow lives inside the Linux terminal, I decided to treat the memory layer as a native CLI tool that accepts standard input.\n\nWhenever I run a heavy test suite or inspect code changes, I just pipe the output stream directly into the MemOS background process. Running something like pytest or git diff straight into the memory daemon lets it distill raw logs on the fly. It filters out hundreds of duplicate tracebacks, extracts key state changes, and appends them to a local SQLite database in my home directory.\n\nOver time, this quietly built an auto-updating knowledge base of my dev workflow on my own machine. When an agent needs background during a long refactoring session, it queries this local state layer instead of re-processing tens of thousands of raw log lines.\n\nThis gives me total control over what enters the memory pool without generating temporary cache files or wasting API tokens. My workspace stays clean, data never leaves my machine, and the agent instantly recalls context from command runs I executed days ago.\n\nIn a small team setup, this effectively turns local terminal streams into an offline knowledge base. Whether it's passing filtered pytest tracebacks between devs or remembering last week's git diff breaking changes, agents get precise context without re-running long build jobs or cluttering team chat.",
+    "developer": "Glittering-Yo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

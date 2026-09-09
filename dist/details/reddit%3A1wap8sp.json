@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wap8sp",
+  "sourceItemId": "1wap8sp",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wap8sp/over_provisioning_memory_isnt_laziness/",
+  "detail": {
+    "longDescription": "Standard explanation for memory over-provisioning is devs being sloppy but its usually more rational than that. one service gets oomkilled once and the request gets bumped and nobody touches it again .You get paged for an oomkill and never for over requesting so the incentive only points one way/ the real issue is that its mostly guessing \n\nkubectl top and grafana graph give you a pod level nuber so you can see the peak but not what caused it or when so the request ends up covering a worst case none can really elaborate on and it creeps up again after every scare. What actually lets you tighten safely is seeing memory a layer down in the app itself like what allocates and what holds it under the real traffic or audience . for node/python or java that function level view can be done with hud or other tools but thats the app side not a cluster or VPA thing\n\nthen the margin goes where it actually needs to be instead of getting spread evenly out of caution \n\nCluster side answer is VPA but almost nobody runs it in prod, it restarts pods and steps on HPA and mostly watches the same aggregate then reacts after an oomkill anyway so that ends up guessing too just automated one",
+    "developer": "benson_c8",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1was0aa",
+  "sourceItemId": "1was0aa",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1was0aa/i_was_building_an_mcp_server_for_an_ai_agent_and/",
+  "detail": {
+    "longDescription": "I was recently working on hooking up some external tools to an LLM using an MCP server. I simply just grabbed the API keys for the services I needed and dropped them into my environment variables so the agent could fetch the data.\n\nBut as I tested it, I found out that this setup isn't suitable for production. In a normal application, the authorization chain is explicit. You know exactly what deterministic code path is going to trigger an API call. With an agent, a natural language prompt triggers the logic, and the agent autonomously decides when and how to use that access token.\n\nI realized that standard secrets management only solves the storage problem. It does nothing for governance. You end up with non-human identities touching multiple external services, completely bypassing normal IAM frameworks.\n\nI had to start reading up on different patterns, like strictly isolating credential scopes per MCP server and using runtime secret injection, because relying on static tokens for autonomous agents feels like an explosion waiting to happen.\n\nIf you are building out multi-tool workflows for agents right now, how are you handling the backend access, do you build custom guardrails to govern the agent, or just treat it like a standard backend service?\n\n",
+    "developer": "Chris__Codes",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

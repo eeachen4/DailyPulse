@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb0pqf",
+  "sourceItemId": "1wb0pqf",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1wb0pqf/i_got_tired_of_running_rustdesk_for_screens_and/",
+  "detail": {
+    "longDescription": "Two things I end up installing on every machine I own: something to see its screen, and something to put it on a private network. They never know anything about each other — separate agents, separate identities, separate ACLs, two things to keep updated.\n\nSo I built one agent that does both. It's my project, and this is the first time I've shown it to anyone.\n\n* Open any machine's desktop in a browser tab. Nothing to install on the viewing side.\n* The same machines are on a WireGuard mesh: overlay IPs, MagicDNS, subnet routes, exit nodes, SOCKS5.\n* `roomler ssh <box>` with no sshd running and no port open.\n* Traffic is peer-to-peer and end-to-end encrypted. The server introduces the two ends and enforces policy; it never sees pixels, keystrokes, files or tunnelled bytes.\n\nBecause it's one agent with one identity, the policy that says who may reach a machine is the same one that says who may see its screen.\n\nSelf-hosting is the whole product, not a crippled build: no device cap, no licence key, no activation, no phone-home, same code as the hosted service. Server is AGPL-3.0; everything that runs on your own machines is MPL-2.0.\n\n    git clone https://github.com/gjovanov/roomler-ai.git && cd roomler-ai\n    cp .env.selfhost.example .env.selfhost\n    docker compose -f docker-compose.selfhost.yml --env-file .env.selfhost pull\n    docker compose -f docker-compose.selfhost.yml --env-file .env.selfhost up -d\n\n88 seconds from clone to running on a clean box, amd64 and arm64 both published. You can install only the part you want — there are profiles for remote desktop alone, mesh alone, or everything.\n\nBeing straight about where it is: I run it on my own machines daily, the installer is tested on throwaway Win11/Ubuntu/ARM/macOS VMs before each release, and it has almost no users besides me. Video conferencing needs a UDP port range reachable from your browsers — that part can't be proxied, and it's the one bit of setup that actually bites people.\n\nThere's a 90-second demo in the README of two machines pinging each other across the mesh, one of them a Windows laptop being driven from a browser tab.\n\n[https://github.com/gjovanov/roomler-ai](https://github.com/gjovanov/roomler-ai)\n\nDocs: [https://roomler.ai/docs](https://roomler.ai/docs)\n\nHappy to answer anything, including what it's worse at than the tools you already use.",
+    "developer": "gjovanov",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000947",
+  "sourceItemId": "80000947",
+  "sourceUrl": "https://stackoverflow.com/questions/80000947/how-do-i-trigger-a-dialog-form-by-clicking-a-table-row",
+  "detail": {
+    "longDescription": "I was showing a list of person with Table from Shadcn UI. My goal is to show a Dialog form with the info of the person indicated in the row. So I iterated the rows and added an onclick trigger that goes to the dialog with route '/showperson/:id' in this way: type rowTypeProp = { id: number, name: string, email: string, } function Myrow(data: rowTypeProp) { const navigate = useNavigate(); const onRowClick = (data: rowTypeProp) => { navigate(`/showperson/${data.id}`); } return( <TableRow key={data.id} onClick={() => onRowClick(data)} className=\"cursor-pointer hover:bg-gray-100\" > <TableCell className=\"font-medium\">{data.id}</TableCell> <TableCell>{data.name}</TableCell> <TableCell className=\"text-right\">{data.email}</TableCell> </TableRow> ) } The Dialog when exits goes back to te previous page: export function PersonFormDialogPage() { const { id } = useParams(); const [dialogIsOpen, setDialogIsOpen] = useState(true) const navigate = useNavigate(); ... const onCancelButton = () => { setDialogIsOpen(false) navigate(-1) } ... return ( <Dialog open={dialogIsOpen} closeOnEsc={true} closeOnOutsideClick={true}> <form> <DialogContent className=\"sm:max-w-sm\"> ... <DialogFooter> <Button type=\"submit\" onClick={form.handleSubmit(onSubmit)}> Save changes </Button> <Button type=\"button\" onClick={onCancelButton}> Exit </Button> </DialogFooter> </DialogContent> </form> </Dialog> ) } It works, but jumping to another page the list of the persons is not anymore in the background of the dialog, while I want that the dialog remains in the same page. How do I approach the issue?",
+    "developer": "Marco Pasquali",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "107"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

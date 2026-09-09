@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb1tdz",
+  "sourceItemId": "1wb1tdz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wb1tdz/request_harness_as_a_loop_verb_letting_the_agent/",
+  "detail": {
+    "longDescription": "Design note from a solo open-source project. Sharing the pattern because it may be useful even if you never touch the code.\n\n  \nProblem: TOOL\\_CALL assumes the toolkit is fixed at design time. The capability an agent actually needs is usually discovered mid-task, so it fails or fakes it. I added the inverse verb, REQUEST\\_HARNESS (\"provision what I lack\"), for six families: tool (forge or reuse), skill (a procedure), access (file / secret / network), compute (more iterations), sub-agents (a budgeted fleet), MCP (attach a server).\n\n  \nGovernance rules that turned out to matter:\n\n  \n\\- Risk-tiered arbitration: reuse auto-grants; new code, secrets and network writes always escalate to a human card with the generated source visible before anything runs.\n\n\\- A self-requested capability is treated as MORE dangerous than a pre-provisioned one (the agent chose it), so it is gated more strictly, not less.\n\n\\- The LLM judge can only downgrade toward safe: deny or escalate, never grant beyond policy. A judge fault escalates.\n\n\\- Approvals bind to sha1(tool body) + declared effect set, so a re-forge re-gates. MCP tool definitions are hash-pinned against rug-pulls. Dependencies get their own gate. The first execution of a forged tool is gated as dangerous-until-proven.\n\n\\- Every grant is leased, logged and revocable.\n\n  \nEval (Capability-Gap Benchmark, in the repo under cgb\\_eval/): 23 tasks that are impossible without acquiring a missing capability, three conditions (frozen harness / governed pull / pull without the judge), five models across five vendors (Claude Opus 4.8, GPT-5.4, Gemini 3 Flash, DeepSeek V4 Pro, GLM 5.2), graded by an external oracle. Frozen: 6%. Governed pull: 61%. 179 trials, McNemar p = 2.8e-10.\n\n  \nWhere I'd push back on myself: n=179 is small; flash-tier models write noticeably worse tools; the eval is mine.\n\n  \nCode (MIT): [https://github.com/rameswaran-mohan/project-systemu](https://github.com/rameswaran-mohan/project-systemu)\n\nPreprint: [https://doi.org/10.5281/zenodo.20816383](https://doi.org/10.5281/zenodo.20816383)\n\n60-second walkthrough built from real screenshots: [https://github.com/rameswaran-mohan/project-systemu/blob/main/docs/assets/systemu-demo.mp4](https://github.com/rameswaran-mohan/project-systemu/blob/main/docs/assets/systemu-demo.mp4)\n\n  \nQuestion for this sub: if you've built a request/grant loop, how do you keep the approval queue from turning into a rubber stamp by the 20th card? That's the open problem for me.",
+    "developer": "Rameswaranmohan1993",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

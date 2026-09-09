@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wazlw4",
+  "sourceItemId": "1wazlw4",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wazlw4/a_hardening_script_i_wrote_took_a_load_balancer/",
+  "detail": {
+    "longDescription": "Disclosure: the hardening script and the audit tool I mention are both mine. The audit tool is MIT and free, there's no paid product behind this post.\n\nWrote a script to retrofit a default-deny posture onto existing ALBs: force HTTPS, drop invalid headers, defensive desync mitigation, and make the HTTPS default action a 403 so only host-header rules you define can forward.\n\nTested it against an HTTP-only ALB — one listener on :80 forwarding to a target group. Extremely common shape if the stack is old or TLS terminates somewhere else.\n\nOutput:\n\n    Created HTTPS listener: arn:aws:elasticloadbalancing:...\n    WARNING: No default forward target group found. Add an allowed-host forward rule manually.\n    ALB hardening complete. Validate hostname routing and health before production use.\n\nExit code 0. Application completely unreachable.\n\n    $ curl -sk -o /dev/null -w \"%{http_code}\\n\" -H \"Host: allowed.example.com\" https://$ALB/\n    403\n\n    $ aws elbv2 describe-target-groups --target-group-arns $TG --query 'TargetGroups[0].LoadBalancerArns'\n    []\n\nThe bug is ordering, not logic. The script discovered the existing forward target group from the **HTTPS** listener:\n\n    CURRENT=$(aws elbv2 describe-listeners --listener-arns \"$HTTPS_ARN\" --output json)\n    TG=$(jq -r '.Listeners[0].DefaultActions[]? | select(.Type==\"forward\") | .TargetGroupArn // empty' <<<\"$CURRENT\")\n\nOn an HTTP-only ALB there wasn't one — the script had created it seconds earlier with a 403 fixed-response default. So `TG` was empty, the branch that creates the host-header forward rule was skipped, and execution continued straight into the line that makes the 403 default permanent.\n\nSo the sequence was: create a listener that denies, look at it to find out what to allow, find nothing, print a warning, make the denial permanent, report success.\n\nThree things I'd generalise:\n\n**Discover before you mutate.** It read state after it had already replaced that state. Any discovery has to happen before the first write, not partway through.\n\n**A warning after the damage is a log line, not a safeguard.** \"Add the rule manually\" is good advice one minute earlier. Printed after the default is already 403, it just narrates an outage.\n\n**Exit code 0 was the actually dangerous part.** In a pipeline that's a green step and everything downstream proceeds. First real signal would've been customers.\n\nFix was three changes: read the target group from :80 as a fallback and capture it before touching anything, create the allow rule before flipping the default to deny, and abort outright if no target group can be found rather than black-holing traffic. Plus a --dry-run, which should have existed first.\n\n| request | before | after |\n|---|---|---|\n| HTTP, allowed host | 301 | 301 |\n| HTTPS, allowed host | 403 (outage) | 503 (forwarded, no targets) |\n| HTTPS, unknown host | 403 | 403 |\n| target group | orphaned | attached |\n\nWhat bugs me is that nothing static would have caught this. ShellCheck clean, valid bash, every AWS API call succeeded and returned what it should. The ALB ended up in exactly the state the code described — and that state was an outage.\n\nThe only thing that found it was running it against an infra shape I hadn't designed for, then checking the result from outside as a user instead of checking that my commands returned 0.\n\nAnyone got a good approach for testing this class of thing? Every idea I have is basically \"spin up the ugly version of prod in a sandbox and curl it from outside\", which works but doesn't scale to every permutation.\n\nThe read-only audit half of it is up free if useful: github.com/vamsiatluri/aws-baseline-audit — single file, every call is a Describe/Get so it can't change anything. Full writeup of the outage is in docs/the-outage.md in that repo.",
+    "developer": "Sure_Abbreviations28",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

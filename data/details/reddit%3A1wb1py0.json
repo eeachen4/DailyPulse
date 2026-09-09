@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb1py0",
+  "sourceItemId": "1wb1py0",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wb1py0/built_a_heuristic_to_catch_when_an_algenerated/",
+  "detail": {
+    "longDescription": "Working on a document generation tool where an LLM outputs LaTeX for a single-page layout. The issue is that the model doesn't reliably know what \"fills exactly one page\" means, so early outputs are either way too sparse or spill onto a second page.\n\nTried counting content elements and total characters in the generated body to set floors and ceilings, calibrating those thresholds using a different model's output as a stand-in.  \nBut when testing the actual production model, it barely hit the character floor, with element density at about half of what was assumed. Because different models structure their output differently, heuristics don't transfer well.\n\nCurrently running a measure-and-repair loop: generate, score against floor/ceiling thresholds, and if it's out of bounds, run a corrective pass to expand or compress, keeping the higher-scoring version. Also branching the initial prompt based on the density of the source data, telling it to expand upfront if the input is light.\n\nStill tuning the thresholds against live traffic. Anyone else doing structured, single-page generation find a cleaner proxy for \"fullness\" than raw character or element counts?  \nFeels like there should be a better signal.",
+    "developer": "Scholeristical",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

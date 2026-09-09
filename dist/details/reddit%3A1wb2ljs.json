@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wb2ljs",
+  "sourceItemId": "1wb2ljs",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wb2ljs/when_debugging_a_workflow_what_evidence_is_strong/",
+  "detail": {
+    "longDescription": "A lot of debugging advice focuses on finding suspicious steps, but I have been thinking about the opposite problem: deciding when you have enough evidence to stop investigating one.\n\nSuppose a multi step workflow produces the wrong outcome. You inspect a step and see:\n\n* the expected input\n* the expected tool and arguments\n* a successful response\n* normal latency and token usage\n* no retries or exceptions\n* output that matches the expected schema\n\nIs that enough for you to treat the step as healthy and move on?\n\nOr do you usually need stronger evidence, such as:\n\n* before/after state\n* an independently verified external result\n* provenance for the model/provider/deployment actually used\n* confirmation that downstream code received the same output the trace recorded\n* comparison against a known good run\n* an invariant or business evel assertion\n\nIm primarily interested in production cases where a step looked healthy in the trace, was initially ruled out, and later turned out to be involved in the failure.\n\nWhat made the original evidence misleading, and what do you require now before you are comfortable ruling a step out? ",
+    "developer": "Sensitive-Parsnip-12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

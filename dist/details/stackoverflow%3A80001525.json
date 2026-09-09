@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001525",
+  "sourceItemId": "80001525",
+  "sourceUrl": "https://stackoverflow.com/questions/80001525/why-does-typescript-lose-the-correlation-between-a-discriminant-and-a-generic-pa",
+  "detail": {
+    "longDescription": "I have a discriminated union where the relationship between type and payload is preserved when I work directly with the union: type Message = | { type: \"text\"; payload: string } | { type: \"count\"; payload: number }; function handle(message: Message) { if (message.type === \"text\") { message.payload.toUpperCase(); } if (message.type === \"count\") { message.payload.toFixed(); } } However, when I try to express the same relationship through generics, TypeScript no longer seems to preserve the correlation: type MessageMap = { text: string; count: number; }; function handle<K extends keyof MessageMap>( type: K, payload: MessageMap[K] ) { if (type === \"text\") { payload.toUpperCase(); } } The call site is type-safe, but inside the generic function type === \"text\" doesn't narrow payload to string . Why can't TypeScript use the relationship between K and MessageMap[K] for control-flow narrowing? Is there a type design that preserves this correlation without manually converting the generic into a discriminated union?",
+    "developer": "Aaqibhafeez Khan",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "92"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

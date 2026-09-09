@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001289",
   "sourceItemId": "80001289",
+  "fetchedAt": "2026-09-09T01:34:41.409Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001289/pwntool-process-is-none-starting-remote-process-none-process-creation-failed",
   "detail": {
     "longDescription": "I am trying solve ctf problem (Spoiler for pwnable.kr passcode challenge). I can connect and execute command but can't create process. Please don't write the flag. I just need to know how to create the process. My code: from pwn import * HOST = \"pwnable.kr\" USER = \"passcode\" PASSWORD = \"guest\" sh = ssh(host=HOST, user=USER,port = 2222, password=PASSWORD) print(f\"Connection:{ sh.connected()} \") result = sh.run(\"ls\") print(result.recvall().decode()) print(sh.run(\"ls -l ./passcode\").recvall().decode()) p = sh.process(\"./passcode\") print(p) print(p.recv().decode()) Output: Connecting to pwnable.kr on port 2222: Done [*] passcode@pwnable.kr: Distro Unknown Unknown OS: Unknown Arch: Unknown Version: 0.0.0 ASLR: Disabled SHSTK: Disabled IBT: Disabled Note: Susceptible to ASLR ulimit trick (CVE-2016-3672) Connection:True [+] Opening new channel: 'ls': Done [+] Receiving all data: Done (34B) [*] Closed SSH channel with pwnable.kr flag passcode passcode.c readme [+] Opening new channel: 'ls -l ./passcode': Done [+] Receiving all data: Done (61B) [*] Closed SSH channel with pwnable.kr -r-xr-sr-x 1 root passcode_pwn 15232 May 23 16:00 ./passcode [-] Starting remote process None on pwnable.kr: Process creation failed None Traceback (most recent call last): File \"/home/kali/Downloads/passcode.py\", line 13, in <module> print(p.recv().decode())",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "51"
+        "value": "67"
       },
       {
         "label": "状态",
