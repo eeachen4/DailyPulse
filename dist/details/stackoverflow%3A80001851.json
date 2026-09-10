@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001851",
+  "sourceItemId": "80001851",
+  "sourceUrl": "https://stackoverflow.com/questions/80001851/using-df-styler-with-df-to-latex-and-longtable",
+  "detail": {
+    "longDescription": "I'm trying to convert a table to LaTeX using df.to_latex() . I've become aware of styler , but I am not super expert in LaTeX itself and write largely in Markdown and convert to Pandoc with an engine. I am hoping to bold my column names and row names. The following, after much trial and error, works: styler = df.style.format( precision=0, thousands=\",\", escape=\"latex\") styler.map_index(lambda v: \"font-weight: bold;\", axis=\"index\") styler.map_index(lambda v: \"font-weight: bold;\", axis=\"columns\") s = styler.to_latex(convert_css=True, hrules=True) figs = \"~/Desktop/code/working-drafts/diss2figs\" with open(f'{figs}/sample_sizes.tex', 'w') as tbl: tbl.write(s) However, when I add environment=\"longtable\" to the to.latex() argument, it fails to compile, but my table is very long, and I would like to have that option. Interestingly, the following also works to make the table long, but I have, of course, had to give up on the bolding. styler = df.style.format( precision=0, thousands=\",\", escape=\"latex\") r = styler.to_latex(convert_css=True, hrules=True, environment=\"longtable\") figs = \"/Users/griffinjmbur/Desktop/code/working-drafts/diss2figs\" with open(f'{figs}/sample_sizes.tex', 'w') as tbl: tbl.write(r) I am not at all a LaTeX expert; I learned the syntax of writing it back when I was a Jupyter Notebooks n00b, and I'm good at that, but I will confess to not really understanding how to compile it. I do notice that the problem appears to be this. If I leave out the \"longtable\" option, I get this raw LaTeX back: \\begin{tabular}{lrrrr} \\toprule & \\multicolumn{2}{r}{\\bfseries raw count} & \\multicolumn{2}{r}{\\bfseries sum of weights} \\\\ retiree & \\bfseries False & \\bfseries True & \\bfseries False & \\bfseries True \\\\ year & & & & \\\\ \\midrule \\bfseries 1980 & 55,039 & 14,887 & 126,900,099 & 28,367,901 \\\\ ... \\bfseries 2018 & 53,592 & 15,172 & 186,545,780 & 57,685,123 \\\\ \\bottomrule \\end{tabular} but with \"longtable\" in the environment, I get this \\begin{longtable}{lrrrr} \\toprule & \\multicolumn{2}{r}{\\font-weightbold raw count} & \\multicolumn{2}{r}{\\font-weightbold sum of weights} \\\\ retiree & \\font-weightbold False & \\font-weightbold True & \\font-weightbold False & \\font-weightbold True \\\\ year & & & & \\\\ \\midrule \\endfirsthead \\toprule & \\multicolumn{2}{r}{\\font-weightbold raw count} & \\multicolumn{2}{r}{\\font-weightbold sum of weights} \\\\ retiree & \\font-weightbold False & \\font-weightbold True & \\font-weightbold False & \\font-weightbold True \\\\ year & & & & \\\\ \\midrule \\endhead \\midrule \\multicolumn{5}{r}{Continued on next page} \\\\ \\midrule \\endfoot \\bottomrule \\endlastfoot \\font-weightbold 1980 & 55,039 & 14,887 & 126,900,099 & 28,367,901 \\\\ ... \\font-weightbold 2018 & 53,592 & 15,172 & 186,545,780 & 57,685,123 \\\\ \\end{longtable} How can I have bold headings in my longtable ?",
+    "developer": "gjmb",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "40"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

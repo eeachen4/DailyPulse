@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbzidn",
+  "sourceItemId": "1wbzidn",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wbzidn/i_wanted_to_never_open_twitter_again_without_also/",
+  "detail": {
+    "longDescription": "those two things fought each other for about a year.\n\n  \ni make things and things need people who know about them. reddit works for me. twitter never did. and the price of being there isn't posting, it's the obligation around posting: logging in, leaving comments so people find you, buying a subscription so your posts rank higher, and then doing it again tomorrow, forever. i paid for it for a while. nothing landed with it, nothing landed without it. i still had to show up.\n\n  \nso i stopped trying to fix my relationship with the interface and just removed it. i already live in a chat with a model all day, i already have my own mcp for search and scraping, so the last step was handing that model the X api directly.\n\n  \nwhen i went looking for an existing one, i found one server with 64 stars, unmaintained, python, everything in a single file. as an engineer i couldn't let that stand, partly out of spite. there are barely any of these at all, so if i was writing one anyway i decided to cover the whole surface. 42 tools, posts, users, lists, media. go, both stdio and http transports. it came out around 12k lines with tests. so it goes.\n\n  \nthe part that actually matters and that i didn't expect going in: X has no free tier anymore. it's pay per use now, you load credits and every request eats them. reads are billed per resource returned, not per request, so max\\_results 100 costs twenty times what max\\_results 5 costs for the same question. handing that to an agent that likes to loop is a good way to wake up broke.\n\n  \nso most of the design is about money. every read tool tells the model to ask for the smallest result count that answers the question. there's a count tool that sizes a topic without spending the post read budget, use it before you search. lookups are batched instead of looped. pagination is manual on purpose, nothing walks pages on its own, because every page is billed and that decision isn't mine to make for you.\n\n  \nthe other half is failing loudly. the server calls users/me once at startup and refuses to boot on bad keys, so you find out before the first tool call. it also catches the read-only token trap, which is the thing everyone hits: an access token keeps whatever permissions the app had when you generated it, so if you flipped the app to read and write afterwards, every write fails forever and nothing in the console tells you why. regenerating the api key doesn't fix it, regenerating the access token does. error messages are written for a model to read, and the ones that must not be retried say so in the text.\n\n  \nwhat i'm not doing with it: this isn't an engagement farm. post create publishes for real, delete is irreversible, follow really follows, it acts as whatever account the keys belong to. i built it to write less often and think about it less, not to automate a personality.\n\n  \nhonest about the state: v0.1.1, no dms, no streaming, search only goes back 7 days because that's all the recent search endpoint gives, one account per process. and you can't try it without a funded developer account, which is a real cost of the design and i'm not going to pretend otherwise.\n\n  \nrepo and docs:\n\n  \n[https://github.com/Role1776/mcp-x](https://github.com/Role1776/mcp-x)\n\n  \n[https://varmcp.com/mcp-x](https://varmcp.com/mcp-x)",
+    "developer": "GoldBroccoli7073",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80000410",
+  "sourceItemId": "80000410",
+  "sourceUrl": "https://stackoverflow.com/questions/80000410/canvas-click-hit-testing-vs-devicepixelratio-scaling-why-doesnt-click-code-ne",
+  "detail": {
+    "longDescription": "I'm drawing a graph on <canvas> where nodes have fixed logical coordinates (e.g. in a 1100×620 \"design space\"), and I scale/translate them to fit the actual rendered canvas size, plus support high-DPI screens and a zoom control. Sizing / DPI setup: function resizeCanvas() { const rect = canvas.getBoundingClientRect(); const ratio = window.devicePixelRatio || 1; canvas.width = Math.round(rect.width * ratio); canvas.height = Math.round(rect.height * ratio); drawGraph(); } Drawing transform: function getCanvasGeometry() { const rect = canvas.getBoundingClientRect(); const baseScale = Math.min(rect.width / 1100, rect.height / 620) * zoom; return { rect, scale: baseScale, offsetX: (rect.width - 1100 * baseScale) / 2, offsetY: (rect.height - 620 * baseScale) / 2 }; } let canvasTransform = { scale: 1, offsetX: 0, offsetY: 0 }; function drawGraph() { const ctx = canvas.getContext(\"2d\"); const ratio = window.devicePixelRatio || 1; const geometry = getCanvasGeometry(); canvasTransform = geometry; ctx.setTransform(ratio, 0, 0, ratio, 0, 0); ctx.clearRect(0, 0, geometry.rect.width, geometry.rect.height); network.nodes.forEach((node) => { const point = project(node); ctx.beginPath(); ctx.arc(point.x, point.y, 8, 0, Math.PI * 2); ctx.fillStyle = \"#e8eef1\"; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = \"#101820\"; ctx.stroke(); }); } function project(node) { return { x: canvasTransform.offsetX + node.x * canvasTransform.scale, y: canvasTransform.offsetY + node.y * canvasTransform.scale }; } Hit-testing on click, using clientX/clientY from the mouse event: function nodeAtCanvasPoint(clientX, clientY) { const rect = canvas.getBoundingClientRect(); const x = clientX - rect.left; const y = clientY - rect.top; return network.nodes.find(node => { const point = project(node); return Math.hypot(point.x - x, point.y - y) <= 14; }); } This seems to work, but I don't fully understand why hit-testing doesn't need to multiply by ratio while drawing does (via ctx.setTransform(ratio, ...)). My questions: 1. Why does ctx.setTransform(ratio, 0, 0, ratio, 0, 0) let me draw using CSS-pixel coordinates even though canvas.width/height are in device pixels — and why doesn't the click-handling code need the same ratio multiplication? 2. Is getBoundingClientRect() always safe to use for both drawing-space and click-space math, or are there cases (CSS transforms on ancestors, page zoom, etc.) where this breaks? 3. Is there a more standard/cleaner pattern for \"logical coordinate space → CSS pixel space → device pixel space\" than manually tracking scale/offsetX/offsetY in a shared mutable object (canvasTransform)?",
+    "developer": "Arthur Davies",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

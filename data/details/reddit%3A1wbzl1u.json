@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbzl1u",
+  "sourceItemId": "1wbzl1u",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wbzl1u/my_personal_solution_to_context_bloat_a_kanban/",
+  "detail": {
+    "longDescription": "Hey guys, I'm using something in my own development process that I thought I might share, hopefully someone out there finds this useful (not promoting anything).\n\nOne of the biggest bottlenecks in AI-assisted development is the actual chat window. A chat isn't really the most optimal mode of working, for multiple reasons, one being that context builds up in a single chat session until you burn your entire token budget on a single UI fix. Which is why I built a system that uses a kanban board instead.\n\nThe premise is quite simple, but the execution took a shit load of time to get right.\n\nI only need 1 chat window open: It reads the board, batches tasks and hands them off to subagents. I use a pretty standard set of them:\n\n\\- A planner agent that 'refines' tasks  \n\\- A lower-tier implementer  \n\\- An evaluator\n\nAll of these agents log their activity, findings and feedback on the board, creating a history and lineage that doesn't get lost when you close your chat window.\n\nContext bloat is nearly nothing here, because the main orchestrator (the chat window you launch the skill from) never gets involved in the tasks themselves, so theoretically it could run hundreds of these loops without gaining any context.\n\nThe board itself is a folder of markdown files in the repo, rendered into a kanban I drag cards around in.\n\nEvery status, and what Claude (or insert your favorite model) does when it hits one:\n\n•\t**New**: the drop box for half-formed ideas.  \n•\t**To refine**: accepted, no plan. Claude reads enough of the codebase to be concrete, writes the plan into the task, points it, asks anything it can't decide alone, then moves it to Waiting.  \n•\t**Waiting**: my move. I read the plan, answer the questions, approve or send it back.  \n•\t**Ready to start:** approved, Claude may implement.  \n•\t**In progress**: Everything actually being worked on by implementer agents.  \n•\t**Require input**: Claude hit a real question mid-build. It commits what it has, writes the question into the task. Answering it flips the card back to Ready to start on the same branch, so the next agent can pick it back up.  \n•\t**Test**: built & ready for testing.  \n•\t**Merge**: I tested and it’s ready to ship. Claude commits, merges the branch and moves the card to Done.  \n•\t**Done**: Mainly there as an archive.\n\nThis way I communicate with agents fully through the board, which is another reason context doesn’t build up in the chat window.\n\nIf any of you guys want a more in-depth explanation then I'll probably make a part 2, or feel free to DM me and I might whip up a manual for this system.\n\n**TLDR**; I use a custom Kanban board which my AI agents read & update, and it completely dissolves context bloat",
+    "developer": "Clean-Vermicelli-700",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

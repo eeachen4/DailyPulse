@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wc2cs2",
+  "sourceItemId": "1wc2cs2",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wc2cs2/running_qwen_38_27b_iq3_xxs_on_rtx_3060/",
+  "detail": {
+    "longDescription": "Getting anywhere from 10 - 20 tps.  \nThinking Off . Took about 4 mins and 7 mins.   \nRunning on about \"IQ3\\_S - 3.4375 bpw\" \n\n  \n37.03.960.932 I slot print\\_timing: id  0 | task 2665 | prompt processing, n\\_tokens =  12516, progress = 0.98, t =  37.08 s / 337.55 tokens per second  \n37.04.777.411 I slot print\\_timing: id  0 | task 2665 | prompt processing, n\\_tokens =  12768, progress = 1.00, t =  37.78 s / 337.94 tokens per second  \n37.13.746.606 I slot print\\_timing: id  0 | task 2665 | n\\_gen =    100, tg =  11.34 t/s, tg\\_3s =  11.45 t/s  \n37.16.955.263 I slot print\\_timing: id  0 | task 2665 | n\\_gen =    140, tg =  11.64 t/s, tg\\_3s =  12.47 t/s  \n37.20.166.770 I slot print\\_timing: id  0 | task 2665 | n\\_gen =    180, tg =  11.81 t/s, tg\\_3s =  12.46 t/s  \n37.23.366.284 I slot print\\_timing: id  0 | task 2665 | prompt eval time =   38241.22 ms / 12772 tokens (    2.99 ms per token,   333.99 tokens per second)  \n37.23.366.290 I slot print\\_timing: id  0 | task 2665 |        eval time =   18350.47 ms /   211 tokens (   87.38 ms per token,    11.44 tokens per second)  \n37.23.366.291 I slot print\\_timing: id  0 | task 2665 |       total time =   56591.69 ms / 12983 tokens  \n37.23.366.292 I slot print\\_timing: id  0 | task 2665 |    graphs reused =       2342  \n37.23.366.296 I slot print\\_timing: id  0 | task 2665 | draft acceptance = 0.41250 (  132 accepted /   320 generated), mean len =  2.65  \n37.23.366.758 I slot      release: id  0 | task 2665 | stop processing: n\\_tokens = 12984, truncated = 0  \n\n\n  \nMy run for this is \n\n    ~/sandbox/dcfr/third_party/llama.cpp/build-cuda/bin main*\n    ❯ export LLAMA_GDN_TRANSACTIONAL_REPLAY=1\n     export GGML_OP_OFFLOAD_MIN_BATCH=2\n    \n     ./llama-server \\\n           -m /mnt/D/Mymodels/Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf  \\\n           --alias qwen3.8-27b-iq3-64k-dcfr \\\n           -c 65536 \\\n           --parallel 1 \\\n           -dev CUDA0 \\\n           --fit off \\\n           --n-gpu-layers 50 \\\n           --override-tensor 'blk\\.(10|11|12|13|14|15|16)\\..*=CUDA0' \\\n           --load-mode none \\\n           -ctk q4_0 \\\n           -ctv q4_0 \\\n           -b 256 \\\n           -ub 256 \\\n           -t 6 \\\n           -tb 6 \\\n           --spec-type draft-mtp \\\n           --spec-draft-n-max 4 \\\n           --spec-draft-p-min 0 \\\n           --spec-draft-type-k q4_0 \\\n           --spec-draft-type-v q4_0 \\\n           --spec-draft-threads 6 \\\n           --spec-draft-threads-batch 6 \\\n           -fa on \\\n           --no-mmproj \\\n           --reasoning off \\\n           --jinja \\\n           --cache-ram 128 \\\n           --no-cache-idle-slots \\\n           --no-ui \\\n           --host 127.0.0.1 \\\n           --port 5800 \\\n           --metrics\n    \n    \n\nI still have more than 1GB vram left after loading the full model and kv cache.   \nOr you can follow his guide [https://github.com/kadenball/qwen38-27b-rtx3060-dcfr](https://github.com/kadenball/qwen38-27b-rtx3060-dcfr)\n\nIf anybody got issues running on rtx 3060 tell me.",
+    "developer": "SummarizedAnu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

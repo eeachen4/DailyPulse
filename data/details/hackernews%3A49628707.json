@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49628707",
+  "sourceItemId": "49628707",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49628707",
+  "detail": {
+    "longDescription": "Hello HN, In the age of LLMs sucking in random secrets, sandbox escapes, and RCE orbital bombardment, I thought it&#x27;d be a good idea to create a Maven Extension that defers to the MacOS keychain for resolving secrets. In general, it&#x27;s a good idea to not have any secrets (passwords, tokens, etc) stored in plaintext files. Also, this allows your machines to be FIPS-140 complaint, if thats a thing for your job. Locksmith is a Maven Core Extension that defers to the MacOS Keychain. The entry format in settings.xml looks like: `{[type=locksmith]nexus.superbiz.example.com&#x2F;username}` This was a fun project and I used the Project Panama FFM with jextract for the first time. The FFM is a great iteration on JNI (which still has it&#x27;s place) and was pretty much brainless to use. Setup is quick and easy and I tried to make the readme as friendly as possible. As an aside, I&#x27;ve also architected the core Library indecently from the Maven bits, so if you do need to read from the MacOS keychain in a project, you could pull the core Library in without dragging in Maven. Being 2026, of course Claude was used to assist in the creation of the project, however Locksmith is not vibecoded top-to-bottom. I personally loathe AI slop. I use LLMs as a tool, not a crutch. Enjoy!",
+    "externalUrl": "https://github.com/exabrial/locksmith",
+    "developer": "exabrial",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

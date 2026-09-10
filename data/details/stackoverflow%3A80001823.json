@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001823",
+  "sourceItemId": "80001823",
+  "sourceUrl": "https://stackoverflow.com/questions/80001823/react-client-doesnt-catch-the-socket-on-signal-from-the-server-using-setinter",
+  "detail": {
+    "longDescription": "So I'm building a desktop game using electron and react currently. Now, on my server I have a code that basically does 2 things when the start game button on the client is pressed start the game for everyone in the room start the countdown of the timer immediately socket.on(\"start_game\", () => { const room = Array.from(socket.rooms); const usn = socket.name; io.to(room[1]).emit(\"start_game\"); startTimer(room); }); function startTimer(room) { let duration = 10; const countDownInterval = setInterval(() => { if (duration > 0) { io.to(room[1]).emit(\"timer\", parseInt(duration)); duration--; console.log(duration); } else { clearInterval(countDownInterval); } }, 1000); } and on the client I have things like this renderer.jsx const App = () => { const [gameState, setGameState] = useState(\"\"); useEffect(() => { function onStartGame() { setGameState(\"start\"); } socket.on(\"start_game\", onStartGame); }, []) return ( <> {gameState === \"start\" ? <GameLayout /> : <RoomLayout /> } </> ) } GameLayout.jsx import { useEffect, useState } from \"react\" import { socket } from \"../socket\"; export default function GameLayout({ timeLeft }) { const [timer, setTimer] = useState(-1); useEffect(() => { console.log(\"Hi\", timer); function updateTimer(msg){ setTimer(msg); console.log(timer + \"local\", msg + \"duration\"); } socket.on(\"timer\", updateTimer); return() => { socket.off(\"timer\", updateTimer); } }, [timer]) return( <> <h1>Time Left: {}</h1> <h1>Game Start</h1> </> ) } However for some reason the console log on the client in gameLayout won't run EVER even though the one on server normally runs. I want to know if there's anything wrong in my code that stops the console log inside the updateTimer from actually running",
+    "developer": "blue emperor",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "96"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

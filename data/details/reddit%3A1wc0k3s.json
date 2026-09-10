@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wc0k3s",
+  "sourceItemId": "1wc0k3s",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1wc0k3s/determining_whether_a_given_word_is_semantically/",
+  "detail": {
+    "longDescription": "I have a Greek-English dictionary that has entries like this:\n\nἀνήρ - man, husband\n\nI would like to figure out some method for a computer to determine whether another English word aligns well with such a definition. Examples of inputs and outputs, for the definition given above, would be: man->true, fellow->true, person->true, temple->false, throw->false. (The output could instead be some kind of quantitative score rather than a boolean.)\n\nMethods I've thought of, but am not really satisfied with:\n\n1. Compare every word in the definition with the given word, using a word embedding. (Or sum the vectors for the words in the definition.) Exclude common words like \"the.\" Problem: I've played around with Word2Vec and BERT for this, and the results just aren't that great. E.g., the BERT model I tried gave a very high rating to the pair goat-mountain.\n\n2. Use WordNet's lists of synonyms. Problem: Their definition of synonymy is sometimes too strict and other times too permissive. They don't consider man-person to be a synonym pair, but they do consider dog-click to be (e.g., \"dogging the hatch\").\n\n3. Use a similarity measure based on WordNet's graph structure. There is a review of these methods in Lingling Meng et al, 2013, A Review of Semantic Similarity Measures in WordNet. Problem: This will still be too permissive for pairs like dog-click.\n\n4. Query an LLM. Problem: This is a hobby project, and I don't want to spend money.\n\nAny ideas for approaches that I haven't tried?",
+    "developer": "benjamin-crowell",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

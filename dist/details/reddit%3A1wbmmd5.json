@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbmmd5",
+  "sourceItemId": "1wbmmd5",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wbmmd5/docker_and_ufw_have_a_grudge_heres_the_smart_way/",
+  "detail": {
+    "longDescription": "If you've ever installed Docker on Linux and tried to protect a container from external access using UFW, then you already know how frustrating it is to get these two to work together\n\n**Why Docker and UFW are incompatible?**\n\nDocker and UFW are like two roommates who refuse to talk to each other:\n\n* By default, Docker bypasses UFW rules by injecting its own `iptables` rules as explained [here](https://docs.docker.com/engine/install/ubuntu/#firewall-limitations).\n\n**What the official Docker documentation says about it?**\n\n* The official workaround given by the docs [here](https://docs.docker.com/engine/network/packet-filtering-firewalls/) is to manually edit `iptables` rules and chains, which by the way is not even guaranteed to work\n\n**Why it sucks**\n\n* The more I thought about it 🤔🤔 the more I was frustrated 🤬. I am not a computer network engineer, Docker and UFW are supposed to be simple and beginner friendly interfaces that make things fast and easy!\n* So why do I have to dive into low-level networking and learn about `iptables` ?\n* I am not! and neither should you.\n\n**What I (and you) can do**\n\nIf you just want to run a container **without exposing it to the internet**, do this:\n\n* **Option 1: Bind to** [`127.0.0.1`](http://127.0.0.1) **in the run Command**\n* `docker run -p 127.0.0.1:8080:80 your_container`\n   * This makes the container **only accessible locally** (e.g., `localhost:8080`).\n* **Option 2: If using docker compose, bind to** [`127.0.0.1`](http://127.0.0.1) **in** `docker-compose.yml`services: your\\_service: ports: - \"127.0.0.1:8080:80\"\n\n**What If You Do Want It Online?**\n\nIf you need the container accessible **publicly and securely**:\n\n* **Use a reverse proxy** (e.g., Nginx, Caddy, or Traefik).\n* The proxy handles HTTPS, security, and routing, which is much safer than exposing Docker directly.",
+    "developer": "WinnerOk3633",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

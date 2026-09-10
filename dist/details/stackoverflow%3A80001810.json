@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001810",
+  "sourceItemId": "80001810",
+  "sourceUrl": "https://stackoverflow.com/questions/80001810/why-doesnt-setting-justmycode-false-allow-my-breakpoint-to-work",
+  "detail": {
+    "longDescription": "I was debugging some code with an async socket server and found that some breakpoints in the message handler ( handle_client ) were being ignored. After far too much head scratching I came to realize it was due to a naming conflict. I had named the module socket.py which conflicts with the built-in module of the same name. From what I understand, the default config in VSCode with debugpy is to ignore built-in and imported modules (i.e. \"justMyCode\": true ). I set \"justMyCode\": false in my launch config and the breakpoints were still being ignored. Even though the debugger thinks this is a built-in module because of the naming conflict shouldn't it now allow the breakpoints? VSCode 1.136.1 debugpy 2026.6.0 Sample: #socket.py (breakpoints don't work with this name but work when renamed) import asyncio async def run_server(): server = await asyncio.start_server(handle_client, 'localhost', 8888) addr = server.sockets[0].getsockname() print(f'Serving on {addr}') async with server: await server.serve_forever() async def handle_client(reader: asyncio.StreamReader, writer: asyncio.StreamWriter): data = await reader.read(100) ## breakpoints in here were ignored message = data.decode() addr = writer.get_extra_info('peername') print(f\"Received {message} from {addr}\") writer.write(f\"Hello {message}\".encode()) await writer.drain() writer.close() await writer.wait_closed() asyncio.run(run_server()) sample client: import asyncio async def send_message(message): reader, writer = await asyncio.open_connection('localhost', 8888) writer.write(message.encode()) await writer.drain() data = await reader.read(100) response = data.decode() print(f\"Received {response}\") writer.close() await writer.wait_closed() asyncio.run(send_message(\"World\"))",
+    "developer": "iamthebull",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "89"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

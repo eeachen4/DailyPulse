@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wc08we",
+  "sourceItemId": "1wc08we",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wc08we/virtualization_support_not_detected_on_a_machine/",
+  "detail": {
+    "longDescription": "TL;DR: if Task Manager says Virtualization: Enabled but Docker Desktop still says it isn't detected, run Get-ComputerInfo -Property \"HyperV\\*\". If HyperVisorPresent is False while all the HyperVRequirement\\* values are True, run bcdedit /set hypervisorlaunchtype auto and reboot. Windows wasn't launching the hypervisor at boot.\n\nI was setting up Jellyfin in Docker on a stock Windows 11 desktop with a Ryzen 7 3700X. Nothing unusual about the machine.\n\nWhen I tried starting Docker Desktop, it gave me this error:\n\n\"Virtualization support not detected. Docker Desktop failed to start because virtualisation support wasn't detected. Contact your IT admin to enable virtualization or check system requirements.\"\n\nThe first thing I checked was Task Manager → Performance → CPU. It clearly showed Virtualization: Enabled, so Docker's error didn't really make sense. Every search result I found pointed at BIOS settings, which were already correct.\n\nI then tried installing WSL2 through an admin PowerShell using wsl --install, but that failed with:\n\nWSL2 is not supported with your current machine configuration\n\nand:\n\nError code: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS\\_E\\_HYPERV\\_NOT\\_INSTALLED\n\nI also tried wsl.exe --install --no-distribution, which reported that it completed successfully. After restarting the PC, Docker still gave me the exact same virtualization error.\n\nEventually, I checked the Hyper-V configuration with:\n\nGet-ComputerInfo -Property \"HyperV\\*\"\n\nThat showed something important: HyperVisorPresent: False, while all four HyperVRequirement\\* values were True.\n\nSo the hardware itself supported virtualization and all the requirements were met. The actual problem was that the Hyper-V hypervisor simply wasn't being started when Windows booted.\n\nThe fix was:\n\nbcdedit /set hypervisorlaunchtype auto\n\nAfter running that and restarting the computer, Docker finally started working.\n\nThe most likely reason the hypervisor had been disabled was some gaming/performance tweak or anti-cheat-related configuration from years ago. Nothing on the system directly pointed to what had originally disabled it.\n\nOverall, it took roughly 90 minutes to figure out, including three restarts. The main lesson was that having Virtualization: Enabled in Task Manager doesn't necessarily mean the Windows hypervisor is actually running. In this case, the hardware was completely fine; Windows just wasn't launching Hyper-V at boot.",
+    "developer": "NepLive",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001841",
+  "sourceItemId": "80001841",
+  "sourceUrl": "https://stackoverflow.com/questions/80001841/clickhouse-oss-on-kubernetes-how-does-hpa-interact-with-replicas-and-shards",
+  "detail": {
+    "longDescription": "I am running ClickHouse OSS on Kubernetes using ClickHouse Operator . My ClickHouseCluster is configured with the following topology: apiVersion: clickhouse.com/v1alpha1 kind: ClickHouseCluster spec: replicas: 2 shards: 2 So I understand the resulting topology to be: Shard 0 ├── Replica 0 └── Replica 1 Shard 1 ├── Replica 0 └── Replica 1 This gives me 4 ClickHouse pods. I am considering using Kubernetes Horizontal Pod Autoscaler (HPA) to scale the ClickHouse pods based on workload. My question is specifically about what happens to the ClickHouse topology when HPA changes the number of pods. For example, if HPA increases the number of pods from 4 to 6: Current: 2 shards × 2 replicas = 4 pods After HPA: 6 pods How does the ClickHouse Operator handle those additional pods? Specifically: Does HPA scaling the underlying workload actually change the ClickHouse replicas value? If not, what happens to the additional pods created by HPA? Can HPA effectively increase the number of replicas managed by the ClickHouse Operator? If I want to scale from 2 replicas to 3 replicas per shard, should I modify the ClickHouseCluster.spec.replicas field instead of using HPA? When increasing replicas , does the Operator automatically configure the new ClickHouse instances as replicas and allow them to replicate existing data? What happens when the replica count is reduced again? Is using Kubernetes HPA directly on a ClickHouse Operator-managed cluster supported/recommended? I am not asking how to configure HPA. I want to understand the interaction between the Operator's declared shards / replicas topology and Kubernetes pod autoscaling. What is the recommended approach for autoscaling a ClickHouse cluster managed by ClickHouse Operator?",
+    "developer": "Ramanamark Suriyamoorthy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "39"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

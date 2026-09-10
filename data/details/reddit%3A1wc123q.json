@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wc123q",
+  "sourceItemId": "1wc123q",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wc123q/measured_a_real_agent_workload_input_tokens/",
+  "detail": {
+    "longDescription": "I run inference infra and pulled a day of real agent traffic. The token ratio changed how I read provider pricing.\n\n24 hours, 4100 requests: 201.8M input tokens vs 2.27M output. That's 89:1. Average request was 50,239 in, 564 out.\n\nObvious in hindsight — agents re-send the whole conversation plus tool outputs every step. Short tool call out, long result back, next turn carries it all again. What you buy from a provider is context reading, not generation.\n\nSo comparing providers on output price and tok/s is the wrong column for agent work. What moves your bill is input price, cache read price, and whether prefix caching actually hits across turns.\n\nThat last one is worth checking. Same 64k context: 3.95s cold prefill vs 0.78s warm. 5x faster and billed at cache rates. In an agent loop you should hit cache nearly every turn after the first — if you don't, either the provider isn't caching or your framework changes the prompt head between turns. A timestamp in the system prompt will do it.\n\nAlso, KV cost per token varies wildly by architecture. The 125B MoE I serve uses \\~12 KB/token. GLM-5.3-Flash uses \\~176 KB/token — 15x more. That decides how many long sessions any provider holds before queueing you.\n\nDisclosure: I'm a provider, so not neutral. No links per rule 2, happy to answer specifics in comments.",
+    "developer": "MotherMouse8132",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

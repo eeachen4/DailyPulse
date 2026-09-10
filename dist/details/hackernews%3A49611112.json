@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49611112",
+  "sourceItemId": "49611112",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49611112",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Leon, one of the founders of Galaxy. We just open-sourced Filament, a data movement engine written in Go. Filament handles full loads, incremental syncs, and CDC from databases and HTTP APIs into Postgres, MySQL, ClickHouse, Iceberg, and S3. It is Apache 2.0. AI infrastructure projects begin with the same step - moving data from operational systems into a place where it can be modeled and used. We built Filament to make that layer fast, extensible, and easy to self-host. It gives you control over the details that usually get hidden away, including write behavior (replace, append, upsert, or merge), checkpoints, retries, and what happens when a run fails halfway through. A few highlights: - Filament is fast. Our benchmarks show 298M rows moving Postgres to Postgres in under two minutes, about 2.6M rows&#x2F;s. The harness, methodology, hardware configuration, and raw results are public. https:&#x2F;&#x2F;github.com&#x2F;galaxy-io&#x2F;benchmarks - Filament runs anywhere. A standalone binary with a web UI, a CLI, a Go library, or a Helm chart for Kubernetes. - Filament is pluggable. Sources, sinks, the state store, and the event bus are all interfaces. Database connectors use native drivers, and HTTP API sources can be defined in YAML without writing Go. - Filament verifies every batch. A checksum is computed over each batch before the sink write and recomputed at the sink boundary. A mismatch fails the run. - Filament checkpoints as it goes. Progress becomes durable only after work is confirmed, so a failed worker resumes from its last safe checkpoint instead of starting over. Filament is pre-1.0 and there is a lot more to come. There is a ton to build, and we are excited to shape the roadmap around your feedback. If you give it a try and have any issues or comments to share, that would mean the world to us. Filament is the first piece of a larger open-source context management system we are building at Galaxy, a place where a company&#x27;s data, its definitions, and its institutional knowledge live together so people and AI can understand the business and act on it. Today we are an applied lab building bespoke context systems alongside ambitious teams, and if you are building a context layer, we are here to support you through and through. Docs at https:&#x2F;&#x2F;filament.getgalaxy.io and a longer write-up on why we built it at https:&#x2F;&#x2F;www.getgalaxy.io&#x2F;blog&#x2F;introducing-filament . We will be in the comments all day!",
+    "externalUrl": "https://github.com/galaxy-io/filament",
+    "developer": "ikswolzok",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

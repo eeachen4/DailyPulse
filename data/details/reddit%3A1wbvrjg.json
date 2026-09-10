@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbvrjg",
+  "sourceItemId": "1wbvrjg",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wbvrjg/adding_emotion_control_tags_to_qwen3tts/",
+  "detail": {
+    "longDescription": "I fine-tuned  Qwen3-TTS with inline transcript control tags rather in lieu of a separate instruction parameter and thought the community here might be interested in the result.\n\n  \n[https://huggingface.co/SpragAI/qwen3-tts-emotion-tags](https://huggingface.co/SpragAI/qwen3-tts-emotion-tags)  \n\n\nThe basic premise was to use Qwen's CustomVoice model as a teacher prompted with natural language directions (\"Speak with intense anger\") pairing the resulting audio with a discrete control token for the student to learn (\"Anger\"). The full corpus included roughly 8,200 clips per voice across nine preset voices, 74k total then a LoRA over the lot.\n\n\n\nThere were a few problems with training the model starting with the codec language prefixes. The model builds a different codec prefix depending on whether you pass language=\"Auto\" or an explicit language like English. Training on one and rendering the other produced audible buzzing at phrase boundaries that amplified over the output. This was fixed by including explicit prefixes in the corpus for both configurations at a roughly 80/20 split.\n\n\n\nAnother issue came up with generation concurrency which notably changed prosody of the output voice. Generating the corpus through vLLM at \\~10 concurrent requests per server introduced audible tearing and shift delivery in the trained LoRA eventually forcing me to drop back to c1 or c2 generation.\n\n\n\nAnother cool result was that emotion appeared to be roughly affine in speaker-embedding space. In practice that means you can, without custom training a model, actually generate emotion control for arbitrary cloned speakers through a simple transformation on the speakers xvec embedding in Qwen3-TTS. The basic recipe involves computing per-emotion centroids across many speakers from an emotion tagged dataset and subtracting the neutral centroid for each speaker to produce a task vector per emotion. Adding it to a different speaker's embedding moves their delivery toward that emotion. It mostly rides the arousal axis rather than valence, and a large share of the vector lands inside the identity subspace so it drags the voice with it but the structure was clearly there.\n\n  \n",
+    "developer": "ProfessionalHorse707",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

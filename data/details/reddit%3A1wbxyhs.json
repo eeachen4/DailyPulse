@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbxyhs",
+  "sourceItemId": "1wbxyhs",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wbxyhs/qwen38_flash_next_best_quant_fitting_in_128gb/",
+  "detail": {
+    "longDescription": "I tried to run Qwen3.8-Flash-Next-UD-Q5\\_K\\_XL the Mark Watney style, all unnecessary stripped off, speeding in an open top rocket to outer space. But I have also STT & assistant & TTS on my machine, so I had to give up. It was too close to failure. \n\nBut what I collected data about used memory: \n\nmmproj +1GB\n\ncache-ram +what you set\n\nMTP   +5.5GB (even when file was 2.8GB)\n\nctx-size & KV-cache quants\n\nf16   every 10000 tokens is 1GB\n\nq8    every 20000 tokens is 1GB\n\nBase model sizes: \n\nQwen3.8-Flash-Next-UD-Q4\\_K\\_XL     77GB\n\nQwen3.8-Flash-Next-UD-Q5\\_K\\_XL     108GB (+31GB compared to Q4!)\n\nI then moved Q4's n-gram to last file, and switched it with Q5's n-gram that is Q8. (somehow moving the 25GB file also made to Q4 use 5.5GB more memory, and this was before I switched to Q8 file. Have to check that later...) The n-gram is used only from disk, so using bigger Q8 does not affect the memory use. \n\nSo I tried to run Qwen3.8-Flash-Next-UD-Q5\\_K\\_XL with mmproj, MTP and 64000 Q8 kv-cache, 2GB cache-ram and I had like 1-2GB free memory....so I have to find a compromise somewhere. \n\nThen I ran perplexity with Q5, orig Q4 and Q4+Q8 ngram. The problem was I could not run F16 base-kld ( because not innuf mem), so I had to compare with Q8. ( maybe try again tomorrow ) \n\nModel\t\t\t\t\t\t\t\t\t\t\t\t\tTop-1%\tMean KLD\t99.9% KLD \n\nQwen3.8-Flash-Next-Q8\\_0\n\nQwen3.8-Flash-Next-UD-Q5\\_K\\_XL\t\t\t\t\t\t\t94.795\t0.018175\t0.591240\n\nQwen3.8-Flash-Next-UD-Q4\\_K\\_XL-PLESHARD+50GB-NGRAM\t93.786\t0.027853\t0.948222\n\nQwen3.8-Flash-Next-UD-Q4\\_K\\_XL-PLESHARD+25GB-NGRAM\t93.285\t0.033378\t1.090875\n\n\n\nSo using Q8 n-gram with Q4 is not a game changer, but a step to right direction. If I get the F16-base-kld, maybe I test also with F16 n-gram. \n\nMaybe trying to find a Q5\\_M/XS that's 10-15GB bigger then Q4 and perplexity in between the current Q4 & Q5. \n\n",
+    "developer": "MarkoMarjamaa",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

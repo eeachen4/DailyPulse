@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbsq3n",
+  "sourceItemId": "1wbsq3n",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wbsq3n/browseronly_media_tools_that_never_upload_your/",
+  "detail": {
+    "longDescription": "Wednesday self-promo, but I put the useful part first: the two things I got wrong before any of this worked.\n\n  \n1) Most \"convert video\" tools re-encode when they don't have to. A .mov holding H.264 video and AAC audio already contains exactly the bitstreams an .mp4 would contain. Turning it into MP4 is a container rewrite, not a recomputation of pixels. Re-encoding costs minutes and quality for nothing. The rule I ended up with: remux first, copy codecs, re-encode only when the change actually touches pixels - different resolution, different frame rate, rotation baked in. If a tool takes minutes to \"convert\" a MOV to MP4, that is what it is doing wrong.\n\n  \n2) You cannot infer codec support from the user agent. The same Chrome version encodes H.264 on one machine and refuses on the next, because it depends on the hardware and on what the OS ships. The only honest answer comes from asking the browser: VideoEncoder.isConfigSupported() and AudioEncoder.isConfigSupported(). I ask once per session, cache the answer, and say up front if the browser cannot do what you picked - instead of failing halfway through a 2 GB file.\n\n  \nWhat I built on top of that: UseTool, browser tools for images, video, audio, PDF, Office files and archives. You drop a file, it reads what the file actually is, and offers only the operations that fit it - a JPG gets 10 of 72 tools, an MP4 gets a different 10. Steps can be chained into a workflow and reused later; the settings are stored in the browser, the files never are. Everything runs in the tab: no upload, no account, no queue.\n\n  \nHonest limits, because this sub deserves them: video compression stops at 2 GB. HEIC only opens where the operating system decodes it, so not on Windows in Chrome - the tool says so before you start instead of failing. It is not open source today; I am preparing to publish the codec-decision part as a separate package. Ads are off at the moment.\n\n  \n[https://usetool.app/compress-video](https://usetool.app/compress-video)\n\n[https://usetool.app/compress-heic](https://usetool.app/compress-heic)\n\n[https://usetool.app](https://usetool.app)\n\n  \nHappy to answer anything about the WebCodecs side, that is where most of the work went. Criticism welcome, especially on the file-type detection - that is the part I am least sure about.",
+    "developer": "-4r7woRk-",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

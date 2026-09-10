@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wc30q1",
+  "sourceItemId": "1wc30q1",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wc30q1/i_made_a_way_to_migrate_between_embedding_models/",
+  "detail": {
+    "longDescription": "So I was playingw ith embedding models I saw that when you upgrade from model A to B, you face a very big backfilling cost\n\n  \nIe, suppose you have a 1b vectors from model A, and then you want to use model B.  This would mean you have to re-embed all of your documents with model B before you can even serve with the model, and on an H100, it would take \\~108 days (qwen embed 8b, 106 docs/second). But I found an easier way to do it.\n\n  \nThe method is really simple; from the old index made with the source model, take K documents and rerank them with the new model. We see that when K is sufficient, the retrieval quality is the same as target model. (determining k is the hard part). I've tested 63 migrations on upto 1 million documents.\n\nThe best result I got was upgrading qwen4b -> to 8b, and at 50 documents, it was the same as native retrieval.\n\n  \nThis method forgos the expensive upfront re-embedding cost, as you can take documents straight from the old index.\n\n  \nembedflow works with qdrant, pgvector, faiss,  and can be easily downloaded with pypi\n\npip install embedflow\n\nthe github is public: [https://github.com/arnsri33/embedflow](https://github.com/arnsri33/embedflow)\n\nI want you guys to try it out, and see if you guys can use it in your own workflow.",
+    "developer": "Potential_Low_1183",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wbwnlx",
+  "sourceItemId": "1wbwnlx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wbwnlx/qwen3827b_has_the_best_coding_ceiling_you_can_run/",
+  "detail": {
+    "longDescription": "Its chat template has this line:\n\n    {%- set resolved_reasoning_effort = reasoning_effort|default('xhigh') %}\n\nxhigh is the most expensive of its three settings (low / medium / xhigh). If you never set one, that's what every answer runs at. No backend reports this back to you, because it's a chat-template variable, not a server option.\n\n\n\nI ran all three levels on one M5 Max, same quant (oQ4e-mtp), same prompt — the coding scenario asks for a browser Breakout game:\n\n    | Effort          | Runs | Tokens | Time  | Median | Range     |\n    |-----------------|------|--------|-------|--------|-----------|\n    | low             | 3    | 4,984  | 84s   | 75.8   | 64.9–75.9 |\n    | medium          | 4    | 4,792  | 77s   | 78.2   | 64.7–84.2 |\n    | xhigh (default) | 17   | 36,188 | 869s  | 78.8   | 54.1–89.2 |\n\nTwo things surprised me:\n\n**low and medium are the same setting**\n\n4,984 tokens vs 4,792. The template only appends an instruction for low and xhigh — xhigh's says think carefully and check your assumptions, low's says keep your thinking brief. The model does the first and ignores the second. So the dial has two positions, not three.\n\n\n\n**xhigh costs 8× the tokens and 11× the wall clock for half a point of median**\n\nThat's well inside run-to-run noise: my four medium runs, one identical setting, nothing changed between them, scored 64.7 / 73.4 / 83.0 / 84.2.\n\n\n\nWhat xhigh does change is variance — it produced both the best answer (89.2) and the worst. And looking at the games themselves, the xhigh run spent its budget on presentation: title card, keyboard legend, sound toggle, best-score readout. Low and medium built the game and stopped. Same 8×4 brick grid, three lives, identical rules. It didn't build a better Breakout, it built a better-looking one.\n\n\n\nCaveats up front, because they matter: three and four runs at the short settings is thin, it's one machine and one quant, and the scores are LLM-judged. The cost figures are mechanical and solid. Treat the quality figures as a direction to test, not a result.\n\n\n\nFull write-up with the screenshots side by side, plus a thinking-budget experiment (a 12k cap halves the wall clock and truncates nothing): [https://llm-bench.io/guides/qwen3-8-27b-reasoning-effort](https://llm-bench.io/guides/qwen3-8-27b-reasoning-effort)\n\n\n\nDisclosure: my site. Data comes from community benchmark runs, and you can submit your own @ [llmbench.io](http://llmbench.io) ",
+    "externalUrl": "https://llm-bench.io/guides/qwen3-8-27b-reasoning-effort",
+    "developer": "DerTomsn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "llm-bench.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

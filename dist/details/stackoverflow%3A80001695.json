@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001695",
   "sourceItemId": "80001695",
+  "fetchedAt": "2026-09-10T01:31:06.036Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001695/what-does-error-process-completed-with-exit-code-22-mean",
   "detail": {
     "longDescription": "I am running github action on my companies runner set -euo pipefail mkdir -p artifact_contents artifact_url=$(curl -fsSL \\ -H \"Accept: application/vnd.github+json\" \\ -H \"Authorization: ***\" \\ -H \"X-GitHub-Api-Version: 2026-03-10\" \\ \"https://api.github.com/repos/${SOURCE_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/artifacts\" \\ | jq -r '[.artifacts[] | select(.name == \"deploy-pipelines-last24h\" and .expired == false) | .archive_download_url] | first // empty') if [ -z \"${artifact_url}\" ] || [ \"${artifact_url}\" = \"null\" ]; then echo \"Could not find a usable deploy-pipelines-last24h artifact for run ${SOURCE_RUN_ID}\" exit 1 fi curl -fsSL -L \\ -H \"Accept: application/vnd.github+json\" \\ -H \"Authorization: ***\" \\ -H \"X-GitHub-Api-Version: 2026-03-10\" \\ \"${artifact_url}\" \\ -o artifact_contents/artifact.zip unzip -oq artifact_contents/artifact.zip -d artifact_contents rm artifact_contents/artifact.zip shell: /bin/bash -e {0} env: GH_TOKEN: *** SOURCE_REPOSITORY: mycomp/tot-devops-deployment-dora-metrics-gocd SOURCE_RUN_ID: 34173432591 curl: (22) The requested URL returned error: 404 Error: Process completed with exit code 22. I tried everything. The goal is to download the artifact from the other action. Why 404? exit code 22? How can I debug this? exit code 22",
     "developer": "MJoao",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "111"
+        "value": "135"
       },
       {
         "label": "状态",
