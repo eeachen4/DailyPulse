@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcvtlh",
+  "sourceItemId": "1wcvtlh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wcvtlh/how_are_you_structuring_productionready/",
+  "detail": {
+    "longDescription": "**I**’m a web developer and I use AI coding agents daily.  \nAt this point, getting an agent to write code isn’t really the problem anymore. The hard part is building everything around it so that it can actually work reliably.  \nOver the last few months I’ve built a small system around my projects with:  \na knowledge base for each repo;  \nreusable skills/rules containing my conventions;  \nautomated onboarding for local environments;  \na structured issue → development → verification → completion workflow;  \nmandatory checks before a task can be considered done.  \nThe goal is for the agent itself to be replaceable.  \nWhat should remain is the **system around the agent**: project knowledge, rules, guardrails, verification and workflow.  \nThe problem is that my current setup works, but it’s still cumbersome: onboarding isn’t always deterministic, context grows too much, rules start overlapping, and I still need too much manual intervention.  \nSo my main question is:  \n**How are you structuring this layer in real production projects?**  \nI’m particularly interested in approaches, repos, frameworks, skills or processes worth studying to make agentic development reliable, repeatable and maintainable.  \nI can find endless discussions about which coding agent is better. I find much less about how to build a solid engineering system around the agent.  \nThere’s also a second problem I’m trying to solve.  \n**Is there any software that acts as a real control panel for this kind of workflow?**  \nWhat I have in mind is something that lets me:  \nmanage multiple GitHub repositories from one place;  \nsee issues/tasks across projects;  \nlaunch or assign tasks to different coding agents;  \nrun multiple tasks in parallel;  \nkeep each task isolated in its own branch/worktree/workspace;  \nsee what each agent is currently doing;  \nreview progress, output, commits and pull requests;  \nkeep GitHub Issues as the source of truth;  \navoid being locked into a specific agent or model.  \nBasically, I’d like a control plane that sits above GitHub and coding agents:  \n**issue → task → agent → isolated workspace → verification → commit/PR → done**  \nPreferably something local, open-source and agent-agnostic.  \nDoes something like this already exist and work well in practice, or are people mostly building their own orchestration layer?",
+    "developer": "Key_Ad_2747",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

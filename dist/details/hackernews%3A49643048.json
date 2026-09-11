@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49643048",
+  "sourceItemId": "49643048",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49643048",
+  "detail": {
+    "longDescription": "Hi everyone, I built Nightshift: An agent-agnostic rust-cli tool that orchestrates completion of GitHub Issues. When Openai and Anthropic released `&#x2F;goal` a couple months ago, I was really excited to try it for long-horizon tasks. But after using it, it didn&#x27;t blow me away and i did some digging and found a major architectural flaw when using it for complex multi-issue workflows: context rot. This isn&#x27;t anything new, but given how openai positioned this feature to developers, i was let down by how they&#x27;d implemented context management. Though `goal&#x2F;` is a step forward in long-horizon coding, it lacks task decomposition and proper handling of context - it uses a multi-tier approach that includes persistent context chaining (PCC) to memory, local vector embeddings for RAG, sliding windows, and compaction. In principle, giving claude&#x2F;codex a directive of `&#x2F;goal work towards closing my open issues on github` should work but this specific execution model hits a fatal wall - Even with massive context windows and RAG, llm reasoning quality degrades significantly beyond 150k~ tokens, the agent continues working with worsening performance and finally to prevent token exhaustion it uses compaction to summarize old logs. In practice, this causes compaction amnesia. The model is asked to summarize a massive blob of mixed-relevance information when its reasoning quality is already at its lowest. This compaction leads to forgetting critical constraints, makes way for hallucinations of past decisions, and introduces noise that makes the new context unreliable for long-horizon work. I made nightshift to handle the &quot;outer-loop&quot; and enforce strict session boundaries. So rather than getting one agent to work towards closing issues in a single session, nightshift isolates the work like this: 1. You write a PRD as a parent Github issue that defines what needs to be implemented and break it down into vertically sliced child issues with explicit kanban-style dependencies. 2. You run `nightshift --prd 1 --agent claude` 3. nightshift utilises `gh` cli to resolve the dependency graph and pick the next unblocked issue. 4. it syncs the repo, puts together essential context for just that issue and starts a new agent session piping the prd and issue context directly to stdin for the agent to pick up. 5. the agent is now responsible for the usual coding - new feature branch, implementation and testing, pr and self-review, and finally closes the issue. 6. nightshift finds the next unblocked issue after maintaining git hygiene and loops until all issues linked to the prd are resolved. Its a very simple orchestration, but its effective. The agent has no memory of previous runs and it doesn&#x27;t need to - each task is isolated and gets a fresh agent session. The state is managed entirely through filesystem and git operations and you get determinstic scheduling, failure isolation, and robust autonomy. It currently supports claude-code, codex, cursor, antigravity, pi, opencode, and github-copilot and im working on adding support for more agents as this project grows. With all that being said, I&#x27;d like to close with saying that this doesn&#x27;t replace or compete with our favourite coding tools - just extends their capabilities. Its an opinionated tool and not as flexible as `&#x2F;goal` which is still better for repetitive tasks wherein number of iterations are discovered by actually doing the work and you cannot meaningfully plan this. It isn’t a better goal - just makes goal-driven coding work more disciplined. I think if you&#x27;ve already taken the time to plan everything ahead, implementation can be handed off to an agent as long as there is proper context management which keeps the costs and quality in control. I&#x27;d love to hear your thoughts on this and check out your experiments with long-horizon task orchestration. Maybe the way going forward is combining macro management with micro management? Thanks.",
+    "externalUrl": "https://github.com/Shaurya-Sethi/nightshift",
+    "developer": "shaurya-sethi",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

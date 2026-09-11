@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49645803",
+  "sourceItemId": "49645803",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49645803",
+  "detail": {
+    "longDescription": "Hey HN, I&#x27;m Shreyash from Feyn. We help companies build custom models from their data. Today we&#x27;re releasing MultiMatte, a background removal model you can aim with words. Name an object in your image. MultiMatte keeps just that thing, and removes everything else. Try it out on your images: https:&#x2F;&#x2F;usefeyn.com&#x2F;multimatte&#x2F; . Demo video: https:&#x2F;&#x2F;youtu.be&#x2F;XZ5BJWAkOjs MultiMatte is open source. Build with it using our NoBg library https:&#x2F;&#x2F;github.com&#x2F;feyninc&#x2F;nobg . Model card here: https:&#x2F;&#x2F;hf.co&#x2F;feyninc&#x2F;multimatte MultiMatte is the second iteration of our background removal models. The first was FeyNoBg, which we released here https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49072462 . The big upgrade is promptability. Most models keep all foreground elements when cutting the background. MultiMatte lets you prompt the exact objects you want to keep and remove everything else. For example, If you have an image with a dog and a bowl, you can ask MultiMatte to keep just the dog. MultiMatte is built on Meta&#x27;s SAM 3, a concept-promptable detector that already understands phrases. Our biggest change was in masking. Instead of binary masks that classify each pixel as being inside or outside an object, MultiMatte uses alpha mattes that assign an opacity value to each pixel, with respect to an object. This allows us to better represent hair, fur, motion blur, and other kinds of fuzzy boundaries. Across all our measured benchmarks, MultiMatte shows a step improvement over SAM 3. On DIS5K, S-measure rises from 0.674 to 0.908 (a 34.6% relative gain), and on DUT-OMRON from 0.792 to 0.901 (13.7%). Our blog covers more of the training details and results https:&#x2F;&#x2F;usefeyn.com&#x2F;blog&#x2F;multimatte . Happy to answer any questions!",
+    "externalUrl": "https://usefeyn.com/blog/multimatte/",
+    "developer": "snyy",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "41"
+      },
+      {
+        "label": "评论",
+        "value": "8"
+      }
+    ]
+  }
+}

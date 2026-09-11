@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcewe6",
+  "sourceItemId": "1wcewe6",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wcewe6/space_issues_with_varlibdocker/",
+  "detail": {
+    "longDescription": "I recently set up an ubuntu server VM in proxmox to run docker that is managed through portainer. This VM has been given 150GB of disk space. My /var/lib/docker is 95% full (of 15GB total) and is making some containers unable to start. \n\nI have pruned, and system df looks pretty normal to me: \n\n`TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE`  \n`Images          6         6         8.593GB   0B (0%)`  \n`Containers      6         6         2.712MB   0B (0%)`  \n`Local Volumes   2         2         823.9MB   0B (0%)`  \n`Build Cache     0         0         0B        0B`  \n  \nNothing seems concerning with the log size either:  \n`-rw-r----- 1 root root 504K Sep 10 07:54 /var/lib/docker/containers/196b1f5680248cf0003b55ddcc6ba70932d4869a10f03cb4acbf3e1bdb9f1038/196b1f5680248cf0003b55ddcc6ba70932d4869a10f03cb4acbf3e1bdb9f1038-json.log`\n\n`-rw-r----- 1 root root 1.8M Sep 10 08:49 /var/lib/docker/containers/444ccde34151535abd44a743598bf5040184f3fa5a48d83368971cf8ba377faf/444ccde34151535abd44a743598bf5040184f3fa5a48d83368971cf8ba377faf-json.log`\n\n`-rw-r----- 1 root root 141K Sep 10 08:50 /var/lib/docker/containers/474c0cda23e6a1d3b7fa1fd9e33aea5260eef296ade6119afdc5a59ac313ff45/474c0cda23e6a1d3b7fa1fd9e33aea5260eef296ade6119afdc5a59ac313ff45-json.log`\n\n`-rw-r----- 1 root root 4.0M Sep 10 07:54 /var/lib/docker/containers/8a98fbe35f0b1e0ef15c544455075e1cb9b9b209128dff3f7de2d9acbe3c5b3c/8a98fbe35f0b1e0ef15c544455075e1cb9b9b209128dff3f7de2d9acbe3c5b3c-json.log`\n\n`-rw-r----- 1 root root 9.3K Sep 10 07:54 /var/lib/docker/containers/d36477bcadc8c1f690ef3579ca29cc599e2bf6b72b3bff68274e7442ed612b8c/d36477bcadc8c1f690ef3579ca29cc599e2bf6b72b3bff68274e7442ed612b8c-json.log`\n\n`-rw-r----- 1 root root  23K Sep 10 07:54 /var/lib/docker/containers/fd317d5960bfc63c07b74a7c6d1d7944fe668630e57315939a63c8b779fd0a5c/fd317d5960bfc63c07b74a7c6d1d7944fe668630e57315939a63c8b779fd0a5c-json.log`\n\nBut you can see here that this is full:  \n`df -h /var/lib/docker`\n\n`Filesystem                         Size  Used Avail Use% Mounted on`\n\n`/dev/mapper/ubuntu--vg-ubuntu--lv   15G   14G  837M  95% /`\n\n`df -h /var/lib/containerd`\n\n`Filesystem                         Size  Used Avail Use% Mounted on`\n\n`/dev/mapper/ubuntu--vg-ubuntu--lv   15G   14G  837M  95% /`\n\nI do not know which command to use to further investigate to see everything in that folder to narrow down what is taking up all that space.\n\nSo, my questions here....is 14GB an unreasonable amount of space for the containers that I have (I kind of don't think so?)? If so, what needs purging?\n\nIf this is a normal amount of space for the containers I am running, how do I allocate more of that 150GB for this?\n\n",
+    "developer": "Potential-Ant-4335",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

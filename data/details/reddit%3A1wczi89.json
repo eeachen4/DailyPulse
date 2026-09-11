@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wczi89",
+  "sourceItemId": "1wczi89",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wczi89/give_a_spreadsheet_agent_a_response_budget_not/",
+  "detail": {
+    "longDescription": "When exposing Univer CLI sheet reads to an agent, a cell-range argument is only part of the interface. The agent can ask for an entire sheet, or request a few cells containing enormous strings. The useful limit is on what the tool is allowed to return.\n\nFor a question like \"which orders are still awaiting a delivery date?\", start with a small workbook inventory: sheet names, table boundaries and headers. Then run the row selection beside the file and return matching records with their locations. The model doesn't need every unrelated row to explain the result.\n\nThe CLI's structured range output distinguishes stored values, types, formulas and display text. Choose which of those the question needs. Put row selection and hard row/byte limits in the wrapper around the read; accepting a range argument alone doesn't enforce them.\n\nA useful response includes the file version, sheet, addresses, matching-row count, returned-row count and whether more results remain. If the limit is reached, return an explicit continuation point. Silently returning the first batch makes a partial answer look complete.\n\nAlso make the next request purposeful. A delivery-date question might need a second range containing status definitions, or a formula's input cells. Let the agent ask for that context rather than bundling every possible dependency into the first response.\n\nTest that interface against the actual workbook sizes and questions before making performance claims. The thing to measure is whether the bounded response contains enough evidence to answer correctly, including when the answer requires more than one read.",
+    "developer": "Medical-Cow289",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

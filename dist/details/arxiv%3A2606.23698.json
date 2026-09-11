@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.23698",
+  "sourceItemId": "2606.23698",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.23698",
+  "detail": {
+    "longDescription": "arXiv:2606.23698v3 Announce Type: replace-cross Abstract: The NVIDIA Blackwell Ultra (B300) GPU cuts FP64 vector throughput $\\sim 30\\times$ while multiplying FP8 tensor throughput. After the recovery of FP64 GEMM via Ozaki Scheme II on FP8 tensor cores and the Tensor-Memory Equilibrium model of the companions (\"FP8 is All You Need, Part 1\" and \"Ozaki 2.5\") we ask whether the fifth canonical HPC primitive, the full-FP64 $1024^3$ 3-D FFT, can be carried by the same substrate, and answer with a design and its limit. It is a Bailey six-step transform with no FP64 arithmetic: FP8-tensor DFT GEMMs with fused twiddles, residue-domain Karatsuba combines and exact CRT reconstruction whose bulk is a small GEMM on the FP16 tensor path and whose remainder is a Kulisch fixed-point accumulation with a two-sided modulo-$M$ lift, so the only rounding is the final conversion; constants are machine-generated and verified bit-exactly. The central finding: the binding resource is not floating point but a per-output integer epilogue with floor $(c_{\\rm epi}/8),B_{\\rm mem}$, $c_{\\rm epi} \\approx 203$-$281$ instructions per output: on B300 it holds the transform at 63-87 ms against a 12.9 ms roof ($4.9$-$6.7\\times$ short); at most $1.3$-$1.9\\times$ faster than the collapsed native path, possibly no faster at realised issue rates; no software route reaches the roof; on the NVIDIA Rubin GPU emulation loses $8$-$11\\times$. An FP32 variant meets the same wall: the cause is per-scalar reconstruction, not FP64. Each floor term names its remedy: the NVIDIA B200 GPU's INT8 tensor core restored with a position-weighted cross-column accumulation primitive, a load-path deconstruction datapath shared with the companions, two ISA idioms and modular reduction at the MMA output give 16.0-23.5 ms with minor hardware and 12.9-15.0 ms with one moderate ask. All figures are projected floors, not measurements, with sensitivities and the FP8 layout condition given.",
+    "developer": "Satoshi Matsuoka",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.MS, cs.AI, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Satoshi Matsuoka"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

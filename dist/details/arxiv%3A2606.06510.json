@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.06510",
+  "sourceItemId": "2606.06510",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.06510",
+  "detail": {
+    "longDescription": "arXiv:2606.06510v4 Announce Type: replace-cross Abstract: We argue that on AI-optimised GPUs of the NVIDIA B300 generation and beyond, the FP8 tensor-core matrix operation, composed through CRT-based Ozaki Scheme II, can serve as the dominant matrix-work substrate for the surveyed matrix-dominated FP64 kernel classes at FP64-grade accuracy, with native FP64 recast from a hardware requirement into a derived accuracy guarantee. The claim is conditional: the FP8 op is the candidate dominant multiplication substrate, with a bounded auxiliary set of integer deconstruction/reconstruction work, FP32/Kulisch reductions, data movement and a native-FP64 fallback, organised as a hierarchy from the FP8 op through Ozaki II and the Berkeley dwarfs to applications. The instrument is the Tensor-Memory Equilibrium (TME) model, a Roofline extension with four parameters (compute multiplier $\\alpha=3r+1$, bandwidth multiplier $\\beta$, reconstruction cost $\\gamma$, and the per-input deconstruction cost $c_q$ identified in an NVIDIA review) under which, at its upper bound, the reduction to FP8 costs no performance against an ideal native-FP64 machine of equal bandwidth. On-chip tile fusion drives $\\beta \\to 1$; the deconstruction term sets a threshold intensity below which emulation is conversion-bound. At the fused, engineered-$c_q$ bound every surveyed class reaches the memory roof, with two priced exceptions: large dense-square DGEMM sits at a deconstruction floor near 0.50 of the FP8 arithmetic roof (about 235 of 473 TFLOPS on the NVIDIA Rubin GPU), a liftable co-design coordinate, and the 3-D FFT is walled by a per-output integer epilogue at $4.9$-$6.7\\times$ its roof in software, recoverable with minor hardware and one moderate ask. Ozaki II lifts the emulated FP64 ceiling from $\\approx 1.3$ to $\\approx 135$ TFLOPS on B300 and $\\approx 473$ on Rubin; three deconstruction-path hardware options are given; constants are engine-checked.",
+    "developer": "Satoshi Matsuoka",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.AI, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Satoshi Matsuoka"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

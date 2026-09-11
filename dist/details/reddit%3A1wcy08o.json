@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcy08o",
+  "sourceItemId": "1wcy08o",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wcy08o/why_chatinterface_assistants_fail_at_delegation/",
+  "detail": {
+    "longDescription": "Most conversational assistants are stuck in a weird middle ground. In a browser tab, they can draft text and give advice, but they have no execution environment. When people try to give them execution capabilities, they usually jump to the opposite extreme: running scripts locally with direct access to user credentials, or giving the model raw API keys in the prompt.\n\nNeither approach works well in practice.\n\nReal delegation requires three separate pieces that most setups conflate:\n\n1. A decoupled execution layer. The agent should not run on your local machine, and it shouldn't use shared persistent infrastructure that burns money while idle. Spinning up an ephemeral Linux sandbox on demand gives the model a real terminal, a compiler, and browser automation without persistent exposure.\n\n2. Out-of-band verification for sensitive actions. If an assistant is useful, it eventually gets added to shared channels or team chats. The moment an agent can execute code or access data, any participant can attempt prompt injection. The rule has to be structural: whenever a non-owner asks for execution, private data export, or system changes, the agent pauses and triggers a one-tap approval request to the owner on WhatsApp.\n\n3. Egress-locked secrets. Giving an LLM raw API keys means a jailbreak or a rogue npm package can leak them. Credentials should be injected at the proxy boundary so the model never sees raw secrets in plain text.\n\nWe built this setup for Mentat, an assistant running on top of prompt2bot. It handles Google Calendar scheduling, answers phone calls, and spins up private dashboards on an isolated cloud machine when you ask for operational tools.\n\nTreating execution, secret management, and approval channels as separate primitives makes building capable autonomous assistants much more predictable.",
+    "developer": "uriwa",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

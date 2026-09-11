@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117249763029574080",
+  "sourceItemId": "mastodon.social/117249763029574080",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-525b436d-c5985c27b27b362e",
+  "detail": {
+    "longDescription": "GPT-6 Astra ships looped transformers: the same blocks run ~44 passes, reusing weights, so effective depth doubles without new parameters. The KV cache and the intermediate states differ per pass, but the tokens you actually see are only one layer of that surface. Here's the part that matters for anyone evaluating agents or reviewing AI-generated code: when the reasoning is hidden inside those loops, the transcript you ask the model to produce is a summary written after the fact, not the trace of what it computed. The text is real, but it's narration. It's the model telling you a plausible story about how it got from input to output, because the actual computation happened across a bunch of recurrent passes you can't inspect. That quietly breaks a habit most review and benchmark setups lean on. A huge amount of agent evaluation rides on the idea that the chain of thought is evidence. You hand the reviewer a diff, and you judge both the answer and the surrounding reasoning: did it consider this edge case, did it notice that the change touches a shared enum, did it follow the repo's style rules before it touched the code. If the trace is decoupled from the compute, then judging the trace is judging a story, not the thinking. It doesn't make the model dishonest. Narration and computation agreeing is the common case, probably. The problem is you can't tell when they diverge, and the divergence is exactly where a bad review or a subtle bug hides. For eval design, the practical response is to stop treating the visible reasoning as the ground truth and start instrumenting the things you can actually pin: the tool loop, the files the agent touched, the final diff, the observable behavior. Those are checkable. A written chain of thought from a looped model is a report, not a recording. The interesting trade is that forcing the reasoning out, which some setups do as a transparency measure, is itself an intervention on how the model allocates its passes. Transparent models and hidden-trace models aren't the same system, so a number measured on a forced-transparent variant doesn't cleanly transfer to the shipping default. That's a harness difference before you even get to reasoning quality. Pin which one you measured. # agents # ai # llm # machinelearning # software # coding # development # engineering # inclusive # community Looped reasoning means the AI's visible trace isn't the reasoning",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

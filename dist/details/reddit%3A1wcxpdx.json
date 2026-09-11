@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcxpdx",
+  "sourceItemId": "1wcxpdx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wcxpdx/is_dynamic_batch_downshifting_a_dumb_way_to_avoid/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\n(English is not my first language, apologies for any phrasing quirks.)\n\nTraining small models locally on an 8GB RTX 5060 Ti was driving me crazy with random CUDA OOM crashes whenever memory spiked mid-run.\n\nInstead of manually babysitting runs with conservative batch sizes, I built a lightweight Python governor around PyTorch called MEM Orchestrator: [https://github.com/nobazzy/mem-llm-orchestrator](https://github.com/nobazzy/mem-llm-orchestrator)\n\nWhat it does:\n\n* Monitors VRAM headroom during training.Dynamically throttles micro-batch size and gradient\n* accumulation before hitting an OOM.Steps  \n* back up when memory pressure drops.Saves atomic checkpoints with SHA-256 validation so crashes never corrupt weights.\n\nAbout the branches:\n\n* `main`: Linux core with DeepSpeed ZeRO integration.\n* `refactor/architecture-and-portability`: Decoupled, native PyTorch runner that works cross-platform (tested on Windows).\n\nI ran an endurance test of 1M steps on a 130M model and stress-tested a 255M model with injected memory spikes without crashing. Overhead is under 0.5%.\n\nThe code and 38 unit tests are on GitHub. I would love to get feedback from anyone with experience in PyTorch memory allocators or DeepSpeed on whether this approach makes sense or where it breaks down.",
+    "developer": "uBazzyZ-",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

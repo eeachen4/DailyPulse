@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcuzdc",
+  "sourceItemId": "1wcuzdc",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wcuzdc/how_would_you_catch_two_agents_about_to_make/",
+  "detail": {
+    "longDescription": "I maintain Foremerge, an open-source coordination protocol for parallel coding agents. Disclosure: it is my project, and this is a design question, not promotion or launch.\n\nThe mechanism is small. Before an agent edits anything, it publishes what it is about to change as scopes, each with a declared operation. One agent declares `symbol:PaymentService` with `replace`. A second declares `extend` on the same scope. The second one gets a HIGH finding before either has written a line. The store is SQLite under the repository's Git common directory, so isolated worktrees share it. Claims are leased and advisory. Nothing locks.\n\nWhile looking at where the protocol assumes code, I noticed the lifecycle has two halves.\n\nThe front half does not depend on Git for anything except locating the store: intent, claims, the conflict finding, the agent's own recorded judgement about an overlap, coordination messages, approval, and resolution. The scope vocabulary is closed today (symbol, api, schema, config, infra, test, migration, env, file, component, contract, domain), but the comparison is kind plus key plus operation. Whether an operation is add, extend, modify, replace, remove, rename, or migrate is a property of any resource, not of source code.\n\nThe back half is Git all the way down. A ChangeSet is fingerprinted from the tree and the diff. Verification runs a named check and only counts if the fingerprint is identical before and after the run. Acceptance pins an immutable commit under `refs/foremerge/accepted`, and dependency order is proven by commit ancestry. Landing is proven by ancestry too.\n\nSo the question. If you run agents that act on something other than a repository, what is your Git?\n\nConcretely:\n\n1. What gives a content-addressed snapshot of the thing an agent is about to change? A document revision id? A Terraform state serial? A CRM record version? For a lot of SaaS there is nothing like that. Then the back half degrades to \"the agent says it did it\", and the audit trail has to say attested rather than verified.\n2. What collisions have you actually seen between non-coding agents? The ones I can imagine: a support agent about to refund an order while another escalates it; two outreach agents drafting to the same contact. Two content pipelines posting the same topic to the same channel on the same day. I have not measured any of these. I would rather hear real ones.\n3. Should the scope vocabulary be open, so a project declares its own kinds such as `record:hubspot/contact/123`, or should there be per-domain profiles with their own matching rules? The token similarity that surfaces `symbol:CreditLedgerService` against `symbol:CreditLedger` will misfire on ids that differ by one digit.\n4. Is pre-action detection worth more when the action cannot be undone? Git makes reversal cheap, so in code the saving is rework. A sent email or an issued refund does not revert.\n\nWhat I am not asking is whether a model should judge conflicts. The design deliberately has no model in the loop: the detector is deterministic, and the agent doing the work records its own verdict on an overlap. I want to keep that.\n\nLimits, so nobody has to dig for them: local-first, one machine, the only shipped substrate so far is Git.\n\nEvery claim in the post checks against shipped code or docs. The one I softened deliberately is the front half, which is described as not depending on Git except to locate the store, because the CLI still refuses to open a store outside a repository without an explicit database path.",
+    "developer": "ShiftTechnical",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

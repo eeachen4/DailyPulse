@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2603.03736",
+  "sourceItemId": "2603.03736",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2603.03736",
+  "detail": {
+    "longDescription": "arXiv:2603.03736v2 Announce Type: replace Abstract: A link changes state faster than knowledge of that change can reach every component that acts on it. During the interval in between, some observer operates on a topology that no longer exists. We call that mismatch a ghost: for observer i, a ghost exists whenever the connectivity state on which i acts differs from the connectivity actually available to it. Ghosts appear wherever this delay does -- PCIe and UCIe, NVLink and NVSwitch, Ethernet and Thunderbolt, IP and BGP. What the mechanisms we survey have in common is narrower than a shared ancestry: in each, failure state is at some point inferred from absence, elapsed time, probing, or eventual convergence, and absence alone does not distinguish delay from loss, partition, or endpoint failure. We survey the scale of the problem with production data from Meta, ByteDance, Google and Alibaba, and reproduce an industry scaling projection -- attributed, and not our own measurement -- under which a fabric of more than ten million optical links sees an aggregate flap roughly every 48 seconds. The mitigations surveyed reduce the interval, often substantially, but each retains a period in which failure state is inferred rather than established. We then examine Open Aethernet (OAE), whose distinctive move is asymmetric: a completed transaction yields positive, mutually held evidence, while absence of completion is not treated as identification of a failure but recorded as an explicit IN-DOUBT state, resolved by corroboration where the topology permits. We are explicit about what this does not claim. OAE does not eliminate uncertainty; it makes it first-class. It does not repair a hard partition; detection is not repair; its detector latency is uncharacterised; triangle coverage is assumed rather than proved; we report no OAE measurement; and we do not claim common knowledge in the epistemic-logic sense.",
+    "developer": "Paul Borrill",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Paul Borrill"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

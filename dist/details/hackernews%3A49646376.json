@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49646376",
+  "sourceItemId": "49646376",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49646376",
+  "detail": {
+    "longDescription": "Hi HN, we built an extension to Envoy proxy that parses and sends contents of requests to an LLM at runtime. We do that by adding a deterministic SQL parser, gGRPC payload inspection and LLM analysis of the payload before upstream call. Users are proxying headless agents traffic with it so that sec teams can have their prompts blocking harmful actions via network traffic before it leaves the agent. When you tell the LLM analyzing the traffic to block writes, it will spot it across the different protocols by looking at the structured payload we build from parsing the binary protocol. It runs as a UDS upstream, and we&#x27;re exploring bundling it inside envoy to remove the UDS hop. Envoy is incredible, but it has limited support for anything outside http. Basic database query parsing, little policy enforcement on request contents, most of the stuff happens on HTTP and gRPC headers or metadata. Would love to hear any feedback: https:&#x2F;&#x2F;github.com&#x2F;hoophq&#x2F;hoop&#x2F;tree&#x2F;main&#x2F;sidecar",
+    "developer": "andriosr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

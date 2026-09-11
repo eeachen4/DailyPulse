@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcw107",
+  "sourceItemId": "1wcw107",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wcw107/a_strong_api_implementation_needs_a_clean_rollout/",
+  "detail": {
+    "longDescription": "Here's some helpful context on how URL shortener APIs work for those who need it: Your app sends a POST request with a long URL, the API validates it and creates a short link (custom back-half or hash), and returns that short link to you. When someone clicks it, the redirect server sends them to the real destination. Most providers auth this with API keys of OAuth tokens passed as a Bearer token.\n\nWhere founders get tripped is the rollout plan. This is what to do, if you're building this into your product:  \n  \n1/ Start narrow: Pick one use case (SMS links, product share links) and prove out volume, redirect behavior and analytics before expanding.\n\n2/ Standardize your metadata early:  Campaign, channel, owner, source, whatever fits, just be consistent. Makes debugging and cross-channel comparisons way easier later.\n\n3/ Plan for errors before launch: Invalid URLs, expired tokens, timeouts, rate limits. Decide what the user sees, make retries safe, log enough to debug.\n\nKeep in mind that custom domains aren't just an engineering task. Marketing, security, and IT all need to be looped in early, or you'll find a missing DNS record during launch week. You should also decide where click data lives before you generate a few thousand links. Dashboard-only is fine for some teams. Others need it flowing into a warehouse or CRM. Pick before, not after.",
+    "developer": "JennyAtBitly",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

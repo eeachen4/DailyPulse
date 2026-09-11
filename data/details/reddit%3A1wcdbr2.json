@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcdbr2",
+  "sourceItemId": "1wcdbr2",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wcdbr2/uvlatest_docker_image_suddenly_failing_looking/",
+  "detail": {
+    "longDescription": "We’ve been using the official Astral UV Docker image:\n\nCOPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/\n\nThis was working fine for around 10 days without any changes on our side. After the recent UV releases, our Docker build started failing with:\n\nexec: \"/bin/sh\": stat /bin/sh: no such file or directory\n\nWe’re using python:3.12-slim as the base image.\n\nI suspect uv:latest has moved to a newer image/version.\n\nDoes anyone know which UV version/digest latest was pointing to before the recent releases? I’d like to pin that previously working version and verify if it resolves the issue.\n\nAny help would be appreciated.\n\nAI disclosure: I used ChatGPT to help format this post; the issue and technical details are my own.",
+    "developer": "OrneryCar6139",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

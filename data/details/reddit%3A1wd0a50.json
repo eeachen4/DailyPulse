@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wd0a50",
+  "sourceItemId": "1wd0a50",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wd0a50/we_tested_11_frontier_models_on_80_sec_filings/",
+  "detail": {
+    "longDescription": "Disclosure: I built RedCrown, the evaluation/proof tooling used for this test.\n\n\n\nI wanted to answer a pretty DevOps-y question:\n\n\n\nIf multiple AI models are good enough for the same production workload, how much are you paying for the last fraction of quality?\n\n\n\nWe tested 11 current models on 80 real 2026 SEC 10-Q filings.\n\n\n\nThe task was structured extraction:\n\n\\- 8 standardized financial fields per filing\n\n\\- 640 labeled reference fields total\n\n\\- Ground truth from the filer’s own XBRL facts\n\n\\- Same workload for every model\n\n\\- Field-level F1 as the primary quality metric\n\n\\- Predefined production quality bar: 0.99\n\n\\- Selection rule: cheapest model that clears the bar\n\n\n\nThe result:\n\n\n\nDeepSeek V4 Flash\n\nF1: 0.997\n\nProjected cost: $6.30/month\n\n\n\nGPT-6 Astra\n\nF1: 0.998\n\nProjected cost: $613.35/month\n\n\n\nSo for this workload, roughly 97× more projected spend bought 0.001 additional aggregate F1.\n\n\n\nA few other data points:\n\n\n\nGPT-5.6 Luna: 0.995 at $12.71/mo\n\nDeepSeek V4 Pro: 0.997 at $60.92/mo\n\nGPT-5.6 Sol: 0.998 at $122.40/mo\n\nClaude Opus 5: 0.998 at $456.96/mo\n\n\n\nThe cheapest option did not automatically win.\n\n\n\nGemini 3.7 Flash scored 0.989, just under the predefined 0.99 bar, so it was rejected even though it was relatively inexpensive.\n\n\n\nThat’s the part I think is operationally useful:\n\n\n\nDon’t route based on price alone.\n\nDon’t route based on the model leaderboard alone.\n\n\n\nDefine the workload, define the quality threshold, eliminate anything below it, then optimize cost among the survivors.\n\n\n\nAll 80 × 11 model-item results are scored, and the item-level outputs/receipts are public here:\n\n\n\n[https://app.redcrown.ai/proof/vdPMXnAlE5sI309MJuIfnFYQSlRjmbMeQkot6Dwjupc](https://app.redcrown.ai/proof/vdPMXnAlE5sI309MJuIfnFYQSlRjmbMeQkot6Dwjupc)\n\n\n\nFor teams running multiple model providers in production: are you doing this kind of workload-specific gating today, or are model swaps still mostly based on vendor benchmarks + spot checks?",
+    "developer": "BeauAtRedCrownAI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

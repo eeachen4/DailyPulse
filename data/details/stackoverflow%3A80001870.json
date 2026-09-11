@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001870",
   "sourceItemId": "80001870",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001870/write-sequence-of-null-chars-to-file",
   "detail": {
     "longDescription": "I want to write a long list of ASCII-value-is-0 chars to a brand new file for testing purposes. Specifically, I'm seeing how Notepad renders nulls and how it counts the number of characters present when Notepad assumes various data formats such as UTF-8 vs UTF-16 LE vs UTF-16 BE. Let's say, for this example, that a single null char, when printed, shows up as exactly - when opening the file. My desired file would look something like this: --------------------------------------------------------- I tried: MODE__AS_BINARY__OVERWRITE = \"bw\" NUM_CHARS_TO_WRITE = 1024 NAME_AND_LOCATION_OF_FILE_TO_WRITE_TO = \"./null.txt\" # 1) with open(NAME_AND_LOCATION_OF_FILE_TO_WRITE_TO, MODE__AS_BINARY__OVERWRITE) as f: f.write(0*NUM_CHARS_TO_WRITE) # writeToFile(00000...0) # This doesn't work because it's multiplying two ints and the result is integer value 0. # Result is not a string nor a list. # No concatenation/duplication is occurring here, so 000000... never happened. # To get the sequence of 0s, multiply a string by how many times you want # that string to repeat, like `\"strToRepeat \" * 5` # 2) with open(NAME_AND_LOCATION_OF_FILE_TO_WRITE_TO, MODE__AS_BINARY__OVERWRITE) as f: f.write([0x00]*NUM_CHARS_TO_WRITE) # writeToFile([0,0,0,0,...,0]) # ^^^ 0x00, or equivalently int(0) or int(\"\\x00\") or int(\"\\0\"), # is the ASCII *value* (but not visible char representation!) of `null` # TypeError: a bytes-like object is required, not 'list' # # Weirdly, when swapping [0x00] out for `[int(\"\\x00\")]` or `[int(\"\\0\")]`, # I get error `ValueError: invalid literal for int() with base 10: '\\x00'` # 3) with open(NAME_AND_LOCATION_OF_FILE_TO_WRITE_TO, MODE__AS_BINARY__OVERWRITE) as f: f.write( \"\".join(b\"\\0\"*1024) ) # TypeError: sequence item 0: expected str instance, int found Similar- sounding existing SO questions that do not answer this question (found by looking up the same title as my question): Writing \"None\" to a file in python Write null bytes in a file instead of correct strings",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "127"
+        "value": "153"
       },
       {
         "label": "状态",

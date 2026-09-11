@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49644323",
+  "sourceItemId": "49644323",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49644323",
+  "detail": {
+    "longDescription": "I&#x27;m on the RunMat team. Prior releases of RunMat focused on accelerating large math w&#x2F; auto offload to GPUs via transpiling to WGPU shaders, and correct interpretation of the MATLAB language semantics (we&#x27;re 99%+ on grammar &#x2F; semantics now). We left a placeholder for a Cranelift based JIT, and when we went back to fill it in, we though -- why not take it a bit further. Since we were putting in the logic for branches of the CFG to be compiled to native code, we figured why not fundamentally build it such that you could run &quot;runmat compile simulation.m -o simulation&quot; and get a standalone binary target. I.e. compile a MATLAB input project into to a standalone native binary target. We&#x27;ve detailed more in the blog. There&#x27;s a bit of work we&#x27;re finishing still, but a build with the core native compile pieces is now out (we still have to propagate some metadata through the runtime library such that the compiler can effectively tree shake, and some portions of the system still need Cranelift translation logic, but the remaining work is relatively mechanical [and already in progress]). The RunMat compiler and runtime are open source: https:&#x2F;&#x2F;github.com&#x2F;runmat-org&#x2F;runmat",
+    "externalUrl": "https://runmat.com/blog/compiling-matlab-code-to-native-executables-with-runmat",
+    "developer": "finbarr1987",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

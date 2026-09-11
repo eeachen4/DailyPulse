@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.24480",
+  "sourceItemId": "2608.24480",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.24480",
+  "detail": {
+    "longDescription": "arXiv:2608.24480v1 Announce Type: cross Abstract: ES-HyperNEAT evolves substrate topology through adaptive quadtree subdivision; to our knowledge, no implementation with full population-level GPU parallelization exists. We present JAX-ESHN, a JAX-based implementation targeting GPU parallelization with batched CPPN queries, and benchmark it against the CPU-based PUREPLES Baseline across five tasks: XOR, Parity-3, circle classification, sine regression, and CartPole. The core limitation is structural: each CPPN discovers a unique set of substrate positions, preventing population-level vectorization via vmap. On XOR, the CPU Baseline's runtime scales exponentially with depth while JAX-ESHN's construction cost on GPU (compilation plus first-generation evaluation) plateaus at deep substrates, so JAX-ESHN solves reliably where the Baseline rarely succeeds, with lower runtime variance. A CPU-vs-CPU multi-benchmark control reproduces the same scaling divergence across Boolean, continuous, and control task types, confirming it is a property of the substrate-discovery implementation, not of GPU hardware. An alternative data structure (Hierarchical Spatial Hash Grid) fails not because it precomputes positions but because it applies the variance test independently per position, discarding the quadtree's parent-gated filtering and with it the adaptive sparsity essential to ES-HyperNEAT. These findings define the structural constraints any substrate-discovery method must satisfy to scale coordinate-based neuroevolution; the companion EMR-HyperNEAT reformulation, which replaces adaptive subdivision with eager evaluation of a static multi-resolution grid, satisfies them and resolves the bottleneck this paper characterizes.",
+    "developer": "Romain Claret, Michael O'Neill, Paul Cotofrei, Kilian Stoffel",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NE, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Romain Claret, Michael O'Neill, Paul Cotofrei, Kilian Stoffel"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.09641",
+  "sourceItemId": "2609.09641",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.09641",
+  "detail": {
+    "longDescription": "arXiv:2609.09641v1 Announce Type: new Abstract: Rust guarantees memory safety without garbage collection through a strict ownership and borrowing system. However, for low-level systems programming, many widely used libraries rely on the unsafe keyword. These libraries encapsulate raw-pointer operations behind safe APIs to form safe abstractions. A single mistake in this internal unsafe code can break its safety contract, rendering the abstraction unsound and allowing safe clients to trigger undefined behavior. Detecting these potential soundness violations is challenging. Existing static analysis tools for C/C++ ignore Rust-specific safety contracts, while current Rust tools lack the deep semantic modeling required to track the contexts that raw pointers erase. To address this gap, we present UnsafeChecker, a compiler-integrated static analysis framework for detecting potential soundness violations in Rust safe abstractions. UnsafeChecker analyzes Rust MIR using a flow-sensitive abstract interpretation that maintains a shared state with three components: ownership, object validity, and layout. Each warning rule consumes the subset of facts needed for the corresponding Rust safety obligation. UnsafeChecker reports both instruction-level undefined behavior and boundary-level contract violations that may escape through safe APIs. We evaluate UnsafeChecker on a benchmark of 46 RustSec vulnerabilities, which contain 53 ground-truth bugs. UnsafeChecker outperforms several state-of-the-art tools, detecting 32 CVEs and covering 36 bugs (67.9% recall) with 51.6% alert-level precision. Furthermore, in a large-scale scan of real-world crates on crates.io, UnsafeChecker uncovered 114 previously unknown bugs across 83 crates, with 45 confirmed and 27 already fixed by maintainers.",
+    "developer": "Xizhe Yin, Yaokun Zhang, Yang Feng, Baowen Xu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xizhe Yin, Yaokun Zhang, Yang Feng, Baowen Xu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

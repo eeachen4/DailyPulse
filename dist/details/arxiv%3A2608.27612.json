@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.27612",
+  "sourceItemId": "2608.27612",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.27612",
+  "detail": {
+    "longDescription": "arXiv:2608.27612v1 Announce Type: cross Abstract: In neuroevolution, indirect encoding generates neural network connectivity from a compact genome rather than specifying each connection. ES-HyperNEAT automatically discovers where to place hidden nodes by examining CPPN output patterns: it recursively subdivides space using a quadtree, expanding regions where CPPN outputs show high variance. This adaptive approach discovers network topology without manual substrate specification, extending the fixed-grid HyperNEAT framework built on NEAT. However, the quadtree resists tensorization. Each depth level depends on the parent's variance, forcing sequential evaluation. Different CPPNs produce different subdivision patterns, preventing batching. And variable leaf counts are incompatible with JAX's static shape requirement for JIT compilation. Our prior work confirmed these limits at depths exceeding 5, and a JAX reimplementation of the quadtree yielded only marginal speedup despite batched optimizations, motivating the eager reformulation presented here. We present EMR-HyperNEAT, which evaluates all positions at all resolutions up front, then filters using the same variance criterion: ES-HyperNEAT's subdivide_if(var > $\\theta$) becomes eval_all(); filter(var > $\\theta$). This performs more CPPN queries than necessary, but all queries become independent and parallelizable across both cores and population members, reducing complexity from \\BigO($4^D$) to \\BigO($4^D/P$) across $P$ parallel cores. Recurrent substrate configurations become feasible through a connection type taxonomy. The experiments section validates 12-34$\\times$ on-device GPU speedup on XOR at depths 5-7, and empirically higher solve rates across benchmarks.",
+    "developer": "Romain Claret, Michael O'Neill, Paul Cotofrei, Kilian Stoffel",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NE, cs.AI, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Romain Claret, Michael O'Neill, Paul Cotofrei, Kilian Stoffel"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

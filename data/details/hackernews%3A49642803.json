@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49642803",
+  "sourceItemId": "49642803",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49642803",
+  "detail": {
+    "longDescription": "Hi everyone, I&#x27;m David, the solo developer and owner of BlindLock. This is my second post here. BlindLock is more than a year of work. Not a weekend hobby project I threw together. I&#x27;ve put a hell of a lot of time, heart, and nerves into it. Why steganography? Picture a burglar. He looks for valuables, the obvious ones: gold, cash, jewelry, the safe in the basement. The picture of your kid on the fridge, the holiday photo on the wall, are irrelevant to him. That&#x27;s exactly the principle BlindLock is built on. Hackers go after cookies, passwords in the browser, container files that can be decrypted with a password on any computer, crypto seeds, and other sensitive data. Anyone who can log into your Google account or your ChatGPT knows more about you than they could learn in a personal conversation with you. All of that can be grabbed with RATs and other malware, passwords included. BlindLock hides exactly these sensitive logins and passwords inside a picture, because a photo has almost no value to an attacker. And he&#x27;d first have to identify the picture as his target at all. On top of that, BlindLock seals this picture to the security chip of your computer. That means: even if an attacker copies the picture, together with the password, he cannot get at your data. The same chip sealing applies to the container vault files. And for these larger files BlindLock has a built-in file explorer, so you can open and edit files without mounting them into the OS. Wherever the respective OS allows it, I&#x27;ve written it to leave no traces behind. Why isn&#x27;t BlindLock open source? That was the most frequent question. Take Bitwarden as an example. Bitwarden sells a service: servers, sync, accounts. The code can be open because the value isn&#x27;t in the code. I sell the program itself. There&#x27;s no service behind it, no cloud, nothing on my side that the customer would need. The entire value is in the program itself. That&#x27;s why Bitwarden can give the code away and make it public for everyone, and I can&#x27;t. What&#x27;s open on my side is what has to be open: the cryptography libraries are freely available and partly formally verified (HACL, level 5, the highest). Anyone can audit them, down to the smallest detail. The network: BlindLock is offline at its core The main software never has an internet connection. Nothing goes out. That&#x27;s not a setting, it&#x27;s the build, the architecture: BlindLock is built so it can&#x27;t reach the internet at all. There is no HTTP client in the program. There is no code, no module, no function that could open a connection to the outside. Everything that needs the server runs in a separate small program, the Net-Helper. It ships in the same package and installs with BlindLock, but runs as its own process with its own binary. BlindLock starts it, asks it a question, and gets an answer. No port, no socket, just the child process&#x27;s standard input and output. The helper never sees a vault or a password. It has exactly two jobs: it checks the license, and it checks whether the latest BlindLock version is installed. If there&#x27;s a new version, it downloads the update package and hands it over. In short: when you open BlindLock, it pings the server through the helper. That&#x27;s it. There is no other internet connection. You can also use BlindLock offline for 7 days at any time. Tech stack, licenses, and WalletLink in my first comment below. Happy to answer everything here personally. Anyone can try BlindLock free for 7 days. No email, no payment details. David",
+    "externalUrl": "https://blindlock.app/en/",
+    "developer": "BlindLock",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

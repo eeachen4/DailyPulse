@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.10368",
+  "sourceItemId": "2609.10368",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.10368",
+  "detail": {
+    "longDescription": "arXiv:2609.10368v1 Announce Type: new Abstract: Tensor compilers such as TinyTC and OpenAI Triton were originally developed for AI workloads, but the same tiling and memory abstractions can be applied to implement efficient high-order stencils for scientific and industrial applications. We demonstrate this for an 8th-order, 25-point acoustic stencil with boundary conditions over an a demanding-sized grid, targeting GPGPUs, where we compare the hardware-specialized TinyTC implementation with a portable PyTorch/Triton implementation. The target platforms for evaluation include Intel B70, B580, GPU MAX 1550, NVIDIA A100/RTX6000 Blackwell/H100, and AMD MI325x. For instance, on Battlemage B580 TinyTC reaches 15.6 Gpts/s versus 13.5 Gpts/s for PT/Triton under random initialization, while zero-initialized runs reach up to 35.8 Gpts/s due to hardware memory compression. Using roofline and memory-hierarchy profiling, we show that -as expected- performance is predominantly bandwidth-limited and that compiler-managed L1/LSC caching can effectively replace programmer-managed shared-memory staging for this stencil class. Overall, the results position TinyTC as the performance-oriented path on Intel hardware and PyTorch/Triton as a strong portability/productivity baseline for cross-vendor HPC stencil development.",
+    "developer": "Timothee Ewart, Mauricio Araya-Polo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Timothee Ewart, Mauricio Araya-Polo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

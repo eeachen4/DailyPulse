@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcv38q",
+  "sourceItemId": "1wcv38q",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wcv38q/ninfer3090_single_thread_minibenchmark_results/",
+  "detail": {
+    "longDescription": "I recently did some hardware juggling, moving my RTX 3090 to a different system to make room for a dual AMD R9700 build I'm working on.  In the process, I did a mini-bench with my own typical queries (some chat, some research agent) to compare the RTX 3090 and R9700.  But then, I discovered `ninfer` and specifically `ninfer-3090`, and I was curious about what kind of performance differences I could see.\n\nFor this purpose, I'm comparing performance on both systems for Qwen3.6-35B-A3B and Qwen3.8-27B, the two models I use most often.  Sorry that the hardware isn't apples to apples, but because inference is contained entirely within the GPU, I think it is still instructive.\n\n**Environment Configuration A:**\n\n|Component|Configuration|\n|:-|:-|\n|gpu|GeForce RTX 3090|\n|driver|nvidia 595.84|\n|cpu|AMD Ryzen 5 2600|\n|ram|16 GB|\n|os|Ubuntu 24.04.4 LTS|\n|runtime|ninfer-3090 0.6.1 (commit 75d94eab17)|\n\n**Environment Configuration B:**\n\n|Component|Configuration|\n|:-|:-|\n|gpu|GeForce RTX 3090|\n|driver|nvidia 595.58.03|\n|cpu|AMD Ryzen Threadripper PRO 3945WX 12-Cores|\n|ram|128 GB|\n|os|Ubuntu 24.04.4 LTS|\n|runtime|llama-swap + llama.cpp (version: 0.1.0-dev (build 10436, commit 6fed9f6ff))|\n\n**Model details:**\n\n|Environment|Model|HF Slug|Format and Quant|\n|:-|:-|:-|:-|\n|A|Qwen3.6-35B-A3B|neroued/Qwen3.6-35B-A3B-NInfer|ninfer quant|\n|B|Qwen3.6-35B-A3B|unsloth/Qwen3.6-35B-A3B-MTP-GGUF|GGUF UD-IQ4\\_XS|\n|A|Qwen3.8-27B|neroued/Qwen3.8-27B-NInfer|ninfer quant|\n|B|Qwen3.8-27B|unsloth/Qwen3.8-27B-GGUF|GGUF Q4\\_K\\_M|\n\n**Results:**\n\n* **TTFT** \\- time to first token, median ms\n* **PP** \\- prompt processing tokens per second, weighted average\n* **TG** \\- token generation tokens per second, weighted average\n\n|Model|TTFT A|TTFT B|PP A|PP B|TG A|TG B|\n|:-|:-|:-|:-|:-|:-|:-|\n|Qwen3.6-35B-A3B|29|3410|185338.9|2439.7|170.7|148.6|\n|Qwen3.8-27B|27|8160|187911.6|1012.7|34.9|38.5|\n\nI knew the experience was different while running the ninfer models, but I couldn't put my finger on exactly how until running this bench. quite describe why, until I ran this mini-bench. The TTFT and PP numbers are eye popping.\n\n**Some details about the benchmark methodology itself:**\n\nThe question set (7 prompts total):\n\n* 4 long-ish prompts in the \\~7,700–12,900-token range: a code review of a large module, an article summarizing task, a research-evidence evaluation task, and a literature-review/critique task\n* 1 medium prompt (\\~2,300 tokens): synthesizing conclusions from research notes\n* 2 short prompts (\\~400–600 tokens): an extract-and-answer task and a code-generation task\n\nBenchmark parameters:\n\n* 3 repeats per (model, query); per-query medians plus every raw run recorded\n* Fixed `max_tokens` = 1024 so generation speed is comparable; fixed seed = 42; sampling parameters are as recommended for general inference by Qwen\n* Streaming chat completions; 1 s pause between runs; 30-min request timeout\n\nSteps taken to ensure good results:\n\n* Cache busting: llama.cpp caches prompt prefixes, so identical repeats would report fake \"warm\" prompt-processing speeds. Each run prepends a unique nonce to the system message, forcing a genuine cold run every time (the \\~5 extra tokens are self-correcting since real token counts are used in the math)\n* Warmup excluded from timing: each model gets an untimed warmup request (with retries) so model load/swap time never pollutes measurements\n* Server-side timing preferred: inference engine timings from the final chunk are used for tok/s instead of client-side math when available\n* Aggregation: per-query medians over runs; model-level tokens/s is token-weighted (Σtokens / Σms), so a 12k-token prompt counts proportionally more than a 400-token one\n\nFeel free to critique, offer pointers, or share your own experiences with NInfer inference.",
+    "developer": "milkipedia",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

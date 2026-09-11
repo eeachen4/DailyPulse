@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcmz9a",
+  "sourceItemId": "1wcmz9a",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wcmz9a/how_to_make_kubernetes_infrastructure_recovery/",
+  "detail": {
+    "longDescription": "Ok so im a platform engineer at a cloud resilience company, we sell kubernetes recovery as a big value prop, and last night during a production incident I realised our own infra as code is basically lying to us. I was trying to speed things up and \"cleanup\" some old terraform modules so they matched what our envs look like now, but I did it in prod first, then pushed it as the new source of truth.\n\nCue outage, kubernetes cluster borks, we hit our automated recovery flow, and it faithfully rebuilds... the broken state I just codified. All the drift fixes people had hacked in by hand were gone, node pools wrong size, missing network policies, even an old postgres version came back. I feel so embarrassed that the company that sells instant recovery had its own recovery posture messed up by me trying to be clever with IaC. Any hints?",
+    "developer": "Hou_Posbsession_8211",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

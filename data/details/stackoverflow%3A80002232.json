@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002232",
+  "sourceItemId": "80002232",
+  "sourceUrl": "https://stackoverflow.com/questions/80002232/how-to-cleanly-manage-shifting-player-roles-for-a-game-of-texas-holdem-poker",
+  "detail": {
+    "longDescription": "I need advice on how to cleanly manage shifting player roles for a game of texas hold'em poker. I implemented a big blind, a small blind and a dealer role. These roles are important because they determine the size of an initial forced bet, and the turn order. To clarify, the \"dealer\" role is a positional role assigned to a player that rotates each hand, rather than a separate entity dealing the cards. I am unsure of the best way to implement this state in my code. In the future a game may be played with only two people, where a single player can be assigned two roles. Specifically the player would be the dealer and the small blind. But currently i limited the game to 3 players to keep things simple. So what would be a \"clean\" way to implement something like this? SUITS = (\"Clubs\", \"Diamonds\", \"Hearts\", \"Spades\") RANKS = (\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"J\",\"Q\",\"K\",\"A\") PLAYER_LIMIT = 12 PLAYER_ROLES = { \"big_blind\": \"\", \"small_blind\": \"\", \"dealer\": \"\" } class Card: __slots__ = (\"rank\", \"suit\") def __init__(self, rank, suit): self.rank = rank self.suit = suit def __repr__(self): return f\"{self.rank} of {self.suit}\" class Deck: def __init__(self, ranks, suits): self.suits = suits self.ranks = ranks self.deck = [Card(rank, suit) for rank in ranks for suit in suits] def shuffle(self): return random.shuffle(self.deck) def draw(self, num): if num > len(self.deck): raise ValueError(f\"Tried to draw {num}, only {len(self.deck)} remain\") cards = self.deck[-num:] del self.deck[-num:] return cards def __repr__(self): return f\"{self.deck}\" class Table(): def __init__(self, players, player_limit, player_roles): if len(players) > player_limit: raise ValueError(f\"Cannot seat {len(players)} players. Maximum is {player_limit}\") if len(players) > 3: raise ValueError(f\"Need at least 3 players to play.\") self.players = players self.player_limit = player_limit self.player_roles = player_roles class Player: def __init__(self, name, balance): self.name = name self.balance = balance self.hand = [] #TODO: Create a TableRules that allows swapping between different variants of poker def texas_holdem(): pass def main(): texas_holdem() if __name__ == \"__main__\": main()",
+    "developer": "Lorang",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "126"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

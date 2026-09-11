@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcic9n",
+  "sourceItemId": "1wcic9n",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wcic9n/should_keep_llm_traces_in_separate_tool_or/",
+  "detail": {
+    "longDescription": "Working on an AI chatbot in our product. It does RAG plus tool calls, and it can spin up sub-agents that actually do stuff for the user.\n\nRight now we run DeepEval in CI and DeepTeam for red teaming, and traces + online evals go to Confident AI (the hosted platform from the same team). It's working fine as of now and can probably hold up at scale too.\n\nBut we use Datadog as our primary APM tool, so I'm thinking about moving LLM traces there as well, since everything else is already there. Whenever we're troubleshooting anything, we end up bouncing between two tools to figure out what happened.\n\nBut I'm doubtful about the cost, as Datadog bills per LLM span, and our sub-agents make a bunch of LLM calls per request, so it adds up fast.\n\nIf anyone has experience with this or any suggestions before I make a recommendation up the ladder, that would be great.\n\n[](https://www.reddit.com/submit/?source_id=t3_1wci721&composer_entry=crosspost_prompt)",
+    "developer": "Less_Ad8195",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

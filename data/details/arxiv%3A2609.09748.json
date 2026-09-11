@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.09748",
+  "sourceItemId": "2609.09748",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.09748",
+  "detail": {
+    "longDescription": "arXiv:2609.09748v1 Announce Type: new Abstract: Diffusion language models generate text by refining a fixed-size block of token positions through many forward passes, a loop that does not match the per-forward execution unit used by most LLM serving systems. A dense MoE runtime binds all work to the refinement-iteration clock: it rebuilds similar routing structure on every forward, recomputes expert outputs for positions whose logits are already dead, and sends those positions through dense expert-parallel collectives. This paper presents \\sys{}, a serving system that treats the diffusion block as a compilation unit. \\sys{} compiles a small \\emph{block plan} for the block-clock structure of one diffusion block and refreshes every value that can affect a live decode decision on the iteration clock. \\sys{} realizes this plan along three dense axes of an MoE forward: \\atlas{} compiles a coverage-driven active expert support per layer while recomputing gate logits every iteration; \\lsp{} keeps full sequence shards as model state but routes only live, newly decoded, and refresh-required positions through fresh routed-expert computation; \\freshlane{} carries this fresh token--expert worklist through expert-parallel dispatch, kernels, and combine, then restores the dense logical shard at the layer boundary. We implement \\sys{} on 8 NVIDIA H100 GPUs and evaluate it on three open-weight block-diffusion MoE models (LLaDA-MoE, LLaDA2.0-mini, and LLaDA2.0-Flash, spanning 7B to 100B total parameters) across GSM8K, HumanEval, MGSM, and MT-Bench. \\sys{} improves end-to-end execution time by up to 2.7$\\times$ over the strongest surviving baseline under the same 8-GPU placement and remains feasible at the largest batch sizes where multiple baselines run out of memory, while preserving task quality relative to the dense reference.",
+    "developer": "Jianian Zhu, Hang Wu, Yinghui Li, Haojie Wang, Ruixuan Li, Jidong Zhai",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jianian Zhu, Hang Wu, Yinghui Li, Haojie Wang, Ruixuan Li, Jidong Zhai"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

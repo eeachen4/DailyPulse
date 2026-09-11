@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcw1if",
+  "sourceItemId": "1wcw1if",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wcw1if/gpt6astra_light_2xspeed_codex_vs_deepseek_flash/",
+  "detail": {
+    "longDescription": "Hiiii\n\nSo I was watching the GPT6 video from OpenAI and it looked so smooth. The toolcalls were fast, everything looked so seemless. \n\nIt does feel satisfying to use Astra for automated browser usage.\n\nBut from this point of view, I was thinking *how did they achieve this?* *Did they make 200+ tools for every usecase? Trained this way?* *Does it have some realtime vision capabilities?*\n\n^(So far I don't know lol)\n\nI thought about an idea to make an **async toolcall scheduler** that will basically **allow the API to continue generating** and doing other stuffs, while the tool is running.\n\nMost frameworks/apis work like this: \n\n1. Tool#1 called  \n2. Waiting \n3. Done -> results getting sent back to the LLM\n4. Tool#2 started getting generated....\n\nMy idea was to speed this up... (I hope this explanation will make sense)\n\n1. Tool#1 called DONT WAIT -> instant placholder feedback like **RUNNING** (1-2ms overhead) \n2. Tool#2 started -> Tool#1 finished -> Getting fed back into the context.\n\nThis is still in proof of concept stage sort of. You have to mark each tool that wouldn't cause any trouble if you don't wait for it, then the scheduler will handle everything else.\n\nI created a comparison against GPT6-Astra Light + x2Speed inside Codex (my tokens :ccc)\n\nWhat are your thoughts?\n\nSome self advertising:\n\n^(The API I used to call the LLMs:) [^(cride9/CrideLLMApi)](https://github.com/cride9/CrideLLMApi) ^(w/ self made harness with the context injection logic)  \n[^(GPT Astra Light +Speed vs Cride's Async toolcall scheduler - YouTube)](https://www.youtube.com/watch?v=nrX2fmtEpD0)  \n^((I'll release the Harness later when it's not a console app lol))",
+    "developer": "cride20",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

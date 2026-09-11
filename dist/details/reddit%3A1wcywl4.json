@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcywl4",
+  "sourceItemId": "1wcywl4",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wcywl4/is_deepseek_v41flashs_swa_replay_a_free_lunch_or/",
+  "detail": {
+    "longDescription": "DeepSeek-V4.1-Flash uses SWA Bounded Replay to avoid persisting the sliding window KV cache and saves massive memory, it discards the SWA KV and, on replay, approximately reconstructs it from only the last N\\_window tokens, even though the original SWA states had a much larger effective ***receptive field*** due to depth. Since those replayed K/V vectors lack the long-range context that shaped the originals, I’m wondering whether cache hits or restarted sessions lose accuracy/recall for the first few interactions, and whether the parallel global KV augmentation compensates enough to preserve near-perfect long-range recall. Has anyone benchmarked this or seen practical recall degradation after eviction, or is the approximation effectively invisible because the global KV does the heavy lifting?",
+    "developer": "Top-Handle-5728",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

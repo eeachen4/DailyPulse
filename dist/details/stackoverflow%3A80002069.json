@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002069",
+  "sourceItemId": "80002069",
+  "sourceUrl": "https://stackoverflow.com/questions/80002069/aws-ssm-document-fails-on-seemingly-valid-json-input",
+  "detail": {
+    "longDescription": "I have an AWS SSM Document, and when I run it with aws ssm send-command it fails on the parameter validation. I pass the arguments in JSON. These are the input parameters that fail. Expected format according to the document's spec: { \"Foo\": \"foo-value\", \"Bar\": \"bar-value\", \"Baz\": 42 } I store the parameters in a file input.json to avoid PowerShell escaping issues. The document: --- schemaVersion: \"2.2\" description: \"Test parameters\" parameters: Foo: type: \"String\" description: \"\" Bar: type: \"String\" description: \"\" Baz: type: \"Integer\" description: \"\" mainSteps: - action: \"aws:runPowerShellScript\" name: \"RunCommands\" inputs: runCommand: - '$ErrorActionPreference = \"Stop\"' - 'Write-Output \"Foo: $($env:Foo)\"' - 'Write-Output \"Bar: $($env:Bar)\"' - 'Write-Output \"Baz: $($env:Baz)\"' Command: aws ssm send-command --document-name \"Parameter-test\" --targets \"Key=tag:Name,Values=Foobar\" --parameters 'file://input.json Error: aws: [ERROR]: An error occurred (ParamValidation): Parameter validation failed: Invalid type for parameter Parameters.Foo, value: foo-value, type: <class 'str'>, valid types: <class 'list'>, <class 'tuple'> Invalid type for parameter Parameters.Bar, value: bar-value, type: <class 'str'>, valid types: <class 'list'>, <class 'tuple'> Invalid type for parameter Parameters.Baz, value: 42, type: <class 'int'>, valid types: <class 'list'>, <class 'tuple'>",
+    "developer": "selle",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "50"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

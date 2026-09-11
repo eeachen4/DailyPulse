@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.09165",
+  "sourceItemId": "2609.09165",
+  "fetchedAt": "2026-09-11T01:29:30.998Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.09165",
+  "detail": {
+    "longDescription": "arXiv:2609.09165v1 Announce Type: new Abstract: Scheduling workflow directed acyclic graphs (DAGs) on heterogeneous distributed systems is a classical NP-hard problem, and the list-scheduling heuristic HEFT remains the defacto standard because of its low complexity and strong makespan. In real deployments, however, machines fail: commodity and pre-emptible nodes are far less reliable than dedicated ones, and a makespan-optimal but reliability-agnostic placement can be dramatically slowed by node failures. We show empirically, on real workflow structures from the WfCommons/Pegasus corpus, that no single fixed heuristic is best across the joint space of failure intensity and cluster load: with no failures HEFT is optimal, whereas under failures a reliability-aware placement can reduce the expected makespan by up to 52% when spare capacity exists. Motivated by this, we present TFR-GNN, a graph neural scheduler that combines bidirectional dependency attention over the task DAG, topology attention over the (bandwidth-weighted) machine graph, and a cross-attention placement head augmented with a failure-gated reliability tilt and an optional replication gate. We train TFR-GNN by distilling a best-of-portfolio fault-tolerant oracle into a single one-shot policy. On real workflows and a bimodal-reliability cluster model, TFR-GNN matches HEFT exactly when there are no failures, reduces the expected makespan under failures by 14.8% on average (up to 47%) over HEFT, beats a fixed reliability-aware baseline (R-HEFT) by 11% and matches a per-scenario hindsight oracle as a single policy without any deployment-time tuning, and generalises to unseen applications and to workflows an order of magnitude larger than those seen in training, while producing schedules in well under a second for graphs of nearly 5,000 tasks. All results are produced by a verified event-level simulator on real workflow data; no experimental numbers are synthetic.",
+    "developer": "Shiyu Yang, Ziyang Zeng, Jie-Si Yang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shiyu Yang, Ziyang Zeng, Jie-Si Yang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wcxjjf",
+  "sourceItemId": "1wcxjjf",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wcxjjf/have_security_attach_the_service_owner_before/",
+  "detail": {
+    "longDescription": "We shipped an AI-written endpoint a few weeks back that let any logged in user read any other user's records. It passed tests, two of us approved the PR, nothing in it looked wrong. The ownership check just was not in there and none of us caught it reading the diff.\n\nMost PRs are mostly AI now and the diffs are big. A hardcoded key or a SQL injection, a scanner or a careful reviewer usually catches. The missing authz check is the one that slips by as it reads as completely normal code. One dev with an agent also opens way more code in a day than a person can properly review, the stuff that looks fine just goes through.\n\nHow are you catching this kind of thing before it merges? Looking for what has really worked, not just what sounds good in a policy doc.",
+    "developer": "Mangwe_Tanser",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
