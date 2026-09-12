@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdj47j",
+  "sourceItemId": "1wdj47j",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wdj47j/a_kubernetes_cronjob_that_misses_100_schedules/",
+  "detail": {
+    "longDescription": "    The CronJob controller counts missed start times since status.lastScheduleTime. Past\n    100 it stops scheduling and records:\n    \n      Cannot determine if job needs to be started: too many missed start times (> 100).\n      Set or decrease .spec.startingDeadlineSeconds or check clock skew\n    \n    Events are garbage collected after about an hour by default. Unless you happen to look\n    that day, all you're left with is a CronJob that quietly stopped. A job running every\n    minute hits 100 misses in under two hours of control plane trouble. It doesn't recover\n    on its own, you delete and recreate it.\n    \n    Setting startingDeadlineSeconds bounds how far back the controller counts, which stops\n    the runaway and also stops it firing a backlog at you when things come back.\n    \n    The other ways one silently doesn't run: suspend, concurrencyPolicy Forbid with a slow\n    previous run, spec.timeZone not being set so you get the controller's zone, and pods\n    that can't be scheduled at all. Wrote the lot up here:\n    https://vivere.dev/answers/kubernetes-cronjob-missed-schedule\n    \n    Disclosure, I build a dead man's switch for scheduled work\n    (https://vivere.dev/?utm_source=reddit&utm_campaign=devops). It's relevant to this\n    failure specifically, because a pod that was never created can't be alerted on from\n    inside the cluster. Copy-paste CronJob example: https://vivere.dev/docs/kubernetes",
+    "developer": "notafishza",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdxi25",
+  "sourceItemId": "1wdxi25",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wdxi25/built_a_self_hosted_eval_tracing_tool_for/",
+  "detail": {
+    "longDescription": "we were evaluating a langgraph support agent and the eval side of it had gotten embarrassing. golden set of about 50 cases nobody touched after launch, judge prompt that gave everything a 7 or an 8, and the only time we found regressions was when a customer did.\n\nso we built a self hosted engine for it and I'd like to know if it's actually useful to anyone outside our team.\n\nwhat it does: single binary, sqlite by default, you point the python sdk or any otel exporter at it and it collects traces. any real trace can become a test case with provenance. llm-as-judge runs against your datasets with your own openai/anthropic/gemini key. the bit I think is actually different is that it scores the judge itself against reality (user thumbs down, reported outcomes) so you can tell when the judge is what's broken rather than the agent.\n\nthe part I'm genuinely unsure about is the eval-fix workflow. it's a claude code skill that takes an eval report, checks each recommendation against the actual source before touching anything, applies what holds up, reruns. the reason it exists is a bit embarrassing. our judge kept insisting we \"add a completion check\" and the real bug was a [:400] slice in our own eval harness truncating every output before the judge saw it. the judge couldn't have known, it never saw the code. went from 1.86 to 10 by deleting one line. not sure if that's a common class of failure or just us being sloppy.\n\nquestions for people actually running this stuff:\n\n- does anyone maintain eval datasets after launch, or does everyone's rot the same way\n- is llm-as-judge even worth it for support agents vs just similarity metrics\n- would you trust an automated \"here's a proposed prompt change, measured against your golden set, you approve it\" loop, or does that sound like a footgun\n\nit's apache 2.0, no account, nothing billed through us. things that don't work yet: otel is http only (no grpc), and there's no guardrails feature at all. I'd rather hear it's useless than get nothing.\n\nrepo: https://github.com/AgentX-ai/AgentX-Trace-Eval\n\nfull disclosure, I work on this.",
+    "developer": "marcin_michalak",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

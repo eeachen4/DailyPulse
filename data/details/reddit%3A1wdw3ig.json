@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdw3ig",
+  "sourceItemId": "1wdw3ig",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wdw3ig/i_built_a_multilingual_rag_document_assistant/",
+  "detail": {
+    "longDescription": "I've been learning more about RAG systems recently, so I decided to build one instead of just following tutorials.\n\nThe result is **CloudRAG**:\n\n[https://github.com/abderaoufsec/CloudRAG](https://github.com/abderaoufsec/CloudRAG)\n\nThe basic flow is:\n\n📄 Documents → ✂️ Chunking → 🧠 Embeddings → 🔎 FAISS → 📚 Retrieved chunks → 🤖 Ollama → 💬 Answer\n\nIt supports PDF, TXT and DOCX files and returns the sources used during retrieval.\n\nThe main stack is Python, FastAPI, React, SentenceTransformers, FAISS, Ollama, SQLite and Docker.\n\nI also added retrieval evaluation and testing because I wanted to see how well the retrieval part was actually working instead of just checking whether the chatbot produced an answer.\n\nI experimented with Qdrant Cloud as well, but I couldn't get that deployment working successfully, so the current working version uses FAISS locally.\n\nThe biggest thing I learned is that a RAG application isn't just about the LLM. Document chunking, embeddings and especially retrieval quality can make a huge difference. 🔍\n\nI'd be interested in feedback from people who have built RAG systems, especially around improving retrieval evaluation and architecture.",
+    "externalUrl": "https://i.redd.it/40ev76c75zoh1.png",
+    "developer": "imABDRAOUF",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

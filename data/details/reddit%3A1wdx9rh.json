@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdx9rh",
+  "sourceItemId": "1wdx9rh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wdx9rh/fulldocument_context_for_code_chunk_descriptions/",
+  "detail": {
+    "longDescription": "Anthropic's contextual retrieval writeup from September 2024 suggests giving the model the surrounding document when it generates a chunk's description, so the description knows where the chunk sits. We implemented that for code, then measured it against a cheaper version.\n\nThe cheaper version passes only what the parser already produced. That is the file path and language, the chunk's imports and exports, the sibling symbols beside it. All of it is free, because the tree-sitter pass computed it before any LLM was involved.\n\nOn our evals the two measured the same. One set is public (CodeSearchNet Ruby), the other is internal. Full-document context cost many times the tokens for no movement we could detect, so we dropped it and kept the structural context.\n\nThe guess at why, and it is a guess. Code already declares its own context. A function that imports three modules and sits beside four siblings has told you most of what the surrounding file would have, in a form that costs nothing to extract. Prose has no equivalent, which may be why the original result held there and not here.\n\nTwo things I would not claim. Neutral on our corpus is not neutral on yours, and the eval is one we wrote. And this says nothing about full-document context for retrieval itself, only about using it to generate descriptions.\n\nHas anyone run this comparison on code against a set they did not write?",
+    "developer": "donk8r",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdxfim",
+  "sourceItemId": "1wdxfim",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wdxfim/agent_memory_turns_vector_search_into_a_longlived/",
+  "detail": {
+    "longDescription": "Hi, James here — I’m the CTO of Zilliz, the company and builder behind Milvus. Milvus is an open-source vector database built to store, index, and search embeddings for semantic search over unstructured data, and Vector Lakebase is the next lake-native expansion around that serving path.\n\nThe first part of this story is the shift from vector-search algorithms to production infrastructure. Early systems inside large technology companies proved that semantic similarity could work, but libraries and workload-specific internal tools were not designed to run as general-purpose, long-lived databases. Once vector retrieval moved into real products, scalability, reliability, and daily operations became as important as search quality.\n\nRAG accelerated that transition by making retrieval the grounding layer for model responses. Agents push the requirement further. Their long-term or near-line memory has to support multi-step reasoning, context compression, and retrieval across different kinds of data. A flexible semantic space lets an agent decide what to retrieve and combine, but flexibility does not remove the need for governance. Poorly curated data still produces poor context, and changing embedding models or rerankers can change behavior even when the application code stays the same.\n\nThat is why I see agent memory as a systems discipline rather than an index feature. The retrieval layer needs continuous evaluation, explicit data quality work, and operational guarantees that survive growth. Vector search may set the candidate space, but the usefulness of that memory is bounded by the lifecycle around it: what enters, how it is updated, how quality is measured, and when old representations are rebuilt.\n\nThe technical implication is simple: an agent-memory prototype can be assembled quickly, but making it dependable requires the same long-term infrastructure work expected of any critical database.",
+    "developer": "J_Luan_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

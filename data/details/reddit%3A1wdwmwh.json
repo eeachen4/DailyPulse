@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdwmwh",
+  "sourceItemId": "1wdwmwh",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wdwmwh/learningrsi_through_ngrams/",
+  "detail": {
+    "longDescription": "Hey gang, im wondering if you in theory could use ngrams as seen with Qwen 3.8 Flash or DS4.1 in order to dynamically train the model? \n\nNormally the ngram embeddings behave similar to a lookup table of sorts. So instead of every token having to be represented only inside the main model weights, the model can look up a learned vector for a certain ngram and use that during inference.\n\nWhat I'm wondering is: couldn't you make part of this table writable during inference?\n\nFor example, keep the original pretrained ngram embeddings read-only, but have a second \"live\" table on top of it. When the model learns something new, it could update/add an embedding there. Frequently used or reinforced entries could stay, while unused ones could slowly decay or get removed again. \n\nThis could be kinda mimicking the brain of sorts since it would form new \"memories\" but forget old ones (because their linkage gets weaker). Plus since you only have to target the live table it could be very fast, even during inference. \n\nJust a thought I had and wanted to hear your guys opinions.",
+    "developer": "RapidRaid",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

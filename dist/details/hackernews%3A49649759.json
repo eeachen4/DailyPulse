@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:49649759",
   "sourceItemId": "49649759",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49649759",
   "detail": {
     "longDescription": "Even though everyone is talking about AI agents doing everything for them at work, many companies still aren&#x27;t using autonomous agents to automate real operational work internally. Usually it&#x27;s because of the complexity of bootstrapping an agent from scratch that’s production-safe (won’t spend all your company’s budget, burn through compute costs because it runs too often, or call a tool that breaks a customer). Even with today&#x27;s agent-building frameworks, running agents reliably in production often means stitching together LangChain, Temporal, observability tools, approval systems, and custom guardrail logic. And that’s just for running an agent safely: there also has to be a management system so someone can observe and operate all their agents (upgrade it, roll it back, stop it). We wanted to build the end-to-end internal agent infrastructure that every company has to build today to use production-safe agents internally as an open-source platform. The important thing is that getting an agent running safely is quick and simple: someone can first define their agent tying it to a version, and their lifecycle and runtime policies in YAML. Next they register their agents on workers in YAML and run those workers wherever they want. This means that if one AKS cluster has permissions for the tools needed for agents X and Y and another has permissions for agents A and B, they would each register those agents on their respective clusters. Finally they can use the CLI to apply and run the agent, and then manage it with approvals, responding to questions its asking, upgrade it&#x2F;roll it back&#x2F;pause it (via either CLI or a UI&#x2F;portal running on localhost that are communicating with the control plane). Some of the agent lifecycle management can be automated by the system: metric-based lifecycle policies make it so a user can say “if this new agent version I’m trying out (with a different prompt) fails 10 times, roll it back to the old version” or “if the new agent version is spending over a certain amount in the last 5 runs block it from being run anymore till I debug and resume it”. This is useful for teams that want to run many agents without needing someone on standby to intervene if something goes wrong on any one of them. The control plane is self-hostable or can be run via a managed cloud offering, and the self-hostable option combined with someone doing local inference is actually a completely air-gapped system. Give it a try: https:&#x2F;&#x2F;github.com&#x2F;boundflow&#x2F;charter and let us know what you think.",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "2"
+        "value": "4"
       },
       {
         "label": "评论",

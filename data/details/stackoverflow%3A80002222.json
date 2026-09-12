@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002222",
   "sourceItemId": "80002222",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002222/power-bi-python-visualization-erroring-out-when-it-shouldnt",
   "detail": {
     "longDescription": "I am attempting to build a visualization testing some of Python's predictive analysis libraries and I am running into 2 issues. First, the dataset is larger than the apparent 150k row limit, so I was trying to filter it down to be less egregious, but that leads to the second problem. When I filter it to a more reasonable range, it just throws a ServiceError_ExecuteSemanticQueryTransformErrorValue error and dies. I know for a fact that the database has data for the range as I use it elsewhere in the report. The whole thing works if I have the filter set to 1/1/2011 for the start date, but if I move it forward at all it crashes out. I would like to do 2020 to current or even 2024 to current, but it is refusing to work. import matplotlib.pyplot as plt import pandas as pd import statsmodels.api as sm df = dataset.copy().dropna() df['Date'] = pd.to_datetime(df['Date']) df = df.sort_values('Date') df = df.set_index('Date') Y = df['Value'] X = sm.add_constant(df['Category']) model = sm.OLS(Y, X).fit() df['Fitted'] = model.fittedvalues df_monthly = df.resample(\"ME\").sum() fig, ax = plt.subplots(figsize=(36,15)) ax.plot(df_monthly.index, df_monthly['Value'], label='Actual', color='#1f77b4', linewidth=2) ax.plot(df_monthly.index, df_monthly['Fitted'], label='OLS Fitted', color='#ff7f0e') ax.legend(loc='upper left') ncols = dataset.shape[1] nrows = dataset.shape[0] fig.text(0.05,0.5,f\"Cols: {ncols}, Rows: {nrows}\", fontsize=25) plt.show() As I said, all I do is filter the input data and it crashes and I cannot get it to report at all why. The error is obfuscated behind that blasted error at the top and even wrapping the whole thing in a Try: ... Except: block doesn't get it to behave itself. If I had to guess, there is some malformed data in a row that is being cut off by the 150k limit, but I have no idea what the debugging method would be to find it.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "0"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "57"
+        "value": "90"
       },
       {
         "label": "状态",

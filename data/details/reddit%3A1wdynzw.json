@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdynzw",
+  "sourceItemId": "1wdynzw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wdynzw/token_count_weirdness_ollama_vs_llamacpp_with/",
+  "detail": {
+    "longDescription": "So, I had set a 85k content limit on Ollama's context via the environment variable. Sure enough, when both opencode and Ollama reported that they had reached it, Ollama cut off its generation.\n\nOn prompt processing (increasing Ollama's context limit a bit higher like 86k), I can also confirm that the reported token size is around 85k after it's done, matching what Opencode tells me.\n\nSo I thought, I'd try llama.cpp, I set the context limit to 120k, and I get an error, saying the request is 164k tokens. Which is weird, since it should be 85k as I confirmed before, and it still shows 85k in opencode interface too.\n\nI increase the context window to like 170k, and the prompt processing goes to 164k, confirming indeed that llama somehow processed more tokens, from somewhere somehow. Checking opencode again, the context is very much reported to be 85k.\n\nIt's not even that the tokens are being silently dropped by Ollama, as I mentioned Ollama hits it and stops, and Opencode itself reports 85k too.\n\nSo why is llama.cpp somehow processing more tokens?",
+    "developer": "RadianceTower",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

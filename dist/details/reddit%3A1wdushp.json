@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdushp",
+  "sourceItemId": "1wdushp",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wdushp/this_is_why_we_need_opensource_harnesses_local/",
+  "detail": {
+    "longDescription": "i've been thinking about this more after trying different agent setups. the model isn't the only thing that determines how well an agent performs. The harness around the model matters a lot too.   \nWith a managed agent setup, you're often giving up control over things like the agent loop, context management, tool execution, retries, and state.\n\nThat's fine when you just want something that works. But if we want to actually optimize agents, I think both parts need to be open:\n\nOpen-source model + open-source harness.\n\nWith local models, you control the model and where the inference happens.\n\nWith an open-source harness, you control what happens around the model.\n\nThat gives you room to experiment with things like:\n\nhow the agent decides what to do next\n\nhow much context gets passed to the model\n\nhow tools are executed\n\nwhen to retry or stop\n\nhow state is maintained\n\nwhich model to use for which task\n\nalready seeing this separation become more important, nvidia's sol-pi is an interesting example \n\nand i think we're going to see even more optimization happen at the harness/runtime layer, not just at the model layer.\n\nare you running local models with an open-source harness, or do you still prefer managed agent setups?",
+    "developer": "Background-Job-862",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

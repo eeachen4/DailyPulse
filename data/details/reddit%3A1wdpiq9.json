@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdpiq9",
+  "sourceItemId": "1wdpiq9",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wdpiq9/my_agent_burned_twelve_tool_calls_retrying/",
+  "detail": {
+    "longDescription": "Was debugging a data pipeline last week and let an agent run at it instead of doing it manually, mostly to see how far it would get on its own. First attempt failed on a permissions error. Second attempt changed the file path. Third attempt changed the path again. Fourth attempt added a sudo it didn't have access to use. By the time I looked back at the log it had made twelve attempts, each one a small variation on the same wrong theory, that the problem was somewhere in how it was addressing the file rather than whether it had permission to touch it at all.\n\nNone of the individual retries were unreasonable. Each one was a sensible next step if the previous theory had been almost right. The failure wasn't in any single decision, it was that nothing forced it to step back and question the theory itself instead of the execution of it.\n\nWhat fixed it wasn't a smarter prompt. It was giving it an explicit rule: after two failed attempts at the same class of error, stop retrying variations and instead state what assumption you're testing and why you think it's wrong. That one instruction did more than any amount of extra context I'd been stuffing in beforehand.\n\nMakes me think most agent reliability problems aren't reasoning problems, they're the absence of a forced checkpoint where the agent has to notice it's been circling the same idea.\n\nCurious how other people are handling this. Hard limit on retries per error type, or something more like a confidence check before each new attempt?",
+    "developer": "ClickOk5811",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

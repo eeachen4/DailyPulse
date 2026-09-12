@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdv94n",
+  "sourceItemId": "1wdv94n",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wdv94n/testing_files_generator_v03_release_100_offline/",
+  "detail": {
+    "longDescription": "Hello, my [Testing Files Generator](https://github.com/donislawdev/TestingFilesGenerator) has just got V0.3 update :-) 24 formats, boundary testing, various settings. **\\^ If you like the project, please star it**\n\n\n\nWhat has changed?\n\n\\- Multi-thread support, all actions are now a lot faster\n\n\\- Tons of performacne optimizations (dry run for 100k files went from 15.7-19.7 seconds to 0.49-0.56 seconds, same with other things)\n\n\\- \"Damage\" module, we can now generate damaged files, right now only first bytes \"damaged\"\n\n\\- new formats: tiff, avif, jpg xl,webp\n\n\\- Huge update to .log files, I think there are right now 6 log types + we can do different things for timestamps, formats.\n\n\\- We can now create archives with directories, want to create archive with 60 directories? No problem, and \"encrypt\" option has been added to archive.\n\n\\- utf-8,utf-16, bom, line ending has been added to \"text\" files (not only .txt)\n\n\\- We can now generate xlsx with 32768 collumns\n\n\\- .csv now takes delimiter type, we can hide/show headers,\n\n\\- we can now create minifed json + we can set height/width for .svg\n\n\\- GIF can now be animated (before was only 1 frame, now it's 1-60 frames)\n\n\n\nThat's in short, it's over 80 commits, what's next? I got plans for rework of the GUI, but not sure if it will hit 0.4, I want to get more things into \"pdf\" and add more \"damage\" modules + new presets.\n\n\n\n[Full List Of Formats](https://testingfilesgenerator.donislawdev.com/formats/)\n\n\n\nSome features:\n\n* **Hit an exact size, to the byte** \\- ask for 10485761 bytes and get exactly that, never a silently rounded file.\n* **Write 24 real formats** \\- a generated PNG opens in an image viewer, a DOCX opens in Word, a ZIP extracts. Not padded zeros with an extension.\n* **Say what should happen to each file** \\- the manifest carries an expected outcome, so your test reads the assertion instead of you writing it out.\n* **Repeat itself byte for byte** \\- same recipe and seed, same bytes, on any machine. Commit a small recipe instead of large binary fixtures.\n* **Build a boundary set in one command** \\- one byte under a limit, the limit itself, one byte over. That is where off by one errors live.\n* **Produce ten thousand files at once** \\- one command, one manifest, and sizes drawn from the seed.\n* **Fill an archive for real** \\- a ZIP that holds 200 documents, not a stub with the right extension.\n* **Take settings per format** \\- image dimensions, JPEG quality, PDF pages, spreadsheet rows and columns.\n* **Fit into CI** \\- an exit code for every ending, machine readable output, and nothing on standard output when a run fails.\n* **Clean up after itself** \\- `verify` tells you nothing moved, `cleanup` removes exactly what it wrote and nothing else.\n* **Work completely offline** \\- no account, no cloud, no telemetry, no update check. The command line binary has no network stack compiled into it at all.\n* **Cost nothing and stay out of your way** \\- GPL-3.0, and the files you generate are yours with no strings attached",
+    "externalUrl": "https://github.com/donislawdev/TestingFilesGenerator",
+    "developer": "DonislawDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

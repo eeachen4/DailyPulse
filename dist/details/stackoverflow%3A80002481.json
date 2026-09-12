@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002481",
+  "sourceItemId": "80002481",
+  "sourceUrl": "https://stackoverflow.com/questions/80002481/reactjs-19-2-server-left-join-get-all-results-from-2-table-in-first-query",
+  "detail": {
+    "longDescription": "I write a Picture Site with NodeJS and ReactJS. I have 2 Nodes. First Server, second Client. On the server, I retrieve the information from the database via the client. Lately, I’ve been having a bit of trouble grasping how to retrieve and process data. module.exports = function (app, db) { const ut = require(\"./utils\"); /* GET PROFILE DATA */ app.get(\"/account/:userID\", async (req, res) => { var userID = req.params.userID; // Get User-Hash from Client db.query( \"SELECT * \" + \"FROM pix_users u \" + \"LEFT JOIN pix_images i ON i.user = u.user_hash \" + \"WHERE username=?\", [userID], (err, result) => { if (err) { res.send({ error: err }); } if (result) { var site_items = new Array(); result.forEach(function (value, index, items) { site_items = site_item_model(value); console.log(site_items); // You can see all the results in the terminal. }); return ut.handleResponse(req, res, 200, { p_items: site_items, }); } }, ); }); /* MODEL */ function site_item_model(model) { return { id: model.id, username: model.username, userhash: model.user_hash, firstname: model.user_first_name, lastname: model.user_last_name, email: model.user_email, userpic: model.user_avatar_pic, userprefix: model.user_prefix, //useravatar: model.user_avatar, userjson: model.user_json, userregist: model.user_registered, // ------ Push Data from pix_images ------ useruploads: { [model.id]: { hash: model.image_hash, file: model.file } } // --------------------------------------- }; } }; I have two tables: pix_user and pix_images . I want to retrieve the user record just once and use a LEFT JOIN to fetch all images belonging to that user. The database query works as expected. However, the model function only stores the last entry in useruploads , even though the user might have, for example, 10 images. What do I need to change so that all images are stored in useruploads ?",
+    "developer": "Kijupo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

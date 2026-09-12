@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdq571",
+  "sourceItemId": "1wdq571",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wdq571/curie_by_colibrì_i_designed_a_17b_model_to_run/",
+  "detail": {
+    "longDescription": "A month ago, I started building colibrì to answer a question:  \nDo you really need a $30,000 machine to run a model whose weights fit on a $60 SSD?  \ncolibrì treats SSD, RAM and GPU as a single memory hierarchy. It can run models that do not fit entirely in RAM or VRAM, including models with hundreds of billions of parameters, on the hardware people already own.  \nBut while optimizing it, I realized I was fighting assumptions built into the models themselves.  \nMost open models are designed to live in VRAM. Their weights, routing and execution patterns were created for GPUs and data-center hardware. colibrì could move them through a different memory hierarchy, but the models had no idea where they were actually running.  \nThat led me to another question:  \nWhat if the engine and the model were designed for each other from the beginning?  \nThat is how Curie started.  \nThe current alpha has 17B parameters. I wrote it in C, without an inference framework, and trained it from scratch on my laptop without a GPU. Its weights live on SSD and are loaded according to the model’s execution path.  \nIn the test shown in the video, Curie reaches 33 tokens/s using a single CPU core. On the same machine, the dense 12B models I tested usually generate around 3–5 tokens/s.  \nThere is an important limitation: Curie has only seen 11 million training tokens. It is not smart yet, and I am not presenting it as a useful language model. It will need at least a few billion tokens before I can properly evaluate its quality.  \nWhat this alpha demonstrates is the architecture: a model can be designed around SSD, RAM, CPU and GPU as parts of the same system, instead of assuming that everything must fit in VRAM.  \nCurie is not publicly available yet. I am still training it, validating the design and preparing more detailed benchmarks.",
+    "externalUrl": "https://v.redd.it/7wua226yzxoh1",
+    "developer": "Just_Vugg_PolyMCP",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

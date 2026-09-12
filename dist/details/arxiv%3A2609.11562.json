@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.11562",
+  "sourceItemId": "2609.11562",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.11562",
+  "detail": {
+    "longDescription": "arXiv:2609.11562v1 Announce Type: new Abstract: Modern high-performance GPU computations partition tensors into tiles to exploit data reuse and parallelism. Individual tile computations complete earlier than the full tensor computation, creating opportunities to overlap computation and communication. However, a mismatch between computation and communication progress can limit these opportunities. Communication stalls when no data is ready, and may lag when data arrives in bursts. Communication can also slow computation by consuming shared resources, offsetting the benefits of overlap. We present Entwine, which coordinates tile computation order, fine-grained communication, and SM resource allocation to minimize overall completion time. Entwine reorders tile computation to produce data for communication at a more regular pace. Entwine couples this schedule with fine-grained SM-based communication to process tile results with low latency and low overhead. Since the communication kernel also consumes SM resources, Entwine coordinates their allocation to balance communication progress against computation slowdown. Across representative tensor-parallel LLM workloads, Entwine achieves a geomean speedup of 1.232x (up to 1.433x) over cuBLAS+NCCL, and outperforms state-of-the-art overlap baselines by 3.1-9.8% in geomean. We will open-source our implementation upon publication.",
+    "developer": "Kai Ma, Quanfeng Lv, Jingguo Ge, Bowei Dai, Kefan Ruan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kai Ma, Quanfeng Lv, Jingguo Ge, Bowei Dai, Kefan Ruan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

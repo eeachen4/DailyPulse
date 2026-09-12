@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdyewb",
+  "sourceItemId": "1wdyewb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wdyewb/long_context_models_get_worse_at_retrieval_in_the/",
+  "detail": {
+    "longDescription": "Ran into a case recently where a model missed a detail that was sitting in the middle of a long context window, buried between two much less relevant sections, even though the same detail placed near the start or end got picked up reliably in a separate test.\n\nThis lines up with the \"lost in the middle\" pattern that's been documented in long-context retrieval research: performance on tasks like question answering over long inputs tends to follow a U-shape, strong when the relevant information is near the start or end of the context, weaker when it's buried in the middle, regardless of how much total context the model can technically handle. Bigger context windows expand how much you can put in, but they don't flatten that curve.\n\nPractical implication I keep coming back to: context ordering matters as much as context inclusion. If a fact is load-bearing for the answer, its position in the prompt is doing real work, not just its presence. Restructuring so the critical piece sits at the edges of the window fixed the retrieval failure in my case without touching the content itself.\n\nAnyone found this curve to be model-dependent, or does it hold fairly consistently across the current generation of long-context models you've tested?",
+    "developer": "ClickOk5811",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.09707",
+  "sourceItemId": "2609.09707",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.09707",
+  "detail": {
+    "longDescription": "arXiv:2609.09707v1 Announce Type: new Abstract: Supervised fine-tuning (SFT) applies a uniform cross-entropy loss to all target tokens, even though different tokens provide unequal learning signals for mathematical reasoning. This uniform treatment can over-sharpen already mastered tokens while amplifying learning pressure on uncertain, low-confidence tokens, leading to suboptimal training dynamics. We propose Trimmed Logit-Gap SFT (TrimSFT), a simple token-level reweighting method that scales the SFT loss according to the logit gap between the gold token and its strongest competitor. TrimSFT trims supervision away from both extremes: tokens already mastered (large logit gap) and tokens weakly supported by the current model (small or negative logit gap), concentrating learning within an intermediate logit-gap region between them. We instantiate this principle with a Gaussian weight centered at margin m with bandwidth {\\tau}, requiring no reference model or additional forward pass. We evaluate TrimSFT on six base models from the Llama, Qwen, and DeepMath families across five mathematical reasoning benchmarks. TrimSFT consistently improves over standard SFT, achieving the best average performance on five out of six models, with gains of up to +26.9 points over SFT on MATH500. Further analyses show that the bandwidth {\\tau} matters more than the exact margin location, and that half-trim variants that remove supervision pressure from only one side yield inferior trade-offs. A token-level logit-gap distribution analysis suggests that TrimSFT reshapes model confidence in a more balanced way than uniform SFT or monotonic reweighting methods. These results suggest that reasoning SFT can benefit from trimming both extremes rather than treating all tokens uniformly.",
+    "developer": "Yaning Jia, Chunhui Zhang, Wenxuan Xu, Xingjian Diao, Xiaoyuan Wang, Soroush Vosoughi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yaning Jia, Chunhui Zhang, Wenxuan Xu, Xingjian Diao, Xiaoyuan Wang, Soroush Vosoughi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

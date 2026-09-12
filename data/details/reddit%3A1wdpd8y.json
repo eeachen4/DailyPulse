@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdpd8y",
+  "sourceItemId": "1wdpd8y",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wdpd8y/multimodel_serving_on_a_single_node_idle_memory/",
+  "detail": {
+    "longDescription": "In multi-model pipelines where an LLM is paired with auxiliary specialized models (speech recognition, synthesis, OCR), resource allocation usually defaults to static reservation.\n\nOn a single development box, running Qwen3.8-27B (FP8) alongside Nemotron, Chatterbox, and Unlimited-OCR consumed ~122 GB of idle GPU memory before any user requests were handled.\n\nThe bulk of this was SGLang pre-allocating memory for KV cache and execution scratchpads, combined with auxiliary runtimes holding static buffers.\n\nFor single-tenant or sequential agent workloads, holding peak allocation across all models simultaneously is inefficient. In our agent loop:\n- Audio and vision models are mutually exclusive in almost all interactions.\n- When the agent triggers deterministic tool scripts, the LLM can sit idle for several seconds or minutes.\n\nWe implemented a Rust daemon to control sleep/wake states across the runtime processes. When a model goes idle, it flushes its dynamic memory allocations while preserving process residency.\n\nMemory delta across the stack:\n\n| Model | Original idle GPU, Sep 1-2 (MiB) | After sleep mode, Sep 5 (MiB) | Difference (MiB) |\n| --- | ---: | ---: | ---: |\n| LLM (Qwen3.8-27B) | 87,443 | 39,092 | 48,351 |\n| STT (Nemotron) | 10,385 | 267 | 10,118 |\n| TTS (Chatterbox) | 17,947 | 3,127 | 14,820 |\n| OCR (Unlimited-OCR) | 6,592 | 422 | 6,170 |\n\nKey engineering points:\n1. Reclaimed 79.4 GB of idle memory, leaving ample headroom for deep context windows when the LLM is active.\n2. Wakeup latency is sub-200ms across all services. Because we avoid disk I/O and graph reconstruction, warmups do not disrupt interactive conversational latency.\n3. SGLang memory footprint settles at 39,092 MiB at rest, corresponding directly to model weights.\n\nWould be interested in hearing how others managing multi-model nodes handle runtime memory recycling without paying the penalty of full container cold starts.",
+    "developer": "ahstanin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002178",
+  "sourceItemId": "80002178",
+  "sourceUrl": "https://stackoverflow.com/questions/80002178/ibkr-ib-insync-problem-with-placing-stop-limit-orders-in-pre-post-markets",
+  "detail": {
+    "longDescription": "On IBKR, and using ib_insync, I am having problems placing stop limit orders in pre/post markets. The first limit order order goes through smoothly, but the stop limit does not appear. On IBKR, the screen requires a \"transmit\" action, showing that the transmit=True on the stop loss has not reached the TWS station. What to do? note: in the code below, reversing stop and limit prices in the limit stop loss does not change the outcome. from ib_insync import IB, Stock, LimitOrder, StopLimitOrder # Connect to Interactive Brokers TWS or IB Gateway ib = IB() ib.connect(\"127.0.0.1\", 7497, clientId=1) # Define the contract (e.g., AAPL) contract = Stock(\"ORCL\", \"SMART\", \"USD\") parent_id = ib.client.getReqId() # 1. Buy Limit Order outside Regular Trading Hours (RTH) # outsideRth=True allows the order to trigger/fill during pre-market or after-hours limit_order = LimitOrder( action=\"BUY\", orderId=parent_id, totalQuantity=10, lmtPrice=160.00, outsideRth=True, # Crucial parameter for outside RTH execution ) limit_order.transmit = False # 2. Stop Limit Order outside Regular Trading Hours (RTH) # Requires a stop trigger price and a limit price, with outsideRth=True stop_limit_order = StopLimitOrder( action=\"SELL\", totalQuantity=10, stopPrice=146.00, lmtPrice=145.00, parentId= limit_order.orderId, orderId=limit_order.orderId + 1, outsideRth=True, # Crucial parameter for outside RTH execution ) stop_limit_order.transmit = True # Place the orders limit_trade = ib.placeOrder(contract, limit_order) stop_limit_trade = ib.placeOrder(contract, stop_limit_order) print(\"Orders placed successfully outside RTH.\")",
+    "developer": "SuperLeo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "74"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

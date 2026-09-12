@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdu5of",
+  "sourceItemId": "1wdu5of",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wdu5of/kubectl_apply_your_mobile_devices/",
+  "detail": {
+    "longDescription": "Hi everyone,    \nthis project actually started as a way for me to get more familiar with Kubernetes CRDs, controllers and especially how to manage the lifecycle of custom resources.    \nInstead of building another typical example CRD, I started wondering: \\*\\*could a mobile device be managed like any other Kubernetes resource?\\*\\*    \nSo I started building \\*\\*Mobile Device Operator (MDO)\\*\\*.    \nThe basic idea is pretty simple: you declare a device in a yaml and the operator takes care of its lifecycle.    \nOnce the device is ready, you can interact with it through a small CLI and when you don’t need it anymore, you just delete the resource.    \nThe current MVP uses \\*\\*Android emulators\\*\\*, mainly because they gave me a practical way to implement and test the whole lifecycle end-to-end.    \nBut Android itself isn’t really the main point of the project.    \nI’m trying to keep the Device API provider-neutral, so that the implementation behind a Device could eventually be an Android emulator, an iOS provider, a physical device or even an external device farm without changing how the consumer interacts with the Kubernetes resource.\n\nThe project is still an \\*\\*experimental MVP\\*\\*. It started mainly as an exercise to learn more about CRDs and controller design, but while working on it I started thinking that the abstraction itself might actually be useful.    \nSo before adding too many things, I’d really like to get some feedback from people with more experience around Go, Kubernetes, operators or mobile infrastructure.    \nDoes managing mobile devices as Kubernetes resources make sense to you?    \nWould you model the lifecycle or the Device / DeviceClass abstraction differently?    \nAnd most importantly: \\*\\*would you actually find something like this useful, or am I just putting Kubernetes around something that doesn’t need Kubernetes?\\*\\*     \nRepo: https://github.com/dmarro89/mobile-device-operator    \nAny feedback, especially criticism of the design, would be really appreciated.",
+    "developer": "Worldly_Ad_7355",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

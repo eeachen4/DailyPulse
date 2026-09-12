@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.11023",
+  "sourceItemId": "2609.11023",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.11023",
+  "detail": {
+    "longDescription": "arXiv:2609.11023v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) for code generation has been studied extensively on public repositories, where a model's parametric knowledge often compensates for imperfect retrieval. This breaks down in enterprise codebases, where private APIs, internal frameworks, and undocumented team conventions fall entirely outside any model's pretraining distribution. Recent work on private-library code generation shows that even oracle (perfect) retrieval does not eliminate errors, but locates failures downstream in API usage; separately, confidence-gated retrieval has been studied for open-domain question answering using model-internal confidence. Neither addresses whether retrieval itself was structurally sufficient for a private-code query before generation begins. We introduce RCL (Retrieval-Confidence Layer), a lightweight module inserted between retrieval and generation that combines a call-graph-derived structural coverage score with a novelty score estimating a query's dependence on knowledge outside the model's prior, to detect insufficient retrieval before generation occurs. When confidence falls below a calibrated threshold, RCL triggers a targeted follow-up retrieval or labels the output for human review, rather than generating silently against incomplete context. We describe RCL's architecture, formalize its scoring functions, and propose an evaluation methodology using a private-code benchmark built by injecting synthetic internal APIs into open-source Java repositories, simulating the enterprise condition without proprietary code. We report results (Section 7) comparing RCL against similarity-only retrieval on generation correctness. Our position is that retrieval sufficiency, assessed structurally rather than from model-internal confidence, is a distinct and currently underaddressed signal for building safer code-generation systems in private, enterprise settings.",
+    "developer": "Chandra Mohan Ravuri",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Chandra Mohan Ravuri"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

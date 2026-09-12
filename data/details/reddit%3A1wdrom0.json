@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdrom0",
+  "sourceItemId": "1wdrom0",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wdrom0/does_anyone_actually_stop_an_agent_from_just/",
+  "detail": {
+    "longDescription": "been messing with a permission check in front of my agent's tool calls. works fine in the demo.\n\nthen i realized the agent (or a sub-agent it spawns) can probably still just import and call the underlying function itself, skipping my check entirely. so the whole thing might be decorative.\n\nanyone actually dealt with this? specifically:\n\n* did you have to make the guard the only way the tool can be called, and how\n* if one agent spawns another, does the child just inherit whatever access the parent had\n* if my check depends on some state being true (like \"verified\" or \"approved\"), how do i know that's still true by the time the tool actually fires, not just true when i checked\n\nfeel like i'm missing something obvious or this is just genuinely annoying to solve properly",
+    "developer": "Real_KingZeotic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

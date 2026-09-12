@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80001603",
+  "sourceItemId": "80001603",
+  "sourceUrl": "https://stackoverflow.com/questions/80001603/angular-6-webpack-4-8-production-build-suddenly-takes-6-hours-and-hangs-at-77",
+  "detail": {
+    "longDescription": "I have an Angular 6 application using Webpack 4.8.0. The production build is executed with: npm run build The same project historically took between 45 minutes and 2.5 hours to build, but it now takes 6+ hours and sometimes appears to hang indefinitely at approximately 77% . Environment Ubuntu: 24.04.2 LTS CPU: 13th Gen Intel(R) Core(TM) i7-1355U RAM: 16 GB Node.js: v16.13.0 npm: 8.1.0 Angular CLI: 6.1.2 Angular: 6.1.0 Webpack: 4.8.0 TypeScript: 2.9.2 The project is approximately: src: 27.8 MB node_modules: 9.2 GB Build-time history The build time has changed significantly over time: ~2 years ago: 1.5 hours ~1 year ago: 2.5 hours After code cleanup: ~45 minutes A few months later: 6+ hours After refactoring: ~2.5 hours Currently: 6+ hours At one point, we had a TypeScript file containing more than 7,000 lines of code. Reducing it to approximately 4,000 lines reduced the build time from 6+ hours to approximately 2.5 hours. However, the build has now returned to 6+ hours despite there being relatively few recent source-code changes. Build hanging at 77% The build sometimes reaches approximately 77% and then produces no further output. It does not report an error and does not complete even after several hours. What I have tried I have already: Refactored a very large TypeScript file from 7,000+ lines to ~4,000 lines. Performed code cleanup. Rebuilt the project multiple times. Checked the size of src and node_modules . I am currently trying to determine whether the problem is related to: Angular AOT compilation TypeScript compilation Webpack loaders/plugins a particular module/file dependency changes memory/garbage collection filesystem/disk performance Node.js compatibility the build configuration Important question What is the best way to determine what Webpack is actually doing when the build reaches 77% ? Specifically, I would like to identify the loader/plugin/module/compilation step responsible for the several-hour delay. If anyone has experience diagnosing long-running Angular 6 / Webpack 4 builds, what profiling or debugging approach would you recommend? I can provide the relevant package.json , package-lock.json , angular.json , tsconfig.json , Webpack configuration, and build output if required.",
+    "developer": "Ruchita Deshmukh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "95"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

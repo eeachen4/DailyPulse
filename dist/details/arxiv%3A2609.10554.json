@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.10554",
+  "sourceItemId": "2609.10554",
+  "fetchedAt": "2026-09-12T01:34:41.659Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.10554",
+  "detail": {
+    "longDescription": "arXiv:2609.10554v1 Announce Type: new Abstract: Heterogeneous memory systems that combine high-bandwidth memory (HBM) with commodity DRAM can accelerate bandwidth-bound HPC workloads, but current page placement largely depends on manual tuning or OS heuristics not designed for multi-tier dynamics. We present SHAMBLES, a kernel-integrated framework that profiles application memory behavior at low overhead and migrates data across tiers without requiring application changes. SHAMBLES exposes a policy-agnostic interface and a lightweight user-space runtime with pluggable policies (e.g. recency and frequency based) as well as static placement for controlled studies. A logging mode provides reproducible timelines of allocations and migrations to aid analysis. We implement SHAMBLES on a commodity Linux system with HBM and DDR exposed as NUMA nodes and evaluate it with the HPCG, DGEMM benchmarks and Himeno stencil mini-app. Our design and methodology show how transparent, policy-driven migration can respond to changing access locality and concentrate hot data in HBM without developer intervention, offering a practical path to performance portability on tiered memory. Results from HPCG show that we can maintain up to 93.75% of the all-in-HBM baseline performance, while keeping only 40% of the problem size in the HBM. DGEMM experiments show that dynamic policies in SHAMBLES sustain up to 99% of the all-in-HBM performance, while keeping only one third of the DGEMM matrix footprint in HBM. For Himeno, SHAMBLES shows that fast-tier selection must be both workload-aware and size-aware: with a 50% fast-tier budget, it can outperform fixed all-in-HBM and all-in-DDR placements for the L size, while the XL size shifts back toward HBM.",
+    "developer": "Marios Asiminakis, Polydoros Petrakis, Manolis Marazakis",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Marios Asiminakis, Polydoros Petrakis, Manolis Marazakis"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wdpgiw",
+  "sourceItemId": "1wdpgiw",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wdpgiw/when_named_allows_collide_with_category_blocks/",
+  "detail": {
+    "longDescription": "Tool policy can grant a named action while still blocking the category it belongs to. Our earlier executor checked prohibited categories such as credentials or deploy before any action-spec whitelist.\n\nI build Delimit. Hypothetically, an allowlisted action also classed under deploy is refused by the category veto before the whitelist runs, so a named grant cannot override the block and delegated work stops.\n\nThat only covers the documented executor path. Worth challenging: do you test that name-versus-category conflict, then separately map which other routes never reach the same checks?",
+    "developer": "delimitdev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
