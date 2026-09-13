@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wesuh4",
+  "sourceItemId": "1wesuh4",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wesuh4/i_think_longterm_agent_memory_is_becoming_a_state/",
+  "detail": {
+    "longDescription": "I've been working on long-term memory for agents, and one failure mode changed how I think about the problem.\n\nMost memory systems start with something like:\n\nstore → embed → retrieve → put relevant memories back into context\n\nThat works pretty well when the problem is simply: **“Can the agent find something I told it before?”**\n\nBut it gets much harder when history contains updates and contradictions.\n\nFor example:\n\n* January: Alice prefers morning meetings.\n* March: Alice starts taking her daughter to school in the morning.\n* April: Alice asks to move recurring meetings after 10:30.\n* September: When should I schedule a meeting with Alice?\n\nRetrieval can work perfectly and still return the wrong answer.\n\nThe old preference is semantically relevant. The new constraint is relevant too. The harder problem is deciding **which information should govern the current state**.\n\nI ran into this while building a small memory system (TypedMem) and benchmark (ReliAgent Bench). At one point, stale-memory resolution accounted for 37% of failures. Adding an explicit resolver reduced that category to zero, and overall accuracy went from 33% to 78%.\n\nThat pushed me toward thinking about memory less like:\n\n`past text → vector DB → similar text`\n\nand more like:\n\n`S1 → event → S2 → decision → S3 → update → NOW`\n\nIn other words, retrieval is necessary, but long-term memory also needs semantics around state, preferences, decisions, events, supersession, and temporal validity.\n\nI'm curious how people running longer-lived agents are handling this.\n\nDo you treat memory primarily as retrieval, or have you ended up building some kind of state/resolution layer on top?\n\nI wrote up the experiments and reasoning here if anyone is interested:  \n[https://medium.com/@ruxiz2005/from-retrieval-to-state-rethinking-long-term-memory-for-ai-agents-4edfcc553ee0](https://medium.com/@ruxiz2005/from-retrieval-to-state-rethinking-long-term-memory-for-ai-agents-4edfcc553ee0)",
+    "developer": "puppy_lover_2021",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

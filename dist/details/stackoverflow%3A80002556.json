@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002556",
+  "sourceItemId": "80002556",
+  "sourceUrl": "https://stackoverflow.com/questions/80002556/py4j-protocol-py4jjavaerror-an-error-occurred-while-calling-o71-getdeclaredmeth",
+  "detail": {
+    "longDescription": "I try to make simple python codes with apache-flink 2.2.1 version and my IDE is Visual Studio Code. Below codes show the data insertion to mysql databases. from pyflink.common import Types, Configuration from pyflink.datastream import StreamExecutionEnvironment from pyflink.datastream.connectors.jdbc import JdbcConnectionOptions, JdbcExecutionOptions, JdbcSink from pyflink.datastream.stream_execution_environment import RuntimeExecutionMode config = Configuration() config.set_string( \"pipeline.jars\", \"file:///C:/flink_jars/flink-connector-jdbc-core-4.1.0-2.2.jar;\" \"file:///C:/flink_jars/flink-connector-jdbc-mysql-4.1.0-2.2.jar;\" \"file:///C:/flink_jars/mysql-connector-j-8.4.0.jar\") env = StreamExecutionEnvironment.get_execution_environment(config) env.set_runtime_mode(RuntimeExecutionMode.STREAMING) type_info = Types.ROW([Types.STRING(), Types.INT()]) ds = env.from_collection([('GM', 300), ('Volvo', 400)], type_info=type_info) insert_sql = 'insert into Car (brand, price) values (?, ?)' jdbc_exe_option = JdbcExecutionOptions.builder() \\ .with_batch_interval_ms(1000) \\ .with_batch_size(200) \\ .with_max_retries(5) \\ .build() jdbc_conn_option = JdbcConnectionOptions.JdbcConnectionOptionsBuilder() \\ .with_url('jdbc:mysql://localhost:3306/etlmysql') \\ .with_driver_name('com.mysql.cj.jdbc.Driver') \\ .with_user_name('root') \\ .with_password('1234') \\ .build() sink = JdbcSink.sink(insert_sql, type_info, jdbc_conn_option, jdbc_exe_option) ds.add_sink(sink) env.execute() env.close() But these simple codes throws the exception. The exceptions are like below, Traceback (most recent call last): File \"c:\\VSCode_Workspace\\flink-python\\com\\aaa\\flink\\flink-jdbc-test.py\", line 34, in <module> sink = JdbcSink.sink(insert_sql, type_info, jdbc_conn_option, jdbc_exe_option) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"C:\\VSCode_Workspace\\.venv-etl\\Lib\\site-packages\\pyflink\\datastream\\connectors\\jdbc.py\", line 60, in sink j_builder_method = output_format_clz.getDeclaredMethod('createRowJdbcStatementBuilder', ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"C:\\VSCode_Workspace\\.venv-etl\\Lib\\site-packages\\py4j\\java_gateway.py\", line 1322, in __call__ return_value = get_return_value( ^^^^^^^^^^^^^^^^^ File \"C:\\VSCode_Workspace\\.venv-etl\\Lib\\site-packages\\pyflink\\util\\exceptions.py\", line 162, in deco return f(*a, **kw) ^^^^^^^^^^^ File \"C:\\VSCode_Workspace\\.venv-etl\\Lib\\site-packages\\py4j\\protocol.py\", line 326, in get_return_value raise Py4JJavaError( py4j.protocol.Py4JJavaError: An error occurred while calling o71.getDeclaredMethod. : java.lang.NoSuchMethodException: org.apache.flink.connector.jdbc.internal.JdbcOutputFormat.createRowJdbcStatementBuilder([I) at java.base/java.lang.Class.getDeclaredMethod(Class.java:2675) at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) at java.base/java.lang.reflect.Method.invoke(Method.java:568) at org.apache.flink.api.python.shaded.py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244) at org.apache.flink.api.python.shaded.py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374) at org.apache.flink.api.python.shaded.py4j.Gateway.invoke(Gateway.java:282) at org.apache.flink.api.python.shaded.py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132) at org.apache.flink.api.python.shaded.py4j.commands.CallCommand.execute(CallCommand.java:79) at org.apache.flink.api.python.shaded.py4j.GatewayConnection.run(GatewayConnection.java:238) at java.base/java.lang.Thread.run(Thread.java:833) Kindly inform me how to fix these bugs.",
+    "developer": "Joseph Hwang",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

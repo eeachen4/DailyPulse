@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wep88z",
+  "sourceItemId": "1wep88z",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wep88z/how_do_you_control_different_character_pose_in/",
+  "detail": {
+    "longDescription": "Hi,  \nI’m working on generating \\~128×128 pixel art and trying to generate different poses of the same character.\n\nMy current approach is roughly:\n\nStart with a reference image and preprocess it into cleaner/more pixel-art-like data (often removing transparency or setting up fixed number of pallets or descaling)  \nUse **IP-Adapter** for the character/reference appearance.  \nUse **ControlNet pose/rig conditioning** to control the target pose.  \nI’m also experimenting with multiple references (front, rear, left, right), with pose/rig and depth annotations.  \nFor the target pose, I provide a separate pose reference through the conditioning pipeline.\n\nThe problem is that the conditioning often seems to conflict. For example, the model may place an arm according to the ControlNet pose but still DUPLICATE the arm shape/position from the reference, sometimes resulting in strange or duplicated limbs.\n\nI’ve tried adjusting ControlNet/IP-Adapter strength and start/end percentages, which helps somewhat, but I still get a lot of inconsistent behavior. Also try to reinject control net strength in different phases though not so far been helpful\n\n**What would be a good way to control pose while making sure the character’s appearance from reference images is somewhat preserved??**\n\nI’ am a brokie and can’t really have much resource to train sdxl each time just for each character + poses….",
+    "developer": "Unfair-Walk-9805",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

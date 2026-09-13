@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weoarg",
+  "sourceItemId": "1weoarg",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1weoarg/we_built_a_claude_code_bugfixing_workflow_in/",
+  "detail": {
+    "longDescription": "I work at Archestra, where we wanted to simplify the process of fixing smaller bugs.\n\nWe drop a crab emoji and a bug report in Slack. That starts a Claude Code session that works on the fix, creates a PR, and records a video showing the result. You can keep replying in the thread while it works.\n\nA controller in our cluster provisions a GCP VM with the repo checked out, a local Kubernetes cluster, and Tilt to run our dev stack. Then it starts Claude Code and points it at the Slack thread to read the report and screenshots. That gives it a running app to work with as well as the code.\n\nThe PR gets an automated review, and we still review it ourselves. It goes to a private mirror first and only becomes public when someone says “Promote”. We’re mostly using this for small, well-defined bugs rather than architecture decisions.\n\nI described the full workflow setup in a blog post (link in comments).",
+    "developer": "joey-archestra",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

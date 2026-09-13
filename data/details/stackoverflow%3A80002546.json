@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002546",
+  "sourceItemId": "80002546",
+  "sourceUrl": "https://stackoverflow.com/questions/80002546/glload-with-error-non-primitive-conversion-converting-glfwglproc-to-c",
+  "detail": {
+    "longDescription": "using rust + gl + glfw to create a window and draw a line. Cargo.toml [dependencies] gl = \"0.14.0\" glfw = \"0.62.0\" if change glfw to version 0.58. there's no error. main.rs use glfw::{Context, Key, WindowHint, Action}; fn main() { let mut glfw = glfw::init(glfw::fail_on_errors).unwrap(); let (mut window, events) = glfw.create_window(300, 300, \"Hello this is window\", glfw::WindowMode::Windowed) .expect(\"Failed to create GLFW window.\"); window.set_key_polling(true); window.make_current(); window.set_pos(100, 100); gl::load_with(|s| { window.get_proc_address(s) as *const std::os::raw::c_void <--- error here } ); while !window.should_close() { glfw.poll_events(); for (_, event) in glfw::flush_messages(&events) { handle_window_event(&mut window, event); } } } fn handle_window_event(window: &mut glfw::Window, event: glfw::WindowEvent) { match event { glfw::WindowEvent::Key(Key::Escape, _, Action::Press, _) => { window.set_should_close(true) } _ => {} } } versions: rust 1.98.0 rustover 2026.2.2 mac os 12.7.6 glfw 3.5.1 (brew info glfw) when you past the code, you will get error Non-primitive conversion: converting `glfw::GLProc` to `*const std::os::raw::c_void` [E0605] I have searched around by google. all seached result with gl::load_with either Non-primitive conversion: converting `glfw::GLProc` to `*const std::os::raw::c_void` [E0605] or",
+    "developer": "long",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "30"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

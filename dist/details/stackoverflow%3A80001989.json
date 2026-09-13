@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80001989",
   "sourceItemId": "80001989",
+  "fetchedAt": "2026-09-13T01:27:14.997Z",
   "sourceUrl": "https://stackoverflow.com/questions/80001989/empty-datetime-and-type-hint-errors",
   "detail": {
     "longDescription": "Any suggestions how to deal with these type-hint errors in PyCharm related to a datetime variable which initially starts off as None but then gets set at a later time. As far as I can tell datetime doesn't allow an empty datetime to be set, hence the reason for using None initially. Started off with: sess_last_cleaned = None ... sess_last_cleaned = datetime.datetime.now() log_entry = \"- Session Clean, previous: \" + str(sess_last_cleaned) But type-hints gives the error: Type 'datetime' doesn't define ' str ' or ' repr ', so the result might not be useful So tried changing to: sess_last_cleaned = None log_entry = \"- Session Clean, previous: \" + (sess_last_cleaned.strftime('%Y-%m-%d %H:%M:%S') if sess_last_cleaned else \"None\") but this still errors with: Unresolved attribute reference 'strftime' for class 'None'",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-2"
+        "value": "-3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "82"
+        "value": "161"
       },
       {
         "label": "状态",

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wefjtn",
+  "sourceItemId": "1wefjtn",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wefjtn/how_do_you_know_which_ticket_is_in_which_env/",
+  "detail": {
+    "longDescription": "we're a \\~12 dev team, 6ish services, short lived feature branches that get merged to main and deleted. dev/staging/prod.\n\nour PMs keep asking \"is X in staging yet\" and half the time i dont know either so i end up doing git log and squinting at it. we turned on jira deployments a while back thinking that solves it, but the panel shows the same ticket as deployed like 4-5 separate times, and tickets from totally unrelated work show up in deploys they have nothing to do with. i *think* its diffing shas between deploy events and just attaching everything in between? not sure.\n\nend result nobody opens it anymore and we're back to asking in slack. our release guy also keeps a google sheet he updates before every prod push which is.. yeah.\n\nso:\n\n* is jira deployments just broken for short lived branch workflows or are we holding it wrong\n* what do you actually use to answer \"which env is this ticket in\", esp across multiple repos\n* anyone paying for sleuth or smth similar? is it worth it or did you end up writing your own script\n\nnot looking for a vendor pitch, genuinely just wanna know if everyone lives like this or if im missing something obvious\n\nedit: forgot to mention we're on github actions if that matters",
+    "developer": "hihurmuz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

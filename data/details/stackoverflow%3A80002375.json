@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002375",
   "sourceItemId": "80002375",
+  "fetchedAt": "2026-09-13T01:27:14.997Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002375/why-does-subprocess-runcmd-shell-true-with-shlex-quote-break-on-windows",
   "detail": {
     "longDescription": "I'm invoking a CLI tool from Python using: import subprocess, shlex cmd = f'somecli eval {shlex.quote(js_code)}' subprocess.run(cmd, shell=True, capture_output=True, text=True) This works correctly on Linux/macOS, but on Windows the argument (containing characters like < , > , && , => , backticks) gets mangled — the target CLI reports things like \"SyntaxError: Invalid or unexpected token\", even though the exact same command string is correct POSIX shell syntax. I understand shell=True on Windows invokes cmd.exe instead of /bin/sh , and shlex.quote() only produces POSIX-safe quoting. What's the correct, portable way to pass a single arbitrary string argument (containing shell metacharacters) to a subprocess so it survives on both platforms? The fix I ended up using was avoiding the shell entirely — resolving the tool's real executable and calling it via an argv list with shell=False : subprocess.run([resolved_exe, entry_script, *args], shell=False, ...) Is this the recommended approach, or is there a cleaner cross-platform way to keep using shell=True safely?",
     "developer": "kainat khattak",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "3"
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "96"
+        "value": "124"
       },
       {
         "label": "状态",

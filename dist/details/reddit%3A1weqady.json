@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weqady",
+  "sourceItemId": "1weqady",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1weqady/does_your_envexample_match_your_code/",
+  "detail": {
+    "longDescription": "Your \".env.example\" is probably lying to you.\n\nI kept forgetting to update mine whenever I added/removed env vars.\n\nSo I made a stupidly small CLI that checks:\n\nwhat the code reads <-> what \".env.example\" says\n\nAnd it catches stuff like:\n\n❌ VITE\\_API\\_URL      used in code, missing from example\n\n⚠️ OLD\\_API\\_KEY      in example, never used\n\nNo SaaS, no telemetry, no secret scanning. Just a local binary that tells you your env docs are full of shit.\n\nCurious if anyone else has been burned by this.\n\nhttps://github.com/limezsh/envopsy",
+    "developer": "Diligent-Plenty7567",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

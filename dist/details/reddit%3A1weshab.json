@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weshab",
+  "sourceItemId": "1weshab",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1weshab/how_are_database_passwords_actually_managed_in/",
+  "detail": {
+    "longDescription": "I am learning Kubernetes and building a three tier application with:- react frontend, node.js backend, aws rds \n\nI understand the basic Kubernetes approach of using:  \nConfigMap- non-sensitive configuration  \nSecret- sensitive values such as DB username/password\n\nBut I am confused about how this is actually done in a **production AWS/EKS environment**.  \nFor example, I understand that I should NOT put this in GitHub:-  \nstringData:  \n  DB\\_USERNAME: admin  \n  DB\\_PASSWORD: mypassword\n\nInstead, I keep hearing that production environments use **AWS Secrets Manager**.(AWS currently documents a quota of 500,000 secrets per Region per AWS account.)\n\nWhat I don’t understand is the complete flow. Is it something like:  \nGithub>EKS>Backend POD>AWS secrets Manager>DB Credentials >RDS\n\nIf an organisation has hundreds or thousands of applications/databases, how are the secrets organised?  \nFor example, would Secrets Manager contain things like:-  \n\\- prod/orders-db  \n\\- prod/payments-db  \n\\- prod/users-db  \n\\- prod/inventory-db\n\nAnd how does Kubernetes know which application is allowed to retrieve which secret?  \nI have also come across:-  \n\\- EKS Pod Identity  \n\\- IRSA  \n\\- AWS Secrets and Configuration Provider  \n\\- External Secrets Operator  \n\\- Kubernetes Secrets\n\nAt the moment I am finding these terms confusing.\n\nI would really appreciate a **simple real-world production sample example** showing:  \n1. Where the password is initially stored?  \n2. How the backend Pod gets access to it?  \n3. How IAM controls which Pod can access which secret?  \n4. Whether a Kubernetes Secret is still created or bypassed  \n5. How secret rotation works?  \n6. What actually gets committed to GitHub?\n\nThanks.",
+    "developer": "Wide_Impact_9392",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

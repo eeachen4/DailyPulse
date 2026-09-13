@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wen0hh",
+  "sourceItemId": "1wen0hh",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wen0hh/i_built_a_benchmark_to_test_whether_ai_agents/",
+  "detail": {
+    "longDescription": "The common claim: your CLAUDE.md / AGENTS.md is guidance, a lint rule is enforcement and AI coding agents drift from prose, so you need the deterministic rule. I wanted to measure that gap.\n\nI mined a real import-boundary rule from a near-census of 24,888 public TypeScript repos (a request-entry file must not import a UI component) then ran Claude, GPT and Gemini on a realistic coding task across four conditions, from an unguarded control to the rule installed as a hard lint error. Then I pushed on the case most likely to slip: I made the task longer and deliberately nudged it toward the violation and ran a cheaper, weaker set of models on that unguarded case.\n\nAcross every model and condition I ran: zero violations. Even with no rule and no guidance. Even the weaker models. On this rule, there was nothing for enforcement to fix.\n\nIt is a narrow result (one import boundary, one repo) and I am careful about that in the write-up. I am publishing the null anyway with the pre-registration, the harness and the raw run data, because negative results are how we avoid chasing the same dead end.\n\nCurious whether anyone can get an agent to break an inferred import boundary where I could not.",
+    "developer": "LogFun4751",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

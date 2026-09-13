@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wetgn4",
+  "sourceItemId": "1wetgn4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wetgn4/ptq_works_well_at_4_bits_and_below_that_we_found/",
+  "detail": {
+    "longDescription": "We’ve been working on low-bit quantization for a while and this is probably the clearest takeaway from our experiments.\n\nAt 4 bits good PTQ can get pretty close. For example, on Qwen3.5-4B we get:\n\n* QUASAR QAT: **0.0181 KL**\n* GPTQ: **0.0227**\n* Standard QAT: **0.0228**\n* RTN: **0.0423**\n\n(same 200/200 projections quantized)\n\nBut when we go down to 3 and especially 2 bits PTQ gets much more brittle and training the model with the quantization error in the loop starts to make a difference.\n\nAt 2 bits our QUASAR QAT models beat the strongest QAT/PTQ baselines by 3-4 points on average across 8 tasks.\n\nThe idea is simple: during QAT we keep reconstructing the quantized weights in a loss-aware way instead of just rounding them. (there’s no special inference path afterward)\n\nPaper: [https://arxiv.org/abs/2608.13966](https://arxiv.org/abs/2608.13966)  \nModels / checkpoints: [https://huggingface.co/QUASAR-QAT](https://huggingface.co/QUASAR-QAT)\n\nWould be curious what others have seen at 2–3 bits",
+    "developer": "Mindless_Ad_407",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

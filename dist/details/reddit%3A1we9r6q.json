@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1we9r6q",
+  "sourceItemId": "1we9r6q",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1we9r6q/valheim_dedicated_server_on_qnap_rsync_bad/",
+  "detail": {
+    "longDescription": "**Problem**\n\nAfter restarting a Valheim dedicated server running in Docker/Portainer on a QNAP NAS, the server failed to start. The container logs contained many errors such as:\n\n    rsync: [generator] failed to set permissions on \"/opt/valheim/server/...\": Bad address (14)\n\nThe world files were intact, but the Valheim updater was unable to synchronize the server files correctly.\n\n**Cause**\n\nThe Valheim Docker image uses `rsync -a` during the update process. The `-a` option preserves filesystem metadata such as permissions and ownership. This caused compatibility problems with the QNAP filesystem/ACL configuration.\n\n**Solution**\n\nA custom Docker image was created based on the original image:\n\n    FROM lloesche/valheim-server:latest\n    \n    RUN sed -i 's/rsync -a --itemize-changes/rsync -rlt --itemize-changes/' \\\n        /usr/local/bin/valheim-updater\n\nThe important change is replacing:\n\n    rsync -a\n\nwith:\n\n    rsync -rlt\n\nThis keeps recursive copying, timestamps and symlinks, but avoids the problematic permission/ownership metadata operations.\n\nThe modified image was then used in Portainer with:\n\n    image: valheim-server-qnap:latest\n    pull_policy: never\n\nThe Valheim installation was stored in a Docker named volume rather than directly bind-mounted from the QNAP share.\n\n**Result**\n\nAfter deploying the modified image, the server successfully started and survived a full Docker restart. The existing world `Warownia` loaded correctly, Steam server registration succeeded, and the logs showed:\n\n    ZNet.LoadWorld: Warownia\n    Opened Steam server\n    Game server connected\n\nNo further `Bad address (14)` errors occurred.\n\n**In short:**  \nOn QNAP, if `lloesche/valheim-server` fails with `rsync ... failed to set permissions ... Bad address (14)`, using a custom image with `rsync -rlt` instead of `rsync -a` can resolve the filesystem/ACL compatibility issue without modifying or deleting the existing Valheim world.",
+    "developer": "kildorf",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

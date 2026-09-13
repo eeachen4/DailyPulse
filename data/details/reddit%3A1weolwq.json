@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weolwq",
+  "sourceItemId": "1weolwq",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1weolwq/what_pidev_plugin_do_you_suggest_for_context/",
+  "detail": {
+    "longDescription": "I have been battling with my Qwen3.8:27b setup on my rtx 5080 16gb.  I am using llama.cpp to run a nvfp4 version of qwen3.8:27b\n\n    llama-b10699-bin-win-cuda-13.3-x64\\llama-server.exe -hf williamliao/Qwen3.8-27B-NVFP4-GGUF:NVFP4 --jinja --chat-template-file d:\\qwen\\chat_template.jinja --reasoning-format deepseek --host 127.0.0.1 --offline -np 1 --threads 16 --threads-batch 16 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-mmproj-offload --mmproj D:\\OllamaModels\\blobs\\sha256-ac3714bfdddeca31351f2752bf1a63f266f4df87c0b68c895e44945ca704448e --load-mode none --cache-type-k q4_0 --cache-type-v iq4_nl --flash-attn on -b 512 -ub 512 -c 49152 -a qwen3.8:27b\n\nSo that is giving me a 48k context, and a speed of around 12t/s\n\nMy problem is that pi.dev fails to compact at the right times, and then the model stops early.\n\nI have tried to use \n\npi install npm:max-context   //this doesnt work properly at all\n\npi install npm:pi-observational-memory  //this one works kind of, I had it set to compact on threshold.  It managed to auto compact 4 times, with a 0.75 ratio set, but it still missed the mark and failed.\n\n pi install npm:pi-blackhole   //seemed promising, but failed to compact at all, I am not sure what I set wrong.\n\nif I look at the [https://pi.dev/packages](https://pi.dev/packages) page, there are lots of plugins for either context management, compaction, memory management, or both.  there are way too many for me to just randomly keep trying.  other AI has been very unhelpful.  Google, OpenAI, Copilot, all full of nonsense.   A lot of these plugins seem to be aimed at frontier model management.\n\nI am also disappointed that compaction settings are best suited to the specific model being used and its context window, but the built in tools in [pi.dev](http://pi.dev) architecturally keep the compaction settings completely separate from model settings, which seems a bit of an issue if you change models often.\n\nI may want to use qwen3.8 like above, but not necessarily for everything.  I also want to use gemma, other qwen models, etc depending on my use case.\n\nI dont want to have to manually resetup context settings in [pi.dev](http://pi.dev) for every different model.\n\nWhat do you guys suggest, especially for models that have smaller context windows due to my vram shortage ?\n\nThanks in Advance.  \n",
+    "developer": "darksteelsteed",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

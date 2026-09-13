@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:49663329",
   "sourceItemId": "49663329",
+  "fetchedAt": "2026-09-13T01:27:14.997Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49663329",
   "detail": {
     "longDescription": "We built an open-source sub-microsecond Rust engine and gateway for LLM epistemic uncertainty quantification and hallucination gating: GitHub: https:&#x2F;&#x2F;github.com&#x2F;Adarshent&#x2F;Spnda Python SDK: pip install spnda Why we built this: Semantic Entropy (Nature 2024) is great at detecting hallucinations, but the quadratic NLI cross-encoder bottleneck (90ms GPU overhead with DeBERTa) makes it unusable for real-time production serving. We found that exact-match normalized entropy (R_sc) achieves the same discriminative AUROC on structured reasoning (GSM8K) while running in under 1 microsecond on CPU (760 nanoseconds). Benchmarking against Python proxies: - Kernel latency: 760 ns (Rust) vs 15 ms (Python) - Memory RSS: ~3 MB vs 230 MB - Cold start: 3.6 ms vs 1.17 s Happy to answer any questions about the Rust implementation, the zero-GPU exact-match math, or the benchmark results!",

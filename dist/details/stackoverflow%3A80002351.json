@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002351",
   "sourceItemId": "80002351",
+  "fetchedAt": "2026-09-13T01:27:14.997Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002351/how-to-copy-development-branches-from-git-repository-to-another",
   "detail": {
     "longDescription": "I am combining two Git repositories that have been unrelated but now have a cross-dependency. I have already combined the main branches with the following series of commands: cp -R a-clone a-prepared cd a-prepared git checkout main git filter-repo --message-callback 'return b\"a: \" + message' cd .. cp -R b-clone b-prepared cd b-prepared git checkout main git filter-repo --message-callback 'return b\"b: \" + message' cd .. mkdir combined cd combined/ git init git commit --allow-empty -m \"Initial empty commit\" git remote add a ../a-prepared git fetch a git merge --no-edit --allow-unrelated-histories a/main git remote add b ../b-prepared git fetch b git merge --no-edit --allow-unrelated-histories b/main git remote add origin <git-hub-repo-address> git push --set-upstream origin master The problem I am facing now is how to include development branches from both a and b to the new combined repository. Git lists them in my local clone and I can check out any of them. Any attempt to push them into the remote repository, however, looks as if it was successful but changes nothing i.e. the branch will not appear in the remote repository.",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "97"
+        "value": "106"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

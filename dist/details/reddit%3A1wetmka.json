@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wetmka",
+  "sourceItemId": "1wetmka",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1wetmka/it_knew_2_2_4_why_didnt_it_answer/",
+  "detail": {
+    "longDescription": "I built PCCG-2 using a frozen Qwen3-4B model and a separate learned permission gate.\n\nEOS means “end of sequence”: it is the model’s native stop token. When EOS wins at the first generated token, generation ends before any visible answer is emitted, so it controls whether an answer begins rather than deleting one afterward.\n\nFor “What is 2 + 2?”, the answer token `4` scores **53.0 in every experimental arm**, including when the model emits no answer. The complete first-token score vector, excluding the stop token, stays **byte-for-byte identical**.\n\nThe 101-parameter gate sees only a separate six-digit equality condition. It can't read the question or change the answer scores. It can change only the model’s native stop-token score. When the condition passes, the model emits `4` followed by EOS. When it fails, EOS comes first and no visible answer is generated.\n\nThen I reversed only the learned permission state:\n\n* **40/40 answer → native EOS**\n* **40/40 native EOS → the correct answer**\n* **40 different answer identities**\n* **80/80 sham controls unchanged**\n\nThe frozen FINAL evaluation passed **2,048/2,048 contexts across 75 answer identities**. No answer deletion. No content rewrite.\n\n**The answer stayed fixed. Permission changed.**\n\nOpen weights for reproduction and the paper are attached below:\n\n* [Overview and five-arm witness](https://getswiftapi.com/pccg-2)\n* [Model weights, source, evidence, and verifier](https://huggingface.co/sharthokrayanpal/PCCG-2-Qwen3-4B)\n* [Paper PDF](https://getswiftapi.com/papers/separating-capability-from-permission.pdf) · [DOI](https://doi.org/10.5281/zenodo.22730710)\n* [Manuscript supplement and proof checker](https://getswiftapi.com/research/pccg-2/PCCG-2-paper-supplement.zip)\n* [Raw five-arm witness record](https://getswiftapi.com/research/pccg-2/witness-2plus2.json)\n\nEarlier, I documented successful zero-visible-byte executions across 11 LLMs from OpenAI, Anthropic, Google, and Moonshot in the [Cross-Vendor Semantic Void Matrix](https://getswiftapi.com/papers/cross-vendor-semantic-void-matrix.pdf) ([DOI](https://doi.org/10.5281/zenodo.21696066)). That study measured behavior and this open source model is a separate engineered continuation-control experiment.\n\nBrowse [getswiftapi.com](https://getswiftapi.com/) to view all research on when models continue, when they stop, and what controls that boundary.",
+    "externalUrl": "https://i.redd.it/yohz1hxns6ph1.png",
+    "developer": "rayanpal_",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

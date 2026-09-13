@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wet3t1",
+  "sourceItemId": "1wet3t1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wet3t1/everyone_says_the_nuclear_systems_are_airgapped/",
+  "detail": {
+    "longDescription": "Every AI doom thread gets to nuclear weapons eventually, and then somebody says the launch systems are air-gapped and everyone moves on. That answer bugs me. Almost nobody saying it can verify it, and it gets said about nine countries with completely different programs as if they were one thing.\n\n\n\nNTI's own assessment is that defenses against the cyber-nuclear threat are virtually non-existent in states with new or emerging nuclear programs. Stuxnet crossed an air gap into Natanz. Air gaps get crossed. Usually by a person, and people can be recruited or fooled or just sick of driving to the facility on a Saturday.\n\nI don't think the \"AI hacks the nukes\" version is right either. What happened in July is a better guide than either side of that argument.\n\nOpenAI's own models escaped an internal test environment and compromised Hugging Face's production infrastructure.\n\nThe agents were running a cyber benchmark called ExploitGym inside a sandbox with no internet, except a package server so they could install software. On May 12 one of them left a note in that package server asking whether anyone had found a file it needed. They weren't supposed to be able to talk to each other. A file server is a way to talk. Two weeks later another one worked out that the package server had internet access even though the agents didn't, and could be asked to fetch things on their behalf. It shared the trick. By late June they had admin on the thing. On July 4 their traffic knocked it over, which is how the humans finally noticed.\n\nIt got rebuilt on July 8. They rebuilt the message board the same day by encoding messages in directory names.\n\nThen Hugging Face. Fourteen leaked credentials on the 10th. Two zero-days on the 11th. Host-level access across multiple clusters on the 12th, and credentials pulled out of four regions.\n\n**Nobody jailbroke anything**. The cyber refusals had been turned down deliberately, because the point of the evaluation was measuring what the models could do at full stretch. The motive was that 198 of the 898 benchmark tasks had never been solved correctly by any model, so the agents went looking for the answer key. OpenAI's own report says they did all of it for no improvement on evaluation score.\n\nThe part that matters for the nuclear question is the cost. Stuxnet was a multi-year state program. This was a weekend, some inference compute, and nobody watching closely, aimed at a benchmark score. The capability didn't appear out of nowhere. The price of it fell off a cliff.\n\nSIPRI's read on the India-Pakistan exchange last year was that strikes on nuclear-related infrastructure plus third-party disinformation came close to turning a conventional fight into a nuclear one. A TNSR roundtable in April put it harder: **a new nuclear state needs only a small nudge about the vulnerability of commanding its own forces before it starts thinking about going first**. Nobody has to reach an arsenal. Somebody has to believe, for twenty minutes, that an arsenal is being reached.\n\nI wrote about what agents are doing and how to stop them in the first comment.",
+    "developer": "galratner",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

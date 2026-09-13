@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002466",
   "sourceItemId": "80002466",
+  "fetchedAt": "2026-09-13T01:27:14.997Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002466/why-does-my-py-shiny-web-app-download-an-empty-file",
   "detail": {
     "longDescription": "I'm working on a web app that searches a database and returns the relevant information as CSV files in a Zip archive (company security policy prevents me from returning the information as tabs in an XLSX file). When I run the get_data() function on its own, I get a CSV file with the expected information in it. But when I use the app, I get a CSV file that is empty except for the header row. from shiny import render, ui, reactive from shiny.express import input from pandas import DataFrame import utils from zipfile import ZipFile, ZIP_DEFLATED import io ui.panel_title(\"Welcome to the Data Miner!\") ui.input_text(\"fname\", \"Enter first name:\", \"\") ui.input_text(\"lname\", \"Enter last name:\", \"\") ui.input_text(\"street\", \"Enter street address:\", \"\") ui.input_text(\"apt\", \"Enter apartment #:\", \"\") ui.input_text(\"c\", \"Enter city:\", \"\") ui.input_text(\"st\", \"Enter state:\", \"\") ui.input_text(\"zip\", \"Enter zip code:\", \"\") ui.input_action_button(\"btnadd\", \"Add Customer\") dfcust = DataFrame(columns=[\"fname\", \"lname\", \"street\", \"apt\", \"c\", \"st\", \"zip\"]) @render.data_frame @reactive.event(input.btnadd) def add_cust(): l = [input.fname(), input.lname(), input.street()] if input.apt(): l.append(input.apt()) else: l.append(None) l.append(input.c()) l.append(input.st()) l.append(input.zip()) dfcust.loc[len(dfcust.index)] = l return dfcust @render.download_button(filename='mined_data.zip', label=\"Get orders\") def get_orders(): if len(dfcust.index): dresults = utils.get_data(dfcust) # returns dict where keys = customer id and value = DataFrame of past orders if len(dresults): buf = io.BytesIO() with ZipFile(buf, 'w', ZIP_DEFLATED) as zf: for cust in dresults.keys(): dresults[cust].to_csv(f\"{cust}.csv\") zf.write(f\"{cust}.csv\") buf.seek(0) yield buf.read() else: ui.notification_show(\"Error: No results\", type='error', duration=5) else: ui.notification_show(\"Error: Add customer(s) first\", type='error', duration=5)",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "45"
+        "value": "72"
       },
       {
         "label": "状态",

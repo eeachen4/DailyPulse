@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weehi3",
+  "sourceItemId": "1weehi3",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1weehi3/release_management/",
+  "detail": {
+    "longDescription": "Hi\n\nI wanted to verify whether our release management strategy is fine (I believe not) or whether there can be improvements.\n\nI am responsible for our API team in a SME (i am a not a developer myself but an analyst).\n\nSome information:\n\nWe got 3 environments: \n\nDev  \nAcc  \nPrd\n\nEvery 2 weeks we do a prod release.  \n3 days after prod release there is an acc release, 4 days laters the 2nd acc release is there.\n\nAdditional acc releases are allowed provided it is to fix something that is currently on acc or so but no new functionalities.\n\nNow what i find frustrating:\n\nOn develop everyone can push whatever he wants, no ceremonies, no alignment,..\n\nFor acc there is an alignment moment and only things that were tested in dev (& approved) OR are must haves for the prod release can be promoted.\n\nThis means that tickets that were not tested or have some bugs and are not crucial for the release are not allowed to be promoted.  \nHowever since it is already on the dev branch and sometimes the devs when working in a repo with multiple tickets fix them in a single commit it becomes a pain to remove the right things from the dev branch which is then merged in a release branch this is deployed to acc.\n\nEven moreso realisticallly earlier testing that was successfull can fail now because of a bad manipulation while doing the code surgery.\n\nSince we have really short cycles, testing is a bottleneck and we are always having the same issue of finishing things last minute, rush testing for the next cycle,…\n\nI feel like having the ceremony for dev would make more sense you then you just merge all the relevant branches into dev and it allows you to define your scope for the next release better.\n\nWhat would be the best approach here?  \nHow is it handled at your company?",
+    "developer": "Jeeeens",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

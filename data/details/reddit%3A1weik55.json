@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1weik55",
+  "sourceItemId": "1weik55",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1weik55/get_procedure_handling_sql_or_api/",
+  "detail": {
+    "longDescription": "Our ERP after being in business since the 90s has started offering an API. Over the years we did all of our CRUD handling direct to the SQL database for microservices, integrations etc.\n\nNow we are going to start moving all of our mutating methods over to strictly using their API, however I'm not so sold on the non mutating methods.\n\nWhat do you all think, what is more efficient, just query the db directly, or call the API? I know there are a lot of variables to answer that question, but the gist is, our microservices we run python and run pyodbc on all of them, and it's fairly simple to just SELECT ... FROM ORDERS ... instead of putting together their API from the ERP. They do not have any standard APIs either, so anytime we want to make a GET request we have to build it as a custom API solution in the ERP module. Which involves writing a SQL procedure directly in the database. So basically it's: https://erp.com/api/orders -> runs sql procedure -> returns data . So you build it how you want, it almost seems like setting up the API is another layer in between adding unnecessary complexity. But from the API standpoint once it's built, it's easy to use later.\n\nNot sure, theres pros and cons with both. Any opinions?",
+    "developer": "throw-away-2025rev2",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

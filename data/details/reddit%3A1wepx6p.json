@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wepx6p",
+  "sourceItemId": "1wepx6p",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wepx6p/crypto_commerce_project_paybyte/",
+  "detail": {
+    "longDescription": "I’ve been building something called the Paybyte Blockchain Engine, or PBE, and mainnet is finally live after more coffee than my kidneys would like to admit. I always thought it would be cool to have something easy to use, more mainstream, that's as easy to implement like a \"Pay with Paypal\" button, but for crypto, that's easy for the average user, like the litecoin network, and something that is considerably more environmental friendly than a POW concept like Bitcoin. Since my Java/C++ skills suck, I built it in a language I am familiar with, and something that is a little out of the ordinary for a blockchain, PHP.\n\nThis is its own Layer 1. Not an ERC20, not a Solana token, not a rebranded fork.\n\nCurrent mainnet:\n\n    PBE Core 0.0.1\n    Protocol 1.0\n    Block v4\n    Transaction v2\n    PBE-PAY v1\n    15 second block target\n    5 PBE starting reward\n    ~4 year halvings\n    ~84.1M max supply\n\nConsensus uses hybrid participation.\n\nAny authorized wallet can produce blocks, even with 0 PBE. Each wallet gets one deterministic Argon2id participation ticket per slot. Holdings improve timing through a bounded multiplier, but there is no minimum stake and no manual staking lock. The entire ecosystem is fully P2P.\n\nPBE exposes separate P2P and RPC layers.\n\nExamples:\n\n    POST /p2p/hello\n    POST /p2p/transaction\n    POST /p2p/block\n    GET  /p2p/peers\n    \n    GET  /rpc/status\n    GET  /rpc/block/{heightOrHash}\n    GET  /rpc/transaction/{txid}\n    GET  /rpc/balance/{address}\n    POST /rpc/broadcast\n\nThere’s also a native merchant protocol called PBE-PAY.\n\nPayments use transaction v2 with a signed `paymentReference`.\n\nA merchant verifies:\n\n    paymentReference\n    recipient\n    exact amount\n\nPayment URIs look like:\n\n    pbe:<address>?amount=25&ref=ORDER123&label=Store\n\nMerchants can use their own node, or multiple public nodes\n\nCommerce endpoints include:\n\n    GET  /rpc/commerce/info\n    POST /rpc/commerce/payment-request\n    GET  /rpc/commerce/payment/{reference}\n    POST /rpc/broadcast\n\nOptional HMAC signed webhooks support:\n\n    payment.pending\n    payment.confirming\n    payment.confirmed\n    payment.reorged\n    payment.expired\n\nThe full API is public and viewable at\n\n[**https://paybyte.org/web/developers/**](https://paybyte.org/web/developers/)\n\n[**https://paybyte.org/web/developers/openapi.json**](https://paybyte.org/web/developers/openapi.json) << Point your ChatGPT here if you are building for e-commerce.\n\nWindows and Linux standalone nodes are also available. The Windows build is basically download, extract, run the PBE, create a wallet and sync.",
+    "developer": "StockHodI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
