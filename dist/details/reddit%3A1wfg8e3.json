@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfg8e3",
+  "sourceItemId": "1wfg8e3",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wfg8e3/got_scipys_kdtree_to_handle_inserts_and_deletes/",
+  "detail": {
+    "longDescription": "I built a small library called whitetree for exact Mahalanobis nearest-neighbour search on low-dimensional sensor data that keeps arriving. The idea is old. Whiten with the Cholesky factor of the covariance so Mahalanobis becomes Euclidean, then keep several scipy cKDTrees instead of one so inserts and deletes never force a full rebuild. Three measurements came out of it that I haven't seen stated plainly anywhere, so I'm posting those rather than a pitch.\n\n\n\nThe short version first. On the static side it is 40 to 300x faster than sklearn's BallTree(mahalanobis) and 7 to 60x faster than FAISS Flat at 500k points, and on the interleaved side it is the only exact option I found that keeps up with one insert and one delete per query. It's numpy and scipy only, one writer thread with any number of readers, and results match a static cKDTree exactly (distance error 0.0) after any mix of inserts and deletes.\n\n\n\n1. Textbook Bentley-Saxe doesn't work on cKDTree. cKDTree.query has a fixed per-call cost (1.6 us on a 16-point tree, 3.2 us on a 50k-point tree), so what matters is how many trees a query visits, not how big they are. The binary decomposition keeps popcount(n) trees and queries dropped to 20 to 30% of static throughput. A geometric size ratio of 32 gives 3 or 4 trees at a million points and keeps 47 to 97% for batches, 20 to 80% for single queries.\n\n\n\n2. FAISS's native whitening loses recall, but its search doesn't. PCAMatrix estimates the covariance from a 1000\\*d subsample in float32. Measured against float64 brute force, recall@10 is 0.967 at condition number 1e4, 0.841 at 1e8, and NaN on data with a DC offset of 1e4. Hand the same whitened points to IndexFlatL2 and it scores 1.000. I'd hoped to find a float64 accuracy edge. There isn't one.\n\n\n\n3. Whether a dynamic index helps at all depends on how updates and queries interleave. On a 200k-point sliding window, one thread, with updates in batches of 20k and 2,000 queries in between, rebuilding a cKDTree per batch (2.2 s total) beats whitetree (14.9 s). With every step doing insert 1 / delete oldest / query 1, whitetree does \\~1,100 steps/s, FAISS IDMap2 \\~20 (remove\\_ids is O(n)), numpy 30 to 40, and rebuilding a cKDTree per query \\~8.\n\n\n\nSetup, briefly. Covariance in float64 with a scale-relative ridge and Ledoit-Wolf shrinkage only when n < 5d. Trees kept largest-first, each at least 32x the next, merged and rebuilt when a new one breaks that. The largest tree's k-th distance bounds the rest. Deletes are tombstones. Benchmarks follow the ann-benchmarks and big-ann-benchmarks streaming protocols, recall against float64 brute force.\n\n\n\nCode, tests, benchmark scripts, and a design note with the numbers behind each decision are at [https://github.com/whitetree-dev/whitetree](https://github.com/whitetree-dev/whitetree)\n\n\n\nA question for people who run exact low-dimensional kNN on streams. Is there a dynamic exact index I should've benchmarked against and missed? I compared FAISS IndexFlatL2 with IDMap2, scipy cKDTree and sklearn BallTree rebuilt per query, and numpy brute force. If something beats \\~1,100 insert/delete/query steps per second at 200k points on one core, I'd like to know.",
+    "developer": "monononon34",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

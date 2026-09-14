@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfjek2",
+  "sourceItemId": "1wfjek2",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wfjek2/how_are_you_tracking_down_memory_engine_failures/",
+  "detail": {
+    "longDescription": "I'm curious what everyone is currently using to debug memory mutations and stale context issues when building or testing agent memory using any of the engines (Mem0, Supermemory, Zep/Graphiti, custom vector/graph stores)?\n\nStandard benchmarks like LoCoMo grade the final LLM response, but when an agent outputs an outdated fact or hallucinates preference context, it's hard to tell where the storage pipeline actually broke:\n\n* Did it fail to extract the new fact from the dialogue stream?\n* Did it extract it, but ignore the contradiction with an existing record?\n* Did it catch the conflict, but fail to invalidate/mutate the stale record in the DB?\n* Is the DB state fine, but the retriever fetched the wrong node?\n\nAfter running into this and not finding a lightweight way to isolate database state changes, I decided to build a small experimental CLI called `memx` to try to resolve it.\n\nInstead of just grading the final output text, it hooks into memory backends via basic adapters, takes pre and post session state snapshots, and compares the delta against expected state updates to classify failures into those 4 specific stages.\n\nIt’s still early, but I'd love to hear how others are handling this. Does taking state-snapshot diffs make sense for your workflows, or have you found better ways to catch state drift?\n\nGitHub repo if you want to look at the approach or its docs: [https://github.com/vivek9patel/memx](https://github.com/vivek9patel/memx), [memx.vivek9patel.com](http://memx.vivek9patel.com)",
+    "developer": "vivek9patel",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117265503559718739",
+  "sourceItemId": "mastodon.social/117265503559718739",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-a34089ba-7f284ea0cd60b740",
+  "detail": {
+    "longDescription": "A build step that reads requirement tables out of a document reported this, every run: FAIL_MAP reason=parse reason=parse has an obvious reading. Either the document is malformed or the parser is broken. A person following that reason code goes and looks at one of those two things. Both were fine. The fix changed neither, and it was one line. What was actually wrong The reader does not scan a document for anything that looks like a table. It reads a declaration that says which parts of which file carry structured rows, and treats everything else as prose. That is deliberate: a document is mostly sentences, and a reader that guesses which sentences are data will eventually guess wrong in a way nobody notices. The block for this document declared no structured forms at all. [[faces]] name = \"requirements\" file = \"...\" + dod_headers = [\"Definition of Done\"] With no declaration, the rule \"anything not declared is prose\" applied to the whole file. Two hundred and fifty-six perfectly well-formed rows were read as paragraphs, the reader found none of what it was required to find, and it reported that as a parse failure. before: FAIL_MAP reason=parse after: OK_MAP dod_rows=256 declared_faces=1 The document was not edited. The parser was not edited. Why the reason code sent me the wrong way reason=parse names the stage that failed , not the cause. Parsing is where the symptom appeared, because parsing is what produced nothing. what the code sayswhere it pointswhere the defect was reason=parse the parser, the documentthe declaration that connects them A failure at stage N is caused at stage N or earlier, and reason codes are almost always written at N. Mine named its own stage and was technically accurate and practically misleading, which is the worst combination because there is nothing to correct. The more useful reason code, had it existed, would have been the thing the reader could actually observe about its own inputs: this file is declared and declares zero structured forms. That is a strange state and it is detectable without knowing anything about the document's contents. The second finding, which I nearly shipped Fixing the declaration meant regenerating a derived artifact across the tree. That run produced: nondeterministic (twice) stale_pin (twice) before settling. The cause was not the change. Another piece of work had uncommitted edits sitting in a file that is one of the regeneration's inputs, so the input set was changing underneath consecutive runs. The regenerated files were not committed from that run. The rule that came out of it: A derived artifact produced over a working tree is not a result. It is not a pass and it is not a failure; the state it was derived from has no name and cannot be referred to later. tree_state=working is a third value, and the only correct handling is to regenerate at a committed boundary and commit that one. This is easy to get wrong because the output usually looks right. The two runs that disagreed were the only reason I looked. A single run over a dirty tree produces a plausible artifact and a hash that will never reproduce. Two rules When a reason code names a stage, treat it as a location and not a cause. Ask what the stage was given before asking what it did. Mine had been given an empty list and did the correct thing with it. Anything derived gets derived from a committed state. Not \"a clean-enough tree\", not \"my changes only\". The point of a derived artifact is that someone can rebuild it and get the same bytes, and that is false the moment the inputs include something that exists only on one machine. # debugging # architecture # programming # devops # software # coding # development # engineering # inclusive # community My parser reported a parse error on a file that was never malformed",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

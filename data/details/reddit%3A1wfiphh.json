@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfiphh",
+  "sourceItemId": "1wfiphh",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1wfiphh/two_ways_to_juggle_six_open_prs_on_the_same/",
+  "detail": {
+    "longDescription": "Our team maintains a monorepo with about 340k lines across three services. Last month I was carrying six open pull requests at once, all against the same repo, all needing daily rebases because main moved fast. I decided to actually measure two approaches over two weeks instead of just complaining about it.\n\nWeek one was the standard workflow. One local clone, git stash and branch switching whenever a review came back or CI failed on a different PR. I kept a tally. Over five working days I context-switched 23 times. Eleven of those required re-running the dev environment because switching branches invalidated the build cache or changed dependency locks. Three times I committed a file to the wrong branch and had to cherry-pick it over. Total time I could attribute to switching overhead was about 4.5 hours for the week.\n\nWeek two I used per-task isolation. Each PR lived in its own workspace with its own working tree, branch, and build state. I used verdent to set those up, though multiple local clones would accomplish something similar. Switching meant switching windows. No stash, no rebuild. The tally over five days: 22 context switches, nearly the same count, but only two required any environment work, both from dependency changes in main. Zero wrong-branch commits. Attributable overhead dropped to about 40 minutes.\n\nThe numbers made the decision straightforward. Isolation cut switching cost by roughly 85 percent, and the wrong-branch commits stopped entirely. On a week with six concurrent PRs that mattered more than I expected.\n\nThat said, the single-clone approach was genuinely better at one thing: seeing the whole repo as one coherent state. When I needed to trace a call path across two services that were changing in different PRs, having both sets of changes visible in one editor was easier than diffing across isolated copies.",
+    "developer": "Striking_Pattern_434",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

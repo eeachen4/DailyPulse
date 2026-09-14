@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117265507397034069",
+  "sourceItemId": "mastodon.social/117265507397034069",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-77dafadf-a381354f250e7cc8",
+  "detail": {
+    "longDescription": "An end-to-end run across a sandbox, from a clean slate: OK_E2E layers=13/13 steps=10/10 refusals=3/3 receipts=3/3 Ten of ten. One of those ten is not a measurement. It is me asserting something, in the output, next to nine things that were actually exercised. It says so. The step that cannot be run One of the properties is that the command surface has a single entry point: there is one door in, and a request naming an operation the door does not know is refused before anything happens. To test that, something outside has to hand the binary an unknown operation name. It cannot: $ the-binary --help --root <path> --stub-<name> <value> The binary takes a root and some stub settings. There is no argument through which an operation name travels, so there is no way to type a bad one at it. The property is not hard to verify. It is unreachable from outside , because the interface has no slot to put the bad input into. Three things you can do with a claim you cannot exercise optionwhat the count sayswhat a reader learnsrun something adjacent and call it covered10/10nothing, incorrectlydrop the claim9/9nothing, and the property is now undocumentedassert it, label it, keep it in the count10/10 with one marked self-assertedexactly what is true The first is the one that happens by accident. You write a test that pokes the nearest reachable thing, it passes, and the row goes green. Nobody lied; the test simply does not test the sentence above it. The third is what went in. The step stays in the denominator, the line says it is self-asserted, and the number 10/10 is accompanied by the information that one of the ten is a promise. The useful part: an untestable claim is a design finding The reason this one cannot be tested is not that concurrency is hard or that the failure is rare. It is that the shipped surface is too small to express the input that would falsify it. That is a statement about the product, not about the test suite. The same missing surface that blocks the test also means nobody outside can drive the thing for real. So the repair is not a cleverer test; it is a drivable entry point, which is wanted anyway. Untestable-from-outside and unusable-from-outside are frequently the same gap. Finding it through a test you cannot write is a cheap way to find it. The nine that did run, and one detail worth stealing The other nine went through two freshly created sandboxes, and all 46 output lines came back byte-identical between them. Including the line that names the sandbox: bed=8fecfad608b0 That is not a leftover from one run. Two separate sandboxes produced the same identifier because the identifier is derived from the content of the environment rather than allocated randomly. If it were random, byte-equality across two runs would be impossible, and the comparison would have had to exclude that line, which is precisely where a real difference could then hide. Making the volatile field derivable is what let the comparison be \"every line\" instead of \"every line except the ones that legitimately differ\". An exclusion list on a byte-comparison is a place for defects to live. A smaller trap, for anyone on Windows The runner takes a POSIX root path. Invoked through Git Bash, the argument is rewritten before the program sees it: you type: --root=/home/me/bed the program gets: --root=C:/Program Files/Git/home/me/bed No error, no warning, and the failure appears much later as a path that does not exist. The runner is invoked from a shell that does not do this. It cost an hour, and it is the same shape as everything above: a transformation nobody declared, discovered by an effect far from its cause. # testing # architecture # devops # programming # software # coding # development # engineering # inclusive # community My end-to-end run is ten of ten, and one of those ten is just my word for it",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

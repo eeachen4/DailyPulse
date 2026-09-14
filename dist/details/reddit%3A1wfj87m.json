@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfj87m",
+  "sourceItemId": "1wfj87m",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wfj87m/redis_just_froze_a_diagnosis_checklist_based_on/",
+  "detail": {
+    "longDescription": "If you've ever had a Redis instance appear to hang and burned twenty minutes suspecting the network, GC, or a noisy-neighbor container before realizing it was one slow command blocking everything — this is worth internalizing once so you stop re-diagnosing it from scratch every time.\n\nRedis executes commands on a single thread. That's a deliberate trade-off (no locking overhead, predictable latency), not an oversight. But it means there's no other thread to absorb a slow operation — a full keyspace scan, an expensive sort, a huge `SMEMBERS` on a massive set — and while that command runs, it's the only thing happening. Every other client queues behind it. From the outside this looks exactly like a network partition or a GC pause, which is why it gets misdiagnosed so often.\n\nThe tell: check `SLOWLOG` before you check anything else. If Redis \"hung\" but `SLOWLOG` shows a specific command spanning the outage window, it's this — not infra, not network. Curious what other people's go-to first check is when a Redis instance looks unresponsive.",
+    "developer": "akshit16",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

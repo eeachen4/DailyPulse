@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfot79",
+  "sourceItemId": "1wfot79",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wfot79/a_better_prompt_stopped_catching_aigenerated/",
+  "detail": {
+    "longDescription": "Ran into this pattern enough times to notice it wasn't random: an AI coding assistant generates code that works, but \"works\" and \"safe\" are not the same claim. Caught a live Stripe key about to get committed (`stripe.api_key = \"sk_live_...\"`); it worked in tests, so nobody looked twice. A few days later, same root cause in a different shape: a raw SQL query built from an f-string, user input going straight into the WHERE clause.\n\nFirst fix I tried was just telling the model to be careful. Added instructions about secrets and injection to the system prompt. Worked for exactly one session. New chat the next day, same shortcuts came right back: the model has no memory of the lecture, so a prompt-level fix doesn't compound.\n\nWhat actually worked was moving the check to a gate that runs on every diff before commit, instead of a scan that happens in CI after the code's already out of your head. Five passes, in order:\n\n1. High-entropy secret scan (Stripe/OpenAI/AWS/GitHub token shapes, stray .env values)\n2. Control-flow read for injection/OWASP issues (SQLi, command injection, BOLA/IDOR): actually tracing where user input lands, not just regex matching\n3. Regex backtracking check for ReDoS patterns\n4. Generates the fix as a drop-in patch, not just a line number\n5. Flat verdict: pass / warn / fail\n\nNot pretending this replaces a real SAST pipeline or a security team: it doesn't catch the same things Semgrep or a pentest would. It's just the five seconds of friction that used to not exist at all, sitting right before the commit that used to just go through.\n\nCurious if anyone's found a good way to keep something like this from going stale as new key formats and providers show up. Feels like it needs its own maintenance loop or it just quietly falls behind.",
+    "developer": "BeginningWinner7525",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

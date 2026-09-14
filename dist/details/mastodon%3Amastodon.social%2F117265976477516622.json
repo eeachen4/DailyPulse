@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117265976477516622",
+  "sourceItemId": "mastodon.social/117265976477516622",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-d02aeda2-15854d30dfe9d14a",
+  "detail": {
+    "longDescription": "Bridging the gap between Figma mockups and production UI doesn't require complex new frameworks—it requires system thinking. Too often, developers treat design handoffs as a guessing game of hex codes, pixel measurements, and visual trial-and-error. By establishing strict design-to-code rules early in your development process, you can build interfaces faster while keeping your codebase clean and predictable. Standardize Typography Scales with rem and Fluid Clamp Instead of declaring arbitrary pixel sizes across individual components, define a strict typographic ratio using root rem units and fluid clamp() formulas. This keeps text proportional across screen sizes without requiring media query bloat. :root { /* Type Scale using rem / --text-sm: 0.875rem; / 14px / --text-base: 1rem; / 16px / --text-lg: 1.25rem; / 20px / --text-xl: 1.5rem; / 24px */ /* Fluid Display Headline */ --text-display: clamp(2rem, 4vw + 1rem, 3.75rem); } h1.display-heading { font-size: var(--text-display); line-height: 1.1; letter-spacing: -0.02em; } Map Component States Before Writing Markup Never build a component for just the static \"happy path.\" Every functional UI component requires clear visual tokens for its full state lifecycle: default, hover, focus-visible, active, disabled, and loading. /* State-Driven Component Architecture */ .button-action { background-color: var(--color-action-primary, # 2563eb) ; color: # ffffff ; border: 1px solid transparent; transition: background-color 150ms ease, border-color 150ms ease; } .button-action:hover { background-color: var(--color-action-hover, # 1d4ed8) ; } .button-action:focus-visible { outline: 2px solid var(--color-border-focus, # 60a5fa) ; outline-offset: 2px; } .button-action:disabled { opacity: 0.5; cursor: not-allowed; } Enforce Layout Box Models Over Margins Pushing elements around using random margin-top or margin-left creates brittle layouts that easily break when content changes. Shift layout responsibility to parent containers using CSS Flexbox or Grid gap properties. /* Bad: Component controls its own external spacing / .card-item { margin-right: 16px; / Breaks on last item or vertical wraps */ } /* Good: Parent layout manages component relationships */ .card-stack { display: flex; flex-direction: column; gap: var(--space-4, 1.5rem); } Treat Design as Code Architecture When you approach UI design as a structured system rather than a set of visual decorations, your frontend implementation becomes clean, scalable, and easy to maintain. # coding # productivity # design # webdev # software # development # engineering # inclusive # community Three Design-to-Code Rules Most Developers Ignore (That Will Make You a Better Engineer)",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfmnhv",
+  "sourceItemId": "1wfmnhv",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wfmnhv/cloud_queues_the_job_a_tiny_agent_on_the_users/",
+  "detail": {
+    "longDescription": "I created a trading ops desk (demo mode only, nothing to lose). Python standard lib & SQLite for all the code on your own machine, and the AI part is running on what you got - Claude Code, Codex, Gemini CLI, Ollama. There is no API key, there is no per-token fee. That \"your machine, your AI, your data\" thing became my core idea.\n\nAnd then I made the hosted version so people could use it simply by opening a browser. And I immediately hit that issue - how do you make the server communicate with the CLI tool running on your laptop. So, the hosted version needs the API key to run the AI part and thus, fails on that promise.\n\nIn other words, I got stuck in that queue. Your cloud queueing service sends requests and a tiny agent on your computer processes them using your subscription. It works, yet now my hosted version is inheriting the local one's flaw - turn off the laptop, and all of the scheduled work sits idle.\n\nSo, I am caught between:\n\n1.Local Only - Honest, secure, and free to distribute. But the customer needs to maintain their own box, and there is an installation process, that is where I lose the most folks.\n\n2.Hosted Service - Always available, no need to install anything. But either they have to provide a key (expense and security considerations), or they have to keep their own machine up anyway.\nOr both, which is my current setup, and I don't know if I am simply screwing it up by doing two approaches.\n\n3.Those of you who have released a product that ran on \"your hardware\" and not just as a limitation: how did you choose? Ever regretted making the wrong choice of architecture? Or the opposite?\n\nNot looking for a marketing pitch review here. Truly stuck on the architecture choice.",
+    "developer": "PriorElephant9",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

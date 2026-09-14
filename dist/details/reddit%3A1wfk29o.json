@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfk29o",
+  "sourceItemId": "1wfk29o",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wfk29o/benchmarking_585_token_suppression_on_multiturn/",
+  "detail": {
+    "longDescription": "If you're running autonomous coding agents or multi-turn context loops (fixing compiler errors, AST rewrites, shell execution), you know the context bloat problem: by Turn 4, you are paying to transmit thousands of tokens of historical compiler noise and resolved errors that the model doesn't need anymore.\n\n\n\nWe built GKA (GravelKing Advantage), a deterministic byte-level proxy running on port 8090 using js-tiktoken (cl100k\\_base). It strips dead context upstream before provider execution.\n\n\n\nHere are the exact numbers from our 4-turn TS refactor benchmark:\n\n\n\n• Raw Context Inbound: 157,923 tokens\n\n• Carved Context Sent: 65,499 tokens\n\n• Context Suppressed: 92,424 tokens (58.52% reduction)\n\n• Verified Provider Inbound Latency Overhead: <0.3 ms\n\n• Output: 0 compiler errors (100% schema & code fidelity)\n\n\n\nWe also wired a persistent JSONL ledger tracking exact token deltas and dollar savings per run.\n\n\n\nWe are taking on 2 dev teams running heavy agent loops who want to audit their staging token burn for 30 days. Zero cost, zero gain-share on the pilot—we just want the co-published before/after telemetry report.\n\n\n\nIf you want to route a staging test to port 8090, drop a comment or shoot me a DM and I’ll send over the proxy credentials.\n\n",
+    "developer": "NetOriginal1592",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

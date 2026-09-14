@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfiwp8",
+  "sourceItemId": "1wfiwp8",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wfiwp8/web_scraping_for_langchain_agents_diy/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nthis comes up a lot here. when you build custom tools for langchain agents and the agent needs live web data, you basically get forced down one of two paths, either wrap your own scraping tool or use a managed api. common comparison, nothing new, just sharing my own experience with both.\n\nalso i keep seeing people say \"just use requests + bs4.\" its fine until you hit js rendering, anti bot walls, or dynamic shadow DOMs. and people say vendor pages are the easy button but they never mention the maintenance cost of the diy path, so let me actually break both down.\n\nDIY (playwright/selenium + parsers)\n\ngood: full control. browser context, route interception, anti bot bypass, all yours.\n\nwhat you now own:\n\nproxy rotation and stealth headers so your ip doesnt get flagged mid execution\n\ncontext window hygiene: stripping boilerplate into clean markdown yourself, because passing raw html to the llm burns tokens and bumps hallucinations\n\ndebugging tool timeout states in langsmith when a page blocks the driver\n\nno per request vendor cost though. makes sense if scraping is a small stable part of the pipeline and you have the devops bandwidth.\n\nmanaged api (context.dev, firecrawl)\n\ngood: you pay per request/credit, but js rendering, proxy rotation etc come built in. clean llm ready markdown in a single call, plugs straight into langchain loaders/tools.\n\ncatch: costs scale fast if your agent does deep crawling or recursive sublink exploration. and pricing varies wildly, some charge flat per page, some add surcharges on top for stealth or rendering that quietly raise the real cost per request. worth actually reading the pricing model before committing, i got surprised by that once.\n\none difference i did notice between the two i tried: firecrawl has the bigger ecosystem and an interact endpoint for clicking/filling forms before scraping. context was cheaper to predict since it was flat per page for me, and it could watch a page and only re pull when the content actually changed, which cut a lot of pointless re scrapes on my monitoring agent. depends what you need.\n\nwhat i felt:\n\nfor fixed workflows, like scraping a specific blog or static docs with standard parsers, diy is fine. it broke down for me once i had an agent with open ended web search tools. managing residential proxy pools and browser instances ended up costing almost as much as a managed provider, minus the engineering overhead i was eating.\n\nfor people running production agents here: at what point did you drop your custom playwright/selenium setup for a managed api, or go the other way? was it raw request volume, or just the maintenance headache of anti bot bypass breaking your graph nodes? and what are you using?",
+    "developer": "JUSTINWOODS118",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

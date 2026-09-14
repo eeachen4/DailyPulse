@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfflxi",
+  "sourceItemId": "1wfflxi",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wfflxi/can_we_trust_llms_to_turn_natural_language_into/",
+  "detail": {
+    "longDescription": "LLMs can translate natural-language requests into SQL or any query, but translating a sentence into a query is only part of the problem. The query also needs to match the user’s intent, use valid fields, and be allowed to run.\n\nImagine a multi-tenant application. A user asks:\n\n**“Show me my customers who haven’t ordered in six months.”**\n\nAn LLM could generate perfectly valid SQL that finds customers with no recent orders—but accidentally omit the condition restricting results to the current user’s organization. The SQL is correct, but the result is wrong for that user and could expose another tenant’s data.\n\nThat’s the distinction I’m interested in: **query correctness is not the same as authorization or intent correctness.**\n\nOne possible architecture is a structured intermediate query layer:\n\n**Natural language → structured query → validation and policy checks → database query**\n\nInstead of trusting generated SQL to include every required condition, the application could enforce tenant scope and access policies independently, validate the requested fields and operations, and then compile an approved query for the target database. If the request is ambiguous, it could ask for clarification rather than guess.\n\nI have tried this pattern and its actually works well in production :  \n[https://github.com/awsaman-ai/queryforge](https://github.com/awsaman-ai/queryforge)",
+    "developer": "awsamanai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

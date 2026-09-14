@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfl0cr",
+  "sourceItemId": "1wfl0cr",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wfl0cr/how_are_you_enforcing_container_security_policies/",
+  "detail": {
+    "longDescription": "I'm curious how people are handling this in production Kubernetes environments.\n\nWe're currently working on a Kubernetes security project called Attestkeep, and one of the problems we're trying to understand better is how teams prevent containers that don't meet security requirements from reaching the cluster.\n\nFor example, things like:\n\nBlocking Critical/High vulnerabilities\n\nBlocking images affected by CISA KEV\n\nPreventing deployment of images based on EOL OS versions\n\nRequiring signed images\n\nVerifying SBOMs and vulnerability attestations\n\nChecking SLSA/build provenance\n\nApplying different policies per namespace\n\nKeeping an audit trail of admission decisions\n\nThere are already great tools for different parts of this — Kyverno, OPA/Gatekeeper, Sigstore, admission webhooks, CI/CD scanners, etc.\n\nWhat I'm trying to understand is where people actually enforce these controls in real environments.\n\nDo you prefer:\n\nCI/CD → Admission → Runtime\n\nor do you rely mostly on admission policies?\n\nAnd are there any policies you've tried to enforce but eventually gave up on because they created too much friction for developers?\n\nI'm particularly interested in real-world experience here — what works well, what generates too many false positives, and what's still mostly manual.\n\nDisclosure: I'm involved with the Attestkeep project, so this is partly product research. I'm not looking to pitch it here; I'm genuinely interested in how Kubernetes teams are solving this problem.",
+    "developer": "Exotic_Middle6894",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfoyk0",
+  "sourceItemId": "1wfoyk0",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wfoyk0/i_built_a_continuity_layer_for_ai_agents_in_a/",
+  "detail": {
+    "longDescription": "The problem I’m working on appears when an agent successfully does something in the real world but gets interrupted before recording the result.\n\nFor example:\n\n    Agent A runs a database migration.\n    The migration succeeds.\n    Agent A dies before recording that success.\n    \n    Agent B takes over.\n\nAgent B now faces several dangerous choices:\n\n* repeat the migration and risk duplicating an external side effect;\n* assume it completed without evidence;\n* or spend more tokens trying to reconstruct what happened.\n\nA conversation summary can describe what the previous agent intended, but it cannot always prove which external actions actually completed.\n\nI’m building Infra as a provider-neutral continuity and control layer that keeps authoritative state outside the agent’s context window and runtime. It preserves:\n\n* the delegated mandate, constraints, and scope;\n* checkpoints and decisions;\n* artifact lineage;\n* approvals;\n* evidence of completed external side effects;\n* the next permitted action;\n* a continuation package for the successor agent or runtime.\n\nThe successor is not asked to restart the task or blindly trust a summary. It receives verifiable state and continues from the next valid step.\n\nIn an internal benchmark using one class of deliberately interrupted, high-risk work:\n\n* Infra completed 5/5 runs;\n* a strong written-handoff baseline completed 4/5;\n* measured model-token use was 49.4% lower;\n* end-to-end recovery was 60.8% faster;\n* shadow premium-model cost per successful outcome was 63.6% lower;\n* complete audit evidence was preserved in 5/5 Infra runs, compared with 0/5 baseline runs.\n\nThis is not a universal performance claim or customer validation. It is evidence from one controlled internal task class.\n\nOn a simpler task that was cheap and safe to repeat, Infra used 13.8% more tokens than the strong-handoff baseline. I therefore don’t think every agent needs this layer. Ordinary handoffs still make more sense for work that is short, reversible, and inexpensive.\n\nInfra is intended for agent workloads that:\n\n* run long enough to outlive a single context window;\n* move between workers, models, or runtimes;\n* delegate work to sub-agents;\n* produce external side effects;\n* become expensive or unsafe to recover after interruption.\n\nI’m now selecting up to three Founding Design Partners for a private, measured end-to-end pilot.\n\nThe pilot covers one real workload per partner and 3–5 interruption scenarios. Production observation is shadow-only, while active interruption and recovery testing happens only in sandbox or staging.\n\nThere is no software fee for the pilot, no required positive review, and no partner identity or result will be published without permission. Partners who complete the pilot will receive Infra usage credits based on measured workload and contribution.\n\nIf you operate an agent with this kind of failure mode, send:\n\n1. What the agent does;\n2. Where interruption creates uncertainty;\n3. Which actions are expensive or unsafe to repeat;\n4. How recovery works today;\n5. Whether sanitized logs and a sandbox, staging, or shadow integration are available.",
+    "developer": "morrown1",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

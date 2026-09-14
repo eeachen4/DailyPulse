@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfoz6q",
+  "sourceItemId": "1wfoz6q",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wfoz6q/zerodeps_go_instrument_that_replays/",
+  "detail": {
+    "longDescription": "Not a SaaS. go install [github.com/RedRobotKK/Replay/cmd/replay@latest](http://github.com/RedRobotKK/Replay/cmd/replay@latest) or the signed GitHub release (checksums.txt is Sigstore-signed). macOS/Linux amd64/arm64. No Windows. Licence is BSL 1.1, not OSI, so this is not a Homebrew-core candidate and I am not pretending.\n\nIt does not call the network. It reads Claude Code / Codex transcripts already on disk, reconstructs whether each turn should have been a cache read or a write, and prints the turn that paid twice. ADR in the repo: the proxy is byte-transparent; it does not rewrite your prompt to \"save\" cache.\n\nCalibration, 2026-09-11, 38,111 turns: 97.89% of predicted cache reads matched the provider usage line. One-machine replay cost on 2026-09-12: 4.9% of list dollars were re-bills from a broken cache. Figures carry their date and population; I already had to retract a cause share from 98.8% to 4.2% the day I published it.\n\ngo install [github.com/RedRobotKK/Replay/cmd/replay@latest](http://github.com/RedRobotKK/Replay/cmd/replay@latest)\n\n[https://replay.doctor/?src=reddit&utm\\_source=reddit&utm\\_medium=social&utm\\_campaign=launch-2026-09&utm\\_content=r-golang](https://replay.doctor/?src=reddit&utm_source=reddit&utm_medium=social&utm_campaign=launch-2026-09&utm_content=r-golang)",
+    "developer": "Least_Decision_9543",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

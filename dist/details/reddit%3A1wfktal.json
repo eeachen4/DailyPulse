@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfktal",
+  "sourceItemId": "1wfktal",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wfktal/the_worst_bugs_in_my_ai_app_arent_crashes_theyre/",
+  "detail": {
+    "longDescription": "This is the bug that keeps coming back and I still don't have a clean way to catch it before it ships.\n\nFrom the outside it always looks the same. The module exists, it's called from the right place, tests pass, the flag is on. And in prod it has never done anything. No error, no log, nothing to alert on, because nothing failed.\n\nA few of the ones that hurt.\n\nOur daily background jobs never ran once. The scheduler kept last_run in RAM, so a daily job needed 24h of uptime without a restart before its first run. But every push deploys and restarts the process, and we were pushing like 5 times a day. Uptime when I checked was 20.4 hours. So jobs that had been switched on for over two weeks had run zero times. The obvious fix, just run at startup, would've cost about 20% more calls to the big model. What actually fixed it was putting the timestamp on disk.\n\nWe have a spaced repetition engine, the thing that schedules reviews so a student remembers stuff. It ran, it was wired, it passed its tests. Its only caller had a comment saying the state is global, one student. The student was the assistant itself. No test could catch that because the wiring was correct, it was just working for the wrong person. And when I pointed it at real users I found the interval had no cap, 20 perfect reviews and the next one was 108 million years away.\n\nAnother one sat on the path every request takes, and every audit tool I have said it was alive. It never fired once. The if had two conditions and the second one came from a privacy decision in a totally different module (anonymous means nothing gets persisted), which was false for all of our traffic. Reading the module tells you nothing there, you have to read each condition of the gate and go find who sets it.\n\nAnd the worst one isn't even dead. We had a prefetch that guessed your next questions and precomputed the answers so a click could be served instantly. It fired, it got counted as a saving, our own self report said it cost zero tokens. Except every hit was a loss: the precomputed answer came from the small model with no context and no sources, and it replaced what the full pipeline would've said. And it was prefetching 3 questions every turn whether anyone clicked or not.\n\nSo what I ask now before calling anything done, roughly in this order. Is it on the path real requests actually take. What does its gate depend on, and is that true in prod and not just in the fixture. Who reads its output, because computing a decision and throwing it away looks exactly like making it (we had a router picking small vs big model every turn and our main route never read it). Who is it working for. And when it works, is the result better or worse than the normal path.\n\nCI was green through all of this. I've got a reachability check from the main route and a per step count of how many requests get through, and that catches the dead ones. The wrong person and wrong direction ones I've only ever found by reading the code.\n\nSo how do you catch this? Is there anything like coverage but on real prod traffic that tells you a branch has never executed? Or do you just refuse to ship a feature without a counter that proves it fires?",
+    "developer": "Initial_Orange2985",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfoxeu",
+  "sourceItemId": "1wfoxeu",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wfoxeu/my_scheduler_reported_success_for_five_days_while/",
+  "detail": {
+    "longDescription": "the parent spawned a worker, checked the exit code, saw zero and logged published, every thirty minutes for days\n\nexit zero means the process did not crash, nothing more, a worker that refuses every item and exits cleanly returns zero too\n\nwhat made it expensive was not the bug but the status line saying success, so nobody went looking, a loud failure gets investigated, a quiet success sits for a week\n\nthe cause was two components enforcing one rule from different state, one read a log that retention had pruned, the other a summary that still held, so the parent said go while the worker refused\n\nthe fix was to stop inferring outcome from the exit code and read what the worker reported, how many items it handled and why it stopped when that number was zero",
+    "developer": "Glittering-Flan-2637",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

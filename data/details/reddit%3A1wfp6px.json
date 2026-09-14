@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfp6px",
+  "sourceItemId": "1wfp6px",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wfp6px/scheduled_agent_task_keeps_failing_but_the_exact/",
+  "detail": {
+    "longDescription": "Hoping someone here has hit this, because I've sunk way too many hours into it and I'm honestly stuck.\n\nI self-host OpenClaw with a handful of agents. One of them has an hourly scheduled job that runs a little command line tool I wrote. Here's the part that's driving me nuts: if I sit in a chat with that agent and ask it to run the exact same command myself, it works every single time. But the automated hourly run gets denied by the exec approval policy, with a message about headless runs not being able to wait for interactive approval.\n\nThings I've already tried:\n\nChecked the allowlist grant a dozen times. It's there, it's right, and it plainly works from a live chat.\n\nPlayed with the approval fallback setting. That actually made things worse (turned an instant fail into a 10 minute hang), so I reverted it.\n\nRewrote the agent's instructions several times to have it read results from a file instead of calling the tool itself. Confirmed the file is there and up to date.\n\nMoved the real command out to a plain scheduled script so the agent only has to read the output.\n\nEven stood up a little helper to try to catch and auto approve these requests. It connected fine but never actually saw a single one come through.\n\nConfirmed the thing it talks to is genuinely up. This isn't an outage, it's the approval layer.\n\nWhere I've ended up: it's bizarrely inconsistent. Some hourly runs pass, some fail, back to back, with nothing changing in between. I can pull up two runs that took the exact same steps and one succeeds while the other gets flagged as failed. I cannot find what makes the difference.\n\nNothing is actually broken on the data side. It's more that I get a failure alert every hour for something that mostly works, and I'd rather understand why than just mute it and move on.\n\nHas anyone seen the \"works interactively, fails when scheduled\" thing? Or the same command giving different results run to run for no visible reason? Feels like I'm missing something obvious. Appreciate any ideas.\n\n",
+    "developer": "Grimmoner",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

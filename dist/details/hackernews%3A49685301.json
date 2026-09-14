@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49685301",
+  "sourceItemId": "49685301",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49685301",
+  "detail": {
+    "longDescription": "These are FLOSS boot loaders and disk utilities which follow the suckless philosophy ( https:&#x2F;&#x2F;suckless.org&#x2F;philosophy&#x2F; ). Despite being totally dependency-free, they come with a fully featured single command to create bootable disk images out of a directory (utility is available on Windows, Linux and other POSIX systems). Usage is as simple as it gets. There are two repositories, depending on the desired use case: Simpleboot is the little brother, an embeddable boot loader: https:&#x2F;&#x2F;gitlab.com&#x2F;bztsrc&#x2F;simpleboot - multiplatform (BIOS, UEFI, RPi, coreboot) - very small (less than 64k), single binary - also flashable into ROM (option ROM, expansion ROM, coreboot payload, etc.) - easy to configure (single config file, checked for validity by the disk creator utility) - one backup boot option - capable to boot Linux and simplified Multiboot2 kernels (see below) Easyboot is the big brother, an interactive boot manager: https:&#x2F;&#x2F;gitlab.com&#x2F;bztsrc&#x2F;easyboot - multiplatform (BIOS, UEFI, RPi) - interactive boot menu for dual booting multiple OSes - easy to configure (similar syntax as GRUB&#x27;s, but much simpler) - up to 9 boot options - transparent payload decompression - on-the-fly, transparent DSDT and DTB patching - plugin system to support multiple file systems and boot protocols - supports FAT12&#x2F;16&#x2F;32, exFAT, NTFS (v3, v3.1), ext2&#x2F;3&#x2F;4, XFS (SGI), UFS (v2, v4.4), mfs (Minix3), BeFS (Haiku), plus any root file system (zfs, btrfs, etc.) provided the kernel is on the ESP - supports booting Linux, Windows, OpenBSD, FreeBSD, FreeDOS, ReactOS, MenuetOS, KolibriOS, SerenityOS, Haiku, Multiboot1, Multiboot2 (in PE&#x2F;COFF, ELF, a.out, etc. formats) - comes with a (very minimal but useful) kernel debugger that works on real machines too Full disclosure: forking Simpleboot into Easyboot was sponsored by The Free Software Foundation Hungary ( https:&#x2F;&#x2F;fsf.hu&#x2F;nevjegy ), created in appliance of FSF.hu&#x27;s Free Software Tender 2023. Their default &quot;simplified Multiboot2 protocol&quot; is an easier to use superset of the GRUB&#x27;s Multiboot2 protocol. This protocol handles native 64 bit kernels (no 32-bit trampoline code), programming language and ABI agnostic (works with native C, C++, Rust, Go, Ada, Pascal, etc. kernels, no Assembly preambule needed), supports transparent higher-half mapping, not tied to x86, and has SMP support too (running the kernel on all CPU cores), passes EDID and kernel segmentation information (not in GRUB), etc. etc. etc. An example kernel is provided in the repo: https:&#x2F;&#x2F;gitlab.com&#x2F;bztsrc&#x2F;simpleboot&#x2F;-&#x2F;tree&#x2F;main&#x2F;example If needed, there&#x27;s an Easyboot plugin to support the old-fashioned, x86-only, GRUB-compatible Multiboot2 protocol (embedded tags, 32-bit entry point, no higher-half, GRUB ABI). Documentation and detailed specification is available in German, English, Spanish, French, Hungarian, Italian, Japanese, Dutch, Polish, Portuguese, Russian and Chinese (some machine translated, sorry). I would really love to hear your opinion and constructive criticism. Simpleboot is feature complete (only bugfix allowed), but Easyboot is expandable with new features via plugins.",
+    "externalUrl": "https://gitlab.com/bztsrc/easyboot",
+    "developer": "skrellm",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

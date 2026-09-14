@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfkmq2",
+  "sourceItemId": "1wfkmq2",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wfkmq2/building_a_singlenode_rwx_localpath_provisioner/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI am currently working on a use-case targeting edge clusters and single-node Kubernetes setups. Due to resource constraints and specific architectural requirements, traditional distributed storage solutions (like Longhorn, Rook/Ceph, or running an in-cluster NFS server) add too much overhead.\n\nTo solve this, I built a custom ReadWriteMany (RWX) volume provisioner that operates on a single node, using the same underlying mechanics as local-path-provisioner (bind-mounting host directory paths).\n\nSince all target Pods that require shared access reside on the exact same node, this approach allows multiple Pods to read and write to the same path concurrently without cross-network synchronization.\n\nI have written a full test suite for it and everything passes in my environment, but I would like to get a sanity check from the community to see if there are edge cases or hidden pitfalls I might have missed.\n\nKey Questions / Concerns:\n\nConcurrency & File Locking: Are there any file locking or permission race conditions I should be aware of when multiple containers write to the same local-path volume simultaneously on Linux?\n\nK8s CSI Standards: Does repurposing local-path mechanics for RWX violate any subtle Kubernetes CSI expectations, assuming Pods are strictly constrained to that single node via affinity/nodeSelector?\n\nAlternative Approaches: Is there a lighter or more native way to achieve single-node RWX without running additional storage daemons?\n\nI would really appreciate it if anyone experienced with K8s storage or CSI plugins could review my implementation logic or point out potential flaws.\n\n(If anyone is interested in looking at the code, I can share the repository link below).\n\nThanks!",
+    "developer": "pierreneter",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

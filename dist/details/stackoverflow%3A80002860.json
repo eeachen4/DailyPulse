@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002860",
+  "sourceItemId": "80002860",
+  "sourceUrl": "https://stackoverflow.com/questions/80002860/why-is-my-stored-data-in-my-tampermonkey-giving-unexpected-values",
+  "detail": {
+    "longDescription": "I wrote a userscript in TamperMonkey to track data for the game Cheat! on neopets.com . Basically what I'm trying to do is keep track of a stack of cards, represented by an array of objects. I'm using TamperMonkey's GM.getValue and GM.setValue to save the data between sessions. This is all the code I have that affects the stack variable: Declaration: let CARDS_IN_STACK = await GM.getValue(\"CARDS_IN_STACK\", []); Adding cards to stack (in function that finds selected cards): CARDS_IN_STACK.push(getCardByName(displayedCardsList[i].getElementsByTagName(\"a\")[0].getElementsByTagName(\"img\")[0].name)); When stack is picked up (cleared): CARDS_IN_STACK = []; setStorageValues(); Setting the storage value in setStorageValues() : await GM.setValue(\"CARDS_IN_STACK\", CARDS_IN_STACK);` The problem I'm having is that after clearing the stack variable, it will sometimes load with an earlier version with the wrong value. I have no idea what could be causing this. What is causing it to work this way and is there a better way to store data that doesn't have this problem?",
+    "developer": "CharType",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "27"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

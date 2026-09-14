@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfifp0",
+  "sourceItemId": "1wfifp0",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wfifp0/mendel_todas_vamos_a_morir_estoy_construyendo_un/",
+  "detail": {
+    "longDescription": "Estoy construyendo un agente de investigación llamado **MENDEL** y una de las pruebas terminó exponiendo un problema que creo que aparece mucho en sistemas de búsqueda + RAG + agentes:\n\n>\n\nUsamos como señal inicial el ensayo *We Must Pace the Frontier* de Dario Amodei.\n\nLa tarea del agente no era resumirlo, sino investigar sus afirmaciones y buscar evidencia a favor y en contra.\n\nDurante la prueba aparecía algo aparentemente convincente:\n\nvarios artículos, varios análisis y varias organizaciones parecían confirmar determinados incidentes relacionados con agentes.\n\nPero al reconstruir la procedencia aparecía algo como:\n\n**evento original**  \n**→ logs/datos de una organización**  \n**→ análisis interno**  \n**→ análisis externo sobre parte de esos mismos datos**  \n**→ prensa**  \n**→ comentarios posteriores**\n\nA nivel documental puedes tener cinco o diez fuentes.\n\nA nivel epistemológico puedes seguir teniendo **una sola observación del mundo**.\n\nPor eso terminamos separando al menos cuatro dimensiones:\n\n* independencia de fuente;\n* independencia de datos;\n* independencia metodológica;\n* contribución original.\n\nY la regla pasó a ser:\n\n>\n\nLa misma prueba produjo otro resultado.\n\nLa hipótesis inicial era básicamente:\n\n**las capacidades crecen demasiado rápido y necesitamos frenar.**\n\nDespués de buscar evidencia contraria, el agente terminó en una formulación diferente:\n\nel riesgo no parece depender solamente de la capacidad del modelo, sino del sistema completo:\n\n\\*\\*modelo\n\n* herramientas\n* permisos\n* memoria\n* acceso de red\n* persistencia\n* autonomía\n* supervisión.\\*\\*\n\nEso sugiere que evaluar sólo el modelo puede ser una abstracción demasiado pobre para sistemas agentivos reales.\n\nLa hipótesis provisional quedó así:\n\n>\n\nLo que me interesa ahora es cómo representar esto bien en el sistema.\n\nNo quiero un `trust_score` global para cada fuente.\n\nQuiero que la confianza dependa de:\n\n**claim + provenance + independence + method + original contribution.**\n\nY quiero que el agente pueda decir:\n\n“estas cuatro URLs parecen corroborarse, pero en realidad dependen del mismo dataset”.\n\nPara quienes trabajan con agentes/RAG:\n\n**¿están modelando explícitamente la dependencia entre fuentes o normalmente siguen tratando cada documento recuperado como una unidad independiente?**",
+    "developer": "edalgomezn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

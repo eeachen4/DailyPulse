@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfgskj",
+  "sourceItemId": "1wfgskj",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wfgskj/minio_on_ec2_auto_scaling_group_fails_after/",
+  "detail": {
+    "longDescription": "I have a **DEV environment** running MinIO on a single EC2 instance managed by an **Auto Scaling Group (ASG)**.  \nOur normal recovery process after OS patching is:  \nPatch the EC2 instance.  \nMinIO becomes unavailable (HTTP 505 from the application).  \nTerminate the instance.  \nASG launches a new instance.  \nUser-data/bootstrap reconfigures the instance and installs/starts MinIO.  \nApplication comes back online.  \nThis process worked successfully after our **August patching**.  \nHowever, after the **September patching**, the same recovery procedure no longer works. Even after terminating the instance and allowing the ASG to create a fresh instance, the application still returns **HTTP 505**.  \nI checked the new instance’s **cloud-init/user-data logs** and found that the MinIO binary download is failing with **HTTP 413**. The download URL used by the bootstrap process appears to no longer work, and I understand that MinIO’s binary distribution/download approach has changed.  \n**What I want to understand**  \nDid MinIO change/stop providing binaries between August and September 2026?  \nCould this explain why the August instance replacement worked but the September replacement doesn’t?  \nWhat is the recommended way to install a specific MinIO version during EC2 bootstrap now?  \nCould HTTP 413 be caused by a proxy/network/security layer rather than MinIO itself?  \nWhat would be the safest way to recover the current DEV environment without repeatedly terminating instances?  \n**Current architecture**  \nEC2 → Auto Scaling Group → user-data/bootstrap → MinIO binary download → MinIO configuration → application  \nThe important error from user-data is essentially:  \nMinIO binary download → HTTP 413  \nI’m planning to compare the August and September user-data/launch-template configurations, but I’d appreciate advice from anyone who has dealt with the recent MinIO distribution changes.  \n**What would you check first, and what would be the recommended recovery approach?**\n\nWhat is the recommended way to install a specific MinIO version during EC2 bootstrap now?",
+    "developer": "Fantastic-Leg-5806",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

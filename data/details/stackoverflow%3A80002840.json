@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80002840",
+  "sourceItemId": "80002840",
+  "sourceUrl": "https://stackoverflow.com/questions/80002840/how-to-use-isinstance-on-functools-cache-cached-classes",
+  "detail": {
+    "longDescription": "After working on this answer , I have a cached class to have simple singleton behavior: import functools from dataclasses import dataclass @functools.cache @dataclass(frozen=True) class Person: name: str = \"John Doe\" age: int = 30 But this doesn't allow to use functions such as isinstance calls as the result function is a _lru_cache_wrapper[Person] instance, not a class: >>> isinstance(p, Person) TypeError: isinstance() arg 2 must be a type, a tuple of types, or a union I don't expect other methods of doing singleton in Python, I already know them, that's not the point. I'm looking for a fix for this specific design using functools.cache on the class symbol itself.",
+    "developer": "Dorian Turba",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "58"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
