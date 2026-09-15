@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117270735034437073",
+  "sourceItemId": "mastodon.social/117270735034437073",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://ieji.de/@skyblitz/117270734968638286",
+  "detail": {
+    "longDescription": "My Self-Hosted Security Stack vs. Public Services\n\nHere's something that keeps bugging me: \n\nI've locked down my own home server with layers of security that most \"enterprise-grade\" public services don't bother applying to everyone's data.\n\nTailscale in Lockdown Mode Even though only I access this thing, I still run Tailscale in lockdown mode. \n\nNo direct internet exposure. No open ports. Everything comes through the mesh, authenticated and encrypted.\n\nHardware Trust Chain\n\nCustom SecureBoot keys signed by me\nTPM-unlocked LUKS encryption on every drive\nFull chain of trust from boot to OS\n\nNginx Proxy Manager as Gateway All HTTPS traffic funnels through Nginx Proxy Manager, whitelisting only my Tailscale IPs. Nothing else gets close.\n\nPocket ID + Passkeys for Auth Passkeys-only authentication via Pocket ID. OIDC support is mandatory, if a service doesn't support it, I don't use it. That means no passwords, no SMS 2FA, no vendor-controlled identity.\n\nAnd here's the real kicker: \n\nThis setup is for my data. On my hardware. With my access. And I still went all-in on security.\n\nMeanwhile, public cloud services handle millions / billions of users' data and… skip end-to-end encryption entirely. They hold the keys. They can read everything. They store plain-text by default.\n\nIf I can build this kind of security posture on a homelab with basic open-source tools, why don't public services do the minimum? Why is the burden on individuals to out-security the companies we're trusting with our lives?\n\nIt's ironic, and frustrating. We're told to \"trust the platform\" when the platform trusts nobody, including us. \n\nThey hold the keys, they control access, and they claim it's \"for our safety.\"\n\nBut here's the truth, if a self-hosted setup like mine can be more secure than your public service, and you're still holding all the data unencrypted… then the security problem isn't on my end.\n\nEnd-to-end encryption shouldn't be an option. It should be the baseline. Period.\n\nThoughts? Who else is tired of being told to trust vendors with plaintext access to their data? 👇\n\n#selfhosted #security #tailscale #endtoendencryption #privacy #zerotrust #datasecurity #tech @EUCommission@ec.social-network.europa.eu @EUCouncil@respublicae.eu",
+    "developer": "@skyblitz@ieji.de",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "2"
+      },
+      {
+        "label": "转发",
+        "value": "4"
+      },
+      {
+        "label": "网站",
+        "value": "ieji.de"
+      }
+    ]
+  }
+}

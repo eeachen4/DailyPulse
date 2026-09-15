@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgmhon",
+  "sourceItemId": "1wgmhon",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wgmhon/if_you_have_a_3090_or_other_30xx_for_local_llms_i/",
+  "detail": {
+    "longDescription": "I have a custom fork of llama.cpp designed around the ampere architecture specifically (though many of the upgrades also translate to faster performance of blackwell + lovelace). The recommended config supports 90+ TPS (for agentic/coding, at temp 1; greedy will of course be faster) through 100K tokens, with context of up to 240K.\n\nIf you want the repo, it is here:\n\n[https://github.com/JakeATX/llamAmpere](https://github.com/JakeATX/llamAmpere)\n\nI recommend running with this quant, which is \\~ 4 K M quality but considerably faster (technically, a 3 K XL upgrade)\n\n[https://huggingface.co/jakeatx/Qwen3.8-27B-ATX-IQ4\\_XS-M-GGUF](https://huggingface.co/jakeatx/Qwen3.8-27B-ATX-IQ4_XS-M-GGUF)\n\nIf you want the deep dive on *how* it is so much faster (80% vs the near comp at 200K!), at more context, there is a long form article here.\n\n[https://x.com/JakeKAllDay/status/2095646450138874095?s=20](https://x.com/JakeKAllDay/status/2095646450138874095?s=20)\n\nRunning faster than API speeds on my 3090 (for 27b at least) has genuinely been a step change in the utility of the model + card for me. I hope you enjoy it!",
+    "developer": "Brief-Tap-6616",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg3g03",
+  "sourceItemId": "1wg3g03",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wg3g03/ms_marco_clicktranslation_expansion_tables_poor/",
+  "detail": {
+    "longDescription": "TLDR: I made \"poor man’s\" DSSM (Deep Structured Semantic Model) — the count-based translation table that can enrich the inverted index for full-text search. This trick can improve baseline BM25.\n\nSo the idea is the following:\n\n\\- You have supervised pairs (query, relevant document), e.g., MS MARCO or click logs.\n\n\\- You tokenize both sides into some units (char n‑grams, wordpieces, words).\n\n\\- You count cross‑pair co‑occurrences: unit u on the document side vs. unit v on the query side (not co‑occurrence within the same text).\n\n\\- For each document‑side unit u, you keep the top‑k query‑side units v with the strongest association.\n\n\\- At indexing time, each document gets postings not only for its own units, but also for the top‑k associated units of each of its units — i.e., document expansion baked into the inverted index.\n\nIt’s like mixing synonyms into the search query (but it’s not a synonyms exactly). The one difference from the DSSM is that it can only handle linear dependencies whilst DSSM can do the non-linear one.\n\nAnd so it improves the performance over BM25 baseline.\n\nI packed it as hf model repo: [https://huggingface.co/mirth/msmarco-expansion-tables](https://huggingface.co/mirth/msmarco-expansion-tables) with a small usage demo script.\n\nI am not claiming that this is a new idea. I made it because it’s fun and I’m planning to use it in my own search engine project.",
+    "developer": "SpiritedTrip",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

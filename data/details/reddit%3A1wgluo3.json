@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgluo3",
+  "sourceItemId": "1wgluo3",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wgluo3/more_tools_cause_more_confusion_for_the_agent/",
+  "detail": {
+    "longDescription": "I've become increasingly concerned about how many tools we give to AI agents.\n\nobvious answer is to give the agent more tools, and it becomes more capable.\n\nI'm not convinced.\n\nevery additional tool creates another decision the agent has to make. \n\nwith enough tools, you start seeing:\n\nagent choosing the wrong tool, tools competing with each other, more tokens spent describing and selecting tools, larger context windows, more opportunities for unexpected calls, bigger security and cost blast radius\n\nso instead of asking: how many tools can my agent access?\n\nI think the better question is: how few tools can I give it while still letting it complete the task?\n\napproach is to keep the full tool catalog available but only expose a small relevant subset to the agent at runtime.\n\nfor example, an agent might have access to 1,000+ possible capabilities, but a document-processing task may only need:\n\nOCR - extraction - validation - conversion\n\nagent doesn't need to reason about the other 996 tools.\n\nthis may seem like a small architectural change, but I think it becomes important as agents move from demos into production.\n\nwhat do you think about this? have you faced a similar situation?",
+    "developer": "apyhubnico",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

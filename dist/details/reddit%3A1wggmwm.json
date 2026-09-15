@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wggmwm",
+  "sourceItemId": "1wggmwm",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wggmwm/any_folks_mixing_nvidia_intel_gpus_maybe_3090_arc/",
+  "detail": {
+    "longDescription": "I'm running a setup with a 3090 paired with a 4070 Ti 12GB - it **was** a dual 3090 setup, but one of my 3090s is acting up. (It's on a desktop right now and \"mostly working fine,\" but the issues were consistent enough that I don't want to keep it in the server.)\n\nI've been toying with trying out a B70, but I have to assume there's going to be some configuration pain involved with that, and a performance hit. But, I've heard that it's possible to do a tensor split with `llama.cpp` between different cards - maybe with Vulkan, or maybe using two APIs (CUDA plus OpenVINO? SYCL?) and `llama-rpc` locally? It's tempting to get to 56 GB of VRAM instead of my earlier 48 GB (or current 36 GB)\n\nI'd love to hear from folks who may have a similar setup, and what their stability, annoyance, and performance have been like!\n\nFor context, the host system in question is:\n\n* AMD Ryzen 5 3600\n* 4x32GB DDR4 RAM (2166 or similar)\n   * One of the pairs has \"bad blocks\" / fails MEMTEST86, but with the memory at 2166 and a `badram=...` line in my bootloader, it's stable!\n* 1xRTX 3090 24GB (Dell, shorty card, 2 fans)\n* 1xRTX 4070 Ti 12GB (Bought ~3 weeks before the 16GB SUPER was announced!)\n* Ubuntu Server 24.04 (likely due for an upgrade, after I see enough other folks on 26.04 doing LLMs and diffusion stuff reliably)\n\n(This feels like it could be a Question or a Discussion)",
+    "developer": "overand",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

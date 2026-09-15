@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgfrah",
+  "sourceItemId": "1wgfrah",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wgfrah/five_ai_coding_tools_five_production_incidents/",
+  "detail": {
+    "longDescription": "I use vibecoding to build software for a living, and here is what I found after using different AI tools.\n\nBefore you pick one, you should know my filter:\n\n* It must integrate into existing workflows without forcing a rewrite of how we develop.\n* It must not silently introduce logic changes (safe defaults, test awareness).\n* It should respect existing architecture and leave architectural decisions to a human.\n\nThese criteria came from incidents. We once merged a PR where an agent removed a critical error boundary. That caused a lot of problems and taught us to never trust autopilot, only autocomplete.\n\nNow the tools, roughly in order of how often I use them.\n\n**Cursor.** Best for TypeScript teams in VS Code, but it needs `.cursorrules` guardrails or it overrides architecture. Ours used `unstable_cache` incorrectly and served stale data for three hours. A separate generated route bypassed our permission middleware.\n\n**GitHub Copilot.** Good on polyglot codebases, confident enough to introduce subtle async bugs. One accepted suggestion replaced our error handling with a bare `Promise.all` and disabled Sentry alerts. Strong on greenfield scaffolding, hallucinates APIs on legacy code.\n\n**Windsurf.** Holds context across 20 files, which is the strength and the problem. It auto-fixed types in unrelated packages. Amplifies well-typed TypeScript, destabilises loosely typed code.\n\n**Continue.** For teams that need on-prem and open models. Run locally through Ollama the style alignment was strong, but 1 to 3 second latency killed it for us.\n\n**Aider.** Halved cycle time on CRUD tasks with human review in the loop. Refactoring legacy code, it introduced a race condition that took two hours to fix.\n\nDidn't make the cut: Devin, Amazon Q and Tabnine, on cost model, ecosystem lock-in and pricing.\n\nNone of these are safe by default. What actually works is test coverage and ruthless review. Any PR with AI-generated commits gets a two-person review including one manual QA pass, plus snapshot tests that catch accidental API changes. Those have stopped more regressions than any lint rule.\n\nIf you use AI coding tools, what is in your filter? I suspect mine is too conservative and I would rather be told that than find out slowly.",
+    "developer": "techpotions",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

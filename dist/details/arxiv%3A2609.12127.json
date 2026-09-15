@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12127",
+  "sourceItemId": "2609.12127",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12127",
+  "detail": {
+    "longDescription": "arXiv:2609.12127v1 Announce Type: cross Abstract: Prompt-policy editing offers a practical way to improve agents that synthesize executable workflows without updating the underlying model. However, persistent prompt editing has two coupled properties. First, edit locality does not imply effect locality: an edit confined to one policy segment can ripple through downstream execution, altering behavior beyond the edited segment. Second, edit effects are composition-sensitive: edits that work in isolation can interfere after composition, causing one or both to lose their benefit or become harmful. Persistent adaptation must therefore support two distinct decisions: identifying where the policy should change from execution feedback, and determining whether the resulting edit remains safe to persist after composition. To address these challenges, we introduce RIPPLE (Replay-Informed Persistent Policy Localization and Editing), which separates where an edit is made from whether it remains safe after composition. It diagnoses failed trajectories, maps each actionable failure to a predefined policy segment, and restricts the correction to that part of the policy. RIPPLE then evaluates candidates against the same iteration-start policy to compare their isolated gains, before replaying promising edits after previously accepted updates to expose downstream effects and interactions. Only edits that remain safe under composition are retained. We evaluate RIPPLE on Flow-HO, a synthetic held-out benchmark for executable workflow synthesis. RIPPLE improves validation success by up to 23.1% and yields positive gains on two additional frozen language-model backbones, while maintaining edit efficiency and low execution cost. Targeted interaction analysis further demonstrates both properties: a segment-local tool-use edit changes downstream resource resolution and validation, while an edit beneficial in isolation becomes harmful after composition.",
+    "developer": "Manqing Mao, Hong Wang, Samson Koelle, Jie Yuan, Zhuoer Wang, James Feng, Yanjun Lin, Daniel Edmiston, Nikki Lijing Kuang, Zhecheng Sheng, Wei Niu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Manqing Mao, Hong Wang, Samson Koelle, Jie Yuan, Zhuoer Wang, James Feng, Yanjun Lin, Daniel Edmiston, Nikki Lijing Kuang, Zhecheng Sheng, Wei Niu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

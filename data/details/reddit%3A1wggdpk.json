@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wggdpk",
+  "sourceItemId": "1wggdpk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wggdpk/how_would_you_improve_my_qwen38_flash_next_setup/",
+  "detail": {
+    "longDescription": "I'm not finding many Q3.8FN threads, and I can't even find the f\\*cking megathread (haven't tried very hard anyway, can't cope with the endless nested chaos). \n\nI'm optimizing this to run on 128Gb + 1x5080(16Gb).  \n  \nI'm getting 136pp and 19tg with Unsloth's Q5\\_K\\_XL (152pp+23tg on Q4\\_K\\_XL and 195+23 on Q3\\_K\\_XL).\n\nIt's slow but I'm absolutely amazed by the quality and I'll definitely keep running it for certain tasks. \n\nIs there anything I could do to get better speeds with this quant? Is there an MTP option somewhere that I can run on llama.cpp? Are there any tweaks I could do to improve things?\n\nThese are my llama.cpp settings:  \n  \n\\[Qwen3.8-Flash-Next-UD-Q5\\_K\\_XL-ncmoe48\\]\n\nalias = Qwen3.8-Flash-Next-Q5\n\nmodel = models/mymodels/unsloth/Qwen3.8-Flash-Next-UD-Q5\\_K\\_XL/Qwen3.8-Flash-Next-UD-Q5\\_K\\_XL-00001-of-00006.gguf\n\nload-mode = mmap\n\nmlock = false\n\nno-mmap = false\n\nlazy-mode = on\n\nfit = off\n\nngl = 999\n\nn-cpu-moe = 48\n\noverride-tensor = per\\_layer\\_token\\_embd=CPU\n\nctx-size = 262144\n\nbatch-size = 2048\n\nubatch-size = 512\n\ncache-type-k = q8\\_0\n\ncache-type-v = q8\\_0\n\nflash-attn = on\n\nthreads = 12\n\nparallel = 1\n\njinja = true\n\nreasoning = on\n\nchat-template-kwargs = {\"enable\\_thinking\": true, \"preserve\\_thinking\": true, \"reasoning\\_effort\": \"medium\"}\n\ntemp = 1.0\n\ntop-k = 20\n\ntop-p = 0.95\n\nmin-p = 0.0\n\npresence-penalty = 0.0\n\nrepeat-penalty = 1.0 ",
+    "developer": "whatyathinkk",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

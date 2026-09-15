@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.11938",
+  "sourceItemId": "2609.11938",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.11938",
+  "detail": {
+    "longDescription": "arXiv:2609.11938v1 Announce Type: cross Abstract: Framework profilers expose operator timing without hardware counters; GPU profilers expose hardware counters without operator attribution. Bridging this gap manually is error-prone and does not scale. We present Operator Profiler, a hardware attribution pipeline that automatically links hardware metrics to PyTorch operators via three complementary attribution paths: torch.profiler CUPTI correlation, NVTX temporal enclosure with per-stream interval trees, and Inductor fusion- map enrichment from debug artifacts. NVIDIA Nsight Compute (ncu) hardware counters are matched to NVIDIA Nsight Systems (nsys) kernel records via invocation-order matching, avoiding timestamp joins across incompatible clock domains. A curated 20-counter metric set with duration-weighted aggregation covers all hardware bottleneck axes, layer deduplication reduces ncu replay time by a factor of N/K for models with N layers across K unique structural classes, and GPU clock locking controls the kernel-duration aggregates used for operator-level comparison. On an NVIDIA RTX PRO 6000 Blackwell, Operator Profiler attributes 95-100% of kernel runtime for compiled workloads (GPT-2, SDPA Attention); black-box library backends such as cuDNN RNN are correctly surfaced as greater than 85% unattributed rather than silently dropped. Applied to profile-guided FX graph optimization, attributed profiles yield 1.76x-2.24x profiled-kernel-time speedups on the two compiled optimization case studies; a third LSTM diagnostic case identifies cuDNN re-dispatch as a structural fix rather than an FX graph rewrite.",
+    "developer": "Logan Chu, Dong Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Logan Chu, Dong Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

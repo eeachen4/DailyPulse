@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgg4js",
+  "sourceItemId": "1wgg4js",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wgg4js/most_agents_built_on_my_10_flight_api_would_work/",
+  "detail": {
+    "longDescription": "I sell live flight & hotel prices to people building agents (flightpowers, $10 a month on RapidAPI gets you the whole thing), so I get to see what people actually run on it, and my honest read is that maybe a third of it needs an agent at all.\n\nThe pattern that works is boring. A schedule, a fixed set of routes, one call per route, a threshold and a message. One customer fires the same 18 round-trip searches at 09:00 UTC every day and has never once needed a model to decide anything, and my own scanner priced 111 routes last week where the \"agent\" part is one sentence at the end that writes the summary.\n\nThe pattern that burns money is a tool-calling loop that gets to decide which dates to search. Left alone it will search 40 date combinations to answer a question that has 6 in it, and you pay per call. A nested loop enumerates a calendar just as well as a model does, faster and with a bill you can predict, and the bill is real - my own free tier caps at 150 backend searches a day and one loop like that eats it before lunch.\n\nWhere an agent does earn its keep is the last mile. \"Is 169 actually cheap for October\" is a judgement call, and a model with Google's tracked price range in front of it makes that call well. I would never write that as code.\n\nSo my rule is deterministic on the fan-out and the model on the interpretation, and the expensive mistake is letting it choose the search space.\n\nIm on the supply side of this, so weigh it accordingly, it costs me money to say it!\n\nWhat I can't tell from my side is whether the 40-date loops are people prototyping or people in production. If you're running one, which is it?",
+    "developer": "OtherwiseWeekend2222",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12075",
+  "sourceItemId": "2609.12075",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12075",
+  "detail": {
+    "longDescription": "arXiv:2609.12075v1 Announce Type: new Abstract: Vision-Language-Action (VLA) models show high robotic manipulation capabilities via a two-stage design: a Vision-Language Model (VLM) stage followed by an Action Diffusion Transformer (ADiT) stage. Since robots must meet strict Service-Level Objectives (SLOs) for safety, VLA inference is inherently latency-critical. Meeting these SLOs requires high-end GPUs, yet weight, cost, and power constraints preclude integrating such GPUs on-robot. Prior works offload VLA inference to edge servers that serve many robots on VLA models. However, current VLA systems lack support for multi-request, multi-model execution on a multi-GPU server under SLOs, while existing serving systems for multi-stage models are optimized for throughput and stage disaggregation across separate GPUs, which are ill-suited for the millisecond-scale stages of VLA models. We design Robion, the first VLA serving and management system for multi-robot, multi-model requests on multi-GPU edge servers that meets SLOs. Our serving engine disaggregates the VLM and ADiT stages within a GPU via two streams, dynamically restricting the SMs on VLM stream so ADiT always finds SMs to run alongside it, and co-locates multiple models by sharing these streams across them, prioritizing requests by least remaining SLO time. Our management engine enables flexible model placements on multi-GPU servers, and integrates an intelligent traffic controller that maximizes per-model batching under the chosen placement while bounding each GPU's load to meet SLOs. For individual models, Robion serves on average 6.7$\\times$ and 1.5$\\times$ higher robot load within 98% SLO attainment over vLLM-Omni, the most widely used multi-stage serving system, and Monolithic, which runs VLM and ADiT as a single pipeline, respectively. In a large-scale experiment of serving 8 different models on a 4-GPU server, Robion can serve up to 64 robots within 98% SLO attainment.",
+    "developer": "Dionysios Adamopoulos, Nattapol Chanpaisit, Basel Fakhri, Christina Giannoula",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR, cs.LG, cs.PF, cs.RO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dionysios Adamopoulos, Nattapol Chanpaisit, Basel Fakhri, Christina Giannoula"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

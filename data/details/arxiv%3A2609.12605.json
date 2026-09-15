@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12605",
+  "sourceItemId": "2609.12605",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12605",
+  "detail": {
+    "longDescription": "arXiv:2609.12605v1 Announce Type: cross Abstract: Distributed Denial-of-Service (DDoS) attacks remain a serious threat to transport networks, with recent attack volumes exceeding 30 Tbps, and the telecommunications industry being the main target. Recent work has yet to study the impact of the hosting software architecture on network monitoring solutions, or to assess recent algorithms for improving attack detection. This paper presents a Network Intrusion Detection System (NIDS) for DDoS detection in transport networks, developed in collaboration with Ericsson. Building on a statistical baseline, we improve detection effectiveness with an Isolation Forest trained on a wider set of flow features, extracted by GoFlowMeter, our open-source Go implementation of CICFlowMeter, and we integrate eBPF/XDP so that the NIDS filters real traffic at the kernel level. We further compare three deployments, monolithic, Kafka-based, and gRPC-based microservices, on a Raspberry Pi 5 testbed replaying the CIC-DDoS2019 dataset as real network traffic. Detection quality is governed mainly by the choice of detector rather than by the transport: the Isolation Forest raises recall and F1 score (0.965 live in the monolithic variant) over the baseline by flagging low-volume attack windows that the baseline misses. The transport is not neutral, however: gRPC reaches almost the same accuracy as the monolithic variant while adding less than 2 milliseconds of transport time per window, whereas the asynchronous Kafka pipeline trails by roughly nine percentage points and adds about 27 milliseconds. These findings clarify the trade-off between detection quality and architectural overhead when deploying a NIDS on resource-constrained hardware.",
+    "developer": "Shiqi Wu, Oleksii Koshovyi, Georgios Pseiridis Pseiras, Victor Morel, Romaric Duvignau",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC, cs.NI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shiqi Wu, Oleksii Koshovyi, Georgios Pseiridis Pseiras, Victor Morel, Romaric Duvignau"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

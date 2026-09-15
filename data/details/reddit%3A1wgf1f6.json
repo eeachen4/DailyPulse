@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgf1f6",
+  "sourceItemId": "1wgf1f6",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1wgf1f6/pre2000_computer_graphics_a_specification_and/",
+  "detail": {
+    "longDescription": "This is a followup to my [earlier post from 6 months ago](https://www.reddit.com/r/programming/comments/1rzqcnw/pre2000_computer_graphics_a_specification_and/).\n\nThere I announced two open-source articles on a specification and minimap APIs for pre-2000 computer graphics that a new video game or graphics engine can adopt that wishes to run with very low resource requirements (say, 64 million bytes of memory or less).  They are at:\n\n- https://peteroupc.github.io/graphics.html#Graphics_Challenge_for_Classic_Style_Games (Specification where I seek to characterize pre-2000 computer graphics).\n- https://peteroupc.github.io/graphicsapi.html (Suggestions on a minimal API for pre-2000 graphics)\n\nI have since updated the articles to refine them and add much more guidance.  A notable addition to the [specification](https://peteroupc.github.io/graphics.html#The_Specification) is a convenient list of things to be decided by games that choose to follow the specification.  (This list can also be used to evaluate the features of existing pre-2000 video games.)\n\nThe list includes the following things decided by the application (for details, see [the specification](https://peteroupc.github.io/graphics.html#Notes_on_Specification)):\n\n1. The screen resolution, no more than 307,200 total pixels.\n2. If 3-D is supported, the maximum texture size and number of primitives shown per frame or second. (This is no more than 12,800 per frame for 640 &times; 480, but a smaller limit is encouraged in general.)\n3. If 3-D is supported, which 3-D features are supported (such as Gouraud shading, perspective correction, or texture blending).\n4. The number of 2-D layers, up to four.\n5. The width and height of tiles and sprites.\n6. The maximum number of sprites displayed at a time.\n7. Whether larger screen resolutions are supported in addition to the primary screen resolution.\n\nOther notable pieces of guidance include:\n\n- The definition of \"rendering in software\", which includes software renderers that implement a _subset_ of OpenGL 1.1 or OpenGL ES 1.1.\n- A note that [pre-2000 computer graphics in scope](https://peteroupc.github.io/graphics.html#Classic_Graphics_in_Scope) include graphics found in learning toys and videotex protocols.\n- Information on the [graphics in arcade video games](https://peteroupc.github.io/graphics.html#Graphics_in_video_arcade_games).\n\nComments on any aspect of these documents are welcome (see, for instance, the first article's \"[Seeking Comments](https://peteroupc.github.io/graphics.html#Seeking_Comments)\" section). But as in the previous post, it is useful to comment on examples of modern video games (e.g., _McPixel3_) that implement the specification or examples of lightweight game engines devoted to making such modern video games.\n",
+    "externalUrl": "https://peteroupc.github.io/graphics.html#Graphics_Challenge_for_Classic_Style_Games",
+    "developer": "peteroupc",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "peteroupc.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

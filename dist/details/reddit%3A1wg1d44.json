@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg1d44",
+  "sourceItemId": "1wg1d44",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wg1d44/i_built_a_cloud_native_platform_from_scratch_on/",
+  "detail": {
+    "longDescription": "I set out to build a fully fledged cloud native platform from scratch on rented hardware. I wrote the whole build up (link at the end). Here is the substance.\n\n**Hardware**: four VPS from Contabo. Control plane on NVMe, two workers on SSD, and a separate node outside the cluster as the entry point (proxy).\n\nI scripted all prerequisites in Bash, driven by an **Ansible** playbook. I used **kubeadm** to bring up the cluster. **Calico** for the CNI.\n\nGoing from renting the machines to a ready cluster was quicker than I expected: under an hour. Everything after that went in as a Helm chart.\n\nI used **ArgoCD** for **GitOps**. Repo structure in GitLab, a deploy token, a Kubernetes secret carrying it, then ArgoCD to bootstrap the App of Apps. After it, a Git commit is the only install mechanism on the cluster.\n\nBelow is what followed.\n\n**Longhorn** for storage orchestration, encryption at rest at the volume level with dm-crypt and LUKS, key held by me. Redundancy meant at least a second worker, and I deliberately kept the control plane out of data storage.\n\n**CloudNativePG** for databases. One custom resource per app, and the operator handles creation, uptime and replica count.\n\n**Istio**, as the mesh for mTLS and as the Gateway API provider (I chose Gateway API over Ingress).\n\n**cert-manager** for certificate management. I used it to set up a local CA for internal URLs, and paired it with **Let's Encrypt** to get valid certificates for public URLs with automatic renewal.\n\n**OpenBao** for secrets, with the External Secrets Operator pulling them in. I looked at Vault first, but the licensing change was the deciding factor.\n\n**Tekton** for CI. The CNCF promotes it, so I gave it a try.\n\n**Gitea** as Git server and registry in one, installed inside the cluster to host the application source code and integrate with Tekton. All CI traffic stays inside the cluster.\n\n**Keycloak** as IAM solution to handle authentication and authorization.\n\nFull **observability** capabilities thanks to the **Grafana** stack with **Prometheus**, Loki, Tempo and **MinIO** behind them, plus **OpenTelemetry** auto instrumentation for traces.\n\nThe part I found most interesting was the **gateway IP.** Pinning the gateway to a node IP fails twice over: the gateway dies with the node, and it exposes a node public IP. Two steps solved it. **Kube-vip** provides a private virtual IP that floats to any healthy node, and the gateway binds to that. Then a separate **HAProxy** node sits outside the cluster on the private network, takes traffic from the internet, and forwards to the VIP.\n\nTekton was the one that fought back. It took me a while just to map how many components it has and what each one does. I nearly dropped it. Sticking with it paid off.\n\nFull write up with the architecture diagram: [https://vixoris.com/blog/cloud-native-platform-from-scratch/](https://vixoris.com/blog/cloud-native-platform-from-scratch/)\n\nHappy to go deeper on any of the choices, especially the kube-vip and HAProxy setup.\n\nPS: The link leads to my own blog, hosted on the platform I just described here, and the post ends with a card for the app I am building on it.",
+    "developer": "jeansilga",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

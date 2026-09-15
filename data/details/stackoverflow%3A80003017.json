@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003017",
+  "sourceItemId": "80003017",
+  "sourceUrl": "https://stackoverflow.com/questions/80003017/nicegui-upload-csv-error-uploadeventarguments-object-has-no-attribute-content",
+  "detail": {
+    "longDescription": "I am brand-new to NiceGUI and I am trying to learn it for Python by following some tutorials to learn basic features. I have been trying to replicate the CSV file upload and show content by JCharistech: https://blog.jcharistech.com/2023/10/11/how-to-handle-file-uploads-in-nicegui-python/ I have tried to go through the steps he provided but even with the first example, the markdown file, I am getting an error. I am able to run the script and generate a nicegui webpage with the file upload option, and select the markdown file, but when I press the upload button I do not get the content on the webpage and instead get an error in my Powershell (that I ran the python script in). This is the code I am using: from nicegui import ui, app, events import pandas as pd from io import StringIO def handle_uploads(e: events.UploadEventArguments ): text = e.content.read().decode(\"utf-8\") markdown_data.set_content(text) ui.upload(on_upload=handle_uploads).props(\"accept=.md\").classes(\"max-w-full\") ## show the content markdown_data = ui.markdown() ui.run(port=8081) And this is the error I get when I try to upload the markdown file: text = e.content.read().decode(\"utf-8\") ^^^^^^^^^ AttributeError: 'UploadEventArguments' object has no attribute 'content' I do not understand what I am doing wrong and I would really appreciate some help please.",
+    "developer": "AstraRegina",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "36"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

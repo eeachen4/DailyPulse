@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg9u62",
+  "sourceItemId": "1wg9u62",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wg9u62/how_to_automatically_find_the_batch_size_when/",
+  "detail": {
+    "longDescription": "Hi,  \nFor single-GPU training, I’m using Hugging Face SFTTrainer with auto\\_find\\_batch\\_size=True, which automatically reduces the batch size after a CUDA OOM until it finds a batch size that works.  \nI would like to have similar behavior when training on multiple GPUs on a single node using accelerate launch with FSDP2.  \nIs there a supported way to automatically determine or reduce the batch size when using Accelerate + FSDP2?  \nIn particular, I’m wondering how this should be handled when one of the distributed processes encounters a CUDA OOM. Can Accelerate restart the distributed training with a smaller batch size, or does this need to be implemented externally?  \nIf this is not well supported with FSDP2, what multi-GPU training approach would you recommend if automatic batch-size detection/recovery is an important requirement?  \nThanks!",
+    "developer": "zdeneklapes",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

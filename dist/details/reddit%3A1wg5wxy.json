@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg5wxy",
+  "sourceItemId": "1wg5wxy",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wg5wxy/p_wine_synthesis_using_vae_p/",
+  "detail": {
+    "longDescription": "I have created a VAE model using PyTorch on White Wine dataset. \n\nBasically, the main goal is to discover a brand-new white wine recipe.\n\nIt puts all the wines into a latent space, finds the best part where higher bands are located, and then it makes 100 steps with a step size of 0.5, multiplying by 0.96 with every step till it reaches the highest possible score.\n\nThe regression model then evaluates the newly generated wine recipe, after first passing the latent coordinates through a decoder, and normalizing them.\n\nI get a score in range of 7.30-7.58.\n\nhttps://preview.redd.it/bylmwhu92iph1.png?width=249&format=png&auto=webp&s=b97f36f3deca86da85dddbba9b65043978ce4fd3\n\nHere is the visualization of the latent space of all the wines:\n\nhttps://preview.redd.it/pqjl9pck2iph1.png?width=811&format=png&auto=webp&s=e1128bd7f4f38ef7bd584fd8b8622d0260c90dc1\n\nA small question about the training loop:\n\nhttps://preview.redd.it/03k4k5yq2iph1.png?width=262&format=png&auto=webp&s=7e0df68447e5ab26d680af08f5b9361b14af168c\n\nIs the loss too large? I know that it never could reach perfect zero by how do I know if the loss is good enough? After reaching the plato? I use MSELoss. \n\n\n\nThis is my second project in VAE (after MNIST), and I really liked idea of autoencoders. \n\nAnd I also would be very grateful for your tips, etc, since this is one of my first steps in ML/DL.  \n",
+    "developer": "Dangerous-Pilot-6065",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

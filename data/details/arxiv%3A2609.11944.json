@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.11944",
+  "sourceItemId": "2609.11944",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.11944",
+  "detail": {
+    "longDescription": "arXiv:2609.11944v1 Announce Type: new Abstract: Exact multi-objective shortest-path (MOSP) search computes the complete Pareto set between specified start and goal vertices, and its computational cost can grow rapidly with expanding nondominated label sets and frequent dominance tests over per-vertex Pareto frontiers. Efficiently parallelizing exact MOSP remains an open challenge. This paper presents SIP-MOSP (Snapshot-based Indexed-Pruning MOSP), an asynchronous exact framework that separates label expansion from frontier maintenance within a single cooperative search. SIP-MOSP combines immutable versioned frontier snapshots with indexed dominance pruning, enabling concurrent label processing without concurrent access to the same mutable frontier. Together, these mechanisms reduce synchronization overhead and accelerate dominance testing. We instantiate the framework with block-minimum (SIP-MOSP-BM) and segment-tree-minimum (SIP-MOSP-ST) indices and prove exactness. We evaluate both variants against four state-of-the-art exact MOSP baselines covering sequential and parallel search. Experiments across multiple objective dimensions on a road network, an Internet service provider topology, and an 180-vertex complete directed graph show that SIP-MOSP achieves speedups of up to 46.9* over the best-performing sequential baseline and up to 7.05* over the best-performing parallel baseline on mutually solved instances. In the 20-objective complete-graph setting, where many instances remain unsolved by the sequential baselines within one hour, SIP-MOSP-ST achieves a 3.34* speedup while reducing peak memory by a factor of 60.3 relative to the best-performing parallel baseline. These results demonstrate that SIP-MOSP is an efficient shared-memory framework for exact MOSP across structurally diverse graph topologies.",
+    "developer": "Xiaoqing Xu, Ning Zhang, Liuyihui Qian, Xiaojun Liu, Juan Wu, Hong Tang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xiaoqing Xu, Ning Zhang, Liuyihui Qian, Xiaojun Liu, Juan Wu, Hong Tang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

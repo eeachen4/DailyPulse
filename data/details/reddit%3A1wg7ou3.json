@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg7ou3",
+  "sourceItemId": "1wg7ou3",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wg7ou3/discovered_computational_structures_that_carry/",
+  "detail": {
+    "longDescription": "Most search or evolutionary systems find something useful, score it, and move on to the next run. The structure itself doesn't keep any record of how it got validated. I built Bind to work differently. When something gets discovered, it keeps an identity, a certificate, a lineage, and eventually a hardware form, so later generations can reuse the actual object instead of a fresh copy.\n\nThis is a paper documenting an earlier milestone in that project, which I'm releasing now:\n\nAn embodied runtime discovers a field regularity in a world it wasn't given a full description of. Confidence 0.8, causal energy change +8.6. I validate it through intervention, promote it into the Machine Factory archive, and the next generation reuses that same object 211 times.\n\nFrom there I carry it through a tested intermediate representation (7 out of 7 equivalence tests, zero error), gated RTL, synthesis, and place and route. Final output is a 135,100 byte iCE40 HX8K bitstream. I also built a reconfigurable host that can load, unload, and restore certified objects without rebuilding the whole chip image.\n\nThe part I think matters most is the admission rule. An object doesn't get kept because it performs well. It gets kept because turning it off or stripping it out actually changes behavior under held-out tests.\n\nAt this stage, chaining causal validation across multiple certified objects didn't work, and I reported that as a negative result rather than adjusting the test until it passed. That's specific to this milestone, not a wall the project is stuck at.\n\nPaper, code, and evidence:  \nZenodo: [https://zenodo.org/records/22752616](https://zenodo.org/records/22752616)  \nGitHub: [https://github.com/bindcompute/Canonical\\_V2](https://github.com/bindcompute/Canonical_V2)\n\nHappy to go deep on any part of this.",
+    "developer": "chainbornadl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

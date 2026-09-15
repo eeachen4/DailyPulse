@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002766",
   "sourceItemId": "80002766",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002766/the-react-state-returns-null-when-console-logging",
   "detail": {
     "longDescription": "This is a react dictionary project which should return meaning of the word. I have stored the response inside react state named setData. When i console log data it returns null. import { useState } from \"react\"; import SearchCard from \"./components/SearchCard\"; function App() { const [data, setData] = useState(null); const fetchWord = async (word) => { if (!word.trim()) return; const response = await fetch( `https://freedictionaryapi.com/api/v1/entries/en/${word}`, ); const response_data = await response.json(); setData(response_data) console.log(data) //RETURNS NULL }; return ( <> <SearchCard getWord={fetchWord} /> </> ); } export default App; I have tried putting the console log outside fetchWord function and it returns null twice. The first button click returns NULL and when I click the second time it actually returns the data. I want the console log to just print the data the first time!.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "30"
+        "value": "51"
       },
       {
         "label": "状态",

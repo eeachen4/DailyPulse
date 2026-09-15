@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgg424",
+  "sourceItemId": "1wgg424",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wgg424/voice_ai_architecture_discussion/",
+  "detail": {
+    "longDescription": "Hi there, I've been experimenting with voice agents recently and keep coming back to what seems like a pretty fundamental tradeoff:\n\n**latency vs control.**\n\nIf you build the traditional pipeline:\n\nSpeech → ASR → LLM → TTS → Speech\n\nyou get a lot of control.\n\nYou have text between each component, so you can inject context, filter responses, enforce policies, log everything, call tools, switch models, etc.\n\nThe problem is latency.\n\nEven if every component is relatively fast, you're stacking multiple steps together. And voice is way less forgiving than chat. A 2-second pause in a text conversation is nothing. A 2-second pause on a phone call feels surprisingly long.\n\nEnd-to-end speech-to-speech models solve a lot of this.\n\nAudio in → audio out.\n\nThe latency difference can be pretty dramatic and the conversation starts feeling much more natural.\n\nBut then you lose a lot of the control surfaces you had before.\n\nThis seems especially problematic for actual customer service agents.\n\nFor example, I might want the agent to:\n\n* identify the customer\n* pull their order\n* check a refund policy\n* call an API\n* decide whether a refund is allowed\n* process it\n* log what happened\n* escalate if necessary\n\nWith a cascaded system, I can inspect/control almost every step.\n\nWith end-to-end speech-to-speech, I get much better conversational latency, but I have fewer places to reliably intervene.\n\nFine-tuning an end-to-end model seems like one possible answer, but then you're adding training cost and a lot more engineering complexity.\n\nI've also seen people try to hide latency with things like:\n\n\"Hmm, let me check that for you...\"\n\nor typing/background sounds while tools are running.\n\nIt helps, but IMO it doesn't really solve the underlying problem.\n\nMy guess is that end-to-end eventually wins, but only when these models can reliably accept new context during the conversation and output structured data/tool calls alongside the voice.\n\nCurious what people actually building voice agents are doing today.\n\nAre you using ASR → LLM → TTS, end-to-end speech-to-speech, or some hybrid?\n\nAnd if you've tried both, how much control are you willing to give up to get sub-second latency? Any thoughts would be greatly appreciated!",
+    "developer": "Informal-Dust4499",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

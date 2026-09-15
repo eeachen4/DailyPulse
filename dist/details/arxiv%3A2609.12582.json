@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12582",
+  "sourceItemId": "2609.12582",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12582",
+  "detail": {
+    "longDescription": "arXiv:2609.12582v1 Announce Type: cross Abstract: When an autonomous AI agent does something consequential, what can be proven about what it did? Agent-observability platforms capture traces, but a trace is mutable: alterable undetected, with no recipe for re-executing it, silent on whether captured secrets were removed. Regulation (EU AI Act, ISO 42001, NIST AI RMF) presumes records an independent party can check. We present NovaFabric, producing audit-grade execution evidence: provider-neutral, tamper-evident, replayable, shareable. It records an agent run, without modifying agent logic, into a portable Run Capsule (fifteen-entity schema), sealed with a holistic DSSE signature, RFC 3161 timestamp, Merkle log and redaction attestation. Sealed runs are re-executable under a four-mode replay protocol and exportable as an Evidence Bundle for third-party verification with stock tooling (specified, not evaluated). The contribution is integration, not new cryptography: OpenTelemetry, DSSE/in-toto and W3C PROV. We evaluate eight research questions at measured scope. Mocked replay serves every model response from the capsule (no live model call, 10/10) but is offline w.r.t. models, not the network; only 2/10 tool-using workloads completed; the gap is missing tool-response substitution. Tampering is rejected across three tested classes. Declared-stream completeness is 0.652 (95% CI +/-0.064, ten scenarios). A repaired rule pack redacts 14/14 credential types, preserving 9/9 decoys; diff localises 140/140 mutations. Blast-radius queries: 45.5ms p99 over 10M edges (3.3x faster than a columnar baseline), 167.9ms over 100M (1 client, n=30). A 314-machine, ten-region run finds capsule REST ingest lossless but capped at 61.6 req/s (p99 26.8s) by per-worker serialisation. Six defects found in NovaFabric and its evaluation corpus: four fixed, one withdrawn, one open. Verification is conditional on a stated trusted computing base.",
+    "developer": "Mohsen Seyedkazemi Ardebili",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mohsen Seyedkazemi Ardebili"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

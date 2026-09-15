@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12757",
+  "sourceItemId": "2609.12757",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12757",
+  "detail": {
+    "longDescription": "arXiv:2609.12757v1 Announce Type: new Abstract: Test-time scaling improves code generation by spending additional inference budget (e.g., calls or tokens) on direct sampling, feedback-conditioned repair, and reasoning-guided implementation. Search-based methods can allocate this budget adaptively, but two challenges remain. First, tree-structured search treats each generation history as a separate state even when trajectories converge to the same program, duplicating evaluation and preventing statistics from being shared. Second, sampling, repair, and reasoning have complementary and state-dependent payoffs, making online allocation among them difficult under a finite budget. To address these challenges, we propose an adaptive graph search method with heterogeneous actions (GraphAHA). GraphAHA organizes the test-time code generation in a typed directed acyclic graph. Equivalent programs are merged into a single code node, allowing their downstream search statistics to be reused across all discovery paths. Hierarchical Thompson sampling then selects whether to generate a new state or follow an existing successor and, for generation, chooses among the type-valid sampling, reasoning, implementation, and repair operations. Evaluated on LiveCodeBench and CodeContests with Qwen2.5-Coder and DeepSeek-Coder, GraphAHA achieves the best score in 18 of 20 cases. For Pass@1 measured using visible tests, it outperforms the strongest baseline for both models on both benchmarks by 4.1 percentage points on average, demonstrating more effective use of a fixed inference budget.",
+    "developer": "Xitao Li, Haijun Wang, Gege Yuan, Qiyuan Wu, Jiali Wei, Ming Fan, Xiaofei Xie",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xitao Li, Haijun Wang, Gege Yuan, Qiyuan Wu, Jiali Wei, Ming Fan, Xiaofei Xie"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

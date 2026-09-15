@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.11957",
+  "sourceItemId": "2609.11957",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.11957",
+  "detail": {
+    "longDescription": "arXiv:2609.11957v1 Announce Type: new Abstract: An LLM agent acts on the world by emitting actions: shell commands to run, edits to apply. A wrong action does not always fail loudly; it can fail silently, producing a plausible but incorrect effect that raises no error. We argue that a cheap deterministic check, run before an action takes effect, is an effective and underused form of agent oversight, and we study it across two action modalities in one framework. The idea is to fix an action's correct effect by construction, before any executor runs, so that silent failure is measured directly and the verifier may abstain rather than guess. For shell commands, a static verifier over 9930 commands and 482 tools catches 95.8% of invalid commands at a 10.0% false-positive rate. Its syntax and binary checks are oracle-exact, giving zero false positives while catching half of all errors; the flag check is bounded only by help-text coverage and accounts for every false positive. For code edits, a benchmark of 640 edits over 224 files isolating the apply step exposes a sharp split. Content-anchored formats such as search/replace and diff fail cleanly, whereas location-anchored formats fail silently: line numbers corrupt 99.1% of files under a one-line shift, and function-name edits hit the wrong function 12.7% of the time. In both settings a refuse-when-unsure policy turns silent failures into recoverable ones at a tunable cost in applicability: selective grounding reaches 0.958 recall at 7.0% false positives, and an anchor-and-verify applier records one silent misapplication in 8320 trials (0.01%). We release both benchmarks, the verifiers, and the guards.",
+    "developer": "Asaad Althoubi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.MA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Asaad Althoubi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

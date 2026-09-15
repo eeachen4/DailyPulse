@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wgfhq2",
+  "sourceItemId": "1wgfhq2",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wgfhq2/i_want_to_build_a_competitive_pokémonstyle_game/",
+  "detail": {
+    "longDescription": "With AI doing more and more of the manual work, I've been thinking about what happens with all the skills a lot of us spent years learning. Most people here love this stuff, so I started wondering how could I turn those skills into a game. Competitive, a bit addictive, something to keep the brain active and have fun with.\n\nSo here's the idea.\n\nIt's basically Pokémon, but the creatures are Kubernetes workloads and the fights are chaos engineering. You have a namespace with your team in it: a couple of Deployments, a StatefulSet, maybe a CronJob. Another player has theirs. You fight 1v1, turn based. Each turn you play cards against the other namespace (kill a pod, drain a node, partition the network, starve the CPU) and the other player gets a short window to repair (scale up, add a PDB, restart). Everything is real: a referee runs the actual kubectl and chaos behind each card, and an SLO checker scores who kept serving traffic. You start blind, so you spend turns on recon to see what they have before you hit. Ladder, ELO, seasons, the usual.\n\nThe nice thing is you don't need to invent balance. A drain bounces off a Deployment with a PDB and wrecks a single-replica StatefulSet. A partition does nothing to a team behind a queue and kills a synchronous HTTP chain. Kubernetes is the type chart.\n\nTo get a team, there's an adventure mode where you unlock cards by doing things for real (drain a node in a mission, you get the Drain Node card), a shop where components have a price and a running cost (NATS cheap, Kafka eats half your quota), crafting where the manifests you collect get combined into workloads, and generated break/fix tickets to farm coins. Your party size is your ResourceQuota. And you can compete from day one, because playing cards is strategy while building the team is the engineering. Knowing more gives you more options, not more power.\n\nNow the honest part. I'm quite sceptical there are enough people as geeky as me willing to spend their evenings on this. And I don't want to start building (even with AI, I think this one is tricky, although I think I would enjoy building it) without knowing if anyone would play. So: would you? \n\nI'm attaching a pdf with the spec. Fair warning, it came out of a very long back and forth with Claude, so it's AI-organised, but it's much clearer than what I'd manage from the mess in my head. I also have UI mockups and a fully scripted example fight, but I don't want to bury you in AI generated docs. If there's interest I'll post them.\n\n[`https://sharepdf.link/s/0Z3Fwm7V.pdf`](https://sharepdf.link/s/0Z3Fwm7V.pdf)",
+    "developer": "Successful_Mango_798",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

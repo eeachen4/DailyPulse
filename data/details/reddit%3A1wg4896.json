@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wg4896",
+  "sourceItemId": "1wg4896",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wg4896/a_different_way_to_think_about_kubernetes/",
+  "detail": {
+    "longDescription": "Kubernetes'teki konteyner güvenliği genellikle birkaç farklı araç ve politikaya yayılır. Güvenlik açığı taraması CI'da gerçekleşir, görüntü imzalama başka bir yerde gerçekleştirilir, kabul politikaları kümede yaşar ve denetim bilgileri başka bir sisteme girebilir.\n\nAttestkeep'i daha basit bir fikir etrafında kurduk: **güvenlik kararları, tek bir taramaya dayanmak yerine, doğrulanabilir kanıtlara ve tutarlı politikalara dayanmalıdır.**\n\nİş akışı esasen:\n\n**→ Oluşturun → Doğrulayın → Onaylayın  Uygulayın**\n\nCI ve görüntü hazırlama sırasında Attestkeep aşağıdaki gibi şeyleri değerlendirebilir:\n\n* Güvenlik açığı ciddiyeti ve yüksek riskli CVE'ler\n* CISA KEV bulguları\n* Ömrünü tamamlamış temel görüntüler\n* Resim imzaları ve güvenilir kimlikler\n* SBOM ve güvenlik açığı doğrulamaları\n* SLSA yapı kaynağı\n* Güvenilir OpenVEX bilgileri\n\nİşin yararlı kısmı kontrollerden sonra ne olacağıdır.\n\nBir güvenlik taramasını, birisinin gözden geçirmeyi hatırlaması gereken bir rapor olarak ele almak yerine, sonuçlar uygulanabilir bir politikanın parçası haline gelebilir.\n\nGörüntü Kubernetes'e ulaştığında kabul son kontrol noktası olur. Karar, kuruluşun tanımlanmış gereksinimlerine dayanırken, politika ve karar geçmişi denetlenebilir durumda kalır.\n\nKasıtlı olarak odaklandığımız bir diğer konu ise güvenlik verilerini müşterinin Kubernetes ortamında tutmaktır. Politikaların, tarama sonuçlarının ve denetim kayıtlarının harici bir SaaS platformuna gönderilmesi gerekmez.\n\nBu, modeli, altyapılarına başka bir dış bağımlılık eklemeden daha güçlü konteyner güvenliği isteyen kuruluşlar için kullanışlı hale getiriyor.\n\nAmaç her şeyi engellemek değil.\n\nGüvenlik kurallarını öngörülebilir kılmak içindir:\n\n**Geliştiriciler erken geri bildirim alıyor.**  \n**Güvenlik ekipleri gereksinimleri tanımlar.**  \n**Kubernetes onları tutarlı bir şekilde uyguluyor.**\n\nBu yaklaşımı Attestkeep'te yürütüyoruz ve bunun insanların halihazırda kullandığı farklı CI, Kyverno, OPA/Gatekeeper ve imza tabanlı yaklaşımlarla nasıl karşılaştırıldığını görmekle ilgileniyoruz.\n\nKubernetes güvenliğiyle çalışıyorsanız, bu modelde neleri değiştireceğiniz veya geliştireceğiniz özellikle ilgimi çeker.",
+    "developer": "Exotic_Middle6894",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

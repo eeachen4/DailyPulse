@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49691257",
+  "sourceItemId": "49691257",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49691257",
+  "detail": {
+    "longDescription": "I built Replay because AI agent bills spike without a single warning or error in your logs when a prompt cache breaks. Whether your team runs Claude Code, Cursor, or Aider, the provider just silently re-bills your entire conversation history at cold-write prices instead of cached read prices. Replay is a zero-telemetry, zero-dependency local Go CLI that forensically reads your on-disk log transcripts, replays them against reverse-engineered provider caching state-machines, and names the exact turn the cache broke, the cause, and the exact token leakage. Repo: https:&#x2F;&#x2F;github.com&#x2F;RedRobotKK&#x2F;Replay Core Subcommands (What it actually does): - `replay` : Computes total avoidable re-billed cost across your local transcripts. - `replay diff &lt;transcript&gt;` : Pinpoints the exact turn the cache sharded and why. - `replay advise &lt;dir&gt;` : Outputs structural prompt optimization adjustments based on your history. - `replay context &lt;transcript&gt;` : Ranks and isolates exactly what content is bloat-filling your context window. - `replay route &lt;dir&gt; --to &lt;model&gt;` : Simulates what switching models would cost, factoring cold-start prefixes. Why Go &#x2F; Design Constraints: 1. Zero Dependency: Avoids messing with Python virtual environments or Docker runtimes for local diagnostics. 2. 100% Sandboxed: Absolutely no remote tracking, cloud accounts, or telemetry. Your prompt text never leaves your machine. 3. Mutant Testing Isolation: Keeps 76 real past defects frozen as re-runnable mutants to enforce code stability. It&#x27;s completely free and source-available (BUSL 1.1). To check your local developer logs or audit the setup script before running, use: curl -fsSL https:&#x2F;&#x2F;replay.doctor | less",
+    "externalUrl": "https://replay.doctor/",
+    "developer": "danielsaito",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

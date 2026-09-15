@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49699591",
+  "sourceItemId": "49699591",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49699591",
+  "detail": {
+    "longDescription": "I have been building Rebuno, an open-source execution runtime for operating AI agents in production. It manages execution state and guardrails across agents built with different frameworks. Agents run as HTTP services. Rebuno dispatches work through signed webhooks and keeps execution state in Postgres. Agents submit tool and model calls to Rebuno as steps before executing them. For each new step, Rebuno evaluates per-agent YAML policies, independently of the model&#x27;s prompt. It can allow the call, deny it, or hold it for human approval. The agent executes permitted calls and reports their outcomes. Policy decisions and step outcomes are both recorded in one append-only event log. After an interruption, the agent starts its handler from the top. Steps with recorded outcomes return those outcomes instead of executing again. A crash can also leave a tool with no recorded outcome. Tools marked safe_to_retry run again, and tools marked at_most_once fail as indeterminate. How the agent handles an indeterminate step is up to its implementation. There are Python and TypeScript SDKs, and the repo includes examples using LangChain, CrewAI, Pydantic AI, Vercel AI SDK, and Mastra. Rebuno is free to self-host and released under the MIT licensed. I&#x27;d be interested in hearing how others are running or operating agents in production. Blog post with diagrams: https:&#x2F;&#x2F;rebuno.io&#x2F;blog&#x2F;introducing-rebuno Getting started: https:&#x2F;&#x2F;docs.rebuno.io&#x2F;getting-started",
+    "externalUrl": "https://github.com/rebuno/rebuno",
+    "developer": "nnww",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

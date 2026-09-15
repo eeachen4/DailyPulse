@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12309",
+  "sourceItemId": "2609.12309",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12309",
+  "detail": {
+    "longDescription": "arXiv:2609.12309v1 Announce Type: new Abstract: PQLS (Parallel Quantum Liouvillian Solver) is a high-performance Python library for computing steady-state solutions of the Lindblad master equation. It provides a layered user-facing API with three levels of abstraction. The high-level API accepts physical descriptions of atomic ladder systems and automatically determines the required model parameters; the mid- level API accepts quantities such as Rabi frequencies, detunings, decay rates, and network topology; finally the low-level API allows users to directly specify the Hamiltonian and collapse operators. This layered design enables users to choose between physical convenience and direct numerical control depending on the application. PQLS is built on JAX and XLA to enable vectorized and hardware-accelerated computation of large parameter sweeps. Rather than solving the steady-state problem sequentially for each parameter configuration, PQLS represents multiple Hamiltonians as batched tensors and processes them through a JAX-compiled solver, reducing Python-level overhead and improving hardware utilization. This is particularly useful for applications requiring large or multidimensional parameter sweeps, such as computing frequency spectra, evaluating field-dependent responses, and performing Doppler averaging over atomic velocity distributions. PQLS has been benchmarked against QuTiP, QuTiP-JAX, and RydIQule on CPU and GPU platforms, demonstrating substantial computational speedups across the tested configurations.",
+    "developer": "Evan Simanovskis, Raviraj Adve, Javane Rostampoor",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Evan Simanovskis, Raviraj Adve, Javane Rostampoor"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

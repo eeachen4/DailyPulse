@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wfz56c",
+  "sourceItemId": "1wfz56c",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wfz56c/help_with_docker_extension_mysqli_pdo/",
+  "detail": {
+    "longDescription": "Hi folks, currently stuck on getting mysqli & pdo extensions installed and enabled in my docker setup.\n\n  \nThe relevant section of my **docker-compose.yml**:\n\nweb:  \n   build:  \ncontext: .  \ndockerfile: Dockerfile  \n   container\\_name: compose-web  \n   ports:  \n\\- \"8100:80\"     \n   depends\\_on:  \n\\- mariadb      \n   volumes:  \n\\- /home/user/docker/lamp-stack/html:/var/www/html:Z\n\n\n\n**Dockerfile contents:**\n\nFROM php:8.2-apache  \n  \nRUN docker-php-ext-install mysqli pdo pdo\\_mysql && docker-php-ext-enable mysqli  \n  \nCOPY . /var/www/html/  \nEXPOSE 80  \n  \n*Have also tried it without the && docker-php-ext-enable mysqli.*\n\n  \n\\-With both files setup as above I've run the following from the host os:\n\nsudo docker compose build\n\nsudo docker compose up -d\n\nNo error messages, it builds and starts. Image compose-web built\n\n  \nOn the host, if I run:\n\ndocker compose exec web php -m | grep mysqli \n\nI receive:\n\nmysqli\n\n  \nIf I run\n\ndocker compose exec web php -i | grep mysqli\n\nI receive:\n\nAdditional .ini files parsed => /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini,\n\nmysqli\n\nmysqli.allow\\_local\\_infile => Off => Off\n\nmysqli.allow\\_persistent => On => On\n\nmysqli.default\\_host => no value => no value\n\nmysqli.default\\_port => 3306 => 3306\n\nmysqli.default\\_pw => no value => no value\n\nmysqli.default\\_socket => no value => no value\n\nmysqli.default\\_user => no value => no value\n\nmysqli.local\\_infile\\_directory => no value => no value\n\nmysqli.max\\_links => Unlimited => Unlimited\n\nmysqli.max\\_persistent => Unlimited => Unlimited\n\nmysqli.rollback\\_on\\_cached\\_plink => Off => Off\n\nAPI Extensions => mysqli,pdo\\_mysql\n\n  \nThe error message when i try submit my form from my html site:\n\n**Fatal error**: Uncaught Error: Class \"mysqli\\_connect\" not found in /var/www/html/qsoinsert.php:8 Stack trace: #0 {main} thrown in **/var/www/html/qsoinsert.php** on line **8**\n\n  \nInside the container I navigate to /usr/local/etc/php looking for the php.ini file, but I have php-ini-development & php.ini-production, both of which listed the extension preceded by ';' (so still commented out?)\n\nAm I missing something glaringly obvious?\n\n  \nThanks in advance",
+    "developer": "Haunting_Walrus_8651",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

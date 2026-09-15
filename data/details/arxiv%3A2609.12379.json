@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.12379",
+  "sourceItemId": "2609.12379",
+  "fetchedAt": "2026-09-15T01:55:38.881Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.12379",
+  "detail": {
+    "longDescription": "arXiv:2609.12379v1 Announce Type: new Abstract: Auto-regressive model decode is bandwidth-bound, since every weight and key/value-cache byte crosses high-bandwidth memory once per token. A megakernel is an ideal solution, but existing automatic megakernel generation approaches cannot achieve both generalization across models and correctness guarantees. We present ForgeMegakernel, which generates a per-model high-performance decode megakernel using coding agents. ForgeMegakernel pairs a universal knowledge base of ten progressive milestones with an independent mid-state test oracle. The milestones provide the megakernel's structural properties: a fine-grained instruction stream for each SM, dependency counters replacing the global synchronization, and a shared-memory buffer pool for workload balance across SMs and greater parallelism. The test oracle derives the mid-states of the megakernel and checks the performance, error and precision during the generation process, guaranteeing a correct and trustworthy forged megakernel. We evaluated ForgeMegakernel on 14 representative decoding operations across eight model families spanning 0.6B-13B parameters. The generated megakernels achieved 50.5-85.9% MBU and geometric mean speedups of 1.21x over SGLang 0.5.18 and 1.54x over a megakernel compiler under identical configurations. Inside SGLang, evaluated on GSM8K with ragged prompts, all 14 megakernels decoded faster than the SGLang engine at comparable answer accuracy.",
+    "developer": "Leshan Li, Zhui Zhu, Xianglong Deng, Yaojian Chen, Qingfeng He, Yuxuan Li, Rong Zhao, Xu Han, Zhiyuan Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Leshan Li, Zhui Zhu, Xianglong Deng, Yaojian Chen, Qingfeng He, Yuxuan Li, Rong Zhao, Xu Han, Zhiyuan Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
