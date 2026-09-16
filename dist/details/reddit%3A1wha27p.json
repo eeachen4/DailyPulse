@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wha27p",
+  "sourceItemId": "1wha27p",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wha27p/we_fixed_our_gpu_utilization_metrics_and_nobody/",
+  "detail": {
+    "longDescription": "We've spent about two weeks getting our GPU metrics honest, mostly switching on the DCGM profiling counters that ship disabled and fixing which pod the numbers land against. No regrets about the two weeks, though it turned out to be the easy part of this.\n\nOut came a clean list of eleven cards across two Kubernetes clusters sitting under 5% SM activity for a month, one of them holding 40GB of framebuffer while serving nothing at all. On paper that is the GPU idle cost finance had been asking me to put a number on.\n\nI took the list into a capacity review because I assumed the argument would be about the numbers but not a single person questioned that. Every card came back with a reason. Two are headroom for a launch next quarter, 3 belong to a team that got them during the shortage and will not hand them back while the shortage is still on. One is a research box with a CUDA context left on it by somebody who left in the spring, and no one currently on that team will claim it long enough to turn it off.\n\nOur platform lead put it plainly on the way out that he is not the one who tells finance a reserved card is waste. The report is accurate and it has no teeth since none of the reasons behind those eleven cards exists anywhere in the cluster.\n\nA card that is idle on purpose and a card that is idle by accident produce an identical utilization number and the allocation reads the same on both. How are you separating the two? A label saying deliberately reserved is the obvious answer and it is also what nobody maintains past the first month.",
+    "developer": "Lance_Saul_85",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

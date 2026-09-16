@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.14640",
+  "sourceItemId": "2609.14640",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.14640",
+  "detail": {
+    "longDescription": "arXiv:2609.14640v1 Announce Type: new Abstract: PaxosLease is a protocol by which a quorum of acceptors grants time-bounded exclusive ownership with no durable acceptor lease state and no disk write on the lease acquisition path. This paper gives a precise, machine-checked statement of the protocol and of its standard use, electing a Multi-Paxos leader that recovers once per epoch and then commits with single-round appends. Three results are new. First, the restart quarantine an acceptor must observe after losing its volatile state is the proposer attempt duration, a bound tight in the checked model and machine-checked at the boundary in both directions. Second, timer placement is safety-critical: starting the attempt timer at prepare-quorum receipt can produce two simultaneous lease owners. Third, when a proposer abandons an acquisition attempt and retries, messages left over from the abandoned attempt can make acceptors report a lease the proposer itself appears to own; unless such a report counts as open only while the proposer is renewing that exact lease, two simultaneous owners follow at any quarantine length. The lease transition system is formalized in TLA+ and checked by TLC, and the timing arithmetic is proved in TLAPS. An executable reference model encodes the same rules a second time, independently of the TLA+, so that a wrong rule has to survive two separate encodings. A single-file runnable demonstration gives the algorithm in readable Python code.",
+    "developer": "M\\'arton Trencs\\'eni (mtrencseni@gmail.com)",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "M\\'arton Trencs\\'eni (mtrencseni@gmail.com)"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

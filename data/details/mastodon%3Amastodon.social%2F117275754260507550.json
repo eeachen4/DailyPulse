@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117275754260507550",
+  "sourceItemId": "mastodon.social/117275754260507550",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-43922a17-3285a66b418ab598",
+  "detail": {
+    "longDescription": "We migrated a customer panel's nginx container last week for an unrelated SEO fix (a trailing-slash redirect bug), rebuilt it, and redeployed. Routine stuff. A few days later I was pulling GA4 numbers to check on organic traffic and noticed something odd: roughly a quarter of our \"Direct\" channel sessions were landing on /app/customer/login?returnTo=/payment/<plan>/<period> for a huge spread of plan slugs - not two or three, but nearly every pricing tier across every product we sell. Same browser fingerprint every time: (not set) , desktop, Germany. Zero engagement on all of them. That's not a customer. That's a script walking through every checkout URL it could find, probably scraped off our own pricing page. I went to pull the nginx access log to find the source IP and got nothing. The container had been rebuilt days earlier for that unrelated SEO fix, and access_log was pointed at a file inside the container ( /var/log/nginx/access.log ), not stdout. The rebuild wiped it. docker logs showed nothing because there was nothing on stdout to show. Our Promtail/Loki pipeline, which only scrapes the Docker logging driver, had never seen a single line of it either. The bot's IP is gone. There's no way to get it back now. The actual fix was two lines: access_log /dev/stdout main; error_log /dev/stderr warn; nginx treats /dev/stdout and /dev/stderr as regular files it can write to, so this isn't some special integration, it just means the same log lines that used to sit in a file now go through the container's stdout/stderr, which docker logs already reads and which our existing Promtail config was already scraping. Nothing else changed. The lesson wasn't really about the bot. Low-rate GET enumeration of public pricing URLs isn't a very interesting threat on its own. It was that we had a monitoring pipeline that looked complete (Promtail, Loki, Grafana, the works) with one container quietly opting out of it, because its base nginx config still defaulted to writing log files the way it would on a bare-metal box from ten years ago. If this container gets rebuilt again next month, whatever it's doing then, we'll actually be able to see it. If you're running nginx in Docker and haven't checked, it's worth a look at your own access_log / error_log directives. A monitoring stack is only as complete as the containers that actually write to it. # nginx # docker # devops # security # software # coding # development # engineering # inclusive # community A bot enumerated every payment URL on our site and our logs never saw it",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

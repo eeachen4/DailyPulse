@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh81qq",
+  "sourceItemId": "1wh81qq",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wh81qq/the_smallest_boring_check_that_saved_my_agent/",
+  "detail": {
+    "longDescription": "I burned a week on a retry bug that only showed up when the first model call succeeded and the second one failed. The fallback replayed a write that had already landed. Duplicate row. No error anywhere.\n\nThe fix was boring. I log every step outcome before any retry runs. The log is the product now. The model call is the interchangeable part.\n\nIt came from staring at the DX workflow thread here about deterministic versus agentic control loops. Typed context between runs killed my drift the same week.\n\nWhat is the smallest boring check that saved your agent work? I want the unglamorous ones.",
+    "developer": "adi-IL",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

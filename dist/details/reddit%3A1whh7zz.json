@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whh7zz",
+  "sourceItemId": "1whh7zz",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1whh7zz/screening_login_attempts_for_containerized/",
+  "detail": {
+    "longDescription": "Hello everyone,\n\nForgive me for what may be a newby question, but I have a web application - in this case Jellyfin, that I host for myself and some family and friends. I currently have Jellyfin running in a Docker container, and Nginx running on the host machine serving it.\n\nI've done a decent job hardening the configuration for both, but I'd still like to use fail2ban to autoban IPs that fail logins. The issue I'm having here is that Jellyfin's logs only show internal Docker network IPs, and so all activity reported in the logs only shows as some address in the 172.16.0.0/12 subnet. Nginx doesn't have any of its own user authentication set up, so sniffing the Nginx logs yields no results, and thus no bans. \n\nSo my question is:\n\nIs there a way to have jellyfin detect source IPs from behind NAT so that I can actually create a fail2ban filter that works, or is this a larger misconfiguration problem that would require me to restructure how I've built this server?\n\nI'm fairly new to hosting and would greatly appreciate some guidance here. Thanks :)",
+    "developer": "GigaHertz8771",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

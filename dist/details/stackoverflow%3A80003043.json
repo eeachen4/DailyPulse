@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003043",
+  "sourceItemId": "80003043",
+  "sourceUrl": "https://stackoverflow.com/questions/80003043/specify-property-of-object-in-a-way-that-keeps-common-type-of-property-known",
+  "detail": {
+    "longDescription": "Let's say I have some objects like this: class GroupA { a: number[] = []; b: string[] = []; // other properties } class GroupB { c: boolean[] = []; // other properties } All of these are arrays. I'm trying to create a function that allows me to pass in either a GroupA or GroupB with either 'a', 'b', or 'c' specifically, even if there may be other arrays in the object: type Property<Group extends GroupA | GroupB> = keyof Group & ( Group extends GroupA ? keyof Pick<Group, 'a' | 'b'> : Group extends GroupB ? keyof Pick<Group, 'c'> : never ); function sort<Group extends GroupA | GroupB>(group: Group, property: Property<Group>) { const arr = group[property]; // I want it to know that arr is an array. } I have tried a bunch of things and can easily restrict property to the appropriate values I want, but I can't get it to know (without having to directly cast it to other things) that group[property] is an array ( unknown[] or any[] would be fine in this case). Is it possible to define the type in some way so it'll realize that Property always maps to some common type (in this case, an array)? I feel like this should be possible, but I'm just approaching something wrong.",
+    "developer": "samanime",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "55"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

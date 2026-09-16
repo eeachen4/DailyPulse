@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whatjk",
+  "sourceItemId": "1whatjk",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1whatjk/hitfilm_2023/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI’m facing a dead-end with my HitFilm installation following a PC format, and I’m looking for advice or experiences from anyone who has dealt with FXhome's shutdown.\n\n**My situation:**\n\n* I have a project/workflow originally built on **HitFilm 2023.2 (v21.1.2.0)**.\n* My old PC still has a fully working, licensed installation. The local `.license` file shows `status: active` tied to the old machine's Hardware ID.\n* On the new PC, re-installing HitFilm results in a stripped-down offline UI (only *File -> Exit* and *Help -> About* available).\n* The `hitfilm.log` shows that ActivationHelper tries to query `[https://program-data.fxhome.com/release-info/hitfilm.json](https://program-data.fxhome.com/release-info/hitfilm.json)` and fails with `JSON Error: illegal value` / `Waiting for new License` because FXhome/Artlist servers are permanently offline (post-Jan 2025).\n\n**What I've verified so far:**\n\n1. Copying the `.license` file from the old PC to the new one fails because the cryptographic signature (`sig`) is hard-coded to the old Hardware ID.\n2. Without active auth servers, HitFilm cannot issue a new signature for the new hardware ID.\n\n**My Questions:**\n\n1. Has anyone successfully migrated an active HitFilm 2023.2 installation to a new machine post-server shutdown using local registry/AppData backups?\n2. Are there any known community tools or config tweaks to force HitFilm into recognizing local offline activation for existing license owners?\n3. If not, what is the most lossless method you've found to migrate `.hfp` timeline assets over to DaVinci Resolve or Premier?\n\nThanks in advance for any insights!",
+    "developer": "SaimonL",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

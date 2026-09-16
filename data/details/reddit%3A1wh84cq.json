@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh84cq",
+  "sourceItemId": "1wh84cq",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wh84cq/i_built_10_agent_skills_for_coding_agents_that/",
+  "detail": {
+    "longDescription": "The motivation was pretty simple: coding agents are good at writing plausible code, but they still make recurring engineering mistakes around architecture and AI-specific implementation details.\n\nFor example, they'll often:\n\n* build an agent when a workflow would be enough\n* expose every API endpoint as a separate tool\n* manually parse JSON when structured outputs are available\n* overuse multi-agent architectures\n* stuff retrieved chunks into context without thinking about document-level retrieval\n* change models or RAG pipelines without actually measuring whether the change helped\n\nI turned production-oriented guidance for these problems into 10 Agent Skills covering architecture, tool calling, tool design, structured output, prompting, context/memory, RAG, subagents, model selection, and evals.\n\nThe skills are plain [`SKILL.md`](http://SKILL.md) files with references loaded on demand, so they work as Agent Skills rather than requiring a framework.\n\nI built the project primarily with Claude Code, and the skills are designed to be used by coding agents including Claude Code, Codex, Cursor, OpenCode, and GitHub Copilot.\n\nI also wanted to test whether the skills actually changed agent behavior instead of just assuming they did.\n\nThe first benchmark was 96 Claude Code generations across 16 tasks, with positive cases, traps, and controls:\n\n12 wins / 4 ties / 0 losses  \nMean score: 0.40 → 0.76  \nMean delta: +0.36  \n95% bootstrap CI: \\[+0.22, +0.51\\]\n\nThere are some important caveats. Only 4 of the 10 skills were tested in this first run, and some of the measured improvement comes from style-sensitive checks. Removing those checks reduces the delta to +0.20. I've documented the methodology, grader fixes, and limitations in the repository.\n\nThe whole thing is free and open source:\n\n[https://github.com/OsamaSaa3d/production-ai-skills](https://github.com/OsamaSaa3d/production-ai-skills)\n\nI'm mainly interested in technical criticism here. Which of these production defaults do you disagree with?",
+    "developer": "Quirky-Location7712",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

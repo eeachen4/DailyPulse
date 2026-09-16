@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh7vg5",
+  "sourceItemId": "1wh7vg5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wh7vg5/maybe_i_found_a_cheat_code_eventdriven_agents/",
+  "detail": {
+    "longDescription": "After spending a long time thinking about multi-agent cost, I decided to run an experiment.\n\nInstead of manually triggering workflows whenever I wanted a useful result, I built a genuinely event-driven environment where agents react to external events and write structured observations into a shared context layer.\n\nI expected the cost to explode.\n\nIt actually became much cheaper.\n\nI am currently working with a system of 32 specialized agents orchestrated across multiple models, including GPT-5.6 Sol, Fable, Opus, and several others.\n\nThe domain is real-time financial-market data, where information changes quickly and isolated answers are not enough. The system needs to continuously transform raw market data, news, macro events, and related context into something that can be used for research and decision support.\n\nMy original approach was too manual.\n\nI was constantly deciding which workflow to trigger, when to run it, and which agent should analyze a new event. It produced decent results, but it was inefficient: too much repeated context, too many expensive calls, and too much dependence on manual orchestration.\n\nThe new approach is event-driven.\n\nWhen something meaningful happens, only the relevant workflows react. Smaller models handle the repetitive work: classification, extraction, routing, normalization, event detection, and basic summaries.\n\nThe outputs are stored with timestamps, evidence, and relationships inside a graph-based context layer.\n\nThen, periodically — or when the system detects a material change — I trigger a small “council” composed of frontier models. Their role is not to process every raw event. They review the accumulated context, identify contradictions or gaps, compress what matters, and produce an updated contextual snapshot for a specific asset, country, or related market environment.\n\nThe surprising result was that this improved both cost and quality.\n\nCost improved because frontier models are no longer used for repetitive data processing or constantly rebuilt context. They are used selectively, after cheaper workflows have already filtered and structured the relevant information.\n\nQuality improved because the higher-reasoning models receive a more coherent body of evidence instead of a massive, unstructured stream of raw data.\n\nI would not call this “self-improvement” in the model-training sense. The models are not being fine-tuned by the system.\n\nBut the context layer becomes more useful over time as observations are collected, linked, reviewed, compressed, and corrected.\n\nThere are still serious problems:\n\n* Context can become stale.\n* A bad observation can contaminate later summaries.\n* Agents can still hallucinate when evidence is incomplete.\n* Deciding what qualifies as a “material event” is difficult.\n* Periodic compression can discard details that later become important.\n\nStill, this changed my view of multi-agent systems.\n\nThe biggest cost problem was not simply which model I used. It was repeatedly sending too much unstructured context to expensive models.\n\nHas anyone else seen this effect in production systems?",
+    "developer": "tradfyAi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

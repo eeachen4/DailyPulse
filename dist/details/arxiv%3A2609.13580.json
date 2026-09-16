@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.13580",
+  "sourceItemId": "2609.13580",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.13580",
+  "detail": {
+    "longDescription": "arXiv:2609.13580v1 Announce Type: new Abstract: Large language models (LLMs) have demonstrated strong capabilities across a wide range of natural language processing tasks. However, conventional fine-tuning typically relies on centralized data collection, bringing in privacy concerns. Federated learning (FL) enables collaborative LLM fine-tuning without sharing raw client data, but its deployment over bandwidth-constrained wireless networks is hindered by the communication overhead of model-parameter transmission. Although Low-Rank Adaptation (LoRA) reduces the number of trainable parameters, its communication cost still increases with model scale. Knowledge distillation avoids parameter sharing via output logits, but token-level logits in LLMs incur high communication cost due to sequence length and vocabulary size. Reducing logits lowers the cost but weakens supervision and degrades accuracy. To address these limitations, we propose FLoKD, an adaptive knowledge-distillation framework for federated LoRA fine-tuning of LLMs over wireless networks, which communicates intermediate LoRA activations as the distillation signal rather than logits or full parameters. Since transmitting all blocks over the entire public dataset remains costly, we further propose a transformer block importance scoring framework that selectively transmits the most informative blocks, and two dataset selection strategies that discard public samples deviating from the local data distribution and prioritise those most informative for distillation. Extensive experiments across multiple generative language datasets, including WikiText-103, PTB, and Dialog, demonstrate that our proposed framework reduces communication overhead by 50-65% while achieving rapid convergence to competitive perplexity compared to baselines.",
+    "developer": "Xinlu Zhang, Na Yan, Yang Su, Yansha Deng, Toktam Mahmoodi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xinlu Zhang, Na Yan, Yang Su, Yansha Deng, Toktam Mahmoodi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

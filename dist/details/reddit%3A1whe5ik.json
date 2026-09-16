@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whe5ik",
+  "sourceItemId": "1whe5ik",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1whe5ik/i_spent_6_months_building_a_unified_trends_mcp/",
+  "detail": {
+    "longDescription": "I'm building agents that need to know what's trending right now, and I got tired of babysitting scrapers to do it.\n\npytrends was my first stop. Random 429s, broken pipelines at 2am, time.sleep() hacks, and a library that's now archived because Google flags scrapers at the protocol level. Keeping a scraper fleet alive turned into a second job, so I built the thing I actually wanted.\n\nTrendsMCP: one API key, 40+ trend data sources. Google Search, TikTok, YouTube, Reddit, Amazon, news sentiment, and more, behind three tools:\n\n\n\n\\- get\\_time\\_series: weekly or daily history for a keyword on one source. 0-100 index where the source uses it, absolute volume where the source has it.\n\n\\- get\\_growth: point-to-point percent change across one or several sources in a single call. 7D, 30D, 1Y, YTD presets.\n\n\\- get\\_top\\_trends: what's trending across the live platforms right now.\n\n\n\nThe part I use most is cross-source growth in one call. You can pull how \"air fryer\" moved on Amazon vs TikTok vs Google over 90 days and get back one consistent schema instead of three scrapers and a prayer.\n\nIt's also an MCP server, so in Claude or Cursor you just say \"using TrendsMCP\" and the model picks these tools up.\n\nHonest limitations: free tier is 100 requests a month, so it's not built for high-frequency polling. It's an aggregator over platform data, so coverage follows what the platforms expose. Some sources only give the 0-100 index, no absolute volume.\n\nCurious where people who've actually wired trend data into agents found it mattered. I keep going back and forth on whether real-time \"what's trending\" beats scheduled time-series pulls for most agent workflows.",
+    "developer": "Proper_Design_2616",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

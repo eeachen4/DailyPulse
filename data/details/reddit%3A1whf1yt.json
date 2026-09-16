@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whf1yt",
+  "sourceItemId": "1whf1yt",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1whf1yt/how_are_people_handling_the_tradeoff_between/",
+  "detail": {
+    "longDescription": "I’ve been thinking about context management for long-running agents.\n\nCompaction obviously helps control context growth, but it seems to come with a cost: once you rewrite/summarize the conversation state, you potentially lose a lot of the benefit of prompt caching because the prefix keeps changing.\n\nSo I’m wondering how people handle this in production.\n\nDo you actually compact the main agent context frequently?\n\nOr **is a better pattern to keep the main context relatively stable and push isolated work into subagents with clean contexts, then only return the relevant outcome/artifact back to the parent?**\n\nSomething like:\n\nmain agent → spawn focused subagent → subagent does exploration/tool calls → return concise result → main context stays clean\n\nThat seems like it could give you:\n\n* better prompt cache utilization\n* less context pollution\n* clearer task boundaries\n* less information loss from repeated summarization\n\nThen compaction becomes more of a fallback for genuinely long-lived state rather than something you need every N turns.\n\nCurious what people are actually doing in production. How often are you compacting, and when do you prefer compaction vs context isolation/subagents?",
+    "developer": "Marcus_MSC",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

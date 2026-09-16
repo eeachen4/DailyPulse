@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whedle",
+  "sourceItemId": "1whedle",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1whedle/where_are_you_running_deepseek_v41_flash_reliably/",
+  "detail": {
+    "longDescription": "I reallise this is not exactly a locally hostable model, at least definitly not on my hardware. But I figured some of you might have some insight on this.   \nI run an agentic coding benchmark. The model gets tools (bash, file editing, a headless browser to playtest with), can spawn sub-agents, and has 2 hours to build a small 3D browser game. GLM,  qwen , etc all ran through the same harness on OpenRouter and finished in 27 to 110  \n minutes without  transport error.  \n  \nDeepSeek V4.1 Flash has never finished. It ran out of time on all tasks I tried. I've resumed the racing game run 4 times, about 6+ hours of wall clock in total, and it still hit the limit every time. It's cheap ($8.34 for 1,153 turns and 143M input tokens), so  I'd really like to make it work to evaluate it.  \n  \nSetup: \\`deepseek/deepseek-v4.1-flash\\` on OpenRouter, Chat Completions with tool calling, max\\_tokens 32768, default routing with no provider pinning, streaming with usage included.  \n  \nTwice in one hour, OpenRouter sent a 502 provider\\_unavailable from Together partway through a streamed reply. Once the stream has started, OpenRouter can't fall back to another provider, so that request is just dead.  \n  \n32 replies came back with no text and no tool call. 7 of them used exactly 32,768 output tokens (about 3.5 minutes each). The other 25 ended with a finish\\_reason that wasn't stop, length or tool\\_calls. One of those took 423 seconds and \\~10k output tokens.\n\nCalls are very slow. Before I switched to streaming, 7 requests across two runs hit my 600s client timeout.  \n  \nSo, for people using DeepSeek for long agentic sessions, where do you run it? DeepSeek's own API (I havent had much luck there either) or something like OpenRouter with a pinned provider?  \n\n\nI guess I could startup 8xh200 on runpod or something, but's thats really overkill to benchmark something.\n\nI guess, my general goal with this convo is figuring out where you benchmark  any large open source LLM before deciding to self host.",
+    "developer": "sebnadeau",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

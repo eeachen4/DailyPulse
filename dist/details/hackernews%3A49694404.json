@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:49694404",
   "sourceItemId": "49694404",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49694404",
   "detail": {
     "longDescription": "What is ChaosTree? ChaosTree is a zero-dependency Java Sorted Set&#x2F;Map library built around multiple tree implementations. It provides implementations of: - AVL Tree - Red-Black Tree - B-Tree - B+Tree I have not made my custom API as it implements NavigableSet, NavigableMap, SequencedSet and SequencedMap. My Custome API are: - buildFromSorted(Iterator&gt; it, float factor) - importFlatMatrix(Object[][] blast, float factor) - Object[][] exportFlatMatrix() I started ChaosTree because I wanted to explore how far I could learn DS structure, It started as frst release of 7 tree of Set type with Custome API, As i got engrossed into it I moved to Map, During phase of switching from Set to Map there was drastic change and knowledge upgrade where I pushed my Tree limit from jdk11+ support to jdk21+ where paid close attention to dependency-free and memory layout, allocation,JVM behavior, and real-world performance. Some of the things I experimented with: - Different node layouts and metadata footprints - CRTP&#x2F;F-bounded polymorphism for tree implementations - Parent-pointer vs parentless nodes - Array-based N-ary tree nodes - B-Tree&#x2F;B+Tree degree selection - JMH benchmarking and JFR profiling - Differential&#x2F;randomized testing against java.util.TreeMap&#x2F;TreeSet After this rough and tough It also passes these test: -Guava Testlib compatibility testing -jqwik property-based testing -Randomized differential testing against reference collections -White-box structural validation of tree nodes -Direct validation of B-Tree&#x2F;B+Tree structural invariants -Exception and iterator-contract testing -Serialization and cloning tests -Nary Tree uses custom jqwick test of API validation as well. Tail latency behavior is not shown here because it get&#x27;s truncated into a simple text which made the dat read wrong: https:&#x2F;&#x2F;chaos-vy.github.io&#x2F;ChaosTree&#x2F;utils&#x2F;JMH-Report.html I have also ran benchmark with official JDK TreeMapUpdate to my N-ary tree. GitHub: https:&#x2F;&#x2F;github.com&#x2F;Chaos-vy&#x2F;ChaosTree https:&#x2F;&#x2F;chaos-vy.github.io&#x2F;ChaosTree&#x2F; I&#x27;d especially like feedback on the API design, implementation choices, benchmark methodology. I am currently trying to truncate useless and complex branches for performnace tuning.",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "8"
+        "value": "9"
       },
       {
         "label": "评论",

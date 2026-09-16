@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whcssy",
+  "sourceItemId": "1whcssy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1whcssy/experiment_should_we_relax_codingarchitecture/",
+  "detail": {
+    "longDescription": "So my experience has been that a well structured project DOES benefit agents write better code and finish more tasks, but had a discussion with collegue if we still need clean code now that most of our code is written by agents and only reviewed by people.\n\nI decided to run an experiment to try and prove that providing structure guidance and setting up strict but structured application architecture will help the agents implement subsequent features and that the initial investment will pay off quickly.\n\nSo, I built two versions of a small EV charging invoice service. One used ports and adapters (hexagonal) architecture +architecture tests. The other got the same requirements without a suggested architecture. I also wrote an external bussiness functionality level test suite that each system had to pass for each feature.\n\nThese are the totals for nine features added in sequence. They include the agent's work, tests and fixes (when the external suite failed I set up the harness to reprompt the agent and give it feedback from the external suite).\n\nhttps://preview.redd.it/5xej4vxszqph1.png?width=1802&format=png&auto=webp&s=dfcc711f14c2726d2034f1a9f5575c076d18eebb\n\nHere is also a line chart of how much each feature took:\n\nhttps://preview.redd.it/m7rjnjcyyqph1.png?width=1802&format=png&auto=webp&s=dac6895d21c18b5a1f3cf5c79fdc9b13efa3f718\n\nI also tried six harder tasks on separate copies of the finished versions. Hexagonal was faster on two of them. Flat was faster on the other four.\n\nHere are some stats on the repos:\n\n|Production Java Code|Flat|Hexagonal|\n|:-|:-|:-|\n|Lines|4072|4939|\n|Files|37|85|\n|Share of lines in the largest file|\\~36%|\\~18%|\n\nBoth versions shared business rules and used transactions. Flat put more code in one place. Hexagonal spread the work across more files.\n\nI can see that potentially with bigger scale more problems would start emerging from the over-concentration of business logic inside a few classes - but also think that a lot of abstraction is actually reducing the efficiency of the agent, as it needs to read more files, go through more hoops to get to the \"success\" criteria. I am thinking we should seriously start rethinking which practices we need to follow rigidly and maybe a relaxation of some sorts is in order - these are my 2 cents.\n\nHere is a full and detailed report of the experiment. [https://zenodo.org/records/22775539](https://zenodo.org/records/22775539) (check the pdf file)\n\nTell me what you think, should we relax standards further as writing and reading code has become easier or just the opposite we need to slow down or will be swimming in tech debt soon?",
+    "developer": "kristiyanstoyanovAI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

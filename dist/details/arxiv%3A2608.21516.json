@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "id": "arxiv:2608.21516",
   "sourceItemId": "2608.21516",
-  "fetchedAt": "2026-08-26T00:50:48.310Z",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
   "sourceUrl": "https://arxiv.org/abs/2608.21516",
   "detail": {
-    "longDescription": "arXiv:2608.21516v2 Announce Type: replace-cross Abstract: Formal verification offers the strongest assurance available for software, and verification-aware languages have made its automation real. Yet the benefits reach few mainstream developers, most of whose languages have no verification support. Besides, specifying properties and modeling the environment require expertise in formal methods. Proof is therefore reserved for a few celebrated artifacts, while the production code that ships is attested only through review and testing. We introduce neuro-formal verification (NFV), which harnesses that automation for developers of mainstream programming languages: an AI coding agent translates, an established verifier decides, and a question posed in a mainstream language is answered push-button, at empirical accuracy rather than soundness, with a machine-checked proof. Results on a dataset of correct and incorrect solutions to Python programming problems are encouraging compared to an {llm-as-judge} baseline: NFV returns a Dafny proof of correctness or of a bug on 57% of the entries at 92% precision, and a CBMC counterexample for 63% of the buggy programs at 90% precision.",
+    "longDescription": "arXiv:2608.21516v3 Announce Type: replace-cross Abstract: Formal verification provides the strongest correctness guarantees for software, and verification-aware languages can produce sound, machine-checked proofs. Recent AI coding agents have sharply lowered the cost of constructing such proofs. Yet few mainstream developers benefit: most use languages without formal-verification support, and formalizing properties and modeling execution environments demand formal-methods expertise. Proof therefore remains reserved for a few notable artifacts, while production software is attested mainly through review and testing. We introduce neuro-formal verification (NFV), which brings this automation to mainstream languages. An AI coding agent formalizes a source-level verification problem into a proof obligation in a verification-aware language, discharged by an established sound verifier aided by agentic proof search. Staged, goal-blind transformations reduce the risk of proving an artifact that does not faithfully represent the source program, property, or environment. Since NFV cannot ensure the soundness of this formalization, it optimizes for empirical accuracy rather than end-to-end soundness, while insisting on machine-checked evidence for every verdict. Experiments with current frontier models on a balanced dataset of correct and buggy Python solutions demonstrate the effectiveness of our approach. NFV with Dafny correctly resolves 57% of all entries, at 92% precision among its verdicts; with a CBMC backend, it produces a counterexample for 63% of the buggy programs at 90% precision. In contrast, an LLM-as-judge baseline achieves only 72% precision while answering every entry without any checkable artifact, and an unstaged agent-verifier combination proves 98% of both the correct and the known-buggy programs, yielding only 50% precision. Together, they confirm that both proofs and staging benefit an AI agent's formal program reasoning.",
     "developer": "Shuvendu K. Lahiri",
     "stats": [
       {
@@ -19,6 +19,10 @@
       {
         "label": "第一作者",
         "value": "Shuvendu K. Lahiri"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
       }
     ]
   }

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003284",
+  "sourceItemId": "80003284",
+  "sourceUrl": "https://stackoverflow.com/questions/80003284/how-to-get-the-complete-list-of-exported-controls-of-the-ui5-core-libs-sap-m-and",
+  "detail": {
+    "longDescription": "While creating our own TypeScript utility types for a SAP UI5 project which is currently migrated from vanilla js to TypeScript we found we have a need for mapping strings to actual imported types. See following excerpt from some control metadata : aggregations: { headerContent: { type: 'sap.ui.core.Control', multiple: true, singularName: 'headerContent', }, breadcrumbs: { type: 'sap.m.IBreadcrumbs', multiple: false, }, actions: { type: 'sap.m.OverflowToolbarButton', multiple: true, singularName: 'action', }, } I manually wrote a mapping of the stringified SAP UI5 types to the corresponding actual types as a proof-of-concept... import type { IBreadcrumbs } from \"sap/m/library\"; import type Button from \"sap/m/Button\"; import type OverflowToolbarButton from \"sap/m/OverflowToolbarButton\"; import type Control from \"sap/ui/core/Control\"; export type AggregationTypesRegistry = { 'sap.m.Button': Button 'sap.m.IBreadcrumbs': IBreadcrumbs 'sap.m.OverflowToolbarButton': OverflowToolbarButton 'sap.ui.core.Control': Control }; ...which works, but only for this very small set of types. So creating the mapping manually isn't really a viable solution for the whole project. Now the idea is to generate this mapping once and dump it into some file, only to be re-generated whenever we upgrade to a new version of the sap ui5 core libs. How can I get a complete list of exports (or even a list of the exported controls only) from those libs? what I tried My research so far has unearthed Is there any way to get all the exported names from a JavaScript file? which -to my understanding- isn't applicable because the TS flavor of UI5 does not really use ES6 imports - all those imports are transpiled to AMD-esque imports. I tried to find out whether * imports are even supported at the moment by the ts-to-ui5 transpiler (which I was unable to find mentioned in the docs). It is further complicated by the fact that a single lib in ui5 has any arbitrary number of valid import paths e.g. the lib sap.m has: import type { IBreadcrumbs } from \"sap/m/library\"; import type Button from \"sap/m/Button\"; import type OverflowToolbarButton from \"sap/m/OverflowToolbarButton\"; I could -but would rather not have to- scrape the information from the docs page https://ui5.sap.com/1.152.0/#/api/sap.m (which would still have the problem of how to figure out the sub-namespaces)",
+    "developer": "Martin",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "47"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

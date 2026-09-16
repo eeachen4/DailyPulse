@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003283",
+  "sourceItemId": "80003283",
+  "sourceUrl": "https://stackoverflow.com/questions/80003283/how-to-compute-a-gradient-column-wise-in-a-pandas-dataframe-using-the-index-as-a",
+  "detail": {
+    "longDescription": "I'd like to compute the gradient of a DataFrame, for which I can gather that the best method is to use .apply() , e.g: df = pd.DataFrame([[1,2,3],[4,5,6],[7,8,9]]) df = df.apply(np.gradient) print(df) Output: 0 1 2 0 3.0 3.0 3.0 1 3.0 3.0 3.0 2 3.0 3.0 3.0 However, say I have an index with a variable dz: df = pd.DataFrame([[1,2,3],[4,5,6],[7,8,9]],index=[0.1,1.3,0.7]) If I try to pass this index in the arguments to np.gradient like so df = df.apply(np.gradient,args=(df.index)) which should work given that 'x' is a positional argument, I get the following error message: ValueError: The truth value of a Index is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). This happens if I convert it to an array as well. I think there's something funky with the positional arguments for np.gradient , but if so how would I address this?",
+    "developer": "Petra",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "79"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

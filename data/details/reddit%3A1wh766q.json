@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh766q",
+  "sourceItemId": "1wh766q",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wh766q/obsidian_startup_dropped_from_41s_to_4s_after_i/",
+  "detail": {
+    "longDescription": "I had a strange Obsidian startup problem on Windows 11. If the app had been closed for a while, the first launch could take 30 to 40 seconds. If I closed it and reopened it right away, startup was often only 2 to 4 seconds.\n\nThe startup report kept pointing to Workspace > Load layout rather than one obviously slow plugin.\n\nMy worst run looked like this:\n\nTotal app startup: 41,275 ms\nWorkspace: 34,009 ms\nLoad layout: 33,866 ms\n\nI tried several things first, including removing an unused sidebar view, changing what opens at startup, moving my Daily Note creation into the background, and delaying Thino until after the workspace was ready. Those helped, but cold launches could still stay around 10 to 15 seconds.\n\nThe main issue ended up being my Lazy Loader setup.\n\nI had plugins delayed by 5 seconds and 15 seconds, but those timers were effectively starting from app/plugin startup. If workspace restoration itself took longer than 5 seconds, delayed plugins could begin loading while Obsidian was still restoring the layout.\n\nSo I changed the delay to start only after the workspace reports ready:\n\napp.workspace.onLayoutReady(() => {\n  setTimeout(async () => {\n    await app.plugins.enablePlugin(pluginId);\n  }, delayMs);\n});\n\nI also stopped writing those delayed plugins back into the startup-enabled list. They are enabled for the current session only, with guards against duplicate or stale timers.\n\nRight before that change, I had a run at 11,142 ms total with 9,340 ms in Load layout.\n\nAfter the change:\n\nTotal app startup: 4,113 ms\nWorkspace: 2,983 ms\nLoad layout: 2,906 ms\nCommunity plugins: 303 ms\n\nWhat surprised me was that the individual plugin startup totals were never that large. The expensive part was the timing. Delayed plugin loading was overlapping workspace restoration.\n\nIf your first Obsidian launch after a while is much slower than an immediate restart, I would check Workspace > Load layout first. That pattern turned out to be much more useful than simply looking at which community plugin had the biggest number.",
+    "developer": "kurakichi1881",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

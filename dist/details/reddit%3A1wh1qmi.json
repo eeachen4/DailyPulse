@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh1qmi",
+  "sourceItemId": "1wh1qmi",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wh1qmi/langgraph_checkpoint_cve_85_storage_bloat_and/",
+  "detail": {
+    "longDescription": "LangGraph agents in production can hit three separate checkpoint problems that staging won't catch. A tenant can read another tenant's checkpoint data through an ordinary scoped search. The checkpoint database can grow past 100 GiB from a single long-running SQLite workflow. And after a crash, the agent can resume with inconsistent state and produce wrong output without failing.\n\nThe CVE you should know: CVE-2026-71433 (CVSS 5.3, Medium) affects langgraph-checkpoint-postgres and langgraph-checkpoint-sqlite before version 3.1.1. The Postgres and SQLite stores persist hierarchical namespaces as a dot-joined string and scoped reads by matching that string as a simple prefix pattern. A read scoped to one namespace could also match a sibling namespace whose flattened form shares the same leading characters, or a namespace label containing unescaped pattern metacharacters. If you use the namespace as a tenant boundary, an authenticated caller could retrieve stored items belonging to another tenant through an ordinary scoped search or list\\_namespaces call, with no crafted input required. Fixed in 3.1.1.\n\nThe storage crisis is real and measurable. GitHub issue #7714 reproduces it with a drop-in fix: a 16-turn ReAct agent with 65 messages produces a checkpoint of 21,850 bytes under the default MemorySaver. The same state encoded with a binary pooling serializer compresses to 3,217 bytes. That is an 85.3% storage overhead (6.79x) that compounds into Postgres storage costs and checkpoint write latency on every graph turn. The same issue also measures token overhead: 5,764 tokens injected into the context window versus 3,587 tokens for the semantic content alone, a 37.8% overhead paid on every LLM call. The SQLite saver has a related problem: issue #7843 shows it stores full checkpoint snapshots inline instead of normalizing channel values by version like the Postgres saver does. A downstream workflow using SQLite checkpointing observed database growth above 100 GiB in long-running usage.\n\nThe silent-loop problem is the scariest. Issue #8234 documents that durability=\"sync\" does not enforce put\\_writes and checkpoint persistence ordering. On crash recovery, the restored state may be inconsistent. Writes that were persisted may not match the checkpoint they were associated with. The application does not fail. It just produces incorrect output derived from the corrupt state. Step counters alone do not catch this. The recovery behavior depends on write ordering, which varies by host and scheduler, making the bug nearly impossible to reproduce in staging.\n\nWhat actually helps: a lightweight integrity check on each checkpoint write to validate structure before it reaches storage. TTL and retention policies to bound checkpoint DB growth. Separating control-plane state from data-plane state so that a bloated checkpoint does not slow down the hot path. And monitoring checkpoint DB growth rate as a production metric, not just query latency.\n\nWhat is the weirdest failure you have seen from a LangGraph checkpoint in production?",
+    "developer": "Future_AGI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

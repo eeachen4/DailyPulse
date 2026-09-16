@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80002870",
   "sourceItemId": "80002870",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
   "sourceUrl": "https://stackoverflow.com/questions/80002870/how-do-threading-scripts-work-when-tkinter-is-involved",
   "detail": {
     "longDescription": "This script is trying to thread both the root.mainloop() function for the window and the UpdateBoard() function to do logic in for the game. It is currently throwing an incoherent error about some group having to be None \" assert group is None, \"group argument must be None for now\" ^^^^^^^^^^^^^ AssertionError: group argument must be None for now Im unsure what to make of this, and I don't understand C in any capacity needed to understand the threading logic in the main library. Is there something Im missing? Here is the main code for reference: import tkinter as tk from tkinter import Canvas import random as rand import threading import keyboard import time root = tk.Tk() root.geometry(\"400x960\") class Tetris: def __init__(self, root): self.canvas = tk.Canvas(root, width=400, height=960, bg=\"#00FF00\") self.canvas.pack() self.block_active = False self.current_block = None self.grid_squares = {} self.block_templates = { \"t_block\": [[False, True, False, False], [False, True, True, True]], \"right_L\": [[False, True, True, True], [False, False, False, True]], \"left_L\": [[False, True, True, True], [False, True, False, False]], \"o_block\": [[False, True, True, False], [False, True, True, False]], \"line_block\": [[False, False, False, False], [True, True, True, True]], \"right_Z\": [[False, False, True, True], [False, True, True, False]], \"left_Z\": [[False, True, True, False], [False, False, True, True]] } self.possible_blocks = [\"t_block\", \"right_L\", \"left_L\", \"o_block\", \"line_block\", \"right_Z\", \"left_Z\"] for row in range(24): for col in range(10): id = self.canvas.create_rectangle(col * 40, row * 40, col * 40 + 40, row * 40 + 40, fill=\"#777777\", outline=\"white\") self.grid_squares.update({(row, col): False}) def UpdateBoard(self): while True: print(self.block_active) time.sleep(.75) if not self.block_active: self.current_block = rand.choice(self.possible_blocks) for i in range(2): for k in range(4): self.grid_squares[(i, k + 4)] = self.block_templates[self.current_block][i][k] self.block_active = True self.ChangeBoardState() else: self.ChangeBoardState() def ChangeBoardState(self): for row in range(24): for col in range(10): id = (row * 10 + col) + 1 if self.grid_squares[(row, col)] == True: self.canvas.itemconfig(id, fill=\"#0000FF\") def MoveRight(self): keyboard.wait('right') #do smth def MoveLeft(self): keyboard.wait('left') #do smth def RotateLeft(self): keyboard.wait('up') #do smth def RotateRight(self): keyboard.wait('down') #do smth Game = Tetris(root) t1 = threading.Thread(root.mainloop) t2 = threading.Thread(Game.UpdateBoard) t1.start() t2.start() Game.UpdateBoard()",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "75"
+        "value": "98"
       },
       {
         "label": "状态",

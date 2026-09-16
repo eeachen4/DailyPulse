@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whbm9c",
+  "sourceItemId": "1whbm9c",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1whbm9c/fortiedr_communication_control_causes_kubernetes/",
+  "detail": {
+    "longDescription": "Hi Everybody,\n\nWe are running a Kubernetes cluster on Rocky Linux 10.2 VMs, with the FortiEDR Linux Collector installed on the host OS.\n\nWhen FortiEDR Communication Control was changed from Simulation to Prevention, the entire Kubernetes cluster became unavailable. After changing the policy back to Simulation, the cluster recovered and became operational again.\n\nThe affected nodes reported this kernel message:\n\n    Failed to initialize the IGMP autojoin socket (err -1)\n\nFortiEDR Collector version/build: **6.2.0.1350**\n\nI double-checked the FortiEDR Events and Communication Control logs, but there were zero events showing that anything was blocked or denied by FortiEDR.\n\nHas anyone experienced a similar issue with FortiEDR Communication Control and Kubernetes? If you have any ideas or troubleshooting recommendations, I would really appreciate your help, as I am not a Kubernetes expert.\n\nThank you in advance.",
+    "developer": "mohammedalrawii",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

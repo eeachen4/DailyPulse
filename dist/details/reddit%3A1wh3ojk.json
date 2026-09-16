@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wh3ojk",
+  "sourceItemId": "1wh3ojk",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wh3ojk/most_ai_agents_fail_as_demos_glued_to_tools_the/",
+  "detail": {
+    "longDescription": "I keep seeing the same failure mode: wire a model to a few tools, demo the happy path, call it architecture. It works in the slide. It collapses on timeouts, bad inputs, spend spikes, or irreversible side effects.\n\nThe production pattern that held up for me is a five-layer stack:\n\n1. Orchestrator — decides the next step (plan → act → verify → stop), bounds loops, fails closed\n2. Tools — typed APIs with auth scope, timeouts, idempotency — not mystery side effects\n3. Traces — every plan / tool call / result / cost on a correlation ID (replayable)\n4. Guardrails — spend caps, allow/deny lists, human gates for irreversible actions (enforcement, not a polite system prompt)\n5. Rollback — reversible writes or compensating actions; clear blast radius\n\nOne question I ask of any agent stack: can it show traces, and can it roll back? If either answer is no, keep it out of production.\n\nWrote it up with a short support-triage use case (demo → 40-step loop + bad CRM write → fix mapped to all five layers):\n[https://sheikhwasim.com/insights/agent-architecture-five-layer-stack/](https://sheikhwasim.com/insights/agent-architecture-five-layer-stack/)\n\nHappy to hear how others structure control planes for agents in production — especially what you put in guardrails vs the orchestrator.",
+    "developer": "Icy-Reward-7907",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

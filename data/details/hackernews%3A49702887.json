@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:49702887",
   "sourceItemId": "49702887",
+  "fetchedAt": "2026-09-16T01:43:33.580Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49702887",
   "detail": {
     "longDescription": "I started building Slowave because I kept running into the same problem with coding agents: every new session has the codebase and some documentation but not the context behind it, decisions that brought you there and especially the thinking process behind the code. Most memory system solutions focus primarily on the storage and retrieval aspects (vector search&#x2F;RAG&#x2F;graphs&#x2F; Markdown files, etc.). After months of storing memories (coding 8+ hours a day produces a lot of memories) these might hallucinate your reasoning model and they can clutter your context window. To treat semantic relationship, such as contradiction, supersession, etc, most systems added an extra LLM layer that summarize memories and continuously evaluate their semantic relevance. That comes with a non-negligible cost and introduces a split-brain system, where a second model is making decisions about memory independently of the agent actually using it. I started looking up into how human brain works, and the first thing striking me was that retrieval is just a part of the whole memory problem. Brain memories are a constant flow of information where what matters gets reinforced, what doesn&#x27;t decays over time. What really matters for an efficient memory system is to retrieve memories that actually help (a human or an agent) to achieve its current task or goal given the current context. Everything else should be treated as noise. Slowave is my attempt to approach this problem differently: It instructs your coding agent to participate in maintaining its own memory. Each task becomes a feedback loop between your agent and the memory layer: remember -&gt; recall -&gt; use -&gt; feedback -&gt; reinforce &#x2F; weaken -&gt; decay Your agent tells Slowave whether retrieved memories were useful, irrelevant or stale. Slowave uses that signal to adapt those memories salience. Retrieval works upon this continuous loop of feedback, reinforcement or decay. This means Slowave doesn&#x27;t need a separate LLM or LLM judge for memory maintenance. The agent is already evaluating what helped; Slowave handles the mechanical part of adapting the memory substrate. Slowave runs fully locally. It uses a lightweight multilingual embedding model and SQLite, with no external memory service or LLM API required. It works with only 5 MCP endpoints. It currently supports Claude Code, Codex, Cursor, Cline, OpenCode, Windsurf and Claude Desktop. With the local dashboard you can inspect (and delete) your memories, procedures, retrievals and see metrics to measure how it&#x27;s being valuable for your agent(s). Slowave is still in public beta but I&#x27;d be grateful to receive any feedback both on the approach and, if you try it, on how it works for you.",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "2"
+        "value": "4"
       },
       {
         "label": "评论",

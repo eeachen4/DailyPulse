@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whh52p",
+  "sourceItemId": "1whh52p",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1whh52p/nginx_proxy_manager_in_docker_cant_connect_to/",
+  "detail": {
+    "longDescription": "Hey, I'm pretty stuck on this and honestly I'm not an expert with Docker or networking, so sorry if I explain something wrong.  \nI'm trying to run Nginx Proxy Manager in Docker on Windows and use it to reverse proxy to Jellyfin, which is installed normally on Windows, not in Docker. I'm using DuckDNS for the domain.  \nI originally followed this tutorial pretty much from start to finish:  \nhttps ://www.youtube.com /watch?v=nqpvNf3tYoE  \nEverything actually worked for about 2 days and then randomly stopped working. Now whenever I try to access my Jellyfin domain I just get a 502 Bad Gateway from Nginx Proxy Manager.  \nThe NPM log says:  \nconnect() failed (111: Connection refused) while connecting to upstream  \nupstream: \"http://192.168.x.x:8096/\"  \nI've tried a bunch of things already:  \n• Made sure Jellyfin is running and I can access it normally through localhost:8096 on the Windows PC  \n• I can also access Jellyfin from another device on my network using the Windows PC's local IP and port 8096  \n• Checked that my DuckDNS domain is resolving to my public IP  \n• Checked the port forwarding for 80 and 443 on my router  \n• Tried using my Windows LAN IP as the Forward Hostname/IP in NPM  \n• Tried using host.docker.internal instead  \n• Added a Windows Firewall inbound rule for TCP 8096 on Domain, Private and Public  \n• Restarted Docker, NPM and my entire PC  \nNone of that fixed it.  \nOne thing I noticed while troubleshooting is that nslookup for my DuckDNS domain gives my public IP correctly, so I don't think DuckDNS or DNS is the problem.  \nThe weird part to me is that Jellyfin works completely fine on the Windows host and other devices on my LAN can connect to it, but Nginx Proxy Manager inside Docker can't seem to connect to it. It just gets connection refused.  \nI'm using Docker Desktop with WSL2 on Windows.  \nDoes anyone know what I should check next? Is there something specific with Docker Desktop/WSL2 that could stop a container from connecting to a service running natively on Windows?  \nAgain I'm pretty new to this stuff, so if there's a command I should run or something I should check, please explain it like I'm an idiot lol. I've been going in circles with this for a while.",
+    "developer": "yoyoo912",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
