@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003320",
+  "sourceItemId": "80003320",
+  "sourceUrl": "https://stackoverflow.com/questions/80003320/practical-limit-for-cloud-firestore-onsnapshot-listeners-per-browser-client",
+  "detail": {
+    "longDescription": "I’m trying to understand the practical browser-side limit for Cloud Firestore realtime listeners in a React web app. I understand from the Firestore docs that the mobile/web SDK usually maintains one active connection, and multiple snapshot listeners are multiplexed over that connection. So this is not about TCP/WebSocket connection count. This is about the number of active onSnapshot() registrations in one browser tab. Our current structure is: 3 fixed listeners + 4 listeners per assigned conversation Per conversation, we listen to: conversation/{id}/server_messages conversation/{id}/client_messages conversation/{id}/events conversation/{id}/controller So with 127 assigned conversations, we have 3 + 127 * 4 = 511 active snapshot listeners. We added local instrumentation around each listener and measured this in Chrome. Clean reload with 127 conversations on a normal Mac: active listeners: 511 server-message docs loaded on initial attach: ~1,037 server-message callback processing: ~4.4s total client-message callback processing: ~2.2s total event-user callback processing: ~2.2s total JS heap peak: ~302 MB long tasks: 9 worst long task: ~1.47s max event-loop lag: ~8.2s Same test with Chrome 4x CPU throttling: active listeners: 511 server-message docs loaded: ~1,047 server-message callback processing: ~26.1s total JS heap peak: ~409 MB long tasks: 472 worst long task: ~6.2s max event-loop lag: ~52.6s We then tested reducing listener fanout. Only one conversation's chat listeners: active listeners: 7 JS heap peak: ~138 MB long tasks: 22 max event-loop lag: ~5.8s server callback processing: ~116ms Only server_messages listener for all 127 conversations: active listeners: 130 JS heap peak: ~249 MB long tasks: 211 max event-loop lag: ~20.8s server callback processing: ~21.2s This suggests that reducing listener count helps significantly, but even one listener per conversation is still not ideal at this scale. Questions: Is there any current documented or recommended practical limit for active Firestore onSnapshot() listeners per browser client? Is the older guidance of keeping snapshot listeners under ~100 per client still a reasonable target? Would ~500 active listeners in one browser tab generally be considered an anti-pattern, even though they share one connection? For this kind of use case, is the recommended approach to denormalize into a single agent-level event stream/listener instead of maintaining many per-conversation listeners? A possible target structure would be agents/{agentId}/events/{eventId} where each event contains: { \"type\": \"MESSAGE_ADDED\", \"conversationId\": \"...\", \"ticketId\": \"...\", \"sequence\": 12345, \"payload\": {} } Then the browser would maintain one listener for all assigned-conversation deltas. Is this the right direction for scaling Firestore realtime updates in a browser app?",
+    "developer": "Prakhar Gupta",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "79"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

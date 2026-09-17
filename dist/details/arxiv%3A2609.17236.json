@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.17236",
+  "sourceItemId": "2609.17236",
+  "fetchedAt": "2026-09-17T01:45:34.708Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.17236",
+  "detail": {
+    "longDescription": "arXiv:2609.17236v1 Announce Type: new Abstract: We introduce a memorization floor: a within-item control separating what LLM refinement of decompiler output recovers from its input from what it recovers from its prior. Refine a function, then refine it again from an input whose identifiers have been destroyed, and measure what survives. Because the comparison is within-item, corpus difficulty cannot contribute; it costs twenty API calls. Applied to functions written after our analysis plan was committed, so no released model could have memorized them, it reports two things. Recovery is real: refined output sits +0.072 to +0.137 above an arm-matched permutation null built from its own output vocabulary. But it does not depend on the input we ablate: destroying the input's dataflow changes the naming gain by +0.001 (95% CI [-0.026, +0.026]), and removing type prefixes or permuting names changes it by no more. A second refiner from another vendor, registered in advance and given byte-identical inputs, reproduces this -- twelve contrasts, two models, twelve nulls. Readability stays at ceiling throughout, so a reader is given no signal. The null is bounded, not absolute: contributions under 0.056 are invisible, and the ablation leaves operations intact, so naming from those alone remains a competing reading. No registered hypothesis was confirmed, and we report the five instrument failures behind that in full, including a reassembly harness biased against the treated arm and an equivalence checker we registered without checking it worked on our inputs.",
+    "developer": "Muhammad Asjad",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Muhammad Asjad"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

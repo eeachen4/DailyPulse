@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wifebp",
+  "sourceItemId": "1wifebp",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1wifebp/aetherhi_first_run_log/",
+  "detail": {
+    "longDescription": "AetherHI — first clean run after porting 29 files off Windows\n\nContext: no model, no weights, no tokeniser. Hyperdimensional vectors and a point-string graph. Runs on a ROG Ally Z1 Extreme with 2.7 GB free RAM.\n\nWhat the run did\n\n229 documents read end to end, \\\\\\~979,000 words\n\nLargest single document: 104,428 words\n\n84,240 nodes on Face 1, vocabulary still climbing when I grabbed the log\n\nWord documents opened for the first time — an extension filter had been silently skipping them\n\nThe fabric is a function, not an allocation\n\n35,000,001 rooms declared at genesis — 1.6M clusters for the center, 5M each for the hemispheres. Resident memory: 0.0 MiB, 0 clusters written of 11,666,667. 54.24 GiB of flat allocation avoided. A room is derived from its own index; nothing is stored until something is written there. Fixed size, sized from measured free RAM, never grows.\n\nThe fix that mattered\n\nPreviously the left hemisphere stalled at 64 documents — permanently, on a condition that could never clear — while the right ran to 210. This run: MAC 433 processed, MAN 407, both moving together. Both hemispheres have to finish the same document before a concept can form, so nothing higher-order could ever happen while one side was parked.\n\nWhat didn't work\n\nFusion still hasn't fired once. Both sides are running, but not in step on document ids. That's the next real bug.\n\nOne 140-page PDF defeated OCR entirely — nothing readable in the first 40 pages. Recorded as unread rather than faked.\n\nThis was a first breath. No prior memory to thaw, so none of this is a round-trip yet.",
+    "developer": "ShortyBigLips",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

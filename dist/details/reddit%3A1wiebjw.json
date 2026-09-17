@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wiebjw",
+  "sourceItemId": "1wiebjw",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wiebjw/update_parked_hitl_writes_cheap_flash_for_a/",
+  "detail": {
+    "longDescription": "Thanks for the replies on the last post (read-only POS copilot, route → fetch → narrate → ground, Node/TS + Vercel AI SDK). The write-path comments were consistent: preview ≠ confirm in the same loop, idempotency + optimistic lock, fail closed near mutations. That’s enough for me to **hold HITL**. I’m not adding mutate tools until the read loop is tighter.\n\nWhat I did take: **honor pins** (no more “computed but not registered”), keep CORE-first schemas, evaluation on traces / fetch / step count / `$`/`%` ⊆ DTO. I did **not** split into a two-call “CORE then pins” router.\n\n**Model.** Still **Gemini 2.5/3.5 Flash Lite** in dev. It’s cheap, and this job is “pick a tool, read a small JSON, say it in English or French.” I don’t want a high-thinking model in the loop. Dev is on their **free tier**. If that’s a trap (cache, tool-calling, bilingual), I’m open to another LLM — same constraint: low cost, good at tools + short narration, not a reasoner.\n\n**Cost, typical ask** (50 intent turns, one store, Redis miss, Flash Lite):\n\n|Metrics|mean|median|\n|:-|:-|:-|\n|input tokens|4,840|4,718|\n|**Gemini cached input**|**0**|0|\n|output tokens|123|107|\n|LLM steps (round trips)|2.0|2|\n|tools called|1.0|1|\n|wall time|2.3s|2.0s|\n|registered tools|12.2|12|\n\nShape is almost always: step 0 pick one tool (\\~2.3k in) → fetch slim DTO → step 1 narrate (\\~2.6k in). Wider log (n=229): Gemini implicit cache **2.2%** overall, **0/96** on current CORE-12, **0/51** on pinned. The only hits were an older CORE-10 prefix (\\~40% of that request’s input). So the prefix *can* cache; it isn’t right now. Pins aren’t proven as the breaker — CORE-12 alone is cold too. That’s why I didn’t add a second model call. Caveat: local evaluation + one store, short sessions.\n\nRedis exact-match is only for first-turn **how-to**, not analytics. Different cache.\n\nI’m optimizing the **read** agent next (Canada EN+FR). Two asks:\n\n1. **Dates.** Portal always sends a visible `dateRange`. A phrase table in *our* code may override it. The model never sets tool `from`/`to` — `generateObject` invented windows last time. When the table misses (*hier*, “this month vs last month”), do you **pause with chips** (Claude/OpenClaw-style, but as a UI interrupt, **not** a Gemini tool), or keep the bar default and name the window in the first sentence? I don’t want to ask on every “what’s our revenue?”\n2. **Bilingual routing.** Gemini can *write* French. Keyword pins / how-to terms are English, so *« préparation cuisine »* never loads `get_fulfillment`. I’m leaning **EN+FR synonym tables** on the same regexes, not translate-for-routing (mangles `$`/`%`) and not HTTP 400 for other languages. Anyone run a bilingual keyword router that didn’t rot? Is request `locale` enough for answer language?\n\nNot selling anything. Happy to go into comments.",
+    "developer": "RedaHaloubi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

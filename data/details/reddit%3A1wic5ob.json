@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wic5ob",
+  "sourceItemId": "1wic5ob",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wic5ob/gplv3_core_mit_api_vs_gplv3_with_plugin_exception/",
+  "detail": {
+    "longDescription": "I’m working on an open-source Minecraft/Paper plugin called Custodian. It provides item identity/custody infrastructure: unique item IDs, duplicate detection, quarantine, revocation history, rekeying, etc.\n\nI want two things from the licensing:\n\n* Custodian itself, including modified/forked distributions, should remain open source.\n* Third-party plugins should be explicitly allowed to integrate with Custodian’s public Java API while remaining proprietary/commercial if their authors want.\n\nWhat I specifically **don’t** want is someone taking Custodian, modifying the implementation, and redistributing that modified version closed-source.\n\nThe architecture will probably be a Gradle multi-module project:\n\n    custodian-api     -> small stable public API\n    custodian-core  -> actual Paper implementation\n\nMy first thought was:\n\n    custodian-api     -> MIT\n    custodian-core  -> GPL-3.0\n\nThird-party plugins would compile against `custodian-api` and interact with the GPL implementation at runtime through Paper’s plugin system.\n\nThe other option I’m considering is putting everything under GPL-3.0 and adding an explicit linking/plugin exception saying that independent plugins using the public API do not become GPL-covered simply because they integrate with Custodian.\n\nI’ve also looked at MPL-2.0, since file-level copyleft gets fairly close to what I want without having to create this licensing boundary.\n\nFor people who have dealt with this kind of project before:\n\n* Would you use GPLv3 core + permissive API?\n* GPLv3 with an explicit plugin/API exception?\n* MPL-2.0 for the whole project?\n* Something else?\n\nMy priority is basically: Custodian stays open; integrations don’t have to be.\n\nI’ve also asked the FSF/GNU licensing team and Open Source Stack Exchange, so I’m mostly interested in practical experience and any pitfalls I might be overlooking.I’m working on an open-source Minecraft/Paper plugin called Custodian. It provides item identity/custody infrastructure: unique item IDs, duplicate detection, quarantine, revocation history, rekeying, etc.  \nI want two things from the licensing:  \n  \nCustodian itself, including modified/forked distributions, should remain open source.  \n  \n  \nThird-party plugins should be explicitly allowed to integrate with Custodian’s public Java API while remaining proprietary/commercial if their authors want.  \n  \nWhat I specifically don’t want is someone taking Custodian, modifying the implementation, and redistributing that modified version closed-source.\n\n  \nThe architecture will probably be a Gradle multi-module project:  \ncustodian-api     -> small stable public API  \ncustodian-core  -> actual Paper implementation\n\n  \nMy first thought was:  \ncustodian-api     -> MIT  \ncustodian-core  -> GPL-3.0\n\n  \nThird-party plugins would compile against custodian-api and interact with the GPL implementation at runtime through Paper’s plugin system.  \nThe other option I’m considering is putting everything under GPL-3.0 and adding an explicit linking/plugin exception saying that independent plugins using the public API do not become GPL-covered simply because they integrate with Custodian.  \nI’ve also looked at MPL-2.0, since file-level copyleft gets fairly close to what I want without having to create this licensing boundary.\n\n  \nFor people who have dealt with this kind of project before:  \nWould you use GPLv3 core + permissive API?  \nGPLv3 with an explicit plugin/API exception?  \nMPL-2.0 for the whole project?  \nSomething else?  \n  \nMy priority is basically: Custodian stays open; integrations don’t have to be.  \nI’ve also asked the FSF/GNU licensing team and Open Source Stack Exchange, so I’m mostly interested in practical experience and any pitfalls I might be overlooking.",
+    "developer": "Financial_Ad_4260",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

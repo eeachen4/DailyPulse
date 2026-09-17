@@ -2,20 +2,21 @@
   "schemaVersion": 2,
   "id": "hackernews:49699477",
   "sourceItemId": "49699477",
+  "fetchedAt": "2026-09-17T01:45:34.708Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=49699477",
   "detail": {
     "longDescription": "I made a programming language! I call it AttaLambda. The idea is this: a usable Lisp-shaped language where all the meaningful computation is done in untyped lambda calculus. Logic, arithmetic, data structures, control flow, even the types — all untyped lambdas. A small, explicit Racket layer sits at the boundary to handle the outside world, plus some macros for syntactic sugar. This is its story: A couple years ago, I wanted to play with untyped lambda calculus and go beyond where tutorials usually stop. They show booleans, numbers, arithmetic, maybe the Y-combinator — and then stop. I wanted them to keep going. So I started a project called All The Lambdas. Using Racket set to lazy, I used only one Racket construct for actual computation — lambda — and built integers, rationals, lists, binary digit-list number encodings, search algorithms, and more. Then I found Functional Programming Through Lambda Calculus by Greg Michaelson. In it, Michaelson sketches the bones of a language built in untyped lambda calculus, including a type system where typed objects are themselves pair functions containing a type tag and value. I found that intriguing and implemented and extended the idea, still entirely with untyped lambdas. I don&#x27;t have a background in programming language theory, so I was figuring it out as I went. Then I stopped tinkering with it for a while. Recently I came back and thought: why not turn this into a real usable language with the help of coding agents? I reused most of All The Lambdas as the foundation. Thus AttaLambda was born. Some additional details: * Rat, its number type, uses binary digit-list encodings instead of Church numerals, so numbers scale with their number of binary digits rather than their value * errors are lambda-encoded values, not Racket exceptions, and propagate through the language like ordinary data * the Racket host only performs irreducibly external operations; even things like HTTP parsing, routing, and response construction stay in the pure lambda world * recursion uses lambda-calculus recursion: no loops or true self-reference, just the Y-combinator underneath * automated purity checks catch accidental cheating, like native computation leaking into the pure parts * syntax like multi-argument lambdas, let, cond, and list is just macro sugar that reduces to unary lambdas and application A couple code examples: (short of print, every single thing here reduces to unary untyped lambdas) Factorial: #lang attalambda (rec factorial n = (cond ((eq n 0) 1) (else (mult n (factorial (sub n 1)))))) (print (factorial 10)) Which prints: 3628800 Or an exact harmonic sum: #lang attalambda (print (reduce add 0 (map (lambda (n) (unwrap-ok (div 1 n))) (range 1 8)))) Which prints exactly: 363&#x2F;140 As far as I know, no programming language combines all these features: Michaelson-style type tags built from untyped lambdas, exact rationals backed by binary digit lists, errors as lambda values, and real-world programs where almost all computation stays inside the lambda core. None of those pieces are individually new, but I don&#x27;t know of another language combining them this way. Download: https:&#x2F;&#x2F;github.com&#x2F;kserrec&#x2F;attalambda&#x2F;releases&#x2F;tag&#x2F;v0.7.0 Code: https:&#x2F;&#x2F;github.com&#x2F;kserrec&#x2F;attalambda Original All The Lambdas: https:&#x2F;&#x2F;github.com&#x2F;kserrec&#x2F;all_the_lambdas",
     "externalUrl": "https://attalambda.com",
     "developer": "kserrec",
-    "comments": 0,
+    "comments": 3,
     "stats": [
       {
         "label": "积分",
-        "value": "26"
+        "value": "35"
       },
       {
         "label": "评论",
-        "value": "0"
+        "value": "3"
       }
     ]
   }

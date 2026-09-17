@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003505",
+  "sourceItemId": "80003505",
+  "sourceUrl": "https://stackoverflow.com/questions/80003505/ckeditor-not-initialized-in-djago-admin-forms-initialization-script-not-placed",
+  "detail": {
+    "longDescription": "I am extending a form in order to initialize Ckeditor upon an admin form: File blog/templates/admin/article.html {% extends \"admin/change_form.html\" %} {% block extrastyle %} {{ block.super }} <link rel=\"stylesheet\" href=\"https://cdn.ckeditor.com/ckeditor5/48.5.1/ckeditor5.css\" > {% endblock %} {% block extrajs %} {{ block.super }} <script src=\"https://cdn.ckeditor.com/ckeditor5/48.5.1/ckeditor5.umd.js\"></script> <script> document.addEventListener(\"DOMContentLoaded\", function () { const { ClassicEditor, Essentials, Paragraph, Bold, Italic, Link, List } = CKEDITOR; const textarea = document.querySelector(\"#id_content\"); if (!textarea) { console.error(\"Could not find #id_content\"); return; } ClassicEditor .create(textarea, { plugins: [ Essentials, Paragraph, Bold, Italic, Link, List ], toolbar: [ \"undo\", \"redo\", \"|\", \"bold\", \"italic\", \"link\", \"|\", \"bulletedList\", \"numberedList\" ] }) .then(editor => { console.log(\"CKEditor initialized\", editor); }) .catch(error => { console.error(\"CKEditor initialization failed:\", error); }); }); </script> {% endblock %} This form is configured upon admin.py like this: @admin.register(Article) class ArticleAdmin(admin.ModelAdmin): form = ArticleForm change_form_template = \"admin/article.html\" list_display = (\"title\", \"author\", \"slug\") list_filter = (\"category\", \"author\") search_fields = (\"title\", \"content\") prepopulated_fields = {\"slug\": (\"title\",)} And the equivalent form is: class ArticleForm(forms.ModelForm): class Meta: model = Article fields = [\"title\",\"slug\", \"content\", \"category\"] widgets = { \"content\": forms.Textarea(attrs={ \"id\": \"article-content\", }), } The model in question is: class Article(models.Model): id=models.AutoField(primary_key=True) title=models.CharField(max_length=255) content=models.TextField() slug=models.SlugField() author = models.ForeignKey(Author, on_delete=models.CASCADE) category = models.ManyToManyField(Category) But in rendered form I do not see the script initializing the CkEditor: <script> document.addEventListener(\"DOMContentLoaded\", function () { const { ClassicEditor, Essentials, Paragraph, Bold, Italic, Link, List } = CKEDITOR; const textarea = document.querySelector(\"#id_content\"); if (!textarea) { console.error(\"Could not find #id_content\"); return; } ClassicEditor .create(textarea, { plugins: [ Essentials, Paragraph, Bold, Italic, Link, List ], toolbar: [ \"undo\", \"redo\", \"|\", \"bold\", \"italic\", \"link\", \"|\", \"bulletedList\", \"numberedList\" ] }) .then(editor => { console.log(\"CKEditor initialized\", editor); }) .catch(error => { console.error(\"CKEditor initialization failed:\", error); }); }); </script> Do you know why?",
+    "developer": "Dimitrios Desyllas",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "65"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117282771597069448",
+  "sourceItemId": "mastodon.social/117282771597069448",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-ab01bcd9-4f69e5f86e9c2821",
+  "detail": {
+    "longDescription": "When evaluating affaan-m/ECC (v2.0, The Agent Harness Operating System ), the main attraction is standardization. Instead of manually copying fragmented .cursorrules , skill prompts, and MCP configurations between Claude Code, Codex, and Cursor, ECC packages skills, instincts, and execution policies into a unified harness. However, bringing an enterprise-grade agent harness into Cursor introduces a familiar bottleneck: context bloat . Stacking dense instinct files, language-specific rules, and MCP tool schemas into your agent's system prompt burns tokens rapidly. In deep multi-turn refactoring loops, this degrades model reasoning and inflates per-turn API latency. Here is how we set up ECC modularly inside Cursor and stabilized multi-turn session costs. 1. Scoped Installation for Cursor Avoid dumping all ECC skills into Cursor's root prompt. Instead, install the repository and link only the target language rules into .cursor/rules/ : # Clone the ECC repository git clone github.com/affaan-m/ECC.git ~/.config/ecc # Target workspace configuration: symlink common + TypeScript rules only mkdir -p .cursor/rules cp ~/.config/ecc/rules/common/*.mdc .cursor/rules/ cp ~/.config/ecc/rules/typescript/*.mdc .cursor/rules/ This keeps your baseline context lightweight, injecting language rules only when matching files are active. 2. Wiring MCP Tool Configurations ECC defines modular MCP servers for test runners and filesystem inspections. Add them to your project's .cursor/mcp.json : { \"mcpServers\": { \"ecc-harness\": { \"command\": \"npx\", \"args\": [\"-y\", \"@ecc/harness-mcp@latest\"] } } } 3. Taming Multi-Turn Context Burn Every time Cursor executes an agentic cycle (read file → invoke MCP → patch code), it resends the entire conversation history along with ECC's static rules. On vanilla endpoints, you pay full token rates on every re-evaluation. In our tests, switching Cursor to B-Lost's fast proxy endpoint resolved this bottleneck. Because B-Lost provides native prompt caching at the gateway layer, static harness rules and accumulated turn history are cached automatically. This cut heavy multi-turn context costs by ~80-90% without losing chat history or degrading reasoning fidelity. // ~/.cursor/settings.json (Custom Model Override) { \"cursor.customModel.override\": true, \"cursor.customModel.baseUrl\": \"https://api.b-lost.com/v1\", \"cursor.customModel.model\": \"claude-3-7-sonnet-20250219\" } Takeaway affaan-m/ECC provides a disciplined framework for managing agent instincts. The key to running it inside Cursor without slowdowns is modular rule scoping combined with gateway-level prompt caching. # cursor # vscode # devtools # productivity # software # coding # development # engineering # inclusive # community Benchmarking affaan-m/ECC in Cursor: Agent Harness Rules Without Context Exhaustion",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

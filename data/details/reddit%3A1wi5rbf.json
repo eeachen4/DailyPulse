@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wi5rbf",
+  "sourceItemId": "1wi5rbf",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wi5rbf/i_built_portop_an_htopstyle_tui_for_seeing_whats/",
+  "detail": {
+    "longDescription": "I originally made it as a general Linux networking/debugging tool, but I think it can be particularly useful when running Minikube locally.\n\nWhen something is exposed through Minikube and you're trying to figure out what's actually happening underneath, sometimes you need to step outside kubectl and look at the host itself.\n\nPortop gives you a live view of listening and established connections and shows:\n\n* listening port and protocol\n* process and PID\n* systemd unit\n* Docker container\n* CPU usage\n* command line, executable, cwd, user, RSS and threads\n* IPv4 / IPv6\n* connection state\n\nIt can also:\n\n* instantly filter by port, process or PID\n* highlight newly opened listening ports\n* save a baseline and detect port changes later\n* open a local HTTP/HTTPS port directly from the TUI\n* inspect and kill a process with confirmation\n* output JSON for scripting\n\nThe part I find most useful for containerized environments is that it resolves the owning Docker container from Linux cgroups, without requiring the Docker SDK, D-Bus or another daemon.\n\nSo instead of manually jumping between \\`ss\\`, \\`lsof\\`, \\`ps\\`, \\`docker ps\\` and \\`systemctl\\`, you can go from:\n\nport → process → systemd unit / container\n\nin one view.\n\nIt's written in Go and MIT licensed.\n\nGitHub: [https://github.com/padovanl/portop](https://github.com/padovanl/portop)\n\nI'd be interested to hear from people using Minikube: are there situations where you end up debugging the Linux/Docker host because the Kubernetes-level view isn't enough?",
+    "developer": "Maleficent_Flight323",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

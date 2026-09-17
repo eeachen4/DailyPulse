@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whun46",
+  "sourceItemId": "1whun46",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1whun46/why_kubectlconvert_strips_100_of_yaml_comments/",
+  "detail": {
+    "longDescription": "\\*Disclaimer: I am the author of this open-source tool (Janos, Apache 2.0, no commercial tier, zero telemetry).\\*\n\nWhen upgrading Kubernetes clusters across major versions (1.22, 1.25, 1.28, 1.32), platform teams frequently hit a dilemma when modernizing manifests across GitOps repositories:\n\n\n\n\\### The Problem with Existing Upgraders:\n\n1. \\*\\*\\`kubectl-convert\\` (Official plugin)\\*\\*: It was removed from standard \\`kubectl\\` years ago, but the primary architectural problem is how it works: it deserializes YAML into internal Go structs and re-encodes. Because Go structs do not model whitespace or AST comment tokens, it \\*\\*completely deletes 100% of YAML comments\\*\\* (\\`# Managed by ArgoCD\\`, \\`# Critical threshold\\`, inline docs) and reformats custom indentation. Furthermore, it only operates on single files to stdout.\n\n2. \\*\\*Auditors (Pluto, Kubent)\\*\\*: Excellent for identifying deprecated APIs in clusters and charts, but strictly read-only — leaving all manual schema migrations to you.\n\n\n\n\\### The Concrete Syntax Tree (AST) Approach:\n\n\n\nTo solve this in GitOps repositories without wiping comments or breaking schemas, we took an AST-mutation approach in an open-source CLI called \\*\\*Janos\\*\\*:\n\n\n\n* AST Node Mutation\\*\\*: Manifests are parsed into a Concrete Syntax Tree. Rather than converting to plain dictionaries, only the specific \\`apiVersion\\` and changed schema keys are mutated in the AST. Every header comment, inline note, anchor, and blank line remains byte-for-byte intact.\n* Recursive Directory Updates\\*\\*: Scans entire repository folders in-place instead of piping single files.\n* Target Version Gating\\*\\*: \\`--target-version 1.25\\` migrates only APIs deprecated up to 1.25, leaving future removals (1.26, 1.29) untouched to support phased cluster rollouts.\n* Ingress to Gateway API\\*\\*: Automatically maps Ingress specs into Gateway API \\`HTTPRoute\\` resources (backends, paths, URL rewrites, and redirect filters).\n* Helm Template Safety\\*\\*: Audits charts via \\`helm template\\` and safely updates raw \\`templates/\\*.yaml\\` files while keeping all \\`{{ .Values... }}\\` Go expressions byte-for-byte intact.\n* Live Cluster Auditing\\*\\*: Queries active workloads directly via your existing \\`kubectl\\` context without deploying in-cluster pods or CRDs (\\`janos --cluster --audit\\`).\n\n\n\n\\### Architecture Comparison:\n\n\n\n| Capability | Pluto (Fairwinds) | \\`kubectl-convert\\` | Janos 2.2 |\n\n| :--- | :---: | :---: | :---: |\n\n| \\*\\*In-place file updates?\\*\\* | ❌ No (Read-only) | ❌ No (Stdout only) | ✅ Yes, recursive directory updates |\n\n| \\*\\*Preserves YAML comments?\\*\\* | ➖ N/A | ❌ Strips 100% of comments | ✅ 100% Preserved (AST engine) |\n\n| \\*\\*Live Cluster & Helm Audit?\\*\\* | ✅ Yes (Read-only) | ❌ No | ✅ Yes (\\`--cluster\\`, \\`--chart\\`) |\n\n| \\*\\*Target Version Gating?\\*\\* | ⚠️ Filter only | ❌ No | ✅ Safe staged upgrades |\n\n| \\*\\*Ingress ➔ Gateway API?\\*\\* | ❌ No | ❌ No | ✅ Built-in HTTPRoute translation |\n\n\n\n\\### Usage:\n\n`\\`\\`\\`sh`\n\n`# Audit live cluster:`\n\n`npx janos --cluster --audit`\n\n`# Preview repo changes with color diffs:`\n\n`npx janos -d ./k8s --dry-run --diff`\n\n`# Migrate interactively (git add -p style):`\n\n`npx janos -d ./k8s -i`",
+    "externalUrl": "https://i.redd.it/8iw0zfmsavph1.png",
+    "developer": "Impossible_Radio5997",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

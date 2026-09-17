@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003383",
+  "sourceItemId": "80003383",
+  "sourceUrl": "https://stackoverflow.com/questions/80003383/amazon-bedrock-knowledge-base-retrieval-returning-incomplete-sections-from-pdfs",
+  "detail": {
+    "longDescription": "I’m using Amazon Bedrock Knowledge Base + Amazon Bedrock Data Automation parsing to ingest PDFs. My PDFs have a proper hierarchy, for example: - 1.0 Section 1.1 Subsection 1.2 Subsection 1.2.1 1.2.2 Sometimes a section/subsection starts on one page and continues on the next page. My requirement is exact data extraction, not summarization. I first tried Retrieve and Generate, but I don't want to use it because it can summarize/rephrase the retrieved content. So I switched to Retrieve, but the problem is that it sometimes returns only partial chunks. For example, I can get section 1.2 and 1.2.1, but 1.2.2 or the content continuing on the next page is missing. I also sometimes face cross-data contamination, where content from another section/document gets into the retrieval result. I have already tried: - Hierarchical chunking - Increasing chunk/token size - Different retrieval configurations But I still get incomplete retrieval. I also considered metadata filtering. But for my use case, I can't simply create metadata based on the section hierarchy because I would first need to parse the PDF, identify the sections/subsections, create the metadata/sidecar files, and then ingest everything again. And this brings me back to the main problem: PDF parsing. If I use local parsers such as \"pdfplumber\" or PyMuPDF, I get much more control over exactly what I extract, but complex PDFs containing tables, images, and complicated layouts become difficult to parse correctly. Bedrock's PDF parsing handles these cases much better. So my question is: Is there a recommended way to use Bedrock's PDF parsing + Knowledge Base retrieval for deterministic/exact extraction of a complete section and all its subsections, especially when the section spans multiple chunks/pages? Or is Knowledge Base retrieval fundamentally not suitable for this kind of exact section-level extraction, and should I use another architecture? Any practical approach would be really helpful.",
+    "developer": "Synonian_raj",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "55"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

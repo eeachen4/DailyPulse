@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.16531",
+  "sourceItemId": "2609.16531",
+  "fetchedAt": "2026-09-17T01:45:34.708Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.16531",
+  "detail": {
+    "longDescription": "arXiv:2609.16531v1 Announce Type: new Abstract: Message Passing Interface (MPI) has been the dominant programming model for High Performance Computing (HPC) for three decades, and as HPC workloads increasingly migrate to cloud infrastructure for scalability and cost efficiency, MPI applications must contend with an execution environment fundamentally unlike traditional supercomputers: ephemeral resources, dynamic pricing and preemptable instances. In such a volatile setting, the ability to relocate running MPI processes between nodes without restarting the job is a necessity for cost-effective, resilient execution. Existing approaches either require restarting the entire job from a global checkpoint, or transparently intercepting the full MPI stack at prohibitive complexity. To address these challenges, we propose \\name, a cooperative migration system for MPI that enables selective process group migration on-the-fly. When a cloud instance is scheduled for preemption, only the affected ranks are relocated while the remaining processes briefly quiesce and resume in place, avoiding the cost of a full-job checkpoint. \\name tackles this through a cooperative protocol between the MPI process management runtime and rank processes. We expose an \\texttt{XMPI\\_quiesce} interface built atop the MPI Sessions API that allows applications to mark safe migration points, and we extend the Hydra process manager to orchestrate the full migration lifecycle: rank quiescence, CRIU checkpoint/restore, proxy relaunch on the target node, and seamless rank reconnection. We evaluate and show that the cooperative quiesce phase accounts for less than 1.4\\% of total migration downtime, and that this downtime is governed by the migrating node's rank count alone, independent of job size, and the instrumentation introduces no measurable overhead during normal execution.",
+    "developer": "Shunyu Yao, Dimitrios S. Nikolopoulos, Ali R. Butt",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shunyu Yao, Dimitrios S. Nikolopoulos, Ali R. Butt"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

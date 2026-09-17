@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wibgbt",
+  "sourceItemId": "1wibgbt",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wibgbt/one_data_and_one_index_change_the_agent_retrieval/",
+  "detail": {
+    "longDescription": "Hi, James here — I’m the CTO of Zilliz, the company and builder behind Milvus. Milvus is an open-source vector database built to store, index, and search embeddings for semantic search over unstructured data. Vector Lakebase expands that serving path into a lake-native foundation for discovery, analytics, governance, and continuous improvement over the same data.\n\nThe first architectural step is to stop treating every AI workload as a reason to create another copy. An agent may retrieve a document online, while an offline job clusters the same corpus, an evaluation pipeline compares model versions, and a governance process traces the result back to its origin. If each workflow owns its own data and index, the system accumulates migration jobs and inconsistent retrieval behavior.\n\nOne Data makes open lake storage the shared logical foundation for raw content, derived vectors, scalar metadata, lineage, and processing results. Hot serving systems can still cache the data and indexes they need, but they do not become a separate system of record merely because an application requires low latency.\n\nOne Index applies the same reasoning to retrieval structures. Indexes are expensive artifacts with their own lineage. Treating them as versioned lake-level assets lets long-running, on-demand, and offline compute reuse the same logical index instead of rebuilding it inside every application. The physical form can still follow the workload: hot for millisecond serving, warm behind caches, and cold for exploration or batch work.\n\nFor agents, this changes the boundary from “which database owns this memory?” to “which compute path should serve this governed data and index version?” That is a more durable separation as models and workloads change.",
+    "developer": "J_Luan_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

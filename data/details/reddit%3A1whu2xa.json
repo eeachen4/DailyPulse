@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whu2xa",
+  "sourceItemId": "1whu2xa",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1whu2xa/logdeck_selfhosted_control_plane_for_docker_and/",
+  "detail": {
+    "longDescription": "I built LogDeck, a control plane for Docker and Podman: container and Compose lifecycle, persistent logs, alerts, and multi-host over SSH, in one Go binary with no external services.\n\nThe log store is the main reason it exists. Every container is tailed into local SQLite, so logs survive docker compose up --build and the new container ID it creates. Removed containers stay readable.\n\nIt also ships an MCP server, so agents can read logs and act on containers if you want.\n\nMemory is small. Idle heap is around 8 MB, roughly 20 MB resident with 5 containers and 400K lines stored.\n\nfully open source, no tiers, no cloud [https://github.com/AmoabaKelvin/logdeck](https://github.com/AmoabaKelvin/logdeck)\n\n\n\nhttps://preview.redd.it/c9bycb4n6vph1.png?width=1080&format=png&auto=webp&s=710d2bb593ed895eb76951cfc12186d9ade589d5\n\n",
+    "developer": "kamoaba",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

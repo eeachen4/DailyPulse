@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1whx3fm",
+  "sourceItemId": "1whx3fm",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1whx3fm/preserving_yaml_comments_and_git_blame_during/",
+  "detail": {
+    "longDescription": "\\*Affiliation disclosure: I am an open-source maintainer working on Kubernetes migration tooling. This post is a technical breakdown of how we approached AST manipulation, Helm template preservation, and Git blame history.\\*\n\n\n\nWhenever a Kubernetes version deprecates or removes APIs (\\`extensions/v1beta1\\` Ingresses in 1.22, \\`batch/v1beta1\\` CronJobs in 1.25, \\`autoscaling/v2beta2\\` in 1.26), DevOps teams face a recurring dilemma:\n\n\n\n1. \\*\\*Regex / string replacement:\\*\\* Works for trivial \\`apiVersion\\` lines, but fails when schemas change structurally (e.g., adding \\`spec.selector\\` in Deployments, or restructuring Ingress paths/services).\n\n2. \\*\\*\\`kubectl-convert\\`:\\*\\* Parses YAML into Go structs and re-encodes, which \\*\\*strips 100% of human comments\\*\\* and mangles custom indentation.\n\n3. \\*\\*Pluto:\\*\\* Excellent audit tool, but purely read-only—it won't fix anything in your GitOps repos.\n\n4. \\*\\*Git Blame Pollution:\\*\\* When an automated script touches 300 manifests, \\`git blame\\` attributes every line to the bot or engineer running the migration, destroying institutional context.\n\n\n\n\\### How to Address These in an AST Engine\n\n\n\n\\#### 1. Preserving Comments with CST/AST Parsing\n\nInstead of deserializing into plain dictionaries or JSON, parsing manifests into a Concrete Syntax Tree (CST) using YAML AST nodes allows targeting specific scalar tokens (like \\`apiVersion: batch/v1beta1\\` → \\`batch/v1\\`) while leaving surrounding comment tokens, blank lines, and indentation untouched.\n\n\n\n\\#### 2. Unrendered Helm Templates\n\nA common issue in GitOps repositories is storing Helm templates in source control. If you run \\`helm template\\` and fix the rendered output, you lose template logic. Building a lexer stage that temporarily masks Go template tags (\\`{{ ... }}\\`) as inert string placeholders during AST traversal allows performing the API migration and re-injecting the exact Go expressions byte-for-byte.\n\n\n\n\\#### 3. Protecting Git History with \\`.git-blame-ignore-revs\\`\n\nGit 2.23+ and GitHub natively support ignoring bulk reformatting/migration commits:\n\n\\`\\`\\`sh\n\n\\# Storing the migration commit hash\n\ngit log -1 --format=\"%H # automated k8s migration\" >> .git-blame-ignore-revs\n\ngit config blame.ignoreRevsFile .git-blame-ignore-revs",
+    "developer": "Impossible_Radio5997",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

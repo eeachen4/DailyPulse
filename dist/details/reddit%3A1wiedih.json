@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wiedih",
+  "sourceItemId": "1wiedih",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wiedih/the_cheap_model_tier_made_our_total_bill_worse/",
+  "detail": {
+    "longDescription": "We routed simple requests to a cheaper model and celebrated the lower average cost per call. Then total spend rose. The first model often returns low confidence, so we send the same context across retrieval again and fall back to the expensive model. Our threshold is sufficiently loose to trigger the cascade often and context duplication means one resolved task now pays for two prompts. Ngl the dashboard told the truth one call at a time and still gave us the wrong conclusion.\n\nIm rebuilding the analysis around cost per resolved task, fallback rate and latency across the full cascade. I also want cohort slices because a few request types seem to cause most double runs. How are people tuning confidence thresholds without trading cost for a worse completion rate and do you count retrieval work once or at every stage?",
+    "developer": "Massive_Tell_4276",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

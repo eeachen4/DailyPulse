@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003348",
+  "sourceItemId": "80003348",
+  "sourceUrl": "https://stackoverflow.com/questions/80003348/how-do-i-change-the-hitbox-of-a-png-jpg-to-match-what-is-and-isnt-transparent",
+  "detail": {
+    "longDescription": "I want to be able to click and drag some little pngs around on my website. Right now when you click on them they just move to the front. The problem is that if you try to click on one behind another and it's within the bounding box of the image, it thinks you're clicking the top one. Instead, I want it to recognize that you clicked on a transparent part of the image and pass through to whatever's behind, then if that's a non-transparent part of another image, move it to the front. I saw clip-path, but that's not specific to the image's shape and I figured it would be a lot of work to mask the image out with a polygon by hand. I also saw mask-image, but it didn't look like it would do what I want. I also saw some stuff about using canvases. I don't really want to use a canvas because I want to be able to scatter them around a website, but if canvases are the best solution then I'd be willing to figure that out. I added borders so it's easier to see bounding box of the images, but those wouldn't normally be there. const toys = document.querySelectorAll('.toy'); let z = 1; toys.forEach(toy => { toy.addEventListener('mousedown', () => { z = z + 1 toy.style.zIndex = z }) }) .toy { position: absolute; border: 1px solid black; } img { height: 125px; } #skitty { left: 50px; } <img class=\"toy\" id=\"spinda\" src=\"https://64.media.tumblr.com/ceaa5acf329af60c89e6bc759a55f38c/ffae91d1ca581b58-07/s250x400/6847afbd9c00c50e9a3cabf763b363d9cb5e2942.png\" /> <img class=\"toy\" id=\"skitty\" src=\"https://64.media.tumblr.com/501dc65615e5c1d75a94e8f484e723f1/1b98bea76eb59785-da/s250x400/8d688330a7b667629e369c54e11ae89b82672527.pnj\" />",
+    "developer": "saturn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "45"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
