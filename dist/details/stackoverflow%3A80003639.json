@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003639",
+  "sourceItemId": "80003639",
+  "sourceUrl": "https://stackoverflow.com/questions/80003639/how-to-use-same-service-for-multiple-prisma-clients-without-dry",
+  "detail": {
+    "longDescription": "I wanted to use Prisma for two databases: a main database (PostgreSQL) and test database (SQLite). Prisma did not support handling multiple databases with a single schema, so I had to create two schemas and their configurations. prisma/main/schema.prisma : generator client { provider = \"prisma-client\" output = \"./generated\" } datasource db { provider = \"postgresql\" } // ... Models prisma/test/schema.db : generator client { provider = \"prisma-client\" output = \"./generated\" } datasource db { provider = \"sqlite\" } // ... Models prisma/main/prisma.config.ts : import \"dotenv/config\"; import { defineConfig, env } from \"prisma/config\"; export default defineConfig({ schema: \"./schema.prisma\", migrations: { path: \"./migrations\" }, datasource: { url: env(\"MAIN_DATABASE_URL\") } }); prisma/test/prisma.config.ts : import \"dotenv/config\"; import { defineConfig, env } from \"prisma/config\"; export default defineConfig({ schema: \"./schema.prisma\", migrations: { path: \"./migrations\" }, datasource: { url: env(\"TEST_DATABASE_URL\") } }); I generated Prisma clients with npx prisma generate --config ./prisma/main/prisma.config.ts && npx prisma generate --config ./prisma/test/prisma.config.ts and instantiated them. prisma/main/client.ts instantiates client which uses PostgreSQL adapter. import { PrismaPg } from \"@prisma/adapter-pg\"; import { PrismaClient } from \"./generated/client\"; import { MAIN_DATABASE_URL } from \"../../global/env\"; const connectionString = MAIN_DATABASE_URL; const adapter = new PrismaPg({ connectionString }); const client = new PrismaClient({ adapter }); export default client; prisma/test/client.ts instantiates the client using better sqlite3 adapter. import { PrismaBetterSqlite3 } from \"@prisma/adapter-better-sqlite3\"; import { PrismaClient } from \"./generated/client\"; import { TEST_DATABASE_URL } from \"../../global/env\"; const connectionString = TEST_DATABASE_URL; const adapter = new PrismaBetterSqlite3({ url: connectionString }); const client = new PrismaClient({ adapter }); export default client; I have a authentication service which creates a user in the database. services\\auth.service.ts : import { hashSync } from \"bcrypt\"; import LOG_MESSAGES from \"../global/logMessages\"; import logger from \"../global/logger\"; import { IRegister } from \"../interfaces\"; import { userMapper } from \"../mappers\"; import { PrismaClient } from \"../prisma/main/generated/client\"; // 4 Authentication & authorization export default class AuthService { client: PrismaClient; constructor(client: PrismaClient) { this.client = client; } // Main // Creates a new user in the Database. IRegister is interface async create(data: IRegister) { delete data.password2; data.email = data.email.toLowerCase(); data.password = hashSync(data.password, 10); // 1 Parametrized queries const user = await this.client.user.create({ data }); // 5 Security logging logger.info(LOG_MESSAGES.authServ.create, { userId: user.id }); return userMapper.toClass(user); } } I tried condensing the client classes into one. prisma/client.ts : import mainClient from \"./main/client\"; import { PrismaClient as MainClient } from \"./main/generated/client\"; import testClient from \"./test/client\"; import { PrismaClient as TestClient } from \"./test/generated/client\"; type Client = MainClient | TestClient; export { Client, mainClient, testClient }; But then create function became uncallable. // ... import { Client } from \"../prisma\"; import { userMapper } from \"../mappers\"; // 4 Authentication & authorization export default class AuthService { client: Client; constructor(client: Client) { this.client = client; } // Main async create(data: IRegister) { delete data.password2; data.email = data.email.toLowerCase(); data.password = hashSync(data.password, 10); // 1 Parametrized queries const user = await this.client.user.create({ data }); This expression is not callable. Each member of the union type '(<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<DefaultArgs>>) => Prisma__UserClient<GetFindResult<$UserPayload<DefaultArgs>, T, { ...; }>, never, DefaultArgs, { ...; }>) | (<T extends UserCreateArgs>(args: SelectSubset<...>) => Prisma__UserClient<...>)' has signatures, but none of those signatures are compatible with each other. How do I use the same service for multiple databases?",
+    "developer": "IgorArnaut",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "62"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

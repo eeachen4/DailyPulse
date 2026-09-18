@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wj6rh7",
+  "sourceItemId": "1wj6rh7",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wj6rh7/is_it_possible_to_render_two_sessions_of_the_same/",
+  "detail": {
+    "longDescription": "Context: I teach chess lessons over Google Meet using Lichess. My screen (specifically one browser tab) is shared with a student. My school has a policy that teachers can't reveal their real account/username to students, so the student's view of the game must show me as anonymous/logged out.\n\nwe usually teach the students and at the end we play an Anonymous game and this is the problem. \n\nThe catch: I still need to stay logged in on my end, because some features (Opening Explorer, analysis tools) only work for authenticated accounts, and I use them while teaching. so i did write a Tampermonkey script, it checks the website and finds my username and replaces it with \"Anonymous\", so far so good. but the problem is the \"Challenge a friend\" request, when i click this, it generated a link for my account (which is logged in), so when the student accepts the Challenge, they will see my name\n\nbecause this is all happening in a single website/url/domain, i thought the issue of same-origin is not gonna matter, maybe we could use an iframe?, some sandboxing technique? stripped the cookie from certain requests?\n\nThe actual question: Is there any technique — browser API, extension capability, or otherwise — that lets a single tab display two independent sessions/cookie contexts of the same origin simultaneously, where both remain fully functional?\n\nOr is \"one tab = one cookie jar, full stop\" actually a hard architectural ceiling in modern browsers, and the realistic answer is just \"use two tabs/windows and switch fast\"?\n\nHappy to be told this is a dead end, just want to hear it from people who work with browser internals regularly.",
+    "externalUrl": "https://i.redd.it/x0x125kqd5qh1.png",
+    "developer": "alexCosmetic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

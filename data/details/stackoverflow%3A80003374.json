@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80003374",
   "sourceItemId": "80003374",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80003374/is-it-possible-to-configure-structlog-using-python-standard-library-fileconfig-d",
   "detail": {
-    "longDescription": "Python's standard library has a way to configure the logging using a dictConfig or fileConfig . A tool I am using (Dask) also supports configuring logging this way as part of its greater config file. Can I configure structlog this way? I suspect the answer is just \"No\", because the structlog abstractions (processors etc) are not easily put into this format, but I am not sure.",
+    "longDescription": "Python's standard library has a way to configure the logging using a dictConfig or fileConfig . A tool I am using (Dask) also supports configuring logging this way as part of its greater config file. Can I configure structlog this way? I suspect the answer is just \"No\", because the structlog abstractions (processors etc) are not easily put into this format, but I am not sure. For example my current config for structlog (only marginal tweaks from the one from the docs )is: shared_processors: list[structlog.typing.Processor] = [ structlog.stdlib.add_log_level, structlog.stdlib.add_logger_name, structlog.stdlib.ExtraAdder(), structlog.processors.TimeStamper(fmt=\"%Y-%m-%d %H:%M:%S\"), ] structlog.configure( processors=shared_processors + [structlog.stdlib.ProcessorFormatter.wrap_for_formatter], logger_factory=structlog.stdlib.LoggerFactory(), cache_logger_on_first_use=True, ) formatter = structlog.stdlib.ProcessorFormatter( foreign_pre_chain=shared_processors, processors=[ structlog.stdlib.ProcessorFormatter.remove_processors_meta, structlog.processors.dict_tracebacks, structlog.processors.JSONRenderer(default=_json_fallback), ], ) handler = logging.StreamHandler() handler.setFormatter(formatter) root_logger = logging.getLogger() root_logger.handlers.clear() root_logger.addHandler(handler) root_logger.setLevel(default_level)",
     "developer": "Frames Catherine White",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
-      },
-      {
-        "label": "回答",
         "value": "2"
       },
       {
+        "label": "回答",
+        "value": "3"
+      },
+      {
         "label": "浏览",
-        "value": "86"
+        "value": "115"
       },
       {
         "label": "状态",

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80003603",
   "sourceItemId": "80003603",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80003603/getting-forbidden-error-on-selenium-chrome",
   "detail": {
     "longDescription": "I am working on a Python Selenium application that monitors an exam registration website. I am getting a 403 Forbidden response when the site is opened through Selenium, while the exact same URL opens normally in regular Chrome on my PC. Environment: - Python 3.12 - Selenium - Google Chrome - ChromeDriver / Selenium Manager - Application is deployed on Railway - Railway has a static outbound IPv4 address - Chrome version on Railway: 153.0.8010.36 The problem is: 1. Normal Chrome on my PC: The website opens normally. 2. Selenium with headed Chrome: The page returns: \"Forbidden Your request was forbidden by the server.\" 3. Selenium with headless Chrome: Same 403 Forbidden response. 4. Selenium with a clean/new Chrome profile: Same 403 response. 5. I also tested through proxies, but Chrome then sometimes reports: ERR_NO_SUPPORTED_PROXIES 6. I also verified that Chrome itself is installed correctly on Railway and Selenium can start the browser. 7. Chrome/driver versions appear compatible. The Selenium page diagnostic shows: URL: https://www.goethe.de/ins/pk/en/spr/prf/gzsd1.cfm TITLE: Forbidden BODY: Forbidden Your request was forbidden by the server. The Selenium application uses normal delays between actions and waits for page elements rather than sending requests continuously. I have already tested: - headed vs headless - clean Chrome profile - direct connection - proxy connection - Railway static outbound IP - Chrome/driver compatibility What I would like to understand is: Why would a website return 403 to Selenium while the same URL works in normal Chrome? What legitimate diagnostics can I use to determine whether the 403 is caused by: - the server/network, - Railway's outbound connection, - HTTP/TLS differences, - Selenium/WebDriver configuration, - Chrome configuration, - proxy configuration, - or something else? I am looking for troubleshooting/diagnostic advice rather than CAPTCHA or security-bypass techniques. Any suggestions for determining the exact source of the 403 would be appreciated.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-4"
+        "value": "-5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "41"
+        "value": "58"
       },
       {
         "label": "状态",

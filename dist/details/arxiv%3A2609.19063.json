@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.19063",
+  "sourceItemId": "2609.19063",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.19063",
+  "detail": {
+    "longDescription": "arXiv:2609.19063v1 Announce Type: new Abstract: Few grammars are designed in a straight line. During grammar prototyping, authors often want to run a partially settled rule before refactoring overlapping alternatives or regenerating parser code. Predictive parsers are effective for stable grammars, but their generation and compilation loop can slow down interactive grammar development. This paper presents MSLL, a lightweight runtime extension of recursive-descent LL parsing for edit-time grammar exploration. When a FIRST/FIRST conflict appears, MSLL keeps multiple live parsing stacks, lets each stack follow a different candidate production, and prunes a stack as soon as the input contradicts it. Ambiguity is therefore handled as a runtime state-management problem rather than as a condition that must be removed before execution. The prototype targets an ANTLR-style grammar workflow: run and inspect an evolving grammar directly, collect conflict traces, and later translate or adapt the stabilized grammar for a generated parser. Experiments on DSL-style workloads show that MSLL finishes three 1k-token benchmarks in 48, 49, and 59 ms; stays under one second on two ambiguous 50k-token workloads; and reaches 5.395 s on a 500k-token deeply nested stress case. A real-world JSON grammar case confirms interactive behavior on small and medium inputs while exposing prototype-level super-linear overhead at 500k tokens. The results position MSLL as a development-time companion to existing LL-based parser generators rather than a replacement for production parsers.",
+    "developer": "Qunhui Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Qunhui Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

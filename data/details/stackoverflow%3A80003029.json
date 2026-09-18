@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003029",
+  "sourceItemId": "80003029",
+  "sourceUrl": "https://stackoverflow.com/questions/80003029/how-to-use-pydicom-auto-format-config-option",
+  "detail": {
+    "longDescription": "I am trying to use pydicom to store a float as a field DS. It appears that it should be working automagically since issue 1264 has been closed: https://github.com/pydicom/pydicom/issues/1264 However I failed to understand the document on how to use those new magic flags Code is: from pydicom.dataset import Dataset, FileDataset, FileMetaDataset from pydicom import config config.auto_format = True import pydicom pydicom.config.settings.auto_format = True def main(): ds = Dataset() comp = 11.79395969374598 ds.LossyImageCompressionRatio = comp file_ds = FileDataset(\"test.dcm\", ds) file_ds.is_little_endian = True file_ds.is_implicit_VR = False file_ds.save_as(\"test.dcm\") if __name__ == \"__main__\": main() Which leads to: $ dcmdump test.dcm | tail -1 (0028,2112) DS [11.79395969374598] # 18, 1 LossyImageCompressionRatio I am using pydicom 3.0.2",
+    "developer": "malat",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "53"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

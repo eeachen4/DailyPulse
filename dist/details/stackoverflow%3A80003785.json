@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003785",
+  "sourceItemId": "80003785",
+  "sourceUrl": "https://stackoverflow.com/questions/80003785/git-branching-strategy-how-to-handle-hotfixes-directly-to-production-while-main",
+  "detail": {
+    "longDescription": "I'm working on optimizing our CI/CD pipeline for a multi-environment deployment (devnet → testnet → mainnet) and running into challenges with our Git tagging and versioning strategy, particularly when handling hotfixes. Current Setup We use an environment-as-a-branch strategy with three protected branches: devnet - development environment testnet - staging/QA environment mainnet - production environment Our promotion flow is strictly enforced: feature → devnet → testnet → mainnet Current workflow behavior: PRs to devnet require a version label ( patch / minor / major ) Auto-tagging calculates the next semantic version based on PR labels Docker images are built, scanned with Trivy, and pushed with semver tags Promotions to testnet and mainnet reuse the scanned image (no rebuild) The Problem We're facing two related challenges: 1. Hotfix Dilemma When a critical bug is found in production ( mainnet ), we cannot create a hotfix branch directly from mainnet because: Our branch protection requires mainnet PRs to come only from testnet If we fix it in devnet and promote normally, it takes too long If we bypass the flow, we create version inconsistencies Example scenario: mainnet is at v3.1.0 devnet is at v3.8.0 (working on new features) Critical bug found in production How do we hotfix mainnet to v3.1.1 without disrupting the v3.8.0 work in devnet ? 2. Version Gap Problem When testnet accumulates many features and jumps ahead of mainnet : testnet reaches v3.8.6 mainnet is still at v3.1.0 When we finally promote to mainnet , should it become v3.8.6 or v3.1.1 ? If we choose v3.1.1 , we're hiding the fact that 8 minor features were added. If we choose v3.8.6 , the version jump seems alarming to stakeholders. What We've Tried Attempt 1: Hotfix branches with special workflow We modified our branch protection to allow hotfix/* branches to PR directly to mainnet , but this creates a new problem: the hotfix must be manually back-merged to devnet and testnet or it gets lost in the next promotion. Attempt 2: Reading version from package.json Instead of auto-calculating versions, we tried having developers explicitly bump the version in package.json . This helps with clarity but doesn't solve the hotfix back-merge problem. Current auto-tag workflow snippet: # Computes version based on PR labels case \"$BRANCH\" in devnet) # Bump version based on patch/minor/major label NEW_TAG=\"devnet-v${MAJOR}.${MINOR}.${PATCH}\" ;; testnet) # Promote devnet version to testnet NEW_TAG=\"testnet-v${DEVNET_BASE}\" ;; mainnet) # Promote testnet version to mainnet NEW_TAG=\"v${TESTNET_BASE}\" ;; esac Questions For hotfixes: What's the industry-standard approach for handling production hotfixes in a multi-environment Git branching strategy? Should we: Allow direct mainnet hotfixes and enforce mandatory back-merges? Use cherry-picking from devnet to a hotfix branch? Adopt a release branch strategy ( release/v3.1.x )? For version gaps: When promoting from testnet (at v3.8.6 ) to mainnet (at v3.1.0 ), should the production version: Jump to v3.8.6 (reflecting all changes)? Increment to v3.1.1 (maintaining linear history)? Use a hybrid approach (e.g., v3.8.6 with release notes explaining the gap)? Alternative strategies: Would we be better served by: Trunk-based development with feature flags? GitOps/manifest promotion (separate repo for environment configs)? Calendar versioning (CalVer) instead of SemVer? Release trains with scheduled promotions? Constraints We need to maintain security scanning (Trivy) for all images Docker images are stored on DockerHub with semver tags We want to avoid rebuilding the same image multiple times Team size: 5-10 developers Release frequency: Weekly to bi-weekly to production",
+    "developer": "Asta Beast",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "74"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

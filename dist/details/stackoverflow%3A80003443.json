@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003443",
+  "sourceItemId": "80003443",
+  "sourceUrl": "https://stackoverflow.com/questions/80003443/holoviews-point-bi-directional-sync",
+  "detail": {
+    "longDescription": "I am desperatly trying to make a bi-directional sync between two sliders and a (single point) Point Holoviews graph without success. I do manage to update the point position with sliders values thanks to a DynamicMap together with reactive (streams) values of param numbers ( dmap graph). On the other hand, I do manage to update the sliders values from an instance of holoviews.Point thanks to a PointDraw stream ( point_plot graph) linked to callback that updates sliders values. However I am struggle to have both synchronisation in the same graph. The PointDraw tool is not functional in the DynamicMap and sliders streams can't update the static instance of the holoviews.Point graph. Any idea? import numpy as np import panel as pn import param import holoviews as hv hv.extension(\"bokeh\") pn.extension() class Point(param.Parameterized): x = param.Integer(default=160, bounds=(110, 210), step=1) y = param.Integer(default=67, bounds=(40, 100), step=1) point_stream = param.ClassSelector(class_=hv.streams.PointDraw, ) plot = param.ClassSelector(class_=hv.Points) def __init__(self, x_init: int = 160, y_init: int = 67, **params): plot = self.plot_graph_(x_init, y_init) ps = hv.streams.PointDraw(add=False, drag=True, data=plot.columns(), source=plot, empty_value=np.nan) super().__init__(x=x_init, y=y_init, point_stream=ps, plot=plot, **params) @staticmethod def plot_graph_(x, y): return hv.Points([(x, y)], kdims=[\"x\", \"y\"]).opts(size=15, color='green', marker='square', tools=[\"point_draw\"], active_tools=[\"point_draw\"]) def update_x_y_from_stream_data(self, event): self.x = event.new[\"x\"][0] self.y = event.new[\"y\"][0] point = Point(150, 60) # DynamicMap graph dmap = hv.DynamicMap(point.plot_graph_, streams={\"x\": point.param.x, \"y\": point.param.y}) dmap = dmap.redim.range(x=(100, 200), y=(50, 90)) dmap = dmap.opts(width=800, height=400) # Point graph point_plot = point.plot point_plot = point_plot.redim.range(x=(100, 200), y=(50, 90)) point_plot = point_plot.opts(width=800, height=400) point.point_stream.param.watch(point.update_x_y_from_stream_data, \"data\", onlychanged=False) # the app pn.Column( point.param.x, point.param.y, dmap, point_plot).servable()",
+    "developer": "FLS",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "57"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

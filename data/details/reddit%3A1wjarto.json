@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjarto",
+  "sourceItemId": "1wjarto",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wjarto/whats_inside_a_wsl2_wslc_session_a_real_dockerd/",
+  "detail": {
+    "longDescription": "If you've updated WSL recently you already have wslc.exe — it ships in 2.9.3+ and is headed for GA. I spent a weekend\n\npoking at it because I couldn't find a straight answer to what's actually running inside a session, and it turned\n\nout to be more interesting than I expected.                                                                          \n\n\n\nThere's a stock Moby engine in there. Not a reimplementation — dockerd 25.0.3 on my machine, on a unix socket inside the session VM. You can check yourself:\n\nwslc run -d --name probe busybox sleep infinity\n\nwslc exec probe sh -c \"ls -l /var/run/docker.sock; dockerd --version\"But it's started with no -H. No named pipe, no TCP port, no inbound route from Windows. The engine is complete and\n\nunreachable from the host, so nothing that speaks the Docker API can talk to it — Compose, Testcontainers, DevContainers, buildx with a container driver, anything mounting docker.sock. wslc mimics the docker CLI (build, run,\n\nexec, images) and stops there. If your workflow is run-and-build it's genuinely fine; if it's compose up, no amountof aliasing helps.\n\nA session is its own VM. This is the part I think this sub will care about most: it does not live in the WSL2 utility\n\nVM your distros share. I measured \\~750 MB working set for the session VM, separate from the utility VM, and \\~3.3 scold start because it boots the whole thing. If you already run Ubuntu in WSL, wslc is a second VM rather than a\n\nprocess in the first one.\n\nControl plane is quick, for what it's worth — wslc list 53 ms, images 57 ms, exec <running> true 109 ms, run --rmalpine true warm 538 ms. It goes COM-to-VM with nothing in the path.\n\n\n\nBind mounts are fast, and that's the transferable finding. wslc mounts Windows folders over virtiofs and gets 760 MB/s read, ls -l of 1000 files in 0.24 s. A normal distro still defaults to 9p. Same host, same test:\n\n\n\n┌───────────────────┬──────────────┬──────────┐\n\n│                   │ 9p (default) │ virtiofs │\n\n├───────────────────┼──────────────┼──────────┤\n\n│ read 256 MB       │ 192 MB/s     │ 811 MB/s │\n\n├───────────────────┼──────────────┼──────────┤\n\n│ ls -l 1000 files  │ 0.73 s       │ 0.22 s   │\n\n├───────────────────┼──────────────┼──────────┤\n\n│ create 1000 files │ 2.39 s       │ 2.02 s   │\n\n└───────────────────┴──────────────┴──────────┘\n\n\n\nWSL 2.9 will give your own distros virtiofs. In %USERPROFILE%\\\\.wslconfig:\n\n\n\n\\[wsl2\\]\n\nvirtiofs=true\n\nthen wsl --shutdown.\n\n\n\nFour times the read throughput and three times the directory listing — the shape of npm install, a gradle build, or a large build context. Writes are roughly a wash, and noisy enough that I wouldn't quote a number.\n\n\n\nCaveats before you flip it: needs WSL 2.9+ (older versions ignore the key silently — check wsl --version), it's machine-wide so every distro's /mnt/\\* changes, and it needs a wsl --shutdown. My two worries were metadata and file watching; chmod 600 still sticks and inotify events still fire, so editors and watchers behave.\n\n\n\nConfirm it took:\n\n\n\nwsl -d <distro> -u root --exec sh -c \"grep ' /mnt/c ' /proc/mounts\"\n\nshould say virtiofs, not 9p.\n\n\n\nOpen question: is anyone using wslc for real work yet, and what did you give up? I'm curious whether the missing endpoint is a dealbreaker generally or just for my workflow.\n\n\n\n(Numbers are from one host — Windows 10 Pro 22H2 19045, WSL 2.9.11, 4 vCPU / 7.8 GB. Wall-clock around the shipped CLI, median of 10; filesystem timings taken inside the container. Happy to paste the exact commands, they're plain dd and a stopwatch. Disclosure: I work on tooling in this space, so I came at this with a bias.)",
+    "developer": "Utopia-Denier",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

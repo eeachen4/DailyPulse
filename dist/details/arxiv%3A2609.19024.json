@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.19024",
+  "sourceItemId": "2609.19024",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.19024",
+  "detail": {
+    "longDescription": "arXiv:2609.19024v1 Announce Type: new Abstract: Distributed machine learning increasingly runs on shared multi-tenant GPU clusters where contention and failures are routine. Goodput-driven schedulers maximise instantaneous throughput but treat accumulated waiting time and restart cost as second-class signals: long-waiting jobs are repeatedly deferred, and the minutes of checkpoint loading paid after each interruption are not folded back into allocation decisions. We present OAK, a per-round mixed-integer linear scheduler whose composite utility adds two first-class terms to goodput: an age key that elevates jobs with high cumulative waiting time, and a decomposed restart factor that tracks productive training time and checkpoint overhead as separately measured quantities rather than a single aggregate ratio. We evaluate OAK against four representative goodput- and fairness-driven baselines in a trace-driven simulator on a 12-GPU cluster across four data-parallel workloads with controlled Poisson failure injection, and reproduce the failure-mode improvement on a 4-V100 real-hardware cluster. Under failure-free conditions OAK matches the strongest goodput-driven baseline within 4%. Under failures at rate $\\lambda = 0.1$ it reduces mean job completion time (JCT) by 33.9-58.3% and worst-case JCT by 58-76% over its goodput-driven foundation; the decomposed restart factor alone accounts for a 40-57% mean and 52-76% tail JCT improvement against an aggregate restart estimator used in prior goodput-driven schedulers. Per-round decision latency is 7.65 ms, three orders of magnitude faster than evolutionary-search alternatives at default settings.",
+    "developer": "Khaled Aljbab, Amine Barrak",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Khaled Aljbab, Amine Barrak"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

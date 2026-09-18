@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.18388",
+  "sourceItemId": "2609.18388",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.18388",
+  "detail": {
+    "longDescription": "arXiv:2609.18388v1 Announce Type: new Abstract: Large language models are increasingly trained on GPUs distributed across multiple regions, but geo-distributed training is challenging in practice. Real clusters often contain GPUs with different speeds and memory capacities, and they communicate over slow wide-area networks. Our analysis shows that this creates serious problems: existing synchronous methods preserve stable updates, but fast GPUs wait up to 20.9% of their runtime for slower ones, and all workers spend, on average, 65.8% of their runtime on synchronization. Recent asynchronous methods reduce waiting time but worsen the model accuracy due to stale updates. To address the problems, we present GeoMesh, a synchronous geo-distributed training framework for heterogeneous GPUs. GeoMesh balances per-worker workloads by assigning each GPU a suitable batch size and number of inner steps, so faster GPUs do more useful work instead of waiting. It also reduces communication volume by nearly 32x by exchanging compressed sign-based pseudo-gradients with lightweight magnitude and token count. Across heterogeneous GPUs and Azure-derived WAN, GeoMesh reduces time-to-target perplexity by up to 70.2% over representative baselines and lowers straggler- and WAN-induced GPU idle by up to 8.0x and 5.6x, respectively, while preserving comparable zero-shot accuracy.",
+    "developer": "Changyong Shin, Jaerim Park, Minchul Kang, Younghun Go, Zhixiong Niu, Yongqiang Xiong, Gyeongsik Yang, Chuck Yoo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Changyong Shin, Jaerim Park, Minchul Kang, Younghun Go, Zhixiong Niu, Yongqiang Xiong, Gyeongsik Yang, Chuck Yoo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

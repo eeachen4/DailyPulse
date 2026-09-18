@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.17573",
+  "sourceItemId": "2609.17573",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.17573",
+  "detail": {
+    "longDescription": "arXiv:2609.17573v1 Announce Type: cross Abstract: Diffusion large language models (dLLMs) are emerging as a promising generative paradigm that complements autoregressive decoding. In long-context settings, KV cache bloat and offloading transfer overhead have become primary bottlenecks in inference systems. Meanwhile, the periodic full-sequence recomputation and localized token updates in dLLMs make the KV lifecycle substantially more dynamic, complicating cache management and prefetch scheduling while making heavyweight token-level indexing or clustering schemes harder to amortize effectively during decoding. To address these challenges, we present \\textsc{GroupKV}, a lightweight hierarchical KV cache management system for long-context dLLM inference. We observe that under block-wise decoding, tokens within the same generation block tend to access highly overlapping and spatially concentrated context regions, making group-level sparse selection effective. Building on this observation, \\textsc{GroupKV} partitions the context into contiguous groups and performs coarse-to-fine sparse selection. \\textsc{GroupKV} further exploits cross-layer consistency to enable predictive prefetching, and incorporates a staleness correction mechanism to maintain cache coherence under dynamic KV updates. Additionally, \\textsc{GroupKV} adopts streaming prefill to reduce peak memory consumption during prefilling. Experiments show that \\textsc{GroupKV} extends the maximum serviceable context length by up to $48.00\\times$ under constrained GPU memory, improves end-to-end inference performance by up to $3.73\\times$ in offload-based long-context settings, and maintains competitive task accuracy.",
+    "developer": "Jinhao Wang, Zhexin Hu, Kangjie Zhou, Xin Zhou, Fangfang Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.OS, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jinhao Wang, Zhexin Hu, Kangjie Zhou, Xin Zhou, Fangfang Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

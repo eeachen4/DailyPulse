@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.03473",
+  "sourceItemId": "2608.03473",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.03473",
+  "detail": {
+    "longDescription": "arXiv:2608.03473v3 Announce Type: replace-cross Abstract: Table-driven DFA lexing is sequential: each transition depends on the previous byte's state. Scanning one input in parallel needs each chunk's entry state, which existing methods recover by simulation, speculation, prescanning, or overlap. We give two conditions under which none is needed. For a longest-match scanner restarting from q0 at every token boundary, a byte b is a certified split symbol when no reachable state other than q0 has a b-transition whose target can reach acceptance, and q0 is not re-entrant if it has one. Every occurrence of such a byte in completely tokenizable input begins a token, so chunks starting there reproduce the serial sequence of kinds and lengths by ordered concatenation. The condition is necessary as well as sufficient, and fragile: one string, comment, or whitespace run can eliminate every useful certificate, and comments and whitespace are usually discarded. We therefore weaken the guarantee to equality after deleting a declared discarded set, and give a second condition, sound and more permissive, coinciding with the first when the discarded set is empty and strictly gaining on suitable pairs of token set and discarded set, but conservative rather than exact, decided from the same tables, answered by a second constant-time one-bit query. It recovers newline for a conventional C-like tokenization and tab, newline and carriage return for JSON, without altering their token definitions, and refuses it where block comments are unrestricted. Splitting at exact certificates in the munch library reaches 92.6-95.3% parallel efficiency at eight threads on a restricted CPU set, on a 512 MiB dense corpus beyond last-level cache, and a 3.46-3.94x end-to-end speedup at four threads, across two benchmark revisions on one machine. It turns delimiter-based parallel lexing from a language-specific assumption into a property a compiler checks.",
+    "developer": "Nicklas Nidh\\\"ogg",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.FL, cs.DC, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nicklas Nidh\\\"ogg"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

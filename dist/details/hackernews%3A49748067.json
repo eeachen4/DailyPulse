@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49748067",
+  "sourceItemId": "49748067",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49748067",
+  "detail": {
+    "longDescription": "After over a decade of writing apps in PHP, I always wondered why we needed all that extra tooling around it just to serve websites. I suspected PHP alone could be faster. I didn’t realize how right I was. It’s finally done! Two months after I initially announced it, Qbix webserver 1.2 is out. It is written in pure PHP, meaning you can run web applications without nginx for serving files and websites, certbot for certificates, cron for periodic tasks, node for realtime sockets, etc. It comes out of the box with a user friendly dashboard and control panel, too. There are even standalone binaries you can download for Linux and MacOS that can contain your entire web application: https:&#x2F;&#x2F;qbixserver.com Originally it was much faster than php-fpm, but now it is also faster than even the fastest PHP runtimes. And unlike those runtimes, it is able to run existing PHP apps without modification! First, how it can be this fast: The vast majority of PHP apps make blocking I&#x2F;O calls (to the database, files, network calls etc) While that happens, the thread is blocked. FrankenPHP, Swoole, amphp and others take the “evented” approach which is much faster, but require all I&#x2F;O calls to be rewritten to use their async libraries. But most existing PHP code would need a lot of work to be ported to async style, and even if it was, sometimes the async libraries don’t handle everything the mainstream ones do. Qbix Webserver takes a different approach: it spawns hundreds, sometimes thousands of processes on Linux, Mac etc. When a process is blocked waiting on I&#x2F;O, the rest of the application can handle thousands of concurrent users. The reason this works is that that Qbix server allows apps to preload files and classes before it forks the worker processes. It can do this while being written in pure PHP. While php-fpm can prefork workers, this causes each worker to take up a lot of memory, eg 40MB, duplicating all the bytecode from your entire framework and app. By contrast, Qbix Webserver is able to spawn workers that are around 140KB each for a typical Wordpress app. This is because pcntl_fork on Linux and MacOS only copies on write, so 4-16KB memory pages are only copied when you make a change to a variable. If all the variables are on one page (eg in one array) you can even have workers weighing 4-16KB total, allowing you to run TENS OF THOUSANDS of workers on a 4GB machine. If you use composer install amphp, your code will use epoll instead, causing your app on Qbix Server to be even more efficient. Second, the other features: This is 2026. It would be great if your PHP was able to work with the latest socket.io and handle rooms and socket connections. Imagine a chat server that’s entirely in memory, and also able to handle 40,000 simultaneous users and connections. Well, now you can. Qbix Webserver handles HTTP Requests, Websockets and rooms, even HTTP Push (for streaming AI tokens etc). It also can manage your TLS certificates, run cron jobs, and more. It supports headers like X-Accel-Redirect which lets you serve files with access control done by your app. (Though these aren’t as fast as nginx because PHP lacks support for sendfile, so if you want additional 2x boost in speed for protected static files, you should proxy these headers to NGINX. For public static files, just use a CDN.) It even supports something new I invented, X-Cache-Tree allowing your code to cache parts of a webpage. Yes, that’s right — you are no longer required to render an entire page again if only a couple parts of it got invalidated. The X-Cache-Invalidate header can intelligently invalidate many pages at the same time! How do I try it? Visit qbixserver.com and grab the actual server. Launch it with PHP, and use the visual dashboard in your browser to manage your apps. Enjoy! It’s MIT licensed.",
+    "developer": "EGreg",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

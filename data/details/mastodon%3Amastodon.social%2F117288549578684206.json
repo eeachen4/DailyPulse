@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117288549578684206",
+  "sourceItemId": "mastodon.social/117288549578684206",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-c8c52057-a4cff3c2a61cb8ba",
+  "detail": {
+    "longDescription": "When I started my DevOps journey back in 2020, I was curious about the term \"Octopus Deploy.\" I figured: okay, it's software that helps release and distribute our code? Then I used Jenkins to deploy my own code from GitHub for the first time — Jenkins has a UI you can work with directly, so I assumed it was the same kind of thing: a tool you just point at your code to deploy it. It was in 2022, working on a larger team for the first time, that I heard a senior engineer stressed out about \"attaching a runner.\" I had no idea what he meant. Why do we even need that — can't we just use Octopus Deploy like at my previous company? Why do we need AWS, why do we need infrastructure at all? That's when it clicked: Octopus Deploy and Jenkins are just the user-facing interface for configuring the underlying infrastructure, and every deployment runs on a machine somewhere that someone is paying for. I knew a machine was involved, I just assumed it was some shared VM I didn't need to think about. That was the start of actually learning the nitty-gritty of how a runner gets attached, and what it costs to keep one running. Where runners actually live \"Attaching a runner\" isn't expensive for a single developer on a single project. In an enterprise, with many people deploying and merging into main constantly, it can cost a fortune. A few places I've seen it live: A Kubernetes/OpenShift cluster. You host a runner for your project on a Kubernetes cluster, often via Red Hat OpenShift in enterprise environments. This cleanly separates runners per project and per environment (build, test, prod). The downside: depending on your runner controller setup, you may need at least one pod sitting active at all times just to listen for jobs — and if people are deploying and merging into main frequently, pods scaling up under load (more on what a pipeline actually does in a follow-up post) gets expensive fast. Some controllers can scale to zero between jobs; plenty of default setups don't. A cloud provider's native offering. AWS, Azure, and GCP each have their own way of running CI/CD jobs — again, priced by usage, and it adds up the same way. A self-hosted runner — what I've been doing recently, on a Raspberry Pi. I'm running some small RL experiments and wanted to test this out with something low-stakes. GitHub Actions has a built-in self-hosted runner option: go to your repo (or org) Settings → Actions → Runners, click \"New self-hosted runner,\" and follow the setup instructions on the machine you want to use. Within a few minutes it's registered and attached to your project. The part that surprised me: the runner reaches out to GitHub, GitHub never reaches in. The agent process on the Pi opens an outbound, long-lived connection to GitHub's servers and polls for jobs — it isn't GitHub \"pinging\" the Pi from the outside. That means no port forwarding and no inbound firewall rule is needed just to run pipeline jobs on it. Once it's set up, every pipeline step runs on the Pi with zero additional infrastructure cost, deploying automatically whenever a job comes in. More on what actually goes into a pipeline once it's running — steps, caching, secrets, the works — in a follow-up post. # automation # devops # git # cicd # software # coding # development # engineering # inclusive # community Attaching a Runner: The DevOps Term Nobody Explains Until It Costs You",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

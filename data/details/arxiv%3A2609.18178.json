@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.18178",
+  "sourceItemId": "2609.18178",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.18178",
+  "detail": {
+    "longDescription": "arXiv:2609.18178v1 Announce Type: new Abstract: Distributed model training at scale is frequently interrupted by transient network failures, conventionally forcing cluster managers to abort all processes and roll back to the latest checkpoint. While periodic checkpointing provides durability, frequent snapshotting introduces severe storage backpressure: our measurements on a 1.216B-parameter decoder reveal that per-update asynchronous checkpointing incurs up to a +656.7% latency overhead, consumes 32.5 GiB of host memory, and generates 3.39 TB/hour of storage traffic. To eliminate this overhead, we present AccelPact, a parallel runtime enabling zero-I/O in-memory fault recovery for sharded distributed training. When communication fails at a committed optimizer step, device memory remains quiescent and uncorrupted, yet continuation fails because frameworks like PyTorch FSDP cache internal communication handles across module wrappers and parameter hierarchies. AccelPact resolves this dependency invalidation via a non-invasive reference-rebinding mechanism coordinated by an out-of-band Gloo consensus protocol. On 16 NVIDIA RTX 5880 GPUs training full-parameter Mistral-7B, AccelPact eliminates checkpoint replay, yielding a 1.197x whole-run goodput improvement over cold restart and 1.194x over NVRx checkpoint restoration at checkpoint age 5, rising to 1.698x at age 18. Across ten successive fault injections, all 16 ranks maintain bit-identical parameter state with zero numerical drift. Across 4-to-16 GPU cluster topologies, reference rebinding executes in constant time (0.493-0.518 ms). Operating directly on native communicator instances, AccelPact requires zero application-code modifications and avoids compiler graph breaks under torch.compile, providing an efficient foundation for resilient deep learning.",
+    "developer": "Genlang Chen, Junyi Zhu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Genlang Chen, Junyi Zhu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

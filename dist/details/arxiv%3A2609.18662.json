@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.18662",
+  "sourceItemId": "2609.18662",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.18662",
+  "detail": {
+    "longDescription": "arXiv:2609.18662v1 Announce Type: cross Abstract: Modern GPU kernels increasingly stress the instruction supply path, while fixed instruction containers can leave substantial footprint slack. This paper presents an automated encoding-synthesis framework that treats instruction layout as a constrained slot-assignment problem over a validated instruction-form field specification. The formulation separates semantic field identity from physical bit positions and supports tied, pinned, and free placement constraints, making it applicable when recurring decoded fields are not frozen by a public format contract. We instantiate the framework for NVIDIA SASS: raw public encoding text is normalized into a machine-readable specification, a SASS disassembler is validated against nvdisasm on 3.78M instructions, released as an open benchmark, and CP-SAT synthesis is used for fixed-length and variable-length encodings. On 142 Blackwell kernel inputs, variable-length synthesis reduces instruction footprint by 33%, with comparable reductions after re-synthesis on Ampere and Hopper; fixed-length synthesis on the same specification reduces decoder area by 16% against a decoder generated from the NVIDIA-observed 128-bit layout by the same generator and flow. Generated fetch/decode RTL meets 1.5 GHz in TSMC 22 nm with a replicated area delta of 0.12% of a GA100-class die; a same-node SRAM comparison shows the footprint reduction corresponds to about 9x this added logic in instruction-SRAM bit-cell area.",
+    "developer": "Mingyuan Ma, Hu He",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mingyuan Ma, Hu He"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

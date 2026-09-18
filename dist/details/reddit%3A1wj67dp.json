@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wj67dp",
+  "sourceItemId": "1wj67dp",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wj67dp/couldnt_find_a_foss_resilience_layer_for_searxng/",
+  "detail": {
+    "longDescription": "I wanted a more reliable self-hosted search setup using SearXNG, but free search engines can fail silently or become rate-limited. That can leave a query with only a few results even though more providers are available.\n\nI tried addressing this through SearXNG configuration, but I couldn’t find an existing deployable FOSS project that combined provider fallback, circuit breaking, caching, and observability in front of SearXNG. So I built **searxng-gateway**.\n\nIt is a Go HTTP proxy that:\n\n* Calls SearXNG and optional providers such as Brave, Exa, Jina, and Tavily\n* Runs providers in parallel, then merges and deduplicates results\n* Falls back to additional providers when the result count is too low\n* Adds per-engine circuit breakers and recovery probing\n* Exposes Prometheus metrics and includes a Grafana dashboard\n* Supports keyless operation using SearXNG’s free engines\n\nThe trade-off is that premium providers require your own API keys, and parallel requests can increase API usage. The proxy is intended as a sidecar, not a replacement for improving SearXNG’s upstream engine configuration.\n\nRepository: [https://github.com/Ghilteras/searxng-gateway](https://github.com/Ghilteras/searxng-gateway)  \nLicense: MIT\n\nI’d appreciate feedback on the architecture, provider abstraction, and whether this solves a problem others have encountered.\n\n**AI disclosure:** AI was mostly used to implement the project from my specifications. I reviewed, tested, and deployed the result",
+    "developer": "Ghilteras",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80003429",
   "sourceItemId": "80003429",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80003429/how-to-configure-refresh-token-with-express-and-react",
   "detail": {
     "longDescription": "I am trying to configure a refresh token with cookies. In the backend I have two APIs, login and refresh. The login is working but if I go to the cookies in the browser I don't see any cookie with the refresh token name export function login(req: Request, res: Response) { const { email, password }: { email: string, password: string } = req.body; db.query(\"SELECT * FROM users WHERE email = ?\", [email], async (error, results) => { if (error) { console.log(error) } if (results.length === 0) { res.status(401) return res.json({ message: \"User not found\" }) } let user = results[0] //console.log(user) let isMatch = await bcrypt.compare(password, user.password) if (!isMatch) { res.status(401) return res.json({ message: \"Invalid password\" }) } // Calcola la data di scadenza per MySQL (formato YYYY-MM-DD HH:MM:SS) const expiryDate = new Date(); const createdAt = new Date(); expiryDate.setDate(expiryDate.getDate() + 7); const query = ` INSERT INTO refresh_tokens (token_hash, user_id, expires_at, created_at) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE token_hash = VALUES(token_hash), expires_at = VALUES(expires_at), created_at = VALUES(created_at) `; const { refreshToken, accessToken } = generateTokens(user); await db.query(query, [refreshToken, user.id, expiryDate, createdAt]); res.cookie('refreshToken', refreshToken, { httpOnly: true, // JavaScript non può leggerlo (protezione XSS) secure: process.env.NODE_ENV === 'production', // Solo HTTPS in produzione sameSite: 'strict', // Protezione CSRF maxAge: 7 * 24 * 60 * 60 * 1000 // Scadenza di 7 giorni in millisecondi }); res.json({ response: \"User successfully logged in\", token: accessToken }) }) } The refresh is working but the problem is the token is not found export async function refresh(req: Request, res: Response) { const refreshToken = req.cookies.refreshToken; console.log(\"Refresh token ricevuto:\", refreshToken); ...... } What am I doing wrong?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "78"
+        "value": "94"
       },
       {
         "label": "状态",

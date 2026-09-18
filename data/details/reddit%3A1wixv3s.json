@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wixv3s",
+  "sourceItemId": "1wixv3s",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wixv3s/havent_had_the_agent_touch_that_table_again_since/",
+  "detail": {
+    "longDescription": "Had a client project where I dumped a 40-page project doc into the start of a session with a coding agent, then told it explicitly: never modify the orders table directly, always go through the service layer. It said understood. Ten minutes later, three hours into the session, it rewrote a migration on that exact table.\n\n  \nScrolled back to check I wasn't misremembering. The instruction was right there. The agent had even acknowledged it. It just got buried somewhere between page 12 and page 30 of the doc, under changelog entries and marketing copy that had nothing to do with the actual work.\n\n  \nAssumed a bigger context window would fix this kind of thing: model's rated for a million tokens, doc's 40 pages, should be nowhere near the limit. That's not actually what happened. An agent reading a long unstructured document doesn't weight every sentence by importance. A hard constraint in paragraph four gets roughly the same attention as a throwaway line about a 2023 rebrand. Buried is buried regardless of how much headroom the window has.\n\n  \nEnded up replacing the raw doc with a small structured folder instead of trying to write a better prompt: five files, each with a hard token ceiling so nobody dumps prose into it again.\n\n  \nKEY\\_CONTEXT.md, under 1200 tokens: mission, stack, and the zero-tolerance rules at the top where they can't get buried\n\n[ARCHITECTURE.md](http://ARCHITECTURE.md), under 1500 tokens: service boundaries and data flow\n\nREPO\\_MAP.md, under 800 tokens: one line per directory so the agent stops grepping around guessing\n\nDECISION\\_LOG.md, under 1000 tokens: what got tried, what got rejected, why\n\nDAILY\\_HANDOFF.md, under 800 tokens: where the last session left off\n\n  \nWhole thing lands under 5500 tokens combined, down from a doc set that was running past 30k. The other rule that mattered as much as the file structure: if something isn't specified anywhere in those files, the agent has to write \\[UNSPECIFIED - REQUIRES CLARIFICATION\\] instead of inventing a plausible-sounding default. And checking the knowledge folder before touching code is a hard rule in the system prompt, not a suggestion buried somewhere in the middle of it.\n\n  \nHaven't had the agent touch that table again since. Curious if anyone's found a better way to keep long-running agent sessions from losing constraints set earlier in the same conversation, versus just restructuring what gets fed in up front.",
+    "externalUrl": "https://i.redd.it/vpx33fwnq3qh1.png",
+    "developer": "BeginningWinner7525",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

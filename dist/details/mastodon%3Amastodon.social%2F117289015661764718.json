@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117289015661764718",
+  "sourceItemId": "mastodon.social/117289015661764718",
+  "fetchedAt": "2026-09-18T01:30:40.383Z",
+  "sourceUrl": "https://infosec.exchange/@s3g/117289015663021041",
+  "detail": {
+    "longDescription": "cng.sys implements an undocumented fourth mode inside CngEncryptMemoryEx (IOCTLs 0x39007a / 0x39007e) that is separate from the three public RtlEncryptMemory scopes. Encrypt is open to any caller. Decrypt is gated to the SYSTEM logon session (LUID 999).\n\nThe AES-128 key doesn't seem tied to that boundary. It's derived from a fixed 8-byte constant that is hashed with a 128-byte kernel structure (g_ShaHash) of which I confirmed via live kernel debugging contains boot-random state written by CngEncryptMemoryInitialize before the hash runs. The CBC IV comes from the same ungated encrypt call, so an unprivileged process can recover the current boot's IV through the encrypt oracle. Getting the key itself still needed the debugger, but with both I could decrypt everything entirely in user-mode software, without ever calling the gated decrypt IOCTL.\n\nBuild hash: 79b0584bf017abf0c0bd3abe240b28c7e055e1c934671a1da7e7c9b53c6f804e). \n\nHaven't tried Server or anything where it probably is more applicable.\n\nNo idea what calls it, have been trying to work it out, obvious candidates like DPAPI, Windows Hello, etc didn't.\n\nInteresting finding I thought, unlikely to mean anything security wise, but cool fossil.\n\n#research #windows #reverseengineering #kernel #crypto #cryptography",
+    "developer": "@s3g@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80003733",
+  "sourceItemId": "80003733",
+  "sourceUrl": "https://stackoverflow.com/questions/80003733/mongodb-authentication-fails-in-node-js-but-works-in-mongosh",
+  "detail": {
+    "longDescription": "I am running MongoDB 8.0.32 in Docker on macOS. I can connect to MongoDB successfully using mongosh: docker exec -it korexbase_db mongosh -u admin -p pass --authenticationDatabase admin But when I try to connect from Node.js using the same credentials: mongodb://admin:pass@127.0.0.1:27017/dbname?authSource=admin I get: MongoServerError: Authentication failed. code: 18 codeName: AuthenticationFailed I also tried a new MongoDB user and different Node.js MongoDB driver versions, but the same error occurred. Node.js was able to connect to 127.0.0.1:27017 without authentication. The problem turned out to be an old MongoDB instance running locally on my Mac from a previous Homebrew installation. After stopping the local mongod process and restarting the Docker container, the Node.js connection worked. I am posting this because the error made me think the username/password or SCRAM configuration was wrong. Is there a good way to check which MongoDB instance is actually listening on port 27017?",
+    "developer": "Harsh Rawat",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "62"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
