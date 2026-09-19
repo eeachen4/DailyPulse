@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk2bmb",
+  "sourceItemId": "1wk2bmb",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wk2bmb/introducing_presume_an_mitlicensed_propertybased/",
+  "detail": {
+    "longDescription": "Hi all, I've just released a new property-based testing library for Java. It's called [Presume](https://github.com/josephjunker/presume), and it's a direct-style PBT implementation loosely based off of Python's Hypothesis, rather than the more common QuickCheck or Hedgehog based options currently available.\n\nIf you're new to property-based testing I have an explanation of the paradigm [in the docs](https://github.com/josephjunker/presume/blob/main/docs/what-is-property-based-testing.md).\n\nWhy you might want to use this, rather than some of the possible alternatives:\n\n- It's not vibecoded. I used a nonzero amount of AI (see below) but the core architecture, algorithms, and API design are all fully human. It's undergone a significant amount of iteration and hand polishing until it's felt properly ergonomic\n- It's released under a clean MIT license, with no unusual exceptions\n- It provides an imperative API for working with test generators, which IMO can make it significantly easier to generate complex and recursive data. No special lazy combinators or deep function nesting are needed to define recursive ASTs, for example. Functional approaches are still supported for folks who swing that way.\n\nWhy you might not want to use this:\n\n- I used a nonzero amount of AI (which is why I'm not also posting this in r/Java). Specifically, some of the Gradle configuration came from an LLM, and I used an agent to fix and test the bit twiddling implementation in the `long`, `float`, and `double` generators. Being new to Java I also frequently consulted AI summaries while searching for the proper way of doing things. If you want something completely AI-free then jqwik is a better fit for you.\n- This is a very new project; I've been working on it for 3 months but I still haven't implemented a lot of convenience functions or even thought about what state machine testing should look like here. There are still some TODOs here and there and limitations when generating extremely large recursive inputs.\n- The fact that the shrinking algorithm is novel means that it may have limitations that I'm not yet aware of. I'm hoping to try to do a side-by-side comparison with Hypothesis at some point to see whether there's any breakdowns.\n- There's not many docs and no docstrings. I plan on fixing this soon, but I wanted to release this into the world before a specific event next week, and this is as far as I've gotten thus far.\n- Currently Java 25 only; I'm probably going to go back and make it Java 21 compatible in the near future. I don't think it'll go back any further than that though because this would not be remotely maintainable without records/pattern matching.\n\nHappy to answer questions, and I'm hoping that this will be helpful for someone! I'm also interested in feedback on the implementation from anyone with more Java skills than myself, because I'm very much still learning the language. ",
+    "developer": "josephjnk",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

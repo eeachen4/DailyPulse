@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjtcoa",
+  "sourceItemId": "1wjtcoa",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wjtcoa/the_case_that_errors_is_usually_the_case_that_was/",
+  "detail": {
+    "longDescription": "Found a bug in my own eval setup: a regression could make the score go up.\n\nIf a case errors out it drops from the denominator. So precision/recall gets computed over fewer cases than the baseline you're comparing against. And the case that errors is usually the one that was failing anyway, malformed reply, weird input, the path the model handles badly. 3 of 4 (0.75) becomes 3 of 3 (1.0), and the comparison reports unchanged.\n\nTwo things I got wrong. First, dropping the case at all, the exclusion isn't random with respect to what you're measuring. Second, comparing two numbers computed over different sets of cases and calling that unchanged.\n\nIt was in the first commit. I only found it because a later change made it quieter instead of louder.\n\nWrite-up with the three questions I'd ask of any eval code that gates on a run level number: [https://digline.dev/blog/denominator-trap/](https://digline.dev/blog/denominator-trap/)",
+    "developer": "alexpran",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

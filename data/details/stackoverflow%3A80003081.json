@@ -6,7 +6,7 @@
   "detail": {
     "longDescription": "I am trying to fit a curve with curve_fit() in scipy using a function with multiple independent variables and multiple fitting parameters. However, the function is the integral of a single-variable function (the integration variable is different from the x-data I wish to fit) with no elementary antiderivative. I am unsure how to use the quad() function and the curve_fit() function together to fit my curve this way. I tried something based on the answer in Fitting data with integral function : import numpy as np from scipy.optimize import curve_fit from scipy.integrate import quad def func(theta, args): w1, w2, p1, p2, p3 = args # w1 and w2 correspond to x1 and x2, p1 and p2 and p3 are fitting parameters return # complicated function of w1, w2, p1, p2, p3 def curve(x1, x2, p1, p2, p3): return quad(func, 0.0, np.pi/2, args=(x1, x2, p1, p2, p3))[0] vcurve = np.vectorize(curve, excluded=set([1])) popt, pcov = curve_fit(vcurve, (x1, x2), y, p0=(1.0, 1.0, 1.0), sigma=sigma, absolute_sigma=True) Here x1 and x2 are 1D numpy arrays. When I run this code I get an error: curve() missing 1 required positional argument: 'p3'.",
     "developer": "deerok",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +14,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "164"
+        "value": "177"
       },
       {
         "label": "状态",

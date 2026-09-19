@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk71hz",
+  "sourceItemId": "1wk71hz",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wk71hz/ive_spent_months_building_network_doctor_check_it/",
+  "detail": {
+    "longDescription": "I built Network Doctor, an open-source tool for figuring out where a network connection is actually breaking.\n\nI just released v1.17.3 today.\n\nA problem I keep seeing is the support-ticket loop where someone says:\n\n“Your service doesn’t work from my office network.”\n\nThen you spend the next several replies asking for DNS results, curl output, proxy settings, traceroutes, whether it works from a hotspot, etc.\n\nNetwork Doctor tries to collect that evidence in one place. It checks things like DNS, TCP, TLS, HTTP, proxies, routing, path MTU, and other layers, then explains where the evidence points.\n\nIt can also create a sanitized support snapshot locally:\n\n`netdoc --support support.ndoc` [`example.com`](http://example.com)\n\nThe user decides whether to send that file anywhere. Network Doctor itself does not upload it.\n\nI’m currently testing two things:\n\n1. For individuals, I’m offering the first 5 personal network diagnoses for $25. You send me the sanitized report and context, and I investigate it and send back what I think is wrong, the evidence, and what to try next.\n2. I’m looking for a few software/support teams that regularly deal with customer networking issues and might want to try Network Doctor as part of their support workflow.\n\nThe tool itself stays free and open source under Apache-2.0.\n\n[https://networkdoctor.dev/](https://networkdoctor.dev/)\n\nI’d especially be interested to hear from people who deal with the “works at home, fails at the office/VPN/corporate network” class of tickets.",
+    "developer": "mplaczek99",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

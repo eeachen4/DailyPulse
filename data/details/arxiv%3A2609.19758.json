@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.19758",
+  "sourceItemId": "2609.19758",
+  "fetchedAt": "2026-09-19T01:36:31.577Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.19758",
+  "detail": {
+    "longDescription": "arXiv:2609.19758v1 Announce Type: new Abstract: Silent data corruption (SDC) from defective accelerators now interrupts large scale training, yet deployed mitigations act on whole nodes. Algorithm based fault tolerance (ABFT) for a single GEMM has to be fused into the kernel or encode the operands, and it localizes at most one error per checksum. We present FP-Sketch, a verifier that runs after an unmodified tensor core GEMM whose half precision operands are accumulated and delivered at FP32. A sum sketch detects corruption on every call. Hashed first moment sketches, confirmed by independent recomputation, then localize several corrupted entries with no false positives by construction, and each fault yields a coordinate and a magnitude for fleet diagnosis. In floating point, sketch noise rather than bucket collisions limits localization. We measure that noise and find that its constant depends on the BLAS and the operand format and that the bucket count must grow as $n^{2.57}$ for a square product. Sizing the bucket count by measured noise rather than by a fitted power of $n$ raises recovery on eight transformer shapes from 0.402 to 1.000, and measuring the noise at run time adapts the bucket count to the kernel and the model. Instruction level injection with NVBit shows that upsets in a live accumulator are often only 2 to 9% of a typical entry, a population that output side injection cannot produce. Output side injection recovers every fault, while under NVBit the same engine sized for faults of typical magnitude recovers 0.550, and sizing for the measured magnitudes restores 1.000. On Llama-2-7B, guarding the MLP down projections removes 99.4% (BF16) and 99.9% (FP16) of the perplexity damage caused by 2048 bit flips, and the clean path probe costs 0.78 to 3.06 ms against GEMMs of 0.35 to 12.47 ms.",
+    "developer": "Pranav Napolean, Vikas Srivastava, Napolean Periathambi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Pranav Napolean, Vikas Srivastava, Napolean Periathambi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

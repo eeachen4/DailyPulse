@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjm06o",
+  "sourceItemId": "1wjm06o",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wjm06o/monitoring_ai_agents_for_unsafe_security_actions/",
+  "detail": {
+    "longDescription": "So here is the process im stuck using for keeping our cute little ai agents from nuking prod access in the name of productivity. First we log every tool call and prompt, then we shove anything that touches secrets or admin actions through a dumb allowlist, third we auto flag stuff that smells like prompt injection or data exfil, and last we do a manual review on the top 10 percent sketchy actions because ofc the worst ones hide behind business critical tickets. The manual review is the only thing that saves us, since the rules miss half the spicy edge cases when product decides to ship a new workflow on Friday. This works best when the ai is boxed into a few predictable tools and blows up fast when every team keeps adding new apis for experimentation without telling sec. How would you make this less of a full time babysitting gig?\n\n\n\n",
+    "developer": "Humble-Dot-3503",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

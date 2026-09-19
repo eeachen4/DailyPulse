@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117293350797381057",
+  "sourceItemId": "mastodon.social/117293350797381057",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-28deca5b-7e9949c8c84d239b",
+  "detail": {
+    "longDescription": "The build badge was green. Not yellow. Not red. Green. The kind of green that makes everyone close their laptops and go get coffee. Twenty minutes later, support was flooded. Checkout was failing. The deploy bot had already posted its little checkmark. CI passed. Production was broken. That’s the gap I want to talk about. CI is a liar. Not because it’s malicious. Because it’s answering a smaller question than the one you think you asked. You think it’s saying, “The system works.” It’s actually saying, “This code compiles, these unit tests passed, and the linter didn’t cry.” That’s not the same thing. I’ve seen this movie. A team renamed a queue topic. The producer and consumer both had tests. Mocks everywhere. CI was green. In production, the producer started writing to a topic nobody was reading. No errors. No alerts. Just messages piling up. The dashboard stayed green because the app wasn’t crashing. It was just doing nothing. Customers noticed before the graphs did. Why does this keep happening? Because we test code, not systems. Unit tests mock the database. Integration tests hit a staging environment that was built from a different Terraform state. The health check returns 200 as long as the web server is breathing. It doesn’t care that the database connection pool is exhausted or that the payment provider is timing out. Then there’s config drift. Staging has the feature flag on. Production has it off. Or the reverse. CI never sees it. The code is correct. The environment is wrong. Green build. Broken product. Migrations are another classic. CI spins up a fresh database, runs all migrations, and passes. Production has a table with 40 million rows and a lock that waits until Tuesday. The code is fine. The deploy is not. And async work? CI tests the happy path synchronously. Production runs through a queue. A worker dies. A retry loop backs off forever. The API still returns 202 Accepted. Everyone high-fives. The work never happens. The worst part is the psychology. A green build is a permission slip. It tells you to stop looking. It says, “Someone else tested this.” So you skip the post-deploy smoke test. You don’t check the logs. You don’t click the button yourself. You trust the badge. I’ve done it. You’ve done it. We all have. So what actually helps? First, stop treating CI as proof. Treat it as a filter. It catches typos and broken assumptions. It does not prove the system works. Second, test the real path after deploy. Not a health endpoint. A synthetic user. Can they log in? Can they add an item to the cart? Can they pay? If that fails, the deploy is not done. Third, make health checks honest. If the app can’t reach the database, it’s not healthy. If the queue is backed up beyond a threshold, it’s not healthy. A 200 status code is not a medical certificate. Fourth, watch business metrics, not just CPU. Orders per minute. Signups. Messages processed. When those go flat while your infrastructure looks calm, you have a silent outage. And finally, believe the customer over the dashboard. Every time. The customer doesn’t care that your build is green. They care that the button works. Green builds are comforting. They’re also cheap. A real working system is harder. It requires you to look past the badge and into the messy, drifting, half-mocked reality of production. So the next time CI passes, don’t celebrate. Go click the button. The build can be green and the product can still be broken. That’s not a contradiction. That’s just Tuesday. # webdev # programming # productivity # ai # software # coding # development # engineering # inclusive # community The Green Build Illusion: When CI Passes but Production Is Already Broken",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjz8v7",
+  "sourceItemId": "1wjz8v7",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wjz8v7/showoff_saturday_built_a_100_clientside_qr_studio/",
+  "detail": {
+    "longDescription": "Happy Showoff Saturday r/webdev!\n\nMost web-based QR generators send API requests to backend Node/Python services, store generated assets on S3, and monetize with rate limits or subscriptions.\n\nI wanted to see if I could build a complete, production-grade QR studio that runs **exclusively in the browser runtime** with zero backend servers and zero external telemetry.\n\nHere is what came out: **QR Studio** ([qrstudiofree.com](https://qrstudiofree.com))\n\n# Architecture & Engineering Highlights:\n\n* **Astro 7 + React 19 Islands**: Static shell with localized routing (i18n across 8 locales) and lightweight interactive React islands only where state is needed (`QRStudio.tsx`, `BatchGeneratorIsland.tsx`, `ScannerIsland.tsx`).\n* **Styling Engine**: Powered by `qr-code-styling` on HTML5 Canvas. Supports SVG/PNG/WebP vector/raster downloads, 6 dot geometries, independent corner squares/dots, and linear/radial gradients.\n* **Client-Side Batch Archiving (**`jszip`**)**: For bulk generation, URLs/payloads are parsed, drawn to offscreen canvases sequentially, and zipped directly in-memory via `jszip` before triggering a local blob download. No server uploads.\n* **In-Browser Scanner (**`jsQR`**)**: Real-time camera viewfinder via `navigator.mediaDevices.getUserMedia` with automated canvas frame processing and image drag-and-drop fallback.\n* **Tailwind CSS v4 & Vercel Geist Tokens**: Strict monochrome dark palette, fluid typography, zero layout shift.\n\n# Challenges Faced:\n\n* **Memory management during bulk exports**: Rendering 100+ high-res canvases concurrently caused browser tab crashes on low-RAM mobile devices. Solved by chunking canvas renders into async micro-tasks with explicit canvas GC.\n* **Error Correction vs. Custom Logos**: Ensuring logo overlay scale doesn't exceed the Reed-Solomon threshold (forcing High 30% ECC when logos are embedded).\n\nCheck it out live: [https://qrstudiofree.com](https://qrstudiofree.com)\n\nWould love code review, UI critiques, or performance feedback!",
+    "developer": "pritam_06",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

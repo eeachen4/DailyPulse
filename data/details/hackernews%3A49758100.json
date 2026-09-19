@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49758100",
+  "sourceItemId": "49758100",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49758100",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m the developer. XConnect is an SSH&#x2F;SFTP client for iOS and Android that also has a real RDP client built in, so one app covers my Linux and Windows machines when I&#x27;m away from my desk. No account needed: tap &quot;Continue Offline&quot; and everything stays on the phone. I built it because fixing things from my phone meant switching between an SSH app, a file app and Microsoft&#x27;s RDP app, and on a small screen the switching was the worst part. What it does: - SSH and Telnet, with a key row for phone keyboards (Esc, Tab, arrows, sticky Ctrl&#x2F;Alt, one-tap Ctrl-C&#x2F;D&#x2F;L&#x2F;Z) and multiple sessions. - RDP (iOS for now). FreeRDP 3 is compiled into the app, so the phone speaks RDP directly, with no gateway or relay. Trackpad or direct-touch mode, pinch to zoom, two-finger right-click and scroll. Hardware keyboards are forwarded by scancode. - SFTP, jump hosts (ProxyJump-style, for both SSH and SFTP), and 14 built-in scripts you can run on a server with one tap. - An optional AI agent with your own API key (OpenAI-compatible endpoints, Anthropic, or Ollama on your LAN). It runs commands on the host and asks before anything that looks destructive. It does nothing until you configure it. Some technical details: the native RDP core sends Dart one event per frame (connected &#x2F; bitmap &#x2F; resize &#x2F; error &#x2F; disconnected), in the same binary format my desktop app&#x27;s RDP helper uses. Dart applies the updates to an RGBA framebuffer and paints it with decodeImageFromPixels. SSH is dartssh2 and the terminal is xterm.dart. Scripts run as heredocs, because my first version joined the lines with &quot;; &quot; and put the whole script behind the shebang comment. Credentials: passwords and private keys are stored in the iOS Keychain &#x2F; Android Keystore. Sync is optional. Records are encrypted on the device with AES-256-GCM before upload, with a key derived from your account password (PBKDF2, then scrypt per record). To be upfront: login currently sends that password to the server over TLS, so this is not zero-knowledge yet. [Switching login to a separately derived auth hash is next on my list.] The app is closed source. I know that&#x27;s a hard sell for something that holds SSH keys, so ask me anything about how credentials are handled. Not there yet: RDP on Android, port forwarding on mobile (the desktop app has it), passphrase-protected keys, keyboard-interactive 2FA, and mosh. Pricing: SSH, Telnet, SFTP, scripts and one jump host are free. Pro ($8&#x2F;month, $68&#x2F;year, or $88 one-time) adds RDP, the AI agent, sync and unlimited jump hosts. The same account also works in the desktop app for Windows, macOS and Linux. iOS: https:&#x2F;&#x2F;apps.apple.com&#x2F;us&#x2F;app&#x2F;xconnect-ssh-rdp-client&#x2F;id6810... I&#x27;d love feedback, especially from people who manage servers from their phone. What&#x27;s missing?",
+    "externalUrl": "https://xconnectapp.com/",
+    "developer": "neil_thomas",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

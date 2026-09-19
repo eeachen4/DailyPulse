@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk6ton",
+  "sourceItemId": "1wk6ton",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wk6ton/build_a_mail_app_called_faro_mail/",
+  "detail": {
+    "longDescription": "Hello,\n\nI where searching for a Mail App and could not find what i needed.  \nSo I build my own it is called FARO MAIL.  \n  \nA lightweight, local-first desktop mail client — no Electron, no cloud backend, no external AI/cloud dependency; everything runs and stores data locally on the machine.\n\n  \nFARO MAIL is an Open Source Mail App.\n\nAs Techstack I used:\n\nFrontend / UI\n\n\\- Neutralino.js 6.8.0 — lightweight desktop app framework (uses the OS's system WebView instead of bundling a full Chromium like Electron)\n\n\\- Plain vanilla JavaScript/HTML/CSS — no framework (no React/Vue)\n\n\\- Microsoft Edge WebView2 as the renderer on Windows\n\n\\- PDF.js (vendored locally) for PDF preview\n\n\\- DOMPurify for HTML sanitization of mail content\n\n\\- Font Awesome for icons\n\n\\- Custom lightweight i18n system (German/French/English)\n\n\n\nEngine (Backend)\n\n\\- Node.js (embedded runtime, currently 24.18.0), talking to the UI over a local WebSocket RPC (127.0.0.1 only, token-authenticated)\n\n\\- better-sqlite3 — local mail index (WAL mode + FTS5 full-text search)\n\n\\- ImapFlow (IMAP), Nodemailer (SMTP), node-pop3 (POP3), mailparser (MIME parsing)\n\n\\- omnimail for winmail.dat/TNEF decoding\n\n\\- u/napi-rs/keyring for OS-native credential storage (Windows Credential Manager, etc.)\n\n\\- Self-written naive Bayesian spam filter (Graham method), no external ML library\n\n\n\nSecurity\n\n\\- Certificate pinning by fingerprint instead of a global TLS bypass\n\n\\- SSRF protection (private-IP blocklist, including redirect re-validation)\n\n\\- Zip-slip protection on backup restore\n\n\n\nPackaging & distribution\n\n\\- Neutralino CLI + a custom PowerShell script (build\\_windows.ps1) for the portable Windows package\n\n\\- Inno Setup 6 for the Windows installer\n\n\\- GitHub Actions (verify on every push, manual build, automated release on tag push)\n\n\\- Git/GitHub (public, Apache 2.0 license)\n\n  \nCheck it out under:  \n[https://github.com/RayTrunk/faromail](https://github.com/RayTrunk/faromail)\n\n",
+    "developer": "SpellSlight8541",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

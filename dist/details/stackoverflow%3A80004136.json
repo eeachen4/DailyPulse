@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004136",
+  "sourceItemId": "80004136",
+  "sourceUrl": "https://stackoverflow.com/questions/80004136/i-need-help-debugging-my-tile-map-renderer",
+  "detail": {
+    "longDescription": "I have been working on my project (a part of my project responsible to render my map using dual grid and 15 piece tile map) but I have encountered a bug that I was not able to fix and asked AI a few times, but that didn't work too. The bug is it renders my map but does not render some tiles (usually the ones that have left side). Here are the parts that I think have the bug: def get_block_type(self, x, y): if x < 0 or x >= self.map_width or y < 0 or y >= self.map_height: return \"0\" return self.color_to_block.get( self.map.get_at((x, y))[:3], \"0\" ) def get_tile(self, x, y, block_type): top_left = self.get_block_type(x - 1, y - 1) == block_type top_right = self.get_block_type(x, y - 1) == block_type bottom_left = self.get_block_type(x - 1, y) == block_type bottom_right = self.get_block_type(x, y) == block_type mask = 0 mask = ( top_left * 1+ top_right * 2+ bottom_left * 4+ bottom_right * 8 ) data = self.blocks[\"tilemap\"][block_type] tile_index = data[\"tile arrangment\"][mask] image = self.tile_images[block_type][0] columns = image.get_width() // self.tile_width return pygame.Rect( (tile_index % columns) * self.tile_width, (tile_index // columns) * self.tile_height, self.tile_width, self.tile_height ) def place_tile(self, x, y): block_type = self.get_block_type(x, y) if block_type in self.tile_images: image = self.tile_images[block_type][0] self.tile_surface.blit( image, ((x - 0.5) * self.tile_width, (y - 0.5) * self.tile_height), self.get_tile(x, y, block_type) ) here is the class that im using for rendering my map: import pygame class Map: def __init__(self, surface, blocks, map_path): self.surface = surface self.blocks = blocks self.tile_width = blocks[\"width\"] self.tile_height = blocks[\"height\"] self.map = pygame.image.load(map_path).convert() self.map_width, self.map_height = self.map.get_size() size = ( self.map_width * self.tile_width, self.map_height * self.tile_height ) self.block_surface = pygame.Surface(size, pygame.SRCALPHA) self.tile_surface = pygame.Surface(size, pygame.SRCALPHA) self.color_to_block = { tuple(color): block for block, color in blocks[\"map\"].items() } self.block_images = { block: pygame.image.load(path).convert_alpha() for block, path in blocks[\"block\"].items() } self.tile_images = { block: [ pygame.image.load(path).convert_alpha() for path in data[\"images\"] ] for block, data in blocks[\"tilemap\"].items() } self.update_block_map() self.update_tile_map() def get_block_type(self, x, y): if x < 0 or x >= self.map_width or y < 0 or y >= self.map_height: return \"0\" return self.color_to_block.get( self.map.get_at((x, y))[:3], \"0\" ) def place_block(self, x, y): block_type = self.get_block_type(x, y) if block_type in self.block_images: self.block_surface.blit( self.block_images[block_type], (x * self.tile_width, y * self.tile_height) ) def get_tile(self, x, y, block_type): top_left = self.get_block_type(x - 1, y - 1) == block_type top_right = self.get_block_type(x, y - 1) == block_type bottom_left = self.get_block_type(x - 1, y) == block_type bottom_right = self.get_block_type(x, y) == block_type mask = 0 mask = ( top_left * 1+ top_right * 2+ bottom_left * 4+ bottom_right * 8 ) data = self.blocks[\"tilemap\"][block_type] tile_index = data[\"tile arrangment\"][mask] image = self.tile_images[block_type][0] columns = image.get_width() // self.tile_width return pygame.Rect( (tile_index % columns) * self.tile_width, (tile_index // columns) * self.tile_height, self.tile_width, self.tile_height ) def place_tile(self, x, y): block_type = self.get_block_type(x, y) if block_type in self.tile_images: image = self.tile_images[block_type][0] self.tile_surface.blit( image, ((x - 0.5) * self.tile_width, (y - 0.5) * self.tile_height), self.get_tile(x, y, block_type) ) def update_tile_map(self): self.tile_surface.fill((0, 0, 0, 0)) for y in range(self.map_height): for x in range(self.map_width): self.place_tile(x, y) def update_block_map(self): self.block_surface.fill((0, 0, 0, 0)) for y in range(self.map_height): for x in range(self.map_width): self.place_block(x, y) def show_map(self, camera): pos = ( -camera.position[0], -camera.position[1] ) self.surface.blit(self.block_surface, pos) self.surface.blit(self.tile_surface, pos)",
+    "developer": "hosein sattari",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "66"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

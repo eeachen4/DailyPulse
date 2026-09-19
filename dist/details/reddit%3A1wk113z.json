@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk113z",
+  "sourceItemId": "1wk113z",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wk113z/i_ran_claude_code_and_codex_in_parallel_for_15/",
+  "detail": {
+    "longDescription": "I've been running Claude code and Codex in parallel daily like Claude Code on the frontend and codex on the backend. The problem was keeping the agents in parallel like every switch meant reexplaining context, reuploading files and to mantain a handoff doc.\n\nTutti is a shared multi agent workspace that keeps context, files and even task outputs live across all your agents. I havee been using it for 15 days. Here’s an honest breakdown of what I found\n\nThe goods:\n\n\\- The @ system is the single biggest workflow change. Referencing a Claude conversation from 3 days ago inside a Codex session, with full context intact, is the thing I didn’t know I was missing with no summary and no reupload.\n\n\\- Agent Board replaces the window-flipping habit. Four swimlanes like in progress, completed, failed, stopped. One scan tells you where everything stands. The failed lane alone saves real time like you go straight to what is wrong and see the last execution step, instead of scrolling back through chat.\n\n\\- Agent borrowing is more useful than it sounds on paper. Hit Claude Code quota mid-task, borrowed a teammate’s, kept going with her full MCP config already in place. Felt identical to my own without the need of any reconfiguring or rebriefing the project context\n\n\\- Apps callable by agents, not just by me. Codex invoking the design app mid-task and using the output immediately with no download or no reupload loop is the kind of thing that sounds small but compounds fast.\n\nThe bads:\n\n\\- 2 weeks isn't enough to stress-test everything, and it shows. Some rough edges I haven't fully mapped yet.\n\n\\- The borrowing model requires both people in the same Room. Works great when you're actively collaborating, less useful for async solo work.\n\nwhat I'd tell someone starting:\n\n\\- Use card forwarding on the Agent Board immediately. The instinct is to re-explain context when handing a task to a different agent. Don't. Forward the card, the receiving agent picks up the full state — conversation history, file changes, output so far.\n\n\\- When borrowing an agent, borrow from whoever has the most dialed-in MCP config, not just whoever has quota available. The entire setup comes with the borrow.\n\n\\- Watch the @ system before anything else. Everything else builds on top of it.\n\n15 days in, Tutti is the first multi-agent workspace where the coordination overhead dropped instead of just moving somewhere else.\n\nAnyone using it?",
+    "developer": "Fit_Program7076",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

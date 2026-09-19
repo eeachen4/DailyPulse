@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80003840",
   "sourceItemId": "80003840",
+  "fetchedAt": "2026-09-19T01:36:31.577Z",
   "sourceUrl": "https://stackoverflow.com/questions/80003840/pygame-multiprocessing",
   "detail": {
     "longDescription": "I'm trying to write something in pygame to open and manipulate windows on the fly, but so far nothing has been quite want i want. i was hoping y'all might have some suggestions? i want to do something similar to what rhythm doctor does with some stages. (I.E. using the window as part of the program itself instead of being just an afterthought.) here's some samples of what i have so far: import pygame pygame.init def make_window(sizex, sizey, windowname): window = pygame.display.set_mode((sizex * 160, sizey * 160)) # should allow for resolution matching by abiding to multiples of 160. pygame.display.set_caption(windowname) run = True while run: for event in pygame.event.get(): if event.type == pygame.QUIT: run = False pygame.quit return make_window(2,1,\"this window\") make_window(4,2,\"that window\") #isn't multithreaded so they don't open at the same time this is the sample I made myself, arguably the simplest but also the closest to what i want. import pygame import multiprocessing #not my code, but rather a sample project i found on git hub. pygame.init() SIZE = WIDTH, HEIGHT = 400, 300 window_num = 3 # this is close to what i want, but i want to be able to run individual calls rather than spawn them all at once. def main(): fps = 60 surface = pygame.display.set_mode(SIZE) clock = pygame.time.Clock() #img = pygame.image.load('image.png') #surface.blit(img, (0, 0)) #i have no image and that doesn't seem to get called elsewhere, so just comment it out to avoid problems. while True: clock.tick(fps) for event in pygame.event.get(): if event.type == pygame.QUIT: quit() pygame.display.update() pygame.display.set_caption(f\"FPS: {clock.get_fps():.0f}\") if __name__ == '__main__': for _ in range(window_num): multiprocessing.Process(target=main).start() as mentioned in the comments, it's close but not quite there in terms of what i want. any solutions or suggestions?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "68"
+        "value": "95"
       },
       {
         "label": "状态",

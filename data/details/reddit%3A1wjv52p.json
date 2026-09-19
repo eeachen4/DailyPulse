@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjv52p",
+  "sourceItemId": "1wjv52p",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wjv52p/i_posted_my_embedding_migration_project_here_it/",
+  "detail": {
+    "longDescription": "A little while ago, I posted about embedflow\n\n[https://github.com/arnsri33/embedflow](https://github.com/arnsri33/embedflow)\n\nand it got a lot of attention. The basic idea was pretty simple\n\nkeep your existing embedding index for candidate retrieval → rerank \"k\" candidates with the new embedding model → progressively materialize the new embeddings instead of requiring a full re-embed before you can use the new model.\n\nThe project got way more attention than I expected, and a bunch of comments were variations of\n\n\\-cool idea, but how do I actually know what K to use?  \n\\-what happens with a cold cache?  \n\\-how do I test this safely on production traffic?  \n\\-can this work with my vector DB?\n\nSo I spent the last week turning it from a migration engine into something that can actually support a real migration workflow\n\nAdditions:\n\n1)FAISS, Qdrant, pgvector, Pinecone, Milvus, and Weaviate support.\n\n2) Migration planner -> embedflow plan looks at the source index, source/target model contracts, probe queries, + other evidence, and reccomends a candidate K + migration plan\n\n3)Shadow mode **->** you can run the new embedding path against real traffic while the old/source retrieval remains authoritative. The shadow path can crash, time out, or get saturated and it still doesn't change or block the response users receive.\n\n4)Traffic aware prewarming 5) Persistent Target Cache + background materialization 6) extensive reports\n\nYou can use it with python with just\n\npip install embedflow",
+    "developer": "Potential_Low_1183",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

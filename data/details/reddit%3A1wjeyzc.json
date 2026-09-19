@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjeyzc",
+  "sourceItemId": "1wjeyzc",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wjeyzc/cloud_native_computing_foundation_announces/",
+  "detail": {
+    "longDescription": "The Cloud Native Computing Foundation (CNCF) announced in September 2026 that Karmada, a multi-cluster and multi-cloud Kubernetes orchestration project, has graduated. This multi-cluster and multi-cloud Kubernetes orchestration project reached CNCF's highest maturity tier. This tier is for stable projects that are widely adopted and ready for production. The announcement happened at KubeCon + CloudNativeCon + OpenInfra Summit + PyTorch Conference China 2026 in Shanghai. It coincided with the project's v1.19 release. This update enhances multi-component scheduling for AI training jobs. It also promotes priority-based scheduling to Beta, which is now on by default.\n\nRunning one app across multiple Kubernetes clusters is common for hybrid cloud use, regional failover, or avoiding vendor lock-in. This often required custom automation or the now-archived KubeFed project. This approach required learning a different federated-resources API and faced issues with flexibility. As GPU capacity gets spread out across regions and cloud providers, teams doing distributed AI training and inference face a big challenge. No single cluster has enough accelerators. So, workloads need to be split, scheduled, and shifted across many systems.\n\nKarmada, short for \"Kubernetes Armada,\" builds on the standard Kubernetes API. It doesn’t replace it, so existing manifests, controllers, and tools work without changes on a Karmada control plane. That control plane consists of three components: a Karmada API Server, a Karmada Controller Manager, and a Karmada Scheduler, backed by its own etcd instance for state. Placement logic is expressed through two custom APIs: a PropagationPolicy, which maps a policy to a set of workloads (1:n) and defines scheduling and spreading constraints such as cluster affinity, multi-cluster splitting/rebalancing, and multi-dimension high availability across region, availability zone, cluster, or provider; and an OverridePolicy, which lets operators rewrite cluster-specific configuration, for example, swapping container image prefixes by region or StorageClass by cloud provider, without touching the underlying resource template.",
+    "externalUrl": "https://www.cncf.io/announcements/2026/09/07/cloud-native-computing-foundation-announces-karmada-graduation/",
+    "developer": "nilukush",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "cncf.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjm0rx",
+  "sourceItemId": "1wjm0rx",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wjm0rx/what_studies_isolate_backandforth_llm_interaction/",
+  "detail": {
+    "longDescription": "I'm trying to find out whether back-and-forth between two different LLMs improves task success beyond strong alternatives under a controlled resource budget — and I'd rather hear that it's already settled than spend money finding out.\n\nAI-assisted throughout: the protocol was developed and critiqued with ChatGPT and Claude. Their citation handling turned out unreliable, which is why I'm asking for sources rather than citing any. The literature check is incomplete and I'm making no novelty claim.\n\nThe interaction under test is a fixed sequence: X drafts, Y responds, X revises after seeing Y, Y revises after seeing X's revision. Both models get the same problem. Comparators:\n\n\t**•**\tIndependent drafts from both models, followed by a budgeted aggregation step.  \n\t**•**\tOne-way sharing: the recipient uses the donor's work, the donor never sees the reply. Both donor directions, tuned as seriously as the dialogue condition.  \n\t**•**\tEach model refining its own answer over multiple calls.  \n\t**•**\tGeneric reminders (\"check whether an assumption is wrong\"), including a controller that chooses when to deliver them.  \n\t**•**\tThe same dialogue schedule with one model throughout, to test whether heterogeneity matters.\n\nBudget accounting covers accumulated input context, generation, controllers, and final synthesis. Equal token counts aren't equal compute. A dialogue advantage could still come from extra serial refinement, prompt differences, or the synthesizer's ability to use dialogue-shaped input.\n\nTasks include both cases where an apparent restriction needs reconsideration and cases where reframing produces a plausible wrong answer — the second class is there so a reframing *bias* doesn't get scored as a reframing *capability*. Scoring rules fixed before any scored run. An unusual successful transcript wouldn't establish a causal mechanism.\n\nCurrent state: GPT-4.1 and Claude Sonnet 4.6, twelve tasks across eight families, twelve comparator configurations, 576 planned pipelines, offline harness with executable scoring. Behavioral checks pass. No model calls have been made. The sweep would cost roughly $110 in API usage; I'm doing this on my own budget, which is why I'm asking before running rather than after.\n\nThree questions:\n\n\t**1.**\tWhich papers or public implementations already compare these alternatives convincingly? An exact link and the relevant baseline or ablation would help most.  \n\t**2.**\tWhat confound could make dialogue look better even if responding to each other's feedback adds nothing?  \n\t**3.**\tWhat's the smallest useful test that would show this is redundant?\n\nHow I got here, briefly: I started from a broad intuition about how interacting systems develop capabilities that neither has alone. Working it through with AI assistance turned that into a proposed experiment, and criticism kept stripping it down — first to \"maybe it's just exposure,\" then \"maybe it's just serial refinement,\" then \"maybe it's a generic metacognitive prompt arriving at the right moment.\" What's left is the narrow comparison above. That process is why I'm posting: the criticism has been the useful part.\n\nHappy to share the full protocol and harness with anyone who wants to pick at it. A source showing this has already been tested adequately would be a good outcome.",
+    "developer": "breadstickdingdong",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjx67a",
+  "sourceItemId": "1wjx67a",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wjx67a/three_guys_hacked_openai_in_under_72_hours_openai/",
+  "detail": {
+    "longDescription": "short version for anyone who missed it\n\nwhat happened: in july a team of three got into chatgpt and codex accounts of openai employees. one of those accounts had codex connected to openai's github org, so they just told codex to open a PR in openai/openai (the internal monorepo) and stopped there\n\nfirst look at the code to the PR = under 72 hours. openai fixed its side 14 hours after the report and paid $6,500 on september 1\n\nhow: two bugs in a chain, and the first one isn't even openai's. libheif 1.19.7 on debian 12 has a heap overflow when it decodes HEIC images. fixed upstream ages ago, debian 12 just never got the fix\n\n[community.openai.com](http://community.openai.com) runs on discourse, discourse uses imagemagick, imagemagick uses libheif. so one crafted image uploaded to the help forum = RCE and admin on that forum\n\nthe second bug is the real problem. the forum was just the way in: openai's own SSO turned a hacked forum into hacked chatgpt and codex accounts for everyone who had ever logged in there, employees included. so any other service on the same SSO would have worked just as well\n\ntwo more details: opus 4.8 couldn't get past ASLR, then opus 5 came out the same evening and had a working exploit within hours\n\nand openai's comment on the payout says the forum was \"explicitly excluded\" from the bounty program. so the $6,500 is only for the SSO half, the forum part apparently doesn't count:)\n\nkind of crazy that the whole thing started with one image upload to a help forum. if someone got into your chatgpt or codex account tomorrow, what could they reach from there?\n\nlong version = the thread from one of the guys: [https://x.com/S1r1u5\\_/status/2100777801335095383](https://x.com/S1r1u5_/status/2100777801335095383)",
+    "externalUrl": "https://i.redd.it/0zo6ugyogbqh1.jpeg",
+    "developer": "KrstABot",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

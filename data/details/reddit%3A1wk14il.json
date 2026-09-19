@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk14il",
+  "sourceItemId": "1wk14il",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wk14il/qwen38flashnext_955_gib_on_a_64gb_mac_at_27_toks/",
+  "detail": {
+    "longDescription": "I've been running Qwen3.8-Flash-Next as my main local coding model from past few weeks. The file is **95.5 GiB and my Mac has 64 GB**. It works because the routed experts stay on SSD and only get read when a token actually routes to them.\n\nFinally cleaned it up enough to publish:\n\n* model: [https://huggingface.co/nitinpanj/qwen38-flash-next-v3](https://huggingface.co/nitinpanj/qwen38-flash-next-v3).\n* fork:  [https://github.com/npanj/llama.cpp](https://github.com/npanj/llama.cpp)\n\nThis won't run on stock llama.cpp. Upstream has the architecture but not the expert streaming flag, so it just tries to load all 95.5 GiB and falls over.\n\nSpeeds on my M5 Pro (64 GB):\n\n* prompt processing u/4k\\~367 tok/s\n* generation, draft head on      \\~27.6 tok/s\n* generation, draft head off     18-18.6 tok/s\n* at 29k context, real chat use  \\~20.6 tok/s\n\n**What made prefill fast**: the per-layer embedding table is 26.8 GiB with 90-byte rows, and under mmap you eat a page fault per gather. Switching to direct file reads (pwilkin's #29030, still open upstream) took 512-token prompts from 181 to 401 tok/s, and 8k prompts from 274 to 451.\n\n**What made decode fast**: mostly the draft head. Small model guesses 3 tokens, big model verifies them in one pass. Same machine, same afternoon, 18 -> 27.58 tok/s.\n\n**Tuning it mattered nearly as much as having it**: depth 3 with a 0.3 confidence floor beat depth 4 with no floor by 10% over a 22-arm sweep. Depth 4 lost every time I measured it, which surprised me since the fork hardcodes 4. On top of that, gather-based sparse attention (#28213) is worth +19% at 62k context and +50% at 130k, and Metal MoE fusion (#28948) another 5-9%.\n\nThe checkpoint is **bartowski's Q4\\_0 with a Q8\\_0 output layer, plus unsloth's UD-IQ4\\_XS** spliced into the five tensor groups that stay resident. **Paired 40-chunk perplexity went 5.2777 -> 4.3148**, better on all 40 chunks, for 1.69 GiB more on disk.\n\n**Setup** is five steps and about an hour, mostly downloading. Commands are in the repo readme. Two things that cost me time: Keep the expert cache and the Metal wired limit in sync. On 64 GB, 36 GiB of cache is the practical ceiling. I tried 38 and decod  collapsed to 3.7 tok/s once the server's own heap started swapping. Only tested on 64GB Apple Silicon, internal SSD. Nothing tried on CUDA or CPU.\n\n**Credit where it's due**: expert streaming is mihailescu2m's work and it's what makes the whole approach possible. Base model is Qwen's, quants from bartowski and unsloth. The six still-open PRs I'm carrying are listed with authors in the readme.",
+    "developer": "SnooPredictions515",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

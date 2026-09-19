@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004079",
+  "sourceItemId": "80004079",
+  "sourceUrl": "https://stackoverflow.com/questions/80004079/how-to-pass-and-reference-multiple-batches-in-a-great-expectations-custom-sql-qu",
+  "detail": {
+    "longDescription": "I am using Great Expectations (GE) in a Databricks environment and I am trying to implement a custom SQL validation rule. My current custom SQL query looks like this: Copyquery = \"\"\" SELECT * FROM {batch} WHERE id IN ( SELECT id FROM {batch} ) GE replaces {batch} with the batch/table that is currently being validated. For example, if my batch is batch_1, GE effectively executes something similar to: SELECT * FROM batch_1 WHERE id IN ( SELECT id FROM batch_1 ) My requirement I need to work with two different inputs/batches in the same validation. Batch 1 → source data Batch 2 → reference/comparison data. Conceptually, I would like to execute something like SELECT * FROM batch_1 WHERE id IN ( SELECT id FROM batch_2 ) However, I currently see {batch} as representing only the batch associated with the current validation. I am not clear on how GE supports passing a second batch into the same Custom SQL expectation/query. Environment Great Expectations Databricks Spark/SQL Custom SQL validation Multiple Delta/Spark tables",
+    "developer": "Venkata Sai",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "42"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

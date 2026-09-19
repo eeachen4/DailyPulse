@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.19206",
+  "sourceItemId": "2609.19206",
+  "fetchedAt": "2026-09-19T01:36:31.577Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.19206",
+  "detail": {
+    "longDescription": "arXiv:2609.19206v1 Announce Type: cross Abstract: In-storage computing (ISC) reduces host--storage data movement by executing computation inside computational storage devices (CSDs). For multi-stage applications, realizing these benefits requires coordinating data placement, I/O--compute overlap, and device-resident state across the workflow, yet existing interfaces lack a unified abstraction for these decisions. We present Epic, an NVMe-based ISC stack that provides this abstraction by capturing data residency and lifetime in the program: location types declare logical residency, dataflow derives lifetimes for intermediate values and operation state within an invocation, and a keep primitive extends selected state across invocations. These semantics expose the complete offloaded workflow as a located, stateful dataflow. A storage-aware compiler transforms this workflow, performs movement-aware logical mapping and fusion, and exposes I/O--compute overlap; a runtime completes the plan using execution-time information, asynchronously binding work to physical resources and managing device-resident state. Across 12 file-scanning, database, and machine learning workloads, Epic is 1.6$\\times$ faster on average than the strongest of five prior ISC systems, while achieving 4.2$\\times$ speedup on average and up to 16.1$\\times$ over the corresponding host baselines, and reducing application-side code by up to 14$\\times$ in our implementations.",
+    "developer": "Yuyue Wang, Zhenyu Zhang, Glenn Reinman, Huaicheng Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuyue Wang, Zhenyu Zhang, Glenn Reinman, Huaicheng Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

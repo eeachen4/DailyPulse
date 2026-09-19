@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.19545",
+  "sourceItemId": "2609.19545",
+  "fetchedAt": "2026-09-19T01:36:31.577Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.19545",
+  "detail": {
+    "longDescription": "arXiv:2609.19545v1 Announce Type: cross Abstract: Systems that turn natural-language descriptions of optimization problems into solver-ready code generally use a language model at every stage, including the final translation from a mathematical formulation into executable model-building code. We propose the ANVIL compiler architecture, where we separate these concerns. A language model is called only once, assisted by constraint guidance based on problem type, to produce a LaTeX formulation. A deterministic compiler then translates that LaTeX into code with no language model involvement. We describe the deterministic compiler (a normalizer, a recursive-descent parser producing a typed intermediate representation, analysis passes that bind symbols to a dataset schema, and a code emitter) and evaluate it on the 354 easy and hard problems of the NLP4LP benchmark. The compiler produced code for 329 of 354 formulations (92.9%), taking the deterministic path in every one of those cases and never falling back to model-generated code. Median compile time was below the 10ms resolution of our timer. Overall, our formulations achieved an accuracy of 98.9% over easy problems and 91.1% for hard problems. The gap between these compilation and accuracy figures is a key point of analysis, and we analyze it: formulations that failed to compile, problems that returned as infeasible, problems raising errors at runtime, and problems returning a wrong objective. Almost all of these errors trace back to the formulation rather than to the translation. ANVIL performs exceptionally well on leading benchmarks by using language models purely where they are effective, rather than as a catch-all tool.",
+    "developer": "Priyadarshan Patil, Abhishek Basu, Vikas Reddy, Abhinav Gupta",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.OC, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Priyadarshan Patil, Abhishek Basu, Vikas Reddy, Abhinav Gupta"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

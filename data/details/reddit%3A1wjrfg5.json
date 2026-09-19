@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wjrfg5",
+  "sourceItemId": "1wjrfg5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wjrfg5/our_coding_agents_cheat_on_our_nightly_evals_in/",
+  "detail": {
+    "longDescription": "We test [our skills](https://github.com/UiPath/skills/) daily to monitor for any regressions using [these tests](https://github.com/UiPath/skills/tree/main/tests/tasks). Recently, we audited 11 nightly runs, >8,000 agent task runs. In  2.4% the agent read the checker script, fixtures or a reference solution instead of using the skill it was given. Sonnet 5 did it in 5-6% of runs, Codex on Terra in about 1%.\n\nDeleting fixtures didn't stop it. Zipping and base64 encoding didn't. One run decoded an encoded blob to get the expected answer.\n\nNow the reference directory is chmod 000 while the agent runs, and grading happens outside the agent's container. Defense in depth, not proof.\n\nThe part that worries me: the model best at finding things is best at finding your answers, so leakage goes up when you upgrade.\n\nWrite-up: [https://coder-eval.com/blog/strict-agent-eval-sandbox](https://coder-eval.com/blog/strict-agent-eval-sandbox) (Apache 2.0, I work on it)\n\nHow do you keep grading material away from an agent with a shell?",
+    "developer": "EvalRaccoonDev",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

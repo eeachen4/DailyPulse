@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004082",
+  "sourceItemId": "80004082",
+  "sourceUrl": "https://stackoverflow.com/questions/80004082/intersectionobserver-with-bxslider-background-image-slideshow-behaves-strangely",
+  "detail": {
+    "longDescription": "It does lazy load the images, but when i resize the browser, the image is gone and i see the black defined for class bxslider . The observed element has the class lazy-background-loaded . But there is no image visible. i fiddled around with rootMargin and scrollMargin . But the image disappears on resize. Is the IntersectionObserver() suitable for a horizontal background-image slide show? Has anyone ever successfully tried to use IntersectionObserver() in this context? Thanks for your answer. //js(loaded in footer) document.addEventListener('DOMContentLoaded', () => { const targets = document.querySelectorAll('.lazy-background'); const observer = new IntersectionObserver((entries, obs) => { entries.forEach(entry => { if (!entry.isIntersecting) return; const el = entry.target; const src = el.dataset.bgSrc; if (src) el.style.backgroundImage = `url('${src}')`; el.classList.replace('lazy-background', 'lazy-background-loaded'); obs.unobserve(el); }); }, { root: document.querySelector(\".bx-viewport\"), rootMargin: \"0px\", scrollMargin: \"0px\", threshold: 0, }); targets.forEach(el => observer.observe(el)); }); $(document).ready(function() { $(\".bxslider\").bxSlider(); }); .lazy-background { background-color: #71797E; /* placeholder colour */ min-height: 250px; /* reserve space — prevent CLS */ background-size: cover; background-position: center; } <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css\"> <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script> <script src=\"https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js\"></script> <ul class=\"bxslider\" style=\"background-color:black;\"> <li style=\"background-image: url('https://placehold.co/300x200/lightgray/black?text=background');\"> <div id=\"first-slide\" class=\"mybx-caption\"> <span>welcome</span> </div> </li> <li class=\"lazy-background\" data-bg-src=https://placehold.co/300x200/orange/white?text=image_1\"> <div class=\"mybx-caption\"> <span>Caption 1</span> </div> </li> <li class=\"lazy-background\" data-bg-src=\"https://placehold.co/300x200/green/white?text=image_2\"> <div class=\"mybx-caption\"> <span>Caption 2</span> </div> </li> <li class=\"lazy-background\" data-bg-src=\"https://placehold.co/300x200/blue/white?text=image_3\"> <div class=\"mybx-caption\"> <span>Caption 3</span> </div> </li> </ul>",
+    "developer": "timholz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "39"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

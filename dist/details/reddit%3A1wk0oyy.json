@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wk0oyy",
+  "sourceItemId": "1wk0oyy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wk0oyy/your_claudemd_can_reference_code_that_no_longer/",
+  "detail": {
+    "longDescription": "https://preview.redd.it/rq343dby3cqh1.png?width=1080&format=png&auto=webp&s=11659a2bf816b5f18eba16c85d688a0db79f6456\n\n  \nAgent instruction files like [`CLAUDE.md`](http://claude.md/) and [`AGENTS.md`](http://agents.md/) can keep references to files or components that no longer exist.\n\nThen Claude follows those instructions and it looks like hallucination, when the actual problem is stale project context.\n\nI made **check-docs** to catch that before commit:\n\n[https://github.com/ipaulsmith/check-docs](https://github.com/ipaulsmith/check-docs)\n\nIt’s a 39-line `sh` script that checks:\n\n* referenced paths still exist\n* deleted names don’t remain in instructions\n* instruction changes are staged before validation\n\nNo model call, no package, no service. Just a small pre-commit check.\n\nCurious if anyone else has solutions better?",
+    "developer": "This_Cell_1829",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
