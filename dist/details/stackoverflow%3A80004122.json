@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004122",
   "sourceItemId": "80004122",
+  "fetchedAt": "2026-09-20T01:38:38.578Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004122/bitbucket-api-token-prompts-for-credentials-on-every-git-pull-push-in-git-bash-o",
   "detail": {
     "longDescription": "I recently migrated from a Bitbucket App Password to a Bitbucket API token because Bitbucket deprecated App Passwords. My Git remote uses HTTPS: https://<BITBUCKET_USERNAME>@bitbucket.org/<WORKSPACE>/<REPOSITORY>.git After switching to the API token, every git pull / git push prompts for the credentials twice. The first prompt is a Bitbucket Login popup with the username pre-filled. I enter the API token as the password. After clicking Continue, another password prompt appears: Password for 'https://<BITBUCKET_USERNAME>@bitbucket.org': If I enter the API token again, the Git operation succeeds. However, I have to enter the API token again for every Git operation. The original error before configuring the API token was: fatal: Invalid credentials remote: CHANGE-3222 - Functionality has been deprecated remote: App passwords are deprecated and must be replaced with API tokens. remote: https://developer.atlassian.com/cloud/bitbucket/changelog#CHANGE-3222 fatal: unable to access 'https://bitbucket.org/<WORKSPACE>/<REPOSITORY>.git': The requested URL returned error: 410 Environment Windows 11 Git Bash Git for Windows Bitbucket Cloud HTTPS Git remote Git Credential Manager Bitbucket API token I configured Git Credential Manager as follows: git config --global credential.helper manager git config --global credential.bitbucketAuthModes basic The API token has the required repository read/write permissions. I also removed the existing Bitbucket credentials from Windows Credential Manager and upgraded Git for Windows to the latest version, but the repeated authentication prompts continued. Question Why does Git Credential Manager continue prompting for the API token even though the token is valid and the Git operation succeeds? Is there a Git Credential Manager configuration that prevents this repeated authentication?",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "31"
+        "value": "41"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117299663312967503",
+  "sourceItemId": "mastodon.social/117299663312967503",
+  "fetchedAt": "2026-09-20T01:38:38.578Z",
+  "sourceUrl": "https://hachyderm.io/@papiris/117299663248660422",
+  "detail": {
+    "longDescription": "Happy weekend dear fellow fedizens :hamsterdance: Could someone help me figure out a specific # docker # dockerswarm networking thing? I want to deploy a service with multiple replicas on a docker swarm mode cluster. The container replicas / tasks need to be able to reach each other individually at predictable/templateable urls, without manual configuration. I'm trying to make a # coopcloud recipe for # etcd (distributed key-value store). This will only be useful for multi-node co-op cloud, but would facilitate e.g. high availability postgresql via Patroni, and other interesting distributed computing stuffs. [Here's]( https:// codeberg.org/papiris/etcd-reci pe ) the draft of the recipe, showing my attempts to template. In its current form, the individual replicas are reachable via `<service_name>.<task_slot (aka replica nr)>.<random hash which changes every container restart>`, but I don't know how to template the hash part or make a more stable alias per replica. For a busybox service with multiple replicas, setting hostname like this in compose.yml lets the replicas resolve each other by e.g. busybox.1 ; hostname: {{.Service.Name}}.{{.Task.Slot}} But doing the same doesn't let the etcd replicas connect with each other... Does etcd need some special consideration? Advice appreciated! # homelab # etcd # selfhosting # CollectiveHosting # distributedComputing # fediAsk",
+    "developer": "@papiris@hachyderm.io",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "Hachyderm.io"
+      }
+    ]
+  }
+}

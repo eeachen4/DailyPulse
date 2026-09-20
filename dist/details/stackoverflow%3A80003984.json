@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80003984",
   "sourceItemId": "80003984",
+  "fetchedAt": "2026-09-20T01:38:38.578Z",
   "sourceUrl": "https://stackoverflow.com/questions/80003984/why-cant-container-entrypoint-shell-script-access-an-environment-variable-if-e",
   "detail": {
     "longDescription": "I have a shell script as the entrypoint of a container. This script is failing to access environment variables passed in when the container is run. Strangely, env can still access the variables when run in the script, except not when it is run using command substitution. Dockerfile: FROM alpine RUN <<EOF cat > /bootstrap.sh && chmod +x /bootstrap.sh #!/bin/sh echo Shell says MY_VAR=$MY_VAR echo In command substitution env says $( env | grep MY_VAR ) echo In script, env says: env | grep MY_VAR EOF ENTRYPOINT /bootstrap.sh Commands to build and run: podman build -t test . podman run -it -e MY_VAR=foo test Output: Shell says MY_VAR= In command substitution env says In script, env says: MY_VAR=foo What is going on? I happened to encounter this inconsistency while attempting to run a shell command as an AWS Lambda (with a custom runtime bootstrap which needs to be passed the runtime API endpoint address via an environment variable at runtime, but instead is failing in this way).",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "105"
+        "value": "117"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

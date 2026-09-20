@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wl06np",
+  "sourceItemId": "1wl06np",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wl06np/qwen38flashnext_on_1x_rtx_5090_tg50_ts_pp2300_ts/",
+  "detail": {
+    "longDescription": "I was somewhat disappointed with the performance of Qwen 3.8 Flash Next on my single RTX 5090 using llama.cpp.\n\nOne issue is that llama.cpp still has no Expert Caching implemented for MoE models. There are various PRs and discussions (see [here](https://github.com/ggml-org/llama.cpp/discussions/24528), for example), but nothing is merged yet.\n\nThen I stumbled upon [FreeToken](https://github.com/FlashML-org/FreeToken) which claims to \"unlock datacenter-class intelligence on the hardware you already own\".\n\nWith that I am able to run 3.8 Flash Next with  \n**TG \\~ 50 t/s (around 40-60 depending on how well the cache works),** pretty stable even over longer context.  \n**PP \\~ 2300 t/s**\n\nwhich is actually useable, thanks to **expert caching**.   \n(Stats are from FreeToken logs)\n\n**Launched with:**\n\n          --model <model>\n          --served-model-name qwen3.8-flash-next\n          --moe-strategy auto\n          --moe-cache-auto\n          --max-running-requests 2\n          --expert-load parallel\n          --max-seq-len-override 229376\n          --kv-reserve-tokens 229376\n          --reasoning-parser qwen3\n          --tool-call-parser qwen3_coder\n\n**Specs:**  \nRTX 5090, 128 GB DDR5 6000 (96 GB should work fine as well), Intel 270K Plus  \nModel used: [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4) (one of the suggestions from [here](https://github.com/FlashML-org/FreeToken/blob/main/docs/models.md) \\- Be sure to convert it to FreeToken format otherwise each start is slow)\n\n**It works with other MoE models as well.** So even if you can only run something like Qwen 3.6 35B-A3B and have some spare VRAM which can be used to cache experts, give it a try.\n\nStill an early project - vision just got implemented. There is not KV quantization yet, nor MTP.\n\n  \n",
+    "developer": "dir3ctly",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

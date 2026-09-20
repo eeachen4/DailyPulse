@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkxzbc",
+  "sourceItemId": "1wkxzbc",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wkxzbc/readonly_agent_conversation_sharing_is_not/",
+  "detail": {
+    "longDescription": "OpenClaw 2026.9.5 just added Session Share, which is a useful concrete example of where “read-only” can be misleading.\n\nThe feature shares selected conversation groups with another paired OpenClaw installation. Both sides enable it, the recipient gets read-only conversation text, and tool activity, reasoning, and subagent conversations are omitted. But the release notes also make two limits explicit: the source installation must stay connected, and turning sharing off cannot recall text the recipient already received.\n\nSo read-only protects control of the live session; it does not make disclosure reversible.\n\nA deterministic pre-share gate seems more useful than a generic warning:\n\n1. Render the exact transcript the recipient will receive.\n2. Block likely secrets, credentials, PII, and internal-only names.\n3. Show which context categories were omitted.\n4. Bind the snapshot to a destination identity, timestamp, and audit record.\n5. Describe “revoke” honestly as stopping future access, not erasing delivered text.\n\nIf only one guard could be mandatory, would you choose an exact transcript preview or destination-scoped redaction rules?",
+    "developer": "avishic",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

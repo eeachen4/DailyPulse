@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkpppt",
+  "sourceItemId": "1wkpppt",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wkpppt/docker_stack_deploy_failing_to_deploy_to_1191/",
+  "detail": {
+    "longDescription": "We are building 90+ servers for web application load testing with Selenium Grid. All servers are deployed identically, cloned from the same VM image. We have 11 of the 91 workers failing to deploy, even though they are joined to the swarm manager.\n\nWhen I run `docker service ps --no-trunc selenium_selenium-node-node083`, I see:\n\n    vxejz55ox0ad5vpirpusvq6f1   selenium_selenium-node-node083.1       gitlab.com:5050/seluser/selenium-grid:alma10-node-2026-09-16-1@sha256:60f3f578c2c4e45cdbe45e715334ba7233b983b7b1611fb681aa322b1bfd6bec                Running         New 12 seconds ago\n    7drjnw8d89d8bz9353vr5webb    \\_ selenium_selenium-node-node083.1   gitlab.com:5050/seluser/selenium-grid:alma10-node-2026-09-16-1@sha256:60f3f578c2c4e45cdbe45e715334ba7233b983b7b1611fb681aa322b1bfd6bec   node083   Shutdown        Rejected 12 seconds ago   \"node is missing network attachments, ip addresses may be exhausted\"\n    dmk7n25toee009qdplep7a7md    \\_ selenium_selenium-node-node083.1   gitlab.com:5050/seluser/selenium-grid:alma10-node-2026-09-16-1@sha256:60f3f578c2c4e45cdbe45e715334ba7233b983b7b1611fb681aa322b1bfd6bec   node083   Shutdown        Rejected 2 minutes ago    \"node is missing network attachments, ip addresses may be exhausted\"\n    jgpr811f9xnksavyutjcmsgqq    \\_ selenium_selenium-node-node083.1   gitlab.com:5050/seluser/selenium-grid:alma10-node-2026-09-16-1@sha256:60f3f578c2c4e45cdbe45e715334ba7233b983b7b1611fb681aa322b1bfd6bec                Shutdown        Shutdown 2 minutes ago\n    mblinsr59gtpr621hv0opwgc3    \\_ selenium_selenium-node-node083.1   gitlab.com:5050/seluser/selenium-grid:alma10-node-2026-09-16-1@sha256:60f3f578c2c4e45cdbe45e715334ba7233b983b7b1611fb681aa322b1bfd6bec   node083   Shutdown        Rejected 8 minutes ago    \"node is missing network attachments, ip addresses may be exhausted\"\n\n/var/log/messages on node083 has:\n\n    Sep 19 10:06:50 node083 dockerd[1563]: time=\"2026-09-19T10:06:50.143203015-05:00\" level=warning msg=\"failed to deactivate service binding for container selenium_selenium-node-node083.1.mblinsr59gtpr621hv0opwgc3\" error=\"No such container: selenium_selenium-node-node083.1.mblinsr59gtpr621hv0opwgc3\" module=node/agent node.id=103hwsbc2mda15tmqrw61tfmz\n    Sep 19 10:07:50 v2ltn00083 dockerd[1563]: time=\"2026-09-19T10:07:50.119227063-05:00\" level=error msg=\"fatal task error\" error=\"node is missing network attachments, ip addresses may be exhausted\" module=node/agent/taskmanager node.id=103hwsbc2mda15tmqrw61tfmz service.id=vhk3e7ud3s71lfsz037s9f6sy task.id=nqfonxo94y8uefxdy5jnld47y\n\nInspecting the network info of the worker and the network:\n\n    $ docker service inspect vhk3e7ud3s71lfsz037s9f6sy --format '{{json .Endpoint.VirtualIPs}}'\n    [{\"NetworkID\":\"7ji2pqntiyn5o5qfv3sckyuo0\",\"Addr\":\"10.0.2.156/24\"}]\n\nInspecting the network info of the network:\n\n    $ docker network inspect 7ji2pqntiyn5\n    ...\n            \"Status\": {\n                \"IPAM\": {\n                    \"Subnets\": {\n                        \"10.0.2.0/24\": {\n                            \"IPsInUse\": 256,\n                            \"DynamicIPsAvailable\": 0\n                        }\n                    }\n                }\n            }\n\nHowever, we only have 92 nodes in the swarm, 1 manager and 91 workers. How are there 256 `IPsInUse`? Can I prune unused VIPs or do I need to create a new overlay network with more than 256 addresses?",
+    "developer": "lychina",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkyygn",
+  "sourceItemId": "1wkyygn",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wkyygn/i_made_a_science_proofed_free_color_palette/",
+  "detail": {
+    "longDescription": "**was annoyed by the current color palette tools, but always loved the approach described in the famous stripe color palette** [blog](https://stripe.com/blog/accessible-color-systems) **and now i made a tool out of it**\n\n[shades of all colors stay at the same contrast - easy to use in modern design libraries](https://preview.redd.it/xduumm6oujqh1.png?width=1945&format=png&auto=webp&s=d3860b66ca5b788fc66b1282f45f9fb30afbbcd8)\n\nother color palettes are inconsistent, or dont let you freely pick your colors. tailwind always looks the same. also shades in tailwind contrasts are not scaled properly. been bugged by this for years. you pick a tailwind-ish palette, put white text on blue-600, looks fine. same text on yellow-600, unreadable. same number, completely different contrast. so you end up eyeballing every pairing and hoping.\n\ntool: [https://sir-hennihau.github.io/science-color-palette/](https://sir-hennihau.github.io/science-color-palette/)  \ncode: [https://github.com/sir-hennihau/science-color-palette](https://github.com/sir-hennihau/science-color-palette)\n\nyou give it a color, or even several if you want to, and it fills out the rest of the spectrum and builds a full ramp for each family. export it when you're happy with it.\n\nthe whole thing hangs on placing shades by relative luminance, which is the only thing web content accessibility contrast actually depends on. every ramp climbs the same ladder, so 600 means the same thing whether it's blue or yellow or teal. three of the steps aren't approximate either, they're solved: 500, 600 and 700 land on 3:1, 4.5:1 and 7:1. measured against the ramp's own 50 shade, since that's the background you actually put them on, and checked on the final 8-bit hex rather than the ideal color, because that last rounding is enough to drop you under.\n\nstripe used cielab, which was the right call in 2019. i went with oklab instead, mainly because cielab , because it is a more modern color space.\n\nchroma is a share of whatever the hue can actually reach at that lightness (idea stolen from hsluv) instead of a fixed ceiling. that's what makes yellow go vivid early and blue go vivid late without me hardcoding anything per hue.\n\nfree, no account, no sign up. would be glad to hear if it is useful (or why not) to any of you.",
+    "developer": "sir__hennihau",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

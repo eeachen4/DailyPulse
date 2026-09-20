@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wknuk5",
+  "sourceItemId": "1wknuk5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wknuk5/has_anyone_here_been_running_a_voice_ai_agent/",
+  "detail": {
+    "longDescription": "Has anyone here been running a **Voice AI / Agent Builder platform on Kubernetes** in production?\n\nI’m especially interested in platforms where you’re dealing with things like:\n\nReal-time voice agents  \nSIP / PSTN traffic  \nWebRTC  \nSTT → LLM → TTS pipelines  \nWebSocket-based streaming  \nAgent/workflow builders  \nMultiple concurrent calls  \nGPU workloads for speech models\n\nWe’re currently exploring this architecture, and Kubernetes makes a lot of sense for the API, workers, orchestration, scaling, observability, etc.\n\nBut the **real-time voice/media layer is where things get interesting.**\n\nHTTP/WebSocket traffic is relatively straightforward, but once you start dealing with RTP/WebRTC and a lot of **UDP traffic**, Kubernetes networking becomes much less pleasant.\n\n**Things like:**  \nUDP port ranges  \nNAT traversal  \nSTUN/TURN  \nRTP routing  \nload balancing UDP flows\n\nkeeping media paths stable while pods scale/restart  \navoiding unnecessary hops/latency  \n…all make the architecture very different from deploying a normal SaaS application.\n\nWe’ve been looking at using a **STUN/TURN gateway layer in front of Kubernetes** for the voice/media path instead of trying to expose large UDP ranges directly from individual workloads. The idea would be to keep Kubernetes responsible for orchestration while having a dedicated gateway handle the ugly parts of NAT traversal and real-time media connectivity.\n\nI’m curious how others are solving this.  \nIf you’re running something similar to **Bland, Retell, Vapi, LiveKit-based voice agents, an internal Agent Builder, or your own Voice AI stack on Kubernetes**, I’d love to hear about your experience.\n\nWhat does your architecture look like?  \nAre you terminating SIP/RTP outside Kubernetes and forwarding streams internally?  \nRunning TURN inside the cluster?  \nUsing hostNetwork for media workloads?  \nDedicated media nodes?  \nMetalLB / direct server return / external UDP load balancers?  \nOr did you eventually decide that the media plane simply shouldn’t live inside Kubernetes?\n\nAlso curious about what started breaking once you reached **hundreds or thousands of concurrent calls**.\n\nWould love to hear some production war stories. 🙂",
+    "developer": "OcelotChance",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

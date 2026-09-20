@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004106",
   "sourceItemId": "80004106",
+  "fetchedAt": "2026-09-20T01:38:38.578Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004106/some-non-hashable-objects-still-work-as-auxiliary-data-in-custom-pytree",
   "detail": {
     "longDescription": "I make a custom pytree like this. I want to know how auxiliary data works in pytree. @jax.tree_util.register_pytree_node_class class A: def __init__(self): self.a = jax.numpy.ones((3,)) self.b = jax.numpy.ones((3,)) def tree_flatten(self): return (self.a,), (self.b,) @classmethod def tree_unflatten(cls, aux_data, children): obj = cls.__new__(cls) obj.a = children[0] obj.b = aux_data[0] return obj x1 = A() x2 = A() t1 = jax.tree_util.tree_structure(x1) t2 = jax.tree_util.tree_structure(x2) t1 == t2 The code above raises the error below, as expected: Traceback (most recent call last): File \"/home/yahya/Projects/coba/.venv/lib/python3.12/site-packages/jax/_src/array.py\", line 295, in __bool__ core.check_bool_conversion(self) File \"/home/yahya/Projects/coba/.venv/lib/python3.12/site-packages/jax/_src/core.py\", line 941, in check_bool_conversion raise ValueError(\"The truth value of an array with more than one element\" ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all() The above exception was the direct cause of the following exception: Traceback (most recent call last): File \"/home/yahya/Projects/coba/main.py\", line 46, in <module> t1 == t2 ValueError: Exception raised while checking equality of metadata fields of pytree node of type <class '__main__.A'>. Make sure that metadata fields are hashable and have simple equality semantics. (Note: arrays cannot be passed as metadata fields!) I expect that because the doc says \"Auxiliary data becomes part of the treedef, which JAX compares and hashes (for example, when deciding whether two pytrees have the same structure), so it must support meaningful equality and hashing.\" which is the array type is not hashable. But, when I changed self.b = jax.numpy.ones((3,)) to self.b = [1] then no error is raised. I expect that it will raise an error because the list object is not hashable. I hope someone here can give me explanation about this.",
     "developer": "Yahya",
-    "comments": 0,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "3"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "48"
+        "value": "90"
       },
       {
         "label": "状态",

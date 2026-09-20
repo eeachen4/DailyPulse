@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004336",
+  "sourceItemId": "80004336",
+  "sourceUrl": "https://stackoverflow.com/questions/80004336/adding-columns-in-matplotlib-graph-breaks-row-layout",
+  "detail": {
+    "longDescription": "I want to make a graph with 3 mains rows, all divided into 2 sub-rows, themselves divided in columns. Main rows have to be separated by a larger space than sub-rows, in order for a title to be added. However, the layout breaks when adding columns. Here is the code for building the layout with only main rows and sub-rows (F1), and then adding columns (F2). I have also included the results of both functions below. import matplotlib.pyplot as plt nrows = 3 nSubrows = 2 ncolsList = [3, 2] figSizeIN = [12, 12] def F1(): fig = plt.figure(figsize = figSizeIN) gridspec = fig.add_gridspec(nrows = nrows, ncols = 1, left = 0, right = 1, bottom = 0, top = 1) for gs in gridspec: subfig = fig.add_subfigure(gs) subgridspec = subfig.add_gridspec(nrows = nSubrows, ncols = 1, hspace = 0.1, left = 0, right = 1, bottom = 0, top = 0.8) for subsubfigInc, subGs in enumerate(subgridspec): subfig.add_subplot(subGs) if subsubfigInc == 0: subfig.suptitle('title', y = 0.9, verticalalignment = 'top', zorder = 3) def F2(): fig = plt.figure(figsize = figSizeIN) gridspec = fig.add_gridspec(nrows = nrows, ncols = 1, left = 0, right = 1, bottom = 0, top = 1) for gs in gridspec: subfig = fig.add_subfigure(gs) subgridspec = subfig.add_gridspec(nrows = nSubrows, ncols = 1, hspace = 0.1, left = 0, right = 1, bottom = 0, top = 0.8) for subsubfigInc, subGs in enumerate(subgridspec): subsubfig = subfig.add_subfigure(subGs) ncols = ncolsList[subsubfigInc] subsubgridspec = subsubfig.add_gridspec(nrows = 1, ncols = ncols, wspace = 0, hspace = 0, left = 0, right = 1, bottom = 0, top = 0.9) for subsubGs in subsubgridspec: subsubfig.add_subplot(subsubGs) if subsubfigInc == 0: subfig.suptitle('title', y = 0.9, verticalalignment = 'top', zorder = 3) F1() F2()",
+    "developer": "Auguste Eclancher",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "40"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004258",
+  "sourceItemId": "80004258",
+  "sourceUrl": "https://stackoverflow.com/questions/80004258/how-can-map-windows-preserve-state-after-none",
+  "detail": {
+    "longDescription": "How can map_windows preserve state after None ? #![feature(iter_map_windows)] let mut n = 0; let iter = std::iter::from_fn(move || { let x = n; n += 1; (x != 3).then_some(x) }); let mut windows = iter.map_windows(|&[a, b]| (a, b)); assert_eq!(windows.next(), Some((0, 1))); assert_eq!(windows.next(), Some((1, 2))); assert_eq!(windows.next(), None); assert_eq!(windows.next(), Some((4, 5))); // wanted (2, 4) map_windows resets after a non-fused iterator returns None . Is there an adapter that preserves the partial window, or is this impossible because None cannot distinguish a temporary gap from permanent exhaustion?",
+    "developer": "Teeny Weeny",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

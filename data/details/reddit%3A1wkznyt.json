@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkznyt",
+  "sourceItemId": "1wkznyt",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wkznyt/showoff_saturday_i_built_a_4chanreddit_hybrid_wit/",
+  "detail": {
+    "longDescription": "I'm a fan of both Reddit and 4chan, so back in 2024 I started working on Everiot .The idea was to combine some of the things I like about both platforms into one site. Originally I started building Everiot with django, but at one point I got interested in go and decided to rewrite the whole thing while reading the Let's Go book on the side. I finally released it this summer.\n\nI had these requirements in mind initially\n\n1. **No mandatory registration**. I hate how most sites require you to enter your email and go through that shit before you can start interacting.  \n2. **No voting system**.I think voting tends to push communities toward echo chambers and rewards whatever gets the quickest reaction.  \n2. **No native app**. There is only a PWA that you can install through a button in the sidebar, on android it's just 1 click.  \n3. **No huge javascript frameworks**. I hate javascript and therefore 99% of the side is server-side rendered. When a pop-up menu is opened the server answers with HTML.   \n4. **Chronological comments.** Comments always appear in chronological order, but you can still inspect replies in a Reddit-style nested view when you want to follow a specific conversation.\n\nThe architecture is a hexagonal modular monolith and the stack is simple.\n\n1. Go + Gin + templ for rendering. \n\n2. daisyUI. It's basically the bootstrap of tailwind, but it doesn't ship with any js.\n\n2. HTMX for simple client-side interactions like form submissions and partial page updates.\n\n3. Typescript for the things HTMX can't handle\n\n4. Postgresql\n\n5. imgproxy for image processing and resizing on the fly\n\n6. cloudflare as a reverse proxy with R2 for image storage\n\n7. openobserve for observability\n\nEverything runs with a plain Docker Compose setup on a $10 VPS.\n\n",
+    "externalUrl": "https://everiot.org",
+    "developer": "vapalera",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "everiot.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

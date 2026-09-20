@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkwqu2",
+  "sourceItemId": "1wkwqu2",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wkwqu2/what_is_jev_typesafes_system_one_model_explained/",
+  "detail": {
+    "longDescription": "Jev came out on 15 Sep and most posts about it lead with \"200x faster\".\n\nI read the docs and TypeSafe's evals and put what's actually in them on one page.\n\n\n\nThe short version:\n\n\n\n\\- It's not a chat model. You send a state (text or JSON) plus typed\n\n  questions, and it returns typed answers:\n\n  \\- Choice: picks one option (up to 255)\n\n  \\- Score: places the input on a scale you define\n\n  \\- Noul: probability that a statement is true\n\n\\- All questions in one call run in parallel. Answers in 70–500 ms.\n\n\\- $0.042 per 1M input tokens. Output is free.\n\n\\- Limits: 250k tokens/s, 1,200 req/min, 64k tokens per request, text only.\n\n\n\nThe part I found most useful is the confidence field. In TypeSafe's own\n\nquickstart, a support ticket gets department = billing with probability 0.84,\n\nbut confidence is only 0.596, because \"technical\" took some of the weight.\n\nYour code gates on the confidence, not on the pick: act above your threshold,\n\nsend the rest to a person or a bigger model.\n\n\n\nOn the benchmarks: in TypeSafe's workflow evals Jev scores 67.8%, the same\n\nas Sonnet 5, at $0.0004 per case vs $0.1174, in 0.4 s vs 78.1 s. One caveat:\n\nthe reference answers come from two large reasoning models, not from humans,\n\nso 67.8% means agreement with those models.\n\n\n\nWhere it doesn't fit: anything that needs writing (drafts, code, summaries),\n\nimages or audio, or open-ended answers.\n\n\n\nFull write-up with the request/response JSON and sources:\n\n[madewithjev.com/what-is-jev](http://madewithjev.com/what-is-jev)\n\n(I run the site. It's an independent directory of Jev builds, not affiliated\n\nwith TypeSafe.)\n\n\n\nHas anyone put it in a real agent loop yet? Where did you set the\n\nconfidence threshold?\n\n",
+    "externalUrl": "https://i.redd.it/p4xyz68fejqh1.jpeg",
+    "developer": "Sea_Supermarket_5891",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

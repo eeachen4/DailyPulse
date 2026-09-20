@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkyny9",
+  "sourceItemId": "1wkyny9",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wkyny9/qwen38flashnext_at_1m_context_on_strix_halo_38/",
+  "detail": {
+    "longDescription": "Hi.\n\n  \nI saw some feedback that halogen was degrading at context depth.  So I fixed that.\n\n\n\nServed through the image, same machine, same session, same prompts, 0.11.10 vs 0.12.0:\n\n\n\n*   decode at 1,004,581 tokens of context: **27.3 to 38.3 tok/s** (default speculative drafter)\n*   decode at 258,794: **42.9 to 45.0**\n*   prefill at 1,004,581: **790 to 937 tok/s**, 21.2 to 17.9 minutes cold\n*   prefill at 258,794: **1,086 to 1,114 tok/s**\n\n  \n\n**Conditions:** Ryzen AI Max+ 395, 128 GB. The 262k and 1M rows are one cold request each at the 1M configuration (`HALOGEN_ROPE_YARN=4 HALOGEN_CTX=1048576`), greedy, 64 tokens, the rates the response's \\`timings\\` report. **The 32k row is the standard ten-prompt served mean and did not change.** A follow-up turn over the prompt cache at 1M reaches its first token in about 0.55 s; the numbers above are the cold path.\n\n**To run it at 1M:** add `-e HALOGEN_ROPE_YARN=4 -e HALOGEN_CTX=1048576`to the README's podman line; it needs the 128 GB box. Release notes and the full table: \n\n[https://github.com/peonist-ai/halogen-flash-server](https://github.com/peonist-ai/halogen-flash-server)\n\nIf you have a 1M sweep of your own, I would like to see it rerun on 0.12.0.\n\n  \nThanks for all your support, especially [https://huggingface.co/nightvich](https://huggingface.co/nightvich)",
+    "externalUrl": "https://i.redd.it/zs41rnzbrjqh1.png",
+    "developer": "peonist-ai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wl3kh3",
+  "sourceItemId": "1wl3kh3",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wl3kh3/outperforming_react_with_a_htmlfirst_progressive/",
+  "detail": {
+    "longDescription": "I created a framework called Places.js for building HTML-first websites with progressive enhancements to provide interactivity. It has these key features.\n\n* No build step required. \\[Places.js can be directly downloaded from an CDN and immediately be used\\](https://cdn.jsdelivr.net/gh/createthirdplaces/places-js@0.1.0/places-js-latest.js)\n* HTML-first templating with fine-grained reactivity.\n* Cross-component state management using signals.\n* Data fetching.\n\nPlaces.js is optimized for fast rendering. Benchmarking shows that Places.js \\[outperforms React, Solid, and Svelte\\](https://codeberg.org/createthirdplaces/places-js/src/branch/main/performanceTesting/PerformanceTestingResults.png).\n\nHere is an example of a template for rendering a list of events with reference to a store. The store is used to configure data fetching from a backend API and determine which data is sent to the component. \\[A live example can be seen here\\](https://dmvboardgames.com/)\n\n    <presentation-component data-store = \"search-results-store\">\n      <div>\n          <p id=\"no-events-found\">No events found</p>\n          <h1 id=\"search-results-header\">Event search results</h1>\n          <ul data-template=data>\n           <li>\n              <a class=\"btn secondary\" href=\"{url}\">\n                {eventName}\n              </a>\n              <div class=\"event-time\">\n                {eventTime}\n              </div>\n              <div class=\"event-location\">\n                {location}\n              </div>\n            </li>\n          </ul>\n      </div>\n    </presentation-component>\n\nTemplates can also be rendered using conditional statements. In the example below, the search UI will display different HTML based on whether a user is on a mobile or desktop browser. It also includes a Handlebars template with form HTML.\n\n    <search-component api-url=\"/searchEvents\"\n      data-store=\"search-component-store\"\n      id=\"search-section\" \n    >\n      <div class=\"container-xl\" data-template>\n        {#if isMobile}\n          <details open>\n            <summary class=\"btn secondary\">Modify search parameters</summary>\n            <form id=${SEARCH_FORM_ID} onsubmit=\"return false\">\n              {{>searchTemplate}}\n            </form>\n            <hr>\n          </details>\n        {else}\n          <form onsubmit=\"return false\">\n            <h1>Search events</h1>\n            {{>searchTemplate}}\n          </form>\n        {/if}\n      </div>\n    </search-component>\n\n  \nStores used for components can also subscribe to multiple stores like this example below, where a search component is subscribed to a list of cities and the login status. \n\n    export const SEARCH_COMPONENT_STORE = DataStore.createWithDataStoreSignals({\n      presentationSignals: presentationSignals,\n      storeName: \"search-component-store\",\n      storeSignals: [\n        {\n          fieldName: \"cities\",\n          store: CITY_LIST_STORE,\n        },\n        {\n          fieldName: \"loginStatus\",\n          store: LOGIN_STORE,\n        },\n      ],\n    });\n\n\n\nRight now, I am working on code cleanup, performance optimizations, and unit testing. The latest dev branch can be seen \\[here\\](https://codeberg.org/createthirdplaces/places-js/src/branch/0-1-1-dev)",
+    "externalUrl": "https://codeberg.org/createthirdplaces/places-js",
+    "developer": "create-third-places",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "codeberg.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117299227975727270",
+  "sourceItemId": "mastodon.social/117299227975727270",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-f1776c22-cef06fabfb90a081",
+  "detail": {
+    "longDescription": "I Built My Own CQRS Library for .NET — Here's Why If you've worked on large .NET applications, you've probably encountered CQRS. The basic idea is straightforward: Commands → Change State Queries → Read State But once an application grows, the infrastructure around CQRS can become repetitive. You need request abstractions, handlers, dispatching, pipeline processing, validation, dependency injection, and other cross-cutting concerns. That led me to build MediCore . What is MediCore? MediCore is a lightweight CQRS infrastructure library for .NET applications. The goal isn't to force a particular architecture. Instead, MediCore provides reusable infrastructure that can fit into architectures such as Clean Architecture. The Problem A typical application may contain: Controller ↓ Command ↓ Handler ↓ Validation ↓ Business Logic ↓ Repository When this infrastructure is implemented repeatedly across different applications, there is an opportunity to make the common parts reusable. The Idea Behind MediCore MediCore focuses on the application layer. A simplified flow looks like: Request │ ↓ ┌─────────────┐ │ MediCore │ └──────┬──────┘ ↓ Pipeline Behaviors │ ↓ Handler │ ↓ Business Logic This allows cross-cutting concerns to be handled independently from the core business logic. CQRS MediCore follows the CQRS approach: Application │ ┌─────────┴─────────┐ ↓ ↓ Command Query ↓ ↓ Handler Handler ↓ ↓ Write Read Commands and queries have different responsibilities. Commands modify state. Queries retrieve state. This separation can make application code easier to organize as the system grows. Pipeline Processing One of the important ideas is pipeline-based processing. For example: Request ↓ Validation ↓ Authorization ↓ Logging ↓ Transaction ↓ Handler Instead of placing these concerns inside every handler, they can be handled through pipeline processing. Installation MediCore can be installed using: dotnet add package MediCore Who is it for? MediCore is intended for developers who: Build .NET applications using CQRS Follow Clean Architecture Want reusable CQRS infrastructure Want to separate commands and queries Need extensible pipeline processing What's Next? The project is still evolving. I'm working on: Better documentation More examples Additional pipeline behaviors Performance benchmarks Community feedback More advanced CQRS scenarios Try It If you're interested in CQRS and .NET, give MediCore a try. The project is available through NuGet and GitHub. I'd love to hear feedback, suggestions, and ideas from the .NET community. Building software is not only about writing code. Sometimes it's about turning repeated problems into reusable solutions. That's the idea behind MediCore. # productivity # api # csharp # opensource # software # coding # development # engineering # inclusive # community I Built My Own CQRS Library for .NET — Here's Why",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

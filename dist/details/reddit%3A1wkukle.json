@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkukle",
+  "sourceItemId": "1wkukle",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wkukle/i_tested_jev_on_nasa_kepler_signals/",
+  "detail": {
+    "longDescription": "I wanted to test Jev on something outside the usual routing and support examples, so I ran it on 8,054 historical Kepler Objects of Interest.\n\nFor each signal, Jev saw 21 measurements and had to choose:\n\n* confirmed planet\n* false positive\n* candidate\n\nI saved all predictions before attaching the NASA Exoplanet Archive labels.\n\nResults:\n\nJev: **54.2%**\n\nSimple 3-rule baseline: **64.4%**\n\nAlways guessing \"false positive\": **49.0%**\n\nJev was much better at catching false positives. It flagged **89.6%** of them correctly.\n\nThe confirmed-planet behavior was more interesting.\n\nThere were **2,731 confirmed planets** in the dataset.\n\nJev used the \"confirmed planet\" label only **8 times**.\n\nAll 8 were actually confirmed planets.\n\nIt missed the other **2,723**, mostly calling them candidates.\n\nSo on this dataset it behaved more like a cautious false-positive filter than a general classifier.\n\nOther numbers:\n\n* 8,054 calls\n* 0 failures\n* 338 ms median latency\n* about $0.36 total estimated cost\n\nI also made a short visualization of the run using the real Kepler field.\n\nThis was a retrospective classification test on a public catalog. ",
+    "externalUrl": "https://v.redd.it/nj6xp2ovyiqh1",
+    "developer": "This_Cell_1829",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

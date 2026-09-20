@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkwsg7",
+  "sourceItemId": "1wkwsg7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wkwsg7/four_specdriven_tools_same_onesentence_feature/",
+  "detail": {
+    "longDescription": "Built a small full-stack project first with plain Claude Code and no workflow at all: TypeScript, Express, SQLite with migrations, React front end, one repo, real git history. Then each tool got an identical copy and the same sentence: let me drag a task from one day column to another.\n\nBefore the runs I wrote down which files a correct implementation has to touch and which ones it must not. The trap was that the server already handled it, the PATCH route and the gateway both take day\\_index. Anything planning a migration or a new endpoint would be inventing work that was already done.\n\nAll four shipped it, zero manual fixes. None touched the server, none invented an endpoint. They all read the code before planning, which I did not expect.\n\nThe split was everywhere else. Tasks written for that one sentence: 13, 24, 29, and one wrote no task list at all. Wall clock: 4m 26s, 9m 40s, 36m 5s, 2h 11m. One added 3 dev dependencies and asked first, another added 7 and didn't. Two left their own test data sitting in my database. One committed straight to main on its own. One cost 84 clicks on Allow.\n\nEverything counted by hand, every diff read afterwards, no AI summaries anywhere in the measurement.\n\nThe row I don't have yet is the same feature with plain Claude Code and no workflow, which is the one that tells you whether the layer is worth anything at all. That's the next run.",
+    "developer": "SSShken",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

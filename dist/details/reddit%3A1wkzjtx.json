@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wkzjtx",
+  "sourceItemId": "1wkzjtx",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wkzjtx/i_tested_jev_as_a_subconscious_helper_for_my_ai/",
+  "detail": {
+    "longDescription": "I set Jev up as a \"subconscious\" filter for my coding agent to handle tiny checks before the main model sees anything. I wanted to share a couple things I've done with it so far.\n\n  \nFor terminal logs, I got Jev to check the output first. If a test passes, it collapses 80 lines of logs into a 1-line badge, and if it fails, it only passes the exact error line. My context window stopped getting clogged with build progress bars.\n\n  \nI also added a safety check. If the agent tries to run a command that deletes files or resets git, Jev catches the risk in 75ms and stops it before it runs.\n\n  \nFor web testing, instead of a vision model slowly clicking around for a minute, Jev writes the steps into a script and runs it in the background. It verified a button on my local app in 972 milliseconds.\n\n  \nIt also fixed search across my old notes. Raw grep gets confused by conversational questions, but Jev figured out the actual topic in 75ms and pointed search directly to the right files.\n\n  \nI tested this all day and it cost less than half a cent lol.\n\n  \nI guess giant models for boring little checks is overkill now. Offloading micro-decisions to a fast 75ms classifier makes the agent feel twice as fast.\n\n  \nHas anyone else gotten access to Jev or tried something similar? What are you using it for?",
+    "developer": "Obvious_Unicorn",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
