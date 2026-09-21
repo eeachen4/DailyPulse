@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wltixh",
+  "sourceItemId": "1wltixh",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wltixh/i_built_an_opensource_mcp_server_focused_on/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI’ve been working on an open-source project called **kube-sre-mcp**.\n\nThe idea came from something I noticed while experimenting with Kubernetes + AI assistants: many integrations are very good at exposing Kubernetes APIs, but troubleshooting an incident requires more than calling `get pods`.\n\nI wanted the server to focus on the investigation workflow:\n\n**symptom → status → events → logs → related resources → diagnostic hypothesis**\n\nCurrent examples include CrashLoopBackOff, OOMKilled, ImagePullBackOff, unhealthy workloads, Pending Pods, cluster/node health and Kubernetes Events.\n\nIt’s written in Go using client-go and is read-only-first.\n\nRepo:  \n[https://github.com/ielyaakouby/kube-sre-mcp](https://github.com/ielyaakouby/kube-sre-mcp?utm_source=chatgpt.com)\n\nThis is still early, so I’m especially interested in feedback from people operating Kubernetes in production.\n\n**What information or diagnostic checks do you usually need first when investigating a Kubernetes incident?**",
+    "developer": "KubeOpsIsma",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

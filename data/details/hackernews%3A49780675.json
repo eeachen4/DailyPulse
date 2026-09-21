@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49780675",
+  "sourceItemId": "49780675",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49780675",
+  "detail": {
+    "longDescription": "I build a Mini-Runbot, an open source PoC for creating ephemeral enviroments for Odoo from a Git commit. This is a mini implementation of the real workflow used by Odoo in Odoo-Runbot and the workflow using in the platform Odoo.sh This workdflow take a testing branch and prepare a database, install modules, start Odoo instance, export a port, check that everything works and cleaning everything up afterward. A build can: - resolve a Git branch or tag - prepare an isolated checkout - install selected Odoo modules - run Odoo test - start Odoo instance - test an HTTP healtcheck - expose a temporary preview - destoy the environment when it is no longer needed The project is written mainly in Python, using FastAPI, Typer and Codex. It is intentionally a small and single-host PoC, thats not a replacement for Odoo official runbot, I wanted to explore a lightweight preview environment platform. The applications is available on PyPI: pipx install mini-runbot Docs: https:&#x2F;&#x2F;rafnixg.github.io&#x2F;odoo-platform-ephemeral-environmen... Source: https:&#x2F;&#x2F;github.com&#x2F;rafnixg&#x2F;odoo-platform-ephemeral-environme... PyPI: https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;mini-runbot&#x2F; The next areas I am exploring are GitHub Pull Request integration, workers and job scheduling, observability, concurrency, and eventually distributed execution. I would especially appreciate feedback from people working with Python, Odoo, CI&#x2F;CD, or Platform Engineering on the architecture and isolation model.",
+    "externalUrl": "https://github.com/rafnixg/odoo-platform-ephemeral-environment",
+    "developer": "rafnixg",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

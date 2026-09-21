@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wltze2",
+  "sourceItemId": "1wltze2",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wltze2/my_ai_memory_system_has_been_fully_updated_after/",
+  "detail": {
+    "longDescription": "My memory system has been fully upgraded to version 2.0, making it full in parity with the internal current memory system.\n\nFor anyone who hasn't seen my previous posts, Persistent AI Memory (PAM) is an open-source memory system that gives AI assistants long-term recall. Instead of your AI forgetting everything between conversations, PAM stores memories, learns from them, and surfaces what's relevant when you talk. It works with OpenWebUI, LM Studio, Ollama, and anything that supports the MCP protocol.\n\nVersion 1.5 was functional but missing a lot of the automation that made my personal version so effective. Version 2.0 brings all of that into the public release.\n\nWhat changed between 1.5 and 2.0\n\nThe biggest addition is the core identity system. Instead of just storing individual facts, PAM now distills a complete picture of who you are across all your conversations. It pulls from stored memories, the OpenWebUI memory table, and even archived databases to build a profile that updates incrementally rather than starting from scratch each time.\n\nMemory maintenance is now fully automated. The system reformats old memories to match the current format, detects when new information contradicts or updates old memories, and links orphaned memories back to the conversations they came from. There is also a backlog processor that deduplicates identical entries, fills in missing metadata, and re-ranks memory importance using the LLM. All of this runs overnight so it never gets in your way.\n\nBackground tasks now use a proper coordinator. Instead of multiple loops fighting for resources, there is a centralized scheduler with database-level locking and LLM call gating. It detects when you are actively using the system and waits until you are idle to run heavy work. If you run multiple instances, a maintenance claim system prevents them from stepping on each other.\n\nFor anyone using multimodal models, PAM now supports image embeddings. When you send an image in chat, PAM precomputes the embedding via a separate vision server and caches it so your main LLM does not need mmproj loaded. This works across turns -- even follow-up messages that reference earlier images get the embeddings injected automatically.\n\nMemory promotion now checks for duplicates across the short-term and long-term systems. If it finds an exact match, it replaces the old one. If it finds a semantic match, it merges the two entries together. No more duplicate bloat.\n\nThere are also three new utility tools: one for interactively discovering and deleting memories tied to a specific model, one for exporting memories to text files, and one for filtering MCP tool call exports by success or failure.\n\nThe release also includes a task coordinator, a normalization migration module, and the full maintenance pipeline that were previously internal-only.\n\nIf you are already running PAM, this is a drop-in upgrade. Replace your files and restart. The database schema is backward compatible.  \n  \nIf you're interested in the repo it is at : [https://github.com/savantskie/persistent-ai-memory](https://github.com/savantskie/persistent-ai-memory)",
+    "developer": "Savantskie1",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

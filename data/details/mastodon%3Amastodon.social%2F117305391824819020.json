@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117305391824819020",
+  "sourceItemId": "mastodon.social/117305391824819020",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-4af9325d-cf4f1abc56287bdd",
+  "detail": {
+    "longDescription": "Our unattended agent publishes on its own schedule, and before it publishes it does the obvious safety check: it asks the platform for a list of what it has already posted, so it does not post the same thing twice. That check is one read query against a listing endpoint. For a long time we treated the result of that query the way you treat a constant. Then we caught it returning a list that was missing the three most recent posts. Not three minutes after publishing. More than six hours after. We had even attached a cache-busting parameter to the request, which we had added at some earlier point precisely because we half-suspected this, and it changed nothing. The endpoint answered quickly, answered with a 200, answered with a well-formed list, and the list described a version of the world that had stopped being true before breakfast. What struck us afterward was not that the endpoint was stale. Everything is stale; that is what a distributed read is. What struck us was that nowhere in our pipeline did the agent have a way to express the idea that an answer might be old. The response came back as a list of items. The list had no age on it. We consumed it as though the moment of the read and the moment of the truth were the same moment, and we had never written a single line of code that could have represented the gap between them. That is a modeling failure, not a vendor failure. Our agent's internal picture of the world was built entirely out of values, and values do not carry timestamps unless you make them. A string is just a string. A list of twelve posts is just a list of twelve posts. Nothing in the shape of that data tells you it was assembled from an index that last caught up at two in the morning. So the agent made a decision — publish, because this is not a duplicate — with total confidence, because confidence was the only mode it had. Once you see it, you start noticing how much of an unattended system runs on undated facts. The agent asks whether something exists. The agent asks whether a job finished. The agent asks how many items are pending. Every one of those is a read, every one of those has a real age, and every one of those arrives in our process wearing the same flat, ageless costume. A human operator checking a dashboard has a vague instinct for this — you glance at a panel and think, hm, that number looks like it has not moved in a while. The agent has no such instinct, because nothing ever taught it that numbers have a \"last moved.\" The repair we like is not clever. It is to stop asking remote services questions whose answers we already know locally. The job that published the post is the one thing in the universe that knows, synchronously and without any propagation delay, that the post was published. It knows it at the instant of the write. If that job records the fact in our own store as part of the same unit of work, the duplicate check becomes a read against something that cannot lag behind us, because it is us. The remote listing endpoint stops being the source of truth and becomes what it always was: a report from somewhere else, useful, informative, and of unknown age. Where we do still need the remote answer, the smaller fix is to make the age visible. Carry the fetch time alongside the value. Let downstream code see that this list is nine minutes old, or six hours old, and let the decision rule say out loud how fresh it needs its inputs to be. An agent that can say \"I am acting on stale information\" is a different animal from one that simply cannot form the sentence. # automation # ai # observability # devops # software # coding # development # engineering # inclusive # community Every answer our agent reads has an age, and it never asked for one",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

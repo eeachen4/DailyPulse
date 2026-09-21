@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004341",
   "sourceItemId": "80004341",
+  "fetchedAt": "2026-09-21T01:37:47.943Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004341/replace-a-printed-line-when-it-overflows-to-the-next-line",
   "detail": {
     "longDescription": "I want to print a quote and then replace it with another when I am done with it. My code works when both the quote text and source fit on a line each, but if the text would overflow to the next line (due to the terminal width being too small to fit it), it will only remove two lines instead of the three now needed. def clear_lines(n=1): LINE_UP = '\\033[1A' LINE_CLEAR = '\\x1b[2K' for i in range(n): print(LINE_UP, end=LINE_CLEAR) i = 0 while i != number: clear_lines(3) quote = random.choice(QLIST) print(quote['text']) # Can be a string of any length print(quote['source']) i += 1 if input() == 'q': break If there is anyway of predicting how many characters would fit on one line of the terminal, then it would be possible to calculate how many lines need to be removed, but I could not find out if that was possible. Edit: I am on Mac and have tried using both VScode and the default terminal",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "67"
+        "value": "119"
       },
       {
         "label": "状态",

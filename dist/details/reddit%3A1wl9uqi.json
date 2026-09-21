@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wl9uqi",
+  "sourceItemId": "1wl9uqi",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wl9uqi/the_container_started_everywhere_the_application/",
+  "detail": {
+    "longDescription": "I used to treat portability as an artifact problem: build the container once, run it in a cloud region, at the edge, or on bare metal.\n\nThat turned out to be the easy part. The same image can start in all three places while the application behaves like three different systems.\n\nA few things kept breaking the illusion for me.\n\nFirst, the build was not as portable as the output suggested. It quietly depended on the original builder's CPU architecture, network access, cached layers, or secrets. A clean runner was a much better test than another successful build on the same setup.\n\nSecond, \"nearest region\" was often the wrong placement rule. An edge location might be physically close but short on failover capacity, unable to reach a required database, or sitting behind an unreliable backhaul. Geography said yes. The dependency graph said no.\n\nThird, the network became part of the application. At low latency, retries looked harmless. Add packet loss or 150 ms between services and those same retries could amplify load and make a healthy service unstable. A running container was a very weak health signal.\n\nThe hardest boundary was state. Stateless workloads moved fairly cleanly. Databases, queues, persistent volumes, and local writes forced the real questions: which location is authoritative, what can be rebuilt, and what happens when a site loses its route to state?\n\nObservability also failed at exactly the wrong time. Central logs were useful until a location lost contact with the central system. Then it became hard to tell an application failure from a connectivity failure.\n\nFor people running workloads across cloud, private infrastructure, edge, or bare metal: what was the first assumption that broke for you?",
+    "developer": "No-Philosopher9797",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

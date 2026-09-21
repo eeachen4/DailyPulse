@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlnnu0",
+  "sourceItemId": "1wlnnu0",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wlnnu0/how_are_you_handling_lightweight_deployments_for/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nIn smaller teams or client agencies, setting up full CI/CD pipelines (GitHub Actions, Jenkins, etc.) can sometimes feel like overkill for simple staging servers. In my experience, devs often resort to manually SSHing into servers, running git pull, and triggering builds manually—which is slow and error-prone.\n\nI'm currently building an open-source, 1-click deployment dashboard to automate this workflow as a side project, and wanted to get some feedback on the architecture.\n\n**The Current Architecture:**\n\n* **Backend:** Node.js, Express, PostgreSQL, Apache Kafka (KRaft mode)\n* **Frontend:** Next.js, Tailwind CSS\n* **Worker:** node-ssh for remote execution\n\n**What's working so far:**\n\n* Multi-user setup with HttpOnly JWT auth\n* Adding servers with custom SSH credentials (password or private key)\n* Event-driven Kafka workers that SSH into servers and run build scripts\n* Dynamic workspace setup (creates folders and syncs code)\n\n**Up next:** Switching from short-polling to WebSockets (Socket.io) for real-time terminal log streaming from the worker to the dashboard.\n\nFor those managing smaller infrastructure setups: How do you handle quick deployments without over-engineering your pipeline? Would love to hear thoughts on using Kafka/workers for remote SSH execution vs. other lightweight patterns.\n\n*(P.S. I am the sole developer building this side project to learn event-driven architectures. Happy to drop the repo link in the comments if anyone wants to look at the code!)*",
+    "developer": "Repulsive-Bicycle969",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

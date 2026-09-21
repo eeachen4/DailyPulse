@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlxpaw",
+  "sourceItemId": "1wlxpaw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wlxpaw/you_can_use_any_llm_just_like_jev/",
+  "detail": {
+    "longDescription": "You can simply run any GGUF with llama.cpp with n\\_predict=1 and n\\_probs=10, disable reasoning, and prompt it such as  \"If the following email is spam, respond with 1, if not spam, respond with 0. Do not respond with anything other than 1 or 0.  Email: ....\"  \n\nAnd that is it! It returns confidence percentages such as:  \n  \n1 = 94.9%  \n0 = 5.08%\n\n  \n**Example:**\n\nllama-server -m \"C:\\\\Users\\\\MyUserName\\\\llama.cpp\\\\models\\\\Spark-X2.5-4B-Q4\\_K\\_M.gguf\" -c 4096 -ngl all -fit off -fa on -b 2048 -ub 512 -np 1 --cache-ram 0 --reasoning off --no-reasoning-preserve --perf\n\n  \n**Then:**   \n  \ncurl.exe -s -X POST [http://localhost:8080/v1/chat/completions](http://localhost:8080/v1/chat/completions) \\-H \"Content-Type: application/json\" -d \"{\\\\\"messages\\\\\":\\[{\\\\\"role\\\\\":\\\\\"system\\\\\",\\\\\"content\\\\\":\\\\\"Classify spam. Reply only 1=spam or 0=not spam.\\\\\"},{\\\\\"role\\\\\":\\\\\"user\\\\\",\\\\\"content\\\\\":\\\\\"CONGRATULATIONS!!! You have won $5,000,000! Click here immediately to claim your prize!\\\\\"}\\],\\\\\"max\\_tokens\\\\\":1,\\\\\"logprobs\\\\\":true,\\\\\"top\\_logprobs\\\\\":10,\\\\\"temperature\\\\\":1.0,\\\\\"top\\_p\\\\\":1.0}\"\n\n\n\n**Result:**\n\n{\"choices\":\\[{\"finish\\_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"1\"},\"logprobs\":{\"content\":\\[{\"id\":30,\"token\":\"**1**\",\"bytes\":\\[49\\],\"**logprob\":-0.00456317700445652,**\"top\\_logprobs\":\\[{\"id\":30,\"token\":\"1\",\"bytes\":\\[49\\],\"logprob\":-0.00456317700445652},{\"id\":29,\"token\":\"**0**\",\"bytes\":\\[48\\],\"**logprob\":-5.395024299621582}**,{\"id\":1033,\"token\":\"\\*\\*\",\"bytes\":\\[42,42\\],\"logprob\":-12.013711929321289},{\"id\":1046,\"token\":\"The\",\"bytes\":\\[84,104,101\\],\"logprob\":-13.005236625671387},{\"id\":198,\"token\":\"\\\\n\",\"bytes\":\\[10\\],\"logprob\":-13.100714683532715},{\"id\":54,\"token\":\"I\",\"bytes\":\\[73\\],\"logprob\":-14.624603271484375},{\"id\":3640,\"token\":\"This\",\"bytes\":\\[84,104,105,115\\],\"logprob\":-14.800630569458008},{\"id\":130977,\"token\":\"<tool\\_call>\",\"bytes\":\\[60,116,111,111,108,95,99,97,108,108,62\\],\"logprob\":-14.971238136291504},{\"id\":6908,\"token\":\"Class\",\"bytes\":\\[67,108,97,115,115\\],\"logprob\":-15.373867988586426},{\"id\":3923,\"token\":\"class\",\"bytes\":\\[99,108,97,115,115\\],\"logprob\":-15.442902565002441}\\]}\\]}}\\],\"created\":1789950066,\"model\":\"C:\\\\\\\\Users\\\\\\\\Eto\\\\\\\\llama.cpp\\\\\\\\models\\\\\\\\Spark-X2.5-4B-Q4\\_K\\_M.gguf\",\"system\\_fingerprint\":\"b11026-b49650adb\",\"object\":\"chat.completion\",\"usage\":{\"completion\\_tokens\":1,\"prompt\\_tokens\":64,\"total\\_tokens\":65,\"prompt\\_tokens\\_details\":{\"cached\\_tokens\":59}},\"id\":\"chatcmpl-x2WrCObzFNYjKVkwDmcL8FLquwfZ0NEa\",\"timings\":{\"cache\\_n\":59,\"prompt\\_n\":5,\"prompt\\_ms\":634.566,\"prompt\\_per\\_token\\_ms\":126.9132,\"prompt\\_per\\_second\":7.879401039450585,\"predicted\\_n\":1,\"predicted\\_ms\":0.001,\"predicted\\_per\\_token\\_ms\":0.0,\"predicted\\_per\\_second\":0.0}}\n\n**Convert to probability:**\n\nprobability = e\\^(logprob)  \n1 = e\\^(-0.00456317700445652) = **\\~99.5%**  \n0 = e\\^(-5.395024299621582) = **\\~0.5%**\n\n\n\n**Speed:**\n\nOn my 170gb/s bandwidth 4gb vram GPU, I got 634ms! On a H200, I would probably get 30-75ms.",
+    "developer": "DivideHorror3217",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

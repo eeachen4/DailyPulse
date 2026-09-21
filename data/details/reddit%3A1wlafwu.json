@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlafwu",
+  "sourceItemId": "1wlafwu",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wlafwu/open_source_i_automated_shrinking_an_ec2_root_ebs/",
+  "detail": {
+    "longDescription": "EBS volumes can be expanded but not directly shrunk. I needed to reclaim unused root-volume capacity without rebuilding the instance, so I wrote a Bash script that uses SSM to create a smaller volume, rsync the root filesystem, configure GRUB, swap the root volume and reboot.\n\nhttps://github.com/anoop44/shrink-ebs-root\n\nI have used it for reclaiming space on many machines. I'm particularly interested in feedback on filesystem/boot edge cases and whether this is something other people would actually trust for production use.",
+    "externalUrl": "https://github.com/anoop44/shrink-ebs-root",
+    "developer": "_anoopss",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

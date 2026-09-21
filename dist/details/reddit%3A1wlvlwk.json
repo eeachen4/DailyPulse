@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlvlwk",
+  "sourceItemId": "1wlvlwk",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wlvlwk/confluence_to_local_markdown_to_hybrid_rag_with/",
+  "detail": {
+    "longDescription": "I've been working on a small Go-based stack to create a truly local, readable-first alternative to the various Confluence MCP tools.\n\n* [confluence2md](https://github.com/gkoos/confluence2md) crawls a Confluence Cloud space into Markdown on disk (one file per page, plus attachments, comments and a link graph in `metadata.json`)\n* [confluence2md-indexer](https://github.com/gkoos/confluence2md-indexer) builds one SQLite file with BM25 and embeddings and answers lexical, vector or hybrid queries\n* [confluence2md-mcp](https://github.com/gkoos/confluence2md-mcp) serves that index over MCP to VS Code, Claude Code or Codex.\n\nAll local: no hosted vector database, no service, no Python.\n\nRetrieval in short: chunked pages, BM25 (FTS5, titles weighted 4x) plus cosine, weighted or RRF fusion, `--expand` to stitch neighbouring chunks into the context, `--explain`, stable JSON with `schemaVersion`. Embeddings: OpenAI, any OpenAI-compatible endpoint, or a local offline provider that needs no key.\n\nWhat's new:\n\n* Authorship, depth and parent, link, attachment and comment counts, host, seed flags and timestamps are indexed, so queries can filter by `--author`, `--depth-min`/`--depth-max`, `--seed-only`, `--has-attachments`, `--updated-since 30d`, `--host` and `--spaces`.\n* `recency`, `authority`, `seed`, `depth`, `richness` are capped at 15% of the fused score, so a clearly better text match still wins, and every result reports its prior contribution (`metadataBoost`, `metadataFactors`) so ranking changes stay debuggable.\n* Pluggable embedding providers with layered configuration (flag > env > YAML config > default) and a conformance suite every provider has to pass.\n* Embedding-identity guard. Each vector stores the identity that produced it (`provider:variant@dim`, for example `bow-local:fnv1a@256`). A query resolving a different identity now fails with an actionable error instead of quietly scoring zero everywhere - the failure mode I hit most while iterating.\n* `stats` reports coverage and freshness: documents, chunks, embeddings, stored vector identity and capability, metadata coverage, and how old the index is relative to the last crawl.\n* MCP server: metadata filters and per-call embedding overrides as tool arguments, a `list_spaces` tool, and tool errors that tell the model what to do next.\n* Crawler: multi-host crawls, host-qualified IDs and filenames, scoped Atlassian tokens.\n\nSome known gaps: results are chunk-level (page-level grouping is next), there is no ANN or quantized vector index yet (benchmarks first), no Cohere/Voyage/Gemini adapters.",
+    "developer": "OtherwisePush6424",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

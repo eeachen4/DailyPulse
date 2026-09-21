@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlu9rd",
+  "sourceItemId": "1wlu9rd",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wlu9rd/diy_jev/",
+  "detail": {
+    "longDescription": "So this jev thingy is getting kind of big... tbh it seems overhyped by a large margin, but here we are. Not that its bad, just feels like we usually ignored larger things... \n\nAnyway to the point of this post:\n\nI’ve been experimenting with a simple Jev-like inference setup using ordinary open weight LLMs.\n\nIve done jev-like thing before with llms and i never felt the need that we have to have a separate \"system one models\" for that and that llms do fine.\n\nSo i played around a bit.\n\nThe main difference from OpenJev is that there’s no NLI fine-tuning or classifier head.\n\nFor each candidate answer I turn the problem into a boolean verification:\n\n<state>...</state>\n\n<question>...</question>\n\n<options>...</options>\n\n<candidate>B</candidate>\n\nThen instead of generating anything, I read true/false logits for every candidate separately, subtract for every candiddate and softmax those scores.\n\nSo 3 candidates is 3 diffs that you softmax over.\n\nThe expensive state/question/options prefix you evaluate once, then candidate branches (only diff is last few tokens) are batched through llama.cpp. \n\nOn a 32,235-example benchmark:\n\nQwen3-4B              65.0% accuracy   \\~27 req/s\n\nQwen3 27B             75.3%             \\~2.9 req/s\n\nQwen3.6 35B-A3B       75.5%             \\~5.3 req/s\n\nThis req/s is measured on a laptop 5090 24gb.\n\nThe interesting part is that the approach works surprisingly well with completely unmodified models. Turns out same model can out perform the openjev fine tune.\n\nNot claiming this reproduces Jev or that the benchmark is perfectly apples-to-apples, mostly interested in how far you can get without training anything and just playing with prompt effectively.\n\nRepo: [DIY-Jev GH](https://github.com/VakeDomen/DIY-Jev)\n\nCheck it out, give feecback and build cool things :)",
+    "developer": "Malfeitor1235",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004523",
+  "sourceItemId": "80004523",
+  "sourceUrl": "https://stackoverflow.com/questions/80004523/react-input-form-not-rendering",
+  "detail": {
+    "longDescription": "I am trying to make this Pen on codepen.io, however I hit a roadblock on my code. I was trying to utilize the useState Hook from React.js. I did all the steps correctly for my build is now successful; according to the codepen compiler. Its supposed to be an input form for someones name, \"in the beginning it was telling me useState was NOT defined\", but then I remembered I was supposed to use import on the top. However even with that the screen is still not rendering anything. I do not know what the problem is here is my codesource: https://codepen.io/editor/nezarr71/pen/01a0c0fc-fd41-7347-987d-9e584c296393 <!doctype html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <title>Basic React Template</title> <link rel=\"stylesheet\" href=\"./style.css\" /> </head> <body> <div id=\"Greeting\"></div> <script type=\"module\" src=\"./script.js\"></script> </body> </html> import React from \"react\"; import ReactDOM from \"react-dom/client\"; import { useState } from \"react\"; ///DONT forget to imoprt everything function Greeting() { const [name, setName] = useState(\"\"); return ( <div> <input value={name} onChange={(event) => setName(event.target.value)} placeholder=\"enter your name\" /> <p>Hello, {name} </p> </div> ); }",
+    "developer": "BoJacks JJ",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "40"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

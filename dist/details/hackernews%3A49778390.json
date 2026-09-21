@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49778390",
+  "sourceItemId": "49778390",
+  "fetchedAt": "2026-09-21T01:37:47.943Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49778390",
+  "detail": {
+    "longDescription": "hey hn, i made bailout for a pretty specific problem. you boot a fresh vm and want an agent to help get it set up, except you dont have your agent set up yet. no gh, no config, no api key handy. might not even have codex &#x2F; claude code &#x2F; opencode curled and loaded. or you already have a setup but opencode &#x2F; pi &#x2F; whatever stopped launching, and the thing you&#x27;d normally ask to fix it is the thing that&#x27;s broken. for me, and this is embarrassing, but at work we switched from per-dev keys to oai &#x2F; ant to just an internal litellm router, which required configuring opencode. i use opencode2 which can dynamically reload its config. well, while rewriting the config to work with self hosted litellm, it broke, and i was stranded w&#x2F; no coding agent. bailout is for that sort of thing, like break glass, agent pls fix. think of bailout like a spare agent for these sorts of things. install it, ask it to set up the machine or fix your usual tools, then remove it. the idea is “the harness meant to be deleted.” i like having a tool whose last useful action can be uninstalling itself. plus a play on hinge, the whole app meant to be deleted. you install it with `curl -fsSL https:&#x2F;&#x2F;bailout.dev&#x2F;install.sh | bash` and run `bailout`. no account or api key needed for bailout. the tools it helps you set up still need your own accounts, obviously. it can hand you the terminal for those logins without sending what you type to the model. the client is a rust binary, about 639 KB uncompressed on apple silicon. it also runs on linux x64 and arm64. bash is the only tool. it can inspect files, edit configs, install things, curl stuff, etc. commands run automatically with your user&#x27;s permissions, so it has the same access you do in that shell. i got inspired by vercel&#x27;s fx.sh in terms of minimalism and size and all that. the hosted router uses free models and switches between available ones when a request fails. there are shared limits, and it will tell you when it has to wait. this is still a small free service, so i dont want to pretend it has unlimited capacity. odds are, if this post gets enough attention and enough of you try it, it will exhaust capacity. to that end if anyone knows anyone willing to toss a free model in for this consistently, would be very cool. there&#x27;s a recording of it fixing an intentionally broken opencode config on the gh page. bailout gets removed at the end and opencode runs again. waits are shortened in the video; the original terminal capture is there too. mit licensed, and built with a lot of help from codex. curious whether this is useful for the way you set up machines, or if there&#x27;s some obvious case i&#x27;m missing. issues &#x2F; prs welcome.",
+    "externalUrl": "https://github.com/storozhenko98/bailout",
+    "developer": "mst98",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

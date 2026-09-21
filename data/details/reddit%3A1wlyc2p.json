@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlyc2p",
+  "sourceItemId": "1wlyc2p",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wlyc2p/2x_r9700_in_one_strix_halo_machine/",
+  "detail": {
+    "longDescription": "https://preview.redd.it/5aon65uosrqh1.jpg?width=1000&format=pjpg&auto=webp&s=cd21ce0648b0ffa5dc07e66718a230f1f91d8a53\n\nI have a GMKtec EVO-X2, it doesn't have oculink nor pcie slots, but it does have 2 nvme slots, one of each comes populated.\n\n  \nSo I bought a nvme to usb4 enclosure and 2x nvme to pcie adapters.\n\n  \nnvme runs at pcie 4.0 x4, so while the adapter is an x16 slot and the gpus are pcie 5.0, they both run at pcie 4.0 x4.\n\n  \nMy first test was to see if tensor parallelism worked and I was dismayed it was slower than a single card. Turns out the llama.cpp vulkan doens't do tensor parallelism correctly. Switching to the rocm build, I got a decode speed up! But the prompt processing was only 70% of a single card. But fortunately that was also fixable. By default RCCL isn't enabled and adding `-DGGML_HIP_RCCL=ON` to my build restored the full prompt processing speed!\n\n  \nHere are the final llama-bench results:\n\nQwen3.8-27B-UD-Q4\\_K\\_XL.gguf\n\n|benchmark|tokens per second|\n|:-|:-|\n|tensor parallelism pp512|1069|\n|tensor parallelism tg128|37|\n|single card pp512|1070|\n|single card tg128|28|\n\n",
+    "developer": "Pyrolistical",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

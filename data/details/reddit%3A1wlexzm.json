@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlexzm",
+  "sourceItemId": "1wlexzm",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wlexzm/need_solution_for_automating_huggingface_model/",
+  "detail": {
+    "longDescription": "Automating HuggingFace model delivery to EFS on EKS  what's your approach?\n\nSetup\n\nOne EFS filesystem (\\~3 GB) holding HuggingFace sentence-transformer snapshots as a flat <org>/<model-name>/ tree.\n\nMounted by four workloads across three EKS clusters – two GPU inference services (\\~107 pods in prod, HPA'd on spot GPU nodes), a small embedding API, and some batch jobs.\n\nModels: bge-small-en-v1.5 (\\~130 MB), distiluse-base-multilingual-cased-v2 (\\~500 MB), bge-m3 (\\~2.1 GB).\n\nThe services run TRANSFORMERS\\_OFFLINE=1 / HF\\_DATASETS\\_OFFLINE=1. This is deliberate – we had a project specifically to stop depending on HuggingFace at runtime, because an HF outage or a pulled model meant services wouldn't start. There is no download fallback: the files must already be on the volume or the pod fails.\n\nHow it used to work, and what broke\n\nOur ML engineer, who put most of the current models there, described his pre-EKS workflow as:\n\n1. Upload the model directory from his laptop to S3\n\n2. Find an EC2 instance in the old ECS cluster that had the EFS mounted\n\n3. SSH in and aws s3 cp from S3 onto the EFS mount\n\nThen we migrated those services from ECS to EKS. The EC2 instances are gone, so steps 2 and 3 have no equivalent and there is currently no working path at all. The stopgap is that a data scientist uploads to S3 and files a ticket asking an ops engineer to copy it across by hand – the last one took a week.\n\nHis question, which is basically the ticket:\n\n\\> \"Probably best to do some research first whether it's possible to directly load files/dirs to EFS, or if you always need some kind of instance that mounts it.\"\n\nTwo things I noticed while digging: there are no backups on the filesystem, and both inference services mount it read-write despite only ever reading from it.\n\nWhat we've considered (none of it implemented yet)\n\nReal: a colleague did the S3→EFS copy by hand once and verified the sha256, so the mechanics work – it's the automation that doesn't exist. And we do run a CronJob writing to a different shared EFS volume in prod today (pulls reference data from SFTP hourly, 46 days up, finishes in seconds). So the \"one writer pod refreshes a shared volume\" shape is proven here, just not for models. That's the incumbent option mainly for that reason.\n\nOnly read about, never tested:\n\nAWS DataSync, S3 → EFS. Agentless for AWS-to-AWS in the same account, and AWS publishes a reference architecture for exactly this shape. Zero code, does its own integrity verification. We've never run DataSync for anything.\n\nLambda with an EFS mount. Ruled out on published limits (15-min cap) against a 2.1 GB safetensors file.\n\nMountpoint for S3 CSI driver – skipping EFS entirely. Ruled out on AWS's own positioning – they scope it to single-GPU-instance workloads, where each pod gets its own mountpoint instance, 5–10 GB cache and its own S3 API calls. At \\~107 pods that seemed like the wrong trade. Happy to be told I've misread it.\n\nVersioned dirs + atomic symlink swap – write to <org>/<name>/<revision-sha>/, point a current symlink at it, swap with mv -T. Same trick Kubernetes uses for ConfigMap volumes, so readers never see a half-copied tree. Also makes DataSync viable, since it'd write into a directory nobody is reading yet.\n\nHi, I have been given a issue to solve this in my org. This is claude generated summary of the steps the devs follow and a little bit of research on how to approach this. If you have any suggestions for this it would be helpful and please do let me know if I'm missing any information that you need to get more context for this. Thanks!",
+    "developer": "onepiece696999",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

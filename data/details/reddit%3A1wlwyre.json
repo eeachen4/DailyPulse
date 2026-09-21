@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wlwyre",
+  "sourceItemId": "1wlwyre",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wlwyre/no_incident_report_has_ever_ended_with_the_ai_got/",
+  "detail": {
+    "longDescription": "An agent does not fail the way a script fails. A script throws. An agent does the wrong thing competently for a while, then writes you a lovely summary of having done the right one.\n\nSeven years writing software, this year mostly with agents in the loop. The failures that took me longest to find were never crashes. They were the runs that completed. Everything green, output plausible, one assumption underneath that nobody checked because nothing asked to be checked.\n\nThe shape that worries me most is the clean double. A step times out, the retry fires, the work happens twice, and both halves report success because both halves succeeded. If that step writes a row, you get a duplicate. If it moves money or calls a metered API, you get a duplicate with a price on it, and you find out from the invoice rather than from the logs.\n\nWhich is why I think the stack question this sub argues about every week is the second question. The first one is who understands what happened when the agent does something expensive. Not who owns the repo. Who can reconstruct the decision, point at the step that went sideways, and say why it went sideways there.\n\nIf the answer is that you would ask the model, that person does not exist yet. Ask it whether its own output was correct and it will usually tell you it was. **Agreement is the default failure mode**, which makes it precisely the wrong tool for the one job you need done.\n\nThere is a second answer people give that worries me more, and it is the AI got it wrong. I hear it at work constantly. It is never true, and it is never usable. **No incident report has ever ended there.** The agent does not attend the call with the customer, does not refund anything, and does not sign the letter explaining what happened to their data. Whatever the subscription costs, the accountability that comes with it is zero, and it transfers entirely to whoever deployed it.\n\nSo: internal agent, blast radius is you, go wild, that is how anyone learns this. Free and labelled honestly as an experiment, with a warning not to trust the output blindly, also fine. An agent you charge for, touching other people's money or data, that you cannot diagnose without asking it to diagnose itself, I do not think that one is defensible, and a lot of what is launching right now is exactly that.\n\nWhat makes it hard is that the tooling makes the third one as easy to produce as the first, and from the outside all three look identical.\n\nSo how are you drawing the line? And for anyone running agents against real money or real customer data, what is the check that would actually catch a clean wrong run?\n",
+    "developer": "ilien-dev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

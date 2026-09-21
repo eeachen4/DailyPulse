@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wltsx6",
+  "sourceItemId": "1wltsx6",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1wltsx6/resource_not_accessible_by_integration_in_github/",
+  "detail": {
+    "longDescription": "I've been digging into GitHub Actions permissions recently and one thing that kept bothering me is how unhelpful this error is:\n\n`403 Resource not accessible by integration`\n\nIt looks like a single problem, but in practice it can mean very different things.\n\nA few common cases:\n\n### 1. The workflow is simply missing a permission\n\nExample:\n\n    permissions:\n      contents: read\n\n    steps:\n      - run: gh release create v1.2.3\n\nCreating a release needs `contents: write`.\n\nThis is the easy case.\n\n---\n\n### 2. The YAML asks for write access, but the event context changes the effective permissions\n\nFor example, a workflow running on `pull_request` from a fork may get read-only permissions even if the workflow requests write access.\n\nSo this:\n\n    permissions:\n      contents: write\n\ndoesn't necessarily mean the job actually has write access.\n\nThis is where people often start adding broader permissions and nothing changes.\n\n---\n\n### 3. A job-level `permissions:` block overrides the workflow-level one\n\nYou can have:\n\n    permissions:\n      contents: write\n\nat the workflow level and later:\n\n    jobs:\n      release:\n        permissions:\n          contents: read\n\nNow the release job is read-only.\n\nVery easy to miss in a larger workflow.\n\n---\n\n### 4. `GITHUB_TOKEN` is the wrong credential entirely\n\nIf the workflow is trying to operate on another repository, the problem may not be \"which permission am I missing?\"\n\n`GITHUB_TOKEN` is scoped to the repository that owns the workflow.\n\nIn that case, adding more local permissions won't fix the repository boundary. You may need a GitHub App, another credential, or a different workflow design.\n\n---\n\n### 5. `write-all` can hide the real problem\n\nI've seen people debug 403s by trying:\n\n    permissions: write-all\n\nIf the failure is caused by a fork restriction, repo boundary, org policy, or token type, this doesn't actually solve anything.\n\nIt also makes the workflow much more privileged than necessary.\n\n---\n\nThe tricky part is that GitHub often surfaces the same vague error for all of these cases.\n\nI ended up building a small open-source CLI to automate this reasoning:\n\nhttps://github.com/dejanj/gha-permission-doctor\n\nIt runs offline, uses deterministic rules only, and tries to distinguish:\n\n- missing permissions\n- job-level overrides\n- fork / Dependabot restrictions\n- cross-repository operations\n- custom token / unknown-policy cases\n\nExample:\n\n    npx gha-permission-doctor \\\n      --workflow .github/workflows/release.yml \\\n      --log failed-run.txt\n\nI'm mostly interested in real failure cases it gets wrong, rather than adding random features.\n\nIf you've hit a weird GitHub Actions permission failure recently, I'd be interested in the workflow/error combination.",
+    "developer": "dadoktr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
