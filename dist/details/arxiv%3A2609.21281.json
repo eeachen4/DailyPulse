@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.21281",
+  "sourceItemId": "2609.21281",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.21281",
+  "detail": {
+    "longDescription": "arXiv:2609.21281v1 Announce Type: cross Abstract: Embedding-based retrieval on user-generated content at the trillion-document scale exposes a sharp conflict between two production demands: deep, expressive personalization for queries with rich user intent, and broad coverage of a massive inventory under fixed latency and resource budgets. We characterize this as the personalization-scale paradox: hosting the full serving inventory in GPU memory is too resource intensive, while CPU compute cannot execute the same interaction-heavy model on the latency-critical path. We present a hybrid GPU-CPU co-serving system that resolves the paradox through orchestration rather than a new model class. A high-depth GPU pathway fuses retrieval and interaction pre-ranking over a curated online pool on the order of a billion documents, while a high-breadth CPU pathway searches an independently selected online inventory roughly twenty times larger with lightweight personalized scoring. Either or both pathways can run per request; candidates are deduplicated before shared downstream ranking. The system is deployed in production. A full-system A/B test against the legacy CPU-only configuration improves model-scored relevance and substantive engagement, while separate pathway experiments show positive value at their own deployment scopes. Retrieval logs show that the pathways contribute structurally distinct candidates, production serving measurements characterize their latency, and a matched capacity plan quantifies the economic rationale for assigning modeling depth to GPUs and inventory breadth to CPUs. Together, these results validate a practical, independently evolvable depth-breadth architecture for ultra-large-scale personalized search.",
+    "developer": "Hao Fu, Jichao Sun, Baiting Zhu, Qiaoling Liu, Yan Shi, Cheng Lu, Liu Liu, Yubo Wang, Xin Yao, Xiangyu Niu, Xu Dong, Wenhan Lyu, Chiyao Shen, Yinjie Huang, Minglei Chen, Shuai Ding, Li Fan, Xiao Kong",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.IR, cs.DC, cs.LG, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hao Fu, Jichao Sun, Baiting Zhu, Qiaoling Liu, Yan Shi, Cheng Lu, Liu Liu, Yubo Wang, Xin Yao, Xiangyu Niu, Xu Dong, Wenhan Lyu, Chiyao Shen, Yinjie Huang, Minglei Chen, Shuai Ding, Li Fan, Xiao Kong"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

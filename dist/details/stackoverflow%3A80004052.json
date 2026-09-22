@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004052",
   "sourceItemId": "80004052",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004052/sympy-parse-expand-without-alphabetical-ordering",
   "detail": {
-    "longDescription": "I'm trying to use sympy's to expand a simple RECIST arithmetic expression import sympy def _sympy_expand(expr): parsed = sympy.parsing.sympy_parser.parse_expr(expr) return str(sympy.expand(parsed)) tables = \"idx + ohio * (idx + sex + recist)\" _sympy_expand(tables) # 'idx*ohio + idx + ohio*recist + ohio*sex' Problem is that in my application, order of elements has meaning. That is what I wanted is to avoid lexical ordering and tables to be expanded to # \"idx + ohio*idx + ohio*sex + ohio*recist\" I've searched the doc but didn't found a solution; any hint on how to do this hopefully easily (not necessarily with sympy)? EDIT : In my application the maximum complexity would be expression with just + * and non-nested parentheses (to be expanded). As suggested, some other examples could be: input: \"a * (b + e + c) + d\" output: \"a*b + a*e + a*c + d\" or input: \"foo + bar + baz * (x)\" output: \"foo + bar + baz*x\"",
+    "longDescription": "I'm trying to use sympy's to expand a simple arithmetic expression involving variable names (one of which is RECIST ) import sympy def _sympy_expand(expr): parsed = sympy.parsing.sympy_parser.parse_expr(expr) return str(sympy.expand(parsed)) tables = \"idx + ohio * (idx + sex + recist)\" _sympy_expand(tables) # 'idx*ohio + idx + ohio*recist + ohio*sex' Problem is that in my application, order of elements has meaning. That is what I wanted is to avoid lexical ordering and tables to be expanded to # \"idx + ohio*idx + ohio*sex + ohio*recist\" I've searched the doc but didn't found a solution; any hint on how to do this hopefully easily (not necessarily with sympy)? EDIT : In my application the maximum complexity would be expression with just + * and non-nested parentheses (to be expanded). As suggested, some other examples could be: input: \"a * (b + e + c) + d\" output: \"a*b + a*e + a*c + d\" or input: \"foo + bar + baz * (x)\" output: \"foo + bar + baz*x\"",
     "developer": "Luca Braglia",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "126"
+        "value": "145"
       },
       {
         "label": "状态",

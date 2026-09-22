@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.21594",
+  "sourceItemId": "2609.21594",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.21594",
+  "detail": {
+    "longDescription": "arXiv:2609.21594v1 Announce Type: new Abstract: Declarative SPMD programming uses tensor sharding descriptions to drive distributed execution, separating parallelization from model code. However, the evaluated PyTorch DTensor stack dispatches every operator below autograd, incurring repeated dispatch and metadata costs, while lacking an inexpensive end-to-end validation path. Existing FSDP and distributed Muon implementations also mismatch two-tier supernode topologies: FSDP relies on explicit parameter packing and unpacking, and Muon's whole-matrix orthogonalization conflicts with parameter sharding. We observe that distributed tensors need only express sharding semantics at the tensor API boundary above autograd, allowing differentiation and kernels to operate on plain tensors. Based on this insight, we present HyperParallel-FSDP, featuring: (1) dual-mode DTensor execution, using one sharding plan for both a production mode with one-time layout resolution and no steady-state dispatch overhead, and a validation mode with end-to-end metadata propagation, fail-fast checks, and gradient-equivalence testing; (2) topology-aware FSDP, with zero-copy intra-supernode collectives, fused inter-supernode reduction, and a cross-layer backward pipeline that avoids waits on slow links; and (3) layout-driven distributed Muon, with sharding-derived communication groups, deduplicated orthogonalization, and shape-fused Newton-Schulz iterations. On Atlas 900 A3 SuperPoD, HyperParallel-FSDP scales from 16 dies to 384 cards (768 ranks), sustaining 421k tokens/s for a 505B-parameter MoE while FSDP communication uses 2.9% of step time. It reduces mean step time by 29.7% versus PyTorch FSDP2 and 25.5% versus Megatron DDP, with Pearson correlation above 0.999997 over 1,000 steps. Distributed Muon improves profiler step time by 5.4-16.0% over competing systems. Source code is available at https://atomgit.com/mindspore/hyper-parallel.",
+    "developer": "Mo Sun, Yifan Yao, Yanwei Liu, Luobin Liu, Zhenzhang Yang, Kaisheng Wang, Xiangyu Meng, Chen Li, Xizheng Pang, Huilan Li, Xinglei Xu, Yushi Cui, Xinyao Lin, Kaiqi Chen, Jie Zhang, Zeke Wang, Teng Su",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mo Sun, Yifan Yao, Yanwei Liu, Luobin Liu, Zhenzhang Yang, Kaisheng Wang, Xiangyu Meng, Chen Li, Xizheng Pang, Huilan Li, Xinglei Xu, Yushi Cui, Xinyao Lin, Kaiqi Chen, Jie Zhang, Zeke Wang, Teng Su"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

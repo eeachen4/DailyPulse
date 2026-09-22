@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmpwtl",
+  "sourceItemId": "1wmpwtl",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wmpwtl/exploring_small_llms_as_classifiers_to_rival_jev/",
+  "detail": {
+    "longDescription": "(I've only spent an afternoon with Gemini on this, thought it would be a cool discussion). \n\nHey, so with all the discourse about Jev, I decided to build a small python utility to see if I could replicate that functionality with just a small LLM that would run on my machine (in my case, Gemma4 e2b).\n\nWhat I have so far takes in a state, question, and candidates (classification) parameters, and returns the models' confidence probability between the candidates. It prefills the context with a system and user prompt based on those parameters, then batch compares the possible candidates in terms of logit probability. This means that the entire process (on my machine) takes sub 1 second, most of that being prefill time.\n\nGemma 4 is overconfident in its reply, even in logit space. On normal temperature settings, it outputs results with nearly 100% probability. However, once we increase the temperature to something very high (temperature = 10 worked well for me), we get results resembling uncertainty. \n\nHere is an example query:\n\nState: \"Bank balance: $2,000; Debt: $20,000; Past due: true\" \n\nQuestion: \"Should I get another loan?\"\n\nCandidates: \"Yes\", \"No\"\n\n(--temperature = 10)\n\nThe result is:\n\n|Candidate|Raw LogProb|Probability|\n|:-|:-|:-|\n|No|\\-0.0000|80.22%|\n|Yes|\\-14.0000|19.78%|\n\n  \nInterestingly, if we add a \"null\" candidate, it ranks higher than \"No\":\n\n|Candidate|Raw LogProb|Probability|\n|:-|:-|:-|\n|null|\\-0.0815|52.67%|\n|No|\\-2.5502|41.15%|\n|Yes|\\-21.5190|6.17%|\n\n  \nHowever, with the \"null\" candidate, we can use a type of calibration (reference: [https://arxiv.org/abs/2102.09690](https://arxiv.org/abs/2102.09690), cli: --calibrate) to mitigate baseline uncertainty (use this when one of the candidates is reflective of baseline uncertainty):\n\n|Candidate|Raw LogProb|Calibrated|Probability|\n|:-|:-|:-|:-|\n|No|\\-2.5502|21.6998|60.60%|\n|Yes|\\-21.5190 |15.4810|32.54%|\n|null|\\-0.0815|\\-0.0815|6.86%|\n\n  \nThe biggest takeaway I have is that this approach does NOT lead to a realistic result, at least not yet, without a lot of tweaking. \n\nHowever, it is possible to extract LLM opinions and something closer to confidence probability than having them output it directly, or only using the first token result. \n\nI haven't compared this to Jev directly (I don't want to spend money lol), but I am curious how it compares. It's very much an apples to oranges comparison if comparing with laya, so i'm sure its different here too. \n\nSo yeah, I'm interested in what you think or additional avenues for this. Thanks for reading (I handwrote this post at least).\n\nTL;DR: It's possbile to get something like confidence probabilities in few-pass small LLMs, though they are overconfident even in logit space. But also you can use higher temperatures to get more varied responses!\n\nCode link: [https://github.com/marcintkasper/universal-classifier](https://github.com/marcintkasper/universal-classifier)\n\n  \n",
+    "developer": "OneFanFare",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

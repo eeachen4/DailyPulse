@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wms904",
+  "sourceItemId": "1wms904",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wms904/uncensor_an_llm_without_touching_weights_inject_a/",
+  "detail": {
+    "longDescription": "I shipped something I've been building for the last few weeks : phantom-kv , a refusal-removal system for large language models that doesn't touch a single weight. Instead of editing the model, it loads a small, learned bank of key/value tensors into the model's KV cache as context. Attention reads it like conversation history that's already there.   \n\n\n[https://github.com/lordx64/phantom-kv/](https://github.com/lordx64/phantom-kv/)  \n\n\nhttps://reddit.com/link/1wms904/video/7efg1le3eyqh1/player\n\nThe result is that \"uncensoring\" stops being a permanent checkpoint edit and becomes a  per-request, hot-swappable capability mode: unload the cache and the base model is byte-identical again.\n\nEvery prior approach to refusal removal commits somewhere permanent. Weight-space abliteration rewrites the checkpoint undoing it means re-flashing weights, and it breaks per quantization. Activation-space projection subtracts a refusal direction at runtime, per token, per layer, from inside an engine hook  the model's signal path itself is patched at boot. phantom-kv does neither: it's trained offline against the model's own      \n\nobjective (comply on harmful prompts, preserve behavior on harmless ones), ships as megabytes of cache content instead of a new checkpoint, and influences the model only through the input channel attention already consumes. No 1-D refusal-direction assumption, no forwarding-pass hooks, no per-arm rebuilds for new architectures.                                                                                                             \n\nWe also audited ourselves: an 8B judge-model audit shows lexical refusal-suppression metrics over-claim compliance (semantic refusal often persists as rephrasing), the graft fades with a \\~2–4k token half-life in long sessions (and a measured re-injection cadence mitigates it), and answers come with legal/ethical framing ling because the graft's job ends where the model's profession takes over.\n\nSource : [https://x.com/lordx64/status/2102138825292276168?s=20](https://x.com/lordx64/status/2102138825292276168?s=20)",
+    "developer": "Anony6666",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

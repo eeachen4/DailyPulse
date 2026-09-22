@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmmahp",
+  "sourceItemId": "1wmmahp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wmmahp/using_jev_for_model_routing_and_review_triage_a/",
+  "detail": {
+    "longDescription": "I put together a 24-minute walkthrough of Jev, TypeSafe's model for bounded decisions. I wanted to understand where it fits in an existing application, so I built two examples around it.\n\nThe first is an open-source model router that helps to visualize the Jev flow.\n\nJev receives the request context and a set of configured destinations, then chooses between local Qwen and hosted Sonnet. The selected model generates the answer. A small control UI shows the actual routing request, response and destination, which makes the boundary between decision-making and generation easier to inspect.\n\nThe second is a Python/Strands code-review workflow. Agents inspect a public GitHub PR and propose findings; a judge assesses severity and relevance. I compare an LLM judge with Jev, while keeping the final inclusion rules in Python. The output is an HTML report—nothing is posted to the PR.\n\nThis is an integration tutorial with a small comparison, rather than a broad benchmark. My main interest is the division of responsibility: an LLM investigates and proposes, a specialized model answers a bounded question, and application code decides what to do with the result.\n\nThe video also covers the `noul`, `choice`and `score` request types with API examples.\n\nRouter source: [https://github.com/krisitown/jev-router](https://github.com/krisitown/jev-router)\n\nIf you're already using LLM judges or classifiers, how are you evaluating the decision boundary—especially cases where two judges agree on relevance but disagree on severity?",
+    "externalUrl": "https://youtu.be/rT1xMbbfzRc",
+    "developer": "kristiyanstoyanovAI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "youtu.be"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

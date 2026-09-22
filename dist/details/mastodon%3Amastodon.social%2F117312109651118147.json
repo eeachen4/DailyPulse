@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117312109651118147",
+  "sourceItemId": "mastodon.social/117312109651118147",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
+  "sourceUrl": "https://misskey.gg/notes/arfkckafqp",
+  "detail": {
+    "longDescription": "Hell yeah, managed to get the polygon to change to any arbitrary step between its base/original form and the next!\n\nLooking at the gifs, you might notice that the white head, which is the one being changed, doesn't properly align with the orange (middle), that's because it's only interpolating between the blue (rightmost) form and the yellow form (leftmost). That it still comes very close to the defined 3/4 facing head is a very welcome surprise, though one that will be short lived, as a proper 3/4 to full side facing will have to hide certain features later on.\n\nTook me a while to reach a *correctly* working function, but the steps are the following:\n\n1. Ensure size of the step (for each vertice, how much X and Y have to move to reach the final point) is filled, it's an array the same size/length as the total number of vertices\n2. Get the current step/frame (in my case, i have a total of 20 steps/frames, from 0 to 20, or 0 to -20)\n3. The polygon's vertices will receive (final polygon's vertex.x position minus (step for that vertice times the current frame)) - `for i in 0..polygon.len(): polygon[i].x = nextpolygon[i].x - (step[i].x * currentframe) ` -- This \"inverts\" which polygon is the start and end, but it works.\n\nNext up, figure how to invert the polygon's facing, so it can look either left or right. With that done, experiment with eyes and nose on top of the face.\n\nI might also look how to make a nim macro to make it easier for me to loop over a polygon's vertices and doing basic math with raylib's Vector2 type. #programming #raylib #nim #gamedev #vectorgraphics (📎2)",
+    "developer": "@papel@misskey.gg",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "Misskey.gg"
+      }
+    ]
+  }
+}

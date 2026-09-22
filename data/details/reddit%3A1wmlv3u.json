@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmlv3u",
+  "sourceItemId": "1wmlv3u",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wmlv3u/a_year_of_reading_astaware_code_rag_papers_and/",
+  "detail": {
+    "longDescription": "Chonks indexes a large codebase into one SQLite file and serves it to a coding agent over MCP. Tree-sitter AST chunks, hybrid semantic plus BM25, a typed cross-reference graph. No LLM in the retrieval path. Apache-2.0, free, no telemetry. Built for multi-million line codebases.\n\nTen languages get full symbol and graph support, including C++, C#, HLSL and Python, so it works where a call path crosses languages.\n\nAcc@5 64/100 on held-out Loc-Bench, in one call. The ids were picked before tuning and are published in the repo.\n\nThe reading list, and what I got from every single one:\n\n\\- \\[cAST\\](https://aclanthology.org/2025.findings-emnlp.430/), Findings of EMNLP 2025. Recursive AST-node splitting with sibling merging. The core chunking algorithm.\n\n\\- \\[LARGER\\](https://arxiv.org/abs/2605.16352), 2026. Lexical anchors, then confidence-filtered expansion. Became my graph seed gate.\n\n\\- \\[Reformulate, Retrieve, Localize\\](https://arxiv.org/abs/2512.07022), 2026. Pull identifiers and stack-trace terms out of bug report text before retrieval. I do it rule-based, with no LLM call.\n\n\\- \\[From Fragments to Paths\\](https://arxiv.org/abs/2606.22906), 2026.  Budget-constrained traversal over multi-relational repository structure. The same shape as my graph expansion.\n\n\\- \\[AST-derived vs LLM-extracted graphs\\](https://arxiv.org/abs/2601.08773), 2026. The head-to-head behind my choice to keep the LLM out of index time.\n\n\\- \\[Practical Code RAG at Scale\\](https://arxiv.org/abs/2510.20609), 2025. The counterpoint. Line chunking matches syntax-aware splitting on completion benchmarks, and BM25 beats dense embeddings for code-to-code queries.\n\n\\- \\[LocAgent\\](https://arxiv.org/abs/2503.09089), 2025. Released Loc-Bench, which I use as the held-out set.\n\n\\- \\[GraphRAG\\](https://arxiv.org/abs/2404.16130), 2024.\n\nMost of these I found while building. A lot of the time it turns out, what I was building was converging to the lit.\n\n[https://github.com/mgonzalez01/Chonks](https://github.com/mgonzalez01/Chonks)",
+    "developer": "_solidude",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

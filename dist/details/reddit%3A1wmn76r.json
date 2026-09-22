@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmn76r",
+  "sourceItemId": "1wmn76r",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wmn76r/i_built_a_frameworkfree_prototype_learner_that/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI wanted to share a project I’ve been working on called **Jayce**.\n\nThe whole thing started because I was watching a toddler named learn the names of stuff He didn't need to completely rewire his brain or look at ten thousand examples to figure a word out—he just needed a few specific examples and quick corrections from his parents.\n\nIt got me thinking about local LLMs. Right now, dealing with catastrophic forgetting is a massive pain. If you want a local model to remember a new fact, you're usually stuck spinning up a heavy RAG pipeline or risking its existing weights with slow, tedious fine-tuning.\n\nSo after watching him, I stumbled into building a lightweight experiment using **Adaptive Prototype Memory (APM)** to see if a model could learn the same way.\n\nInstead of messing with model weights, it grabs the LLM's raw context vectors and drops them into a fixed pool of 4,096 prototype slots. If the model gets something wrong and you correct it, it physically shifts the closest mathematical prototype toward the new data right then and there.\n\nHonestly, I just built it as a neat proof of concept, but when I actually ran the benchmarks, I was pretty surprised by how well it held up against backpropagation:\n\n* **It’s fast:** The training updates run about 1.6 to 4 times faster than a standard neural network using Adam backprop.\n* **It’s incredibly sample-efficient:** On sequential tests like MNIST digits, it actually pulled off higher accuracy than backprop when given the exact same number of training examples.\n* **It's lightweight:** It keeps everything locked under a strict memory ceiling so it doesn't hog your system.\n\nI wanted the math to be as readable as possible, so I wrote the whole thing framework-free. No PyTorch or TensorFlow—just pure NumPy (`jayce_tokens.py`) and native Java (JayceMemory.java). It runs completely offline on consumer hardware with a local Qwen3-4B GGUF.\n\nThe repo has the full benchmark data, a breakdown of how the vector shifting works, and a terminal script where you can test the learning loop yourself:\n\n[https://github.com/Loophole-LLC/Jayce](https://github.com/Loophole-LLC/Jayce)\n\nI'd love to get some feedback on it. Let me know what you think!",
+    "developer": "kavanutz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

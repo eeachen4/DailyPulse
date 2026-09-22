@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004454",
   "sourceItemId": "80004454",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004454/comparing-raw-mri-vs-freesurfer-derived-features-for-multimodal-fusion-with-a-sm",
   "detail": {
     "longDescription": "I’m an MSc student and pretty new to medical imaging/deep learning. I’m working on an Alzheimer’s classification project using the ANMerge dataset. It has around 1,700 participants overall, but only around 450 have MRI data alongside clinical data. The main thing I’m looking at is comparing different ways of combining MRI and clinical data: feature-level concatenation, late fusion, gated fusion and cross-attention. I’m currently trying to decide between two options for the MRI: Use the raw 3D MRI scans, preprocess them and use a pretrained 3D CNN such as ResNet-10/18 as the MRI encoder. Use the FreeSurfer-derived features that ANMerge already provides, such as regional volumes and cortical thickness, with a small MLP as the MRI encoder. My concern with the raw MRI option is that with only ~450 patients, fine-tuning a 3D CNN could add quite a lot of complexity and risk of overfitting. It would also add another variable to the experiment, because differences in results could come from how well the CNN learns the MRI representation rather than just the fusion method. It would obviously involve quite a bit more preprocessing and implementation work too. The derived-feature option seems simpler and would let me focus more directly on the fusion comparison. The thing I’m less sure about is cross-attention. If I use derived features, I’d need to structure them in a way where cross-attention is actually meaningful rather than just applying attention between two single vectors. One approach I’ve found is representing the FreeSurfer measurements as region-level tokens. Since my main question is really about comparing fusion methods rather than learning representations from MRI, I’m wondering which approach people think makes more sense here. Is there much to gain from going down the raw MRI + 3D CNN route given the dataset size and scope of an MSc project? Any advice would be really appreciated! ANMerge dataset paper: Birkenbihl et al. (2021) Example using FreeSurfer-derived regional features with cross-attention: Machado Reyes et al. (2024), Tri-COAT",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "29"
+        "value": "44"
       },
       {
         "label": "状态",

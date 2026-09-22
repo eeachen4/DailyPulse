@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.21483",
+  "sourceItemId": "2609.21483",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.21483",
+  "detail": {
+    "longDescription": "arXiv:2609.21483v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) inference under expert parallelism (EP) turns each MoE layer into a distributed computation with costly dispatch and combine communication. State-of-the-art systems reduce this cost through communication-computation overlap, splitting the GPU's SMs for communication and computation respectively. However, this approach still leaves GPU resources wasted along two dimensions. Spatially, the best SM split is determined by each layer's routing result and varies across layers and GPUs, so fixed policies mismatch the workload and waste either NVLink bandwidth or compute throughput. Temporally, complex MoE data dependencies introduce bubbles that leave SMs idle. We present Weave, to our knowledge the first MoE overlap system that performs fine-grained dynamic SM scheduling - deciding per layer and per GPU by routing results at runtime. Once routing completes, each layer's communication and computation volumes become known; Weave exploits this predictability through a lightweight cost model running inside the persistent megakernel: a spatial scheduler partitions SMs into communication workers and computation workers to match the communication/computation throughput ratio, and a temporal scheduler coordinates the two worker groups to minimize SM idleness. On 4x H100 SXM GPUs across six mainstream MoE models, Weave achieves a 2.89x geometric-mean MoE-layer speedup and a 1.33x geometric-mean end-to-end speedup over five state-of-the-art baselines.",
+    "developer": "Ziyu Huang, Yangjie Zhou, Chenhao Zhu, Zihan Liu, Jinyu Liu, Shulai Zhang, Xingxun Tang, Hongzhe Yan, Xinhao Luo, Minyi Guo, Xiu Lin, Yinghao Yu, Guodong Yang, Liping Zhang, Shixuan Sun, Jingwen Leng",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ziyu Huang, Yangjie Zhou, Chenhao Zhu, Zihan Liu, Jinyu Liu, Shulai Zhang, Xingxun Tang, Hongzhe Yan, Xinhao Luo, Minyi Guo, Xiu Lin, Yinghao Yu, Guodong Yang, Liping Zhang, Shixuan Sun, Jingwen Leng"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

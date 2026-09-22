@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmtkds",
+  "sourceItemId": "1wmtkds",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wmtkds/i_built_a_browser_agent_where_every_step_is_a/",
+  "detail": {
+    "longDescription": "most steps a browser agent takes are not hard. type the email, type the password, click sign in. but every LLM agent pays a full reasoning call for each one, thats where the 30-60s login flows come from.\n\nso i built hunch: each step it takes the accessibility snapshot from agent-browser (a numbered table of the interactive elements), sends it to jev - typesafe's \"system one\" model that returns typed probabilities instead of text - and gets the operation + the target element back in one \\~150ms request. agent-browser does the click, and the outcome is verified in code (url regex / expected text), never by asking the model if its done.\n\nthe part i care about most is the handoff. it is meant to sit UNDER your existing agent (i run it under claude code). when confidence drops, the page stops changing, or a click looks irreversible, it exits with a structured report: reason, page text, what it already did, the element table. your LLM reads that and takes over from the current page. on a login flow that is usually zero escalations, so the LLM never runs.\n\nguardrails are in code not in a prompt: typed values never reach the model (only their names), it wont leave the origin it started on, wont click delete / pay / send without a human, wont loop on a page that isnt changing.\n\nnumbers (bench script in the repo): 153ms median per decision vs 678ms for gpt-4o-mini on the same page states, both 24/24 correct. 4 step form fill = 3.4s end to end, the gif is real time.\n\nhonest caveats: jev is hosted and closed weights, element labels + a slice of page text go to their api. no free text typing yet (jev cant generate), no iframes / shadow dom / select. tested on a handful of flows, not a benchmark suite.\n\nzero dependency python, MIT. link in the comments. would love to hear where it breaks.",
+    "developer": "HAR5HA_7663",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

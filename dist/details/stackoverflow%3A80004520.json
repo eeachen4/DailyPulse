@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004520",
+  "sourceItemId": "80004520",
+  "sourceUrl": "https://stackoverflow.com/questions/80004520/how-to-configure-pg-to-work-natively-with-temporal-plaindate",
+  "detail": {
+    "longDescription": "The Problem I have a Postgres table with a column of type date , so it stores calendar dates like 2030-01-01 . There is no time of day or time zone, and I am not interested in storing them. node-postgres ( pg ) parses PostgreSQL date and timestamp data types into Date objects when it converts query responses. Since Date does not support date-only representations, pg converts the date string into a Date object initialized to midnight UTC (presumably by running new Date(\"2026-01-02\") internally). However, this introduces an off-by-one bug: The database holds 2030-01-02 . pg turns it into 2030-01-02T00:00:00.000Z . When logging or working with the Date , node translates that underlying UTC timestamp into the system's local time zone. E.g., if the server or user is in UTC-5 (e.g., New York), running .toLocaleDateString() evaluates to 2026-01-01 at 19:00:00 . The date shifts back by one day. What I Need I know that I can resolve the issue by manually converting the date based on a time zone offset, but I am looking for a more elegant solution. I want to avoid the issue entirely and not deal with time zones. I would like pg to return either a string like the database or a Temporal.PlainDate . Is there a way to override the pg parser to achieve this? If so, please link to a documentation page or suggest which file to include the override in for an Express.js project, and the implications of choosing a string or Temporal.PlainDate .",
+    "developer": "hb20007",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "72"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

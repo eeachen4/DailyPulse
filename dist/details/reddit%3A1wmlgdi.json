@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmlgdi",
+  "sourceItemId": "1wmlgdi",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wmlgdi/my_agent_kept_readding_a_dependency_i_had_already/",
+  "detail": {
+    "longDescription": "Last week my LangGraph agent re-added `redis` to a project I had already migrated off it. Three days earlier I told it we're on Upstash now, cut the local redis compose service, delete the config. It did. Then a new session read the old decision and cheerfully reverted my docker-compose like some haunted intern.\n\nThat's when I stopped trying to be clever about conflict resolution.\n\nI'd been doing the thing everyone does. Per-session memory files, a decisions.md I maintained by hand, and then (my dumbest move) a \"memory reconciliation\" prompt that asked the agent to weigh conflicting entries and pick the right one. It picked the wrong one half the time because it was just vibes. A confidence score on a memory entry is astrology.\n\nWhat actually works for me now is embarrassingly simple: one shared memory every client reads, and the newest explicit write governs. I told it once, in plain words, \"we're off local redis, everything goes through Upstash now,\" and that write just becomes the truth everywhere. Any agent that asks about the stack gets the newest version, not a timeline to interpret. Old entries stick around in the archive, but they don't govern anything.\n\nI run everything through Vilix AI's shared memory, so Claude, Codex and Cursor all read the same store. The honest tradeoff: the same recency rule that saves you can bite you. Last month a newer sloppy note (\"trying out turbo for the build\") shadowed an older careful one (\"DO NOT use turbo, it broke the lambda deploy\") and I got to debug that at 11pm. So I write corrections deliberately now, full sentences, no shorthand.\n\nAnyway. All the fancy bi-temporal memory papers are interesting and I read them too, but for actually shipping stuff: stop reconciling, write the new decision once, make the newest one the law. Boring wins.",
+    "developer": "Asly97",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

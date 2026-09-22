@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117309891335897666",
+  "sourceItemId": "mastodon.social/117309891335897666",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-527a167f-518e57f0e0060905",
+  "detail": {
+    "longDescription": "Cómo solucionar docker run con exit code 1 en Raspberry Pi ¿Por qué ocurre este error? El código de salida 1 indica que el proceso principal del contenedor terminó con un error genérico. En Raspberry Pi, los casos más comunes son: Arquitectura incompatible : La imagen fue construida para amd64 (x86_64), pero Raspberry Pi usa arm32v7 o arm64v8 . Falta de binarios compatibles : El ENTRYPOINT o CMD de la imagen intenta ejecutar un binario compilado para otra arquitectura. Problemas de permisos o dependencias faltantes en el entorno de Raspberry Pi. Uso incorrecto de --net=host : En algunos sistemas antiguos de Docker en Raspberry Pi, esta opción causa fallos silenciosos si no se usa correctamente. 🔍 Nota crítica : En tu comando docker run --net = host -d -t myimage , hay un error de sintaxis: --net = host tiene espacios alrededor del = . Docker lo interpreta como un nombre de red literal \" host\" , lo que puede causar fallos silenciosos o comportamientos inesperados. Pasos para solucionarlo Paso 1: Corrige la sintaxis del comando Elimina los espacios alrededor del = en --net=host : docker run --net=host -d -t myimage Paso 2: Verifica la arquitectura de la imagen Ejecuta en tu Raspberry Pi: docker inspect myimage --format '{{.Architecture}}' Si muestra amd64 , no es compatible con Raspberry Pi (a menos que uses QEMU emulación). Debería mostrar arm o arm64 . Paso 3: Construye o descarga una imagen compatible Si la imagen es tuya, reconstrúyela para ARM: # En Raspberry Pi (o con Docker Buildx) docker build --platform linux/arm/v7 -t myimage-arm . O descarga una versión oficial compatible (ej. arm32v7/python:3.9 , arm64v8/nginx , etc.). Paso 4: Ejecuta en primer plano para depurar Reemplaza -d (detached) por -it para ver el error en tiempo real: docker run --net=host -it myimage Esto mostrará el mensaje de error real (ej. exec format error , segmentation fault , command not found , etc.). Paso 5: Verifica logs si el contenedor ya se ejecutó docker logs <container_id> # O desde el ID obtenido con `docker ps -a` Bloque de código corregido (ejemplo funcional) # 1. Verifica la arquitectura de tu Raspberry Pi uname -m # Debería mostrar 'armv7l' o 'aarch64' # 2. Asegura que la imagen sea compatible docker pull arm32v7/alpine:latest # Ejemplo de imagen ARM válida # 3. Ejecuta con sintaxis correcta y en primer plano para depurar docker run --net=host -it arm32v7/alpine:latest sh # 4. Si necesitas construir tu propia imagen: # En Dockerfile: FROM arm32v7/python:3.9-slim # ... resto del Dockerfile Pro-tip: Usa docker buildx para multiarquitectura Si necesitas mantener compatibilidad con múltiples plataformas: # Crea un builder con soporte multiplataforma docker buildx create --use # Construye e impulsa para múltiples arquitecturas docker buildx build \\ --platform linux/arm/v7,linux/amd64 \\ -t myimage:latest \\ --push \\ . Esto genera automáticamente imágenes nativas para cada arquitectura, evitando errores de exec format error . ✅ Resultado esperado : El contenedor se ejecuta sin salir con código 1 , y puedes depurar cualquier otro error específico con los logs en primer plano. # debugging # devops # docker # linux # software # coding # development # engineering # inclusive # community Cómo solucionar `docker run` con exit code 1 en Raspberry Pi",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

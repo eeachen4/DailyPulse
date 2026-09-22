@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmw3qq",
+  "sourceItemId": "1wmw3qq",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wmw3qq/model_grafting_turning_qwen354b_into_a_causal/",
+  "detail": {
+    "longDescription": "Recently, the new DeepSeek-V4.1-Flash architecture showed how a causal encoder-decoder can work, but it was trained from scratch. Model Grafting does it to an existing model: cut at some depth, let the lower layers read the prompt, and use the upper layers get for encoder's residual stream as prefix KV via identity-init adapters, then heal with self-distillation from the unmodified parent. Decoding part stays the same, this method was described in this blog post [https://latentnode.pages.dev/articles/model-grafting](https://latentnode.pages.dev/articles/model-grafting)\n\nI applied the same recipe to Qwen3.5-4B to create two graft variants - [https://huggingface.co/LocalLLaMA/Qwen3.5-4B-graft8](https://huggingface.co/LocalLLaMA/Qwen3.5-4B-graft8) and [https://huggingface.co/LocalLLaMA/Qwen3.5-4B-graft16](https://huggingface.co/LocalLLaMA/Qwen3.5-4B-graft16)   \n  \nThe graft8 variant shows speedup of \\~3.7x at 128K prompt with some loss in accuracy. The graft16 is much more closer to the parent model while showing 2.0x speedup in prompt processing with minimum loss in accuracy.",
+    "developer": "asankhs",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wm5gyg",
+  "sourceItemId": "1wm5gyg",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wm5gyg/onprem_k8s_with_only_nfs_as_storageclass/",
+  "detail": {
+    "longDescription": "DevOps engineer in an **air-gapped private datacenter**, stuck between two constraints.\n\n**Setup**: 10 servers with \\~100GB SSD each running a self-managed K8s cluster, plus one NFS server configured as my only StorageClass. No cloud, so no EBS/Azure Disk. Running Camunda 8 (Zeebe) and Elasticsearch/ELK.\n\n**Problem:** All PVCs are on NFS and the I/O is causing real trouble. Both Elasticsearch and Zeebe explicitly recommend against NFS — Zeebe uses RocksDB and needs proper POSIX semantics (atomic rename, fsync, file locking). I'm hitting exactly the failures they warn about.\n\n**Why the obvious fixes don't apply:** Node disks are nearly full so Longhorn and local-path are out, and my Elasticsearch data is 100GB+ and growing so it wouldn't fit locally anyway. No cloud block storage available.\n\n**Questions:**\n\n\\- Is iSCSI/SAN the standard answer? Which CSI driver, and how painful to set up?\n\n\\- What options can I have so that my pvcs are not restricted to some worker node, instead they resides on some central storage but SSD like nfs.\n\n\\- Anything I'm missing?\n\nThanks.",
+    "developer": "Huge-Cartoonist-4418",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

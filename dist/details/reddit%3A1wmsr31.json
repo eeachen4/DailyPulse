@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmsr31",
+  "sourceItemId": "1wmsr31",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wmsr31/what_do_you_actually_deliver_to_clients_when_you/",
+  "detail": {
+    "longDescription": "**TL;DR:** Had two meetings this week about my automated property-sourcing tool. First prospect already has mature tools (a lead-sourcing platform + CRM), though someone here pointed out there's likely still a 20% manual gap those platforms don't cover. Second prospect has his own manual strategy: he specifically hunts for listings that show ONLY the street name (no number) — because turning that into an exact building + floor is days of manual work (comparing ad photos against Google Street View, unit by unit), and that's exactly the tedious task he wanted automated. I delivered street+number for listings where the number is already shown directly on the portal page, plus floor when available — but floor had accuracy issues, and he caught one himself by comparing the saved photo. What he actually wants would require the same infrastructure Captei already sells commercially (cross-referencing municipal/IPTU records with owner name and phone via public APIs) — a completely different build than what I have. Question: how does everyone else here actually deliver scraped real-estate data to clients? What's in the final handoff?\n\nFollowing up on my earlier post about pivoting from OLX scraping to detecting \"pulverized\" listings (same property advertised by 2+ agencies = owner without exclusivity). Had two real meetings since then, and they clarified something important.\n\n**Meeting 1** (mentioned before): prospect already runs two mature platforms together for sourcing + CRM. Someone in the comments here made a good point though — those \"does everything\" platforms are usually 80% great and 20% clunky, and that 20% is where a solo builder can still win. Haven't tested that angle yet.\n\n**Meeting 2** (this week): the person running the agency has his own manual process, and it clarified exactly where the real pain is. He specifically targets listings that show ONLY the street name, no number — to him, THOSE are gold, precisely because finding the exact building means days of manual work: comparing the ad's interior photos against Google Street View, building by building, floor by floor, until something matches. That visual-matching grind is literally the task he wanted my system to automate.\n\nWhat I actually delivered: a spreadsheet with street + number for listings where the agent already put the number directly on the portal page (turns out some agents just don't bother hiding it), plus floor data when the portal exposed it. Two problems surfaced:\n\n* The floor data had errors — he compared one listing's saved photo against what he knows of the building and said the floor didn't match.\n* What he actually wants — turning a number-less street into a confirmed exact address + floor — is fundamentally the same architecture a commercial tool (a property-data platform we don't have public API access to) already sells: cross-referencing municipal tax records with owner name/phone via data broker APIs. That's a different, much heavier build than a scraper + spreadsheet.\n\nSo, question for the sub: for those of you who've actually sold real estate lead/data scraping as a service — what do you hand over at the end? Raw structured list, verified addresses only, something else entirely? Where did you draw the line on \"good enough to charge for\"?",
+    "developer": "Other-Percentage-764",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

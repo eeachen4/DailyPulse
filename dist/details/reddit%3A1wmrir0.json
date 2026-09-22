@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmrir0",
+  "sourceItemId": "1wmrir0",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wmrir0/moving_from_one_server_per_agent_to_a_shared/",
+  "detail": {
+    "longDescription": "Previously, every agent session launched its own MCP process. Each process had repository caches and a ledger recording which code it had already sent to that client.\n\nWe added a shared daemon so sessions could reuse the warm repository graph. Cloning the server looked like a straightforward way to serve multiple connections.\n\nBut that also shared the ledger.   \nOne agent could receive “unchanged since you read it” for code that only another agent had read. Successful concurrent connections didn’t mean correct session isolation.\n\nWe separated the per-connection context history from the shared caches. We also found that allowing a client to switch repositories was incompatible with sharing one repository’s state, so the daemon is now bound to its checkout.\n\nWhat similar surprises have you encountered when moving agent infrastructure from isolated processes to shared services? Which state turned out to belong to the session?\n\nThis was in Sem, an open-source project I maintain. Fix and tests:  \n[https://github.com/Ataraxy-Labs/sem/pull/489](https://github.com/Ataraxy-Labs/sem/pull/489)",
+    "developer": "Wise_Reflection_8340",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

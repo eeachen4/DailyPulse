@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wmq7lb",
+  "sourceItemId": "1wmq7lb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wmq7lb/using_fast_slm_classifiers_as_inline_payload/",
+  "detail": {
+    "longDescription": "When building autonomous agents with tool access (sending emails, making API calls, writing to databases, triggering webhooks), the standard way people guard these tools is in the system prompt: \"do not send spam\", \"verify the action is safe\", \"never email sensitive data\".\n\nWe all know this breaks down under prompt injection, weird user inputs, or compounding tool history loops.\n\nThe second instinct is adding hardcoded regexes and keyword lists. We tried this on AgentMail with a blocklist of phishing strings and domain rules. It was brittle, broke across languages, and attackers bypass keyword lists with trivial variations.\n\nThe pattern that actually worked cleanly in production was treating tool arguments like untrusted network input and passing the structured payload through a dedicated, fast classifier (a System-1 model) right before the tool handler runs.\n\nHere is what the flow looks like:\n1. The primary agent decides to call a sensitive tool (for example, sendMessage(to, subject, body)).\n2. Before the tool execution reaches the external API (like Resend or an internal DB), the server takes the extracted arguments and fires a synchronous classification request to a sub-second decision model (we use JEV, running specialized small-parameter checkpoints).\n3. The prompt to the classifier is strictly framed as an evaluation task with structured choices: allow vs block, with clear criteria.\n4. If the decision model returns block, the tool execution halts immediately and returns a clean 400 error back to the agent or caller.\n5. If the model returns allow, execution proceeds normally.\n\nWhy this works better than calling another frontier model:\n- Latency: Waiting 2 to 3 seconds for a full Gemini or Claude judge turn on every tool call ruins agent responsiveness. A small classifier answers in under 300ms.\n- Cost: Small decision models cost fractions of a cent per thousand calls, making it viable to guard every single outbound mutation.\n- Isolation: The classifier only sees the extracted action payload, not the messy conversational history or adversarial jailbreak attempts from the chat context.\n\nIf you are running agents that produce real-world side effects (email, Discord/Slack webhooks, financial transactions), relying on prompt adherence inside the main agent loop is fragile. An inline classifier at the tool boundary gives you actual runtime guarantees.",
+    "developer": "uriwa",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

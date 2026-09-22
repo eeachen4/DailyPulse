@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.15991",
+  "sourceItemId": "2606.15991",
+  "fetchedAt": "2026-09-22T01:53:57.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.15991",
+  "detail": {
+    "longDescription": "arXiv:2606.15991v2 Announce Type: replace Abstract: Rust has made safe systems programming practical on the CPU, but writing custom GPU kernels in Rust still forces programmers outside the language's ownership guarantees. We present cuTile Rust, a tile-based system for safe, idiomatic GPU kernel authoring in Rust that compiles kernels to Tile IR. cuTile Rust extends Rust's ownership discipline to tile-based GPU kernels: mutable outputs are split into disjoint pieces, kernel launches preserve the host-side ownership contract, and the Rust compiler enforces the same ownership rules inside the kernel. We prove the safe surface data-race-free under Tile IR's memory model. However, bounds safety still requires runtime checks. The compiler therefore eliminates checks it can prove redundant and, where possible, moves others out of the kernel into host-side launch preconditions. On the host, the same ownership contract carries through a composable execution model that runs the same operations synchronously, under async/await, or as CUDA graph replay, with async at parity with synchronous execution. Our evaluation shows that these abstractions preserve performance on high-end GPUs. On the NVIDIA B200 GPU, cuTile Rust achieves 7 TB/s for element-wise operations and 2.1 PFlop/s for GEMM (98% of cuBLAS), on par with cuTile Python. Grout, a Qwen3 inference engine built on cuTile Rust, reaches 171 generated tokens/s for Qwen3-4B on the NVIDIA GeForce RTX 5090 and 82 for Qwen3-32B on the B200 in batch-1 decode, at parity with vLLM and SGLang and consistent with a memory bandwidth roofline sanity check.",
+    "developer": "Melih Elibol, Jared Roesch, Isaac Gelado, Eric Buehler, Michael Garland",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Melih Elibol, Jared Roesch, Isaac Gelado, Eric Buehler, Michael Garland"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
