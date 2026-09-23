@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnmav6",
+  "sourceItemId": "1wnmav6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wnmav6/is_jev_text_embeddings_but_without_chunks_results/",
+  "detail": {
+    "longDescription": "Everything in the title, Is jev, text embeddings but without chunks? and a confidence score? Without a ranking or reranking (that part I haven't tested yet)?\n\nFYI for those who didn't follow. It's api has 3 modes:\n\n* **Choice** – pick one option — up to **255** classes \n* **Score** – rate on **2–10** ordered levels \n* **Noul** – yes/no, returns probability (0–1) — **2** classes\n\nEven in **Choice** mode it output:\n\n* `choice` – the winning option\n* `probabilities` – distribution over all options\n* `confidence` – 0–1, high when one option dominates\n\n  \nThat confidence is supposed to be trustworthy compared to measuring logits with traditional LLM\n\n  \nBTW I ran some benchmarks on a synthetic dataset I made with Claude here are the best results:\n\n|Model|ms per doc|Doc class: accuracy / macro-F1 / calibration error|Language|Donor chart|Is clinical|Urgent|\n|:-|:-|:-|:-|:-|:-|:-|\n|`decider-0.8b`|288|**0.896 / 0.897 / 0.039**|1.000|0.997|0.843|0.902|\n|`kev-0.8b`|272|0.826 / 0.798 / 0.270|0.737|0.908|0.768|0.692|\n|`litjev` \\+ Qwen3.5-0.8B|553|0.451 / 0.395 / 0.063|0.958|0.437|0.754|0.118|\n|`laya` typed-decisions|119|0.308 / 0.309 / 0.079|0.549|0.821|0.748|0.599|\n|`laya` root|64|0.294 / 0.287 / 0.469|0.636|0.765|0.745|0.541|\n|`laya` multilingual|59|0.255 / 0.293 / 0.499|0.356|0.574|0.641|0.499|\n\n\n\nHere for the confidence index of decider 0.8B on a 357-document dataset.\n\n|Stated confidence|n|Actual accuracy|\n|:-|:-|:-|\n|< 0.50|18|0.39|\n|0.50–0.70|41|0.56|\n|0.70–0.80|21|0.81|\n|0.80–0.90|50|0.94|\n|0.90–0.95|31|0.97|\n|0.95–0.99|82|1.00|\n|≥ 0.99|114|1.00|\n\nIt tracks reality closely and is if anything slightly *under*\\-confident at the top. Its 37 errors have a median confidence of 0.59; only one was above 0.90 (0.92).\n\nThat makes a human-in-the-loop threshold work well:\n\n|Accept if confidence ≥|Auto-classified|Accuracy on those|Errors let through|\n|:-|:-|:-|:-|\n|0.70|83.5%|0.973|8|\n|0.80|77.6%|0.986|4|\n|0.90|63.6%|0.996|1|\n|0.95|54.9%|1.000|0|\n\nKEEP IN MIND this dataset was probably made with the same model that made the training set for decider 0.8B?",
+    "developer": "No_Afternoon_4260",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

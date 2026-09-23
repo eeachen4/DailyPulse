@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnni76",
+  "sourceItemId": "1wnni76",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wnni76/fmgo_using_apples_ondevice_foundation_models_from/",
+  "detail": {
+    "longDescription": "The project came from a practical need in another Go project of mine. I was invoking Apple's native `fm` CLI directly and eventually realized that the integration layer could be useful as a reusable Go package.\n\nThere are already some interesting Go projects around Apple's Foundation Models, but the ones I found take a different approach:\n\n| Project | Approach | Native bridge |\n|---|---|---|\n| **[fmgo](https://github.com/ruanklein/fmgo)** | Wraps Apple's `fm` CLI | **None** |\n| [go-apple-intelligence](https://github.com/CosmoTheDev/go-apple-intelligence) | Direct Foundation Models integration via Apple's C API | dylib / CGO |\n| [go-foundationmodels](https://github.com/blacktop/go-foundationmodels) | Direct Foundation Models framework bindings | Swift / CGO |\n| [fundament](https://github.com/domano/fundament) | Direct Foundation Models framework bindings | Embedded Swift shim |\n\nFor my use case, however, I wanted the integration to stay as lightweight as possible.\n\n`fmgo` doesn't require CGO, doesn't compile Swift, and doesn't ship its own native bridge. Everything runs through Apple's on-device model, so there is no external LLM API involved.\n\nI also built a small macOS application called **[FM Chat](https://github.com/ruanklein/fm-chat)** using Wails + Svelte + Go as a real-world test of the library.\n\n`fmgo` is still v0.x and I'm intentionally keeping its scope narrow. The goal isn't to build another AI framework, but simply to provide a Go-friendly interface around the Foundation Models tooling Apple already ships.",
+    "externalUrl": "https://github.com/ruanklein/fmgo",
+    "developer": "Super_Run_8466",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

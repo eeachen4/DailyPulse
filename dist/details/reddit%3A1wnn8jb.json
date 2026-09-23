@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnn8jb",
+  "sourceItemId": "1wnn8jb",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1wnn8jb/i_added_django_fastapi_express_and_go_support_to/",
+  "detail": {
+    "longDescription": "I’ve been building StatLite for a fairly specific use case: monitoring small apps and VPS deployments where I want application-level metrics, but don’t want to operate a Prometheus + Grafana stack just to get them.\n\nIt’s a single Go binary, uses SQLite for history, and is around 15 MiB RSS in my normal deployments.\n\nStatLite already has native integrations for **Spring Boot and Quarkus**. I’ve now added a small language-neutral metrics contract and copyable integrations for:\n\n* Django\n* FastAPI\n* Express\n* Go `net/http`\n* Gin\n\nFor those integrations, the application exposes a small `/statlite/metrics` JSON endpoint containing a fixed set of signals such as request counts, errors, latency, application status, CPU/memory and uptime. StatLite polls it every 30 seconds and keeps the history locally.\n\nThe idea is deliberately limited. It isn't trying to be another general-purpose metrics platform. There are no arbitrary metrics, PromQL, custom dashboards, logs or tracing.\n\nThe goal is the smaller case where I mostly want to answer: *Is the app healthy? Is traffic changing? Are errors increasing? Did latency or memory jump?*\n\n[StatLite monitoring an application: traffic, errors, latency, process resources and health with local SQLite history.](https://preview.redd.it/j39xhkqu75rh1.jpg?width=2944&format=pjpg&auto=webp&s=0f4df4c3308806cd555b8a419ea622391a016c1a)\n\nIntegration guides + runnable examples:  \n[https://github.com/PVRLabs/statlite/tree/main/docs/integrate](https://github.com/PVRLabs/statlite/tree/main/docs/integrate)\n\nGitHub:  \n[https://github.com/PVRLabs/statlite](https://github.com/PVRLabs/statlite)\n\nI’m curious where people here draw the line. For your smaller self-hosted apps, do you still instrument everything for Prometheus/Grafana, or do you prefer something narrower like this?",
+    "developer": "fykup",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

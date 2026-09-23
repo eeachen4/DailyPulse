@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49800187",
+  "sourceItemId": "49800187",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49800187",
+  "detail": {
+    "longDescription": "Hi, I’m Pavel. I’ve been building Relay, a self-hostable AI gateway. The main thing I wanted to solve was smart routing without turning the gateway itself into a bottleneck. Relay can classify an incoming request, decide what kind of model capabilities the request needs, then route it across your configured providers while also accounting for limits and available capacity. It ships with routing classification models I’ve trained specifically for this problem, with the option of swapping that piece for Laya or other System One models. This started when I was trying to string together several providers’ free tiers. I kept hitting rate limits at different intervals, which broke some of my agent clients. Some agents were also getting greedy with shared resources, so I needed a way to manage how they used the available capacity. That led to Relay’s queue-first approach. Sometimes it’s better to wait a second or two for your preferred model than immediately fall back to another one. Relay queues and paces requests against configured provider limits, aiming to make use of available capacity without repeatedly hitting rate-limit errors or needlessly falling back to worse models. Relay’s classification model also looks for signals that a request needs specific capabilities, such as coding or more complex reasoning, while classifying the request’s main intent before routing anything. One thing I’ve obsessed over is keeping that decision layer cheap. Relay’s built-in classifier runs in the single digit millisecond range. It has a deliberately narrow job: classifying LLM requests and helping decide where to send them. It probably won’t be playing DOOM, but that’s a trade off I’m happy with for a routing layer. In the routing tests I&#x27;ve run so far, the built-in classifier is considerably faster than Laya while producing broadly similar routing decisions. Working on getting Jev up and running, and will report back to see how that stacks up as well. The community version is available now, with a public repo, a built-in dashboard, and a local classifier. It’s written in Go, and you can run it with npx @anchorshell&#x2F;relay or build it from source. The gateway itself is lightweight; it also ships with small classification models you can use locally. There’s also a hosted version with a free tier if you don’t want to run it yourself. It offers our more capable classification models, along with team features, and separate limits for individual agents.",
+    "externalUrl": "https://github.com/anchorshell/relay",
+    "developer": "pavelmelnichuk",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24294",
+  "sourceItemId": "2609.24294",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24294",
+  "detail": {
+    "longDescription": "arXiv:2609.24294v1 Announce Type: new Abstract: Operational pseudospectral atmospheric models such as the ECMWF Integrated Forecasting System (IFS) run today almost exclusively on CPUs; GPU ports are under active development but not yet used in production. These models rely on the Spherical Harmonic Transform (SHT). Each time-step requires forward and inverse SHTs, and both passes depend on global pencil transposition that redistribute multi-dimensional arrays across compute nodes. At large node counts these global collectives dominate wall-clock time. We investigate GPU-resident lossy compression, using representative fields from the DYAMOND high-resolution operational dataset as input, and combining measured GPU compression throughput with SimGrid network simulation, we show that ZFP at 16 bits per value (rate-16), about the same storage budget as float16, matches the communication-time reduction of float16 truncation while delivering approximately $\\mathbf{1600\\times}$ lower mean relative error. ZFP at 8 bits per value (rate-8) achieves approximately $\\mathbf{1.93\\times}$ the speedup of float16 while retaining $\\mathbf{4\\times}$ lower mean relative error.",
+    "developer": "Lorenzo Breschi, Flavio Vella",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, physics.ao-ph"
+      },
+      {
+        "label": "第一作者",
+        "value": "Lorenzo Breschi, Flavio Vella"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

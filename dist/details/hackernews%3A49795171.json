@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49795171",
+  "sourceItemId": "49795171",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49795171",
+  "detail": {
+    "longDescription": "Can Jev optimise the size of compiled binaries better than clang -Oz? Turns out it can (sometimes)! Introducing jevopt: making intelligent compiler optimisation decisions with Jev. I used Jev to make intelligent inlining decisions at each LLVM IR call-site. Here’s why and how I did it. Everywhere I looked, I saw cool Jev demos, so I thought I&#x27;d apply it to my area: systems programming and compilers. When optimising binary size (e.g. in embedded systems), choosing whether to inline a function call is tricky, because while it can duplicate code, it can also enable optimisations that ultimately eliminate code! Jevopt uses Jev&#x27;s &quot;intelligence&quot; to make this choice. At each discretionary call site, Jev sees the current caller&#x2F;callee LLVM IR, original C&#x2F;C++ source, build context, and 7 structural facts about the program. It returns one choice: inline or keep out of line. So how well does it work? I evaluated jevopt on all 19 Embench 1.0 programs. Aggregated with geometric mean, the .text in its programs is 7.87% larger than clang -Oz, meaning that jevopt loses in aggregate. However, it sometimes achieves big wins over the mature clang heuristic. E.g., on Statemate, jevopt produces a .text of 2382B vs 5698B for clang -Oz, achieving a whopping 58% reduction! In total, it beats clang -Oz on 7&#x2F;19 programs. (Clearly) jevopt is not production software, but it shows that intelligent model judgements sometimes beat heuristics. Despite the overall negative result, there are two reasons why I find it exciting: 1. Measuring code size, unlike runtime, is essentially free. So if one compiles with both jevopt and -Oz, there are real gains to be had at the cost of just 1 extra compilation (and a few cents in Jev API calls)! 2. As wonderfully intelligent as Jev is, I am fairly certain this is not a use case the author had in mind :) Finetuning a Jev-like model specifically for this task should improve jevopt&#x27;s performance even more and might even get us an aggregate win over clang -Oz. The code is open source (github.com&#x2F;Ramneet-Singh&#x2F;…), and a full dashboard with the details of my Embench run is hosted at ramneet-singh.github.io&#x2F;jevopt&#x2F;. I plan to keep doing cool stuff at the intersection of AI and compilers, so please reach out if you&#x27;re interested in this too!",
+    "externalUrl": "https://github.com/Ramneet-Singh/jevopt",
+    "developer": "ramneet_singh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

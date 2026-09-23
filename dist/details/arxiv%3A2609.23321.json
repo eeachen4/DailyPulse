@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.23321",
+  "sourceItemId": "2609.23321",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.23321",
+  "detail": {
+    "longDescription": "arXiv:2609.23321v1 Announce Type: new Abstract: Low-rank adaptation (LoRA) has become a key technology for serving large-scale personalized large language models and diffusion models in the cloud. However, the co-occurrence patterns, resource contention relationships, and evolutionary regularities of adapters under production inference workloads have not been systematically or quantitatively studied. Based on GenTD26, Alibaba's production diffusion model inference dataset, this paper adopts a graph-theoretic framework to construct an adapter co-occurrence network and conducts a characterization from both static structure and dynamic evolution. Our main findings are as follows. (1) The co-occurrence network is extremely sparse, and adapter usage frequency follows a significant heavy-tailed distribution. (2) Introducing the first adapter incurs a 66.1% execution-latency overhead, with diminishing marginal costs afterwards. (3) Co-occurrence relationships are driven by base models: in 90.6% of multi-adapter requests, all adapters share the same dominant base model; 66.2% of significant co-occurrence edges connect same-model adapter pairs; and in 85.8% of multi-adapter requests, all adapter pairs form significant co-occurrence edges. (4) The adapter ecosystem exhibits a core-periphery bipolar structure, with a weekly Jaccard similarity of 0.696 at the model level and a churn rate of 54.5% for the top-10 hottest models within a 12-hour window. Based on these findings, we propose a preloading strategy built on top-k co-occurrence statistics; offline experiments show that it covers 81.0% of test-set co-occurrence pairs at k=3, and sensitivity analyses across frequency thresholds and time windows verify the robustness of the conclusions. These results provide a data-driven basis for cache preloading, adaptive scheduling, and GPU memory management in LoRA inference services.",
+    "developer": "Tao Zhang, Bin Liao, Tao Zhou, Yanping Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Tao Zhang, Bin Liao, Tao Zhou, Yanping Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004781",
   "sourceItemId": "80004781",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004781/multiple-bases-have-instance-lay-out-conflict-when-dynamically-subclassing-data",
   "detail": {
     "longDescription": "I am building a plugin framework where child models are dynamically instantiated and mixed with a base configuration class using __init_subclass__ . Everything works as expected when using standard dataclasses. However, as soon as I enable slots=True (introduced in Python 3.10+) on both the base and mixin classes, Python throws a TypeError: multiple bases have instance lay-out conflict during class creation. from dataclasses import dataclass # Base mixin containing shared tracking state @dataclass(slots=True) class ServiceMixin: service_id: str # Base entity dataclass @dataclass(slots=True) class BaseEntity: entity_id: int # Child class inheriting from both base classes @dataclass(slots=True) class UserEntity(BaseEntity, ServiceMixin): username: str Error: Traceback (most recent call last): File \"main.py\", line 14, in <module> class UserEntity(BaseEntity, ServiceMixin): TypeError: multiple bases have instance lay-out conflict I tried: Removing slots=True from child or parents. If I set slots=False on ServiceMixin , the exception goes away, but UserEntity falls back to creating a standard __dict__ , which defeats the memory optimization goal. Reordering the base classes. Changing the MRO to class UserEntity(ServiceMixin, BaseEntity) yields the exact same error. Defining empty __slots__ = () manually. If I define ServiceMixin without @dataclass(slots=True) and manually set __slots__ = ('service_id',) or __slots__ = () , the behavior changes unpredictably depending on which parent class declares non-empty slots. How can I safely apply slots=True across multiple inherited dataclasses without triggering CPython's layout conflict restriction? Is there an idiomatic pattern or workaround (e.g., via a helper mixin or metaclass) to allow slot-based multiple inheritance in dataclasses?",
     "developer": "unknownx",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "35"
+        "value": "81"
       },
       {
         "label": "状态",

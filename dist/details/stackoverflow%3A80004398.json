@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I need to split a large Excel file into multiple small files based on the first five digits of the values in a column. For example, I have values 1396A0001A,1396A0002A to split based on the first five digits, 1396A, into a separate sheet. I have VBA code to do this, but it is taking too much time - 3 hours to split the entire file of 15000 records in a file. Can you suggest any other method to split the file? Sub SplitSheetIntoMultipleWorkbooksBasedOnColumn() Dim objWorksheet As Excel.Worksheet Dim nLastRow As Integer, nRow As Integer, nNextRow As Integer Dim strColumnValue As String Dim objDictionary As Object Dim varColumnValues As Variant Dim varColumnValue As Variant Dim objExcelWorkbook As Excel.Workbook Dim objSheet As Excel.Worksheet Set objWorksheet = ActiveSheet nLastRow = objWorksheet.Range(\"A\" & objWorksheet.Rows.Count).End(xlUp).Row Set objDictionary = CreateObject(\"Scripting.Dictionary\") For nRow = 2 To nLastRow strColumnValue = Left(objWorksheet.Range(\"F\" & nRow).Value, 5) If objDictionary.Exists(strColumnValue) = False Then objDictionary.Add strColumnValue, 1 End If Next varColumnValues = objDictionary.Keys For i = LBound(varColumnValues) To UBound(varColumnValues) varColumnValue = varColumnValues(i) Set objExcelWorkbook = Excel.Application.Workbooks.Add Set objSheet = objExcelWorkbook.Sheets(1) objSheet.Name = objWorksheet.Name objWorksheet.Rows(1).EntireRow.Copy objSheet.Activate objSheet.Range(\"A1\").Select objSheet.Paste objExcelWorkbook.SaveAs Filename:=\"C:\\Users\\User\\Desktop\\New folder\\\" & _ \"01_03_\" & varColumnValue & \"_\" & Format(Date, \"yyyymmdd\") & \".xlsx\" For nRow = 2 To nLastRow If Left(CStr(objWorksheet.Range(\"F\" & nRow).Value), 5) = CStr(varColumnValue) Then objWorksheet.Rows(nRow).EntireRow.Copy nNextRow = objSheet.Range(\"A\" & objWorksheet.Rows.Count).End(xlUp).Row + 1 objSheet.Range(\"A\" & nNextRow).Select objSheet.Paste objSheet.Columns(\"A:H\").AutoFit End If Next Next End Sub",
     "developer": "ramya",
-    "comments": 3,
+    "comments": 4,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "3"
+        "value": "4"
       },
       {
         "label": "浏览",
-        "value": "193"
+        "value": "235"
       },
       {
         "label": "状态",

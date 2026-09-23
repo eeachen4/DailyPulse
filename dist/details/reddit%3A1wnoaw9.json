@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnoaw9",
+  "sourceItemId": "1wnoaw9",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wnoaw9/when_should_you_use_forms_and_when_should_you_use/",
+  "detail": {
+    "longDescription": "This doesn't feel like a very 2026 question, but I don't get it and there does not seem to be a lot of information out there on it: When do you use forms to interact with your server, and when do you make plain API calls with `fetch`?\n\n  \nI'm currently building a web-app with SvelteKit and am doing as much as possible with forms, but I'm not sure when and if I should use `fetch` instead. Let's go through a couple use cases:\n\n\n\n1. Creating an object (like a user, for example) from a series of input elements. This seems like the obvious choice for a form and saves some boilerplate. However, what if I later want a second location in my app, where users can be created (for example an admin panel). I will then have to create the same form-handling endpoint (form actions in SvelteKit) again for a new route. I'll then likely move the code from the first handler into its own function and just call that in both handlers, but that seems like overcomplicating things. If I just used an API, I would make the same call both times and there would be no need to duplicate code on the server. And if we follow this logic, it would almost never make sense to use forms, as almost all functionality can or might someday be able to be accessed from multiple locations.\n2. Executing an action with no additional data (like, for example, leaving the group specified on the current route like `/group/[id]`). This call would require no additional data, as the group to leave is specified in the URL and the user who wants to leave the group is logged in, and their identity will be gotten from the current session. This seems like a clear candidate for an API call, but then you start mixing the two technologies and don't know where to draw the line and it gets weird.\n\n  \nMy understanding of forms is limited, so maybe that's where my confusion comes from. In the end, form endpoints are callable endpoints like any other, but it seems to be the convention to only call them from their own route and using forms elements. I'm thankful for any insights and resources on the topic!",
+    "developer": "TheSchred",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

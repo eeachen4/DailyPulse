@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.23536",
+  "sourceItemId": "2609.23536",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.23536",
+  "detail": {
+    "longDescription": "arXiv:2609.23536v1 Announce Type: new Abstract: CUDA Graphs eliminate launch overheads by replaying tensor operations over static virtual addresses. However, FP8 pipeline training continuously alters the scaling states, microbatches, and deferred backward tasks that those fixed addresses represent. Split-backward schedules (e.g., 1F1B, Zero-Bubble) decouple input-gradient ($dI$) and weight-gradient ($dW$) computations to minimize bubbles, breaking traditional LIFO lifecycles. Standard dataflow graphs cannot inform the runtime of hidden numerical updates, non-LIFO work ownership, or cache validity, leading to silent cross-stream data corruption. We present QEffect, an explicit state and resource contract runtime for low-precision pipeline training. QEffect formalizes four foundational invariants: (1) temporal serialization of hidden scaling updates, (2) generational ownership of retained backward resources, (3) validity versioning for cached weights across optimizer boundaries, and (4) bidirectional caller-graph stream completion synchronization. These invariants uniformly govern eager and captured execution, allowing ephemeral graph resources to be cleanly rebuilt across process restarts. Leveraging work-ownership semantics, we also introduce an affine direct-gradient placement mechanism that eliminates redundant memory copies. Integrated with TorchTitan and NVIDIA Transformer Engine, QEffect maintains strict bitwise parity with native baselines across delayed-scaling rollovers, deterministically traps cross-stream ordering violations, and enables flawless cold-start resumption. On NVIDIA H800 GPUs, captured Transformer layers achieve 1.82--2.79x speedup over eager execution, while direct gradient placement delivers an additional 1.132x gain by eliminating 96 matrix copies per rank-step.",
+    "developer": "Genlang Chen, Junyi Zhu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Genlang Chen, Junyi Zhu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

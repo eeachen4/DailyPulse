@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005017",
+  "sourceItemId": "80005017",
+  "sourceUrl": "https://stackoverflow.com/questions/80005017/whats-an-elegant-way-to-check-prerequisites-in-a-helm-chart-and-fail-the-inst",
+  "detail": {
+    "longDescription": "For adding initContainers and env variables to K8s deployments, I wrote a configurable webhook which relies on cert-manager for cluster-internal self-generated certificates. For an easy installation on Kubernetes, I started writing a Helm chart in which I'm trying to check if cert-manager is installed or if its API is available, respectively. After having found this entry on StackOverflow, I'm currently using .Capabilities.APIVersions.Has to check if cert-manager is already in place. Here's the respective code snippet from the template yaml: {{- if not (.Capabilities.APIVersions.Has \"cert-manager.io/v1\") }} {{- fail \"\\nYou need to install cert-manager first!\" }} {{- end }} The code works and on error the installation fails, printing the given message: foo@controlplane:~$ helm install test test Error: INSTALLATION FAILED: execution error at (test/templates/cert-issuer.yaml:15:10): You need to install cert-manager first! foo@controlplane:~$ What is a more elegant way to do a check and, if needed to, stop an installation, e.g. w/o printing the \"Error at path/foo.yaml:line:offset\" error message? (Because there's no error in the template itself.)",
+    "developer": "Doc",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "28"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnpk6i",
+  "sourceItemId": "1wnpk6i",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wnpk6i/my_coding_agents_kept_forgetting_decisions/",
+  "detail": {
+    "longDescription": "I did the decisions.md thing. All of it. Per-decision files, review dates, the \"this holds until X\" kill lines people recommend.\n\nIt worked when it was one agent on one machine. The moment I had Claude Code on my laptop, Codex on my desktop, and a couple scheduled jobs (an n8n workflow that triages stuff overnight, a ChatGPT task that digs up leads in the morning) all touching the same project, the file setup fell apart. Each tool had its own copy of \"the truth\" and they disagreed in the quiet ways that waste your afternoon. I once spent a whole morning debugging why my overnight job kept reverting a fix, and it turned out the job was reading a decisions.md that was two rewrites behind.\n\n(I also let an agent maintain its own memory file once. Found it had recorded \"user prefers TypeScript\" three times and gotten my project name wrong. Anyway.)\n\nWhat actually stuck: one shared memory that every agent reads and writes to, instead of files each tool owns separately. I run my stuff through Vilix AI's shared memory over MCP, so when Codex saves a decision, Claude Code sees it next session, and the scheduled runs read the same state. Nothing to rsync, nothing to babysit.\n\nThe honest catch: models are lazy about saving anything unless told, so I had to build the \"save that\" habit into my agent instructions. And last write wins means if I save something sloppy at 11pm, it shadows the careful note from earlier. I've started re-reading what got saved the next morning, which is its own little ritual.\n\nTruth is the file approach is probably fine for one tool on one machine. It stopped being true for me at two tools.",
+    "developer": "Asly97",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

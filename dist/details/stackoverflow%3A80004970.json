@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004970",
+  "sourceItemId": "80004970",
+  "sourceUrl": "https://stackoverflow.com/questions/80004970/replace-duplicated-dataframe-indices-with-a-single-series",
+  "detail": {
+    "longDescription": "I have an Excel spreadsheet that contains a list of sensor names and their status at different points in time. The goal is to ingest the spreadsheet into a DataFrame , remove duplicates, and then export the DataFrame to a database. Some sensor names are duplicated in the list due to bookkeeping errors. For the names that are duplicated, I want to drop the duplicated rows, keeping 1 row with the worst-recorded status at each time period. Name Sample1 Sample2 Sample3 A Green Yellow Yellow B Green Yellow Red A Yellow Yellow Red C Green Green Green B Green Green Yellow I figured out how to reduce index \"A\" to a single series: In: df = df.set_index(\"Name\") dweights = {\"RED\": 3, \"YELLOW\": 2, \"GREEN\": 1, None: 0} # for name in df.index.unique().tolist(): name = \"A\" dfdup = df.loc[name] if len(dfdup.index) > 1: dfweights = dfdup.copy() for i in range(len(dfdup.index)): for j in range(len(dfdup.columns)): dfweights.iloc[i,j] = dweights[dfdup.iloc[i,j]] mask = dfweights == dfweights.max() dfresult = dfdup.where(mask, \"\").max() In: dfresults Out: Sample1 Yellow Sample2 Yellow Sample3 Red How do I replace the 2 rows of df[\"A\"] with the series dfresults without dropping duplicate rows (dropping duplicates from all of df would also affect \"B\" which hasn't been processed yet). EDIT: I have updated my code per Arash's answer: In: df = df.set_index(\"Name\") dweights = {\"RED\": 3, \"YELLOW\": 2, \"GREEN\": 1, None: 0} df = df.groupby(level=0).agg( lambda s: s.loc[s.map(dweights).idxmax()]) In: df Out: Name Sample1 Sample2 Sample3 A [\"Green\", \"Yellow\"] [\"Yellow\", \"Yellow\"] [\"Yellow\", \"Red\"] B [\"Green\", \"Green\"] [\"Green\", \"Yellow\"] [\"Yellow\", \"Red\"] C \"Green\" \"Green\" \"Green\" I'm not sure why I'm getting lists of all options instead of the \"worst case\" (i.e. highest weighted value) option.",
+    "developer": "Kes Perron",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

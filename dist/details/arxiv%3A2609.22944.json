@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.22944",
+  "sourceItemId": "2609.22944",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.22944",
+  "detail": {
+    "longDescription": "arXiv:2609.22944v1 Announce Type: new Abstract: Autonomous AI agents increasingly act across organizational boundaries on behalf of human operators: they invoke third-party services, delegate subtasks to other agents, and pay for metered resources. Deploying such agents safely requires five capabilities that today live in separate systems: persistent identity, scoped delegation, peer trust, discovery, and payment. Existing approaches root these in centralized authorities or cover only subsets, so authority, trust, and payment fracture exactly where autonomy needs continuity: when a key rotates or a delegation must be revoked. We present NostrAgent, a decentralized architecture that unifies all five over Nostr relays using three custom event kinds: Kind 38100 identity declarations authenticated by BIP340 Schnorr signatures with pre-rotation commitments, Kind 38101 scoped delegation chains whose every hop verifiably narrows granted capabilities, and Kind 38102 peer attestations forming a Sybil-deterrent trust graph, with Lightning HTTP 402 (L402) binding payment to agent identity. Identity remains operator-sovereign without any registration authority; relays are substitutable transport rather than a trust root; and every authorization decision is replayable offline from signed events. We evaluate a Python prototype with a mixed-method design: ATAM quality analysis with a two-round mini-Delphi panel, STRIDE threat modeling across three trust boundaries, eleven benchmarks with non-parametric statistics, and 19 failure modes. Results show sub-millisecond offline verification, linear delegation-chain scaling, and Lightning-settled L402 at 157 ms median on regtest. 17 of 19 failure modes pass empirically, one is bounded analytically, and one is disclosed as an architectural limitation. NostrAgent demonstrates an auditable prototype substrate for trustworthy agentic systems without centralized trust roots.",
+    "developer": "Oliver Aleksander Larsen, Mahyar Tourchi Moghaddam",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.AI, cs.MA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Oliver Aleksander Larsen, Mahyar Tourchi Moghaddam"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

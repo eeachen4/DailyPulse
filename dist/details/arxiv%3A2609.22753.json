@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.22753",
+  "sourceItemId": "2609.22753",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.22753",
+  "detail": {
+    "longDescription": "arXiv:2609.22753v1 Announce Type: new Abstract: Natural-language service requests can require a language-model decision before execution starts, consuming part of the request's latency budget. We integrate Jev's decision-oriented application programming interface (API) into edge service orchestration to reduce this overhead while retaining service completion. The integration extracts four bounded intent fields and applies a shared validator, admission policy, and scheduler, accounting for decision waiting throughout the request timeline. We compare Jev with a short, structured-output DeepSeek deployment using live API measurements followed by modeled execution, and then a real two-node optical character recognition (OCR) service with self-hosted Qwen and rule-based references. Across three consecutive measurement blocks, Jev reduces median client decision latency by 15.9-26.5%. In eight paired OCR conditions, Jev matches DeepSeek's correct, on-time completion count in seven and exceeds it in one. Without caching, median end-to-end latency on requests completed correctly by both systems is 11.1-25.3% lower; API fees per correct completion are 69.0-70.6% lower. Repeated-request caching largely removes the latency difference. The results demonstrate that decision-model substitution can lower both response latency and API fees in the tested service path, and identify fresh interpretation as the main opportunity for latency savings.",
+    "developer": "Delong Li, Xu Wang, Haochen Gong, Rui Lang, Guangsheng Yu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.NI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Delong Li, Xu Wang, Haochen Gong, Rui Lang, Guangsheng Yu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

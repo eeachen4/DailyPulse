@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnk073",
+  "sourceItemId": "1wnk073",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wnk073/why_emsized_spinners_wobble_in_safari_and_how_to/",
+  "detail": {
+    "longDescription": "Maybe you have experienced that spinners sized with `em` wobble as they rotate in WebKit? The reason is the sub-pixel rendering where the rotation only stays stable when the computed width and height land on even pixel values, and `1em` usually doesn't.\n\nSo the usual advice (`will-change: transform`, `translateZ(0)`, `backface-visibility: hidden`) really doesn't do anything, because it isn't a compositing problem.\n\nWe found the solution though:\n\ncss\n\n    .spinner {\n      height: round(1em, 2px);\n      width: round(1em, 2px);\n    }\n\nSo `round()` keeps the icon scaling with the surrounding font size and snaps the computed value to the nearest even pixel.\n\nHere's a full write-up with the before and after recordings. We actually didn't use any AI to arrive at the solution for once. So only good old engineering and collaboration. [https://www.sanity.io/engineering/we-fixed-wobbly-spinners-in-safari-without-ai?utm\\_source=reddit&utm\\_medium=social](https://www.sanity.io/engineering/we-fixed-wobbly-spinners-in-safari-without-ai?utm_source=reddit&utm_medium=social)",
+    "developer": "knutmelvaer",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnn7m7",
+  "sourceItemId": "1wnn7m7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wnn7m7/honest_opinion_wanted_work_item_tooling/",
+  "detail": {
+    "longDescription": "Well I had kind of a messy week and it resulted in me \\`vibing\\` out my idea for a agent work item tool, albeit it was two minor inconveniences that drove me to building it  but long story short - [TICKETS.md](http://TICKETS.md) hell and then gitea down (full breakdown here:  https://eisenwinter.github.io/awit/faq/#why) so I was stalled on ticket management. \n\nI do generally think this is a good idea but  I want some outside perspective why this could backfire in the long run. Currently the main objective was to have something that works with plain git that doesn't eat a heavy [TICKETS.md](http://TICKETS.md) file while also driving the agentic workers to pick the right items from the work queue \n\nthe tool is here [https://github.com/eisenwinter/awit](https://github.com/eisenwinter/awit) and its creating markdown files for work item and automatically generates a graph from that to create a work queue, it identifies the most valuable work items by building transitive reduction/hull and then counts the the unblocks  (which is arguable okay since i do not think scoring priority is a good idea here) currently I am test driving it and so far I am  quite happy but I would like some outside perspective on why or how this could be a bad idea. \n\nThings i tough about but ditched: MCP - the mcp just added token weight through the tools, the cli worked so well. Chroma DB kind of cool but for tickets overkill \n\nI am sorry if this is the wrong sub for this or this isn't allowed - I am not trying to sell or promote something I am looking for honest feedback here",
+    "developer": "nilreference",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

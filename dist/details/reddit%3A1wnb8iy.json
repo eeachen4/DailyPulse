@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnb8iy",
+  "sourceItemId": "1wnb8iy",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wnb8iy/configuration_management/",
+  "detail": {
+    "longDescription": "Hello all, though I have quite a long experience, I never had to set up a configuration management system for a fleet of applications. Let me explain better: we deploy our microservices to kubernetes, each with its own configuration. We currently have a jenkins job that creates an application.json (we use .net) that is then deployed as a configmap to kubernetes and referenced in the deployment.\n\nThis needs to go away and I said we need to use configmaps and secrets to populate the environment of the app to override the values of the baked in application.json. All good.\n\nThen I started looking for solutions. In the past I worked in a place where we were using Ansible for this task, with many levels (up to 7) and a playbook that will read yaml files in order, merge the values and come up with the final list.\n\nThat tends to produce unnecessary duplicates, if I am not sure that a var is defined at level 3 and I have to (re)define it at level 5, I will write it there, then maybe in another level 5 yaml file and lose the hierarchy.\n\nSo I was looking at something with a UI that would allow developers to see what they are doing and, at the same time, would provide some sort of access control, to allow access to sensitive data only to trusted colleagues.\n\nI restricted the list to OpenBAO, Infisical and Phase, but all of them have some kind of limit:\n\nOpenBAO has the same problem as Ansible, you can't see the final result in the UI;\n\nPhase supports only generation of Secrets, while I need to generate both Configumaps and Secrets (still for Access Control: some users can read only Configmaps, some Secrets too);\n\nInfisical: it is very expensive and I have just found that you can't get a Pro licence for a self-hosted instance, but you have to go directly to Enterprise, or use their Cloud solution (and I don't find too safe to write my sensitive information in a Cloud solution);\n\nWhat are you using? Is there some tool I missed?",
+    "developer": "AkelGe-1970",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

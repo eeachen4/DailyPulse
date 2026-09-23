@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.23759",
+  "sourceItemId": "2609.23759",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.23759",
+  "detail": {
+    "longDescription": "arXiv:2609.23759v1 Announce Type: new Abstract: Forth is a concatenative language whose words share one data stack across calls, with a depth and call effects that need not be known before execution. That leaves a meta-tracing JIT compiler with no stack location it can name: a cell is reached through the stack pointer, so its accesses stay in the compiled code, and declaring every cell of the stack array instead ties what the compiler carries to the capacity the array reserves rather than to the depth a program uses. We answer with a fixed-width window over the top of the stack, a shared spill holding every deeper cell, and a decoding function that joins the two, on top of which call-entry normalization and adaptive entry are policies. Decoding shows that all of them preserve the logical stack and that a trace exit rebuilds data-stack state bounded by the window's width, not by the stack's depth. RPyForth realizes this in an RPython interpreter covering Forth's Core word set, with two scalar fields and eight frame positions and no static stack-effect analysis, and RPyFactor realizes the same window for a subset of Factor. Exposing the window to the compiler, rather than merely caching cells in it, is what pays. With the layout and the call policy held fixed, annotating the window's fields makes eighteen Shootout kernels 1.44-1.45x faster and six Appbench applications about 1.60x faster on two x86-64 machines, and 1.42-1.56x in RPyFactor. How the window is shaped and whether calls normalize it matter much less, varying by program with no setting winning everywhere. As a complete system, RPyForth is faster than gforth-fast and SwiftForth on both suites and reaches 1.90-2.36x the speed of VFX Forth on the kernels, while the applications, whose stacks are deeper and whose calls are far more frequent, remain its weak point at 0.68-0.76x. All timings measure repeated execution of an already-loaded program.",
+    "developer": "Yusuke Izawa, Kota Hakamada",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yusuke Izawa, Kota Hakamada"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

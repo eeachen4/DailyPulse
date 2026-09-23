@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49802378",
+  "sourceItemId": "49802378",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49802378",
+  "detail": {
+    "longDescription": "Hey HN, We wanted to see if we could build an AI agent that actually designs real, manufacturable PCBs from natural language, rather than just spitting out text. LLMs are great at logic but terrible at spatial reasoning. So we decoupled them: we use an LLM (OpenAI&#x2F;Claude&#x2F;Local) to extract a component manifest and run an IPC-rules check (the &quot;Critic&quot;), and then we pass that to a custom Native Python Engine we wrote from scratch. The Python engine uses a Force-Directed Graph simulation. Components repel each other, but electrical nets act as Hooke&#x27;s Law springs, pulling related components together. Then it routes the traces using a net-aware shortest-path algorithm with 45-degree chamfers and multi-layer vias. The result is a .kicad_pcb file that you can download directly from our React UI (rendered with KiCanvas) and open in KiCad. We&#x27;ve made it totally open source. You can run it locally with a single docker-compose up command. Repo: https:&#x2F;&#x2F;github.com&#x2F;Paramveersingh-S&#x2F;CircuitPilot We&#x27;d love your feedback on the routing engine!",
+    "developer": "Dota-12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

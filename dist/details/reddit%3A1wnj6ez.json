@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnj6ez",
+  "sourceItemId": "1wnj6ez",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wnj6ez/release_taskview_1560/",
+  "detail": {
+    "longDescription": "**New:**\n\n* Invoice module. Create an invoice for a project, tick the tasks with an income amount or add lines by hand, pick the currency and payment terms, and download a ready PDF.\n* TaskView is now an OAuth 2.1 authorization server. Any third-party app can ask for access to your account: you sign in, choose which projects and permissions the app gets, and can disconnect it any time from Account Settings. The app receives its own token with exactly those rights and works against the full TaskView API\n* ChatGPT, Claude and other cloud AI clients can now connect to your MCP server through a normal sign-in.\n* Self-registration of AI clients is off by default. Set `OAUTH_DYNAMIC_REGISTRATION=true` on the API to let ChatGPT and Claude connect - see the [https://taskview.tech/docs/integrations/mcp](https://taskview.tech/docs/integrations/mcp).\n* Official TaskView plugin available in ChatGPT.\n\n**Improvements:**\n\n* Long task notes now collapse with an \"Expand\" button, and the notes editor has a full-screen mode.\n* Task dependencies are shown and managed right in the task panel.\n* The default view (tasks, kanban, graph, sprints) can be set for all projects, not only the default one\n* Brazilian Portuguese interface - thanks to [https://github.com/murilorosa](https://github.com/murilorosa) for the translation.\n* The project graph renders noticeably faster on large projects.\n\n**Security:**\n\n* Outgoing webhooks may only target public addresses; private and internal ranges are refused. On a self-hosted instance whose receivers live on the same network, set `WEBHOOKS_ALLOW_PRIVATE_URLS=true`\n* API tokens and OAuth apps can now be restricted from managing the organization, its members, SSO and webhooks - previously a token could do all of that regardless of its permissions.\n* Task and list updates only accept the fields you are meant to change;\n\n**Fixes:**\n\n* Blocked accounts can no longer sign in through SSO and see a clear message instead.\n* Editing a time-tracking entry saved the wrong values in some cases.\n* Adding a task from the main screen works before the first project is created.\n* Mobile app: custom server URLs are normalized, so a trailing slash or missing scheme no longer breaks the connection.\n* Fixed the list of available analytics.\n* Fixed the time tracking edit issue with small amounts of time.\n* Organization buttons opened the wrong tab.\n\n**Migration notes:**\n\n* Webhooks pointing to private addresses stop delivering until you set `WEBHOOKS_ALLOW_PRIVATE_URLS=true`.\n* New ChatGPT and Claude connections need `OAUTH_DYNAMIC_REGISTRATION=true`\n\nGitHub: [https://github.com/Gimanh/taskview-community](https://github.com/Gimanh/taskview-community)",
+    "developer": "TaskViewHS",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

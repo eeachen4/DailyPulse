@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wnnp01",
+  "sourceItemId": "1wnnp01",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wnnp01/299_real_user_intents_tested_jev_against/",
+  "detail": {
+    "longDescription": "299 real user intents from our Feishu life-assistant router. Same gold labels. Same hard suite (19 skills, ambiguity cases).\n\nglm-4-flash (generative, production): 271/299 = 90.6%  \nTypeSafe Jev (classifier / System One): 262/299 = 87.6%\n\nI’d still put the classifier on the critical path first.\n\nOf the 29 cases only glm got: 23 were one fuzzy skill (trip-planner vs life-service briefs). Of the 20 only Jev got: 15 were glm JSON/parse failures that fall back to unknown in prod.\n\np50: 0.55s vs 3.6s. Format parse fails: 0 vs 16. 299×2 on Jev cost $0.086.\n\nHard limit: Jev routes. It does not extract params. Production still needs a generative step after the gate.\n\nMeasured with llm-fit on the same production intent path we already ship — not a public leaderboard.",
+    "developer": "Sufficient_Flower860",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

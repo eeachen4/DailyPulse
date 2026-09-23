@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004918",
+  "sourceItemId": "80004918",
+  "sourceUrl": "https://stackoverflow.com/questions/80004918/zsh-git-prompt-bad-cpu-type-in-executable-gitstatus-after-upgrading-macos",
+  "detail": {
+    "longDescription": "After upgrading macOS, my zsh prompt lost its git status segment and started printing an error on every new prompt. Here is the error: update_current_git_vars:8: bad CPU type in executable: /Users/me/src/zsh-git-prompt/src/.bin/gitstatus I was using the Haskell variant of zsh-git-prompt (olivierverdier/zsh-git-prompt and its forks). My relevant .zshrc lines were: source ~/src/zsh-git-prompt/zshrc.sh GIT_PROMPT_EXECUTABLE='haskell' PROMPT='%(?,%F{green}✔,%F{red}✘%?) %F{green}%n@%m%f:%F{blue}%1~ %f$(git_super_status)%# ' I'm on an Apple Silicon Mac, and the gitstatus binary bundled with this project is precompiled for the wrong CPU architecture, so it can't run. I then tried reinstalling via Homebrew, which produced a related but different error instead: update_current_git_vars:7: no such file or directory: /opt/homebrew/Cellar/zsh-git-prompt/0.5/src/.bin/gitstatus Every fork of zsh-git-prompt I found only actually implements a python and a haskell backend, even though some documentation mentions a \"shell\" executable option. Setting GIT_PROMPT_EXECUTABLE=\"shell\" did nothing useful in my testing. Is there a maintained alternative that doesn't rely on a precompiled binary at all, so it can't break this way again after a future macOS or architecture change?",
+    "developer": "threadbare",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "86"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

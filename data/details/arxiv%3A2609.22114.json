@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.22114",
+  "sourceItemId": "2609.22114",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.22114",
+  "detail": {
+    "longDescription": "arXiv:2609.22114v1 Announce Type: cross Abstract: Context compression is widely proposed as a way to cut the token bill of LLM coding agents, and public benchmarks report that aggressive compression preserves task-solving quality. These two facts do not imply the third one commonly assumed: that compressing file reads saves money in a real multi-turn agent. We instrument a production compression gateway (Paritok) between coding agents (Claude Code, Codex) and frontier LLMs (Claude Sonnet, GPT-5), and decompose the token bill of real sessions into three independent levers: tool-schema filtering, content compression of file reads and tool output, and history summarization. Measured in isolation under controlled A/B runs, the three save at fundamentally different rates. Tool-schema filtering removes a fixed block every turn, roughly 21K-57K tokens on a typical turn; it is linear in the turn count N and the only unambiguously and reproducibly positive lever. Content compression saves only about 2% of the cache-priced prefix per turn, but compressed reads accumulate in history and are re-sent on every later turn, so its cumulative saving grows quadratically, about 3350*N^2 tokens (measured), overtaking the fixed tool-filter saving within roughly 6 turns until the context window caps it. A non-destructive gateway lets the agent pull original bytes back on demand; each recall re-sends exactly the one segment just compressed away, so its cost is fixed and bounded rather than a multiplicative blowup, and heavy recall spends the accumulated saving back one segment at a time. Finally, a strong single-shot compression benchmark - 86.5% of SWE-bench quality retained at a 25.7% compression rate, achieved by the model this gateway deploys (Paritok-4B, reported separately) - is orthogonal to multi-turn agent cost and must not be cited as a cost-saving argument. We distill the results into an actionable recipe for where token-saving effort pays off.",
+    "developer": "Luzhuo Chen, Jiayu Shi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.PF, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Luzhuo Chen, Jiayu Shi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

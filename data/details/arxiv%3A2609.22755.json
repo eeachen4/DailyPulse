@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.22755",
+  "sourceItemId": "2609.22755",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.22755",
+  "detail": {
+    "longDescription": "arXiv:2609.22755v1 Announce Type: new Abstract: Long-context LLM training on long-tailed corpora faces a central communication--balance tradeoff. Such sequence-length heterogeneity makes any single sequence-parallelism (SP) degree a poor fit for the workload: a small degree leaves the few long sequences badly imbalanced, while a large degree forces the many short sequences that dominate the workload to pay excessive communication. Existing dynamic-SP systems mix SP degrees within a batch, but to run several groups at once they partition the GPUs into disjoint groups, which reintroduces imbalance across groups and forces costly micro-batch workarounds. We present NSP, a sequence-parallel training system that resolves this tradeoff by nesting differently sized SP groups on shared GPUs within a single training iteration. This lets long sequences use larger SP groups while keeping short sequences on smaller ones, so communication is incurred only where needed and load is balanced per GPU rather than per group. NSP realizes this idea with a tree-structured routing planner that assigns sequences under memory constraints and an executor that exploits the resulting hierarchy through inter-level phase streaming and tree-level recomputation. NSP supports common SP backends and requires no model changes. We evaluate NSP on Qwen3-MoE workloads with up to 384K-token contexts across multiple long-tail datasets on an internal production GPU cluster. Across these settings, NSP consistently improves end-to-end training throughput, outperforming Static SP by up to 1.48x and FlexSP by up to 1.16x.",
+    "developer": "Yi'ou Wang, Xiaoyang Li, Yijie Zheng, Shouda Liu, Yuxuan Wang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yi'ou Wang, Xiaoyang Li, Yijie Zheng, Shouda Liu, Yuxuan Wang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

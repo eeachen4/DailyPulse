@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24628",
+  "sourceItemId": "2609.24628",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24628",
+  "detail": {
+    "longDescription": "arXiv:2609.24628v1 Announce Type: new Abstract: The High-Luminosity LHC (HL-LHC) will demand order-of-magnitude gains in analysis throughput, and increasingly those gains must come from GPUs that are not made by a single vendor. Leadership-class systems such as El Capitan, Frontier and LUMI are built on AMD accelerators, yet the Scikit-HEP analysis stack---and Awkward Array in particular---has grown up CUDA-first. We report on $rawkward$, a Rust-backed kernel engine that adds a ROCm/HIP backend for Awkward Array's nested, jagged, variable-length data structures. Our central finding is that a naive source-level port of CUDA kernels to HIP loses $5$--$10\\times$ in performance on irregular kernels, because AMD's $64$-lane wavefronts, higher register pressure and more expensive divergence behave fundamentally differently from NVIDIA's $32$-thread warps. We show that a small, reusable set of optimization patterns---loop flattening, $128$-bit vectorized loads, splitting fused kernels, and profile-guided launch configuration---recovers CUDA-class performance without changing the public API. A Rust macro-and-match dispatch layer keeps a single, backend-agnostic call site while emitting vendor-specific kernel strategies, and the type system enforces buffer-size and lifetime correctness at compile time. On a two-socket AMD Instinct MI210 node we measure GPU speedups from $1.03\\times$ (bandwidth-bound $sum$) up to $12.5\\times$ ($count$) over $128$ EPYC~7763 CPU cores, and the Rust CPU kernels match or beat on aggregate the incumbent C++ kernels (geometric-mean runtime ratio $0.37\\times$ across twelve kernels). We argue that these patterns constitute a practical recipe for performance-portable, vendor-agnostic HEP analysis kernels.",
+    "developer": "Ianna Osborne, Maxym Naumchyk, Tai Sakuma, Andres Rios-Tascon, Peter Elmer",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ianna Osborne, Maxym Naumchyk, Tai Sakuma, Andres Rios-Tascon, Peter Elmer"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24928",
+  "sourceItemId": "2609.24928",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24928",
+  "detail": {
+    "longDescription": "arXiv:2609.24928v1 Announce Type: new Abstract: Autonomous software engineering agents (SWE-agents) automate coding tasks. Each agent update may require re-running the full benchmark to detect regressions and improvements, at a cost of hundreds of millions of LLM tokens per run, which makes evaluation a bottleneck. One solution is to evaluate only a subset of benchmark instances. Yet, simple approaches, such as random sampling or stratified random sampling based on past pass/fail outcomes, risk producing high variance and unrepresentative subsets. We turn to agent trajectories, the step-by-step record of the actions an agent took. We propose a trajectory-aware subset selection approach that replaces random sampling with deterministic selection based on trajectory embeddings. We first group test set instances by their test outcome in a recent full test run to preserve the historical pass/fail rate, then select the subset using the trajectory's embedding space. We evaluate 76 subset selection configurations, including random sampling, embedding-based selection, clustering-based selection, and hybrid shortlist-then-subsample strategies, across three regression scenarios: same-configuration reruns, model and configuration changes, and agent framework changes. Our best trajectory-aware method is the one selecting benchmark instances closest to the centroid of each outcome group in the embedding space. It achieves the lowest estimation error among all methods we evaluate. For instance, when evaluating a given agent version on a selected subset of 5% or 10% of the test instances, our approach reduces the average estimation error by 3--11% and the worst-case error by 4--11% relative to the typical draw and 38--46% relative to the 95th-percentile draw of the strongest baseline. Our results show that a 10% trajectory-aware subset keeps the median estimation error below 5% while cutting token cost by roughly 90%.",
+    "developer": "Mahmoud Ayyad, Zehao Wang, Jiho Shin, Ying Zou, Bram Adams",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mahmoud Ayyad, Zehao Wang, Jiho Shin, Ying Zou, Bram Adams"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

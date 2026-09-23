@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80004923",
+  "sourceItemId": "80004923",
+  "sourceUrl": "https://stackoverflow.com/questions/80004923/how-to-get-a-fully-typed-issue-input-parameter-inside-the-zod-refine-function",
+  "detail": {
+    "longDescription": "Given the following example zod schema z.object({ foo: z.int().min(5), bar: z.int().min(1) }) I want to make sure that bar must have a maximum of foo - 1 . I tried to use .refine() for this .refine( ({ foo, bar }) => bar <= foo - 1, { error: ({ input }) => { const { foo } = input; // input is unknown, not fully typed return `There is a maximum of ${foo - 1}.` }, path: [\"bar\"], }, ) but the problem is that the issue.input field of the error function parameter is of type unknown . In my case I need fully typed fields and I don't want to cast them. So I tried .superRefine() instead .superRefine((data, ctx) => { const { foo, bar } = data; if (bar > foo - 1) { ctx.addIssue({ code: \"too_big\", message: `There is a maximum of ${foo - 1}.`, path: [\"bar\"], }); } }); which seems to work but requires more manual work. Is there a way to get a typed issue.input field when using the refine function? Or do I have to use superRefine then?",
+    "developer": "m477h145h3rm53n",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "82"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

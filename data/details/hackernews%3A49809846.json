@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49809846",
+  "sourceItemId": "49809846",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49809846",
+  "detail": {
+    "longDescription": "We&#x27;ve been working on a embedded IoT many to many data pipeline and my past week&#x27;s time has chasing down a gut feeling of &quot;code smells&quot; at the architectural level. I&#x27;ve been wanting to extend the system, but have been running into way to many over-abstractions that did not sit well with me. With other team members also, there&#x27;s a feeling of &quot;how can this be better&quot;. FUD. Sure, I could throw an LLM at it and it would create the right abstractions&#x2F;de-abstrations and things would work. But that feels like putting band-aids on top of band-aids. What were these code smells? It was a proliferation of these Rust micro traits which adjust a struct&#x27;s interface to work with a variety of data channels. Okay, but that&#x27;s an observation and not yet a diagnosis. I decided to pull out my hardcopy of Design Patterns which my mentor had me learn back in the day. (Do we still have mentors in a world of LLMs?) Flipping through I found the diagnosis: Traits and over generalization had resulted in over &quot;decoratorized&quot; development. The issues were concisely outlined in The Book: &quot; 1. A decorator and its component aren’t identical. A decorator acts as a transparent enclosure. But from an object identity point of view, a decorated component is not identical to the component itself. Hence you shouldn’t rely on object identity when you use decorators. 2. Lots of little objects. A design that uses Decorator often results in systems composed of lots of little objects that all look alike. The objects differ only in the way they are interconnected, not in their class or in the value of their variables. Although these systems are easy to customize by those who understand them, they can be hard to learn and debug.&quot; Wow. These are the two smells I&#x27;ve been seeing: 1. A struct gets decorated via a trait impl in order to conform to an interface, but then the original struct information is lost. 2. So many structs, so many traits, so many generics. So I have my diagnosis. Now the remediation. We need a central place to define data transformation and packet protocol between many heterogenous modules. Luckily I find the Mediator pattern later on in The Book. &quot;You can avoid these problems by encapsulating collective behavior in a separate mediator object. A mediator is responsible for controlling and coordinating the interactions of a group of objects. The mediator serves as an intermediary that keeps objects in the group from referring to each other explicitly. The objects only know the mediator, thereby reducing the number of interconnections.&quot; So, today I&#x27;ve been drawing out the object diagram. Now I have clarity of the project in my head. Presented to the team. This cleared out the FUD for other as well...which is important to do as a team lead. Some might say &quot; Well, duh, just don&#x27;t code bad in the first place. Design patterns are lame are over prescriptive.&quot; Well, in the real world, especially with agile development, progress is made with architecture being a side thought or even an emergent property. Sometimes that emergence is smelly.",
+    "developer": "kooi",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

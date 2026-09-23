@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24639",
+  "sourceItemId": "2609.24639",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24639",
+  "detail": {
+    "longDescription": "arXiv:2609.24639v1 Announce Type: new Abstract: Power availability increasingly constrains the operation of AI inference fleets, creating a need for provisioning methods that jointly consider serving capacity and power consumption. Prefill--decode (PD) disaggregation has emerged as a prevalent architecture for large-scale inference serving. However, determining the appropriate numbers of prefill and decode instances is challenging because serving capacity depends jointly on workload characteristics, hardware constraints, queueing, and KV-cache reservations. Existing approaches largely rely on profiling and simulation, providing limited analytical insight into how provisioning decisions shape the tradeoff between serving capacity and power consumption. This paper develops an analytical framework for power-aware provisioning of PD-disaggregated AI inference. Given an inference workload and hardware, the framework models the serving capacity and average power consumption of a provisioned deployment. The serving-capacity model is derived from the joint distribution of input--output lengths and hardware compute and memory limits. In particular, it explicitly captures the coupling between prefill and decode induced by KV-cache reservations, as well as the impact of request queueing. On this basis, the power model determines per-instance power consumption as a function of normalized serving throughput. Together, the models determine the serving capacity--power Pareto front among candidate provisioned deployments, enabling the service provider to choose a provisioned deployment as the workload or available power changes.",
+    "developer": "Mingyuan Yan, Haiyu Wang, Linxuan Biao, H. Jonathan Chao, Sai Qian Zhang, Wenqi Cui",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.PF, cs.SY, eess.SY"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mingyuan Yan, Haiyu Wang, Linxuan Biao, H. Jonathan Chao, Sai Qian Zhang, Wenqi Cui"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

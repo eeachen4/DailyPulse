@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24456",
+  "sourceItemId": "2609.24456",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24456",
+  "detail": {
+    "longDescription": "arXiv:2609.24456v1 Announce Type: new Abstract: Distributed reinforcement learning (RL) scales training by parallelizing actors and learners around an Experience Buffer. As RL workloads grow, however, the buffer becomes more than a replay queue: it is the storage substrate of a large-capacity, latency-critical experience path that every iteration traverses to move, transform, sample, and batch experiences before learner updates can begin. Existing RL systems embed this path inside framework control flow or expose it as a request-driven buffer service, leaving experience placement fixed and experience-path work difficult to schedule independently as a runtime-level optimization target. We present Conduit, a framework-agnostic runtime that exposes RL experience management as an explicit systems optimization problem. At its core is the Experience Data Plane (EDP), a runtime abstraction that separates RL experience-handling semantics from framework-specific execution logic by exposing experience ingestion, experience placement, and experience delivery as explicit control points. Built on EDP, Conduit introduces capacity-constrained, bandwidth-aware placement, which distributes experience state across CPU/GPU memory tiers and nodes under heterogeneous interconnect and device-memory constraints, and latency-aware scheduling, which controls when experience-path handling runs to reduce exposed experience-path latency while preserving RL semantics. Integrated with RLlib without changing its framework execution logic, Conduit reduces exposed experience-path latency by up to 97% and end-to-end iteration latency by up to 38%, scales to 1,024 GPUs, and preserves convergence.",
+    "developer": "Sitong Zhang, Tuo Shi, Mario Di Francesco, Zeke Wang, Bo Zhao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sitong Zhang, Tuo Shi, Mario Di Francesco, Zeke Wang, Bo Zhao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

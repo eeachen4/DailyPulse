@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.22674",
+  "sourceItemId": "2609.22674",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.22674",
+  "detail": {
+    "longDescription": "arXiv:2609.22674v1 Announce Type: new Abstract: Joint Embedding Predictive Architectures (JEPAs) are becoming a core representation-learning primitive and a building block for latent world models across vision, video, audio, brain dynamics, and time series. Despite (potential of) wide deployment, current JEPA training pipelines are inefficient: each input is executed through multiple mask-specific branches, with redundant target-side work, and memory-bound token routing. These costs grow with the number of masks and limit GPU efficiency. We present M-JEPA, a mask-aware execution architecture that restructures JEPA training without changing the learning objective. M-JEPA separates mask-independent computation from mask-dependent routing, enabling shared context encoder execution, fused token routing and slicing with backward support, sparse target encoder execution over the union of target tokens, and masked patch embedding for sparse inputs. The resulting pipeline preserves training semantics while reducing computation, memory traffic, and synchronization overhead. We implement M-JEPA for five JEPA variants and evaluate it on NVIDIA A100 GPUs. Compared against the state-of-the-art baselines, M-JEPA achieves up to 1.7x end-to-end training speedup for 2-10 masks. Separately, with masked patch embedding, 4.75x patch-embedding speedup at high sparsity. These results show that execution restructuring, rather than changes to the JEPA objective, is a key lever for efficient JEPA training.",
+    "developer": "Md Musfiqur Rahman Sanim, Zhihao Shu, Bahram Afsharmanesh, Amirali Mirian, Wei Niu, Gagan Agrawal",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Md Musfiqur Rahman Sanim, Zhihao Shu, Bahram Afsharmanesh, Amirali Mirian, Wei Niu, Gagan Agrawal"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

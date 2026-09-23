@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.24018",
+  "sourceItemId": "2609.24018",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.24018",
+  "detail": {
+    "longDescription": "arXiv:2609.24018v1 Announce Type: new Abstract: Asynchronous Byzantine Reliable Broadcast (BRB) is a fundamental primitive that guarantees agreement and validity in distributed systems subject to Byzantine faults, but it lacks ordering guarantees. In this paper, we address Byzantine Causal Reliable Broadcast (BCRB), which builds on BRB to enforce causal message ordering. We present a novel BCRB protocol that decouples causal ordering from the BRB layer, achieving constant-size $\\mathcal{O}(1)$ message metadata overhead and $\\mathcal{O}(n^2)$ communication word complexity as against $\\mathcal{O}(n^3)$ communication word complexity of existing protocols; here $n$ is the number of processes. We present two variants of our protocol: a cryptographic version using a threshold encryption scheme and sequence gating, and its non-cryptographic version. In the cryptographic version, senders broadcast ciphertexts immediately, and decryption shares are piggybacked on out-of-band ACKs, preventing early decryption and front-running. In both versions, causal safety is achieved probabilistically. We evaluate the probability of causal safety violations using a random variable path analysis under independent exponential link delay distributions. We show that both variants satisfy liveness and the probability of weak safety violation is bounded by $\\mathcal{O}(f^{-3}\\cdot\\ln^3 f)$, where $f$ is the upper bound on the number of Byzantine processes, and $f < n/3$ and $f=\\mathcal{O}(n)$. Further, for the crypto version, we show that the probability of strong safety violation is bounded by $\\mathcal{O}(f^{-1} \\cdot \\ln^2 f)$. We also show how to modify our two protocols to guarantee 100\\% weak safety keeping $\\mathcal{O}(1)$ message space overhead but with $\\mathcal{O}(n^3)$ messages and $\\mathcal{O}(n^3)$ communication word complexity.",
+    "developer": "Purv Patel, Ajay D. Kshemkalyani",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.DS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Purv Patel, Ajay D. Kshemkalyani"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

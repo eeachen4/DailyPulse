@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004727",
   "sourceItemId": "80004727",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004727/how-can-i-use-a-composite-in-query-with-postgres-js",
   "detail": {
     "longDescription": "I'm using Postgres.js and I want to execute a PostgreSQL query using a composite IN condition like this: SELECT * FROM table WHERE (col1, col2) IN ((1, 2), (2, 3)); In other words, I want to check multiple (col1, col2) pairs at once. With postgres.js , I tried the following: const pairs = [ [1, 2], [2, 3] ]; const result = await sql` SELECT * FROM table WHERE (col1, col2) IN ${sql(pairs)} `; However, this results in a syntax error related to the comma. What is the correct way to pass an array of pairs to Postgres.js so that it generates a query equivalent to: WHERE (col1, col2) IN ((1, 2), (2, 3)) I specifically need a composite/multi-column IN condition , rather than using separate conditions such as: WHERE col1 IN (...) AND col2 IN (...) The reason I cannot simply make one column fixed is that this query will be used with a DataLoader for batch processing. Depending on the request, sometimes col1 will be the same while col2 varies, and sometimes col2 will be the same while col1 varies. Therefore, I need both columns to participate in the lookup. What is the recommended way to construct this query safely with Postgres.js?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "80"
+        "value": "107"
       },
       {
         "label": "状态",

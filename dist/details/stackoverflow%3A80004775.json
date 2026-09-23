@@ -2,27 +2,28 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004775",
   "sourceItemId": "80004775",
+  "fetchedAt": "2026-09-23T01:48:41.362Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004775/ga4-gtag-js-tag-loads-datalayer-fills-correctly-tag-assistant-sees-it-but-n",
   "detail": {
     "longDescription": "I spent weeks debugging a GA4 property that received zero traffic despite everything checkable looking correct: - gtag.js script loads fine (200 response) - window.dataLayer exists and fills up with the right-looking consent, js, and config commands - Google Tag Assistant finds the tag and correctly identifies its source as \"On-page gtag('config')\" - But Tag Assistant's \"Hits Sent\" tab always says \"No hits were sent by this tag\" - GA4 Realtime never shows a session, ever I ruled out: network/firewall blocking, every GA4 admin consent/collection toggle, a corrupted data stream (a brand new property + stream failed identically), duplicate tags, and CSP. Minimal reproducible example: function gtag(...args) { window.dataLayer.push(args); } window.dataLayer = []; window.gtag = gtag; gtag('config', 'G-XXXXXXXXXX'); // window.dataLayer now contains [ ['config', 'G-XXXXXXXXXX'] ] // which LOOKS correct, but this is a plain Array, not a real // JavaScript `arguments` object -- and gtag.js only recognizes // real `arguments` objects as commands. Every entry pushed this // way gets silently treated as inert data instead of being executed. What's the actual mechanism gtag.js uses to tell a real command apart from an ignored data-layer entry, and is there a way to prove this from the browser console before deploying any fix?",
     "developer": "Ahmad Ataya",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "25"
+        "value": "60"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }
