@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woiwbb",
+  "sourceItemId": "1woiwbb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1woiwbb/keeping_the_lead_context_small_while_multiple/",
+  "detail": {
+    "longDescription": "https://preview.redd.it/dinknskw8crh1.png?width=1916&format=png&auto=webp&s=87d3b20c14a0a7e588ae159f6e84f89103c977fe\n\nI've been working on [Pi Herdsman](https://github.com/boadij/pi-herdsman), mostly because I wanted a different approach to multi-agent context management.\n\nInstead of putting more and more work into one long-running agent context, the lead stays focused on the high-level task while investigation and implementation happen in separate Pi sessions.\n\nThe lead remains interactive and gets the important things back automatically: questions, progress that needs attention, and final results. It knows what's happening without carrying every tool call, file read, and implementation detail from the workers.\n\nThat separation ended up shaping most of the architecture.\n\nAgents have explicit owners and bounded assignments, can delegate further, and route questions/results back through the ownership tree. Old context is continued explicitly rather than agents being implicitly reused. There are also controls for steering/interruption and supervision across multiple leads.\n\n[Herdr](https://github.com/herdrdev/herdr) is required and owns the physical Pi sessions. Pi owns conversation state; Herdsman owns the coordination/lifecycle layer between them.\n\nThe latest release added an SSH-ready container too, so the same agent environment can run remotely on a NAS/server/VPS and appear alongside local environments in Herdr.\n\nRepo:  \n[https://github.com/boadij/pi-herdsman](https://github.com/boadij/pi-herdsman)\n\nI'm especially interested in feedback from people experimenting with multi-agent context separation and orchestration.",
+    "developer": "j3free",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

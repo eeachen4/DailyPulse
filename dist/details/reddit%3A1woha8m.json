@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woha8m",
+  "sourceItemId": "1woha8m",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1woha8m/your_agent_has_more_permissions_than_your_users/",
+  "detail": {
+    "longDescription": "    When an agent acts in Jira, GitHub, Slack, Salesforce or AWS, it usually uses one bot credential. So \"delete this issue\" or \"merge this PR\" works for anyone who can talk to the agent, even people who couldn't do it themselves. Prompt rules don't fix this: the tool call still runs with the bot's permissions. OWASP calls this \"Excessive Agency\".\n    \n    I built hallpass to close the gap. Before a tool call runs, the agent (or your tool wrapper) asks:\n    \n    POST /check {\"user\":\"dana@example.com\",\"connection\":\"jira-main\",\"action\":\"DELETE_ISSUES\",\"resource\":\"issue:PAY-123\"}\n    → {\"decision\":\"deny\"}\n    \n    hallpass asks the system itself, live, with a read-only credential, and answers allow, deny or unknown. Unknown (timeout, a policy it can't evaluate) is treated as deny, so it fails closed. It never performs the action.\n    \n    - 11 systems today: Jira, Confluence, GitHub, GitLab, Slack, Google Workspace, Microsoft 365, Salesforce, AWS, Kubernetes, Argo CD. 10 more on the roadmap.\n    - Self-hosted, single binary or Docker, no database, Apache 2.0\n    \n    https://github.com/roee-hersh/hallpass\n    \n    How do you handle this today: per-user OAuth, per-team bots, human approval for destructive actions?",
+    "developer": "Adorable-Algae6903",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

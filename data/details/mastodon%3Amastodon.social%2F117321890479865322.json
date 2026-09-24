@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117321890479865322",
+  "sourceItemId": "mastodon.social/117321890479865322",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://feddit.nl/post/63547542",
+  "detail": {
+    "longDescription": "Good news, a security issue\n[https://github.com/ietf-wg-acme/draft-ietf-acme-dns-persist/issues/64] that was\nblocking the draft for the new DNS-PERSIST-01 challenge mode for TLS\ncertificates has been resolved, meaning the challenge can resume moving forward.\nSome background for those who aren’t up to date: * TLS challenges are how\nself-hosters and many other TLS certificate users prove who they are in order to\nautomate cert renewals. * The most popular challenge methods are HTTP-01 (which\ninvolves having a live web server answering on port 80 somewhere) and DNS-01\n(which involves putting a key given by the TLS authority in your DNS zone in a\nTXT record temporarily). * All the current challenges are conducted “live” and\nrequire active online participation on the part of the domain owner each time a\ncert is approaching expiration. * The new DNS-PERSIST-01 challenge\n[https://letsencrypt.org/2026/02/18/dns-persist-01] would let owners keep a\nproof in their DNS zone indefinitely (or with self-imposed expirations),\neliminating the need for those online sessions. * DNS-PERSIST-01 was slated to\ncome out in Q2 this year at the latest and all the popular tools (ACME bots,\nreverse proxies etc.) have been chomping at the bit to implement it. *\nUnfortunately there’s been a security snag. Trying to do things the way DNS-01\ndid (record only the server-provided proof in DNS) would open DNS-PERSIST-01 to\nmiddleman attacks, because unlike DNS-01 where the proof is only there\ntemporarily for a few seconds or a few minutes at the most, in this case the\nproof would be long-term. * Hence issue #64, which has been trying to come up\nwith a way to keep only a partial proof in DNS, and combine it with something\nissued by the server and something issued by the domain owner to make the whole\nproof, thus rendering the stuff stored in DNS impossible to use for malicious\npurposes, yet still sufficient for verifying ownership periodically. Hopefully\nnow that this hurdle has been passed things will proceed faster and we’ll get to\nuse this in the near future.",
+    "developer": "@lemmyvore@feddit.nl",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

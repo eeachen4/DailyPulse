@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49816738",
+  "sourceItemId": "49816738",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49816738",
+  "detail": {
+    "longDescription": "Hi HN, I’m RC. When I worked at ThoughtWorks, we were pretty religious about pair programming: one person driving, another reviewing, both working through the same problem. Most of us have already paired with an agent in our own coding sessions. Some of us have even tried putting agents in both seats: one implementing, the other reviewing. I really like Claude Code’s cross-session messaging. I wanted that same experience between Claude, Codex, and OpenCode. The existing setups meant installing a new app or plugins that just don&#x27;t work reliably. I wanted something local that stayed out of the way, let me keep using each tool as usual, but enabled hetergenous messaging. That became Agent Exchange, or ax. After installing, start two sessions in separate terminals: ax claude -n api ax codex -n web Then ask Codex: “Ask api whether the schema is ready.” The agents address each other by name, and replies come back into their conversations, including across repositories on the same machine under the same OS user. You can also connect existing conversations using each tool’s native resume syntax. AX supports Claude Code, Codex CLI, Grok Build, OpenCode, and Pi. Underneath, it’s a local Go broker, Unix sockets, and a SQLite mailbox. There’s no AX cloud relay or telemetry. The messaging runs locally; the coding agents still communicate with their configured AI providers. We’ve been using it to send AX’s own PRs between Codex and Grok for review. I’d be interested in which agent combinations you use, and what you currently have to relay between them yourself.",
+    "externalUrl": "https://useax.dev/",
+    "developer": "rcdexta",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

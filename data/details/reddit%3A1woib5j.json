@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woib5j",
+  "sourceItemId": "1woib5j",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1woib5j/there_are_a_lot_of_good_scraping_tools_like/",
+  "detail": {
+    "longDescription": "I've been running [https://www.themoviewatch.com](https://www.themoviewatch.com) on the side. I used a ton of different services to support it's scraping needs.\n\nOut of all the ones I tried here were the two I liked:\n\n\\- Scrape.do: The interface wasn't good, and not all my workloads were supported by their service, but was the best priced and fastest for some of my workloads\n\n\\- Firecrawl: My favorite out of all the services I used. Easy to use, felt good to work with, great support, it also had the most features so I could support all my workloads on it, but was also the most expensive.\n\nHowever, even this setup was costing me $1000/month, and had issues over time. For example a workflow that worked on the cheaper service stopped working and I had to move it to the more expensive service.\n\nBut I work at [Freestyle.sh](http://Freestyle.sh) \\- we make Linux VMs for agents, and my CTO suggested, \"why don't you try using a residential proxy with one of our VMs, I bet Claude can do it\".\n\nI then asked Claude Code to write me a custom scraping service with a residential proxy provider ( the AI chose [evomi.com](http://evomi.com), but I am sure you can use anything ). And it worked in one shot!\n\nI loved the service too because I could define exactly what tradeoffs were acceptable. At the end of the day these scraping services just use browsers and IP pools under the hood.\n\nNot only did it work and give me exactly what I wanted, the savings and gains were incredible. My bill went down just $50/month for the residential proxies, and $20/month for Freestyle ( since I work at Freestyle it was free xD).\n\nAnyways, I just wanted to share this finding to you all. You don't technically need to use Freestyle to make this setup work, but not to shill our stuff, we create really cheap full Linux VMs in <300ms, including support for SOCKS5 proxy support - so feel free to DM me if you want to mess with our stuff!",
+    "developer": "Rankspartanben",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

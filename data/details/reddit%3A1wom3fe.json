@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wom3fe",
+  "sourceItemId": "1wom3fe",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wom3fe/qwen_38_flash_next_q4_k_m_130k_context_q8_cache/",
+  "detail": {
+    "longDescription": "Thought it's about time to share after testing for a week. You need four things most people miss: the right quant, the right model, the right branch, and the right cache flags. \n\nhttps://github.com/dtm-beep/qwen38-flash-next-mtp-16gb    \n\nTLDR: AtomicChat AD-4.27bpw Q4_K_M target + the shared Unsloth MTP head, build from my pr-mtp-fix branch (plain master can't load this MTP head yet, it's PR #28243 + one fix commit), and --spec-draft-cpu-moe is the trick that makes 16 GB work. Draft experts live in RAM so the target's hot experts get the GPU. IQ4_XS ~10 t/s → 16.5 tg / 350 pp at 131k, q8 KV.      \n\nHope it helps someone.",
+    "developer": "AvidCyclist250",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

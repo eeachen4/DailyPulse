@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49818914",
+  "sourceItemId": "49818914",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49818914",
+  "detail": {
+    "longDescription": "I’ve been building Ox, a local, open-source agent that uses the internet for you. Ox acts as an intelligent proxy between you and the internet. It uses websites and apps on your behalf, freeing you from attention-hungry interfaces and slow legacy services. As it works, it can turn what it learns into reusable actions (basically function calls), making future interactions deterministic and way faster. Most service integrations today are still built ahead of time: someone writes an API integration, connector, MCP server, or browser automation and then maintains it as the service changes. But the internet is becoming more dynamic so have our agents. With Ox, instead of waiting for a connector, you can say something like: “Connect to &lt;service&gt;.” Ox can study a website or workflow through capabilities it already has, turn what it learns into typed actions and reusable skills, validate them, and make them available immediately. That pushed me toward local agents. A local agent operates from your own device, network, and existing authenticated browser sessions instead of relying on shared datacenter infrastructure. This also makes it less likely to hit blocks aimed at datacenter IPs or centralized browser automation. The model doesn’t need your passwords, cookies, or session tokens. Authentication and browser state are owned by the Host, while the agent interacts through explicit actions that could be gated. Ox is completely free and open source. You can use any model provider, including local or self-hosted models, while keeping your agent’s data on device. As local models improve, I think this architecture becomes increasingly useful because the agent can become more capable without requiring more of your data to leave your device. The security model is also a big part of the design. Ox asks before taking sensitive actions, keeps credentials isolated from the model, limits what agent code can access, and lets you stop execution at any time. Underneath the app is OpenOx, an open protocol for self-evolving agents. It separates the interface, agent, model provider, persistent state, execution environment, and external capabilities. The agent can run JavaScript inside a capability-limited VM. The VM has no direct network access, Host filesystem access, shell, Node.js, or DOM. Anything outside the VM has to go through an explicit ox.* capability exposed by the Host. Services provide typed actions for websites, device capabilities, or MCP servers. Skills provide reusable instructions for combining those actions. New services and skills can be attached at runtime without waiting for a new version of the app. They can remain local or be recorded in Git and shared through repositories, so each Ox can evolve independently while benefiting from capabilities learned by others. The agent’s persistent state lives in a portable Ox Profile containing its identity, memory, skills, artifacts, and conversations. The goal is for that state to stay independent of any particular interface, including Ox itself, or model provider. File over app. The first implementation is an iOS app. It’s available on the App Store, and the whole thing is open source: https:&#x2F;&#x2F;openox.ai&#x2F; https:&#x2F;&#x2F;github.com&#x2F;ziyzhu&#x2F;openox If you’re interested in the broader motivation behind the project, I wrote about it here: https:&#x2F;&#x2F;ziyzhu.com&#x2F;a-technology-for-free-will This is still early. I’m especially interested in feedback on the security model and self-evolution. I built Ox from scratch but many aspects of the project were heavily inspired by Pi&#x2F;OpenClaw and the idea of malleable software. Ox’s core agent loop on iOS is pretty much a Swift rewrite of the Pi core package. Happy to answer anything about the implementation or protocol.",
+    "externalUrl": "https://openox.ai/",
+    "developer": "ziyzhu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

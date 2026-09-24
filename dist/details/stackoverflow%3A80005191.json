@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005191",
+  "sourceItemId": "80005191",
+  "sourceUrl": "https://stackoverflow.com/questions/80005191/how-should-i-publish-multiple-redis-stream-events-concurrently-in-typescript",
+  "detail": {
+    "longDescription": "I'm building an event service in TypeScript that publishes events to a Redis Stream. For a single event, I currently have something like this: async publish(event: Event<EventStream.App>): Promise<string> { return this.redis.xAdd(this.stream, '*', { event: JSON.stringify(event), }); } I now want to add a bulk publishing method: async publishBulk( events: Event<EventStream.App>[], ): Promise<string[]> { // implementation } My first thought was to use Promise.all(): async publishBulk( events: Event<EventStream.App>[], ): Promise<string[]> { return Promise.all(events.map((event) => this.publish(event))); } This should allow the Redis commands to execute concurrently instead of waiting for each event to finish before publishing the next one. However, I'm concerned about using Promise.all() when the array contains a large number of events. For example, if there are several thousand events, this would potentially create thousands of concurrent Redis operations. What would be the recommended approach for implementing this? Specifically: Is Promise.all(events.map(...)) appropriate for a reasonably sized batch? Should I limit concurrency for larger batches? Would Redis pipelining or MULTI/EXEC be preferable for this use case? What would a production-friendly TypeScript implementation look like? I'm using TypeScript with a Redis client that supports XADD.",
+    "developer": "Hussain Ahmad",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "52"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

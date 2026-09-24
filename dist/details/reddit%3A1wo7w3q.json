@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wo7w3q",
+  "sourceItemId": "1wo7w3q",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wo7w3q/how_to_properly_decide_between_bridge_or_host/",
+  "detail": {
+    "longDescription": "I have application running inside docker container that is accessed from Internet via port 443 to:  \n\\- human users (web/user interface)  \n\\- machines (REST API)  \nApplication requires access to the Internet and intranet outside container over all possible ports.\n\nWhile running there are 2 network interfaces (example IDs):  \n\\- docker0  \n\\- eth01 (physical network adapter)\n\nInitial setup was **default bridge network mode.**  \nProblem with bridged mode was that application could not establish FTP, SFTP, SSH connection to the hosts within intranet if target host is in the same subnet as docker host. I have no any Docker expert neither network admin beside me to explain me all details so AI Claude explained me that it is the problem because packets do not reach further than eth01. It advised me to:  \n\\- **switch to network host**  \n\\- to configure docker host redhat OS *firwald* to map all traffic from eth01 to docker0 and vice versa.  \nI updated docker compose yml config file (set host mode and remove port mappings as in host mode port mapping is not possible).  \nI did HARD doceker compose restart\n\nAfter change application in docker container could only SFTP, FTP, SSH machines in same subnet. All other hosts (in intranet and Internet) become unavailable - it seems as DNS resolution didn't work.\n\nI rollback everything to bridge network mode as exit to Internet and DNS resolution is more important than access to couple hosts in the same subnet.\n\nCan anyone help me to anticipate what are important facts for my docker network configuration so that application in docker container properly establishes connections.\n\nDocker Host is RedHat Linux with SeLinux enabled and firewald enabled  \nDocker application has liberate access to all ports and IPs internal and external (Internet)\n\nThank you very much!!",
+    "developer": "Vivid_Rate_6118",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005262",
+  "sourceItemId": "80005262",
+  "sourceUrl": "https://stackoverflow.com/questions/80005262/encoding-issues-between-java-websocket-server-and-javascript-client",
+  "detail": {
+    "longDescription": "I'm trying to implement a WebSockets “client-server hello world” combining the code examples shown here and here . My intention is to write a WebSockets server in Java and connect to it from a HTML/JavaScript client. First I show my modified code: public class WebSocket implements Runnable { public void myRun() throws IOException, NoSuchAlgorithmException { ServerSocket server = new ServerSocket(8001); try { System.out.println(\"Server has started on 127.0.0.1:8001.\\r\\nWaiting for a connection…\"); Socket client = server.accept(); System.out.println(\"A client connected.\"); InputStream in = client.getInputStream(); OutputStream out = client.getOutputStream(); Scanner s = new Scanner(in, \"UTF-8\"); try { String data = s.useDelimiter(\"\\\\r\\\\n\\\\r\\\\n\").next(); Matcher get = Pattern.compile(\"^GET\").matcher(data); if (get.find()) { Matcher match = Pattern.compile(\"Sec-WebSocket-Key: (.*)\").matcher(data); match.find(); byte[] response = (\"HTTP/1.1 101 Switching Protocols\\r\\n\" + \"Connection: Upgrade\\r\\n\" + \"Upgrade: websocket\\r\\n\" + \"Sec-WebSocket-Accept: \" + Base64.getEncoder() .encodeToString(MessageDigest.getInstance(\"SHA-1\") .digest((match.group(1) + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\") .getBytes(\"UTF-8\"))) + \"\\r\\n\\r\\n\").getBytes(\"UTF-8\"); out.write(response, 0, response.length); byte[] encoded = s.next().getBytes(); byte[] decoded = new byte[encoded.length]; byte[] key = new byte[] { (byte) 167, (byte) 225, (byte) 225, (byte) 210 }; for (int i = 0; i < encoded.length; i++) { decoded[i] = (byte) (encoded[i] ^ key[i & 0x3]); } System.err.println(new String(decoded, \"UTF-8\")); } } finally { s.close(); } } finally { server.close(); } System.err.println(\"Fin WebSocket.\"); } @Override public void run() { // TODO Auto-generated method stub try { myRun(); } catch (IOException | NoSuchAlgorithmException e) { System.err.println(\"Error: \" + e.getMessage()); } } I call this Runnable from a Thread in Main code. And I have this test web page: <!doctype html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <title>Document</title> <script> const wsUri = \"ws://127.0.0.1:8001/\"; const websocket = new WebSocket(wsUri); var counter = 0; var log = console.log; websocket.addEventListener(\"open\", () => { log(\"CONNECTED\"); }); websocket.addEventListener(\"error\", (e) => { log(`ERROR`); }); const message = { iteration: counter, content: \"ping\", }; function send() { //websocket.send(JSON.stringify(message)); websocket.send(\"xyz123\"); // Just test! websocket.close(); //websocket = null; } websocket.addEventListener(\"message\", (e) => { log(`RECEIVED: ${e.data}: ${counter}`); counter++; }); websocket.addEventListener(\"close\", () => { log(\"DISCONNECTED\"); }); </script> </head> <body> <button id=\"btn\">Send</button> <script> document.getElementById(\"btn\").addEventListener(\"click\", () => { send(); }); </script> </body> My main problem is, I guess, about encoding/decoding: I'm trying to send “xyz123” but my test Java server receives (prints, just for testing) weird output (ASCII random characters: “ߘ���”). Regardless encryption, I'd just need the sent message be received exactly as submitted from HTML/JavaScript. Another secondary problem is that the connection appears to be quite slow, so it takes some seconds for the server to print the message after submission.",
+    "developer": "Pestro",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "57"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

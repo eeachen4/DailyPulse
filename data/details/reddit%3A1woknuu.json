@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woknuu",
+  "sourceItemId": "1woknuu",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1woknuu/how_to_implement_a_distributed_rate_limiter/",
+  "detail": {
+    "longDescription": "If twenty replicas each enforce a local limit of 100 requests per second, they can collectively send 2,000. Enforcing one shared budget means coordinating admission across the fleet.\n\nA walkthrough using GCRA, which represents the allowance with a single timestamp, and a Redis Lua script that makes each admission decision atomically. The examples come from [Caracal](https://github.com/gkoos/caracal), a TypeScript resilience library.\n\nThe article covers shared burst budgets, why the Redis clock matters, refusing calls when admission cannot be confirmed, and changing rate/burst settings during a live deployment. It also looks at testing the timing boundaries between the TypeScript and Lua implementations.\n\nFor those running distributed rate limiting in production, how do you handle coordinator outages and configuration changes across replicas?",
+    "externalUrl": "https://blog.gaborkoos.com/posts/2026-09-24-How-to-Implement-a-Distributed-Rate-Limiter/",
+    "developer": "OtherwisePush6424",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "blog.gaborkoos.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80004962",
   "sourceItemId": "80004962",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
   "sourceUrl": "https://stackoverflow.com/questions/80004962/how-to-write-python-integers-to-binary-file-using-struct-pack-equivalent-to-u",
   "detail": {
     "longDescription": "I have some C++ code that reads binary data from a file. When I use a C++ code to write to it, everything works. But I need a Python code to write the file. It works for the first word that I write (using fout.write(struct.pack('@Bx', size)) ), (the C++ code reads it correctly), but as soon as I try to write more values to the file, the C++ code reads the wrong values. When I use the C++ writing code, it works fine. I guess what I need is the correct translation from the C++ writing code to Python. C++ writing code: #include <iostream> #include <fstream> using namespace std; int main() { std::ofstream outfile(\"binary.dat_cpp\", std::ios::binary | std::ios::out ); unsigned int size = 3; unsigned int key = 8; outfile.write((char*) &size, sizeof(size)); outfile.write((char*) &key, sizeof(key)); outfile.flush(); outfile.close(); return 1; } C++ reading code: #include <iostream> #include <fstream> using namespace std; int main() { std::ifstream infile(\"binary.dat\", std::ios::binary | std::ios::in ); if (!infile.is_open()) { cout << \"FILE not open\" << endl; return 1; } unsigned int size; unsigned int key; infile.read((char*) &size, sizeof(size)); cout << \"size: \" << size << endl; infile.read((char*) &key, sizeof(key)); cout << \"event: \" << key << endl; return 0; } python writing code: import struct fout = open('binary.dat_py', 'wb') size = 13 key = 18 fout.write(struct.pack('@Bx', size)) # without the next line, I can read the file correctly # with the next line, even reading 'size' will go wrong fout.write(struct.pack('@Bx', key)) # This will give me: # size: 1179661 # event: 0 # Without second write, I get: # size: 13 # event: 0 fout.flush() fout.close()",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "6"
+        "value": "8"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "206"
+        "value": "526"
       },
       {
         "label": "状态",

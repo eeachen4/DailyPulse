@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005171",
+  "sourceItemId": "80005171",
+  "sourceUrl": "https://stackoverflow.com/questions/80005171/bounded-type-parameter-lists-and-backwards-compatible-python-syntax",
+  "detail": {
+    "longDescription": "Python 3.12 and PEP 695 introduced type parameter lists , which can be bounded, e.g. restricted to subclasses of a specific class: class BaseClass: pass class NewClass(BaseClass): pass def some_fun[T: BaseClass](somethings_type: type[T]): pass is valid in Python 3.12 from a syntax point of view. However, running the same code in Python 3.9 results in a SyntaxError: python3.9 test.py File \"/home/agocht/test/pep-965/test.py\", line 9 def some_fun[T: BaseClass](somethings_type: type[T]): ^ SyntaxError: invalid syntax Is there a good way to use this feature while still writing backwards-compatible code? Usually, I would fall back to typing-extensions, but since this is a syntax error and I didn't find anything related, I assume it's not that easy.",
+    "developer": "A. Gocht",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "102"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

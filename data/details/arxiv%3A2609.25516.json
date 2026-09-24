@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.25516",
+  "sourceItemId": "2609.25516",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.25516",
+  "detail": {
+    "longDescription": "arXiv:2609.25516v1 Announce Type: new Abstract: Flaky tests produce non-deterministic outcomes without code change, eroding CI confidence and delaying deliveries. While vocabulary-based machine learning prediction has proven effective for Java and JavaScript, no study has evaluated it for Swift, a language whose testing style is dominated by UI and asynchronous code. We collect 91 flaky and 22,349 stable tests from 15 open-source Swift projects via re-execution and commit-history mining, then train five classifiers (Random Forest, Decision Tree, Naive Bayes, SVM, KNN) on TF-IDF unigram+bigram features under stratified 5-fold cross-validation. Random Forest achieves the best performance (Precision = 0.92, F1 = 0.86, AUC = 0.95) and substantially outperforms trivial baselines, among them a vocabulary-threshold rule applied to the most informative tokens, confirming a genuine discriminative signal (MCC = 0.75 vs. 0.08 for the best baseline). Information-gain analysis reveals two complementary signal types. Flakiness markers appear predominantly in unstable tests and comprise concurrency primitives (async, await), expectation-based synchronisation (expectation, fulfill), error propagation (throws), and explicit timing dependence (timeout, wait, now). Stability markers, chiefly the assertion vocabulary of plainly synchronous tests (xctassertequal), count as evidence against flakiness. Error analysis shows that the model fails when flakiness is hidden in shared infrastructure outside the test body or when async constructs are used in a deterministic context, exposing the intrinsic limit of lexical prediction. These results extend vocabulary-based flakiness detection to the Swift ecosystem and characterise both its effectiveness and its boundaries.",
+    "developer": "Jo\\~ao Medeiros, Denini Silva, Breno Miranda",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jo\\~ao Medeiros, Denini Silva, Breno Miranda"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

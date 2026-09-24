@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woj58b",
+  "sourceItemId": "1woj58b",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1woj58b/a_microagent_helped_us_read_payment_details_the/",
+  "detail": {
+    "longDescription": "In an accounting system I worked on, one incoming payment could hide a lot of separate records. Say $10,000 comes into the account. The bank sees one payment. Inside the accounting system, it can cover many goods and materials, each of which needs to be tracked. Or a customer pays a deposit for the month and draws it down little by little.\n\n\n\nThe details might arrive in an email, a message, or a form. An ordinary parser can move a value from field A to field B when you already know what is in field A. It cannot read free text and understand which amount belongs to which purpose. So accountants often entered those details by hand.\n\n\n\nWe put a microagent at that point. We used Terra or Luna and gave it a narrow prompt: find each amount and what it was paid for, return those fields to the parser, and do not rewrite, skip, or merge items just to finish the job. If something cannot be identified, say so. The parser then puts the returned fields into the structured database.\n\n\n\nThat is what I mean by a module: one job, clear limits, and a result I can check separately. In the larger system, I also need to know who owns that result, what state survives the conversation, and who decides whether the handoff is acceptable.\n\n\n\nWhere would you put the boundary between semantic extraction and the system that accepts the result?",
+    "developer": "Rakamy",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

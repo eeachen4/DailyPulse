@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2507.20674",
+  "sourceItemId": "2507.20674",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://arxiv.org/abs/2507.20674",
+  "detail": {
+    "longDescription": "arXiv:2507.20674v3 Announce Type: replace-cross Abstract: Modern Java projects increasingly adopt static analysis tools that prevent null-pointer exceptions by treating nullness as a type property. However, integrating such tools into large, existing codebases remains a significant challenge. While annotation inference can eliminate many errors automatically, a subset of residual errors $-$ typically a mix of real bugs and false positives $-$ often persists and can only be resolved via code changes. Manually addressing these errors is tedious and error-prone. Large language models (LLMs) offer a promising path toward automating these repairs, but naively prompted LLMs often generate incorrect, contextually inappropriate edits. We present NullRepair, a system that integrates LLMs into a structured workflow for resolving the errors from a nullability checker. NullRepair's decision process follows a flowchart derived from manual analysis of 200 real-world errors. It leverages static analysis to identify safe and unsafe usage regions of symbols, using error-free usage examples to contextualize model prompts. Patches are generated through an iterative interaction with the LLM that incorporates project-wide context and decision logic. Our evaluation on 12 real-world Java projects shows that NullRepair resolves 63% of the 1,119 nullability errors that remain after applying a state-of-the-art annotation inference technique. Unlike two baselines (single-shot prompt and mini-SWE-agent), NullRepair also largely preserves program semantics, with all unit tests passing in 10/12 projects after applying every edit proposed by NullRepair, and 98% or more tests passing in the remaining two projects.",
+    "developer": "Nima Karimipour, Pascal Joos, Michael Pradel, Martin Kellogg, Manu Sridharan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nima Karimipour, Pascal Joos, Michael Pradel, Martin Kellogg, Manu Sridharan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

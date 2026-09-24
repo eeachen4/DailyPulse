@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005207",
+  "sourceItemId": "80005207",
+  "sourceUrl": "https://stackoverflow.com/questions/80005207/how-to-add-tasktoken-to-existing-json-object-when-executing-a-callback-function",
+  "detail": {
+    "longDescription": "I am working through the AWS step functions example WaitForCallback and modifying it to see how to make it work with my requirements . In the step that starts and waits for the callback, I would like to pass a custom JSON object to the message body that is sent to SQS and then on to lambda. My custom JSON object is received by the step function as follows: { \"MyCustomObject\": { \"field1\": \"value1\", \"field2\": \"value2\" } } I want to add the task token to a field in this JSON object and send that resulting object to the lambda as follows: { \"MyCustomObject\": { \"field1\": \"value1\", \"field2\": \"value2\", \"TaskToken\": \"abcd1234\" } } For reference, here is the example step: \"Start Task And Wait For Callback\": { \"QueryLanguage\": \"JSONata\", \"Type\": \"Task\", \"Resource\": \"arn:aws:states:::sqs:sendMessage.waitForTaskToken\", \"Arguments\": { \"QueueUrl\": \"https://sqs.eu-west-1.amazonaws.com/11111111/StepFunctionsSample-WaitForCallback\", \"MessageBody\": { \"MessageTitle\": \"Task started by Step Functions. Waiting for callback with task token.\", \"TaskToken\": \"{% $states.context.Task.Token %}\" } }, I have been reading through the AWS docs on jsonpath and jsonata, but I have been unable to figure out how to make this work - can anyone help?",
+    "developer": "danrockcoll",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "74"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

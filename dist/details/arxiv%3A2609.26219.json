@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.26219",
+  "sourceItemId": "2609.26219",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.26219",
+  "detail": {
+    "longDescription": "arXiv:2609.26219v1 Announce Type: new Abstract: Long-running LLM agent workflows often revise interior context spans while retaining long suffixes. Although suffix tokens remain unchanged, altered causal histories and rotary positions prevent exact reuse of their offloaded key-value (KV) states. Full suffix recomputation wastes prefill work, while indiscriminate reuse propagates stale states and full-precision restoration adds data movement. We present PatchKV, a profile-guided recovery system for suffix-preserving revisions. PatchKV decomposes adjacent context versions into an exact prefix, an updated span, and an aligned suffix. It predicts an edit-local dirty region using an offline length-conditioned drift model, augments this region with sparse nonlocal blocks selected from stored attention, and block-rounds their union into a fixed repair set. The remaining suffix blocks are restored from CPU memory using frozen per-block precision tags and a fused path for dequantization, RoPE correction, and KV-page placement. Across three models and three long-context question-answering workloads, PatchKV achieves a $2.51$-$3.85\\times$ speedup in mean resume time-to-first-token over full suffix recomputation and a $1.26$-$2.06\\times$ speedup over CacheBlend, while matching or exceeding CacheBlend's F1 score in six of nine settings and remaining within 1.36 points in the others.",
+    "developer": "Guotao Yang, Rui Guo, Siwei He, Sheng Chen, Yitao Hu, Keqiu Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Guotao Yang, Rui Guo, Siwei He, Sheng Chen, Yitao Hu, Keqiu Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

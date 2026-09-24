@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.25911",
+  "sourceItemId": "2609.25911",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.25911",
+  "detail": {
+    "longDescription": "arXiv:2609.25911v1 Announce Type: new Abstract: Dependency-update pull requests are frequent and mostly routine, but a small subset requires non-trivial compatibility repair. Recent repository-level coding agents make such repair increasingly plausible, yet invoking them on every dependency update wastes model calls, CI time, repository context, and review attention. We frame this as a pre-agent routing problem: deciding which dependency-update pull requests should be escalated before downstream diagnosis or repair attempts. We introduce DepFixRouter, a lightweight router that ranks dependency updates by historical compatibility-repair likelihood using creation-time textual and metadata signals. On 497 labeled GitHub dependency-update candidates, only 72 require substantive repair. A creation-time-safe LinearSVC using only PR titles and bot/dependency flags reaches 0.488 repair F1 and captures 51.4% of repairs within the top 20% routed pull requests, improving calls per captured repair from 6.90 under route-all or random policies to 2.68. Retrospective full-history signals improve top-20% recall to 65.3%, revealing substantial hindsight leakage in pull-request histories rather than deployment-time routing utility. In a 60-case diagnosis-agent pilot, router-gated diagnosis reduces actual LLM calls by 66.7% and tokens by 66.1%, suggesting budgetaware escalation while measuring diagnosis rather than patch generation. DepFixRouter can serve as a lightweight escalation layer between routine dependency-update automation and expensive repository-level agents, enabling budget-aware maintenance without relying on retrospective repair evidence for deployment-time routing.",
+    "developer": "Liheng Fan, Jialun Yin, Yuzhi Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Liheng Fan, Jialun Yin, Yuzhi Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

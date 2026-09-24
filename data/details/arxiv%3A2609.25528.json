@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.25528",
+  "sourceItemId": "2609.25528",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.25528",
+  "detail": {
+    "longDescription": "arXiv:2609.25528v1 Announce Type: new Abstract: Flaky tests pass or fail non-deterministically on unchanged code, eroding trust in test suites and inflating the cost of every failure. Shaker detects them by injecting resource contention (CPU, memory, and I/O stress) to amplify non-determinism caused by concurrent execution, and was reported to detect 95% of the flaky tests in a Java and Android benchmark against 37.5% for plain re-execution (ReRun). We present the first empirical evaluation of Shaker for Python. Drawing non-order-dependent flaky tests from the ground-truth dataset of Gruber et al., we compare Shaker against a budget-matched ReRun baseline in a paired design, giving both techniques the same number of test executions: Each of 137 tests is run 100 times under each. As configured for Java and Android, Shaker provides no statistically significant detection advantage over plain re-execution (37.2% vs. 35.8%; McNemar exact p = 0.84). Two findings explain why. First, fewer than half of the ground-truth flaky tests reproduce as flaky at all on independent hardware under either technique, and most of the tests that fail to reproduce never diverge once across 100 runs. Second, the tests that do reproduce are dominated by flakiness from network interactions and randomness rather than the concurrency Shaker targets. Beyond the tool, this exposes a broader hazard for the field: reusing a flaky-test ground truth across execution environments silently converts genuine flaky tests into apparent true negatives, deflating any tool's measured recall.",
+    "developer": "Gabriela Leal, Denini Silva, Leopoldo Teixeira",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Gabriela Leal, Denini Silva, Leopoldo Teixeira"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

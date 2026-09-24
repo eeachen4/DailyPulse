@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005085",
   "sourceItemId": "80005085",
+  "fetchedAt": "2026-09-24T01:43:49.116Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005085/pymysql-pool-how-to-close-pool-cleanly",
   "detail": {
     "longDescription": "It has been suggested that I should use PyMySQL as opposed to mysql-connector-python as it is apparently faster and more reliable. However I cannot find any information on how to close a PyMySQL pool cleanly. Do they even need closing manually or does it close the idle connections itself as it is removed from memory? import pymysql.cursors import pymysqlpool config={'host':'...', 'database':'...', 'user':'...', 'password':'...', 'autocommit':True} db_pool = pymysqlpool.ConnectionPool(size=2, maxsize=3, pre_create_num=2, name='db_pool', **config) db_conn = db_pool.get_connection() # ... run pymysql db_conn.close() # <- this closes active connection db_pool = None # <- how to close all idle connections cleanly",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "29"
+        "value": "76"
       },
       {
         "label": "状态",

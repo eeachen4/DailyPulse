@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wol78y",
+  "sourceItemId": "1wol78y",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1wol78y/jev_broke_down_724_live_ads_from_37_brands_in_40/",
+  "detail": {
+    "longDescription": "There’s a viral demo on X by Matthew Berman where Jev processed 724 live ads across 37 brands in 40 seconds, running 8,700+ discrete classifications for $0.09 in tokens.\n\nSince Jev is purely a structured text classification model and doesn't take raw image tensors, a lot of people were confused about how it pulled this off so Berman noted in the replies that the upstream pipeline uses Gemini with embeddings to extract the raw visual/text tokens, which are then passed into Jev's API to evaluate predefined schema targets (`Choice`, `Score`, `Noul`) in parallel.\n\nUnlike traditional autoregressive generation where tokens are predicted one by one, Jev samples all schema decisions in a single forward pass and eliminates sequential token latency, hitting 216ms median latency per record.\n\nUnlike training a custom BERT or DeBERTa classification head, it works out of the box against arbitrary schema definitions and because it operates under a 32k context window and lacks persistent memory, you can't rely on it for complex multi-step reasoning or tasks requiring deep organizational context. It’s an intelligent conditional router, not an autonomous agent.\n\nAlso here's a deep dive examining these benchmarks, contrasting the overhyped claims against practical production pipelines on this [newsletter ](https://gtm-engine.ai/p/jev-in-gtm-what-it-is-what-s-overhyped-what-s-great)if you want to see how it performs in live workflow architectures.\n\nIt’s a very clean primitive for reducing glue code and offloading basic classification from frontier models, provided you keep it inside its actual design boundaries.",
+    "externalUrl": "https://v.redd.it/1mptaf1wpcrh1",
+    "developer": "sibraan_",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

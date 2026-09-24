@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1womk3k",
+  "sourceItemId": "1womk3k",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1womk3k/reviewing_an_agents_restart_request_during_a/",
+  "detail": {
+    "longDescription": "Say an agent proposes a restart on a host that's still running a training job. I'd check what would stop and when the last checkpoint was saved before approving it.\n\nIn Skyportal's CLI, \\`skyportalai --json chat status CHAT\\_ID\\` lets you inspect pending approval requests. If the restart needs to wait, you can reject that request and explain why:\n\nskyportalai chat reject CHAT\\_ID APPROVAL\\_ID --reason \"Training is still running on this host.\"\n\nReplace \\`CHAT\\_ID\\` and \\`APPROVAL\\_ID\\` with the IDs for your chat and the pending request. This rejects an action waiting for approval. It won't stop a running command or undo one that's finished.",
+    "developer": "Extra_Credit8695",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
