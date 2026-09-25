@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpb12b",
+  "sourceItemId": "1wpb12b",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wpb12b/jev_does_not_play_dice_83_probability_19_accuracy/",
+  "detail": {
+    "longDescription": "Ran a calibration check on Jev using inputs where the true probability is known exactly.\n\n* Fair die, Choice, 400 trials: picked face 1 every time at 82.9% mean probability, 19% accuracy\n* Fair coin: 92% reported, 52% right\n* Noul stayed close to the truth for 2 to 4 options, but reported 15 to 17% for 8 to 20 options (true: 5 to 12.5%)\n* A forecast doc stating a 30% shortage risk came back as 5% via Choice, 27% via Noul\n\nOn tasks close to the demos, I didn't see errors this large, and some MMLU-style checks look well calibrated. But exam questions test whether a model knows that a question is hard. The dice test whether it knows that the outcome is unknowable from the input.\n\nMaybe Jev is weak at the second kind, especially in Choice probabilities.\n\nWrite-up: [https://kantahayashiai.github.io/posts/jev-does-not-play-dice/](https://kantahayashiai.github.io/posts/jev-does-not-play-dice/)\n\nCode and data: [https://github.com/KantaHayashiAI/jev-does-not-play-dice](https://github.com/KantaHayashiAI/jev-does-not-play-dice)",
+    "developer": "kh-ai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

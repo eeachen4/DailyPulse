@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpf2up",
+  "sourceItemId": "1wpf2up",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wpf2up/an_agent_retrying_the_same_failed_action_with/",
+  "detail": {
+    "longDescription": "I noticed this with a research agent last week.\n\nThe first tool call failed with a permission error. It tried again with basically the same tool and the same arguments. Then it tried a third time.\n\nThe reasoning looked different each time, though.\n\nDifferent explanation for why the next attempt might work. Slightly different framing. If I had only looked at the reasoning trace, it would've been easy to think the agent was exploring different approaches.\n\nBut when I looked at the actual tool calls, nothing had really changed.\n\nSame tool. Almost the same arguments. Same failure.\n\nThat was the interesting part for me: the narration was changing, but the behavior wasn't.\n\nSo I added a simple check that compares recent tool calls structurally instead of looking at the reasoning. If the agent keeps making near-identical calls after the same failure, it has to either try a genuinely different tool/approach or stop.\n\nIt feels like something the model should be able to recognize by itself.\n\nBut in practice, I wouldn't rely on that happening consistently.\n\nHas anyone else run into this with agents? How are you detecting when a \"retry\" is actually just the same action with different reasoning around it?",
+    "developer": "ClickOk5811",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

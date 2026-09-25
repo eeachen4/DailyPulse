@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wp98o4",
+  "sourceItemId": "1wp98o4",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wp98o4/how_far_should_a_dockerbased_learning_lab_go_in/",
+  "detail": {
+    "longDescription": "I’m the coauthor of Torollo, an MIT-licensed system-design learning lab. Torollo turns a topology drawn on a canvas into running Docker containers and bridge networks. Learners configure routes and network policies, then complete exercises against that local environment.\n\nThe scope matters: Torollo is an educational execution model, not a staging environment. A passing exercise means the learner configured the requested behavior inside the local Docker lab. It does not certify that an equivalent AWS, Kubernetes, or production deployment is correct.\n\nThe Docker-specific problem I’m working through is per-service network policy.\n\nSuppose an exercise asks the learner to allow \\`web\\` to reach \\`db\\` on TCP/5432 while preventing the load balancer from reaching the same port. I want that decision to affect actual local traffic rather than only changing a diagram.\n\nThe current implementation works like this:\n\n\\- Each subnet becomes a user-defined Docker bridge network.  \n\\- Each lab node is a real container with \\`NET\\_ADMIN\\`.  \n\\- Torollo resolves policy references such as \\`web\\` and \\`db\\` to the containers’ current IP addresses.  \n\\- It installs ordered rules in Torollo-managed iptables chains inside each container.  \n\\- Conntrack accepts \\`ESTABLISHED,RELATED\\` traffic, followed by the learner’s rules and a default inbound rejection.  \n\\- A NAT gateway node uses IP forwarding and masquerading.\n\nOn Docker versions that support it, Torollo creates the subnet bridges with \\`gateway\\_mode\\_ipv4=nat-unprotected\\` as part of its routed-lab setup. A privileged host-network helper then enables the forwarding needed for traffic between the simulated subnets and adjusts masquerading for private-to-private traffic.\n\nThat host-level setup is the part I am least comfortable with. It is intended for a disposable local lab, but I would not present it as a production networking pattern.\n\nThere are other limitations:\n\n\\- A learner with root access inside a container can modify its firewall.  \n\\- Policy identity is translated to container IP addresses rather than attached to a stable interface identity.  \n\\- Rootless Docker and Docker Desktop still need a clearer support and failure matrix.  \n\\- The UI currently uses the term “security group,” even though the implementation is not equivalent to a cloud security group.\n\nNetwork exercise validators currently inspect the compiled semantic policy. A separate TCP self-test checks whether the Docker host can route traffic between subnet bridges. A passing exercise therefore confirms the learner’s configuration inside Torollo’s model. It is not presented as evidence about production.\n\nGiven that educational scope, which implementation would you choose?\n\n1. Keep the per-container rules, rename the concept to “network policy,” and document the limitations.\n\n2. Move enforcement to the host forwarding path: \\`DOCKER-USER\\` with Docker’s iptables backend, or a separate nftables table and base chain with the nftables backend. This would introduce additional privileges and platform differences.\n\n3. Stop treating the policy as an enforced Docker firewall abstraction. Validate the learner’s policy semantically, and use targeted packet probes only to demonstrate the underlying Docker network behavior.\n\nI’m also interested in the validation boundary. If an exercise says “web must not be able to reach db:5432,” should Torollo actually attempt that TCP connection before marking the exercise as passed? Or is validating the compiled policy sufficient once the local Docker dataplane has passed a separate health check?\n\nRepository, for implementation context: [https://github.com/Derssa/Torollo](https://github.com/Derssa/Torollo)\n\nPosted with moderator approval.\n\n",
+    "developer": "Rude_Bag8502",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

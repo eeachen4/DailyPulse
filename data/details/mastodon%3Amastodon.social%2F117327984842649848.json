@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117327984842649848",
+  "sourceItemId": "mastodon.social/117327984842649848",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-5944e42a-8e123123c675aff4",
+  "detail": {
+    "longDescription": "I Just Wanted to Create Tasks From My Phone I have ideas when I am working, at the gym, or walking the dog. If I notice something to fix in one of my personal projects, I want to say: “I need to fix the account editing flow. Not now.” Then I want to forget about it until I have time. So I connected ChatGPT to TickTick. I can describe a task, and ChatGPT creates a short title with the right project tag. If I say “later,” it goes to Backlog. If I say “maybe,” it goes to Not Sure. That was supposed to be the whole thing. Then I had another idea: what if I say the agent can start? A task is not permission to write code TickTick is where I keep my plans. Some tasks are uncertain. Some may never become code. I do not want every thought I have while walking the dog to start changing a repository. So the words matter: “Add this for later” creates a planning task. “Maybe we should do this” keeps it uncertain. “You can do it now” authorizes engineering work. For that last case, I want ChatGPT to create a GitHub Issue with enough context for a coding agent to pick it up. The agent follows the repository’s instructions, implements the change, tests it, and opens a Pull Request for me to review. flowchart TD A[\"Me, from my phone\"] --> B[\"ChatGPT\"] B --> C[\"TickTick: my plans\"] B -->|When I authorize work| D[\"GitHub Issue\"] D --> E[\"Coding agent\"] E --> F[\"Pull Request for my review\"] Am I reinventing something? I wondered about that. GitHub already has coding agents that can take an Issue and open a PR. The Issue → agent → PR part is an existing pattern. The part I care about is what happens before the Issue exists. I speak naturally, and the system needs to understand whether I am saving an idea or asking for work to begin. Creating a task should never silently become permission to change code. I also started building a runner on my own computer. The idea is for it to pick up Issues marked ready for an agent and run Codex using my local clones and the rules in each repository. I am testing that now. The first runs have already exposed problems with CLI flags, Windows commands, branches, and recovery. So I cannot say this works end to end yet. Those problems are frustrating, but they are also teaching me what a reliable queue needs. What happens when an agent fails? Can it skip that Issue and continue with the next one? How does it avoid doing the same work twice? How do I know what is still running? Where I want this to go I want to notice a problem, say “add this for later” or “the agent can start,” and get back to what I was doing. The repository decides how the code work is done. I review the PR before it becomes part of the project. Maybe a ready-made tool will eventually do this whole flow. For now, building my own version is helping me understand where the hard parts are. I started by trying to make TickTick a little easier to use from my phone. Somehow I ended up debugging an agent runner on my PC. Things got out of hand pretty quickly. This post is based on my own experience and ideas. I used AI to help me write it in English. # ai # automation # chatgpt # productivity # software # coding # development # engineering # inclusive # community I Ended Up Building an AI Development Pipeline",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

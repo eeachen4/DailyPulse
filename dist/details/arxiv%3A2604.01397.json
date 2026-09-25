@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.01397",
+  "sourceItemId": "2604.01397",
+  "fetchedAt": "2026-09-25T01:55:13.026Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.01397",
+  "detail": {
+    "longDescription": "arXiv:2604.01397v2 Announce Type: replace Abstract: This paper introduces EXaCTz, a parallel algorithm that corrects lossy-compressed scalar field data to preserve extremum graphs and contour trees concurrently. While error-bounded lossy compression is essential for large-scale scientific simulations and workflows, existing topology-preserving methods suffer from (1) a significant throughput disparity, where topology correction speeds are on the order of MB/s, lagging orders of magnitude behind compression speeds on the order of GB/s; (2) limited support for diverse topological descriptors; and (3) a lack of theoretical convergence bounds. To address these challenges, EXaCTz introduces a high-performance, bounded-iteration algorithm that enforces topological consistency by deriving targeted edits for decompressed data. Unlike prior methods that rely on explicit topology reconstruction, EXaCTz enforces consistent min/max neighbors of all vertices, along with global ordering among critical points. As such, the algorithm enforces consistent critical-point classification, saddle--extremum connectivity, and the preservation of merge/split events. We theoretically prove the convergence of our algorithm, bounded by the longest path in a vulnerability graph that characterizes potential cascading effects during correction. Experiments on real-world datasets show that EXaCTz achieves a single-GPU throughput of up to 4.52 GB/s, outperforming the state-of-the-art contour-tree-preserving method (Gorski et al.) by up to 213x (with a single-core CPU implementation for fair comparison) and 3,285x (with a single-GPU version). In distributed environments, EXaCTz scales to 128 GPUs with 55.6% efficiency (compared with 6.4% for a naive parallelization), processing datasets of up to 512 GB in under 48 seconds and achieving an aggregate correction throughput of up to 32.69 GB/s.",
+    "developer": "Yuxiao Li, Mingze Xia, Xin Liang, Bei Wang, Hanqi Guo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuxiao Li, Mingze Xia, Xin Liang, Bei Wang, Hanqi Guo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

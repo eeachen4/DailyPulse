@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpd0hw",
+  "sourceItemId": "1wpd0hw",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wpd0hw/i_built_a_minimal_opensource_ai_agent_runtime/",
+  "detail": {
+    "longDescription": "https://preview.redd.it/9tk5dzpr4jrh1.png?width=1919&format=png&auto=webp&s=bac01a9bede5e8d66997a6feb5ef0846bd150478\n\nI've been building AI agents for a while, and I kept running into the same problem:\n\n**The agent framework often becomes more complicated than the agent itself.**\n\nSo I started building **Phoson** — an open-source, framework-free Python runtime for AI agents, together with a terminal CLI.\n\nThe idea is pretty simple:\n\n>**Keep the agent harness small, understandable, and replaceable.**\n\nNo LangChain. No LangGraph. No huge abstraction layer.\n\nJust a runtime that handles the things an actual agent needs:\n\n* ReAct-style agent loop\n* Multiple LLM providers behind one interface\n* Tools + MCP\n* Typed streaming events\n* Branchable/resumable sessions\n* Token/cost tracking\n* Extensible plugins\n* Terminal-first workflow\n* Bring your own API keys\n* MIT licensed / open source\n\nThe CLI is the part I've been using the most.\n\nYou can start a session directly from your terminal, switch between providers/models, attach tools or MCP servers, and keep working from previous sessions.\n\nThe goal isn't to build another \"AI coding assistant clone\".\n\nI'm more interested in the **agent harness itself** — the runtime layer between an LLM and the real world.\n\nI've also been writing about agent architecture and the direction I think agent harnesses are taking, including things like context management, tools, long-horizon tasks, MCP, sandboxing, and minimal agent loops.\n\n🌐 **Phoson:** [phoson.lat](https://phoson.lat/)\n\n📦 **GitHub:** [Phoson on GitHub](https://github.com/abelsr/phoson-engine-minimal)\n\n💻 **CLI:** [Phoson CLI](https://phoson.lat/install)\n\nI'd especially love feedback from people building agents:\n\n**What do you think an agent runtime should handle, and what should it deliberately stay away from?**\n\nI'm trying to keep Phoson small rather than turning it into another giant framework, so criticism around the architecture is very welcome.",
+    "developer": "abelsr_1710",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

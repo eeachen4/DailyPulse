@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005245",
   "sourceItemId": "80005245",
+  "fetchedAt": "2026-09-25T01:55:13.026Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005245/git-tool-to-git-revise-an-uncommitted-hunk-into-a-selected-commit-and-updating-a",
   "detail": {
     "longDescription": "One of the chores of git is to move uncommitted hunks into the right commit. To illustrate (by printing the diff on top of the commit stack): In this example, the foo-change belongs in the foo-commit, which is HEAD~2, pointed to by branch-foo, which several other local branches are based on. Problem: The traditional ways to do this are laborious and have unwanted side-effects (see goals below). Has anyone come up with a tool that does precisely this, and does it well? Goals: Single-step workflow (preferably atomic): I'm prone to be interrupted. No invisible staging: I can tolerate if the tool automates creating a temporary commit (although I prefer not, as it affects the point below, not to mention commit-hooks), but staging is a source of mistakes for me. This disqualifies git-absorb. I don't want to type things like HEAD~2, as that number changes by the minute. Must update refs (like git rebase --update-refs ) Assume I'm compiling: No touching of the workspace allowed. I only know of git-revise that accomplishes this. What I currently do: I commit the changes as \"asdf\", interactively git-revise them into the right commit, and I have to use and maintain a custom fork of git-revise that also updates the affected refs.",
     "developer": "user2394284",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "55"
+        "value": "79"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

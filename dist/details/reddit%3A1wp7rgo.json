@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wp7rgo",
+  "sourceItemId": "1wp7rgo",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wp7rgo/when_it_comes_to_backups_how_are_you_utilizing/",
+  "detail": {
+    "longDescription": "Compute resources, networking, secrets, policies and all of that are usually version controlled and reconciled by tools like ArgoCD and more.\n\nIt feels like backup never got that treatment. It's always click these things, run those commands or maybe a script + cron job and none of these solutions are automatically aware of cluster changes like a new PVC that was just added.\n\nWhen I think of infrastructure as code, it's not just putting files in a git repo. It's the whole story around reconciliation, observing drift and always being in a correct state. Compare that to backups that are at best a schedule, it's not the same loop.\n\nI'm curious, how do you handle backups?\n\nOn a related note, Plakar recently released a Kubernetes operator, Terraform provider and Ansible provider to help make backups easier to keep correct and in sync with your code / clusters. You can read more about that here: https://www.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/\n\nI don't see too many other projects supporting this concept. Have you seen any?\n",
+    "developer": "nickjj_",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

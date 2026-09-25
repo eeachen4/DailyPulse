@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpjt4j",
+  "sourceItemId": "1wpjt4j",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wpjt4j/research_proposal_cognitive_sharding_a_systems/",
+  "detail": {
+    "longDescription": "https://preview.redd.it/z2a8tjtenkrh1.png?width=2408&format=png&auto=webp&s=c0827215bf3e0342cf004d095b3db24512990c68\n\nComputer-use agents do not need one large model to perform every cognitive function.\n\nCognitive Sharding partitions the agent across specialist models, then coordinates them through a code-owned control plane. The current implementation uses: \n\n\\- Bonsai 2 27B for reasoning and planning \n\n\\- Kev 4B, built on Qwen3.5 4B, for rapid action selection \n\n\\- UI-Mate 9B for visual grounding\n\nThe control plane owns execution state, model residency, validation, retries, and recovery. Models receive bounded decisions instead of unrestricted control over the agent loop.\n\nThis separation changes the hardware requirements. Models can be loaded and unloaded transactionally according to the current execution phase. The system therefore runs a complete local computer-use stack within the memory limits of a 16 GB consumer computer.\n\nThis is different from a mixture-of-experts model. The shards are independent models with different inputs, training objectives, runtimes, and authority. Their composition happens at the system level, not inside one neural network. The approach document describes the planner–selector–grounder architecture, candidate construction, bounded execution, environment-verified recovery, and memory-aware model residency.\n\nI've added more details here: [https://github.com/off-grid-ai/cognitive-sharding#cognitive-sharding-a-systems-architecture-for-computer-use-on-consumer-hardware](https://github.com/off-grid-ai/cognitive-sharding#cognitive-sharding-a-systems-architecture-for-computer-use-on-consumer-hardware)\n\nWill run it against additional benchmarks and will publish the results soon. ",
+    "developer": "alichherawalla",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

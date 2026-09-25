@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpj7x0",
+  "sourceItemId": "1wpj7x0",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1wpj7x0/sora_may_be_gone_for_now_but_it_lives_on_in_my/",
+  "detail": {
+    "longDescription": "SORA-MAN is a tribute to the recently deceased Sora. It's an AI satire of Pac-Man, and instead of pellets you eat Nvidia chips this time. The ghosts are Claude, Muse, Grok and Gemini. Opus 5.5 got very enthusiastic about writing its own chase logic and even directed the trailer for the game (pipeline included in the repo).\n\nGame Modes:\n\n* Classic, the 1980 Pac-Man rules reproduced faithfully, speed tables, cornering, ghost targeting.\n* Remix, seven AI-themed power-ups (Token Beam, Rate Limit, Context Overflow, RAG and more), a unique skill per character, and a two-player Constellation beam.\n* Sunset, an endless procedurally generated climb away from a glitch that deletes everything.\n* Versus Arena, a four-star battle royale with Easy, Normal and Hard bots.\n* Local multiplayer for up to four on one desktop, mixing keyboards and gamepads, with a join and ready-up lobby and controller disconnect handling. I only tested it with two players myself, so it might not work well, but feel free to open an issue on GitHub.\n\nHow it was built:\n\n1. First I oneshotted an arcade-exact clone with no original art at all. Then I improved it using this repo: [https://github.com/masonicGIT/pacman](https://github.com/masonicGIT/pacman)\n2. A complete audio overhaul followed, powered by [https://github.com/ttencate/jfxr](https://github.com/ttencate/jfxr) 's excellent toolkit.\n3. After that came a new AI cast, GPT Image 2.5 renders translated to code by Astra and enhanced by Opus 5.5. That was the moment all the iconic characters were born. I first called the game ASTRA-MAN because it fit the vibes, but then I realized it would be funnier to call it SORA-MAN, since the hero was already based on Sora.\n4. A big refactor came next. The engine got registries and hooks for rulesets, power-ups, ghost brains and skills, so every mode after that plugged in without touching the classic rules. Then the modes, the maze generator, the synthesized audio, the rename, and a trailer built entirely in code.\n\nBest practices and findings:\n\n1. Snapshot before every change. There are 33 dated backups, which made it painless to let the agent try bold things.\n2. Ask for outcomes and evidence (\"prove the bots don't stall over 100 matches\"), not code.\n3. Bot and multiplayer bugs only show up over long runs. Headless sims found things that a few rounds of playtesting missed.\n4. Recorded arcade audio was a dead end for a public release. Generating sounds that follow the originals' pitch contours was the fix.\n5. Opus 5.5 is amazing.\n\nI'd love your feedback on every part of the game. Hope it gives you a lot of fun moments! :)\n\nPlay in your browser: [https://henrik-thevibe.github.io/SORA-MAN/](https://henrik-thevibe.github.io/SORA-MAN/)  \nRepo link: [https://github.com/henrik-thevibe/SORA-MAN](https://github.com/henrik-thevibe/SORA-MAN)",
+    "externalUrl": "https://v.redd.it/lno3d2g5ikrh1",
+    "developer": "dagerika",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "/r/ChatGPT/comments/1wpj7x0/sora_may_be_gone_for_now_but_it_lives_on_in_my/"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

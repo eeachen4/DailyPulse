@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117328474820975074",
+  "sourceItemId": "mastodon.social/117328474820975074",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-55b2b5b7-2649b5c5cccbb7ba",
+  "detail": {
+    "longDescription": "Kubernetes Admission Control: From Pod Security Standards to Policy-as-Code Gates Kubernetes security guidance often stops at recommendations. Admission control is where recommendations become gates that a workload cannot pass without meeting them. Why the reader needs this A cluster that relies on documentation and review will eventually run a workload that violates its own rules. Admission controllers evaluate requests before objects are persisted, which means a policy can reject a non-compliant pod rather than relying on someone noticing it later. The built-in Pod Security Standards provide a baseline without any additional tooling. Policy engines extend that baseline to organization-specific rules. Technical context Admission controllers run after authentication and authorization. Mutating controllers can change an object; validating controllers can reject it. Pod Security Admission enforces one of three levels, privileged , baseline or restricted , on a namespace, and can run in audit or warn mode before enforcement. Policy engines such as Open Policy Agent Gatekeeper or Kyverno add rules that the built-in controls do not cover, for example requiring an image registry, a resource limit, or a specific label. Explanation: designing gates that people can live with The failure mode of admission control is not weakness but overreach. A policy that blocks legitimate deployments is quickly disabled, and the cluster returns to its previous state. A workable sequence is to start in audit mode, collect the violations that actually occur, and then enforce the rules that the environment can satisfy. Namespace-level exceptions are preferable to cluster-wide exemptions, because they keep the exception visible. Mutating policies deserve particular care. A policy that injects a sidecar or rewrites an image reference changes what runs in production, and it should be reviewed with the same rigor as application code. Defensive implications Enable Pod Security Admission in audit mode first, then enforce baseline and move toward restricted where workloads allow. Use a policy engine for organization-specific rules, and keep the policy source in version control. Restrict who can modify admission policies, since a policy change is a cluster-wide security change. Monitor admission denials, which are a useful signal of both misconfiguration and attempted abuse. Test policies against real workloads before enforcement, and document every exception with an owner and an expiry. Limits exist. Admission control does not inspect runtime behavior, and it cannot fix a workload that is already running. It is a gate, not a monitor. References Kubernetes documentation, Pod Security Standards. Kubernetes documentation, Admission Controllers Reference. Open Policy Agent Gatekeeper documentation. # kubernetes # policy # admissioncontrol # software # coding # development # engineering # inclusive # community Kubernetes Admission Control: From Pod Security Standards to Policy-as-Code Gates",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

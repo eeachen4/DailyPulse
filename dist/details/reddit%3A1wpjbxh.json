@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpjbxh",
+  "sourceItemId": "1wpjbxh",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wpjbxh/a_release_claim_that_does_not_match_git/",
+  "detail": {
+    "longDescription": "A release is a claim. A fix version, a change ticket, or release notes you typed: these are the changes you say are in this ship. A Jira fix version is the same claim.\n\nGit does not know about that claim. Generating release notes from the tag always matches, so it cannot catch a claim that is already wrong. A commit can cite a ticket the version never listed. A ticket on the version can have no commit. If the previous tag is not an ancestor of this one, the range itself is not proven.\n\nShipledger checks the claim you wrote against a local git range. It does not fetch Jira, it does not generate the notes, and it does not deploy.\n\nThe public demo uses GitHub releases only because those notes are visible:\n\nv0.2.0 lists #1 and #2. Both are in the tag. The check exits 0.\n\nhttps://github.com/kacxx/shipledger-demo/releases/tag/v0.2.0\n\nv0.3.0 lists only #3. The tag also contains #4. The check exits 1.\n\nhttps://github.com/kacxx/shipledger-demo/releases/tag/v0.3.0\n\nREADME has the commands. Not on npm yet.\n\nhttps://github.com/kacxx/shipledger\n\nhttps://github.com/kacxx/shipledger-demo",
+    "developer": "kacxx00",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

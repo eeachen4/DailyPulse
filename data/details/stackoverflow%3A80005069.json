@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005069",
   "sourceItemId": "80005069",
+  "fetchedAt": "2026-09-25T01:55:13.026Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005069/how-to-use-array-prototype-every-to-check-if-all-audio-files-are-muted",
   "detail": {
     "longDescription": "Working on a neocities site/art project with an audio playback and refresh function. I want the refresh button to trigger a fade out -> mute on all audio files and then check to make sure all audio files are muted before refreshing the page. Here's the code so far: function Refresh() { function fadeOutAllAudio() { const myAudio = document.querySelectorAll('audio'); myAudio.forEach(audio => { const fadeInterval = setInterval( () => { if (audio.volume > 0.01) { audio.volume -= 0.015; } else { audio.muted = true; clearInterval(fadeInterval); } }, 50); }); } fadeOutAllAudio(); } I previously had window.location.refresh() right after clearInterval , which works great when all audio files start at the same volume, but if one was to be higher/lower than the others it will refresh as soon as only one of them hits zero. Turned myAudio NodeList into an array and tried this out but now files are instantly muting / page is refreshing instantly on click. let audioArray = Array.from(myAudio) audioArray.every(audio => { const fadeInterval = setInterval( () => { if (audio.muted = true) { window.location.reload(); } else { // do nothing } }, 50); }); Wondering how to format to isolate \"true\" return of audioArray.every after it has checked if all files are muted?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "85"
+        "value": "91"
       },
       {
         "label": "状态",

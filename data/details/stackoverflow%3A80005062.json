@@ -7,19 +7,19 @@
   "detail": {
     "longDescription": "DNS: transient error (try again later) I’m seeing an intermittent DNS resolution failure when running an Alpine-based GitLab CI job. The job runs the following command: apk add --no-cache openssh-client curl On one pipeline run, it failed with: WARNING: fetching https://dl-cdn.alpinelinux.org/alpine/v3.23/main/x86_64/APKINDEX.tar.gz: DNS: transient error (try again later) ERROR: unable to select packages: curl (no such package): required by: world[curl] ERROR: Job failed: command exited with code 1 The pipeline succeeded when rerun without any code or configuration changes. I also tested the exact Alpine package URL from my local Windows machine and received HTTP 200 OK , so the URL itself was reachable from my workstation. Could this indicate an intermittent DNS or network issue within the GitLab runner/container environment? What would be the best way to distinguish a DNS issue on the runner from an Alpine repository/CDN connectivity issue?",
     "developer": "Ellivremmos Xam",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
-      },
-      {
-        "label": "回答",
         "value": "2"
       },
       {
+        "label": "回答",
+        "value": "1"
+      },
+      {
         "label": "浏览",
-        "value": "54"
+        "value": "67"
       },
       {
         "label": "状态",

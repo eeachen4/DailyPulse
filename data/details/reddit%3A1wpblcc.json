@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpblcc",
+  "sourceItemId": "1wpblcc",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wpblcc/what_do_you_do_when_the_agent_just_doesnt_happen/",
+  "detail": {
+    "longDescription": "I build phone agents! I keep hitting a weird failure mode. The call connects fine over SIP; audio is flowing. Then the agent goes quiet for a beat, like it forgot it's in a call. It's not a crash. There's no error in the logs. It just doesn't happen for a second or two.\n\n  \nI've tried to isolate it. Sometimes it lines up with a slow STT response from Deepgram. Sometimes there's nothing slow at all; no long turn, no weird input, and it still stalls. My guess is the VAD or turn taking logic decides it's not the agent's turn. It just sits there instead. I can't prove that from the logs I have.\n\n  \nOn a web chat this would be invisible. You'd wait a second and not think about it. On a phone call it's brutal! Callers hang up after 2 or 3 seconds of dead air. Or they start talking over the silence, and the turn taking gets even more confused.\n\n  \nHas anyone else run into this exact thing? The agent is alive and listening but not producing a turn when it clearly should. Is this a known bug category with a name? Or is it usually specific to whatever orchestration stack someone is running: LiveKit, Vapi, Retell, or something custom? Also curious what people log to catch it, since normal error logging shows nothing when this happens! Any fix that actually worked would help.",
+    "developer": "Kindly-Duty272",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

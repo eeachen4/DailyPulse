@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpg32w",
+  "sourceItemId": "1wpg32w",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wpg32w/7900_xtx_two_lowthinking_qwen_38_27b_quants_swift/",
+  "detail": {
+    "longDescription": "**First, do they actually produce less tokens?**\n\nYes. Total tokens per benchmark run (4 scenarios): base quant \\~66k, ThinkingCap \\~49k (−26%), Swift \\~45k (−33%). So the \"less thinking\" is real — and Swift cuts the most.\n\n**Then the cost:**\n\nand this is where it got interesting. The two quants don't trade off the same way:\n\n* Decode: base \\~48 t/s. ThinkingCap barely changes (\\~43). Swift drops hard (\\~32, −33%).\n* Prefill / TTFT — the opposite of what I expected: Swift is the fastest (\\~614 t/s, TTFT \\~1s), base in between (\\~530 t/s, \\~1.2s), ThinkingCap the slowest (\\~100 t/s, TTFT 6–11s).\n* Quality holds: \\~84–87 on my eval, same band as base.\n\n**Full run data:**\n\nThinkingCap finishes \\~23% faster than base. The token savings win even with the slow prefill. Swift is break-even because of the slower decode speed.\n\n\n\n|*Quant*|*Prefill*|*Decode*|*Quality*|*Runtime*|\n|:-|:-|:-|:-|:-|\n|Base (unsloth)|\\~530 t/s|\\~48 t/s|\\~85|\\~1407s|\n|ThinkingCap|\\~100 t/s|\\~43 t/s|\\~85|\\~1087s|\n|Swift|\\~614 t/s|\\~32 t/s|\\~86|\\~1400s|\n\n\n\nCaveat: 2 runs per quant only, so single-run variance will move these. Prefill speed of ThinkingCap is oddly low. Need to do some more tests on that.\n\n\n\nSide-by-side (thinking xhigh, Q4\\_K\\_M, all 7900 XTX) of 3 of the runs:\n\n[https://llm-bench.io/compare/runs?runs=cmufxkpkb00bj01o05h9vsu5o,cmufwold900ay01o0ae1frktu,cmufyiq3p00by01o0vwbpilew](https://llm-bench.io/compare/runs?runs=cmufxkpkb00bj01o05h9vsu5o,cmufwold900ay01o0ae1frktu,cmufyiq3p00by01o0vwbpilew)",
+    "developer": "DerTomsn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

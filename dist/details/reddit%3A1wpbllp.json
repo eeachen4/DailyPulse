@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpbllp",
+  "sourceItemId": "1wpbllp",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wpbllp/about_transferable_objects_structured_cloning/",
+  "detail": {
+    "longDescription": "1. Transferable Objects\n\nThink of Transferable = cut + paste.\n\nconst buffer = new ArrayBuffer(1024);  \nworker.postMessage(buffer, \\[buffer\\]);  \n  \nThe second argument \\[buffer\\] is the transfer list. It means: :- Transfer ownership of this buffer to the worker. After transferring, the original buffer becomes detached and can't be used normally.\n\nWhy do this? Because copying a large ArrayBuffer can be expensive. Transferring allows ownership to move instead of copying the data.\n\n2. Structured Cloning\n\nStructured cloning is somewhat like: JSON.stringify() + JSON.parse() but much more capable. structuredClone() can correctly clone many JavaScript types such as: Date , Map , Set , BigInt , undefined and nested objects.  \n  \nJSON serialization can lose or change the behavior/type of several of these.\n\nOne important limitation: Functions cannot be structured-cloned.\n\n3. Dedicated Web Worker\n\nJavaScript normally executes application code on the main thread. If we do heavy work there, such as face detection in the browser, the main thread can become busy: UI freezes , buttons become delayed , animations lag and scrolling becomes laggy\n\nThis is what Web Workers help solve.\n\nA Dedicated Web Worker is a separate JavaScript execution environment running on another thread. It has its own: Global context , Call stack , Event loop , JavaScript execution and all.. .And a dedicated worker belongs to a particular page/script rather than being normally shared with other pages.\n\nThe main thread and worker don't directly share normal JavaScript variables.\n\nCommunication usually happens through:\n\n    // Main thread\n    worker.postMessage(data);\n    \n    // Worker\n    self.onmessage = (event) => {\n        // use event.data\n    };\n\n`self` refers to the worker's global environment. The main browser context commonly uses `window`, while a worker doesn't have the normal DOM `window`.\n\nSo the important picture is: Main Thread --> structured clone --> Worker   \nor, for transferable data: Main Thread --> transfer ownership --> Worker\n\n4. SharedArrayBuffer\n\nBut sometimes we don't want to copy or transfer the data. What if both threads need to work with the same memory? That's what `SharedArrayBuffer` is for:\n\n    const buffer = new SharedArrayBuffer(8);\n\nThis creates a shared memory area of 8 bytes.\n\nBoth the main thread and worker can create a TypedArray over that memory and modify the same underlying data.\n\nBut now we have a problem: Two threads can access the same memory at the same time. For example, if the value is 10 and two threads both try to increment it, we might expect 12. But both could read 10 before either writes, resulting in: 11\n\nThis is a **race condition**.\n\nThat's where Atomics come in.\n\n    Atomics.add(numbers, 0, 1);\n\nThis safely adds 1 to `numbers[0]`.\n\nThe operation happens atomically, meaning it is performed as one indivisible operation.\n\nOne important detail: **Atomics only works with specific integer TypedArrays.**\n\nIf you notice anything technically incorrect or something that could be explained better, please let me know.",
+    "developer": "No-Resolution-4054",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

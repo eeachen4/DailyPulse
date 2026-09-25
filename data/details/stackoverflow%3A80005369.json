@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005369",
+  "sourceItemId": "80005369",
+  "sourceUrl": "https://stackoverflow.com/questions/80005369/how-to-catch-keypress-event-on-arrow-keys-and-stop-them-from-moving-focus",
+  "detail": {
+    "longDescription": "I'm trying to catch keypress and keyrelease events on the arrow keys in a QWidget to perform some actions. At first I used QShortcuts, this worked, but I want to develop it further to do some action when the key is pressed down, but not repeat the action if the key is held down, then do something else when it's released. I'm learning how to use eventFilter to do this. I've made the below cut-down example: from PyQt6 import QtWidgets, QtCore class MyWindow(QtWidgets.QWidget): def __init__(self): super().__init__() self.resize(500,300) vbox = QtWidgets.QVBoxLayout(self) vbox.addWidget(QtWidgets.QPushButton(\"A Button\")) vbox.addWidget(QtWidgets.QPushButton(\"Another Button\")) self.text_box = QtWidgets.QPlainTextEdit() self.text_box.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding) vbox.addWidget(self.text_box) self.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus) self.key_filter = KeyFilter() self.key_filter.key_pressed.connect(self.keyPressed) self.key_filter.key_released.connect(self.keyReleased) self.installEventFilter(self.key_filter) def keyPressed(self, key): self.text_box.appendPlainText(\"KeyPress - \" + key) self.text_box.verticalScrollBar().setValue(self.text_box.verticalScrollBar().maximum()) def keyReleased(self, key): self.text_box.appendPlainText(\"KeyRelease - \" + key) self.text_box.verticalScrollBar().setValue(self.text_box.verticalScrollBar().maximum()) class KeyFilter(QtCore.QObject): key_pressed = QtCore.pyqtSignal(str) key_released = QtCore.pyqtSignal(str) def eventFilter(self, obj, event): if event.type() == QtCore.QEvent.Type.KeyPress: if key := self.whichKey(event): self.key_pressed.emit(key) return True if event.type() == QtCore.QEvent.Type.KeyRelease: if key := self.whichKey(event): self.key_released.emit(key) return True return False def whichKey(self, event): if event.key() == QtCore.Qt.Key.Key_A: return \"A\" if event.key() == QtCore.Qt.Key.Key_Left: return \"left\" if event.key() == QtCore.Qt.Key.Key_Right: return \"right\" if event.key() == QtCore.Qt.Key.Key_Up: return \"up\" if event.key() == QtCore.Qt.Key.Key_Down: return \"down\" return None if __name__ == \"__main__\": app = QtWidgets.QApplication([]) win = MyWindow() win.show() app.exec() The problems I've got are: the arrow keys move the focus between the buttons and text box - I thought installing an eventFilter and returning True was supposed to stop any default action? I've tried adding event.accept() before the return but it made no difference. the KeyPress is never shown for the arrow keys, only the KeyRelease. I get KeyPress and KeyRelease for the \"A\" key (except if the QPlainTextEdit has focus, then I only get KeyRelease). I figure the buttons are blocking the KeyPress (and the text box is absorbing KeyPress on the \"A\" key), but again I thought an eventFilter got the events before the child widgets. I know I can stop the buttons & text box receiving focus with setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus) but: I don't want to have to set this on every child widget I still want to be able to use Tab to move between them, but not the arrow keys.",
+    "developer": "Iain",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "115"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

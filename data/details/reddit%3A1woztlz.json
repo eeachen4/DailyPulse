@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1woztlz",
+  "sourceItemId": "1woztlz",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1woztlz/how_do_you_promote_env_var_changes_across_dev_sit/",
+  "detail": {
+    "longDescription": "Looking for insights from experienced DevOps/platform engineers on how you've tackled this in real-world setups.\n\n**Current setup:**\n\n* EKS, ArgoCD, Helm charts, GitLab\n* Gitops repo with a folder per environment (dev / SIT / UAT), each with its own values file\n* Credentials are already in AWS Secrets Manager; this question is only about non-secret env vars\n\n**The problem:**  \nDevelopers change env vars in the dev folder while testing. When the testing moves to SIT, they have to manually pick those changes and add them to the SIT Gitops folder, then do the same again for UAT(initially). Things get missed or copied wrong or formatting, and SIT/UAT breaks because of it. This happens regularly!\n\n**What the developers are proposing:**\n\n1. Branch per environment, so dev merges into SIT, then SIT into UAT\n2. Move env var values to AWS Parameter Store\n\n**My concerns:**\n\n* Branch-per-env: env-specific values (endpoints, hosts) would get merged across environments, leading to conflicts and cherry-picks.\n* Parameter Store: someone still has to copy values from the dev path to the SIT path, so the manual step remains, just without MRs, diffs, or visibility in ArgoCD.\n\nWould really appreciate hearing your insights and the setups you've built for this: how your repo and values are structured, how promotion works, and what you'd do differently if you started again.",
+    "developer": "Alexypuli",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

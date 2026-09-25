@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpbch7",
+  "sourceItemId": "1wpbch7",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wpbch7/my_ops_agent_could_open_gitops_prs_for_anyone_who/",
+  "detail": {
+    "longDescription": "I run an internal ops agent. One tool call gives it a service's health from every angle in about 15 seconds, so it reads everything on a read-only account and I don't gate reads at all. It changes things one way only: a pull request against the GitOps repo.\n\nThat one write path had a gap. The bot's token could open that PR for anyone who talked to it, including people who can't push to that repo themselves. Prompt rules don't fix it; the call runs with the bot's credential whatever the model believes.\n\nSo the tool asks first: may *this person* push to *this repo*? GitHub already knows, so the agent asks GitHub. I pulled that out into a small service, [hallpass](https://github.com/roee-hersh/hallpass), so every write path can use it, in every system the agent touches (GitHub, Kubernetes, Argo CD, Jira, AWS, 21 in total).\n\nIn the agent it's one decorator on the tool. The user comes from your session, never from the model, so the tool schema has no `user` field to talk your way into:\n\n```python\nu/tool\nu/guarded(hp, \"github-main\", \"repo.push\", \"repo:{owner}/{repo}\", user=current_user)\ndef open_config_pr(owner: str, repo: str, patch: str) -> str: ...\n```\n\nAnswers are `allow`, `deny` or `unknown`, and unknown (timeout, rate limit, anything it can't evaluate) means the tool doesn't run. Works with Strands, LangChain, LangGraph, the Claude Agent SDK, or as an MCP server. Single binary, Apache 2.0.\n\nHow do you handle this in your agents today? Per-user OAuth, per-team bots, human approval on writes?",
+    "developer": "Adorable-Algae6903",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

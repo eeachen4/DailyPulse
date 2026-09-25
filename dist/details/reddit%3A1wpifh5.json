@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpifh5",
+  "sourceItemId": "1wpifh5",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wpifh5/i_built_kirigami_a_static_site_generator_that/",
+  "detail": {
+    "longDescription": "Hello everyone!\n\nI've been working on a side project for a while and it's finally at a point where I'm happy to share it: **Kirigami**, a static site generator that lets you write your site in **PHP** and compiles it into clean HTML with no dependencies.\n\nThe twist: you don't need PHP installed, and there's no server to run. PHP runs entirely in **WebAssembly inside Node.js**. You write PHP templates and get plain static files you can host anywhere (GitHub Pages, Netlify, any static host).\n\nAnd as of this week there's a **VS Code extension**, so the whole workflow lives in your editor.\n\n**What it can do:**\n\n* **Write in Markdown.** Drop a `<markdown>` tag anywhere in a page and write content naturally. Indentation is handled for you. You can also point a whole page at a `.md` file.\n* **Real PHP templating.** Includes, loops, functions, layouts. If you know PHP, you already know how to use it.\n* **Organize content with YAML.** Keep your data (articles, team members, menus…) in `.yaml` / `.json` files, not buried in HTML.\n* **Variables in the page header.** Each page starts with a small docblock (`@title`, u/abstract, anything you want). Each annotation becomes a PHP variable. If a value is a file name like u/articles `_articles.yaml`, it's **automatically parsed and loaded** as structured data. Your layouts can use those variables too, so SEO meta tags are easy.\n* **Global config in one file.** Everything in `kirigami.yaml` is exposed to every page (`$project`, `$author`, …), with a JSON schema for autocompletion.\n* **Built-in asset pipeline.** Sass and esbuild are wired in. There's also an image autogenerator (resizing and formats), plus an auto-generated sitemap.\n* **Plugins.** Build-time syntax highlighting (no runtime JS), external link preview cards, YouTube/Vimeo embeds.\n* **MCP server for AI agents.** Connect Claude, Copilot, or any MCP client, and it can inspect your project, search the docs, scaffold a new site from a template, build, export, and run scripts.\n\n**The VS Code extension:**\n\n* **Kirigami: Create Project…** is a wizard that scaffolds a site from an official template (optional git init / npm install)\n* One-click **dev server with live reload**, previewed in VS Code or your browser\n* **Build**, **Export** (production-ready static site), **Run Script**, **Validate Config**\n* Status bar and a clean output panel, so you always know what's building and what failed\n* Works on Windows, macOS and Linux (x64 and ARM)\n\n**Links:**\n\n* 🌐 Website: [https://php-kirigami.github.io](https://php-kirigami.github.io/)\n* 🧩 VS Code extension: [https://marketplace.visualstudio.com/items?itemName=php-kirigami.kirigami-vscode](https://marketplace.visualstudio.com/items?itemName=php-kirigami.kirigami-vscode)\n* 📦 npm (CLI): [https://www.npmjs.com/package/@kirigami/cli](https://www.npmjs.com/package/@kirigami/cli)\n* 📦 npm (engine): [https://www.npmjs.com/package/@kirigami/kirigami](https://www.npmjs.com/package/@kirigami/kirigami)\n* 🤖 npm (MCP server): [https://www.npmjs.com/package/@kirigami/mcp](https://www.npmjs.com/package/@kirigami/mcp)\n* 🚀 GitHub Action for deploys: [https://github.com/marketplace/actions/kiribuild](https://github.com/marketplace/actions/kiribuild)\n* 💻 Source code: [https://github.com/php-kirigami/kirigami](https://github.com/php-kirigami/kirigami)\n\nIt's open source (GPL-3.0) and requires Node.js 24+. It's still young, so feedback, bug reports and feature ideas are very welcome. I'd love to hear what you think!",
+    "developer": "ZmotriN",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

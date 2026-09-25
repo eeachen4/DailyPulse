@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpe83z",
+  "sourceItemId": "1wpe83z",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wpe83z/qwen38flashnext_on_509064gb_with_llamacpp_seems/",
+  "detail": {
+    "longDescription": "I was actually pretty happy with my Qwen3.8-27b setup, and I'd been tinkering with Ninfer to have a version that was \"fast but maybe a bit stupid\" and the speed was nice to have as a backup. But I was curious how the Flash-Next version might work, after I learned it didn't need to all fit in VRAM to work. \n\nI picked up the Atomic quant (let me know if there is a better one I should use, this one seemed good from what I could find). \n\nI used the build setup below. It can still be tweaked some more, as I still am only using about 27gb of my vram.   \n\n\n> ./build/bin/llama-server \\\\  \n\\--model \"/mnt/SPCC-2TB/Projects/AI-APPS/LLM-Models/Qwen3.8-Flash-Next-Atomic/Qwen3.8-Flash-Next-AD-4.27bpw-Q4\\_K\\_M-M64  \n\\-00001-of-00033.gguf\" \\\\  \n\\--no-mmproj \\\\  \n\\--load-mode mmap \\\\  \n\\--lazy-mode on \\\\  \n\\--fit off \\\\  \n\\--gpu-layers all \\\\  \n\\--n-cpu-moe 32 \\\\  \n\\--ctx-size 64768 \\\\  \n\\--flash-attn on \\\\  \n\\--jinja \\\\  \n\\--parallel 1  \n\n\n  \nThe odd thing I noticed though - I know that some parts of this are meant to run from the SSD for the sake of saving vram space etc. Fine. But I kinda expected that some of it at least would get buffered into system ram, as running from ram would be a whole lot more efficient than running from my NVME drive. \n\nBut this run gets me the following results:\n\n40tok/s decode. \n\n50tok/s prompt processing (It's a short prompt so probably not accurate)\n\n27gb of vram used\n\n8gb of system ram used... \n\n  \nSo... I mean, am I just wrong and this is normal? The speed doesn't seem as bad as I expected (I thought I was going to get more like 10tok/s at best) but it seems like I might be missing a trick somewhere? ",
+    "developer": "nirurin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

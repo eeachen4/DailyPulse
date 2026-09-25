@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpjis4",
+  "sourceItemId": "1wpjis4",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1wpjis4/looking_for_feedback_using_ner_to_generate_and/",
+  "detail": {
+    "longDescription": "I’m a complete novice when it comes to NLP, I'm a swe by trade so bear with me here.\n\nHere's my problem:\n\nI’m trying to identify short sentences (I have a data set of several thousand) that are logically dependent. To illustrate the kinds of dependencies I'm looking for here’s a basic example: \n\n\\- Sentence 1: Democrat voter turnout in NY is 35%.\n\n\\- Sentence 2: Democrat voter turnout in NY is 40%.\n\nIf sentence 2 is true, sentence 1 also must be true. Those are the kinds of sentences I have and want to identify as dependent. The nature of the sentences can range from voting percentages/turnout, phrases about employment etc.\n\nThe naive approach I’ve been doing is basically embedding the sentences using gemma and finding cosine similarities between them, my reasoning being sentences that have a reasonably high enough cosine similarity are candidates for logical dependency. I then take these pairs of candidates and pass them to an LLM (gemma again!) to determine whether or not they are actually semantically/logically dependent.\n\nThere are two huge issues w/ this approach that I'm sure you'll all immediately see. \n\n1) Lots of the sentences are too structurally similar like the simple example I showed above. There exist several subsets of the data that have the same pattern. Sentence 3 could be something like Democrat voter turnout in TX is 35%. and it would have almost an identical similarity to the other 2 sentences. There are several hundred patterns, and I also don’t necessarily know all the patterns at runtime so that means REGEXing these structures becomes a difficult task. So because of the structural similarity, cosine similarity loses its value as a metric. \n\n2) The LLM step is slow. Really slow.\n\nI did some googling and learned about NER that seems like it might fit? I could run the sentences through a pre-trained models and get the spans for each sentence. This would allow me to match spans across the phrases. So in the example I have, sentence 1 and 2 would be matched and processed further, while 3 would be in its own bucket. As for what I'd do after matching the spans, still working that out. I could fall back to cosine similarity again here since anything that falls into these span buckets *should* be different enough where the projection becomes a decent signal.\n\nIf there are tweaks that I can do to make template matching more robust, or alternative methodologies altogether I'm all ears! \n\nThanks :)",
+    "developer": "_dryp_",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

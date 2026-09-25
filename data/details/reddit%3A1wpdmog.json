@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpdmog",
+  "sourceItemId": "1wpdmog",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wpdmog/i_ported_nemotron_3_speaker_diarization_to_apple/",
+  "detail": {
+    "longDescription": "I maintain speech-swift, a free Apache-2.0 Swift library and CLI. I ported NVIDIA's Nemotron 3 Diarization to Core ML INT8 and MLX INT8 so it runs locally on Apple Silicon. NVIDIA made the model; this is a Mac implementation of it.\n\nFor a voice agent, ASR provides the words, while diarization provides a timeline of which anonymous speaker was active. Nemotron 3 handles overlapping speech and up to eight speakers. It does not transcribe words or know people's names. If your agent needs to recognize someone across sessions, it needs a separate identity step.\n\nYou can try the diarizer on a recording with `brew install soniqo/tap/speech`, then `speech diarize meeting.wav --engine nemotron3`. Add `--nemotron3-backend mlx` to use MLX instead of Core ML. The model downloads on first use.\n\nSource: https://github.com/soniqo/speech-swift\n\nNVIDIA model: https://huggingface.co/nvidia/Nemotron-3-Diarization\n\nFor people building multi-user voice agents: which causes more trouble in practice, speaker label swaps after a pause or missed interruptions when people talk over each other?",
+    "developer": "ivan_digital",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

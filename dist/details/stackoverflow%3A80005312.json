@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005312",
   "sourceItemId": "80005312",
+  "fetchedAt": "2026-09-25T01:55:13.026Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005312/aws-codepipeline-github-app-codeconnectionslistconnections-accessdenied-despit",
   "detail": {
     "longDescription": "I am setting up a CI/CD pipeline for an Angular frontend application using: GitHub → AWS CodePipeline → AWS CodeBuild → Amazon S3 I have already created the S3 bucket and am currently creating the CodePipeline. I have not created the CodeBuild project yet . My AWS administrator created an IAM Identity Center/SSO role for me called: AWSSuperDeveloper The role currently has permissions including: AWSCodePipeline_FullAccess CodeBuild permissions AmazonS3FullAccess IAMReadOnlyAccess SystemAdministrator API Gateway/Cognito-related permissions When I create the CodePipeline and select: Source → GitHub (via GitHub App) I receive this error: AccessDeniedException User: arn:aws:sts::<ACCOUNT_ID>:assumed-role/AWSReservedSSO_AWSSuperDeveloper_.../<USER> is not authorized to perform: codeconnections:ListConnections on resource: arn:aws:codeconnections:ap-southeast-1:<ACCOUNT_ID>:* because no identity-based policy allows the codeconnections:ListConnections action The AWS administrator has told me that AWSCodePipeline_FullAccess should already include the required permissions. I also checked the role's attached policies and can see AWSCodePipeline_FullAccess , but I cannot find a separate AWS-managed policy named AWSCodeConnections or AWSCodeConnectionsFullAccess . Interestingly, if I select GitHub (via OAuth app) instead, I do not receive this codeconnections:ListConnections error. However, AWS recommends using GitHub (via GitHub App) instead of the OAuth app option. I have also reviewed AWS re discussions about CodePipeline service-role permissions and codeconnections / codestar-connections permissions, but those cases appear to involve a pipeline that has already been created and is failing during execution. In my case, the error occurs while I am still creating the pipeline and selecting the GitHub connection. My questions Why would codeconnections:ListConnections be denied for my AWSReservedSSO_AWSSuperDeveloper role if AWSCodePipeline_FullAccess is already attached? Is AWSCodePipeline_FullAccess actually sufficient for the GitHub (via GitHub App) connection creation/listing step? Should my administrator add a separate codeconnections:ListConnections permission, or should the existing AWSCodePipeline_FullAccess permission set be investigated instead? I would appreciate guidance on how to identify the actual principal/policy causing the denial and the correct least-privilege solution.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "43"
+        "value": "56"
       },
       {
         "label": "状态",

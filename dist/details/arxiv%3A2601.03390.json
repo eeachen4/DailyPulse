@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2601.03390",
+  "sourceItemId": "2601.03390",
+  "fetchedAt": "2026-09-25T01:55:13.026Z",
+  "sourceUrl": "https://arxiv.org/abs/2601.03390",
+  "detail": {
+    "longDescription": "arXiv:2601.03390v3 Announce Type: replace Abstract: No Byzantine Fault Tolerant (BFT) protocol can commit a request in less than the single round trip it takes for clients to reach the replicas and hear back. Some protocols approach this bound with a leaderless, speculative fast path, where clients broadcast requests directly to replicas and commit in two message delays ($2\\Delta$). However, such a fast path is extremely fragile: when clients submit requests concurrently, replicas receive them in different orders and end up in different states, forcing the protocol into costly recovery. This paper presents Aspen, a leaderless speculative BFT protocol that can maintain its fast path even while clients submit requests concurrently, at a near-optimal latency of $2\\Delta + \\epsilon$. The $\\epsilon$ term is a short waiting delay that Aspen adds to give requests a best-effort, tentative initial order using loosely synchronized clocks and network delay estimates. Since real networks are not perfectly predictable, Aspen also tolerates replicas diverging: it adds extra replicas ($n = 3f + 2p + 1$) so that the fast path survives up to $p$ diverged replicas, a lightweight alignment subprotocol that returns those replicas to the fast path in the background, and a repair subprotocol that restores agreement when too many diverge. In experiments with geo-distributed replicas, Aspen reduces the latency of requests by $1.1\\times$--$5.5\\times$ compared to state-of-the-art BFT protocols, while maintaining throughput matching or exceeding throughput-optimized designs.",
+    "developer": "Daniel Qian, Xiyu Hao, Jinkun Geng, Yuncheng Yao, Aurojit Panda, Jinyang Li, Anirudh Sivaraman",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Daniel Qian, Xiyu Hao, Jinkun Geng, Yuncheng Yao, Aurojit Panda, Jinyang Li, Anirudh Sivaraman"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
