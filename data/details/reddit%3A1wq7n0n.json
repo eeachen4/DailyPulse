@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wq7n0n",
+  "sourceItemId": "1wq7n0n",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wq7n0n/so_kubernetes_just_made_persistent_storage_much/",
+  "detail": {
+    "longDescription": "One thing I'm extremely careful with in production is storage.\n\nI can recreate a pod.\n\nI can redeploy an application.\n\nBut if I accidentally delete a PVC containing important database files, that's a completely different problem.\n\nUntil now, when I found an old PVC in my cluster, answering a simple question wasn't always straightforward:\n\n**\"Is anything still using this?\"**\n\nI would have to check my pods, PVCs and PersistentVolumes before deciding whether that storage was actually abandoned.\n\nIt worked...\n\nBut when I'm dealing with database files and persistent application data, **I don't want to guess.**\n\nKubernetes v1.37 makes this much better with `PersistentVolumeClaimUnusedSinceTime`.\n\nNow Kubernetes adds an `Unused` condition directly to the PVC.\n\nIf a pod is still referencing it:\n\n`Unused=False`\n\nIf no active pod is referencing it:\n\n`Unused=True`\n\nBut this is the part I really like.\n\nKubernetes also gives me `lastTransitionTime`.\n\nSo I don't only know that a PVC is currently unused.\n\n**I can see how long it has been unused.**\n\nThat gives me much better information before I touch storage containing potentially important application or database data.\n\nFor example, instead of deleting a PVC simply because I don't see a running pod attached to it, I can build a safer process around it:\n\n**Unused → verify → retain for a defined period → backup/archive if necessary → then clean up.**\n\nAnd pending pods still count as using the PVC, which is important because Kubernetes understands that a workload intends to use that storage even if the pod hasn't started running yet.\n\nThis is the kind of Kubernetes update I like.\n\nNot because it's another feature to memorize...\n\nBut because it helps me make **safer decisions around persistent production data.**",
+    "developer": "Defiant-Chard-2023",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

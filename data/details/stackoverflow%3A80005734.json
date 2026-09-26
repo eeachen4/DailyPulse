@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005734",
+  "sourceItemId": "80005734",
+  "sourceUrl": "https://stackoverflow.com/questions/80005734/error-calling-setstate-synchronously-within-an-effect-can-trigger-cascading-ren",
+  "detail": {
+    "longDescription": "I'm getting a lint error in Next.js when I update state inside a useEffect . My code looks like this: const fetchInboundRequests = async () => { const token = getToken(); if (!token) return; try { const res = await fetch('/api/direct-hire-requests', { headers: { Authorization: `Bearer ${token}` }, }); if (res.ok) { const data = await res.json(); const apiRequests = data.requests || data.data?.requests || []; setRequests(apiRequests); } } catch (err) { console.error('Failed to fetch direct hire requests:', err); } }; useEffect(() => { fetchInboundRequests(); }, []); The lint error occurs when I call fetchInboundRequests() inside useEffect , most likely because of the react-hooks/set-state-in-effect rule. I've also tried wrapping the function with useCallback , but the lint error still appears. I'm using React 19.2 with Next.js. What is the recommended way to structure this code so that it works correctly with React 19.2 and satisfies the lint rules, or is there any other hook, etc. which can be helpful to avoid the cascading error?",
+    "developer": "Pankaj Choudhary",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005909",
+  "sourceItemId": "80005909",
+  "sourceUrl": "https://stackoverflow.com/questions/80005909/how-can-i-reduce-llm-token-usage-for-text-to-sql-without-sending-the-entire-data",
+  "detail": {
+    "longDescription": "I’m adding a natural-language AI assistant to an existing Laravel + MySQL inventory/POS application. Users should be able to ask questions such as: - \"What was the profit in the last 20 days?\" - \"Which item generated the most profit this month?\" - \"Who are the top 10 customers by sales?\" Current flow: User question → Laravel application → Cloudflare Worker → LLM → Generate read-only SELECT query → Validate SQL → Execute on the client's local MySQL database → Return result The actual business records are never sent to the LLM. However, to generate correct SQL, I currently send schema metadata such as table names, columns, foreign-key relationships, and business definitions. This is consuming approximately 5,500 input tokens per new request, even when the question only requires a few tables. For example: \"What are today's total sales?\" may only require the `sales` table, while: \"Which customer generated the most profit?\" may require a relationship such as: customers ← sales ← sales_items I already cache generated SQL for identical normalized questions, so repeated questions can bypass the LLM. My problem is optimizing NEW questions. I want to implement something like: Question → Retrieve relevant schema → Add required tables through FK relationships → Add relevant business definitions → Send only this reduced context to the LLM → Generate SQL I would like to avoid: 1. Sending the complete schema on every request. 2. Maintaining hard-coded mappings such as \"profit\" → sales_items. 3. Making a second LLM call just to determine which tables are relevant. What is a practical way to select relevant tables and columns from the user's natural-language question while also preserving the foreign-key paths required for joins? For example, would embedding each table/column description and retrieving the most similar schema elements, followed by foreign-key graph expansion, be a reasonable approach? My main constraints are: - One LLM call per cache miss - Low input-token usage - Dynamic support for different natural-language questions - Reliable join/table selection",
+    "developer": "Ranaa Ali Haider",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

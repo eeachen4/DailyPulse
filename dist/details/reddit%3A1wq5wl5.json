@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wq5wl5",
+  "sourceItemId": "1wq5wl5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wq5wl5/fixing_one_prompt_failure_can_quietly_break_a/",
+  "detail": {
+    "longDescription": "A review prompt asks a model to flag bugs, security issues, and style problems, then adds \"be concise.\" Works fine until a hardcoded credential slips through untouched. Obvious fix: add a line pushing harder on security. Problem solved, that specific case stops happening.\n\nTwo weeks later, style feedback has nearly disappeared on larger pull requests, and it looks like a completely unrelated regression. It isn't. Output has a fixed budget, roughly how much the model is willing to say under \"be concise,\" and pushing more weight toward security took that weight from somewhere. Nothing announced the tradeoff. Nobody edited the style instruction. It just quietly lost priority the moment something else won more of it.\n\nThat's the part about prompt patches that's easy to miss: a natural-language prompt isn't a list of independent rules, it's one blended paragraph where adding weight to one thing removes it from something else, with no error, no diff on the affected section, no signal at all that a fix in one place cost something in another.\n\nThe single habit that actually catches this: a small, fixed set of test inputs, rerun after every change, not just the case that prompted the fix. Doesn't need to be exhaustive, just enough to notice when yesterday's working case quietly stops working today. Most prompt regressions ship invisibly specifically because nothing gets rerun, so the only cases anyone checks are the ones already known to be broken.\n\nCurious whether others have run into this specific shape of regression, a fix for one failure mode causing an unrelated one to degrade, and whether a fixed regression set actually catches it for you or if it's still mostly discovered by accident",
+    "developer": "ClickOk5811",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

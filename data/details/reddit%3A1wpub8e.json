@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wpub8e",
+  "sourceItemId": "1wpub8e",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wpub8e/i_built_a_kubernetes_operator_that_replaces_the/",
+  "detail": {
+    "longDescription": "Most multi-account AWS setups I've seen keep a shared spreadsheet of VPCs and subnets. Someone updates it by hand, it goes stale, and one day two teams pick overlapping CIDRs.\n\nsubnet-operator runs in your cluster (EKS) and keeps that inventory in Kubernetes instead:\n\n\\- Discovery (read-only, the default): finds VPCs and subnets across accounts and regions by tags and mirrors them as Network and Subnet objects. It reports compliance findings (missing required tags, CIDR overlaps) and exports Prometheus metrics with alerts. It can also mirror everything to a Google Sheet, if people still want the spreadsheet. It only calls EC2 Describe\\*.\n\n\\- Change events (optional): CloudTrail → EventBridge → SQS, so a changed account/region is resynced about 10 seconds after the API call instead of at the next 10-minute resync.\n\n\\- Opt-in writes, behind --enable-writes and a separate IAM role:\n\n  \\- SubnetClaim allocates a free CIDR and can create the subnet.\n\n  \\- ResourceImport brings an untagged VPC or subnet under management by tagging it.\n\n  \\- It never deletes a cloud resource.\n\n\\- Guardrails:\n\n  \\- Admission webhooks reject invalid objects at kubectl apply.\n\n  \\- Every allocation or import leaves a Kubernetes Event and a JSON audit line with the authenticated creator.\n\n  \\- namespaceSelector limits which namespaces may use a scope's write role.\n\n\\- Supply chain: multi-arch image and Helm chart on [ghcr.io](http://ghcr.io), both signed with cosign keyless, with SBOM, threat model and upgrade tests between releases.\n\nThe honest part: it's alpha (v0.8). Everything is tested in CI against Moto (an AWS API mock) in Kind, but it hasn't run against a real AWS organization yet. That's why I'm posting. If you have a sandbox or dev account setup and 30 minutes, I'd really like to know what breaks. Read-only mode is the safe place to start.\n\nGCP and Azure are planned behind a common provider interface. The API was just moved to a cloud-neutral group for that.\n\n\\- Demo dashboard (fake data, no install): [https://hypersurgery.dev/dashboard/](https://hypersurgery.dev/dashboard/)\n\n\\- Docs: [https://hypersurgery.dev/docs/](https://hypersurgery.dev/docs/)\n\n\\- Code (Apache-2.0): [https://github.com/aivandrago/subnet-operator](https://github.com/aivandrago/subnet-operator)\n\n\n\nFeedback is welcome, including \"we solve this with X\". I'd like to know how you handle this today.",
+    "developer": "alter-table",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

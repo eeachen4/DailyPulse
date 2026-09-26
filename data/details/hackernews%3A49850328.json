@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49850328",
+  "sourceItemId": "49850328",
+  "fetchedAt": "2026-09-26T01:57:12.734Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49850328",
+  "detail": {
+    "longDescription": "Recently got access to Claude CVP at work, decided to ask it to look at zcode and point out any data exfil or whether they were all resolved, it went off on a stupid long tangent burning tokens but raised some red flags that imply the production version of zcode differs from the source repo and&#x2F;or there is source code being hidden. One example of red flag: https:&#x2F;&#x2F;github.com&#x2F;zai-org&#x2F;ZCode&#x2F;blob&#x2F;main&#x2F;packages&#x2F;ui&#x2F;src&#x2F;settings&#x2F;model-provider-section&#x2F;CodingPlanStatusActions.tsx#L73 &gt; The open-source version is not eligible for the quota promotion Does anyone have an idea on whether this is a bad mistranslation or if they are actually differentiating the real build vs their open source build, and excluding it from certain things (ex. Coding Plan is supposed to have higher quotas or reduced token consumption if you are using the zcode harness, iirc)?",
+    "developer": "leftbehind",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

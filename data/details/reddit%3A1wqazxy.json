@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wqazxy",
+  "sourceItemId": "1wqazxy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wqazxy/designing_a_protocol_for_coding_agents_responses/",
+  "detail": {
+    "longDescription": "Sley 2.0 is an open-source (Apache-2.0) programming system for coding agents, from Greyforge Labs. There are no source files in Sley. Agents talk to a deterministic kernel over SMP1, a framed protocol that `sley serve --repository <dir> --json` also exposes as JSON lines, one frame per line. Two parts of that protocol may be useful to anyone designing tool interfaces for models, whether or not Sley itself interests you.\n\n# Every response says what it left out\n\nEach frame carries a `bounds` record. Requests send zeros, and the response fills in the limits that applied and what came back. This is from a real `query.root` reply:\n\n    \"bounds\": {\n      \"applied_limits\": {\"max_depth\": 65535, \"max_entities\": 65535, \"max_response_bytes\": 67108864, ...},\n      \"returned_entities\": 1,\n      \"returned_edges\": 0,\n      \"returned_bytes\": 640,\n      \"omitted\": 0,\n      \"truncated\": false,\n      \"continuation\": false\n    }\n    \n\nPaging is something the caller opts into. If it allowed continuation, a page that doesn't fit comes back marked `truncated` with a cursor for `query.continue`. If it didn't, the query fails with `QUERY_REQUIRED_FACT_OMITTED` and returns nothing.\n\n# Refusals carry a retry class\n\nFailures are stable numeric and symbolic codes, and the protocol also says whether retrying can help:\n\n|Retry class|Symbols|Example|\n|:-|:-|:-|\n|After requerying the current head|5|`STALE_ROOT`, `SESSION_ROOT_ADVANCED`|\n|After changing declared limits|28|`QUERY_RESOURCE_LIMIT`, `VM_EXEC_RESOURCE_LIMIT`|\n|Never|everything else||\n\nBoth lists are spelled out symbol by symbol. Until September 3, a suffix rule decided retryability. It allowed retrying `REF_CAS_STALE` but told clients never to retry `STALE_ROOT`, only because `REF_CAS_STALE` happens to end in `STALE`. Now any symbol not on a list answers \"never\", so a newly added error code can't start a retry loop by accident.\n\n# Behind the protocol\n\nOne kernel judges every proposed change in 14 ordered phases, and an accepted change commits atomically with a receipt. An independently written Python oracle has to reproduce the Rust kernel's bytes exactly. The 37 methods cover sessions, queries, candidates, commits, branches, merges, exchange, GC and execution.\n\nTwo things aren't done. The public candidate builder hasn't shipped, so the release demo stops at import, query, execute, branch, export and clone. And the benchmark comparing agents in Sley with raw source is still running, with results due when it finishes.\n\n[Repo](https://github.com/sley-lang/sley) · [SMP1 spec](https://github.com/sley-lang/sley/blob/main/docs/spec/SMP1.md) · [Example client](https://github.com/sley-lang/sley/blob/main/docs/examples/smp1_json_client.py) · [2.0.1 release notes](https://github.com/sley-lang/sley/blob/main/docs/release/SLEY-2.0.1.md)\n\nHow do the tool APIs you've built tell a model what they didn't return?",
+    "externalUrl": "https://i.redd.it/22ynj3er1rrh1.png",
+    "developer": "GreyforgeLabs",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

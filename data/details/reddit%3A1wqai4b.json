@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wqai4b",
+  "sourceItemId": "1wqai4b",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wqai4b/kev_4b_topped_out_in_every_tetris_game_i_ran_mica/",
+  "detail": {
+    "longDescription": "I had Mica (my 4B decision model) and Kev 4B play the same Tetris games, same seed and same piece order, one RTX 3090.\n\nFor context, this is a side project. Training and all the experiments ran on rented 3090s, about $30 in total.\n\nEvery turn both get the board and 4 possible placements, each with a short description (lines cleared, holes, height), and pick one. Nothing else helps them, no search or lookahead.\n\nResults over three seeds (lines cleared):\n\n\\- Seed 7: Mica 33, Kev 27\n\n\\- Seed 11: Mica 97, Kev 17\n\n\\- Seed 23: Mica 93, Kev 11\n\nKev topped out in all three. Mica got through all 250 pieces on seeds 11 and 23 without dying. It also picked the best available placement about 75% of the time, versus about 50% for Kev.\n\nThe video is seed 11, cut at 100 pieces. Kev tops out at piece 86, and Mica is at 37 lines and still going at that point.\n\nMica doesn't generate text. It reads the input once and takes the answer from the logits, so the bars in the video are its actual probabilities for each placement.\n\nWeights: [https://huggingface.co/sky7350/Mica-v0.1-4B](https://huggingface.co/sky7350/Mica-v0.1-4B)\n\nCode: [https://github.com/akivet/Mica-v0.1-4B](https://github.com/akivet/Mica-v0.1-4B)",
+    "externalUrl": "https://v.redd.it/zvog867xxqrh1",
+    "developer": "Top-Evidence174",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

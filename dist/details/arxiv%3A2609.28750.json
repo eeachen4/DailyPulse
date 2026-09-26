@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.28750",
+  "sourceItemId": "2609.28750",
+  "fetchedAt": "2026-09-26T01:57:12.734Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.28750",
+  "detail": {
+    "longDescription": "arXiv:2609.28750v1 Announce Type: new Abstract: Existing state-of-the-art static taint flow analyses for imperative programming languages can scale to large applications by using precise user-provided taint flow models of library methods. However, manually and precisely modeling a method's taint flows is tedious and potentially unsound. Furthermore, automatically modeling the method via an inter- procedural taint analysis can be inefficient. To solve this problem, we propose a guess-and-check approach: (1) an LLM agent that generates a precise taint flow model of a method and (2) a symbolic algorithm to check the soundness of the model. The algorithm deduces which taint flows must not occur in the method for the LLM's taint flow model to be sound, and uses lightweight static analyses (e.g., type system and pointer analysis) to prove these must-not-flows. When these analyses are insufficient, the algorithm deduces maximally-general callee models and recursively verifies their soundness, avoiding a full inter-procedural taint analysis in most cases. Since a more precise model requires fewer must-not-flows to be verified, the precision of the LLM's model directly determines the efficiency of our approach. We evaluate our approach on 97 LLM-generated taint flow models for methods in 6 large Go codebases and prove the models sound for 93% of the methods they cover. The proven-sound LLM-generated models are also precise, resulting in no new false-positives when proving taint flow properties.",
+    "developer": "Samarth Kishor, Victor Nicolet, Joey Dodds",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Samarth Kishor, Victor Nicolet, Joey Dodds"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

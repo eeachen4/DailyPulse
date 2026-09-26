@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005678",
+  "sourceItemId": "80005678",
+  "sourceUrl": "https://stackoverflow.com/questions/80005678/github-ruleset-pr-protection-not-ideal",
+  "detail": {
+    "longDescription": "We have GitHub rulesets to prohibit pushes to our primary branches ( dev and main ) by way of \"Restrict updates\". Then, we have the same ruleset enforcing \"Require a pull request before merging\". This is good. The trouble is that the PR cannot merge to dev or main unless I either: Use the bypass button Turn off \"Restrict updates\" The bypass button is a lousy option because it bypasses not just the \"Restrict updates\" protection. If I turn off \"Restrict updates\" then somehow people can push straight to dev anyway, despite \"Require a pull request before merging\" being on. Bypass list only includes \"Allow for pull requests only\" which I don't like. So I end up having to turn on and off \"Restrict updates\" all the time to allow PRs. Is there a better way? Recreation procedure: Branch off dev , a protected branch. Say your branch name is feat/hello Do some things on feat/hello PR back to dev . Merging is blocked because \"Restrict updates\" is active for dev. Goal: Prohibit direct pushes to dev Only allow PRs to merge to dev Avoid having to turn on and off \"Restrict updates\" all the time",
+    "developer": "Malachi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "46"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.30254",
+  "sourceItemId": "2609.30254",
+  "fetchedAt": "2026-09-26T01:57:12.734Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.30254",
+  "detail": {
+    "longDescription": "arXiv:2609.30254v1 Announce Type: new Abstract: We introduce Forte, a sensitivity type system for Rust whose soundness rests on ownership. The graded sensitivity type systems, from Fuzz's linear grading to Solo's environment indices, are pure calculi: a claim about a value holds for the value's whole lifetime because nothing can mutate it. The imperative sensitivity analyses admit assignment to first-order variables and no references, so no question of aliasing arises in them. The programs that compute differentially private statistics in deployment are Rust, and they mutate through borrows. Forte closes this gap. Its central rules strongly update a sensitivity environment through an exclusive borrow, at a primitive call and across a checked function boundary; its soundness theorem is metric preservation over an operational semantics with a store, in which the exclusivity of &mut alone licenses framing across a mutating call, and two aliased borrows suffice to refute the theorem without it. Verus mechanizes the theorem, the function rule, and the refutation. Flux checks Forte as an ordinary library, with no fork of the compiler; a machine-checked theorem backs every deterministic primitive signature, and a correspondence theorem transports metric preservation to the programs the checker accepts. We evaluate Forte on mechanism kernels from OpenDP with genuine in-place mutation, matching the library's trusted stability maps with checked constants, covering the constructors that have no proof document, rejecting off-by-one diameters, tightened bounds, miscalibrated releases, and overspent budgets, and deriving one trusted constant as an inferred loop invariant.",
+    "developer": "Chik\\'e Abuah",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Chik\\'e Abuah"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

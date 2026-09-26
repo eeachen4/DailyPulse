@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wqahbz",
+  "sourceItemId": "1wqahbz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wqahbz/mica_v01_4b_got_an_iron_pickaxe_in_real_minecraft/",
+  "detail": {
+    "longDescription": "Mica v0.1 4B playing a real Minecraft 1.20.4 server. Video attached.\n\nHow it works\n\n\\- Each step the bot's live game state (inventory, nearby blocks, entities, last result) is written out as text.\n\n\\- Mica scores the candidate commands and picks the next one. It never generates text. It reads the probabilities of the answer label tokens, so output tokens are 0.\n\n\\- The chosen command is executed in the game with Mindcraft's skill library (Mineflayer bot).\n\nRun\n\n\\- 23 decisions from an empty inventory to an iron pickaxe: logs, planks, crafting table, wooden pickaxe, stone, stone pickaxe, furnace, iron ore, smelting, iron pickaxe\n\n\\- About 90 to 150 ms per decision\n\n\\- llama.cpp, Q5\\_K\\_M, RTX 3090\n\nAbout the video\n\n\\- The right panel shows each decision as it happened: the candidates, Mica's probabilities, the pick, and the result. Every step is also listed in the history feed.\n\n\\- Long actions (walking, mining, smelting) are sped up, with the speed shown on screen. Back-to-back retries are shortened in the edit.\n\n\\- The HUD and the crafting/furnace screens are drawn from the bot's logged inventory.\n\nWeights: [https://huggingface.co/sky7350/Mica-v0.1-4B](https://huggingface.co/sky7350/Mica-v0.1-4B)\n\nCode and server: [https://github.com/akivet/Mica-v0.1-4B](https://github.com/akivet/Mica-v0.1-4B)",
+    "externalUrl": "https://v.redd.it/ba75tm1qxqrh1",
+    "developer": "Top-Evidence174",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

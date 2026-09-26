@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.29975",
+  "sourceItemId": "2609.29975",
+  "fetchedAt": "2026-09-26T01:57:12.734Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.29975",
+  "detail": {
+    "longDescription": "arXiv:2609.29975v1 Announce Type: cross Abstract: A routing node on the Lightning Network holds its liquidity in separate channels, so a payment can fail at a channel whose outbound balance is exhausted while the node's other channels still hold balance. Pooling the channels into one reserve fixes this only if the node's draws across all channels stay within the reserve: a global invariant that each counterparty must enforce from its own channel, with no shared counter that off-chain draws can update. A node must therefore split the reserve into per-channel quotas in advance or coordinate every draw with every counterparty. On three Lightning snapshots the advance split forfeits $16$ to $67\\%$ of the pooling gain over unpooled channels, and the loss grows with channel count. Sluice recovers $19$ to $65\\%$ of that loss with a nested reservation: each channel keeps an exclusive base that its counterparty checks alone, and the rest is a shared overflow drawn on with certificates from a capacity-weighted quorum of the node's counterparties. Two conflicting certificates share an honest signer, so over-drawing is prevented without a slashable stake, under a stated bound on the capacity the node controls in the signing set. Sluice loses at most $1.3$ points of payment success to coordination where deployed coin movers lose up to $10.3$, and improves them in eleven of twelve cells when stacked on them. Re-creating every base output each epoch costs $2.8$ to $5.1$ times Lightning's on-chain bytes; re-creating only those that overflowed costs $0.5$ to $1.2$ times and keeps part of the gain.",
+    "developer": "Yueqi Wu, Huiping Sun, Peilu Guo, Yiming Zhu, Zhong Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yueqi Wu, Huiping Sun, Peilu Guo, Yiming Zhu, Zhong Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

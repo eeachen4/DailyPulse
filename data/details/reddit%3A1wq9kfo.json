@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wq9kfo",
+  "sourceItemId": "1wq9kfo",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1wq9kfo/how_my_task_router_turned_a_3word_prompt_into_11/",
+  "detail": {
+    "longDescription": "Postmortem for anyone running multi-model task routers.\n\nSetup: personal task queue, N agents pull work in parallel, each task gets classified (code / reasoning / bookkeeping / etc.), the classification picks a model tier, higher tier = more expensive but capability-critical work gets the good model.\n\nBug: a task titled literally \"Fix this issue.\" (no detail, no priority signal) fell into the general catch-all, which I'd defaulted to the top tier. The task failed classification, retried, retried again — six retries at top-tier before hitting the attempt cap. Total damage: $11.20 for zero useful work.\n\nThe single-line title is the interesting part. It's exactly the shape of \"user is frustrated and dumped a thought.\" Not a real work brief. And the router had no way to know that.\n\nFix in five parts:\n\n\\- Catch-all defaults cheap, not expensive. The old logic was \"if we don't know, use the best.\" New logic: \"if we don't know, use the cheapest, and give real work its own signals.\"\n\n\\- Widened the bookkeeping/complaint signals (regex for wtf, why is, nothing works, fix this|that|it). These titles are complaints, not work briefs. They route to the cheap tier now.\n\n\\- Per-kind attempt caps. Vague work retries at most 2 times, real work keeps 3. Attempts compound; capping the compounding is where the money is.\n\n\\- Budget circuit-breaker. Cross 60% of the daily ceiling and catch-all tasks auto-downgrade for the rest of the day. Resets at midnight.\n\n\\- Fixed a related driver bug where sub-processes printed proper \"BLOCKED (reason)\" exit lines but never called the record-status CLI — so the driver mislabelled them all as \"no status recorded, retry.\" Parser now accepts self-declared verdicts and preserves the reason text.\n\nSame 12h workload replayed against the new logic: \\~$7 vs $26.\n\nThe deeper lesson: cost isn't a tier problem, it's a classification problem. No matter what the default is, if the classifier is coarse, the default dominates. Good signal design lets you default cheap without ever downgrading real work.\n\nIf you're running something similar I'd love to hear how you handle unclassifiable inputs. Do you refuse the task, ask for clarification, run a cheap first pass to reclassify, or just eat the cost?",
+    "externalUrl": "https://vintinuum.com/index.html",
+    "developer": "Vintaclectic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "vintinuum.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

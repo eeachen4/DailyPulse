@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005758",
+  "sourceItemId": "80005758",
+  "sourceUrl": "https://stackoverflow.com/questions/80005758/react-form-doesnt-submit-when-pressing-enter-in-an-input-field",
+  "detail": {
+    "longDescription": "I'm building a login form in React. Clicking the Login button works correctly, but when I press Enter while focused on an input field, the form doesn't seem to submit. I'm using React's onSubmit handler: import { useState } from \"react\"; export default function LoginForm() { const [email, setEmail] = useState(\"\"); const [password, setPassword] = useState(\"\"); const handleSubmit = (e) => { e.preventDefault(); console.log(\"Form submitted\"); console.log({ email, password }); }; return ( <form onSubmit={handleSubmit}> <div> <label>Email</label> <input type=\"email\" value={email} onChange={(e) => setEmail(e.target.value)} /> </div> <div> <label>Password</label> <input type=\"password\" value={password} onChange={(e) => setPassword(e.target.value)} /> </div> <button type=\"button\" onClick={handleSubmit}> Login </button> </form> ); } When I click Login, handleSubmit runs as expected. However, when I enter my password and press Enter, nothing happens. I expected pressing Enter inside the input to trigger the same handleSubmit function. What is the correct way to handle form submission in React so that both clicking the button and pressing Enter trigger the onSubmit handler?",
+    "developer": "Ehan Siddique",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "87"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

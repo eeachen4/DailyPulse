@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wq3dgy",
+  "sourceItemId": "1wq3dgy",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wq3dgy/i_built_a_windows_image_viewer_with_direct2d_and/",
+  "detail": {
+    "longDescription": "GitHub repo - [https://github.com/YelovSK/Dameview](https://github.com/YelovSK/Dameview)\n\nImage viewer sounds like the most boring project, but despite that I was struggling finding an image viewer that I 100% enjoyed using, so I made something for myself, but perhaps someone in here might enjoy it as well. My motivation were apps like File Pilot and Task Slinger.\n\n* A single <4 MB executable\n* Tabs\n* Split view (BSP)\n* Command palette (Ctrl + Shift + P)\n* Gallery panel\n* Animations\n* Color themes\n* Built-in installer and updater\n* Starts in \\~100 ms\n* Tiled rendering for large images\n\nIt's built with C# + Native AOT, which might seem like a strange decision, but I'm just way more familiar with C# than something like C or Rust. It uses win32 APIs for window management, Direct2D for UI (fully custom), and WIC for image decoding. Clearly heavily coupled to Windows.\n\nI think you have to try using it to understand what makes it (in my opinion) good. For example, on my machine it launches in less than 100 ms, rendering the first couple of frames with a CPU renderer, and then switching to GPU once it's initialized. I'm personally also a fan of smooth animations, which are used across the app (with an option to disable them), and on my PC render at my monitor's refresh rate, which is 480 Hz.\n\nI'll again emphasize, I made it specifically for me, so the feature-set might not be enough for everyone.\n\nWhen it comes to AI usage, the vast majority of the code is written by agents, with me controlling the higher level architecture.",
+    "externalUrl": "https://i.redd.it/8eva9f1wgprh1.gif",
+    "developer": "Yelov",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wqdyu9",
+  "sourceItemId": "1wqdyu9",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wqdyu9/two_core_concepts_of_k8s/",
+  "detail": {
+    "longDescription": "In kubernetes two concepts I found very interesting:\n\n1.\t⁠Only the API Server writes to etcd\n\nControllers don’t directly modify etcd.  \nIf HPA decides that the application needs 5 replicas instead of 3, it doesn’t go directly to etcd and change the value.  \nIt talks to the API Server.  \nThe API Server handles the request, applies authentication, authorization and admission controls, and then persists the desired state in etcd.  \nThis gives Kubernetes a single controlled entry point for modifying cluster state.\n\nIt also means the other components don’t need to understand how etcd works or deal with its consistency and access directly.  \nSingle responsibility principle acting beautifully\n\n2. All other components use watch on api server.\n\nThis is another really nice design decision.  \nA controller doesn’t need to keep asking:  \n“Did something change?”  \n“Did something change?”  \n“Did something change?”\n\nComponents don't call each other. The HPA doesn't call the scheduler. The scheduler doesn't call the kubelet. Each one opens a long lived watch on the API server for the one kind of object it cares about, and reacts when that object changes.\n\nHere's the whole scaling chain:\n\n• HPA controller reads metrics and updates replicas on the Deployment. That's all it does.  \n• Deployment controller watches Deployments, sees the new count, and updates the ReplicaSet.  \n• ReplicaSet controller watches ReplicaSets, sees it has 3 pods but wants 5, and creates 2 Pod objects. They have no node yet.  \n• Scheduler watches for Pods with no node, picks the best node, and writes a binding.  \n• Kubelet on that node watches for Pods assigned to it, starts the containers, and reports status back.\n\nEvery component does exactly one job, writes its result to the API server, and walks away. The next component picks it up through its own watch. Nobody knows who comes next, and nobody needs to.\n\nThat's why the system is so resilient. If the scheduler restarts, it relists, sees the pending pods and carries on. Controllers compare desired state with actual state, so a missed event doesn't break anything. They just reconcile again.\n\nThe part that surprised me most\n\nAfter all that machinery, the only real thing that changed is the number of Pods. The Deployment and ReplicaSet are just records in etcd with a different number. The HPA, controllers and scheduler never run your app. At the end of the chain, it's only pods that get scaled.\n\nIf you want to see all of this graphically I have explained this in detail below\n\nhttps://youtu.be/bwiHEG2NLpE?si=hPEEnlOR17qXydAQ",
+    "developer": "abhishekkumar333",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

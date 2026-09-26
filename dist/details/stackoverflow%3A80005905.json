@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005905",
+  "sourceItemId": "80005905",
+  "sourceUrl": "https://stackoverflow.com/questions/80005905/how-do-i-correctly-type-a-wrapper-that-returns-a-classmethod",
+  "detail": {
+    "longDescription": "I create a wrapper to create a convenience function to use in many places. VProp = TypeVar(\"VProp\") # Wrap the func because it has specific arguments def from_xcal_wrapper( func: Callable[[type[VProp], VPropParser, Parameters], VProp], ) -> Callable[[type[VProp], VPropParser | ElementAdapter | Element], VProp]: @classmethod # <----- Problem here! def wrapper(cls: type[VProp], xml: VPropParser | ElementAdapter | Element) -> VProp: # make sure we take a range of different arguments # and transform them # ... return func(cls, xml, parameters) return wrapper class X: @from_xcal_wrapper # Flares up: Cannot take first argument because it is Self. not type[Self] def from_xcal( cls, # This should be self - RUFF parser, parameters ): # ... return cls(...) # Still thinks, it is Self I had a look at this question but it does not answer the question. Also, I can double-annotate: put @classmethod before all of those occurrences. But how can I type it so that the wrapper is recognized as a classmethod wrapper is? I had a look at this: https://stackoverflow.com/a/79692249/1320237 And it seems it can be defined differently at TYPE_CHECKING. if TYPE_CHECKING: from_xcal_wrapper = classmethod else: def from_xcal_wrapper( But that looses the argument transformation and will flare up somewhere else.",
+    "developer": "User",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "50"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

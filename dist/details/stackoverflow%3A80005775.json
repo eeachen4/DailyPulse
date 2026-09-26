@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005775",
+  "sourceItemId": "80005775",
+  "sourceUrl": "https://stackoverflow.com/questions/80005775/correcting-faulty-n-body-simulation-using-velocity-verlet-integration",
+  "detail": {
+    "longDescription": "I am attempting to write a Python script that numerically simulates the N-body problem using velocity Verlet integration . My approach was to store information about each body (mass, position, velocity and acceleration) in a nested array, calculate initial acceleration experienced by each body and then update the velocities and positions within a set duration in set increments. My problem is in trying (and failing) to replicate trajectories from “ More than six hundreds new families of Newtonian periodic planar collisionless three-body orbits ”, in particular \"I.A. 81\" due to having a figure for comparison, as outlined below: r1(t=0) = (x1, x2), r2(t=0) = (-x1, -x2), r3(t=0) = (0, 0) v1(t=0) = (v1, v2), v2(t=0) = (v1, v2), v3(t=0) = (-2\\*v1, -2\\*v2) G = m1 = m2 = m3 = 1 x1 = -0.9987323215, x2 = -0.0021372611, v1 = 0.4372689963, v2 = 0.4569217324 Expected (screenshot from paper): Outputted: Full code is below: import matplotlib.pyplot as plt G_const=1 softening=0.0 delta_t=0.01 duration_val=1e3 time_val=0 def acc_calc(inp_state_arr): old_acc=[state[i][5:] for i in range(len(state))] for i in range(len(inp_state_arr)): xi, yi = inp_state_arr[i][1:3] axi_total = 0 ayi_total = 0 for j in range(len(inp_state_arr)): if i != j: mj, xj, yj = inp_state_arr[j][:3] rx = xi - xj ry = yi - yj r_mag = (rx**2 + ry**2 + softening)**(1/2) axi_total = axi_total + (-1)*G_const*mj*rx/(r_mag**3) ayi_total = ayi_total + (-1)*G_const*mj*ry/(r_mag**3) inp_state_arr[i][5:] = axi_total, ayi_total return inp_state_arr, old_acc def verlet_calc(inp_state_arr): for i in range(len(inp_state_arr)): xi, yi, vxi, vyi, axi, ayi = inp_state_arr[i][1:] xi = xi + delta_t*vxi + axi*(delta_t**2)/2 yi = yi + delta_t*vyi + ayi*(delta_t**2)/2 inp_state_arr[i][1] = xi inp_state_arr[i][2] = yi inp_state_arr, old_accs = acc_calc(inp_state_arr) for j in range(len(inp_state_arr)): axj_old = old_accs[j][0] ayj_old = old_accs[j][1] axi_new, ayi_new = inp_state_arr[j][5:] vxi = vxi + (axi_new + axj_old)*delta_t/2 vyi = vyi + (ayi_new + ayj_old)*delta_t/2 inp_state_arr[j][3]=vxi inp_state_arr[j][4]=vyi return inp_state_arr x1 = -0.9987323215 x2 = -0.0021372611 v1 = 0.4372689963 v2 = 0.4569217324 state=[ [1, x1, x2, v1, v2, 0, 0], [1, -x1, -x2, v1, v2, 0, 0], [1, 0, 0, -2*v1, -2*v2, 0, 0] ] plot_1_x=[] plot_1_y=[] plot_2_x=[] plot_2_y=[] plot_3_x=[] plot_3_y=[] plot_t=[] state, a = acc_calc(state) while time_val<duration_val: state=verlet_calc(state) print(time_val) plot_1_x.append(state[0][1]) plot_1_y.append(state[0][2]) plot_2_x.append(state[1][1]) plot_2_y.append(state[1][2]) plot_3_x.append(state[2][1]) plot_3_y.append(state[2][2]) plot_t.append(time_val) time_val+=delta_t print(state) plt.scatter(plot_1_x,plot_1_y,s=0.1,c='red',label=f'm1, {state[0][0]}kg') plt.scatter(plot_2_x,plot_2_y,s=0.1,c='blue',label=f'm2, {state[1][0]}kg') plt.scatter(plot_3_x,plot_3_y,s=0.1,c='green',label=f'm2, {state[2][0]}kg') plt.xlabel('x') plt.ylabel('y') plt.legend() plt.show() I suspect the function calculating the acceleration is incorrect, but I am unsure as to why?",
+    "developer": "Joe_Hudson",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "70"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.29219",
+  "sourceItemId": "2609.29219",
+  "fetchedAt": "2026-09-26T01:57:12.734Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.29219",
+  "detail": {
+    "longDescription": "arXiv:2609.29219v1 Announce Type: new Abstract: Modern AI and HPC accelerators increasingly expose dataflow features: software-visible mechanisms for data movement and overlap, such as inter-core communication through the on-chip network and intra-core asynchronous pipelining. These features shift scheduling responsibility from hardware to the compiler, and because placement, movement, and synchronization become software-visible, they also make the performance of static schedules predictable. Yet high performance on such hardware still relies on vendor-engineered kernel libraries or profile-based auto-tuning, whose embedded expert knowledge transfers poorly across architectures and algorithms. We present Loom, a tuning-free symbolic compiler framework for tile-based SPMD programs on spatial dataflow architectures. The central idea is to treat tile-based SPMD compilation as a hardware-explicit static optimization problem. Loom enumerates discrete spatial-mapping and communication candidates while keeping value parameters, such as tiling factors and pipeline knobs, symbolic within each candidate. From an explicit hardware description, it derives symbolic legality constraints and latency expressions, formulates one CP-SAT problem per schedule candidate, and jointly solves inter-core dataflow, intra-core asynchronous scheduling, and block sizes at compile time. On two Tenstorrent generations, Wormhole and Blackhole, Loom matches or exceeds the vendor-optimized TTNN library on GEMM, Flash Attention, and Flash Decode, out of the box and without per-shape profiling or profile-based platform-specific schedule tuning. These results suggest that hardware-derived symbolic compilation provides a retargetable alternative to profiling-based tuning for spatial dataflow architectures while remaining interpretable by keeping optimization decisions traceable to source-level symbols.",
+    "developer": "Heru Wang, Wei Li, Zhenyu Bai, Tulika Mitra",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Heru Wang, Wei Li, Zhenyu Bai, Tulika Mitra"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

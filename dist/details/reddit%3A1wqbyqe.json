@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wqbyqe",
+  "sourceItemId": "1wqbyqe",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wqbyqe/twblazor_net_tailwind_css_components_library/",
+  "detail": {
+    "longDescription": "[**twblazor.com**](https://twblazor.com/) • [**GitHub**](https://github.com/twblazor/twblazor)\n\nI am nervous as hell to post this here; but thought hey why not? please note - this is still a passion project and work in progress. Stars and shares are appreciated massively! \n\nI’ve been working on this for a while now, and have finally made it open source under the MIT license. I've been working with .NET & Blazor for multiple years and have never found a framework that suites my workflow, hence why a couple of years back, I decided to create my own. \n\nI have tried everything from MudBlazor, Syncfusion, Blazorise, Telerik and even Fluent UI by MS themselves. Don't get me wrong these are all brilliant libraries, but none of them really had the customisation I was looking for in a library, I have worked at multiple companies also using Blazor professionally and all have bumped into similar issues with these libraries... Styling it to match brands, and customising the UI exactly to their spec.\n\nI must admit it can be easier for some of the paid choices listed above; but for solo devs and small businesses, paying for these can be very costly.\n\nThis is where tailwind comes into play, yes love it or hate it. It's widely adopted by the industry and very easy to customise. Which is why typed classes, passed directly to well built components is a perfect way to style very precisely what you want; and is the reason I built twblazor. Extensive customisation, a wrapper around each component which means you can import component styling easily.\n\nIf you don't want table styling in your CSS don't include it! As simple as that, and if you want a certain style on your tables you can add it in. Same for absolutely every single component. It essentially gives you freedom existing libraries don't really give you with a single stylesheet compiled by you (well... tailwind).\n\n\\`\\`\\`\n\nbuilder.Services.AddTwBlazor(\\_ => { }, () => new TwBlazorTheme  \n{  \n*// ...position, colors, shadows, rounded...*  \nComponents =  \n\\[  \nnew TwButtonTheme  \n{  \nBase = \"inline-flex items-center gap-2 rounded-full font-semibold\",  \nPadding = \"px-8\"  \n},  \nnew TwInputTheme  \n{  \nDefaultInputVariant = InputVariant.Outlined  \n}  \n*// every other component you want to use.*  \n\\]  \n});\n\n\\`\\`\\`\n\nThese typed classes are then picked up by tailwinds compiler and boom - you have your own stylesheet.\n\nHappy to receive any feedback, suggestions or ideas.\n\nAgain this is an ongoing passion project; so as you can imagine I have plenty of ideas for new components from dashboard charts, excel like editors, calendar schedulers to text editor components, I mean the list goes on... I'm in the process of refining and fleshing out my project board.\n\nPlease also feel free to collaborate, I would love to have a forum in the future with user shared theme classes.",
+    "developer": "JacKk_01",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

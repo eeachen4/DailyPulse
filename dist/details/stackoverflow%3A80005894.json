@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005894",
+  "sourceItemId": "80005894",
+  "sourceUrl": "https://stackoverflow.com/questions/80005894/what-kind-of-regular-expression-captures-the-root-of-a-url",
+  "detail": {
+    "longDescription": "Consider the following examples of URLs: URL Root https://fr-wiktionary-org.translate.goog/wiki/s translate.goog https://python.regex.parse.smackoverflow.net/questions/answer smackoverflow.net www.linkedout.com/out/jane-doe linkedout.com http://www.linkedout.com/out/jane-doe linkedout.com https://www.linkedout.com/out/jane-doe linkedout.com The root of a URL is always of the form something.something . The root contains the right-most dot ( . ) that is to the left of the forward slashes ( / ), except for the forward slashes ( / ) inside of https:// . What Python regular expression will place the root of a URL inside of a capturing group, and discard the other parts of the URL? The following regex almost works: (?:https?:\\/\\/)??(?:[0-9a-zA-Z-\\.])*\\.([0-9a-zA-Z-]+\\.[0-9a-zA-Z-]+){1}(?:[0-9a-zA-Z-\\/]*) Regex101 If the capturing group for root of the URL is lazy instead of greedy, then we have bad results for the root capturing group, such as e.g , instead of translate.goog . The root of a URL is similar to, but not the same as, the longest possible sub-string of the URL that includes exactly one dot . (not two dots, or three dots, etc.) and such that our sub-string of interest does not contain any forward slashes / .",
+    "developer": "Toothpick Anemone",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "80"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

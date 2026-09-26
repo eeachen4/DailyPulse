@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wq5tl4",
+  "sourceItemId": "1wq5tl4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wq5tl4/giviloop_one_real_bug_caught_and_one_false/",
+  "detail": {
+    "longDescription": "I'm the author of GiviLoop, a free CLI and MCP tool with an MIT license. Here is a small example from its own development, with the checks recorded in the repo.\n\n\n\nClaude reviewed selected changes and found a real bug: an unknown verdict in the saved findings file could be left out of the report counts. A test reproduced it. The fix rejects that invalid data instead of producing a misleading summary.\n\n\n\nIt also claimed that malformed demo JSON caused an unhandled stack trace. That finding was wrong. The CLI already caught the error, but the review package had left out that part of the code. A separate test checked the actual CLI behavior and the finding was dismissed.\n\n\n\nThat's the workflow GiviLoop supports: get a second opinion, then have the coding agent check each finding against the code and tests. It saves confirmed, dismissed and unverified findings with their review ID and evidence. The saved report itself does not prove the tests ran.\n\n\n\nIt prepares context from Git and files so the coding agent doesn't need to write a long handoff. Local models or existing web chats can avoid a separate paid API review. The agent still uses tokens, chat quotas apply, and total savings are not measured.\n\n\n\nReport and test details: [https://github.com/vgflutter/GiviLoop/blob/main/docs/examples/double-check-report.md](https://github.com/vgflutter/GiviLoop/blob/main/docs/examples/double-check-report.md)\n\n\n\nCode and demo: [https://github.com/vgflutter/GiviLoop](https://github.com/vgflutter/GiviLoop)\n\n\n\nThis is one development example, not a model benchmark. This post was written with help from ChatGPT using the linked project report.",
+    "developer": "Smart_Ad500",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
