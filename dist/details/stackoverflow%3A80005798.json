@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005798",
+  "sourceItemId": "80005798",
+  "sourceUrl": "https://stackoverflow.com/questions/80005798/jax-ffi-handler-does-not-find-my-cuda-function-exported-with-nanobind",
+  "detail": {
+    "longDescription": "jax.errors.JaxRuntimeError: NOT_FOUND: No FFI handler registered for cell_list_bookkeeping on a platform CUDA (canonical cuda) is what I get when I attempt to register and call my CUDA backend from python: import cellbookkeeping_ffi import jax from cellbookkeeping_ffi import cell_list_bookkeeping import jax.numpy as jnp jax.ffi.register_ffi_target(\"cell_list_bookkeeping\", cell_list_bookkeeping(), platform=\"CUDA\") positions = jnp.array([1,1]) output = jax.ShapeDtypeStruct.like(positions) jax.ffi.ffi_call(\"cell_list_bookkeeping\",output)(1,1,2,1,10,5,output) #error happens here The imports work, and registering the ffi target throws no error. I used cmake to generate a .so file for this jax interface that is calling a cuda code: #include <map> #include <tuple> #include \"nanobind/nanobind.h\" #include \"xla/ffi/api/ffi.h\" // A wrapper to encapsulate an FFI call template <typename T> nanobind::capsule EncapsulateFfiCall(T *fn) { static_assert(std::is_invocable_r_v<XLA_FFI_Error *, T, XLA_FFI_CallFrame *>, \"Encapsulated function must be and XLA FFI handler\"); return nanobind::capsule(reinterpret_cast<void *>(fn)); } #include \"../cellbookkeeping.cu\" namespace nb = nanobind; namespace ffi = xla::ffi; using DT = ffi::DataType; /* ---------------------------------------------------------------------------------------------- */ /* FFI call to CUDA kernel: cell_list_bookkeeping */ /* ---------------------------------------------------------------------------------------------- */ ffi::Error cell_list_bookkeepingFFIHost( cudaStream_t stream, ffi::AnyBuffer pos, ffi::AnyBuffer n_positions, ffi::AnyBuffer dim, ffi::AnyBuffer rc, ffi::AnyBuffer L, ffi::AnyBuffer n_cells, ffi::Result<ffi::AnyBuffer> energy, size_t grid_size, size_t block_size ) { dim3 blockDim(block_size); dim3 gridDim(grid_size); size_t smem = 0; // Build a bundled argument list for cudaLaunchKernel void* pos_arg = pos.untyped_data(); void* n_positions_arg = n_positions.untyped_data(); void* dim_arg = dim.untyped_data(); void* rc_arg = rc.untyped_data(); void* L_arg = L.untyped_data(); void* n_cells_arg = n_cells.untyped_data(); void* energy_arg = energy->untyped_data(); void* args[] = { &pos_arg, &n_positions_arg, &dim_arg, &rc_arg, &L_arg, &n_cells_arg, &energy_arg }; const void* instance = (const void*)cell_list_bookkeeping; cudaLaunchKernel( instance, gridDim, blockDim, args, smem, stream ); cudaError_t last_error = cudaGetLastError(); if (last_error != cudaSuccess) { return ffi::Error::Internal(std::string(\"CUDA error: \") + cudaGetErrorString(last_error)); } return ffi::Error::Success(); } XLA_FFI_DEFINE_HANDLER_SYMBOL( cell_list_bookkeepingFFI, cell_list_bookkeepingFFIHost, ffi::Ffi::Bind() .Ctx<ffi::PlatformStream<cudaStream_t>>() .Arg<ffi::AnyBuffer>() // pos .Arg<ffi::AnyBuffer>() // n_positions .Arg<ffi::AnyBuffer>() // dim .Arg<ffi::AnyBuffer>() // rc .Arg<ffi::AnyBuffer>() // L .Arg<ffi::AnyBuffer>() // n_cells .Ret<ffi::AnyBuffer>() // energy .Attr<size_t>(\"grid_size\") .Attr<size_t>(\"block_size\"), {xla::ffi::Traits::kCmdBufferCompatible} ); /* ---------------------------------------------------------------------------------------------- */ /* Module declaration through nanobind */ /* ---------------------------------------------------------------------------------------------- */ NB_MODULE(cellbookkeeping_ffi, m) { m.def(\"cell_list_bookkeeping\", []() { return EncapsulateFfiCall(&cell_list_bookkeepingFFI); }); What am I doing wrong?",
+    "developer": "alo bre",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "67"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

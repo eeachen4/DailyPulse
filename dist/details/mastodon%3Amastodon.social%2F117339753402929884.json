@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117339753402929884",
+  "sourceItemId": "mastodon.social/117339753402929884",
+  "fetchedAt": "2026-09-27T01:46:27.756Z",
+  "sourceUrl": "https://hachyderm.io/@raimondas/117339753354024778",
+  "detail": {
+    "longDescription": "RepoRadar is now a GitHub Copilot plugin for VS Code. It answers one question. Given this repository, which recent arXiv papers could you actually act on? Not papers about your topic. Papers with a technique this codebase could adopt. Often the honest answer is none, and it says so. To install, add two VS Code settings: \"chat.plugins.enabled\": true \"chat.plugins.marketplaces\": [\"raimondasl/auto-features\"] Then install reporadar from the agent plugins list in the Extensions view. It also runs in Copilot CLI and Claude Code. What makes it work is an LLM gate that judges each candidate against your code. Without it, a keyword-ranked digest scores worse than showing nothing on our 25-repository benchmark. The metric charges 2 for every unactionable paper shown. The gate runs on OpenAI, Anthropic, or Azure OpenAI with Entra ID. On Azure there is no API key anywhere. You run az login, and RepoRadar asks the Azure CLI for a token. One later stage runs uncalibrated there, because it was fitted on a model Azure no longer deploys. The unglamorous part is PyTorch and about 1.1 GB of embedding weights. Code describes what a repository has. The paper you want describes what it should adopt. Across nine benchmark repositories, keyword search fetched 2,030 papers and reached none of 24 known-good ones. So dense retrieval is needed, but it stays out of the default install and downloads only if you opt in. Is it better than asking a frontier agent? Against Claude Opus 5 with web search, it depends on which model judges the results, and no interval excludes zero. The cost gap does not depend on the judge: about $0.05 per repository against about $9.50 at list prices. MIT licensed, on PyPI as reporadar-papers. Every number above is in the repo's evals, corrections included. https:// github.com/raimondasl/auto-fea tures # OpenSource # Python # arXiv # VSCode # GitHubCopilot # MachineLearning",
+    "developer": "@raimondas@hachyderm.io",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "Hachyderm.io"
+      }
+    ]
+  }
+}

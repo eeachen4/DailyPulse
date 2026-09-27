@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006046",
+  "sourceItemId": "80006046",
+  "sourceUrl": "https://stackoverflow.com/questions/80006046/elegant-way-to-return-a-filter-function-from-an-html-element",
+  "detail": {
+    "longDescription": "I've made a very large HTML form with many controls, which adds multiple filters to a large set of data. I wanted an efficient and elegant way to define a filter function for each control, to use with JavaScript .filter() . I couldn't find an easy way to access attributes within the control element, so I used .bind() to access the control element when defining the filter function. It works, but I feel like there should be a more elegant solution. I'll add a simple example with one control. Please can you suggest a more elegant solution - perhaps something that doesn't need .bind() ? let data = [ {\"id\": 0, \"item\": \"ball\", \"colour\": \"blue\"}, {\"id\": 1, \"item\": \"book\", \"colour\": \"blue\"}, {\"id\": 2, \"item\": \"hat\", \"colour\": \"yellow\"}, {\"id\": 3, \"item\": \"gloves\", \"colour\": \"red\"}, {\"id\": 4, \"item\": \"bag\", \"colour\": \"yellow\"}, {\"id\": 5, \"item\": \"coat\", \"colour\": \"blue\"}, {\"id\": 6, \"item\": \"key\", \"colour\": \"yellow\"}, {\"id\": 7, \"item\": \"glasses\", \"colour\": \"blue\"}, {\"id\": 8, \"item\": \"scarf\", \"colour\": \"red\"}, {\"id\": 9, \"item\": \"boots\", \"colour\": \"yellow\"}, ]; colour.filter_function = function(e) { let options = this.querySelectorAll(\"option\"); for (let i = 0; i < options.length; i++) { if (options[i].selected) { selection = options[i].textContent; break; } } if (selection) { return e.colour == selection; } else { //if selection is empty string return true return true; } }.bind(colour); colour.addEventListener(\"change\", function() { apply_filter(); }); function apply_filter() { tbody_output.innerHTML = \"\"; let item_list = data.filter(colour.filter_function); for (let i = 0; i < item_list.length; i++) { tbody_output.innerHTML += \"<tr><td>\" + item_list[i].id + \"</td><td>\" + item_list[i].item + \"</td><td>\" + item_list[i].colour + \"</td></tr>\"; } } apply_filter(); filter: <select id='colour'> <option></option> <option>blue</option> <option>red</option> <option>yellow</option> </select> <table> <thead> <tr><th>id</th><th>item</th><th>colour</th></tr> </thead> <tbody id='tbody_output'> </tbody> </table>",
+    "developer": "The Ratman",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "85"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

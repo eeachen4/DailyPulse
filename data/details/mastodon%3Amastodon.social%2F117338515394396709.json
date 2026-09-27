@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117338515394396709",
+  "sourceItemId": "mastodon.social/117338515394396709",
+  "fetchedAt": "2026-09-27T01:46:27.756Z",
+  "sourceUrl": "https://techhub.social/@mmornati/117338515337951727",
+  "detail": {
+    "longDescription": "Follow-up to my Jev × Home Assistant post: two comments on the last one deserved a real answer, not just a reply.\n\n@oneclickclaw_io@mastodon.social asked why not feed Jev's context to a small local model instead. Fair point - my prompts really were just snapshots (humidity *now*, flow *now*), no memory of what led there.\n\n@nocalla@mastodon.ie asked whether that's not exactly what the Bayesian sensor is for.\n\nBoth got tested, not just answered:\n\n→ Why not local: the box is an N100 mini PC, 4 cores, 16 GB RAM, no GPU, already running HA Core + recorder + Zigbee2MQTT. A local model's own numbers (from the router benchmark) put it at 1.5-3s/call on that class of hardware, several times an hour, contending with real-time Zigbee. And the actual gap was never model intelligence - Jev has a 32k-token window and was only getting ~565 tokens of *current* facts.\n\n→ So instead: a compact-history script built on Home Assistant's own recorder statistics, a 24h house timeline, per-room humidity baselines, a broken-sensor safety net (turns out two humidity sensors had been stuck at 0% - again), per-decision shadow/active switches, and a feedback loop - \"who was right?\" on the phone, scored on a scoreboard, summarised every week.\n\n→ Bayesian sensor: close, but not the same tool. You hand-estimate every probability yourself, it's strictly on/off, treats correlated clues as independent, and has no idea when its own inputs are lying. Jev takes plain facts, returns a full distribution over N options, and reasons over the whole state. Bayesian still wins for signals you already understand and want fully offline (occupancy, say) - and the two combine nicely.\n\nReal production numbers from the first days: 267 calls, ~206k tokens, $0.0087 that day. And a live finding I didn't expect: the VMC decision disagrees with its own rule 14/14 times at low confidence, while the shutters decision agrees 78/78 times - exactly why the per-decision switch earns its keep.\n\nFull write-up:\nhttps://blog.mornati.net/jev-home-assistant-history-feedback-and-the-local-model-question/\n\n#HomeAssistant #SmartHome #HomeAutomation #AI #LLM #SelfHosted",
+    "developer": "@mmornati@techhub.social",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      },
+      {
+        "label": "网站",
+        "value": "TechHub"
+      }
+    ]
+  }
+}
