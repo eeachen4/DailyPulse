@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005977",
   "sourceItemId": "80005977",
+  "fetchedAt": "2026-09-28T02:02:05.709Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005977/is-a-broadcast-variable-shared-across-multiple-concurrent-spark-jobs",
   "detail": {
     "longDescription": "I have a PySpark application where I use ThreadPoolExecutor to process multiple independent workloads concurrently. Each thread performs a Spark join using the same dimension DataFrame: def process_one(source): fact = ... result = fact.join( F.broadcast(dim), join_condition, \"left\" ) result.write... The same dim DataFrame is used by all threads. For example, I may have 15 threads running concurrently: with ThreadPoolExecutor(max_workers=15): ... The dimension DataFrame is also cached before the threads are started: dim = spark.read.table(\"dimension\") dim.cache() dim.count() My question is: When multiple concurrent Spark jobs use F.broadcast(dim) , can Spark maintain only one broadcast copy of the dimension per executor and have all the concurrent jobs/threads reuse that same copy? Or does each independent Spark job create its own broadcast of the same DataFrame, potentially resulting in multiple copies of the dimension on each executor? Also, does caching the DataFrame beforehand affect broadcast reuse? I'm specifically trying to understand whether this: Thread 1 ──┐ Thread 2 ──┤ Thread 3 ──┤ ... ├──> same 118 MB dimension Thread 15 ──┘ can result in: Executor └── 1 broadcast copy of dimension ↑ ├── Job 1 ├── Job 2 ├── Job 3 └── ... or potentially: Executor ├── Broadcast copy for Job 1 ├── Broadcast copy for Job 2 ├── Broadcast copy for Job 3 └── ... What is the correct Spark behavior here?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "67"
+        "value": "87"
       },
       {
         "label": "状态",

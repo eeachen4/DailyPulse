@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005425",
   "sourceItemId": "80005425",
+  "fetchedAt": "2026-09-28T02:02:05.709Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005425/correct-type-annotation-for-default-initialisation-with-generic-dataclass-inheri",
   "detail": {
     "longDescription": "I am trying to subclass a dataclass and override its properties with a compatible, i.e. also subclassed, type. How do I get the typing correct? As I understand it, generics let you define container types. However, when I try to assign a default value to a generic, my type checkers start complaining. Consider the following example: from dataclasses import dataclass, field from typing import Generic, TypeVar @dataclass class C: pass @dataclass class C2(C): pass CT = TypeVar(\"CT\", bound=C) @dataclass class myclass(Generic[CT]): var: CT = field(default_factory=C) @dataclass class myclass_child(myclass): var: C2 = field(default_factory=C2) my_class1 = myclass() my_class2 = myclass_child() print(type(my_class1.var)) print(type(my_class2.var)) Running in Python (3.12.3) works as expected: $ python test.py <class '__main__.C'> <class '__main__.C2'> However, mypy (1.9.0) complains: $ mypy test.py test.py:16: error: Incompatible types in assignment (expression has type \"C\", variable has type \"CT\") [assignment] test.py:22: error: Need type annotation for \"my_class1\" [var-annotated] Found 2 errors in 1 file (checked 1 source file) How am I supposed to annotate myclass.var in a way that it might, or might not, be overridden?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "140"
+        "value": "151"
       },
       {
         "label": "状态",

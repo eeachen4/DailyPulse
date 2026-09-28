@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrvbth",
+  "sourceItemId": "1wrvbth",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wrvbth/is_a_vector_database_enough_for_an_ai_agent/",
+  "detail": {
+    "longDescription": "I’ve been thinking about how different an AI agent’s database needs are from a normal application.\n\nAn agent may need to store conversation history, task state, tool results, user preferences, and other operational data. It also needs to read and write that information repeatedly while several agents may be working at the same time.\n\nThat makes me wonder whether a vector database is enough for most production agents.\n\nVector search is useful for finding semantically similar information, but it does not solve everything. An agent may also need exact lookups, metadata filters, transactional writes, concurrent updates, and a reliable way to resume a task after a restart.\n\nAll this makes me have the following questions:\n\n* Can agents work with isolated copies of realistic data during testing?\n* Can the system combine vector search, keyword search, and structured filters in one query?\n* What happens when two agents update the same record?\n* How quickly do new writes become available for retrieval?\n* Does the database need to support both agent transactions and downstream analytics?\n\nI’m interested in how people are handling this in real systems. Are you using one database for agent memory and operational state, or separating vectors, state, and transactional data across different systems?\n\n# ",
+    "developer": "OkShirt9372",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

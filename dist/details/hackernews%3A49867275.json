@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49867275",
+  "sourceItemId": "49867275",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49867275",
+  "detail": {
+    "longDescription": "Hi! This is a quite capable DAW that runs entirely in the browser (Chromium-based ones are the most tested), and, perhaps most surprisingly, it uses standard WebAudio nodes exclusively (no WebAssembly or custom DSP code in AudioWorklet etc.). In the included demo project (EDM, FWIW), over a thousand nodes are active at &quot;peak&quot; moments, and hundreds of them created and destroyed per second - all running smoothly and without dropouts and with low CPU (~ 5%) and RAM (~ 250MB) on the cheapest laptop I could buy ;) The project uses ~ 20 modular synth instances and ~ 65 insert FX. Which, I guess, means that much of the ACTUALLY impressive work was done by the Chromium team! There&#x27;s also lots of smart node caching going on to reset&#x2F;reuse nodes when possible instead of destroying them. Also, all parameter changes are always scheduled (slightly) into the future (even when playing the modular synth live), so timing is extremely tight and precise. The DAW is based on Xequence 2, the iOS app. The app works on any device and mostly any screen&#x2F;window size and supports touch, mouse, and keyboard interactions -- however the mixer (instruments) view is currently not great on small (phone) screens. Also, there are no &quot;proper&quot; audio tracks yet (although the modular synth has various Sample* modules that can track long notes, so this mitigates it), and no WebMIDI (the app is based entirely on MIDI in every way, but currently, only a MIDI adapter for the iOS app exists.) Full disclosure: The code in the demo is currently obfuscated, and I&#x27;m running a campaign to open-source it under AGPLv3. Please let me know if you have any questions or observations, or if you at least had fun! :)",
+    "externalUrl": "https://seven.systems/xequence2/demo/demo-deploy/www/index.html",
+    "developer": "intrr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

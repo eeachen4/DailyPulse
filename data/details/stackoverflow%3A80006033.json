@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006033",
   "sourceItemId": "80006033",
+  "fetchedAt": "2026-09-28T02:02:05.709Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006033/how-do-i-randomize-the-position-of-bezier-vertices",
   "detail": {
     "longDescription": "How do I make random bezier curves using randomized vertex positions on a canvas (above a background image)?. This is the code I'm currently using (I'm only getting a black background, no shapes are being drawn): index.html : <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <title>Document</title> <link rel=\"stylesheet\" href=\"styles.css\"> </head> <body> <script src=\"script.js\"></script> <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js\"></script> <button onclick=\"draw()\">Click me</button> <label for=\"numberBox\">Number of shapes (1-50):</label> <input type=\"number\" id=\"numberBox\" name=\"numberBox\" min=\"1\" max=\"50\" /> <div> <input type=\"submit\" value=\"Submit form\" /> </div> <figure id=\"figure\"> <img src=\"fashion.png\" alt=\"blank croquis\" /> <figcaption>Blank Croquis</figcaption> </figure> </body> </html> script.js function rand(min, max) { const minCeiled = Math.ceil(min); const maxFloored = Math.floor(max); return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); } const getRandom = rand(1, 1000); function setup() { createCanvas(1000, 1000); } function draw() { background(0); stroke(255); strokeWeight(20); noFill(); beginShape(); vertex(getRandom, getRandom) bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); bezierVertex(getRandom, getRandom, getRandom, getRandom, getRandom, getRandom); endShape(); } I watched YouTube videos, googled so many things, read through both the ps5 documentation and MDN and have no clue how to do this.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "62"
+        "value": "80"
       },
       {
         "label": "状态",

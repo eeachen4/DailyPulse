@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wru6to",
+  "sourceItemId": "1wru6to",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wru6to/our_admin_auth_only_worked_because_our_host_sets/",
+  "detail": {
+    "longDescription": "Found this during a security pass on our FastAPI backend, and I think it's a pretty common mistake so sharing.\n\nWe have an admin check guarding 15 routes, stuff like global purge, switching the inference mode for every user, all the observability endpoints. If an admin token is configured it checks the header, fine. If no token is configured it's supposed to refuse when we're hosted, and allow when it's the desktop app running on localhost.\n\nThe problem is how \"hosted\" was detected. It was just: if os.environ.get(\"RENDER\") then refuse.\n\nRENDER isn't our variable, it's one Render sets on every service. So prod was fine since we're on Render. But take the exact same Docker image to a VPS or Railway or Fly and that variable doesn't exist, and all 15 routes are open to anyone. No error, nothing in the logs. Forgetting the config opened the door instead of closing it.\n\nThe fix was small. We already had an ENVIRONMENT variable that defaults to \"production\" and already decides CORS. So now if nothing is set it refuses, and only the desktop build, which explicitly says it's not production, gets through.\n\nThe part that actually surprised me is 10 tests went red after the fix. They were calling admin routes without a token and getting data back. So they weren't testing a protected route, they were testing the hole, and passing. Kind of think that's the most honest number you get out of a fix like this, however many tests break is basically how big the hole was. We added 4 tests that pin the production behavior, including one that fails if the ENVIRONMENT default ever changes, because that would undo the whole fix without anyone noticing.\n\nThen I searched the codebase for the same RENDER check and found it in 2 more places. One was the JWT secret falling back to a random one outside Render, not a bypass but everyone gets logged out on every restart. The worse one was a flag called IS_HOSTED that turned on HSTS, error redaction and per user isolation of conversation history. All three were off anywhere that isn't Render. The name said \"shared deployment\" but the code actually checked \"are we on Render\", and that gap was the bug.\n\nSo the rule I'm keeping: never make a security decision depend on a variable someone else sets. If it's missing it should refuse, not open.\n\nAnyone else doing this with VERCEL or FLY_APP_NAME or similar? And is there a good way to catch tests that only pass because of a hole, other than fixing it and watching them break?",
+    "developer": "Initial_Orange2985",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

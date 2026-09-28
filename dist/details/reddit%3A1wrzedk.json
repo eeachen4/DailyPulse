@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrzedk",
+  "sourceItemId": "1wrzedk",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wrzedk/would_you_let_an_agent_write_to_your_database_if/",
+  "detail": {
+    "longDescription": "An agent with write access to our CRM's production database deleted all  \nour lead lists. It needed write access to do its job, so \"make it  \nread-only\" wasn't really an answer.\n\nThe approach I keep coming back to: give every agent its own branch of the  \nreal database. The agent reads and writes freely in its branch, then you  \nsee exactly what it changed (table, row, before, after) and either merge  \nit or throw it away. A person approves merges by default, or you set rules  \nlike \"no more than N deletes\" so small safe changes go through and  \nanything bigger waits for review.\n\nBefore going further with it, I'd love to know if this is a real problem  \nfor others or just mine:\n\n\\- Do your agents write to real databases, or only read?  \n\\- If they write, what stops a bad change today? Permissions, backups,  \n  a human checking everything, hoping?  \n\\- Would reviewing an agent's changes as a diff before they land help,  \n  or is that too much friction?  \n\\- What would you need to trust something like this?\n\nAny thoughts welcome.",
+    "developer": "Antique-Willow-5841",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

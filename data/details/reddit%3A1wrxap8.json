@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrxap8",
+  "sourceItemId": "1wrxap8",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wrxap8/qwen38flashnext_177b_nvfp4119gib_ssd_streaming_at/",
+  "detail": {
+    "longDescription": "We built an inference engine for MoE models that don't fit in VRAM + RAM. Most of the model stays on the SSD, and experts are read as tokens need them.\n\nThis started as a proof of concept, and poc worked, we are getting 9-10 tok/s decode on Qwen3.8-Flash-Next NVFP4 (9.06 on the benchmark turn, 10.4 on the best turn).\n\nThis is just the start. With better SSD streaming, we expect v2 to reach ~14-15 tok/s decode.\n\n**Model:** Qwen3.8-Flash-Next, 176.9B params, NVFP4 GGUF (119 GiB): https://huggingface.co/CompiledThoughts/Qwen3.8-Flash-Next-NVFP4-Q8_0\n\n**Machine:** RTX 5060 Ti 16 GB, Ryzen 7 9700X, 32 GB DDR5, Gen5 NVMe SSD 1Tb, Windows 11\n\n**Where the 119 GiB lives**\n\n| part of the file | size | where |\n|---|---:|---|\n| dense weights (attention, shared experts, LM head) | 4.4 GiB | VRAM |\n| token embedding table | 0.6 GiB | RAM, one row read per token |\n| hottest routed experts | 8.8 GiB | VRAM |\n| next-hottest routed experts | 6.0 GiB | pinned RAM |\n| remaining routed experts | 48.5 GiB | SSD, streamed on demand |\n| n-gram table | 50.7 GiB | SSD, 16 rows read per token |\n\nSo 20 GiB is in memory and 99 GiB stays on the SSD: 48.5 GiB of routed experts, streamed as the router picks them, and the 50.7 GiB hashed n-gram table (looking forward to qwen4 ngram).\n\n**Speed**\n\n- **Decode:** 9.06 tok/s on the benchmark turn, 10.4 on the best turn at xhigh effort\n- **Prefill:** 49.2 tok/s on a 5.5k-token prompt\n- **llama.cpp on the same machine:** 4.9 tok/s average decode\n\n**How it works**\n\n- VRAM holds the dense weights and the hottest experts (GCLOCK eviction), pinned RAM the next tier (read over PCIe), and the rest come off the NVMe on 8 read threads.\n- Lookahead prefetch guesses the next layer's experts and starts their reads early.\n- NVFP4 matmuls run FP4 x FP4 on the tensor cores, with no unpacking first.\n- About 270 MiB is read from the SSD per token, and roughly 75% of expert lookups hit memory.\n- Each token uses 480 experts (10 in each of 48 layers). About 377 of them are already in VRAM or RAM; the other ~103 are read from the SSD, about 270 MiB per token. This hit hit-rate is what allowed us to reach 9tps. \n- It only reads from the SSD and almost no writes so ssd should have minimal wear due to writes. But we saw SSD hit 70C during long runs.\n\n**Also supported: Qwen3.6-35B-A3B NVFP4.** It fits in VRAM + RAM . You can also run it via ssd streaming and it was the learning curve for this work. On the same machine with tuned config it hits: 47.3 tok/s decode at ~4k context, 591 tok/s prefill.\n\n**Serving:** an OpenAI-compatible server that renders the model's own chat template, with tool calls (still buggy and tested with Cline), the reasoning split out from the answer, and a built-in chat page.\n\n**Limits of v1:** RTX 50-series / Blackwell (sm_120) only, tested on Windows 11 and WSL2 only, greedy decoding only.\n\n**Links**\n\n- Repo: https://github.com/compiledthoughts/Inferred-Thoughts\n- Qwen3.8-Flash-Next 177B NVFP4: https://huggingface.co/CompiledThoughts/Qwen3.8-Flash-Next-NVFP4-Q8_0\n- Qwen3.6-35B-A3B NVFP4: https://huggingface.co/CompiledThoughts/Qwen3.6-35B-A3B-NVFP4-Q8_0-it\n- All models: https://huggingface.co/CompiledThoughts\n\nQuestions and feedback welcome, especially from anyone running big MoEs on small cards.\n",
+    "externalUrl": "https://i.redd.it/6vaavifpz4sh1.png",
+    "developer": "TypicalPudding6190",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

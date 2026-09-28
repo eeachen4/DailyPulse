@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ws0bl6",
+  "sourceItemId": "1ws0bl6",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1ws0bl6/built_a_phone_agent_that_flags_callers_nobody/",
+  "detail": {
+    "longDescription": "Disclosure first: I work at PayMeGPT and built this on it. Posting because the interesting part isn't the platform, it's the follow-up loop, and the pattern works on most stacks.\n\n**The problem:** small shops rarely lose customers because nobody answers. They lose them because nobody calls back.\n\n**The setup**\n\n* A Twilio local number (about $1/month) connected to a voice agent on OpenAI Realtime. gpt-live-1 is also selectable ($0.05/min plus backend tokens).\n* Guardrails in the prompt: never quote prices, never guess if a part fits, never take card details, and anyone stranded gets the emergency contact first.\n* Every call is recorded, transcribed and summarized.\n* Claude, connected over MCP, built the rest from prompts: a flow that runs when each call ends, adds the call to a Google Sheet, and alerts the owner when someone needs a follow-up.\n* A phone-friendly page on top of the sheet: one card per call with the reason, urgency, recording, transcript, and a 1-5 rating of how the agent handled it.\n\n**What broke:** on my test call it read my callback number back wrong (999 1234 came back as 991234) and I said \"correct\" without noticing. The fix is forcing a digit-by-digit readback with an explicit yes.\n\n**What worked:** I told it I'd called three times with no callback. That landed in the summary and triggered the owner alert, which is the part owners actually care about.\n\nHappy to share the prompt or the flow logic. Video walkthrough in the comments.",
+    "developer": "Purple_Lab5333",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

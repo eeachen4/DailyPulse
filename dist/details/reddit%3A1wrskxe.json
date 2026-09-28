@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrskxe",
+  "sourceItemId": "1wrskxe",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wrskxe/i_tested_jev_at_rag_and_the_results_might_shock/",
+  "detail": {
+    "longDescription": "**I tested TypeSafe JEV as a RAG reranker and trust me i didnt expect these Results**\n\nI've been playing around with TypeSafe JEV and wanted to see if it actually makes sense for RAG.\n\nI used the EU AI Act: 144 pages → 937 chunks, with 18 answerable and 3 unanswerable questions.\n\nFor context, non reanker is when i dont add a cross encoder across rag. But no production rag does that, every one has a no re ranker\n\n||Accuracy|Tokens|Time|Cost|\n|:-|:-|:-|:-|:-|\n||\n|No reranker|17/18|10,278|8.0s|$0|\n|Cross-encoder|17/18|626|3.2s|$0|\n|JEV|17/18|476|3.9s|$0.0018/query|\n\nJEV actually worked well, same accuracy and slightly fewer tokens than the cross-encoder.\n\nThe interesting part was the unanswerable questions. JEV returned an empty candidate set, meaning **0 tokens** went to the downstream LLM. But the savings were only around $0.000074/query, compared to JEV costing \\~$0.0018.\n\nSo in this setup, the local cross-encoder basically did the job for free.\n\nMade me wonder how much the choice of baseline affects JEV benchmarks. If you're comparing against sending everything to an LLM, JEV looks great. Against a cheap local reranker, it's a different story.\n\nCurious if anyone here has tried JEV for RAG and found a setup where it actually has a meaningful advantage.\n\nSo like i tested JEV with so much\n\nI covered this plus the HLD in detail in this video, spent approx 40 hours in researching and creating it, mind visiting it ?  \n[https://youtu.be/XqbrqHLZCqQ?si=imhodPLplhzUwcoN](https://youtu.be/XqbrqHLZCqQ?si=imhodPLplhzUwcoN)",
+    "developer": "ExamImmediate8956",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

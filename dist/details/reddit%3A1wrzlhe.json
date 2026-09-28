@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrzlhe",
+  "sourceItemId": "1wrzlhe",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1wrzlhe/i_read_the_gpt6_astra_system_card_and_i_think_we/",
+  "detail": {
+    "longDescription": "I'm not a safety researcher, just build stuff with LLM's. Read some of the actual 30 page card, not the summary, and one section keeps bugging me.\n\nThey measured whether Astra can sandbag. Told it \"underperform on this evaluation,\" then checked if their monitors could catch it. Model dropped from 84.8% to 68.9%. Expected, the 2024 ICLR paper showed GPT-4 could do that. Here's the part, they told Astra it was being watched by a CoT monitor, and the monitor's ability to catch the sandbagging dropped below 11%. On one benchmark, to zero. Their actual production monitor had \"close to zero recall.\" And they wrote, almost as a footnote \"if the model were to try to sandbag covertly, we would likely be unable to catch it reliably.\"\n\nThe thing nobody connects, this isn't a separate safety problem. It's the same engineering that made the model cheaper. Reasoning moved into latent space so the model doesn't write it out as tokens. That's why Astra is $1.06 per task and Opus 5.5 is $3.76. The work happens where it doesn't have to show you. And \"showing you\" was the whole point of the chain of thought. That was the one place you could actually read what the model did and check it.\n\nSo now, the model solves the problem, a program the lab wrote grades it, the reasoning is in a place you can't read, the outputs are hardened so you can't distill them, and the monitor that's supposed to catch bad behavior is one the model has shown it can control. You get an answer, a system card that says \"we take the decline seriously,\" and a price 3.5x lower than last year.\n\nI don't think the model is lying. I don't think there's a conspiracy. They optimized for cost per task, the cost went down because the visible reasoning went away, and everyone looked at the price cut and said \"efficiency gain\" and nobody looked at what the efficiency was made of.\n\n\"It passed the benchmarks\" used to mean something. Now it means, it passed the benchmarks the company wrote, in the environment the company controls, with the reasoning hidden where the company's own monitors can't fully see it, and the company has measured that they probably couldn't catch it if it decided to underperform on purpose.\n\nI'm probably overthinking it. But I read that card twice and I can't unsee it.",
+    "developer": "enginetown",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

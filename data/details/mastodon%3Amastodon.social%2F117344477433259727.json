@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117344477433259727",
+  "sourceItemId": "mastodon.social/117344477433259727",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-353414fa-345b2db69bd12eea",
+  "detail": {
+    "longDescription": "Most AI coding context generators have a hidden design flaw: they truncate long files sequentially from line 1 downward until they hit a token budget limit. If a file has 1,200 lines and your budget allows 400 lines, the model receives lines 1 to 400. Everything from line 401 to 1200 vanishes. In production codebases, this is fatal: Top: imports and constants Middle: core logic and helper functions Bottom: exported interfaces, route registrations, module.exports, and lifecycle bindings When the agent cannot see module.exports or class registrations at the bottom, it assumes they do not exist and generates duplicate or broken code. The Even-Span Sampling Methodology To solve this without blowing the token budget, TokenCap implements even-span distribution in src/pack/evenSpan.js . The algorithm divides the file into balanced intervals and samples structural slices while preserving AST function signatures: // src/pack/evenSpan.js overview function computeEvenSpans(lineCount, maxLines, anchorPoints) { // Guarantees head imports, core anchor blocks, and tail exports // are represented proportionally within the allocated budget. } Instead of: Lines 1 - 350: Captured Lines 351 - 1200: [TRUNCATED]Even-span provides: Lines 1 - 80: Header, configuration, types ... [140 lines folded] ... Lines 220 - 310: Core logic and targeted symbols ... [290 lines folded] ... Lines 600 - 680: Lifecycle handlers and bottom exports Every span boundary snaps cleanly to structural declaration boundaries rather than slicing mid-statement. Run tokencap make to inspect how your large files are budgeted. Read more at tokencap.vansharora.app # ai # devtools # vscode # productivity # software # coding # development # engineering # inclusive # community Why Top-Down Truncation Breaks AI Agents (And How Even-Span Fixes It)",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "4"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005981",
   "sourceItemId": "80005981",
+  "fetchedAt": "2026-09-28T02:02:05.709Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005981/how-are-aws-internet-gateways-physically-implemented-and-can-different-vpcs-use",
   "detail": {
     "longDescription": "I’m trying to understand the lower-level data path for outbound traffic from EC2, specifically around VPCs, Nitro, and Internet Gateways. Suppose I have two EC2 instances: EC2-A - VPC-A - IGW-A EC2-B - VPC-B - IGW-B Assume both instances are: in the same AWS Region and Availability Zone the same instance type similarly configured sending traffic to the same public destination IP At the logical AWS level, I understand the flow approximately as: EC2 ↓ ENA / Nitro ↓ VPC routing ↓ 0.0.0.0/0 → Internet Gateway ↓ AWS network / Internet edge ↓ destination What I am trying to understand is the physical/data-plane implementation underneath this abstraction. An Internet Gateway is documented as a horizontally scaled, redundant AWS service rather than a single physical router. If VPC-A has igw-A and VPC-B has igw-B , does AWS potentially map these two logical IGWs to different internal gateway-processing resources, forwarding domains, or Internet-edge paths? For example, could the actual paths conceptually look like: EC2-A ↓ Nitro ↓ ToR / AWS fabric ↓ IGW processing/path X ↓ AWS edge X ↓ destination while another VPC uses: EC2-B ↓ Nitro ↓ ToR / AWS fabric ↓ IGW processing/path Y ↓ AWS edge Y ↓ destination even when the instances are in the same AZ and everything else is configured similarly? I am especially interested in latency-sensitive workloads, where a difference of even tens of microseconds can matter. My questions are: Does an IGW resource ID correspond in any way to a particular internal gateway-processing pool or path? Can two VPCs in the same AZ reach the same public destination through different AWS internal egress/edge paths because they use different IGWs? Is the physical/path selection based on VPC ID, ENI, flow hash/5-tuple, host placement, or some other factor? Is there any AWS-supported way to determine whether two EC2 flows are taking different internal egress paths? If I detach one IGW and attach a newly created IGW to the same VPC, is there any reason to expect the underlying physical egress path to change, or are IGW IDs purely logical abstractions over shared infrastructure? I understand that AWS may not publicly document the exact internal implementation. I am mainly looking for any AWS documentation, re material, engineering talks, or practical observations that clarify how much of the Internet Gateway / egress path is tied to the VPC versus the underlying EC2/Nitro/physical network placement.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "64"
       },
       {
         "label": "状态",

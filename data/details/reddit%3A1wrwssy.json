@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrwssy",
+  "sourceItemId": "1wrwssy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wrwssy/memory_history_is_not_reasoning_history/",
+  "detail": {
+    "longDescription": "I ran into a distinction while building memory infrastructure for long-running agents that I had previously blurred myself.\n\nSuppose an agent investigating an incident records:\n\n1. connectivity evidence arrives\n2. shortly afterward, the agent changes its investigation decision\n\nIf your memory system has an event log, you can reconstruct:\n\n`evidence stored → decision superseded`\n\nBut you **cannot** conclude:\n\n`evidence → caused → decision`\n\nunless the application explicitly recorded that relationship.\n\nThat left me thinking about three different kinds of provenance:\n\n**Source provenance**  \nWhere did this memory come from?\n\n**Transition provenance**  \nWhat happened to stored memory over time?\n\n**Reasoning provenance**  \nWhich evidence caused the agent to make this decision?\n\nThe first two are relatively straightforward to represent in a memory system. The third is different.\n\nIn my test, the event log knew that connectivity evidence was added before the decision changed. It could replay the state before and after the revision. But the new decision's source was simply `agent`; nothing linked that decision to the connectivity evidence.\n\nSo:\n\n**Time order is not causal explanation.**\n\nYou can have a perfectly replayable memory history and still be unable to answer:\n\n**“Why did the agent decide that?”**\n\nI'm curious how people here handle this in production agents.\n\nDo you explicitly store `evidence → decision` links?\n\nDo you rely on traces / execution provenance instead of memory?\n\nOr do you think reasoning provenance belongs outside the memory layer entirely?\n\n[blog](https://lyr-ai.github.io/what-happened-when-i-made-memory-transitions-explicit/)  \n[repo](https://github.com/lyr-ai/typedmem)",
+    "developer": "puppy_lover_2021",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

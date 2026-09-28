@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wru73h",
+  "sourceItemId": "1wru73h",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wru73h/caracal_scoped_distributed_resilience_policies/",
+  "detail": {
+    "longDescription": "Scoped distributed resilience policies for asynchronous operations.\n\nMost resilience libraries stop at the process boundary. You get a local circuit breaker, a local bulkhead, a local rate limit. Spin up 40 replicas and those limits multiply: a “concurrency limit of 20” quietly becomes 800 concurrent calls on the dependency. Forty independent failure windows. Forty independent recovery probes. The constraints no longer match the failure domain.\n\nCaracal wraps any asynchronous operation (HTTP, Postgres calls, etc., or your own adapter) in a composable policy pipeline: timeout, retry, circuit breaker, bulkhead, rate limit, and through Redis, lets many replicas share those policies under an explicit scope.\n\nYou decide where the limit belongs: a process, a fleet, a region, a tenant, a shard, a credential, or any grouping that actually matches your failure domain. The same policy instance can enforce one shared budget for the whole fleet or one independent budget per tenant, the only difference is the scope function.\n\n# What it does\n\n* **Operation + adapter model:** An adapter declares its cancellation and replay capabilities up front (abort and replay). Caracal never infers them. Built-in adapters for http fetch and pg (more to come), or write your own by implementing a small interface.\n* **Composable policies:** Timeout and retry stay local. Bulkhead, circuit breaker and rate limit (GCRA) are available in both local and distributed forms.\n* **Scoped coordination:** Distributed policies coordinate by (namespace, policy name, operation name, scope). Different operations get independent budgets even when they reuse the same policy instances, shared budgets are deliberate.\n* **Explicit failure modes:** Distributed bulkheads shed (no distributed queue). On coordinator loss the bulkhead fails closed, the circuit breaker lets you choose fail-open or fail-closed and never silently falls back to local state. Leases reclaim permits and half-open probe slots from dead or hung holders.\n* **Events, not metrics:** Structured events for every policy decision. Sinks are isolated: a throwing or slow-async sink cannot affect execution.\n\n# Design choices\n\n* **Permits and probes are leased**. A dead process cannot return a permit, a hung half-open probe cannot wedge the breaker forever. Expiry is the only release a dead holder can still perform.\n* **Adapters own their contracts**. Explicit abort/replay (and an optional dispose hook for abandoned results) keep the runtime from guessing.\n* **Local and distributed share the same surface**. You can start with process-local limits and move the boundary later without rewriting call sites.\n* **Single ESM package, subpath exports**. Core stays free of Redis and protocol dependencies, tree-shaking stays clean.\n\nThe [Caracal Sandbox](https://github.com/gkoos/caracal-sandbox) runs the same workload against the same dependency while moving the coordination boundary, then records what the dependency actually saw.",
+    "externalUrl": "https://github.com/gkoos/caracal",
+    "developer": "OtherwisePush6424",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

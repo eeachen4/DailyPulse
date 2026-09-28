@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006260",
+  "sourceItemId": "80006260",
+  "sourceUrl": "https://stackoverflow.com/questions/80006260/how-to-fix-an-issue-with-random-images-not-showing",
+  "detail": {
+    "longDescription": "I'm having issues with the following piece of code I rewrote based on this code on CodePen . None of the images are showing when I run index.html. I added different image sources leading to .png files saved in the same folder as index.html and sketch.js (e.g. p1.png). I'm getting issues at src.appendChild(img) , but can't see what the problem is because I get the no debugger available error. Moving the script src to the end of the document fixes the main issue. // sketch.js: function displayFour() { let images = [ \"p1.png\", \"p2.png\", \"p3.png\", \"p4.png\", \"p5.png\" ] let selectedIndices = [] while (selectedIndices.length < 4) { let index = images[Math.floor(Math.random() * images.length)] if (selectedIndices.indexOf(index) == -1) { selectedIndices.push(index) } } for (i = 0; i < selectedIndices.length; i++) { let img = document.createElement(\"img\"); img.src = selectedIndices[i] img.className = \"image\" let src = document.getElementById(\"images\"); src.appendChild(img); } } displayFour() #images { display: flex; gap: 1em; } <script src=\"https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js\"></script> <!-- In the original code the script is loaded at the start of the body section. However, in the snippet it loads at the end of the body. --> <!-- <script src=\"sketch.js\"></script> --> <div id=\"images\"></div>",
+    "developer": "Aurora Lane",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "91"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

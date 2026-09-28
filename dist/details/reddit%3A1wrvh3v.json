@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrvh3v",
+  "sourceItemId": "1wrvh3v",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wrvh3v/have_coding_agents_made_us_forget_program_to_an/",
+  "detail": {
+    "longDescription": "My introduction to customizing agentic coding harnesses was building out cursor rules. A not insignificant amount of time was spent on this. As the landscape evolved and Claude Code entered and took market share over the scene, an even larger amount of effort was exerted on a lift and shift. Then came the tooling drift as both harnesses were used. Then Codex, pi, opencode and others entered the scene. Chaos ensued. \n\nAs the models have improved, differentiation has increasingly moved into the harness around them. Each camp touts why their ecosystem is superior based on benchmarks but the rest of us are left to adapt our own efforts based on which way the wind blows on a given month. \n\nDemos and press releases tend to emphasize features that pull you deeper into a particular ecosystem. That makes sense. They're selling a product.\n\nBut what if we started thinking about frontier coding harnesses as the implementation, and started building our agentic systems against an interface instead?\n\nAs an example, rather than building a Claude Code plugin that may consist of some skill prose and some ad-hoc code that doesn't have a generalized distribution mechanism, why not build a local MCP server or CLI that any harness can expose to their respective models as a tool?\n\n***Make the harness swappable, keep the capabilities you build under a stable surface.***\n\nI do believe that there’s some convergence beginning around this, but I also haven’t come across the question being posed quite like I am here. It very well could be that I just missed it with the endless stream of AI-related posts across every platform. If so, keen on being pointed towards similar thought streams.\n\nI’ve been using MCP as a seam for underlying agentic systems and it’s been fantastic. Splitting the conversational harness from the durable workflow and tool logic has been incredibly cool to watch operate (I’ve been using LangFuse for my observability layer).\n\nYou want hooks? Add them to your own code.  \nDoesn’t demo as well and as quickly as skill prose? Add *very little* boilerplate code to get a local MCP server running over STDIO and have an agent implemented with the exact same prose. Same core capabilities but entirely portable across harnesses and distributable with your chosen language’s ecosystem.\n\nTo be clear: This isn’t intended as an argument for a specific boundary architecture or set of frameworks or languages to build on. This post is to really spur on talking about the separation of concerns around the conversational harnesses and the agentic capabilities you build.\n\nAlso note: All of the above doesn’t mean you’re never going to use harness-specific features. They still *can* be useful. The difference is that the harness-specific aspects should become lean and not onerous to translate from harness to harness. The complex bits, those capabilities that you *really* care about are portable. The harness-specific stuff is just the icing on the top.\n\nHave others here started to think along these lines? Curious if you’ve pushed the idea upwards successfully and how you’ve communicated that maybe we’re letting the harness own too much of the architecture.",
+    "developer": "mostly_deterministic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

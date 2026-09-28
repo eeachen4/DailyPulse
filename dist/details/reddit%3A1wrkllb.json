@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wrkllb",
+  "sourceItemId": "1wrkllb",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wrkllb/we_audited_the_default_helm_charts_and_docker/",
+  "detail": {
+    "longDescription": "Over the past few weeks, we set up a fresh cluster to test what actually gets deployed when an engineer runs `helm install` with zero extra configuration on popular AI, vector DB, and MCP charts (Ray, vLLM, LiteLLM, Qdrant, Weaviate, KubeRay, etc.).\n\nEveryone focuses on prompt injection and model jailbreaks, but the platform-level defaults on these workloads look like Kubernetes five to seven years ago:\n\n1. **Ray / KubeRay (Distributed Compute)**\n   - The default deployment accepts unauthenticated job submissions over internal cluster networking.\n   - Worker containers run with passwordless sudo out of the box.\n   - Any compromised pod on the flat cluster network that can reach the Ray API gets arbitrary remote execution as root with zero barrier.\n\n2. **MCP (Model Context Protocol) Servers**\n   - Several popular MCP server implementations implement local protection solely by checking `Host: localhost`.\n   - Any basic SSRF or internal proxy passing `-H \"Host: localhost\"` bypasses this immediately.\n   - In live testing, one Kubernetes MCP server mounted a ClusterRole with cluster-wide Secret read and pod exec permissions, exposed over unauthenticated HTTP.\n\n3. **LiteLLM Migration Job Credential Leak**\n   - The primary deployment pulls the database password from a Secret using `secretKeyRef`, but the database migration Job embeds the raw database password in plain-text environment variables.\n   - Anyone with basic cluster read permissions (devs, CI service accounts, dashboards) can run `kubectl get job -o yaml` and extract the database password directly from the env block, even without permission to read Secrets.\n\n4. **Vector DBs & RAG Stores**\n   - Multiple upstream charts still ship with default values that enable anonymous read and write access.\n   - Raw embeddings and ingested document payloads are queryable by any internal service without an authentication header.\n\n5. **Scanner Blindspots**\n   - 14 of 15 charts provide no default NetworkPolicy objects.\n   - All 15 charts leave Kubernetes' default `automountServiceAccountToken: true` enabled.\n   - Standard static linters (Checkov, Trivy, Kubescape) missed the containers nested inside Custom Resource Definitions like Ray clusters.\n\n**The takeaway for platform and security teams:**\nThe AI supply chain conversation is hyper-focused on prompts, but your teams might be deploying unauthenticated root execution endpoints right now. If your cluster is not enforcing Kyverno or OPA gatekeeper admission rules, mandatory NetworkPolicies, and dropping default service account tokens on AI namespaces, the internal perimeter is wide open.\n\nCurious what other teams are doing here. Have you written custom Kyverno/OPA policies or wrapper charts for AI workloads at your org, or are you putting everything behind a service mesh like Istio/Linkerd?\n\nFull write-up, reproduction manifests, and probe logs: https://sorami.com.au/research/ai-kubernetes-helm-chart-security/\nRaw probe logs and reproduction repository: https://github.com/Sorami-Consulting-AU/ai-kubernetes-helm-chart-security",
+    "developer": "No-Peanut-6988",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
