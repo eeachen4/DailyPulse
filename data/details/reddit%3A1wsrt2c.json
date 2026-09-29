@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsrt2c",
+  "sourceItemId": "1wsrt2c",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wsrt2c/psa_exercise_caution_when_comparing_ts_among/",
+  "detail": {
+    "longDescription": "A \"token\" is not a fixed chunk of text. It's a word from the model's own private dictionary. Each model ships with its own vocabulary: the list of string-slices learned during training. Analogy: two people transcribe the same sentence: one writes \"New York\" as one word, the other as two. Both are correct; they're just counting different things.\n\nSo tokens/sec is speed measured in steps per minute, and two models can have different stride lengths. One can takes long steps (eg, 4.83 chars each), the other short ones (eg, 3.27). A child and an adult both walking \"60 steps per minute\" are not walking side by side.\n\nThe rules that follow:\n\n1. Same tokenizer = fair comparison. Two llama.cpp servers running the same model family, tok/s compares directly. Trust it.\n\n2. Different tokenizers = the number is in different units. Convert to distance: real speed = tok/s x chars-per-token. If both servers report 40 tok/s on prose, one server is laying down \\~131 chars/s and the other server \\~193 chars/s, so the second is 1.48x faster while the headline numbers tie. The inflation favors the choppier tokenizer: more tokens for the same text = bigger tok/s for the same wall-clock speed.\n\n3. The conversion factor is content-dependent, so measure, don't assume. A ratio may be 0.68 on prose but 0.74 on JSON. The same vocabularies chop different text differently. Any cross-server speed claim should come with chars/token (or just words/sec) measured on a representative workload, not vendor marketing numbers.\n\n4. One is real, one is an illusion. What's real is prefill and cost. A more efficient tokenizer turns the same conversation into fewer tokens, so there is genuinely less compute before the first token (shorter TTFT). That's a true speed and money win, not a units trick. What's an Illusion: decode-rate comparisons across families. \"Model A does 80 tok/s, model B does 60\" says nothing about who finishes the answer first unless A and B share a vocabulary.\n\n\n\n",
+    "developer": "challis88ocarina",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wstamo",
+  "sourceItemId": "1wstamo",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wstamo/how_are_you_preventing_hallucinations_from/",
+  "detail": {
+    "longDescription": "Hi guys, I've been thinking about how hallucinations become a pretty different problem once you move from chatbots to agents.\n\nWith a normal chatbot, the model might confidently give someone the wrong refund policy.\n\nBad, obviously.\n\nBut if that same model has tools and permission to actually issue refunds, now the hallucination can turn into a real action.\n\nFor example:\n\nActual policy: refunds within 30 days.\n\nCustomer is at day 45.\n\nAgent hallucinates that the policy is 60 days and calls the refund API.\n\nAt that point, improving the prompt doesn't feel like enough of a safety mechanism.\n\nThe approach that makes the most sense to me is separating what the model is allowed to **reason about** from what it is allowed to **decide or execute**.\n\nFor example, instead of asking:\n\n“Is this customer eligible for a refund?”\n\nand trusting whatever the model says, the agent could retrieve:\n\n* actual order date\n* refund policy\n* account status\n* previous refunds\n\nThen eligibility could potentially be validated separately before the refund tool is available.\n\nBasically, don't let the model guess something that your systems already know.\n\nBut I'm curious how people are actually implementing this in production.\n\nDo you rely mostly on RAG + prompting?\n\nDo you validate tool calls separately?\n\nDo you use deterministic rules around sensitive actions?\n\nDo you have another model verify the first model?\n\nOr do you require human approval above certain thresholds?\n\nIt feels like hallucination rates by themselves aren't even the most useful metric for agents.\n\n**“How often can a hallucination turn into a real-world action?”** might be the more important question.\n\nWould be interested to hear how people are designing around this. Thanks!",
+    "developer": "Informal-Dust4499",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

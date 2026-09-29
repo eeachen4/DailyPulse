@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsiuzq",
+  "sourceItemId": "1wsiuzq",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wsiuzq/how_i_cut_nonprod_cluster_costs_by_scheduling/",
+  "detail": {
+    "longDescription": "Dev and test environments sit idle nights and weekends but still burn compute. Here's how I automated scaling them down and back up on OpenShift/Kubernetes.\n\nThe problem: Manual shutdowns were forgotten, and teams complained when environments weren't ready in the morning.\n\nThe approach:\n\nTag namespaces/workloads with a schedule label\n\nA scheduled job scales deployments to 0 at night and restores the previous replica counts in the morning\n\nExclusions for anything that must stay up, plus alerting if a scale-up fails\n\nResult: \\[€18572 to €15182\\]",
+    "developer": "humhaium",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

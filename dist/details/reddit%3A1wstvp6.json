@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wstvp6",
+  "sourceItemId": "1wstvp6",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wstvp6/i_built_what_you_suggested_for_letting_agents/",
+  "detail": {
+    "longDescription": "A few days ago I asked here how you let agents write to real data. I took the top suggestions and built them into the database I'm working on, Chronos DB, a new Postgres-compatible database where every agent gets its own copy of the whole database in about 2 microseconds, works in it with normal SQL, and you diff and merge what it did.\n\n\n\nWhat I built from your answers:\n\n\n\n1. Limits per merge weren't enough. An agent capped at 50 deletes per merge can do 500 in ten merges, so limits are now per agent per hour.\n\n2. A run declares its scope before the first write: which tables, columns and tenant it may change. A merge that strays outside it waits for a person.\n\n3. Some columns (owner, billing, identity) can be marked so any change to them needs a human, even one row.\n\n4. Side effects like emails and webhooks queue with the change and fire only when it's approved. A discarded attempt sends nothing.\n\n5. A branch left open too long can't merge without review, even if nothing it read has changed.\n\n\n\nAnd the default I now recommend for any agent: no delete merges without a person until you've seen enough to loosen it.\n\n\n\nIt's a preview (v0.1.3), single node, source-available, not in production anywhere yet. Links and install are in the comments.\n\n\n\nWhat I still don't know: would you move your data into a new database built for this, or only use something that runs next to your existing Postgres?",
+    "developer": "Antique-Willow-5841",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

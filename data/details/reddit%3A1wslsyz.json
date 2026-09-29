@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wslsyz",
+  "sourceItemId": "1wslsyz",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wslsyz/psa_if_ranchers_rbac_is_denying_you_something/",
+  "detail": {
+    "longDescription": "Spent an embarrassing amount of time debugging why a user couldn't cordon a node despite having a role that \"clearly\" granted it. Turned out the RoleTemplate had `resources: [node]` — singular, like Kubernetes was only going to give us one (1) node and we should be grateful.\n\nWent to fix it in the GUI. The dropdown for that field offers exactly two options: `node` and `csinodes`. No `nodes`. The correct value literally isn't selectable. It's not a fat-fingered mistake, it's a vending machine with no snacks in slot B4.\n\nPatched it via kubectl instead, confirmed with `auth can-i` that permissions are now textbook correct. Cordon/drain buttons in the dashboard? Still missing. So it's not one bug, it's a bug wearing another bug as a trenchcoat.\n\nFiled both with SUSE.\n\nAnyone else found other resource types where the picker only speaks singular?",
+    "developer": "Specialist_Horror400",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

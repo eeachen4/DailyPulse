@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsqjku",
+  "sourceItemId": "1wsqjku",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wsqjku/swift_15_hyperqwen_37_less_task_completion_time/",
+  "detail": {
+    "longDescription": "Hi everyone :)\n\nThe amazing [Swift finetunes](https://huggingface.co/collections/ukisai/swift-15-27b) of Qwen3.8 27B generate much fewer tokens at mostly similar benchmark performance to the original model, while repos like [HyperQwen](https://github.com/syv-ai/HyperQwen) (formerly syv-ai/qwen38-27b-rtx3090) deliver insane TPS on an RTX 3090.\n\nTo get the best of both worlds, I adapted Swift 1 and Swift 1.5 for HyperQwen and benchmarked them against HyperQwen’s specialized W4A16 AutoRound fast quant for speed and quality.\n\n# Performance\n\n|Model|Average time/task ↓|Average output tokens/task ↓|Decode tok/s ↑|\n|:-|:-|:-|:-|\n|Qwen — HyperQwen fast quant|108.1 s|8,985|**112.1**|\n|Swift 1.0 + HyperQwen|**66.2 s**|**5,245**|105.9|\n|Swift 1.5 + HyperQwen, INT8 heads|72.2 s|5,751|104.0|\n|Swift 1.5 + HyperQwen fast|68.2 s|5,669|107.2|\n\nAll models ran on one RTX 3090 24GB with FP8 KV cache and 150k configured context. Average task time covers about 630 tasks from different benchmarks listed below.\n\nSwift-1.5-Qwen3.8-27B-W4A16-HyperQwen-fast achieves roughly **37% lower average time per task** compared to the HyperQwen Qwen fast model. Despite slightly lower TPS it finishes sooner because it generates fewer tokens.\n\n# Quality\n\nThere are some minor quality and performance tradeoffs between the models:\n\n|Test|Qwen HyperQwen fast|Swift 1.0|Swift 1.5 INT8 heads|Swift 1.5 fast|\n|:-|:-|:-|:-|:-|\n|GSM8K, 200 questions|97.5%|98.0%|98.0%|97.5%|\n|IFBench, 300 prompts, strict|74.0%|73.3%|73.7%|72.3%|\n|LiveCodeBench, (100-problem subset)|90%|89%|89%|91%|\n|Custom tool-call/JSON eval|29/30|28/30|30/30|30/30|\n|English/Python perplexity ↓|6.551|6.605|6.643|6.679|\n\nApplied changes to Swift models to adapt for HyperQwen:\n\n# Changes to Swift models:\n\n* Kept the upstream AWQ INT4 model weights and converted embeddings to INT8.\n* **Swift 1.0 and Swift 1.5 INT8-head variants:** quantized the output head and MTP (multi-token prediction) linear layers to INT8 and added HyperQwen’s reference draft vocabulary for speculative decoding.\n* **Swift 1.5 fast:** quantized the output head and MTP linear layers to GPTQ INT4 instead, and built a Swift-specific 65,536-token draft vocabulary. The model’s full output vocabulary is retained.\n* No additional fine-tuning—these are quantization and serving adaptations of the existing Swift checkpoints.\n\n# Setup\n\nIf you want to try it yourself, point your coding agent at [these setup instructions](https://huggingface.co/daavidhauser/Swift-1.5-Qwen3.8-27B-W4A16-HyperQwen-fast/blob/main/RUNTIME.md) and ask it to set up Swift 1.5 + HyperQwen on your machine.\n\nAll three models can be found here:  \n[https://huggingface.co/collections/daavidhauser/swift-for-hyperqwen-rtx-3090-benchmarks](https://huggingface.co/collections/daavidhauser/swift-for-hyperqwen-rtx-3090-benchmarks)\n\nBig shoutout to UkisAI for Swift and syv-ai for HyperQwen! It's genuinely insane to be able to run these models on an RTX3090 at those speeds!",
+    "developer": "KingGongzilla",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117350315798932701",
+  "sourceItemId": "mastodon.social/117350315798932701",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-26de22c0-cb349b5d0b6ebd4f",
+  "detail": {
+    "longDescription": "While vector search provides semantic flexibility to match error logs across varying formats, terminal workflows often require clear, deterministic remediation recommendations. Returning raw similarity scores or unparsed document chunks can confuse engineers who simply need actionable terminal commands or config adjustments. To solve this, our DevOps Memory Agent incorporates a rule-based context parsing engine inside devops_agent.py to map raw vector retrieval hits into structured, deterministic fixes. The Rule-Based Parsing Pipeline When a user submits a failure log, vector hits retrieved via the Hindsight Recall API pass through a pattern-matching and extraction filter. +----------------------+ | Raw Error Stack Trace| +----------------------+ | v +----------------------+ | Hindsight Recall API | +----------------------+ | Retrieved Memory Vector | v +----------------------+ | Rule-Based Context | | Parsing Engine | +----------------------+ | Extract Error Code & Command | v +----------------------+ | Deterministic Fix | | Output in Terminal | +----------------------+ Implementing Context Mapping in Code The context engine extracts structural signals (e.g., Exit Code 137 , ENOSPC , permission errors) from the vector hit content and formats a clear, action-oriented fix: import re def parse_and_format_fix(retrieved_content: str) -> str: \"\"\"Parses vector memory hits and formats deterministic remediation steps.\"\"\" # Standardize output structure clean_text = retrieved_content.replace(\"\\n\", \" \") # Rule 1: Handle Out of Memory (Exit Code 137) if \"137\" in clean_text or \"OOM\" in clean_text: return ( \"🚨 [Detected OOM Error] \" \" └─ Action: Increase RAM allocation in runner config or optimize memory usage. \" \" └─ Suggested Command: Set 'NODE_OPTIONS=--max-old-space-size=4096'\" ) # Rule 2: Handle Disk Exhaustion (ENOSPC) elif \"ENOSPC\" in clean_text or \"no space\" in clean_text.lower(): return ( \"🚨 [Detected Disk Exhaustion] \" \" └─ Action: Prune unused Docker layers and build caches. \" \" └─ Suggested Command: docker system prune -af --volumes\" ) # Default: Fallback to structured document content return f\"💡 [Suggested Fix]: {retrieved_content}\" Key Advantages of Deterministic Mapping Actionable Output: Converts general textual advice into exact shell commands developers can execute instantly. Safety & Control: Provides clear guardrails around system modifications rather than blindly executing autonomous code. Predictable Triage: Ensures recurring production errors always trigger uniform, team-approved remediation steps. Resources & Links GitHub Repository: 25wh1a05be/devops-pipeline-agent Hindsight Documentation: hindsight.vectorize.io # ai # devops # opensource # python # software # coding # development # engineering # inclusive # community Turning Hindsight Recall Into Actionable DevOps Fixes",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

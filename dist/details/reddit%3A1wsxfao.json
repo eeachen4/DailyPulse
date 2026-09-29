@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsxfao",
+  "sourceItemId": "1wsxfao",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wsxfao/i_built_a_local_ai_agent_with_a_headless_browser/",
+  "detail": {
+    "longDescription": "Hey folks,\n\nI've been working on this for a while and finally got it to a state I'm\nhappy sharing. It's called **Agent + Skill Store** — a local AI agent that\nruns on your machine, drives a real headless browser, executes shell\ncommands in a sandbox, and loads capabilities as drop-in \"skills\".\n\nInstall is just:\n\n```\npip install agent-code\n```\n\nThen `agent-code` to launch. Python 3.10+.\n\n**What it does:**\n\n- Headless Chromium (DrissionPage) — no popup window, real JS rendering\n- Sandboxed shell — allowlist + workspace jail, no pipes or path escapes\n- Skills are folders: `skills/my_skill/skill.py` + `skill.md`, restart, done\n- Stop/Continue buttons — halt mid-turn, resume from the last tool result\n- Any OpenAI-compatible API — OpenAI, Together, Groq, DeepSeek, or local vLLM\n- Multi-key rotation if you have several API keys\n- Chat auto-save locally + optional cloud sync\n- Bundled skills: filesystem, public_api (700+ free APIs), temp_mail\n\n**Why I built it:**\n\nI wanted an agent I could actually see what it was doing. Most of the\nexisting ones hide everything behind a cloud service or open a separate\nbrowser window. This one has the browser headless and a chat GUI where\nyou can watch every tool call as it happens.\n\nThe skill system is the part I'm most happy with. Adding a capability is\njust dropping a folder in `skills/` — no changes to the agent source. Each\nskill exports a few plain Python things:\n\n```python\nSKILL = {\"name\": \"greet\", \"description\": \"Say hello.\"}\n\ndef hello(name: str = \"world\") -> str:\n    return f\"Hello, {name}!\"\n\nTOOL_SCHEMAS = [{\n    \"type\": \"function\",\n    \"function\": {\n        \"name\": \"hello\",\n        \"description\": \"Return a greeting.\",\n        \"parameters\": {\n            \"type\": \"object\",\n            \"properties\": {\"name\": {\"type\": \"string\"}},\n        },\n    },\n}]\n\nTOOL_CALLABLES = {\"hello\": hello}\n```\n\nRestart, and the LLM can call it. There's also a `COMMANDS` dict for\nuser-facing slash commands like `/email` or `/ping`.\n\n**Skill registry:**\n\nThere's a small registry server (self-hosted, GPL-3.0) where you can\npublish skills and install them from a GUI. Live instance is at\n`skills-manager.freesrv.com` — the client points there by default. You\ncan also self-host it.\n\n**Security notes (because this matters):**\n\nThe agent executes LLM-generated commands. I've sandboxed what I could —\nshell allowlist, workspace jail, no shell metacharacters, path validation\nin the filesystem skill, PBKDF2 on the registry server — but two things\nto know before running it:\n\n- `python` and `curl` are in the shell allowlist. If you don't want the\n  agent to touch arbitrary files or POST data to remote servers, remove\n  them from `ALLOWED_CMDS`.\n- Skills are arbitrary Python. Installing one is trusting its author.\n\nFor truly untrusted use, run the whole thing in Docker.\n\n**License:** MIT for the client, GPL-3.0 for the server.\n\nFeedback welcome. Especially interested in:\n\n- Whether the sandbox rules feel too tight or too loose for your use case\n- What skills you'd want to see bundled next\n- Any Linux distro where the GUI doesn't work\n\nHappy to answer questions.",
+    "developer": "Possible_Dinner_323",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

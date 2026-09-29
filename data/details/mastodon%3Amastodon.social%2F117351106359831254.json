@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117351106359831254",
+  "sourceItemId": "mastodon.social/117351106359831254",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-3de89e96-ad2fdbb4da672a7a",
+  "detail": {
+    "longDescription": "A single model's verdict is an opinion. Three models agreeing looks like evidence. In agent telemetry, that appearance is a signal trapped inside a design decision. The three-model jury is popular because it promises cross-validation. But before adopting it, you need to know exactly what consensus buys—and what it costs. The mechanics of a jury I treat each model as a witness, not a judge. The witness does not act. It receives the same observation, the same allow-listed tools, and the same safety constraints. It returns a structured recommendation: { \"action\": \"request_human_review\", \"rationale\": \"Refund request originated from a new device\", \"confidence\": 0.71 } A controller collects three witnesses and applies a policy. For safety-critical actions, set quorum to at least two votes, with fallback = human_review . Observability is not optional here. Wrap each vote in a trace span. Add jury.id , model.name , vote.action , vote.rationale_hash , and final.decision . The trace shows not just which action won, but which witness dissented and why. The price of consensus The first cost is mechanical. A serial jury—actor proposes, critic challenges, arbiter decides—adds at least two inference round trips before any action. A parallel jury burns roughly three times the tokens per decision, and retries inflate that further. The hidden cost is more dangerous. Correlated blind spots. Three models trained on overlapping public data tend to share the same biases. If the prompt contains an urgency cue, all three may vote for the unsafe path. Agreement is not correctness. It is sometimes just three witnesses reading from the same corrupted script. Quorum gaming. Model outputs are non-deterministic. Rerunning the same juror can flip a vote. If your consensus depends on a boundary that shifts with temperature, you are measuring luck, not reliability. Abstention collapse. A model may refuse to act because the constraints are ambiguous. Two abstentions can break quorum and route the case to a human who is already overloaded. That is a safe failure, but it is also a cost that must be tracked as abstain separately from disagree . The detective’s protocol I do not trust the majority. I trust the minority report. The losing model’s rationale often reveals the ambiguity the majority papered over. Log disagreement rate by state type, not by model. That tells you where consensus is meaningful and where it is cheap theater. Then instrument the outcome. Compare the jury’s final decision against the later success or failure signal. If consensus decisions fail at the same rate as single-model decisions, the jury is not adding safety—it is adding latency and tokens. The evidence speaks A three-model jury is an observability device before it is a safety device. The price is not just inference cost. The price is false confidence. If your logs cannot show the dissent, the abstentions, and the correlated blind spots, you are not running a jury. You are running three copies of the same guess. ai # opensource # machinelearning # programming # agents # observability # llm # consensus # software # coding # development # engineering # inclusive # community Three-Model Jury: The Price of Consensus",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

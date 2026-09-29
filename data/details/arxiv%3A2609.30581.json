@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.30581",
+  "sourceItemId": "2609.30581",
+  "fetchedAt": "2026-09-29T02:47:55.482Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.30581",
+  "detail": {
+    "longDescription": "arXiv:2609.30581v1 Announce Type: cross Abstract: Encrypted training relies on keeping server-side updates low-degree. This constraint traditionally excludes models whose weights inhabit a compact Lie group (notably variational quantum circuits, where every trainable weight is an $\\mathrm{SU(2)}$ rotation). Expressed in Euler angles or discrete alphabets, these updates appear transcendental, historically demanding prohibitive costs: one client--server round per gate, or upwards of $25{,}000$ operations per weight. This penalty is strictly an artefact of coordinates. In the unit-quaternion (spin) chart, group composition is exactly bilinear (degree two, with coefficients in $\\{-1,0,+1\\}$). Consequently, encrypted rotation updates cost one multiplicative level and federated averaging costs zero in any levelled homomorphic scheme, completely eliminating bootstrapping. This implementation-independent algebraic property is confirmed across two cryptographic backends, introducing only $0.0$ and $-2.0\\times10^{-12}$ rad of aggregation error. Leveraging this reduction yields a non-interactive protocol for encrypted federated training of hybrid quantum--classical networks. It includes correctness proofs for aggregation and sign handling, plus a compilation lemma proving parameterised entanglers add only constant-factor overhead without altering the depth class. Empirically, a paired five-seed study confirms zero measurable utility tax ($\\Delta=+9\\times10^{-6}$ MSE, $p=0.92$), and a noise-budget ablation falsifies the hypothesis that encryption noise regularises. These convergence trends replicate across datasets and scale to $20$ clients. Finally, hardware validation on a $156$-qubit processor achieves $0.9918$ fidelity against a $0.99957$ unencrypted control.",
+    "developer": "Marcel Mordarski, Nathan Mani, Arshad Patel, William Knottenbelt, Roberto Bondesan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "quant-ph, cs.CR, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Marcel Mordarski, Nathan Mani, Arshad Patel, William Knottenbelt, Roberto Bondesan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

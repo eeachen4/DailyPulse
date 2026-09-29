@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117350773537730028",
+  "sourceItemId": "mastodon.social/117350773537730028",
+  "fetchedAt": "2026-09-29T02:47:55.482Z",
+  "sourceUrl": "https://transitory.social/notes/arpblh85uw",
+  "detail": {
+    "longDescription": "Ok, I have a plan for the cluster reconfiguration \n\nThe highlights:\n\n- Drop 2 nodes, 3 HDD, 6 SSD from the cluster\n- drop rook/ceph and switch back to NFS/zfs\n- add KVMs\n- all three nodes will be control plane+worker nodes\n\nYes that means the loss of redundancy, but in a practical sense any worker node issue in my current cluster already feels like that as it is. The overall resources required and complexity will be significantly reduced. Being able to pull the drives and put them in some other Linux that runs zfs is also an advantage \n#Kubernetes #HomeLab #Ceph #Zfs",
+    "developer": "@rachel@transitory.social",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "2"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "transitory.social"
+      }
+    ]
+  }
+}

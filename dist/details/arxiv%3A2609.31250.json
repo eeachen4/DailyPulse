@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.31250",
+  "sourceItemId": "2609.31250",
+  "fetchedAt": "2026-09-29T02:47:55.482Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.31250",
+  "detail": {
+    "longDescription": "arXiv:2609.31250v1 Announce Type: cross Abstract: We report fine-grained, deterministic instability in Dynamic Tensor Rematerialization (DTR), an online eviction policy for memory-constrained DNN training, measured on the reference DTR simulator (simrd) using public execution traces. On an LSTM trace, memory budgets differing by 0.10% of unconstrained peak memory select fast and slow execution regimes whose overheads differ by as much as 7.3x; the slow regime is driven by broadly repeated re-eviction of the same storages (evictions per storage rise from 1.33 to 8.27 while the set of distinct evicted storages is essentially unchanged: 5,233 vs 5,236, with the two sets overlapping at Jaccard 0.999). On a ResNet-32 trace, a fine budget sweep reveals a deterministic feasibility inversion: the run is feasible at ratio 0.101, infeasible (OOM) across 0.102-0.106, and feasible again from 0.107. We trace the immediate cause of the OOM to a fully pinned recursive rematerialization frontier that exceeds the budget after every evictable tensor has been evicted. Ablations using the DTR authors' own variants implicate the joint size-staleness scoring term in the observed LSTM instability. We argue these are at least two distinct budget-sensitive pathologies rather than one mechanism, and we separate what is demonstrated from what remains hypothesised. All results concern the reference simulator; reproduction in a production runtime is future work. Code, instrumentation, and raw results accompany this preprint.",
+    "developer": "Mahesh Reddy Pagadala",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mahesh Reddy Pagadala"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

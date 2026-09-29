@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsureu",
+  "sourceItemId": "1wsureu",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1wsureu/dynacat_dashboard_dynamic_updates_lesson_learned/",
+  "detail": {
+    "longDescription": "I am making this post to help anyone else out, so they don't learn this lesson the hard way like I did.\n\nI just moved over from Glance to Dynacat because Glance doesn't get updated anymore it seems. My yml files moved right over and everything worked great and was more responsive.\n\nThere was a problem though. On my main page I have many widgets. one of those was a custom api widget that calls a n8n workflow I created. This workflow then calls Google API to get my calendar information for that day. Normally, it is only called when I open the page or refresh it manually. With Dynacat's dynamic updates, it is called much more often when the page is open. Where it hit me was in Firefox on my android, I have a habit of not closing the tab. I just close the browser. This meant the tab was still open and running in the background.\n\nLuckily, I have a warning set up on my Google API so if it goes above $1, I get alerted. It was over $11 before I checked my email in the morning and realized what was going on. I quickly disabled dynamic updates in the compose file until I can configure Dynacat properly.\n\nYes, this is 100% my mistake for just starting up Dynacat to get it working and figuring I would configure it more later. I am just hoping to help any other that are looking into Dynacat who might also have API calls. Luckily, I don't have any calls into an API for any AI.\n\nThis is not meant to be a post getting down on Dynacat. I think it is great and I still really like it. This was a story about my own mistake.",
+    "developer": "PeachAlive560",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

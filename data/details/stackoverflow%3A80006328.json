@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006328",
+  "sourceItemId": "80006328",
+  "sourceUrl": "https://stackoverflow.com/questions/80006328/trait-bounding-a-generic-associated-type-in-rust",
+  "detail": {
+    "longDescription": "I would like to add constraints to a generic type based on an associated type. I believe code speaks better than words, so here is an example: trait A { type Generic<T>; } trait B: A<Generic<T>=T> {} This is the simplemst version I could create that reproduces the error. The compiler tells me that T is not in scope, because it isn't... However, adding a type T into B so that it is B<T> would make B include something that it should not care about. I know a similar version of the problem but with lifetimes is easily solved by using for<'a> , but this doesn't work (as far as I know) for generic type instead of lifetime.",
+    "developer": "MrMoon01000010",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "54"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

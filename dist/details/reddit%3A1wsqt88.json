@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsqt88",
+  "sourceItemId": "1wsqt88",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wsqt88/i_built_my_portfolio_with_a_live_visitor_counter/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI made a personal portfolio and wanted it to be more than a static page, so I added a few pieces that talk to a backend.\n\n**What it does**\n\n* **Live visitor count** in the header. Each open tab pings a server action every 30 seconds, and the number shows how many people are on the site right now.\n* **Interactive globe** (built with [cobe](https://github.com/shuding/cobe)). You can drag it to rotate. Every country that has visited gets a marker, the dot size scales with visits, and the busiest countries get labels.\n\n**How it works**\n\n* Next.js App Router, with server actions for reading and writing data\n* Redis (Upstash) for storage\n* On each page request, `proxy.ts` reads the country from Vercel's geolocation header and increments a per-country counter. A 24h cookie stops refreshes from inflating the numbers.\n* I don't store IPs, only aggregate counts per country.\n\n**What I'd love feedback on**\n\n* Design and first impression. Does the hero feel cluttered or clean?\n* Whether the globe runs smoothly on your device, especially older laptops or phones\n* Whether the visitor tracking approach seems reasonable, or if I'm missing something\n\nSite: [dhatrish.in](http://dhatrish.in/)  \nCode: [https://github.com/dhatrishdixit/portfoliov2](https://github.com/dhatrishdixit/portfoliov2)",
+    "developer": "Alarm-Superb",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

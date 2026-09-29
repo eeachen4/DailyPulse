@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsj5ow",
+  "sourceItemId": "1wsj5ow",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wsj5ow/how_i_cut_nonprod_cluster_costs_by_scheduling/",
+  "detail": {
+    "longDescription": "Dev and test environments sit idle nights and weekends but still burn compute. Here's how I automated scaling them down and back up on OpenShift/Kubernetes.\n\nThe problem: Manual shutdowns were forgotten, and teams complained when environments weren't ready in the morning.\n\nThe approach:\n\nTag namespaces/workloads with a schedule label\n\nA Cronjob scales deployments,statefulsets and operators (in case of openshift operators) to 0 at night 8PM IST and restores  at 5PM IST (as our dev test labs are majorly in india) the previous replica counts in the morning\n\nExclusions for anything that must stay up, plus alerting if a scale-up fails\n\nResult: \\[€18572 to €15182\\]",
+    "developer": "humhaium",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

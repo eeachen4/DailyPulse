@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117348242739244582",
+  "sourceItemId": "mastodon.social/117348242739244582",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-34170a66-1d12de83e4434f5d",
+  "detail": {
+    "longDescription": "A writer I had been arguing with about agent observability described his agent's context as \"ephemeral by design, never written to disk.\" That is a claim, and claims are testable. He took the test and ran it today on his own machine. Both of my predicted outcomes landed. Here is the test. Three checks, all runnable in an afternoon. 1. Find the writable layers. docker inspect <container> --format '{{json .Mounts}}' Every volume and bind mount. A resume-capable session is a file or a DB row under one of those paths. A resumable session is not in RAM. 2. Test the session store directly. The store, in the stacks I have walked, holds the message history, not the exact assembled prompt for each call. Take one distinctive phrase from the task that produced your claim, then grep every writable layer for it. If the phrase is absent, the assembly output was never persisted. If it is present, you just found where it lives. 3. Check the routing layer. This is the one that decides it. A proxy that logs full request bodies writes the assembled prompt at the point it forwards, whatever the framework does. Check the proxy's config for body logging, not its dashboard. The result The distinctive phrase was absent from every writable layer. Chat history and working files were on disk, exactly the stores around the assembly step, not its output. And the routing layer logged no request bodies. So the assembled prompt existed only in flight. Compute it, timestamp it, or lose it at process exit. That is the finding, and the negative result is the point, not a consolation. \"The assembly step left no trace\" is a testable sentence. \"It is ephemeral by design\" is not. If you build agents, the replay layer is probably the one nobody on your team records. You can verify that in an afternoon. # agents # ai # docker # testing # software # coding # development # engineering # inclusive # community How to check whether your agent prompt assembly leaves a trace",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

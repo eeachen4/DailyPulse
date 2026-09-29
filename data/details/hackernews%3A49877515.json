@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49877515",
+  "sourceItemId": "49877515",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49877515",
+  "detail": {
+    "longDescription": "Hi Hacker News! Matvey, one of the authors, is here. While building enterprise agents, we ran into a problem: the more tools you connect to the AI, the higher the chance it will run out of control and leak sensitive data. Guardrails, in theory, should prevent this, but the situation is worrying: - Non-deterministic guardrails (LLM as a judge, auto modes, etc.) are vulnerable to prompt injections, or they lack knowledge of the data, making them inefficient (~10% data leaks on our benchmarks). - Existing deterministic guardrails (Cedar, OPA, FIDES, Dogwood) require massive case-specific IF-ELSE-like policies and break agents (~59% utility loss on our benchmarks). We did something differently. We’ve taken the best of existing deterministic guardrails and built a policy language that is data-specific, not use-case specific. It lets you scale agents without updating a policy. On top of that, we’ve added multiple tricks (like a remedy plan or a DualLLM pattern) to help agents operate within those restrictions, raising utility from ~40% to ~90% and making it the first deterministic guardrail that doesn&#x27;t break agents. Finally, we’ve designed it to be pluggable into any agent loop with pre- and post-tool-call hooks. We invite you to check out our benchmarks: https:&#x2F;&#x2F;www.openappa.com&#x2F;evaluation Play with it in Claude Code: https:&#x2F;&#x2F;www.openappa.com&#x2F;claude-code Try plugging it into your agent: https:&#x2F;&#x2F;www.openappa.com&#x2F;add-to-agent Or check the academic paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2607.24625 We&#x27;d love to hear any feedback!",
+    "externalUrl": "https://www.openappa.com/",
+    "developer": "motakuk",
+    "comments": 12,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "23"
+      },
+      {
+        "label": "评论",
+        "value": "12"
+      }
+    ]
+  }
+}

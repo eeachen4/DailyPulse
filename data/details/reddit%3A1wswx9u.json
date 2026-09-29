@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wswx9u",
+  "sourceItemId": "1wswx9u",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wswx9u/we_split_one_agent_between_a_cloud_planner_and_a/",
+  "detail": {
+    "longDescription": "Everyone draws the same diagram, a smart model plans and cheap models do the work. We wanted to see what that actually looks like on a real build, so we ran one task three ways.\n\nThe task was five small physics scenes on one page, one fixed camera, one-line prompt, one autonomous run each, no human fixes.\n\n* Sonnet 5.5 alone: 4/5 scenes, 9 min, $1.83\n* Sonnet 5.5 plans, local Qwen 3.8 27B writes the code: 2/5 scenes, 85 min, $0.67\n* Qwen 3.8 27B alone on an RTX 3090: 1/5 scenes, 26 min, $0\n\nWhat worked. The planner never touched the code. It split the job into parts, agreed on names between them so they'd fit together, and sent each part a short brief. That's why the bill dropped 2.7x, it wrote 5.4K output tokens instead of 37.9K.\n\nWhat didn't. The local model is the bottleneck. It's slower, so the run took 85 minutes, and it still got fewer scenes right than the cloud model on its own. And every setup reported \"done, no errors\" while some scenes were visibly broken, so \"the agent says it's finished\" is still not a reliable signal.\n\nCurious how others handle this. If you run a planner/worker setup, how do you check that the workers actually got it right?\n\n(We build the agent we used for this, Atomic Agent, open source. Link in the comments if anyone wants it.)",
+    "developer": "GapNew4766",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

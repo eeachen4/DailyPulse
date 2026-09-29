@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wslnnb",
+  "sourceItemId": "1wslnnb",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1wslnnb/my_propaganda_classifier_flagged_the_declaration/",
+  "detail": {
+    "longDescription": "been building a model that flags manipulation techniques in political text (fine-tuned transformer, multilabel, 16 techniques like loaded language, name calling, appeal to prejudice). scores each sentence with its neighbors as context and flags at 0.80.\n\nsomeone testing it pasted the declaration of independence. results:\n\n\\- preamble (\"we hold these truths...\") came back clean\n\n\\- grievance list got flagged: \"swarms of officers to harrass our people, and eat out their substance\" 0.87, \"plundered our seas, ravaged our coasts, burnt our towns\" 0.90, \"death, desolation and tyranny... barbarous ages\" 0.86\n\n\\- \"the merciless indian savages, whose known rule of warfare, is an undistinguished destruction of all ages, sexes and conditions\" scored 0.61. not flagged\n\nso the one line that dehumanizes a whole people is the one it misses, while it catches milder grievance rhetoric. my guess is the period wording. the training data is modern news and ads, so dehumanizing language it has seen looks like \"animals\", \"vermin\", \"invaders\", and \"savages\" in 18th century prose with long clauses around it doesn't pattern match.\n\nadded it as a regression case for the next training round. curious if anyone's dealt with this kind of register gap, historical text vs modern training data, without just stuffing in more historical examples\n\n(tool is called semblen if anyone wants to try to break it, the same person also ran wikipedia and a nixon bio through it as controls and those were clean)",
+    "developer": "jayubba",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005698",
+  "sourceItemId": "80005698",
+  "sourceUrl": "https://stackoverflow.com/questions/80005698/how-to-get-the-rust-target-binary-path-inside-a-shell-script",
+  "detail": {
+    "longDescription": "I have written a shell script which issues commands to build a Rust --bin project and to install that built binary to /usr/local/bin/ or some/other/standard/bin/location depending on the target OS. I would like to use the same script for different target OS'es. When it's built for linux the location of built binary is ${WORKSPACE_DIR}/target/release , but when I build it for vxworks the location is ${WORKSPACE_DIR}/target/aarch64-wrs-vxworks/release . So, in order to make this installation OS agnostic, is there a way to know or some cargo environment variable that contains the built binary path that I can use for installation. when compiled for VxWorks install -Dm 755 ${WORKSPACE_DIR}/target/${TARGET_ARCH}/${PROFILE}/${PACKAGE_NAME}.vxe ${INSTALL_PREFIX_PATH}/bin/${PACKAGE_NAME} When compiled for Linux install -Dm 755 ${WORKSPACE_DIR}/target/${PROFILE}/${PACKAGE_NAME}.vxe ${INSTALL_PREFIX_PATH}/bin/${PACKAGE_NAME} Expected script code install -Dm 755 ${TARGET_DIR_LOCATION}/${PACKAGE_NAME}.vxe ${INSTALL_PREFIX_PATH}/bin/${PACKAGE_NAME}",
+    "developer": "Harry",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "110"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

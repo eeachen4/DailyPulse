@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49879268",
+  "sourceItemId": "49879268",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49879268",
+  "detail": {
+    "longDescription": "I&#x27;ve been working on Yengi for several months. I am a teacher, not a professional software developer. My path here started with Microsoft Small Basic, Scratch, and MIT App Inventor, which I used to teach children. I originally started it for a simple reason: I was using VS Code + Copilot, Trae, Cursor and Google Antigravity, and I kept running into usage limits and provider-specific workflows. I wanted something where I could choose my own model or API, including local models running through Ollama, and build without being tied to one provider. It grew considerably beyond that original idea. Yengi is a .NET 10 &#x2F; WPF desktop application with: * Agent and tool system for files, terminal, Git, builds and tests * RAG and LSP integration * Verification loops with checkpoints and rollback * 30+ agent tools * Support for local models and external APIs * A custom 1.5B router model that I fine-tuned on thousands of examples of Yengi-specific agent decisions * 200+ automated tests It also has three additional modes besides the coding environment: *Blender:* Yengi can communicate with Blender, generate `bpy` scripts, keep conversational scene context, and optionally inspect Blender viewport screenshots through a multimodal model. I also added an optional prompt-engineering layer. For example, &quot;create a low-poly tree&quot; is expanded into a more detailed 3D-oriented instruction before being sent to the model. A follow-up such as &quot;add five red apples to this tree&quot; can modify the existing scene rather than starting from scratch. *Unity:* Yengi can work with Unity projects, generate C# components and interact with the Unity Editor. *Image generation:* Images can be generated from the development environment and saved directly into the project. The unusual part is how I built it. I used AI coding tools heavily, particularly Google Antigravity and GitHub Copilot. I didn&#x27;t manually type the majority of the C# code. My role was primarily architecture, agent behavior, security boundaries, verification and rollback logic, router training, testing, debugging AI-generated changes, and integrating the different systems. I&#x27;m still trying to figure out how much of this approach is genuinely useful and how much is me having fun building increasingly complicated things. The project is free and open source under AGPL-3.0: https:&#x2F;&#x2F;github.com&#x2F;mdaiWorks&#x2F;yengi I&#x27;d especially like feedback from people working with .NET&#x2F;C#, coding agents, local models, Blender or Unity. In particular, I&#x27;m curious about: * Is a small fine-tuned local router actually useful for this kind of agent? * Does the verification&#x2F;rollback architecture make sense? * Are the Blender&#x2F;Unity integrations useful beyond being demos? * If you were building this, what would you simplify or change? I&#x27;m not trying to claim that this replaces VS Code or Cursor. I&#x27;m interested in whether this particular approach is useful at all, and what I should change next.",
+    "externalUrl": "https://github.com/mdaiWorks/yengi",
+    "developer": "mdaiWorks",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

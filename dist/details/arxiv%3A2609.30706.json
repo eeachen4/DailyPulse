@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.30706",
+  "sourceItemId": "2609.30706",
+  "fetchedAt": "2026-09-29T02:47:55.482Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.30706",
+  "detail": {
+    "longDescription": "arXiv:2609.30706v1 Announce Type: new Abstract: \"System One\" decision models such as TypeSafe's Jev and its open counterpart Laya answer typed questions about a text in a single forward pass with calibrated probabilities, but they cannot ask for missing information: when a first message does not say what separates two departments, they guess. We present LAVOIR (Laya with Value-Of-Information Routing), which places the candidate pieces of missing information (slots) in the input next to the answer options, so that one forward pass returns both the decision distribution and, for every slot, the expected gain in the probability of the correct decision if the user were asked about it. VOI targets need no human labels: gold decisions come from schema rules, an LLM only verbalizes messages and answers, a model from another family checks every text, and pairing each message with several profiles makes regression on realized gains estimate the expected gain. A Gini-impurity cap bounds the predicted value by what a calibrated model can still gain. In a controlled study, decisions on seen schemas are statistically indistinguishable from the Bayes ceiling. The final model's question policy matches a greedy oracle VOI policy on seen schemas (AUC 0.799 vs. 0.797), and with at most 0.5 questions per conversation it is 14.1 points more accurate than never asking. On real ABCD conversations, one real exchange raises accuracy by 8.3 points where LAVOIR asks and leaves it unchanged where it does not; on SGD the cap lowers the asking rate from 93% to 8.6%. On Laya's twelve benchmarks LAVOIR is above Laya's reported scores on seven, and it answers a question in 31 ms (median, GH200).",
+    "developer": "Furkan Yilmaz, Habibe Aleyna Tasdemir, Muhammed Faruk Gozay",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI, cs.CL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Furkan Yilmaz, Habibe Aleyna Tasdemir, Muhammed Faruk Gozay"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsoqrv",
+  "sourceItemId": "1wsoqrv",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wsoqrv/k8s_cilium_integration_with_bgp_using_cisco_nexus/",
+  "detail": {
+    "longDescription": "In my datacenter I am running k8s cluster on bare metal and integrated cilium CNI with BGP using Cisco nexus switches. I am using etp: Local for the performance. I have assigned dedicated 5 worker nodes for my LB work to expose service IP to expose it to external world. \n\nLife was good until one of the nodes die and I have noticed all the other worker nodes also drop the existing connections after few hours I fixed dead LB node and again noticed connection drop during the re-adding node. \n\nAfter spend sometime with AI Chats, I found this is because on Cisco nexus switch BGP has multiple path for ECMP and when I add/remove physical node cause re-hashing on BGP multi path ecmp algorithm cause re-shuffling packet cause connection drop across all the other nodes.   \n  \nI have tired following config on nexus switch after AI chat suggestion but still no luck :( \n\n    switch(config)# hardware profile ecmp resilient\n\nI know Cisco switch doesn't understand L4 connection and it just re-order all the L3 packets because of re-hashing but it shouldn't drop existing packet flow. Anyone here who design this kind of solution or facing this issue?   \n  ",
+    "developer": "Double_Car_703",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

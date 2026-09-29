@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.30532",
+  "sourceItemId": "2609.30532",
+  "fetchedAt": "2026-09-29T02:47:55.482Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.30532",
+  "detail": {
+    "longDescription": "arXiv:2609.30532v1 Announce Type: new Abstract: Today's Quantum Processing Units (QPUs) are too small and too noisy to solve large combinatorial optimization problems directly, so practical hybrid solvers split a problem into pieces and iterate a decompose-solve-aggregate loop over whatever backends are available: classical heuristics, simulators, emulators, or a QPU. In practice, the loop is a driver script. It sits on top of the quantum-HPC middleware, handling task generation, provenance, recovery, and portability. Instead, we treat the loop as a scientific workflow and ask what a workflow layer adds to a generic workflow management system and QPU-sharing middleware. Two decomposition patterns from real applications, iterative consensus (ADMM) and hierarchical partitioning, turn out to stress the orchestration layer very differently: over 120 managed runs, orchestration took 78.4% of end-to-end time for the iterative pattern, almost all of it in a per-round barrier, but only 6.2% for the hierarchical one. Our workflow model adds four things a generic engine does not have: a termination predicate residing in the task graph that reads the previous round's residuals, subproblem-level recovery with warm-start and quorum-deferred aggregation, failover from a QPU to a classical replica within a round, and a provenance schema that describes CPUs, simulators and QPUs with the same fields, including the shot budget included. We report the cost of each layer on our engine, show that speculative re-execution enable runs to complete under injected failures that stall an unmanaged driver. We also use the same provenance to give per-device latency tails across simulators, emulators and IQM QPUs.",
+    "developer": "Giuliana Siddi Moreau, Maria Laura Clemente, Lorenzo Pisani, Manuela Profir, Marco Pinna, Marco Moro, Lidia Leoni",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Giuliana Siddi Moreau, Maria Laura Clemente, Lorenzo Pisani, Manuela Profir, Marco Pinna, Marco Moro, Lidia Leoni"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

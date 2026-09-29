@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsh4ai",
+  "sourceItemId": "1wsh4ai",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wsh4ai/how_are_you_isolating_ai_agents_from_each_other/",
+  "detail": {
+    "longDescription": "Genuine question for anyone running agents in prod on k8s… what's actually between them?\n\nMost setups I've seen put agents in regular pods, same as any other service. That's fine for code you wrote. But an agent's next command comes from a model, or from tool output, or from a page it just fetched. So the shared kernel ends up being the only wall between that agent and the node (and every other agent on it).\n\nIt gets worse with multi-agent workflows. If the planner, researcher and executor share an environment, one manipulated agent can reach the others' files and credentials.\n\nOur team has been using a microVM per agent with Kata, so each one gets its own kernel. But I'm more curious what everyone else is doing. Sandboxed runtime class? gVisor? Separate namespaces and hope? And what overhead would you accept for a VM per agent?",
+    "developer": "iamjessew",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsyce8",
+  "sourceItemId": "1wsyce8",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wsyce8/we_built_an_incident_response_prototype_that/",
+  "detail": {
+    "longDescription": "During an incident, teams often find the old ticket that says *“resolved”* but lose the useful part: what was tried first, what failed, and what finally restored the service.\n\nFor a hackathon, we built **Adaptive Incident Intelligence**, a prototype that keeps that sequence in memory. When a new incident arrives, it retrieves similar cases through Hindsight, proposes an action with supporting evidence, and checks the proposal against deterministic policy rules. Higher risk actions require human approval. After an action, it retries the original failed operation and checks service health before recording the outcome.\n\nThe screenshots show the incident dashboard, an ordered history where a retry failed before a fix worked, and our evaluation view. In the demo shown, action accuracy on **12 held-out synthetic cases** rose from 0% with empty memory to 50% after evidence was added. That’s a small prototype evaluation, not a claim about production performance. All demo incidents and actions are simulated.\n\nWe used FastAPI, React, Hindsight, and a local model via Ollama. The part I’m most interested in is the boundary between useful agent memory and safe automation.\n\n**If you build or operate LLM agents, what evidence would you need before letting one recommend an incident fix? And where would you draw the line for automatic execution?**\n\n",
+    "developer": "Fabulous-Ad9781",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

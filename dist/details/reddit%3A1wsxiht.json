@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wsxiht",
+  "sourceItemId": "1wsxiht",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wsxiht/i_tried_file_pilot_and_files_both_ate_gbs_of_ram/",
+  "detail": {
+    "longDescription": "[quick preview of the capabilities](https://i.redd.it/k60mfboc6dsh1.gif)\n\n  \nConfession: I love File Pilot. The speed, the UI, the vibes. It's the main inspiration for this project, and I'm not going to pretend otherwise.\n\nBut I work on big Unreal Engine projects, and on those my file manager slowly turned into a second game engine, memory-wise. **Several GB of RAM** at times, to show me some folders. I tried Files too, hoping for salvation. Same story. At some point I realized that the thing I use to *look at* files was heavier than the things in them.\n\nSo I did what every reasonable person does: instead of buying more RAM, I spent my evenings writing a file manager in Rust, right??\n\n**The one rule: memory stays bounded.**\n\n* No recursive folder sizes, no recursive watchers. A folder costs what it shows, not what it *could* show if you gave it the whole disk.\n* The tree view only keeps the folders you actually opened. Collapse one and its memory is gone.\n* Icons and thumbnails live in caches with a fixed byte budget, not a \"we'll see\" budget.\n\nThe UI runs on **GPUI**, the GPU-accelerated framework that powers the Zed editor. Yes, I'm GPU-rendering a list of files. No regrets.\n\n**What it does today (v0.2.0):**\n\n* Tabs you can reorder, detach into their own window, or throw at another window\n* Details, tree, list and M/L/XL icons, switchable with Ctrl + mouse wheel (the File Pilot influence is strong here)\n* Native Windows icons and thumbnails, preview pane, favorites and drives in the sidebar\n* Editable path bar with folder autocompletion, plus a quick filter\n* Its own context menu, with Explorer's full one still there when you need \"Send to\" and friends\n* Per-folder view and sorting: right-click a column header to make a folder remember how you like it\n* Dark, light and dimmed themes; English and Italian\n\n**What it does NOT do yet, in the spirit of honesty:** multi-selection, rename, copy/move/delete, clipboard, drag & drop to Explorer, folder watching, and search (planned through the Everything SDK). Right now it's a very fast, very polite way of *looking* at your files. Managing them is on the roadmap.\n\nIt's MIT licensed, with a ready-to-run exe in the releases:  \n[https://github.com/XPOL555/GPUIFileManager](https://github.com/XPOL555/GPUIFileManager)\n\nFeedback is very welcome, especially from people with scary folders: game dev, monorepos, anyone who has ever opened node\\_modules on purpose. What's the one thing that would make you switch?",
+    "developer": "XPOL555",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

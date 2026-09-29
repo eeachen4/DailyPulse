@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49886422",
+  "sourceItemId": "49886422",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49886422",
+  "detail": {
+    "longDescription": "This summer I got to intern on the backend of an AI agent and I noticed that it would run commands like tail -f or some random background jobs and exit without terminating any of these. I got curious and looked up how Claude Code handles stuff like this, and it turns out they have similar problems. There are issues about background processes from the Bash tool not getting cleaned up when the session ends, and one where a timeout sends SIGTERM to the whole process group and ends up killing Claude Code itself. Most runners only kill the process they started, so anything that double forks, runs in the background, or keeps stdout open either survives or makes the runner hang. Corral was me attempting to make a fix for this problem, while also trying to learn about processes and signals in Linux. You run corral --wall 30s -- yourcommand and by the time it&#x27;s done, nothing it started should be running. The command gets its own session so killing it can&#x27;t kill you, and there&#x27;s a mode where it runs in its own cgroup so the whole tree gets killed at once, including processes that may have changed sessions or process groups. If there&#x27;s no cgroup available it tracks the tree through &#x2F;proc instead (this is a bit weaker, it still catches processes that changed sessions once their parent dies, but it can&#x27;t kill anything running as a different user or anything handed off to another service like systemd), and if it can&#x27;t confirm everything is dead it exits with 120. Would love any feedback and more stuff along these lines i can do to learn more",
+    "externalUrl": "https://github.com/Cardinal44/corral",
+    "developer": "CG144",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}
