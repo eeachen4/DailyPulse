@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtru2c",
+  "sourceItemId": "1wtru2c",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wtru2c/ran_askui_in_our_pipeline_for_three_months_notes/",
+  "detail": {
+    "longDescription": "Posting because getting GUI tests to run headless is the part nobody talks about. everything passes on a dev machine and then does nothing on the runner, because the VM boots to a logon screen and there's no interactive session for input injection to land in.\n\nTheir runtime installs as a Windows service, which is what got us past that. Runs as SYSTEM, survives RDP disconnects, works at the logon screen. AskUI run for the headless job. tests are plain markdown files so they version with the app, and secrets get referenced by name and stay out of the logs.\n\nTwo honest caveats. runs cost money, so \"run everything on every commit\" stopped being a free decision and we moved the full suite to nightly. And their WARN status is a judgement call by the agent, which is fine when a human is watching and less fine at 3am when it just lands in a report nobody reads until standup lol.\n\nHope this helped :)\n\nAnyone else running agent based UI tests in CI? curious how you handle the nondeterminism in a gate.",
+    "developer": "Prestigious_Key8955",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

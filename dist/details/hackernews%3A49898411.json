@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49898411",
+  "sourceItemId": "49898411",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49898411",
+  "detail": {
+    "longDescription": "I&#x27;m tired of AI coding agents which are good for 30 seconds and then completely fail on the slightest hiccup: a failing test, a temporarily unavailable dependency, an incorrect assumption. Sometimes I end up having to babysit these agents anyway. Relay is a harness for coding agents which takes advantage of the fact that agents are often good at doing something slightly wrong, and not so good at doing something correctly and completely. Relay repeatedly tries the task and on each failure, uses the output to find a better way to do it. It does this by running the task in a loop: attempt the task, run the checks in a fresh sandbox, on failure read the error and retry instead, until the checks pass. What it learned from a run is retained, so that it doesn&#x27;t repeat the same mistake, and when the checks eventually pass, it will ship the change as a normal git PR - no hidden state, no magic, the diff is human readable. A few specifics: - it runs locally, is free, and doesn&#x27;t require an account to run the local agent - it uses a top-tier model to plan&#x2F;review, and cheaper models to actually write code (for cost reasons) - happy to discuss why this is a good idea and why it isn&#x27;t - the checks run in an isolated sandbox for each task, rather than &quot;trusting&quot; the agent - currently supports [list actual models&#x2F;integrations - Opus 5.5, GPT-6, etc] - there&#x27;s a paid tier for running this unattended across multiple repos with shared sandbox minutes, the actual agent is free. It&#x27;s not magic, it&#x27;s not AGI, and it will fail badly on some problems. Would appreciate feedback, particularly from people who&#x27;ve deployed agents unattended and found that they don&#x27;t actually work, or have had to build substantial tooling around them to get useful results.",
+    "externalUrl": "https://relayevals.com",
+    "developer": "rsathwik07",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

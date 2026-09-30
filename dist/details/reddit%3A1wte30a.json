@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wte30a",
+  "sourceItemId": "1wte30a",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wte30a/built_an_ai_incident_response_agent_that/",
+  "detail": {
+    "longDescription": "I built an AI-Powered Incident Response Agent with Persistent Organizational Memory using Hindsight.\n\nThe main idea was simple:\n\nWhat if an incident-response AI could actually remember how the organization solved previous incidents and use that experience when a similar problem happens again?\n\nThe prototype implements this learning loop:\n\nIncident → Current Evidence → Hindsight Recall → Historical Experience → Root-Cause Analysis → Recommendation → Human Confirmation → Hindsight Retain → New Organizational Memory\n\nWhat it can do\n\nAnalyze incident telemetry, logs, and current evidence\n\nRecall relevant previous incidents using Hindsight\n\nSeparate current evidence from historical precedent\n\nGenerate root-cause hypotheses\n\nRecommend remediation steps\n\nShow the diagnostic reasoning trace\n\nKeep a human engineer in the approval loop\n\nRetain confirmed incident knowledge back into Hindsight\n\nTransfer relevant knowledge across services\n\nCompare analysis with and without historical memory\n\nDisplay a memory/audit timeline\n\nDemo flow\n\nINC-001 — Cold Start\n\nThe agent investigates the incident without useful historical precedent. After the SRE confirms the resolution, the incident is retained in Hindsight.\n\nINC-002 — Memory Recall\n\nA similar Payment API incident occurs. Hindsight recalls the confirmed INC-001 experience, and the agent incorporates that historical precedent into its analysis.\n\nINC-003 — Cross-Service Learning\n\nAn incident occurs in the Order Service. The agent can retrieve relevant organizational experience originating from another service and use it as historical evidence.\n\nThe important part for me was making Hindsight an actual part of the reasoning and learning loop rather than just adding a memory/chat feature on top.\n\nThe system also requires human confirmation before retaining incident knowledge, so the AI doesn't automatically turn an unverified diagnosis into organizational memory.\n\nTech Stack\n\nReact • TypeScript • Vite • Tailwind CSS • Python • FastAPI • Hindsight • SQLite • Pytest • Docker\n\nI also implemented a guided demo showing the progression from a cold start to historical recall and cross-service organizational learning.\n\nWould love to hear feedback on the architecture and especially the idea of using persistent organizational memory for incident response.\n\n🔗 GitHub: https://github.com/sairamareddy2/Incident\\_Response\\_Agent.git\n\n🎥 Demo: https://drive.google.com/file/d/19oVtr1Lw7C93Qq4pRDUgn4Rl29t0K5Ls/view?usp=sharing\n\n\\#AI #AIOps #IncidentResponse #GenerativeAI #MachineLearning #DevOps #SoftwareEngineering #FastAPI #React #AIEngineering",
+    "developer": "Key_Mammoth_5991",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

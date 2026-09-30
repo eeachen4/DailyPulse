@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtpc61",
+  "sourceItemId": "1wtpc61",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wtpc61/i_made_a_town_of_200_ai_people_qwen332b_one_4090/",
+  "detail": {
+    "longDescription": "Most agent testing I've seen is one fake user, one conversation, one script. I wanted to see what happens when your agent has to deal with a whole town for several days, where people remember what it told them, gossip about it with their neighbors, and come back angry when it didn't work.\n\n  \nSo I built Populace. You describe a town in one sentence and it spins up 200 AI residents with homes, jobs, families, money, and people they know. They only know what they've actually seen, heard, or been told. You drop your agent in as a service they can text, call, or walk into, schedule some chaos, and at the end you get a report of everything that happened, with every conversation transcribed.\n\n  \nFor the first real test I made an internet provider's helpdesk and threw four in-game days of problems at it: an outage on one street, 12 wrong bills, slow internet in 25 homes, and then the outage coming back. Same town, same seed, same problems, two different helpdesks:\n\n* a dumb rule-based bot (keyword matching)\n* an LLM helpdesk (Qwen3-32B) that could see the customer's account (plan, bill, live line status, engineer schedule) and do four things: fix a bill, give a credit, send an engineer, or make a promise\n\nHonestly neither one clearly won.\n\n  \nThe LLM was better at some stuff. It actually checked people's claims against their account and turned away made-up outages, and it fixed 7 problems on day 1 vs the bot's 4.  \nBut it was way worse at keeping its word. It broke 6 of the 8 promises that came due. The rule-based bot broke 2 out of 30. It told six different customers an engineer was coming at 10:00 that day, and those slots were actually booked for other homes. And when Kwesi (pictured) followed up that evening, it just made up an excuse: \"The engineer was scheduled for 10:00 AM today but couldn't make it.\" There was never an engineer booked for his house.  \nNone of this was scripted btw. The residents decided on their own to reach out, follow up, and warn their neighbors (\"I've had my share of trouble with Northline. Best to get on to them quick.\")\n\n  \nBeing upfront about the limits:\n\n* Only one run per agent, and who reaches out changes between runs\n* My helpdesk is a basic prompt on a 32B, not a frontier model or a real production agent\n* The residents need a \\~32B-class model to work. I tried a 7B and they made literally 0 helpdesk contacts. On one 4090 it's about 10 min per in-game day. There's also a free mock mode that runs with no model at all\n* The simulated people mess up too (some report problems they don't actually have), so the report keeps their mistakes separate from the agent's\n\nYou can plug in your own agent: any Python object with `handle(message, ctx)`, or any HTTP endpoint. MIT licensed.  \n[https://github.com/populace-sim/populace](https://github.com/populace-sim/populace)  \nI'm 18 and this is my first open-source release, so please rip into it, I want the criticism.",
+    "externalUrl": "https://i.redd.it/4a704ypoljsh1.png",
+    "developer": "Far-Palpitation-139",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117357227152582012",
+  "sourceItemId": "mastodon.social/117357227152582012",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-71a4d6e3-b54b806d5c6f15af",
+  "detail": {
+    "longDescription": "If you've ever fallen down the rabbit hole of manhwa recap channels on YouTube — \"The Weakest Hunter Becomes the Strongest...\" — you know the format: dramatic narration over panning comic panels, 10 minutes per video, millions of views. I kept wondering: could that entire pipeline be automated, running locally, with no subscriptions? That's how AniFlow was born — a self-hosted AI studio that takes manhwa/webtoon chapters and renders finished recap videos. It's open source (MIT): github.com/aashish254/Aniflow Here's how the pipeline works, and what was hard about each step. The pipeline Chapter ingestion. Paste a chapter URL or point at a local folder. The downloader grabs every page image in reading order. Panel detection (YOLOv8). Manhwa pages are vertical strips with irregular panel layouts. A trained YOLOv8 model detects panel boundaries so each panel can be cropped and sequenced for the video. This was the single hardest part — art styles vary wildly between series, and a detector trained on one artist's work falls apart on another's. Getting reliable detection across styles took the most iteration. Speech bubble detection + text extraction. A second detection pass finds speech bubbles and text regions. OCR pulls the dialogue out, which becomes the script for dialogue-recap mode. Bubble removal. For narrated mode, bubbles get removed and the art inpainted so panels look clean — like a friend telling you the story over the artwork. Doing this without leaving visible artifacts on detailed backgrounds was the second-hardest problem. Narration writing (LLM). The extracted story content goes to a local LLM (Ollama by default, with optional Gemini/Claude) with a prompt tuned for that dramatic recap-channel voice. It writes the narration script panel by panel. Voiceover (TTS). Multi-voice TTS — Edge TTS or Kokoro locally, ElevenLabs optionally — speaks the script. Different voices for narration vs. dialogue. Video rendering. Everything gets composited with FFmpeg: Ken Burns pan/zoom over panels, background music, watermarks, subtitles. Out comes an upload-ready vertical video. Two modes Dialogue recap — keeps the original speech bubbles visible; extracted dialogue becomes the audio. Closest to reading the chapter. Narrated recap — bubbles removed and inpainted; the AI narrates the story like a recap channel. Fully local by default The whole stack runs on your own machine: Ollama for narration, Edge TTS for voice, no API keys, no subscriptions, nothing leaves your computer. Cloud models are optional upgrades, not requirements. There's also a batch mode that processes 50+ chapters unattended — a full series to video overnight. What I'd do differently If I started over, I'd spend more time on the training data for panel detection up front instead of iterating on model tweaks — data diversity beat architecture fiddling every time. I'd also build the evaluation harness earlier: a small set of \"golden\" chapters across art styles to regression-test every change against. Try it Repo: github.com/aashish254/Aniflow (MIT). There's a web UI, a v0.1.0 release, and tutorial videos in the README. If you're into self-hosting, computer vision, or the manhwa scene — I'd love your feedback, and contributors are very welcome. # ai # automation # machinelearning # opensource # software # coding # development # engineering # inclusive # community How I Built an AI Studio That Turns Manhwa Chapters into Narrated Recap Videos",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "4"
+      }
+    ]
+  }
+}

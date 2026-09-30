@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtmz2p",
+  "sourceItemId": "1wtmz2p",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wtmz2p/jev_at_home_but_it_can_see_typed_yesno_pickone/",
+  "detail": {
+    "longDescription": "TypeSafe's Jev answers typed questions (yes/no, pick one label, pick a rubric level) with a probability per answer instead of text. Its docs say it takes text only: \"Images, audio, and video are not supported (yet).\" I wanted the same kind of answer about photos, from an open model on my own card, so I built **typevet** (MIT, Python 3.12).\n\n**How it works.** No sampling, no parsing. typevet composes the native Gemma 4 turn itself, ends the prompt with the empty-thought no-thinking prefill, and reads the next-token distribution over the allowed answer tokens only. What comes back is a label plus a probability for every option, or an error. Images go to llama.cpp's `/completion` as base64 in `prompt.multimodal_data` with one media marker per image; on vLLM they go as `image_url` blocks. There's also a JSON path that returns an object passing your JSON Schema, or raises.\n\n**Local setup.** Gemma 4 31B, my 24 GiB vramfit pack (byte-identical to the file on HF, projector sidecar for vision), llama.cpp b11223, one RTX 4090. Nothing leaves the machine.\n\n**The receipt test.** 6 real receipts from CORD v2 (CC BY 4.0), 3 synthetic expense claims each: right total, two digits swapped, digits masked with `?`. One three-label Choice: match / mismatch / insufficient_evidence. Each claim sent as text only, then with the receipt photo.\n\n* Right total, said match: 6/6 text only, 6/6 with the photo\n* Swapped total, said mismatch: **0/6 text only, 6/6 with the photo**\n* Masked total, said insufficient: 6/6 text only, 6/6 with the photo\n\nExample: claim says 646329, receipt says 664,329. Text only: `match` at 0.99964. With the photo: `mismatch` at 0.99999. Every swapped total was caught at 0.99998 or higher, and the masked ones abstained every time. The tests also check the image actually arrived: each photo added 228 to 1,108 prompt tokens here, and the gate fails if the count doesn't grow.\n\n**Hosted.** Same code against vLLM 0.30.0, BF16 Gemma 4 31B, one H100: the receipt test went 18/18, and reversing the label order flipped 0 of 18 answers. Throughput on 480 Banking77 records with two questions each: 0.24 s median per record at 1 in flight, 39.6 records/s at 64 in flight, 0 errors.\n\n**Prior art, credit where due.** The text-side decision model comes from TypeLLM (SGLang), which added its own image input on 9/24; typevet's image path is separate code on llama.cpp's request shape. allanrbo posted a Jev-like single script for Gemma 4 12B with webcam images on 9/25. VQAScore has read the probability of \"Yes\" from VLMs since 2024. typevet's angle: a library, not a script, the 31B on one 24 GiB card, the same code on vLLM, and image-arrival checks.\n\nScope: 18 claims, one run per server. The probabilities are the model's confidence, not calibrated.\n\n* Code: https://github.com/Alberto-Codes/typevet\n* Docs: https://alberto-codes.github.io/typevet/\n* Per-claim probabilities: https://github.com/Alberto-Codes/typevet/issues/203#issuecomment-5899231642\n* Model: https://huggingface.co/Alberto-Codes/gemma-4-31B-it-fit24gib-GGUF\n* Writeup: https://alberto.codes/blog/2026-09-29-gemma-was-sure-the-total-matched-it-had-not-seen-the-receipt",
+    "developer": "One_Temperature5983",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

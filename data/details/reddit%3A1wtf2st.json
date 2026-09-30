@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtf2st",
+  "sourceItemId": "1wtf2st",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wtf2st/building_a_localfirst_diy_web_app_deployment_cli/",
+  "detail": {
+    "longDescription": "I have been building [DockIY](https://dockiy.com) over the last few years from my own VPS deployment workflows.\n\nIt started as a simple Traefik + Umami setup and I just now put together enough of the CLI and templates to share with everyone and get some feedback.\n\nDockIY is a minimal DIY Docker setup meant for deploying several web apps to a single VPS. It is meant for solo devs and small teams who like to self-host everything. It consists mostly of a set of repos and a CLI tool:\n\n* The main server repo is mainly a docker compose, infrastructure-as-code, setup for the reverse proxy, analytics and monitoring.\n* Template repos (React, Nuxt and Vitepress for now) are setup for deployment with DockIY: reverse proxy labels, local Docker builds and deployment scripts.\n* The CLI helps setup the server, initialize from templates and orchestrates builds, deployments and git tags.\n\nThe base stack is:\n\n* **Traefik** for reverse proxy and SSL\n* **Umami** for analytics\n* **Dozzle** for looking at logs\n* **Beszel** for monitoring and notifications\n* A private registry for application images\n\nSetting up a VPS and deploying your 1st app looks like (simplified):\n\n1. Install Docker (on the VPS and your marchine), SOPS and the `dockiy` CLI (on your machine only)\n2. Connect DockIY to a server: `dockiy setup`\n3. Set up DockIY services: `dockiy server init`\n4. Create an application: `dockiy app init`\n5. Deploy the application: `dockiy app deploy --version v0.1.0`\n\nI like to self-host everything on a VPS and was trying to stop relying on external CI/CD build services (github actions). DockIY is my answer to this, without relying on a somewhat expensive VPS to run the builds. It's basically an alternative to Coolify and Dockploy but where you manage everything from the CLI on your machine instead of an online dashboard. I have been using it over the last few weeks and already love it!\n\nI'd love if y'all can have a look at the docs and tell me what you think: [https://dockiy.com](https://dockiy.com)  \nThe repo is on codeberg (MIT license): [https://codeberg.org/chris-paganon/dockiy](https://codeberg.org/chris-paganon/dockiy)\n\nDisclaimer: the CLI itself is pretty heavilly AI generated and probably needs some cleanup. But the templates and the server setup I have been putting together myself from a few years of self-hosting my apps. The docs was originally AI generated but I cleaned up and rewrote almost all of it (except the CLI and config reference pages).",
+    "developer": "Pagaddit",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

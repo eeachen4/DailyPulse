@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtrix3",
+  "sourceItemId": "1wtrix3",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wtrix3/gpt61_sol_is_cheap_we_made_it_77_cheaper_by_never/",
+  "detail": {
+    "longDescription": "Sol is the obvious new orchestrator pick this week, so a genuine question for people running orchestrator/worker setups, with numbers from our first day with it.\n\nWe went with a hard no: the orchestrator reads, plans, delegates and reviews, and every write or shell call it tries is refused. The workers are the only ones that touch files. The reasoning was cost and discipline. The expensive model shouldn't spend tokens typing code, and if it can fix things itself it stops delegating.\n\nTried it today with GPT-6.1 Sol as the orchestrator and Qwen 3.8 27B on a single RTX 3090 as the workers, on three small 3D games:\n\n|Game|Sol does it all|Sol orchestrates only|Cut|\n|:-|:-|:-|:-|\n|Pool|$0.39|$0.05|87%|\n|Bowling|$0.14|$0.06|57%|\n|Foosball|$0.22|$0.06|73%|\n|**Total**|**$0.75**|**$0.17**|**77%**|\n\nThe cost of the \"no\" is time. 43 minutes against under 7 for Sol alone, since the local card sets the pace. And it gets silly on small stuff: if the orchestrator spots a one-character typo, it still has to send it back to a worker as a task.\n\nSo I'm torn on a middle ground. Let the orchestrator make tiny edits under some size limit? Or does that just open the door to it doing everything again?\n\nIf you've already put Sol in charge of your agents, did you give it write access?\n\n(Disclosure: this is from an open source agent I work on. Happy to share details in the comments if anyone wants them.)",
+    "developer": "GapNew4766",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

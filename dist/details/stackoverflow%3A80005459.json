@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80005459",
+  "sourceItemId": "80005459",
+  "sourceUrl": "https://stackoverflow.com/questions/80005459/type-for-plain-object-or-class-instance-that-excludes-arrays-functions-null",
+  "detail": {
+    "longDescription": "I'm looking for a TypeScript type that accepts any class instance or any plain object literal ( {key: value} ), but rejects arrays, functions, and null / undefined , without relying on any . Here's the behavior I want: class Test { id = 23; } function test(item: PlainObjectOrInstance) { if (\"id\" in item) { console.log(item.id); } console.log(item); } test(new Test()); // ✅ should work test({ id: 22 }); // ✅ should work test([]); // ❌ should be a type error test(null); // ❌ should be a type error test(() => []); // ❌ should be a type error I've tried: object : accepts instances and object literals correctly, but also accepts arrays and functions, since both are structurally objects in JS. Record<PropertyKey, unknown> : rejects arrays and functions correctly, but also rejects class instances , because a class doesn't have an implicit index signature: error TS2345: Argument of type 'Test' is not assignable to parameter of type 'Record<PropertyKey, unknown>'. Index signature for type 'string' is missing in type 'Test'. A conditional type like this: type Dict<T = unknown> = T extends (...args: any[]) => any ? never : T extends readonly unknown[] ? never : T extends object ? T : never; This correctly filters out arrays and functions, but only works in a generic context (e.g. function foo<T>(item: Dict<T>) ). It's not usable as a fixed, non-generic type annotation (e.g. a Vue prop or a plain function parameter), since the conditional never gets a concrete T to resolve against. Using {[key: string | number | symbol]: any} also happens to accept class instances, but I'd like to avoid it, since it disables type checking on every value accessed through that index — not just for the assignability check itself: function test(item: {[key: string]: any}) { if (\"id\" in item) { const id = item.id; // typed as `any`, e.g. item.id.foo.bar() also compiles with no error } } Switching the value type to unknown instead reproduces the same rejection as Record , which is what makes me think this isn't specific to index-signature checking, but just the general \" any is assignable to everything\" rule kicking in here like it does everywhere else in TypeScript. Is there a way to express \"object or class instance, but not array/function/null\" as a static, non-generic TypeScript type, while still getting non- any types back on the known properties I narrow to (e.g. item.id above)? Or is this fundamentally impossible given how TypeScript's structural typing treats arrays and functions as objects, and does this require a runtime type guard ( typeof value === \"object\" && value !== null && !Array.isArray(value) ) instead? I found this discussed under \"negated types\" in the TypeScript team's own FAQ Common Feature Requests list , referencing microsoft/TypeScript#4196 ; is that still the accepted answer here, or has anything changed? Related but not quite the same issue: microsoft/TypeScript#12501 (the PR that introduced the object type itself).",
+    "developer": "Ratinax",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "89"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

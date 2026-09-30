@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtrfs4",
+  "sourceItemId": "1wtrfs4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wtrfs4/how_we_split_gpt61_sol_planning_from_local_qwen/",
+  "detail": {
+    "longDescription": "We build an open source agent and spent the last few weeks on a planner/worker mode. Sol came out today, so here are the design choices plus a fresh run with Sol on top and Qwen 3.8 27B on one RTX 3090 underneath.\n\n**The orchestrator is read-only by force, not by prompt.** For its whole turn every mutating tool is refused: file writes, shell, MCP. We refuse the call instead of removing the tools, because removing them rewrites the stable prompt prefix and throws away the KV cache. If it keeps reading without delegating, it gets a nudge after 6 read-only steps, and after 12 it can only delegate or reply.\n\n**Tasks carry a contract.** Each one declares what it provides (a symbol, a file, an endpoint, an env var) and what it requires. The harness sorts them into waves so a part runs after what it depends on. A provided symbol can carry a one-line meaning that goes into every consumer's brief. We added that after two workers implemented the same function with the fields swapped. Names matched, checks passed, every box drew at the origin.\n\n**Workers are disposable.** Each task is an in-memory session: no saved history, no memory recall, pinned to one provider with no fallback, can't delegate further. Local parallelism comes from llama-server `--parallel N`, where N is how many worker-sized contexts fit (1 to 8).\n\n**Status is read from disk.** Promised files not written means `failed` or `no_changes`, whatever the worker says in its reply.\n\nToday's run, three small 3D games, same prompts:\n\n|Game|Planner + coder: Sol|Planner: Sol, coders: local Qwen|Planner + coder: local Qwen|\n|:-|:-|:-|:-|\n|Pool|$0.39 · 2.9 min|$0.05 · 18.6 min|$0 · 43.1 min (attempt)|\n|Bowling|$0.14 · 1.7 min|$0.06 · 13.7 min|$0 · 34.7 min|\n|Foosball|$0.22 · 2.0 min|$0.06 · 11.1 min|$0 · 36.4 min|\n|**Total**|**$0.75 · 6.6 min**|**$0.17 · 43.4 min**|**$0 · 114.2 min**|\n\nWhat still bugs us: the contract checks names, not meaning. The one-line description narrows that gap without closing it. And there is no merge step, workers write straight to disk and the orchestrator reviews after.\n\nRepo (MIT): [https://github.com/AtomicBot-ai/atomic-agent](https://github.com/AtomicBot-ai/atomic-agent). The mode is called Fusion. Disclaimer: I work on it.\n\nIf you've built something similar: how do you stop two workers from agreeing on a name and disagreeing on what it means?",
+    "externalUrl": "https://v.redd.it/eiu3dt5s2ksh1",
+    "developer": "GapNew4766",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

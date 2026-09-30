@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wth5r5",
+  "sourceItemId": "1wth5r5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wth5r5/incident_iq/",
+  "detail": {
+    "longDescription": "I've been building IncidentIQ as a personal project to explore how persistent memory can change incident-response agents.\n\nThe first version had an annoying problem: every incident looked like the first incident it had ever seen.\n\nIt could reason about logs and connection pools fine, but it had no idea we'd fixed the same failure a few weeks earlier — or that the fix wasn't the obvious first guess.\n\nAn on-call engineer carries that history around. My agent carried none of it.\n\nSo I rebuilt it around one rule:\n\n**Recall before reasoning.**\n\nHere's how it works:\n\n→ An incident comes in with the service, symptoms, logs, metrics, and recent changes.\n\n→ The agent builds a recall query and retrieves relevant history from Hindsight, a persistent memory layer for agents.\n\n→ Only then does the LLM get the incident, along with the recalled memories.\n\n→ The prompt tells the model that recalled memories are the only historical evidence it can use, so it can't invent a previous incident that wasn't retrieved.\n\n→ After an engineer resolves the incident, the actual root cause, investigation, resolution, outcome, and lesson are retained in memory.\n\n→ The LLM never writes to memory. The human-verified resolution is what future incidents learn from.\n\nEmpty memory is also a valid state. If nothing relevant is recalled, the agent says so and falls back to generic troubleshooting guidance.\n\nWhat I saw while testing:\n\nThe dashboard showed memories recalled per analysis going:\n\n0 → 0 → 2 → 4 → 10\n\nIn one notification-service backlog incident, the connection pool was at 50/50 with 120 jobs waiting. The analysis retrieved two earlier pool-exhaustion incidents from other services and used their lessons during reasoning.\n\nThe interesting part wasn't just that memory was retrieved — it was being able to see when retrieval was useful and when it wasn't.\n\nRecall is still noisy. That same analysis retrieved 10 memories, including an unrelated promo-email fact with roughly 10% relevance. The analysis only used two of them.\n\nSo I expose the raw recalled memories and a `memories_used_count` to distinguish between:\n\n* Nothing relevant was found\n* Something was retrieved but wasn't relevant\n* Relevant history was found but wasn't used effectively\n\nThis is a small project tested on incidents I wrote myself, so I'm not making claims about scale or production performance.\n\nI'm mainly interested in the design question:\n\n**Should agent memory be a gated step before reasoning, or should retrieved memories simply be optional context in the prompt?**\n\nAnd for those using retrieval in incident response, how are you dealing with noisy or weakly relevant memories?\n\nDisclosure: IncidentIQ is my own project, and the linked article is my own technical write-up.\n\nArticle:  \n[https://medium.com/@greeshh.25/my-incident-agent-kept-starting-from-zero-2d0125cf9e82](https://medium.com/@greeshh.25/my-incident-agent-kept-starting-from-zero-2d0125cf9e82)\n\nStack: FastAPI, React/Vite, Groq, Hindsight, Docker.",
+    "developer": "C_Greeshhmaa",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

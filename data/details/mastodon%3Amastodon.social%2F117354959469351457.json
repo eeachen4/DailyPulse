@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117354959469351457",
+  "sourceItemId": "mastodon.social/117354959469351457",
+  "fetchedAt": "2026-09-30T02:24:30.163Z",
+  "sourceUrl": "https://transitory.social/notes/arqdmh845k",
+  "detail": {
+    "longDescription": "Alternative plans\n\nThree nodes, each have 4x sata ports\n\n* 2x ssd/2x HDD per node would not be a significant reduction in drives. Pools would be reconfigured slightly. Performance would be...fine?\n\n* 1x SSD/1x HDD per node technically could work but would have lower performance since the bottleneck for the HDD pools is actually the disks. This would require a bit of diligence because a disk going down would be an issue. I'd keep a few around as cold spares. Don't really love this plan\n\nAlternative plan via minimal additional hardware:\n\nOrder an odroid h5, sell one h4u:\n\n2x ssd, 4x HDD dedicated zfs nas, throw a HDD in the h4u as a backup target. The 10gbe on the nas could be utilized effectively. Same number of plans as the above, but would cost $ and I'd have to try and sell a node or it would net cost even more\n\nWorth noting that except during backups the HDD pool doesn't really get thrashed.  I would set the zfs system to minimize or disable caching on most of the datasets to conserve ram, since the typical access pattern does not benefit\n\n#Kubernetes #HomeLab #Ceph #Zfs\n\nRE: Ok, I have a plan for the cluster reconfiguration \n\nThe highlights:\n\n- Drop 2 nodes, 3 HDD, 6 SSD from the cluster\n- drop rook/ceph and switch back to NFS/zfs\n- add KVMs\n- all three nodes will be control plane+worker nodes\n\nYes that means the loss of redundancy, but in a practical sense any worker node issue in my current cluster already feels like that as it is. The overall resources required and complexity will be significantly reduced. Being able to pull the drives and put them in some other Linux that runs zfs is also an advantage \n#Kubernetes #HomeLab #Ceph #Zfs",
+    "developer": "@rachel@transitory.social",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "transitory.social"
+      }
+    ]
+  }
+}

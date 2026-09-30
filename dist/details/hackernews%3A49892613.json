@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49892613",
+  "sourceItemId": "49892613",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49892613",
+  "detail": {
+    "longDescription": "I’ve been building NetWasm: an independent .NET compiler, CoreLib and runtime designed specifically for WebAssembly. It compiles Roslyn-generated CIL into standalone core WASM or WASI Preview 2 components - without shipping CoreCLR or Mono. A clean Release application containing Console.WriteLine(42) produces 82.5 KB of final WASM with WASI p2, including the runtime and precise garbage collector. Website: https:&#x2F;&#x2F;www.netwasm.com&#x2F; Playground: https:&#x2F;&#x2F;playground.netwasm.com&#x2F; The playground runs fully on the browser without a backend &#x2F; cloud server compiling your code - it&#x27;s all WASM! Locally, you use dotnet new, dotnet build, dotnet test, etc like you would normally. You can run the self-contained .wasm output with wasmtime, fully portable. GitHub repos: https:&#x2F;&#x2F;github.com&#x2F;zion-sati&#x2F;NetWasm https:&#x2F;&#x2F;github.com&#x2F;zion-sati&#x2F;NetWasm.Libraries What is it? It&#x27;s CIL (used to be called MSIL - it&#x27;s the dotnet bytecode in other words) to WASM compiler. But more than that it&#x27;s intentionally not using Microsoft&#x27;s Corelib. We avoid reflection, typename with full namespace strings etc where the resulting .wasm can end up bloated. The goal is to have C# (and later .NET in general - thus F# and VB.NET) be on equal footing as Kotlin&#x2F;WASM. Note that Kotlin&#x2F;WASM uses WasmGC, NetWasm uses BoehmGC in precise mode. NetWasm makes Wasm a first class target. Why NetWasm? I fell in love with C# in 2006 and have OSS attempts at building C#-like syntax using C++ template metaprogramming with BoehmGC a long time ago because I didn&#x27;t like the idea of having a runtime pre-installed. This idea was revitalized when I tried to migrate my web UI framework FUI-RS to C# - the resulting smoke test was already a minimum of 1 MB Brotli compressed running in interpreter mode! FUI-RS (Rust) had it at under 50 KB uncompressed. What already works? C# 15, precise GC, finalization, exceptions, generics, virtual&#x2F;interface dispatch, LINQ, tasks &#x2F; value tasks (thus async-await), JSON, dependency injection, regex, XML, HTTP, WIT&#x2F;WASI and TUnit (a modern source generated unit testing framework) etc. What&#x27;s left to do? There&#x27;s a roadmap to v1.0 on the repo&#x27;s README - tl;dr there&#x27;s a lot to do before we can get there, e.g. Expression trees, faster dev loops, threading, web workers, interop via libimport and globalization (opt-in just like NetWasm&#x27;s implementation of timezone info). NuGet packages should be able to multitarget to support NetWasm as well as the full .NET as long as there&#x27;s no reflection &#x2F; typename involved. Licence: Runtime, CoreLib, templates and libraries: MIT Compiler and tooling: NetWasm Community License Note that NetWasm is pre-1.0 (currently v0.5) and evolving rapidly, so I&#x27;d appreciate any technical feedbacks from the community if you&#x27;d like to help me shape this project. Particularly, real WASI use cases people want supported, NuGet packages to multitarget (or even better if you&#x27;re one of the popular open source packages and would like to start multitargeting).",
+    "externalUrl": "https://playground.netwasm.com/",
+    "developer": "zionsati",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "4"
+      }
+    ]
+  }
+}

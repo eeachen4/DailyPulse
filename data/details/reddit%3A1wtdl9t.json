@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtdl9t",
+  "sourceItemId": "1wtdl9t",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wtdl9t/does_every_pr_get_its_own_database_where_you_work/",
+  "detail": {
+    "longDescription": "I’ve been looking at database branching and per-PR setups and the idea is that CI creates a branch when the PR opens, applies the migrations in it, runs integration tests against that, then deletes the branch when the PR closes.\n\nThis makes sense to anyone who's had two schema changes land in the same staging database and then lost hours to working out whose migration broke whose tests. \n\nBut what I can't tell from the outside is the operational side. For instance, branch creation has to be fast enough not to slow CI, and something has to clean up after abandoned PRs or you could end up with a lot of forgotten environments.\n\nFor anyone running this, how did you handle cleanup, and did CI time improve?\n\n",
+    "developer": "Chris__Codes",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

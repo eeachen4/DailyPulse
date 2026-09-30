@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtsyln",
+  "sourceItemId": "1wtsyln",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wtsyln/what_broke_when_i_split_a_voice_agent_into_a/",
+  "detail": {
+    "longDescription": "I've been building a voice assistant where a live voice model only talks and anything slow goes to background agents with a shell and a real browser. Some things I didn't expect:\n\n\n\nThe talker needs a list of what the workers can do, or it stops handing things off. When I took the capability list out of the voice prompt, \"let's hang up\" went from reaching the backend 5 times out of 7 to 1 out of 21.\n\n\n\nIt says \"on it\" and does nothing. In one 20 minute session the voice said it would take care of something four times with no hand-off after the words. The prompt now says \"delegate before giving an answer that depends on backend work\", and I count hand-offs per user turn.\n\n\n\nWorkers need a way back into the conversation. A worker's result or question gets relayed into the live call, and only the worker that asked waits; the rest keep going.\n\n\n\nJobs should outlive the call. People hang up mid-task. The work keeps running and the result is there next time, or the screen rings when it's done.\n\n\n\nSilence costs money. The voice bills per minute including silence, so an idle call hangs up on its own. I started at 40 seconds and it was too long to sit through; it's 25 now, with the last ten counted down on screen.\n\n\n\nHow do others deal with the \"said it but didn't do it\" problem with realtime voice models? Repo and a short film are in the comments.\n\n\n\n(English isn't my first language, I had an LLM help me write this.)\n\n",
+    "developer": "Fit_Accountant524",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtpl01",
+  "sourceItemId": "1wtpl01",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1wtpl01/pssa_a_plastic_state_space_model_beats_a/",
+  "detail": {
+    "longDescription": "I built a from-scratch architecture called PSSA (plastic state space architecture) and trained it against a parameter-matched transformer baseline on the same corpus, same 12.7M tokens, same tokenizer and schedule.\n\nHeld-out results on a 198,939-token slice neither run saw: cross-entropy 3.997 vs 4.429, perplexity 54.4 vs 83.8, next-token accuracy 24.1% vs 18.0%. I scored every checkpoint of both runs (64 PSSA links, 43 transformer links) on unseen text and the curves never cross.\n\nGenerating 200 tokens on the same CPU with the same prompt and sampler takes 226 ms vs 2735 ms, about 12x faster.\n\nIt's written in Rust with CPU and CUDA backends, no PyTorch. Loss curves, full setup and the eval commands are here: [https://github.com/Sparticle62ops/pssa](https://github.com/Sparticle62ops/pssa)",
+    "developer": "Sparticle62",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

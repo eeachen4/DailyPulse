@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtqo56",
+  "sourceItemId": "1wtqo56",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1wtqo56/github_actions_scheduled_workflows_delayed_by/",
+  "detail": {
+    "longDescription": "I’ve been dealing with increasingly delayed GitHub Actions scheduled workflows recently and thought I’d share the workaround in case it saves someone else some debugging.\n\nI had a daily production workflow scheduled with GitHub Actions cron.\n\nIt was already scheduled away from the top of the hour, but over several days the actual start time drifted by hours. On the latest run:\n\n* Expected GitHub cron: **00:17 local time**\n* External fallback scheduled: **00:27**\n* Fallback actually ran: **00:31**\n* Main workflow finished successfully: about **00:36**\n* GitHub’s original scheduled event finally appeared: **05:27**\n\nSo the GitHub cron was roughly **5 hours 10 minutes late**.\n\nManual `workflow_dispatch` runs were starting normally, which made it look like the issue was GitHub’s scheduling/event-delivery layer rather than runner availability or the workflow itself.\n\n# What I changed\n\nI kept the actual workflow in GitHub Actions and added a tiny Railway cron job purely as an independent clock.\n\nThe flow is basically:\n\n`Railway cron → check whether today already completed → workflow_dispatch → existing GitHub Action`\n\nThe external job does **not** duplicate the collection/business logic. It only decides whether the existing GitHub workflow needs to be started.\n\nI also added a preflight check inside the GitHub workflow itself:\n\n`workflow starts → check whether today is already complete → run or skip`\n\nThat handles the other half of the problem.\n\nWhen GitHub’s native cron eventually woke up at 05:27, it checked the durable completion state, saw that the Railway-triggered run had already completed successfully, and skipped the real work.\n\nSo the first production test ended up looking like:\n\n`GitHub cron intended 00:17`  \n↓  \n`Railway fallback 00:31`  \n↓  \n`GitHub workflow_dispatch`  \n↓  \n`normal workflow succeeds`  \n↓  \n`GitHub native cron arrives 05:27`  \n↓  \n`preflight detects completed day`  \n↓  \n`duplicate work skipped`\n\n# A couple of safety things I found important\n\nI wouldn’t make the external scheduler itself responsible for deciding whether production data is healthy. Mine only checks a narrow, authoritative “has today completed?” signal.\n\nIf that check says **yes**, it can safely skip.\n\nIf the check is unavailable or malformed, I prefer to allow the normal workflow to run rather than treating uncertainty as proof that the job already happened.\n\nI also check for an already-active GitHub workflow before dispatching where possible, and GitHub concurrency protection remains enabled.\n\nThe external scheduler uses a narrowly scoped credential that can interact with Actions for the single repository rather than a broad account token.\n\n# Why I did it this way\n\nI considered moving the whole scheduled job to Railway, but that would have meant maintaining two execution environments.\n\nThis keeps:\n\n* one workflow\n* one test path\n* one deployment/collection implementation\n* one GitHub Actions audit trail\n\nRailway is just the alarm clock.\n\nThe first real overnight test worked exactly as intended, including the duplicate suppression when GitHub finally delivered the original scheduled event hours later.\n\nPosting because I found plenty of reports of delayed GitHub Actions cron jobs, but fewer complete examples of a tested external-scheduler + `workflow_dispatch` fallback.\n\nCurious whether anyone else is currently seeing multi-hour GitHub Actions cron delays.",
+    "developer": "LoganInHD",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

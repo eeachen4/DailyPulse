@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006730",
+  "sourceItemId": "80006730",
+  "sourceUrl": "https://stackoverflow.com/questions/80006730/aws-ecs-fargate-sqs-autoscaling-with-min-capacity-0-how-to-bootstrap-from-0-tas",
+  "detail": {
+    "longDescription": "I have an ECS/Fargate worker consuming an SQS queue. I want the service to scale to zero when the queue is empty, so: min_capacity = 0 max_capacity = 10 AWS recommends target tracking using: ApproximateNumberOfMessagesVisible / RunningTaskCount However, when the service reaches 0 running tasks, RunningTaskCount has no CloudWatch datapoint, so the backlog-per-task metric becomes undefined. When messages subsequently arrive, I need the service to bootstrap from 0 → 1 and then let target tracking handle 1 → N and N → 0. What is the recommended pattern for this? Options I've considered: 1. A separate scale-out-only step policy for 0 → 1 2. A metric-math expression that handles RunningTaskCount = 0 3. Raw SQS backlog for the bootstrap alarm + backlog-per-task for target tracking I would prefer not to keep min_capacity = 1 because the worker is idle most of the time, and this is Fargate. This is the Terraform code I currently use: resource \"aws_appautoscaling_policy\" \"worker_backlog\" { name = \"${var.project_name}-${var.worker_provider}-backlog-per-task\" policy_type = \"TargetTrackingScaling\" service_namespace = aws_appautoscaling_target.worker.service_namespace resource_id = aws_appautoscaling_target.worker.resource_id scalable_dimension = aws_appautoscaling_target.worker.scalable_dimension target_tracking_scaling_policy_configuration { target_value = var.backlog_per_task scale_out_cooldown = var.scale_out_cooldown scale_in_cooldown = var.scale_in_cooldown customized_metric_specification { metrics { id = \"backlog\" return_data = false metric_stat { stat = \"Sum\" metric { namespace = \"AWS/SQS\" metric_name = \"ApproximateNumberOfMessagesVisible\" dimensions { name = \"QueueName\" value = var.queue_name } } } } metrics { id = \"running\" return_data = false metric_stat { stat = \"Average\" metric { namespace = \"ECS/ContainerInsights\" metric_name = \"RunningTaskCount\" dimensions { name = \"ClusterName\" value = var.cluster_name } dimensions { name = \"ServiceName\" value = aws_ecs_service.worker.name } } } } metrics { id = \"bpt\" label = \"Backlog per task\" expression = \"IF(running > 0, backlog / running, backlog)\" return_data = true } } } }",
+    "developer": "Edgar Meva",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "52"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

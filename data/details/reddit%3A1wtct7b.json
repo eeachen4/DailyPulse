@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtct7b",
+  "sourceItemId": "1wtct7b",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wtct7b/kaniko_is_no_longer_15x_slower_than_buildkit/",
+  "detail": {
+    "longDescription": "I maintain the community fork of kaniko [https://github.com/osscontainertools/kaniko](https://github.com/osscontainertools/kaniko)\n\nThe 2018 buildbench comparison put kaniko 15x behind BuildKit, and that number still shapes how people see it. We reran it on gitlab.com runners, with both builders configured the way you would actually run them in CI.\n\nUnchanged build (every command a cache hit):  \nBuildKit                  6.1s  \nkaniko (ours)         9.9s  \nkaniko (Google)   45.6s\n\nThe fix was cache lookahead across stage boundaries. Google's kaniko could not compute the cache key of COPY --from before the source stage was built, so it built every stage just to discover nothing had changed.\n\nCaveat: part of that 15x was the 2018 setup rather than kaniko. It ran without --cache-copy-layers while BuildKit was allowed a local disk cache. Under a fair configuration Google's last release is only 7.5x behind, not 15x, and closing the rest was our work.\n\nBuilds are still slower than BuildKit, and the post explains why:  \nWrite-up: [https://osscontainertools.org/blog/kaniko-vs-buildkit-2026/](https://osscontainertools.org/blog/kaniko-vs-buildkit-2026/)  \nBenchmark: [https://gitlab.com/martizih/kaniko-buildbench](https://gitlab.com/martizih/kaniko-buildbench)",
+    "developer": "martizih",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

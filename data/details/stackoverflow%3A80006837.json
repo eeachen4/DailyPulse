@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006837",
+  "sourceItemId": "80006837",
+  "sourceUrl": "https://stackoverflow.com/questions/80006837/pywebtransport-and-docker-client-timing-out-trying-to-find-server",
+  "detail": {
+    "longDescription": "I am very new to pywebtransport and docker but I am trying the example from https://github.com/wtransport/pywebtransport and having trouble getting the client to connect to the server for a basic echo server. Client code: import asyncio import ssl from pywebtransport import ClientConfig, WebTransportClient from pywebtransport.types import EventType async def main() -> None: config = ClientConfig(verify_mode=ssl.CERT_NONE) async with WebTransportClient(config=config) as client: session = await client.connect(url=\"https://127.0.0.1:4433/\") await session.send_datagram(data=b\"Hello, Datagram!\") event = await session.events.wait_for(event_type=EventType.DATAGRAM_RECEIVED) if isinstance(event.data, dict) and (data := event.data.get(\"data\")): print(f\"Datagram: {data!r}\") stream = await session.create_bidirectional_stream() await stream.write_all(data=b\"Hello, Stream!\", end_stream=True) response = await stream.read_all() print(f\"Stream: {response!r}\") await session.close() if __name__ == \"__main__\": try: asyncio.run(main()) except KeyboardInterrupt: pass Server code import asyncio from pywebtransport import Event, ServerApp, ServerConfig, WebTransportSession, WebTransportStream from pywebtransport.types import EventType from pywebtransport.utils import generate_self_signed_cert generate_self_signed_cert(hostname=\"127.0.0.1\") app = ServerApp(config=ServerConfig(certfile=\"127.0.0.1.crt\", keyfile=\"127.0.0.1.key\")) @app.route(path=\"/\") async def echo_handler(session: WebTransportSession) -> None: async def on_datagram(event: Event) -> None: if isinstance(event.data, dict) and (data := event.data.get(\"data\")): await session.send_datagram(data=b\"ECHO: \" + data) session.events.on(event_type=EventType.DATAGRAM_RECEIVED, handler=on_datagram) try: async for stream in session.incoming_bidirectional_streams(): asyncio.create_task(handle_stream(stream)) finally: session.events.off(event_type=EventType.DATAGRAM_RECEIVED, handler=on_datagram) async def handle_stream(stream: WebTransportStream) -> None: try: data = await stream.read_all() await stream.write_all(data=b\"ECHO: \" + data, end_stream=True) except Exception: pass if __name__ == \"__main__\": print(\"Running app\") app.run(host=\"127.0.0.1\", port=4433) I think my problem is I am running these both in separate Docker containers. I tried to bridge them with a shared network but I am getting this exception in pywebtransport: wt-client | Traceback (most recent call last): wt-client | File \"/app/client.py\", line 31, in <module> wt-client | asyncio.run(main()) wt-client | File \"/usr/local/lib/python3.11/asyncio/runners.py\", line 190, in run wt-client | return runner.run(main) wt-client | ^^^^^^^^^^^^^^^^ wt-client | File \"/usr/local/lib/python3.11/asyncio/runners.py\", line 118, in run wt-client | return self._loop.run_until_complete(task) wt-client | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ wt-client | File \"/usr/local/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete wt-client | return future.result() wt-client | ^^^^^^^^^^^^^^^ wt-client | File \"/app/client.py\", line 12, in main wt-client | session = await client.connect(url=\"https://127.0.0.1:4433/\") wt-client | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ wt-client | File \"/usr/local/lib/python3.11/site-packages/pywebtransport/client/client.py\", line 210, in connect wt-client | raise e wt-client | File \"/usr/local/lib/python3.11/site-packages/pywebtransport/client/client.py\", line 203, in connect wt-client | session = await self._wait_for_session_and_create(connection=connection, timeout=connect_timeout) wt-client | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ wt-client | File \"/usr/local/lib/python3.11/site-packages/pywebtransport/client/client.py\", line 264, in _wait_for_session_and_create wt-client | session_id = await connection.wait_for_ready_session(timeout=timeout) wt-client | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ wt-client | File \"/usr/local/lib/python3.11/site-packages/pywebtransport/connection/connection.py\", line 427, in wait_for_ready_session wt-client | raise ConnectionError(message=f\"Session ready/closed timeout after {timeout}s.\") from None wt-client | pywebtransport.exceptions.ConnectionError: [0x2] Session ready/closed timeout after 30.0s. wt-client exited with code 1 Here are my docker files. docker-compose.yml: version: '3.8' services: wt-server: build: ./server ports: - \"4433:4433/udp\" container_name: wt-server networks: - wt-net environment: - PYTHONUNBUFFERED=1 wt-client: build: ./client depends_on: - wt-server networks: - wt-net container_name: wt-client environment: - PYTHONUNBUFFERED=1 networks: wt-net: driver: bridge Client Dockerfile: FROM python:3.11-slim WORKDIR /app RUN pip install --no-cache-dir pywebtransport COPY client.py . CMD [\"python\", \"client.py\"] Server Dockerfile: FROM python:3.11-slim WORKDIR /app RUN pip install --no-cache-dir pywebtransport COPY server.py . EXPOSE 4433/udp Tried a lot of things so far. Would appreciate if anyone had any insight.",
+    "developer": "aftrumpet",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "34"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

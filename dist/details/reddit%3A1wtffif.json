@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtffif",
+  "sourceItemId": "1wtffif",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wtffif/incidentiq/",
+  "detail": {
+    "longDescription": "I kept asking my incident agent the wrong question.\n\n\n\nI was asking:\n\n\n\n\\*\\*“What do you think is causing this?”\\*\\*\n\n\n\nBut during a real incident, that isn't always the first question I care about.\n\n\n\nSometimes it's:\n\n\n\n\\*\\*“Have we seen this before?”\\*\\*\n\n\n\nThat distinction led me to change IncidentIQ's architecture.\n\n\n\nInstead of:\n\n\n\n\\`\\`\\`text\n\nIncident → LLM → Diagnosis\n\n\\`\\`\\`\n\n\n\nI made it:\n\n\n\n\\`\\`\\`text\n\nIncident\n\n   ↓\n\nRecall relevant history\n\n   ↓\n\nIncident + history\n\n   ↓\n\nLLM reasoning\n\n   ↓\n\nInvestigation\n\n   ↓\n\nHuman-verified resolution\n\n   ↓\n\nMemory\n\n\\`\\`\\`\n\n\n\nThe interesting part isn't simply adding memory.\n\n\n\nIt's deciding \\*\\*where memory belongs in the control flow\\*\\*.\n\n\n\nA few things I learned while building it:\n\n\n\n→ Retrieval works better as an explicit stage than as optional prompt context.\n\n\n\n→ The model shouldn't be allowed to invent historical incidents just because a service name looks familiar.\n\n\n\n→ An empty memory result is useful information. Sometimes the system genuinely hasn't seen the failure before.\n\n\n\n→ The resolution an engineer verifies is more valuable as future memory than an AI-generated guess.\n\n\n\n→ If I can't see what was retrieved, I can't really debug whether the memory system helped.\n\n\n\nFor example, a new \\`payments-api\\` incident with nearly exhausted database connections can recall an earlier incident where connection-pool exhaustion caused 500s and latency spikes.\n\n\n\nThe old resolution becomes \\*\\*evidence\\*\\*, not an automatic answer.\n\n\n\nThat distinction is important:\n\n\n\n\\*\\*Memory should inform the investigation, not replace it.\\*\\*\n\n\n\nIncidentIQ uses FastAPI, React/Vite, Groq, and \\[Hindsight\\](https://github.com/vectorize-io/hindsight) as the persistent memory layer.\n\n\n\nI wrote about the architecture, the implementation, and the reasoning behind these choices here:\n\n\n\n[https://medium.com/@deexithareddy896/my-agent-started-from-scratch-every-time-hindsight-fixed-that-693edfe2e5b2](https://medium.com/@deexithareddy896/my-agent-started-from-scratch-every-time-hindsight-fixed-that-693edfe2e5b2)\n\n\n\nOne question I'm particularly interested in:\n\n\n\n\\*\\*When you build agents with memory, where do you put the retrieval step—and how do you know when the memory itself is wrong?\\*\\*",
+    "developer": "deexitha_reddy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

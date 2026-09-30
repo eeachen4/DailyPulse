@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wts8xp",
+  "sourceItemId": "1wts8xp",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wts8xp/image_storage_for_chat_history/",
+  "detail": {
+    "longDescription": "I'm working on an ecommerce chatbot that helps potential customers look for product inventory. These users can be anyone on the ecommerce site and will send photos of what they're looking for. The chatbot returns suggested products.\n\nMy question is around storage of the customer provided images. I plan to store these in a Cloudflare r2 bucket, but trying to decide wether to use the cache, or use direct r2 bucket URLs to add the image to the chat after it's uploaded.\n\nThe benefit I see with caching is that requests for the image would likely not hit r2 (although the volume of requests for each image would likely be pretty low). The downside I can think of with caching is these files would be accessible by anyone who has the url until they're deleted.\n\nThe other option would be the presigned r2 URLs which could be set to inactivate after a few days to prevent unauthorized access to the image. The downside would be direct requests to r2, but again the volume should be low since the use is really just for that particular chat the image is in.\n\nWhat would be the better approach for this? I’m also open to using other storage platforms if there is a better option.",
+    "developer": "rouge818",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

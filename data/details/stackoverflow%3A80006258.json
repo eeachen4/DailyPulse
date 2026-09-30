@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006258",
+  "sourceItemId": "80006258",
+  "sourceUrl": "https://stackoverflow.com/questions/80006258/member-none-of-any-none-does-not-have-attribute-with-columns-polars-pychar",
+  "detail": {
+    "longDescription": "Minimum Reproducible Example: import polars as pl df: pl.DataFrame | None = pl.DataFrame({\"x\": [1]}) if df is None: raise RuntimeError df.with_columns(y=pl.col(\"x\") + 1) Warning: Member None of Any | None does not have attribute with_columns Proof: PyCharm 2026.2.3 Build #PY-262.10968.92, built on September 18, 2026 Windows 11 I already tried: Restart my computer Invalidate Cache and restart PyCharm Run the code Reinstall PyCharm Use df = cast(pl.DataFrame, df) This does not work, PyCharm now gives me another warning \"Expected a type\"; proof: Windows Updates The last line doesn't do anything, replacing it with df = df.with_columns(y=pl.col(\"x\") + 1) does not solve the problem",
+    "developer": "FluidMechanics Potential Flows",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "94"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

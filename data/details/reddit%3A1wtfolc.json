@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtfolc",
+  "sourceItemId": "1wtfolc",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wtfolc/incident_iq/",
+  "detail": {
+    "longDescription": "I’ve been building a small incident-response agent called IncidentIQ, and the first version had an annoying problem:\n\nEvery incident looked like the first incident it had ever seen.\n\nIt could reason about logs, connection pools, and symptoms fairly well. But it had no idea that we’d already fixed the same failure a few weeks earlier — or that the fix wasn’t the obvious first guess.\n\nSo I changed the architecture around one rule:\n\n**Recall before reasoning.**\n\n# How it works\n\n* FastAPI backend + React/Vite frontend\n* Groq for the reasoning model\n* Hindsight (vectorize-io/hindsight) as the persistent memory layer, running in Docker\n* Incident comes in → build a recall query from the title, service, symptoms, logs, and recent changes → recall from Hindsight → then send the incident + recalled memories to the LLM\n\nThe prompt tells the model that recalled memories are the only historical evidence it can use.\n\nSo it can't casually invent something like “INC-142 happened last month” unless INC-142 was actually retrieved from memory.\n\nWhen an engineer resolves an incident, their root cause, investigation, resolution, outcome, and lesson are retained in Hindsight.\n\nThe LLM never writes to memory.\n\nThe human-verified resolution is what the next incident learns from.\n\nEmpty memory is also a valid state. If nothing relevant is recalled, the system says so and falls back to generic troubleshooting guidance.\n\n# What I saw\n\nAs I logged incidents, the dashboard showed memories recalled per analysis increasing roughly like:\n\n0 → 0 → 2 → 4 → 10\n\nThe last incident involved a notification-service backlog: connection pool at 50/50, with 120 jobs waiting.\n\nThe analysis recalled two earlier pool-exhaustion incidents from other services — INC-101 and INC-204 — and used the lessons from those incidents in its reasoning.\n\n# What's not great yet\n\nRecall is definitely noisy.\n\nThat same analysis retrieved 10 memories, but one of the top results was an unrelated promo-email fact with only \\~10% relevance.\n\nThe analysis ultimately used only two of the retrieved memories.\n\nSo I exposed the raw recalled memories and a `memories_used_count` in the response. This makes it easier to distinguish between:\n\n* Found nothing\n* Found something, but it was irrelevant\n* Found the right memory, but the LLM didn't use it effectively\n\nThis is still a small experiment with incidents I wrote myself, so I’m not making any claims about scale or production performance yet.\n\n[https://medium.com/@greeshh.25/my-incident-agent-kept-starting-from-zero-2d0125cf9e82?sharedUserId=greeshh.25](https://medium.com/@greeshh.25/my-incident-agent-kept-starting-from-zero-2d0125cf9e82?sharedUserId=greeshh.25)\n\nCurious how others approach this:\n\nDo you gate the LLM behind retrieval, or treat memory as optional context?\n\nAnd when retrieval gets noisy, how are you filtering or ranking the memories before they reach the model?",
+    "developer": "C_Greeshma",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

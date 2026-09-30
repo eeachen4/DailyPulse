@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtdsy7",
+  "sourceItemId": "1wtdsy7",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wtdsy7/technical_note_managing_api_costs_and/",
+  "detail": {
+    "longDescription": "With GPT-6 Astra now in production, setting up an evaluation pipeline requires careful configuration. The standard pricing ($10/M input, $50/M output, with a steep multiplier after 272K tokens) means that unoptimized prompt iteration can quickly drain development budgets.\n\nBelow is a technical breakdown of how to structure initial test runs, manage context costs, and set up the API routing before moving to production.\n\n1. Routing and Environment Setup\n\nTo avoid burning production OpenAI quotas for sandbox testing, a standard practice is to route initial evaluations through an API aggregator. For our staging environment, we route via CometAPI. This provides a unified OpenAI-compatible endpoint and allows us to utilize aggregator starter credits for zero-cost initial benchmarking. You simply swap the base\\_url in the standard client without rewriting the SDK logic.\n\n2. Evaluation Configurations\n\nWhen evaluating Astra against baselines like GPT-5.6 Sol or Claude Fable, resource constraints should be explicitly defined in the payload:\n\n\\* Reasoning Effort: Default to effort=\"low\" for initial structural tests. Only increase to medium or high if the model fails a specific logic step. Max effort scales token usage unpredictably.\n\n\\* Output Constraints: Astra tends to be highly verbose. Enforce strict output schemas (e.g., instructing the model to return JSON only) to prevent excessive output token billing at the $50/M rate.\n\n\\* Targeted Workloads: Standard QA tasks rarely justify the Astra premium. Evaluations should be strictly focused on long-horizon tool use, terminal tasks, and complex debugging where Astra shows measurable benchmark improvements.\n\nMeasuring the true \"Cost-per-Task\" under these configurations provides a clear, data-backed metric for deciding when to dynamically route traffic to Astra versus maintaining standard tasks on smaller models.",
+    "developer": "kim_deadja4951",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

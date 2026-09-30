@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006366",
   "sourceItemId": "80006366",
+  "fetchedAt": "2026-09-30T02:24:30.163Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006366/how-to-animate-multiple-lines-of-marquee-text-separately-in-javascript",
   "detail": {
     "longDescription": "So, I wrote something in JavaScript that is supposed to recreate the non-standard and deprecated <marquee> tag. This is what I got so far: // Grab the JavaScript marquee text and container elements const marqueeContainer = document.getElementsByClassName('marquee_container').item(0); const marqueeText = document.getElementsByClassName('marquee_text').item(0); // JavaScript marquee animation let pos = 0; // Set initial position at the left side of page let dir = 1; // Set initial direction as left-to-right // Marquee animation function function marquee() { // Set new position on the page marqueeText.style.left = pos + 'px'; // Increment or decrement the position based on direction pos = pos + dir; /* Subtract the width of container from the width of text to get the position of the right side of page */ const containerWidth = marqueeContainer.offsetWidth; const textWidth = marqueeText.offsetWidth; // Alternate the direction of text if (pos >= containerWidth - textWidth) { dir = -1; // Right-to-left } else if (pos <= 0) { dir = 1; // Left-to-right } // Update rendered position on the page requestAnimationFrame(marquee); } // Call marquee animation function marquee(); It kinda works for pages with only one line of text with the marquee effect, but the undesirable effect of this code is that when there is more than one line of text (and looping through each marquee container), they are kinda \"stuck\" together, when the longest marquee line reaches the edge of the page the shorter marquee bounces off with it in the same position. I'm trying to figure out how to get them to animate each of them separately from each other. // Grab the JavaScript marquee text and container elements const marqueeContainers = document.getElementsByClassName('marquee_container'); const marqueeTexts = document.getElementsByClassName('marquee_text'); // JavaScript marquee animation let pos = 0; // Set initial position at the left side of page let dir = 1; // Set initial direction as left-to-right // Marquee animation function function marquee() { // Grab each line of marquee for (let i = 0; i < marqueeContainers.length; i++) { // Set variable for each element let marqueeContainer = marqueeContainers.item(i); let marqueeText = marqueeTexts.item(i); // Set new position on the page marqueeText.style.left = pos + 'px'; // Increment or decrement the position based on direction pos = pos + dir; /* Subtract the width of container from the width of text to get the position of the right side of page */ let containerWidth = marqueeContainer.offsetWidth; let textWidth = marqueeText.offsetWidth; // Alternate the direction of text if (pos >= containerWidth - textWidth) { dir = -1; // Right-to-left } else if (pos <= 0) { dir = 1; // Left-to-right } } // Update rendered position on the page requestAnimationFrame(marquee); } // Call marquee animation function marquee(); .marquee_container { overflow: hidden; } .marquee_text { position: relative; } <div id=\"marquee_1\" class=\"marquee_container\"> <span class=\"marquee_text\">This is a line of marquee.</span> </div> <p>This is just normal text</p> <div id=\"marquee_2\" class=\"marquee_container\"> <span class=\"marquee_text\">This is another and longer line of marquee</span> </div>",
     "developer": "RandomDoe2026",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "165"
+        "value": "206"
       },
       {
         "label": "状态",

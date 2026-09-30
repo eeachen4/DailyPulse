@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtfmfg",
+  "sourceItemId": "1wtfmfg",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wtfmfg/incidentiq/",
+  "detail": {
+    "longDescription": "I built an incident-response agent that could reason about production failures.\n\n\n\nThere was just one problem:\n\n\n\n\\*\\*It had no memory of production.\\*\\*\n\n\n\nEvery new incident was a fresh prompt.\n\n\n\nGive it Postgres replication lag, Redis pressure, or a connection-pool problem, and it would produce reasonable hypotheses—but it couldn't tell me:\n\n\n\n\\> “We saw this before. Here's what actually happened, and here's what fixed it.”\n\n\n\nSo I changed the architecture around one idea:\n\n\n\n\\*\\*REMEMBER → RECALL → REASON → RESOLVE → LEARN\\*\\*\n\n\n\nThe interesting part isn't the LLM.\n\n\n\nIt's the loop around it.\n\n\n\nWhen an engineer resolves an incident, IncidentIQ stores the full story:\n\n\n\n\\* symptoms\n\n\\* root cause\n\n\\* investigation\n\n\\* resolution\n\n\\* outcome\n\n\\* lesson\n\n\n\nThat goes into \\*\\*Hindsight\\*\\* as persistent memory.\n\n\n\nWhen the next incident arrives, the agent doesn't immediately ask the LLM for an answer.\n\n\n\nIt first asks:\n\n\n\n\\*\\*“What have we learned that might be relevant?”\\*\\*\n\n\n\nThen:\n\n\n\n\\`\\`\\`text\n\nNew Incident\n\n↓\n\nHindsight Recall\n\n↓\n\nHistorical Evidence\n\n\\+\n\nCurrent Incident\n\n↓\n\nLLM Reasoning\n\n↓\n\nEngineer Investigation\n\n↓\n\nVerified Resolution\n\n↓\n\nHindsight\n\n\\`\\`\\`\n\n\n\nOne detail I particularly care about: \\*\\*the model isn't allowed to invent history.\\*\\*\n\n\n\nIf Hindsight returns nothing, the system says so.\n\n\n\nIf it recalls something, that retrieved evidence is what the model can use as historical context.\n\n\n\nAnd the engineer—not the model—decides what actually happened and what gets written back as knowledge.\n\n\n\nThe stack is deliberately small:\n\n\n\n\\*\\*React/Vite → FastAPI → Hindsight + Groq\\*\\*\n\n\n\nNo observability platform.\n\nNo automated remediation.\n\nNo giant infrastructure layer.\n\n\n\nJust one narrow problem:\n\n\n\n\\*\\*How do you stop an incident agent from forgetting what the team already learned?\\*\\*\n\n\n\nThe article goes deeper into the architecture, memory design, recall flow, and the engineering decisions behind IncidentIQ:\n\n\n\n[https://medium.com/@sanjubh23/my-agent-kept-forgetting-the-past-hindsight-changed-that-a2299f600577](https://medium.com/@sanjubh23/my-agent-kept-forgetting-the-past-hindsight-changed-that-a2299f600577)\n\n\n\nI'd love to hear from people building agentic systems:\n\n\n\n\\*\\*How are you making sure your agents actually learn from previous work instead of starting from scratch every time?\\*\\*",
+    "developer": "bheemavarapuSanjay67",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

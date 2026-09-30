@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49891989",
+  "sourceItemId": "49891989",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49891989",
+  "detail": {
+    "longDescription": "Hi folks! Because of AI, there is more code to review. I don&#x27;t know about you, but I get annoyed when the default git diff doesn&#x27;t match something &quot;obvious&quot;. I built CodeDiff to help. It&#x27;s a syntax-aware, careful implementation in Rust of all current research in code diffing. It parses 24 languages with TreeSitter and falls back to a modified Myers line diffing algorithm for any file it cannot parse. I wouldn&#x27;t necessarily call it a novel algorithm, but it isn&#x27;t a re-implementation of existing tools either. I tested it on the last 50 commits of all 7400-or-so repositories that are in the Gentoo package list. CodeDiff can diff 99.95% of those file pairs in 120s and 6GB of RAM on a rusty 11 year old Intel E3-1275 v5. The median speed is 7ms and 93% of files are diffed in under 100ms. I also did a bit of hand solving and have a test dataset of 1400 hand solved diffs. CodeDiff is perfect on 70% and near-perfect on 90% of them. But accuracy is actually a complex thing to measure, because if you are only after the AST diff, then it is perfect 89% of the time. Deciding what to paint however is not an objective thing so if you do try it out, check out the render options (press M) and make it fit your style. If you just want to see how it looks like: https:&#x2F;&#x2F;ivankovic.github.io&#x2F;codediff&#x2F;showcase&#x2F;?case=python-r... If you want to install it: https:&#x2F;&#x2F;github.com&#x2F;ivankovic&#x2F;codediff Do feel free to file issues. It&#x27;s v0.1.1 at the moment, but I have been using it for months as my git difftool and I plan to keep that stable. Using it as a library directly from Rust however, might change until v1.0. The final goal for v1.0 is p99 &lt; 400ms and 99% perfect diff, including multi-file diff support in 30 languages. Credit where credit is due: There is a bunch of people researching diffs in the past 20 or so years. Without those papers, CodeDiff would be a lot harder to build. Especially without APTED and Myers algorithms. License: AGPL3.0, I kind of like copy-left. If your company prevents use of AGPL software tell them to throw a few bucks my way for my token usage and we can talk. AI disclosure: I use AI assisted coding. Claude and Mistral were used, heavily.",
+    "externalUrl": "https://github.com/ivankovic/codediff",
+    "developer": "FabCH",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

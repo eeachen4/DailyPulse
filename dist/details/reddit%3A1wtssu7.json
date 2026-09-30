@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtssu7",
+  "sourceItemId": "1wtssu7",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wtssu7/i_cut_cost_and_latency_on_my_game_search_engine/",
+  "detail": {
+    "longDescription": "I built [indiedex.gg](https://indiedex.gg), a hidden-gems game search engine on steam data. Search is the front door: type something like “a game like Hades that feels cozier and is co-op,” and it should actually understand that mix of reference + vibe + filters.\n\nThose compound queries used to go through a DeepSeek extraction call that turned the sentence into structured pieces (reference game, filters, tags, vibe). It worked, but it was slow and expensive on the hot path.\n\nI swapped that step to **TypeSafe Jev** on OpenRouter’s Decisions API. Jev doesn’t write a free-form answer. It answers a fixed set of closed questions in parallel (yes/no odds, choices), and I compose that with my existing regex helpers into the same extraction shape I already had. Same search pipeline after that, just much faster routing.\n\nBakeoff on 50 cases:\n\n| Metric | DeepSeek | Jev |\n|:-|:-|:-|\n| Extract p50 | ~1.5s | **~130ms** |\n| Full route p50 | 2871ms | **1256ms** |\n| Weird title-resolve | 96-100% | **100%** |\n| Hard-filter agree | n/a | **100%** |\n| Weird top-N overlap | n/a | **100%** |\n| Cost (fixture) | ~$0.014 | **~$0.0025** |\nSo extract got roughly 10× faster, end-to-end route roughly halved, cost dropped a lot (around 6x), and quality held on my fixture set.\n\nIf you’ve been building “NL in → structured intent out → tools do the work” instead of a chatbot, this pattern felt like a better fit than another chat completion.\n\nI think models like Jev will open the doors to a lot of cool UX features, decision engines, smart filtering, auto moderation and different ways to interface with apps and machines.\n\nHappy to answer questions about the hybrid setup.",
+    "developer": "AccomplishedEvent273",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

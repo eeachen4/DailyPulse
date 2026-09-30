@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wtiu2d",
+  "sourceItemId": "1wtiu2d",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wtiu2d/migrating_aks_from_local_accounts_to_entra_id/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nWe've been migrating a few AKS clusters from local (certificate-based) accounts to Microsoft Entra ID authentication with Kubernetes RBAC, group-bound via RoleBindings instead of individual users. It's gone smoothly on our internal/dev cluster — sign-in works, group-based access works as expected, and day-to-day operations (deployments, scaling, log analytics ingestion) are unaffected. We're now planning to roll the same change out to Production.\n\nAlong the way we've hit a few gotchas worth mentioning: switching a cluster's identity from a service principal to a managed identity doesn't carry over old custom Azure role assignments (we lost Network Contributor on our VNet and started getting 403s on new service/pod IP allocation until we re-granted it manually). We also found that a private jump VM with no outbound internet couldn't complete the Entra device-login flow at all, which forced us to temporarily re-enable local accounts as a stopgap while we figure out a managed-identity-based login path for that VM instead.\n\nFor anyone who's rolled this out on production AKS clusters: what were the biggest challenges or surprises? Specifically curious about things like CI/CD pipelines breaking after disabling local accounts, handling break-glass/emergency access accounts once local accounts are off, any gotchas with large or nested Entra groups hitting token size limits, and how you handled the cutover window without risking a lockout. Any war stories or lessons learned would be hugely appreciated before we touch prod.",
+    "developer": "Mahynderr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
