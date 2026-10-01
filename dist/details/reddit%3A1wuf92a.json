@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wuf92a",
+  "sourceItemId": "1wuf92a",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wuf92a/docker_app_storage_best_practices/",
+  "detail": {
+    "longDescription": "What are the best practices for storage when using docker containers.  I’m running docker on Ubuntu using my NAS to store the photos for example, but the volume were the Immich database lives is directly on the servers(non-redundant) SSD. \n\nI tried putting these onto the nas using NFS I get permission’s errors. Perhaps I should try harder? :-)  I’d like to have all of my Doctor containers protected by the same redundancy that my synology has a for all of my data files.\n\nRight now if I had a major SSD failure of my server, I would lose all the files that the docker containers have in volumes on the server directly while all my pictures and other files that are stored on the NAS on NFS mounts would be fine.  This seems inadequate.\n\nAm I simply doing it wrong and I should use something like proxmox instead of just running docker and Linux?  What are other people doing to keep the server purely cpu and easier to rebuild?  I use git for all my docker compose files and I wouldn’t have any trouble restarting fresh containers, but that seems like it is only half way of a solution..\n\nI’d love to know what the best practices are for resiliency after a server failure and a quick recovery should I have hardware failure on my server.\n\nI’m not scared of new technology and would also be open to moving towards a cluster of servers if that’s necessary.  My self hosted world is fairly stable with limited updates at this point.\n\nThanks for any thoughts, suggestions or directions. And like I said if my basic setup is the problem I’m up for major changes to get to a more long term resilient setup!",
+    "developer": "np0x",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

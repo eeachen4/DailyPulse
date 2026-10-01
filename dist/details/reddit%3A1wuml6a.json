@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wuml6a",
+  "sourceItemId": "1wuml6a",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wuml6a/we_put_integration_setup_before_the_first_useful/",
+  "detail": {
+    "longDescription": "I build ThreadFox, a paid Reddit research and launch toolkit for Claude Desktop, Claude Code and Codex. The onboarding problem we changed was the order of operations: our buyer library showed installation routes and a public test before the buyer’s actual business task.\n\nThat made “is this useful?” depend on “can I configure this integration?” Public feedback about setup and what the bundle actually included exposed the mismatch.\n\nHere is the sequence we shipped:\n\n**1. Put the result that does not need an integration first.** The bundle already included a researched community plan and three drafts for one product. We moved the claim for that service ahead of installation. The buyer can use the delivered work manually.\n\n**2. Select one client before showing setup instructions.** Desktop, CLI and other client paths should not look like a checklist that everyone must finish. Readiness means checking the actual tool/account connection, not reaching the end of a documentation page.\n\n**3. Give the first agent task a small, inspectable output.** Research up to three relevant conversations, read the original question, and save one unapproved draft with its sources. If nothing fits or access is incomplete, report that instead. The public test post is optional.\n\n**4. Keep brief-writing independent of the backend.** Our brief builder creates copyable text locally in the page; it does not submit the business description to our server. We included a denied-clipboard fallback and checked the library at 320, 390 and 1280 pixels, plus the no-JavaScript path.\n\nOne reusable design test: draw the dependency graph for the first useful output. Which setup steps are genuinely required for that output, and which belong to a later feature? Moving the second group can make a complicated product easier to evaluate without pretending the underlying integration is simple.\n\nThis is a shipped change, not an A/B-test result. Those browser checks were synthetic; they do not establish that buyers activated successfully or that the new flow increased sales.\n\n**Commercial offer:** if you have a web product to introduce, [ThreadFox is $29 once](https://threadfox.vip/?utm_source=reddit&utm_medium=post&utm_campaign=tf-kit&utm_content=20261001-0126), normally $49, for checkouts started before September 30, 11:59 p.m. Eastern, plus applicable tax. Claim the included Launch Pack for one product and receive the researched plan and three tailored drafts within 24 hours after the claim. Optional reusable AI tools are included; compatible AI access is separate. No ThreadFox subscription. Thirty-day refund policy.",
+    "developer": "investigatormaker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

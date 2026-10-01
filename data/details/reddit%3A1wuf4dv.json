@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wuf4dv",
+  "sourceItemId": "1wuf4dv",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1wuf4dv/one_chunk_boundary_changed_warranty_answers_for_a/",
+  "detail": {
+    "longDescription": "17% of requests tied to one multi-column warranty table were returning 24 months instead of 36, while standard warranty questions kept passing. We traced the failures in Braintrust and saw which retrieved chunks were present when the wrong answer appeared. The chunk boundary had separated the row values from the table heading, so the retrieval context lost the qualifier for 36 months and the reranker favored nearby prose containing 24 months instead. Support had both warranty numbers in separate macros (before the retrieval path was clear), which made the conflicting answers harder to untangle.\n\nChanging the chunking moved those cases in the experiment diff and groundedness improved once the heading stayed with the row. Recall at k barely changed because the table was already being retrieved. We've added the failures to a regression dataset but I'm still concerned about other tables where retrieval looks healthy while structure changes the answer.\n\nWhat's your approach to catching chunk boundary failures when the right document is already in the candidate set?",
+    "developer": "Excellent-Post-6442",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

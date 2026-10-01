@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.36062",
+  "sourceItemId": "2609.36062",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.36062",
+  "detail": {
+    "longDescription": "arXiv:2609.36062v1 Announce Type: new Abstract: Long-context sequence models face a fundamental tradeoff: softmax attention uses flexible token-level interactions at quadratic cost, whereas linear attention obtains linear-time training and constant-time decoding by compressing history into a fixed-size state. In this work, we ask whether we can connect these regimes through a tunable notion of structure. To this end, we introduce Structured Matrix Attention (SMat-Attention) via a family of causal masks with structured long-range routing whose row supports have VC-dimension $d$. In our construction, $d=1$ recovers the standard causal mask, and increasing $d$ permits richer subset-routing patterns. We give chunkwise forward and backward algorithms to enable hardware-efficiency. For sequences of length $T$, the hard-routing construction takes $O(T^{2-3/d}+T)$ work, despite the mask being dense, for our prescribed family. In fixed-horizon streaming, decoding after the distant prefix takes constant time per token using $O(T^{1-1/d})$ cached states. SMat-Attention therefore makes VC-dimension an explicit knob governing access-pattern complexity, prefill cost, and decoding memory. Empirically, subset-routing and rule-assisted multi-key retrieval experiments illustrate the masks' routing expressiveness. Extensions to Mamba-2 and Gated DeltaNet using learned routing with top-$k$ query reads retain subquadratic prefill, improve recall accuracy over the backbones in several settings, and achieve comparable small-scale language-modeling performance.",
+    "developer": "Emile Anand, Abdullah Ateyeh, Archer Wang, Marin Solja\\v{c}i\\'c",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Emile Anand, Abdullah Ateyeh, Archer Wang, Marin Solja\\v{c}i\\'c"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

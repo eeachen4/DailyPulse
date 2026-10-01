@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wucelj",
+  "sourceItemId": "1wucelj",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wucelj/psa_check_your_docker_build_cache_docker_system/",
+  "detail": {
+    "longDescription": "Hey everyone, a quick reminder for anyone running Docker on constrained environments (edge nodes, small VPS, or lightweight local dev VMs like my 30GB root partition setup): **Docker build cache can quietly consume a surprising amount of disk space.** I recently noticed my available disk space creeping down to a low level (`/dev/sda2` down to nearly 6GB free), despite having very few active containers running. Out of curiosity, I ran:And found out that the **Build Cache** was accumulating gigabytes of unused layers from past container builds. Instead of doing a broad `docker system prune -a` (which can remove stopped containers or base images you might want to keep), you can target just the build cache (at your own risk if running in production, as this wipes all unused build cache):*(Note:* `-a` *removes all unused build cache, so your very next build might take longer as it rebuilds layers from scratch).* **The Result:** Free space jumped instantly from \\~6GB to 14GB. If you manage fleets of servers or CI/CD runners where Docker builds happen frequently, make sure you have a routine cleanup policy set up (or a cron job), as build cache can gradually fill up your drive over time. *What’s your go-to automation script for keeping Docker clean in production?*",
+    "developer": "my-app-s",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

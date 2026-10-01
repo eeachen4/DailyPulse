@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.35815",
+  "sourceItemId": "2609.35815",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.35815",
+  "detail": {
+    "longDescription": "arXiv:2609.35815v1 Announce Type: cross Abstract: Researchers across academia increasingly base significance claims on LLM judge scores and small-sample AI evaluations. Yet without well-calibrated confidence intervals (CIs), hypothesis tests, and judge-bias corrections, such claims are unreliable. We address these issues in several contributions. First, we find that running statistics over raw LLM judge scores leads to inflated false positives: counterintuitively, for many inter-rater agreement metrics, false positive risk peaks at \"almost perfect\" human-LLM agreement. To help researchers understand how to run statistics over LLM judges responsibly, we present guidance and tooling for the statistical analysis of mixed human-AI judge designs, and implement nine hypothesis tests via prediction-powered inference (PPI), including the first known PPI corrections for four rank-based tests (Wilcoxon signed-rank, Mann-Whitney U, and omnibus variants). To keep PPI++ stable with small human-labeled calibration sets, we introduce bootstrap-adaptive power tuning, which shrinks the estimated weight toward a target estimated from the labeled data, and accounts for that weight's own sampling variance. Second, through Monte Carlo simulations, we derive recommendations for what CI, p-value, and FWER correction methods to use for small-sample AI evaluations (N<100), and warn researchers against bootstrap CIs. We package these recommendations into evalstats, an open-source Python package that selects calibrated methods automatically, and demonstrate it in three scenarios, including one where a real LLM judge validated at \"substantial agreement\" would have led a researcher to publish a spurious finding. evalstats is publicly available at https://github.com/ianarawjo/evalstats.",
+    "developer": "Ian Arawjo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.AI, cs.HC, stat.ME"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ian Arawjo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wujjkx",
+  "sourceItemId": "1wujjkx",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wujjkx/we_gave_an_ai_agent_a_readonly_postgres_login_it/",
+  "detail": {
+    "longDescription": "A while ago we had a Postgres login that was provisioned as read only for an AI agent we were working with.\n\nAt some point the agent tried to do something destructive with it. I honestly don’t remember the exact query anymore, this was a while back, but it made us actually inspect the login to see what it could do.\n\nThat was when I went down the rabbit hole of Postgres role inheritance. Just because you didn’t directly give a login UPDATE/DELETE etc doesn’t necessarily mean it can’t do those things. It can inherit privileges from other roles, own tables, have access through other grants etc.\n\nWe ended up putting together a small check internally to basically show us know what a given postgres login can actually do \n\nI recently went back to that idea and built a small open source version of it called agent-db-scan.\n\nYou give it a Postgres connection string and it checks the effective privileges, inherited roles, tables it owns, whether it can write/delete/truncate, RLS, statement timeout, sensitive columns it can read, things like that.\n\nNothing too fancy, I just thought it might be useful for anyone giving Postgres credentials to agents or even just wanting to sanity check a supposedly restricted DB user before using it somewhere.\n\nIt’s open source, so feel free to use it or improve it\n\n",
+    "developer": "Then_Respect_1964",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

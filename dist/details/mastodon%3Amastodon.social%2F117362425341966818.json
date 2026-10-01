@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117362425341966818",
+  "sourceItemId": "mastodon.social/117362425341966818",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-d7e19d76-fe067008e2f4c151",
+  "detail": {
+    "longDescription": "The MCP ecosystem solved the wrong problem first. Tool wiring happened quickly; the memory layer became the soft underbelly. One compromised agent writes a poisoned memory entry, and every other agent reading that shared context inherits the corruption. That's not a hypothetical — it's the natural failure mode of trust-by-default. Zero trust in a multi-agent memory system means: no implicit trust between agents, between memory stores, or between a memory entry and the agent that reads it. The concrete failure, in order Agent A writes a tool result to shared MCP memory. Agent B retrieves that entry as ground truth for a planning task. The result was malformed — or adversarially crafted. B now executes against corrupted state. The fix is structural, not prompt-level. Mechanism 1: Memory write attestation Every memory write in MCP should carry a provenance envelope: agent ID, tool ID, session ID, and a hash of the raw tool output. Readers verify three things: Was this entry produced by an authenticated agent? Which tool produced the underlying data? Does the payload match the hash? If your MCP memory server cannot answer all three, it's a bulletin board, not a memory system. Trade-off: Attestation adds latency per write — the exact figure depends on the store and hash scheme, likely single-digit milliseconds in typical local setups. Accept it. Unattested writes are how memory poisoning propagates. Mechanism 2: Capability scoping per memory namespace Never give an agent read/write to a global namespace. Partition memory: ephemeral — session-scoped, TTL enforced team — shared, but writes require verification anchored — immutable after N confirmations, used for critical facts Promotion rule: a write moves from ephemeral to team only after confirmation by two independent agents or an explicit human approval. This kills the single-writer poisoning vector. Trade-off: Collaboration slows down. That's the point. Speed on a corrupt memory base compounds the damage. Mechanism 3: Read-time verification hooks MCP clients should support interceptors that run policy checks at retrieval time: Entry older than X → force a re-verification call to the source tool. Producer agent revoked → quarantine the entry, don't return it. Entry conflicts with an anchored fact → surface the conflict to the planner instead of silently returning both. These hooks are where governance actually lives. Without them, \"zero trust\" is a slogan. What breaks without this A shared memory pool without attestation, scoping, and read-time checks is a single point of failure. One agent's hallucination becomes everyone's base reality. The observable pattern in real MCP deployments: it's not the tool calls that go wrong — it's the memory that persists and propagates the mistake. The execution order You cannot retrofit zero trust onto a memory layer after an incident. The provenance envelope must be in the write path from day one. Sequence: Map your memory namespaces and define promotion rules. Add write attestation. Enforce read-time verification hooks. In that order. Never trust the memory — always verify the path it took to get to you. maref # ai # opensource # machinelearning # agents # cybersecurity # mcp # security # software # coding # development # engineering # inclusive # community Never Trust, Always Verify: Zero-Trust Governance for MCP Memory",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

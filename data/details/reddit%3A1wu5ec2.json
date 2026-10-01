@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wu5ec2",
+  "sourceItemId": "1wu5ec2",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wu5ec2/all_5_of_our_hpas_had_never_scaled_once/",
+  "detail": {
+    "longDescription": "We run five HorizontalPodAutoscalers across a multi-tenant platform. During a load-testing exercise I checked whether they had ever actually fired.\n\nNone of them had. Not once, in production.\n\nAll five used `AverageValue: 400m` as the CPU target. Measured per-pod averages across those services:\n\nservice A    84 mCPU/pod \n\nservice B    43 mCPU/pod \n\nservice C    26 mCPU/pod \n\nservice D    34 mCPU/pod \n\nservice E    16 mCPU/pod\n\nEvery target was 5–25x above anything the pods could measurably reach. The HPAs were decoration. They'd been sitting there for months looking like autoscaling.\n\nCheck yours:\n\n    kubectl get hpa -A\n\nIf the CURRENT column is an order of magnitude below TARGET under real load, yours is decoration too.\n\nTwo things I got wrong when fixing this, in case they save someone time:\n\n**1. I first sized the new targets from PEAK per-pod CPU.** That's wrong, the HPA compares a rolling average against the target, not the peak. Sizing from peak produced targets 7–12x too high, which reproduced the exact bug I was fixing. Size from the average.\n\n**2. AverageValue vs Utilization matters more than it looks.** Utilization is a percentage of the *request*. Several of our deployments had no CPU request at all (QoS BestEffort), so Utilization would never have reported anything. AverageValue works regardless. If you have BestEffort pods, don't use Utilization.\n\nThe second finding from the same audit, which surprised me more:\n\n**Our nodes were 95% \"full\" and 53% busy.**\n\nKubernetes admits pods based on *requests*, not usage. Ours were over-reserved by 2.4–7.7x against measured usage; one service requested 200m and used 26. So the scheduler refused to place new pods while half the actual CPU sat idle.\n\nMeanwhile 15 of 27 pods had **no CPU request at all**. BestEffort: first evicted under pressure, no guaranteed share, and completely invisible to the scheduler's capacity arithmetic. Those 15 pods were consuming real CPU that nothing accounted for.\n\nOnce we set requests from measured usage, free reservable CPU went from 630m to 1005m on the same hardware, and the HPAs could finally scale.\n\nThe uncomfortable part: for months our dashboards showed a cluster at 95% capacity that was actually half idle, with autoscalers that had never autoscaled. Everything looked fine.\n\nHas anyone found a good way to catch \"HPA target is unreachable\" automatically? Feels like something that should be a lint rule.",
+    "developer": "fyriyc",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

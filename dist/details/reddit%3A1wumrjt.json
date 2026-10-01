@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wumrjt",
+  "sourceItemId": "1wumrjt",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1wumrjt/work_cloud_fails_on_my_personal_plus_account/",
+  "detail": {
+    "longDescription": "I’m on **personal Plus, no Business/Enterprise workspace**. My Microsoft Store ChatGPT desktop app shows **26.928.21956**, released September 29, and says it’s up to date.\n\nI tested this on September 30:\n\n1. **Desktop app open, Work → Cloud selected:** The agent attached to my local Windows `Documents/Codex` folder. Shell and file write/read commands **failed** before execution.\n2. **Continued the conversation in Chrome, desktop app still open:** Same Windows environment, same failures.\n3. **Fully exited the desktop app and reopened Chrome:** The next turn used Linux at `/workspace/scratch/...`. Shell execution, file write/read, and actual cloud-browser navigation all **worked**.\n\n**I never selected Local or used the Codex tab. This was Work → Cloud throughout.**\n\nThe exact error was:\n\n    Failed to create unified exec process:\n    exec-server rejected request (-32603):\n    sandbox provisioning failed\n\nMy suspected explanation is that Work Cloud attaches to the connected desktop’s local executor while the app is running, but that executor’s sandbox fails. Exiting the app lets it fall back to a working cloud environment. **That’s a hypothesis, not a confirmed internal root cause.**\n\nThe confusing part: [OpenAI’s local-access documentation](https://learn.chatgpt.com/docs/enterprise/cloud-local-access), as quoted by support, says this requires workspace-owner enablement and desktop version **26.929+**. I have neither a workspace nor that version.\n\nIn the failing local runs, the agent reported no browser controls available, though we didn’t directly test browser navigation there. In the Linux cloud run, browser navigation was verified.\n\nSupport repeatedly asked for details and feedback IDs, which I supplied. It eventually closed the request as a duplicate and told me to continue an existing thread, without confirming an engineering escalation.\n\n**My working workaround:** Fully exit the desktop app before running Work Cloud in Chrome.\n\nAnyone else seeing Cloud-selected tasks attach to Windows while the desktop app is open, or getting this sandbox provisioning error?",
+    "developer": "slaybrownbeast",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I would like to create a Lookup plugin that queries the inventory to gather some data on hosts and format them. I tried a jinja expression but I found the solution was convoluted and a pain to put together. Python code offers much more leeway to achieve that and plugin can be fast to code. So far, I came up with the following code but I don't know how to access the inventory I tried through the variables dict but apparently it is fed only contextually and variables.hostvars can end up being None class LookupModule(LookupBase): def run( self, terms: list[Any], variables: dict[str, Any] | None = None, **kwargs: Any, ) -> list[dict[str, str]]: self.set_options( var_options=variables, direct=kwargs) if variables is None: raise AnsibleError( \"The Ansible variable context is unavailable\") groups = variables.get(\"groups\") hostvars = variables.get(\"hostvars\") if groups is None: raise AnsibleError( \"The Ansible variable 'groups' is None\") if hostvars is None: raise AnsibleError( \"The Ansible variable 'hostvars' is None\") ... Here is the playbook I used to do some testing - name: Gather facts on reachable machines hosts: all gather_facts: yes tasks: - ansible.builtin.debug: msg: \"Gathering facts\" - name: Debug hosts: localhost gather_facts: yes tasks: - name: debug lb backends run_once: true vars: lb_backends_443: \"{{ query( 'lde_lb_backends', group='rc1_lb_443', ipv4_only=true) }}\" ansible.builtin.debug: var: \"{{ avar }}\" loop: - lb_backends_443 loop_control: loop_var: avar So how do you access the whole inventory from a plugin, here a lookup plugin because it seemed appropriate ?",
     "developer": "creatldd1 creatldd1",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "93"
+        "value": "106"
       },
       {
         "label": "状态",

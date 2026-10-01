@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wui6mf",
+  "sourceItemId": "1wui6mf",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wui6mf/promptlevel_provenance_labels_so_a_models_guesses/",
+  "detail": {
+    "longDescription": "I started this as breadcrumbs for my own AI work and it grew into a small framework. Every claim the model writes gets an inline label: (u) given to it, (m) checked against a named source, (g) generated. No retraining, model changes, or special infrastructure required. There's a small parser, and a gate that holds an action if it rests on a (g) or on unlabelled text.\n\nWhat I've got so far is thin, and I know it:\n\n* In one chat, nine models got the prompt once each. Most labelled correctly; several labelled their own math as \"given.\"\n* In a five-agent test, checked facts kept their source 33/36 times with labels and 4/36 without.\n* A fake \"checked\" label fooled the next agent 4 out of 4 times, so the labels are an audit trail, not a guarantee.\n\nI'm not an engineer, and this all lives at the prompt level because that's where I could reach. If there's a better layer to do this at, or prior work I should know about, tell me.\n\nSite: [https://evidentiality-framework.org/](https://evidentiality-framework.org/) · Repo: [https://github.com/jzesbaugh/Evidentiality\\_Framework](https://github.com/jzesbaugh/Evidentiality_Framework)",
+    "externalUrl": "https://i.redd.it/xpv1qs4scqsh1.png",
+    "developer": "jzesbaugh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

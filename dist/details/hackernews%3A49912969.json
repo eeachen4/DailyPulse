@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49912969",
+  "sourceItemId": "49912969",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49912969",
+  "detail": {
+    "longDescription": "Most backends eventually need to do something once at a specific time. Revoke a trial after 30 days. Expire an offer. Retry a payment in 30 minutes. A few months ago I was consulting for a logistics platform. Their freight bidding workflow had a lot of timed steps. Every minute a cron queries all pending records and pushes them into Kafka. It worked. But it taxes the VM, DB, and message bus alike and creates a ton of unnecessary observability data. A durable delay queue could be a better fit. But unfortunately, there are not many reliable options for scheduling long-term events. Back in 2014 I wrote a Go library. It was a delay queue inspired by App Engine&#x27;s push queues. It ensured durability with a WAL write. It kept them in a sorted heap. At startup ran it in their production. At a throughput of a few thousand tasks&#x2F;second, it worked well for them. But, I wanted to achieve millions of timers and much higher throughput. But there was also a bug I could not find. So I shelved it. Twelve years later, I was cleaning up some old repos. I asked Claude Code if it could find the bug. And ... it found the bug. It was meant to only append to the WAL, but somewhere along the way every task started paying for a full synced commit. My &quot;few thousand tasks&#x2F;sec&quot; ceiling was the disk&#x27;s sync rate. The next few hours were pure bliss. Ideas I had carried around for years finally made it back into code. I rewrote it with a segmented WAL and group commit. Far future timers now loaded in memory only at the onset of the horizon. Now it is not no more a built in library but can run as as stand alone service. Dispatch runs over HTTP&#x2F;2. It has retries and idempotency keys. The rusty old code suddenly runs like a supercar. Early numbers on 1 vCPU with ext4 on virtio and 128 byte payloads. - Durable add 107,500&#x2F;s with 256 writers - End to end durable dispatch 157,000&#x2F;s - About 44 bytes per pending timer with disk spill - About 403 bytes when resident Now I&#x27;m wondering if anyone actually needs it. The alternatives I know all have trade-offs. * Cron with DB - polling means duplicates and drift * Redis queues - have persistence trade-offs. Also, far-future schedules will always occupy memory despite durability config. Low thousands throughput * EventBridge - has one-minute granularity, low thousands throughput, and is AWS-only. * SQS and Cloud Tasks - have limits and per-task costs * Temporal, Step Functions etc. - are full workflow engines. resource intensive I&#x27;m thinking about adding HTTP&#x2F;3, gRPC and Arrow. I also want smarter loading based on available memory. Later I may look at partitioning and Raft. But before I turn this into another opensource project that nobody uses. I would like to hear from people who actually deal with this. - What do you use for delayed or scheduled work? - What bugs you about it? - Would you run a dedicated durable timer service? - Anyone dealing with millions of future&#x2F;far-future timers? How do you handle them? All answers are welcome :-)",
+    "developer": "souravray",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

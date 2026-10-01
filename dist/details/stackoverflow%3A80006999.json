@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006999",
+  "sourceItemId": "80006999",
+  "sourceUrl": "https://stackoverflow.com/questions/80006999/why-does-node-mssql-connect-to-the-primary-replica-when-using-applicationintent",
+  "detail": {
+    "longDescription": "I have a SQL Server Always On Availability Group with one primary replica and one readable secondary replica. I want my Node.js application to send read-only connections to the secondary replica. I am using the mssql package and the Availability Group listener in the connection configuration: const sql = require('mssql'); const config = { server: 'my-ag-listener', database: 'my_database', user: process.env.DB_USER, password: process.env.DB_PASSWORD, options: { encrypt: true, trustServerCertificate: true, applicationIntent: 'ReadOnly' } }; The connection succeeds, but when I execute: const pool = await sql.connect(config); const result = await pool.request().query(` SELECT @@SERVERNAME AS server_name; `); the result shows the name of the primary SQL Server instance instead of the readable secondary replica. The same Availability Group is configured with a read-only routing URL and a read-only routing list, and I can verify the expected routing when connecting with a client that supports ApplicationIntent=ReadOnly . Does node-mssql support SQL Server Always On read-only routing through applicationIntent: 'ReadOnly' ? If it does, what is the correct connection configuration for mssql to allow SQL Server to perform the read-only routing?",
+    "developer": "MELKIO",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "73"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

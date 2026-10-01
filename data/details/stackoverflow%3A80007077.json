@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007077",
+  "sourceItemId": "80007077",
+  "sourceUrl": "https://stackoverflow.com/questions/80007077/prevent-angular-hydration-errors-when-using-signals-with-browser-only-state",
+  "detail": {
+    "longDescription": "I have an Angular application with SSR and I recently enabled hydration. Everything works fine without hydration, but after enabling it I sometimes get hydration errors when the page contains user specific state. A simplified version of my service looks like this: @Injectable({ providedIn: 'root' }) export class UserPreferencesService { private readonly storage = inject(StorageService); readonly theme = signal<'light' | 'dark'>( this.storage.get('theme') === 'dark' ? 'dark' : 'light' ); readonly compactMode = signal( this.storage.get('compactMode') === 'true' ); setTheme(theme: 'light' | 'dark') { this.theme.set(theme); this.storage.set('theme', theme); } setCompactMode(enabled: boolean) { this.compactMode.set(enabled); this.storage.set('compactMode', String(enabled)); } } The component uses the signals directly: @Component({ selector: 'app-settings', template: ` <section [class.dark]=\"preferences.theme() === 'dark'\"> <button (click)=\"preferences.setTheme('light')\"> Light </button> <button (click)=\"preferences.setTheme('dark')\"> Dark </button> <div *ngIf=\"preferences.compactMode()\"> Compact layout enabled </div> </section> ` }) export class SettingsComponent { readonly preferences = inject(UserPreferencesService); } The problem is that the server does not have access to localStorage , but the browser does So the server can render: theme = light compactMode = false and then the browser starts with: theme = dark compactMode = true This sometimes results in errors like: NG0500: Hydration Node Mismatch I tried moving the storage access into afterNextRender() , but then I get a different problem because the first render is still using the default state and the UI changes immediately after hydration I also tried using isPlatformBrowser() and setting the signals only in the browser, but I am not sure if this is actually the right approach What would be the recommended Angular pattern for this? I would like to keep the state as Signals and also avoid: hydration mismatch errors flickering after the page loads disabling hydration for this component reading localStorage directly inside components having separate server and browser versions of the same state How would you structure this if the application has many similar preferences, for example theme, language, table settings and sidebar state? I’m probably missing something obvious about how Signals and hydration are supposed to work together",
+    "developer": "Angular Overlord",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "52"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

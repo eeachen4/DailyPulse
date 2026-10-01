@@ -4,13 +4,13 @@
   "sourceItemId": "80006644",
   "sourceUrl": "https://stackoverflow.com/questions/80006644/write-a-protocol-method-that-allows-slight-variations",
   "detail": {
-    "longDescription": "How can I write a method in a typing.Protocol that is lenient to slight changes in function signature? For example, suppose I want to write a SupportsPut protocol that defines an abstract method named put . Both multiprocessing.Queue and queue.Queue of the standard library support the put operation of queues. However, they have an argument name mismatch ( obj vs item ): # in multiprocessing.Queue: def put(self, obj, block=True, timeout=None): ... # in queue.Queue: def put(self, item, block=True, timeout=None): ... So if I try to make them both SupportsPut s, I can only choose either obj or item as the abstract argument: class SupportsPut(Protocol): def put(self, item, block=True, timeout=None): ... def do_something_with(thing: SupportsPut): pass do_something_with(mp.Queue()) # <- do_something_with(q.Queue()) I get as expected a Pylance error that mp.Queue.put doesn’t conform to the protocol’s put . In theory, do_something_with could just treat obj and item positionally, by calling put(object) instead of put(obj=object) / put(item=object) , making both queue implementations valid SupportsPut s. But I don’t know how to let the protocol method know that. This is just an example of the “slight difference in function signature” I mentioned. Maybe one implementation offers more kwargs than the other; maybe one has / or * specifiers; maybe one has an argument with a narrower type; etc. In most of these cases the difference can be worked around by the user function do_something_with by calling the methods in a specific way as shown above. But does Protocol allow this kind of flexibility? Should it? How should my example above be done?",
+    "longDescription": "I want to write a SupportsPut protocol that defines an abstract method named put . It should allow multiprocessing.Queue.put and queue.Queue.put of the standard library as valid implementations. However, looking at the source, they have an argument name mismatch ( obj vs. item ): # in multiprocessing.Queue: def put(self, obj, block=True, timeout=None): ... # in queue.Queue: def put(self, item, block=True, timeout=None): ... So if I try to make them both SupportsPut s, I can only choose either obj or item as the protocol method argument: class SupportsPut(Protocol): def put(self, item, block=True, timeout=None): ... If I test it: def do_something_with(thing: SupportsPut): thing.put(\"hello\") do_something_with(mp.Queue()) # <- do_something_with(q.Queue()) I get as expected a Pylance error that mp.Queue.put doesn’t conform to the protocol’s put . In the snippet, do_something_with() treats the first argument positionally, by calling .put(\"hello\") instead of .put(obj=\"hello\") or put(item=\"hello\") , thus avoiding the name conflict. However, SupportsPut.put must choose one of the two names. Is allowing both signatures proper duck typing? If the protocol were @runtime_checkable , what would it make sense for isinstance(mp.Queue(), SupportsPut) to return? How should I write the Protocol so that both Pylance and isinstance() are satisfied? This argument name mismatch is just one example of accounting for slight variations in implementation signatures. In most cases the variation can be resolved by sticking to what fits both, as shown above. Examples: # two implementations: def foo(self, val: Any): ... def foo(self, val: int): ... # can be resolved by passing only an int: thing_that_supports_foo.foo(42) def foo(self, **kwargs): ... def foo(self): ... # can be resolved by not passing extra kwargs: thing_that_supports_foo.foo() Is there a general method of writing a Protocol for these situations?",
     "developer": "Train-Case",
     "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +18,7 @@
       },
       {
         "label": "浏览",
-        "value": "126"
+        "value": "168"
       },
       {
         "label": "状态",

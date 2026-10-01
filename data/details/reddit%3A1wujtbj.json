@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wujtbj",
+  "sourceItemId": "1wujtbj",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wujtbj/releasing_two_post_quantized_trained_models_with/",
+  "detail": {
+    "longDescription": "We had a Dell B300 in the lab for a few weeks and used it to create two fine tunes of Qwen Flash Next.\n\nThe goal was the reduce the model in size as much as possible, while keeping the engram untouched on disk, to get the fastest, smartest, agentic model possible with a large amount of world knowledge intact, and high toks/s throughput. \n\n\\*\\*Victoria\\*\\* (coding and agents)\n\n\\- Qwen3.8-Flash-Next cut down by 44% using a paper / technique called REAP: 512 down to 288 per layer.\n\n\\- Retrained at 4-bit (NVFP4) afterwards, so it's trained for the format it ships in rather than just quantized after the fact.\n\n\\- Terminal-Bench 2.1: 70.0%, averaged over 3 runs with an 8h per-task timeout. Our previous NVFP4 build scored 62.5%.\n\n\\- HumanEval: 159/164.\n\n\\- 48.0 GiB of weights, including the draft head. The 95.4 GiB n-gram table is separate and not counted in that number.\n\n\\- 280 tok/s single stream on one B300 with the draft head, versus 135 without it.\n\n\\- GGUF Q4\\_K\\_M is 49.17 GiB. It scored 75.3% on Terminal-Bench (a single run, so treat it as noisy) and 93.2% on HumanEval (averaged over 5 runs).\n\n\\- Uses 35% fewer output tokens than our previous build.\n\n\n\n\\*\\*Maple\\*\\* (Canadian questions)\n\nStarting with Victoria: We trained a model for Canadian users. Most models answer questions about taxes, benefits and regulations as if you live in the US. Maple is fine-tuned to default to Canada. On 600 held-out questions, with search:\n\n\\- Cites an official Canadian source: 6.0% before fine-tuning, 62.9% after.\n\n\\- Fully correct answers: 6.6% before, 21.8% after.\n\n\\- \"No answer\" responses: 47.2% before, 23.7% after.\n\n\\- It pushes Canada onto people who said they live somewhere else less often: 2.9% before, 1.0% after.\n\n\n\nCoding holds up: 157/164 on HumanEval. \n\nLinks:\n\n[https://huggingface.co/rmonsurate/Victoria](https://huggingface.co/rmonsurate/Victoria)\n\n[https://huggingface.co/rmonsurate/Maple](https://huggingface.co/rmonsurate/Maple)\n\n\n\nHappy to answer questions about running them.\n\n\n\nEdit: llama.cpp users. The GGUF carries our draft head, and mainline llama.cpp doesn't know about it yet, so it fails with \"expected 1256, got 1224\". Your download is fine. For now, build from our fork: [github.com/rmonsurate/llama.cpp](http://github.com/rmonsurate/llama.cpp), branch qwen4exp-mtp. Prebuilt binaries are on the way. Thanks to the reader who caught this.",
+    "developer": "rmonsurate",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

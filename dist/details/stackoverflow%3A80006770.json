@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006770",
   "sourceItemId": "80006770",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006770/how-do-i-manage-mongock-flamingock-data-migrations-with-a-rolling-kubernetes-d",
   "detail": {
     "longDescription": "We use kubernetes to deploy our services, and our services typically have three or more replicas. This has caused a problem when we want our Spring Boot-initialized Mongock (and soon, Flamingock) to perform any data migration: when performing a normal roll-out, the change unit will be performed by the first upgraded pod rather than the last one. Example Quick example why this is a problem: We've designed the new version of the code (B) to work appropriately with the old version of our Mongo documents (1). We've designed the new version of the data (2) to be compatible with the old code (A) during our transition period. We've written the Mongock change unit to convert all of the documents from version (1) to version (2). What would happen if we did it naively: Pod (a) deploys and runs the change unit. All data is updated to version (2). Pods (b) and (c) continue writing data in version (1). Pod (b) and (c) update. They see that the change unit has already been run, and skip it. The collection is left with almost all documents updated to version (2), but with those few new documents from pods (b) and (c) in version (1). In practice, this has led us to not use Mongock change units to perform migrations. However, this seems like a problem that should have a solution. Solutions We've Considered Scale down the service to 0 before the update. With our current CI setup, this is a bit of a challenge, but we've performed these steps when needed. Have the idempotent change unit run every time. This is against the spirit of Mongock, but would technically work. Unlike other solutions, this one encourages removing the change unit after it's been run. Trigger the change unit via some external event, like an endpoint. I haven't figured out how to externally trigger a single Mongock change unit, and it's (again) against the spirit of Mongock, but this could work. Trigger some or all change units on the last pod to come up. Again, no idea if this is possible, but it would solve our problem. Question Are there better ways that we could make Mongock work in an idiomatic fashion that also works with kubernetes rolling deployments?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "65"
+        "value": "75"
       },
       {
         "label": "状态",

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49909913",
+  "sourceItemId": "49909913",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49909913",
+  "detail": {
+    "longDescription": "Hello HN, I&#x27;m Ajo and I built Strata. I spent 4 years at Netflix solving self service for non-technical business users. I think I cracked it with my unique approach to semantic layer design. The key challenge is balancing expressiveness with ease of use for our non technical colleagues. It just so happens that focus made it work pretty well with LLMs too. Strata is a full stack solution. It includes a semantic layer, dashboards, subscriptions, and google sheets exports. All of it can be done view agent conversation or via MCP. Some key concepts and features: - Names are strict. Only one thing called Revenue can exist in a project. If revenue is mapped to multiple tables, the query grain plus speed will decide table. - Strict naming conventions lends itself to enabling Automatic data blending acrros fact domains. - Partition and Aggregate aware semantic routing. This allows you to load a portion of your data into a faster compute engine like Druid or ClickHose, while keeping full history in trino or something cheaper. The query engine will choose the faster tier if the query can be resolved there. - Complex measures: out of the box support for snapshot, LOD (include&#x2F;exclude), Compound, and Auto leveling compound measures. - On top of the semantic layer users can create custom calculations that span fact domains. - Another interesting feature is the ability to create cohorts and apply as filter to an entire query or single measure within a query. We are deliberately not building a semantic layer that your BI tools connect to. I think that is a dead end. We have apis, and mcp for anything custom you want to build on top. Try it free on docker: https:&#x2F;&#x2F;strata.do&#x2F;try&#x2F; Docs here to get you going: https:&#x2F;&#x2F;strata.do&#x2F;docs&#x2F; This is an early beta version. It is NOT open source. However, the free tier includes up to 25 users. You should be able to run it entirely on your machine with docker. I would love to hear your feedback. Especially, those working with Looker and Cube. Thanks for reading!",
+    "externalUrl": "https://strata.do/",
+    "developer": "ajoski9",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "18"
+      },
+      {
+        "label": "评论",
+        "value": "8"
+      }
+    ]
+  }
+}

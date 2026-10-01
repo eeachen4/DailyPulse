@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007085",
+  "sourceItemId": "80007085",
+  "sourceUrl": "https://stackoverflow.com/questions/80007085/asyncio-code-causing-infinite-loop-in-gpio-project",
+  "detail": {
+    "longDescription": "I have dissected a Furby and attached the following components to GPIO pins on my Raspberry Pi 3B: Furby Breadboard/Pi Tongue Button GPIO pin DC Motor L293D driver with inputs tied to PWM Speaker NCP2890 audio amp (5V) I am using the rpi-lgpio library to control the Pi's GPIO pins. When the tongue button is pushed, audio will play and the motor receives power to emulate an animation. To get these to run simultaneously, I've attempted to implement some async code despite my GPIO library code being synchronous. I fear that this may be my cause of trouble. The issue is one animation loop will complete and then immediately restart once done without input from the button. This happens ad infinitum. I just don't know what could be causing this behavior. I have ensured that the button GPIO is reading high during/after the animation loop. It should only ever read low when the button is pressed as, it is hooked up to GND. Here is the relevant code: import random import os import sys import pickle import asyncio, functools import RPi.GPIO as GPIO # installed rpi-lgpio to wrap this library, but use lgpio instead. lgpio had to be manually installed. from datetime import datetime from pydub import AudioSegment from pydub.playback import play from signal import pause BASE_DIR = os.path.dirname(os.path.abspath(sys.argv[0])) AUDIO_DIR = os.path.join(BASE_DIR,'audio') PICKLE_FILE = os.path.join(BASE_DIR,'AUDIO_DICT.pickle') audio_dict = {} MOTOR_PIN = 37 BUTTON_PIN = 16 # GAIN_ADJUSTMENT = 12 GAIN_ADJUSTMENT = 0 should_animate = asyncio.Event() GPIO.setmode(GPIO.BOARD) # SETUP MOTOR GPIO.setup(MOTOR_PIN, GPIO.OUT) pwm = GPIO.PWM(MOTOR_PIN, 100) # add dtoverlay=pwm to config.txt loop = asyncio.new_event_loop() asyncio.set_event_loop(loop) @functools.cache def produce_clip(hour, minute, flair): ... return combined def audio_callback(pin: int): asyncio.run(run_audio_and_animate()) async def run_audio_and_animate(): timestamp = datetime.now() hour = timestamp.hour % 12 minute = timestamp.minute flair = random.randint(0,60) print(hour, minute, flair) flair = 0 #TEST ONLY await asyncio.gather(animate(), play_time_audio(hour, minute, flair)) async def play_time_audio(hour, minute, flair): print('audio') should_animate.set() await asyncio.to_thread(play, produce_clip(hour, minute, flair)) should_animate.clear() async def animate(): await asyncio.sleep(0.5) try: while should_animate.is_set(): print('animate') # print('button pin', GPIO.input(BUTTON_PIN)) # results in 1 (correct) pwm.ChangeDutyCycle(50) await asyncio.sleep(2) finally: pwm.ChangeDutyCycle(0) print('done animating') def main(): ... GPIO.setwarnings(False) pwm.start(0) # SETUP BUTTON GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled high # print(GPIO.input(BUTTON_PIN)) # 1 GPIO.add_event_detect(BUTTON_PIN, GPIO.FALLING, callback=audio_callback, bouncetime = 500) print('RUNNING') try: pause() except KeyboardInterrupt: print('dying now lol') should_animate.clear() pwm.ChangeDutyCycle(0) pwm.stop() GPIO.setup(MOTOR_PIN, GPIO.OUT) GPIO.output(MOTOR_PIN, GPIO.LOW) GPIO.cleanup() if __name__ == '__main__': try: loop.run_until_complete(main()) except KeyboardInterrupt: print('dying now lol') should_animate.clear() pwm.ChangeDutyCycle(0) pwm.stop() GPIO.setup(MOTOR_PIN, GPIO.OUT) GPIO.output(MOTOR_PIN, GPIO.LOW) finally: should_animate.clear() pwm.ChangeDutyCycle(0) pwm.stop() GPIO.setup(MOTOR_PIN, GPIO.OUT) GPIO.output(MOTOR_PIN, GPIO.LOW) GPIO.cleanup() loop.close() # The motor driver (L293D) should be wired like: # 3.3V # GPIO 37 (in) # Motor (black wire) (out) # GND # GND # skip # skip # --- # 5V (vcc1) # asyncio exists here because the callback is synchronous. We want to call play and animate at the same time # The should_animate flag (through set and clear) exists so we know when the audio clip has finished and we can stop animating. # # amp works with furby speaker. red wire on right and white on left. make sure amp has power! I expect should_animate.clear() within play_time_audio to toggle the flag and cause the loop in animate to break, ending up in the finally clause. I do observe the done animating debug statement printing just before the animation loop triggers again.",
+    "developer": "roscoe_turner",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

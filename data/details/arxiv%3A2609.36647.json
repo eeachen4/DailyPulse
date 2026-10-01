@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.36647",
+  "sourceItemId": "2609.36647",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.36647",
+  "detail": {
+    "longDescription": "arXiv:2609.36647v1 Announce Type: new Abstract: Coding agents change running software: they patch a service's code or overwrite its stored state, and then act on their own expectation of how the service will respond afterwards. A wrong expectation may surface only several calls later. Function-level code-execution benchmarks omit persistent service state, and agent benchmarks score the actions an agent takes or the final state it reaches. We introduce CTE-Bench, which measures whether a model can predict how an intervention changes a stateful service's future behavior, without asking it to choose actions. Each scenario gives the model Python service code, the calls and responses observed before the intervention, the intervention itself (a source edit or a state overwrite), and 40 fixed future calls; the model predicts every future response, and predictions are checked by executing the service. Three memory protocols control whether the model sees the correct earlier responses, none of them, or its own earlier predictions. CTE-Bench-Core-v1 contains 255 scenarios over six deterministic Python services, giving 10,200 predictions per model. The main score is effect-step value match (VM): exact response equality on the 2,476 future calls whose response the intervention changes. With correct earlier responses revealed, four API-hosted models (DeepSeek V4-Flash, Kimi K2.5, Qwen3.6-35B-A3B, and Claude Sonnet 4.6) reach 54.3%-61.5% effect-step VM. Hiding those responses lowers effect-step VM to 23.2%-28.9%; conditioning on self-generated predictions gives 24.8%-33.2%, and at most 1.2% of scenarios are predicted exactly end to end. Current models thus track intervention effects mainly when correct feedback is supplied, and their errors compound over a rollout. We release CTE-Bench-Core-v1 with its executable oracle, evaluation scripts, and an evaluation card mapping each claim to its protocol.",
+    "developer": "Xinran Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xinran Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

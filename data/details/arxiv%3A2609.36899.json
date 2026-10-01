@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.36899",
+  "sourceItemId": "2609.36899",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.36899",
+  "detail": {
+    "longDescription": "arXiv:2609.36899v1 Announce Type: new Abstract: Reinforcement learning (RL) post-training increasingly relies on long-horizon, multi-turn rollouts. As post-training jobs outgrow a single cluster, rollout pools assembled across clusters introduce hardware heterogeneity. Rollout scheduling must serve two stakeholders: the hardware needs high aggregate decode throughput, while each trajectory needs to finish quickly. The tension arises from the memory-bandwidth-bound nature of autoregressive decoding. A large active batch amortizes weight reads for high throughput but leaves each trajectory a smaller bandwidth share and a longer completion time. The scheduling objective is therefore specialization, letting different workers serve different roles. Heterogeneous hardware further enables this specialization. High-bandwidth accelerators favor long-context work, while cost-efficient accelerators sustain large batches. Workload evolution makes this specialization difficult to sustain, and dynamic reassignment faces a circular dependency because a move's benefit depends on subsequent placement decisions. We present CadenceRL, which bypasses this dependency through structural workload reshaping rather than per-move benefit estimation. Pacing replaces long-context trajectories with shorter ones, providing a structurally positive transformation that sustains large active batches for high throughput. When accumulated staleness demands faster completion, concentration directs the residual long-context tail onto high-affinity workers. Late-bound KV preparation stages accumulated prefixes before a destination is selected. On heterogeneous rollout pools, CadenceRL improves decode throughput by up to 48% and reduces P95 trajectory latency by up to 64%. Adding high-bandwidth accelerators reduces tail latency, while adding cost-efficient accelerators increases throughput, without manual routing configuration.",
+    "developer": "Jiahui Li, Hao Nie, Yibo Zhu, Pengjin Xie, Yu Zhou, Xiaolong Zheng, Liang Liu, Huadong Ma",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jiahui Li, Hao Nie, Yibo Zhu, Pengjin Xie, Yu Zhou, Xiaolong Zheng, Liang Liu, Huadong Ma"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wumfqv",
+  "sourceItemId": "1wumfqv",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wumfqv/a_deleted_reddit_author_is_not_a_deleted_question/",
+  "detail": {
+    "longDescription": "I build ThreadFox, a paid Reddit workflow kit for Claude Desktop, Claude Code and Codex. One regression case in our MCP reader is easy to miss: an author can delete their account while the original post remains readable.\n\nHere's a synthetic example, assuming the returned permalink matches the requested post and there is no removal notice:\n\n```json\n{\n  \"title\": \"Which parser handles this CSV?\",\n  \"author\": \"[deleted]\",\n  \"selftext\": \"The file uses semicolons and decimal commas.\",\n  \"removed\": null\n}\n```\n\nA shortcut like “deleted author means deleted post” discards the question. A title-only reader loses the two details needed to answer it. Neither problem is fixed by a better drafting prompt.\n\nOur Toolkit 2.8.0 `reddit_read` returns the original title/body alongside `state`, `content_available`, `observed_at` and the source URL. For this case, the expected result is `state: \"visible\"` and `content_available: true`, with the body preserved.\n\nThe checks are separate:\n\n- Does the returned post ID match the requested one?\n- Are the title and body present as strings?\n- Is the post visible, rather than removed, deleted or awaiting approval?\n- Is the body actual content rather than a deletion/removal marker?\n\nA matching, visible link post can legitimately have an empty body. That does not mean we retrieved the external article.\n\nThe regression cases also cover a wrong post, missing body, removed content and pending approval. When source content cannot be confirmed, the reader returns `body: null` and `content_available: false`; its next-step instruction says not to draft from the search excerpt. Comments use a separate call.\n\nThe useful design choice is to represent the source's availability explicitly instead of leaving the model to infer it from an author field or an empty string. Availability still doesn't establish that the source is factually correct. This describes the paid Toolkit reader, not the separate Lite package.\n\nCommercial offer: [ThreadFox's bundle](https://threadfox.vip/?utm_source=reddit&utm_medium=post&utm_campaign=tf-kit&utm_content=20261001-0115) is $29 once, normally $49, for checkouts started by September 30, 11:59 p.m. Eastern, plus applicable tax. It also includes a researched community plan and three tailored drafts for one product, emailed within 24 hours after claiming the Launch Pack. Claim before installing; you can use the pack manually. No ThreadFox subscription; AI access for the optional tools is separate.",
+    "developer": "investigatormaker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

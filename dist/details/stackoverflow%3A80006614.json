@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006614",
   "sourceItemId": "80006614",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006614/integrating-a-cnn-model-for-seagrass-identification-into-a-php-application",
   "detail": {
     "longDescription": "Our project (Web and Mobile Application for Seagrass Species Identification and Assessment Using Image Recognition) is intended to identify approximately 6–7 seagrass species currently found in our local assessment area from images using a Convolutional Neural Network (CNN). The identification feature can be used independently for identifying a seagrass species from an image, but it will also be integrated into a seagrass assessment workflow. Our main application is planned to use PHP and JavaScript, with MySQL for the database, while Python will be used for the machine-learning component. The general idea is that an image captured or uploaded through the application will be processed by the Python CNN model, and the identified seagrass species will then be returned to the PHP application and associated with the appropriate assessment record. For example, an assessment may contain a transect with multiple quadrats. An image associated with a particular quadrat can be processed by the CNN, and the identified species can then be associated with that quadrat in the assessment. The identification feature should also be usable separately when an assessment is not being conducted. The images used for our assessments will generally be taken during low tide, with little to no water visible around the seagrass. We therefore expect the images used in the actual application to be different from many seagrass images available online, such as underwater photographs. We are currently trying to determine how the Python CNN model should be integrated with the PHP application. One approach we are considering is running the Python model as a separate service with an HTTP API, allowing the PHP application to send an image to the Python service and receive the identified species in return. Is using a separate Python HTTP API a reasonable architecture for this type of application? If so, what is the recommended way for a PHP application to send an image to the Python service and receive the model's result? If there is a more appropriate way for integrating a Python machine-learning model with PHP, I would also like to understand other alternatives.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "55"
+        "value": "62"
       },
       {
         "label": "状态",

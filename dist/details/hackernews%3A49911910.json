@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49911910",
+  "sourceItemId": "49911910",
+  "fetchedAt": "2026-10-01T02:26:53.780Z",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49911910",
+  "detail": {
+    "longDescription": "Hey HN! Yolanda and Spencer here - wanted to share a token compression tool that we’ve built for ourselves to save 30% costs on codex! After maxing out sub and burning $700&#x2F;day per person on api, we fine tuned a compression model to trim codex&#x27;s tool call output to reduce input token + cache. It cut down tokens by 29.6% and now I just leave it on by default in Codex. To avoid messing up w&#x2F; cache, we use proxy + fine tuned qwen model trained on preserving agent trajectory to remove tool call results before they go back to the model, leaving kv cache untouched. The cli is free for everyone to use ( https:&#x2F;&#x2F;github.com&#x2F;spenmcke&#x2F;compress ). Just lmk ur feedback and hacks to shave even more costs on astra! If you want to integrate it into your product to offer the best models at low cost, I can set you up with an sdk and api keys PS: It’s built for coding agents, not conversational agents. I optimized it for file retrieval accuracy, trajectory preservation, and quality to get up to 30% cost reduction depending on how context-heavy the task is. On security and privacy side, it&#x27;s a proxy wrapping your local codex and ZDR so it doesn&#x27;t retain any queries. It’s on by default in codex and when you don’t want compression, you can use `codex --uncompress` to disable it. Give it a try: code is in https:&#x2F;&#x2F;github.com&#x2F;spenmcke&#x2F;compress You can install the cli using `curl -fsSL https:&#x2F;&#x2F;install.everestagi.com&#x2F;install.sh | sh &amp;&amp; source ~&#x2F;.config&#x2F;everest&#x2F;shell.sh` Love to hear any feedback and learn your hacky ways to save token costs too!",
+    "developer": "yolandac",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "8"
+      },
+      {
+        "label": "评论",
+        "value": "4"
+      }
+    ]
+  }
+}

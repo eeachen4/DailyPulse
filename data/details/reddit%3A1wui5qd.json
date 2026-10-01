@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wui5qd",
+  "sourceItemId": "1wui5qd",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wui5qd/an_agent_task_for_finding_unanswered_reddit/",
+  "detail": {
+    "longDescription": "A useful research job for an agent: find one unanswered question that a product can actually help solve, with enough evidence that you can judge the match yourself.\n\nGive it three inputs: the product's shipped capabilities, who it is for, and what it does NOT do. That last input matters; otherwise a model can invent the missing feature that makes every conversation look relevant.\n\nHere is the task I would give it:\n\n> Find up to three public Reddit conversations from the past seven days where someone is trying to accomplish a task this product supports. Read the original question and the available replies. For each candidate, return the permalink and date, the task in the person's own words, advice already given, the unresolved part, and the exact shipped capability that could help. Flag any missing context. Rank the candidates by usefulness of a possible answer, not by subreddit size or keyword similarity. If none fits, return no match and explain why. Do not contact anyone during this research job.\n\nThen add a second step for the strongest match:\n\n> Draft one practical answer that helps with the unresolved task. Separate generally useful advice from anything that depends on our product. Check the community's requirements, disclose our connection if mentioning the product, and identify any claim I need to verify before using the draft.\n\nFor an illustrative invoice-management product, “small business” is only a topic. “How do I tell which invoices are overdue without comparing two spreadsheets?” is a concrete task. If your product cannot import the person's actual data source, it may be a poor match despite the keywords.\n\nThe output should be a short evidence table and one inspectable draft. It should make it easy to reject a bad fit, spot a missing feature, or answer a real question well. A shortlist alone does not establish demand or willingness to pay.\n\nI work on Reddit automation, which is why I care about specifying this job carefully. These instructions are usable with any agent that can read the source material.\n\nWhat additional evidence would you require before calling a conversation a good match?",
+    "developer": "investigatormaker",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

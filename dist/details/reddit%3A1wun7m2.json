@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wun7m2",
+  "sourceItemId": "1wun7m2",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wun7m2/looking_for_thoughts_on_best_llm_router_for/",
+  "detail": {
+    "longDescription": "Lately my partner and I have been building an agent for small insurance brokers. Different parts of the agent lend themselves to different LLM (e.g. we're using Claude for extraction, a much cheaper model for classification, an open-weights model via its provider for bulk summarization). Between the 3, we need to manage 3 API keys, write 3 different retry loops, and have 3 billing systems. Two weeks ago one of the providers had an outage and our agent spit out errors to a costumer who is concerned about a deadline. We are a team of two and I'd rather spend our time building out features than managing servers, so self hosting a solution like LiteLLM isn't super attractive. I know Portkey comes up a lot in older threads. \n\nAs we've been onboarding new brokers, one in particular asked how we're dealing with storing/managing their customers' information. They're reluctant to send their docs into a system and unsure of what happens with it on the other side. For that reason, we've been looking at routers that don't store prompts.Currently the leader appears to be TrustedRouter, which has access to a few hundred models via a single end point which would (which solves our multi-model management problems) and their lack of storage means that if the broker ever asks, we can assure them that TrustedRouter can't view their data. As a bonus, it's pay as you go with no subscription fee. \n\nCurious to hear first hand accounts of using model routers in prod. When there's an outage do request actually flow to another model, or is it just delaying the inevitable? ",
+    "developer": "DuanesKrasner",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

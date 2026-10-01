@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006951",
+  "sourceItemId": "80006951",
+  "sourceUrl": "https://stackoverflow.com/questions/80006951/how-to-prevent-chromium-mediasource-buffer-eviction-from-dropping-active-webgl-t",
+  "detail": {
+    "longDescription": "I am developing a custom WebGL-accelerated media viewer in Vanilla JS using HLS.js ( MediaSource API). When switching between multiple live video streams on a single-page layout, memory usage steadily increases despite destroying the previous HLS instance. In Chrome DevTools memory profiling, I noticed that SourceBuffer memory is retained until full garbage collection triggers, but manually evicting ranges ( SourceBuffer.remove(0, Infinity) ) before detaching media causes WebGL frame rendering drops on lower-end GPU hardware. My current cleanup pipeline looks like this: function switchStream(hlsInstance, videoEl) { if (hlsInstance) { hlsInstance.stopLoad(); hlsInstance.detachMedia(); hlsInstance.destroy(); } if (videoEl) { videoEl.pause(); videoEl.removeAttribute('src'); videoEl.load(); } }",
+    "developer": "Cineby HD App",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "32"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

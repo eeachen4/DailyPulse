@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wullxh",
+  "sourceItemId": "1wullxh",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wullxh/tp6_can_work_on_vllm_with_padding/",
+  "detail": {
+    "longDescription": "vLLM's tensor parallel requires that several of the model architecture numbers be evenly divisible by the number of GPUs selected for tensor parallel. This usually means that you can only use a number of GPUs that is a power of two (2, 4, 8, etc.).\n\nI have six GPUs, and I want to maximize my KV cache when running a 27B model. So I tried tp=6. It choked with various messages, regarding this or that, which needs to be evenly divisible by six, but wasn't.\n\nSo I made those things divisible by six.  \nI asked the robot to come up with a converter that would take the original model, and pad it with zeroes until everything was divisible by 6. It took a few tries, but it worked.\n\nI have Qwen 3.8 27B at BF16 with 256k context window running across six 7900 XTX GPUs. Token generation is about 50 t/s single user, or 200 t/s aggregate with 8 concurrent prompts.\n\nGPU KV cache size: 520,784 tokens, Maximum concurrency for 262,144 tokens per request: 1.99x",
+    "developer": "Biomass23",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
