@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49921982",
+  "sourceItemId": "49921982",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49921982",
+  "detail": {
+    "longDescription": "Hi everyone, I am the release manager of `django-modern-rest` :) django-modern-rest 0.16.0 is out! Is this your first time that you hear about this project? django-modern-rest is a fully typed &#x2F; fast &#x2F; flexible &#x2F; async-ready framework to create REST APIs for Django. It supports Pydantic, msgspec, attrs and many other models. Here&#x27;s how the code looks like: import uuid import pydantic from dmr import Body, Controller from dmr.plugins.pydantic import PydanticFastSerializer class UserCreateModel(pydantic.BaseModel): email: str class UserModel(UserCreateModel): uid: uuid.UUID class UserController(Controller[PydanticFastSerializer]): def post(self, parsed_body: Body[UserCreateModel]) -&gt; UserModel: return UserModel(uid=uuid.uuid4(), email=parsed_body.email) Other notable features: - Builtin auth with sessions &#x2F; JWT headers and cookies - Validation of requests and responses according to the OpenAPI spec in debug mode, the spec is the source of truth - Builtin content negotiation, supporting conditional request and response models for different content types - Flexible error handling - Optional error model negotiation and complete customization - Streaming of SSE and JsonLines - Code reuse is the first-class citizen, create your own typed abstractions and use them with ease and safety - Advanced testing strategies, including OpenAPI coverage testing and property based tests with the help of schemathesis - AI as the first-class feature: skills, contexts, mcps, etc. But, no slop inside. - Repo: https:&#x2F;&#x2F;github.com&#x2F;wemake-services&#x2F;django-modern-rest - Docs: https:&#x2F;&#x2F;django-modern-rest.readthedocs.io Now, back to the 0.16.0 release! Built during `opensource_september` community event with 32 contributors and 144 commits. This is our fastest release ever. ## Performance - PydanticFastSerializer: deserialize x2.2, serialize x1.33 faster - New BodyMsgspec component: decodes request bytes straight into a msgspec.Struct, x1.6 faster than Body - msgspec request context validation x2 faster - Content negotiation is memoized per header: up to x65 faster for browser-style Accept headers - msgspec 0.22.0, cheaper checks, cookies, headers, and responses ## Features - Default values for components: Body[Model | None] = None just works - concrete_views for JWT, token, and session auth: a login route in one line of urls.py, zero view code - Cursor (keyset) pagination with sync and async APIs - `extras=` for your own typed `@modify` &#x2F; `@validate` parameters - PEP 696 TypeVar defaults for reusable controllers - First-class CSRF: proper 403 specs and REST error responses - external_re_path and nested external_path - Error handlers can re-raise a new error for the next layer - OpenAPI: x-extensions on every object, security for gateways and mTLS, OpenAPI 3.2 fields, controller-level tags&#x2F;deprecated&#x2F;servers, deterministic schema output ## One rule for all config Settings are no longer merged across levels. Endpoint overrides controller, controller overrides settings. Explicit [] or None disables, EMPTY falls through. Merge explicitly when you want it: `@modify(auth=[*auth, other])`. ## AI tooling Agent skills now ship inside the package: uvx library-skills installs the ones matching your version. The new `$dmr-upgrade` skill carries the migration prompts, so ask your coding agent to upgrade you from 0.15.0. Every docs page is also served as Markdown. - Repo: https:&#x2F;&#x2F;github.com&#x2F;wemake-services&#x2F;django-modern-rest - Docs: https:&#x2F;&#x2F;django-modern-rest.readthedocs.io - Changelog: https:&#x2F;&#x2F;github.com&#x2F;wemake-services&#x2F;django-modern-rest&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md - Full release notes: https:&#x2F;&#x2F;github.com&#x2F;wemake-services&#x2F;django-modern-rest&#x2F;releases&#x2F;tag&#x2F;0.16.0",
+    "developer": "sobolevn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

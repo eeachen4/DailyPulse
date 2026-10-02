@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49924943",
+  "sourceItemId": "49924943",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49924943",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Justin. Breadcrumb records everything you do on your Mac (screen + meetings + AI transcripts + what you and your AI decided) and turns it into memory your AI can search. It&#x27;s local and encrypted. You can also teach it rules by talking to it and it makes sure the right rules turn up in the right context. Works with Claude Code &#x2F; Codex &#x2F; Cursor &#x2F; opencode. All of this is exposed to your AI as 30+ MCP tools (here&#x27;s the definitions): https:&#x2F;&#x2F;innerloop.works&#x2F;breadcrumb&#x2F;mcp I started it in June because I wanted to understand what was going on with my AI dev work. Then it just kept growing as I jammed on it 10 hours a day for 3 months. I started by recording every screen so I could jump back to a moment and see what I&#x27;d been doing with the AI. Then I added MCP so the AI could search it. Then time tracking. Then meetings with transcripts and timestamped screenshots. After that I started feeding the data back in. At first it was just a few relevant memories in the prompt. Then I started adding rules and rules modules. Then I started recording the AI transcripts and all the other stuff the AI did (subagents, tools etc). I wanted a complete record so I could go back and see what the AI did and why. I found the more data the AI had the more useful it became. One example. I got off a zoom call with the team at the day job and said: &quot;Review the meeting I just had, find all the bugs we discussed, and create JIRA tickets with screenshots.&quot; It read the transcript. Found every bug we mentioned, pulled the screens from the screen timeline, spun up my local server, diagnosed each bug, reviewed the code, created 14 tickets in JIRA with diagnosis and likely fixes, attached 12 screenshots as evidence, and created a nice Slack message to send to my colleagues. I never built a workflow for any of that. Claude had the meeting record, Breadcrumb tools, and rules I&#x27;d accumulated. It basically chained the steps together itself. My favorite thing about the system is observability of my own work as an AI developer. I can trace a bug all the way back to the first thing I said (or the first thing the AI did) that caused it. Then I can add a rule so it doesn&#x27;t happen again. Anyway, my working system is simply Claude Desktop + Breadcrumb + Markdown. I find I don&#x27;t need anything else. It&#x27;s local software for one person. Local models for transcription and diarization. Data encrypted with SQLCipher and a passphrase. You can exclude any apps, websites, words and phrases. Breadcrumb itself only makes one network call which is a daily update check. (but of course your AI will use it and that is local or cloud depending on what you use). It runs cool about 12% of one core on average (M series mac has 8+). You can set it to just save OCR text or to save screenshots. If just OCR it&#x27;s about 12mb day (a lot of telemetry, indexing etc). If you record screenshots on meetings it&#x27;s about 120mb&#x2F;hour (1 every 2 secs). It can also record screenshots of everything that&#x27;s heavy at about 160mb&#x2F;day. It does local classification&#x2F;naming with ollama with Gemma 3 4B (2.5 GB). It&#x27;s 100% free. There&#x27;s no account you can just download and start using it. I&#x27;ll monetize it via E2EE cloud sync and team sync. It&#x27;s open beta. Just one developer working on it. Requires 16GB+ M Series Mac. Thanks for reading! https:&#x2F;&#x2F;innerloop.works&#x2F;breadcrumb (homepage) https:&#x2F;&#x2F;innerloop.works&#x2F;breadcrumb&#x2F;download (direct download) https:&#x2F;&#x2F;innerloop.works&#x2F;breadcrumb&#x2F;mcp (mcp definitions) https:&#x2F;&#x2F;discord.gg&#x2F;gmavGZ6J8u (feedback and requests)",
+    "externalUrl": "https://innerloop.works/breadcrumb",
+    "developer": "jv22222",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "16"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.33547",
+  "sourceItemId": "2609.33547",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.33547",
+  "detail": {
+    "longDescription": "arXiv:2609.33547v2 Announce Type: replace-cross Abstract: Resolving indirect calls is central to call-graph construction for C. Scalable type-based analyses such as MLTA use type information in LLVM IR to associate indirect calls with functions assigned to the corresponding structure fields. However, a single pointee type often misrepresents the memory a pointer addresses, and LLVM 17 removed pointee types in favor of opaque pointers. Therefore, field-sensitive analyses lose their matching key. Recovering the erased types restores the matching key but still misses the relation that the type encoded: which functions the program assigns to the field. We present Facet, to our knowledge the first analysis that reconstructs this dispatch relation over opaque IR. Facet identifies the structure field from which an indirect call loads its function pointer. It separately recovers the functions assigned to that field through initializers, stores, and aggregate copies. It then joins the two by field identity, without requiring an end-to-end value-flow path. Facet classifies proposed call-graph changes under distinct evidence rules for edge addition and removal and records the assumption behind each refinement. An LLM decides only the residual cases among symbolically bounded candidates. One analysis yields both a recall-preserving call graph and a refined call graph. On 14 C programs, Facet reduces the mean target-set size from 25.9 to 5.2 and raises observed recall from 0.79 to 0.99. Its recovered field identities agree with typed IR at 98.1% of jointly resolved sites. Applied to bug detection, the refined call graph found 17 deep bugs in C software from nginx to the Linux kernel, three of them latent for over a decade; 12 are confirmed.",
+    "developer": "Kaixuan Li, Bozhi Wu, Jian Zhang, Peixin Wang, Ting Su, Yang Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kaixuan Li, Bozhi Wu, Jian Zhang, Peixin Wang, Ting Su, Yang Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

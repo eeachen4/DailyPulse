@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007255",
+  "sourceItemId": "80007255",
+  "sourceUrl": "https://stackoverflow.com/questions/80007255/python-multiprocessing-pool-imap-performance-degradation-on-linux-host",
+  "detail": {
+    "longDescription": "Anybody notice a slowdown in multiprocessing pool map/imap after recent Ubuntu or other distro kernel updates? I have a piece of code that was performing a trillion coin toss simulations & analysis on an ancient MacBook Pro on 4 cores (of 8 total) within 90 minutes, but as of a week or two ago, the same code is now taking up to 140 minutes for the same trillion tasks on the same number of cores. Code sample is an overview - the actual code does a variety of simple integer manipulations to tally the results of each run and across runs so that large multi-run jobs are statistically equivalent to single run jobs of the same total number of tosses. Numba should be installed for code to run as intended (to run without, comment out '@jit' decorator, but expect ~100x longer run times). See 'main' code for settings; run count is collected via CLI upon job launch. # Coin Toss Multiprocessing Overview (Simplified) # user configures job/run dimensions & number of processors to engage via CLI # typical midsize test job: 480 runs of 250,000,000 tosses/run for 120B total tosses # (typical production job: 9,600 runs of 250,000,000 tosses/run for 2.2T total tosses) # maxtasksperchild ('mtcp'): [configurable below - currently seeing some improvement with mtpc = 10] # first few run times always include program load overhead # MODULES import multiprocessing as mp # noqa: I001 import random import time from numba import jit # (requires install of Numba to project venv) # Worker process @jit # Numba decorator --> pre-compile loop code def worker_loop(r, n, last_toss): # perform a run (task) heads = 0 tails = 0 # Toss & count for i in range (n): toss = random.randrange(0, 2) if toss: # heads heads += 1 else: tails += 1 return (r, heads, tails) # Stage 2 - Dispatch tasks (runs) to workers in pool def mp_run_spooler(r): run_start = time.time() # 'r' = runs to be done; 'n' = coin tosses/run; 'last_toss' = binary from prior run result = worker_loop(r, n, last_toss) # engage worker process on a run # typical performance at start of job is about 5 seconds/billion tosses # typical performance by end of job is about 9 sec/billion tosses # before issue arose, was seeing 5-6 seconds/billion tosses for whole job # results suggest the RNG is a bottleneck/possible perf issue source loop_time = {time.time() - run_start} result_adj = (*result, *loop_time) return result_adj # Stage 1 - Activate pool def mp_pooler(runs, cpu_mp): global best_sec_toss # usually seen a few runs into the job global prior_sec_toss with mp.Pool(cpu_mp, maxtasksperchild=mtcp) as pool: # Dispatch runs to Stage 2, receive returns for result in pool.imap(mp_run_spooler, range(runs)): print(f\"run {result[0] + 1}/{runs:,} heads: {result[1]:,} tails: {result[2]:,} run time: {result[3]:,}\") time_toss = (time.time() - start) / ((result[0] + 1) * n) # avg job time so far if result[0] == 0: # first run best_sec_toss = time_toss else: best_sec_toss = min(best_sec_toss, prior_sec_toss) # following runs if (result[0] + 1) % cpu_mp == 0: # run number is multiple of processors engaged print(f\"\\n best sec/toss: {best_sec_toss}\\ \\ncurrent sec/toss: {time_toss} ({(result[0] + 1) * n:,} tosses)\\ \\n perf trend: {(time_toss / best_sec_toss -1) * -100:.1f}% (avg job time/toss vs. best run time/toss)\\n\") prior_sec_toss = time_toss # set up for next # Main app if __name__ == \"__main__\": # prod app uses CLI menu to initialize/collect user settings, then a variety of # bespoke functions to support job launch & i/o orchestration runs = int(input(\"\\nenter runs: \")) # use value giving 60-180 sec overall job time n = 500000000 # increase/lower to adjust task sizes last_toss = 0 # irrelevant here, but carried over to simulate app's variable passing cpu_mp = 4 # processors/cores to be engaged mtcp = 10 # maxtasksperchild in best_sec_toss = 0 prior_sec_toss = 0 print(\"\\nworking...\\n\") start = time.time() mp_pooler(runs, cpu_mp) # up to Stage 1 I'm seeing a steady decline in performance as long jobs execute. They start with a ~70% boost over single-processor mode using 4 cores, then drops to about a 50% gain by end of job. Processor load seems to drop off as well - the fans used to run whole job, now they calm after 15-20 mins or so & the system monitor shows a coincident drop in processor load percentages. In single-processor mode, I continue to see stable performance in line with prior expectations and results. My project is running in a venv, Python 3.12.3. The host is the MacBook Pro mentioned above (early 2013), now running Ubuntu 24.04 (current via Software Updater daily check). I've made no changes to the host, the venv or the code in the last while that I can pin this against. I see the same behaviour with or without other apps (browser, etc.) running. I'm currently giving maxtasksperchild a trial as it seems to fit my architecture (playing with chunksize --> no joy), results still inconclusive - maybe a mild performance bump, but not back to where things were. I'm wondering if something maybe changed in the last while down in the OS guts, but no idea what that might be. Hence asking here if anyone else has seen similar when running similar code.",
+    "developer": "e2013mbp-gecko",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "130"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.39067",
+  "sourceItemId": "2609.39067",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.39067",
+  "detail": {
+    "longDescription": "arXiv:2609.39067v1 Announce Type: cross Abstract: Elastic Compute Cloud (EC2) Spot is 60% to 90% cheaper than On-Demand but can be reclaimed on just a 2-minute notice; for expensive multi-node training this loss can be severe, with one reclaim costing hours of synchronous progress. We build Argus, a Kubernetes operator, and ask empirically, on a CIFAR-10 testbed, when predicting interruptions beats simple checkpointing. Argus on real EKS survives a real Spot drain with a graceful SIGTERM checkpoint, resuming from epoch 8 and losing only the in-progress epoch. Alongside, we further find that in an 80-trial benchmark, the reactive-on-notice degrades toward no protection once interruption outpaces the fixed 2-minute notice, and predictive wasted compute is driven to zero, but with an oversized fixed lead it over-migrates so severely that at the fastest rate only one of five runs completes, while periodic is a strong ML-free baseline. A lead-time sweep turns the lead prediction into a guideline where a small lead suffices for zero waste, but excess lead is wasteful. The predictor built is advisory (a proxy label); real interruption labels and large-model-scale validation are future work.",
+    "developer": "Angshuman Chakravertty, MD Rayyan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Angshuman Chakravertty, MD Rayyan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wv0mpl",
+  "sourceItemId": "1wv0mpl",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wv0mpl/ai_comisseration_follow_up/",
+  "detail": {
+    "longDescription": "I wanted to write a follow up on this post I made a few days ago: [https://www.reddit.com/r/devops/comments/1wb3l8j/ai\\_comiseration\\_client\\_replacing\\_production/](https://www.reddit.com/r/devops/comments/1wb3l8j/ai_comiseration_client_replacing_production/) \n\nSo to summarize: I was more or less asked to review a portal implementation that was made using Claude and vibe coding by someone who doesn't know how to develop websites. I suspected it wouldn't end well and even on the surface found lots of issues.\n\nSo here's where I'm at now: I created a report doing quite a bit of analysis. Yes I used some AI tools to try and comb through, and I made sure that any claim I made based on its finding I dug in to looking at the actual code and outputs. It made things more manageable but there's still way too much garbage to look through.\n\nMy conclusion is this (and it's obvious I think to most here) LLMs need guardrails and lots of them or at least clear ones. I do find that it's tough to actually communicate these low level issues that have a clear (to me) underlying architectural issue and a human issue (the human doesn't know what their doing or knows how to validate output beyond the surface level), when it takes one minute to go \"please fix the list of findings\" and Claude goes \"it's fixed.\"\n\nMany mentioned that this thing is just going to fail, and it is. I'm mildly concerned about the fix being \"just fix problem x\" and then they move on until the next thing blows up. And there is a real lack of concern around impact. \"This is a public website so it's fine if we have keys in our code and expose endpoints only secured with a SAS key (which is plain text in JavaScript).\"\n\nI'm curious how many of you have run in to this even at an operational level what pains are you feeling and have you been able to deal with them? I do get what the solution is, create a proper architecture and define guardrails for Claude to follow, iterate over that until the LLM generates outputs in a way that is in-line with said architecture. I think LLMs may work (though whether they are as cost effective I press X to doubt), and if forced to make it work: this is probably the way. So are you guys maybe managing some guidance markdown files and what are the things you learned from that?\n\nFinally, I think LLMs suck for this purpose and it's clear. I knew this but now I'm living it. Which is nice and validating, but also it's tough to rely on my tried and true \"look mayor companies have been doing x for years you are not special you should follow the standards\" because LLMs in this space are so new and there isn't much precedence.",
+    "developer": "badguy84",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

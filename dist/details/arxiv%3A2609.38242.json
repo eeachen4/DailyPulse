@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.38242",
+  "sourceItemId": "2609.38242",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.38242",
+  "detail": {
+    "longDescription": "arXiv:2609.38242v1 Announce Type: new Abstract: Programs that compute with physical quantities often need to convert between units of measurement, and as the Mars Climate Orbiter showed, these conversions can be a rich source of errors. Meanwhile, typed unit calculi, our most rigorous formalisms for checking physical units in a program, have excluded unit conversions. Through this exclusion, they have established a powerful property: well-typed programs are invariant under rescaling (no program can depend on how big a meter is). But losing the ability to convert between units is a significant cost. In contrast, practical languages provide conversion but no invariance theorem. We present $\\Lambda_S$, a typed lambda calculus with conversion, quantification over units and dimensions, and vectors and linear maps with per-component units, and we determine exactly how much invariance survives conversion. For terms without unit constants we prove two abstraction theorems: (i) a convert-free term is invariant under every rescaling; (ii) a term with conversions is invariant under every rescaling that scales all units of one dimension by the same factor. The condition in (ii) cannot be weakened: under any other rescaling, some conversion of a nonzero value is not invariant. For first-order programs, a verified decision procedure returns one of three verdicts: it certifies that no error in the declared conversion factors can change the program's answer, names the accumulated ratio through which such an error would scale it, or declines. A verified checker decides whether unit declarations are consistent and determine every conversion factor, and extracts each factor exactly. We also prove adequacy, erasure, and the $n$-variable Pi theorem of dimensional analysis with conversion. Every theorem is mechanized in Lean 4, and the evaluator compiles to a native binary.",
+    "developer": "Eric Allen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.LO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Eric Allen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

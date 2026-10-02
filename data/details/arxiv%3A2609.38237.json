@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.38237",
+  "sourceItemId": "2609.38237",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.38237",
+  "detail": {
+    "longDescription": "arXiv:2609.38237v1 Announce Type: new Abstract: Verifying large C codebases requires translating them into formally checkable semantics, but most autoformalization work reports a single aggregate success rate that conflates two different failure modes: code the translator declined to handle and code the translator translated incorrectly. We present a deterministic code-property-graph (CPG)-based exporter that translates C source into a small Lean~4 core semantics under a three-tier correctness discipline: hole-free, call-closed, and dynamic-hole-risk, that keeps these modes distinct. Applied to a re-export of the SQLite source tree (8{,}602 functions, over 1.5~million AST nodes), the exporter translates 5{,}222 functions (60.7\\%) hole-free, of which only 2{,}134 (24.8\\%) are call-closed, a $2.4\\times$ gap a single rate would hide. Both figures are reported in a full per-construct trust ledger rather than a single score. Our main contribution is methodological: a protocol for separating constructs that are fundamentally unresolvable by whole-program static analysis (such as public API boundaries) from constructs that only look that way. For example, we retracted our own ``impossible'' classification of function-pointer/vtable dispatch after tracing a concrete counterexample in the target codebase. Separately, a search for ``more holes closed'' surfaced a latent silent-wrong-answer bug: a translation that succeeded with an incorrect result rather than declining, a failure mode we argue is more dangerous than any hole, and one a hole-count-only evaluation would never surface.",
+    "developer": "Ishan K Singavarapu, Manish Bhatt",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ishan K Singavarapu, Manish Bhatt"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

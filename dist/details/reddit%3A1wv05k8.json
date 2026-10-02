@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wv05k8",
+  "sourceItemId": "1wv05k8",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wv05k8/i_tested_the_friday_rule_against_2_years_of_git/",
+  "detail": {
+    "longDescription": "I've heard \"no deploys on Friday\" at every job I've had and never once checked it. I still don't have the complete deploy data but I have very rich git history, so I was testing through commits instead.\n\nSetup: 26 public repos (react, grafana, n8n, temporal, gitea, ollama, hugo, PowerToys, django and a bunch more), 24 months of non-merge commits on the default branch, bots stripped out. The repo list came from https://repowise.dev/explore, which indexes public repos for an open source project I maintain. For every commit that wasn't itself a fix and touched 1 to 30 files, I checked whether a fix commit touched any of the same files within 7 days. \"Fix\" means the subject says fix, bug, regression, revert, that kind of thing. Crude on purpose. 7 repos got dropped (metric saturated or too few commits), so 19 are pooled here.\n\nFollowed by a fix within 7 days:\n\n| day | rate |\n|---|---|\n| Mon | 26.7% |\n| Tue | 26.2% |\n| Wed | 25.3% |\n| Thu | 26.3% |\n| Fri | 27.3% |\n| Sat | 30.3% |\n| Sun | 24.4% |\n\nFriday is basically noise. Per repo, Friday's rate divided by that repo's own average has a median of exactly 1.00, and 9 of 19 repos land above 1. react is 16% on Friday vs 16% overall, n8n 41% vs 41%, grafana 22% vs 23%. hugo is one of the few where Friday is clearly worse (15% vs 10%), so if you work on hugo your gut is fine.\n\nSaturday is the only day that stands out a bit, median ratio 1.16 with 10 of 15 repos above their own average. Sunday is the lowest of the week.\n\nThe late night numbers surprised me more. Commits authored between midnight and 6am had the lowest follow-up fix rate of any bucket, 24.5%. 10pm to midnight was 27.8% against 26.5% for daytime. I fully expected the 2am commits to be the disasters (I've written a few). Either those people know exactly what they're doing or nobody is awake to notice, and I can't tell which from here.\n\nI also argue against myself. These are open source commits, and none of it is a production deploy so there's that too\nIf you had a properly staffed weekend rotation would you still freeze?\n\nAnd has anyone got deploy-level data, incidents or rollbacks grouped by the day the deploy went out? I'd really like to know if a Friday effect shows up there when it doesnt show up in commits.\n",
+    "developer": "Obvious_Gap_5768",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006946",
   "sourceItemId": "80006946",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006946/apache-superset-6-1-flask-caching-is-still-required-when-nullcache-and-supers",
   "detail": {
     "longDescription": "I am deploying Apache Superset 6.1.0 and checking its cache configuration. My live runtime is configured like this: CACHE_CONFIG = NullCache DATA_CACHE_CONFIG = NullCache FILTER_STATE_CACHE_CONFIG = SupersetMetastoreCache EXPLORE_FORM_DATA_CACHE_CONFIG = SupersetMetastoreCache RESULTS_BACKEND = None So the app is not using Redis or Memcached. But Superset 6.1 still includes flask-caching in its dependency set, and I am trying to understand whether this package is still required even when the runtime uses: NullCache SupersetMetastoreCache My questions are: Is flask-caching still required by Superset 6.1 even if Redis/Memcached are not configured? Is SupersetMetastoreCache still implemented through Flask-Caching? Can flask-caching be removed safely from the runtime requirements if only NullCache and SupersetMetastoreCache are used? If not, what part of Superset 6.1 depends on it? We observed Flask-Caching versions blocked in our mirror with 403, across the 2.x line, including 2.5.1 down through 2.0.2 and this prevents image build. Can the community please confirm - Whether this dependency is still expected in 6.1, Whether there is a supported way to avoid it, and What the recommended Redis/Memcached setup is if we need those backends? What I already checked I verified the live runtime config inside the container. I confirmed there is no Redis backend configured. I confirmed there is no Memcached backend configured. I confirmed flask-caching is still pinned in the Superset requirements template.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "43"
+        "value": "50"
       },
       {
         "label": "状态",

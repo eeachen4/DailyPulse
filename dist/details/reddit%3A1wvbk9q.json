@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvbk9q",
+  "sourceItemId": "1wvbk9q",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wvbk9q/can_your_local_coding_model_repair_these/",
+  "detail": {
+    "longDescription": "I’m the creator of Failure Map, an archive of compact Python debugging tasks. The open release has 20,168 tasks across 254 categories, with standard-library implementations, explicit contracts, failed repair attempts, and executable boundary checks.\n\n\n\nThree small cases to try:\n\n• Duplicate delivery: deduplicating equal amounts loses legitimate events. [https://failuremap.org/cases/FA-001](https://failuremap.org/cases/FA-001)\n\n• Cache expiry: subtracting a whole tick rejects an entry that is still valid. [https://failuremap.org/cases/FA-006](https://failuremap.org/cases/FA-006)\n\n• Pagination: changing > to >= repeats the cursor record. [https://failuremap.org/cases/FA-011](https://failuremap.org/cases/FA-011)\n\n\n\nPrompt template: “Repair the solve function to satisfy the stated contract. Return Python source only. Preserve the signature. Contract: {prompt}. Broken implementation: {broken\\_source}.”\n\n\n\nMeasured program baselines, passed checks out of 3 (broken / attempted repair): FA-001 2/3 / 1/3; FA-006 2/3 / 2/3; FA-011 2/3 / 1/3. These are executions of the included programs, not model scores. I have no measured local-model results to claim yet.\n\n\n\nTo compare runs, report the exact model and revision, quantization, prompt, sampling settings, seed, attempts per task, and pass counts. Run candidate code in isolation and keep grading fixtures outside its control. Recorded-check success is not hidden-test performance.\n\n\n\nDownload: [https://failuremap.org/api/exports/tasks.jsonl.gz](https://failuremap.org/api/exports/tasks.jsonl.gz)\n\nMethodology: [https://failuremap.org/methodology](https://failuremap.org/methodology)",
+    "developer": "failuremap-f",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

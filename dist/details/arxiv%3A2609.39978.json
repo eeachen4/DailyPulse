@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.39978",
+  "sourceItemId": "2609.39978",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.39978",
+  "detail": {
+    "longDescription": "arXiv:2609.39978v1 Announce Type: new Abstract: P4-programmable FPGA SmartNICs place packet processing directly on the wire, but open FPGA P4 toolflows do not expose timestamping at the pipeline boundary, so the latency a P4 program adds on the target FPGA is rarely measured. This paper presents LatencyLab, a DPDK-based measurement framework for FPGA P4 pipeline latency that needs neither PHC/PTP support on the datapath nor clock synchronization. The FPGA's two ports share a network segment, so the switch multicasts a copy of each probe packet to both: one copy passes through the VitisNetP4 pipeline, the other through a matched bypass path. A kernel-bypass DPDK receiver busy-polls both ports and timestamps every packet with the CPU timestamp counter (TSC) as it is retrieved from the NIC's receive circular buffer. The arrival-time difference of the two copies isolates the pipeline latency after calibration against a null bitstream carrying the same traffic; transmit time cancel in the subtraction. We evaluate four VitisNetP4 programs on an AMD Alveo U280, probing each with a 20,000-packet trace measured ten times per session over five independent sessions, all TSC-timestamped and reflected for hardware timestamping. The measured latency distributions are tight and reproducible: 99% of packets fall within 20 ns of the median, session medians repeating within 1 to 2 ns (FiveTuple 107/137 ns, Forward 149 ns, RemoveHeader 177 ns, Checksum 364 ns at 250 MHz). Two independent checks agree with the framework: a kernel-free reflector returns every probe pair to a ConnectX-5 NIC whose adapter clock reproduces the measured distributions within a few nanoseconds, quantile by quantile, and every measured packet falls 18 to 22 clock cycles below the vendor's worst-case latency bound.",
+    "developer": "Pavani Kuppili, Zhaoyang Han, Yicheng Qian, Suranga Handagala, Michael Zink, Miriam Leeser, Robert Ricci",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Pavani Kuppili, Zhaoyang Han, Yicheng Qian, Suranga Handagala, Michael Zink, Miriam Leeser, Robert Ricci"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

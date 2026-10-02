@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007352",
+  "sourceItemId": "80007352",
+  "sourceUrl": "https://stackoverflow.com/questions/80007352/how-to-properly-update-scrollareawidget-contents-via-signals-in-pyside6",
+  "detail": {
+    "longDescription": "I'm making a GUI Python application where one of the features include a scroll area with an array of buttons that change according to input data on a button press. Basically the input data decides how many buttons appear in the scroll area and after pressing the button, they are meant to appear in the scroll area and after changing said input data, new buttons would appear in place of the old ones. I just can't make the button array appear inside the scroll area after pressing said button. The closest thing i managed to do out of desperation is to completely replace the widget with a new one but then it's still not a good solution because despite removing the widget, a remnant of it still remains for some reason and after adding a replacement the layout just begins to break down. I've tried with widget.update() but it didn't work, or at least i didn't use it properly. Needless to say that my half solution is a monstrosity and I'm just clueless on how to approach this. button = QPushButton('Click Here') button.clicked.connect(self.populateButtonGroup) self.buttonLayoutContainer = QWidget() self.buttonLayout = QVBoxLayout(self.buttonLayoutContainer) self.buttonList = QButtonGroup() self.scrollArea = QScrollArea() self.buttonGroupLayout = QVBoxLayout() self.buttonGroupLayout.addWidget(self.nortonScroll) self.buttonGroup = QGroupBox('Title') self.buttonGroup.setLayout(self.buttonGroupLayout) self.layout.addWidget(self.buttonGroup) def populateButtonGroup(self): self.layout.removeWidget(self.buttonGroup) for n in self.buttonList.buttons(): self.buttonLayout.removeWidget(n) self.buttonList.removeButton(n) for i in range(button_group_size): button = QPushButton() self.buttonLayout.addWidget(button) self.buttonList.addButton(button, id=i) self.buttonScroll.setWidget(self.buttonLayoutContainer) self.buttonGroup = QGroupBox('Title') self.buttonGroup.setLayout(self.buttonGroupLayout) self.layout.addWidget(self.buttonGroup) Versions of the tools im working with: Python 3.14.2 PySide6 6.11.2",
+    "developer": "Alias",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "37"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

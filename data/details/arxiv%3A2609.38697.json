@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.38697",
+  "sourceItemId": "2609.38697",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.38697",
+  "detail": {
+    "longDescription": "arXiv:2609.38697v1 Announce Type: new Abstract: We present Cascadia, a system for serving large language models on fleets of commodity Intel AIPCs using their CPU, integrated-GPU, and NPU resources. Every node embeds ingress, scheduling, and execution; inference requests require no dedicated routing control plane. Nodes join a libp2p QUIC mesh using CA-issued ed25519 admission certificates, gossip signed capabilities, exchange live load over direct peer streams, and route OpenAI-compatible requests to eligible peers. An operator-run certificate authority handles admission and fleet management outside the inference path. Three serving modes share one interface: whole-model execution on one node, load-balanced replicas, and pipeline-sharded chains using the compilation and speculative decoding mechanism of our companion paper. Optional KV-cache mobility reuses compatible conversation prefixes after a routing move, with cold recomputation on a miss. Signed response receipts and hash-chained logs support provenance and audit. A three-node Phi-3.5-mini NPU testbed delivered 3.10x the response throughput of its one-node configuration under ten concurrent requests; a separate four-node deployment recorded 4.06x the throughput of direct single-node serving. Paired latency observations, runtime measurements, and internal functional checks characterize the tested configurations. We compare Cascadia with IBM, Nutanix, VMware, and HPE platforms on deployment footprint, hardware requirements, scheduling, scaling, licensing, and trust, using vendor documentation. The paper repository provides benchmark scripts, curated measurements, and a claim-to-evidence map.",
+    "developer": "Matias Parij, Pawan Paudel, Tate Berenbaum, Muthaiah Venkatachalam",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Matias Parij, Pawan Paudel, Tate Berenbaum, Muthaiah Venkatachalam"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

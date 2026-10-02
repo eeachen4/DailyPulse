@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wveiax",
+  "sourceItemId": "1wveiax",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wveiax/i_made_a_free_opensource_app_that_turns_your/",
+  "detail": {
+    "longDescription": "Every phone-as-a-webcam tool I looked at (DroidCam, Iriun, Camo, EpocCam) needs an app installed on the phone. I wanted one that didn't, so I made it. It's free, open source, and everything runs locally — the video goes straight from the phone to the PC, there's no account and no server in the middle.\n\nYou open the desktop app, it shows a QR code, you scan it with the phone's normal camera app and a web page opens. Tap \"Start camera\" and your phone shows up as a camera called OmniCam in Discord, Zoom, Meet, Chrome, OBS, pretty much anything that lists webcams. The video goes over your own Wi-Fi using WebRTC, so nothing leaves your network.\n\n**Things worth knowing before you try it:**\n\n* **It will eat your phone's battery.** Streaming costs about what a long video call costs, and because the phone side is a web page the screen has to stay on with the page in front. A native app could stream with the screen off, which is the real tradeoff for not installing anything. Phone gets warm, so plug it in for anything long. It does drop to 5 fps when nothing on the PC is actually using the camera, so idling is cheap, but an actual call is not.\n\n* Windows only right now (10 and 11, 64-bit).\n\n* Your phone will show a certificate warning the first time. Browsers only allow camera access over HTTPS, and nobody can issue a real certificate for 192.168.x.x, so the app makes its own. You accept it once and that's it.\n\n* The installer isn't code signed yet, so SmartScreen will give you the \"Windows protected your PC\" thing.\n\n* Video only, no microphone yet.\n\n* It won't show up in the Windows Camera app or the new Teams. Those use a newer camera API I haven't implemented yet.\n\nIt's MIT licensed, source and installer are on GitHub: https://github.com/Orest-Z/OmniCam\n\nI mostly built it for fun and because I wanted it to exist, but I'd like it to actually be useful to people, so I plan to keep working on it. On battery specifically there's room to improve: dropping resolution instead of framerate when the phone starts heating up, a plain battery saver toggle on the phone page, and a lower default than 1080p. Linux support and a virtual mic are the other big ones on my list.\n\nIf you try it and something breaks, tell me, that's genuinely the most useful thing you can do.",
+    "developer": "orest17",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49921772",
+  "sourceItemId": "49921772",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49921772",
+  "detail": {
+    "longDescription": "Hi! This is a very capable web-based DAW (Chromium-based browsers work best), and, perhaps most surprisingly, it uses standard WebAudio nodes exclusively (no WebAssembly or custom DSP code in AudioWorklet etc.). In the included demo project (EDM, 26 synth instances, 66 insert effects), over a thousand nodes are active at &quot;peak&quot; moments, and hundreds of them created and destroyed per second - all running smoothly and without dropouts and with low CPU (~ 5%) and RAM (~ 250MB) on the cheapest laptop I could buy ;) Which, I guess, means that much of the ACTUALLY impressive work was done by the Chromium team! There&#x27;s also lots of smart node caching going on to reset&#x2F;reuse nodes when possible instead of destroying them. Also, all parameter changes are always scheduled (slightly) into the future (even when playing the modular synth live), so timing is extremely tight and precise. The DAW is based on Xequence 2, the iOS app. The app works on any device and mostly any screen&#x2F;window size and supports touch, mouse, and keyboard interactions -- however the mixer (instruments) view is currently not great on small (phone) screens. Also, there are no &quot;proper&quot; audio tracks yet (although the modular synth has various Sample* modules that can track long notes, so this mitigates it), and no WebMIDI (the app is based entirely on MIDI in every way, but currently, only a MIDI adapter for the iOS app exists.) Full disclosure: the code in the demo is obfuscated, and I&#x27;m running a campaign to open-source it under the AGPLv3. Would be amazing to hear any feedback (not the audio kind...)",
+    "externalUrl": "https://seven.systems/xequence2/demo/demo-deploy/www/index.html",
+    "developer": "intrr",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

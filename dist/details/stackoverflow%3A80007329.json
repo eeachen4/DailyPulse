@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007329",
+  "sourceItemId": "80007329",
+  "sourceUrl": "https://stackoverflow.com/questions/80007329/how-to-import-and-run-a-github-repository-scenred-in-google-colab-modulenotf",
+  "detail": {
+    "longDescription": "I am trying to use the scenred package from GitHub ( Jonas-eng/scenred ) inside a Google Colab notebook. Following the repository's documentation, I ran the sample code below to perform scenario reduction: import numpy as np import scenario_reduction as scen_red scenarios = np.random.rand(10,30) # Create 30 random scenarios of length 10. probabilities = np.random.rand(30) probabilities = probabilities/np.sum(probabilities) # Create random probabilities of each scenario and normalize S = scen_red.ScenarioReduction(scenarios, probabilities=probabilities, cost_func='general', r = 2, scen0 = np.zeros(10)) S.fast_forward_sel(n_sc_red=5, num_threads = 4) # use fast forward selection algorithm to reduce to 5 scenarios with 4 threads scenarios_reduced = S.scenarios_reduced # get reduced scenarios probabilities_reduced = S.probabilities_reduced # get reduced probabilities However, executing this cell in Google Colab throws the following error: --------------------------------------------------------------------------- ModuleNotFoundError Traceback (most recent call last) /tmp/ipykernel_676/4145172249.py in <cell line: 0>() 1 import numpy as np ----> 2 import scenario_reduction as scen_red 3 scenarios = np.random.rand(10,30) # Create 30 random scenarios of length 10. 4 probabilities = np.random.rand(30) 5 probabilities = probabilities/np.sum(probabilities) # Create random probabilities of each scenario and normalize ModuleNotFoundError: No module named 'scenario_reduction' --------------------------------------------------------------------------- NOTE: If your import is failing due to a missing package, you can manually install dependencies using either !pip or !apt. To view examples of installing some common dependencies, click the \"Open Examples\" button below. --------------------------------------------------------------------------- What is the correct way to clone or install this specific GitHub repository into the Google Colab environment so that the scenario_reduction module can be imported properly and the sample code can run as well?",
+    "developer": "cirogalvao",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "24"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

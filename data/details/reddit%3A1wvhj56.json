@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvhj56",
+  "sourceItemId": "1wvhj56",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1wvhj56/tod_openweight_picker_model_for_agent_decisions/",
+  "detail": {
+    "longDescription": "We built a model that picks one action out of a slate and tells you how sure it is, instead of generating anything.\n\nTOD started as an internal project for customer support. Parsec cut coding agent cost by 40% sitting alongside any model so we pointed it at support and expected the same. Didn't work. Support turns want something different: a small model, single forward pass, pick an action. Needs to look at the photo when someone complains about the cheese on their hamburger. And couldn't be Chinese. Qwen tests better internally, we still can't have nice things, so the base is Gemma.\n\nThe big difference between this and a normal classifier is it's not a fixed label set. You hand it the state, a question and whatever options you have, 3 to 255+, and it returns calibrated probabilities across all of them. Stage one is a ModernBERT dual encoder that recalls the top 16, stage two is a Gemma-4-12B-it LoRA (82 MB) that re-ranks the shortlist. No token generation so cost is input-only. Takes images, 48k context, runs under vLLM.\n\nThe whole point is it can't generate. An LLM's power and its weakness is it can produce any string. This can only choose from what you gave it.\n\nNumbers: 0.844 on JevBench public, Brier 0.194, ECE 0.033. Recall@16 on the high N set is 0.963. Banking77 at N=50 .76, CLINC150 at N=50 .93, LexGLUE at N=100 .725. Images add .17 to .25 on ScienceQA, AI2D and ChartQA. p50 542 ms on an A100 in bf16.\n\nAdapter and retriever are Apache-2.0, base is under Gemma terms. Eval scripts and data attributions are in the repo.\n\nWeights: [https://huggingface.co/parsecai/tod](https://huggingface.co/parsecai/tod)  \nRepo: [https://github.com/daseinlabs/tod](https://github.com/daseinlabs/tod)\n\nHope y'all find it useful and if you run into any rough edges just lmk.",
+    "externalUrl": "https://parseclab.ai/tod/",
+    "developer": "ModelT89",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "parseclab.ai"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

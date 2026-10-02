@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49928454",
+  "sourceItemId": "49928454",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49928454",
+  "detail": {
+    "longDescription": "tl;dr: tilion is building the world&#x27;s fastest and stealthiest browser infra for agents, so you can run millions of web agents successfully. today, we&#x27;re releasing v3 of our engine, fortress, free for devs. https:&#x2F;&#x2F;github.com&#x2F;tiliondev&#x2F;fortress launch vid: i am arham, cto of tilion (ycf26), and we (arman, abdul, and fardin) are building browser infra for agents. before tilion, we were running thousands of web agents to collect multimodal school board data across the web. our agents kept getting blocked: cloudflare, akamai, captchas, and 200s that were actually empty pages. so we dug into chromium itself. what we found: - sites fingerprint the browser in about 40 places (gpu, canvas, fonts, timezone, and so on). a real machine is consistent in all of them, unlike a program-driven browser. - plugins like puppeteer-stealth and undetected-chromedriver mostly patch from javascript, and the patch itself is detectable. (the irony) - residential proxies fix the ip, but they&#x27;re expensive. and if the fingerprint is wrong, you get blocked anyway. so we built and open sourced fortress. our latest build has 81+ patches in c++. if an anti-bot system checks the browser, it all green-lights on its end. in practice that means: - you have higher success rates against blocks. - your proxy bill drops by half. - your agents can do more shit. theres also a cli and mcp so you can get setup fast. we have windows, mac, and linux native builds. we&#x27;ll also be launching our cloud browsers, for which we are running millions of agents every day for our pilots request an invite here. [https:&#x2F;&#x2F;tilion.com] much love. arham",
+    "developer": "armanluthra26",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

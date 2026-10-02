@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006902",
   "sourceItemId": "80006902",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006902/azure-devops-accesstoken-returns-no-agent-pools-despite-pipeline-being-able-to-u",
   "detail": {
     "longDescription": "I have an Azure DevOps pipeline that needs to check whether a self-hosted agent with specific capabilities is online before queuing a deployment: steps: - task: PowerShell@2 displayName: 'List visible agent pools' inputs: targetType: inline errorActionPreference: stop script: | $collectionUri = \"$(System.CollectionUri)\" $headers = @{ Authorization = \"Bearer $env:SYSTEM_ACCESSTOKEN\" } $who = Invoke-RestMethod ` -Uri \"${collectionUri}_apis/connectiondata?api-version=7.1-preview\" ` -Headers $headers $allPools = Invoke-RestMethod ` -Uri \"${collectionUri}_apis/distributedtask/pools?api-version=7.1\" ` -Headers $headers Write-Host \"Pools visible to this identity (count: $($allPools.count)):\" $allPools.value | ForEach-Object { Write-Host \" id=$($_.id) name='$($_.name)'\" } $pool = Invoke-RestMethod ` -Uri \"${collectionUri}_apis/distributedtask/pools?poolName=$env:TARGET_POOL&api-version=7.1\" ` -Headers $headers Write-Host \"Filtered lookup response: $($pool | ConvertTo-Json -Depth 5 -Compress)\" env: SYSTEM_ACCESSTOKEN: $(System.AccessToken) TARGET_POOL: '<pool>' Pools visible to this identity (count: 0): Filtered lookup response: {\"count\":0,\"value\":[]} Problem is the output above. I tried adding Project Collection Build Service Accounts as an administrator in the project Agent Pool -> <pool> -> Security Settings but that didn't fix it. What do I need to do in order to let the pipeline's request see the pools? Or more specific, this pool I am trying to target that has multiple agents. The rest of the pipeline is able to use this pool.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "47"
+        "value": "61"
       },
       {
         "label": "状态",

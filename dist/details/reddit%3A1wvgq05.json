@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvgq05",
+  "sourceItemId": "1wvgq05",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wvgq05/what_happens_when_four_ai_agents_update_the_same/",
+  "detail": {
+    "longDescription": "In my last post, I argued that filesystems give agents a familiar interface to persistent state. But the interface is only the starting point. Multi-agent systems still need infrastructure for access, recovery, and concurrent changes.\n\nThe most common question was: **isn't this just Git?** So I tested it.\n\nI recreated a small company-acquisition review inspired by a workflow from Harvey. Four agents read the same deal documents and updated different fields in one customer-risk record. I ran this workflow on AgentWS, then replayed the same state changes with protected Git worktrees. Both approaches reached the same final record:\n\n* Each agent was limited by an access control list (ACL), so out-of-scope file changes were blocked.\n* A worker shut down midway. Its file changes remained in the workspace, so a replacement continued from the saved progress instead of redoing the work.\n* The agents finished at different times. Stale updates could not silently overwrite accepted work, and every conflicting update remained available for review.\n\nThe difference was what I had to build. A Git worktree was only the starting point. To get the same behavior, I had to add operating-system permissions, persistent worktrees, isolated Git metadata, proposal branches, guarded updates, and conflict exports. AgentWS packages those responsibilities into one workspace interface.\n\nGit tracks file versions, but it does not manage the full workspace lifecycle for running agents. As agent workloads grow, a Git-based design moves further from the ideal solution. Teams end up building the missing workspace system around Git. AgentWS provides that system directly. If you run multi-agent workflows, where does this logic live today?",
+    "developer": "pilver7",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49927078",
+  "sourceItemId": "49927078",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49927078",
+  "detail": {
+    "longDescription": "I love keybr, but it only sees the ten minutes a day I spend on keybr, not the ten hours I spend typing elsewhere. Can’t improve what you don’t measure. (A)I made Fumble is a macOS menu-bar app that watches you type (all day, all local), works out which keys&#x2F;key pairs are costing you time and gives you lessons built around them. One thing that surprised me: my slowest key is B, but the one costing me the most time is G. It&#x27;s less than half as slow, but I press it three times as often. And 7 of my 10 worst key pairs start with space. I need to get better at starting words. Some design decisions HN might want to argue with: - I rank weak keys by time lost, not how slow they are. Time lost is how far a key is over your baseline, times how often you press it. A key 40ms slow that you hit 2k times costs more than one 220ms slow that you hit 50 times. The goal isn&#x27;t to practice the slowest keys, it&#x27;s to raise your WPM. - Your baseline is the median of your own per-key p95s, not the p95 of every keystroke pooled together. Pooling lets a common slow key drag the baseline up and hide itself, and those are the keys that slow down the whole show. - Slow finger vs thinking: pause adapts to each key pair based on your own median for that pair. There&#x27;s no flat cutoff. - The WPM figure shows you what it left out: keystrokes injected by software (text expanders, Keyboard Maestro, osascript), autorepeat, idle time and practice sessions. Every exclusion can be seen in the dropdown. Privacy: it records physical keycodes and timings not characters. What goes to disk is counters and latency histograms, with no keystroke sequence. Also records nothing while a password field has focus. There&#x27;s no network code&#x2F;account&#x2F;telemetry. PRIVACY.md lists the remaining risk (adjacent-pair frequencies) and gives commands to verify all of this yourself. It can&#x27;t be on the Mac App Store, because it needs Input Monitoring and the store requires sandboxing. The download is signed and notarized, so it opens like any normal Mac app. Free and open source, written in Swift for macOS 14+. Download: https:&#x2F;&#x2F;fumble.alexmcconnell.ie Source: https:&#x2F;&#x2F;github.com&#x2F;alexiscodingbits&#x2F;Fumble Warning: early days. Not everything has been tested in the wild yet. The thing I&#x27;d most like ideas on is word choice for the weak-spot drills. Right now it takes my top 5 weak keys and top 5 weak pairs and leans towards words that contain them. That treats every weak spot as equal, and it picks words one at a time. What I actually want is the set of 30 words that wins back the most time overall, weighted by how much each weak spot is costing me. It feels like a set-cover problem, and I&#x27;m sure there&#x27;s a smarter way to do it than mine. If you&#x27;ve worked on anything like this, I&#x27;d love to hear how you&#x27;d approach it.",
+    "externalUrl": "https://fumble.alexmcconnell.ie",
+    "developer": "alexmcconnellyc",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

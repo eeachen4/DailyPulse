@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.38499",
+  "sourceItemId": "2609.38499",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.38499",
+  "detail": {
+    "longDescription": "arXiv:2609.38499v1 Announce Type: new Abstract: Memory-corruption errors remain a leading cause of high-impact vulnerabilities in C and C++ software. Deterministic detection, however, remains difficult to deploy: compiler-based sanitizers require source code and control of the build pipeline, hardware-assisted schemes depend on specific platforms, and dynamic binary translation can impose order-of-magnitude slowdowns. This paper presents MallocSan, a heap sanitizer for native, potentially closed-source x86-64 Linux applications that requires no source access, recompilation, or specialized hardware. MallocSan interposes on memory allocation through LD_PRELOAD and embeds an object identifier in the unused high bits of each protected pointer. Dereferencing the resulting noncanonical pointer faults at the offending instruction, which MallocSan decodes and patches at runtime so that subsequent executions perform per-object bounds checks entirely in userspace. Sites that cannot be patched fall back to in-handler emulation or single-stepping, while an optional profile-guided pass rewrites frequently executed residual sites offline. MallocSan also extends identity-based checking to vector gather/scatter instructions and supports policy-scoped coverage. Across seven SPEC CPU 2017 benchmarks, MallocSan outperforms Valgrind Memcheck on five, with a geometric-mean execution-time factor of 4.82x relative to native execution, compared with 18.55x for Memcheck, while preserving substantial parallel scaling on both evaluated multithreaded workloads: 644.nab_s and pigz. On the in-scope Juliet tests, MallocSan detects all seeded violations with no false reports on the good executions. It also detects heap-buffer errors in real-world applications, including a known one-byte overread in LibTIFF's tiffcrop utility.",
+    "developer": "Adel Belkhiri, Michel Dagenais, Maxime Lamothe",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Adel Belkhiri, Michel Dagenais, Maxime Lamothe"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

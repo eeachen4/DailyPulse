@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007321",
+  "sourceItemId": "80007321",
+  "sourceUrl": "https://stackoverflow.com/questions/80007321/how-can-i-satisfy-a-type-which-is-the-union-of-two-types-with-mutually-exclusive",
+  "detail": {
+    "longDescription": "I am working on a function that parses values from a CSV and returns an object of a specific type. This type contains a boolean value that when true , another value is a number and when false , the same value should be undefined . interface BaseType { a: string; } interface BaseTypeTrue extends BaseType { b: true; c: number; } interface BaseTypeFalse extends BaseType { b: false; c: undefined; } type CombinedType = BaseTypeTrue | BaseTypeFalse; Here is the parsing function: function buildCombinedType(a: string, bAsString: string, cAsString: string): CombinedType { const b = bAsString === 'true'; const c = cAsString === '' ? parseInt(cAsString, 10) : undefined; return {a, b, c}; } TypeScript complains about the return value, saying: Type '{ a: string; b: boolean; c: number | undefined; }' is not assignable to type 'CombinedType'. Type '{ a: string; b: boolean; c: number | undefined; }' is not assignable to type 'BaseTypeFalse'. Types of property 'b' are incompatible. Type 'boolean' is not assignable to type 'false'. Here is a playground link What is the cleanest way to satisfy the type-checker here? I could make type predicates for each value to ensure that each case should be satisfied but that feels kind of clunky.",
+    "developer": "Christopher Fimbel",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "56"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

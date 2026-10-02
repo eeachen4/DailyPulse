@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvaqeb",
+  "sourceItemId": "1wvaqeb",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wvaqeb/ddr4pcie4_vs_ddr5pcie5_for_llms_i_benchmarked/",
+  "detail": {
+    "longDescription": "Hello everyone.\n\n  \nI've recently ran some experiments comparing DDR4/PCIe4 and DDR5/PCIe5 for AI workstations on a pre-training run, and would like to hear yours thoughts.\n\n  \nFirst of all, and as a summary of my results ( code here: [https://github.com/Any-Winter-4079/DDR4-PCIe-4-vs-DDR5-PCIe-5-for-CUDA-training](https://github.com/Any-Winter-4079/DDR4-PCIe-4-vs-DDR5-PCIe-5-for-CUDA-training) ), I rented two machines on [Vast.ai](http://Vast.ai), one with an H12SSL-i motherboard, an EPYC 7352, 192 GB of RAM and of course using PCIe4 (26.3 GB/s) and another with a WRX90E-SAGE SE motherboard, a 9975WX CPU, 256 GB of DDR5 RAM and PCIe5 (54.3 GB/s), and DDR5/PCIe5 is about 15-20% faster on pre-training (depending on whether you include or exclude validation and other costs) under the same number of GPUs.\n\n  \nWith the current RAM prices, however, for the cost of 256 GB DDR5 RAM at 6400 MT/s you can get a full (extra) RTX PRO 6000 WS/Max-Q, at which point the comparison clearly favors DDR4/PCIe4 (with 2 GPUs), with about 50% extra throughput vs a single GPU at equal(ish) cost.\n\n  \nNow, there aren't a lot of downsides in my mind to choosing DDR4/PCIe4, but there can be a few:\n\n1) at least some of these DDR4/PCIe4 motherboards are on the older side, and were one to need replacement, they are not so easy to get (for example, the H12SSL-i used, I can only find it for sale as refurbished now, so who knows in a few years if it will even be available for retail).\n\n\n\n2) newer GPUs (as in, new NVIDIA generations) may stop working with older motherboards (meaning yes, PCIe is backwards compatible but the motherboard's BIOS/UEFI sometimes has issues during POST with newer GPUs (e.g., some older PCIe3 motherboards already have trouble recognizing Blackwell cards, and this may be the case for PCIe4 and newer cards in the future). Meaning if one were to buy a newer GPU in the future, the whole workstation may not be suitable.\n\n  \n3) If one has to go ahead and bite the bullet on RAM prices, the million question is when? To me prices now are \\*\\*awful\\*\\* but so were RTX PRO 6000 prices and here we are (i.e., even higher). \n\n  \n4) For pre-training, I would still choose DDR4/PCIe4, but I suspect for inference DDR5/PCIe5 might be a fair bit better than the 15-20% that it gives you on pre-training, plus we might be moving into some techniques soon such as dynamic expert/data loading into the model at runtime, which again would favor better DDR/PCIe speeds.\n\n  \nWith all of this, I am curious if anyone has benchmarked this, and what are your thoughts on it. Would you hold out on DDR5 at the moment, and therefore go for PCIe4, or would you bite the DDR5 bullet early? Another issue with RAM is channels and DIMM count/channel, because if you want to go 'cheap' like let's only get 192 or 256 GB of DDR5 on 8 channels at 1 DIMM/channel (e.g., 8x32 to get 256), then upgrade to 512 later (when budget allows), that means you have to replace your full RAM (because all the slots are occupied, requiring new 8x64 to get 512 for instance)... And if you get fewer DIMMs like 4x64 to get 256 GB (leaving 4 DIMM slots unoccupied) then you get half the bandwidth because only 4 channels are populated. So maybe a machine that has dual DIMM support per channel is the answer to this (fully populating 8x32 to get the full bandwidth, and still allowing you to expand to another 8x32 to get 512), but in general it's a tricky point too.\n\n\n\nSo, what do you do/are you guys doing? Have you recently bought a workstation or upgraded to one, for pre-training, fine-tuning, RL, inference, whatever your use case may be, and come up with this dilemma? Are you choosing DDR4/PCIe4 as it would seem reasonable or are you going over DDR5/PCIe5 and if so, why? I am interested in all use cases and opinions!",
+    "externalUrl": "https://i.redd.it/zm34frirrwsh1.png",
+    "developer": "Any-Winter-4079",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

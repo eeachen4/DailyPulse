@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80005834",
   "sourceItemId": "80005834",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
   "sourceUrl": "https://stackoverflow.com/questions/80005834/k6-split-dataset-among-vus-without-overlap",
   "detail": {
     "longDescription": "I am using the K6 tool to perform some load test on some of my services. I have a dataset of captured requests that I'd like to replay that is quite big and thus I'd like to use the sharedArray component of K6 to load all that in the underlying memory once and then simply fetch from that in each VU. The problem I am facing is that I do not want 2 (or more) VUs to send the same request. K6 does not offer a way to handle global state (at least not in this regard) so each VU does not know which requests have already been sent by other VUs. An idea would be to assign VU_i the rows that solve row_i % maxVUs == i (or allocatedVUs , I'm not sure which is better). This way there is no overlap of rows between VUs but that means that rows can be assigned to unallocated or unused VUs thus never being sent. Is there a best practice way to handle this? Or does K6 offer a solution that I'm unaware of? Thank you in advance.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "69"
+        "value": "74"
       },
       {
         "label": "状态",

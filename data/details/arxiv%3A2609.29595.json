@@ -5,7 +5,7 @@
   "fetchedAt": "2026-09-26T01:57:12.734Z",
   "sourceUrl": "https://arxiv.org/abs/2609.29595",
   "detail": {
-    "longDescription": "arXiv:2609.29595v1 Announce Type: cross Abstract: The automated generation of three-dimensional atomic structures from natural-language descriptions remains a persistent challenge, as large language models lack intrinsic geometric reasoning. We introduce ATLAS, a holistic framework that integrates seven modular components-ranging from a density-based structure analyzer and a JSON-based semantic bridge to a deterministic build engine, physical validator, and intent-aware scorer-to translate user prompts into physically valid coordinates. The build engine executes a component algebra that encompasses named structures, unary and binary operations (supercell, resizing, rotation, translation, union, subtraction, intersection), and geometric variables, while the validator enforces periodic-boundary conditions and system-specific checks on bonding, coordination, vacuum, and composition. ATLAS supports nine major build categories, including heterojunctions, surfaces, nanoparticles, and defects, and is equipped with a score-driven automatic refinement loop that leverages a curated test suite for systematic component-level improvement.",
+    "longDescription": "arXiv:2609.29595v2 Announce Type: replace-cross Abstract: Large language models can write the input parameters of a materials simulation from a prompt, but they cannot build the atomic structure those parameters describe. A crystal, a surface slab or a mismatched interface must satisfy global constraints-periodicity along specific axes, a given vacuum thickness, a commensurate registry, sensible bond lengths. Generation one token at a time enforces none of them, and a violation is invisible in the output. We present ATLAS, a framework that makes structural construction scriptable. Seven components-analyzer, LLM skill, JSON format, build engine, validator, scorer and web interface-are organized around a component algebra of named structures and spaces. Every specification carries a check list, so a build is verified against the request rather than merely parsed from it, and builds are scored against the user's intent. Requests state physical sizes, and the engine computes the replication that reaches them. The translation is the one stochastic stage, and it is recorded, so a run replays with the model held fixed-which is what makes the framework's own behaviour measurable rather than merely observed. Fourteen structural classes are demonstrated, from bulk cells and nanoparticles through surfaces, defects and interfaces to amorphous networks and liquids. We outline how the same loop generates training sets for machine-learning force fields.",
     "developer": "Pai Li",
     "stats": [
       {
@@ -19,10 +19,6 @@
       {
         "label": "第一作者",
         "value": "Pai Li"
-      },
-      {
-        "label": "网站",
-        "value": "arXiv.org"
       }
     ]
   }

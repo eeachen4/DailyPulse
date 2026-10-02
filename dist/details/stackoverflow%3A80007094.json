@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007094",
   "sourceItemId": "80007094",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007094/limitations-of-min-specialization-when-specializing-a-generic-implementation",
   "detail": {
     "longDescription": "I'm trying to understand #![feature(specialization)] vs. #![feature(min_specialization)] to inform the design of my types, but I haven't been able to find any novice-accessible documentation. How do the two differ? Specifically, I expected the following ( playground ) to be straightforward specialization, but it does not work with min_specialization . Why not? #![feature(min_specialization)] trait A {} trait B: A {} struct Sa; impl A for Sa {} struct Sb; impl A for Sb {} impl B for Sb {} trait X { fn method(&self); } impl<T: A> X for T { default fn method(&self) { println!(\"default\"); } } // error: cannot specialize on trait `B` // --> src/main.rs:29:13 // | // 29 | impl<T: A + B> X for T { // | ^ impl<T: A + B> X for T { fn method(&self) { println!(\"specialized\"); } } fn main() { Sa.method(); Sb.method(); }",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "22"
+        "value": "38"
       },
       {
         "label": "状态",

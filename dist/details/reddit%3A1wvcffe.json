@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvcffe",
+  "sourceItemId": "1wvcffe",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wvcffe/my_agent_told_our_sales_team_a_company_was_hiring/",
+  "detail": {
+    "longDescription": "I built a research agent for our sales team. Something simple: given a list of companies, it scrapes their sites for relevant info, reads the news, and determines whether it's worth contacting them. For about a month, the agent was hallucinating, producing notes with incorrect pricing, products that were discontinued a year ago, etc. One particularly example was suggesting that a company was hiring aggressively despite having just laid off 50% of their staff in July.\n\nOf course, it immediately became obvious that the issue was with the model. We replaced it twice, tweaked the system prompt dozens of times (at some point I stopped even keeping track of the changes). We tried adding a verification step, reflection loop, even a second reflection loop (the first one wasn't doing anything useful, but I didn't realize it at the time). The model notes became longer, more detailed, more self-assured, but still completely wrong. I think at one point it cost us more money to have the agent double-check its own work than to simply have a human do the research.\n\nIn the end, it turned out to be an easy fix. I had started logging the raw tool responses so that the next time the model tried to use them, I could see what data it was working with. It appears that the model was behaving completely normally throughout the entire process. It was simply reasoning about cookies banners, old cached versions of pages, and empty react routes as if they were real content. When presented with an empty string, the model didn't realize it was an empty string - it made up a plausible response and moved on.\n\nThe web search part was the simplest fix, as contextdev already does some of that work for us. Migrating to that tool was trivial; it has a much cleaner API, and only caches pages if they haven't changed, which solves the old careers page issue. The documents part was more finicky, but ultimately solved the same way. It's much harder to write deterministic tests for the news search and crm api, but those were the other two tools feeding the agent incorrect data.\n\nAs a result, we now perform sanity checks on all of our tools before passing any information to the model. If a tool returns an empty response, a page older than a week, or anything that looks like a login screen, the agent is made aware of that fact and can handle it accordingly. It took me about three hours to implement this solution. The prompt changes I made over the course of a month were ultimately less useful than this one tiny addition.\n\nNow, I'm having a hard time deciding where this belongs. Your friend argues that the model should see the junk data and learn to work around it, but I think that's what caused us to waste so much time and money on prompt engineering in the first place. Where do you think these sanity checks should take place? Are you in favor of filtering, or would you rather tweak the prompt? If the former, what would you check for? I'm certainly missing some edge cases.",
+    "developer": "MantisReka",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

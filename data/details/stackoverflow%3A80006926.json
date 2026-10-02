@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80006926",
   "sourceItemId": "80006926",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006926/isolation-forest-performs-best-with-max-samples-set-to-1-0",
   "detail": {
     "longDescription": "I am currently using the dataset CICIDS2017 to train an Isolation Forest model for anomaly detection, I am currently using a split that consists of 70% of ONLY BENIGN traffic for training, 15% BENIGN and 50% attacks for validation and the rest for testing, I used the validation to test with some different max_samples values, # MAX_SAMPLES_VALUES = [256, 4_096, 16_384, 100_000, 200_000, 400_000, 800_000, 1.0] and to calibrate some thresholds that maximixe different statistics (1 for max F1 score, 1 being the closest point to (0,1) on the ROC curve, 5 that set a max limit FPR), the max_samples thing is what is really blowing me off. At the beginning I only tested up to 200k because seeing that the paper uses 256 as standard value I already thought that 200k was really high, then I saw that a low value is recommended only when anomalies are included in training, which is not my case, so I tested higher values and as it appears 1.0 (max value) is effectively the best performing with ~94% recall and ~7.6% FPR on the ROC threshold, while at 200k I get ~91% recall and ~10% FPR, all this with only 30 secs more in training. I also executed a cross-dataset test with CSE-CIC-IDS2018, the performance is basically the same (bad) both with 200k and 1.0, my question then is, should I keep 1.0 as operational max_samples value or should I decrease it back to 200k/400k? Edit: I forgot to mention, is my training approach bad? I've read from multiple sources that someone trains on whole dataset, someone adds anomalies to training set, etc..., is what i'm doing okay or should I change approach?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "64"
+        "value": "72"
       },
       {
         "label": "状态",

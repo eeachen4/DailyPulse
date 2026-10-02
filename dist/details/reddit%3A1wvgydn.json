@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvgydn",
+  "sourceItemId": "1wvgydn",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wvgydn/people_building_agents_how_much_of_a_problem_is/",
+  "detail": {
+    "longDescription": "I've been working on long term memory for agents and have a rough PoC together. Trying to get a better sense of where people are actually struggling with this, and whether there's a business here beyond another way to save and retrieve conversatio.\n\nIn my PoC so far with some limitations and edge cases I'm working out my write speeds have been around 1 second or less. And I don't just mean inserting text into a database. I mean processing new information and figuring out how it changes what's already in memory.\n\nI'm mostly interested in agents that keep learning from conversations, documents, tools etc. over weeks or months. Eventually some of that information is going to disagree, become outdated, or turn out to have been wrong.\n\nWhat are people doing when two sources contradict each other? Keeping the latest thing doesn't always make sense. Sometimes something genuinely changed, sometimes one source is wrong, and sometimes you just don't have enough information to decide. Are you handling that explicitly or leaving it to the model when the information gets retrieved?\n\nThen there's how much the agent should trust what it's learned. Something it inferred isn't the same as something it was directly told, and different sources aren't necessarily equally reliable. A few independent sources backing something up should count for more than five summaries repeating the same original claim. I'd want the agent to become more or less confident as evidence comes in, rather than everything being either a saved fact or deleted.\n\nSame with information going stale. A price from six months ago and someone's date of birth shouldn't age the same way. Some things need to be checked again if they haven't been confirmed in a while. Other things should stick around. Forgetting something and deciding it's no longer reliable aren't really the same thing either.\n\nAnd when the agent gets something wrong, can you trace where it came from? Which source it trusted, what it inferred, why it changed its mind? Or are you digging through old conversations trying to reconstruct it yourself?\n\nThat's roughly what I'm working on. For anyone using Mem0 or other memory systems, how much of this is already handled well, and what have you still had to build around them? Also interested in people who just retrieve the original material and find that's enough\n\nDoes write latency actually matter in your application? Do you need new information available before the agent's next action, or can memory updates happen in the background without causing problems?\n\nIf you've built your own, how much time has gone into it, including maintaining it? What made you build rather than use something existing?\n\nI'm trying to understand whether a dedicated product could take enough of that work off your hands to be worth paying for, or whether the important parts are too specific to your application.\n\nWould be useful to hear what you're building and what actually broke. “We spent three weeks fixing this” tells me a lot more than “agents need better memory.”",
+    "developer": "EntropyPilot",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvhm4s",
+  "sourceItemId": "1wvhm4s",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1wvhm4s/the_ai_wrote_every_line_of_code_in_my_game_it/",
+  "detail": {
+    "longDescription": "\n\nI'm a novice coder. This year I've put out 13 browser games by directing AI, and I wanted to write up what the split actually looks like, because it wasn't what I figured it would be going in.\n\nI've used a few different models and this held with all of them, so I'm not naming names. This isn't a which-one-is-better post. I use a bunch of models for a bunch of different things, and I never have enough tokens.\n\nThe code side, it does. All of it. State machines, save files, layout, canvas drawing, the whole frame. I say what I want it to do, it writes something that works, and I QA every build myself.\n\nThe content side, it can't do at all. My newest one is a text-only idle game about an Appalachian family line. It runs on hundreds of hand-written tables. Event lines, given names by decade, causes of death gated by age and sex, what kind of photograph even exists in a given year. Every time I let a model write that content it came back as a generic fantasy village with the serial numbers filed off. The specificity is the whole game, and specificity is the exact thing it can't make up.\n\nThe save function ran every five seconds with no check for what screen you were on. So if somebody landed on character creation and walked off, it wrote an empty family down. Then the loader did the right thing and refused to read that back, called it corrupt, and a flag I never cleared meant it never saved again for the rest of that session either. Anybody who set the game down lost everything. Quietly. And it shipped that way. My screw up. \n\nEvery file was fine on its own. The bug was in how three of them talked to each other across a lifecycle boundary, and no review pass ever caught it, because no review pass ever saw all three at once in the state that breaks it. A player found it in sixteen hours and sent me his exported save file, and that is the only reason I know about it at all.\n\nSeven patches in two days. All but one came from a player telling me something was wrong.\n\nSo if you're building this way, that's the thing I'd watch for. AI is real good at \"is this function right\" and real bad at \"does this whole thing eat itself.\" Ship sooner than feels comfortable and let people break it, because they will find in a day what you won't find in a month.\n\nFree, no account, runs in your browser: [https://mdawg74.itch.io/kinfolks](https://mdawg74.itch.io/kinfolks)\n\nHappy to answer anything about how I work with it.",
+    "externalUrl": "https://i.redd.it/j3j112kpmysh1.gif",
+    "developer": "MDawg74",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

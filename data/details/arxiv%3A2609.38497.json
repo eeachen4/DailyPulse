@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.38497",
+  "sourceItemId": "2609.38497",
+  "fetchedAt": "2026-10-02T02:37:58.491Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.38497",
+  "detail": {
+    "longDescription": "arXiv:2609.38497v1 Announce Type: cross Abstract: We present a novel algorithm for calculating the preimage of an affine space through a product ${J}={J}_{T-1}\\cdots{J}_0$ of matrices ${J}_t$ of special form: finding the largest input space $\\mathbf{X}$ such that $\\mathbf{x}\\in\\mathbf{X}$ implies ${J}\\mathbf{x}\\in \\mathbf{Y}$, where $\\mathbf{Y}$ is a given output affine space. These special matrices arise in AD, where the Jacobians $J$ describing the linearized computation have precisely this structure: the product of a series of linearized primitive numeric operations. This allows us to use the new algorithm to formulate Null-A mode preimage AD, which finds the affine preimage through the Jacobian or Jacobian transpose of a numeric computation. This is a generalization of the inverse AD problem of solving ${J}\\acute{\\mathbf{x}}^{\\ast}=\\acute{\\mathbf{y}}^{\\ast}$ or ${{J}}^{T}\\grave{\\mathbf{y}}^{\\ast}=\\grave{\\mathbf{x}}^{\\ast}$. The key is to represent affine spaces in a fashion which lends itself to efficient preimage calculation, in a compositional and quasi-local fashion, through a succession of matrices ${J}_t$. Unlike previous methods, Null-A preimage mode AD allows the ${J}_t$ matrices to be non-square, corresponding to a computer program whose number of active variables swells and shrinks during the computation. When ${J}$ is square and the initial affine space is a single point, this finds the conventional inverse. But in the more general case, having the entire affine space provides freedom which can be leveraged in a problem-specific manner. We apply the method to small problems on-CPU where the $J_t$ are linearized scalar unary or binary numeric functions; and to larger problems on-GPU where the $J_t$ are linearized aggregate array operations like convolution and attention.",
+    "developer": "Barak A. Pearlmutter, Jeffrey Mark Siskind",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.NA, cs.NA, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Barak A. Pearlmutter, Jeffrey Mark Siskind"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

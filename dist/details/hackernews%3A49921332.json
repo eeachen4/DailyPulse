@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49921332",
+  "sourceItemId": "49921332",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49921332",
+  "detail": {
+    "longDescription": "I recently built and released an in-memory B+Tree library for the JVM, mainly because I wanted to explore the cache-locality and GC overhead issues of pointer-heavy Red-Black Trees.When it finally compiled and started wining over TreeMap in JMH benchmarks, I thought I was basically done. Turns out, not even close. Over the last few weeks I went down a rabbit hole of: - Jqwik property-based testing with 214,000+ randomized structural cases. - Serialization compatibility and serialVersionUID. - JFR and -Xlog:gc to figure out whether some benchmark results were actually anomalies. - Strictly following JDK SortedMap contracts instead of taking optimization shortcuts. - added Jacoco coverage(95.9%) and Codecov(91%) - Trying every possible way and optimization if needed - looped massive time Otimization-&gt;Correctness-&gt;Bencmark-&gt;reoptimization and the loop goes until it reaches maximum state. The final result was a 30~46% memory saving and 2x (sometimes up to one API 10x) speedup. Maven Central shows 1.7K, 154 unique sources and 47 downloads, though I suspect a lot of that is just CI&#x2F;CD caching. And it made me ask: For people who actually evaluate open-source dependencies at companies, what is your checklist? At what point do you look at a solo developer&#x27;s GitHub repo and think, &quot;Yeah, I&#x27;d be comfortable putting this in production&quot;?",
+    "developer": "chaos_vy",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

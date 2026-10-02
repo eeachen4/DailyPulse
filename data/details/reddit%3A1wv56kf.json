@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wv56kf",
+  "sourceItemId": "1wv56kf",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wv56kf/red_team_report_governance_kernel_v0718_9/",
+  "detail": {
+    "longDescription": "I ran a red team on a project of mine, Governance Kernel.\n\n\n\nGovernance Kernel is a deterministic governance layer\n\nfor AI agents. It sits beneath the agent and decides\n\npermissions, trust levels, and resource bounds before\n\nany action is executed.\n\n\n\nRepo: [https://github.com/mohamedaitzaouit84-hue/governance-kernel](https://github.com/mohamedaitzaouit84-hue/governance-kernel)\n\n\n\nContext on the project:\n\n\n\n\\- V0.4: 54/54 adversarial prompts blocked, PRI = 1.0000\n\n\\- V0.5: 5/5 gates\n\n\\- V0.6: 5/5 gates\n\n\\- V0.7: 19/19 gates\n\n\\- 2 dependencies (cryptography, pyyaml)\n\n\\- 3 environments verified (CI, Colab, Termux)\n\n\n\nNow the red team.\n\n\n\nI did a self red team first (V0.7.1): 20 attacks,\n\n18 blocked, 2 documented. The report itself said:\n\n\n\n  \"Self-red-team is NOT equivalent to external red\n\n   team. External red team remains the strongest\n\n   missing validation.\"\n\n\n\nSo I invited external review. Two AI systems\n\n(Claude and Kimi) plus a manual verification pass\n\nin Termux produced the following:\n\n\n\n9 findings total.\n\n\n\nCRITICAL (6):\n\n\\- J-0.8.50 — audit chain can be rewritten by\n\n  recomputing hashes (hash chain, not signature\n\n  chain).\n\n\\- J-0.8.51 — signed checkpoints can be re-signed\n\n  by the same attacker, because the signing key\n\n  is readable.\n\n\\- J-0.8.52 — kill switch can be disabled by\n\n  deleting control/kill.flag.\n\n\\- J-0.8.53 — identity/owner\\_key.priv is stored\n\n  unencrypted (0o600 only).\n\n\\- J-0.8.57 — resource\\_governor.reset() runs\n\n  without authorization. Any process can erase\n\n  the resource state.\n\n\\- J-0.8.58 — rotation\\_manifest.jsonl is unsigned.\n\n\n\nPARTIAL (3):\n\n\\- J-0.8.54 — bootstrap re-signs tampered policies\n\n  silently.\n\n\\- J-0.8.55 — subjects.json is unsigned.\n\n\\- J-0.8.56 — audit log tail can be truncated\n\n  without detection.\n\n\n\nRoot cause: the trust base is the file system.\n\nEvery guarantee the kernel makes on top of a\n\nfile that a same-user process can modify is\n\nadvisory.\n\n\n\nI am posting this before fixing the findings.\n\nThe transparency is more valuable to me than\n\nthe appearance of safety.\n\n\n\nThe kernel itself (V0.5-V0.7) passed all its\n\ngates. Nothing in the red team invalidated the\n\nkernel loop, the agents, the consensus, or the\n\ndelegation mechanism. The findings are in the\n\nlayers around the kernel: the trust base, the\n\naudit trail, the control plane, and the policy\n\ndistribution.\n\n\n\nThe fix plan is documented (FREEZE\\_v0.7.19),\n\nabout 6 working days of work.\n\n\n\nFull report:\n\n[https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/RED\\_TEAM\\_v0.7.18\\_AI\\_ASSISTED.md](https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/RED_TEAM_v0.7.18_AI_ASSISTED.md)\n\n\n\nThreat model:\n\n[https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/SECURITY\\_MODEL.md](https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/SECURITY_MODEL.md)\n\n\n\nFix plan:\n\n[https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/FREEZE\\_v0.7.19.md](https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/FREEZE_v0.7.19.md)\n\n\n\nThe protocol I followed for the red team is at:\n\n[https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/RED\\_TEAM\\_PROTOCOL.md](https://github.com/mohamedaitzaouit84-hue/governance-kernel/blob/main/docs/RED_TEAM_PROTOCOL.md)\n\n\n\nIf you see an attack I missed, I want to hear it.\n\nI have no budget; recognition for valid findings\n\nis academic (credit in [JOURNEY.md](http://JOURNEY.md), optional\n\nco-authorship on a preprint), not financial.",
+    "developer": "Previous_Bottle_3570",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
