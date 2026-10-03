@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007239",
+  "sourceItemId": "80007239",
+  "sourceUrl": "https://stackoverflow.com/questions/80007239/why-does-my-pandas-groupby-suddenly-use-12gb-ram-and-crash-after-1m-rows-it-wor",
+  "detail": {
+    "longDescription": "I'm working on a FDA dataset exported from BigQuery. My DataFrame shape is (1124883, 8) - so 1.1M rows and 8 columns. Before groupby, I checked memory: df.info(memory_usage='deep') memory usage: 512.4 MB Columns are: report_number, products_industry_name, outcomes, product_name, ... (all object/string except report_number). This line is the killer: df.groupby('products_industry_name')['report_number'].count() On a 100k sample ( df.sample(100000) ) it runs in 0.8 sec and uses ∼600MB RAM. On the full 1.1M, RAM goes from 512MB -> 12.3GB in Task Manager and then Kernel dies. I have 16GB RAM. What I already tried: df['products_industry_name'] = df['products_industry_name'].astype('category') -> memory went down to 380MB but still crashes on groupby gc.collect() before groupby - no effect Why does groupby need 20x the DataFrame size when there are only 73 unique industries? Should I chunk it or just do the aggregation in BigQuery directly with COUNT(*) GROUP BY ? Python 3.11.5, pandas 2.2.2, Windows 11. UPDATE: Repro: import pandas as pd import numpy as np df = pd.DataFrame({ 'products_industry_name': np.random.choice(list('ABCDEFG'), 1124883), 'report_number': range(1124883)})",
+    "developer": "Sabri Alyafei",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "138"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwamjw",
+  "sourceItemId": "1wwamjw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wwamjw/strata_rtx_3090_128_ram_qwen_38_flash_next/",
+  "detail": {
+    "longDescription": "Folks, like many of you, I used to look at the Strata posts and was extremely skeptical. But yesterday, with the help of DeepSeek 4.1 Flash, I compiled Strata on my machine, and honestly I'm blown away by the speed.\n\nWith llama.cpp master I got a maximum of **700 t/s PP** and **23 t/s TG**. With Strata, using Unsloth's **UD-Q3\\_K\\_XL** quant, I'm getting **\\~1,650 t/s PP** and **\\~38 to 61 t/s TG depending on context**, with **no tool-calling errors**, everything running great in OpenCode at **KV fp16** and **256k context**. Phenomenal, and partly unbelievable.\n\nI'm not a programmer. I just \"vibe\" with AI. People say Strata is a mess; whether it really is, I don't know, but my initial experience has been amazing. From here on out, it's AI. I asked it to summarize the data and what it did to run the Unsloth quant on Strata.\n\nBy the way, the quant that Strata downloads and recommends, I didn't like it. It threw silly errors and seemed to have lower quality, though it was also even faster. For my use case I prefer to keep Unsloth's, because it's better: a bit slower, but more accurate for my workloads.\n\n# Hardware summary\n\n* **GPU:** NVIDIA RTX 3090, 24 GB (compute capability 8.6)\n* **CPU:** Intel i5-12600K (10 cores / 16 threads)\n* **RAM:** 128 GB DDR4 @ 3600 MT/s (XMP on)\n* **Storage:** two NVMe SSDs (system + models)\n* **Power limit:** 315 W (card max 365 W)\n* **CUDA:** Toolkit 13.4; compiled for `sm_86`\n\n# Strata stats (Unsloth UD-Q3_K_XL)\n\n|Metric|Strata|llama.cpp master|\n|:-|:-|:-|\n|**PP (prompt)**|\\~1,650 t/s (≈1,690 at 180k)|up to 700 t/s|\n|**TG (generation)**|**38 t/s** at 182k context; **\\~61 t/s** short context|23 t/s|\n|**Context / KV**|256k **fp16**|180k f16|\n|**Expert cache hit**|\\~76%|n/a|\n|**Speculative (MTP) accept**|\\~76%|n/a|\n|**Tool calling**|no errors, working in OpenCode|n/a|\n\n**Quant used:** Unsloth **UD-Q3\\_K\\_XL** (dynamic quant). Not the quant Strata recommends by default. That one was faster but produced minor errors and (subjectively) lower quality; Unsloth's was chosen for accuracy over speed.\n\n# Adaptations needed (quant + Strata)\n\n**On the quant:**\n\n* Packed with `--compat-bf16` (some tensors Strata reads as BF16).\n\n**On Strata (recompiled / reconfigured):**\n\n* Rebuilt for `sm_86` **with MMQ** (`-DSTRATA_MMQ_KQUANTS=ON`). This doubles Q4-class prompt speed.\n* **Disabled** `STRATA_PF_FUSED=0` in the configs. The fused kernels crashed (`illegal memory access`) on quantized experts whose \"down\" type is unsupported.\n* **Vision encoder moved to the GPU**: recompiled `strata-vision` with CUDA (was CPU-only) and set `vision.gpu=true` \\+ `--vram-reserve-mib 700` in all configs.\n* Per-model calibration (`--pcie-frac`, `--pool-workers`, `--spec-min-p`) and `--expert-profile-save` to learn and persist the expert cache.\n\n**Adjusted config (this model):** context **256k**, `--kv fp16`, `--kv-resident 32768`, expert cache auto (6,517 slots / \\~14 GB), `--spec 4`, `--pcie-frac 0.00`, `--pool-workers 9`, `--spec-min-p 0.70`.\n\n\n\n  \n",
+    "developer": "cezarducatti",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117373250067970966",
+  "sourceItemId": "mastodon.social/117373250067970966",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-2eb9e53d-c00cabcfb77fa81c",
+  "detail": {
+    "longDescription": "We run a publishing agent with nobody watching it. Before it posts anything, it asks the destination's account listing endpoint a simple question: do I already have this? That question is the whole safety mechanism against double-posting, and for a while I thought of it as a binary — either the check works or the endpoint is down. It is neither. The endpoint was up the entire time. It just answered with a version of reality that was more than six hours old. Here is what we actually saw. A read query against our own account returned a list of posts that was missing the three most recent ones. Those three had been published more than six hours earlier. The request carried a cache-busting parameter, because of course it did — that is the first thing you add when you suspect a cache. The parameter changed nothing. The list came back confidently, with a 200, well-formed, and short by three. The part worth sitting with is not that the data was stale. It is which rows were missing. Staleness in a time-ordered list is not a random sample. It does not shave rows off the middle. It does not drop one from 2023 and one from last week. It eats the head. Whatever window of lag exists between a write and its appearance in a read, that window always covers the newest records, and only the newest records. Everything older than the lag is perfectly accurate. Everything inside it is invisible. Now overlay that on what a duplicate check is for. The agent is not asking about a post from 2023. It is asking about the thing it just made, or something close to it in time and topic. The query is aimed precisely at the head of the list — the exact region where the endpoint is blind. The freshness of that API, averaged over its whole dataset, might be excellent. Conditional on the slice we actually care about, it is the worst it ever gets. So the useful number is not \"how accurate is this endpoint.\" It is \"how accurate is this endpoint about the last N hours,\" and the honest answer in our case was: not at all, for at least six of them. Once you frame it that way, a few things stop being mysterious. The cache-busting parameter was never going to help. A cache buster only defeats a cache that keys on the URL. It does nothing to a replication delay, an indexing queue, or a read replica that has not caught up. We added it, got a stale answer anyway, and — this is the embarrassing part — trusted the result slightly more because we had made an effort. Effort is not evidence. A 200 with a short list is indistinguishable from a 200 with a complete list. There is no field in the response that says \"this is missing three items.\" The agent cannot detect the condition from the payload. It can only know it by knowing something the endpoint does not: what we wrote, and when. And that is the actual fix, which is unglamorous. We stopped treating the remote listing as ground truth for recent work. Anything inside the lag horizon gets answered from a local record written by the same job that produced the output — synchronously, at the moment of the write, not asynchronously by someone else's infrastructure. Outside the horizon, the remote list is fine, and we still use it, because it catches things the local record would miss if a run died halfway. The general shape of this is worth keeping. When you depend on a read to tell you about a write, measure the delay, then ask which rows live inside it. If your workload queries the head of a time-ordered list — and an agent that publishes things always does — your effective error rate is not the average. It is the worst case, every single time, by construction. # automation # ai # reliability # devops # software # coding # development # engineering # inclusive # community Staleness is not evenly distributed and it eats your newest rows first",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

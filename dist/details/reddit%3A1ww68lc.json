@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww68lc",
+  "sourceItemId": "1ww68lc",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1ww68lc/peacebell_a_fromscratch_small_language_model/",
+  "detail": {
+    "longDescription": "I've been using my free time during weeknights and weekends for the last 11 months working on and refining a small domain-specific language model. It specializes on information about World War II.\n\nThe number one question I get asked about this is \"Why did you pick World War II?\" here are some of the reasons:\n\n\\- There's a lot of good Wikipedia articles about WWII, and this is permissively licensed. Meaning I can use the materials.  \n\\- There's a lot of good public domain information about WWII in general - more to train on.  \n\\- WWII is factually dense - making it a challenge.  \n\\- The facts surrounding WWII are mostly unchanging - meaning my model would age well.  \n\\- I had to pick a first topic.\n\n  \nA lot of my journey is documented on my blog: [https://wayne.theworkmans.us/llm.html](https://wayne.theworkmans.us/llm.html) though I've not posted recently.\n\nThe model is more than from-scratch. I'm using a custom built training pipeline. And I produced all of my own synthetic data to train on (based on Wikipedia articles).\n\nThe majority of my time has gone into data curation and balancing.\n\nAs I built this model, I've learned a ton about training data for language models, and about language model creation. I tripped over every bump along the way, 100s of times.\n\nI also learned a lot about World War II, and I'm emotionally exhausted. Many know the basics... the Manhattan project, the Holocaust, the concentration camps, Pearl Harbor, D-Day. Though beyond these topics, there is enormously more tragedy than I previously knew. As an adult with my own family now with better ability to comprehend, many times I'd just cry face down on my keyboard from some of the things I learned. Sometimes I would abandon working on it and go to bed early. I've talked with my wife about how awful some of the things that happened are. It's been hard. And I'm ANGRY! So incredibly angry about the atrocities that happened. Especially angry about the things that happened to civilians, non-combatants, women and children.\n\nWell enough of that.\n\nI open-sourced the training materials and the weights. There are two versions of the model. There's a 291M parameter version and a smaller 148M parameter version.\n\nI built the 148M to compete in the various HuggingFace dashboards that limit model size to 150M. Then I built a new benchmark that focuses on WWII topics, that's also on the hub, though the questions are private to prevent them ending up in people's training data (and no they aren't in Peacebell's training data either).\n\nYou can try the 291M model for free here. As you use it, keep in mind this is first-version, it's rough, it's not always right. And it really struggles with longer context. Fresh context gives better results.  \n[https://huggingface.co/spaces/wayneworkman2012/peacebell-v1-291M-demo-cpu](https://huggingface.co/spaces/wayneworkman2012/peacebell-v1-291M-demo-cpu)\n\nThe leaderboard is here:  \n[https://huggingface.co/spaces/wayneworkman2012/ww2bench-leaderboard](https://huggingface.co/spaces/wayneworkman2012/ww2bench-leaderboard)\n\nI've entered Peacebell into various SLM Arena's, such as CodeSoft's SLM arena here:  \n[https://huggingface.co/spaces/CodeSoft/SLM-Arena](https://huggingface.co/spaces/CodeSoft/SLM-Arena)\n\nBasically everyone in this LocalLLaMA would be able to run the model easily, even without a GPU. There's a customized vLLM fork here that can run either Peacebell model:  \n[https://github.com/wayneworkman/vllm](https://github.com/wayneworkman/vllm)   \n\n\nNext version is expected to be released sometime in 2027.",
+    "developer": "wayneworkman",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

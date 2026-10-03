@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvovrl",
+  "sourceItemId": "1wvovrl",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wvovrl/7_years_of_running_linux_servers_from_2019_shared/",
+  "detail": {
+    "longDescription": "Started in 2019 keeping shared hosting boxes alive at 3am. Today I run bare-metal infrastructure with Firecracker microVMs. Three lessons learned the hard way:\n\n1-> Containers aren't VMs: A Docker container is just a Linux process sharing the host kernel. For untrusted code or AI agents, dedicated kernel per workload > shared kernel + prayers.\n\n2-> Public IPv4 on boot is a trap: Bots hit port 22 in under 60 seconds. Keep outbound open and inbound dark by default until a domain or IP allowlist is explicitly mapped.\n\n3-> 1:1 reserved RAM beats burst specs: Half of \"random\" 2am database OOMs on budget clouds are just noisy neighbors fighting over oversold host RAM.\n\nWhat’s one infra rule you learned the hard way?",
+    "developer": "food_fatherr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

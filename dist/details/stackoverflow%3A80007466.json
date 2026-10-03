@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007466",
+  "sourceItemId": "80007466",
+  "sourceUrl": "https://stackoverflow.com/questions/80007466/inline-script-in-head-with-notfound-explicit-calling-issue-at-nextjs",
+  "detail": {
+    "longDescription": "Setup: Blueprint of NextJS application npx create-next-app@latest test-not-found Modifying layout.tsx : ... + import Script from \"next/script\"; ... <head> + <script + dangerouslySetInnerHTML={{ + __html: + '\"use strict\";console.log(\"Run as soon as possible (<script />)\");', + }} + /> + <Script async defer id=\"appearance-init\" strategy=\"beforeInteractive\"> + {'\"use strict\";console.log(\"Run as soon as possible (<Script />)\");'} + </Script> </head> ... Modifying page.tsx : ... + import { notFound } from \"next/navigation\"; ... export default function Home() { + notFound(); return ( ... Creating not-found.tsx : export default function NotFound() { return <div>NOT FOUND</div>; } Starting Development Server: npm run dev Versions and package.json package.json : ... \"_comment\": \"next dev without --turbopack works the same way\", \"scripts\": { \"dev\": \"next dev --turbopack\", ... }, \"dependencies\": { \"next\": \"16.3.8\", \"react\": \"19.2.8\", \"react-dom\": \"19.2.8\" }, ... > node -v v22.17.0 Open page in browser and see this error: Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead ( https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template ). Stack: script unknown:0 On the HTML Template Element page I have not found related information. That behavior has occur only when call notFound() explicitly and scripts are presented at <head> tag. If trying to reach route that not exist (e.g. http://localhost:3000/abc ) the not-found.tsx page have been appeared properly with executed scripts at <head> tag. Assuming there is requirements to have parametrized URL (e.g. http://localhost:3000/[abc] ) I need to validate parameter abc and return Not Found 404 when is so. No matter what combination of defer and async is on script it is not fix issue. I need to run that scripts as soon as possible. In Production Build There is no Error, but scrips are also not executed. AI bots do not have answer on that Issue, circling at same steps without progress. There is several Issues at the SO , Reddit , GH that can be called as related , but I've not seeing full setup in General Case . How to make its works with minimum of hacks and maximum valid behavior?",
+    "developer": "Alex Sindre",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "50"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

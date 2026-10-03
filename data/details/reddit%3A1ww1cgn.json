@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww1cgn",
+  "sourceItemId": "1ww1cgn",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1ww1cgn/gpu_networking_k8s_sriov/",
+  "detail": {
+    "longDescription": "Relatively new to gpu networking  - rail stuff and could use some guidance.\n\nam working on a setup (16 nodes) with 8 nvdia gpus (rtx so no nvlink) in each of them, k8s/sriov and the computenet being spectrum based ethernet switches.\n\nits a multi rail setup, so a /24 alllocated for each of the rails. SRIOVnetwork, ip pools and all that plumbing has been done. \n\nSame rail traffic works ..how does one get to do cross rail? \n\nThere needs to be a route in the POD which points the rail network supernet to the computenet switch as the default point towards the front end network. \n\nCan't find an answer to it ..tried \"routes\" in IPAM but that didn't work  ie the POD did not have that route - gemini and claude pulling me in opposite directions.\n\nThoughts?\n\n  \n",
+    "developer": "mm_123456",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

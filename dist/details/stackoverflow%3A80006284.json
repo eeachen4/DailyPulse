@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006284",
+  "sourceItemId": "80006284",
+  "sourceUrl": "https://stackoverflow.com/questions/80006284/how-can-i-get-latest-reading-from-multiple-griddb-timeseries-containers-using-py",
+  "detail": {
+    "longDescription": "I am working on IoT project ESP32 devices send sensor readings to a python backend. I'm storing the readings in GridDB using a separate TimeSeries container for each device. For example, a container contains: timestamp | heart_rate | temperature For my dashboard, I need to display the latest reading from each connected device. At the moment I'm doing something like this: for name in device_container_names: ts = gridstore.get_container(name) query = ts.query(\"select * where timestamp > TIMESTAMPADD(SECOND, NOW(), -30)\") rs = query.fetch() latest = None while rs.has_next(): latest = rs.next() This works, but I'm making a separate query for every device. With around 10 devices this is okay, but I may have more devices later. I saw that the GriDB python client support batch operations for query multiple containers, but I'm not sure how that would apply to gating only the latest row from each container. Is there a way to use the GridiDB Python client to get the latest row from multiple TimeSeries containers in a batch? Or is querying each container separately the normal approach for this type of use case?",
+    "developer": "Manthan Done",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "87"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.01380",
+  "sourceItemId": "2610.01380",
+  "fetchedAt": "2026-10-03T02:22:31.898Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.01380",
+  "detail": {
+    "longDescription": "arXiv:2610.01380v1 Announce Type: new Abstract: GPU-initiated communication lets GPU threads post RDMA operations directly to the NIC. It underpins NVSHMEM, NCCL GIN, and DeepEP, which serve the fine-grained, latency-critical communication of Mixture-of-Experts (MoE) models, yet its performance characteristics and optimizations remain scarcely documented beyond source code, and library comparisons fail to separate the costs of the hardware mechanism from those of the library around it. This paper dissects GPU-initiated communication at the GPU-NIC boundary. We first detail the GPU-side network path: queue placement, work-request construction, doorbell ordering, and completion semantics. We then introduce mini-gda and mini-proxy, minimal transports for the GPU and CPU-proxy submission paths, and measure them alongside NVSHMEM IBGDA, NCCL GIN, DeepEP, UCCL-EP, MSCCL++, and fabric-lib on NVIDIA H100, H200, B200, and GB200 platforms. A minimal GPU path issues an operation in 0.7 $\\mu$s and completes in 4.0 $\\mu$s; libraries add up to 4.6 $\\mu$s of issue time through queue management, memory ordering, and completion scope, and issue time scales with the SM clock. A tuned CPU proxy matches or beats the GPU path at idle, at the cost of a dedicated core whose operating state sets its latency and throughput. On either path, sharing a queue with bulk traffic raises latency by one to three orders of magnitude. Reaching the 260 M msg/s ceiling of our InfiniBand platform requires doorbell batching and queue parallelism, and both have resource costs: communication code can reduce GPU block residency even when unused, and all-to-all traffic loses 59% of its NIC message rate at about 3,000 active connections. The submission path alone therefore does not predict communication performance. Our experiment code and results are available at https://github.com/ParCoreLab/Dissecting-GPU-Communication-Experiments.",
+    "developer": "Javid Baydamirli, Ismayil Ismayilov, Kaan Oktay, Didem Unat",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.NI, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Javid Baydamirli, Ismayil Ismayilov, Kaan Oktay, Didem Unat"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

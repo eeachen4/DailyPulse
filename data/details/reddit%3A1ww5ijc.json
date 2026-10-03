@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww5ijc",
+  "sourceItemId": "1ww5ijc",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1ww5ijc/r_would_you_keep_a_robot_demonstration_if_hand/",
+  "detail": {
+    "longDescription": "Suppose you’re recording a human plugging a cable into a socket to collect demonstrations for robot learning.\n\nThe hand tracker captures the approach accurately. Then occlusion causes the hand estimates to disappear during insertion. Tracking returns after the connector is already seated.\n\nThe video still shows a completed action, but the pose labels have a gap exactly where alignment turns into contact.\n\nThis hypothetical example raises an evaluation question: a tracker could have high recall across the whole episode while missing a short, important phase. Pose error calculated only on successful detections could make that failure even harder to see.\n\nMEgoVista provides a useful starting point. Table 3 reports detection precision, recall and F1 alongside reconstruction errors. Section 4.4 also describes an evaluation protocol that assigns an error to missed detections instead of excluding them. The blank HaPTIC row means it failed to produce valid output in their multi-person capture scenes; it doesn’t describe a brief tracking dropout.\n\nAccounting for missing detections matters. My remaining question is whether an episode-level aggregate tells us enough about *where* those failures happen.\n\nFor manipulation data, I’d want pose error and coverage reported together, plus coverage broken down by approach, contact and withdrawal, and the longest consecutive gap during contact.\n\nContinuous hand estimates would still be only part of the picture: object pose and contact information also matter for determining whether insertion succeeded.\n\nFor people using human motion reconstruction for imitation learning, what evaluation protocol do you use to decide whether an episode with missing contact-phase labels is still usable?\n\n\n\n[Comparison with open-source egocentric hand reconstruction methods against motion-capture ground truth. All methods are evaluated on identical segments of our motion-capture dataset. All baselines are re-run and rescored on our data. HaPTIC fails to produce valid output in our multi-person capture scenes. Bold marks the best result in each column.](https://preview.redd.it/54lj5nahe4th1.png?width=1634&format=png&auto=webp&s=51fc3dad4959254dd054a0fc4aafdafad245b2cf)",
+    "externalUrl": "https://arxiv.org/abs/2609.16684",
+    "developer": "Klutzy_Cap8492",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "arxiv.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

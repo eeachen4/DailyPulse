@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww6xaq",
+  "sourceItemId": "1ww6xaq",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1ww6xaq/declint_make_your_own_custom_lint_rules_in_yaml/",
+  "detail": {
+    "longDescription": "[declint](https://github.com/thyrgle/declint) ([docs](https://docs.rs/crate/declint/latest)) is a tool for making your own lint rules in YAML — the house rules that stock linters will never ship.\n\nFor instance: your colleague wrote `except Exception: pass`, and you want to know whenever that happens:\n\n    rules:\n      - id: except-pass\n        pattern: 'except Exception:\\n *pass'\n        severity: warning\n        message: 'swallowed exception'\n\nRules are just regex and a message. When a regex can't express the check, you can write a more complicated rule in Lua.\n\nRules run in your CI (inline PR annotations via `--format github`) and in your editor through LSP ([declint.nvim](https://github.com/thyrgle/declint.nvim) for Neovim). Every rule can carry embedded fixtures, and declint test runs them.\n\nInstall: `cargo install declint`. Ships with presets (Python, INI, Markdown, shell, Dockerfile, TOML, JSON, JS) and community rulesets you can pull with one line. Feedback welcome.",
+    "developer": "cs61bredditaccount",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

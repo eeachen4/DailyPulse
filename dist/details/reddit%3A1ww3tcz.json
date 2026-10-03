@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww3tcz",
+  "sourceItemId": "1ww3tcz",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1ww3tcz/i_got_windows_11_snipping_tools_ocr_working_with/",
+  "detail": {
+    "longDescription": "I've used Greenshot forever, but its OCR options have always been a weak spot for me.\n\nI had been using Capture2Text through Greenshot's External Command plugin, but I regularly OCR hardware model/serial numbers and it struggled pretty badly with things like `O` vs `0`. That's a bit of a problem when you're trying to grab something like `21R4S0LJ00`.\n\nWindows 11's Snipping Tool, on the other hand, has surprisingly good OCR through its Text Actions feature. So I went down a rabbit hole figuring out whether I could use that OCR engine without giving up Greenshot.\n\nTurns out you can.\n\nI put together **Greenshot-OneOCR**, which connects Greenshot's External Command feature to the OneOCR engine included with Windows 11 Snipping Tool.\n\nThe workflow is basically:\n\n**Capture > OneOCR > Clipboard > Ctrl+V**\n\nIt takes around a second or two on my machines and the recognized text is automatically placed on the clipboard.\n\nI tested it against a bunch of hardware model numbers plus normal text, paths, email addresses, quotes, dollar signs, etc. The difference compared with Capture2Text was significant enough that I figured somebody else might find this useful too.\n\nI ended up turning it into a small PowerShell installer so setup doesn't require manually digging through the Snipping Tool package. It finds the OneOCR components from your installed copy of Snipping Tool, downloads the CLI wrapper it needs, and prints the exact External Command settings to put into Greenshot.\n\nNothing from Microsoft's OneOCR installation is redistributed.\n\n**GitHub:** [https://github.com/bobaflett/Greenshot-OneOCR](https://github.com/bobaflett/Greenshot-OneOCR)\n\nIt's Windows 11 only, and OneOCR is an undocumented/internal Snipping Tool component, so there's always a chance Microsoft changes something and breaks it later.\n\nThis started as a \"surely there's a better OCR option for Greenshot\" project and got slightly out of hand.",
+    "developer": "bobaflett",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

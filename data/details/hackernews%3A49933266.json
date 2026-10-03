@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49933266",
+  "sourceItemId": "49933266",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49933266",
+  "detail": {
+    "longDescription": "Spens is a tool created to standardized sandboxing (good enough) and observability around coding agents. It leverages docker, nono and mitmproxy to create a reproducible sandbox environment for agents, that captures all traffic and helps you understand what your coding agent is doing and when. Right now pi, opencode, claude and codex are supported out of the box, with node and python - but you can configure any agent or environment. It was created under the realization while working under different repos and agents, that 1. agents do weird stuff sometimes (like try and nuke a folder or poke around your HD) 2. statistics and usage collection is not really consistent (and some like Claude and Codex try and hide info) 3. reproducibility of agents across devices was challenging. Instead of setting up bespoke environments each time , we needed a way to automate it. And thus Spens was born. One note on the security aspect - I write good enough cause it is docker so unless your running something like gVisor it is possible for the agent to escape the sandbox (esp with a loose nono config) - all though in practice I&#x27;ve not seen this behavior. Second note - if your on a mac you need orb stack, as the run times take advantage of specific Linux security features that are not available via docker on mac (windows is fine since under the hood, docker leverages wsl)",
+    "externalUrl": "https://spens.refwd.ai/",
+    "developer": "floydhead01",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

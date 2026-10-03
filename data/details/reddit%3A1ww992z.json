@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww992z",
+  "sourceItemId": "1ww992z",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1ww992z/liblayax_run_the_laya_ai_decision_model_inside/",
+  "detail": {
+    "longDescription": "Dear LLM developers community,\n\nI have just released four open-source projects today that let an application use the Laya model directly, with no server and no Python.\n\n**What Laya is?**\n\nIf you build agents, this is the step where you ask a big model \"should I route this to billing?\" and wait a second for one word. Laya answers that kind of question in a fraction of a second, on your own machine, with a probability you can put a threshold on.\n\nLaya is an AI model that does not chat. You give it a text and a question, like \"is this customer asking for a refund?\", and it answers yes or no with a probability, in a fraction of a second. It can also pick one of several options, or rate something on a scale. Quick decisions, no essays.\n\n**What I released**\n\n\\- LibLayaX: a library you load into your own program, like any other. Windows, Linux and macOS, on the CPU or the GPU.\n\n[https://github.com/DaragonTech/LibLayaX](https://github.com/DaragonTech/LibLayaX)\n\n\\- RLaya, for Rust: [https://github.com/DaragonTech/RLaya](https://github.com/DaragonTech/RLaya)\n\n\\- LLaya, for Lua: [https://github.com/DaragonTech/LLaya](https://github.com/DaragonTech/LLaya)\n\n\\- DLaya, for Delphi and Free Pascal: [https://github.com/DaragonTech/DLaya](https://github.com/DaragonTech/DLaya)\n\nOn a laptop GPU it makes about 670 decisions per second. Everything is MIT licensed.\n\nEverything is MIT licensed.\n\n**Why**\n\nOn Thursday I wanted to use Laya inside one of my applications and found there was no way to do it. It only came as a Python library and as a separate server program. This kind of AI belongs inside ordinary software, routing a ticket or flagging a message, and for that it has to be something an app can simply call.\n\n**How it was built**\n\nI did not write the code. Claude did. My job was to decide what we were building, guide Claude and run every version on real machines, and report back what happened.\n\nThe first version arrived within an hour and crashed on my PC. A few rounds later it worked. By the end of the first evening it ran on Windows, Linux and Mac, and on the GPU. The worst bug was on Windows on ARM, where the program simply froze. It could not be reproduced anywhere except on my actual machine, so we hunted it by adding log lines and reading where it stopped.\n\nThe second day went into the Rust and Lua versions, documentation, and testing on more machines. From my first question to Claude to this post: about 32 hours on the clock.\n\nI could not have built this in two days by myself, and Claude could not have found those bugs without someone running the code on real hardware. It took both.\n\n**Status**\n\nTested on five platforms and three GPUs. The docs say plainly what has not been tested yet, and test reports are welcome.\n\n**Credit**\n\nNone of this would exist without two projects by other people:\n\n\\- Laya itself, the model, by Nandakishor Mukkunnoth of ConvAI Innovations: [https://github.com/NandhaKishorM/laya](https://github.com/NandhaKishorM/laya)\n\n\\- laya.cpp, the C++ port this is built on, by Lars Karlslund: [https://github.com/lkarlslund/laya.cpp](https://github.com/lkarlslund/laya.cpp)\n\nThe code and docs of the four projects above were written by Claude (Anthropic)",
+    "developer": "felipedaragon",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

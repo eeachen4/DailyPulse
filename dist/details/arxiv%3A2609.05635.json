@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.05635",
+  "sourceItemId": "2609.05635",
+  "fetchedAt": "2026-10-03T02:22:31.898Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.05635",
+  "detail": {
+    "longDescription": "arXiv:2609.05635v2 Announce Type: replace Abstract: GPU applications on unified-memory (UMA) edge platforms often inherit a discrete-GPU memory abstraction in which they allocate one buffer for the CPU, another for the GPU, and copy data between them before and after GPU execution. On UMA hardware these buffers reside in the same physical DRAM pool, so the copies consume bandwidth, time, and energy. Despite the growing adoption of UMA platforms, this pattern remains common because production software stacks, libraries, and samples were written for portability across discrete GPUs. However, removing these copies is not as simple as merging the two buffers, because the original program may rely on the two buffers being distinct, or on the copy itself ordering CPU and GPU accesses. Echo removes these copies only when it preserves the data values and access ordering on which the program depends. It does so along two complementary paths: source-level rewriting and binary deployment. Echo-SR is a compile-time LLVM transformation that proves safety and rewrites accepted pairs in place. Echo-DR is a profile-guided binary optimizer for existing applications that profiles and validates stable allocation/copy patterns and, at runtime, intercepts the matching calls to unify profile-matched pairs while preserving the ordering effects of removed copies. Across seven benchmarks on three NVIDIA Jetson platforms, Echo's benefit grows with the fraction of baseline time spent on copies. Copy-dominated workloads speed up by up to 7.05x, closed-source end-to-end applications speed up by up to 1.40x. On the five source-available Orin benchmarks, both automatic paths recover >=99% of the gain of a manually optimized reference.",
+    "developer": "Yuheng Zhu, Yanbo Zhao, Jiajia Li, Man-Ki Yoon",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.OS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuheng Zhu, Yanbo Zhao, Jiajia Li, Man-Ki Yoon"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww5opx",
+  "sourceItemId": "1ww5opx",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1ww5opx/isnt_rerun_the_tests_until_green_just_grading_the/",
+  "detail": {
+    "longDescription": "One agent writes tests from the spec, another writes the code in parallel, and the test agent never sees the code. Their reason was basically that otherwise the AI cheats. I take it to mean tests written after reading the code just confirm what it does, bugs included.\n\nI come from ML, so to me this is a train/test problem. If the agent iterates against the same suite you use to decide it's done, that suite is its training set and a green run is a training score. Agents are known to get there by special-casing inputs, loosening asserts, or editing tests. Read-only test files stop the editing but not the other two.\n\nHolding some tests back only works once. After you show the agent a failure, that test isn't held out anymore.\n\nThat's where the blind test agent helps, I think, since it writes new hidden tests from the spec every round. Those leak too once they fail, but what you care about is whether a fresh batch passes on its first run, like drawing a new validation sample each round. The failures just become training data. It needs a spec that fixes names, signatures and I/O, or the blind tests won't compile.\n\nSome will say the tests are the spec, so passing them is the goal. But tests never cover the whole spec, and the agent can cut corners in the gaps.\n\nTwo things I'm not sure about. The blind agent can misread the spec, and then a person has to check which side is wrong (that at least shows where the spec is unclear). And the same model writing fresh tests each round probably has the same blind spots every time.\n\nI haven't tried this myself, so:\n\n1. Do you keep tests your coding agent can't see? How do they stay hidden after the first failure?\n\n2. Is a second test agent worth the tokens, or do property-based or mutation tests get most of this cheaper?\n\n3. Has anyone set this up with Claude Code subagents?",
+    "developer": "Conscious-Shake391",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

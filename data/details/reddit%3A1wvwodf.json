@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wvwodf",
+  "sourceItemId": "1wvwodf",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wvwodf/topological_outofdomain_generalization_in/",
+  "detail": {
+    "longDescription": "In our #NeurIPS2026 paper “**Topological Out-of-Domain Generalization in Dynamical Systems Reconstruction**” (preprint: [https://arxiv.org/abs/2606.22969](https://arxiv.org/abs/2606.22969)) we try to address a fundamental issue in dynamical systems reconstruction (DSR) and time series forecasting (TSF): Many recent SOTA DSR & TSF models can generalize to new initial conditions or time series with changing statistical properties. But the **really hard problem** in DSR and TSF is **topological out-of-domain generalization (OODG)** ([https://proceedings.mlr.press/v235/goring24a.html](https://proceedings.mlr.press/v235/goring24a.html)) where the **dynamical regime changes**, for instance from cyclic to chaotic behavior.\n\nThis can happen when a system crosses a **tipping point** due to a slowly varying control parameter which drives it across **bifurcations**, such as in climate systems, when the brain tips from normal into epileptic activity, or when a patient develops blood poisoning (sepsis). Such problems are beyond the realm of current TSF models which rely on extracting temporal patterns and statistical regularities. Yet the ability to predict previously unseen, novel dynamical regimes as a system parameter changes is something we would expect from any good scientific theory. Often these control parameters that drive regime changes are not exactly known either. Hence, a data-driven DSR model for achieving topological OODG would need to **infer the dynamical system generating the TS jointly with the control parameters**.\n\nIn our paper, we mathematically identify key failure modes in previous hierarchical DSR models ([https://proceedings.iclr.cc/paper\\_files/paper/2025/hash/d4c961804d08e55d898cce944206d455-Abstract-Conference.html](https://proceedings.iclr.cc/paper_files/paper/2025/hash/d4c961804d08e55d898cce944206d455-Abstract-Conference.html)) that prevent them from correctly learning a system’s control parameters and extrapolating them beyond the training domain. By fixing these through feature-splitting and physical sparsity priors, our modified hierarchical DSR model manages **to correctly predict bifurcations and beyond-bifurcation dynamics, without any explicit knowledge about the control parameters provided in training**.\n\nOur approach is generic and works for different discrete and continuous time RNNs, we tested it for shallow PLRNNs and Neural ODEs.\n\nhttps://preview.redd.it/m40hcmr8m2th1.png?width=1839&format=png&auto=webp&s=2d1873c60a64b1958fe7c6ea705df695af669b19\n\n",
+    "developer": "DangerousFunny1371",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

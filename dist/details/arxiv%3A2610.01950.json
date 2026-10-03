@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.01950",
+  "sourceItemId": "2610.01950",
+  "fetchedAt": "2026-10-03T02:22:31.898Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.01950",
+  "detail": {
+    "longDescription": "arXiv:2610.01950v1 Announce Type: new Abstract: Sparse expert activation reduces MoE models' computation, yet expert weights can exceed limited device memory. Offloading makes inference feasible on a compact AI appliance but exposes host-to-device transfers to the inference path. We present MoE-CORE, a system that coordinates expert offloading and residency for memory-constrained MoE inference. It stages complete expert layers in alternating buffers during prefill. During decode, it combines nonuniform layer-wise cache capacity, domain-informed initialization, routing-history-aware replacement, and cross-layer prefetching. The main configuration executes router-selected experts exactly; an optional score-based substitution path handles eligible low-score misses. The main comparison uses 1K- and 128-token output caps for MoE-CORE and vLLM Prefetch, respectively. Across five workloads per model, MoE-CORE records a mean time per output token (TPOT) of 38.0-44.8 ms versus 1268.9-1269.1 ms for the evaluated vLLM Prefetch configuration on DeepSeek-V4-Flash-W4A8; the corresponding values on GLM-5.2-W4A8C8 are 206.6-220.5 and 5941.5-5941.8 ms. Under an 84-GB NPU-memory cap, the best measured DeepSeek GSM8K configuration achieves a TPOT of 21.5 ms with approximate expert substitution and multi-token prediction (MTP) at depth 2. These results support coordinated expert residency and transfer scheduling under a device-memory constraint. The code is here.",
+    "developer": "Ke Yang, Yongji Gao, Xushi Li, Kui Luo, Sicheng Zhang, Tianming Zhou, Keyi Liu, Shufang Lu, Aoxuan Chen, Jie Meng, Jingchun Gao, Dan Li, Xinkai You, Dan Li, Zhixiang Xia, Yan Shi, Yang Liu, Yanjia Zeng, Liangjun Feng",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ke Yang, Yongji Gao, Xushi Li, Kui Luo, Sicheng Zhang, Tianming Zhou, Keyi Liu, Shufang Lu, Aoxuan Chen, Jie Meng, Jingchun Gao, Dan Li, Xinkai You, Dan Li, Zhixiang Xia, Yan Shi, Yang Liu, Yanjia Zeng, Liangjun Feng"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

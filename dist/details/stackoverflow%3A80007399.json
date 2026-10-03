@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007399",
+  "sourceItemId": "80007399",
+  "sourceUrl": "https://stackoverflow.com/questions/80007399/why-and-how-does-python-treat-new-differently-when-called-from-an-instance",
+  "detail": {
+    "longDescription": "The __new__ method is special because its first argument is cls not self . It’s like a classmethod, but since it isn’t decorated by @classmethod , you have to pass the class name explicitly: class Foo: def __new__(cls, *args, **kwargs): print(cls) return object.__new__(cls, *args, **kwargs) Foo.__new__() # TypeError: Foo.__new__() missing 1 required positional argument: ‘cls’ Foo.__new__(Foo) # prints <class ‘__main__.Foo’> What confuses me is when I add a __fake_new__ method which is identical to __new__ except for their name : class Foo: def __new__(cls, *args, **kwargs): print(cls) return object.__new__(cls, *args, **kwargs) __fake_new__ = __new__ I call them the exact same way (on an instance of Foo this time), expecting same output: f = Foo() print(\"Testing begins:\") f.__new__(Foo) #1 f.__fake_new__(Foo) #2 For #1 it prints the class (as before), but for #2 it prints the object then errors : <class '__main__.Foo'> Testing begins: <class '__main__.Foo'> <__main__.Foo object at 0x7f88deeca6f0> Traceback (most recent call last): File \"/home/repl297/main.py\", line 12, in <module> f.__fake_new__(Foo) File \"/home/repl297/main.py\", line 5, in __new__ return object.__new__(cls, *args, **kwargs) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ TypeError: object.__new__(X): X is not a type object (Foo) __new__ and __fake_new__ are identical . What is happening? Why and how does Python treat the first name differently from the second? Do other “special” methods like __class_getitem__ or __prepare__ behave similarly? And if I print args and kwargs too: class Foo: def __new__(cls, *args, **kwargs): print(cls, args, kwargs) return object.__new__(cls, *args, **kwargs) __fake_new__ = __new__ f = Foo() print(\"Testing begins:\") f.__new__(Foo) f.__fake_new__(Foo) Output: <class '__main__.Foo'> () {} Testing begins: <class '__main__.Foo'> () {} <__main__.Foo object at 0x7ff40039e750> (<class '__main__.Foo'>,) {} Traceback (most recent call last): File \"/home/repl411/main.py\", line 12, in <module> f.__fake_new__(Foo) File \"/home/repl411/main.py\", line 5, in __new__ return object.__new__(cls, *args, **kwargs) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ TypeError: object.__new__(X): X is not a type object (Foo) It turns out that for __fake_new__ , self is passed as arg 1, followed by Foo ! <__main__.Foo object at 0x7ff40039e750> (<class '__main__.Foo'>,) {} Whereas for __new__ , only Foo is passed. __new__ acts a bit like a staticmethod in that respect. Why?",
+    "developer": "Train-Case",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "170"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

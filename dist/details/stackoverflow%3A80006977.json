@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80006977",
+  "sourceItemId": "80006977",
+  "sourceUrl": "https://stackoverflow.com/questions/80006977/how-to-keep-angular-signals-and-router-query-params-in-sync-without-creating-loo",
+  "detail": {
+    "longDescription": "I’m working on an Angular project where we have an order list with filters, pagination and sorting. All of these values should be stored in the URL, so users can share or bookmark the current view My current setup looks roughly like this: readonly query = signal<OrderQuery>({ search: '', status: 'all', page: 1, pageSize: 25, sort: 'createdAt' }); readonly orders = toSignal( toObservable(this.query).pipe( debounceTime(100), distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)), switchMap(query => this.orderService.search(query)) ), { initialValue: null } ); constructor() { this.route.queryParamMap.subscribe(params => { this.query.set({ search: params.get('search') ?? '', status: params.get('status') ?? 'all', page: Number(params.get('page') ?? 1), pageSize: Number(params.get('pageSize') ?? 25), sort: params.get('sort') ?? 'createdAt' }); }); effect(() => { const query = this.query(); this.router.navigate([], { queryParams: query, replaceUrl: true }); }); } The problem is that the state can be changed from two different places: URL -> Signal -> API UI -> Signal -> URL This can lead to something like: URL -> Signal -> URL -> Signal -> ... For example, if I open: /orders?search=acme&page=3 the state is updated from the URL and then the effect writes the same state back to the router In some cases this causes the query params to be processed again and I also get duplicate API requests I dont really want to solve this with several flags like: private isUpdatingUrl = false; private isUpdatingFromRoute = false; The actual component is already bigger than this example and Im worried that this approach will become difficult to maintain when more URL state is added What would be a good Angular pattern for this? I would like to support: browser back/forward deep links with query params fast filter changes pagination and sorting avoiding duplicate API requests Signals + RxJS no manual synchronization flags Is there a recommended way to structure this so the URL and application state stay in sync without creating this feedback loop I’m mainly looking for a general pattern that could also be used for other list pages in the application",
+    "developer": "Angular Overlord",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "73"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

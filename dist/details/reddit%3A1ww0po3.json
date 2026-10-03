@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1ww0po3",
+  "sourceItemId": "1ww0po3",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1ww0po3/how_well_do_decision_models_categorize_finance/",
+  "detail": {
+    "longDescription": "I ran 5 decision models (Jev, D1, Solar Decide, Kev 4b, and Span 01) against 1000 real transactions (3 passes each).  \n\n\nWhen it came to vague restaurant names, that broke the model's confidence so they abstained.  \n  \nHere's the interesting part: Span-01 can't abstain and can only answer yes/no questions. Which is why it likely scored much lower.  \n  \nBut interestingly enough... when Jev was forced to answer yes/no, it actually did better than both.. initial run (where it was allowed to abstain) and Span-01.\n\nAcross all tax categories, models did the worst on categorizing bank transfers.  \n  \nSpan-01 wasn't able to correctly score on charatible transactions at all.\n\nI used my system one mcp to run these tests. You can use it to quickly connect decision models to claude code, codex and pi. [https://github.com/itsmostafa/system-one-connector](https://github.com/itsmostafa/system-one-connector)",
+    "developer": "purealgo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
