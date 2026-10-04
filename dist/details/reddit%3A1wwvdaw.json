@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwvdaw",
+  "sourceItemId": "1wwvdaw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wwvdaw/how_do_you_orchestrate_remotely_phone/",
+  "detail": {
+    "longDescription": "I’ve got various methods in place right now to handle a frontier model orchestrating my local machine (local models).\n\nRight now I have a setup with Claude code where I had him replace all the default subagents with created roles from my NInfer-4090 Qwen3.8-27B tune (262k CTX).\n\nProblems:\n\n1. I can’t use Claude /rc when using my own claude-router because I’m not going through Anthropic API first route, it goes to llama-swap first then Anthropic so /remote-control is disabled by Anthropic if you bypass their API \n\n2. I’m limited to a short context window of 200K even though my 27B is Q4 @ 262K context this is a limit of Anthropics subagent system natively, even Opus 5.5 using sonnet 5.5 has a CTX window rule of 200k max so it’s not overly effective if its a complicated task. \n\n3. I use terminus to ssh into my box and then I can use Claude normally but it’s horribly compressed and not a native experience.\n\nI have other various harnesses and setups for direct local usage without orchestration so really just looking for this lane of information, not remote harness support (I have a few options for that already like opencode LXC, dsh on Tailscale serve, openwebUI, and just ssh) \n\nPlus: I like to be able to steer the subagents, considering I monitor their work closer than I would Claude. ",
+    "developer": "Distinct-Pie2389",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

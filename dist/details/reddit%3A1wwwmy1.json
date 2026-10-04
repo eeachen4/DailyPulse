@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwwmy1",
+  "sourceItemId": "1wwwmy1",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wwwmy1/running_qwen38_flash_next_176b_on_a_16gb_rtx_3080/",
+  "detail": {
+    "longDescription": "I wanted to see how far I could push a fairly ordinary laptop with a huge MoE model.\n\nTurns out, **Qwen3.8 Flash Next 176B** can run on:\n\n**RTX 3080 Laptop — 16GB VRAM**  \n**32GB system RAM**  \n**SSD**\n\nNo 128GB/256GB RAM workstation and no multi-GPU setup.\n\nI’m running it with **TensorSharp**, my open-source local LLM inference engine:\n\n[TensorSharp on GitHub](https://github.com/zhongkaifu/TensorSharp?utm_source=chatgpt.com)\n\nThe interesting part for me wasn't simply getting a 176B model to load. I wanted to make a model much larger than both available VRAM and RAM actually usable.\n\nThe approach is basically:\n\n**Quantization + MoE-aware unified scheduling across cache, VRAM, system RAM, and SSD.**\n\nRather than treating SSD as a last-resort swap space, TensorSharp coordinates the different memory/storage tiers around MoE execution and tries to keep the right experts/data in the right tier at the right time.\n\nI previously benchmarked TensorSharp against llama.cpp and got very encouraging results. This time I wanted to compare it with **Strata**, since Strata's approach to running large models with constrained memory is particularly interesting.\n\nHere are the results from the attached benchmark:\n\n|Measurement|TensorSharp|Strata|\n|:-|:-|:-|\n|Decode tokens/s|**11.09** (9.22–14.02)|10.24 (9.37–10.46)|\n|Whole-process time|**16.54s** (14.95–19.31)|62.15s (59.76–66.89)|\n|Device-wide GPU peak|**14,832.5 MiB**|15,729 MiB|\n|OS peak working set|19.74 GiB|**18.51 GiB**|\n\nThe decode throughput is fairly close: **11.09 vs. 10.24 tok/s**.\n\nWhat surprised me more was the end-to-end result: **16.54s vs. 62.15s** in this test.\n\nI think this points to an interesting direction for local LLM inference. For huge sparse MoE models, the question may not simply be:\n\n>*“Do I have enough RAM/VRAM to fit this model?”*\n\nbut rather:\n\n>*“How efficiently can the runtime coordinate VRAM, RAM, SSD, caching, and expert activation?”*\n\nWith the right quantization and memory hierarchy, you can apparently do some pretty ridiculous things on consumer hardware.\n\nI’d be especially interested if anyone here has tried the same model with **llama.cpp, Strata, or another MoE/offloading implementation**. It would be great to compare results on similar hardware.",
+    "externalUrl": "https://github.com/zhongkaifu/TensorSharp",
+    "developer": "fuzhongkai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

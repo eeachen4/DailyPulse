@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007452",
   "sourceItemId": "80007452",
+  "fetchedAt": "2026-10-04T02:56:15.887Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007452/finding-value-within-nested-dictionary-with-arrays",
   "detail": {
     "longDescription": "For purposes of fantasy hockey, I am trying to create a tool which will display particular statistics about players. To get these statistics, the public ESPN API is queried using the following command: import requests URL = 'https://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/athletes/1/statistics' sJSON = requests.get(URL).json() Giving sJSON the following value: {'$ref': 'http://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/athletes/1/statistics/0?lang=en&region=us', 'athlete': {'$ref': 'http://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/athletes/1?lang=en&region=us'}, 'splits': {'id': '0', 'name': 'All Splits', 'abbreviation': 'TOTAL', 'type': 'total', 'categories': [{'name': 'penalties', 'displayName': 'Penalties', 'shortDisplayName': 'Penalties', 'abbreviation': 'p', 'summary': '', 'stats': [{'name': 'penaltyMinutes', 'displayName': 'Penalty Minutes', 'shortDisplayName': 'Penalty Minutes', 'description': 'Total penalty minutes.', 'abbreviation': 'PIM', 'value': 52.0, 'displayValue': '52'}]}, {'name': 'rpi', 'displayName': 'RPI', 'shortDisplayName': 'RPI', 'abbreviation': 'rpi', 'summary': '', 'stats': [{'name': 'wins', 'displayName': 'Wins', 'shortDisplayName': 'W', 'description': 'Wins', 'abbreviation': 'W', 'value': 0.0, 'displayValue': '0'}, {'name': 'losses', 'displayName': 'Losses', 'shortDisplayName': 'L', 'description': 'Losses', 'abbreviation': 'L', 'value': 0.0, 'displayValue': '0'}, {'name': 'otLosses', 'displayName': 'Over Time Losses', 'shortDisplayName': 'OTL', 'description': 'Over Time Losses', 'abbreviation': 'OTL', 'displayValue': '0'}, {'name': 'points', 'displayName': 'Points', 'shortDisplayName': 'PTS', 'description': 'Points', 'abbreviation': 'PTS', 'value': 28.0, 'displayValue': '28.0'}, {'name': 'rpi', 'displayName': 'Relative Power Index', 'shortDisplayName': 'RPI', 'description': 'Relative Power Index', 'abbreviation': 'RPI', 'displayValue': '0'}, {'name': 'sos', 'displayName': 'Strength Of Schedule', 'shortDisplayName': 'SOS', 'description': 'Strength Of Schedule', 'abbreviation': 'SOS', 'displayValue': '0'}, {'name': 'powerRank', 'displayName': 'ESPN Power Ranking', 'shortDisplayName': 'PWR', 'description': 'ESPN Power Ranking', 'abbreviation': 'PWR', 'displayValue': '0'}, {'name': 'pointsFor', 'displayName': 'Goals For', 'shortDisplayName': 'GF', 'description': 'Goals For', 'abbreviation': 'GF', 'displayValue': '0'}, {'name': 'pointsAgainst', 'displayName': 'Goals Against', 'shortDisplayName': 'GA', 'description': 'Goals Against', 'abbreviation': 'GA', 'displayValue': '0'}]}]}} Note : this was drastically shortened from the actual output. If necessary, run the above code to generate it yourself. I am looking to find the path to values such as 'GA' , 'RPI' , or 'PIM' , so that I can then get the value associated with them. You'll notice that all these values are tied to keys of 'abbreviation' . I was pointed to another thread that was able to successfully parse and return the path of a nested dictionary such as this quite easily. However, that solution does not work in this scenario, as some of the nesting in this dictionary is within lists. That code is posted below: # Source - https://stackoverflow.com/a/22171182 # Posted by jfs, modified by community. See post 'Timeline' for change history # Retrieved 2026-10-02, License - CC BY-SA 4.0 def getpath(nested_dict, value, prepath=()): for k, v in nested_dict.items(): path = prepath + (k,) if v == value: # found value return path elif hasattr(v, 'items'): # v is a dict p = getpath(v, value, path) # recursive call if p is not None: return p",
     "developer": "BConn63",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -14,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "110"
+        "value": "145"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

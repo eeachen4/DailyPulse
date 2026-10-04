@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx2lve",
+  "sourceItemId": "1wx2lve",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wx2lve/running_mcp_servers_on_gke_and_eks_one_deployment/",
+  "detail": {
+    "longDescription": "    Ramen is an open-source control plane + worker for MCP (the protocol agents use to call tools). Some Kubernetes\n    details that might interest this sub more than the AI part:\n    \n    \n    - Each group+zone is a namespace with a stable and a canary Deployment. The GKE Gateway (HTTPRoute) / AWS ALB route\n      on two headers, `ramen-group` and `ramen-zone`, so one client config reaches any zone.\n    - The canary rolls in place with `maxSurge: 0` — a zone-pinned surge pod on a full node sat Pending until the\n      deploy timed out on EKS. A rollout that isn't ready now reports the pods and the scheduler's reason instead of \"1/1 ready\".\n    - Deleting a zone deletes the namespace and its GSA / IAM role. On GKE the namespace can sit `Terminating` on the NEG\n      finalizer until the Gateway's backend service is gone — documented, with the manual fix.\n    - Per-group+zone identities (Workload Identity / IRSA), Cloud Armor / WAF rules from the console, Redis-backed\n      throttles shared across zones, logs from Cloud Logging / CloudWatch via pod labels.\n    - Bring-up is Terraform + Helm; 0.6.0 was applied on both clouds (two zones each) and torn down.\n    \n    \n    Repo https://github.com/bkraad47/ramen · GCP guide https://bkraad47.github.io/ramen/wiki/deploy-gcp/ · AWS guide\n    https://bkraad47.github.io/ramen/wiki/deploy-aws/\n    Interested in critique of the per-zone namespace model and the canary policy (currently \"smoke test passes\").",
+    "externalUrl": "https://i.redd.it/vnojh7ldlcth1.png",
+    "developer": "Ok_Plum3595",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

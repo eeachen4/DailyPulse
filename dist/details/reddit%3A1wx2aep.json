@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx2aep",
+  "sourceItemId": "1wx2aep",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wx2aep/what_actually_breaks_when_your_ai_agent_needs_to/",
+  "detail": {
+    "longDescription": "After building a research agent that scrapes and synthesizes information autonomously, here’s what nobody warned me about:\n\nIP blocking kills your agent mid-task. Your agent confidently starts a multi-step research chain, then silently fails at step 4 because the target site blocked it. The worst part? It often hallucinates the missing data rather than flagging the error.\n\nRate limits cascade unpredictably. One slow endpoint stalls your entire reasoning loop. You need explicit timeout logic and graceful degradation built in from day one, not bolted on later.\n\nThe fix that helped most was treating web access as an unreliable tool with explicit fallback instructions in the system prompt - essentially telling the agent to acknowledge retrieval failures rather than paper over them. On the infrastructure side, moving to a residential rotating proxy layer (I’ve been using - their rotating residential proxies mean each agent request exits from a fresh IP, which dramatically cut my mid-task block rate) removed a whole class of silent failures before they even reached the agent’s reasoning loop.\n\nCurious what others have run into. Are you handling proxy rotation at the infrastructure layer or making the agent itself retry-aware? And has anyone found a clean way to distinguish “site blocked me” from “page genuinely doesn’t exist” inside the agent’s reasoning loop?",
+    "developer": "oatmealdaddy4",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

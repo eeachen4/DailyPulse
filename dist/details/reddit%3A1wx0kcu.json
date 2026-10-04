@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx0kcu",
+  "sourceItemId": "1wx0kcu",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wx0kcu/i_got_tired_of_agent_message_logs_rotting_so_i/",
+  "detail": {
+    "longDescription": "**TL;DR:** built an agent runtime that stores state as a belief graph with dependencies (Jon Doyle's TMS) instead of chat logs. correct one fact and everything downstream auto-updates without context rot or full re-runs.  **(repo link in the comments below)**\n\nHey guys,\n\nEvery agent framework ive used so far handles state pretty much the same way, just appending messages to a long chat log. The problem is long running agents rot super fast. If a tool returns bad data at step 3, that error just sits in context forever. And if a key fact changes mid run, you either have to wipe the whole context or re run everything from step 1.\n\nI’ve been hacking on an open source project called Corollary to try a different approach. Instead of a message transcript, it stores state as a belief base backed by a truth maintenance system (basically an old concept from jon doyle back in 1979).\n\nhow it works under the hood:\n\n* every belief or conclusion tracks what it depends on (its justifications)\n* if you retract or update a single base fact, it automatically retracts and re derives anything downstream that relied on it\n* independent conclusions arent touched, so you get a clean diff of what changed instead of re running llm calls\n* the LLM only sees currently valid (\"IN\") beliefs, so old retracted facts cant leak back in through a transcript\n\nits still super pre-alpha so I'd love to get some feedback, pushback or edge cases you think this pattern will hit.\n\n**(repo link in the comments below)**\n\nhow are you guys handling context rot in long running agents currently?",
+    "developer": "Dapper_Ad599",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

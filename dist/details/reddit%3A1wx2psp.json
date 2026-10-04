@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx2psp",
+  "sourceItemId": "1wx2psp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wx2psp/hosting_mcp_tools_for_a_team_git_repo_canary/",
+  "detail": {
+    "longDescription": "    Once more than one person uses the same MCP tools, \"run the server on my laptop\" stops working. Ramen is my answer:\n    \n    \n    - Tools/resources/prompts are Python in a git repo; deploy syncs, rolls a canary, smoke-tests `tools/list`, rolls stable.\n    - Streamable HTTP (`POST /mcp`) at the edge, JSON-RPC 2.0 over gRPC inside, same guards on both.\n    - The console is an OAuth 2.1 authorization server (PKCE, consent per group+zone); stdio-only clients use\n      `pip install ramen-mcp-bridge`.\n    - Roles per group (admin / viewer / MCP user), secrets referenced as `{{$group.NAME}}` and never displayed,\n      IP rules, throttles shared across zones, one log line per call.\n    \n    \n    Verified on GKE and EKS for 0.6.0. Limits: pre-1.0; Claude Desktop/Cursor use a group key (no dynamic client\n    registration yet). Mostly written with Claude Code agents.\n    Docs https://bkraad47.github.io/ramen/ · repo https://github.com/bkraad47/ramen",
+    "developer": "Ok_Plum3595",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

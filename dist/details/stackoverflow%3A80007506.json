@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007506",
   "sourceItemId": "80007506",
+  "fetchedAt": "2026-10-04T02:56:15.887Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007506/pod-oomkilled-at-2gi-limit-when-loading-1gb-sentence-transformers-onnx-model-p",
   "detail": {
     "longDescription": "I have a FastAPI service that computes semantic similarity between a user query and precomputed reference embeddings. The query embedding must be generated at request time using a multilingual SentenceTransformers model, with ONNX inference on CPU. The container is running under a 2 GiB Kubernetes memory limit and is terminated with OOMKilled while loading the model. Simplified runtime image: FROM python:3.11-slim ENV OMP_NUM_THREADS=2 \\ TOKENIZERS_PARALLELISM=false \\ HF_HOME=/app/.hf_cache RUN pip install --no-cache-dir -r requirements.txt RUN python -c \"from sentence_transformers import SentenceTransformer; \\ SentenceTransformer('<model-name>', backend='onnx') COPY . . ENTRYPOINT [\"./run.sh\"] Kubernetes resources: resources: limits: cpu: 2000m memory: 2Gi requests: cpu: 1000m memory: 2Gi Inspection of the image shows that the Hugging Face cache and the installed PyTorch package account for much of its size. 1.1G /app/.hf_cache 656M site-packages/torch 143M site-packages/pyarrow 122M site-packages/scipy 119M site-packages/transformers Question: What would be the recommended approach to minimize memory usage and prevent OOM issues when deploying ONNX-based sentence embedding models in production? Any best practices are welcome.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "55"
+        "value": "63"
       },
       {
         "label": "状态",

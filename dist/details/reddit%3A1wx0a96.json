@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx0a96",
+  "sourceItemId": "1wx0a96",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1wx0a96/showoff_saturday_portfolio_analysis_app_i_built/",
+  "detail": {
+    "longDescription": "I'm Tom, solo dev, and this is my own project. It started as a script to check whether my stock picks beat an ETF and grew into a German-language web app called \"Finanzübersicht\", now in private beta.\n\nStack: Vue frontend, Python backend, hosted on my own server in Germany.\n\nThe parts that took the most work:\n\n* **CSV import** for Trade Republic exports, with a preview that marks each row as new, duplicate or error before anything is saved. Dedup runs on the transaction ID, so re-importing the same file is safe.\n* **Time-weighted return vs. a custom benchmark**: either a single ETF or a mix of up to 5 building blocks. The headline is rendered as a sentence (\"Du läufst hinter dem Markt mit -2,07 pp\") instead of making you read a chart first.\n\nThere's also a Monte Carlo simulation, which shows a warning when the price history is too short to be meaningful.\n\nPrice and fundamentals data come from Yahoo Finance, FMP and OpenFIGI, with no guarantee. No real-time prices, no bank connection, not open source. The UI is German with some English terms still mixed in.\n\nScreenshots are from a demo portfolio.\n\nI'd like feedback on the dashboard layout and on the import preview flow. Does the duplicate/error marking read clearly?\n\n[https://finanzuebersicht-landing.vercel.app/](https://finanzuebersicht-landing.vercel.app/)",
+    "developer": "Mechanicel",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

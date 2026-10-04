@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwetcu",
+  "sourceItemId": "1wwetcu",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wwetcu/question_of_resource_allocation_of_multiple_spark/",
+  "detail": {
+    "longDescription": "Currently, a Spark application should manage its own executors, which means that in order to run multiple Spark applications, one needs to split the cluster into smaller sections or attach more compute nodes, etc. Usually this dynamic allocation is the job of resource manager (such as Kubernetes).\n\nIf the resource manager can quickly find or create new compute nodes for a new Spark application, this is good. However, in a busy cluster where multiple Spark applications can compete for resources, the resource allocation can take some time and become an overhead (at least in theory).\n\nI wonder if this is a real problem in running Spark applications in production.\n\nFor example, is there a realistic environment where short running Spark jobs (each requiring its own driver) arrive frequently?",
+    "developer": "ForeignCapital8624",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

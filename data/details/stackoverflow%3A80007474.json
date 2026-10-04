@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80007474",
+  "sourceItemId": "80007474",
+  "sourceUrl": "https://stackoverflow.com/questions/80007474/how-to-make-two-attr-s-instances-equal-each-other-in-this-code",
+  "detail": {
+    "longDescription": "I’m using shapely 2.1.2 and attrs 26.1.0, with the classic attr API. I wrote a Rect class to represent a rotated rectangle, but I’m having trouble making two Rect s with different rotations but same final shape to evaluate equal to each other. Minimum Reproducible Example: from typing import Union from functools import cached_property import attr from shapely.geometry import Point, Polygon from shapely.affinity import rotate @attr.s(frozen=True) class Rect: # raw (unrotated) polygon raw_polygon = attr.ib() # type: Polygon # degrees of clockwise rotation about origin to apply rotation = attr.ib(default=0) # type: Union[int, float] # final, rotated polygon @cached_property def polygon(self) -> Polygon: return rotate( self.raw_polygon, -1 * self.rotation, # negative means clockwise self.raw_polygon.centroid ) def __eq__(self, other): if not isinstance(other, type(self)): return NotImplemented return self.polygon == other.polygon def __ne__(self, other): if not isinstance(other, type(self)): return NotImplemented return self.polygon != other.polygon def __hash__(self): return hash(self.polygon) poly = Polygon([(0, 0), (4, 0), (4, 2), (0, 2)]) rect1 = Rect(poly, rotation=0) rect2 = Rect(poly, rotation=360) print(rect1 == rect2) # should be True, because # rotating 0deg is same as 360deg Output: False EDIT 1: As @jonrsharpe noted, the proper Minimum Reproducible Example should just be comparing two Shapely polygons: from shapely import Polygon from shapely.affinity import rotate poly = Polygon([(0, 0), (4, 0), (4, 2), (0, 2)]) rect1 = rotate(poly, -0, poly.centroid) rect2 = rotate(poly, -360, poly.centroid) print(rect1 == rect2) print(rect1.equals(rect2)) Except that prints True : True True So attrs must have something to do with the problem. EDIT 2: People seem to be getting caught on how I need to use mod 360 for rotation, or Polygon.equals instead of == . So here is another example. Run this with the original Rect class: from shapely.affinity import box poly1 = box(-1, -2, 1, 2) rect1 = Rect(poly1, rotation=0) poly2 = box(-2, -1, 2, 1) rect2 = Rect(poly2, rotation=90) print(rect1 == rect2) # expect True, because # the first Rect is just the second # rotated 90 degrees Output: False And without Rect class, just Shapely: poly1 = box(-1, -2, 1, 2) rect1 = rotate(poly1, -0, poly1.centroid) poly2 = box(-2, -1, 2, 1) rect2 = rotate(poly2, -90, poly2.centroid) print(rect1 == rect2) Output: True",
+    "developer": "Train-Case",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "122"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

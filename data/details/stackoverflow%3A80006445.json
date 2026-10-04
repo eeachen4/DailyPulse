@@ -5,9 +5,9 @@
   "fetchedAt": "2026-09-30T02:24:30.163Z",
   "sourceUrl": "https://stackoverflow.com/questions/80006445/ansible-lookup-plugin-to-query-the-inventory",
   "detail": {
-    "longDescription": "I would like to create a Lookup plugin that queries the inventory to gather some data on hosts and format them. I tried a jinja expression but I found the solution was convoluted and a pain to put together. Python code offers much more leeway to achieve that and plugin can be fast to code. So far, I came up with the following code but I don't know how to access the inventory I tried through the variables dict but apparently it is fed only contextually and variables.hostvars can end up being None class LookupModule(LookupBase): def run( self, terms: list[Any], variables: dict[str, Any] | None = None, **kwargs: Any, ) -> list[dict[str, str]]: self.set_options( var_options=variables, direct=kwargs) if variables is None: raise AnsibleError( \"The Ansible variable context is unavailable\") groups = variables.get(\"groups\") hostvars = variables.get(\"hostvars\") if groups is None: raise AnsibleError( \"The Ansible variable 'groups' is None\") if hostvars is None: raise AnsibleError( \"The Ansible variable 'hostvars' is None\") ... Here is the playbook I used to do some testing - name: Gather facts on reachable machines hosts: all gather_facts: yes tasks: - ansible.builtin.debug: msg: \"Gathering facts\" - name: Debug hosts: localhost gather_facts: yes tasks: - name: debug lb backends run_once: true vars: lb_backends_443: \"{{ query( 'lde_lb_backends', group='rc1_lb_443', ipv4_only=true) }}\" ansible.builtin.debug: var: \"{{ avar }}\" loop: - lb_backends_443 loop_control: loop_var: avar So how do you access the whole inventory from a plugin, here a lookup plugin because it seemed appropriate ?",
+    "longDescription": "I would like to create a Lookup plugin that queries the inventory to gather some data on hosts and format them. I tried a jinja expression but I found the solution was convoluted and a pain to put together. Python code offers much more leeway to achieve that and plugin can be fast to code. So far, I came up with the following code but I don't know how to access the inventory I tried through the variables dict but apparently it is fed only contextually and variables.hostvars can end up being None class LookupModule(LookupBase): def run( self, terms: list[Any], variables: dict[str, Any] | None = None, **kwargs: Any, ) -> list[dict[str, str]]: self.set_options( var_options=variables, direct=kwargs) if variables is None: raise AnsibleError( \"The Ansible variable context is unavailable\") groups = variables.get(\"groups\") hostvars = variables.get(\"hostvars\") if groups is None: raise AnsibleError( \"The Ansible variable 'groups' is None\") if hostvars is None: raise AnsibleError( \"The Ansible variable 'hostvars' is None\") ... Here is the playbook I used to do some testing - name: Gather facts on reachable machines hosts: all gather_facts: yes tasks: - ansible.builtin.debug: msg: \"Gathering facts\" - name: Debug hosts: localhost gather_facts: yes tasks: - name: debug lb backends run_once: true vars: lb_backends_443: \"{{ query( 'lde_lb_backends', group='rc1_lb_443', ipv4_only=true) }}\" ansible.builtin.debug: var: \"{{ avar }}\" loop: - lb_backends_443 loop_control: loop_var: avar So how do you access the whole inventory from a plugin, here a lookup plugin because it seemed appropriate ? EDIT : As suggested by U880D, my question deserves some clarifications because I'm confusing Inventory and Facts and this could be misleading about what I'm trying to achieve. Here are the jinja2 expressions I'm using, that require information from both inventory and facts to work. Inside the jinja templating engine, we do have access to facts, magic variables, and inventory dns_entries_str: | {% set result = [] %} {% for host in groups['rke2_clusters'] %} {% set hostvar = hostvars[host] %} {% set _ = result.append({'ipv4': hostvar.ansible_default_ipv4.address|default('noip;('), 'fqdn': hostvar.ansible_fqdn|default(\"<error>\")}) %} {% endfor %} {{ result | to_json}} # converting it back to object dns_entries_jway: \"{{ dns_entries_str | from_json }}\"",
     "developer": "creatldd1 creatldd1",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "106"
+        "value": "131"
       },
       {
         "label": "状态",

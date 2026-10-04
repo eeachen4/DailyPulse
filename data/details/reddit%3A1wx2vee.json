@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx2vee",
+  "sourceItemId": "1wx2vee",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wx2vee/we_built_a_computeruse_api_that_cuts_tokens_by_up/",
+  "detail": {
+    "longDescription": "We just opened our API and I'd like feedback from people building agents.\n\nMost computer-use agents work screenshot by screenshot. The model looks at the screen, picks one click, looks again, picks the next one. That burns tokens, it's slow, and when the UI moves a few pixels the run falls over. And you still have to run the VMs, display drivers and harness yourself.\n\n**What we did differently**  \nSai - our computer-use agent - doesn't re-plan every step from scratch. It compiles the plan into self-healing code that survives UI changes. When a task repeats, it reruns that code instead of reasoning through each screen again. On repetitive tasks that saves up to 90% of tokens.  \nIt's also accurate. On OSWorld 2.0 (108 hard, real desktop tasks), Sai scored 73% at $15.70 per task. For comparison, Claude Opus 5 scored 70.6% at $23.70 and GPT-5.6 Sol scored 62.6% at $26.62. So it's the top score at about two-thirds of the cost.\n\n**How to Start**  \nSign in at platform and create an API key. The free plan includes a cloud computer. \n\n**Where it fits**  \nAnything your agent needs to do in a GUI that has no API: legacy desktop apps, Excel, internal tools, form-heavy web portals, data entry.  \nThe research behind it is open source too. Agent S (ICLR 2025, about 12k stars on GitHub) was the first agent to pass human-level performance on OSWorld.\n\nWould love to receive feedback and use cases!",
+    "developer": "AdFluid9823",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

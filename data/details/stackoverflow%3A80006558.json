@@ -4,13 +4,13 @@
   "sourceItemId": "80006558",
   "sourceUrl": "https://stackoverflow.com/questions/80006558/why-does-hashlib-declaration-location-matter-in-python",
   "detail": {
-    "longDescription": "I created a set of test files that looks like this. ./ ├── a │ ├── file1.txt │ └── file3.txt ├── b │ ├── file2.txt │ └── file4.txt Where the contents of file1 and file4 are exactly the same (via cp ). When I run a script in python to generate their hashes, I get different behavior depending on the location of the hashlib declaration. Working example: import hashlib import glob PATH = \"/home/wes/Documents/foldertest/\" # md5 = hashlib.md5() for eachfile in glob.glob(PATH + '*/*'): md5 = hashlib.md5() with open(eachfile, 'rb') as infile: data = infile.read() md5.update(data) print(md5.hexdigest()) produces the output: 5149d403009a139c7e085405ef762e1a 3d709e89c8ce201e3c928eb917989aef 60b91f1875424d3b4322b0fdd0529d5d 5149d403009a139c7e085405ef762e1a But this script: import hashlib import glob PATH = \"/home/wes/Documents/foldertest/\" md5 = hashlib.md5() for eachfile in glob.glob(PATH + '*/*'): # md5 = hashlib.md5() with open(eachfile, 'rb') as infile: data = infile.read() md5.update(data) print(md5.hexdigest()) produces incorrect output: 5149d403009a139c7e085405ef762e1a 0c5a1e3bcd9f8636a73d424b1e68dd3b febdf731804fc46d60a4378888a32451 18a68ddeeb0ea523c8560108b99e1774 What happens to the hash of file4 when I change move the location of the declaration?",
+    "longDescription": "I created a set of test files that looks like this. ./ ├── a │ ├── file1.txt │ └── file3.txt ├── b │ ├── file2.txt │ └── file4.txt Where the contents of file1 and file4 are exactly the same (via cp ). When I run a script in python to generate their hashes, I get different behavior depending on the location of the hashlib.md5() assignment. Working example: import hashlib import glob PATH = \"/home/wes/Documents/foldertest/\" # md5 = hashlib.md5() for eachfile in glob.glob(PATH + '*/*'): md5 = hashlib.md5() with open(eachfile, 'rb') as infile: data = infile.read() md5.update(data) print(md5.hexdigest()) produces the output: 5149d403009a139c7e085405ef762e1a 3d709e89c8ce201e3c928eb917989aef 60b91f1875424d3b4322b0fdd0529d5d 5149d403009a139c7e085405ef762e1a But this script: import hashlib import glob PATH = \"/home/wes/Documents/foldertest/\" md5 = hashlib.md5() for eachfile in glob.glob(PATH + '*/*'): # md5 = hashlib.md5() with open(eachfile, 'rb') as infile: data = infile.read() md5.update(data) print(md5.hexdigest()) produces incorrect output: 5149d403009a139c7e085405ef762e1a 0c5a1e3bcd9f8636a73d424b1e68dd3b febdf731804fc46d60a4378888a32451 18a68ddeeb0ea523c8560108b99e1774 What happens to the hash of file4 when I change move the location of the assignment?",
     "developer": "WesH",
     "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,7 +18,7 @@
       },
       {
         "label": "浏览",
-        "value": "45"
+        "value": "134"
       },
       {
         "label": "状态",

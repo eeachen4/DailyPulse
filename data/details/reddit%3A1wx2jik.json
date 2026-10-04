@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx2jik",
+  "sourceItemId": "1wx2jik",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wx2jik/are_amd_gpus_finally_underrated_for_llm_inference/",
+  "detail": {
+    "longDescription": "Disclosure: I run Kitani AI, an open model inference provider.\n\nWe've been experimenting a lot with AMD GPUs lately, and I'm starting to think the gap between AMD and NVIDIA for inference is a lot smaller than people assume once the software stack is actually optimized.\n\nWe've been working on optimized kernels and serving configs for some of the newer MoE/open models. The economics have gotten good enough that we're currently serving MiMo V2.6 below Xiaomi's own standard API pricing:\n\nMiMo V2.6 Pro:  \n$0.425/M input  \n$0.825/M output\n\nMiMo V2.6 Flash:  \n$0.125/M input  \n$0.25/M output\n\nWe've also been experimenting with GLM 5.3 Flash/Uncensored and other sparse models, where the relatively small number of active parameters makes the hardware economics especially interesting.\n\nAfter the testings we've done, what's surprising wasn't just the tok/s. Memory capacity/bandwidth + newer ROCm kernels can make AMD extremely competitive on cost per generated token, especially when you're batching instead of optimizing purely for a single user's TPS.\n\nObviously NVIDIA still has the much more mature ecosystem and there are workloads where CUDA is just easier.\n\nBut for people actually running production inference: has anyone else seriously tested MI300X/MI355X against H100/H200/B200 lately? It's definitely a lot cheaper and can make a inference platform a lot more profitable easily. \n\nI'm curious what your real cost/token and throughput looked like after optimization, rather than just comparing GPU hourly rental prices. ",
+    "developer": "bakatristan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx1lnu",
+  "sourceItemId": "1wx1lnu",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wx1lnu/i_made_my_version_of_piopencode/",
+  "detail": {
+    "longDescription": "It's called Jin: a boring, minimalist AI agent. It's at v0.6 right now, and I'm still building it out.\n\nBefore Jin, I used Claude Code, OpenCode, pi, and omp. I'm not going to trash them, but each one didn't work for me for its own reasons.\n\nI'd rather explain a few design decisions I made:\n\n\\- The 3 most popular API standards instead of support for hundreds of providers. With OpenCode, pi, and omp, a new model often comes out before the providers or plugins are updated, so you have to wait. Jin makes you use a proxy for this instead. I use the easyclipoxyapi desktop app.\n\n\\- Skills, MCPs, plugins -> prompts. In Jin, if you want to reuse a prompt, you type \\`#prompt\\`. There are also hooks: prompts injected into the system prompt at the start of a session. If you need an MCP, install its CLI client and describe how to use it in a hook. The agent will call it through bash.\n\n\\- Async. Basically, background tasks. Jin can start your \\`npm run dev\\` and keep it running. The cooler part is that the agent can launch itself through async, which gives you ready-made subagents.\n\n\n\nThe point of Jin is control, a minimal set of concepts, and stable behavior in the unstable world of AI.\n\nHere's the repo. I'd love your feedback:\n\n[https://github.com/ethanhamilthon/jin](https://github.com/ethanhamilthon/jin)",
+    "developer": "aldapsiger",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

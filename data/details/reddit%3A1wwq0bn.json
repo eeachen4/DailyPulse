@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwq0bn",
+  "sourceItemId": "1wwq0bn",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1wwq0bn/setting_up_my_first_service_and_stumbling_at_the/",
+  "detail": {
+    "longDescription": "Running Desktop Docker on Windows 11, running Seerr but I can't access it from another device on my network. Trying to access it using local IP 10.0.0.XX:5055\n\n* Its running fine on the host computer, but can't access it from another device on my network using 10.0.0.XX:5055\n* I can access my other services (radarr and sonarr) this way but they are not in docker\n* Tailscale is running on host computer and I can access the docker service remotely through tailscale (both inside and outside of my network)\n* verified docker is listening on 0.0.0.0.0, checked via CMD \n* C:\\WINDOWS\\system32>netstat -ano | findstr LISTEN | findstr :5055\n  * TCP    0.0.0.0:5055           0.0.0.0:0              LISTENING       5192\n  * TCP    [::]:5055              [::]:0                 LISTENING       5192\n  * TCP    [::1]:5055             [::]:0                 LISTENING       11328\n* added a new inbound rule in windows defender (TCP -> Port 5055 -> allow connection -> Private and Doman checked)\n\n\nWhat am I missing?",
+    "developer": "adblink",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

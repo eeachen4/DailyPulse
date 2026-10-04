@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wwhnsx",
+  "sourceItemId": "1wwhnsx",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wwhnsx/our_healthy_replicas_caused_an_outage_during_a/",
+  "detail": {
+    "longDescription": "Someone told me about a rolling deploy where the new build and an old one ended up behind the same load balancer. Every client hung until they rolled back. Both replicas passed health checks, so nothing alerted.\n\n\n\nI reproduced it (two builds behind nginx, a few hundred concurrent clients):\n\n\n\n\\- Old build returns an error for what it doesn't understand → requests fail fast, clients retry, mostly fine.\n\n\\- Old build accepts the request and never answers → every unlucky client hangs until its timeout. It looks like \"slowness\", not errors.\n\n\n\nSame deploy, same health checks, very different outage. And a normal load test never sees it, because each version is fine on its own.\n\n\n\nHow do you guard against this?\n\nVersion check at connect time, draining, version-aware routing, or just fast rollouts?\n\n\n\n(I'm building an open-source tool that tests this; link in comments if anyone wants it.)\n\n",
+    "developer": "AKM121001",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

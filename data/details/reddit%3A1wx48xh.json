@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wx48xh",
+  "sourceItemId": "1wx48xh",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wx48xh/local_voice_assistant_that_picks_its_ollama_model/",
+  "detail": {
+    "longDescription": "Sharing a side project in case the setup is useful to someone. It's a Flask app that answers questions with a local model through Ollama, grounds the answer with a quick DuckDuckGo search, reads the reply out loud with a local TTS server, and drives an Arduino so you can see when it's working.\n\nThe part people might find handy: instead of hardcoding a model, it reads total VRAM from `nvidia-smi` at startup and picks a tier, so the same code runs on a small laptop GPU or a big desktop card:\n\n```python\nGPU_TIERS = [\n    {\"min_vram\": 24, \"model\": \"qwen2.5:32b\",        \"num_ctx\": 16384, \"search_results\": 8},\n    {\"min_vram\": 16, \"model\": \"qwen2.5:14b\",        \"num_ctx\": 16384, \"search_results\": 7},\n    {\"min_vram\": 8,  \"model\": \"llama3.1:8b\",        \"num_ctx\": 8192,  \"search_results\": 5},\n    {\"min_vram\": 0,  \"model\": \"qwen2.5-coder:1.5b\", \"num_ctx\": 4096,  \"search_results\": 4},\n]\n```\n\nThe full list goes up to qwen2.5:72b for 48 GB, and an `OVERRIDE_MODEL` env var skips detection if you want a specific model. It also scales how many search results go into the prompt, so smaller models don't get flooded with context.\n\nVoice is OmniVoice Studio, which has an OpenAI-compatible local API. If you have less than ~5 GB VRAM free, its default engine may not fit next to the LLM; switching it to KittenTTS (CPU-only) works there.\n\nThe status display is an Arduino Uno: Python sends one byte over serial (`B` researching, `Y` debating, `W` done), and blue/yellow LEDs pulse and a servo sweeps while it's busy.\n\nCode: https://github.com/PrimeEmre/Jarvis-Hardware-Program--local\n\nLonger write-up with setup steps: https://blog.emreguzel.ca/2026/07/19/architecting-autonomous-ai-agents-with-hardware-integration/\n\nCurious how others handle model choice on mixed hardware. Is VRAM tiering overkill compared to just letting Ollama offload layers to RAM?",
+    "developer": "PrimeEmre",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
