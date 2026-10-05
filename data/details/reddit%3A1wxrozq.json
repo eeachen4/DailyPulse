@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxrozq",
+  "sourceItemId": "1wxrozq",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wxrozq/for_dual_dgx_spark_users_glm_53_flash_got_a_50/",
+  "detail": {
+    "longDescription": "For the last few months, I ran DeepSeek v4.0 flash (NVFP4). First `0731`, then `visionexp` because it was a free improvement. I got around 65 tps decode and almost 2k prefill, and ran 4-5 agents in parallel, totalling around 200 tps cumulative decode. Because of this, I did not feel like switching to GLM 5.3 because it would half the decode and prefill, did not scale well with multiple agents, and had a repetition bug a lot of people complained about.\n\nUntil a few days ago, when the [latest version of this recipe](https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark) dropped; a 50-90% decode improvement. So I took the plunge, and wow, am I impressed.\n\nIt's more intelligent than the new DeepSeek v4.1 flash (that does NOT run on dual DGX Sparks), and it's even faster than DeepSeek v4.0 flash in decode. Only a slight drop in prefill, which I'm more than happy to take in exchange;\n\n|`visionexp-final` (recorded)|`glm53-low`|Δ|\n|:-|:-|:-|\n|B1 count-to-300|92.5|95.9|\\+4%|\n|B1 bulk SQL INSERT|88.3|**97.2**|**+10%**|\n|B2 chat|38.7|42.5|\\+10%|\n|B2 count|92.8|96.0|\\+3%|\n|B2 code|63.5|69.3|\\+9%|\n|B2 prose|32.8|**37.1**|**+13%**|\n|B2 tool|79.8|85.1|\\+7%|\n|B2 battery mean|61.5|66.0|\\+7%|\n|B2 accepted tok/step|3.26 **of 6** (54%)|3.55 **of 8** (44%)|see note|\n|B3 prefill @1.5K|1738|**1376**|**-21%**|\n|B4 prefill @32K|1902|**1576**|**-17%**|\n|B4 prefill @128K|1758|**1578**|**-10%**|\n|B4 decode @32K|41.1|44.2|\\+7%|\n|B4 decode @128K|49.5|47.1|\\-5%|\n|B5 c1 aggregate|91.7|90.1|\\-2%|\n|B5 c2 aggregate|45.4|**51.4**|**+13%**|\n|B5 c4 aggregate|63.4|58.6|\\-7%|\n|B5 c6 aggregate|79.1|77.5|\\-2%|\n\n| B7 soak (40 min at c4) | 522 req, 0 err, 87.4 agg | **503 req, 0 err, 0 soft-empty, 83.6 agg** | −4% | | B8 byte-stable probes | 8/8 | 6/8 | worse | | B8 garble gate | 30/30 clean | 30/30 clean | = | | B8 non-Latin / U+FFFD | not measured | **3/3 clean, 0 U+FFFD** | new gate | | KV pool | 1,988,929 tok @ gmu 0.85 | 560,362 tok (6 GiB/rank pin) | −72% | | NRestarts through the pass | 0 | **0** | = |\n\nI've tested it for a few days now, both for technical coding, devops/sysadmin and also vision (to recognize some plants), and it is better than I hoped for. Basically Claude Opus 4.8 level. Slower of course because it has to think a lot more, but good enough to comfortably leave it chugging for hours on tickets without worry of derailing. I don't see a reason NOT to upgrade, so have a try and enjoy!",
+    "developer": "swiebertjee",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

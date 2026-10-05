@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxod8o",
+  "sourceItemId": "1wxod8o",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wxod8o/let_the_same_model_write_the_tests_and_the_code/",
+  "detail": {
+    "longDescription": "Classic agent setup, I built it by the book: one call writes a contract, one writes tests, one writes the code, a script runs the tests against the code, a repair step patches whatever fails. Feels like engineering.\n\nThen I did the boring check nobody does. Fed every generated test suite a known-correct reference solution. 129 of 168 rejected it. 77%.\n\nAnd the tests weren't lazy. Average mutation score 0.965, they caught almost every mechanically broken version of the code. Of the suites with a perfect 1.0 mutation score, 81% still failed the correct answer. Thorough, confident, and testing the wrong spec.\n\nFavorite case. Task: count vowels. The code forgot to lowercase. The tests had a mixed-case check, \"AaEeIiOoUu\", and expected 5. Correct answer is 10, the buggy code returns 5. So the tests and the bug shared the same misunderstanding, the check said PASS, repair never even ran. Only an outside test with \"HELLO\" caught it.\n\nRepair, for completeness: 67 attempts went to repair, and 50 of those were already correct code that the tests had falsely rejected. Of the 17 real bugs, repair fixed 1. It never broke working code, I'll give it that.\n\nFalse rejects by model: llama-3.2-1b 0.92-1.0, qwen2.5-coder-1.5b 0.71-0.78, qwen3-1.7b 0.47-0.65, smollm2-360m 1.0. Better model, fewer false rejects, but even the best one threw out correct code about half the time.\n\nThe whole pipeline also didn't beat the dumb baseline. At a similar token budget, sampling the code 4 times got the same 0.875 as the pipeline without repair, on fewer tokens, and 8 samples got 0.958, higher than anything the pipeline reached. In fairness, that baseline counts a task solved if any sample passes the reference tests, so in real life it still needs a judge to pick the winner. Which brings it right back to the tests.\n\nCaveats: small local models (360M to 1.7B), 6 coding tasks, 785 calls on a 6GB card. Bigger models write better tests, how much better this doesn't say.\n\nWhat I do since: the check that decides comes from the spec or from examples a human wrote, never from the model that wrote the code. A model can propose tests. It doesn't get to be the judge.\n\nReport with the per-model numbers is in the comments, links in posts aren't allowed here.\n\nAnyone grading agent output with model-written tests in production? Ever fed them a known-good answer?\n\n(not a native speaker, an LLM helped with the English)",
+    "developer": "deadatreides1",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

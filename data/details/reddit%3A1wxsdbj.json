@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxsdbj",
+  "sourceItemId": "1wxsdbj",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1wxsdbj/i_built_a_free_open_source_offline_dictation_app/",
+  "detail": {
+    "longDescription": "Disclosure first VoxScribe is free and open source MIT. There's an optional $14 one time Pro upgrade for extras, but the whole core app is free with no account. Link is at the bottom.\n\nWhat it is: you hold a hotkey anywhere in Windows, talk, release, and the text is typed into whatever app has focus. Speech recognition runs locally on your PC so your audio is never uploaded.\n\nHow it went. The first version used automatic speech detection, and it was a mess on quiet mics. It missed real speech and triggered on noise which made the model invent sentences. I dropped it for plain hold to talk which turned out to be more reliable and easier to understand.\n\nThen real hardware broke everything I thought was working. A Bluetooth headset gave almost no signal until I switched audio drivers. A laptop mic crashed because I forced the wrong sample rate. Text got scrambled in web chat boxes until I slowed down the typing. Windows Defender flagged the installer until I turned off a packing option. Each of those taught me to test on more than my own machine.\n\nIt has grown since you can import audio and video files and get text or .srt subtitles, there are spoken commands for punctuation and undo, about 28 languages with a translate to English mode, and custom word replacements.\n\nLast week a user reported it got stuck on loading after a failed model download. I fixed that and then read through my whole codebase and found eight more problems, so the next version repaired those too. I also corrected my own privacy wording, because the app does send one anonymous launch ping that you can switch off in Settings.\n\nWhere it stands about 80 downloads, around 20 people who have actually opened it and one person paying for Pro. So I'm learning more from feedback than from numbers.\n\nWhat I'd like to know from you: Does it work in your apps, and which ones fail? How is the accuracy with your accent and mic? Is there anything that would stop you from trying it, like the unsigned installer warning? And what would make you actually use it every day?\n\n\n\nSource and download: [https://github.com/ahmedhmam1994/voxscribe-ai-voice-dictation](https://github.com/ahmedhmam1994/voxscribe-ai-voice-dictation)",
+    "developer": "Strong-Leg-9636",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

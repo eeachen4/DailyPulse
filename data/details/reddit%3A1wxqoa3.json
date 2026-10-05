@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxqoa3",
+  "sourceItemId": "1wxqoa3",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wxqoa3/glm47_benchmark_compared_mxfp4_vs_q4_k_m_vs_q4_k/",
+  "detail": {
+    "longDescription": "Using llama.cpp Ubuntu Vulkan prebuilt binary and the Acemagic miniPC S3A using an AMD Ryzen 7 6800H is a high-performance 8-core, 16-thread mobile processor launched on January 4, 2022, built on the 6nm Zen 3+ architecture loaded with 64GB of DDR5 RAM. It features a 3.2 GHz base clock, a 4.7 GHz boost clock, a 45W TDP, and powerful integrated (iGPU) Radeon 680M graphics.\n\n# Tested Models\n\nBased on the benchmark commands and `llama-bench` output labels:\n\n1. `GLM-4.7-Flash-MXFP4_MOE.gguf` *(Reported: deepseek2 30B.A3B MXFP4 MoE | 15.79 GiB)*\n2. `GLM-4.7-Flash-UD-Q4_K_XL.gguf` *(Reported: deepseek2 30B.A3B Q4\\_K - Medium | 16.31 GiB)*\n3. `GLM-4.7-Flash-Q4_K_M.gguf` *(Reported: deepseek2 30B.A3B Q4\\_K - Medium | 17.05 GiB)*\n\n>**Note:** The filename contains `GLM-4.7`, but `llama-bench` reads the internal GGUF header and reports `deepseek2 30B.A3B`. The benchmark data corresponds to a \\~30B parameter MoE architecture.\n\n# Average Performance Results\n\n|Model Filename|Reported Name|Size|Avg Prompt Processing (pp512) t/s|Avg Token Gen (tg128) t/s|\n|:-|:-|:-|:-|:-|\n|`GLM-4.7-Flash-MXFP4_MOE.gguf`|deepseek2 30B.A3B MXFP4 MoE|15.79 GiB|**258.36** t/s|11.66 t/s|\n|`GLM-4.7-Flash-Q4_K_M.gguf`|deepseek2 30B.A3B Q4\\_K - Medium|17.05 GiB|218.22 t/s|**12.09** t/s|\n|`GLM-4.7-Flash-UD-Q4_K_XL.gguf`|deepseek2 30B.A3B Q4\\_K - Medium|16.31 GiB|160.31 t/s|**13.13** t/s|\n\n*(Values are arithmetic means of 3 runs.* `fa on` *= Flash Attention enabled)*\n\n# Summary Analysis\n\n# 🔹 Hardware & Memory Context\n\n* **Device:** AMD Radeon Graphics (RADV REMBRANDT) Integrated GPU\n* **Architecture:** UMA (Unified Memory Access) with `fp16: 1`, `bf16: 0`, `fp4: 0`\n* **Implication:** The models (\\~16–17 GB) exceed typical iGPU VRAM, forcing offloading to system RAM. Performance is heavily bound by system memory bandwidth (\\~50–65 GB/s DDR5) and PCIe/NB link latency. The `fp4: 0` flag confirms native FP4 compute is unsupported, so MXFP4 is emulated or converted at runtime.\n\n# 🔹 Prompt Processing (pp512) vs Generation (tg128) Trade-off\n\n|Format|PP Speed|TG Speed|Best Use Case|\n|:-|:-|:-|:-|\n|**MXFP4 MoE**|🥇 Fastest (258 t/s)|🥉 Slowest (11.66 t/s)|Long context windows, RAG, document processing|\n|**Q4\\_K\\_M**|🥈 Balanced (218 t/s)|🥈 Balanced (12.09 t/s)|General-purpose chat, mixed workloads|\n|**Q4\\_K\\_XL**|🥔 Slowest (160 t/s)|🥇 Fastest (13.13 t/s)|Fast response generation, streaming UIs|\n\n* **Why MXFP4 excels in PP:** Despite lacking native FP4 support, the MoE structure and extreme quantization drastically reduce active compute and memory reads during attention scoring. Flash Attention further optimizes cache locality for prompt parsing.\n* **Why Q4\\_K\\_XL leads in TG:** Generation is purely memory-bandwidth bound. The Q4\\_K\\_XL quantization layout appears better optimized for the RADV driver's memory prefetching, yielding \\~13% faster token streaming than Q4\\_K\\_M and \\~12% over MXFP4.\n\n# 🔹 Consistency & Stability\n\n* All runs show extremely tight standard deviations (`±0.02–0.06 t/s` for TG), indicating stable thermal/power delivery and no background interference.\n* **Outlier:** Q4\\_K\\_XL's first run showed high PP variance (`±17.76 t/s`), likely due to cold cache/memory allocation overhead. Subsequent runs stabilized (`±1.11` and `±1.54`), typical of VM/page cache warmup.\n\n# 🔹 Recommendations\n\n1. **For Chat/Streaming:** Use `Q4_K_XL`. Slightly slower prompt processing is negligible in typical conversational turns, but faster TG improves perceived latency.\n2. **For RAG/Long Context:** Use `MXFP4_MOE`. The \\~60% PP speed boost dramatically reduces wait times for context loading, with minor TG impact being acceptable for batched or paused workflows.",
+    "developer": "tabletuser_blogspot",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

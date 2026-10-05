@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxk0a3",
+  "sourceItemId": "1wxk0a3",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wxk0a3/i_made_an_opensource_cli_that_finds_the_langchain/",
+  "detail": {
+    "longDescription": "I kept shipping LangChain agents with tools like `refund_order` or `run_sql` and had no real answer to \"what stops this tool from doing something it shouldn't?\" Prompt rules help most of the time, not every time, and nothing records what happened.\n\nSo I built CSL-Core. It works from the outside, without changing your prompts:\n\n* **Finds your agents and tools.** `cslcore venom` scans read-only: u/tool functions, `StructuredTool`, LangGraph nodes, plus OpenAI / Anthropic tool schemas, MCP servers and webhooks. It shows what each agent can reach, e.g. `inbound HTTP /webhooks/zendesk → support-agent → moves money`.\n* **Writes a policy per agent.** Money tools get a per-call ceiling and an approval threshold, command tools an allowlist, writes a folder scope. Every policy is checked with Z3 before it can go live.\n* **Wires it into your code, with a diff first.** It adds one decorator under LangChain's own u/tool:\n\n&#8203;\n\n    @_csl_guard.tool(\"refund_order\")\n    def refund_order(order_id: str, amount: int) -> str:\n        ...\n\nThe tool keeps its name, docstring and args schema, so LangChain sees the same tool. Each call is decided before the function runs; a blocked call raises before any money moves. `cslcore wire --undo` puts the file back exactly as it was.\n\n* **Starts in log mode.** Nothing is blocked, every call is recorded as allow or would-block, so you can see what the rules would do before you switch to block. `cslcore watch` shows the decisions live.\n* **CI.** `cslcore venom --check --fail-on-new-reach` fails a build when someone adds a tool that can move money, run commands or post somewhere without a rule.\n\n`pip install csl-core`, then `cslcore setup` in your repo. Read-only until you confirm each change; everything stays local.\n\nHonest limits: the default rules are strict, so expect to tune them before you switch a busy agent to block mode (that is what log mode is for). Tools that only exist as a schema, where your own code dispatches the call, need one `guard.check(...)` line instead of the decorator; it tells you where.\n\nTwo questions for people running LangChain agents in production:\n\n1. How do you limit what a tool can do today: inside the tool, in the prompt, or not at all?\n2. What would you want a policy to stop first?",
+    "developer": "Longjumping-End6278",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

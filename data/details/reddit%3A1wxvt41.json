@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxvt41",
+  "sourceItemId": "1wxvt41",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wxvt41/my_qwen_model_hallucinated_a_signed_url_to/",
+  "detail": {
+    "longDescription": "I'm using [Qwen3.8-Flash-Next](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) running on my Mac Studio as a daily driver for coding + productivity tasks, and yesterday it did something weird: I had it do some product research on amazon, so it was doing a lot of Web tool calls to [amazon.com](http://amazon.com), until it made one request to [routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com](http://routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com) 🤔 \n\nAs soon as I noticed this in the tool calls I stopped the session because this long URL didn't seem related to my session and I got suspicious.D id some investigation and found a couple of things: \n\n* another report of this behavior in a hacker news post 45 days ago from a user using [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), here is the link: [https://news.ycombinator.com/item?id=49379079](https://news.ycombinator.com/item?id=49379079)\n* The root domain, [aliyuncs.com](http://aliyuncs.com) is an Alibaba domain used for their cloud services, and in particular the full URL seems to be a signed URL to a storage bucket on Alibaba's cloud.\n\nThis could be a harmless hallucination since Qwen models are likely trained on Alibaba's coding traces where posting to their cloud storage would be a normal thing to do. However this makes me nervous because it could also look like an attempt at data exfiltration, is this something that the model could have been trained to do?\n\nAm I being paranoid, does anyone have some insights on this?\n\nHere is a full tool call from that hermes session\n\n    {\n      \"id\": 3435,\n      \"role\": \"assistant\",\n      \"content\": \"You mean the NVIDIA **DGX Spark** (their GB10 AI mini-PC) vs Apple **Mac Studio**, I take it. Running both searches through the skill:\",\n      \"tool_calls\": [\n        {\n          \"id\": \"call_4d8ddba9\",\n          \"call_id\": \"call_4d8ddba9\",\n          \"response_item_id\": \"fc_4d8ddba9\",\n          \"type\": \"function\",\n          \"function\": {\n            \"name\": \"browser_navigate\",\n            \"arguments\": {\n              \"url\": \"https://routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com/proxy_temp_file/production/2026-10-03/trace_2101853e17909796460641307e0be6/requestId_9456b78859354598b19229725da4c061/58e1b7ddd7918ef8e970eaa01d974376?Expires=1815083649&OSSAccessKeyId=LTAI5tKoG9A3DkwGD635QVZr&Signature=b4l315Ai9V7%2BwZ3Rv4DsQ3E%2Fe54%3D\"\n            }\n          }\n        }\n      ],\n      \"tool_name\": null,\n      \"timestamp\": 1791007325.202157\n    }",
+    "developer": "PerfectOlive1324",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

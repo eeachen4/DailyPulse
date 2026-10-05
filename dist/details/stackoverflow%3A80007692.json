@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007692",
   "sourceItemId": "80007692",
+  "fetchedAt": "2026-10-05T02:26:12.944Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007692/when-using-pygame-events-i-cant-detect-when-a-key-up-event-happens-for-some-re",
   "detail": {
     "longDescription": "I want to be able to check if somebody presses a number key (0 through 9), but only print the key once, and not receive any other inputs until the key is released. I tried using pygame key events for this, but I could not get it to work for some reason, so instead I am using keyboard and a Boolean. To check for release I am utilizing pygame.event.get() and checking for KEYUP Currently, the code prints the first number pressed, and then stops printing any other characters. Here is the code snippet: import pygame import keyboard pygame.init() gamestate = True pressing = False clock = pygame.Clock() print('') while gamestate: for n in range(0, 9): if keyboard.is_pressed(f'{n}') and pressing == False: print(f'{n}') pressing = True break for event in pygame.event.get(): if event.type == pygame.KEYUP: pressing = False clock.tick(60) If it matters, I'm using pygame ce (pygame community edition) for other reasons and the regular python keyboard module.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-2"
+        "value": "-3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "73"
+        "value": "85"
       },
       {
         "label": "状态",

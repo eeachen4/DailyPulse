@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxoqqp",
+  "sourceItemId": "1wxoqqp",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wxoqqp/i_built_a_local_knn_cache_in_front_of_jev_numbers/",
+  "detail": {
+    "longDescription": "    Disclosure first: I'm the author (Mahmoud, ghraibeh on GitHub). I'm not affiliated with TypeSafe AI. I know this sub is tired of Jev hype, so I'll lead with the limits.\n    \n    What it is: semantic caching plus nearest-neighbour voting. It isn't understanding and it isn't new. It's an MIT Python library and runs on CPU only. Inputs are embedded locally with bge-small-en-v1.5. If the nearest stored input is at least 0.90 similar and the 5 neighbours agree, it answers locally. Otherwise it asks Jev and remembers the answer.\n    \n    Benchmark caveat: these numbers are on BANKING77, with the dataset's gold labels standing in for Jev. That makes them a best case. No live Jev benchmark has been run yet.\n    - Warm (pre-filled): 87% of calls saved, 97.6% of local answers correct\n    - Cold (empty): 53% saved, 97.4% correct\n    \n    What doesn't work:\n    - No generalisation. After 548 new labels, accuracy on other unseen messages stayed at 93.7%.\n    - On Android tasks it got 33% of actions right on unseen tasks.\n    \n    Why use it if Jev is cheap? Not for money. Local answers take about 30–50 ms vs 250–550 ms for Jev, you hit the rate limit less, and repeated inputs stay on your machine.\n    \n    Credit: Jevstiller is the closest project. It trains a small model with a disagreement bound; this one has no training step. Also jevcache, GPTCache, FrugalGPT.\n    \n    Repo: https://github.com/ghraibeh/jev-saver\n    Demo: https://g-connect.space/jev-saver/\n    \n    Criticism welcome.\n    ",
+    "developer": "Aggressive-East-2815",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

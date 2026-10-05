@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49957752",
+  "sourceItemId": "49957752",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49957752",
+  "detail": {
+    "longDescription": "MapLibre Compose is a Kotlin library for putting interactive vector maps in Compose Multiplatform apps on Android, iOS, desktop, and web. It&#x27;s part of the MapLibre ecosystem, and isn&#x27;t tied to any map provider; you point it at any MapLibre style and tile source: commercial, free, or your own. - Docs: https:&#x2F;&#x2F;maplibre.org&#x2F;maplibre-compose&#x2F; - Code: https:&#x2F;&#x2F;github.com&#x2F;maplibre&#x2F;maplibre-compose - Live demo: https:&#x2F;&#x2F;maplibre.org&#x2F;maplibre-compose&#x2F;demo&#x2F; About two years ago, I started building a transit tracking app in Compose Multiplatform, and found there was no suitable map library for it with the level of customization I wanted. So, within my &quot;train-tracking-app&quot; repo, I started working on wrapping the MapLibre Android and iOS SDKs behind a common Compose API. Around the same time, the StreetComplete folks and MapLibre Native folks were looking for the same thing: a Compose SDK for MapLibre Native. I spun my wrapper out into a library, and so began my two year yak shaving quest to bring MapLibre maps to Compose Multiplatform. The SDK-wrapping approach got the first releases out quickly, but it didn&#x27;t age well. I could only expose what both supported, and each had its own slightly different design and API contracts, as they were not designed to be used together. And there was no such sdk at all for desktop. I knew I needed to go a layer down, build on the MapLibre Native C++ core underpinning those Android and iOS SDKs. I first did this with JNI, on desktop only, with the help of GLM-4.5 to navigate some graphics work that I was deeply unfamiliar with. This worked, but JNI was tedious and bug-prone, AWT&lt;&gt;Compose interop was limited, and the work stalled. Around this time, I also onboarded the project into the MapLibre organization. Earlier this year, I rebooted the native core wrapping effort. I designed a C API ( https:&#x2F;&#x2F;github.com&#x2F;maplibre&#x2F;maplibre-native-ffi ) wrapping the MapLibre Native C++ core, generated safe(ish) language bindings on top for KMP and many other languages (first with LLMs, now working on deterministic codegen), and rebuilt MapLibre Compose for desktop, Android, and iOS on that foundation. This cleared numerous blockers and bugs, and allowed me to bring the library to a feature-complete state. This work shipped in the StreetComplete iOS public beta recently ( https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49920160 ). Stadia&#x27;s Ferrostar navigation SDK builds on it now too ( https:&#x2F;&#x2F;stadiamaps.github.io&#x2F;ferrostar&#x2F; ). It&#x27;s pre-1.0. Android, iOS, and desktop wrap MapLibre Native. Kotlin&#x2F;JS still wraps MapLibre GL JS, and Kotlin&#x2F;Wasm support is awaiting Compose v1.13. If you&#x27;re interested in building map apps with Compose, I encourage you to try this out and share feedback as I&#x27;m working on refining the api surface before stabilization. Now, two years later, I&#x27;m getting back to working on my transit tracking app, which I hope to share on HN in a couple months.",
+    "externalUrl": "https://github.com/maplibre/maplibre-compose",
+    "developer": "sargunv",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

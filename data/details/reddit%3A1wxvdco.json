@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxvdco",
+  "sourceItemId": "1wxvdco",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wxvdco/i_built_a_retriever_for_sql_agents_that_drops_the/",
+  "detail": {
+    "longDescription": "A LangChain SQL agent usually gets the whole schema. On a big database that's a lot of tokens, and it also means the model sees tables the current user is not allowed to read. If it writes SQL against one, you either get a permission error or, with row-level security, a quiet \"no rows\" that looks like the data doesn't exist.\n\nI wrote `SchemagateRetriever` to fix both. For each question it returns only the few tables that matter, and it never returns one the caller has no grant for:\n\n```python\nfrom schemagate import Catalog, Principal\nfrom schemagate.integrations.langchain import SchemagateRetriever\n\ncat = Catalog().bootstrap(\"postgresql://localhost/app\")\ncat.restrict(\"hr_compensation\", [\"payroll\"])\n\nretriever = SchemagateRetriever(\n    catalog=cat,\n    top_k=6,\n    principal=Principal(\"okta:jdoe\", roles={\"finance\"}),\n)\ndocs = retriever.invoke(\"salary by employee\")   # hr_compensation is not in docs\n```\n\nGive the same caller the `payroll` role and `hr_compensation` comes back. Each document carries the table's DDL plus a `reason` (hybrid, vector, lexical, fk), so you can see why it was picked.\n\nIt's now listed in the LangChain integrations docs. Works on Postgres, Oracle, MySQL, SQL Server and SQLite, with no API key needed for the selection step itself.\n\n- `pip install \"schemagate[langchain]\"`\n- GitHub: https://github.com/ashishsinha1602/schemagate\n- Browser demo: https://ashishsinha1602.github.io/schemagate/\n\nDisclosure: it's my project, open source (Apache-2.0). Feedback welcome, especially from anyone running SQL agents on a schema with a few hundred tables.",
+    "developer": "Temporary_Papaya1058",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

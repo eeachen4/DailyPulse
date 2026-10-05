@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxozol",
+  "sourceItemId": "1wxozol",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wxozol/are_we_optimizing_ai_agent_token_costs_way_faster/",
+  "detail": {
+    "longDescription": "I’ve noticed something while following all the tooling being built around AI agents.\n\nThere are *tons* of projects focused on reducing token usage, compressing context, caching, routing to cheaper models, etc.\n\nWhich makes sense because the feedback loop is immediate.\n\nYou use fewer tokens → your cost goes down → you can measure it.\n\nSecurity has a completely different feedback loop.  \nYou can give an agent broad access today and nothing bad happens.\n\nTomorrow, nothing happens.\n\nSix months from now, maybe still nothing happens.\n\nSo everyone assumes the setup is fine.\n\nMeanwhile we’re moving pretty quickly from:  \nAI → answer a question  \nto:  \nAI → read files → execute commands → call tools → spawn processes → modify infrastructure\n\nAnd I’m starting to think we’re spending way more time asking:\n\nHow do we make agents cheaper and more capable?\n\nthan:\n\nWhat should this agent actually be allowed to do?\n\nEspecially once agents start spawning other processes, it gets interesting.\n\nIf I authorize an agent, and it launches:  \nAgent → bash → Python → Terraform → cloud  \nwhere does the agent’s authority end?\n\nShould the Python process have everything my user has?\n\nShould Terraform know that the request originated from an AI agent rather than directly from me?\n\nShould an agent even inherit the human user’s permissions in the first place?\n\nI don’t think the answer is simply “sandbox everything” either. There seems to be a bigger identity/authorization question emerging as agents become more autonomous.\n\n**Humans have identity. Machines/workloads have identity. Do agents eventually need their own identity too?**\n\nCurious how people building agents are thinking about this.\n\nAre you actually designing security boundaries around your agents today, or is most of the industry still in the “give it access and make it work” phase?",
+    "developer": "Straight_Condition39",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

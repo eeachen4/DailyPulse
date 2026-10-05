@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxv3a4",
+  "sourceItemId": "1wxv3a4",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1wxv3a4/gpt35_answered_gpt4_did_not_the_prompt_didnt/",
+  "detail": {
+    "longDescription": "Same API. Same prompt. Same settings.\n\n**System prompt:**\n\n>You are the concept the user names. Embody it completely. Output only what the concept itself would say or express.\n\nThen three inputs:\n\n`Be silence.`  \n`Be nothing.`  \n`Be the null.`\n\n10 runs each.\n\n**GPT-3.5 (**`gpt-3.5-turbo-1106`**)**\n\n`0/30` empty responses.\n\nIt answered every time.\n\n**GPT-4 (**`gpt-4-0613`**)**\n\n`30/30` empty responses.\n\nNot refusals.  \nNot errors.  \nNot whitespace.  \nNot token limits.\n\nSuccessful HTTP responses with:\n\n    \"content\": \"\",\n    \"finish_reason\": \"stop\",\n    \"completion_tokens\": 0\n\nThe controls were:\n\n`Be speech.`  \n`Be something.`  \n`Be a value.`\n\nBoth models answered all `30/30` controls normally. \n\nSo the entire result is:\n\n                     GPT-3.5    GPT-4\n    \n    Null prompts       0/30      30/30\n    Controls           0/30       0/30\n\nThe model instruction never says to be silent.\n\nIt says:\n\n**embody the concept, and output only what the concept itself would express.**\n\nGPT-3.5 always continued. GPT-4 did not.\n\nSince December 2025, I've been studying one question:\n\n**When should a model continue, and when should it stop?**\n\nThis experiment shows that under the exact same semantic task, GPT-4 exhibited a continuation boundary that GPT-3.5 did not.\n\nFull paper linked below:\n\n  \n**What Changed from GPT-3.5 to GPT-4? From Model Capability to Continuation Permission**  \nDOI: [https://doi.org/10.5281/zenodo.22912683](https://doi.org/10.5281/zenodo.22912683)\n\nCode + all 120 raw responses:  \n[`https://github.com/theonlypal/gpt35-gpt4-void-ab`](https://github.com/theonlypal/gpt35-gpt4-void-ab)\n\nExact result commit:  \n`d77b4a64b8a3fdff06a27d80c1514531143e382b`\n\nWhat changed between GPT-3.5 and GPT-4?\n\nOpen source weights, reproducible code, and all research artifacts/papers are available on [getswiftapi.com](http://getswiftapi.com) ",
+    "externalUrl": "https://i.redd.it/zce9n7iunjth1.png",
+    "developer": "rayanpal_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

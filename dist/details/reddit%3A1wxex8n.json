@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxex8n",
+  "sourceItemId": "1wxex8n",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wxex8n/a_minimal_interpretable_architecture_for_zeroshot/",
+  "detail": {
+    "longDescription": "In our #NeurIPS2026 paper “A Minimal Interpretable Architecture for Zero-Shot Reconstruction of Dynamical Systems (DS)” (preprint: [https://arxiv.org/abs/2607.14937](https://arxiv.org/abs/2607.14937)) we reduce a **DS foundation model** to the ingredients **minimally necessary to faithfully reproduce long-term statistical and geometrical properties of DS**:\n\n1) A **piecewise affine map** with only a **single (!!) parameter** α that controls local con-/divergence rates, and …\n\n2) … a **context selector** that chooses from the provided context signal **the data point closest to the current state** of the map, thus ensuring the generated dynamics stays close to the context in its temporal and geometrical properties.\n\nWith just these two mechanisms, this minimal form – which we coined *DynaBase* – **can reproduce all major dynamical regimes**, including fixed points (α<1), limit cycles (α=1), and chaotic attractors (α>1). Thus, unlike other simple mechanisms like context parroting, DynaBase even **preserves the correct dynamical regime**!\n\nSurprisingly, it turns out that this simple context-driven 1-parameter map **outperforms most major time series and DS foundation models**, as well as custom-trained models, in both long-term statistics and even short-term predictions, even when run in **zero-shot mode**.\n\n**Both inference and training are extremely cheap** – training can be done either analytically in one step by linear regression on forward-predictions, or by 1-parameter grid search directly on DS reconstruction objectives → this reveals interesting performance differences induced by different training mechanisms.\n\nMost importantly in our minds, DynaBase owing to its formal simplicity may thus provide a tractable mathematical handle on analyzing, improving & understanding the performance and training of some time series and DS foundation models.\n\nhttps://preview.redd.it/jmlcnocq5gth1.png?width=3000&format=png&auto=webp&s=1fc322e17a77575ddb0be3525482b45c70fa28f1\n\n",
+    "developer": "DangerousFunny1371",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

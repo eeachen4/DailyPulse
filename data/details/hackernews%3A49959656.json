@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49959656",
+  "sourceItemId": "49959656",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49959656",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m excited to share a personal project that I&#x27;ve put a lot of love into. This is Orrery[0], a Three.js-based visualization of our solar system. It allows the positions of the major bodies to be played and scrubbed through the years 1950 - 2050, with optional orbit path displays and various other visualization options. The data comes from NAIF SPICE - a framework and set of open-source data kernels containing highly detailed space geometry data. I was inspired to set out on this project when learning that NAIF SPICE, originally written in Fortran and C, lacks highly standardized JavaScript bindings. There are great Python (SpiceyPy) and Rust (Anise) bindings, among other languages, but nothing for JavaScript. So, I developed tspice[1] to wrap the CSPICE library. It uses the Native API when running in Node, and an Emscripten binding around CSPICE when running in the browser. It uses a standardized backend abstraction that the runtime swaps in depending on which context its invoked with. tspice offers an API that is meant to be a near-literal translation of the C APIs, along with higher-level functionality in separate namespaces. It also offers web conveniences like a dedicated web worker client (calculations can be intensive, you don&#x27;t want them on your render thread) and caching. tspice only wraps a subset of the CSPICE library, but it was enough that I wanted to build a simple visualization tool to test it. Eventually the visualization testbed became refined enough that it felt compelling on its own. Although this is a hobby project, I&#x27;d love to hear suggestions and feedback on either Orrery or the underlying tspice library. If there are any folks in the planetary science community in particular who might be interested in tspice, please let me know if there are features that would make this more useful for you. One feature I love is the ability to generate a share URL of a particular viewer state that you like. I&#x27;d really love to see any states that people find especially cool! One of my favorite views is this one[2]. Thanks for taking a look! [0] Orrery repo: https:&#x2F;&#x2F;github.com&#x2F;rybosome&#x2F;orrery [1] tspice repo: https:&#x2F;&#x2F;github.com&#x2F;rybosome&#x2F;tspice [2] favorite orrery view: https:&#x2F;&#x2F;orrery.ryboso.me&#x2F;dVPLbtswEPwX9qoIol4UdWtaB22RNEbsoii...",
+    "externalUrl": "https://orrery.ryboso.me/",
+    "developer": "rybosome",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

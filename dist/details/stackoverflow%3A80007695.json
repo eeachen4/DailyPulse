@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007695",
   "sourceItemId": "80007695",
+  "fetchedAt": "2026-10-05T02:26:12.944Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007695/kubernetes-horizontal-pod-autoscaler-hpa-fails-to-scale-down-after-cpu-load-dr",
   "detail": {
     "longDescription": "I am configuring a microservices deployment on a Kubernetes cluster (v1.28) using the Horizontal Pod Autoscaler (HPA) alongside the Metrics Server. The issue I'm facing is that while the HPA successfully scales up the number of replicas when a high CPU load occurs, it fails to scale down back to the minimum replica count after the CPU load drops and stays well below the threshold for an extended period. What I've tried: Running kubectl describe hpa api-service-hpa. The current CPU utilization metric shows around 12% (well below the 60% target), but the Replicas count remains stuck at the maximum (10 pods) even though the stabilizationWindowSeconds (300 seconds) has long passed. Verified that the Metrics Server is running properly without errors using kubectl top pods. Checked the logs of kube-controller-manager for any controller errors; no explicit HPA errors are shown, but the desired replica count is continuously calculated as equal to the current count. What could be causing the HPA controller to prevent scale-down in this scenario? Are there any missing resource requests or hidden configuration settings in behavior.scaleDown that I should adjust?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "35"
+        "value": "44"
       },
       {
         "label": "状态",

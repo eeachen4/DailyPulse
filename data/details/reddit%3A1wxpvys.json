@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wxpvys",
+  "sourceItemId": "1wxpvys",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wxpvys/qfn_llamacpp_any_juice_left_to_squeeze/",
+  "detail": {
+    "longDescription": "[https://imgur.com/a/Ef2xyNu](https://imgur.com/a/Ef2xyNu)\n\nUsing this squished down  [ISTA model](https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF) on 2x 5060ti and 32gb ram I'm wondering if my settings are correct as I cant really find much consistent feedback for this model on this particular hardware.\n\nWhat are people running in their config? \n\n# Qwen 3.8 FN GSQ RCO IQ1\n\n|Field|Value|\n|:-|:-|\n|**Name**|`Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002`|\n|**Display**|Qwen 3.8 FN GSQ RCO IQ1|\n|**Path**|`/opt/models/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf`|\n|**Size**|**27.58 GB**|\n|**llama backend**|default|\n\n# Launch args\n\n|Flag|Value|\n|:-|:-|\n|`--host`|`10.210.44.126`|\n|`--port`|`11434`|\n|`--ctx-size`|`98304`|\n|`--cache-type-k`|`q8_0`|\n|`--cache-type-v`|`q8_0`|\n|`--override-tensor`|`per_layer_token_embd=CPU`|\n|`--gpu-layers`|`999`|\n|`--load-mode`|`mmap+mlock`|\n|`-fa`|`on`|\n|`-b`|`2048`|\n|`-ub`|`256`|\n|`--temp`|`0.7`|\n|`--min-p`|`0.05`|\n|`--top-p`|`0.95`|\n|`--top-k`|`20`|\n|`--main-gpu`|`0`|\n|`--parallel`|`1`|\n|`--threads`|`8`|\n|`--reasoning-format`|`deepseek`|\n|`--reasoning-effort`|`medium`|\n|`--reasoning`|`on`|\n|`-sm`|`tensor`|\n|`--tensor-split`|`1,1`|\n|`--repeat-penalty`|`1.05`|\n|`--presence-penalty`|`0`|\n|`--fit`|`off`|\n|`--alias`|`QFN`|\n|`--n-cpu-moe`|`8`|\n\n# Bench\n\n|Metric|Value|\n|:-|:-|\n|**Prompt** |**250.4 tok/s**|\n|**Generation** |**30.5 tok/s**|\n|Config|`tensor 1,1`|\n|Date|2026-10-04 16:36 UTC|\n\n# ",
+    "developer": "Bulky-Priority6824",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

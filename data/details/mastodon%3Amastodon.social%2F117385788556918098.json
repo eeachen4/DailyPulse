@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117385788556918098",
+  "sourceItemId": "mastodon.social/117385788556918098",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-2d092ef6-920e879fc661729c",
+  "detail": {
+    "longDescription": "Ran into this building an agent that needed to look at web pages. Every screenshot API is SaaS, which is fine, until you notice the page-understanding part runs on their model. So the text of every page you capture gets sent to a third party and processed there. For a public marketing page, who cares. For anything behind a login with real data on it, that's a problem I couldn't get around. Looked for a self-hostable one. The MCP screenshot servers that exist (Urlbox, ScreenshotOne) are good but all point at the vendor's cloud. Didn't find one you run yourself, so I built it. Runs with docker compose. The extraction part runs on whatever model you point at it — including Ollama on localhost, in which case the page text never leaves the machine that rendered it. AGPL-3.0. Honest about where it's weak: no security audit, extraction quality is decent not amazing, and you can't capture your own private-IP hosts yet because the SSRF guard blocks RFC1918 with no opt-out (allowlist is the next thing I'm building). I also benchmarked it against two hosted APIs and the latency margins weren't reproducible across runs, so I'm not claiming it's faster — the data and the caveats are both in the repo. github.com/route1-ai/shotbase The thing I'm unsure about: is \"run it yourself so page content stays in your network\" actually the useful part here, or do people mostly just want screenshots and I've over-thought it? Genuinely asking — I built this for my own use case and I don't know if it generalizes. # docker # llm # opensource # privacy # software # coding # development # engineering # inclusive # community Screenshot APIs all send your page content to their servers — built a self-hosted one, looking for feedback",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}
