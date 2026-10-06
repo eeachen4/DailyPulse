@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.02732",
+  "sourceItemId": "2610.02732",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.02732",
+  "detail": {
+    "longDescription": "arXiv:2610.02732v1 Announce Type: cross Abstract: Evaluating distributed LLM serving designs on physical clusters is costly. Yet existing simulators provide only subsets of the capabilities needed for realistic design exploration: stateful closed-loop execution, timing prediction without profiling target hardware, and direct execution of unmodified serving benchmarks. We present ServeTwin, a closed-loop simulator that couples specification-driven analytical timing with a stateful serving loop. This coupling captures feedback among request completion, scheduling, queue state, and KV-cache evolution, including prefill-decode disaggregation and multi-turn agent workloads. ServeTwin avoids target-hardware operator profiling through iSTAGE, an analytical trace generator that derives per-iteration traces from model and engine specifications while representing ragged batches and discrete engine mechanisms such as CUDA-graph batch padding. It further decomposes execution time into component-owned throughput, scheduler, and runtime costs. This ownership lets unaffected parameters transfer across platforms and confines recalibration to changed hardware or software components. ServeTwin implements a vLLM-compatible interface and runs unmodified serving benchmarks. Against real deployments, it reproduces InferenceX's steady-state throughput-interactivity frontier with a 3.6% mean error and predicts LMBenchmark's multi-turn performance with a 9.9% error while tracking KV-cache evolution. Pre-silicon sweeps reveal that the preferred HBM bandwidth-capacity tradeoff reverses across workload states and that increasing concurrency shifts the bottleneck from memory bandwidth to scheduler and runtime overheads. Together, these capabilities enable practical exploration of distributed LLM serving systems before target hardware is available.",
+    "developer": "Sungjoon Park, Changue Jung, Kyungno Joo, Mincheol Kang, Jaehyung Ahn, Sehwan Lee, Sangjoon Kim",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PF, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sungjoon Park, Changue Jung, Kyungno Joo, Mincheol Kang, Jaehyung Ahn, Sehwan Lee, Sangjoon Kim"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

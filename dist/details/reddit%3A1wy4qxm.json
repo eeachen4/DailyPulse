@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wy4qxm",
+  "sourceItemId": "1wy4qxm",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wy4qxm/sona_one_transformer_replaced_our_15_candidate/",
+  "detail": {
+    "longDescription": "Our production recommender at Yandex Music has 15+ candidate generators feeding pre-ranking and ranking models with hundreds of features. LLMs showed that one end-to-end model can take over work that used to be split across specialized components, and single-model generative recommenders have carried that recipe into production. We set out to explore what a single-model recommender could do in music. The result is Sona, one transformer that replaced all of it in an A/B test. It hasn't shipped to full traffic yet.\n\nThe model reads up to 8,192 events. Full attention over that length is expensive, so we use what we call History Compression, which roughly halves inference cost. We split the history into the older 6,144 events and the most recent 2,048. The two blocks exchange information through cross-attention and one full-history self-attention layer. After that, a 7-layer stack runs only on the recent 2,048. It retains most of the quality of full attention, and older events stay visible to the decoder and the Ranking Module.\n\nThe decoder and the Ranking Module both read the same encoder output, so the encoder runs only once per request. Candidates come out of beam search as Semantic IDs and get scored right after.\n\nIn the final A/B test in Yandex Music on smart speakers, 7 days, 15% of users in each arm), Sona got +4.53% Active Users and +6.30% Total Listening Time over the production control, both significant at p < 0.01. Catalog coverage is lower than with the production stack. We're going to look into why. \n\n  \nA long-term A/B test is now underway. \n\nTable 7.7 has the full-attention vs. History Compression ablation.\n\n[https://arxiv.org/abs/2608.11015](https://arxiv.org/abs/2608.11015)",
+    "developer": "SettingAccording8986",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

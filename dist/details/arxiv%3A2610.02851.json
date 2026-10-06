@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.02851",
+  "sourceItemId": "2610.02851",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.02851",
+  "detail": {
+    "longDescription": "arXiv:2610.02851v1 Announce Type: new Abstract: 3D Gaussian Splatting (3DGS) enables photorealistic scene reconstruction, but training large-scale scenes requires substantial memory and computation. Distributing training across multiple GPUs increases available memory capacity, yet its performance is strictly constrained by data movement. We identify two dominant bottlenecks: repeated off-chip memory accesses during forward and backward rasterization, and inter-GPU communication of partial Gaussian gradients. To address these bottlenecks, we present ByteSplat, a distributed 3DGS training framework that jointly reduces intra- and inter-GPU data movement. First, ByteSplat fuses forward rasterization and backward rasterization into a single GPU kernel, retaining intermediate results on-chip to eliminate redundant off-chip transfers. Second, to alleviate the increased on-chip storage by fused rasterization, ByteSplat introduces hardware-aware pruning that considers both rendering quality and per-tile shared-memory constraints, increasing the overall performance of fused execution. Lastly, ByteSplat exploits gradient sparsity to eliminate zero partial gradients from inter-GPU communication. GPU-efficient encoder and decoder kernels compact the remaining records and directly aggregate the received gradients on their owner GPUs, reducing both communication volume and local aggregation overhead. We evaluate ByteSplat across six datasets. Compared with the baseline, ByteSplat reduces intra-GPU off-chip traffic and backward inter-GPU communication volume by 63.4% and 65.8%, respectively. On eight GPUs, ByteSplat achieves up to 6.1$\\times$ training speedup while preserving reconstruction quality.",
+    "developer": "Shuo Wu, He Zhu, Han Zhao, Xiaohui Zhang, Yaqian Zhao, Hui Wei, Ruyang Li, Hongzhi Shi, Lihua Lu, Jingwen Leng, Yu Feng, Minyi Guo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shuo Wu, He Zhu, Han Zhao, Xiaohui Zhang, Yaqian Zhao, Hui Wei, Ruyang Li, Hongzhi Shi, Lihua Lu, Jingwen Leng, Yu Feng, Minyi Guo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

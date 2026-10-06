@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyjcld",
+  "sourceItemId": "1wyjcld",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wyjcld/a_new_way_to_think_about_memory_for_ai/",
+  "detail": {
+    "longDescription": "I think I may have gone slightly insane building this.  \nI’ve been working on **GitLoom**, and the more I built it, the more I realized that “AI memory” is a MUCH bigger problem than just storing a few messages in a vector database.  \nMost AI apps basically do:  \nconversation → embeddings → vector DB → retrieve top K → shove into prompt  \nAnd then we wonder why the AI remembers some random sentence from 3 weeks ago but forgets something that actually matters.  \nSo I started building memory as an actual system.  \nGitLoom can remember things like:  \n**Facts**  \n“I’m building a startup called X.”  \n**Preferences**  \n“I hate writing frontend code.”  \n**Vocabulary**  \nIf a user consistently calls something “flows” instead of “workflows”, GitLoom can learn that vocabulary and use it naturally later.  \n**Skills**  \nThe AI can learn that a user knows Go, Kubernetes and distributed systems, instead of repeatedly explaining what a Kubernetes pod is.  \n**Rules / behavioral instructions**  \n“Always give me code examples in Go.”  \n**Temporal information**  \nThis one drove me absolutely nuts.  \nMemory isn’t just *what happened*. It is also **when it happened**.  \nSomething said in January shouldn’t necessarily be treated as true forever.  \nGitLoom keeps temporal consistency so an AI can distinguish between:  \n“I work at X”  \nand  \n“I used to work at X.”  \nThat sounds trivial until you build a system where the model has months or years of memory.  \nAnd then there are **skills**, **relationships between memories**, **memory confidence**, **conversation state**, **user namespaces**, **multimodal information**, and a bunch of other things that make “just use RAG” fall apart pretty quickly.  \nThe really interesting part is that **memory isn’t the same thing as context**.  \nContext is what the model sees right now.  \nMemory is what the system has learned about the world, the user, and itself over time.  \nThat distinction is what GitLoom is trying to solve.  \nAnd seeing products like **Instinct** blow up recently has honestly been pretty validating. Their product is a great example of why persistent memory matters. An assistant that can actually know you over time is fundamentally different from a chatbot that happens to have a large context window. Instinct has publicly discussed structured memory, goals, behavioral patterns and long-term context as part of its architecture. ([Instinct](https://getinstinct.io/blog/ai-memory-architecture/?utm_source=chatgpt.com))  \nI’m building GitLoom so developers don’t have to build all of this from scratch every time they make an AI agent.  \nYou can plug it into your existing LLM application and let GitLoom handle the memory layer.  \n**The crazy part is that this is still very early.**  \nThere are a LOT more things I want to add.  \nIf you’re building agents, companions, copilots, autonomous workflows, or basically anything where the AI needs to know what happened yesterday, last month, or six months ago, I’d genuinely love for you to break this thing.  \n🌐 **GitLoom:** https://gitloom.cloud  \n📚 **Docs:** https://docs.gitloom.cloud  \n📦 **TypeScript / Node.js SDK:** https://www.npmjs.com/package/@gitloomhq/sdk  \n🐍 **Python SDK:** https://pypi.org/project/gitloom-sdk/  \nWould love to hear how other people are solving long-term memory right now.",
+    "developer": "mellob_ai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

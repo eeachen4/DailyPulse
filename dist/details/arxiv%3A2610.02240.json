@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.02240",
+  "sourceItemId": "2610.02240",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.02240",
+  "detail": {
+    "longDescription": "arXiv:2610.02240v1 Announce Type: cross Abstract: Algorithm-based fault tolerance detects corrupted matrix multiplications by comparing a checksum of the product against a checksum recomputed from the factors, flagging a fault when the residual exceeds a threshold. The classical threshold is tau = Ku, derived from a dot-product rounding bound that requires Ku <= 0.01. At bfloat16 with contraction length K = 4096, Ku is approximately 32, so the bound does not hold and the threshold is not defined. Prior work therefore evaluated checksum ABFT only at float32. We supply the missing calibration. This paper is a characterization of a detector under an output-level, post-GEMM perturbation model; it is not a characterization of faults in silicon, and no rate reported here estimates fault incidence in deployed hardware. We fit a Generalized Pareto distribution to 7.99e7 clean per-row residuals and extrapolate a threshold at a per-GEMM false-positive rate of 1e-6, obtaining 3.1445e-6, which sits between the two clean sample maxima we observed. The independence assumption behind the per-GEMM conversion is checked empirically rather than asserted, at a variance ratio of 0.985 against a binomial reference. Against this threshold the detector catches 304 of 400 single exponent-bit flips (76%), failing a bar of 90% that was registered before any data was collected, and catches 0 of 600 low-mantissa flips. Detectability is invariant in K across a 16x range even though the clean noise floor falls as K^-0.4999: signal and floor scale together, so bit position governs detectability and contraction length does not. This falsified the mechanism the study was designed around. We report four registered predictions that failed, including that one, and four retractions of our own earlier findings, two of which were caught by pre-publication audit rather than by prediction. Code, data, and timestamped pre-registration documents are released.",
+    "developer": "Gautam Khosla",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Gautam Khosla"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

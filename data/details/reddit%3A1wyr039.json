@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyr039",
+  "sourceItemId": "1wyr039",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wyr039/i_run_6_llms_sd_35_whisper_behind_an/",
+  "detail": {
+    "longDescription": "Title: I run 6 LLMs + SD 3.5 + Whisper behind an OpenAI-compatible API on an RX 580 8 GB - the card ROCm forgot. Benchmarks inside.\n\n\n\nROCm dropped Polaris years ago, so every RX 580 owner gets told to buy a new\n\ncard. I went the Vulkan route instead: the whole stack runs on Mesa's RADV.\n\n\n\nWhat's running (one Debian LXC, one setup script):\n\n\\- OpenAI-compatible router, one API key, swaps models on demand\n\n\\- qwen2.5-coder 1.5B/7B, qwen2.5-7B, ornith-1.5-9B, qwen3-30B-A3B, qwen2.5-VL-3B\n\n\\- Images: SD 3.5 Medium + SD 1.5 via stable-diffusion.cpp, Whisper medium\n\n\\- Also the inference backend for an agent client with MCP tools\n\n\n\nMeasured, Ryzen 5 5600G / 32 GB RAM / RX 580 2048SP, temp 0, max\\_tokens 300:\n\n\n\n| Model | tok/s | warm | cold (after swap) |\n\n|---|---:|---:|---:|\n\n| qwen2.5-coder-1.5b | 99.2 | 3.1 s | 11.0 s |\n\n| qwen2.5-vl-3b | 66.4 | 4.4 s | 14.9 s |\n\n| qwen2.5-7b | 34.2 | 8.8 s | 24.3 s |\n\n| ornith-1.5-9b | 28.0 | 10.9 s | 26.3 s |\n\n| qwen3-30b-a3b (18.6 GB, from RAM) | 21.3 | 14.1 s | 55.0 s |\n\n\n\nImages: SD 1.5 = 27.5 s, SD 3.5 Medium = 53.3 s per 512x512.\n\n\n\nTwo takeaways for 8 GB owners:\n\n\\- Don't force -ngl 99: on the MoE it cost 8.1 vs 22.3 tok/s (VRAM 99.4% full).\n\n  Auto-fit layers won by nearly 3x.\n\n\\- Model swap = llama-server restart = 7.9-38.5 s. Keep one model per session.\n\n\n\nFull method and raw numbers in docs/BENCHMARKS.md, including the agent\n\nbreakdown (first message \\~161 s on a 20k-token prompt, \\~25 s after caching).\n\n\n\n[https://github.com/AvilaCarlosDev/polaris-local-ai](https://github.com/AvilaCarlosDev/polaris-local-ai) (MIT)",
+    "developer": "Heavy-Level-5215",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

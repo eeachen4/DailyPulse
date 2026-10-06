@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wydda9",
+  "sourceItemId": "1wydda9",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wydda9/kubernetes_telemetry_that_stays_on_your_own/",
+  "detail": {
+    "longDescription": "A recurring theme in k8s monitoring discussions: you want rich cluster telemetry, but you do not want to ship all of it to a SaaS that bills per host. You want the data in a place you control.\n\nI work on OneUptime, an open source observability platform (Apache 2.0). There is a small Kubernetes agent chart that collects cluster telemetry and sends it to the main app over OpenTelemetry. The main app is one Helm chart. So the whole setup is two charts on your infrastructure, and the data stays with you.\n\nIt covers uptime checks, status pages, on-call paging, incident management with postmortems, plus log, metrics, and APM views. It is younger than the big commercial observability stacks, and some features are in a separate enterprise edition. Read the code before you trust it.\n\nGitHub: https://github.com/OneUptime/oneuptime\nSite: https://oneuptime.com\n\nWhat is the one k8s signal you consider non-negotiable in a monitoring setup?",
+    "developer": "QuietSignalOps",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

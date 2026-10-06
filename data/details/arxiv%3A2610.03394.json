@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.03394",
+  "sourceItemId": "2610.03394",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.03394",
+  "detail": {
+    "longDescription": "arXiv:2610.03394v1 Announce Type: new Abstract: Emerging multi-agent LLMs demand privacy-preserving edge deployment, yet current inference systems struggle with these collaborative workflows. Specifically, the memory-bound decode phase causes severe bus contention on unified memory architectures (UMA), paralyzing naive CPU-GPU co-execution. Furthermore, speculative decoding in multi-agent workloads faces extreme variance in drafting difficulty, alternating between complex reasoning and predictable structured generation. Compounded by frequent tool-induced stalls, this highly fragmented execution severely underutilizes hardware and defeats traditional static batching. We present EdgeAgent, a cross-layer inference system explicitly co-designed for edge UMA and multi-agent workloads. At the micro-architectural level, it bypasses rigid graph-compiler constraints to enable zero-copy UMA-aware tensor parallelism, utilizing asymmetric memory layouts to fully saturate both CPU and GPU compute units. At the scheduling level, it dynamically allocates draft budgets based on real-time sequence predictability to bound bandwidth waste. Concurrently, an asynchronous suspend-and-yield mechanism actively evicts stalled agents, ensuring continuous hardware saturation during unpredictable tool invocations. Extensive evaluations on an Apple M4 SoC demonstrate that the UMA-aware execution alone contributes a 1.29x speedup over batched speculative decoding. Adding the agent-aware scheduling lifts the full EdgeAgent system to a 1.77x speedup under extreme tool-use latencies.",
+    "developer": "Yuhai Long (School of Computer Science and Engineering, Sun Yat-sen University), Yuanxin Wei (School of Computer Science and Engineering, Sun Yat-sen University), Kai Wu (China Mobile Internet Company Ltd), Jinhui Wei (School of Computer Science and Engineering, Sun Yat-sen University), Dan Huang (School of Computer Science and Engineering, Sun Yat-sen University), Jiangsu Du (School of Computer Science and Engineering, Sun Yat-sen University)",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.MA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuhai Long (School of Computer Science and Engineering, Sun Yat-sen University), Yuanxin Wei (School of Computer Science and Engineering, Sun Yat-sen University), Kai Wu (China Mobile Internet Company Ltd), Jinhui Wei (School of Computer Science and Engineering, Sun Yat-sen University), Dan Huang (School of Computer Science and Engineering, Sun Yat-sen University), Jiangsu Du (School of Computer Science and Engineering, Sun Yat-sen University)"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

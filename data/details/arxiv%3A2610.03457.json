@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.03457",
+  "sourceItemId": "2610.03457",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.03457",
+  "detail": {
+    "longDescription": "arXiv:2610.03457v1 Announce Type: new Abstract: Academic compute is fragmented: allocations are granted per facility, and facilities differ in accelerators and software stacks, schedule jobs independently, and share neither a network nor a filesystem. We present a system that pools such allocations to pre-train a single language model across three supercomputers on two continents, up to 7,400km apart: Snellius (NVIDIA H100), LUMI and Frontier (both AMD MI250X). It combines (i) DiLoCo-style two-loop training with an elastic, token-weighted Nesterov outer step for which zero, one or many live sites are all normal states; (ii) DARL, a data-leasing protocol whose heartbeat-backed leases guarantee that, within an epoch, no sample is trained twice or lost under crashes, late joins and work stealing; and (iii) queue-aware placement driven by unprivileged sbatch --test-only probes. Training Qwen3-0.6B on C4 for 20,000 optimizer steps, the three-site run reaches a held-out perplexity of 34.7, against 28.2 for a centralised baseline. Per-round overhead (weight exchange and checkpointing) stays near 110 s regardless of the number of local steps H, so its share of wall-clock time falls from 32% at H=100 to 5.7% at H=1,000 and 3.1% at H=2,000. In a 23.8 h three-site run with four site departures, 1.2% of granted data blocks were reclaimed and none was duplicated or lost. In an idealized queue-model projection, queue-aware placement shortens time-to-target by 18-43% compared with waiting for all sites to be allocated. Cross-site pre-training is thus operational rather than competitive: it turns fragmented allocations into one training run at a measured cost.",
+    "developer": "Zar\\`e Palanciyan, Thomas van Osch, Douwe van der Wal, Olivera Kotevska, Tim Kok",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zar\\`e Palanciyan, Thomas van Osch, Douwe van der Wal, Olivera Kotevska, Tim Kok"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

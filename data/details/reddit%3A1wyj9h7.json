@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyj9h7",
+  "sourceItemId": "1wyj9h7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wyj9h7/how_does_a_chatgptlike_system_actually_work/",
+  "detail": {
+    "longDescription": "When you type a message into an AI chatbot, it looks simple:\n\nYou → AI → Response\n\nBut a production system is much more interesting.\n\nA simplified flow looks something like:\n\nUser → API Gateway → Authentication / Rate Limiting → AI Orchestrator → Context & Memory → LLM → Safety / Processing → Streaming Response\n\nAnd once thousands or millions of users start sending requests simultaneously, the difficult part isn't just calling an LLM API.\n\nYou have to think about:\n\n• How requests are distributed\n\n• How conversation history is stored\n\n• How much context gets sent to the model\n\n• How responses are streamed token-by-token\n\n• What happens when the model/provider fails\n\n• How rate limits and queues are handled\n\n• How latency and cost are controlled\n\n• How the system scales as traffic increases\n\nThat's what makes AI system design interesting.\n\nI recently made Episode 2 of my System Design in the AI Era series explaining a ChatGPT-like architecture from request → model → response.\n\nIf you're interested in the full visual breakdown, here's the video:\n\nhttps://youtu.be/CxmhPKvX49A?si=MvLcUXqMsMPmNB85\n\nI'm also curious: what part of a ChatGPT-like architecture would you consider the biggest scaling bottleneck?",
+    "developer": "jawadhamza",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

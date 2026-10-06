@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117390419873069702",
+  "sourceItemId": "mastodon.social/117390419873069702",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://infosec.exchange/@cirriustech/117390419832167057",
+  "detail": {
+    "longDescription": "JFrog Boost just made cARL interoperability a whole lot cleaner.\n\nA couple of weeks ago I raised issue #87 asking for repo-relative path/glob exclusions from file optimisation.\n\nThe problem was simple:\n\ncARL keeps its canonical governance under:\n\n.github/carl/**\n\nThose files are not just “more context”.\n\nThey are the control plane.\n\nOptimising or rewriting them would be the equivalent of letting an optimisation layer modify the policy that governs the optimiser.\n\nWhich is… not ideal. 😅\n\nBoost v0.14.4 now supports:\n\n[ignore]\noptimize = [\n  \".github/carl/**\"\n]\n\nwith the boost-path-ignore feature enabled.\n\nI tested it end-to-end with GitHub Copilot:\n\n- normal optimisable files were intercepted and converted by Boost\n- identical files under .github/carl/** were left untouched\n- cARL’s canonical governance remained authoritative\n- Boost could still fully optimise everything else around it\n\nThat means I can now run cARL and JFrog Boost together without having to disable file optimisation globally just to protect the governance layer.\n\nThat distinction matters.\n\nContext optimisation should optimise context.\n\nIt should not optimise the thing that defines what the agent is allowed to do.\n\nHuge thanks to the JFrog Boost team for turning this around quickly.\n\nFast is good.\n\nFast and governed is better.\n\n#AI #AISecurity #AgenticAI #SecurityEngineering #GitHubCopilot #JFrog #DeveloperTools #AIEngineering",
+    "developer": "@cirriustech@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

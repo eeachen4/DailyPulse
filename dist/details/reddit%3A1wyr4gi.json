@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyr4gi",
+  "sourceItemId": "1wyr4gi",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wyr4gi/one_chat_for_everything_a_deepseek_harness_plugin/",
+  "detail": {
+    "longDescription": "One evening I wanted to pick up something I'd been working on the week before. My DSH sidebar had forty-odd chats, half of them called \"New session\". I scrolled for a while, found the right one on the third screen, and by the time I opened it I'd half forgotten what I wanted to ask.\n\n\n\nSo I stopped creating new chats and asked everything in one. That went wrong differently: my thesis, my budget and my move all ended up in the same context, and the model started mixing them.\n\n\n\nWhat I wanted was simple: one chat box, say whatever is on my mind, and let it figure out which thing I'm talking about.\n\n\n\nThat's TheOne, a plugin for DeepSeek Harness. You only ever talk in one main chat. In the background, each thing you're working on gets its own session with its own context, and every message is sent to the one it belongs to. Come back days later and mention \"that thing from last week\", and it finds it. Your old chats get read and organised into a topic directory.\n\n\n\nI wasn't sure it actually worked, so I measured it. I wrote 50 conversations of one person juggling three to five things at once, about 2,400 messages, each labelled with the thing it belongs to, and had it sort them one by one.\n\n\n\nStarting from nothing, it put 86.6% of messages in the right place; 91.6% if it knows the topics up front. Dumping everything into one chat scores 44.5% on the same test. Its most common mistake is being too quick to decide something is new: a stray \"I usually run about 20 km a week\" makes it open a new topic. The whole run cost about a dollar, and the data and code are in the repo if you want to try another model.\n\n\n\nInstall: DSH → Plugins → Add plugin → dsh-theone\n\nRepo: [https://github.com/YunongDai2005/dsh-theone](https://github.com/YunongDai2005/dsh-theone)\n\n\n\nIt's a personal community project, not affiliated with DeepSeek. If it puts one of your messages in the wrong place, I'd genuinely like to hear about it.\n\n\n\nContact: [yuriddaaii@gmail.com](mailto:yuriddaaii@gmail.com)",
+    "developer": "Brilliant_Mistake_69",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

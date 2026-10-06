@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.02995",
+  "sourceItemId": "2610.02995",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.02995",
+  "detail": {
+    "longDescription": "arXiv:2610.02995v1 Announce Type: new Abstract: Identifying the bug-inducing commit (BIC) is a fundamental step in regression debugging and a key input to emerging BIC-aware fault-localization pipelines. In practice, BICs are commonly obtained with bisection. Standard bisection selects the median commit of the remaining good-bad interval, thereby balancing commit count. This strategy is optimal under the assumption that each commit is equally likely to be the BIC. This paper shows that this assumption does not match real-world BIC histories. We construct a dataset of 8,172 bug reports from GCC, the Linux kernel, and MariaDB. We find a strong temporal skew: across the studied systems, 50% of BICs lie within the most recent 0.69% of the report-time commit history. Motivated by this observation, we introduce BISCEPTER, a probability-driven bisection approach that uses historical BIC latency as a lightweight prior. Instead of selecting pivots that split the number of remaining commits, BISCEPTER selects weighted-median pivots that split estimated BIC probability mass, while preserving the same good-bad oracle and interface as standard bisection. We evaluate BISCEPTER on three large-scale systems. The evaluation results show that BISCEPTER reduces bisection iterations by 25.75% on average (up to 55.55%) compared with standard median bisection, while improving over the baseline in 91.26% of test cases. Robustness experiments further demonstrate that the benefit remains stable under noisy historical data. We expect that our research can effectively save effort in debugging software in practice and, more broadly, benefit future software engineering research by bringing insights about BIC distribution.",
+    "developer": "Mingyan Gao, Celine W\\\"ust, Zuming Jiang, Zhendong Su",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mingyan Gao, Celine W\\\"ust, Zuming Jiang, Zhendong Su"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

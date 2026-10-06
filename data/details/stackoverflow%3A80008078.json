@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008078",
+  "sourceItemId": "80008078",
+  "sourceUrl": "https://stackoverflow.com/questions/80008078/assign-literal-value-to-a-dynamic-property-of-given-type-of-a-generic-object",
+  "detail": {
+    "longDescription": "I'm trying to write a function that assigns internal, hard-coded number to a dynamic property (that must be a number) of a generic object of an unknown shape. So far I have this: function assign5<T extends object, K extends {[k in keyof T]: T[k] extends number ? k : never}[keyof T]>(target: T, key: K) { target[key] = 5; } const target = {'b': true, 'n': 7, 's': 'a'}; assign5(target, 'n'); // Should work fine assign5(target, 'b'); // Should error, wrong type assign5(target, 's'); // Again wrong type assign5(target, 'x'); // Also error, property not in the target object The above code gives me error: Type 'number' is not assignable to type 'T[K]'. 'T[K]' could be instantiated with an arbitrary type which could be unrelated to 'number'. I've seen other, similar questions, but haven't found one with the value coming from inside the function, or without casting, or without the assigned value being another argument to the function, which is not what I'm looking for. Is this possible without casting?",
+    "developer": "HankMoody",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "32"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

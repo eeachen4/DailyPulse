@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyqgl6",
+  "sourceItemId": "1wyqgl6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wyqgl6/swift15_qwen38_flash_next_tailored_for_the_96gb/",
+  "detail": {
+    "longDescription": "https://huggingface.co/Dankpaws/Swift1.5-Qwen3.8-Flash-Next-MLX-4.7bpw\n\nI've had the 96GB Mac Studio with M5 Ultra for about a week now and wasn't satisfied with the results I was getting from the limited number of models available to me. It was a combination of speed, memory headroom, and/or output quality.\n\nThis is my best attempt at a calibrated MLX quantization of UkisAI’s Swift 1.5. Hope those of you with the hardware enjoy it!\n\n| Measurement | This pack | Swift llama.cpp IQ3_XXS |\n|:--|--:|--:|\n| Prefill · 25k prompt | 3,191 tok/s | 1,427 tok/s |\n| Prefill · 95k prompt | 2,928 tok/s | 1,307 tok/s |\n| Decode · after 4k prompt | 113.7 tok/s | 62.7 tok/s |\n| Decode · after 95k prompt | 81.1 tok/s | 44.7 tok/s |\n| Top-1 agreement with Swift BF16 | 91.0% | 84.1% |\n\n91% is next-token agreement with BF16 across 680 common held-out positions, not task accuracy.\n\nResults above are simply from my own machine. mlx-serve 26.10.1. ~107GB download, text-only, 179,200-token tested context.",
+    "developer": "DankpawsDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

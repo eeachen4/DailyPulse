@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.03197",
+  "sourceItemId": "2610.03197",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.03197",
+  "detail": {
+    "longDescription": "arXiv:2610.03197v1 Announce Type: new Abstract: A companion paper derives a weighted, communication free partition for heterogeneous, multi institution device ensembles from each device measured shape, rho_machine(d), validated on real hardware. Its experiments show rho_machine is incomplete: fp32 to fp16 speedup and power shifts are not fully indexed, and memory capacity predictions rely on an assumed, not measured, reservation overhead. This paper closes that gap, indexing five unmeasured fields in the psi selection vocabulary: memory capacity $M_i^{cap}$, power draw $P_i$, execution unit capability $X_d$, compiler directive configuration $C_d$, and memory reservation overhead $R_d$. We introduce reached(d), a Boolean for whether compiled code dispatches to specialized hardware, explaining the NVIDIA fp16 power shift that hardware availability alone cannot predict. MoA fixes a computation independently of its target, so compiler directives get a two part admissibility criterion: select a real hardware quantity without discretionary reordering, and be deterministic, not compiler overridable. Across Intel, AMD, NVIDIA, OpenMP, OpenACC, and Open MPI, this admits only cache placement controls, deterministic vector or tile widths, and occupancy caps; heuristics like autotuning are excluded and absorbed into a residual epsilon$(k)_d$. We validate on five devices: A100, H100, V100, MI100, and Max 1550, measuring or establishing all five fields on each. Reachability proves real but partial, occupancy limits are device specific, and reservation overhead ranges about 0.004 to 0.030. A residual of negative 9.8 percent for the excluded Triton autotuner shows an unvalidated heuristic can act opposite a presumed penalty. These results close all five fields for every device in the companion ensemble, converting assumed behavior into measured, target specific quantities.",
+    "developer": "Lenore Mullin, Gaetan Hains",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Lenore Mullin, Gaetan Hains"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

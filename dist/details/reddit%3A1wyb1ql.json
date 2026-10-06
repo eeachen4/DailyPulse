@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyb1ql",
+  "sourceItemId": "1wyb1ql",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wyb1ql/how_to_build_a_railwayheroku_alternative_based_on/",
+  "detail": {
+    "longDescription": "I recently gave a talk about how I am building an open-source Railway/Heroku/Vercel alternative. The architectural premise of the platform is simple: \n\nThe platform has no database and no CRDs of its own, so all state lives in Kubernetes (namespaces, labels, Helm releases) or in the systems around it, like the OCI registry and the identity provider.\n\nIn the talk I go over how it…\n\n* builds OCI images from GitHub source code on every push\n* uses ORAS to store vulnerability and leaked-secret scan results in the OCI registry, right next to the image\n* runs replicated PostgreSQL with point-in-time recovery using CloudNativePG\n* makes object storage, Redis-compatible key-value stores, and volumes simple to set up\n* allows you to \"eject\" and download the generated helm chart along with its values and build script at any point\n\nIf that sounds interesting, the recording and the project repo / website are linked below.\n\n[Recording of the talk](https://www.youtube.com/watch?v=ne2UmR0rTtchttps://www.youtube.com/watch?v=ne2UmR0rTtc)  \n[Project Website](https://lucity.cloud/)  \n[GitHub Repo](https://github.com/zeitlos/lucity)",
+    "developer": "EquivalentProof410",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wy99gd",
+  "sourceItemId": "1wy99gd",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wy99gd/i_have_trained_a_model_to_predict_my_blood_sugar/",
+  "detail": {
+    "longDescription": "This is related to my [previous post](https://www.reddit.com/r/MachineLearning/comments/1vc1txc/i_have_trained_a_model_to_predict_my_blood_sugar_p/) where I shared an [encoder-only transformer model](https://github.com/0xdeadf1sh/T1DMAI) trained on ohiot1dm + shanghait1dm + azt1d datasets. This time I trained the model on the outputs of my T1DM patient [simulator](https://github.com/0xdeadf1sh/T1DMSIM) and then measured its zero-shot performance on my real-world blood glucose traces.\n\nThe above model has 31,251 parameters (16 layers, 1 attention head per layer, and a hidden dimension size of 16). Training took <60 minutes on nvidia dgx spark. It's an encoder-only transformer that predicts the next 2 hours, and can be used autoregressively for long-horizon predictions (e.g. 8-hour nocturnal predictions). I have trained it specifically to have counterfactual reasoning capabilities. The model has only been trained on synthetic data, and hasn't seen my blood glucose readings prior to testing. I use LoRA adapters on [my app](https://github.com/0xdeadf1sh/T1DMDROID) for light fine-tuning on my actual CGM traces, but the figures & tables you see above are from the base model without any LoRA adapter attached. The app was used to test the model on the traces of three different CGM models: Libre 3 plus, Anytime CT5, and Linx sensor data spanning the past 30 days.\n\nThe testing itself was done on my android app with ExecuTorch backend.\n\nModel source code: [github.com/0xdeadf1sh/T1DMAI](https://github.com/0xdeadf1sh/T1DMAI)\n\nSimulator source code: [github.com/0xdeadf1sh/T1DMSIM](https://github.com/0xdeadf1sh/T1DMSIM)\n\nAndroid app source code: [github.com/0xdeadf1sh/T1DMDROID](https://github.com/0xdeadf1sh/T1DMDROID)",
+    "developer": "0xdeadf1sh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008061",
+  "sourceItemId": "80008061",
+  "sourceUrl": "https://stackoverflow.com/questions/80008061/nonnullablegeneric-always-returns-never-when-under-generic-extends-undefi",
+  "detail": {
+    "longDescription": "I'm making a program that takes in user jsons, and want to make a system to check that they follow a particular format. The compiler is yelling at me, however, and I'm not sure why. Here is my code, stripped of all the details that don't cause the error: interface OptionalString { optional_string?: string; } type JsonManifest = {optional_string: OptionalString} type JsonProcessingManifest = { [key in keyof JsonManifest]: JsonProcessingTemplate<JsonManifest[key]>; }; type JsonProcessingTemplate<Target> = Target extends undefined ? { optional: true; value: JsonProcessingTemplate<NonNullable<Target>>; } : Target extends string | number ? (id_or_object: string) => boolean : {[Key in keyof Required<Target>]: JsonProcessingTemplate<Target[Key]>}; const json_manifest: JsonProcessingManifest = { optional_string: { optional_string: { optional: true, value: /.*/.test }, } } TS Playground Link Things I've tried: Exclude<Target, undefined> instead of NonNullable<Target> Move JsonProcessingTemplate<NonNullable<Target>> to it's own type (worked for a previous error Not using NonNullable just gives me an infinite loop, of course Not that this would be acceptable, but this doesn't get solved if the optional member is nested If I change value to be Target extends string ? \"String\" : Target extends undefined ? \"Undefined\" : \"Something Else\" it will print undefined. If I move the entire expression under the outer Target extends string it returns String instead. Maybe the conditional is overriding all other types? Or perhaps once a Never is found the entire union becomes empty I can specifically override Never with something like: NonNullable<Target> extends never ? \"Never\" : NonNullable<Target> but that only solve the problem for this case, not generally. What if the optional member is not a string? Very similar to this question I think, but it was never answered",
+    "developer": "Claire",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "68"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

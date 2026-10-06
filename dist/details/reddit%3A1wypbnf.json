@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wypbnf",
+  "sourceItemId": "1wypbnf",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wypbnf/embedding_every_font_with_neural_networks_makes/",
+  "detail": {
+    "longDescription": "I've been working on a font searching tool for about a year now, and my investigations have centered around pre-training neural networks to produce embeddings of each font. I usually then need to post-train the networks to adapt them to the task of font searching. However, the most interesting thing I created in the course of the project came from the pre-trained models.\n\nThe process looks like this: I take every glyph in a font, turn them into images, feed them through my custom pre-trained neural network, and get an embedding that represents that font's visual characteristics. I can then squish down the embeddings with tSNE (produces the best structures compared to PCA and UMAP) into XYZ, and RGB channels and visualize them as dots so I can poke around the structure. Fonts that are close to each other in position or color therefore share visual characteristics, and you can find different little clusters or paths of types of fonts in the maps.\n\nMy favorite is one I made from the Google Fonts corpus, but I also made another one out of all the fonts you can search on my site. The Google Fonts corpus resembled a flower in ways I was not prepared for. It even placed most of the cursive fonts in the stamen. Here's the site if you're interested in viewing the whole thing yourself: [https://www.font-search.com/map](https://www.font-search.com/map)\n\nYou can also check out the repository although it is a huge mess. [https://github.com/dylan-berndt/Briefcase](https://github.com/dylan-berndt/Briefcase)",
+    "developer": "Chroma-Crash",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

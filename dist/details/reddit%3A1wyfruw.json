@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyfruw",
+  "sourceItemId": "1wyfruw",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wyfruw/a_chunking_lib_in_rust_that_is_20x_faster_p/",
+  "detail": {
+    "longDescription": "Hey, \n\nI wanted a faster chunking library for my system without affecting the overall accuracy. Did not find many options. So I've build https://github.com/d1pankarmedhi/chunkr \n\nIt has most of the chunking strategies like Character, Recursive, Markdown header, Late chunking, Hierarchical chunking, etc. It also supports native PDF loader, and other additional file types. \n\nSome stats (MBA M4 16GB): \n\n| Test Case (matched parameters) | Chunkr | LangChain | LlamaIndex | Chonkie | semchunk | text-splitter |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **Recursive (1 MB, 1000/200)** | **2,264 MB/s** | 769 MB/s | 10 MB/s | 225 MB/s | 42 MB/s | 175 MB/s |\n| **Recursive (5 MB, 1000/200)** | **2,039 MB/s** | 696 MB/s | — | 201 MB/s | 40 MB/s | 46 MB/s |\n| **Fixed Char (1 MB, 1000/200)** | **750 MB/s** | 1.7 MB/s | — | 22 MB/s | — | — |\n| **Markdown (500 KB, 1000/150)** | **819 MB/s** | 67 MB/s | 19 MB/s | — | — | 40 MB/s |\n| **Python Code (200 KB, 1500/200)** | **3,232 MB/s** | 622 MB/s | — | — | — | 5.7 MB/s |\n| **Sentence (500 KB)** | **622 MB/s** | — | 10 MB/s | 20 MB/s | — | — |\n| **BPE Tokens (200 KB, cl100k_base, 512/50)** | 38 MB/s | 43 MB/s | 2.0 MB/s | **151 MB/s** | — | 7.2 MB/s |\n| **100 docs x 50 KB (parallel batch)** | **3,224 MB/s** | 679 MB/s | — | 213 MB/s | — | — |\n\n---\n\n| Extractor / Pipeline | Latency | Throughput | Speedup vs PyPDF |\n| :--- | :--- | :--- | :--- |\n| **Chunkr PDFLoader (Full Text)** | **747.9 ms** | **2,762 pgs/s** | **15.9x Faster** |\n| **Chunkr PDFLoader (Page Documents)** | **721.0 ms** | **2,865 pgs/s** | **16.5x Faster** |\n| PyMuPDF (`fitz`) | 2,616.8 ms | 789.5 pgs/s | 4.5x Faster |\n| pypdf (pure Python) | 11,900.5 ms | 173.6 pgs/s | 1.0x (baseline) |\n| **Chunkr End-to-End (PDF + Recursive)** | **798.1 ms** | **2,589 pgs/s** | **14.9x Faster** |\n| PyMuPDF + LangChain RecursiveTextSplitter | 2,659.3 ms | 776.9 pgs/s | 4.5x Faster |\n| pypdf + LangChain RecursiveTextSplitter | 12,054.5 ms | 171.4 pgs/s | 1.0x (baseline) |\n\nDo check it out and share your feedback. Thanks!",
+    "developer": "Ok_Cartographer5609",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyp16v",
+  "sourceItemId": "1wyp16v",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wyp16v/i_had_no_idea_which_of_my_agents_was_burning_all/",
+  "detail": {
+    "longDescription": "so this is kind of embarrassing but bear with me. i’ve been running a handful agents for a few months now, PR summaries, a Notion updater, one that drafts replies in Gmail, and my API spend just kept creeping up. Not catastrophic but enough that i noticed. And the annoying part was i had genuinely no idea which agents was responsible.\n\nlike was it the summarizer calling the model 40 times per PR? was it the Notion one retrying failed writes in a loop? no clue. all i had was one big bill at the end of the month and a vague sense of guilt. it’s the classic thing where you can see the total but you cant attribute it to anything, so you cant actually fix it.\n\ni tried adding my own tracking around it for a bit. wrapping calls, logging token accounts, dumping it into a spreadsheet. worked for about a week until i got lazy and drifted it out of date. the problem with rolling your own is you have to maintain it forever and across every framework, and i’m running stuff in Claude Code and Cursor and a random LangChain script so there was no single place it all flowed through.\n\nthe thing i’ve been using lately is Aident Loadout and the part that actually helped here wasnt even the connection stuff, it was that every action call shows the credits it consumed. so now i can look and go “oh, THAT agent is eating 60% of my spend and it’s not even the one i use most.” turned out of mine was silently retrying on a timeout and each retry was a full model call. never wouldve caught that from the total alone.\n\nanyway the broader thing im curious about, for people running more than one or two agents:\n\n• do you actually know your per-agent cost or is it just one blob at the end of the month?\n\n• are you attributing spend per-tool / per-agent somehow or eyeballing it?\n\n• has anyone set a hard budget cap per agent, and does that even exist in a clean way anywhere?\n\nfeels like cost observability is where logging was a couple years ago. everyone knows they should do it, nobody wants to build it, and you only care once the bill makes you flinch. would love to hear how people are handling it.",
+    "developer": "Artistic-Earth8997",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

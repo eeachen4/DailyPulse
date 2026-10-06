@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wypgkq",
+  "sourceItemId": "1wypgkq",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wypgkq/doesnt_openais_watermarking_affect_the_quality_of/",
+  "detail": {
+    "longDescription": "OpenAI just announced that they will start to apply watermarking on their model’s output text and images to comply with the EU regulation that wants to be able to identify whether a text or an image was produced by an AI model.\n\nAnthropic announced the same thing a while ago (they applied worldwide, not just in EU).\n\nThe way they do that as they explained is by enforcing a “statistical signal in text generated”, **meaning preferring not always the most appropriate next token** but close enough, in order to meet the “statistical signal” requirement.\n\n**In my understanding, this deteriorates the output quality of their models, as it introduces KLD>0.**\n\nAnd we know that any KLD divergence greater than 0 (which the watermarking certainly creates) may be negligible in small outputs, but it definitely becomes noticeable in multi-turn tasks due to the compounding effect.\n\nWhat do you think?",
+    "externalUrl": "https://i.redd.it/vcnb13xtwqth1.jpeg",
+    "developer": "ResearchCrafty1804",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

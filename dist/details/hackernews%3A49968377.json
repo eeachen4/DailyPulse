@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49968377",
+  "sourceItemId": "49968377",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49968377",
+  "detail": {
+    "longDescription": "I have been working on Rashomon, an open-source execution recorder for AI coding agents. The basic idea is that the agent transcript is not ground truth. Rashomon keeps its own record of what happened and compares it against the agent’s account. For Claude Code, it records things like: * shell commands, exit codes, and whether they may have written files * tool calls and outcomes * test commands and their outcomes * subagent lifecycle and ordering * timestamps and parent&#x2F;child relationships * keyed digests of command&#x2F;tool inputs and working directories It builds a timeline from these events. It does not store prompts, responses, file contents, or tool output. For example, it now detects patterns like: `test fails → only test files change → same test passes` and: `test command fails → same command passes → no corresponding file edit` These can indicate that an agent changed a test instead of fixing the underlying issue. Rashomon currently runs as a Claude Code plugin or through the CLI. CLI: `rashomon watch` then: `rashomon report` Plugin: `&#x2F;rashomon:report` There are still edge cases around cwd, git state, test-selection arguments, generated files, retries, and parallel execution. I would be interested in feedback from people building agents on what execution signals you would want Rashomon to capture or correlate. GitHub: https:&#x2F;&#x2F;github.com&#x2F;altrace-dev-role&#x2F;rashomon",
+    "externalUrl": "https://github.com/altrace-dev-role/rashomon",
+    "developer": "rganupa",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

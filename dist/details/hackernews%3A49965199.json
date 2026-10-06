@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49965199",
+  "sourceItemId": "49965199",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49965199",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Hongyin. I built Vibivibi ( https:&#x2F;&#x2F;vibivibi.com ) because I kept starting a coding agent session on my laptop and wanting to continue it on a server, or hand it to a colleague. I want an easier way to do it but won’t trust anyone hosting my traces who promises they won’t sell it (market price per coding trace is $50 to $100). What Vibivibi does: a small CLI, `vibi`, finds the sessions your coding agents keep locally (Claude Code, Codex CLI, OpenCode, Pi), encrypts one on your machine and uploads it. On another machine `vibi pull` puts it back where the agent expects it, so `claude --resume &lt;id&gt;` just continues. `vibi push` can also send a session to someone else by email. Our service cannot read session content. Each user has a key pair made on their first machine; the private key reaches the server only wrapped with a key derived from an encryption password that never leaves the user&#x27;s machines. Every session version is encrypted with its own random key, which is then wrapped for each recipient (X25519, HKDF, AES-256-GCM). The server sees account emails, public keys, machine names, sizes, timestamps, who sent what to whom, and an optional plain-text label. Sending to someone who doesn&#x27;t have an account yet works too: the sender&#x27;s client makes a key pair on their behalf, locks it with a random 12-character passphrase, and shows the sender that passphrase to pass on out of band. When the recipient signs up and enrolls a machine, their client unlocks it locally and re-keys the session to their own key. The client is open source (Apache-2.0): https:&#x2F;&#x2F;github.com&#x2F;subconscious-systems&#x2F;vibi-cli The crypto and the schemas of everything the client sends live in one package, so the claims above can be checked against the code. It ships as a single executable, no Node or npm needed: `curl -fsSL https:&#x2F;&#x2F;vibivibi.com&#x2F;install.sh | sh`, or build it yourself. The server (Next.js on Vercel, Postgres, blob storage) is not open source. Pricing: free for 200 MB of encrypted storage and unlimited sends; Pro is $8&#x2F;month for 20 GB; Team is $15&#x2F;seat with an admin view and a &quot;send only inside the team&quot; policy. Honest limitations: - There is no password recovery. Forget the encryption password and the key, and everything encrypted for it, is gone. I&#x27;d like to hear where the threat model falls short, and which agents or workflows you&#x27;d want supported next.",
+    "externalUrl": "https://vibivibi.com/",
+    "developer": "hyluo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

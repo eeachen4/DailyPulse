@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.00038",
+  "sourceItemId": "2609.00038",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.00038",
+  "detail": {
+    "longDescription": "arXiv:2609.00038v2 Announce Type: replace-cross Abstract: A direct test of an LLM judge of agent trajectories injects faults into correct runs and reports recall, per fault type or by whether the fault broke the environment outcome (loud) or not (silent). Such recall can credit a judge with detection it does not have; paired discrimination, its flag rate on the faults minus its rate on the clean runs they came from, exposes this. Our testbed, a deterministic support desk with a scripted oracle and a one-step fault injector, labels all 400 trajectories exactly. A 14B judge shown only the request and final reply scores 34% to 76% recall on four fault types that leave the reply unchanged. There its input is the clean run's, so its paired discrimination is zero and that recall is its flag rate on clean runs. Splitting by outcome survival does not fix this: its loud recall of 84% is a paired +0.393 and its silent recall of 45% a paired +0.048, all from the two fault types that change the reply. Told to check each step, the same model flags every fault of those four types and 0 of 100 clean runs (95% CI up to 3.6%). It does not reliably check the reply: of four invented promises it flags one every time and the other three once in 42 faults. Shown every step but asked only about the reply, it still reaches a paired +0.69 on reply-unchanged faults, against +1.00 when told to check each step. We recommend reporting paired discrimination against clean parents, split by whether the fault reaches the judge's input and by outcome survival, and release the testbed, raw verdicts and analysis pipeline.",
+    "developer": "Hadi Mohammadi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.AI, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hadi Mohammadi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

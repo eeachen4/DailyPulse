@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyqy68",
+  "sourceItemId": "1wyqy68",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wyqy68/diy_agentic_memory_posix/",
+  "detail": {
+    "longDescription": "Saw the recent CLM paper and they sound interesting. Meanwhile, thought I'd share what we've cooked up over here and been rawdogging for long horizon work:\n\nOpenresty (nginx+lua) w/ caching turned off and some dinky little python scripts that write to a thing we call 'the drip' (Doubley Redundant Injected Prompt).\n\nIts basic files. You have the agent create a working memory for the project it's working on and keep it up to date. Yada yada, handoff packets, right? \n\nThe dinky scripts move the packet to the drip directory where openresty can find them. Then, because we are using openresty as a proxy to the inference engine, the drip injects whatever the agent has written directly into the request behind the system prompt - where it's cache stable.\n\nNet effect is your agent will remember shit across compaction runs and have a source of truth that is present every turn. It doesn't have to remember to look around for the important things, because they are injected at system prompt level every turn.\n\nThat is the whole of the system: a proxy as injector and a file the agent can edit.\n\nYou can get fancy and build libraries and skill systems, let the agent hot swap their skills and memory. It all works pretty well. I have a coder that's survived 35 compactions across the current project and graduated to project manager with nothing more complicated than telling it to swap between prod & dev modes. Same project before turning the system on was a mess.\n\nAnyway, ymmv. There is no code because it's simple enough that if your agent can read this, they can build it and customize it. \n\nTLDR: put a proxy in front of your inference engine and gaslight your llm.",
+    "developer": "cryowastakenbycryo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

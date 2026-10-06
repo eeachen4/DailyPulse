@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wypxos",
+  "sourceItemId": "1wypxos",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wypxos/how_are_you_handling_agent_identity_and_auth/",
+  "detail": {
+    "longDescription": "Every time I set up an agent like Instinct, Muse, or Claude Code, I run into the same problem: making it useful usually means giving it standing access to my real Gmail, calendar, or credentials.\n\nWe just saw an example of an agent reading through someone’s personal inbox just to find a Cursor 2FA code. Giving a bot access to years of receipts, bank alerts, password resets, etc. just so it can grab one email or cancel a subscription feels pretty backwards.\n\nI’ve been building Decoy (decoys.me) around a different model, and recently started adding a way to connect agents with a single prompt.\n\nThe basic idea:\n\n1. **Give agents scoped identities, not your real accounts.** An agent can create a task-specific email/inbox for a signup, 2FA code, confirmation, etc. When the task is done, you can revoke or burn it. No standing access to your primary inbox.\n2. **Keep credentials and memory user-owned.** Your data is encrypted client-side and tied to a key on your device, rather than living separately inside every agent provider.\n3. **Let agents share context through a knowledge graph you own.** Agents you connect can read and contribute things like preferences, project context, and credentials without each one building its own siloed memory of you.\n\nYou do need to download the Decoy app first, since your device acts as the key for the end-to-end encrypted layer. After that, agents can connect to it directly with a single prompt from (decoys.me/agents)\n\nThe goal is pretty simple: agents can do useful things on your behalf without every new agent needing the keys to your entire digital life.\n\nCurious if other people building with agents run into this problem, and if anyone would be open to giving some honest feedback!",
+    "developer": "jmppmj",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

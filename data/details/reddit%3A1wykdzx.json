@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wykdzx",
+  "sourceItemId": "1wykdzx",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wykdzx/an_agent_got_stuck_in_a_loop_and_burned_4700_of_a/",
+  "detail": {
+    "longDescription": " a small b2b tool with a lean team of 3 customers run agents on our infra, we pay the model bill and then charge them monthly for usage\n\nTuesday ended normally but Wednesday morning the openai dashboard had a weird outlier spike\n\nAfter investigating we found that a customer's agent hit a tool that kept returning an error and the agent decided the fix was to retry with a slightly different prompt 31,000 times  between 1:12am and 6:50am\n\n$4,700 spen t in tokens while being on a $400/mo \n\nwe had a global rate limit and alerts on total spend, however we had nothing per customer because usage only got rolled up into the invoice at month end and nobody looked at it in between.\n\nThe dumb part is the customer is not even at fault. the agent did exactly what agents do when nothing tells them to stop;;it went rogue\n\nwe had to eat most of it and sent a very awkward email\n\nWe now have a per customer budget checked before every model call, a soft alert at 1x plan and hard stop at 2x Added a max retry count per tool call too which honestly should have existed before\n\nCurious to know how others are capping spend per customer?",
+    "developer": "Sufficient_Cause_43",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

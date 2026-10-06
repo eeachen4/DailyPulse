@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.03203",
+  "sourceItemId": "2610.03203",
+  "fetchedAt": "2026-10-06T03:23:17.934Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.03203",
+  "detail": {
+    "longDescription": "arXiv:2610.03203v1 Announce Type: new Abstract: Efficient serving of Mixture-of-Experts (MoE) models is challenging due to large expert parameters, input-dependent expert activation, and dynamic workloads. Expert parallelism distributes expert computation across GPUs, while attention-FFN disaggregation (AFD) separates attention and feed-forward computation into independent worker pools. However, we observe that a naive AFD implementation could make expert load imbalance more harmful: once FFN computation becomes an independent pipeline stage, overloaded experts directly slow the FFN stage and degrade end-to-end serving performance. To solve this problem, we present AFORE, a timely expert reconfiguration system for AFD-based MoE serving. AFORE exploits two architectural properties of AFD. First, AFD exposes the expert-token distribution of upcoming microbatches before they reach FFN execution, enabling placement decisions based on near-future demand instead of stale historical profiles. Second, AFD creates a pipeline window in which expert migration for a target microbatch can be overlapped with the computation of preceding in-flight microbatches. AFORE formulates expert reconfiguration as a microbatch-aware scheduling problem and uses a migration-aware scheduler to decide when and which experts to migrate. AFORE further implements lightweight demand prefetching and NVLink-based GPU-GPU expert migration to reduce reconfiguration overhead. Evaluation on a 110B-parameter MoE model across four dynamic workloads shows that AFORE improves output throughput by 10.1-17.6% and reduces P95 inter-token latency by 7.1-9.5% compared with the strongest competing baseline. Compared with static placement, AFORE improves throughput by 29.8% on average and reduces P95 inter-token latency by 18.2% on average. Migration profiling further shows that AFD pipeline overlap can fully hide expert-migration latency.",
+    "developer": "Wenshuang Li, Youhe Jiang, You Peng, Jiawei Jiang, Binhang Yuan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Wenshuang Li, Youhe Jiang, You Peng, Jiawei Jiang, Binhang Yuan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

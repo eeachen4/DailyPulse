@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wypq1g",
+  "sourceItemId": "1wypq1g",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wypq1g/progressive_resolution_query_protocol_proposal/",
+  "detail": {
+    "longDescription": "I want to propose a continuously refined resolution object for asynchronous request and response.\n\nThe object would continue refining its resolution over time, but when the underlying datasets become too large for useful ongoing iteration, it would return only the key fields needed to preserve continuity and further analysis.\n\nInstead of returning large representative data objects, it would limit returns to discrete set data over the actually representative data in the source system.\n\nIt would provide a way for AI to signal, “I have enough for my next query.” That signal would allow the current search to stop expanding once sufficient information has been resolved.\n\nAs the AI moves through several stages of a query, it would use what has already been resolved to refine what it is looking for next. Each successive query would operate over a smaller and better-defined search space, carrying forward only the context needed to continue the resolution.\n\nThis would allow the AI to make several increasingly precise attempts against the underlying data rather than repeatedly producing a probabilistic copy or probabilistic guess from a large undifferentiated context.\n\nThe process would work as a sequence of query, resolution, refined query, refined resolution, and continued narrowing, with each new search constrained by what has already been learned.\n\nTemporal resolution would be based on a logarithmic function of time, using now as the baseline, so that resolution can change as information moves away from the current state.\n\nThe goal is to make it possible to track, analyze, and migrate changing systems in real time while preserving enough continuity for digital twin models to remain coherent under AI-speed pressure.",
+    "developer": "novel-mathmatics",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

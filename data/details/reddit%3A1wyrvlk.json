@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyrvlk",
+  "sourceItemId": "1wyrvlk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1wyrvlk/wrote_a_3mb_standalone_c_runner_for_gemma2b/",
+  "detail": {
+    "longDescription": "Weekend experiment running Gemma-2B on bare-metal x86-64 (pure C + AVX2, zero Python/CUDA, \\~3.3MB single binary). Added a simple orthogonal probe on the residual stream to see what each layer is doing.\n\nTested it on Taiwan's statutory VAT rate (legally 5%). Layers 0-14 stay factual, but Layer 15 suddenly collapses into the negative, and RAX spits out \"15%\":\n\nLayer 14 | Truth: +0.0163 | \\[0xDF28010E\\]\n\nLayer 15 | Truth: -0.0481 | \\[0x72DE18A0\\] <- drops below 0\n\nLayer 17 | Truth: -0.0817 | -> Register RAX outputs tokens: '1', '5', '%。'\n\nRaw trace, 6-page paper, and release binary here for anyone into low-level ML:\n\n\\* Web trace: [https://pulsar-tracer.web.app](https://pulsar-tracer.web.app)\n\n\\* PDF: [https://pulsar-tracer.web.app/PULSAR\\_Technical\\_Whitepaper.pdf](https://pulsar-tracer.web.app/PULSAR_Technical_Whitepaper.pdf)\n\n\\* Repo: [https://github.com/tomtsai28/PULSAR-ASM](https://github.com/tomtsai28/PULSAR-ASM)",
+    "developer": "tom_tsai28",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

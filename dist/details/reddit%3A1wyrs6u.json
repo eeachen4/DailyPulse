@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyrs6u",
+  "sourceItemId": "1wyrs6u",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1wyrs6u/unpopular_opinion_fully_autonomous_ai_agents_are/",
+  "detail": {
+    "longDescription": "I spent a full month trying to run an autonomous agent setup to browse reddit and x, analyze intent, and qualify prospects for my workflow. It costed like entire fotune in API credits, failed completely. The agent kept falling into recursive reasoning loops and trying to parse obvious bot threads, mistaking generic industry news for actual buying intent.\n\nThe breakthrough finaly came when I took away its ability to browse freely. Instead of letting an llm decide where to go and what to read, the system needs to be split into two strict layers. The first layer is just deterministic keyword streaming that hooks into live endpoints to catch fresh threads. The second layer is a dumbed down llm prompt that does a simple binary check on whether the post is an actual complaint or just the noise. switched to pumpgtm to handle that constrained two layer stream filtering for me, execution became instantly rock solid. Giving AI agents total autonomy to scout the web looks great in twitter demos, but constrained stream filtering is the only setup that actually scales without blowing up your token bills. Will be happy to hear further from all on this",
+    "developer": "Acrobatic-Laugh1856",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
