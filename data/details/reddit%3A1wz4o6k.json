@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz4o6k",
+  "sourceItemId": "1wz4o6k",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wz4o6k/ship_the_code_release_the_feature/",
+  "detail": {
+    "longDescription": "I maintain the community fork of \\[kaniko\\](https://github.com/osscontainertools/kaniko). Development on the original stalled in 2024 and Google archived it in June 2025, I do not think that was neglect, kaniko is that kind of project that is both fiddly to get right and fatal if wrong, the rational solution is to merge nothing.\n\nThe way we broke that loop is with a new approach to release management. We ship code and release features. Every, and I mean every, behaviour change ships behind a featureflag, bugfixes included. This way we can ship within our patch release cycle, every two weeks, whilst keeping the behaviour stable for everyone else.\n\nThe part that convinced me was not planned. In June this year an upstream bug \\[deadlocked builds\\](https://github.com/osscontainertools/kaniko/issues/775). Because the flag for the new code path still existed, affected users simply flipped it back and kept using the newest version, instead of pinning to the old version with all the CVEs.\n\nI'm curious whether anyone else uses featureflags this abundantly, or what you do instead?\n\nWrite-up: [https://osscontainertools.org/blog/featureflags/](https://osscontainertools.org/blog/featureflags/)",
+    "developer": "martizih",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

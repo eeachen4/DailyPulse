@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117396249176747937",
+  "sourceItemId": "mastodon.social/117396249176747937",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-6a6e5494-35a63a849a91b6ec",
+  "detail": {
+    "longDescription": "Introduction Deploying large language models (LLMs) in a production environment presents a different set of challenges than running them in a notebook. Engineers need to balance latency, cost, and reliability while keeping the model up to date with the latest data. This article shares concrete patterns that have proven effective for startups and scale-ups. Why LLMs in Production LLMs can power features such as code completion, customer support bots, and content generation. When integrated correctly they reduce manual effort and improve user experience. However, a naïve deployment can lead to high latency, unpredictable costs, and hallucinations. Common Challenges Latency - Large models take time to generate responses, especially when the request volume spikes. Cost - Running a model on GPU continuously can be expensive. Data freshness - The model’s knowledge may become stale if it does not see recent documents. Reliability - A single point of failure in the inference pipeline can bring a feature down. Retrieval-Augmented Generation (RAG) RAG combines a static LLM with a dynamic knowledge base. Store relevant documents in a vector store such as Pinecone or Milvus. At inference time, query the store with the user prompt, retrieve the top k snippets, and prepend them to the model prompt. This approach keeps answers grounded in current data and reduces hallucinations. from sentence_transformers import SentenceTransformer from pinecone import Index model = SentenceTransformer('all-MiniLM-L6-v2') index = Index('my-docs') def retrieve(query, top_k=5): vec = model.encode([query]) [0] results = index.query(vector=vec, top_k=top_k) return \"\\n\".join([match['metadata']['text'] for match in results['matches']]) def generate(prompt): context = retrieve(prompt) full_prompt = f\"Context:\\n{context}\\n\\nPrompt:\\n{prompt}\" # Call to LLM API here return call_llm(full_prompt) Prompt Management Store prompts in a version-controlled repository. Use a templating system that allows you to inject variables such as user name or product ID. When a prompt changes, run a regression test against a set of reference queries to ensure output quality does not degrade. Monitoring and Logging Instrument the inference service with metrics for latency, token usage, and error rates. Log the full prompt and model response for a sample of requests to enable post-mortem analysis. Alert on spikes in latency or sudden drops in success rate. Cost Control Choose the smallest model that meets your quality requirements. For many use cases a 7B parameter model offers a good trade-off. Use mixed-precision inference (FP16) and batch multiple requests when possible. Set a daily budget in your cloud provider and shut down idle GPU instances automatically. Deployment Patterns Serverless Functions - Ideal for low-traffic endpoints. The function loads the model on cold start and serves a single request. Containerized Service - Run the model inside a Docker container behind a load balancer. This pattern supports autoscaling based on request count. Edge Deployment - For latency-critical features, deploy a quantized model to edge locations using platforms like Cloudflare Workers. Conclusion Deploying LLMs at scale requires careful attention to data freshness, latency, and cost. Retrieval-augmented generation, disciplined prompt versioning, and robust monitoring form the backbone of a reliable system. By applying these patterns you can deliver AI-powered features that meet the expectations of technical founders and product teams. AI # Production # architecture # devops # llm # performance # software # coding # development # engineering # inclusive # community Practical Tips for Deploying Large Language Models in Production",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008079",
+  "sourceItemId": "80008079",
+  "sourceUrl": "https://stackoverflow.com/questions/80008079/why-i-am-unable-to-set-groups-despite-user-having-an-id",
+  "detail": {
+    "longDescription": "I made a custom user model: from django.db import models from django.contrib.auth.models import AbstractUser # Create your models here. class User(AbstractUser): bio = models.TextField(blank=True, null=True) def __str__(self): return self.first_name+' '+self.last_name And I try to save it like this: from app_auth.models import User from django.contrib.auth.models import Group from django.db import transaction class UserService: @transaction.atomic def create(self, username: str, email: str, first_name: str, last_name: str, groups: list[Group], bio: str | None = None) -> User: user = User.objects.create_user( username=username, first_name=first_name, last_name=last_name, email=email, bio=bio, #TODO: XSS Sanitize ) print(\"USER ID: \"+str(user.id)) for group in groups: print(\"GROUP ID: \"+str(group.pk)) user.groups.set(groups) user.save() return user But I get the following error: \"<User: XXXX XXXXX>\" needs to have a value for field \"id\" before this many-to-many relationship can be used. The debug print indicates that both user and groups have an id: USER ID: 4 GROUP ID: 4 Do you know why?",
+    "developer": "Dimitrios Desyllas",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "98"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

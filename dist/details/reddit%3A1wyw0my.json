@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyw0my",
+  "sourceItemId": "1wyw0my",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wyw0my/swerace_a_codingagent_benchmark_of_188_real/",
+  "detail": {
+    "longDescription": "We've been building a benchmark out of real concurrency bugs (race conditions, deadlocks, cancellation issues) taken from merged PRs in about 100 Python projects. Each task gets graded by the project's own tests, in a container with no network, and the repo is cut down to a single commit so the agent can't recover the fix from git history.\n\nhttps://preview.redd.it/0uopztlmpsth1.png?width=1200&format=png&auto=webp&s=59c0698ca0a76c17be41e41362324d6a262f1f25\n\n\n\nSome findings:\n\nWith one attempt per task GLM-5.3 Flash scored 85%. With two to three attempts it scored 82%, within the margin of error of GPT-5.6 Luna (81%). The leaderboard now shows the number of attempts and the interval for every score.\n\nhttps://preview.redd.it/9dqmk9uppsth1.png?width=1200&format=png&auto=webp&s=006cd587d11c03e47baf50c9954d95d937d09005\n\n\n\nAbout half the tasks are easy for every model (near 100%). The other half is where they actually differ: 50%, 45% and 23% on the hard ones. Most of the difference between models comes from the hard half.\n\nSince every fix is public on GitHub, we reviewed all 11k commands the agents ran. 69 tried to access the network and all failed. GLM tried 50 times to pip download the already-fixed release of the library it was fixing.\n\nWe also checked contamination by comparing older bugs (pre-2026) with newer ones of similar size. Older ones are solved about 9 points more often, but the confidence interval crosses zero, so we can't say much yet.\n\nHalf the tasks are private. So far public and private scores line up for all three models.\n\nResults and every agent run: [https://labs.evaligo.com/swe-race?utm\\_source=reddit&utm\\_medium=ml&utm\\_campaign=launch](https://labs.evaligo.com/swe-race?utm_source=reddit&utm_medium=ml&utm_campaign=launch)\n\nTasks: [https://huggingface.co/datasets/evaligo/swe-race](https://huggingface.co/datasets/evaligo/swe-race)\n\nThe protocol follows DeepSWE (100 steps). Feedback on it, and suggestions for which models to run next, are welcome.  \n",
+    "developer": "heyitsdannyle",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

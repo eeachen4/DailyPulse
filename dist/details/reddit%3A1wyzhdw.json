@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wyzhdw",
+  "sourceItemId": "1wyzhdw",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wyzhdw/learning_to_learn_a_language_incontext_learning/",
+  "detail": {
+    "longDescription": "Learning from data as we observe it is easy for humans, but most machine learning models have limited ability to learn from new data that they have not seen during training. Prior-fitted networks (the idea behind TabPFN) showed that a model trained only on synthetic data can learn from real tabular data entirely in context.\n\nI wanted to share our paper \"Learning to Learn a Language\" where we extend the idea to structured sequences such as natural language. We propose a prior over languages: every training sequence comes from a randomly sampled recurrent causal model, so each one is a new synthetic \"language\". A 300M-parameter byte-level transformer trained only on these synthetic sequences learns to predict real languages in context. Given Wikipedia text with frozen weights, its next-byte predictions get better the more it reads, in all six languages we tested (English, Chinese, Hindi, Arabic, Japanese, Korean), from 8 bits per byte down to 0.9–2.4 after a million bytes.\n\nThe same model also learns to count, to compare numbers, to add approximately, and to predict deterministic sequences such as the primes or the Kolakoski sequence, entirely in context.\n\nIt is of course still far worse on text than classical language models that are trained on trillions of tokens, while our model sees at most a million bytes of a language at test time. What we find interesting is that the ability to learn a language in context can come from a synthetic non-linguistic prior.\n\nPaper: [https://arxiv.org/abs/2610.05879](https://arxiv.org/abs/2610.05879)  \nCode: [https://github.com/cbl/prior-fitted-language-model](https://github.com/cbl/prior-fitted-language-model)  \nWeights: [https://huggingface.co/lennartcb/pflm1](https://huggingface.co/lennartcb/pflm1)",
+    "developer": "cbl007",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

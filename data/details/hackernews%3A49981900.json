@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49981900",
+  "sourceItemId": "49981900",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49981900",
+  "detail": {
+    "longDescription": "I wanted to share Delegator with the HN community. delegator gives you a personal inbox to manage your tasks that is completely local to your machine. Backstory: Like everyone else, I&#x27;ve been experimenting with different AI-assisted development workflows. I realized I was having difficulty with all the context switching between tasks. Asking agents to develop code ends up taking about 5-10 minutes usually for well-scoped tasks. At the beginning I would read the AI output as it went along and sometimes interrupt to guide it. But as LLMs have gotten better, there&#x27;s less need to do that. So I would spin up another task during the latency and then another. (I wrote a little bit about this previously here https:&#x2F;&#x2F;mattmccormick.ca&#x2F;we-re-all-managers-now-my-journey-i... ) Jumping back and forth between terminals with the Agent being at different stages was mentally taxing. I experimented with some different options and ended up realizing that to avoid the drain of context-switching, what I really needed was a queue. Delegator works by putting all scoped tasks through the system. It stops when the ready queue has reached your configured limit. This is to prevent too much work from piling up waiting for review. It also presents the work from getting too far ahead in case any issues are found as part of development. I also realized that for most tasks, agents can be treated as a background process. You pass in the work to the process. It processes it and then gives you an output to review. All changes are made in git worktrees for safety. Who&#x27;s it for? Delegator is for engineers who still want to understand the code and changes. It&#x27;s not for vibe-coding or exploratory work. Don&#x27;t get me wrong, I&#x27;ll still spin up an agent session for brainstorming design options. But once I&#x27;m aligned on a direction, I&#x27;ll then ask the agent to break down the work into &quot;dg tickets&quot;. Since Delegator is a local program, agents can interact with it quickly and seamlessly. Right now it&#x27;s just CLI based but I&#x27;m looking to expand this into a GUI&#x2F;Desktop App so I would be interested in any feedback you have. Let me know if you have any questions and I&#x27;ll respond. The code is source available so you can check it out at https:&#x2F;&#x2F;github.com&#x2F;alcubie&#x2F;delegator if you want to check anything.",
+    "externalUrl": "https://alcubi.ai/delegator/",
+    "developer": "mattm",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

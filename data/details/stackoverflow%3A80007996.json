@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007996",
   "sourceItemId": "80007996",
+  "fetchedAt": "2026-10-07T02:46:43.207Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007996/google-auth-fails-to-authenticate-github-actions-on-ci",
   "detail": {
     "longDescription": "I am trying to create a CI pipeline for my project. The project stands for a part number database on Google Sheets. The user gives an input part number on the streamlit front-end and the sheet is updated. I am using the library gspread . Currently, I am building CI/CD pipelines for testing and my problem is that I am trying to use pytest, but it seems like Google authentication is failing on GitHub Actions because I am using WIF, but the authentication is failing every push to main. I set up the WIF on Google platform correctly and this the error: FAILED test_utils.py::test_identity_pool_credentials_refresh_succeeds - google.auth.exceptions.OAuthError: ('Error code unauthorized_client: The given credential is rejected by the attribute condition.', '{\"error\":\"unauthorized_client\",\"error_description\":\"The given credential is rejected by the attribute condition.\"}') This is the utils.py found here : class CustomerSubjectTokenSupplier(identity_pool.SubjectTokenSupplier): def get_subject_token(self, context, request): audience = context.audience try: url = os.environ[\"ACTIONS_ID_TOKEN_REQUEST_URL\"] + f\"&audience={audience}\" token = os.environ[\"ACTIONS_ID_TOKEN_REQUEST_TOKEN\"] response = request( url=url, method=\"GET\", headers={\"Authorization\": f\"Bearer {token}\"} ) return json.loads(response.data)[\"value\"] except Exception as e: raise exceptions.RefreshError(e, retryable=True) This is my test: def test_identity_pool_credentials_refresh_succeeds(): supplier = CustomerSubjectTokenSupplier() credentials = identity_pool.Credentials( audience=audience, subject_token_type=\"urn:ietf:params:oauth:token-type:jwt\", subject_token_supplier=supplier, scopes=['https://www.googleapis.com/auth/cloud-platform'] ) credentials.refresh(Request()) assert credentials.token is not None I am having a hard time understanding the google-auth library, especially this part here , I read this entire documentation and as far as I understood, this is the section to connect to GitHub Actions to GCP by the token. By generating the token and connect the provider with GCP, the credentials are generated and then I think I can use the credentials to connect with google sheets using WIF, not long-live json files. But gspread does not support WIF connection, only service account through json file. I did not find tutorials or anything saying gspread can connect using WIF. The gspread library supports only connection through service account with long-lived JSON files, which is not possible to push to remote repo.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "89"
+        "value": "105"
       },
       {
         "label": "状态",

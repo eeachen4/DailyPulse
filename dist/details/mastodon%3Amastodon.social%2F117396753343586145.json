@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117396753343586145",
+  "sourceItemId": "mastodon.social/117396753343586145",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-fa1014ed-fad8556de6186bca",
+  "detail": {
+    "longDescription": "How many times have you pushed a commit only to realize 3 minutes later that you left a console.log , a formatting issue, or a broken unit test in your pull request? Most JavaScript and TypeScript teams immediately reach for external tools like Husky or lint-staged. While those tools are great, many developers don't realize that Git has had native client-side hooks built-in since day one —and you don't need any npm dependency to protect your repository. Here is how you can set up a native, version-controlled pre-commit hook in under two minutes. The Problem With the Default .git/hooks Folder By default, Git stores hooks inside the .git/hooks/ directory of your project. The problem? The .git/ folder is never committed to remote repositories. That means your teammates won't get your hooks, and you won't get theirs. Luckily, Git 2.9 introduced a clean configuration setting: core.hooksPath . Step 1: Tell Git Where to Look for Hooks Instead of relying on hidden folders, create a tracked directory in your project root called .githooks : mkdir .githooks Now, tell Git to read hooks from this directory: git config core.hooksPath .githooks (Tip: In a team project, you can add this line to your npm prepare script in package.json so it runs automatically on npm install !) Step 2: Create Your Native pre-commit Hook Inside your new .githooks/ folder, create a file named pre-commit (no extension): touch .githooks/pre-commit chmod +x .githooks/pre-commit Add your validation logic inside .githooks/pre-commit : # !/bin/sh echo \"Running pre-commit checks...\" # 1. Run your linter or type-checker npm run lint if [ $? -ne 0 ]; then echo \"Lint errors found! Fix them before committing.\" exit 1 fi # 2. Block unwanted console.log leftovers if git diff --cached | grep -q \"console.log\"; then echo \"Warning: Found staged console.log statements!\" exit 1 fi echo \"All checks passed! Committing changes...\" exit 0 Step 3: Try It Out Whenever you run git commit , Git executes your .githooks/pre-commit script before creating the commit snapshot: If the script exits with 0 , the commit goes through. If any test or lint fails (exiting with non-zero), Git instantly aborts the commit, keeping your Git log clean. Why Keep It Native? Zero dependencies: No extra node_modules bloat or build-step overhead. Instant execution: Runs directly in your shell without wrapper lag. Works with any stack: The same hook works whether your project is React, Node.js, Go, or Python. Small native features like core.hooksPath save hours of CI debugging and keep your codebase clean. Have you used native Git hooks before, or do you prefer package managers like Husky? Let's discuss in the comments! # git # javascript # webdev # productivity # software # coding # development # engineering # inclusive # community Stop Pushing Broken Code: Clean Git Hooks Without External Packages",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "3"
+      }
+    ]
+  }
+}

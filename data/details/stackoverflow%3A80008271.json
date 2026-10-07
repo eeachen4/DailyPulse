@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008271",
+  "sourceItemId": "80008271",
+  "sourceUrl": "https://stackoverflow.com/questions/80008271/regex-replace-group-reference-and-unicode-escape-conflict",
+  "detail": {
+    "longDescription": "I am working on a latin to N'ko translator. I get a warning for this type of code: text=re.sub(r'([ߊߍߋߌߐߏߎ][\\u07F2]*)\\u0300','\\g<1>\\u07EC',text,0,re.UNICODE|re.MULTILINE) SyntaxWarning: invalid escape sequence '\\g' I get an error for this correction on the second term: text=re.sub(r'([ߊߍߋߌߐߏߎ][\\u07F2]*)\\u0300',r'\\g<1>\\u07EC',text,0,re.UNICODE|re.MULTILINE) re.error: bad escape \\u at position 5 A double slash \\\\u instead of \\u : no warning and no error message but the whole string u07EC gets inserted, not the Unicode character. What am I missing here?",
+    "developer": "jjmeric",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "86"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

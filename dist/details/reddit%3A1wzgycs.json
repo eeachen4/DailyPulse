@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wzgycs",
+  "sourceItemId": "1wzgycs",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wzgycs/scaling_when_sla_requires_set_throughput/",
+  "detail": {
+    "longDescription": "So we have various micro services. We were looking at KEDA as a lot of them are consumers on queues\n\n  \nMy problem is our contracts define that we have to be able to meet a certain transactions per second (let's say 300 TPS)\n\nNow our steady state might be as low as 10 TPS, and we have to assume the increase to 300 TPS would be entirely unpredictable and be for a very short time so KEDA + Cluster Autoscaler wouldn't work \n\nWe have a tight turnaround time SLA (1.5 seconds) so can't queue a burst of transactions for retries\n\n  \nIs the only way to handle this by pre-provisioning an environment which can handle 300 TPS at all times even though it would mostly sit idle. Or are there better ways? I'm at a bit of a loss here  \n",
+    "developer": "Background_Cow_7533",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

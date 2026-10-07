@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wzktwe",
+  "sourceItemId": "1wzktwe",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wzktwe/how_are_you_guys_generating_kubernetes_manifests/",
+  "detail": {
+    "longDescription": "Scenario: I am using Rancher's Continuous Delivery tools to deploy applications out to my clusters. I have a gitRepo per cluster and each gitRepo holds a set of bundles for deploying my apps via fleet.\n\n  \nFleet is really nice and it works great with my gitRepos, but I am having a hard time establishing a branch pattern for a gitRepo that would handle day 1 operations on my cluster (i.e. a bundle for cert-manager, another for trust-manager, another for kyverno, fluentbit, ..., etc). Essentially, this day 1 repo is really just a bunch of public helm charts that use fleet.yaml's `targetCustomizations` resource to deploy out to each of my clusters.\n\n  \nI initially had a feature > develop > preprod > prod flow to deploy out my gitRepos, where develop deployed to all of my nonprod clusters, preprod deployed to our preprod cluster, and prod deployed to the prod cluster. This is starting to get kinda wonky and tedious though, especially with us expanding to have DR clusters. Because of this, we also maintain another feature > DR branch workflow that is independent of the previously mentioned branch strategy.\n\n  \nSo I want to figure out a better way to configure this whole process to more automatically generate the manifests for each environment and have it be 1 branch per cluster. I'm a terraform junky and would love to use the kubernetes provider, but that means I have to forgo my process of Rancher Continuous Delivery and architect a process of creating resources via a kubeconfig context/gitlab ci. I want to avoid this because then I have a split brain solution of terraform *and* Rancher CD gitRepos deploying to my clusters. I saw that I *could* use pulumi to generate manifests. I also saw that [cdk8s](https://cdk8s.io/docs/latest/) is a thing and it looks really promising for my usecase. There's a lot of dev chatter at my company of using nix to do this. Frankly, I find nix to be a huge learning curve for myself and the other ops guys that would have to adopt this.\n\n  \nSo my question now is- How good is cdk8s? Do you guys use other tools to generate manifests? Should I just learn nix? Thanks community!",
+    "developer": "6ixisntme",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz32ae",
+  "sourceItemId": "1wz32ae",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wz32ae/do_we_still_need_kyverno_or_gatekeeper_for_simple/",
+  "detail": {
+    "longDescription": "I've been looking more closely at Kubernetes native admission policies recently while working on some Kubernetes content.\n\nOne thing I notice is how much policy enforcement Kubernetes can now handle without running a separate admission webhook.\n\nFor example, `ValidatingAdmissionPolicy` lets you use CEL expressions to validate incoming resources.\n\nAnd with newer Kubernetes versions, mutation can also be handled using native admission policies.\n\nI don't think this replaces Kyverno or Gatekeeper.\n\nFor complex policy management, reusable policies, reporting, exceptions, and larger environments, those tools still make a lot of sense.\n\nBut if you only need a few simple cluster-wide rules, installing another controller may no longer be the first option.\n\nCurious how others are handling this.",
+    "developer": "Important-Set-1194",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wzcqrh",
+  "sourceItemId": "1wzcqrh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wzcqrh/tencent_packs_open_source_770bparameter_hy4/",
+  "detail": {
+    "longDescription": "As someone who follows AI closely, I came across a technical breakdown from yghstill, a member of Tencent Hunyuan’s quantization team. It explains both the quantization technique and the engineering behind it. Tencent compressed Hy4 Preview’s roughly 1.5TB of weights to 214 GiB while keeping all 770B parameters. The parameter count remains unchanged; the compression changes how the weights are represented.   \n  \nFour weights, five bits. Sherry is the algorithm, STQ1\\_0 the storage format, and MIX-STQ1\\_0 the mixed-precision allocation. Each group of four weights takes values from {-d, 0, +d} with exactly one zero. Four zero positions times eight sign combinations give 32 patterns, encoded in five bits, or 1.25 bits per weight. A shared FP16 scale every 256 weights puts STQ1\\_0 at 1.3125 bits per weight, and the full mixed-precision model averages about 2.38 bits per weight.   \n  \nPrecision follows weight sensitivity. Hy4 Preview has 77 MoE layers with 256 routed experts each. Expert weights get compressed hardest while more sensitive components are protected. For expert gate/up projections, MIX-STQ1\\_0 uses IQ2\\_XXS on 48 sensitive layers and STQ1\\_0 on 29 less sensitive ones, which at the same average bit budget produces less error than using the intermediate IQ1\\_M format everywhere. Full-Hessian scoring.   \n  \nSensitivity is measured with the full Hessian, H = XXᵀ, whose off-diagonal terms capture correlations that diagonal-only imatrix scoring misses. The two rankings had a Spearman correlation of -0.115, and precision didn’t follow a “deeper means more important” rule. Layers were picked greedily by error reduction per added byte.   \n  \nScale and zero position are fit together. This is post-training quantization, no retraining. The encoder alternates between fitting d with weighted least squares and choosing the zero position by imatrix-weighted error. The smallest weight isn’t always the best one to zero, what matters is the extra weighted error that zeroing it causes. Across 1,200 rows of real expert weights, three alternating rounds cut weighted reconstruction error by roughly 90% versus the original ternary encoder. That’s local reconstruction, not end-to-end model accuracy.   \n  \nRuntime. STQ1\\_0 CUDA kernels were added to a patched llama.cpp build, and in operator tests it ran roughly as fast as IQ1\\_M despite the lower bit width. The author reports nearly unchanged MRCR retrieval performance and a small drop in math. Against UD-IQ1\\_M at a similar bit budget, MIX-STQ1\\_0 led across the reported evals, including more than five points on MRCR.   \n  \nThe result combines compact encoding, calibrated quantization, selective precision, and practical inference kernels.",
+    "developer": "OpeningRock8761",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wzk7ou",
+  "sourceItemId": "1wzk7ou",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1wzk7ou/agent_built_with_langgraph_ran_unattended/",
+  "detail": {
+    "longDescription": "No crash, no error, no retry logged. It just circled back through nodes whose state said done and reprocessed them anyway, once with a slightly different naming convention than the first pass, overwriting the correct output with a worse one.\n\nAssumed model drift at first. Doesn't fully explain it, the same model used interactively over a comparably long session doesn't usually fail this way nearly as often. The actual difference is that an interactive session has a human quietly doing a job nobody assigned them, noticing when a subtask's done and moving on, and the next message implicitly signals that shift without ever stating it outright.\n\nA graph running unattended through a long task list has nothing playing that role by default. Even with state tracked per node, if the full working detail from completed nodes stays accessible in whatever gets fed into the next step's context, it's still competing for attention with the actual current step, not just sitting there as a settled fact. On a long run, that accumulates at the same rate as the task itself.\n\nWhat's actually helped: explicitly collapsing a finished node's output into a short completion summary before it enters downstream context, instead of carrying the full reasoning trail forward, and treating a node's \"done\" state as something that actively shrinks what it contributes to context, not just a status flag nobody reads.\n\nWrote the longer version of this up here if useful: [https://medium.com/@nagatomopedro05/unattended-ai-agents-have-a-context-problem-humans-never-had-60961eb2d4e7](https://medium.com/@nagatomopedro05/unattended-ai-agents-have-a-context-problem-humans-never-had-60961eb2d4e7)",
+    "developer": "ClickOk5811",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

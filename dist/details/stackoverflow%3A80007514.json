@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80007514",
   "sourceItemId": "80007514",
+  "fetchedAt": "2026-10-07T02:46:43.207Z",
   "sourceUrl": "https://stackoverflow.com/questions/80007514/how-i-make-a-pytorch-model-bit-identical-outputs-across-different-gpus-cudnn-ve",
   "detail": {
     "longDescription": "I need my training run to be bit-for-bit reproducible across: Two different GPU architectures (A100 and T4), same machine count Different cuDNN / cuBLAS versions (e.g. 8.9 vs 9.x) Mixed precision (AMP) vs full FP32 num_workers > 0 DataLoader vs num_workers = 0 Multi-GPU DDP vs single-GPU I've already done all the \"standard\" determinism steps: python import os, random, numpy as np, torch os.environ[\"CUBLAS_WORKSPACE_CONFIG\"] = \":4096:8\" random.seed(0); np.random.seed(0); torch.manual_seed(0) torch.use_deterministic_algorithms(True) torch.backends.cudnn.deterministic = True torch.backends.cudnn.benchmark = False And yet the final loss after 10 epochs differs in the ~1e-6 range between A100 and T4, and diverges completely after ~2000 steps. What I've tried / ruled out: Set all seeds, worker seeds via worker_init_fn . Set PYTHONHASHSEED=0 . Disabled tf32 ( torch.backends.cuda.matmul.allow_tf32 = False ). Set deterministic algorithms globally — PyTorch raises no error, so I assumed it's fine. Compared weight hashes at step 0 — identical. Compared after step 1 — already differs. My question: How do I guarantee bit-identical training across these hardware and library configurations?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "109"
+        "value": "124"
       },
       {
         "label": "状态",

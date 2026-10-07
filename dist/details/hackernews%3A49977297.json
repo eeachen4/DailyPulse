@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49977297",
+  "sourceItemId": "49977297",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49977297",
+  "detail": {
+    "longDescription": "Paganel comes from an old work problem: I had a large schema migration with lots of transformations and several environments to check. One of the main requirements was to validate whether the data had moved correctly, and I was not allowed to use any SaaS tools because it was forbidden for data to leave our network. Since I couldn&#x27;t find any air-gapped tool that could do both the transformation and the verification (basic row counts aren&#x27;t enough for transformed data), I had to write custom scripts for the entire process. Ever since then, the idea of automating complex migrations has stuck in my head, which led me to start building Paganel a year and a half ago. In Paganel, a migration is just a single declarative file. You specify where the data comes from and where it&#x27;s going, and the rest goes in the same file: joins, filters, computed fields, and validation rules. If you are missing a specific source, sink, transform, or filter, you can easily extend Paganel by writing your own WASM plugin in Rust or JS. These execute inside a strict sandbox, so they don&#x27;t have any filesystem or network access unless you allow it in the migration config. I also wanted to make large migrations simple, so before running a real migration, you can run pag plan to review the output schema, the DDL, and the time and memory estimates. You can also use the plan to see a sample of real rows. They get processed through the whole pipeline, which gives you absolute clarity on what will actually be inserted. One of the biggest challenges isn&#x27;t just doing the migration, but verifying that everything actually moved correctly. For that, there is the --integrity flag. Pass it, and Paganel hashes the rows on the fly as they migrate, storing those hashes on disk, keyed by primary key. After the run, it uses them to spit out a 32-byte root hash for the table. Together with the row hashes, this gives you a complete &#x27;migration receipt.&#x27; Minutes or weeks later, you can run pag verify, and it re-reads the destination, recomputes the hashes and compares them with the receipt, without connecting to the source. When the root doesn&#x27;t match, you know something changed, and then verify goes through the row hashes and tells you which rows it was. It tells you that the destination still contains what Paganel wrote, but it can&#x27;t tell you whether the transformation itself was correct. Another huge factor is migration speed. I created a small benchmark to measure Paganel&#x27;s speed and tested it on a 100M-row migration from MySQL to PostgreSQL (with the databases on separate servers). With the default config, which is a single stream, I got about 390k rows a second. Splitting the table into four parallel streams got it to almost 940k. The number of streams is configurable for tables with an integer primary key. Enabling the --integrity flag does add some overhead, dropping those numbers to 340k and 670k, respectively. Paganel is still pre-v1.0, so there are some rough edges to be aware of: - No CDC yet: Currently, it only handles batch processing. Continuous sync with verification is the ultimate goal, but nailing the batch engine comes first. - Limited databases: Right now, Paganel only natively supports MySQL and PostgreSQL. - API changes: The project is under heavy development, meaning the config syntax might change slightly from release to release. - One-man team: I&#x27;m developing this solo. You will likely run into edge cases I haven&#x27;t caught yet. - Platform testing: The full integration suite and all my own manual testing run on Linux. macOS and Windows get pre-built binaries too, but they only go through a basic smoke test. If you want to try it out, the quickstart in the README will spin up some sample databases in Docker for you. How do you verify migrations today? I&#x27;d like to know whether a receipt like this would fit into how you work.",
+    "externalUrl": "https://github.com/stanstork/paganel",
+    "developer": "stan_stork",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

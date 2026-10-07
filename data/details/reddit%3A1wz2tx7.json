@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz2tx7",
+  "sourceItemId": "1wz2tx7",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wz2tx7/most_from_scratch_ml_tutorials_implement_a/",
+  "detail": {
+    "longDescription": "I kept running into the same thing while learning. You follow a tutorial that says implement cross entropy from scratch. You write four lines. It works on the toy example. Then you open the actual torch source and the real function has ignore\\_index and label\\_smoothing and reduction modes, and it handles 2D and 4D inputs, and none of that was in the tutorial.\n\nSo you think you understand cross entropy. You don't. You understand a version of it that someone simplified so the blog post would fit on one screen.\n\nI've been building TrenTorch with a few other people, mostly to fix that for myself. It's free. 1287 problems where you implement the real signature, the exact function torch.nn.functional exposes, with the real shapes and the real defaults.\n\nThe part that took longest was the testing. Easy to write a test that passes when your code is wrong. So every submit runs a hidden suite. Edge cases. Batch of one. Logits big enough to overflow if you forgot to subtract the max. Gradients checked against finite differences. Some problems are graded against real PyTorch output we generated offline, so if you pass everything your implementation actually matches.\n\nGoes further than I thought it would when we started. 11 modules. Classical ML, then deep learning, transformers, RL, inference, kernels. 290 easy, 502 medium, 245 hard. The hard ones are mostly past where a tutorial would have stopped.\n\nFree and staying free. No subscription, no signup wall on the problems. It runs on one sponsor and donations. Source available on github.\n\nDeep ML exists and is good and I'd point you there too. The difference is depth and the grading. Getting a green checkmark for code that was subtly wrong was the thing that annoyed me most about every other platform I tried.\n\nWould like feedback on the module ordering honestly. Not sure classical ML should come first. Some people want to start at neural nets and I keep going back and forth on whether to let them.\n\nhttps://TrenTorch.com ",
+    "developer": "NervousAd5455",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

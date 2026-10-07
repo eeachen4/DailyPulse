@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wzertm",
+  "sourceItemId": "1wzertm",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1wzertm/we_ran_the_same_agent_eval_3_times_37_of_the/",
+  "detail": {
+    "longDescription": "We were tuning one skill (agent instructions) against 127 eval tasks, 3 replicates per arm, Haiku 4.5 held constant.\n\nSame config, three runs: 47 of 127 tasks both passed and failed. Only 66 gave the same verdict every time.\n\nWe measure the noise floor by splitting one arm's own replicates, where the true difference is zero. It came out at 5.4 points. The best edit we tested moved the mean by 1.6.\n\nIt bit us mid-study too. At 2 replicates one task family looked like a clear regression, p = 0.004. The third replicate took it to p = 0.07. We withdrew three readings like that.\n\n1,145 runs, and the honest result is \"this suite can't see an edit this small\".\n\nHow many replicates do you run before you trust a per-task verdict?",
+    "developer": "EvalRaccoonDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

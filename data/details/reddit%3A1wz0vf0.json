@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz0vf0",
+  "sourceItemId": "1wz0vf0",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wz0vf0/pod_stuck_in_terminating_four_checks_before_you/",
+  "detail": {
+    "longDescription": "kubectl delete only sets deletionTimestamp. Everything after that is a chain of requests, and a pod stuck in Terminating means one of them is not getting an answer. The order I check, cheapest first:\n\n1. Grace period. deletionTimestamp is the deadline, grace already included. If it is still in the future, the pod is draining. Someone may have set terminationGracePeriodSeconds: 3600.\n\n2. Finalizers. The object stays until the owning controller removes them. [batch.kubernetes.io/job-tracking](http://batch.kubernetes.io/job-tracking) on Job pods is a common one.\n\n3. The node. Only kubelet can confirm the containers stopped. If the node is NotReady or gone, nobody confirms.\n\n4. The runtime. Look for FailedKillPod events, often with DeadlineExceeded. Save the events, journalctl -u kubelet, crictl inspectp and crictl inspect before you change anything.\n\n\\--force deletes the API object, not the process, and a finalizer still holds the object. For a StatefulSet that can mean two pods with the same identity at once.\n\nSandboxes add one more step. Under gVisor the kill is a request to a kernel running in user space. A wedged sandbox kept one of our pods in Terminating for about 90 minutes. Another user's thread dump of the same hang traced it to one lost signal. The fix is merged upstream in google/gvisor#14201.\n\nLonger write-up with the commands: [https://www.catchkill9.dev/posts/pod-stuck-in-terminating.html](https://www.catchkill9.dev/posts/pod-stuck-in-terminating.html)",
+    "developer": "Fabulous-Confection6",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

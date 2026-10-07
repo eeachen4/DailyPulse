@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz8yy0",
+  "sourceItemId": "1wz8yy0",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wz8yy0/kubernetes_134_reaches_eol_oct_27_but_your_eks/",
+  "detail": {
+    "longDescription": "This surprised a few people I talked to, so I thought it was worth sharing: on managed Kubernetes, the upstream end-of-life date isn't the one that changes your cluster.\n\n1.34 goes end of life upstream on Oct 27, which mostly means the project stops cutting 1.34 patches. Each provider has its own support dates and does something different when they pass:\n\n- **EKS**: once extended support ends, AWS can upgrade the control plane at any time, and the docs say you won't get a notification first. There's no rollback. Only the control plane moves; managed node groups and add-ons stay behind. For 1.31 that's Nov 26. For 1.34, Dec 2 is when the price goes from $0.10 to $0.60 per cluster-hour.\n- **GKE**: 1.34 stays in standard support until Jan 25, 2027. If a cluster uses an API the next minor removes, GKE pauses its auto-upgrades, though it says it can't guarantee the pause. Those clusters tend to stay behind until end of support moves them anyway. Google's schedule now has the Regular channel moving clusters to 1.36 around November.\n- **AKS**: nothing happens on Nov 30. 1.34 drops to \"platform support\", where it keeps running and scaling and stops getting security patches. Separately, Azure Linux 2.0 node images are removed on Oct 31, and pools still on them can't scale after that.\n\nManaged control planes upgrade one minor at a time, so a 1.34 cluster heading for 1.37 has three upgrades ahead, each with its own removals: cgroup v1 nodes won't start on 1.35, gitRepo volumes are gone in 1.36, and so on.\n\nIf you run EKS 1.31, check it before Nov 26. If you run 1.34 anywhere, look up its provider date now, rather than finding out from an upgrade you didn't schedule.\n\nWe maintain Radar, an open-source k8s UI with upgrade checks, so consider this the disclosure. Sources for every date and the commands to check each provider are in the post: https://radarhq.io/blog/kubernetes-1-34-end-of-life?utm_source=reddit&utm_campaign=kubernetes-1-34-end-of-life-launch-2026-10&utm_content=reddit-k8s\n\nOne thing the docs don't answer: EKS says the forced upgrade \"can happen at any time\" after the extended-support date. If you've been through one, how long after the date did it actually land?",
+    "developer": "royLskyhook",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

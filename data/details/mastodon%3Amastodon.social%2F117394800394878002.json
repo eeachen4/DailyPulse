@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117394800394878002",
+  "sourceItemId": "mastodon.social/117394800394878002",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-eb09242a-eb95b8508caf65cd",
+  "detail": {
+    "longDescription": "Cómo solucionar docker run con error Exited (1) en Raspberry Pi ¿Por qué ocurre? El código de salida 1 indica que el proceso principal del contenedor terminó con un error genérico. En Raspberry Pi, los casos más comunes son: Arquitectura incompatible : La imagen fue construida para amd64 (x86_64), pero Raspberry Pi usa arm32v7 o arm64v8 . Falta de binarios compatibles : El ENTRYPOINT o CMD del contenedor intenta ejecutar un binario compilado para otra arquitectura. Problemas de permisos o recursos en entornos embebidos como Raspberry Pi (ej. falta de --privileged , cgroups limitados, etc.). Uso incorrecto de flags : En tu comando hay un error de sintaxis: --net = host (espacios alrededor del = ), lo cual puede causar fallos silenciosos o interpretaciones erróneas. ⚠️ Nota crítica : En Raspberry Pi, Docker por defecto usa arm32v7 (aunque hay variantes arm64v8 en Pi 3/4 64-bit), y no todos los repositorios de Docker Hub ofrecen imágenes multi-arquitectura . Pasos para solucionarlo (ordenados por prioridad) 1. Corrige la sintaxis del comando (¡es el error más común!) # ❌ INCORRECTO (espacios alrededor del '=') docker run --net = host -d -t myimage # ✅ CORRECTO (sin espacios) docker run --net host -d -t myimage El espacio tras --net hace que Docker interprete = como un argumento adicional, y host como el nombre de la imagen → falla al encontrar la imagen y termina con código 1. 2. Verifica la arquitectura de la imagen Ejecuta: docker inspect myimage --format '{{.Architecture}}' Si devuelve amd64 → no es compatible con Raspberry Pi (a menos que uses QEMU emulación). En Raspberry Pi 3/4 con sistema 64-bit (Raspberry Pi OS 64-bit), espera arm64 . En Raspberry Pi 2/3 con sistema 32-bit, espera arm . 3. Usa imágenes multi-arquitectura o construye para ARM Opción A: Busca imágenes con soporte explícito para ARM # Ejemplo: imagen oficial de nginx con soporte multi-arch docker run --net host -d -p 80:80 arm32v7/nginx:latest # o para Pi 4 64-bit: docker run --net host -d -p 80:80 arm64v8/nginx:latest Opción B: Construye la imagen localmente en la Pi # Clona el repo o copia el Dockerfile git clone github.com/tu-usuario/tu-repo.… cd tu-repo # Construye para ARM (sin especificar arquitectura, usa la nativa) docker build -t myimage . Opción C: Usa buildx para construir multi-arch (avanzado) docker buildx create --use docker buildx build --platform linux/arm/v7 -t myimage . --load 4. Ejecuta en primer plano para depurar # Elimina -d para ver logs en tiempo real docker run --net host -it myimage Si el contenedor falla al iniciar, verás el mensaje de error directamente (ej. exec format error , segmentation fault , etc.). Bloque de código corregido (ejemplo funcional) # 1. Verifica arquitectura docker info --format '{{.Server.Architecture}}' # 2. Corrige el comando (¡sin espacios en --net!) docker run --net host -d -t myimage # 3. Si persiste el error, revisa logs: docker logs <container_id> # o ejecuta en foreground: docker run --net host -it myimage Pro-tip: Diagnóstico rápido en Raspberry Pi # Verifica si el binario del contenedor es compatible docker run --rm -it --entrypoint /bin/sh myimage -c \"file /bin/sh\" # Debería mostrar algo como: \"ELF 32-bit LSB executable, ARM\" # Si ves \"ELF 64-bit LSB executable, x86-64\" → incompatible 🔧 Consejo extra : En Raspberry Pi OS Lite (sin GUI), asegúrate de tener docker.io actualizado ( sudo apt update && sudo apt upgrade docker.io ). Las versiones antiguas de Docker tienen problemas conocidos con cgroups v2 y ARM. ✅ Resultado esperado : El contenedor se ejecuta sin salir inmediatamente ( docker ps muestra estado Up X seconds ). # debugging # docker # linux # raspberrypi # software # coding # development # engineering # inclusive # community Cómo solucionar `docker run` con error `Exited (1)` en Raspberry Pi",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

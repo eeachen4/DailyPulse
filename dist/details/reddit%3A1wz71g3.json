@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz71g3",
+  "sourceItemId": "1wz71g3",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1wz71g3/transformers_vs_rnns_vs_ssms_where_does_memory/",
+  "detail": {
+    "longDescription": "Someone who has always loved looking at the space between different AI techniques, this time I went a little deeper into the memory trade-offs between RNNs, Transformers and SSMs. I found it interesting because once you start looking at these architectures through the lens of working memory, a lot of the differences become easier to understand. Where does the memory actually live? Is it a compact recurrent state, a growing KV cache, or something closer to the network itself?\n\nRNNs keep memory in a recurrent hidden state, which is pretty elegant because the state carries forward step by step. But there is also a bottleneck here as you see, a model can have roughly O(N²) parameters while carrying only roughly O(N) state across time. This means whether RNNs were really doomed because recurrence was a bad idea, or whether the problem was more about the ratio between memory and compute.\n\nTransformers make almost the opposite trade-off. During cached inference, instead of compressing the past into one hidden state, they store past representations as key-value entries and attend over them. I think of these almost like little post-it notes: every token leaves behind a key for finding it and a value for what should be remembered. That's extremely powerful, but it also has an interesting property: with weights frozen during inference, the model is managing context rather than turning that experience into durable model knowledge. You get this split between the fixed weights on one side and the fast-changing KV cache memory on the other.\n\nNow we have SSMs that bring us back toward fixed-size recurrent memory, but with very different state structures and update rules. Selective SSMs such as Mamba make retention input-dependent, so what gets kept or forgotten depends on the incoming token. Their states don't have to be as small as classical RNN states, but they still compress history into finite memory. And this brings another question does the state have to live in a compressed working dimension, or could it live somewhere closer to the model's internal neuron/connectivity structure?\n\nBDH (Dragon Hatchling) is one example I saw and laid a stone that I started with this comparison. It combines linear attention in a high-dimensional neuron space with a low-rank GPU implementation. Its recurrent attention state is an N × D matrix, with N≫D, rather than a materialized N × N connectivity matrix. In the graph interpretation, correlated neuron activity produces Hebbian-like updates to connections, giving working memory a kind of synaptic interpretation.  \nHere working memory and learned connectivity become more closely aligned in structure. But if you think that doesn't mean experience is actually being consolidated into trained weights, and fixed-size state still has a finite information capacity. So I'm definitely not claiming this kills Transformers (or does it )  or solves continual learning. I'm more interested in whether \"where does memory live?\" is actually a better question than the usual architecture horse race.\n\nAre SSMs and these more network-centric architectures actually giving us a better way to handle memory, or are we still running into the same fundamental problem of having to compress history into a finite state? Thoughts?",
+    "developer": "Pretty_Upstairs9035",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

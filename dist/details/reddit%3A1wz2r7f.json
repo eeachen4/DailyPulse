@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz2r7f",
+  "sourceItemId": "1wz2r7f",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1wz2r7f/mcp_servers_in_the_cluster_are_you_blocking/",
+  "detail": {
+    "longDescription": "Question for anyone running MCP servers (or agents that call them) on k8s… what does their egress actually look like?\n\n\n\nThe SSRF research Ars covered yesterday is basically one bug found in MCP servers from Google, JPMorgan, Weaviate and a couple of governments. The server takes a URL or path that came from the model, follows redirects, and never checks where it lands. So whoever can steer the agent can point it at [169.254.169.254](http://169.254.169.254) or an internal service.\n\n\n\nThe reference fetch server just switched to refusing private and metadata addresses by default, but that's one server.\n\n\n\nSo at the cluster level… default-deny egress for these pods? Netpols blocking IMDS? An egress proxy? Or trusting each server to get it right?",
+    "developer": "iamjessew",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117394073228820961",
+  "sourceItemId": "mastodon.social/117394073228820961",
+  "sourceUrl": "https://www.urbanmind.net/display/f7dd981d-7becb1fe-ae46367a79548511",
+  "detail": {
+    "longDescription": "Every few months I talk to someone who wants to put a small app on Kubernetes. Usually the app is one container, a database, and a handful of users. Often it is not even in production yet. Kubernetes is excellent at a specific job: running many services, across many machines, with a team that deploys independently. If that is not your situation, it is a large amount of complexity you are taking on for a problem you do not have. Most of my services run on a single VPS, and this is roughly how I set one up. Harden the box first Before anything runs, the server needs to be safe to expose. That means no root login, no password authentication, a firewall with only the ports I need, and something like fail2ban to cut down the noise. It is ten minutes of work, once. The step people skip is disabling password authentication, because it is the one that can lock you out. Confirm your key login works in a second session before you close the first. I have gotten that wrong, and it is a bad hour. The app runs in a container, bound to localhost I run almost everything in Docker. One detail matters more than the rest: I bind the app port to 127.0.0.1 instead of exposing it. ports: - \"127.0.0.1:3000:3000\" That single choice means the container is never directly reachable from the internet. Only the reverse proxy in front of it can talk to it. If I misconfigure the proxy, the worst case is a broken site, not an open service. Nginx sits in front and terminates TLS Nginx does three jobs for me. It proxies to the app, it terminates HTTPS, and it is the layer I edit when routing changes or a new domain shows up. Certbot handles the certificates, including the renewal timer, so I am not the renewal timer. The one check I run on every new server is certbot renew --dry-run . If that fails, I want to know today rather than the morning a certificate expires. Deploys should not need me The pipeline is short on purpose. On a push to main, GitHub Actions runs the tests, and if they pass it updates the box and restarts the container. Secrets live in GitHub, never in the repository, and the change is small enough that rolling back is just pointing at the previous commit. A deploy I can reverse in a minute is a deploy I am willing to run often. That matters more than any particular tool. Can I see it? A server I cannot observe is a server I am guessing about. I want a health check that reflects real readiness, an external monitor that pings it and shouts at me when it stops answering, and logs I can actually read. That is enough for a small service. Collecting more than that, before there is a question to answer, is usually procrastination wearing a dashboard. When I would actually reach for Kubernetes When there are several services that scale independently, or a team that needs to deploy without asking me, or a scheduler with real work to do. When the complexity is buying something I need. Until then: one box, a few containers, a proxy, and a pipeline I understand end to end. It runs, I can reason about it at 2am, and I can replace it when the requirements change. That is usually the right trade. The impressive setup can wait until the boring one stops being enough. # devops # docker # linux # nginx # software # coding # development # engineering # inclusive # community You probably do not need Kubernetes",
+    "developer": "@hackaday@www.urbanmind.net",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      }
+    ]
+  }
+}

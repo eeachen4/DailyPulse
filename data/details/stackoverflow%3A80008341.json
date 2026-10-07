@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008341",
+  "sourceItemId": "80008341",
+  "sourceUrl": "https://stackoverflow.com/questions/80008341/mcpjam-playground-never-renders-a-tools-meta-ui-resourceuri-widget-mcp-apps",
+  "detail": {
+    "longDescription": "I'm testing an MCP server that declares an MCP Apps widget on one of its tools via _meta.ui.resourceUri (a ui:// resource), and I expected MCPJam's Playground to render that widget as an iframe when the tool is called from chat. What I did: Connected the Playground to my server over Streamable HTTP. Confirmed via the raw tools/list response that _meta.ui.resourceUri is present and correctly shaped: {\"_meta\": {\"ui\": {\"resourceUri\": \"ui://my-server/my-widget\"}}} Tried three different host presets that all declare io.modelcontextprotocol/ui support: Claude, ChatGPT, and MCPJam's own native preset. Called the tool from chat in each case, and confirmed in the request log that the server receives a resources/read for the exact ui:// URI and returns it successfully. What I expected: the widget's HTML to render inside an iframe in the chat. What actually happens: no iframe ever appears, just the tool's plain-text response -- identically across all three presets. I'm on MCPJam Inspector 3.3.6 (the latest version), Streamable HTTP transport. Is there a setting I'm missing, or is this a known limitation of the current Playground? I've filed this as MCPJam/inspector#5976 with the full repro, but wanted to ask here too in case it's a configuration gap on my end rather than a bug.",
+    "developer": "stefisha",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "36"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

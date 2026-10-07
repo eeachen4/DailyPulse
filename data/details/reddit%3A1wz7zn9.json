@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1wz7zn9",
+  "sourceItemId": "1wz7zn9",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1wz7zn9/how_to_split_tasks_between_cicd/",
+  "detail": {
+    "longDescription": "I am building a ci/cd pipeline. When a PR is merged, it will push a docker image to ECR, but when I am just pushing a regular commit, I don't want to run the full deployment. What task goes into ci and what goes into cd? I've seen different takes on where to run the docker-related stuff.\n\n  \nCI (always runs on push/merge):\n\nlint\n\nscan (security, etc)\n\ntest (unit/integration)\n\ntest docker image build ???\n\n  \nCD (only runs on merge):\n\nbuild docker image\n\nautomated e2e (if any)\n\nupload binaries to Nexus\n\nupload image to ECR\n\n",
+    "developer": "TemplateRedditor",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
