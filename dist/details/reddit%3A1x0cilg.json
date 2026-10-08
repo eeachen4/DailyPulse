@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0cilg",
+  "sourceItemId": "1x0cilg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x0cilg/yt_is_the_best_free_dataset_nobody_talks_about/",
+  "detail": {
+    "longDescription": "Theres so much good stuff on youtube for training data. Full university courses, conference talks, interviews with people who know their field better than anyone. Most of it already has captions. For niche domains its better than anything i found in common crawl.\n\nPulling it out at scale is a pain though.\n\nI needed transcripts from around 8k videos, mostly lectures in a pretty specific domain. Started with youtube-transcript-api like everyone does. Got through maybe 400 and then youtube started sending back empty responses. Status 200, empty body, no error. My pipeline didnt care and kept going, so i fed blank strings into preprocessing for a whole day before i noticed.\n\nSwitched to yt-dlp for subtitles. Handles errors better but same thing, youtube throttles by IP. Bought residential proxies, got through maybe 2k more, then i was $300 down and still babysitting it every night.\n\nGave up on doing it myself and moved that part to transcriptapi.com. Full disclosure i know the people who run it. I just didnt want to spend another week fixing scraping when the dataset was the point.\n\nCaptions themselves are another problem. Auto generated ones on older videos are rough, no punctuation, no speaker names, timestamps drift. I had to write a separate cleaning step and it took longer than the extraction did.\n\nAnyway if anyones done something similar id like to know how you handled the cleaning part, mine still feels hacky",
+    "developer": "Level-Ad-4878",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

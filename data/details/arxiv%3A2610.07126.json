@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.07126",
+  "sourceItemId": "2610.07126",
+  "fetchedAt": "2026-10-08T02:57:02.910Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.07126",
+  "detail": {
+    "longDescription": "arXiv:2610.07126v1 Announce Type: cross Abstract: The quadratic sieve (QS) is an irregular, cache-hostile, branch-heavy integer factorization algorithm; prior GPU work accelerates individual stages of it. We present \\swname{}, a self-initializing quadratic sieve in which \\emph{every} stage --- polynomial initialization, sieving, relation post-processing, large-prime matching, \\GFtwo{} matrix construction, Block Wiedemann linear algebra and the square root --- executes on the GPU, the CPU restricted to orchestration, setup and I/O, the sieve window 99.9\\% GPU-busy with no device-wide or event synchronization and no synchronous copy. With it we factored the 512-bit RSA-155 challenge modulus end to end on GPUs: a 64$\\times$H100 sieve feeding a single-H100 \\GFtwo{} solve, 700.6~GPU-h and 242~kWh in total, 98.4\\% of it sieving. To our knowledge this is the largest integer factored by the quadratic sieve, exceeding the prior QS record RSA-150 (Buhrow, YAFU, 2025); all comparable general factorizations since 1996, RSA-155's own in 1999 included, used the number field sieve. On a single device we factor RSA-100 in 29.2~s on an H100 and 51.0~s on a consumer RTX~5070~Ti; in a controlled same-modulus measurement, with energy measured on both sides, the H100 is faster than the fastest CPU quadratic sieve, YAFU, on 96 cores of an EPYC~9655 (106--122~s), and than CADO-NFS's SIQS (292~s) and GNFS (263~s). Across four discrete GPUs (a 3.7$\\times$ range in CUDA cores) RSA-100 throughput is close to proportional to core count, memory bandwidth being a weaker predictor, and measured cost over seven benchmark factorizations from RSA-100 to RSA-155 grows as $\\LN{1/2}{1}^{1.04}$ ($R^2=0.993$). On RSA-150, the identical modulus on which the prior QS record was set, we measure 302.9~GPU-h against that run's 11{,}664 core-hours.",
+    "developer": "Fabian Januszewski, Christoph Heinrichs",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.NT, cs.DC, cs.MS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Fabian Januszewski, Christoph Heinrichs"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

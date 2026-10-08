@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0cngd",
+  "sourceItemId": "1x0cngd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x0cngd/jev_alternatives_openais_decisions_api_is/",
+  "detail": {
+    "longDescription": "I've been evaluating the new decision-model category since Jev launched, mostly for time critical usecases.\n\nstate of my evaluation:\n\nJEV (TYPESAFE)\n\nI've looked at it, and it's clearly the reference implementation of this\n\ncategory. But it's currently not an option for me: I need EU data residency, and\n\nTypeSafe doesn't offer it (their service runs on the US West Coast; they offer a\n\nDPA and zero retention on enterprise terms, but no EU region). So for me it's a\n\nbenchmark, not a candidate.\n\nOPENAI DECISIONS API (LUNA)\n\nHonestly disappointed. The whole point of this category (to me) is\n\nsub-200ms decisions, and the Decisions API doesn't feel like it was built for\n\nthat. Am I holding it wrong, or is it just early?\n\nSTROM (UPRELIC)\n\nTried it, looks OK. Same /v1/systemone request format as Jev, so pointing the\n\nTypeSafe SDK at it was a one-liner. They run on their own GPU servers in Paris,\n\nanswers come with probabilities + confidence, and it takes images, which Jev\n\ndoesn't. So far the most plausible EU-resident option for me.\n\nOne interesting detail: the usage object shows cached\\_input\\_tokens, and they seem\n\nto be partially caching \\*between\\* requests — repeated/reused state gets faster.\n\nFor workloads with high cache potential, that could increase speed by alot.\n\nsaver. Does anyone know how their caching actually works?\n\nAny recommendations where I should look next?",
+    "developer": "No_Stock_8271",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0e405",
+  "sourceItemId": "1x0e405",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1x0e405/how_to_structure_torbox_rclone_mount_for_lidarr/",
+  "detail": {
+    "longDescription": "Hi everyone!\n\nI am building my Home Lab using Docker & Portainer, and I'm trying to set up a cloud-only music streaming setup with TorBox, rclone, Lidarr, and Navidrome.\n\nMy Goal:\n\nStream music (preferably in FLAC) to my mobile phone using Navidrome, without keeping files on my local hard drive. Everything should stay in my TorBox cloud storage.\n\nMy Current Setup & Workflow:\n\nTorBox for cloud downloads/debrid.\n\nrclone mount to expose TorBox storage to my Docker container environment.\n\nLidarr + TorBox API/torrent indexers to request music downloads.\n\nNavidrome to stream from the mounted directory.\n\nThe Issues I'm Facing:\n\nRoot Directory Clutter: TorBox dumps all completed downloads directly into the root directory (or in separate subfolders per download inside root), mixing movies, shows, and music altogether.\n\nrclone Folder Persistence: When I try to create a folder (e.g., /torbox/music) via terminal inside the rclone mount, it automatically disappears after a few seconds.\n\nOrganization with -arrs: How can I get Lidarr/TorBox to place/organize music files specifically into a /music folder structure so Navidrome can scan only music files efficiently?\n\nQuestions:\n\nHow do you manage categories/folders when using TorBox with rclone mount and the \\\\\\\\\\\\\\*arr suite?\n\nIs there a recommended rclone mount flag/configuration or script to prevent folder deletion or allow symlinks/hardlinks on webdav/TorBox mounts?\n\nIs there a better alternative/workflow for achieving cloud-only FLAC music streaming with Navidrome and Lidarr?\n\nAny advice or docker-compose / rclone config snippets would be greatly appreciated! Thanks!",
+    "developer": "OwnSystem1633",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

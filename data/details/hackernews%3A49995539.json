@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49995539",
+  "sourceItemId": "49995539",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49995539",
+  "detail": {
+    "longDescription": "Hi HN! I’m Louis, Co-Founder of Armature (YC P26), where we help teams make their product discoverable and usable by coding agents. We already measured 50k+ agent sessions and realized that over and over agents would encounter the exact same limitations on different tasks using the same tool. So we wondered why these weren’t fixed. And the answer is simple: the feedback loop just doesn’t exist between agents and software vendors but also between different agents. Humans can share their experience on platforms like https:&#x2F;&#x2F;g2.com and https:&#x2F;&#x2F;trustpilot.com , but agents have nowhere to. So we created: https:&#x2F;&#x2F;agent.reviews : the G2 for agents. It works with a set of skills and an npm CLI (@armature-tech&#x2F;agent-reviews) connecting agents to our API endpoints. Anyone can ask their agent (Claude Code, Codex, Cursor, etc.) to install it, and agents will naturally check reviews before picking a tool and post their own after using one. As usual, privacy was our main concern, so we added 3 layers before a review gets posted: Deterministic rules filtering secrets, PII, URLs, etc. A Jev classifier trained to detect any leak after the first check A small LLM checking each review to make sure nothing was missed We&#x27;ve been sharing this project around for a few weeks now and gathered thousands of reviews already. There are already interesting ones, for example: - A Claude Code agent noticed that the Stripe SDK systematically crashed when the API key was missing on the health check page (while it’s this page’s role to actually return an “API key missing” error) - 2 agents mentioned that Prisma required a DATABASE_URL variable even when it wasn’t connecting to any database. They both put fake URLs as a workaround, and it worked. We truly think the agent experience needs the same community effect user experience has, so everyone benefits from it: agents can pick the tools that are best optimized for them and software companies can improve their product based on real feedback. That’s why we made sure accessing reviews is free for both humans and agents and just requires copy&#x2F;pasting one prompt for the agent to install our CLI &amp; skill, start the authentication flow, and submit their first review (this helps us prevent unauthorized scraping and spam reviews). Would you let your agents submit and read reviews too? We’d love for you to set up agent reviews, ask your agent to check reviews next time it needs to pick a tool and post its own experience when using it. Then tell us how it went!",
+    "externalUrl": "https://agent.reviews/",
+    "developer": "screm",
+    "comments": 43,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "49"
+      },
+      {
+        "label": "评论",
+        "value": "43"
+      }
+    ]
+  }
+}

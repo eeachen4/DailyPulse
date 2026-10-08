@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x043ga",
+  "sourceItemId": "1x043ga",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1x043ga/i_built_refuse_to_share_because_i_was_tired_of/",
+  "detail": {
+    "longDescription": "I want to share something I've been working on for a while.\n\nIt's called **Refuse to Share**. It's a Chrome extension that tries to automatically reject non-essential cookies.\n\nThe idea started from something pretty banal: every day I was opening websites and doing the exact same thing over and over again.\n\nOpen the cookie settings, disable everything non-essential, confirm, close the banner.\n\nAt some point I thought: this is repetitive enough that it should be automated.\n\nInitially I imagined the extension would be very simple: find a button like “Reject all” and click it.\n\nTurns out that was probably the easiest part.\n\nThe real problem is that cookie banners are all over the place. Different CMPs, different languages, different layouts, buttons hidden behind settings, custom implementations, iframes, Shadow DOM, etc.\n\nAnd if you're automating something related to privacy, clicking the wrong button once is already a pretty bad failure.\n\nSo I ended up making Refuse quite conservative.\n\nThe basic rule is: if it's not sufficiently sure that an action means rejecting non-essential cookies, it doesn't click anything.\n\nThat means it can miss some banners, and I'm still working on coverage, but I prefer that over trying to automate everything and occasionally making the wrong choice for the user.\n\nI've added specific handling for systems like OneTrust, Iubenda, Usercentrics, Didomi, Cookiebot and others, plus more cautious logic for custom banners.\n\nI also set a few hard limits for myself while building it: it never clicks Accept, it doesn't try to bypass cookie walls or CAPTCHAs, there's no remote code, and the core functionality doesn't need telemetry or a server.\n\nOver time I realized that the interesting part of the project wasn't really “blocking cookies”.\n\nIt was more about this trade-off:\n\n**Is it better for automation to work less often, but be much more certain when it does act?**\n\nFor Refuse, I decided yes.\n\nIf it misses a banner, I can reject it manually.\n\nIf it accepts something for me by mistake, then I've defeated the whole purpose of the extension.\n\nThat's basically the idea behind **Refuse to Share** too. Not “never share anything”, but make sharing an actual choice instead of something you do because accepting is easier.\n\nIf anyone wants to try it, it's on the Chrome Web Store:\n\nI'm especially interested in feedback on the coverage vs certainty trade-off, because that's probably the hardest design choice I've had with the project so far.",
+    "developer": "Matty_sf7",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.06968",
+  "sourceItemId": "2610.06968",
+  "fetchedAt": "2026-10-08T02:57:02.910Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.06968",
+  "detail": {
+    "longDescription": "arXiv:2610.06968v1 Announce Type: cross Abstract: Fuzzing is effective at finding bugs in deep learning (DL) compilers, but existing fuzzers repeatedly trigger faults they have already uncovered. Current fuzzers diversify the generated programs, and downstream tools deduplicate bug reports post hoc, but neither stops a fuzzer from generating programs that re-trigger known defects. We present Reprise, a DL compiler fuzzer that suppresses reports of known defects during test generation. Reprise uses a deliberately lightweight generator that builds graphs in a unified intermediate representation (UIR) with local operator signatures. Instead of diversifying programs, Reprise distills each discovered defect into a semantic graph pattern that captures the operators, value constraints, graph context, and data flow required to trigger it. During graph synthesis, it regenerates any node that completes a known pattern, so known defect triggers are avoided before compilation and execution. We evaluate Reprise on three DL compilers: TVM, PyTorch Inductor, and ONNX Runtime. Against its unguided variant, patterns written for the dominant known defects reduce crash reports by 90.2% on TVM (254 to 25) and by 93.8% on PyTorch Inductor (594 to 37), with comparable branch coverage and 1.0-17.9% fewer executed tests. These results come from one run per configuration and concern the defects the patterns were distilled from. Reprise also found 25 previously unknown bugs across the three compilers, 24 of them within one month, of which 7 have been fixed and 12 more confirmed by developers. The replication package has been provided at [11].",
+    "developer": "Qiong Feng, Xiaotian Ma, Di Cui, Wei Song, Peng Liang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Qiong Feng, Xiaotian Ma, Di Cui, Wei Song, Peng Liang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

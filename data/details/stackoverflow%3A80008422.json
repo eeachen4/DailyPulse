@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008422",
+  "sourceItemId": "80008422",
+  "sourceUrl": "https://stackoverflow.com/questions/80008422/required-workflow-not-triggered-by-on-pull-request-types-edited",
+  "detail": {
+    "longDescription": "I want a check to validate my Pull Request title. I want the check to be managed by the organisation to enforce it in every repository. I added the following workflow to the organisation's .github repository and added it as a required workflow to my branch ruleset: on: pull_request: types: - opened - edited - synchronize - reopened jobs: test: runs-on: self-hosted steps: - run: echo \"${{ github.event.action }}\" However, the workflow will only get triggered when a PR is opened, reopened or synchronized but never on edited (for example when I change the PR's title or description). If the workflow is implemented locally inside the repository it works and is also triggered upon editing the PR's title or description. I have seen bug reports on GitHub for this issue back in 2021/2023, but they have been marked as closed. Any workarounds available?",
+    "developer": "Michael Schoder",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "32"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

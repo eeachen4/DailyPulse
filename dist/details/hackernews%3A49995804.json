@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49995804",
+  "sourceItemId": "49995804",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49995804",
+  "detail": {
+    "longDescription": "Hi, I&#x27;m a former SDET and now solo dev of VoiceGremlin, a tool for automated tests against AI that answer phones. You pass the API a phone number and a test case like &quot;Verify that the agent does X.&quot; It calls your voice agent, tests the thing by having the bots talk to each other, and uses LLM-as-judge to provide a pass&#x2F;fail for your pipeline. State: Fully working, free trial, no card needed. Try it out and please give me feedback, especially if you run in to problems. Goal: I built VoiceGremlin with the explicit goal of being Mailosaur for phone agents. We paid for Mailosaur at work because the alternative (having our automated tests interact programmatically with our corporate Outlook server) was doable, but very painful, both technically and organizationally. The lesson I learned was &quot;doable, but painful&quot; is a good sign of a SaaS opportunity. Well, getting an automated test to call a phone number is also painful. Telephony providers are tough to get onboarded as vendors. Using your own STT&#x2F;TTS means a lot of bandwidth moving through wherever you run your test automation from. It&#x27;s tricky to get the LLM-to-LLM prompts dialed in enough to avoid flaky tests. Etc. Process: It took about 45 days to build, with half of that being businessy stuff like implementing Stripe and my feeble attempts at marketing, and the other half being experimenting with different telephony providers and features, testing different models, prompt tweaking, and fraud&#x2F;abuse prevention. Design goal: Do one thing, do it well, and get out of the way. There&#x27;s no ambition to manage your test cases for you, host your voice agents, or add upsell features. Stack: The dependencies are Supabase (DB and authentication), Netlify (static storage and API routing), Digitalocean (the server component that makes the calls), Telnyx (easier to work with than Twilio IMO), Stripe, Openrouter, Cloudflare (captcha on signup). Oh, and I host my private git in Keybase, the greatest tool nobody uses. Thanks!",
+    "externalUrl": "https://voicegremlin.com/",
+    "developer": "ineptech",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

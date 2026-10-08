@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x09dkg",
+  "sourceItemId": "1x09dkg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x09dkg/i_built_an_llm_agent_you_can_keep_talking_to/",
+  "detail": {
+    "longDescription": "If you use agentic apps, you may notice that they don't quite get the idea of tools that are running in the background. For example in current version of Github copilot, the UI will allow you to type a message while a long running tool is running (called \"steering\"), but the message will not be processed until the tool finishes. This is even worse if you are trying to write an app and you see what support exists in frameworks/harnesses. So the following is a deep dive if this is the kind of thing that keeps you awake at night. Basically how to transform a turn based chat into an asynchronous agent.\n\n\n\nI rebuilt the history the model reads as a \\*\\*message board\\*\\* instead of a transcript: tool calls hang off the message that caused them, threads reorder as they're touched, and the whole thing is re-rendered every turn. Pending work stays visible in its original context.\n\n\n\n\\- An event loop is enough to produce ReAct. Nothing teaches the observe-think-act cycle; it emerges once a tool result arrives as an event that grants another turn.\n\n\\- Every tool call is async by default, and each tool exposes \\`tail\\` (progress) and \\`kill\\`. Those two are the only ones that answer immediately.\n\n\\- A tool that never finishes needs a clock, but the \\*decision\\* belongs to the model — the harness delivers the timeout as just another event, and the agent decides whether to wait or kill.\n\nThe clip is the demo: a tool reports progress, then gets stuck. The harness notices it's overdue, the agent tails it, sees a dead worker, kills it, and starts a fresh call that completes.\n\nI also rebuilt it twice on mainstream frameworks as controls:\n\n\n\n\\- \\*\\*Anthropic's Claude Agent SDK.\\*\\* Background work and cancellation are native and good. What's missing is the bookkeeping: every async tool has to be disguised as a sub-agent, the model is forbidden from inspecting a running task's progress, and nothing stops a pending task from aging out of context.\n\n\\- \\*\\*LangChain's async subagents\\*\\* (deepagents). The closest prior art — they also moved task state out of the message history so compaction can't lose it. But as shipped it's pull-only: the subagent finished and the supervisor never knew until I asked \"any update?\". Two small tools fixed that (a progress peek, and a scheduled run that wakes the supervisor up), but that's a sleeping, polling thread standing in for an event — it costs tokens on every wake-up, and the answer waits for the next one.\n\n\n\nThe demo calls \\*\\*no model at all\\*\\* replies are canned and tools are scripted, so it behaves identically every time and costs nothing to leave running. The harness underneath is the real one, and you can run the app in the repo with a real LLM. Tested on Sonnet and Haiku.\n\n\n\nDemo (play/pause/step): [https://async-agent-demo-production.up.railway.app](https://async-agent-demo-production.up.railway.app)\n\nWrite-up: [https://pslusarz.github.io/articles/2026/10/01/an-agent-you-can-interrupt.html](https://pslusarz.github.io/articles/2026/10/01/an-agent-you-can-interrupt.html)\n\nCode (MIT): [https://github.com/pslusarz/async-agent](https://github.com/pslusarz/async-agent)\n\nLooking for some feedback and discussion. I'm sure this is not the only way to implement it, the point is it can be done, and done right.",
+    "externalUrl": "https://v.redd.it/thr6czq064uh1",
+    "developer": "wuj",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0e9tx",
+  "sourceItemId": "1x0e9tx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x0e9tx/29_ui_languages_for_the_deepseek_harness_desktop/",
+  "detail": {
+    "longDescription": "If your language is not English or Simplified Chinese, the DeepSeek Harness desktop app was usable but never comfortable. Every setting, every error message, every permission prompt is a small translation task you do in your head while you work.\n\nI built a plugin that registers 29 more languages in the language picker and ships a dictionary for each one. It does not change any core code.\n\n- 29 languages x 2,528 keys = 73,312 entries\n- Untranslated strings fall back to English, so a language is usable before it is complete and improves as it is reviewed\n- A quality gate runs before every commit: placeholder counts must match the English source, product and protocol names stay untranslated, and each dictionary is checked for characters from another writing system\n- Right-to-left dictionaries for Arabic, Urdu, Hebrew and Persian\n\nInstall:\n\n\\`\\`\\`\ngit clone https://github.com/sayho-pm/dsh-locale-pack.git\ncd dsh-locale-pack\ndsh plugin --profile desktop add link:$(pwd)\n\\`\\`\\`\n\nThen Settings -> Language. A build option bundles just the languages you want, in case the full set is more than you need.\n\nMIT, built against 0.2.0-rc.2. This is my own project. Requests for additional languages are welcome in the repo.\n\nhttps://github.com/sayho-pm/dsh-locale-pack\n\n\\*(English is not my first language. I used an LLM to help write this post.)\\*",
+    "developer": "seeweed7",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

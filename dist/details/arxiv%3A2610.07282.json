@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.07282",
+  "sourceItemId": "2610.07282",
+  "fetchedAt": "2026-10-08T02:57:02.910Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.07282",
+  "detail": {
+    "longDescription": "arXiv:2610.07282v1 Announce Type: cross Abstract: Protecting critical infrastructure increasingly depends on continuously verifying large IoT fleets against formal security specifications at runtime. Yet the runtime-verification (RV) pipelines proposed for this task are typically single-host prototypes whose monitors read a shared log file, with no resilience to the failures such deployments incur: a crash or overload silently drops events, clock skew corrupts the ordering metric monitors require, a time-triggered \"node has gone silent\" property cannot fire when the network itself falls silent, and one slow consumer stalls the pipeline. Each failure is silent: the monitor keeps emitting verdicts over a corrupted view. We present RV-Fabric, a resilient delivery layer that carries the hierarchy over two brokers (MQTT for device ingest, a durable stream broker for backend delivery) and re-establishes five continuity guarantees: durable delivery under crashes, a trusted event order, progress under total silence, consumer isolation and flow control under bounded overload, each an invariant conditioned on broker durability. Above the transport, RV-Fabric makes evidence completeness part of runtime-verification semantics: every verdict carries a status (sound, degraded, incomplete or unavailable) derived from delivery gaps, retention pressure and liveness, so an incomplete stream cannot yield an unqualified all-clear. Under controlled fault injection on a containerised testbed, measured against a fault-free oracle using the real MonPoly engine, the shared-log baseline misses six of seven injected incidents, reporting each as an unqualified all-clear, whereas RV-Fabric preserves all seven; removing a delivery mechanism reintroduces silent loss, removing isolation costs only timeliness. Two published critical-infrastructure datasets, water-SCADA and IoT/IIoT, replay end-to-end.",
+    "developer": "Nikolaos Kekatos, Marinelio Chintri, Panagiotis Katsaros, Alexios Lekidis, Tom Nianios, Ioannis Seitoglou, Anastasios Temperekidis, Stylianos Basagiannis",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nikolaos Kekatos, Marinelio Chintri, Panagiotis Katsaros, Alexios Lekidis, Tom Nianios, Ioannis Seitoglou, Anastasios Temperekidis, Stylianos Basagiannis"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

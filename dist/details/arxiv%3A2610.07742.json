@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.07742",
+  "sourceItemId": "2610.07742",
+  "fetchedAt": "2026-10-08T02:57:02.910Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.07742",
+  "detail": {
+    "longDescription": "arXiv:2610.07742v1 Announce Type: new Abstract: Optimized kernels such as FlashAttention and FlashDecoding are crucial for accelerating today's large models. Most of them are handwritten by experts because existing ML compilers cannot match their efficiency. Producing such kernels requires fusing computations with multiple reductions, which requires both algebraic transformation of the computation graph and operator scheduling of the transformed graph. Unfortunately, searching the two jointly yields a space too large to navigate. We propose Cleave, an ML compiler built on symbolic decoupling: Cleave discovers transformations by performing superoptimization on a graph with symbolic shapes, and then schedules each resulting graph on concrete shapes. Representing shapes as symbols makes equivalence checking cheap and lets a new Split operator, with a symbolic split count, parallelize along a reduction dimension. Cleave's scheduler fuses graphs with multiple reductions through iterative tiling and horizontal fusion. Evaluation on common LLM subgraphs shows that Cleave generates kernels up to 2.8x faster than the best baseline (1.6x on average) and reduces compilation time by 5.9x on average compared to Mirage. For dynamic workloads captured from production serving traces, Cleave compiles each operator once and achieves geometric mean speedups of 1.4x and 1.7x over FlashInfer's handwritten FA2 and FA3 backends. Cleave's code is available at: https://github.com/nyu-systems/cleave",
+    "developer": "David Pissarra, Jinkun Lin, Haitian Jiang, Aurojit Panda, Jinyang Li",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "David Pissarra, Jinkun Lin, Haitian Jiang, Aurojit Panda, Jinyang Li"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

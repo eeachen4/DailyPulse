@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x02qf3",
+  "sourceItemId": "1x02qf3",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1x02qf3/our_first_real_customer_broke_the_app_by_using_it/",
+  "detail": {
+    "longDescription": "We tested the app with a few small jobs, watched them finish, and confidently decided it was ready for real people. Then a customer submitted a larger one. The request timed out, the background process died, and all their progress disappeared. No hacker. No traffic spike. Not even a weird edge case. They clicked the correct button and expected the app to keep working.\n\nThe whole thing reminded me of that old joke about a plane built by engineering students. Everyone rushes off when they find out who built it, but their professor stays in his seat. He knows his students well enough to be sure this sh\\*t won’t even start.\n\nThat was basically me, except our app started and I took that as proof it could fly. Turns out we’d treated app hosting like it ended when the page loaded.\n\nIf your app does anything that takes a while, don’t tie it to an open browser tab like we did. Put the worker on a cloud server, throw the jobs into a queue, and save progress as you go. We used serverspace, but honestly, the important part was letting the job keep running after the request died. A little humbling but useful. What completely normal customer action exposed a bad assumption in your product?",
+    "developer": "Kayl45",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

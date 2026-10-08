@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008146",
+  "sourceItemId": "80008146",
+  "sourceUrl": "https://stackoverflow.com/questions/80008146/why-is-this-distributive-conditional-type-silently-resolving-to-never-instead-of",
+  "detail": {
+    "longDescription": "I'm trying to create a utility type ExtractPayload<T> that extracts payload types from a discriminated union of API events. Everything works fine for standard shapes, but when one of the payload types contains undefined or an optional property, TypeScript silently evaluates the entire generic to never instead of matching the target branch. Here is a simplified reduction of my setup: type ApiEvent = | { type: 'USER_CREATED'; payload: { id: string; email: string } } | { type: 'USER_DELETED'; payload: { id: string; reason?: string } } | { type: 'PING'; payload: undefined }; // Utility type to extract payload based on event type type ExtractPayload<T extends ApiEvent['type'], U = ApiEvent> = U extends { type: T; payload: infer P } ? P : never; // Works as expected -> { id: string; email: string } type Test1 = ExtractPayload<'USER_CREATED'>; // Evaluates to `never` instead of `undefined` type Test2 = ExtractPayload<'PING'>; // Evaluates to `never` instead of { id: string; reason?: string } type Test3 = ExtractPayload<'USER_DELETED'>; What I've tried: Checking distribution : I wrapped the generic parameter in tuple types ( [U] extends [...] ) to prevent distribution, but that just causes ExtractPayload to evaluate to the full union's payload property instead of isolating the exact branch. Strict null checks : My tsconfig.json has \"strict\": true (specifically \"strictNullChecks\": true ). If I set \"strictNullChecks\": false , Test2 works, but Test3 still resolves to never . Explicit generics : Explicitly passing the full union ExtractPayload<'PING', ApiEvent> gives the same result. Why is TypeScript failing the extends pattern matching when payload contains undefined or optional properties, and how can I structure this conditional type so it correctly extracts undefined and optional fields?",
+    "developer": "sanjib",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "60"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

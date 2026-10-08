@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0200x",
+  "sourceItemId": "1x0200x",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x0200x/docker_compose_up_d_deployed_the_right_app_and/",
+  "detail": {
+    "longDescription": "I deployed a worker and accidentally replaced the API.\n\nThe two stacks were running on the same serverspace VM. One lived in /srv/api/prod and the other in /srv/worker/prod. Both Compose files also used the same service called app. You can probably see the punchline already. I couldn’t. Compose used prod as the project name for both. The next deploy treated the worker as the same project and service as the api container. The worker came up. The api didn’t. The vm wasn’t the problem. My naming was. Both stacks have explicit project names now, the services aren’t both called app, and deployment fails if an expected container disappears.\n\nWhich harmless looking docker default has burned you the hardest?\n\n  \n",
+    "developer": "Ambitious-Lunch-5223",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

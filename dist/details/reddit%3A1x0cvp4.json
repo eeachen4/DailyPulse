@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0cvp4",
+  "sourceItemId": "1x0cvp4",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1x0cvp4/sharing_the_build_because_the_interesting_part_is/",
+  "detail": {
+    "longDescription": "Sharing the build because the interesting part is an AI design decision, not the tool itself. The site takes your Steam library and your PC parts and estimates the FPS for every game, tells you if the CPU, GPU, VRAM or RAM is the bottleneck, and names the cheapest upgrade that fixes it. Free, no account.\n\nHow the AI side split up: I used both models for what each was best at. ChatGPT did a lot of the work on the calculation model itself, figuring out and fitting the hardware scoring that turns a game's requirements into an FPS estimate. Claude handled most of the heavy multi-file coding around it, since the whole codebase fits in its context. I am not really a coder, so the models wrote the large majority and I drove and tested.\n\nThe decision I want to put up for discussion: I deliberately kept both models OUT of the runtime.\n\nIt would have been easy to just ask an LLM \"how many FPS does an RTX 3060 get in Cyberpunk\" on each request. That is a trap. LLMs will confidently hallucinate a framerate, and the moment one obviously wrong number shows up, people stop trusting the whole site. So the calculation model ChatGPT helped design ships as plain deterministic code, calibrated against real published benchmarks. The models built and fit it, but no LLM is in the request path guessing anything. AI builds the machine, it does not run the machine.\n\nThat split has been the single most important design choice, and I think it generalizes: use LLMs to build the deterministic thing, not to be the deterministic thing, whenever correctness is the product.\n\nHonest disclosure: it is my own project, free, and the hardware links are affiliate.",
+    "developer": "Plus-Company-1017",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

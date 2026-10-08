@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.07368",
+  "sourceItemId": "2610.07368",
+  "fetchedAt": "2026-10-08T02:57:02.910Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.07368",
+  "detail": {
+    "longDescription": "arXiv:2610.07368v1 Announce Type: new Abstract: Causal message ordering provides essential semantics for distributed applications, yet ensuring it within an asynchronous system subject to Byzantine failures presents fundamental theoretical and practical challenges. Prior research establishes that algorithms cannot guarantee both strong safety and liveness without using cryptography under these conditions. Existing Byzantine-tolerant solutions make synchrony assumptions or suffer from $O(n)$ message space overheads and $O(n^2)$ message complexity, where $n$ is the number of processes in the system, or use cryptography, but may not guarantee strong safety. In this paper, we present a novel Byzantine-tolerant causal ordering algorithm that achieves an optimal $O(1)$ application message space overhead for point-to-point messages. Our approach uses a Sender Permission to Send (SPS) invariant and an \\textit{Isolated-Buffer Optimistic Model} for the memory management architecture. To circumvent Byzantine state-pinning and head-of-line blocking attacks, instead of unified causal buffers, we use isolated, per-peer queues equipped with event-driven \\textit{Cascading Space Evictions}. We formally prove that our algorithm guarantees system-wide liveness and satisfies a weakened causal safety abstraction called \\textit{Congestion-Relaxed Causal Delivery}. Under this model, weak causal safety is strictly preserved for all honest-to-honest communications unless extreme network latency or Byzantine withholding attacks exceed quantifiable local buffer capacities, forcing optimistic queue evictions. This formal guarantee successfully balances causal ordering with high throughput, constant message space overhead, low computational overhead, and strictly bounded local space.",
+    "developer": "Purv Patel, Ajay D. Kshemkalyani",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.DS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Purv Patel, Ajay D. Kshemkalyani"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

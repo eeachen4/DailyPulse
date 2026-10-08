@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:49988641",
+  "sourceItemId": "49988641",
+  "sourceUrl": "https://news.ycombinator.com/item?id=49988641",
+  "detail": {
+    "longDescription": "Howdy HN! Missing a fast pure Go embedded SQL database. The issue is that compared to C, go is slow. Having done a lot of JIT in go, I naturally wanted to stick a JIT that generates native query kernels and see what happens. Result: musql. Pronounced &quot;muscle.&quot; On a 100K-row filtered count, musql takes 21 µs: about 300x faster than C SQLite and nearly 1,000x faster than Turso. Single-threaded, warm cache, using musql&#x27;s direct API, native C SQLite, and Turso&#x27;s Go driver. Filtered sums are 130x faster than C SQLite, grouped aggregates 95x. It works with Go&#x27;s database&#x2F;sql or through a server for libSQL clients. It uses its own storage format, with SQLite import&#x2F;export. And yes, the SQL VM runs DOOM. Code, setup, and benchmarks: https:&#x2F;&#x2F;github.com&#x2F;samyfodil&#x2F;musql",
+    "externalUrl": "https://github.com/samyfodil/musql",
+    "developer": "dsamy",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "10"
+      },
+      {
+        "label": "评论",
+        "value": "4"
+      }
+    ]
+  }
+}

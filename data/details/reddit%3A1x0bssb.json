@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0bssb",
+  "sourceItemId": "1x0bssb",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1x0bssb/i_need_assistance_assigning_an_ipv6_address_to_a/",
+  "detail": {
+    "longDescription": "Hello, I'm trying to learn how to use IPV6 at home.  IPV6 is enabled on my network and my vlans.\n\nI have updated the daemon.json file per [Docker's instructions](https://docs.docker.com/engine/network/drivers/macvlan/).\n\n    {\n      \"ipv6\": true,\n      \"fixed-cidr-v6\": \"2001:1234:5678::/64\"\n    }\n\nI have stopped all containers, removed the old IPV4 macvlan networks, re-added them as IPV4 & IPV6 networks, Portainer seems to think the two I've done are correct.\n\n    sudo docker network create -d macvlan --ipv6 \\\n    --subnet=10.0.10.0/24 --gateway=10.0.10.1 \\\n    --subnet=2001:1234:5678:10::/64 --gateway=2001:1234:5678:10::1 \\\n    -o parent=eth0.10 macvlan10\n    \n    sudo docker network create -d macvlan --ipv6 \\\n    --subnet=10.0.20.0/24 --gateway=10.0.20.1 \\\n    --subnet=2001:1234:5678:20::/64 --gateway=2001:1234:5678:20::1 \\\n    -o parent=eth0.20 macvlan20\n\nI've added IPV6 addresses and IPV6 enable in my Docker Compose/Portainer Stacks, but don't seem to have something correct here.\n\n    services:\n      pihole:\n        cap_add:\n          - SYS_TIME\n          - SYS_NICE\n        container_name: pihole01\n        environment:\n          FTLCONF_dns_listeningMode: 'all'\n          FTLCONF_dns_upstreams: '1.1.1.1;1.0.0.1'\n          FTLCONF_webserver_api_password: 'SuperSecretPassword'\n          TZ: 'America/Detroit'\n        hostname: pihole01\n        image: pihole/pihole:latest\n        mac_address: 00:10:00:10:00:04\n        networks:\n          macvlan10_network:\n            ipv4_address: 10.0.10.4\n            ipv6_address: 2001:1234:5678:10::4\n        ports:\n          - \"53:53/tcp\"\n          - \"53:53/udp\"\n          - \"80:80/tcp\"\n          - \"123:123/udp\"\n          - \"443:443/tcp\"\n        restart: unless-stopped\n        volumes:\n          - pihole01:/etc/pihole\n    \n    networks:\n      macvlan10_network:\n        enable_ipv6: true\n        external: true\n        name: 'macvlan10'\n    \n    volumes:\n        pihole01:\n          external: true\n\nAny ideas?",
+    "developer": "adjlw",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

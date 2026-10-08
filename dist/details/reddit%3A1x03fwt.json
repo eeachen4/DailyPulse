@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x03fwt",
+  "sourceItemId": "1x03fwt",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1x03fwt/multiple_ipvlans_am_i_doing_it_wrong/",
+  "detail": {
+    "longDescription": "So I know that every service should be on its own network, with grouped services (app & db) on the same network.  All good.\n\nI was looking at moving to ipvlans to give my containers their own IPs to make it easier to track traffic in and out.  Simple right?\n\nSo I created a new network:\n\n    docker network create \\\n      --driver ipvlan \\\n      --subnet=10.0.0.0/25 \\\n      --gateway=10.0.0.1 \\\n      -o parent=enp2s0 \\\n      -o ipvlan_mode=l3 \\\n      ipvlan-3\n\n...and some test services worked great.  When I went to create a second network:\n\n    docker network create \\\n      --driver ipvlan \\\n      --subnet=10.0.0.128/28 \\\n      --gateway=10.0.0.129 \\\n      -o parent=enp2s0 \\\n      -o ipvlan_mode=l3 \\\n      ipvlan-3-librenms\n\nit wouldn't let me as it said the parent was already being used.\n\nHow to I achieve multiple networks with the same parent NIC?\n\nThanks",
+    "developer": "root-node",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
