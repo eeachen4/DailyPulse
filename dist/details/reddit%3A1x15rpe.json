@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x15rpe",
+  "sourceItemId": "1x15rpe",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x15rpe/agent_accountability_is_moving_from_later_to_now/",
+  "detail": {
+    "longDescription": "Accountability for agent actions is coming to the front fast: underwriters are pricing agent risk, auditors are asking for evidence, and customers are starting to ask who signed off. It isn't just a finance-agent problem. Coding agents pushing to prod, support agents issuing refunds, ops agents changing infra, browser agents acting in SaaS tools: they all hold delegated authority, and \"the model did it\" doesn't hold up for any of them.\n\nA few positions I've landed on, to open it up:\n\n* The accountable principal has to be named before execution, not discovered in the postmortem. Builder, deployer and approver are different roles with different liability, and most orgs haven't separated them.\n* An approval only counts if it's bound to the exact action and parameters (a contract or hash), not to a plan or session that drifts before execution.\n* Evidence has to survive a dispute. Mutable app logs and traces are reconstruction, not proof. Tamper-evident, externally anchored records with attribution to agent identity, input, policy version and approver are the bar auditors and insurers will end up at.\n* Vendor contracts mostly don't cover agent-initiated actions. The liability lands on whoever deployed the agent, so the controls have to be theirs too.\n\nWhere I'd like to hear from people running this in production:\n\n1. How are you assigning ownership across builder, deployer and approver, especially for coding and infra agents, where the \"approver\" is often a merge or a pipeline?\n2. What's held up with auditors or underwriters as proof of control, and what got rejected?\n3. Anyone placed cover with agent-specific sublimits or exclusions? What did they require?\n4. For an agent-caused incident, what's your real time-to-answer on \"what exactly happened, under which policy, and who authorized it\"?\n5. Where do you think the standard lands: per-action attestation, per-scope grants, or something else?",
+    "developer": "No-Conflict4823",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

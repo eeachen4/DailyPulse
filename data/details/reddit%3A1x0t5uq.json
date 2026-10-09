@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0t5uq",
+  "sourceItemId": "1x0t5uq",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x0t5uq/still_on_bitnamilegacy_for_postgres_and_redis/",
+  "detail": {
+    "longDescription": "This is really an image problem, not an orchestration one - the fastest path off bitnamilegacy is just swapping in a maintained hardened image for each of Postgres, Redis, Mongo and Rabbit and keeping your current deployment setup.   \nDon't let it turn into an operator rewrite unless you actually need HA.  \nWorth looking at CleanStart for these. They provide the hardened, minimal, and \\[pretty actively patched container images. \n\ni got to know about them via LinekdIn. The things that mattered for us were patch cadence and images that won't just vanish like the legacy repo will. Disclosure: I work there, so grain of salt, but this Bitnami-refugee case is exactly what it fits.\n\nOn Redis, the Valkey fork mess is its own decision - a hardened Redis image keeps you API-compatible for now so you can pick Valkey/Dragonfly later instead of bolting it onto this cutover. One migration at a time.\n\ntry this one to start- cleanstart/redis-exporter",
+    "developer": "jasmine-1269",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.09267",
+  "sourceItemId": "2610.09267",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.09267",
+  "detail": {
+    "longDescription": "arXiv:2610.09267v1 Announce Type: new Abstract: Dependency upgrades can break downstream projects without changing the library interface. Such behavioral breaking changes are difficult for developers to fix, because the failing test does not always point to the root API, the upstream API that causes the break. Existing LLM-based repair methods obtain evidence for the repair from compiler feedback or library documentation. However, a behavioral break produces no compiler feedback and is often undocumented. Agents that receive no upgrade evidence also usually do not retrieve upstream evidence themselves, and most of their failed repairs do not identify the root API. The library diff provides useful upstream evidence, but the root API must first be identified to select the relevant part of the diff. We present BBCFixer, a repair method that runs the failing test under the old and new library versions, ranks the calls whose return value differs to identify a candidate root API, and filters the library diff with that candidate. To evaluate repairs of behavioral breaks, we further introduce BBCBench, a benchmark of 100 behavioral dependency breaks in Python and JavaScript. We compare BBCFixer on BBCBench with two baselines: (1) Pure Agent, an agent that receives no upgrade evidence, and (2) BDUpdater, a method that mines library documentation. BBCFixer raises the average pass rate by up to 17% relative to Pure Agent and needs up to 27% fewer agent steps per successful repair. BBCFixer thus provides a way to select the upstream evidence behind a behavioral break, so that an LLM agent can repair behavioral breaking changes more effectively and efficiently.",
+    "developer": "Juntao Chen, Tingting Bi, Yanlin Wang, Patanamon Thongtanunam",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Juntao Chen, Tingting Bi, Yanlin Wang, Patanamon Thongtanunam"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

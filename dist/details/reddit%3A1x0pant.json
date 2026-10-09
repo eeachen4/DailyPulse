@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0pant",
+  "sourceItemId": "1x0pant",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x0pant/our_eks_cluster_was_full_at_30_percent_cpu_the/",
+  "detail": {
+    "longDescription": "Lab run, two-node EKS cluster, Kubernetes 1.36, VPC CNI v1.22.4. I pushed a commit asking for twelve replicas of a tiny app. Six started, six stayed Pending. At that moment the cluster showed CPU reserved at 30 percent and memory at 32 percent.\n\nThe Pending pods said why: 0/2 nodes are available: 2 Too many pods.\n\nWith the VPC CNI every pod gets a real VPC IP from a network interface on the node, so each instance type has a hard pod ceiling: interfaces x (addresses per interface - 1) + 2. For a t3.small that is 11, for a t3.medium 17. That is 11 in total, and system pods take their share first: on these nodes they held roughly three quarters of the slots. Two nodes, 22 slots, 22 used, a third of the CPU reserved.\n\nHow I got a t3.small without choosing one: the node group listed both t3.medium and t3.small as acceptable Spot types, and every node launched as t3.small, on two clusters in two regions. That is the difference between 17 and 11 slots per node, and nobody picked it.\n\nSecond half of the problem: no cluster autoscaler. The node group was allowed three nodes and sat at two, because nothing was watching for Pending pods.\n\nWhat the GitOps side reported: Deployment does not have minimum availability., Available: 6/12. True and no help. \"Too many pods\" only shows on the individual pods.\n\nWhat I'd check on any EKS cluster:\n\n\\- The pod ceiling for every instance type your node groups can launch, not just the one you expect. A mixed instance list is a mixed ceiling. kubectl get nodes -o custom-columns=NAME:.metadata.name,TYPE:.metadata.labels.node\\\\.kubernetes\\\\.io/instance-type,PODS:.status.allocatable.pods shows what you actually got.\n\n\\- Subtract what the system pods already hold before you size anything.\n\n\\- Whether anything adds nodes on Pending pods. A new managed node group does not come with a cluster autoscaler or Karpenter.\n\n\\- If you need more pods per node without bigger instances, prefix delegation on the VPC CNI raises the ceiling a lot. It is a setting, not a rebuild.\n\nDoes anyone alert on allocatable pods, or does everyone find out from Pending like I did?\n\n",
+    "developer": "Current-Secretary-52",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

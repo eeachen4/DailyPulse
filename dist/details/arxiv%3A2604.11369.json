@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.11369",
+  "sourceItemId": "2604.11369",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.11369",
+  "detail": {
+    "longDescription": "arXiv:2604.11369v2 Announce Type: replace Abstract: Atomicity is a fundamental abstraction in concurrency, specifying that program behavior can be understood by considering specific code blocks executing atomically. However, atomicity invariants are tricky to maintain while also optimizing for code efficiency, and atomicity violations are a common root cause of many concurrency bugs. To address this problem, several dynamic techniques have been developed for testing whether a program execution adheres to an atomicity specification, most often instantiated as \\emph{conflict serializability}. The efficiency of the analysis has been targeted in various papers, with the state-of-the-art algorithms \\textsc{RegionTrack} and \\textsc{Aerodrome} achieving a time complexity $O(nk^3)$ and $O(nk(k + v + \\ell))$, respectively, for a trace $\\sigma$ of $n$ events, $k$ threads, $v$ locations, and $\\ell$ locks. In this paper we introduce \\textsc{AtomSanitizer}, a new algorithm for testing conflict serializability, with time complexity $O(nk^2)$. \\textsc{AtomSanitizer} operates in an efficient streaming style, is theoretically faster than all existing algorithms, and also has a smaller memory footprint. Moreover, \\textsc{AtomSanitizer} is the first algorithm designed to incur minimal locking when deployed in a concurrent monitoring setting. Experiments on standard benchmarks indicate that \\textsc{AtomSanitizer} is always faster in practice than all existing conflict-serializability testers. Finally, we also implement \\textsc{AtomSanitizer} inside the TSAN framework, for monitoring atomicity in real time. Our experiments reveal that \\textsc{AtomSanitizer} incurs minimal time and space overhead compared to the data-race detection engine of TSAN, and thus is the first algorithm for conflict serializability demonstrated to be suitable for a runtime monitoring setting.",
+    "developer": "H\\\"unkar Can Tun, Yifan Dong, Andreas Pavlogiannis",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "H\\\"unkar Can Tun, Yifan Dong, Andreas Pavlogiannis"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

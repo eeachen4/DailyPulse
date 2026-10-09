@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008632",
+  "sourceItemId": "80008632",
+  "sourceUrl": "https://stackoverflow.com/questions/80008632/i-am-trying-to-solve-the-1d-bar-with-the-help-of-fno-what-could-be-the-problem",
+  "detail": {
+    "longDescription": "I have attached 2 codes above. The second code follows the structure of a fourier layer while the first code imports the second code and use it as a machine to calculate and verify correct deformation. Usually I would have tried to fix it myself but the error is too high and I cant pinpoint a reason for it. I am also attaching the image of the plots import torch as tr from Fourier_Neural_Operator import Operator as FNO import matplotlib.pyplot as plt import time import math P = 1e3 E = 200e9 A_max = 0.02 A_min = 0.01 L = 2.0 N = 100 B = 800 FL = 4 Epochs = 1 lr = 1e-5 x = tr.linspace(0, L, N).repeat(B,1).unsqueeze(-1) A = tr.rand(B, N, 1) * (A_max - A_min) + A_min x_star = x/ L del_x_star = 1/(N-1) A_star = A/ A_max input = tr.cat((A_star, x_star), dim = 2) FNO_ML = FNO(input.shape[2],1,32,20,FL) optimizer = tr.optim.Adam(list(FNO_ML.parameters()), lr=lr) def derivative(input): #dimension of input = (batch,nodes,1) ans = tr.zeros(B,N,1) for i in range(N): if i == 0: ans[:,i,:] = (input[:,i+1,:]-input[:,i,:])/del_x_star elif i == N-1: ans[:,i,:] = (input[:,i,:]-input[:,(i-1),:])/del_x_star else: ans[:,i,:] = (input[:,(i+1),:]-input[:,(i-1),:])/(2*del_x_star) return ans l = [] e = [] seconds = [] for i in range(Epochs+1): u_star = FNO_ML(input) Loss_1 = tr.mean(u_star[:,0,:]**2) d_u_star = derivative(u_star) Loss_2 = tr.mean((A_star*d_u_star[:,(N-1):N,:]-tr.ones(B,1,1))**2) dd_u_star = derivative(A_star*d_u_star) Loss_3 = tr.mean(dd_u_star**2) Loss = Loss_1 + Loss_2 + Loss_3 if i == 1 or i%100 == 0: l.append(math.log(Loss.item())) e.append(i) seconds.append(time.time()) print(f'{round(seconds[-1]-seconds[0])} seconds') print([i,round(Loss_1.item()),round(Loss_2.item()),round(Loss_3.item()),round(Loss.item())]) optimizer.zero_grad() Loss.backward() optimizer.step() x_test = tr.linspace(0,1,N).repeat(1,1).unsqueeze(-1) A_test = (A_min + (A_max-A_min)*x_test)/A_max input_test = tr.cat((A_test,x_test), dim=2) u_test = FNO_ML(input_test) fig, axs = plt.subplots(1,2) axs[0].plot(e, l) axs[0].set_ylabel(\"Loss\") axs[0].set_xlabel(\"Epochs\") axs[0].set_title(\"Loss vs Epochs\") axs[1].plot(x_test[0].detach().numpy()*L, u_test[0].detach().numpy()*(P*L/(A_max*E))) axs[1].set_xlabel(\"Nodes\") axs[1].set_ylabel(\"Deformation\") axs[1].set_title(\"U vs X graph\") plt.tight_layout() plt.show() import torch as tr import torch.nn as nn class Operator(nn.Module): def __init__(self,input_channels,output_channels,width,modes,layers): super().__init__() self.I = input_channels self.O = output_channels self.width = width self.modes = modes self.layers = layers self.lift = nn.Linear(self.I, self.width) self.project = nn.Linear(self.width,self.O) self.R = nn.Parameter(tr.randn(self.modes,self.width,self.width,self.layers, dtype=tr.cfloat)) self.W = nn.ModuleList([nn.Linear(self.width,self.width) for _ in range(self.layers)]) self.activate = nn.ReLU() def forward(self, input): input = self.lift(input) for i in range(self.layers): a = tr.fft.rfft(input, dim = 1) Rweight = tr.squeeze(self.R[:,:,:,i:i+1], dim=-1) a = tr.cat((tr.einsum(\"abc,bcd->abd\",a[:,:self.modes,:],Rweight),0*a[:,self.modes:,:]), dim=1) a = tr.fft.irfft(a, n = input.shape[1], dim = 1) input = self.activate(self.W[i](input)+a) return self.project(input)",
+    "developer": "Kraker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "82"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

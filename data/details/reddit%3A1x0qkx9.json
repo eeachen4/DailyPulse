@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0qkx9",
+  "sourceItemId": "1x0qkx9",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x0qkx9/how_are_you_isolating_ai_agents_that_run_tools_in/",
+  "detail": {
+    "longDescription": "Agents that call tools (shell, file writes, MCP servers) feel different from normal workloads. They run code nobody reviewed, and a shared kernel seems like the wrong boundary for that.  \n  \nWhat we ended up doing was admission based on signed OCI artifacts (the model, prompts, MCP server configs and policy all in one digest, signed with cosign), then a microVM per agent, with tool policy evaluated locally inside the cluster so it doesn't depend on a control plane.  \n  \nQuestions for folks running agents on k8s today...  \n  \n\\- Are you using Kata, gVisor, Firecracker, or just pods with tight securityContext?  \n\\- Where do you enforce what an agent can call (sidecar, admission, egress)?  \n\\- Has anyone measured the startup and density hit of microVMs for this?  \n  \nHappy to share details of what we did in the comments if it's useful, but I'd rather hear what's working for you.",
+    "developer": "iamjessew",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

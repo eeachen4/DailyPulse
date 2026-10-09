@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.09519",
+  "sourceItemId": "2610.09519",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.09519",
+  "detail": {
+    "longDescription": "arXiv:2610.09519v1 Announce Type: cross Abstract: Production machine-learning models are derived artifacts of time-bounded training snapshots: a deployed model is a materialized view over a training cut that ages the instant it is built. A common response is to replace the fixed retraining cadence with an adaptive trigger -- a weighted staleness score that retrains when accumulated source risk crosses a threshold. We show this is the wrong lever, and identify the right one. First, an equivalence limit: any refresh trigger that is a static, strictly monotone function of a single shared global training-data age is operationally equivalent to a calibrated uniform age timer, so a global staleness budget, however elaborately it weights segments, sources, and sensitivities, carries no scheduling information a clock does not. The limit also shows how to escape it: refresh segments differentially, giving each its own age and refresh interval, which is meaningful when refresh cost is separable across segments (incremental training or per-segment models). We solve the resulting budget-allocation problem. In the frequent-refresh regime each segment's optimal refresh rate is proportional to the square root of its risk $w_j \\lambda_j$ (weight times change rate), and the optimal policy never costs more than the uniform timer, beating it by a closed-form Cauchy-Schwarz \"price of uniformity\" that is zero for homogeneous workloads and grows with heterogeneity. In a discrete-event simulation with real Poisson change events, the optimal policy lowers realized weighted stale exposure by 8-29% relative to the uniform timer at matched refresh budget, winning on 86-100% of seeds; a naive exposure-threshold policy does not, showing the allocation is what helps; and the advantage survives 50% rate-estimation noise. The leverage in model refresh is not a better score but a better action.",
+    "developer": "Amit Rajula",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Amit Rajula"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50013600",
+  "sourceItemId": "50013600",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50013600",
+  "detail": {
+    "longDescription": "Hello HN! This is the first game I&#x27;ve ever made and I&#x27;ve been hooked on making apps&#x2F;web apps ever since. At first it was closed-source for the first couple months of its launch, but this week I decided it should be made open-source. My reasoning for this is there are already a lot of games similar to mine that are about guessing a word based on the meaning of the word and narrowing down the secret word; but I added a little twist. The game, &quot;Wick&quot;, allows you to both narrow down the word by either 1. Guessing by meaning of the word like &quot;fruit&quot; is hot if the word is &quot;lemon&quot;, or 2. Asking questions like &quot;Is it a type of fruit?&quot; and the Keeper will answer &quot;Yes&#x2F;No&#x2F;Not Sure&quot; etc... but will never spoil the answer. It works by turning words into an embedding, which in simpler terms is a list of numbers that capture how the word is used semantically. Words used in similar ways get similar numbers. It comes from Gemini&#x27;s embedding API for web&#x2F;live race mode, but for iOS single player it uses free apple-intelligence on-device for the questions and it uses Apple&#x27;s built-in English embedding and four small Core ML models for other languages like Spanish, German, Italian, and French. The closeness of words is based on cosine similarity of two embeddings. The server embeds a vocabulary of 9,850 common words once, sorts them by closeness to the day&#x27;s secret, and your guess is how close it is to rank 1 (the secret word). Rank 2 would be the closest word to the secret word. The categories of closeness are based on temperature so it goes: boiling, hot, warm, cool, cold, and freezing. At the end of the solve&#x2F;game, you are rewarded with a semantic meaning map where it shows you all of your guesses and where they landed relative to the secret word as you narrowed in on it or gave up. There&#x27;s also no accounts at all, no ads, and no tracking of course. I pay out of pocket and am hoping to get users before I monetize or try to make money off the website. Right now I&#x27;m just hosting it for fun. I can do this because the vocabulary gets cached and there&#x27;s only one embedding call per guess. It&#x27;s one developer working on this app and web app. I&#x27;m receiving no funding currently for developing the game. I wanted to copy osu!&#x27;s playbook a little, mostly because it&#x27;s difficult for any game to maintain a moat or advantage over incumbents and have a reason to retain users. I thought that making it open-source and allowing people to contribute and add their own taste to the game would be nice. Also, I just enjoy making open-source code recently. Play a few rounds please and let me know what you think or if you have any critiques to make it more fun&#x2F;modular! I&#x27;d really like contributions if you&#x27;re feeling up to it or comments&#x2F;feedback on how I can improve! Play it Live with no App Required: https:&#x2F;&#x2F;guesswick.com&#x2F; Source Code: https:&#x2F;&#x2F;github.com&#x2F;jasonepage&#x2F;Wick iOS listing: https:&#x2F;&#x2F;apps.apple.com&#x2F;app&#x2F;id6777743483",
+    "externalUrl": "https://guesswick.com/",
+    "developer": "jpage2",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "5"
+      }
+    ]
+  }
+}

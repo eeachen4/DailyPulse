@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0w84u",
+  "sourceItemId": "1x0w84u",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1x0w84u/i_was_tired_of_modern_sticky_note_apps_so_i_built/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI am the developer behind **Frond**. I built it because I was incredibly frustrated with modern note-taking apps. Every time I open Microsoft Sticky Notes, Notepad, or other alternatives, I feel overwhelmed. They are bloated with AI features I don't want, they force me to sign up and they constantly try to push my data into their cloud databases.\n\nI just wanted simple effective notes. So I built Frond as my very first MVP\n\nIt does exactly one thing well. It helps you focus. Your active note stays bright, while the ones you aren't using automatically dim into the background.\n\n[Showcase of my \\\\\"Focus\\\\\" feature:](https://i.redd.it/kmrmtf76u9uh1.gif)\n\n**The Tech Stack & The Catch (RAM):**  \nThe app itself is built on Electron (Chromium). Because it’s an MVP, I haven't optimized the process architecture yet (But in the future I will) . Each note runs its own renderer process, which means **every single note eats about 40 - 80 MB of RAM**. If you open 20 notes, it will heavy-up your task manager.\n\n**The Good Part (100% Privacy):**  \nBecause it runs on Chromium, I made sure of one thing: your data never leaves your computer.\n\n* Zero cloud syncing.\n* Zero AI garbage.\n* Zero sign-ups or accounts.\n* Zero network requests and zero telemetry (I manually checked my code for any fetch/XHR calls before posting this). Everything streams directly into a local JSON file on your machine.\n\n**Honest Limits:**\n\n1. **Windows only:** For now, it only runs on Windows.\n2. **SmartScreen Warning! :** The installer is unsigned. So when you run it, Windows SmartScreen will pop up with a warning. You’ll need to click \"More info\" and \"Run anyway\". I promise there is nothing malicious inside, it's just the cost of a signed certificate (500 dollars yearly or so).\n\nThis is my first real project, so things might break and i also got myself an MIT license for true open-source. If you are interested make time to go to my Github and read the README file it explain everyting. Also I’d love to know: what would make you switch from your current setup to something this minimal and simple?\n\n*(Links to the website and code are in the comments below.)*",
+    "developer": "CottonCowDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

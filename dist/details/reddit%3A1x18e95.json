@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x18e95",
+  "sourceItemId": "1x18e95",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x18e95/qwen3827b_159_toks_on_r9700_64_toks_on_strix_halo/",
+  "detail": {
+    "longDescription": "LemonSeed Studio is an iPad editor/IDE with on-device inference on an AMD GPU in a Thunderbolt enclosure. It embeds the unmodified upstream Linux amdgpu + amdkfd driver (mac\\_linuxgpu) as a PCIDriverKit extension, and runs LemonSeed Engine (LSE) on the GPU. In the photos: iPad Pro + Sapphire Radeon AI PRO R9700, Qwen3.8-27B Q4 with a Q8 DFlash2 draft, 131k context.\n\nLSE is the same engine on every platform: Linux, macOS and iPadOS. It records the model's forward pass as a graph, fuses ops and generates kernels for the GPU it's on. Where a kernel has several layouts, it measures each on the device and keeps the fastest. Speculative decoding (MTP and DFlash2) picks how many draft tokens to verify from measured acceptance and cost.\n\nDecode, code prompt, Qwen3.8-27B Q4 (baseline / MTP=3 / DFlash2 tok/s):  \n\\- R9700 on iPadOS (LemonSeed Studio): 31.2 / 108.7 / 158.5  \n\\- R9700 on macOS: 32.2 / 111.9 / 159.4  \n\\- R9700 on Linux: 32.0 / 111.0 / 144.6  \n\\- Strix Halo (Radeon 8060S) on Linux: 14.0 / 47.8 / 64.4\n\nPrefill at 4K tokens: 1,636 (iPadOS), 1,634 (macOS), 1,418 (Linux R9700), 517 (Strix Halo). It holds up at 32K: 1,395 / 1,401 / 1,226 / 462.\n\nNew in 0.5.8:  \n\\- DFlash2 draft trees on by default: one target pass verifies a tree of draft candidates when that's measured to be faster than a chain  \n\\- Strix Halo (gfx1151) prefill and decode work: fused gate/up GEMM, two query tiles per workgroup in prefill attention  \n\\- Fixed a startup GPU fault  \n\\- Linux archive bundles its own HSA runtime, so you only need the amdgpu driver with /dev/kfd access  \n\\- lse-server models / pull: grab Hugging Face models with their MTP or DFlash2 companions\n\nOpenAI-compatible server, CLI, and a C library (libLSE).\n\nEngine: https://github.com/Geramy/LSE  \nStudio: https://github.com/Geramy/LemonSeed-Studio\n\nHappy to answer questions, especially about getting an eGPU working on iPadOS.",
+    "developer": "TheOriginalG2",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.09005",
+  "sourceItemId": "2610.09005",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.09005",
+  "detail": {
+    "longDescription": "arXiv:2610.09005v1 Announce Type: new Abstract: Number libraries, which implement number formats and their arithmetic in software, are used to simulate hardware, making hardware behavior reproducible and thus verifiable and easier to design. However, modern machine learning accelerators are difficult to simulate, as they increasingly use specialized number formats that existing number libraries do not support. It is costly to extend these libraries using traditional methods: each combination of operation, format, and rounding mode typically requires a bespoke implementation. An easier way is to double round---compute at higher precision, then re-round---so that one high-precision kernel serves many formats, but double rounding is only known to be correct in select cases. We give a precise, efficiently checkable characterization of when double rounding is correct across many formats and rounding modes. Our result rests on a novel abstract number format that unifies fixed- and floating-point representations, reducing the correctness of double rounding to format containment: whether every value of one format is representable in another. We mechanized these results in Lean 4. In addition, we introduce a format inference algorithm that, given a sequence of operations, bounds each expression by a number format guaranteed to contain its result. We apply these insights in two ways. First, we present MPFX, a correctly-rounded, multi-precision number library that exploits correct double rounding to efficiently simulate many number formats. MPFX's correctly-rounded operations are up to 11x (mean: 6.05x) faster than MPFR's, and competitive with SoftFloat's---between 0.46x and 1.63x as fast (mean: 0.94x)---at the same precision. Second, in a case study, we implement a software simulation of a hardware specification using both SoftFloat and MPFX's primitives; the MPFX version is up to 13.5x faster.",
+    "developer": "Brett Saiki, Bill Zorn, Cynthia Richey, Zachary Tatlock",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Brett Saiki, Bill Zorn, Cynthia Richey, Zachary Tatlock"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

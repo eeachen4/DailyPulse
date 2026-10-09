@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x11ufl",
+  "sourceItemId": "1x11ufl",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x11ufl/have_urms_and_uts_been_integrated_into_frontier/",
+  "detail": {
+    "longDescription": "UT-based small models, despite being trained from scratch on these tasks without internet-scale pre-training, *consistently outperform most standard Transformer-based Large Language models (LLMs) by a significant margin.*  👈\n\n\n\nThe Universal Transformer (UT) extends the standard Transformer by introducing recurrent computation over depth. Instead of stacking L distinct layers, the UT applies a single transition  block repeatedly to refine token representations. For an input sequence x with embedding matrix H^0 ∈ R^(n×d) , the UT updates states as\n\n\n**H^(t+1) = LayerNorm(H^t + MHA(H^t ))**\n\n\nfollowed by a shared position-wise transition function\n\n**H^(t+1) ← LayerNorm(  H^(t+1) + Transition(H^(t+1) )), t = 0, . . . , T − 1**\n\n\nwhere Transition is either a feed-forward network or separable convolution. To encode both position\nand refinement depth, UT adds 2-D sinusoidal embeddings at each step.\n\n\n\n\nhttps://i.imgur.com/S8TAh3f.png\n\n(below) Figure 2 :  Illustration of our Universal Reasoning Model (URM) architecture. The left shows a\nstandard Transformer layer stack, while the right illustrates the URM with fixed loops, ACT loops,\nand the ConvSwiGLU module. For illustrative purposes, components such as embeddings, residual\nconnections, RMSNorm, positional encodings, and other modules are omitted, x in right figure\nrepresents the first x loops of the inner loop in forward-only mode, TBPTL represents our proposed\nTruncated Backpropagation Through Loops.\n\nhttps://i.imgur.com/uEuhAeC.png\n\n\nHave frontier labs at big tech companies already implemented the enhancements of URMs and UTs?  Or is this cutting-edge research still waiting for its day in the sun?     \n\nBelow are the original paper, a simplified blog, and a talk.  \n\n\nPaper :  https://arxiv.org/pdf/2512.14693 \n\nblog : https://bdtechtalks.substack.com/p/inside-urm-the-architecture-beating\n\nyoutube talk : https://www.youtube.com/watch?v=RxNPFCYCFBU",
+    "developer": "moschles",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

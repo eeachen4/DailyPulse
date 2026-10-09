@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x0ir81",
+  "sourceItemId": "1x0ir81",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x0ir81/disaggregated_kubernetes_isolating_infra_into/",
+  "detail": {
+    "longDescription": "This is a fun blog post on how/why a security issue inside Kubernetes doesn’t necessarily have to become a full-blown, node-wide compromise. The basic idea behind **disaggregated Kubernetes** is to split infrastructure services like networking, storage, and device handling into separate trust domains, rather than concentrating everything in highly-privileged components.\n\nThat way, if one service has some flaw, the compromise is ideally contained to that service instead of giving some attacker access to workloads, other cloud infra, or the underlying host.\n\nThe same principle can be applied to Kubelet. So rather than simply rewriting Kubelet, Edera discussed breaking its responsibilities into isolated services with narrowly-scoped capabilities.",
+    "externalUrl": "https://edera.dev/stories/disaggregated-kubernetes-contain-the-blast-radius",
+    "developer": "One_Paint8721",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "edera.dev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

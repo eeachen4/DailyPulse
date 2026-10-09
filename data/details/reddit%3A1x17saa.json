@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x17saa",
+  "sourceItemId": "1x17saa",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x17saa/why_i_replaced_my_20step_ai_agent_prompt/",
+  "detail": {
+    "longDescription": "When I first started building autonomous agent skills for my Dart and Flutter repos, I wrote them the way everyone does: a numbered checklist from Step 1 (pick an issue) to Step 17 (triage review bots and merge). It looked great until real life happened. Whenever a review bot left a comment after Step 9, I had to write awful imperative GOTO instructions (\"jump to Step 12.2, go back to Step 5, don't redo Step 1\"). Worse, if I closed my laptop and woke the agent up two hours later on an open PR to fix a failing CI check, it would read Step 1 at the top of the prompt and ask me which issue we were working on.\n\nIt hit me recently that Stuart Feldman solved this exact problem at Bell Labs in 1976 with `make`. A software workflow isn't a linear checklist—it's a Directed Acyclic Graph of physical artifacts and prerequisites.\n\nWhen you write the agent's skill as an actual Makefile DAG (`finish` depends on `land`, which depends on `ready-to-land` and `human-landing-approval`, all the way down to `approved-plan` and `ticket-assigned`), two things happen immediately. First, LLMs have seen millions of Makefiles in pre-training, so they resolve `target: prerequisites` way more reliably than prose rules. Second, you get rid of loop counters and step numbers completely. If a bot finds a bug and the agent edits a file, the working tree is now dirty—which physically invalidates the prerequisites for `commit` and `approved-adversarial-report`. The graph forces the agent back through the code critic and linter automatically.\n\nOne weird failure mode we did hit along the way: if a target has 5 or more prerequisites on a single line, the model builds up \"verification momentum\" after checking the first four and blows right past the human approval gate at position 5. Capping every target at 2 to 3 prerequisites (and factoring human gates into strict 2-item `action: ready-state human-approval` pairs) fixed it completely across our last 140+ tickets.\n\nHow are you all structuring long multi-step workflows in Claude Code, Cursor, or Antigravity so the agent doesn't lose its place mid-PR?",
+    "developer": "RandalSchwartz",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

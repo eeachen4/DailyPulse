@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80008521",
   "sourceItemId": "80008521",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
   "sourceUrl": "https://stackoverflow.com/questions/80008521/creating-a-integrityerror-for-testing-purposes",
   "detail": {
     "longDescription": "For testing purposes and building my own understanding, I'd like to create a simple Django model and form that can result in a django.db.utils.IntegrityError when saved. Ideally, the error would be null value in column \"foo\" of relation \"bar\" violates not-null constraint or similar. I've tried creating a test model like the following: class ATestModel(models.Model): field = models.BooleanField(null=False) def __str__(self): return f'<ATestModel(field={self.field})>' and a test admin form like this: class ATestForm(forms.ModelForm): field = forms.NullBooleanField(label='field') def clean(self): return @admin.register(ATestModel) class ATestAdminWithErrors(admin.ModelAdmin): form = ATestForm But the form still validates the model and will give an error on the page: Please correct the error below. “None” value must be either True or False. How can I modify my example to generate a django.db.utils.IntegrityError when saved?",
     "developer": "Anna Montare",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "52"
+        "value": "69"
       },
       {
         "label": "状态",

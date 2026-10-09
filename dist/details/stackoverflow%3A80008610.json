@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008610",
+  "sourceItemId": "80008610",
+  "sourceUrl": "https://stackoverflow.com/questions/80008610/user-application-doesnt-start-on-the-rfid-reader-zebra-fx7500",
+  "detail": {
+    "longDescription": "I have a Zebra reader and I want to use with my user application. I created a Python script. I use this help/manual: https://zebradevs.github.io/rfid-ziotc-docs/ I fixed errors in the original Zebra scripts. I created a .deb file and uploaded it to the reader, but I cannot launch it (via the WebUI). If I open PowerShell, log into the reader via SSH, and run the command `python3 myscript`, the script starts and runs normally. I need the script to start automatically; however, after selecting the option (in the WebUI) and resetting the reader, the script does not launch. Can anyone help? Main script: import pyziotc import json import time prefix = \"43\" def passthru_callback(msg_in): global prefix parts = msg_in.split(\" \") print(parts) if parts[0] == \"prefix\": if len(parts) == 1: response = \"prefix set to {}\".format(prefix) response = bytearray(response, 'utf-8') else: prefix = parts[1] response = \"prefix set to {}\".format(prefix) response = bytearray(response, 'utf-8') else: response = b\"unrecognized command\" return response def new_msg_callback(msg_type, msg_in): if msg_type == pyziotc.ZIOTC_MSG_TYPE_TAG_INFO_JSON: msg_in_json = json.loads(msg_in) tag_id_hex = msg_in_json[\"data\"][\"idHex\"] if tag_id_hex.startswith(prefix): ziotcObject.send_next_msg(pyziotc.ZIOTC_MSG_TYPE_DATA, bytearray(msg_in, 'utf-8')) ziotcObject = pyziotc.Ziotc() ziotcObject.reg_new_msg_callback(new_msg_callback) ziotcObject.reg_pass_through_callback(passthru_callback) led_green_msg = bytearray(json.dumps({\"type\":\"LED\",\"color\":\"GREEN\",\"led\":3}), \"utf-8\") led_yellow_msg = bytearray(json.dumps({\"type\":\"LED\",\"color\":\"AMBER\",\"led\":3}), \"utf-8\") led_red_msg = bytearray(json.dumps({\"type\":\"LED\",\"color\":\"RED\",\"led\":3}), \"utf-8\") # The below formats for async messages are for illustration only. it can be anything the app wants. async_msg_red = bytearray(json.dumps({\"source\":\"Sample DA app\",\"message\":\"LED set to RED\"}), \"utf-8\") async_msg_green = bytearray(json.dumps({\"source\":\"Sample DA app\",\"message\":\"LED set to GREEN\"}), \"utf-8\") async_msg_yellow = bytearray(json.dumps({\"source\":\"Sample DA app\",\"message\":\"LED set to YELLOW\"}), \"utf-8\") while True: time.sleep(1) ziotcObject .send_next_msg(pyziotc.MSG_OUT_GPO, led_green_msg) ziotcObject .send_next_msg(pyziotc.MSG_OUT_CTRL, async_msg_green) time.sleep(1) ziotcObject .send_next_msg(pyziotc.MSG_OUT_GPO, led_red_msg) ziotcObject .send_next_msg(pyziotc.MSG_OUT_CTRL, async_msg_red) time.sleep(1) ziotcObject .send_next_msg(pyziotc.MSG_OUT_GPO, led_yellow_msg) ziotcObject .send_next_msg(pyziotc.MSG_OUT_CTRL, async_msg_yellow) start_myApp.sh EXECUTABLE_NAME= myApp python3 /apps/${EXECUTABLE_NAME}.py & stop_myApp.sh EXECUTABLE_NAME= myApp PID=`ps -C 'python3 /apps/${EXECUTABLE_NAME}.py' -o pid=` kill -9 $PID unset EXECUTABLE_NAME unset PID file control: Package: myApp Version: 1.0.1 Source: base Priority: optional Architecture: all Maintainer: Zebra Description: \"Sample DA application\" APP_TYPE: DA shell prompt: dpkg-deb --build -Zgzip sample_1.0.1/ My application installs correctly from the .deb file.",
+    "developer": "Rafal S",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "53"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

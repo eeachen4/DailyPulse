@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.08962",
+  "sourceItemId": "2610.08962",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.08962",
+  "detail": {
+    "longDescription": "arXiv:2610.08962v1 Announce Type: cross Abstract: The Go programming language provides a lightweight abstraction for concurrent programming through goroutines, which are prone to deadlocks. Go includes a runtime detector that aborts execution when all threads are blocked (a global deadlock). However, due to nondeterministic thread scheduling, this runtime mechanism only detects global deadlocks that manifest during execution and cannot identify partial deadlocks, where a subset of goroutines is permanently blocked while at least one remains runnable. Statically detecting local deadlocks is essential for developing dependable concurrent software. While several tools statically detect deadlocks in concurrent programs, few assist developers in fixing them. Detecting and resolving partial deadlocks requires reasoning about complex interleavings and communication patterns, an inherently challenging task. In this paper, we present GoDDaR, a tool that detects unobserved global or partial deadlocks in Go programs and suggests concrete fixes. GoDDaR translates Go source code into an intermediate representation reflecting message-passing communication events and composition patterns. Partial deadlocks are identified through symbolic analysis over this representation. To resolve detected deadlocks, our algorithms transform the intermediate representation to eliminate problematic synchronization patterns, allowing GoDDaR to generate fix suggestions for the original Go source code as a diff. We evaluate GoDDaR on a benchmark suite of representative deadlock examples from literature and git repositories to validate algorithm correctness and compare performance against the state of the art. Results demonstrate that GoDDaR is competitive with top approaches in partial deadlock detection and advances the state of the art in automated deadlock fixing.",
+    "developer": "Gustavo Feio, Jorge Coelho, Miguel Flor, Jo\\~ao M. Louren\\c{c}o, Ant\\'onio Ravara",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.DC, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Gustavo Feio, Jorge Coelho, Miguel Flor, Jo\\~ao M. Louren\\c{c}o, Ant\\'onio Ravara"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

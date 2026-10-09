@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80008554",
   "sourceItemId": "80008554",
+  "fetchedAt": "2026-10-09T03:08:39.593Z",
   "sourceUrl": "https://stackoverflow.com/questions/80008554/rust-ownership-and-lifetimes-in-multi-threaded-matrix-multiplication-no-locks",
   "detail": {
     "longDescription": "As a way to try to learn Rust, I'm implementing multi-threaded, naive matrix-vector multiplication. More specifically, each of the ncpus threads processes a partition of the row-vector dot-products and assigns the result to an entry in an already-allocated vector. use std::thread; pub fn dot(x: &Vec<f64>, y: &Vec<f64>) -> f64 { // assert_eq!(x.len(), y.len()) let n: usize = x.len(); let mut acc: f64 = 0.0; for i in 0..n { acc += x[i] * y[i]; } return acc; } fn partition<T>(v: &Vec<T>) -> Vec<&[T]> { let length: usize = v.len(); let num_threads: usize = thread::available_parallelism().unwrap().into(); let part_length: usize = length / num_threads; let mut slices: Vec<&[T]> = Vec::with_capacity(num_threads); let mut start: usize; let mut end: usize; // really I want slice to be the slice and not a reference to a slice, but that // leads to errors that the size of the slice can't be known at compile time let mut slice: &[T]; for i in 0..num_threads { start = i * part_length; end = start + part_length; slice = &v[start..end]; slices.push(slice); } return slices; } pub fn matvecmul(mat: &Vec<Vec<f64>>, x: &Vec<f64>, y: &mut Vec<f64>) { let row_slices: Vec<&[Vec<f64>]> = partition(mat); let y_slices: Vec<&[f64]> = partition(y); // thread over rows slices let n_threads: usize = row_slices.len(); let slice_length: usize = row_slices[0].len(); let mut handles: Vec<thread::JoinHandle<()>> = Vec::with_capacity(n_threads); for t in 0..n_threads { let row_slice: &[Vec<f64>] = row_slices[t]; let mut y_slice: &[f64] = y_slices[t]; let handle = thread::spawn(move || { for r in 0..slice_length { y_slice[r] = dot(&row_slice[r], x); } }); handles.push(handle); } for handle in handles { handle.join().unwrap(); } } When I try to compile this, I get errors saying that mat , x , and y escape the function body of the closure for the thread-spawn and that their lifetimes must outlive 'static . I move in the closure as a way to try to tell the compiler that these partitions/slices can be owned because they're independent of each-other, but that doesn't seem to work. I've tried without the move and without partitioning, but still get relatively the same errors. So, what exactly am I doing wrong and how can it be fixed? I know I could lock the slices with Mutex and Arc as is shown in the documentation on multi-threading, but, while the slices are coming from the same vector, the entries are independent; so, locking shouldn't be needed, at least mathematically.",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "35"
+        "value": "61"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }
