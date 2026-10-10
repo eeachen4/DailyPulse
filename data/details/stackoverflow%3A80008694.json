@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80008694",
   "sourceItemId": "80008694",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
   "sourceUrl": "https://stackoverflow.com/questions/80008694/why-does-typescript-fail-to-infer-a-callback-parameter-in-a-union-when-the-discr",
   "detail": {
     "longDescription": "I have a union where one member has a: number and the other has a?: never . The callback b has a different parameter type in each member. Which is correct. // Example 1: works type Test1 = { a: number; b: (a: true) => void }; type Test2 = { a?: never; b: (a: false) => void }; type Test = Test1 | Test2; const testA: Test = { a: 1, b: (a) => {}, // a is inferred as `true` }; const testB: Tet = { b: (a) => {}, // a is inferred as `false` }; However if I change the first member from a: number to a: number[] TypeScript v5.9.3 fails to infer the callback parameter: // Example 2: only difference is `a: number[]` type Test1 = { a: number[]; b: (a: true) => void }; type Test2 = { a?: never; b: (a: false) => void }; type Test = Test1 | Test2; const testA: Test = { a: [1], b: (a) => {}, // a is inferred as `any` }; const testB: Test = { b: (a) => {}, // a is inferred as `false` }; Why does number[] break the inference when number doesn't, and is there a way to get the callback parameter inferred as true / false in the second version without annotating the parameter or adding an explicit discriminant property?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "108"
+        "value": "121"
       },
       {
         "label": "状态",

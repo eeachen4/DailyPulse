@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.15469",
+  "sourceItemId": "2608.15469",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.15469",
+  "detail": {
+    "longDescription": "arXiv:2608.15469v2 Announce Type: replace Abstract: The well-known Asynchronous Verifiable Information Dispersal (AVID) problem lets a sender disperse a message across $N=3F+1$ nodes such that it remains recoverable despite up to $F$ Byzantine failures and unbounded message delays. An optimal AVID scheme requires $3\\times$ the message size in communication and storage: up to $F$ nodes may be delayed in responding, and among the remaining $2F+1$ respondents, up to $F$ may be Byzantine. This paper presents eAVID, an elastic AVID scheme that provides two key improvements. First, after dissemination, nodes can prune up to half of their stored information without requiring anyone to reconstruct or recode the message. Second, pruning is enabled by an extremely simple protocol. Nodes collect acknowledgments from one another confirming receipt of their coded pieces, after which each node locally prunes its stored information. eAVID achieves this $2\\times$ reduction while making two tradeoffs: the sender generates $2N$ fragments rather than $N$, and pruning may necessitate contacting $2F+1$ nodes for message retrieval rather than $F+1$. eAVID was implemented in DispersedSimplex, a simple-to-understand BFT consensus protocol that erasure-codes its blocks. The implementation demonstrates two features. First, eAVID achieves these improvements using a flat erasure-coding scheme that requires no metadata or bookkeeping at the nodes during reconstruction. Second, it delivers the storage savings without a performance cost: with all nodes responsive, pruning fires on over $99\\%$ of blocks and steady-state per-node storage falls by $42$-$46\\%$ for committees of $10$ to $22$ nodes. Throughput and latency match the unmodified protocol showing that we can achieve these storage savings without any performance costs.",
+    "developer": "Rithwik Kerur, Dahlia Malkhi, Michael K. Reiter",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Rithwik Kerur, Dahlia Malkhi, Michael K. Reiter"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.10547",
+  "sourceItemId": "2610.10547",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.10547",
+  "detail": {
+    "longDescription": "arXiv:2610.10547v1 Announce Type: new Abstract: Deep learning workloads are increasingly deployed in settings where tensor shapes are not fully known at compile time. Batch sizes vary across requests, sequence lengths differ between inputs, and model architectures admit a range of spatial resolutions. This dynamism creates a fundamental tension: ahead-of-time compiled GPU kernels deliver peak performance but traditionally require fully static tensor shapes, while just-in-time compilation supports dynamic shapes at the cost of runtime compilation overhead. We present DLCB (Deep Learning Compiler Backend), a deep learning compiler that resolves this tension through a unified three-tier compilation strategy. For programs with fully static tensor shapes, DLCB generates static CUDA C++ kernels ahead of time. For programs whose tensor rank is statically known but whose dimension sizes are dynamic, DLCB generates AOT kernels parameterized by those dimensions, compiling once and executing across a range of shapes. For programs with tensors of unknown rank, DLCB falls back to JIT compilation at runtime. For AOT compilation with dynamic shape tensors, our approach builds a system of shape constraints from the input program, and uses a solver to reduce these to either a) fixed constraints that produce hard-coded constants in the generated kernel; b) unresolved constraints which become kernel parameters passed at launch time, along with interpreted host code to check that the constraint holds for a given set of inputs and to compute the values to pass. Our compiler and runtime are embedded in PyTorch, and use an automatic shape generalization pass to enable AOT compilation with dynamic shapes for supported subsets of PyTorch programs",
+    "developer": "Alexander Collins, Bin Fan, Evghenii Gaburov, William Brandon, Sean Lee, Hanfeng Chen, Vinod Grover",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alexander Collins, Bin Fan, Evghenii Gaburov, William Brandon, Sean Lee, Hanfeng Chen, Vinod Grover"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

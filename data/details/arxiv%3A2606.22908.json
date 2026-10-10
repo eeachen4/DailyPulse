@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.22908",
+  "sourceItemId": "2606.22908",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.22908",
+  "detail": {
+    "longDescription": "arXiv:2606.22908v4 Announce Type: replace Abstract: Purely functional programming makes immutability and non-strict evaluation its defaults; we push further, making interning and memoization the defaults of computation. In prior operational semantics for the pure $\\lambda$-calculus, representing and transforming cyclic and infinite data requires an added recursion construct, a $\\texttt{letrec}$, a $\\mu$-binder, or a built-in $Y$ for graph reduction, and sharing the repeated work of a memoized or dynamic-programming function requires an impure cache. We show that no extension is needed. We apply tabling, the standard method for solving a least-fixpoint equation, to weak-head reduction; this defines a new operational semantics for the pure $\\lambda$-calculus that keeps each term's standard lazy meaning. A term that reaches finitely many distinct states, each solved in finitely many steps, comes out as a finite graph, possibly cyclic; the calculus stays pure, and the graph is faithful and independent of reduction order. We implemented this operational semantics as a $\\lambda$-calculus interpreter. It does dynamic programming automatically, sharing repeated subproblems with no memoization table. It creates and transforms cyclic graphs with no added recursion construct. And it decides in finite time that some terms have no weak head normal form, returning $\\bot$ for $\\Omega$. What the evaluator returns is a graph, so the $\\lambda$-calculus becomes a DSL for graph computation: the memo table of dynamic programming, the transposition table of game search, and the derived-fact table of Datalog reachability and points-to analysis are all tabling on state identity, and none of them is written by hand. Compilation is one more such problem: we write a bootstrap compiler that compiles its own source, all as a pure $\\lambda$-term.",
+    "developer": "Bo Yang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.LO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Bo Yang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

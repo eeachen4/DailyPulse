@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.10542",
+  "sourceItemId": "2610.10542",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.10542",
+  "detail": {
+    "longDescription": "arXiv:2610.10542v1 Announce Type: cross Abstract: This software update extends Omnisolver with \\texttt{omnisolver-bruteforce}, a first-class plugin for exact exhaustive search of QUBO and Ising instances on CUDA-enabled GPUs. The update contributes three components: packaging of the single-GPU brute-force kernel of [Computer Physics Communications 260, 107728, 2021] as a first-class Omnisolver plugin with a uniform Python and CLI interface, a Ray-based distributed framework that splits the search into $2^{k}$ fixed-variable subproblems and dispatches them across multiple GPUs and hosts, with a controller that gathers and merges partial results, and numerical stabilization of the fast \\texttt{float32} ground-state path through compensated incremental updates, periodic exact energy re-anchoring, and best-buffer refresh. Stabilization activates automatically for $N \\geq 40$ leaving the public sampler API is unchanged. On dense random Ising instances we measure exhaustive solve times up to $N=60$ on $8\\times$ NVIDIA H100 (96 GB) GPUs, reaching $\\approx\\!3.15$ days at $N=60$ in close agreement with the empirical $t_{N+1}=2\\,t_N$ doubling rule, with the distributed sampler reaching the full $\\approx\\!8\\times$ speedup over a single H100 from $N\\!\\gtrsim\\!44$ onwards. The plugin thereby serves as a practical ground-truth oracle for state-of-the-art classical heuristics such as the Simulated Bifurcation Machine.",
+    "developer": "Konrad Ja{\\l}owiecki, Jakub Paw{\\l}owski, Bart{\\l}omiej Gardas, {\\L}ukasz Pawela",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "physics.comp-ph, cond-mat.dis-nn, cs.DC, quant-ph"
+      },
+      {
+        "label": "第一作者",
+        "value": "Konrad Ja{\\l}owiecki, Jakub Paw{\\l}owski, Bart{\\l}omiej Gardas, {\\L}ukasz Pawela"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.07157",
+  "sourceItemId": "2608.07157",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.07157",
+  "detail": {
+    "longDescription": "arXiv:2608.07157v2 Announce Type: replace-cross Abstract: Sub-model federated learning lets resource-constrained clients train width-reduced versions of a global model, but existing methods allocate capacity by device resources alone. A natural next step, allocating capacity by each client's data heterogeneity as estimated from the updates the server already observes, is suggested by recent methods that size sub-models from training-derived signals. We ask whether that step is possible, using HAS-FL, an adaptive capacity-allocation framework, as a test case. First, validated against ground-truth label-distribution divergence on reproducible partitions, update-divergence estimates of client heterogeneity are dominated by capacity rather than data: on both image benchmarks and every seed, the estimates correlate strongly and negatively with device capacity, and once capacity is controlled for their association with data heterogeneity is near zero or negative. Any method estimating client statistics from sub-model updates is exposed to this previously undocumented confound. Second, adaptive allocation has a hidden failure mode: when every client is capped below full width, the uncovered parameters stay at random initialization and progressively corrupt the global model. A simple coverage guarantee removes the failure and explains why uniform allocation collapses. Third, a matched-budget control settles what adaptivity contributes: random allocation to the same average budget matches the adaptive policy to within seed-to-seed variation on both image benchmarks, and on the naturally partitioned text benchmark the adaptive policy is the weakest of the three strategies while consuming the most capacity. Sub-model training admits constrained clients at quadratically reduced cost but gives up substantial accuracy relative to full-model training, and what protects that accuracy is parameter coverage rather than allocation intelligence.",
+    "developer": "Alireza Moayedikia",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alireza Moayedikia"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

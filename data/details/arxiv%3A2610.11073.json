@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.11073",
+  "sourceItemId": "2610.11073",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.11073",
+  "detail": {
+    "longDescription": "arXiv:2610.11073v1 Announce Type: new Abstract: Translating COBOL to a modern language can change what a program computes, and LLM translations carry no guarantee of equivalence. We present IRONPROOF, which parses COBOL into an intermediate representation, generates Python, encodes both as Z3 formulas over shared inputs, and emits either a machine-checkable equivalence certificate (UNSAT) or a counterexample (SAT). On 2,345 COBOL files (GnuCOBOL tests, NIST CCVS85, open-source collections, and programs we generated or wrote), 782 enter the checking path: 606 (77.5%) are proved equivalent, 101 are partially verified, none is refuted, and 75 fail inside our pipeline and stay in the denominator. On independently authored programs the rate is 52.6% (153 of 291), against 92.3% on programs we wrote. Of the 153 independent proofs, 37 cover a single execution of a program that reads input the encoder does not model, and across all 606 proofs only 14 quantify over an input that a proved output depends on. On two public business-application corpora (AWS CardDemo and IBM GenApp), the encoder models no program end to end. An April 2026 LLM-only baseline failed on 54 of 94 independently authored programs, counting translations our encoder could not verify. PIC-bounded overflow detection flags an out-of-range output in 22.1% of the programs it can analyze, an upper bound. An earlier confrontation with GnuCOBOL 3.2.0 found 24 of 49 executable independent proofs disagreeing with the runtime on a variable in the proof's domain. A proof establishes that the generated Python computes what our intermediate representation says the COBOL computes, not equivalence to a COBOL implementation.",
+    "developer": "Dominik Blain",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dominik Blain"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

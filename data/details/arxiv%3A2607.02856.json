@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.02856",
+  "sourceItemId": "2607.02856",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2607.02856",
+  "detail": {
+    "longDescription": "arXiv:2607.02856v2 Announce Type: replace Abstract: Replicated databases and permissioned blockchains rely on Byzantine Fault-Tolerant (BFT) consensus to maintain a consistent order of transactions across replicas. These protocols preserve safety even under asynchrony, as they commit a transaction only after agreement among a strong quorum of replicas. During network partitions, however, when no strong quorum is reachable, they lose liveness and cannot make useful progress. In this paper, we present Cassandra, a consensus protocol that enables partial progress without sacrificing safety. Cassandra achieves this through a two-tier certification framework that decouples availability from commitment, allowing each partition to extend its own chain and reconcile these chains once the network is restored. To support this, Cassandra introduces a pacemaker that advances views without requiring a strong quorum and calibrates each replica's timeout off the critical path. Our evaluation results show that Cassandra remains competitive with state-of-the-art BFT protocols under stable conditions, sustaining 900K TPS at 16 replicas and 480K TPS at 104 replicas, with latency ranging from 0.31s at 16 replicas to 0.75s at 104 replicas. Under severe partitions, Cassandra maintains non-zero speculative throughput through PoA-backed progress, preserving work that can be reconciled once connectivity is restored.",
+    "developer": "Shaokang Xie, Dakai Kang, Junchao Chen, Suyash Gupta, Daniel P. Hughes, Mohammad Sadoghi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.DB"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shaokang Xie, Dakai Kang, Junchao Chen, Suyash Gupta, Daniel P. Hughes, Mohammad Sadoghi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

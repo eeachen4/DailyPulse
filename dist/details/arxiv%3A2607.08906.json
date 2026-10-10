@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.08906",
+  "sourceItemId": "2607.08906",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2607.08906",
+  "detail": {
+    "longDescription": "arXiv:2607.08906v2 Announce Type: replace-cross Abstract: Proof-of-Possession authorization models derive authority from the possession of artifacts such as tokens, credentials, or capabilities. This paper argues that possession is insufficient for discrete execution chains, whether they span multiple services or occur as separated steps within the same machine, because it does not guarantee preservation of the causal relationship between the origin of a request and the authority exercised at later steps. We introduce Proof-of-Continuity, a minimal authority-propagation discipline for the Provenance Identity Continuity (PIC) model, in which each execution step must be causally linked to the previous step and may only propagate a non-expansive subset of the authority received from the origin. It introduces Proof of Relationship, a single-hop causal primitive whose transitive composition is Proof-of-Continuity; these complement Proof-of-Possession rather than replace it. Under this model, the confused deputy condition cannot be satisfied as valid model behavior: any privilege exercised at a later step must already be present in the origin authority context. This is directly relevant to distributed systems and AI agents, where executors invoke tools and downstream services while holding multiple authority sources, so that the same authority/causality mismatch recurs across service boundaries. Under Proof-of-Continuity these sources may be carried together but are never merged into a combined authority, since each step is authorized only against the authority context of the lineage that caused it. This paper concerns authorization propagation rather than authentication: identity and authentication mechanisms such as OIDC, verifiable credentials, wallets, and workload identity remain complementary mechanisms for establishing the origin, while Proof-of-Continuity addresses how authority propagates after that origin exists.",
+    "developer": "Nicola Gallo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nicola Gallo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

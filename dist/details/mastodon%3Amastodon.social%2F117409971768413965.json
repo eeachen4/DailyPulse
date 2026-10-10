@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117409971768413965",
+  "sourceItemId": "mastodon.social/117409971768413965",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117409971719501298",
+  "detail": {
+    "longDescription": "----------------\n\n🛠️ Tool\n===================\n\nNVIDIA NeMo Guardrails: Programmable Guardrails for LLM Applications\n\nNVIDIA's NeMo Guardrails is an open-source Python library for adding programmable guardrails to LLM-based applications. It sits between the user and the model, intercepts inputs and outputs, applies configurable safety checks, and blocks or modifies content based on defined policies. The design goal is runtime control over what the application actually allows the model to do, rather than relying on system prompts alone. The documentation covers the full lifecycle: setup, configuration, inference, evaluation, observability, and deployment.\n\nKey Features\n\nThe pre-built guardrail catalog covers: content safety via Nemotron Content Safety, jailbreak detection via Nemotron Jailbreak Detect, topic control, PII handling, agentic security rails for tool-calling scenarios, and third-party API integrations. Each rail type ships with configuration examples, so teams can tune defaults instead of building from scratch.\n\nTechnical Implementation\n\nGuardrails are defined declaratively, and the runtime enforces them around every model call.\n• Configuration: YAML files for base settings, Colang flows (a DSL for dialog logic), and custom Python actions\n• Inference: Python API or a standalone Guardrails API server\n• Deployment: local API server, Docker containers, or production microservices\n• Integration: LangChain chains, runnables, and LangGraph workflows\n• Observability: OpenTelemetry tracing for requests, Python log forwarding, and metrics\n\nEvaluation and Debugging\n\nThe docs include an evaluation workflow for measuring accuracy and performance across dialog, fact-checking, moderation, and hallucination rails. That matters: guardrails without measured false-positive and false-negative rates are hard to justify in production. Debugging uses verbose mode, the explain method, and generation logs.\n\nUse Cases\n• Enterprise chatbots that must stay on-topic and refuse policy-violating requests\n• PII scrubbing on prompts before data crosses a managed boundary\n• Jailbreak filtering on top of RAG or agent applications\n• Safety enforcement for tool-calling agents\n\nPractical Considerations\n• Every intercepted input and output passes through additional checks, so latency under load needs testing before rollout\n• Moderation rails depend on Nemotron models, which adds inference cost for the guardrail layer itself\n• Colang has a learning curve; simple YAML configurations cover common cases, complex conversational flows require the flow language\n• This summary is based on official documentation only. Haven't tested the library personally, and no independent accuracy numbers were reviewed.\n\nReferences\n\nOfficial docs cover installation via pip, three Nemotron rail tutorials, the guardrail catalog, and guides for configuration, inference, evaluation, logging, observability, deployment, and LangChain.\n\n🔹 tool #NVIDIA #LLM #AISecurity #LangChain\n\n🔗 Source: https://docs.nvidia.com/nemo/guardrails/latest/home",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "2"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

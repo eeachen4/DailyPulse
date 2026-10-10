@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.11875",
+  "sourceItemId": "2610.11875",
+  "fetchedAt": "2026-10-10T02:50:57.728Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.11875",
+  "detail": {
+    "longDescription": "arXiv:2610.11875v1 Announce Type: new Abstract: Commercial on-device network operating systems (NOSes) run complex control planes in production routers and switches, where configuration update tasks are executed by multiple loosely coupled components through asynchronous message passing. Such executions are prone to race conditions: the same ordered input commands may produce different outcomes when messages are delivered in different orders. The race conditions are difficult to expose because they often manifest only as subtle, delayed malfunctions. Existing static analysis techniques lack scalability and precision for large-scale industrial NOSes, while dynamic ones incur substantial system-execution cost when attempting to cover the space of asynchronous message interleavings. To address the challenges above, we present NosRacer, a dynamic analysis framework for race condition detection in industrial-grade on-device NOSes. NosRacer uses a two-phase design. The concentration phase reduces analysis scope by leveraging the locality of configuration update tasks. Race condition detection is then limited to a small subset of involved components and crucial state variables, thereby reducing the detection cost. The perturbation phase proactively perturbs message asynchrony to increase the likelihood of executions with race-condition-exposing message interleavings. It keeps perturbation practical by grouping compatible perturbations for parallel execution and adaptively strengthening perturbations. We implement NosRacer in a commercial, actively developed NOS. NosRacer is integrated into the existing testing factory and used to detect race conditions in 5 key control-plane components. NosRacer achieves 66% precision and detects 21 race conditions confirmed by developers as severe bugs, while keeping the detection overhead below 10%.",
+    "developer": "Runze Wu, Jingbo Zhai, Shanming Ping, Lingzhi Ouyang, Hua Duan, Qin Zou, Chengcheng Huang, Bingshe Liu, Xudong Lang, Xiaoxing Ma, Yu Huang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Runze Wu, Jingbo Zhai, Shanming Ping, Lingzhi Ouyang, Hua Duan, Qin Zou, Chengcheng Huang, Bingshe Liu, Xudong Lang, Xiaoxing Ma, Yu Huang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
