@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2vc5k",
+  "sourceItemId": "1x2vc5k",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x2vc5k/we_ran_1680_ab_trials_testing_50yearold_unix_and/",
+  "detail": {
+    "longDescription": "Over the last couple of weeks I posted here about replacing a 21-step English prompt checklist with a 1976 Bell Labs `Makefile`, and replacing a single mutable progress file with a 1983 Unix `init-d` runlevel directory (`00_governance` through `99_next_action`) plus `fork()` and `wait()` subagent isolation.\n\nA veteran sysadmin left a comment that stuck with me: younger developers building agent prompts today often haven't maintained a 1976 `Makefile`, an `init-d` boot script, or an `RFC 822` header—so they invent custom English checklists or bracketed pseudo-code tags (`[CRITICAL_STEP_4_GATE]`) from scratch.\n\nThe problem is that your custom prompt DSL has a pre-training frequency of zero (`Freq ≈ 0`), which forces the transformer to simulate a fragile interpreter inside its working-memory attention heads. Meanwhile, classic Unix and CS formalisms appear millions of times (`Freq > 1,000,000`) in the training corpus.\n\nTo test how far this goes, we ran 1,680 paired A/B trials (`41M` tokens across four model tiers, each loaded with 16,000 tokens of compiler logs and diffs) comparing 500-token English rules against 20-token CS formalisms (`15x–50x` shorter):\n\n* **Circuit Breaker FSM (**`CLOSED → OPEN` **at** `k = 2`**)** vs prose *\"try a couple times then stop\"*: halted retry loops in **98.3%** of trials vs **0.8%** for prose.\n* **SysV** `init-d` **write-once latches** vs a single mutable `PROGRESS` file after a poisoned 230k-token compaction: **60.0%** survival overall (**96.7%** on `2.5-pro`) vs **0.8%** for prose.\n* `git bisect` **binary partitioning** vs prose debugging across a 16-stage pipeline: isolated the bug in `<= 4` probes **81.7%** of the time (**100%** on `3.1-pro`) vs **19.2%** for prose.\n* **Design-by-Contract (**`@requires` **/** u/ensures**) + QuickCheck laws** vs *\"test edge cases\"* (compiled and run against 5 hidden sad-path mutants): **60.0%** pass rate (**100%** on `Pro`) vs **1.7%** for prose.\n* **Two-Phase Commit (**`2PC + WAL`**)** across a 4-package refactor where 1 package fails: **93.3%** atomic rollback vs **45.8%** for prose.\n* **RFC 5234** `EBNF` **grammar** vs prose output-formatting rules: **77.5%** (**100%** on `flash` and `pro`) vs **32.5%** for prose.\n\nWhat classic Unix tool, RFC specification, or computer science formalism have you found that unexpectedly snaps an LLM into strict compliance?",
+    "developer": "RandalSchwartz",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

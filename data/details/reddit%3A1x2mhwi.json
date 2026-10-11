@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2mhwi",
+  "sourceItemId": "1x2mhwi",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x2mhwi/networking_a_3node_kubernetes_homelab_with_cilium/",
+  "detail": {
+    "longDescription": "Part 2 of my Talos homelab (3 OptiPlex Micros, all control planes). Part 1 got the cluster up, this one is networking.\n\nI moved the running cluster from Flannel + kube-proxy to Cilium without rebuilding it. The default-deny policy that Flannel quietly ignored is now actually enforced, and Hubble shows the drops.\n\nThen I gave it two front doors:\n\n\\- an internal Gateway on a LAN IP (Cilium LB IPAM, no MetalLB) with a Let's Encrypt wildcard cert, so lab apps get real HTTPS at home\n\n\\- a public Gateway behind a single Cloudflare Tunnel, so nothing is port-forwarded on the router\n\nAn app picks its door with the route's parentRef, which keeps lab stuff from going public by accident.\n\nWrite-up with all the manifests and commands: [https://blog.prateekjain.dev/networking-a-kubernetes-homelab-cilium-gateway-api-and-cloudflare-tunnel-on-talos-362f548a2f3d?sk=d454cd4eaff4ce8a8fd0cd8e6b3d82f6](https://blog.prateekjain.dev/networking-a-kubernetes-homelab-cilium-gateway-api-and-cloudflare-tunnel-on-talos-362f548a2f3d?sk=d454cd4eaff4ce8a8fd0cd8e6b3d82f6)\n\nCurious if anyone else is using Cilium's Gateway API instead of a separate ingress controller.",
+    "externalUrl": "https://i.redd.it/6zovclhjoouh1.gif",
+    "developer": "root0ps",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

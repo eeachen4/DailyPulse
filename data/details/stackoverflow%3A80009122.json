@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009122",
+  "sourceItemId": "80009122",
+  "sourceUrl": "https://stackoverflow.com/questions/80009122/how-do-i-accurately-detect-gamepad-button-presses-in-javascript",
+  "detail": {
+    "longDescription": "I'm building a browser-based FPS game and I want to include gamepad/xbox controller support. The common method to detect gamepad button presses is to just use polling with requestAnimationFrame : function poll() { let gamepads = navigator.getGamepads(); if (gamepads.length > 0) { let gamepad = gamepads[0]; if (gamepad.buttons[0].pressed) { console.log(\"Button 'A' pressed!\"); } } requestAnimationFrame(poll); } poll(); The problem with this method is that, if there is a large drop in framerate (such as a sudden freeze), the user will be able to press a button once or multiple times, which will go undetected while the freeze happens. This doesn't just happen with low framerates either. It happens even on devices with high framerates. I notice it especially when I spam a button and the script only detects one or two presses. What I'm looking for is a way to detect gamepad button presses as an event listener rather than polling since that would be more accurate. Is there a way to do that?",
+    "developer": "Parking Master",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "72"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

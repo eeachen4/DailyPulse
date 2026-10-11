@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2dqk9",
+  "sourceItemId": "1x2dqk9",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x2dqk9/an_update_on_my_multiagent_coding_setup/",
+  "detail": {
+    "longDescription": "A couple of weeks ago, I shared Pi Herdsman here, an open-source extension I've been working on for coordinating multiple coding agents.\n\nMy main motivation was keeping the lead agent's context focused.\n\nWhen multiple agents investigate files, run commands, implement changes, and verify results, I don't necessarily want all that execution history flowing back into the orchestrator's context.\n\nInstead, I wanted independent agents with their own conversations, explicit responsibilities, and a coordination layer that only brings relevant information back to their owners.\n\nI've since extended that approach to managing parallel development workspaces.\n\n# From subagents to project orchestration\n\nIn the new demo, a Manager receives one request to implement two independent features.\n\nIt delegates each feature to a separate Lead operating in its own Git worktree. Each Lead then delegates implementation to its own Agent.\n\nThe resulting structure looks like this:\n\n    Manager\n    ├── Lead A (worktree: feature A)\n    │   └── Agent A\n    └── Lead B (worktree: feature B)\n        └── Agent B\n\nBoth Leads work independently, verify their changes, commit them, and report back.\n\nThe Manager doesn't need to carry the implementation history of every Agent. It receives the relevant results and can coordinate the bigger picture.\n\n# How the responsibilities are separated\n\nThe system consists of three components:\n\n* **Pi:** Each Agent has its own conversation, model interactions, and execution context.\n* **Herdr:** Manages the physical sessions, processes, and workspaces.\n* **Herdsman:** Manages delegation, explicit ownership, result routing, supervision, and lifecycle.\n\nHerdsman also supports nested delegation, Agent continuation, steering, and interruption.\n\nOne design decision I've tried to preserve is that Agents shouldn't need to repeatedly poll their children for results. Questions, completions, and events requiring attention are routed back through the ownership hierarchy.\n\n# Configurable execution roles\n\nEvery role can have its own Agent Definition, including its model, instructions, tools, skills, and extensions.\n\nThese are Markdown files with global and project-level overrides.\n\nThat means you can experiment with different models and execution strategies without changing the orchestration code.\n\nThe full hierarchy is optional, though. For ordinary tasks, a single Lead with occasional asynchronous Agents still works.\n\n# Demo and source\n\nThe video shows a real Manager → Leads → Agents execution, including separate Git worktrees, verification, commits, and result handoffs.\n\nRepository: [https://github.com/boadij/pi-herdsman](https://github.com/boadij/pi-herdsman)\n\nI'd be interested in hearing how others are approaching this problem.\n\nIn particular, how are you keeping orchestrator context manageable once multiple agents work on separate but potentially related parts of a project?",
+    "externalUrl": "https://v.redd.it/gms783e0smuh1",
+    "developer": "j3free",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

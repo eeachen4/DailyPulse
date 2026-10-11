@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2rab2",
+  "sourceItemId": "1x2rab2",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x2rab2/i_built_an_autonomous_personal_agent_that_asks/",
+  "detail": {
+    "longDescription": "Agents like Instinct made \"text your assistant and it gets things done\" a real category. I built my own version with a different bet: anything irreversible (sending, paying, booking) waits for a human yes.  \nIt connects to emails, Calendar and the web, edits real Word/Excel/PowerPoint files, and updates you on WhatsApp. It doesn't do iMessage or phone calls, so it's narrower. Here's what I had to build, in order of \"wish I'd done it earlier\":  \n**1. Draft, don't send.** Email is read, summarized and drafted. Sending stays with the user. One unauthorized action resets trust to zero.  \n**2. Fail-closed.** The agent checks its license every 15 minutes. If it can't reach the server for 72 hours, it stops answering. An agent that keeps acting when nobody can supervise it is the real risk.  \n**3. It can't edit its own rules.** Core rules are set by the organization, not the user and not the agent. That's the first thing prompt injection goes after.  \n**4. Hard exclusions.** It never touches .env files, .ssh folders or password stores.  \n**5. Audit without liability.** Actions are logged with passwords and keys filtered out. Conversation text isn't logged.  \n**6. WhatsApp was a security problem, not a UX feature.** Unknown numbers get nothing except a request for a one-time pairing code. Suspend a license and that number stops being answered within a minute.  \nThe failure I feared was the agent doing something dumb. The one that actually hit me was the agent doing nothing. A stale credential file quietly overrode the long-lived token, every turn started failing, and the agent went silent for about six hours. The alert meant to catch exactly this was swallowed by its own rate cap. I fixed it by pinning auth to a single token, removing the stale file on a schedule, and health-checking the credential from outside the agent process. Lesson: fail-closed isn't enough. An agent that goes silent has to be loud about it.  \nBiggest lesson overall: users don't ask \"how smart is it?\", they ask \"what happens if it does something dumb?\" Governance ended up being the product.  \nI'm the builder, and it's closed-source, so this isn't a pitch. I'm curious: **what's the one guardrail you added to an agent only after it burned you?**",
+    "developer": "RORDENS",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

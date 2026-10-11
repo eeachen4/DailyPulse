@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2vhdk",
+  "sourceItemId": "1x2vhdk",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x2vhdk/language_for_greenfield_agentic_projects_python/",
+  "detail": {
+    "longDescription": "I'll start this off by saying I have relatively deep Python expertise and am typically a big believer in sticking with the stack that you know best, *especially* in the AI age. Easiest way to exercise years of muscle memory built up around spotting anti-patterns and suboptimal approaches used by LLMs.\n\nThat said, I'm interested in the potentially *practical* benefits of adopting another language. I've dabbled in Go and recently taken a Udemy course in Rust. I can understand some of the hype around Rust, but I'm still somewhat unsold on just switching languages because an influencer said so. I'm mostly looking at this from the perspective of building production agentic systems. MCP servers, orchestration, durable workflows, web services, etc. Not model training or inference.\n\nPoints I'm looking to evaluate:\n\n* Ease of build pipeline & deployment\n* Ecosystem maturity\n* Developer cost (how complex the language is itself)\n* Runtime cost (memory, CPU)\n* Language safety constructs\n* Operational complexity\n\nWhat I've found thus far:\n\n**Ease of build pipeline & deployment**\n\nGo and Rust both win here. Maybe Go a little more because Rust compilation time can be larger for more complex projects if posts I've come across are to be trusted. Single binary is kinda nice, though the importance might be lowered if building containers.\n\n**Ecosystem maturity**\n\nPython seems to be hands down the winner here, at least when it comes to AI. FastAPI, FastMCP, LangGraph, etc. are all well supported and pretty well battle tested. The scientific community has a long-standing relationship with Python so there's a massive ecosystem to pull from whenever you're looking at anything in the ML ballpark.\n\n**Developer cost**\n\nSeems like Python is the winner here, although I'm obviously biased given my experience with it. Go seems to be a reasonable middle ground. Relatively simple language with static typing and a lot less to wrap your head around than Rust, though Rust may pull ahead with all of the safeties around ownership.\n\n**Runtime cost**\n\nRust seems to be the winner for low latency and memory-constrained systems. Go seems to be runner-up here. However, how much does this actually make a difference in practice for agentic systems, which are typically more I/O bound than CPU?\n\n**Language safety**\n\nRust. All the hype around memory safety and the ownership model is a thing. It's fantastic. Go at least has static typing and memory safety through GC. Python has optional static typing, but far fewer compile-time guarantees.\n\n**Operational complexity**\n\nDebugging, observability, maintenance, dependency management, etc. How do the languages compare once you've got a system running in production and have to live with it for a while?\n\n\n\nWould love to hear stories from others who have built and shipped production agentic systems across these languages. I'm very much not looking for vibes here but rather practical, measured benefits of implementing and deploying systems in each language.\n\nBonus if you've migrated a prod system from one language to another (or even all 3, though I might start asking questions about your sanity ;)). What learnings did you take away from it? What pitfalls did you run into?",
+    "developer": "mostly_deterministic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

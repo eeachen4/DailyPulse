@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2ry42",
+  "sourceItemId": "1x2ry42",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x2ry42/i_tested_dynamic_model_routing_for_an_agentic/",
+  "detail": {
+    "longDescription": "I've been building a small reasoning layer with Jev for an agentic browser-testing system.\n\nThe idea was to explore whether an agent could intelligently decide when it actually needed an expensive/capable model and when it could route execution somewhere cheaper.\n\nI expected model selection to be the interesting/most effective part.\n\nSurprisingly, It wasn't.\n\nIn the first experiment, one of the strongest results came from keeping the execution model fixed and adding guardrails around it.\n\nFor example, a guarded GPT-5.5 completed 15/15 mission attempts while using **13.7% fewer model tokens** than the unguarded Terra control.\n\nI then tested cross-provider selection across 120 isolated mission executions.\n\nThe actual selection decision was cheap, roughly **621–724 tokens** each turn, but the dynamically routed configurations didn't produce an overall token advantage in this workload.\n\nThis changed the hypothesis I'm working from.\n\nAs opposed to:\n\n**\"What's the cheapest model that can use on this step?\"**\n\nI'm increasingly interested in:\n\n**\"What's the cheapest successful trajectory through the entire task?\"**\n\nA stronger model that avoids retries, bad decisions, unnecessary exploration, and recovery seems to ultimately be cheaper than repeatedly handing work to a smaller model.\n\nI've put the methodology, condition-level results, caveats and data here:\n\n[`https://testronaut.app/research/jev-optimization-experiments-2026-10`](https://testronaut.app/research/jev-optimization-experiments-2026-10)\n\nThere's also a less dry write-up:\n\n[`https://testronaut.app/blog/the-slide-rule-and-the-supercomputer`](https://testronaut.app/blog/the-slide-rule-and-the-supercomputer)\n\nI'm interested in what other variables people would isolate next?",
+    "developer": "shane-testronaut",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

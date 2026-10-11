@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2fiov",
+  "sourceItemId": "1x2fiov",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x2fiov/commerce1_an_openweight_27b_decision_model_for/",
+  "detail": {
+    "longDescription": "We built **Commerce-1** for a specific part of an AI agent: **the moment it must choose an action.**\n\nA commerce agent may need to select a product, resolve an inventory conflict, route a payment, choose a fulfillment path, prioritize a return, or escalate an uncertain transaction.\n\nThese are usually bounded decisions with known candidate actions. They don't always need another generated paragraph.\n\n# How it works\n\nCommerce-1 receives a structured state and ordered Choice, Noul, or Score questions. It scores the supplied options directly and returns typed answers with an ordered probability distribution.\n\n* **Zero generated output tokens**\n* **Up to 255 candidate actions**\n* Typed decisions and probability distributions\n* Choice-order augmentation and per-primitive held-out temperature calibration\n\nThe model builds on `perplexity-ai/pplx-decider-v1.1-27b`, using a noncausal full-attention decision backbone, last-position pooling, and a dedicated decision readout.\n\n# Benchmarks\n\nWe reproduced the complete Decision Index 0.2.1 public suite:\n\n|Metric|Result|\n|:-|:-|\n|Decision Index score|**60.99**|\n|Evaluation rows|150,317|\n|Throughput (1× H200)|8.836 decisions/sec|\n|Three-decision fixture p50|340.146 ms|\n|Three-decision fixture p95|349.026 ms|\n\nThese measurements come from our qualified single-H200 runtime.\n\n# Limitations\n\nThere are important boundaries:\n\n* Current BF16 weights are approximately 54 GiB.\n* This release is qualified on one NVIDIA H200.\n* Commerce-1 recommends actions; application code remains responsible for inventory truth, payments, fraud rules, budgets, and execution.\n\n# Open source and demos\n\nThe model weights are public. The runtime source is Apache-2.0, with model and training-source notices documented separately.\n\n* **Model weights:** [https://huggingface.co/infercrane/Commerce-1](https://huggingface.co/infercrane/Commerce-1)\n* **GitHub / local runtime:** [https://github.com/infercrane/commerce-1](https://github.com/infercrane/commerce-1)\n* **Interactive demos:** [https://huggingface.co/spaces/infercrane/commerce-1-arcade](https://huggingface.co/spaces/infercrane/commerce-1-arcade)\n* **Technical article:** [https://infercrane.com/blog/commerce-1](https://infercrane.com/blog/commerce-1)\n\n# Feedback wanted\n\nFor developers building commerce agents: **Would a native Decisions SDK or broader OpenAI-compatible tooling make this easier to integrate into your stack?**\n\nI'd also be interested in hearing which bounded decisions in your agents are currently handled by general-purpose LLMs.",
+    "developer": "yasintoy",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

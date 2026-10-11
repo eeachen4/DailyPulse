@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2s3ru",
+  "sourceItemId": "1x2s3ru",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x2s3ru/how_to_make_gemma_4_works_with_swebench/",
+  "detail": {
+    "longDescription": "I wanted to compare gemma 4 31b qat q4 and qwen3.8 27b iq4_nl, so I run SWEBench verfied on them.\n\nThe original gemma 4 chat template doesn't work with preserve reasoning, so\ngoogle released an update such that it can work with agentic coding:\n\nhttps://huggingface.co/google/gemma-4-31B-it/blob/main/chat_template.jinja\n\nHowever, when I run it through SWEBench verified, I am getting all LimitExceeded errors while I could get 388/500 Submitted with 333/388 resolved with Qwen3.8 27b iq4_nl.\n\nI tried other chat templates floating around in the internet:\n\nhttps://gist.github.com/jscott3201/ad69c4ffbd79f18b11a0f6a94c94fadf\nhttps://gist.github.com/bbrowning/c584eb2dbd79e4cc9ecedf92eee2d135\nhttps://huggingface.co/stevelikesrhino/gemma-4-31B-it-nvfp4-GGUF/blob/main/gemma4-improved.jinja\nhttps://github.com/vllm-project/vllm/blob/main/examples/tool_chat_template_gemma4.jinja\nhttps://huggingface.co/google/gemma-4-31B-it/discussions/137\nhttps://huggingface.co/google/gemma-4-31B-it/discussions/135\nhttps://huggingface.co/ManniX-ITA/gemma-4-A4B-98e-v7-coder-it/blob/main/chat_template.jinja\n\nBut they all have the same problem.\n\nThis is my llama-server command:\n\n```\n./llama-server -m ~/gguf/gemma-4-31B_q4_0-it.gguf --jinja --chat-template-file chat_template.jinja -ngl 999 -fa 1 --load-mode mmap -np 1 --temp 1.0 --top_p 0.95 --top_k 64 --min_p 0.0 --presence-penalty 0.0 --repeat-penalty 1.0 -c 122880 -ctk q8_0 -ctv q8_0 --spec-type none --reasoning-preserve --host 192.168.1.140 --port 8080 --no-mmproj-offload --mmproj ~/gguf/gemma-4-31B-it-mmproj.gguf\n```\n\nThe ggufs I used was the QAT Q4 from google. I also tried unsloth's QAT but it also gives me the same errors.\n\nThis is a command to run only four tests:\n```\nswebench infer verified -c config.yaml -r gemma-4-31b-qat-q4_0-120k-q8_0 -m gemma-4-31b --filter \"astropy__astropy-12907|astropy__astropy-13033|astropy__astropy-13977|astropy__astropy-13579\"\n```\n\nconfig.yaml\n```\nmodel:\n  cost_tracking: \"ignore_errors\"\n  model_name: \"my-local-model\"\n  model_kwargs:\n    custom_llm_provider: \"openai\"\n    api_base: \"http://192.168.1.140:8080/v1\"\nenvironment:\n  environment_class: \"local\"\n```\n\nAny clue as to how to make it work?",
+    "developer": "Ok_Warning2146",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

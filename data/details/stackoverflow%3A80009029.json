@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009029",
   "sourceItemId": "80009029",
+  "fetchedAt": "2026-10-11T02:13:49.499Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009029/python-3-13-and-3-14-docker-hardened-images-based-on-debian-13-are-failing-to-in",
   "detail": {
     "longDescription": "I maintain and regularly update a number of Docker images with dependencies preinstalled for the CI for the Vega Strike and related projects. These Docker images are based on various Linux distributions and versions. The source is located here . The resulting Docker images are published here . Four of these custom Docker images are based on Debian13-based Docker Hardened Images: - 'dhi.io/python:3.14-debian13-dev' - 'dhi.io/python:3.14-debian13-sfw-dev' - 'dhi.io/python:3.13-debian13-dev' - 'dhi.io/python:3.13-debian13-sfw-dev' I was able to build and publish all of our custom Docker images successfully three days ago. When I tried to build them again today, however, all four DHI-based images failed to build with errors indicating version conflicts in one of the preinstalled dependencies, libarchive-dev , and its dependencies, liblzma-dev and liblzma5 . The error output is as follows: Solving dependencies... #7 4.895 Some packages could not be installed. This may mean that you have #7 4.895 requested an impossible situation or if you are using the unstable #7 4.895 distribution that some required packages have not yet been created #7 4.895 or been moved out of Incoming. #7 4.895 The following information may help to resolve the situation: #7 4.895 #7 4.895 The following packages have unmet dependencies: #7 4.895 liblzma-dev : Depends: liblzma5 (= 5.8.1-1+deb13u2+dhi0) but 5.8.1-1+dhi1 is to be installed #7 4.895 libpython-3.13-stdlib : Conflicts: libpython3-stdlib #7 4.895 libpython3-dev : Depends: libpython3.13-dev (>= 3.13.5-1~) #7 4.895 python-3.13 : Conflicts: python3 #7 4.895 python-3.13-minimal : Conflicts: python3-minimal #7 4.895 python3-dev : Depends: python3.13-dev (>= 3.13.5-1~) #7 4.900 E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages. #7 4.900 E: The following information from --solver 3.0 may provide additional context: #7 4.900 Unable to satisfy dependencies. Reached two conflicting decisions: #7 4.900 1. liblzma5:amd64=5.8.1-1+deb13u2+dhi0 is not selected for install #7 4.900 2. liblzma5:amd64=5.8.1-1+deb13u2+dhi0 is selected as a downgrade because: #7 4.900 1. libarchive-dev:amd64=3.7.4-4+deb13u1+dhi3 is selected for install #7 4.900 2. libarchive-dev:amd64 Depends liblzma-dev #7 4.900 3. liblzma-dev:amd64 is available in versions 5.8.1-1+deb13u2+dhi0, 5.8.1-1+deb13u2, 5.8.1-1+deb13u1 #7 4.900 [selected liblzma-dev:amd64=5.8.1-1+deb13u2+dhi0 for install] #7 4.900 4. liblzma-dev:amd64=5.8.1-1+deb13u2+dhi0 Depends liblzma5 (= 5.8.1-1+deb13u2+dhi0) #7 4.900 For context, additional choices that could not be installed: #7 4.900 * In liblzma-dev:amd64 is available in versions 5.8.1-1+deb13u2+dhi0, 5.8.1-1+deb13u2, 5.8.1-1+deb13u1: #7 4.900 - liblzma-dev:amd64=5.8.1-1+deb13u2 is not selected for install #7 4.900 - liblzma-dev:amd64=5.8.1-1+deb13u1 is not selected for install #7 ERROR: process \"/bin/sh -c DEBIAN_FRONTEND=noninteractive script/bootstrap 1\" did not complete successfully: exit code: 100 Why is this happening, why only now, and how do I fix it? Or is this something that needs to be fixed upstream?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-6"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "20"
+        "value": "62"
       },
       {
         "label": "状态",

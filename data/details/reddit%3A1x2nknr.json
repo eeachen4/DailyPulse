@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2nknr",
+  "sourceItemId": "1x2nknr",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x2nknr/sugestions_for_single_nfs_server_with_multiple_ips/",
+  "detail": {
+    "longDescription": "Open to any suggestion on my home lab architecture. \n\n**Goal**:  \nObtain a little bit of throughput when using NFS storage class since I have a 10 GB nics available on all servers ( no switch tho ) and a full SSD raid in the NAS for it only.    \n  \n**Scenario**:  \nI have 1 nas with 2 10GB cards. They are configured respectively as [10.1.0.1](http://10.1.0.1) and [10.0.0.1](http://10.0.0.1) and 2 nodes running a hypervisor connected on this 10GB cards for NFS only in a direct straight cabling connection ( no switches ) . ( everything else goes through 192.168.1.x network )\n\nMy NFS definitions on worker nodes differ according to the node running since the NFS server is available on each server in different IPs. \n\nDuring the inicial setup, all works because I know in advance where the worker node will run and I configure it properly but in case of moving a vm from a host to another the a crash happens. \n\nThis is my home lab setup, I totally understand a 10 GB switch will solve this issue entirely but I'm trying to find a way without one. \n\nOpen to whatever load balancer / vIP / floating IP / DNS / nfs HA / hosts file ideas. I'm looking for something simple and elegant. No need of expansion to multiple host because I'm limited to 2 hosts anyways. \n\n\n\nThank you all.   \n\n\n\nhttps://preview.redd.it/ywt8mdlnvouh1.png?width=799&format=png&auto=webp&s=a9a67df41eb85fd1176218e92287ba3d595a8539\n\n",
+    "developer": "OldAsk3025",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

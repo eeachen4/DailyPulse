@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80008931",
   "sourceItemId": "80008931",
+  "fetchedAt": "2026-10-11T02:13:49.499Z",
   "sourceUrl": "https://stackoverflow.com/questions/80008931/how-to-use-clean-sed-to-replace-a-row-when-committing-to-git",
   "detail": {
     "longDescription": "I want to use Git for source control for an SSIS project. The dtsx file is xml behind the scenes so that should be easy as it's just text. The problem I've run into is that a lot of the xml attributes are maintained automatically by visual studio and developers don't need to care about them (an example of this is ThreadHint ). That means they magically change whenever a developer works on the file. This leads to a whole mess of irrelevant changes and conflicts that need to be resolved every time someone works on the file. For a large dtsx this can run into hundreds of conflicts and the \"real\" changes just get lost in the noise. I did some googling for a solution and found a suggestion to use a \"clean\" filter to remove those attributes on check in. The suggested filter looks like this in the Git.config : [filter \"stripthreadhint\"] clean = sed '/ThreadHint=/d' smudge = cat I'm not familiar with sed (I believe it's a unix command which is not wheelhouse) but I can confirm that this does strip out the row of text with the ThreadHint attribute on it. The way SSIS stores it's xml, the attribute takes up a whole line so that's pretty close to what I want. The problem I've got is that the ThreadHint attribute is the last one in the tag so has the closing > which is invalid xml and can't be reopened in Visual Studio. My thinking is that I can solve this by doing a replace rather than a delete, so I can remove the whole line (as the delete does) and replace it with a > . That should result in valid xml but with the attribute removed. From what I've understood of the sed documentation I think I want to change the d to a g and provide the replacement value: [filter \"stripthreadhint\"] clean = sed '/ThreadHint=/>/g' smudge = cat That's not working, though, and results in the filter simply being skipped. Any suggestions on how I can do this? I'm not particularly wedded to the clean filter aproach so I'm open to any better suggestions.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "72"
+        "value": "84"
       },
       {
         "label": "状态",
