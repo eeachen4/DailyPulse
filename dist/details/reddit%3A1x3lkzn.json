@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3lkzn",
+  "sourceItemId": "1x3lkzn",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x3lkzn/what_do_you_do_when_an_agent_hits_its_budget/",
+  "detail": {
+    "longDescription": "I've been thinking about how to handle per-run budget limits for agents.\n\nSay a run has a $5 cap. It's already spent $4.90 collecting data and only needs one final step to produce the result.\n\nStopping it right there feels wasteful. But letting it keep going is risky too, especially if it gets stuck retrying the same tool call.\n\nI'm leaning toward blocking new work once the limit is hit, but reserving a small budget for saving state or returning a partial result.\n\nThe part I'm not sure about is how to distinguish wrapping up from just doing more work.\n\nFor those running agents in production, how are you handling this? Do you stop at the next step, allow a small overrun, or handle it some other way?",
+    "developer": "Mediocre-Routine8716",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

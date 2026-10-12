@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x39r2p",
+  "sourceItemId": "1x39r2p",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x39r2p/i_built_a_langgraph_app_that_reads_a_job_posting/",
+  "detail": {
+    "longDescription": "I built BackedCV in 24 hours at the GREVIX AfterCode hackathon, with LangGraph and LangChain, and I'd love to hear how other builders would approach it.\n\nLive demo (free, no sign-up; the server may take a minute to wake up): https://backedcv.onrender.com\n\nCode (MIT): https://github.com/AndresMuelas2004/Grevix_BackedCV\n\nHow the graph works:\n\n- One graph per analysis, with two human-in-the-loop pauses (interrupt / Command(resume)): after the report, and when you review the suggested edits.\n- Matching fans out with Send, in parallel chunks; a separate node reads the whole posting for buried disqualifiers (\"we are unable to sponsor work visas\" in the closing notes), and code checks every quote against the posting.\n- Every suggested CV edit goes through deterministic guards, an independent verifier call, and then a three-pass corroboration gate as graph nodes: backed by a real CV line, recent enough for the posting's window, and not blocked by a hidden barrier. Edits that fail are refused with the reason.\n- The score is computed in code from published weights; the model never computes it. Strict structured outputs everywhere, a small tool-calling agent only reorders sections of the rebuilt CV.\n\nWhat I'd like to know:\n\n1. Would you structure the verification differently (more nodes, fewer, a different gate)?\n2. Does the demo's verdict feel trustworthy, or would you need to see more first?\n3. What would you add or cut?\n\nI used AI to help write this post and parts of the code.",
+    "developer": "Mueloncio",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

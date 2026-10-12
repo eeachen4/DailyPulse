@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009356",
+  "sourceItemId": "80009356",
+  "sourceUrl": "https://stackoverflow.com/questions/80009356/this-implicitly-has-type-any-because-it-does-not-have-a-type-annotation-er",
+  "detail": {
+    "longDescription": "I am writing my own Promisify function using Typescript and encountering the error mentioned above. The tutorial I am following uses JavaScript instead. Nonetheless above mentioned error the following code works fine in the browser. It enabled noImplicitThis in tsconfig.json file but it didn't work. { \"compilerOptions\": { \"noImplicitThis\": true, } } Error Code: function myPromisify(cb:Function):Function { return function(...args:any[]):Promise<number|string> { return new Promise(function(resolve:Function, reject:Function):void { function customCb(err:Error|null, res:number|null) { if(err) { reject(err.message) } else { resolve('Result: ', res) } } args.push(customCb) cb.call(this, ...args) }) } } function getSumAsync(n1:number, n2:number, cb:Function):Function { if(!n1) return cb(new Error('first arg is required'), null) if(!n2) return cb(new Error('Second arg is required'), null) if(typeof n1 !== 'number') return cb(new Error('First arg must be type of number'), null) if(typeof n2 !== 'number') return cb(new Error('Secnd are must be type of number')) return cb(null, n1+n2) } const getSumPromise:Function = myPromisify(getSumAsync) getSumPromise(1, 2).then((res:number) => { window.console.info(res) }).catch((err:Error) =>{ window.console.error(err.message) })",
+    "developer": "Muhammad Falak Sher",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "10"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

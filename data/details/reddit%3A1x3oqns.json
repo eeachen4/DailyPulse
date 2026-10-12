@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3oqns",
+  "sourceItemId": "1x3oqns",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x3oqns/ive_had_four_long_running_agents_running_my/",
+  "detail": {
+    "longDescription": "My newsletter (The AIgent, close to 9k subscribers) is run day to day by four Claude Code agents I call Titus, Pheme, Davinci and Metis. Titus Helps oversee and organize, Pheme is the editor and newsletter manager, Davinci is the builder and Metis dispatches the jobs. I still approve anything that goes out.\n\nWhat I didn't expect: the thing that broke most wasn't memory or tools. It was the context window. A long running agent fills it up, and then you either let it compact (it keeps going on a lossy summary and quietly forgets stuff) or you clear it and spend ten minutes re-explaining. Neither works for something that's supposed to keep working across days.\n\nSo each agent now refreshes itself instead. When context gets high it writes a checkpoint, confirms it, clears, checks that a genuinely new session started, and picks back up from the checkpoint. If it can't confirm, it doesn't clear.\n\nA few things running them for real taught me:\n\nDon't trust the checkpoint blindly. I checked the live agents once and 3 of 4 would have resumed into a checkpoint with no real next step. Now it refuses to resume into an empty one.\n\nTreat saved memory as data, not instructions. Anything an agent wrote earlier can't give the next session orders.\n\nAgents will fake being done. In one sped up test, an agent wrote several \"done\" markers in a single session and declared it finished instead of actually cycling. I threw out that run.\n\nEvery failure becomes a fix with a test, and those go back into the open source version.\n\nTo be clear, this is what I use it for, not a claim that it grew anything. The only formal result so far is 11 of 11 clean refresh cycles on one agent.\n\nCurious how others running agents on real work handle this. Do you let them compact, restart them, or something else?\n\n(I built the harness and it's free and open source. Link in the comments per the rules.)",
+    "developer": "Motiv31",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3nafo",
+  "sourceItemId": "1x3nafo",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1x3nafo/i_built_a_local_index_mcp_so_your_agent_stops/",
+  "detail": {
+    "longDescription": "I don't know if you've noticed, but when Claude Code, Codex, or any other agent needs to find code, it runs grep. It searches your files for an exact string, reads a few results, and greps again until it finds what it wants. You pay tokens and wait for every round.\n\nThat worked fine when repos were small. But codebases are growing fast, partly because agents now write so much of the code. Every grep round costs more than it did last month, whether you notice it or not.\n\nThere's a second problem: grep only finds what you already know how to name. Ask it for \"where we handle rate limits from the billing provider\" and it gets 0% right on the first try, because it needs the exact string.\n\nSo I built Pensieve. It's a local index of your code, documents, and past agent sessions. Any agent can query it over MCP and get the few files that matter on the first try. A few cents saved per lookup doesn't sound like much. It adds up over hundreds of lookups a day.\n\nCheck out Pensieve!\n\n[https://tedhaley.ca/pensieve/](https://tedhaley.ca/pensieve/)",
+    "developer": "pensieve-ai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

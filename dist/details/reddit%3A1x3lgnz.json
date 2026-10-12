@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3lgnz",
+  "sourceItemId": "1x3lgnz",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x3lgnz/i_built_a_browser_tool_to_visualize_how_a_small/",
+  "detail": {
+    "longDescription": "I made a little thing that visualizes attention. It runs **SmolLM2-135M** fully in the browser (onnxruntime-web, int8, no server, works on my phone).\n\nYou give it a prompt, it generates one token at a time, and for each step you get the next-token candidates with probabilities, plus the attention from the current token back to the earlier ones drawn as links with the weights labeled. You can click any word to see where its attention actually went, ranked.\n\nThe thing I learnt during this project was **attention sink**. At first it looked broken because everything was attending to the first token super heavily. Thought it was a bug in my code, but after some digging it turned out to be the attention sink 😅\n\n**Github Repo:** [https://github.com/talhatahir-10xe/attention-galaxy](https://github.com/talhatahir-10xe/attention-galaxy)\n\n**Live Demo:** [https://talhatahir-10xe.github.io/attention-galaxy/](https://talhatahir-10xe.github.io/attention-galaxy/)",
+    "developer": "Minute-Mountain2665",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

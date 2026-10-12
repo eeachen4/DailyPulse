@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3hljo",
+  "sourceItemId": "1x3hljo",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x3hljo/infrastructure_frameworks_for_agents/",
+  "detail": {
+    "longDescription": "Putting together my homelab has me thinking a lot about infrastructure. My agents are building something rather elaborate for me involving a cluster of containers and networks carefully composed for least privilege, and it feels like a general need that some common, well-audited infrastructure ought to handle.\n\nI'm thinking about Kubernetes here, and how it defined a bunch of primitives generally useful to scaled applications (pod, deployment, service, ingress, etc.) and then hid different implementations of them behind abstractions (a GKE ingress is very different from a kind ingress implementation-wise, but they generally behave the same). What you do with those primitives obviously depends on your application, but the primitives have become a useful common language for people doing ops work.\n\nFor agents the primitives would be something like agent, model, mcp server, sandbox, and so on. There's innumerable ways to provide any one of them, but they're generally, broadly the same thing. Are there any mature implementations of a concept like this, or is it just too soon? kagent seems like it's thinking along these lines, but it's pretty early in its development.\n\n**Addendum:** I shouldn't have to say this, but I already asked a bot about this and I'm coming here because I'm interested in hearing from humans; if a model is writing your response do me a solid and pipe it to /dev/null where it fucking belongs ",
+    "developer": "Disastrous_Gap_6473",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

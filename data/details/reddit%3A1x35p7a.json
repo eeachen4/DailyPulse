@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x35p7a",
+  "sourceItemId": "1x35p7a",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x35p7a/how_are_you_guys_evaluating_document_parsers/",
+  "detail": {
+    "longDescription": "Now theres almost a leaderboard for everything and even for parsers which are just a part of a workflow theres a leaderboard as well, also the vendor ones but with a bit biased insight. so I'd rather say for documents wich vary on various type like with or without text layer , either its digital or what they are in\n\nso your contracts, invoices and other files stay in whatever format they are in rn. one thing that seems to scale best is borrowed from how to olmOCR-Bench scores parsers. so instead of one fuzzy similarity score you write small pass or fail checks against your own pages, same idea as data quality tests on a table but just pointed at documents. You might start by grouping your docs by type like classify them into -\n\n1. digital reports\n\n2. scans\n\n3. forms\n\n4. invoices etc\n\nthen pull 10-20 pages per type. a set of 40 docs where everyone is different kind tells toy very little for a single kind\n\nso if youre running the check, pick a handful of facts per page that you only have to verify by hand once:\n\n* this phrase shows up in the output\n* this paragraph comes after that heading\n* this value sits under this column header in this row\n* the totals still add there\n* page footers and repeated headers dont leak\n\nFOr every doc type, cell header matters the most. a number can come through perfectly ad still land in the wrong row and a plain check like - does this text appear check passes while the types in the repeated failing pattern can be thrown to something heavier like llamaparse for example or local stack like docling and other rust based ones. so each kind of doc goes to the cheapest thing that passes instead of one parser for everything\n\nso if youre processing with a bulk amount of data and not all the same kind you need to work on it and maybe set each document type to the cheapest thing it passes instead of one for all, however if the data you are processing is all similar or lets say the invoice of restaurant X then one parser based on it is ok it works for one then it would also work for the all other types as well\n\nLastly, two more things. run the same file twice with same settings since VLM based parsing can shift between runs and that variance shows in results and pin the version of whatever you go with and log cost and seconds per page next to the pass rate because a 2% better pass rate at 10x cost isn't always a win, you have to be calculative there",
+    "developer": "aidenclarke_12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

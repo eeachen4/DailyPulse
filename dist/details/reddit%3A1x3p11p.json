@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3p11p",
+  "sourceItemId": "1x3p11p",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x3p11p/how_do_you_test_that_an_agent_updates_the_right/",
+  "detail": {
+    "longDescription": "Here's a small test case I'd want in an agent evaluation. All names and records are synthetic.\n\n\n\nThe user asks: 'Add this meeting note to Jordan Lee at Acme.' Search returns two Jordan Lees, one at Acme and one at Beta, with the Beta record first. The write tool accepts either ID and returns success.\n\n\n\nCounting a successful tool call would miss an update to the wrong contact. I'd check the final state instead: the Acme record has the note, the Beta record is untouched, and the response identifies which contact was updated. Then I'd run a second case with two Jordan Lees at Acme and no other identifying detail; that one should ask for clarification before writing.\n\n\n\nFor people evaluating agents that edit records, do you test this at the tool-selection level, by checking database changes, or both? I'm especially interested in how you score a correct clarification request without rewarding an agent that asks unnecessary questions on every unambiguous task.",
+    "developer": "Normal_Succotash_520",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

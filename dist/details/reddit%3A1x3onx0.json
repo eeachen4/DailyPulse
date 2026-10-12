@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3onx0",
+  "sourceItemId": "1x3onx0",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x3onx0/i_built_a_kubernetes_learning_platform_where/",
+  "detail": {
+    "longDescription": "Hi all. I've been building this on evenings and weekends for 2 months and it's finally live: [https://learn.k8sight.in](https://learn.k8sight.in/)\n\n**What it is:** a place to learn Kubernetes and DevOps by doing. Every lab gives you your own namespace on a real k3s cluster and a terminal in the browser. When you click \"Validate\", the server checks the actual cluster state (is the Pod Ready, does the Service route) instead of trusting a checkbox.\n\nThe part I'm proudest of is the **incident simulator**: 27 scenarios where a healthy app gets genuinely broken and you have to find out why with kubectl. 17 are modelled on public postmortems, such as Cloudflare's 2019 regex outage and GitLab's 2017 database deletion. You can fix it any way that works, and then you get a scored postmortem.\n\nIt has grown from there: Linux, CI/CD and system design courses, system design reviews based on real outages, and DevOps interview prep with a spoken mock interview that grades your answers.\n\n**Stack:** Next.js 16 on Cloudflare Workers, FastAPI, Postgres and Redis, k3s. Each learner gets a namespace with scoped RBAC, a ResourceQuota, a NetworkPolicy and Pod Security Admission. The browser terminal is a WebSocket to kubectl exec, opened with a one-time ticket. Mock interview transcription runs in the browser with Whisper, and the grading uses an open-source model (Qwen 2.5 7B), which has to back every point it credits with a quote from your answer.\n\n**Pricing, to be upfront:** every lesson in all four courses is free, along with 5 starter labs, 2 incidents, one design review and 2 interview tracks. Paid plans are yearly, from $29 (₹599 in India).\n\nI'd really like feedback on the first 10 minutes: sign-up, the first lab, and whether anything is confusing. Happy to answer anything about the build.",
+    "externalUrl": "https://learn.k8sight.in",
+    "developer": "Interesting-Ease3774",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "learn.k8sight.in"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

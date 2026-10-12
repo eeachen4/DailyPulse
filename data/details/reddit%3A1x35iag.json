@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x35iag",
+  "sourceItemId": "1x35iag",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x35iag/does_scoped_session_intent_read_budgets_stop/",
+  "detail": {
+    "longDescription": "In practice, a lot of agent abuse happens *within* allowed tools - e.g. looping through sensitive read endpoints until budget depletion, or making an outbound call right after reading sensitive state. Standard static allowlists don't catch this because each individual call looks valid in isolation.\n\nI've been testing two control mechanisms in a local runtime pilot:\n\n1. **Scoped Session Intent:** Declaring an execution envelope (`allowed_tools` / `denied_tools`) per session, where a runtime gateway verifies every tool call against the declared boundary before execution.\n2. **Read Budgets:** Enforcing strict volume/rate thresholds on sensitive tools per session. Crossing the threshold dynamically shifts the decision from `ALLOW` to `REQUIRE_APPROVAL` (or `BLOCK`).\n\n**What it is not**\n\n* Not a prompt filter\n* Not production/enterprise security\n* Heuristic/threshold-based policy — it will not catch everything\n\nI'm curious how others building agentic systems are encoding \"this call is still what the user asked for\":\n\n* Pure static allowlists / API scopes?\n* Scoped session tokens per task?\n* Dynamic read budgets & rate caps?\n* Human-in-the-loop approval gates?\n\n*(Repo / code example in the comments for anyone who wants to break it)*\n\nRepo: [https://github.com/aegotrax-dev/aegotrax](https://github.com/aegotrax-dev/aegotrax) (tag v0.2.5)\n\nSite: [https://aegotrax.com](https://aegotrax.com/)\n\n# \n\n",
+    "developer": "GameChacking",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

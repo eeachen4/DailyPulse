@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50040528",
+  "sourceItemId": "50040528",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50040528",
+  "detail": {
+    "longDescription": "Hey all, just wanted to share how my spare time has been spent for quite some time now. Ok, this one started oddly. My aim initially was just to serve multiple models on one GPU and fire it up in my unraid machine. By the time that first bit was done, I realised I could just add one more thing... and another... and well, from beginning of this year when, imho, AI became useful, the whole thing it kind of blew up. So here&#x27;s what it does: - spins a ray cluster - deploys models using various loaders (vllm, llamacpp, diffusers, sherpa_onnx, etc.) - serves an openai responses ready api on top of them Now some the details, already listed in my production readiness ( https:&#x2F;&#x2F;docs.model-ship.ai&#x2F;production-readiness&#x2F;#production-... ) plan: - scores 17&#x2F;17 on the Open Responses conformance suite and it&#x27;s got its own responses redis backed store - currently supports cpu, metal and cuda - it has prometheus metrics and grafana dashboard - can run under docker, k8s or simply native install - automatically sizes model context - has MCP support Feedback would be much appreciated. https:&#x2F;&#x2F;github.com&#x2F;modelship-ai&#x2F;modelship",
+    "externalUrl": "https://github.com/modelship-ai/modelship",
+    "developer": "Alez007",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

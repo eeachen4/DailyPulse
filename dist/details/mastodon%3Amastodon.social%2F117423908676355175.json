@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117423908676355175",
+  "sourceItemId": "mastodon.social/117423908676355175",
+  "fetchedAt": "2026-10-12T02:42:55.020Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117423908658984668",
+  "detail": {
+    "longDescription": "----------------\n\n🛠️ Tool\n===================\n\nARTEX is an open-source, AI-driven autonomous penetration testing system built on a Go backend and a Next.js frontend. The repository covered here is an English translation fork of the upstream project Autumn-27/ARTEX, which was originally written in Chinese. Per the fork's README, every user-facing and code-level string was translated: the UI, backend text, LLM prompts, comments, scripts, and documentation. Behavior is unchanged, and licensing and terms of use are inherited from upstream.\n\nKey capabilities\n• Dashboard with an activity stream, task list, and token usage tracking\n• Per-task execution trace covering sessions and tool calls\n• Exploration chain visualization as a graph\n• Findings and asset management, including a force-directed asset coverage graph that highlights tested nodes and supports collapsible nodes\n• Traffic recording\n• Human-in-the-loop chat and interception approvals, meaning the agent requests approval before acting\n• A global approval-records page; per-task approval cards expand to full details, a rendering that follows AegisHook's approval detail component\n• Agent management and LLM configuration through the UI\n\nAsset sync with ScopeSentry\n\nScopeSentry, from the same upstream author, feeds ARTEX directly. Enter the ScopeSentry address and API key on the Asset sync page, pick targets and asset types scoped by project or task (domain, subdomain, IP, port, site, endpoint), and import in one click. Assets merge under the company asset scope and land in the asset graph for agents to explore. That avoids running collection twice across two tools.\n\nTechnical implementation\n\nRequirements: a PostgreSQL database, and an LLM key for exploration (ANTHROPIC_API_KEY or OPENAI_API_KEY), also configurable in the UI. Backend in Go, frontend in Next.js. The screenshots (dashboard, sessions, exploration chain, assets, traffic, logs) suggest the system is designed to be inspected while it runs; most agent pentest tools either hide the loop or dump it into a log file.\n\nInstallation caveat\n\nThe published Docker image, autumn27/artex, is produced by upstream's CI and is the Chinese build. docker compose up -d and the prebuilt release archives all yield the Chinese interface. To run the English build you must compile from source: build on Windows, build a single binary on Linux or macOS, or build your own Docker image. The fork ships a DOCKER.md covering that path.\n\nRetained Chinese strings\n\nA few Chinese strings are kept deliberately, each documented with a comment: ICP filing numbers and their detection, the legacy [模型] reason prefix (matched alongside the new [model] prefix so rows written by an older database still classify correctly), quota-exhausted markers returned by Chinese LLM gateways, the full-width comma in split() character classes, and test fixtures that prove non-ASCII/GBK handling. If you plan to strip localization or adapt the parsing, read those comments first, they are load-bearing.\n\nAssessment\n\nThe feature set sits between an agent runtime and a pentest management platform: task tracking, asset graph, findings, approvals, traffic capture. The approval and interception layer is the part worth evaluating first, since it determines whether agent actions stay within your authorization scope. Token usage per task is exposed on the dashboard, so cost profiling is feasible. Note: capabilities here are taken from the project README, haven't tested personally.\n\nReferences: upstream repository Autumn-27/ARTEX, this English fork on GitHub, AegisHook for the approval component, ScopeSentry for asset collection.\n\n🔹 ARTEX #tool #pentesting #LLM #AIAgents\n\n🔗 Source: https://github.com/hasamba/ARTEX-EN",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

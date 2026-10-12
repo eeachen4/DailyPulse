@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x2z25i",
+  "sourceItemId": "1x2z25i",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x2z25i/made_a_desktop_hud_that_surfaces_crashloopbackoff/",
+  "detail": {
+    "longDescription": "side project i finally finished. Syspeek is an always on top panel that shows the focused app's pid/cpu/ram and  more usefully for work  docker and kubernetes health without opening a terminal.\n\nit runs docker ps and kubectl get pods,deployments -A -o json on background threads and flags unhealthy/restarting/recently-exited containers, pods in CrashLoopBackOff / ImagePullBackOff / OOMKilled / Failed and deployments with unavailable replicas. when the daemon or cluster is unreachable it backs off and keeps the last good value marked stale so it doesn't lie to you.\n\nidle it sits around (RSS \\~36 MB) and about 0.6% CPU, with a wakeup twice a second. it blips briefly when it shells out to docker or kubectl. It wouldnt lag whatsover and uses very very small amout of CPU.\n\nsite: [https://syspeek.pages.dev](https://syspeek.pages.dev)\n\ncode: [https://github.com/codeafridi/Syspeek](https://github.com/codeafridi/Syspeek)",
+    "externalUrl": "https://i.redd.it/95x7zomgoruh1.png",
+    "developer": "RK9_2006",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

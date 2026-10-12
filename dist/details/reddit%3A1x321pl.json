@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x321pl",
+  "sourceItemId": "1x321pl",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x321pl/every_deployment_said_33_ready_losing_one_zone/",
+  "detail": {
+    "longDescription": "I kept hitting the same gap: `kubectl get deploy` tells you what you declared, not where your pods actually landed. Topology spread constraints are only evaluated at scheduling time, so placement drifts (pods scheduled before more zones existed, nodes drained overnight, rolling updates) and nothing alerts.\n\nA three-zone cluster where everything reports ready:\n\n    $ kubectl get deployments\n    NAME            READY\n    checkout-api    3/3\n    session-store   1/1\n    web             3/3\n\nAnd what happens if us-east-1a goes away:\n\n    $ kubectl survive-zone\n    Losing us-east-1a  ->  2 lost, 0 degraded, 1 impaired by a dependency\n      checkout-api   us-east-1a:3                            LOST\n      session-store  us-east-1a:1                            LOST\n      web            us-east-1a:1 us-east-1b:1 us-east-1c:1  IMPAIRED\n\nThe third row is the one that surprised me. `web` is spread one replica per zone, so a spread linter passes it, but its only `session-store` backend is in 1a.\n\nI wrote a read-only kubectl plugin that reads actual pod placement plus Service/EndpointSlice dependencies, removes one failure domain at a time, and reports LOST / DEGRADED / IMPAIRED. `fix` only prints a patch after checking it with kube-scheduler's own Filter plugins against your real nodes. It can also run as a Prometheus exporter so you get alerted when placement drifts.\n\n    kubectl krew install survive-zone\n\nWrite-up with the details, including a node drain that deadlocks behind a PDB that looks fine, and a rolling update that quietly broke an enforced maxSkew: 1: [https://saipisey.com/blog/kubectl-survive-zone](https://saipisey.com/blog/kubectl-survive-zone)\n\nRepo: [https://github.com/SaiPisey2/kubectl-survive](https://github.com/SaiPisey2/kubectl-survive)\n\nThe known limits are listed at the end of the post. I would genuinely like to hear where the model is wrong for your setup.",
+    "developer": "SaiPisey02",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
