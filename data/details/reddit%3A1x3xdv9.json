@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3xdv9",
+  "sourceItemId": "1x3xdv9",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x3xdv9/how_small_is_too_small_for_kubernetes/",
+  "detail": {
+    "longDescription": "I don't find headcount alone a very useful cutoff. Three people with a real operational need and Kubernetes experience may be in a better position than a much larger team adopting it because that's what a serious stack is supposed to look like. \n\nThe question I'd ask first is what gets materially easier on Kubernetes than on a simpler deployment platform. \n\nDifferent scaling needs, existing operators, scheduling constraints, or an established company platform could make a good case. \"We have containers\" feels like a weaker one. I'd also want to know who handles upgrades and incidents when the one person who understands the setup is unavailable. \n\nI see a separate decision getting mixed into this: needing durable jobs, messaging, or shared state doesn't automatically mean the application team has to operate its own cluster. Diagrid Catalyst's managed hosting model is one example of separating runtime capabilities from that operational ownership. Its self-managed deployment options change the responsibility again, so the product name alone doesn't answer the Kubernetes question.\n\nMy default would be to write down the operational work for both options, including migration and recovery, then compare them against the actual workload. \n\nFor small teams that made the move, what was the concrete requirement that justified it? And for those that moved away, what work disappeared that you hadn't priced in at the start?",
+    "developer": "Dizzy-Bug-7744",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

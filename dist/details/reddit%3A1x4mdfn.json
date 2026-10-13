@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4mdfn",
+  "sourceItemId": "1x4mdfn",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x4mdfn/everyones_building_jev_projects_for_coding_i_dont/",
+  "detail": {
+    "longDescription": "Ever since Jev dropped I've been watching the projects around it. Almost all of them are coding. I keep coming back to the same conclusion: the pattern has nothing to do with coding.\n\nLet me start with the pattern. Jev's real role isn't generation. It sits inside a loop answering small, bounded questions. Which action. Which file. Keep or drop. Safe or not. Route to which model. What happens next. It doesn't write long text, and it doesn't do deep reasoning. The big models still own that. Jev only handles the judgement in between. Push that positioning one level further and the coding connection falls apart. The people building on Jev right now are all developers, and the first loop a developer builds is a coding loop. That's why every example you find is a coding one. There's a tool step in the middle of the loop. Swap that tool docs, spreadsheets, CRM records, or email and the structure is identical. The total volume of those scenarios is much bigger than coding. It's just that nobody has built the repos for them yet.\n\nI see the skeleton of this as an agent with the judgment step carved out and made separate. Take WorkBuddy, the harness I use for my non-coding work. The role it plays is that loop. A document comes in. Something has to decide whether it's worth routing to the expensive model or whether the cheap path is enough. I give that decision to Jev. A row in a spreadsheet. Something has to decide whether a human needs to confirm it. Jev again. A message lands. Something has to decide which queue it goes to. Still Jev. After Jev answers, WorkBuddy decides what happens next: does it become a file, or does it wait for a human. They're not in the same position. Jev is the judgment node that gets called over and over inside the loop. WorkBuddy is the framework that carries the loop. Neither replaces the other. Model, Jev, skill, Jev, file or human, Jev, model. In WorkBuddy it's a skill with a trigger on it, and the output lands as a file. So the question has changed. Before, the question was how do you write this loop. Now the question is what belongs inside it. \n\nSo my take on Jev is simple. It's not a chatbot competitor. It's closer to a general-purpose semantic judgement function. You hand it a state and a bounded question, it hands back a probability, a score, or a set of options, and your software decides what to do with it. What actually determines the output of a setup like this isn't the model. It's the standards you put inside the loop. \n\nIf you're also moving loops like this into non-coding scenarios, I have one question. How do you decide which steps stay outside the loop? All I have so far is acceptance criteria.",
+    "developer": "SpreadUsual4084",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

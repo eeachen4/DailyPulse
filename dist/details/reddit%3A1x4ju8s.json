@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4ju8s",
+  "sourceItemId": "1x4ju8s",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x4ju8s/how_do_you_tell_if_a_model_swap_actually_made/",
+  "detail": {
+    "longDescription": "While working on legal document processing, I ran into a problem with AI evaluations. I kept running into this while testing different local models and quantizations. A test would fail, I’d rerun it, and suddenly it would pass. Was it a real regression or just randomness?\n\nI started running each test case multiple times on both versions and comparing pass rates, using statistical tests with correction for multiple comparisons.\n\nFor example:\n\n* 8/8 → 7/8: probably noise\n* 8/8 → 4/8: not enough evidence yet, run more\n* 8/8 → 0/8: pretty clear regression\n\nTwo things stood out. Sometimes the LLM judge was flaky, not the model itself. Asking it to judge the same answer multiple times helped identify that. Also, timeouts and judge errors shouldn't automatically count as failed tests, so I started tracking them separately.\n\nI built this into Assay, an open-source tool you can run with `pytest --assay --repeat 8`. It works with different providers, including OpenAI-compatible endpoints.\n\n[https://github.com/tap222/assay-evals](https://github.com/tap222/assay-evals)\n\nCurious how others handle this. Do you rely on fixed seeds and temperature 0, or run repeated evals and compare results?",
+    "developer": "Professional-Run3614",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

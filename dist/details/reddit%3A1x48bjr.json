@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x48bjr",
+  "sourceItemId": "1x48bjr",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x48bjr/how_do_you_combine_semanticrelease_with_build/",
+  "detail": {
+    "longDescription": "I’m building our IaC repo and GitLab CI/CD pipelines. I’m quite happy with the setup so far and have tested it across multiple projects. \n\nHowever, when I try to apply the same release model to container images, it starts to feel less suitable.\n\nWe have three environments: dev, uat, and prd.  \nOur current Terraform workflow:  \nWe use three protected branches: dev, uat, and main. These correspond to dev, uat, and prd respectively.\n\nThe root Terraform files are shared across all environments. Environment-specific differences are kept in separate tfvars files:  \nenvironments/dev/dev.tfvars  \nenvironments/uat/uat.tfvars  \nenvironments/prd/prd.tfvars\n\nWe use semantic-release with prerelease branches. Starting from stable version 1.2.3, the flow looks like this:  \nMerge a feature branch containing a fix commit into dev. This generates 1.2.4-dev.1.  \nContinue developing and testing, generating additional dev prereleases as needed.  \nMerge dev into uat. This generates 1.2.4-uat.1, assuming the changes still call for a patch release.  \nOnce validated, merge into main. This generates stable version 1.2.4.\n\nSemantic-release generates a version and creates a tag after merges into these protected branches.\n\nDeployments only happen from tags. Prerelease tags can deploy only to their corresponding environment, while stable tags can deploy to any environment.\n\nThis flow has worked well for our Terraform projects.\n\nWhere I’m stuck with containers:\n\nFor the application pipeline, I’m considering having just one protected branch: main.  \nThe proposed flow is:  \n\\- Open an MR from a feature branch into main.  \nRun tests, static analysis, build the image with a commit SHA tag, and run container scans in the MR pipeline.\n\n\\- After merging, run semantic-release and pass the generated version to the next job to retag the image.  \nCopy the image to dev ECR, deploy it to ECS, and test the application manually.\n\n\\- Once testing passes, promote the same image to uat.  \nAfter approval, promote the same image to prd.  \nThe part that feels off is step 3: I’ve already created a stable release before testing the application in dev.  \nSome issues only become apparent when browsing and using the application. If we discover those issues in dev, each subsequent fix could generate another stable version, even though none of those versions has reached prd.\n\nI’m considering two alternatives.\n\nOption 1: Test in dev before running semantic-release.  \nBuild an image with a SHA tag and deploy it to dev first. If testing finds issues, push new commits and test another image.  \nOnce a candidate passes, run semantic-release, apply the stable version tag to that existing image, and promote it to uat and then prd without rebuilding.  \nI’m thinking fast-forward merges without merge commits might be needed to preserve the commit SHA. \n\nOption 2: Keep dev and main branches.  \nMerge feature branches into dev, run semantic-release to generate versions such as 1.2.4-dev.1, and deploy those images to dev.  \nOnce validated, merge dev into main and generate the stable release. That stable release could then deploy to dev, uat, or prd.  \nHowever, if both branches run the full build pipeline, merging into main would rebuild the image and break the “build once, deploy many” approach. Ideally, the stable release should reference the exact image already tested in dev.  \nHow are you handling this? When do you create the stable version, and how do you promote the exact image tested in dev without rebuilding it?\n\nI’d appreciate examples of workflows that have worked well for your teams. Thank you very much 🙏🏻",
+    "developer": "HabitLong2176",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

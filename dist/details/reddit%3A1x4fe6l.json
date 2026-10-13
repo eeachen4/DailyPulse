@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4fe6l",
+  "sourceItemId": "1x4fe6l",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x4fe6l/building_a_taxi_app_with_a_microservices/",
+  "detail": {
+    "longDescription": "\n\nHey everyone! I'm building a taxi booking platform, and I'm trying to figure out the smartest way to deploy it without spending too much money before launch.\n\nI'm building the backend first, using Python, FastAPI, PostgreSQL, Redis/Valkey, Kafka, and Docker. The architecture is split into services for identity and authentication, passengers, drivers, rides, location tracking, driver-to-ride matching, passenger-to-passenger matching for shared rides, payments, notifications, and admin operations. I'm also using Nginx as an API gateway.\n\nOne of the more interesting parts of the project is the shared-ride system. I want passengers travelling in similar directions to be able to share a taxi, with route compatibility, pickup and drop-off ordering, seat capacity, pricing benefits, and time limits all taken into account. I'm planning to use H3 spatial indexing together with Redis to make nearby passenger discovery faster, while PostgreSQL remains the source of truth. Redis is used for fast lookups and caching, not as the authority for important business decisions.\n\nI'm also building an operations dashboard for managing drivers, document approvals, roles and permissions, and monitoring the platform. Payments will initially support cash, with card payments planned through a proper provider. The passenger and driver mobile apps will come later, after I have a better understanding of the backend's production readiness.\n\nMy main challenge now is infrastructure. I don't want to pay for an expensive Kubernetes cluster or a huge cloud setup when I'm still preparing for launch. At the same time, I don't want to take shortcuts that will cause serious problems when real drivers and passengers start using the app.\n\nFor those of you who have deployed similar systems, especially on a tight budget:\n\n* Would you deploy the services on one VPS using Docker Compose at first, or split them across multiple VPS instances?\n* How would you handle PostgreSQL, Kafka, Redis/Valkey, backups, monitoring, and logs without making the monthly bill explode?\n* Would you keep Kafka from day one, or simplify the deployment until traffic justifies the extra infrastructure?\n* What would you use for production deployment, CI/CD, secrets management, HTTPS, database migrations, and recovery if the server goes down?\n* Which affordable hosting providers would you recommend, and what should I consider when choosing one?\n\nI'm not looking for the most sophisticated infrastructure possible. I want a realistic deployment strategy that keeps costs low, protects customer data, and gives me a clear path to scale when the business starts growing.\n\nI'd really appreciate advice from people who have actually deployed and operated production systems on a tight budget. If you were starting this project today, what would you do differently?",
+    "developer": "Actual_Way5611",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

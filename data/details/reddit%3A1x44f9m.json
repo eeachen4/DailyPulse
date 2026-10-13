@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x44f9m",
+  "sourceItemId": "1x44f9m",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x44f9m/uspace_uncovering_when_and_why_uncertainty_arises/",
+  "detail": {
+    "longDescription": "If you build on open-weight reasoning models, you have probably wanted a \"how sure is the model about this answer?\" signal that does not cost 5x sampling, a judge model, or a labeled dataset. Hence, we built the ***U-Lens.*** In one line:\n\n>**score** = (how strongly the hidden state points toward different \"doubt\" directions) **x** (mean token entropy over the reasoning tokens)\n\n* Label-free: No correctness labels; no training and no no fine-tuning.\n* Single pass. No resampling. \n* Interpretable. It tells you what kind of uncertainty: (i) ambiguity, (ii) missing information, (iii) conflicting evidence, or  (iv) general uncertainty. (not necessary for many applications but potentially useful)\n* Strong. Best estimator in our 3-seed, 3-model, 4-benchmarks evaluation (on Gemma 4, Qwen3.5 and Magistral). ahead of 5-pass, 10-pass and supervised baselines.\n\n*Small caveat*:  \nThe only model-specific ingredient is a Jacobian lens (the J-Lens from Anthropic's global workspace paper). Once you have one:\n\n1. Build the 4-direction U-Space once, on CPU. It only requires the unembedding rows of a few hundred words, you don't need to load the full model.\n2. At inference, grab one hidden state at the end of thinking (a forward hook on one layer), dot it with 4 vectors, and multiply by the mean entropy you get from the logits anyway.\n\n*Obtaining a fitted J-Lens*\n\n* 40+ pre-fitted lenses are on Hugging Face (neuronpedia/jacobian-lens): Gemma 2/3/4, Qwen3/3.5/3.6, Llama 3.1/3.3, gpt-oss-20b, OLMo 3 and more.\n* Your model is not there? Fit one with Anthropic's reference code (anthropics/jacobian-lens, jlens.fit): about 100 unlabeled prompts, no parameters trained, cost dominated by backward passes. That is how we built the Magistral lens, which ships in our repo. --> Usually, i checked whether the Lens is proper by using the examples from the Anthropic blog post.\n\n*Entry point*:\n\n    git clone https://github.com/s2labres/U-Space && cd U-Space\n    pip install -r requirements.txt\n    ./run_smoke.sh   # Qwen3.5-4B, 10 TriviaQA questions, end to end (1 GPU)\n    from src import uspace\n    U, categories, _ = uspace.basis(model_cfg, terms)                 # once per model\n    score = uspace.a_cone(eot_state[None], U) * think_entropy.mean()  # per answer\n\n  \n  \n*What we would love to see people build:*\n\n* Route low-confidence answers to a bigger model or a human.\n* Trigger retrieval when missing information lights up.\n* Ask a clarifying question when ambiguity lights up.\n* Flag conflicting evidence in RAG pipelines. \n\n  \n  \n[Project](https://s2lab.org/U-Space/)  \n[Paper](https://arxiv.org/abs/2610.09087)  \n[Code](https://github.com/s2labres/U-Space)\n\n  \n*Disclaimer*: This is our research code (a reproduction pipeline, not a pip package yet). What would you plug it into? Happy to help with integration/discuss! 😄 ",
+    "developer": "AdRevolutionary3242",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

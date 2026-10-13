@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50063600",
+  "sourceItemId": "50063600",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50063600",
+  "detail": {
+    "longDescription": "Hey HN, im Marc, co-founder of ObsessionDB. We are open sourcing ChKit, our tooling to manage schemas, migrations and backfills for clickhouse. I am a big fan of the type safety drizzle provides for the database. Manage the schema in typescript and generate migrations from it is a powerful workflow. I always wished something like it would exist for clickhouse, so we could manage our analytical workloads the same way. It didn&#x27;t exist, so we build it. We build it after running ClickHouse at petabyte scale in our previous company, were we managed hundreds of tables, MVs and endpoints reading from them. The way it works: 1. You define your schema in typescript, with typed helpers for tables, mv, column types etc.. 2. You generate the migration, that contains the DDL, to get your clickhouse instance from status quo to what your current typescript schema defines 3. Your CI can check for drift 4. You run the generated migration against production 5. You use the defined types in your code, to ingest your data while making sure it has the correct type. Bonus: if your schema change was BC breaking, we generate the sequence on how to backfill the data, into the intermediate table to migrate (this is quite the hard problem with large tables and schema evolution) In case you have already a clickhouse instance with a schema, you can pull it down and start using ChKit from where you are. Run our generator to setup the boilerplate: npm create chkit@latest If you folks are running clickhouse in production, I am curious to hear what other challenges you are running into.",
+    "externalUrl": "https://github.com/obsessiondb/chkit",
+    "developer": "keks0r",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "7"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

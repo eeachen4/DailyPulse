@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4mua3",
+  "sourceItemId": "1x4mua3",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x4mua3/building_llama_cpp_for_both_cuda_and_hip_2/",
+  "detail": {
+    "longDescription": "1. I originally installed llama cpp via their install script on their page; it used Vulkan by default. The GPU (NVIDIA) would \"disappear\" and I'd have to restart the machine.\n2. I re-built llama cpp for CUDA, and had to remove that original install, but the llama cpp built with/for CUDA is much more stable.\n3. If I also get an AMD GPU and want to have both in my PC, do I also have to build a _separate_ llama cpp \"instance\" for HIP usage?\n\nI'm **not** planning on using the same instance of llama cpp with the NVIDIA and AMD card at the same time (not trying to tensor split or parallelize the same LLM across those GPUs, or whatever). \n\nI might have one model running on one GPU, a second model running on the second GPU, for different purposes, not always simultaneously, so in that sense, would it make sense to keep the current version of `llama` for CUDA and build a second version of it that I could alias as `llama-hip` (different ports, etc)?\n\nIf any of you have done this, I'd love to read your thoughts.\n\nIf it _does_ make sense to split a model in a 1:2 ratio (16GB CUDA:32GB HIP), I'm happy to experiment, but that wasn't my intention.\n\n---\nInitial LLM chat shows that I could try something like this:\n\n```sh\nDo you need a separate binary for HIP?\n\nYes — a HIP build is a distinct build. HIP is not \"added at runtime\" to your CUDA binary; it has to be compiled in with -DGGML_HIP=ON, using the ROCm toolchain. The good news: the two builds can coexist happily. Just use separate build directories:\n\n# your existing NVIDIA build stays as-is\ncmake -B build-cuda -DGGML_CUDA=ON\ncmake --build build-cuda --config Release -j\n\n# a sibling HIP build\nHIPCXX=\"$(hipconfig -l)/clang\" HIP_PATH=\"$(hipconfig -R)\" \\\ncmake -B build-hip -DGGML_HIP=ON -DGPU_TARGETS=gfxXXXX -DCMAKE_BUILD_TYPE=Release\ncmake --build build-hip --config Release -j\n```\n\nThe rest was basically warnings about why trying to use the same instance of llama cpp (built for both CUDA and HIP) could be problematic, ending with:\n\n```sh\nWhat I'd recommend\n1. Keep your CUDA build for the 5060 Ti. Add a separate HIP build for the Radeon. Two binaries, two build dirs.\n2. Run two server instances (different ports), one per card. Best stability, best per-card performance, and you use both GPUs simultaneously.\n3. Treat \"one model spread across CUDA+HIP\" as experimental — try it if curious (build-both, -sm layer -ts 16,32, --list-devices), but don't build your workflow on it. If a single model genuinely needs >32GB and won't fit on the Radeon alone, that's the case where a mixed build is the only option short of Vulkan — and it may not deliver the memory benefit due to the duplication bug.\n```\n\n",
+    "developer": "espece-de-bon",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

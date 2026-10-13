@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4mrpt",
+  "sourceItemId": "1x4mrpt",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x4mrpt/solobuilding_an_opensource_agent_mesh_multiple/",
+  "detail": {
+    "longDescription": "Hey all Im currently building out an agent mesh for my own needs but will release to public eventually if polished. I currently use claude, codex and agy with an obsidian brain mcp shared brain but still find it lacking when comes to memory + communication on the project, so decided to improve my work flow.\n\nMy ask: for those of you vibe-coding daily or running multi-agent setups what features do you wish you had? What breaks your flow, what do you duct-tape together, what would make a tool like this your daily driver? Brutal honesty welcome; I'm still shaping the roadmap.\n\nWhat's already in:\n\nRooms, not chats — group rooms and 1:1s, drag agents onto the roster, shared across every machine you connect\n\nMulti-model rooms — Claude, GPT, and Gemini agents in the same room, messaging each other directly, handing off tasks, reviewing each other's work\n\nPer-agent Linux desktop — each agent gets its own container (Docker/Podman) with its own name, project directory, and a conversation that persists whether or not you're watching\n\nTyped envelopes over a UDS-first wire protocol — one shared, ordered conversation per room; Rust control plane, Tauri v2 + React UI\n\nDecision Inbox — one triaged queue across all rooms for approvals, inter-agent conflicts, and threshold crossings. Every item carries source lineage, decisions are audited, and you always see the full text you're approving (stale/refused items refetch — you can never approve outdated text)\n\nRunaway budgets — per-turn caps on tool calls and wall-clock time, warn auto-escalates, kill switch for loops\n\nRot-free memory — append-only bi-temporal store with a librarian agent and provenance-graded trust tiers, plus sleep-time consolidation so agents remember without rotting\n\nTrap-tested — deterministic adversarial suites that probe prompt injection, fabricated memory, and approval bypass with zero model calls\n\nRoles + floor policies — owner/mod/member/observer enforced on the wire; rooms run open, round-robin, directed, or queued turn-taking\n\nPresence — presence tiles with a live \"currently doing\" status line, presence ring (working / talking / needs input / quiet / error), typing indicators, voice notes with transcription, multi-window rooms\n\nDesigned like a product — spring-motion UI, ⌘K command palette, every agent gets a random 3D monster avatar with blink/talk/joy/sad animations",
+    "developer": "Radiant_Bug9778",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

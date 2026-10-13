@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50058032",
+  "sourceItemId": "50058032",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50058032",
+  "detail": {
+    "longDescription": "Hey HN, I’m Oskar, one of the co-founders of TesterArmy. We built an agentic testing framework for web and mobile because traditional testing frameworks can’t keep up with the pace of how we build software today. e2e allows you to mix deterministic and agentic APIs in the same test. You can write the test cases using familiar APIs like `getByText()`or `getByTestId()` which you can also mix it with agentic `agent.act()`. The unique part about it is that e2e will cache and replay the agentic actions so you don’t have to pay for AI on each run. You can use it with any LLM, including subscriptions you are already paying for. On top of that, the core of e2e is platform agnostic. We ship both web and mobile engines out of the box; adding support for more platforms is pretty straightforward. Here’s a code short code snippet of an example test: ```ts import { test, expect } from &#x27;e2e&#x27;; test(&#x27;a member upgrades to Pro&#x27;, async ({ app, agent, screen }) =&gt; { await app.open(&#x27;&#x2F;settings&#x2F;billing&#x27;); await agent.act(&#x27;upgrade the workspace to the Pro plan&#x27;); await agent.assert(&#x27;the invoice preview shows a prorated amount&#x27;); await expect(screen.getByRole(&#x27;status&#x27;)).toContainText(&#x27;Pro&#x27;); }); ``` Try it: npx e2e init GitHub: https:&#x2F;&#x2F;github.com&#x2F;tester-army&#x2F;e2e",
+    "externalUrl": "https://github.com/tester-army/e2e",
+    "developer": "okwasniewski",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "8"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

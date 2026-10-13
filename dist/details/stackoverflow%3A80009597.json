@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009597",
+  "sourceItemId": "80009597",
+  "sourceUrl": "https://stackoverflow.com/questions/80009597/aws-machine-migration",
+  "detail": {
+    "longDescription": "We currently have a production application running on an AWS EC2 instance powered by an AMD (x86_64) processor. We're considering migrating to AWS Graviton (ARM64) instances to improve cost efficiency and performance. Our application uses the following stack: Backend: Python / Django Database: PostgreSQL Infrastructure: AWS EC2 Containerization: Docker Architecture: AMD (x86_64) → Graviton (ARM64) Since this is a production environment, our main priorities are avoiding data loss, minimizing downtime, and ensuring we have a reliable rollback strategy. I understand that Graviton uses a different CPU architecture, so simply changing the EC2 instance type may not work due to operating system, Docker image, and dependency compatibility. I'm considering the following migration approach: Create an AMI and EBS snapshots of the existing instance, along with a verified PostgreSQL backup. Provision a separate ARM64-based Graviton EC2 instance. Rebuild Docker images for ARM64 and verify Python dependencies, native libraries, and other architecture-specific packages. Deploy the application to the new instance and test API functionality, background jobs, and database connectivity. Perform load testing and compare performance with the existing AMD instance. Gradually redirect production traffic to the new instance using an Application Load Balancer. Keep the original AMD instance available for rollback until the new environment is stable. My questions are: Is running AMD and Graviton instances in parallel behind an ALB the safest approach for this migration, or is there a better AWS-native strategy? What architecture-specific compatibility issues should we check for Python, Django, Docker, and PostgreSQL before migrating? If PostgreSQL is running on the same EC2 instance, what is the safest approach to migrate the database without losing writes during the cutover? What precautions should we take regarding EBS volumes, AMIs, background workers, scheduled jobs, and application configuration? How should we design the rollback process, especially if database changes occur after switching production traffic? I'm particularly interested in practical migration strategies and common production issues encountered when moving from x86_64 to ARM64 on AWS.",
+    "developer": "sidhartthhhhh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

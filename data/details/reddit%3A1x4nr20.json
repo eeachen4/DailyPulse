@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4nr20",
+  "sourceItemId": "1x4nr20",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x4nr20/when_your_agents_safety_check_cant_run_should_the/",
+  "detail": {
+    "longDescription": "I have been developing a small local guard that checks every tool call before the agent runs them: regex for the obvious, and a small model for the rest. The part I keep going back and forth on: if the guard's server is down, every tool call the regex can't check just passes.\n\nThe alternatives don't seem appealing either: fail-closed means that a forgotten server will reject almost everything, or ask a human, which does work in Claude Code or Cursor, but not for agents that can't ask for permission, and breaks any unattended run.\n\nAs of now, I am considering auto-launching the server and asking or blocking until it's up. What would you do here? Would you fail open or closed when the check is unavailable? And where would you draw the line between 'the judge decides' and 'a human decides'?",
+    "developer": "Extreme_Ad5709",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

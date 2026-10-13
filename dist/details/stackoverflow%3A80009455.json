@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009455",
+  "sourceItemId": "80009455",
+  "sourceUrl": "https://stackoverflow.com/questions/80009455/how-can-i-color-specific-words-in-live-time-in-a-qtextedit",
+  "detail": {
+    "longDescription": "How can I make a QTextEdit that updates its colors when, for example, spotting a specific word? Let's say I want to make a QTextEdit that colors the word \"Hello\" blue each time it spots it. class ColoredTextEdit(QTextEdit): def __init__(self, text: str = None, parent: QWidget = None): super().__init__(text, parent) def reColor(self): text = self.toPlainText() text = text.replace(\"Hello\", f'<span style=\"color: #5555DD\">Hello</span>') self.setText(\"\") for line in text.splitlines(): self.append(line) Use: text_edit = ColoredTextEdit() text_edit.textChanged.connect(text_edit.reColor) but the problem is that it's changing the text in the `reColor` function, making it give a recursion error.",
+    "developer": "Hossein Dastoory",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "94"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

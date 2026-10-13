@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x3wr26",
+  "sourceItemId": "1x3wr26",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x3wr26/go_worker_handling_bursty_largefile_transfers/",
+  "detail": {
+    "longDescription": "I'm working on a Go-based worker that processes multiple large-file transfers concurrently over HTTP. Work arrives in bursts, and each task involves downloading data from a source and uploading it to a destination.\n\nI'm trying to optimize aggregate throughput and task completion reliability without causing excessive queueing, deadline failures, or unnecessary retries.\n\nThe current implementation allows concurrent workloads without an explicit transfer semaphore limit. I'm considering testing a bounded limit of 16 active transfer workloads, along with retries for transient HTTP and network errors.\n\nI'd appreciate feedback from engineers who have built high-throughput Go services or distributed workers.\n\nA few specific questions:\n\n1. **Concurrency:** Under what conditions would you prefer unrestricted concurrency over a semaphore limiting active workloads to 16? What metrics would tell you that concurrency is too high?\n2. **Throughput vs. latency:** If aggregate throughput is already near the available bandwidth ceiling, can a concurrency limit improve task completion times, or would it mostly introduce queueing?\n3. **Retries:** For transient errors such as HTTP 429, 500, 502, 503, 504, and temporary network failures, what retry policy would you recommend? How do you avoid retries amplifying an existing overload?\n4. **Semaphore lifecycle:** In Go, would you hold a semaphore slot throughout the entire logical task, including retry backoff, or acquire a slot separately for each network attempt? What trade-offs matter?\n5. **Deadlines and cancellation:** How would you ensure that tasks waiting for a semaphore don't consume their entire deadline before transferring any data?\n6. **Benchmark methodology:** How many independent runs or observation windows would you use before trusting a performance improvement? Which metrics would you prioritize?\n\nMy initial comparison would track aggregate bytes transferred, completed tasks, failure rate, P50/P95/P99 task duration, queue wait, and actual concurrent transfers.\n\nI'm especially interested in practical engineering experience, benchmark design, and failure modes that aren't obvious from simple throughput tests.\n\nThanks!",
+    "developer": "Arkad77",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

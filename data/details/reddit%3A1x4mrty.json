@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4mrty",
+  "sourceItemId": "1x4mrty",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x4mrty/i_clustered_two_old_android_phones_to_run_a_27b/",
+  "detail": {
+    "longDescription": "I saw a lot of posts here struggling to run 27B models on 8GB VRAM or complaining about phones turning into space heaters. I hit the exact same OOM wall on my phone, so I decided to build a hardware-split workaround.\n\nI wrote a custom C++ engine (fork of `llama.rn`) to cluster two Android phones over a simple USB cable.\n\n**The Setup & Performance:**\n\n* **Model:** Ternary-Bonsai-2-27B (compressed to 2.06 bpw / 6.52 GiB). Perplexity: 14.26 (vs 14.05 reference).\n* **Cluster Mode (Xiaomi redme 100 pro max + ROG 7):** Layers are split 4.36 GiB / 2.15 GiB over the USB cable via custom RPC. Speed: **\\~2.8 tok/s** (bottlenecked by the slower phone, but perfectly synced).\n* **Solo Mode (Xiaomi 15 only):** **5.6 tok/s** text generation.\n\n**The Secret Sauce (Why it doesn't melt the phone):**  \nI didn't use standard quantization. The weights are ternary (-1, 0, 1) in the Hadamard-rotated basis. Instead of un-rotating offline (which destroys the 2-bit primal), I kept the weights folded in the GGUF and wrote a patch to apply the Hadamard transform *at runtime* on the device's ARM CPU.  \nResult: Only additions/subtractions. Zero MAC operations. Max temperature sits around 30°C.\n\n**Proof & Links:**  \n🎥 **Raw Demo (2m 45s, one take):**\n\n* 🎬 [`https://youtube.com/shorts/CH1im2JR4yM`](https://youtube.com/shorts/CH1im2JR4yM)\n* 📊 **Engine Logs:** [`https://gist.github.com/figkcoci-debug/76f41c409fc5afe5a431094cc228ddc0`](https://gist.github.com/figkcoci-debug/76f41c409fc5afe5a431094cc228ddc0)\n* 📄 **Methodology:** [`https://gist.github.com/figkcoci-debug/11871f60812d2d18de5214fda3d94160`](https://gist.github.com/figkcoci-debug/11871f60812d2d18de5214fda3d94160)\n\nI'm a high school student currently looking for a lab placement/grant to push this further (planning to write custom Vulkan compute shaders for the Hadamard transform to boost t/s even more).\n\nWould love to hear what the compression and edge AI community thinks about this approach",
+    "externalUrl": "https://v.redd.it/8apw5qejq5vh1",
+    "developer": "Grouchy-Zebra9780",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

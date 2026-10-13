@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "When using the Python API, I want to understand the data transfer behavior of loadTable vs to_pandas . The database table has millions of rows and I don't want to accidentally trigger a full transfer. import dolphindb as ddb s = ddb.session() s.connect(\"localhost\", 8848, \"admin\", \"123456\") # Does this already pull data? t = s.loadTable(\"dfs://stock_db\", \"tick\") # Or does the actual transfer happen here? df = t.to_pandas() What I'm really asking: does loadTable() return a lazy reference (metadata/handle only), or does it eagerly fetch some or all data? If I chain a filter before to_pandas() , is the filter pushed down to the server, or does it first transfer everything and then filter client-side? # Does this filter before transfer or after? df = s.loadTable(\"dfs://stock_db\", \"tick\").select(\"sym\", \"price\").where(\"date=2025.01.01\").to_pandas()",
     "developer": "Stephanie",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "126"
+        "value": "155"
       },
       {
         "label": "状态",
-        "value": "已回答"
+        "value": "未回答"
       }
     ]
   }

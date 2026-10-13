@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x4n8tc",
+  "sourceItemId": "1x4n8tc",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x4n8tc/shared_gpus_for_regulated_data_or_do_you_actually/",
+  "detail": {
+    "longDescription": "We’ve got data we can’t just put anywhere, and figuring out which GPU options actually pass a compliance review took longer than I expected.\n\nFirst thing I had wrong going in was that shared infrastructure isn’t automatically off the table for regulated data. With the right controls, encryption, a signed BAA where it applies, real tenant isolation, contractual terms, a shared or marketplace setup can be made to work. It’s just more to verify when compliance reviews it.\n\nThe catch with shared is how much comes down to trusting the provider’s isolation and taking their word for it in a review. Doable, but it’s work, and “trust us” on its own doesn’t get you through an audit.\n\nDedicated or owned hardware doesn’t make you compliant by itself either, which is the other assumption people make. What it does do is simplify the isolation and audit story. You’ve got a specific machine to point an auditor at instead of explaining multi-tenant separation.\n\nSo right now we’re weighing dedicated boxes from a GPU cloud, colocating our own hardware, and owned-and-hosted setups like B3IQ where you own the machine outright and they run it for you. None of those removes the need for due diligence.\n\nIf you’re running sensitive or regulated data on GPUs, what actually got it past your compliance review, shared with controls or dedicated?",
+    "developer": "Skid_gates_99",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
