@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009768",
+  "sourceItemId": "80009768",
+  "sourceUrl": "https://stackoverflow.com/questions/80009768/why-doesnt-my-github-actions-release-workflow-trigger-for-existing-platform-spe",
+  "detail": {
+    "longDescription": "Why doesn't my GitHub Actions release workflow trigger for existing platform-specific beta tags? I'm maintaining an open-source, cross-platform desktop application built with Flutter/Dart, Go, and C++. Repository: https://github.com/lordkeremello45/HWcontrol2.0 The project has a GitHub Actions workflow that builds Windows, Linux, and macOS packages and publishes them as GitHub Release assets. Workflow source: https://github.com/lordkeremello45/HWcontrol2.0/blob/main/.github/workflows/beta-release.yml Problem The workflow uses this tag trigger: on: push: tags: - 'v*-beta.*' However, some existing release tags use names such as: v0.3.0-beta-windows v0.3.0-beta-linux v0.3.0-beta-macos These tags do not follow the same naming convention as the workflow's trigger pattern. The workflow also supports manual execution through workflow_dispatch , and its release job depends on successful completion of all three platform builds before publishing the artifacts. What I want to understand How exactly does GitHub Actions interpret wildcard patterns in on.push.tags , and why does v*-beta.* fail to match v0.3.0-beta-windows ? What is the most maintainable way to define a consistent beta-tag convention for a multi-platform release pipeline? How can I ensure that a release is published only after all required platform packages have been built, validated, and uploaded, without accidentally creating an empty GitHub Release? Is it better to use a single versioned beta tag, such as v0.3.1-beta.1 , for the entire platform matrix rather than separate Windows, Linux, and macOS tags? I want to preserve the existing build and test stages and fix the release workflow itself rather than bypassing validation or hiding failures. What would be the recommended GitHub Actions design for this scenario?",
+    "developer": "Kerem Ademoglu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "34"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

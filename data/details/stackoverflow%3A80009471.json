@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009471",
   "sourceItemId": "80009471",
+  "fetchedAt": "2026-10-14T02:13:31.530Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009471/how-do-i-safely-remove-unused-asyncio-locks-without-causing-duplicate-requests",
   "detail": {
     "longDescription": "I'm using asyncio.Lock() to prevent multiple requests for the same user from running at the same time. I also want to remove locks when they're no longer needed instead of keeping them in memory indefinitely. Here's a simplified version of what I'm doing: import asyncio locks = {} async def send_request(user_id): print(f\"Starting request for {user_id}\") await asyncio.sleep(0.5) print(f\"Finished request for {user_id}\") async def process(user_id): lock = locks.setdefault(user_id, asyncio.Lock()) async with lock: if user_id in locks: del locks[user_id] await send_request(user_id) async def main(): first = asyncio.create_task(process(42)) await asyncio.sleep(0.01) second = asyncio.create_task(process(42)) await asyncio.gather(first, second) asyncio.run(main()) The output is: Starting request for 42 Starting request for 42 Finished request for 42 Finished request for 42 Both requests start before either one finishes, which is what I'm trying to avoid. I understand that deleting the lock from the dictionary doesn't release it for tasks already using it. The issue is that another task can create a new lock for the same user while the old one is still active. How can I safely remove unused locks without allowing two different locks to exist for the same user at the same time? I'd prefer not to keep a lock for every user indefinitely, especially when the number of user IDs can grow over time.",
     "developer": "Faheem",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
-      },
-      {
-        "label": "回答",
         "value": "2"
       },
       {
+        "label": "回答",
+        "value": "3"
+      },
+      {
         "label": "浏览",
-        "value": "104"
+        "value": "131"
       },
       {
         "label": "状态",

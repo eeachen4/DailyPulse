@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x52qgg",
+  "sourceItemId": "1x52qgg",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x52qgg/github_actions_selfhosted_runner_gets_stuck/",
+  "detail": {
+    "longDescription": "I'm learning GitHub Actions and have set up a self-hosted runner inside an Ubuntu Docker container on my Windows machine.\n\nMy workflow uses `actions/setup-java` to install Java 17:\n\n    - name: Set up JDK 17\n      uses: actions/setup-java@v4\n      with:\n        java-version: '17'\n        distribution: 'temurin'\n        cache: maven\n\nHowever, the job gets stuck at the **Set up JDK 17** step. The logs stop at:\n\n    Resolved latest version as 17.0.20+101\n    JDK cache is not found for Temurin-Hotspot 17.0.20+101\n    Trying to download...\n    Downloading Java 17.0.20+101 (Temurin-Hotspot) ...\n\nI tested the download URL manually from inside the container using `curl`. The download repeatedly stops before completion and returns:\n\n    curl: (18) Transferred a partial file\n\nI also tried resuming the download with `curl -C -` and retry options, but it failed again. A basic connectivity test to [`https://github.com`](https://github.com) returns HTTP 200.\n\nThe runner itself appears to be connected and running jobs correctly. I haven't yet confirmed whether the issue is related to the network, the GitHub release download redirect, a proxy, or something else.\n\n**My questions:**\n\n1. What could cause `curl: (18) Transferred a partial file` to occur repeatedly when downloading a large release asset?\n2. How can I identify whether the problem is caused by my network, a redirect destination, a proxy, or the download server?\n3. Is there a recommended way to configure `actions/setup-java` on a Docker-based self-hosted runner to avoid this issue?\n\nI'd appreciate any troubleshooting steps or suggestions. Thanks!",
+    "developer": "CSE_GEEKboy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

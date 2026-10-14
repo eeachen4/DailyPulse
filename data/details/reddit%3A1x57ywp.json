@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x57ywp",
+  "sourceItemId": "1x57ywp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x57ywp/does_prompt_caching_make_routing_to_a_cheaper/",
+  "detail": {
+    "longDescription": "We built a router last year that sends easy requests to a small model and hard ones to the big one. Simple logic yes and it lowered the blended rate for months.\n\nThen we got prompt caching working properly on the big model. Our prefix is about 18k tokens of instructions, policies and tool schemas and it goes out on every single call. Once it’s cached the big model reads it at a tenth of the normal input price. I didn’t think much of it until finance asked me why cost per request on the big model kept going down while the monthly bill stayed flat.\n\nThe small model never gets that discount. It sees only about a third of the traffic and it arrives in bursts which mean its cache usually expires by the next request and it pays full price for the whole prefix almost every time.\n\nOn a typical request with a short answer, it now looks like this\n\nbig model with a cache hit, about 1.1 cents\n\nsmall model with a cache miss, about 2 cents\n\nOn most requests, the small model now costs us more. And every request it takes is one the big model’s cache doesn’t see which also drags down the big model’s hit rate.\n\nThe small model still wins on long answers. Output is where it’s cheapest next to the big model and caching doesn’t help output at all.\n\nWe haven’t rebuilt the router yet. Leaning toward routing on expected output length instead of difficulty. Has that held up for people running it in production?",
+    "developer": "Lance_Saul_85",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

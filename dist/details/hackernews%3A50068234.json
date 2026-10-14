@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50068234",
+  "sourceItemId": "50068234",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50068234",
+  "detail": {
+    "longDescription": "Hey everyone! I just wanted to share a little project I have been working on. It&#x27;s a lightweight, minimal, self-hosted, web analytics app alternative to Google Analytics, Umami, GoatCounter etc. Tldr: Created a self hosted web analytics app that is one binary (docker image available). AI was used to assist. Check it out if you care. I wanted to self host a lightweight web analytics app to see if any of my pages had any visitors, but all of the self hosted apps I found were either way to heavy for what I was looking for, or simply didn’t have a UI&#x2F;UX I liked. So I just made one myself. The app features a dashboard with multi-site and subdomain support, and some simple filtering on date and visitor details (all EU regulation friendly, so no PIs such as IPs etc). A bit about the process: As I wanted it simple and lightweight, a single executable was the goal. Deciding for the frontend was easy since it doesn’t need SEO or any server side rendering, therefore I chose React with plain CSR (thankfully the DX these days is nice with Vite). The backend was a bit more tricky, since I wanted to have it fast, but also be able to get an MVP out sooner rather than later. The plan was thus two folded; first to do it in Deno to keep everything TypeScript and to implement features fast (it is still my go-to language for prototypes), then to refactor everything to a compiled language (Go or Rust) once I considered the app feature complete. So I started the prototype, but just a couple of days later, the announcement of Deno being sunset came out. As I had already gotten to a point where the backend was mostly functional, I decided to pull the plug early and refactor! The tough decision was Rust vs Go, and Rust ultimately won as I like the DX and how the language looks and writes a wee bit more. So I did what most engineers do in 2026 (looking at you Bun), and I asked my AI for help. Although I consider myself pretty ok with Rust, there are still parts that I haven’t wrapped my head around fully, so as the intention was to get something out fast, I had to bite the bullet. Lastly for the database I wanted something embedded, so SQLite was the natural choice. The final app ended up with a decent ~10mb (down from ~250mb with Deno) which I don’t think is too shabby. Some quick benchmarking on 1 cpu and 2gb RAM told me it could handle ~16.000 incoming analytics requests per second. The bottleneck being the database writer lock (give it more CPU, and it can do better). As this is a hobby project, and I dont expect a peak load of more than maybe 10 a day, I am content with this. I consider this app mostly feature complete, and will use it for the next month before eventually releasing a v1 after fixing whatever bugs that may show themselves. If you think you can improve the app further and want to spend time on it, feel free to make a PR ^^ To sum up the stack: React+Vite+TanStack+Tailwind frontend, Rust+Axum backend and SQLite database; all compiled to one binary of about ~10mb. Disclaimer: Yes, AI has been used for parts of the development, docs and for commit messages, but the code has been reviewed and iterated over by me, a somewhat reasonably sentient human.",
+    "externalUrl": "https://github.com/lmxrd/potoo",
+    "developer": "composer42",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

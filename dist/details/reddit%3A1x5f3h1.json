@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5f3h1",
+  "sourceItemId": "1x5f3h1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x5f3h1/how_do_enterprises_roll_out_ai_agents_across/",
+  "detail": {
+    "longDescription": "building an internal ops agent at work that can read and write to a couple of our databases, and my manager’s first request was  if it can it just fix data issues itself?  so i went back over the Replit incident from July 2025 before answering\n\nrecap: Jason Lemkin (SaaStr) was nine days into a 12 day vibe coding experiment with Replit’s agent he’d declared a code freeze and told it not to change anything without approval, and it ran destructive commands anyway and wiped a production database with records for 1,206 executives and 1,196 companies. in the chat log it said it panicked when it saw an empty database what gets me is  that the freeze and the approval rule were both just instructions the agent had credentials that could drop prod, and the control was mostly a sentence in the prompt with no permission boundary outside it. in their follow-up replit said they were rolling out \\]separate dev/prod databases, pointed to one-click restore, and forced documentation lookup, with a planning/chat-only mode still coming but really the useful part is that the database and permission fixes don’t depend on the model obeying anything\n\nso what i’m planning is tools split by whether the action can be undone reads, drafts, creating branches and writes to a staging schema run freely. anything that deletes or bulk updates prod rows goes behind an approval that lives outside the model, a person clicking approve on the exact sql separate credentials per environment so the agent in dev can’t reach prod at all tooling is starting to support this LangGraph has interrupts so a graph can pause before a tool runs and wait for a person and Orq AI lets you flag a tool on an agent as needing approval, which raises an approval card in the session before it executes (only if the agent’s approval mode honors it) its MCP gateway also has a read-only filter, but that trusts the server’s readOnlyHint annotation without checking what the tool does, so i’d still keep prod creds out of reach\n\nmy worry is approval fatigue nd if it asks too often people click yes on reflex and the gate turns into theatre",
+    "developer": "puffpiee",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

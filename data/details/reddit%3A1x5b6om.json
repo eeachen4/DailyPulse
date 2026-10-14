@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5b6om",
+  "sourceItemId": "1x5b6om",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1x5b6om/approach_dilemma/",
+  "detail": {
+    "longDescription": "I'm a solo developer building a point-of-sale app for my own tea house, and I can't decide between two architectures. I'd like opinions from people who have shipped something similar.\n\nTHE PROBLEM  \n\\- Runs on ONE touchscreen Windows PC (15.6\", Full HD), no keyboard, shared by 2 waiters and the owner.  \n\\- No network needed at all: no internet, no remote access, no multi-device.  \n\\- Open about 21 hours a day, so stability matters more than anything.  \n\\- Features: 26 tables, \\~30 products, one-tap ordering, pay per item or pay all, close table, store customers who order on credit (debt tracking, PDF invoice per debt cycle), simple reports with a chart, CSV export.  \n\\- Nothing is ever truly deleted (soft-delete everywhere), an action log for audit, and an Undo button for the last 10 actions.  \n\\- Only protection: a PIN to open the Reports screen. No user accounts.  \n\\- Daily automatic backup plus a second copy on other storage.\n\nOPTION A: Laravel + React (Redux) + PostgreSQL  \n\\- Runs locally in kiosk mode or packaged as a desktop app.  \n\\- Familiar stack, big ecosystem.  \n\\- But PHP, a web server, and PostgreSQL all have to be installed and kept running on the shop PC.\n\nOPTION B: Fully native, C# + Avalonia + SQLite (EF Core)  \n\\- One installer, one process, database is a single file, nothing running in the background.  \n\\- Business rules in a plain C# library with unit tests; undo via command pattern.  \n\\- But I'd need to learn Avalonia/XAML, and the touch UI is hand-built.\n\nWHAT I'D LIKE TO KNOW For a single-device POS with no network, which would you choose, and why?  \nThanks, I'd really appreciate honest experiences, including \"don't do either\".",
+    "developer": "EggTraditional4757",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

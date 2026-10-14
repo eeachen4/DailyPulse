@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009527",
   "sourceItemId": "80009527",
+  "fetchedAt": "2026-10-14T02:13:31.530Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009527/get-sum-of-calculated-column-in-aggregated-request",
   "detail": {
     "longDescription": "Here is a simplified version of my table. It has two 'calculated' fields: calc1 and calc2 . And there is a method which calculates sums of specified fields: import sqlalchemy as sa from sqlalchemy.orm import Mapped, mapped_column, column_property from sqlalchemy.ext.hybrid import hybrid_property class TOne(Base): __tablename__ = 'TOne' RecordID: Mapped[int] = mapped_column(primary_key=True) Amt1: Mapped[Decimal] = mapped_column() Amt2: Mapped[Decimal] = mapped_column() calc1 = column_property(Amt1 - Amt2) @hybrid_property def calc2(self): return self.Amt1 + self.Amt2 @calc2.expression def calc2(cls): return cls.Amt1 + cls.Amt2 @classmethod def get_aggregated(cls, session, *columns): columns_to_select = [ sa.func.sum(c) for c in columns ] return session.execute( sa.select(*columns_to_select) ).one() It works like this: >>> print(TOne.get_aggregated(session, TOne.Amt1, TOne.calc1, TOne.calc2)) (Decimal('10'), Decimal('-15'), Decimal('35')) The object this method returns is of type sqlalchemy.engine.row.Row and the problem is that names of the values of this tuple-looking object are sum_1 , sum_2 and sum_3 . I would prefer the names to correspond to the names of the columns; in this case the names I need are Amt1 , calc_1 and calc_2 . The SQL request this call produces is: SELECT sum([TOne].[Amt1]) AS sum_1, sum([TOne].[Amt1] - [TOne].[Amt2]) AS sum_2, sum([TOne].[Amt1] + [TOne].[Amt2]) AS sum_3 FROM [TOne] I want it to produce SQL request with different labels: SELECT sum([TOne].[Amt1]) AS Amt1, sum([TOne].[Amt1] - [TOne].[Amt2]) AS calc_1, sum([TOne].[Amt1] + [TOne].[Amt2]) AS calc_2 FROM [TOne] In order to achieve this I tried to specify labels like this: class TOne(Base): ..... @classmethod def get_aggregated(cls, session, *columns): columns_to_select = [ sa.func.sum(c).label(c.name) # <- for c in columns ] .... It does work with 'usual' columns, but not with 'calculated' columns. Looks like for calculated columns declared with colum_property I can use c.key instead of c.name but I am not sure if it is a reliable approach and would prefer a way which would work with all three types of columns.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-2"
+        "value": "-1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "74"
+        "value": "127"
       },
       {
         "label": "状态",

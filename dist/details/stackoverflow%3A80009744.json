@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009744",
+  "sourceItemId": "80009744",
+  "sourceUrl": "https://stackoverflow.com/questions/80009744/how-do-i-force-multiple-pygame-windows-to-be-unable-to-minimize",
+  "detail": {
+    "longDescription": "I'm designing a game that uses multiple windows, utilising pygame community edition (2.5.8). However, when opening multiple windows, I noticed that if the user clicks an open window behind the newly opened window, without first mousing over it, then that window will automatically minimize. This specifically happens when multiple windows are opened, and then another window (in my example usually VSC) is clicked from behind the new windows. This can be prevented by the mouse entering the borders of the new window, but I need the windows to be able to stay on top before a mouse enters their border. I looked through similar pages regarding pinning a window to the top, but I'm unsure if they apply to my specific situation. Threads are: How to pin a pygame window on top? How to make python window run as \"Always On Top\"? These talk about a singular window. I am already setting my windows to always be on top though, and I'm guessing the issue I have stems more from the need to have multiple windows stay on top. As an addendum, I do not want the windows to be fullscreen. here is the code that makes the windows, and keeps them alive via while loop: import pygame from pygame import window import random pygame.init() class Module(): def __init__(self): self.monitors = [] self.amount = random.randint(2, 2) self.display_size = pygame.display.get_desktop_sizes()[0] for i in range(0, self.amount): self.monitors.append(window.Window( title=f'test{i}', size=(300, 300), position=(250 +100*i, 250 +100*i), # <- position will be random in actual code always_on_top=True, # should theoretically set the window to always be on top....? )) mod=Module() while True: for event in pygame.event.get(): if event.type == pygame.WINDOWCLOSE: pass Program before clicking on VSC behind the new windows: Two overlapping windows. Window labelled 'test0' is filled in black, and is behind window 'test1' (filled in white) Program after clicking on VSC behind the new windows: After hovering over ONLY window 'test1' and clicking VSC behind the two , window 'test0' becomes minimized My python interpreter is version 3.13.16, and I am running Microsoft Windows 11 Pro (I'd like the code to at minimum be able to run on Windows 11 as well as Windows 10. Possibly MacOS if it isn't too difficult to get working there as well) Update: Attempted a fix utilising pynput mouse to control user mouse and set the position of the mouse to be within the borders of the various windows, before being set back to the original position it was taken from. mouse_pos = self.user_mouse.position self.user_mouse.position = numpy.add((self.monitors[i].position), (10, 10)) # Focuses the window by setting the mouse pos self.user_mouse.position = mouse_pos # reset mouse pos back to original position This did not work. I used the time module's time.sleep() to check if the mouse position was changing, it was, but the windows still did not help the windows stay on top.",
+    "developer": "Pink Acorn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "56"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

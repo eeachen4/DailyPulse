@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5ehbg",
+  "sourceItemId": "1x5ehbg",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x5ehbg/our_pm_wants_prompt_edit_access_which_parts_are/",
+  "detail": {
+    "longDescription": "our PM has asked (fairly) to edit the prompts in our support agent without waiting on us for a deploy every time. i’m fine with it in principle, my problem is the prompt isn’t one thing\n\npart of it is pure product. tone, wording, the few-shot examples, what it says when it can’t help, how it explains our pricing  \nshe knows that better than any of us, and eng reviewing it is a bottleneck with no upside imo\n\nthe rest behaves like code and the tool descriptions decide which tool the model picks on ambiguous requests, there’s an output  format a parser depends on, a couple of guardrail lines, and the instruction that tells the agent when it’s done reword any of those and nothing errors, the agent just starts doing something slightly different. if it’s the stop instruction it can keep going until it hits the max iteration cap  current plan is to split the template so the product sectionsare variables she owns and the rest stays in code review. her edits run against our eval set before they can go live, including a few full agent runs so a shift in tool choice fails a test. deploys stay with whoever’s on call\n\non the tooling side this seems to map onto prompt managers now  \nLangfuse has protected prompt labels, so members and viewers can’t move a protected production label, though admins and owners still can (Pro with the Teams add-on, or enterprise) Orq AI’s Researcher role gets playgrounds and experiments but can’t deploy changes (enterprise plan) or skip the tool and keep prompts in the repo with a CODEOWNERS rule on the  code parts, which is probably where we’ll start",
+    "developer": "_ashishojha",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

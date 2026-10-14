@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009551",
   "sourceItemId": "80009551",
+  "fetchedAt": "2026-10-14T02:13:31.530Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009551/why-does-changing-an-attribute-in-javascript-not-affect-my-css-attribute-selecto",
   "detail": {
     "longDescription": "I'm trying to dynamically create buttons in JavaScript, add them to a div, and then use CSS attribute selectors to change their colors, opacities, and positions But the CSS part doesn't work, nothing happens and they all have the same (default) color and opacity (I set the positions of the buttons manually). .pbutton[data_value =\"3\"] { background-color: #FDDDDD; opacity: 0.7; top: 0px; } .pbutton[data_value =\"3\"]:hover { background-color: #E4E4E4; } .pbutton[data_value =\"2\"] { background-color: #EEEEEE; opacity: 0.8; top: 70px; } .pbutton[data_value =\"2\"]:hover { background-color: #F5F5F5; } .pbutton[data_value =\"1\"] { background-color: #FAFAFA; opacity: 0.9; top: 140px; } .pbutton[data_value =\"1\"]:hover { background-color: #FFFFFF; } const btnsbox = document.createElement(\"div\"); bbox.className = \"pbuttonsbox\"; var offset = 0; for(var i = 1, max = 4; i < max; i++) { const b = document.createElement(\"button\"); b.className = \"pbutton\"; b.data_value = i; //b.data_value = toString(i); //b.style.data_value = i; //b.style.data_value = toString(i); //I tried it all 4 ways and all 4 failed b.style.top = offset + \"px\"; b.innerText = i; offset += 35; bbox.appendChild(btn); } How would I make this attribute selector work? Or if it's not possible, is there a workaround?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "113"
+        "value": "152"
       },
       {
         "label": "状态",

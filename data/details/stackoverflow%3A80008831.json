@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80008831",
+  "sourceItemId": "80008831",
+  "sourceUrl": "https://stackoverflow.com/questions/80008831/merge-two-celery-tasks",
+  "detail": {
+    "longDescription": "Let's say I have a web scraping pipeline. For some reason, I use Celery to write a sanitized payload to the database. The payload is a list for rows. Due to the nature of the problem, two Celery tasks may partially share rows. Is there a way to merge two Celery tasks into one, where I can merge the rows and deduplicate? Even if deduplication is not necessary, It will be nice to do bulk write. I am not interested in the upsert-or-ignore database scenario. @app.task def save_rows(rows): sanitized_rows = sanitize(rows) bulk_write_to_database(sanitized_rows) # Payload received from the scraping pipeline A rows_a = [ {\"url\": \"/article/1\", \"title\": \"Article 1\"}, {\"url\": \"/article/2\", \"title\": \"Article 2\"}, ] # Payload received from the scraping pipeline B rows_b = [ {\"url\": \"/article/2\", \"title\": \"Article 2\"}, {\"url\": \"/article/3\", \"title\": \"Article 3\"}, ] save_rows.delay(rows_a) save_rows.delay(rows_b)",
+    "developer": "Sandi",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "192"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
