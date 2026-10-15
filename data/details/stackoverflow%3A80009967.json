@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80009967",
+  "sourceItemId": "80009967",
+  "sourceUrl": "https://stackoverflow.com/questions/80009967/how-to-use-git-clean-filter-to-do-multiple-substitutions-using-sed",
+  "detail": {
+    "longDescription": "This is a follow on question from this thread about using the Clean Filter to remove unwanted attributes from an SSIS DTSX package when checking in to Git. I've got a basic substitution working using this filter in my git config file and referencing it in my gitattributes file:- [filter \"stripvolatileattributes\"] clean = sed 's/ DTS:ThreadHint=[\\\"][0-9]*[\\\"]//' smudge = cat required = true The issue now is that there are actually several different attributes I want to remove. E.g. ThreadHint, VersionBuild and VersionGUID. From what I've read on line I think I can only reference one filter per file type in gitattributes so I think that leaves me with two choices:- put multiple sed commands on the same Clean filter put multiple pattern and replace pairs on a single sed command I can't seem to work out how to do this. I've seen a few posts saying I can separate commands using a semi colon but if I separate multiple commands only the first seems to be run. I have found some examples that put multiple commands into a separate script file but I'd rather avoid that for simplicity (I'll be leaving this to be maintained by some fairly non-techy people so simplicity is very much a goal). I'm keeping it in my pocket as a fall back option though. Any ideas?",
+    "developer": "FunkyDexter",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "53"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

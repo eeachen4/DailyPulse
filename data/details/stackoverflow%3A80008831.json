@@ -2,9 +2,10 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80008831",
   "sourceItemId": "80008831",
+  "fetchedAt": "2026-10-15T01:52:44.632Z",
   "sourceUrl": "https://stackoverflow.com/questions/80008831/merge-two-celery-tasks",
   "detail": {
-    "longDescription": "Let's say I have a web scraping pipeline. For some reason, I use Celery to write a sanitized payload to the database. The payload is a list for rows. Due to the nature of the problem, two Celery tasks may partially share rows. Is there a way to merge two Celery tasks into one, where I can merge the rows and deduplicate? Even if deduplication is not necessary, It will be nice to do bulk write. I am not interested in the upsert-or-ignore database scenario. @app.task def save_rows(rows): sanitized_rows = sanitize(rows) bulk_write_to_database(sanitized_rows) # Payload received from the scraping pipeline A rows_a = [ {\"url\": \"/article/1\", \"title\": \"Article 1\"}, {\"url\": \"/article/2\", \"title\": \"Article 2\"}, ] # Payload received from the scraping pipeline B rows_b = [ {\"url\": \"/article/2\", \"title\": \"Article 2\"}, {\"url\": \"/article/3\", \"title\": \"Article 3\"}, ] save_rows.delay(rows_a) save_rows.delay(rows_b)",
+    "longDescription": "Let's say I have a web scraping pipeline. For some reason, I use Celery to write sanitized payloads to the database. Each payload is a list of rows. Due to the nature of the problem, two Celery tasks may contain some overlapping rows. Is there a way to merge two Celery tasks into one, combining their rows and deduplicating them? Even if deduplication isn't necessary, it would be nice to batch the writes to the database. I'm not interested in an upsert-or-ignore approach. @app.task def save_rows(rows): sanitized_rows = sanitize(rows) bulk_write_to_database(sanitized_rows) # Payload received from scraping pipeline A rows_a = [ {\"url\": \"/article/1\", \"title\": \"Article 1\"}, {\"url\": \"/article/2\", \"title\": \"Article 2\"}, ] # Payload received from scraping pipeline B rows_b = [ {\"url\": \"/article/2\", \"title\": \"Article 2\"}, {\"url\": \"/article/3\", \"title\": \"Article 3\"}, ] save_rows.delay(rows_a) save_rows.delay(rows_b) Update: The snippet above is a simplification. Pipelines A and B run in separate processes, and each independently calls save_rows.delay(rows_x) at an arbitrary time.",
     "developer": "Sandi",
     "comments": 1,
     "stats": [
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "192"
+        "value": "202"
       },
       {
         "label": "状态",

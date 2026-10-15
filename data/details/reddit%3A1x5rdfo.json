@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5rdfo",
+  "sourceItemId": "1x5rdfo",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x5rdfo/how_do_you_know_a_renovate_chart_bump_is_safe_to/",
+  "detail": {
+    "longDescription": "*Disclaimer: I'm the author of deadvalues, one of the two tools below. argocd-diff-preview is not mine.*\n\nI run Argo CD with \\~34 Applications and let Renovate open a PR for every chart and image update. The hard part is knowing which PRs are safe: Helm silently ignores values a chart no longer reads, so a renamed key can drop your setting while CI and the sync stay green. That's how I lost a backup label on a volume.\n\nOn every PR I now run:\n\n1. **argocd-diff-preview**: renders every Application on both branches in a throwaway cluster and comments the manifest diff.\n2. **deadvalues**: reports the keys a chart upgrade stopped reading (fails the check), keys pinned to an old default, and keys that do nothing.\n\nOn a kube-prometheus-stack bump, the diff was +157/-153 lines; deadvalues said only one default I don't set had changed. Neither catches runtime issues (an image that won't start, a DB migration).\n\nHow do you handle it? Read release notes for every bump? Automerge patches? Wait a few days after a release (Renovate's minimumReleaseAge) so others hit the bugs first? Anything that catches runtime breakage before the sync?\n\n[https://github.com/dag-andersen/argocd-diff-preview](https://github.com/dag-andersen/argocd-diff-preview)  \n[https://github.com/guarnz/deadvalues](https://github.com/guarnz/deadvalues)",
+    "developer": "ricardinoguarnieri",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

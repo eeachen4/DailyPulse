@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x642sf",
+  "sourceItemId": "1x642sf",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x642sf/anyone_using_open_weight_models_running_locally/",
+  "detail": {
+    "longDescription": "Hey folks; question for you - are any of you using open weight models running locally for actual development tasks? If so, what models are you using, and what kind of tasks are you giving them?\n\nI ask, because I've made an [open source harness](https://cercano-ai.github.io/Cercano/) (you can play with it, but it's still beta and I have done almost no windows/linux testing and the first run experience is not great yet). A big part of how it works is that there are three routing tiers: \n\nPrimary | Secondary | Local. \n\n* **Primary** - What runs your main agent, and for instance, i use it with my ChatGPT/Claude account. \n* **Secondary** - What the main agent primary delegates to. I personally use a deep infra account and GLM 5.3 + GLM 5.3 AIr. GLM 5.3 is slow, but super capable. 5.3 air is fast and nearly as capable. \n* **Local** - The harness routes to this for truly local tasks. Git workflows, documentation, searching through code and creating summaries, etc.\n\nThe thing about local, is that I have a 128GB M5 or whatever, and I run llama-server with GLM 4.5 air. And with a proper context size (128K), it takes like 96GB of RAM or something. I have tried Qwen3, Gemma3, and some older deep seek models and anything less than GLM 4.5 air has been pretty disappointing. It's possible that I had Qwen3 or deep seek not properly configured (and I've made some changes since to better handle tool calls and whatnot), but I had very little luck with them. I've seen the benchmarks, and they make me believe that I shouldn't need a 96GB model to get decent local development experience. \n\nSo if you've run some local models with good experience, what have you been running? what amount of RAM on your machine do you have? I really want some good out of the box configurations in Cercano for folks that have a 48GB/96GB machine, and your experience can help me here.",
+    "developer": "bryancostanich",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

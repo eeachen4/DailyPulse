@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x60zhc",
+  "sourceItemId": "1x60zhc",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x60zhc/strata_coder_epyc_7532_8channel_ddr4_vs_ryzen/",
+  "detail": {
+    "longDescription": "I appreciate everyone here is probably sick to death of Strata posts by now, but frankly, this is also the most knowledgeable community I've found when it comes to squeezing ridiculous amounts of AI performance out of questionable hardware. So I figured this was probably the best place to ask!\n\nI've been looking into Strata, particularly the dedicated **Qwen3.8-Flash-Next Coder (GSQ-RCO IQ1\\_M)** model for local coding with OpenCode.\n\nI've got two rather different machines and I'm curious how much CPU architecture and system memory bandwidth actually affect Strata's performance.\n\n**System 1 — EPYC Server**\n\n* EPYC 7532 — 32C/64T, Zen 2\n* 128 GB DDR4-2666 ECC, 8 channels\n* RTX 3090 24 GB\n* PCIe 4.0\n\n**System 2 — Gaming PC**\n\n* Ryzen 9 9950X3D — 16C/32T, Zen 5\n* 96 GB DDR5-6000 CL30, dual channel\n* RTX 3090 24 GB (can move the same card between systems)\n* PCIe 4.0 GPU\n\nThe EPYC has roughly 171 GB/s theoretical memory bandwidth versus 96 GB/s on the Ryzen, but the Ryzen has much faster cores and AVX-512.\n\n**Has anyone benchmarked Strata Coder on either platform, or compared modern Ryzen systems against older eight-channel EPYC servers?**\n\nI'm particularly interested in:\n\n* Prompt processing versus generation speed\n* GPU expert-cache hit rates\n* Whether CPU performance or memory bandwidth makes the bigger difference\n* How much performance changes between Coder IQ1\\_M and the full Flash-Next IQ3\\_S model\n* Whether the CPU/RAM differences become insignificant once most experts are cached in VRAM\n\nIf you've got benchmark results, it'd be great to know your CPU, RAM configuration, GPU, Strata version, quantisation and context length.\n\nI'm planning to benchmark both systems with the same RTX 3090, but figured I'd ask whether anyone has already investigated this.\n\n**I'm especially curious whether Strata's optimisations have made older eight-channel server platforms genuinely competitive with modern DDR5 desktop CPUs for local coding.**",
+    "developer": "SKX007J1",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

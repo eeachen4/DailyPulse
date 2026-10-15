@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5ydk7",
+  "sourceItemId": "1x5ydk7",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x5ydk7/how_do_you_decide_a_k8s_resource_request_is/",
+  "detail": {
+    "longDescription": "say a workload uses a quarter of what it requests. cutting the request seems obvious, but a couple of things complicate it.\n\nif its HPA targets CPU utilization, lowering the CPU request can cause it to scale up even though actual CPU usage hasn’t changed.\n\nand after an OOMKill, current memory usage can look fine while missing what caused the previous container to get killed. especially if you’re lowering memory limits along with requests.\n\nboth came up while we were building rightsizing into Radar (open source).\n\nfor those doing this in prod, what other cases make you think twice before lowering requests?",
+    "developer": "royLskyhook",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

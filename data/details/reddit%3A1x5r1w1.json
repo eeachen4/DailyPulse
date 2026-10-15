@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5r1w1",
+  "sourceItemId": "1x5r1w1",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x5r1w1/is_trunk_based_development_possible_if_an/",
+  "detail": {
+    "longDescription": "I'm proposing my team move from long-lived dev/stg/prd branches to trunk-based development, with PRs straight to main. \n\nI'm fairly new to this, so forgive me if I'm missing something obvious.\n\nThe sticking point is testing before merge. \n\nOur current integration test runs the entire DAG end-to-end. This is fine as a single check before merging our test branch (which will contain all commits from developers over the sprint) to main. But it's slow and costly if it were to run as part of every PR. Today we run it manually, check the outputs, then merge.\n\nI am wondering if it’s bad practice to leave this integration test until the end of the sprint. As in, developers merge to main (with some automated checks running as part of each PR before merge), and then when are team want to deploy the sprint changes, first run a single integration test before creating a new release tag In GitHub.\n\nThis does mean that main can’t be considered prod ready at all times. \n\n",
+    "developer": "Data-Panda",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

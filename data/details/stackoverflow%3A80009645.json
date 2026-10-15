@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009645",
   "sourceItemId": "80009645",
+  "fetchedAt": "2026-10-15T01:52:44.632Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009645/is-spec-type-a-supported-field-selector-for-services-docs-dont-list-it-but",
   "detail": {
     "longDescription": "The field selectors documentation lists supported fields per resource type. For Services, only metadata.name and metadata.namespace are documented. However, I've seen a project note (measured against apiserver v1.35.0) stating that spec.type is a supported field selector for Services: kubectl get svc -A --field-selector spec.type=LoadBalancer while other sources report Error from server: field label not supported: spec.type . My questions: Is spec.type a valid field selector for Services, and if so, since which Kubernetes version was it added? If unsupported, does the API server reject it with 400, or silently ignore it? I want a portable answer (not version-accidental behavior).",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-4"
+        "value": "-5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "51"
+        "value": "57"
       },
       {
         "label": "状态",

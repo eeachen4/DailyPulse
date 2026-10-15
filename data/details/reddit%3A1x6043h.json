@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6043h",
+  "sourceItemId": "1x6043h",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x6043h/heir_run_kubernetes_control_planes_as_pods_and/",
+  "detail": {
+    "longDescription": "It has been some time since I started working with Kubernetes at scale, from designing, deploying, and maintenance, and time taught me it's a fantastic technology, but also very taxing in the short, mid and long run. One of the things that bothered me most is the 3-node tax and how hard it is to operate at scale.  \nAt some point I decided to shake the monster's hand by reading the source code. What I found: it is just an application with state, nothing more and nothing less, and the software industry has been dealing with stateful applications since before I was born, without ever needing ceremonies to operate them.  \nIn my opinion, the traditional way of operating add-ons can be considered an architectural crime. Various add-ons are installed on clusters to extend functionality, but that extension is a consequence of the primary objective: running workloads. Operators work with a control plane and a data plane, and the problem is both layers compete for the same resources despite not sharing the same availability requirements. In multi-cluster environments, which is the reality for most organizations, the redundancy in resource use and maintenance becomes hard to justify.  \n  \nTo resolve these issues, I built Heir (read why it's called that here: [Why Heir?](https://tardigradeproj.github.io/docs/blog/why-heir)).  \n  \nHeir is a Kubernetes distribution built around one idea: every cluster's control plane automatically inherits the availability of a management cluster. Rather than dedicated per-cluster infrastructure, Heir runs the control plane as a workload inside a shared management cluster, so a single, well-operated cluster serves as the foundation for as many tenant clusters as you need. Heir ships as a single self-contained binary weighing only 135MB. Architecture: [**https://tardigradeproj.github.io/docs/architecture**](https://tardigradeproj.github.io/docs/architecture)  \n  \nHeir is open to contributions of all kinds, whether code, documentation, or issues. All contributions are welcome.   \nYou can try it by following Quick start guide: [https://tardigradeproj.github.io/docs/installation/quickstart](https://tardigradeproj.github.io/docs/installation/quickstart)",
+    "developer": "PlatformStriker8287",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

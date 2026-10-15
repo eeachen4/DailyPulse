@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50093003",
+  "sourceItemId": "50093003",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50093003",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Juho from Upright. I think we may have stumbled upon an interesting approach to AI alignment. The idea is as follows: 1. train a decision model to be really good at comparative sizing of consequences, expected value problems, and modelling overlap between different consequences 2. create a harness around that model that accepts a decision context, list of options, and identified consequences, then runs pairwise comparisons and overlap modelling for the consequences using the decision model in (1), and finally solves implied relative consequences &quot;sizes&quot; and finally EV (for different stakeholders) 3. Make AI agents running on general purpose LLMs use (2) to make better decisions. So the agent provides the context, options, and identifies the consequences, Eevo model just sizes them, models their overlap, and computes EV. In practice this seems to improve agent judgement a lot (in addition to adding lots of practical observability) It seems the (well-motivated) emphasis on instruction-following hurts model&#x27;s performance on expected value tasks. The underlying decision model we trained beats Jev, Clef, MS decision-1 the model on OpenAI decisions API on economic rationality benchmarks like STEEP, expected value tasks, poker, and even Pacman (Jevman benchmark). I swear to you we did not Benchmaxx on Pacman Also it seems to be useful also for human decisions. Just getting other people&#x27;s decisions presented to you in standard format with consequences listed and sized is just very pleasant. There are some testers though who think this is useful for improving everyone&#x27;s judgement, except their own",
+    "externalUrl": "https://www.uprightproject.com/eevo/",
+    "developer": "ojalajuho",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

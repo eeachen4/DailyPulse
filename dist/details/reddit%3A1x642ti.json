@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x642ti",
+  "sourceItemId": "1x642ti",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x642ti/how_do_you_test_an_ai_agent_in_ci_when_the/",
+  "detail": {
+    "longDescription": "Normal tests check that the right answer comes back. For an agent, the failures that hurt are different: a tool call that returns a malformed payload, a timeout partway through a run, an instruction hidden inside the data the agent reads.\n\nFault injection is the only approach I’ve seen that really tests this. You break things on purpose and check that the agent stops safely instead of making something up.\n\nThere’s a four hour workshop on Saturday, Oct 31, from 9:30 AM to 1:30 PM ET with Bruno Gonçalves that builds exactly that, as a test suite you can run in CI. Along the way you build:\n\n* A tool layer with permission checks\n* A context manager that works inside a hard token budget\n* A run supervisor with retries and budgets\n\n[Full details and the agenda are here.](https://www.eventbrite.co.uk/e/harness-engineering-build-an-ai-data-analyst-you-can-actually-trust-tickets-2002290848829?aff=rdt&discount=RDT35)",
+    "developer": "camerongreen95",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5u2wz",
+  "sourceItemId": "1x5u2wz",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x5u2wz/mapping_the_posttransformer_architecture/",
+  "detail": {
+    "longDescription": "Went down the rabbit hole to map the different Post-Transformer architectures. Various directions include Dragon Hatchling (BDH), Mamba, RWKV, xLSTM, Titans, and a bunch of hybrid models coming from different AI Labs. My interest areas are architectural changes that can improve reasoning, memory, and adaptation within practical compute and energy budgets.\n\nIMO, the next frontier might be less about scaling alone and more about getting more intelligence out of limited resources. That's what got me looking into these architectures and putting together this comparison table.\n\nThe 2 tables compare their core mechanisms, attention variants, test-time memory, and how some of these approaches overlap(not so mutually exclusive).\n\n# Post-Transformer architectures\n\n|Architecture / Lab|Core mechanism|\n|:-|:-|\n|Mamba-2 / Mamba-3 - Gu, Dao et al.|Selective SSM; Mamba-3 adds complex-valued state + MIMO|\n|RWKV-7 \"Goose\" - RWKV Foundation|Parallelizable RNN, constant memory, no KV cache|\n|BDH (Dragon Hatchling) - Pathway|Graph of neurons, attention emerges from local interactions. GPU form = ReLU-low-rank + linear attention|\n|xLSTM - NXAI|Exponential gating + matrix memory (mLSTM)|\n|Titans - Google Research|Neural long-term memory module updated by \"surprise\" at test time|\n|Qwen3-Next - Alibaba Qwen|Gated DeltaNet: attention, 3:1|\n|Kimi Linear - Moonshot AI|Kimi Delta Attention: MLA, 3:1|\n|MiniMax-01 / M1 - MiniMax|Lightning Attention: softmax, 7:1, + MoE|\n|Jamba / Jamba 2 - AI21 Labs|Mamba : attention ≈ 7:1, + MoE|\n|Nemotron-H - NVIDIA|Most attention layers swapped for Mamba-2|\n|Falcon-H1 - TII|Attention and Mamba-2 heads run *in parallel* inside each block|\n|Zamba2 / Zamba2-VL - Zyphra|Mamba-2 backbone + shared-weight attention blocks every N layers|\n|LFM2 / LFM2.5 - Liquid AI|10 gated short-conv blocks + 6 GQA blocks, found by hardware-in-the-loop search|\n|StripedHyena 2 (Evo 2) - Together AI / Arc Institute|Three Hyena conv operators (short/medium / long implicit) + attention|\n|HRM / HRM-Text - Sapient Intelligence|Two coupled recurrent modules (slow planner, fast worker), single forward pass|\n\n# Where they overlap\n\n|Architecture|Linear attn.|Softmax attn.|Test-time / fast weights|Brain-inspired|\n|:-|:-|:-|:-|:-|\n|Mamba-2 / Mamba-3|✓ (via SSD)|\\-|\\-|\\-|\n|RWKV-7 \"Goose\"|✓|\\-|✓ (dynamic state evolution)|? (RNN lineage)|\n|BDH (Dragon Hatchling)|✓|\\-|✓ (Hebbian synapses)|✓|\n|xLSTM|✓ (covariance update)|\\-|✓|? (LSTM lineage)|\n|Titans|\\-|✓ (MAC / MAG variants)|✓|✓ (memory framing)|\n|Qwen3-Next|✓|✓ (1 in 4)|✓ (delta rule)|\\-|\n|Kimi Linear|✓|✓ (1 in 4)|✓ (delta rule)|\\-|\n|MiniMax-01 / M1|✓|✓ (1 in 8)|\\-|\\-|\n|Jamba / Jamba 2|✓ (inherited)|✓ (1 in 8)|\\-|\\-|\n|Nemotron-H|✓ (inherited)|✓|\\-|\\-|\n|Falcon-H1|✓ (inherited)|✓|\\-|\\-|\n|Zamba2 / Zamba2-VL|✓ (inherited)|✓ (shared blocks)|\\-|\\-|\n|LFM2 / LFM2.5|\\-|✓|\\-|\\-|\n|StripedHyena 2 (Evo 2)|\\-|✓|\\-|\\-|\n|HRM / HRM-Text|\\-|? (inside modules)|\\-|✓|\n\nFor Ref:  ? = uncertain or variant-dependent. “Inherited” = attributed to a constituent component. Ratios = linear-attention/SSM layers: softmax-attention layers.\n\nI feel like a lot of major shifts in AI start as research breakthroughs and eventually become the focus of innovation across the industry. Lmk if I've missed any architectures worth adding or if there are any disagreements. Thoughts?",
+    "developer": "Public-Feedback-6705",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

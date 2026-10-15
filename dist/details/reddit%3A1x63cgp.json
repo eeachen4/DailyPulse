@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x63cgp",
+  "sourceItemId": "1x63cgp",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1x63cgp/new_codex_security_is_ridiculous/",
+  "detail": {
+    "longDescription": "I was working through Dot having it build out a queuing system for my agents. The agents were using powershell to execute the commands to setup the application. At some point, my antivirus decided to block a scripts execution. This came to me as a report from Dot that the execution was blocked by antivirus.\n\nSo I went out and checked my antivirus to validate yep it did get blocked. So I add a whitelist to the script that was blocked, go back to Dot, and tell it to rerun the script.\n\nNope. The agent overrules my approval because IT cant verify that MY antivirus truly detected a false positive.\n\nI then ask it if it was executing a script it wrote. Yep. Is that script malicious? Nope. So I tell it that with that information I approve rerunning the NOT MALICIOUS CODEX WRITTEN SCRIPT. NOPE. It refuses the execute the script a second time because it still can't use that information to verify the script is not malicious.\n\nI then ask it for the exact script it executed. I review the script line by line and determine it is not malicious. I copy and paste the code into the chat and ask if that's the script it wrote. Yep. I tell it that I've whitelisted the script in my antivirus and now approve the verified NOT MALICIOUS script to be run again.\n\nNOPE. It now refuses to run the script BECAUSE I whitelisted it. It states that it cannot execute a script that we're purposefully trying to hide from MY antivirus.\n\n  \nThis is the SECOND time this has happened this week and BOTH have blocked my development. Other refusals are \"We cannot rewrite the script to get around security\", \"We cannot rerun the same script in attempt to bypass security\".\n\n  \nI'm starting to think these changes are purposefully being put in place to force people to provide Full Access and disable their antiviruses.",
+    "developer": "Kyuiki",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

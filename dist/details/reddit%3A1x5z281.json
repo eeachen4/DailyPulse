@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5z281",
+  "sourceItemId": "1x5z281",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x5z281/helicone_alternatives_for_enterprise_teams_were/",
+  "detail": {
+    "longDescription": "we’ve had Helicone sitting in front of our OpenAI and Anthropic calls for about a year self hosted, mostly for request logs and cost per feature and since Mintlify acquired it in march it’s been in maintenance mode, security updates, bug fixes and new model support but a frozen roadmap, and our security team isn’t thrilled about running something in the request path that’s no longer moving\n\nwhat i didn’t appreciate until i started looking is that the migration path depends on how you used Helicone. we use it as a proxy, every service just points its base URL at it. that’s why it was so easy to adopt, and it’s also why a lot of the  so called alternatives  lists don’t help much, half of what they list is SDK based tracing that needs instrumenting in every service if you want to keep the proxy shape, the options i’ve found are LiteLLM’s proxy (open source, self hosted, budgets per virtual key)Portkey, and Orq AI’s gateway, which keeps the logs and evals in the same place. if you’re ok moving to SDK or OTel tracing, Langfuse and Phoenix come up most, both open source\n\nthe enterprise bits are where it gets fiddly for us  we need SSO and per team cost attribution, and since a lot of our customers are in the EU, legal cares where the traces end up. self hosting made that a non question so far, and anything hosted reopens it tbh",
+    "developer": "_ashishojha",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

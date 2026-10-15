@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5nu3o",
+  "sourceItemId": "1x5nu3o",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x5nu3o/orphaned_generation_after_client_cancellation_in/",
+  "detail": {
+    "longDescription": "We measured what an LLM serving engine does after the client stops wanting the output, with passive observers in the scheduler and every GPU rank on the client's clock. 8,806 tasks over two rounds, Qwen3-8B and gpt-oss-20b, L4 / A10G / L40S, TP 1/2/4 and PP=2.\n\nCode, journals and analysis (every figure regenerates from raw journals): https://github.com/Sorami-Consulting-AU/llm-tokens-after-cancel\n\nMain results:\n\n- **Abort latency:** one decode step on vLLM in all 11 direct configurations (median 0.93 to 0.99), two on SGLang (1.99). We explain it with one exploratory rule: an abort lands at the first scheduling boundary after the engine receives the disconnect, and each layer's detection method decides when that is. It also predicts the 2.29 s survival of queued SGLang requests (predicted 4.0 - 1.75 = 2.25 s plus up to one step).\n- **No close:** both engines generated the remaining output to within 4% (registered bound 5%, held).\n- **Completion under load:** closing stale attempts gave up to +40 points, but our registered prediction that the gain rises with timeout rate failed (Spearman -0.11 against a 0.70 threshold). It looks like an inverted U against walk-away completion. That axis was chosen after seeing the data.\n- **Cost model:** our registered GPU-time model overpredicted TP=2 and TP=4 by 25.6% and 31.6% (bound 10%, refuted).\n\nLimits: two engine versions, single nodes, synthetic prompts, fixed abandonment after 8 visible tokens. Only the round-1 confirmatory study and round-2 predictions have registered decision rules. Everything else is exploratory and not adjusted for multiplicity. The pre-registrations are in the git history, not with OSF.\n\nReport: https://sorami.com.au/research/llm-tokens-after-cancel/\n\nDisclosure: I work at Sorami, which ran this study.\n\nFeedback on the method is welcome. In particular, is there a better closed-form way to model per-token GPU time when steps are shared with other requests?",
+    "developer": "No-Peanut-6988",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

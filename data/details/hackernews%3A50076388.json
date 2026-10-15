@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:50076388",
   "sourceItemId": "50076388",
+  "fetchedAt": "2026-10-15T01:52:44.632Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50076388",
   "detail": {
     "longDescription": "I&#x27;ve used SSH tools for years and didn&#x27;t really plan on building yet another SSH client, but I ended up building one the way I wanted. Hatoba is a desktop SSH client for Windows, Linux and macOS. It&#x27;s written in Rust with Tauri 2 and MIT licensed. Each terminal has an AI assistant panel next to it. You describe the problem, and it reads the terminal screen, runs commands, types into the shell, and reads, edits and searches files on the host to find the cause and fix it. You can approve every command and edit it before it runs, let a model you pick approve the safe ones, or turn approval off. Files it changes show a diff you can undo. It works with any OpenAI-compatible or Anthropic API, local models included, and supports skills and MCP servers. Sync doesn&#x27;t go through a server of mine. Hatoba deploys a Worker and a D1 database to your own Cloudflare account and syncs hosts, keys and AI conversations through them. The free plan usually covers personal use. Everything is encrypted on the device before it leaves. Keys are derived from your master password with Argon2id, every item is encrypted with AES-256-GCM, and the Worker only stores ciphertext plus the hashes it needs to sign you in. Someone who gets hold of the whole Cloudflare account still only gets ciphertext. Sync is optional, and everything works offline without it. The usual SSH client features are there too: groups, tags and fuzzy search, ~&#x2F;.ssh&#x2F;config import, ProxyJump and SOCKS5&#x2F;HTTP proxies, an SFTP panel, local port forwarding, and a key vault that imports OpenSSH, PEM and PuTTY keys. There&#x27;s also a dashboard showing CPU, memory, disk and network for every saved host, read over plain SSH with nothing installed on the servers. SSH is russh, the terminal is xterm.js with the WebGL renderer, and the UI is React. I develop on Windows, so it&#x27;s Windows first, with a custom title bar that supports Snap Layouts and Mica, and working CJK input methods. The Linux packages and the macOS build get far less testing on real machines. The macOS build is Apple Silicon only and isn&#x27;t notarized, so macOS blocks it on first launch until you allow it in Privacy &amp; Security. Bug reports from Linux and Mac users would help the most. Website: https:&#x2F;&#x2F;hatoba.fog.moe Downloads: https:&#x2F;&#x2F;hatoba.fog.moe&#x2F;download&#x2F;",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "评论",

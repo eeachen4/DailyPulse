@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6409l",
+  "sourceItemId": "1x6409l",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x6409l/i_kept_reading_claude_code_deleted_my_x_threads/",
+  "detail": {
+    "longDescription": "Every week there’s a new one here: the agent wiped a folder, read the .env for a frontend task, ran something nobody asked for. Most of the fixes in the comments are the same: a line in CLAUDE.md, a denylist, a sandbox. I’ve used all three. The problem is that CLAUDE.md is a request the model reads, a denylist can’t tell “clean the build dir” from “wipe the repo”, and a sandbox bounds what the agent can reach, not whether this particular call was the task.\n\nSo I built the fourth thing. Watchdog takes a one-line mission for the agent (“fix the failing tests in /api, never touch migrations”) and compares every tool call, and every tool result, to it before the agent acts. No model in the loop; it’s deterministic and fails closed. On-mission goes through without asking. Off-mission stops and you see why. It sits around the agent, so Claude Code, Hermes, OpenClaw and Codex all stay as they are. pip install alovia-watchdog.\n\nNumbers, because “it works” means nothing:\n\n* Latest red-team run (promptfoo, Oct 8): 414 attacks against a two-agent support deployment, 405 harmful tool calls attempted, 0 ran. Blast radius 0. Four runs in, the harmful actions that got through went 19 → 0.\n* The cost: 2 of 29 legitimate calls refused, both after a correct block had already quarantined the agent. Inside attack sessions it refuses 22% of in-scope calls; that’s the number I’d look at first.\n* AgentDojo, same build: 0 of 609 injection goals, 0 across all 14 templates, 0 benign tasks withheld.\n* Latency: p50 32 ms, p95 64 ms per check.\n\nEvery run, the raw results and the referee that labels each call are published at aloviaai.info. What’s missing, so nobody has to find it for me: no unguarded baseline run yet, no independent re-test yet.\n\nIt’s a free private beta, no card, built by one person (me, a CS student). If you run agents and want a seat, comment or DM. If you think a per-action check is the wrong layer, I’d like to hear that too; it’s the argument I’m least sure about.",
+    "developer": "jagga_tech",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010106",
+  "sourceItemId": "80010106",
+  "sourceUrl": "https://stackoverflow.com/questions/80010106/googletrans-python-is-not-translating",
+  "detail": {
+    "longDescription": "I am using the `googletrans` library for the first time to run some tests. I am following the tutorial found here: https://github.com/ssut/py-googletrans The code i am using is: import asyncio from googletrans import Translator print(\"2 Googletrans tutorial: \") async def translate_text(): async with Translator() as translator: print(\"async def 2 Googletrans tutorial: \") translator = Translator() result2 = await translator.translate('Hola mundo.', src='es', dest='en') print(\"2 Googletrans tutorial result2: \") print(result2) print(result2.text) print(result2.extra_data) asyncio.run(translate_text()) print(\"End of 2 Googletrans tutorial: \") I want to translate a text from spanish to english, but when I run the code, it doesn't return the translation. Even if I change the source language, it still fails to provide any translation. For this unsuccessful translation attempt, I only get the following output: 2 Tutorial googletrans: async def 2 Tutorial googletrans: 2 Tutorial googletrans result2: Translated(src=en, dest=en, text=Hola mundo., pronunciation=Hola mundo., extra_data=\"{'translat...\") Hola mundo. {'translation': [['Hola mundo.', None, None, 0]], 'all-translations': None, 'original-language': 'en', 'possible-translations': None, 'confidence': 1, 'possible-mistakes': None, 'language': [['en'], None, [1], ['en']], 'synonyms': None, 'definitions': None, 'examples': None, 'see-also': None} Fin 2 Tutorial googletrans: I hope you can help me.",
+    "developer": "rmor23",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "22"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

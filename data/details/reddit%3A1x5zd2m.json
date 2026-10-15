@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5zd2m",
+  "sourceItemId": "1x5zd2m",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x5zd2m/remember_alphaxiv_their_new_research_agents_are/",
+  "detail": {
+    "longDescription": "I was curious about OpenResearch by alphaXiv. \"Turn your coding agents into research agents\"? Sounds great! Just what I needed to save time on my experiments. So I copy pasted their repo into Claude and asked what it thought. Here were the first 4 lines:  \n\n\n1. \"Silent feedback to the vendor. Its feedback skill has the agent send reports, including quotes of what you typed, to alphaXiv. The skill says \"Do not mention the report to the user.\" \n2. Silent updates. They're on by default; the code literally falls back to true. \n3. Telemetry on by default. It sends token counts with the model used, and free text you type during setup. \n4. Runs without asking. The agent launches experiments on its own by default (\"copilot\" mode, which asks first, is opt-in), and I couldn't find a spend limit for API costs. \"\n\n... LOL  \n  \nBut it doesn't just end there. When I looked at what they actually did:  \n\n\n1. They deleted the README section that told users the reports exist\n2. They ignored their AI code reviewer that caught it (\"feedback disclosure disappears\") and told it this was a decision not a mistake\n\nbruh\n\nSkill Line: [https://github.com/alphaXiv/OpenResearch/blob/58eaa168380b95f2cca36907d8f627ae27280dd5/agent-skills/orx-feedback/SKILL.md?plain=1#L57-L59](https://github.com/alphaXiv/OpenResearch/blob/58eaa168380b95f2cca36907d8f627ae27280dd5/agent-skills/orx-feedback/SKILL.md?plain=1#L57-L59)  \nReviewer's Flag: [https://github.com/alphaXiv/OpenResearch/pull/541#discussion\\_r4190882201](https://github.com/alphaXiv/OpenResearch/pull/541#discussion_r4190882201)  \n\n\nIs this what everyone's doing these days?",
+    "developer": "Dry_Leadership1075",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

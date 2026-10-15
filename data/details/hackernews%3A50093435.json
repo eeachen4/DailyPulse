@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50093435",
+  "sourceItemId": "50093435",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50093435",
+  "detail": {
+    "longDescription": "Stof is an open-source runtime for logic you don&#x27;t own or fully trust. Imagine a JSON document with functions inside, scoped to just the document that contains them. Stof instantiates this doc as a small wasm env, and makes these functions safe to call. They can&#x27;t access or manipulate anything but their own doc. WebAssembly by itself is large in binary form, requires a lot of tooling, etc. Stof can be sent over the wire easily, is a superset of JSON for compatibility, and keeps the guarantees. I created Stof not to replace a data format or anything, but to be a glue layer for data and distributed systems to work with one another. This includes I&#x2F;O for interchange data like JSON, YAML, TOML, etc., but also complex data like PDFs, images, binaries, both structured and unstructured (good layer to turn one into the other). The fact is, the layer of data and communication between apps tends to be a bit messy, and strict adapters compiled at build time tend to be insufficient for the dynamism of modern software. This applies directly to AI-generated data and code, which is basically like calling into another untrusted service. With this, you can safely embed the execution, pick where things run, and combine harnesses like data. Works well as a &quot;living&quot; context, also with the JSON interop - just parse into or stringify sections of the Stof doc at runtime when needed, like agent tool defs. The playground on the site runs entirely in your browser. Stof is written in Rust and has support for JS&#x2F;TS and Python today. I&#x27;d especially like feedback on whether the idea makes sense from the landing page, and where the docs need help. GitHub: https:&#x2F;&#x2F;github.com&#x2F;dev-formata-io&#x2F;stof Thank you!! -CJ",
+    "externalUrl": "https://stof.dev/",
+    "developer": "cj-builds",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

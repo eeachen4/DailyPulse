@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x64267",
+  "sourceItemId": "1x64267",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x64267/was_my_r9700_worth_the_price/",
+  "detail": {
+    "longDescription": "I have been working on a side project the past week. I am running a single R9700, Qwen3.6-35B-A3B-UD-Q6\\_K with a 220k context size. I use the claude cli as my harness and I have been testing out the AWS AIDLC 2.11 workflow. \n\nStats from Claude :  \nSessions: 46                    Longest session: 13h 37m 31s\n\nActive days: 5/7                Longest streak: 3 days\n\nMost active day: Oct 14         Current streak: 3 days\n\nInput 20.7m · Output 3.2m · Cache read 1.4b · Cache write 0\n\n  \nA few notes... Qwen 3.60 35B has not been perfect. As context grows, it sometimes get confused with the workflow commands. There are some lost tokens, and multiple turn code reviews, until it got things perfect. Opus would probably have been better there, so the numbers below are probably not exact. On the other hand, my llama cache has no set expiration if I pause work. I have been considering paying for Opus just for code reviews and planning, I have been using ChatGPT $20 plan for that by dragging files and copying and pasting stuff i want a second agent to review, which is annoying but it works.\n\nEstimated costs from chatgpt compared to Opus 5.5 : \n\n# $426.80\n\n46 sessions · 5 active days · Standard API pricing\n\n# Cost breakdown\n\n|Token category|Usage|Rate / 1M|Cost|\n|:-|:-|:-|:-|\n|Input|20.7M|$4.00|$82.80|\n|Output|3.2M|$20.00|$64.00|\n|Cache reads|1.4B|$0.20|$280.00|\n|Cache writes|0|$5.00|$0.00|\n|Total|||$426.80|\n\nPricing verified against [Anthropic's official pricing documentation](https://platform.claude.com/docs/en/about-claude/pricing).\n\nClaude Platform Docs\n\n\\+1\n\n\n\n# Session statistics\n\nAverage per session\n\n# $9.28\n\nPer active day\n\n# $85.36\n\nCache read share\n\n# 65.6%\n\nWhere the $426.80 goes\n\nCache reads\n\nInput\n\nOutput\n\n# The interesting part: your cache usage\n\nYou've accumulated 1.4 billion cached input tokens. At the standard, uncached Opus 5.5 input rate, those tokens would theoretically cost $5,600 instead of $280.\n\nYour local Qwen setup is therefore processing a workload that would have a meaningful API cost, even with prompt caching.\n\nThe $426.80 is an estimate, not a billing statement. It assumes equivalent Opus token counts, standard API rates, and no additional tool or service charges. Your displayed statistics are also rounded.\n\nFor context, you're averaging roughly $9.28 in equivalent Opus API usage per session. That is a useful benchmark when evaluating the economics of your local AMD R9700 system and the lighter workflow we're designing.\n\n",
+    "developer": "supracode",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

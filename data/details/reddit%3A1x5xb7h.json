@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x5xb7h",
+  "sourceItemId": "1x5xb7h",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x5xb7h/our_model_comparison_was_mostly_measuring_a/",
+  "detail": {
+    "longDescription": "In an earlier OmniNode model comparison, a small local model and a much more expensive frontier model kept getting the same pass and fail results. I work on OmniNode, and at first that looked like a useful result for deciding where to spend money.\n\n\n\nThe check was mostly looking for expected markers in the output. It couldn't tell us whether either implementation actually worked. In another run, the reasoning model used up its response budget before finishing its answer, so we were also treating a harness configuration problem as a model failure.\n\n\n\nNeither result told us what we thought it did. The cheap model hadn't earned a general claim about capability, and the expensive one hadn't had a fair attempt at the task.\n\n\n\nI'd now separate an invalid run from an incorrect answer before comparing scores, and keep broken implementations that the checker has to reject. I'm interested in how people test that second part. Do you maintain a separate set of failures for the evaluator itself, or mostly investigate it when the model scores look suspicious?",
+    "developer": "jonah_omninode",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

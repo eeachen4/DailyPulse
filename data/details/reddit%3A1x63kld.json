@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x63kld",
+  "sourceItemId": "1x63kld",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1x63kld/i_vibecoded_an_opensource_siem_modeled_on_splunk/",
+  "detail": {
+    "longDescription": "I work in security and spend a lot of time in Splunk Enterprise Security. I wanted to see how close I could get to the same workflow in something free and open source: findings you triage, risk-based alerting with asset and identity context, and searches that read like SPL.\n\n\n\nIt's called Signalith. It's a personal project, Apache 2.0, and it runs on Windows and Linux.\n\n\n\n\\- Code: [https://github.com/jrsamsanchez/Signalith](https://github.com/jrsamsanchez/Signalith)\n\n\\- Demo video: [https://signalith.io/#demo](https://signalith.io/#demo)\n\n\\- Docs: [https://signalith.io/docs](https://signalith.io/docs)\n\n\n\n\\*\\*How it was made\\*\\*\n\n\n\nI didn't write the code. Claude Code did. I wrote the plan, made the calls on scope, design and security, and tested it on my own PC. By the end I had several Claude agents working in parallel, each on its own pull request, with CI on Windows and Linux gating every merge. It's about 140k lines of code and 67k lines of tests across 110+ merged pull requests, in under four days. I had it audit its own security and fix what it found, but that's not an outside review, so treat it as early software.\n\n\n\n\\*\\*What it does today\\*\\*\n\n\n\n\\- Collection: Fluent Bit agents (Add data writes the config for you), syslog and OpenTelemetry logs, stored in OpenSearch.\n\n\\- Search: an SPL-like query language, a click-to-build query builder, and an Ask box that turns plain English into a query. It works offline; Claude, OpenAI or a local Ollama model are optional.\n\n\\- Detections: 3,179 rules out of the box (SigmaHQ, Splunk's security\\_content, and its own), each tested in CI against sample events and off until you turn them on. ATT&CK coverage map, tuning and exceptions.\n\n\\- Triage: a findings queue, risk-based alerting, cases, and an \"Investigate with AI\" button that also works with a local model.\n\n\\- Response: block an IP, disable an AD user or isolate a host from a finding, with a confirm step and an audit trail. Playbooks with optional approval. Alerts to email, Slack, Teams and webhooks.\n\n\\- Endpoints with osquery (file integrity, inventory, config checks), antivirus logs, and Nmap scans matched to CVEs.\n\n\\- Install: .msi, .deb, .rpm, signed apt and dnf repositories, or Docker Compose. HTTPS is on by default and there are no default passwords.\n\n\\- Sample data, so you can click around without wiring up agents.\n\n\n\n\\*\\*What it doesn't do yet\\*\\*\n\n\n\nNo network sensor of its own (Zeek and Suricata logs can come in). Running across several servers is about half built. Nothing has been load tested at scale. The Windows installer isn't code signed yet, so SmartScreen will warn.\n\n\n\n\\*\\*What I'd love from you\\*\\*\n\n\n\nIf you run a SIEM, what would stop you from trying this? And if you find something dumb in the code, please open an issue. I'd rather hear it now.\n\n\n\nNot affiliated with Splunk. \"Splunk\" is their trademark, used here only to describe what this is modeled on.",
+    "developer": "shabbalaba1996",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

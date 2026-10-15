@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009681",
   "sourceItemId": "80009681",
+  "fetchedAt": "2026-10-15T01:52:44.632Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009681/how-to-get-confidence-for-the-user-s-audio-transcription-before-the-response-is",
   "detail": {
     "longDescription": "I'm building a phone voice agent with the OpenAI Realtime API ( gpt-realtime ). On noisy calls it sometimes mishears the caller (e.g. it hears «عندك مطبخ؟» \"do you have a kitchen?\" when the caller said «عندك مسبح؟» \"do you have a pool?\") and answers the wrong question. I want to check how confident the transcription of the caller's turn was, and only let the model respond if confidence is high enough. Otherwise I'll play a fixed \"could you repeat that?\" message. My session config: { \"type\": \"session.update\", \"session\": { \"model\": \"gpt-realtime\", \"input_audio_transcription\": { \"model\": \"gpt-4o-transcribe\", \"prompt\": \"A phone call in Arabic or English. Transcribe in the language spoken.\" }, \"turn_detection\": { \"type\": \"server_vad\", \"create_response\": false } } } With create_response: false , I wait for conversation.item.input_audio_transcription.completed and then send response.create myself. Can I get logprobs (or any confidence) for the input audio transcription in a Realtime session? If yes, how do I enable it and in which event do they appear?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "81"
       },
       {
         "label": "状态",

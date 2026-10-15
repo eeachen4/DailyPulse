@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50088582",
+  "sourceItemId": "50088582",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50088582",
+  "detail": {
+    "longDescription": "Hi everyone, we are excited to share t0-gamma, the latest model in our t0 family. It is a 256M parameter open-weights foundation model for time series (TSFM). It runs on CPU, GPU or Apple chips. https:&#x2F;&#x2F;huggingface.co&#x2F;theforecastingcompany&#x2F;t0-gamma t0 leverages historical data to forecast the likely outcomes over a given horizon. It does so zero-shot. It works on almost any time series, as it can pick up small signals like trends and seasonality. It can also leverage future-known information, like holidays, promotions and weather forecasts. Under the hood, t0 is a transformer that alternates attention between time and across the variates of a series. t0 is agnostic to the domain and to the frequency of the time series. For instance, it can be used to predict retail or electricity demand, as well as server metrics. On European day ahead electricity prices, t0 reduces the error by a third compared with a naive baseline that repeats the previous day. Adding weather forecasts or holiday information improves it even further. There is a Colab notebook to try it. t0 has also been tested independently on electricity prices in Texas (ERCOT). https:&#x2F;&#x2F;colab.research.google.com&#x2F;github&#x2F;theforecastingcompa... Like other TSFMs, t0 outperforms classical techniques such as ARIMA, ETS and their variants. On the public benchmarks GIFT-Eval, fev-bench and TIME, t0-gamma currently ranks first among the other TSFMs. It means it is the most accurate model there is to date. Like other TSFMs, t0 can be used inside agentic, routing or ensembling systems. This can improve the scores on the leaderboards even further. Our tech report describes the model family and its evaluation. https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2609.24559 Trying it takes a few Python lines. pip install &quot;tfc-t0[torch]&gt;=0.6.0&quot; from t0 import T0Forecaster model = T0Forecaster.from_pretrained(&quot;theforecastingcompany&#x2F;t0-gamma&quot;).eval() history = ... # history of the time series to predict out = model.predict(history, horizon=24) out.median There is more to come. We are working to extend t0 to joint forecasts across related series and hierarchies, much longer contexts and faster inference. Please give it a try, and don&#x27;t hesitate to tell us where it works and where it doesn&#x27;t. We are The Forecasting Company. We want to help companies reduce their uncertainty about the future, so they can make better decisions. We are starting our journey by building foundation models for time series.",
+    "externalUrl": "https://github.com/theforecastingcompany/tfc-t0",
+    "developer": "LTMeyer",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "12"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}
