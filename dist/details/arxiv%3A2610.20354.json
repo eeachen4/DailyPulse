@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.20354",
+  "sourceItemId": "2610.20354",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.20354",
+  "detail": {
+    "longDescription": "arXiv:2610.20354v1 Announce Type: new Abstract: NVIDIA Grace--Blackwell systems make CPU--GPU memory increasingly unified at the programming level, but unified addressability does not make the memory system uniform. A CUDA managed allocation on GB200 may be served from GPU-local HBM, accessed through host/system memory, demand-migrated, prefetched, reused after GPU access, or evicted and reloaded under capacity pressure. The problem is that these states share a programming interface while exercising different hardware paths and runtime mechanisms, making a single ``Unified Memory bandwidth'' number misleading. This paper presents a placement-controlled microbenchmark study of CUDA Unified Memory on NVIDIA GB200, using GH200 as a Grace--Hopper baseline and GB10/DGX Spark as a validation platform. Our methodology separates local HBM access, host/system-memory access, explicit movement, managed first touch, prefetch, reuse, access-pattern sensitivity, oversubscription, and CPU--GPU handoff, then summarizes the observations with a measurement-calibrated model of compute, access, migration, eviction, synchronization, and handoff costs. On GB200, a 1~GB STREAM-style triad reaches 3963~GB/s from local HBM but 304~GB/s through host-mapped CPU/system memory; for a 256~MB streaming kernel, cold CPU-initialized managed memory reaches 14.1~GB/s, while managed prefetch and reuse reach 4606~GB/s and 4504~GB/s. Below the capacity boundary, prefetched and reused managed memory remain above 4.6~TB/s, but at 125\\% of CUDA-visible memory they fall to 968~GB/s and 1214~GB/s, showing that Grace--Blackwell unified memory must be understood through placement, access history, locality, reuse, and capacity pressure.",
+    "developer": "Nathan Graddon, Aaron Jarmusch, Sunita Chandrasekaran",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nathan Graddon, Aaron Jarmusch, Sunita Chandrasekaran"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6uqqr",
+  "sourceItemId": "1x6uqqr",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x6uqqr/i_turned_a_transformer_into_a_game_console_that/",
+  "detail": {
+    "longDescription": "I turned a CHIP-8 game console into a decoder-only transformer.\n\nThe transformer is the game engine. It executes instructions, updates machine memory, and renders every frame through next-token prediction. Every generated token is a memory write, and your keypresses go directly into the model's context window. There's no separate emulator.\n\nPong, Tetris, Space Invaders and a bunch of other CHIP-8 games run on the same model. Just swap the ROM in the prompt to switch games.\n\nThe weights are compiled from a circuit, not learned through training. Attention handles memory reads by finding the most recent write to an address, while ReLU circuits handle opcode decoding, arithmetic, comparisons and bitwise operations. Even the compatibility quirks are encoded in the initial prompt, so different games don't need different weights.\n\nThe model has 18 layers, 42 attention heads and 32M parameters (139k nonzero). It uses fp64 and can be loaded through Hugging Face transformers.\n\nModel weights: [https://huggingface.co/divagr1925/chipformer](https://huggingface.co/divagr1925/chipformer)\n\nTry it out: [https://divagr.com/chipformer](https://divagr.com/chipformer)\n\nCode + desktop app: [https://github.com/divagr18/chipformer](https://github.com/divagr18/chipformer)",
+    "externalUrl": "https://v.redd.it/hgmoft2ikovh1",
+    "developer": "RevealIndividual7567",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

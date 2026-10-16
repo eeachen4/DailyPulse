@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6yage",
+  "sourceItemId": "1x6yage",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x6yage/open_source_framework_that_makes_your_ai_agents/",
+  "detail": {
+    "longDescription": "came across an interesting open source project that just released its 1.0 version, and thought the community might find it interesting, especially given all the recent developments around generative ui.\n\nthe project is called [OpenUI](https://github.com/thesysdev/openui). their thesis is that instead of having an llm respond with walls of text or markdown, what if it could generate actual interactive interfaces in real time?\n\nimagine asking your local llm to analyze a dataset and instead of getting a lengthy explanation, it generates a dashboard with charts, tables, filters, and interactive elements that you can actually use.\n\nthat's essentially what they and multiple other projects like json-render by vercel and a2ui by google are trying to accomplish.\n\nyou might have seen openai recently introduce something similar inside the chatgpt/codex app called \"intelligent ui\". funnily enough openui has been working on the EXACT same underlying problem for quite some time, except their approach is open source (MIT licensed) and model agnostic.\n\nand they just launched **OpenUI 1.0**.\n\nfrom what i understand, one of the interesting things about openui is that you are not restricted to a fixed set of components. but can bring your own component libraries, design systems, and application logic, and let the llm decide how to compose those components based on what the user asks.\n\nso rather than generating an entirely new interface from scratch every time, the model works with components that already exist in your application.\n\none more interesting part from at least an llm engineering perspective, is how they've approached the actual generation\n\nmost structured generative ui implementations rely on json. projects like vercel's json-render and google's a2ui and even intelligent ui take variations of this approach.\n\nopenui instead uses its own language called **OpenUI Lang**, a compact, streaming-first format specifically designed for models to generate interfaces what they call a DSL (domain specific language)\n\naccording to their benchmarks, it uses around 67% fewer tokens than comparable json-based approaches and because of how the language works, components can start rendering/streaming before the model finishes generating the entire response.\n\nwhich makes sense if you're trying to generate an interface in real time, both token overhead and time to first render become pretty important\n\nbut the part that caught my attention the most is the local inference angle.\n\nsince openui isn't tied to any particular model provider, i can technically use it with locally hosted models on my homelab through ollama, lm studio etc etc\n\nthe same team also released **\"OUI-1\"**, an open-weight model specifically trained for generative ui (oui-1 ≠ openui 1.0 i think?) which is based on diffusiongemma, with 4b active parameters, and apparently scores 71.7% on their generative ui benchmark(take them with a grain of salt tho)\n\nthe weights are available under apache 2.0\n\ninstead of building applications with hundreds of predefined screens, could we eventually have applications where a smaller, locally running model composes the interface depending on what the user is trying to accomplish?\n\nbut seeing projects like openui reach 1.0 makes me think this is becoming more than just a cool demo.\n\nsome links for anyone interested:\n\n* **OpenUI:** github/thesysdev/openui\n* **OUI-1 open-weight model:** huggingface.co/thesysdev/OUI-1\n\nwould love to know what everyone here thinks about this direction.\n\ndo you think generative ui is something we'll eventually see running entirely on local models, or will traditional, predefined interfaces always be more practical?\n\ni'm especially curious about how smaller models would handle complex component libraries and interactive states. if you've experimented with generating structured interfaces using local models, how reliable has it actually been?\n\nvideo is from their launch on twitter\n\n",
+    "externalUrl": "https://v.redd.it/yolz649f9pvh1",
+    "developer": "Mr_BETADINE",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

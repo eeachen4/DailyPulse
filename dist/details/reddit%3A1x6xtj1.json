@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6xtj1",
+  "sourceItemId": "1x6xtj1",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x6xtj1/k3s_vs_aks_for_ephemeral_databases/",
+  "detail": {
+    "longDescription": "I am designing a service that can spin up a requested database snapshot (Neo4j) and pass queries to the database via the requester's cypher payload -> bolt. These database instances are ephemeral, and they should die after some amount of inactivity.\n\nI've never done any sort of container orchestration, but my initial thought was to have a small HTTP server that controls the ephemeral database instances and incoming cypher requests. This and all ephemeral database containers (1-3 concurrent instances would be typical, maximum of 5), would live on a single VM or app service.\n\nI work at a startup and we need a lightweight solution to this problem that could scale within the next 6 months to year. What I'm proposing now is cheap and simple. I think i can get what i need with k3s (1 control plane and up to 10 nodes) running on the same VM as the HTTP server. But Codex is pushing AKS or ACI. I really don't think that's necessary with the amount of business we are doing right now. And I think that if i design the interface properly, I can easily move from k3s -> AKS later without having to redesign the server or change its API schema.\n\nWhat do you all think? Again, very new to k8s. Maybe i need to read a book first.",
+    "developer": "zanalytic",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.19489",
+  "sourceItemId": "2610.19489",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.19489",
+  "detail": {
+    "longDescription": "arXiv:2610.19489v1 Announce Type: cross Abstract: Sparse matrices, in which most entries are zero, are central to scientific simulation, graph analytics and machine learning, and their multiplication with dense inputs is a core parallel kernel. In many applications the matrix stays fixed while only a few input rows change per step, so the result can be updated from those rows alone, which we call the dirty set. Sparse kernels often add a second optimization based on the inspector-executor principle, in which a tiled schedule is prepared once and reused across calls. However, when this reuse remains profitable as the dirty set moves is not well characterized. In this paper, we show that retained tiled execution rarely beats direct CSC in incremental sparse matrix multiplication, although incremental execution itself remains highly profitable. Across 21 SuiteSparse matrices and controlled patterns of motion, a direct column-wise incremental update is 2.1-8.2x faster than the best of eight full-recomputation codes, among them Intel oneMKL and PyTorch. Yet the same direct update outperforms a tiled executor that retains tile preparation and caches assembled schedules in 779 of 837 workloads. Separating reuse into per-tile preparation and cached schedules shows that the benefit comes from preparation; extra cache capacity seldom helps because a tile set rarely returns after a different one has intervened. Tiling is faster only when tiles merge many entries into each output write, a structural property that we predicted before measurement and confirmed on four held-out matrices of the same family. These results show that the structure of the matrix and the motion of the dirty set, rather than the sophistication of the schedule, determine whether reuse is profitable. We anticipate that our methodology and guidelines will help developers decide when to build schedule reuse into incremental sparse runtimes.",
+    "developer": "Hunter Horne (HorneSci), Eric Spencer (Loyola University Chicago, HorneSci), Alex Henningfield (HorneSci), Arslan Bisharat (Loyola University Chicago)",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PF, cs.DC, cs.MS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hunter Horne (HorneSci), Eric Spencer (Loyola University Chicago, HorneSci), Alex Henningfield (HorneSci), Arslan Bisharat (Loyola University Chicago)"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

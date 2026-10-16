@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x70bs2",
+  "sourceItemId": "1x70bs2",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1x70bs2/melodybridge_keep_spotifys_playlists_and/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI've been building MelodyBridge, a self-hosted music toolbox that sits next to Spotify (and ytm) instead of replacing it. You keep using Spotify for discovery and its algorithms, but the tracks you save become files you actually own, on your own server.\n\nHow it works:\n\n* Paste a public Spotify or YouTube playlist link, no API key needed. It snapshots the track list, and auto-sync keeps it in step with the source. New tracks can even download on their own after a sync.\n* Private playlists and liked songs come in through a read-only Spotify login (needs Premium; free accounts can import an Exportify CSV instead).\n* Downloads run through a plugin waterfall until a file passes your quality bar. Every file gets verified:\n   * real audio\n   * matching duration\n   * bitrate in range\n   * plus a spectral check that catches files claiming 320 kbps while holding far less.\n* Then publish as M3U or straight into Jellyfin, Plex or Navidrome and play it all from your own stack.\n* And much more!\n\nBUTTT: **the app is not fully stable yet.** It works, but there are rough edges, and I'd really appreciate people testing it and reporting bugs.\n\nTo start (Docker or Podman, amd64 and arm64):\n\n    mkdir melodybridge && cd melodybridge\n    wget https://melodybridge.app/compose.yml\n    \n    # change ghcr.io/warreth/melodybridge:latest to ghcr.io/warreth/melodybridge:beta (beta channel for now)\n    \n    docker compose up -d\n\nThen open http://localhost:3333, add a playlist and press Download.\n\nRepo: [https://github.com/warreth/melodybridge](https://github.com/warreth/melodybridge) (AGPL v3)\n\nDocs: [https://docs.melodybridge.app](https://docs.melodybridge.app)",
+    "developer": "Warre-th",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

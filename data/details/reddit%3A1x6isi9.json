@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6isi9",
+  "sourceItemId": "1x6isi9",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x6isi9/do_we_really_need_wrappers_like/",
+  "detail": {
+    "longDescription": "The honest answer from someone who just built an end-to-end production RAG engine:\n\nYou don't need LangChain just to call `chat.completions.create()` or split text with `text[:500]`. If all your app does is inject three chunks into a prompt, a wrapper is just unnecessary abstraction debt and opaque tracebacks.\n\nWhere the debate gets real is when your system moves from a weekend prototype to handling real-world document chaos.\n\n1. WHERE NATIVE CODE WINS (BUILD IT YOURSELF)\n\n* Document AST & Structural Hierarchy: Off-the-shelf chunkers blindly split PDFs mid-sentence or slice a 40-row financial table in half, destroying header context. We built a custom AST layout parser using Docling to preserve parent section breadcrumbs, stitch multi-page tables, and link tables back to their preceding narrative prose.\n* Domain-Specific Verification: Standard wrappers and generic splitters won't tell you if OCR misread a digit or shifted a column. We implemented sub-2ms verbatim source-text grounding against the raw PDF bytes layer, alongside arithmetic column reconciliation, before anything reaches retrieval.\n* Fine-Grained Retrieval Math: Custom Reciprocal Rank Fusion (RRF) between dense vectors and sparse BM25, combined with contextual, token-budgeted hit collapsing, is much easier to maintain and profile in pure Python.\n\n1. WHERE LANGCHAIN AND STANDARD ECOSYSTEMS SHINE (DON'T REINVENT THE WHEEL)\n\n* Observability & Tracing: Integrating LangSmith or OpenTelemetry across dynamic tools, prompt variations, and latency breakdowns saves hundreds of hours compared with building custom telemetry infrastructure.\n* Ecosystem Portability: Swap vector backends (Qdrant, Chroma, PGVector) or model providers (Mistral, Claude, OpenAI) without refactoring client contracts and middleware logic.\n* Evaluation Standards: Benchmark generation fidelity, RAGAS metrics, and citation grounding using battle-tested interfaces.\n\nMY TAKEAWAY\n\nFrameworks shouldn't be an all-or-nothing religion. The strongest RAG architecture uses native, deterministic Python for heavy data modeling, document parsing, and verification logic, while leveraging standard frameworks for observability, connectors, and evaluation pipelines.\n\nIf you're curious about what this hybrid architecture looks like in practice (AST parsing, dual-format table serialization, hybrid RRF, and LangSmith telemetry), I documented the full open-source breakdown and test suite here:\n\nGitHub Repo: [https://github.com/Souheil007/Rag\\_Full\\_Version](https://github.com/Souheil007/Rag_Full_Version)\n\nI'd love to hear how teams running RAG in production are balancing raw SDK control with framework adoption.",
+    "developer": "NatureLucky4912",
+    "comments": 13,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6nilu",
+  "sourceItemId": "1x6nilu",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x6nilu/title_what_does_your_deployment_actually_verify/",
+  "detail": {
+    "longDescription": "Disclosure: I work on the platform this happened on. No links and nothing to sell, I just don't have a good answer to the question.\n\nWe deployed an app last week, and every signal said it had worked. The deploy was marked as running, the health check was green, and every tool in the pipeline reported success.\n\nExcept the app was incomplete. Eight of its 27 starter records had never been created. The API rejected them one by one with permission errors while accepting the records around them.\n\nThe setup step actually caught this. It printed a warning saying the app was incomplete and shouldn't be treated as a successful deployment. Then it exited with code zero, so everything downstream happily marked the deploy as successful.\n\nWe had a health check proving the process was alive, but nothing proving that the application matched what we thought we had deployed.\n\nI have been trying to work out what the right check should be, and none of the obvious answers feels complete.\n\nA health endpoint returning 200 only tells you the process is running and the port is open. It says nothing about whether the expected data or configuration exists.\n\nA smoke test against a few routes is better, but it only covers whatever somebody remembered to include. In this case, the missing records weren't part of that test.\n\nComparing the declared state with the actual state feels like the right answer. But that requires the deployment to produce a manifest of everything it intended to create, and most deployment systems don't seem to do that.\n\nYou could also fail on every warning, but then harmless warnings become blockers, people add skip flags, and eventually you are back where you started.\n\nThe two cases I am still stuck on are partial failures, where each individual rejection might be valid but the overall pattern is clearly wrong, and tools that print serious warnings but still exit zero. That convention isn't going away anytime soon.\n\nAnd before anyone says readiness probes: readiness tells you whether the application can serve traffic. It doesn’t tell you whether it's the application you intended to deploy.\n\nWhat does your deployment actually verify beyond \"the process is running\"? And what has shipped half-finished before you noticed?",
+    "developer": "srikanth_builds",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

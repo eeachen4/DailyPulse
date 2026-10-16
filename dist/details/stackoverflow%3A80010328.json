@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010328",
+  "sourceItemId": "80010328",
+  "sourceUrl": "https://stackoverflow.com/questions/80010328/custom-email-sender-gets-clientmetadata-null-for-email-otp-sign-in-user-auth-%e2%86%92",
+  "detail": {
+    "longDescription": "I'm using choice-based sign-in ( USER_AUTH ) with email OTP as the first factor and a custom email sender Lambda. The Lambda is invoked with triggerSource: CustomEmailSender_Authentication , but request.clientMetadata is always null , even though I pass ClientMetadata on the RespondToAuthChallenge call that triggers the code. Setup User pool on the Plus tier. Sign-in policy allows first factors PASSWORD and EMAIL_OTP . MFA is optional. Threat protection is in audit mode. Confidential app client (with a client secret) with ALLOW_USER_AUTH , ALLOW_USER_PASSWORD_AUTH and ALLOW_REFRESH_TOKEN_AUTH . Custom email sender trigger (Lambda version V1_0 ) with a KMS key. Decryption and delivery work for other trigger sources. Steps (reproduced with the plain AWS CLI, no SDK code) aws cognito-idp initiate-auth --no-sign-request \\ --client-id <client-id> --auth-flow USER_AUTH \\ --auth-parameters '{\"USERNAME\":\"<email>\",\"SECRET_HASH\":\"<hash>\"}' # -> ChallengeName: SELECT_CHALLENGE, AvailableChallenges: [PASSWORD_SRP, PASSWORD, EMAIL_OTP] aws cognito-idp respond-to-auth-challenge --no-sign-request \\ --client-id <client-id> --challenge-name SELECT_CHALLENGE --session \"<session>\" \\ --challenge-responses '{\"USERNAME\":\"<email>\",\"ANSWER\":\"EMAIL_OTP\",\"SECRET_HASH\":\"<hash>\"}' \\ --client-metadata '{\"probe\":\"cli-select-challenge\",\"source\":\"aws-cli\"}' # -> ChallengeName: EMAIL_OTP, CODE_DELIVERY_DELIVERY_MEDIUM: EMAIL Event received by the Lambda (shortened) { \"version\": \"1\", \"triggerSource\": \"CustomEmailSender_Authentication\", \"request\": { \"type\": \"customEmailSenderRequestV1\", \"code\": \"<encrypted>\", \"clientMetadata\": null, \"userAttributes\": { \"email_verified\": \"true\", \"cognito:user_status\": \"CONFIRMED\" } } } What I've checked The CloudTrail RespondToAuthChallenge event ( challengeName: SELECT_CHALLENGE ) shows my clientMetadata in requestParameters . The Lambda invocation for the same user follows about 2 seconds later with clientMetadata: null . Same result from boto3 and from the AWS CLI, and for two different confirmed users with verified emails. Also passing ClientMetadata on InitiateAuth doesn't change anything. Research The custom email sender trigger documentation says ClientMetadata from RespondToAuthChallenge is passed to events with source CustomEmailSender_Authentication . The Knowledge Center article How do I pass ClientMetadata to Lambda triggers in Amazon Cognito? doesn't list the custom email sender among the triggers that receive it, but it predates choice-based sign-in. Questions Is clientMetadata: null expected for codes sent when SELECT_CHALLENGE is answered with EMAIL_OTP ? If so, is the custom email sender documentation inaccurate for this flow? If it's expected, what's the recommended way to give the custom email sender per-request context for email OTP sign-in? Could any pool setting, such as threat protection in audit mode, affect whether clientMetadata is forwarded?",
+    "developer": "Hamdi JANDOUBI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "29"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

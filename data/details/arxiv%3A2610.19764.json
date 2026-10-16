@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.19764",
+  "sourceItemId": "2610.19764",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.19764",
+  "detail": {
+    "longDescription": "arXiv:2610.19764v1 Announce Type: new Abstract: Much of Ethereum's most consequential code is immutable bytecode: old output of unverified compilers, and protocol logic run as contract code. We show that such bytecode can be verified as it is, without trusting what produced it, without simplifying the machine it runs on, and with no axioms beyond Lean's own. Blanc, a Lean 4 verification stack, reads fixed runtime bytes via kernel-checked certificates and states every theorem against Jaune, an executable semantics of the EVM and block processing that passes all 34,205 blockchain-test cases of Ethereum's fixture release v20.0.2 that involve only forks that have governed mainnet since May 2025. Eight artifacts, deployed from 2017 to 2026, come from seven compiler versions and an assembler. For the EIP-7002 contract, we prove that the end-of-block call to it, whose failure would invalidate the block, succeeds whatever its storage holds, and that each block's withdrawal requests are exactly the oldest pending submissions; mainnet met these theorems' starting premises when Prague began. For a Uniswap V2 pair, we prove that after any valid history whose hashed slots stay apart, from any checkpoint representing its Solidity model's state, the storage represents that model replayed over exactly the committed calls, a balanced liquidity ledger stays balanced, and, under a premise on token answers, geometric-mean reserves per share fall only through the protocol fee. Exact gas makes liveness provable: a tracked WETH9 holder without code can withdraw by a transaction whose gas has a closed form, matching all 3,748 comparable mainnet receipts of its shape in 30,000 blocks. On Curve pool bytes compiled with the lock bug exploited in 2023, Jaune executes such a reentrancy from deployment; for bytes from a fixed compiler, we prove the lock excludes it. AI agents wrote the proofs in fifteen days under one author's direction, atop an existing stack.",
+    "developer": "Seulkee Baek",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.LO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Seulkee Baek"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

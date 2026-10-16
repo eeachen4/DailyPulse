@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6zx3t",
+  "sourceItemId": "1x6zx3t",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x6zx3t/same_capability_two_data_sources_ephemeral_chat/",
+  "detail": {
+    "longDescription": "Our chat agent has two tools:\n\n**analyze\\_spreadsheet**: the model writes pandas code against spreadsheets attached to the current chat. Before it writes code, we show it a short layout map (sheets, ranges, first and last rows) so it can find the header and skip title and totals rows.\n\n**search\\_knowledge:** RAG search over PDFs, PPTX and DOCX files an organization uploaded. These are shared across all chats.\n\nUsers can now upload spreadsheets as persistent knowledge. The agent needs to answer questions about them with code (totals, group-bys), not passage search.\n\n**Constraints:**\n\n1. One tool call per question. No \"get the layout, then run code\" sequence. Models skip steps.\n\n2.The UI card must say it's using the knowledge base. \"Analyzing spreadsheet\" on a file uploaded two months ago confuses people.\n\n3. RAG must behave exactly as it does today.\n\n**Options I looked at:**\n\n**A. New tool analyze\\_knowledge\\_spreadsheet(file, question).** A small inner agent gets the layout, writes and runs the code (up to 3 runs), and returns the figures. Own card label, RAG untouched. Cost: a third tool that overlaps with the chat one, so descriptions must say which to use when.\n\n**B. Add a mode to search\\_knowledge.** Search and code execution are different jobs, and its parameters don't fit. Also, \"the plan\" could substring-match a PDF named \"plan\" and answer from the wrong file.\n\n**C. Add a knowledge source to analyze\\_spreadsheet.** Fewest tools. But the model needs the file's layout before writing code. That means either every layout in the prompt every turn (too many tokens) or a required layout step (breaks one call). The card label is also wrong.  \nWe lean toward A, plus \"use when / don't use when\" lines in each description and a \\~20-prompt routing test.\n\n**Questions**  \n1. Is there an approach I missed?\n\n2. For \"same capability, different data source\", do you use separate tools, a source parameter, a file registry, or something else?\n\n3. For C, is there a clean way to give the model a file's layout without a required prior step?\n\nThank you!!",
+    "developer": "Jason-Ping",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50105780",
+  "sourceItemId": "50105780",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50105780",
+  "detail": {
+    "longDescription": "We needed an MCP server that misbehaves on our command to test our own MCP gateway at work, but could only find well-behaved MCPs. That’s why we built a misbehaving MCP server ourselves and now share it on here, might be helpful for others building MCP gateways. It’s similar to the MCP Inspector, but lets you test your client not your server. We called it MCP Test Kitchen and it’s a (also hosted) MCP server that lets you: * Connect any client that takes a URL and an Authorization header (Cursor, Claude Desktop or your own). It answers both 2025-11-25 and 2026-07-28 clients and logs which protocol revision each request declared. * Pick one of 6 scenarios: HTTP transport errors, JSON-RPC error responses, tool results flagged isError, elicitation, multi round-trip requests (MRTR) via a C# SDK v2 scenario, and a baseline with a configurable delay. JSON-RPC and tool errors can be set to fail on a specific call, so the first call succeeds and the second fails. Resources and prompts are always on, each with a deliberately broken variant. If you want other scenarios, let us know. * Watch every request in a live log with timing, method, caller, status and protocol version. * Clone a TypeScript reference client, pinned to the latest spec, with full source. You can run it yourself, it’s open source. If you’d rather test it live, we also hosted it, but you need to login (Google or GitHub, needed for the token) and can get started immediately. We’d appreciate feedback, that’s why we&#x27;re posting. In the live tool, there is a box that emails us directly. We’re around to check feedback + other scenarios you wish it had. * Link to the repo here: https:&#x2F;&#x2F;github.com&#x2F;cakewalk-security&#x2F;cakewalk-mcp-test-kitch... * Live tool access here: https:&#x2F;&#x2F;mcp-test-kitchen.cakewalk.security&#x2F;login * More information on why we built this: https:&#x2F;&#x2F;www.cakewalk.security&#x2F;mcp-test-kitchen&#x2F;blog&#x2F;wtf-simu...",
+    "developer": "george_ciobanu",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

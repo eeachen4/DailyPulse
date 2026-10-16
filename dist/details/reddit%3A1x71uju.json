@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x71uju",
+  "sourceItemId": "1x71uju",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x71uju/reverse_proxy_for_llms_which_can_wake_andor/",
+  "detail": {
+    "longDescription": "Probably not very original, but a little project I put together so I can save some power and don't have to manually wake my LLM box when I want to do something with it (or shut it down when I'm done). Mostly just put it together as a test for local model based vibe-coding (almost nothing in this repo was written by hand so ymmv), but it ended up being good enough to be useful, so I thought I'd share it.\n\nIt sits between your clients (openwebui/coding harness etc) and wakes the machine before forwarding requests. If no requests have come in for a while, it shuts the machine back down.\n\nIt also caches the \\`/v1/models\\` endpoint, so if you're using openwebui or something else that which hits that endpoint frequently, it won't constantly wake the machine up.\n\nIt's also got an option for a command to check for logged in users, which you can configure to stop it shutting down the machine down while you're doing something with it.\n\nI wouldn't say it's \"good\" code by any stretch of the imagination, but it's not bad for something that practically coded itself while I was off doing other things, and it seems reliable so far. Like all vibe-code though, ymmv.\n\nHappy to accept suggestions and/or PRs.",
+    "externalUrl": "https://github.com/ac101m/sleepy-llm",
+    "developer": "ac101m",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

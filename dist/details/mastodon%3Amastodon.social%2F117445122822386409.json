@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117445122822386409",
+  "sourceItemId": "mastodon.social/117445122822386409",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://transitory.social/notes/asd4qcl5mc",
+  "detail": {
+    "longDescription": "Ok so the blog deploy method works, mostly, but I think the theme broke in the process, bleh not sure how that happened \n\nIt absolutely deserves a new blog post once I fix it\n\nThe new method is:\n\n* Use woodpecker and run hugo build\n* Use the crane tool to drop the hugo build into a `FROM: scratch` container image and push that to forgejo\n* Mount the content image as a volume into a nginix deployment that is running on the edge node\n* The nginix deploy gets updated via renovate eother automatically or manually \n\nThe content ends up already on the edge, and there are no calls anywhere to object storage flying across the ocean\n\nSo yeah that is a good idea for my twice yearly blog posting :p\n#Homelab #Selfhosted",
+    "developer": "@rachel@transitory.social",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "transitory.social"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x72uo8",
+  "sourceItemId": "1x72uo8",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x72uo8/kernellevel_agent_sandboxing/",
+  "detail": {
+    "longDescription": "I've been working on kernel-level sandboxing for commands executed by agents in local MCP servers that aren't tied to specific coding harnesses. I took a shot at this approach because I'm creating and sharing local MCP servers and didn't want to introduce additional runtime dependencies like Docker or VMs just to sandbox execution.\n\nI decided to go with a security policy-based approach using macOS Seatbelt, coupled with tool allowlisting. Policies are grouped by filesystem roots and have attributes for read/write access, network, IPC and executable permissions (split between required and optional tools). The abstraction itself is OS-agnostic, but the implementation is currently macOS only.\n\nThe difficulties dealing with apps installed through Homebrew, Xcode.app and Xcode command line tools caught me by surprise. *What do you mean it doesn't* ***just work***? Had to work out some pretty finicky details with `xcode-select`, executable shims and resolving Homebrew packages through their respective manifests.\n\nMostly I'm curious if others are doing anything similar for their agentic systems, or if there are any obvious misses in the approach I've gone with.\n\nFull write-up here: [https://demianbrecht.com/posts/kernel-level-agent-sandboxing/](https://demianbrecht.com/posts/kernel-level-agent-sandboxing/)",
+    "developer": "mostly_deterministic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

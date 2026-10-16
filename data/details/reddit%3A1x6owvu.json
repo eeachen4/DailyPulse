@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6owvu",
+  "sourceItemId": "1x6owvu",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x6owvu/i_tried_jevlaya_as_model_router_for_coding_agents/",
+  "detail": {
+    "longDescription": "I wanted per-turn model routing for my coding agents: cheap model for easy turns, expensive one for hard ones. Small decision models like Jev and Laya are built for exactly this kind of closed-choice call, so I tried Laya (open source, runs locally) as the classifier.\n\n**Setup**\n\n* A local proxy sits between the agent and the provider. At each new user turn (never mid tool call), a router plugin asks Laya \"which tier fits this task?\" with options fast / balanced / strong / hold.\n* As a start, Laya only gets the latest prompt plus a few counters (tool errors, retries, rough context size). No code, no tool output, no history. Not ideal, but simple, fast and private.\n* Ladder: DeepSeek Flash → DeepSeek Pro. Below a 0.8 confidence threshold the router does nothing.\n* 48 synthetic prompts that I labelled by hand: 15 routine, 12 normal, 14 hard, 7 \"hold\" (vague follow-ups, env problems).\n\n**What worked**\n\n* \\~112 ms per decision on a laptop CPU.\n* Ran fine through Codex, OpenCode, Pi and Oh My Pi.\n* One call per user turn, none on tool-result continuations, and the original request passes through untouched on timeout or garbage output.\n\n**What didn't**\n\n|Question variant|Agrees with my labels|Confident enough to switch|\n|:-|:-|:-|\n|4 tiers (default)|21/48|0/48|\n|Stricter wording + \"hold if unsure\"|11/48|0/48|\n|4 tiers, no hold|20/48|0/48|\n|2 tiers + hold|21/48|0/48|\n|Same 2 tiers, options renamed a/b/c|23/48|0/48|\n\n* It leaned to the middle: 10 of the 14 hard prompts came back \"balanced\".\n* Renaming the options (same descriptions) changed 13 of 48 decisions.\n* \"Hold if unsure\" made it hold 44 of 48.\n* Part of this is on me: the plugin compared Laya's distribution-concentration `confidence` against 0.8, not the top-option probability (`answer_confidence`). The best `answer_confidence` I saw was 0.64. But lowering the bar would just act on \\~21/48 agreement.\n* As a sanity check, a simple billing / tech / other ticket question got the right answer at 0.90. Clear categories are easy; \"does this need a stronger model\" isn't.\n\n**The part that validated the flash being better than pro for this round of deepseek:** I also gave 10 small, gradable questions (event-loop order, LRU state, serializability, WAL recovery…) to DeepSeek Flash and Pro, thinking off, one run each. Flash got 10/10, Pro 8/10, and Flash was faster. Tiny sample, not a ranking. But \"harder question → bigger model\" is an assumption a router has to earn.\n\nSo the router stays in shadow mode: it records what it would have done, and next I want to check those calls against real outcomes (tests passing, retries, tokens) vs \"always cheap\" and \"always strong\".\n\n**Question for people who've built routers:** what signal actually predicted when the bigger model helped? Prompt classification, failure signals, a cheap model's self-assessment, something else?\n\nFull write-up with all 48 prompts, request/response JSON and the five fixes I'm making: [https://torana.sh/blog/local-decision-model-router/?utm\\_source=reddit&utm\\_medium=social&utm\\_content=llmdevs-router](https://torana.sh/blog/local-decision-model-router/?utm_source=reddit&utm_medium=social&utm_content=llmdevs-router)",
+    "developer": "projectEscape",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

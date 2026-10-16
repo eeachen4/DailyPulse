@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6wiiq",
+  "sourceItemId": "1x6wiiq",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1x6wiiq/custom_nvr_camera_system_build_plan_id_appreciate/",
+  "detail": {
+    "longDescription": "I’m in the process of planning a home security camera setup and wanted to get some feedback on my hardware choices, OS choices, and my operational blueprint—specifically how I plan to configure, host, and run everything before pulling the trigger on this. \n\nI’m planning on using a Dell Optiplex 700 Micro to be my NVR. I'm pairing it with a PoE Switch (Netgear GS308PP PoE+ 8-port gigabit switch) and installing an SSD drive, probably 1 TB (could I go lower than 1 TB?), for operating systems, 3rd-party VMS video processing, AI model processing, etc and having a dedicated HDD 3.5 or 2.5 for 24/7 continuous long-term stream storage. For my OS and VMS software, I'm thinking of using a Frigate running via Docker container. I've been reading a lot, and I've been seeing Linux-based OS. The Debian/Ubuntu distro is efficient, lightweight, and stable. Better than Windows So I'm thinking of going that route to run my system. I'm wondering if the Dell OptiPlex 7000 can handle and do everything I'm planning to do. Could it handle continuous 16MP 180° panoramic streams? which the cameras I want to use have the capability of.\n\nMy plan regarding my usage and intent is to start with 4 cameras and expand to 5 or 6 in the future and to have 24/7 continuous recording, sub-stream AI object detection (person/vehicle/pet), and high-resolution event recording.\n\nMy Planned Hardware \n\n**NVR Host:** Dell OptiPlex 7000 Micro (12th Gen Intel Core i5/i7)\n\n**OS / Software:** Ubuntu Server / Debian running **Frigate NVR inside Docker**\n\n**Network / PoE Switch:** Netgear GS308PP (8-port Gigabit Unmanaged PoE+, 83W budget)\n\n**Primary Drive (SSD):** 1TB NVMe M.2 SSD (for OS, Docker containers, VMS database, sub-streams, AI model processing, and alert clips)\n\n**Secondary Storage (HDD):** External powered 3.5\" Surveillance HDD (WD Purple / Seagate SkyHawk) dedicated strictly to 24/7 continuous main-stream video retention\n\n**Cameras & Stream Workload:**\n\n* **Cameras:** 4 cameras to start, expanding to 5 or 6 in the future.\n* **Resolution / View:** 4 of the planned cameras will be high-bitrate 16MP 180° panoramic streams (H.265).\n* **Tasks:** 24/7 continuous recording, sub-stream AI object detection (person/vehicle/pet), and high-resolution event recording.\n\nQuestions I have \n\n1. Is everything I planned feasible?\n2. Can I go lower on the SSD, maybe 500 GB? Do I actually need 1 TB? \n\nIs my plan alright? Does anyone run a similar micro server setup?   I would appreciate feedback; thank you!",
+    "developer": "LocksmithCultural968",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

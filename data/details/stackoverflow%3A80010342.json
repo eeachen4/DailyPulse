@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010342",
+  "sourceItemId": "80010342",
+  "sourceUrl": "https://stackoverflow.com/questions/80010342/how-to-allow-docker-compose-builds-in-network-host-mode",
+  "detail": {
+    "longDescription": "I have a compose file with several services that are built in host networking mode: services: caddy: build: context: caddy dockerfile: Dockerfile network: host entitlements: - network.host # ... I am running on Debian 13. Since upgrading docker-buildx-plugin to >= 0.37.2 I get the following error message: additional privileges requested: pass \"--allow=network.host\" to grant requested privileges Adding allow=network.host to the docker compose up command gives unknown flag: --allow , so clearly it must be related to some sub-command. Searching for this error I find results on how to add it to individual docker build commands but nothing for compose. Based on the docker buildx changelog , the only reason it worked before is due to a bug that caused it to skip this permission check. I added the entitlements: network.host line in an attempt to fix this, but it had no effect. Note that this only affects building in host mode. Running in host mode works just fine. Reproducible example: https://github.com/jfhr/compose-host-test",
+    "developer": "jfhr",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "70"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

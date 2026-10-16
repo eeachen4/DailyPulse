@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010202",
+  "sourceItemId": "80010202",
+  "sourceUrl": "https://stackoverflow.com/questions/80010202/how-to-express-a-conditionally-required-parameter-in-a-pydantic-validated-tool-a",
+  "detail": {
+    "longDescription": "I have a function (specifically an MCP tool built with FastMCP, but this is really a Pydantic/JSON Schema question) where one parameter is required in the normal case, but must be optional when a separate flag parameter is set, since in that branch it genuinely doesn't apply. Simplified shape: async def create_payment_instruction( amount: str, payment_purpose: PaymentPurpose, # required normally status_check_key: str | None = None, # when set, payment_purpose is irrelevant ): if status_check_key is not None: return check_status(status_check_key) # payment_purpose must be present from here on The problem: giving payment_purpose a required type annotation makes the schema reject every call missing it, including the legitimate status-check branch where it's never used. The only fix I've found is making it optional ( PaymentPurpose | None = None ) and manually checking, inside the function body, that payment_purpose is not None whenever status_check_key is absent. That works, but now the generated schema (and anything inspecting it, like client-side form generation or docs) reports the field as optional even though it's actually required in the common case. That feels like giving up real validation for a runtime check. Is there an idiomatic way to express this kind of \"required unless field X is set\" relationship directly in a Pydantic model, for example with model_validator(mode=\"after\") , a discriminated union, or something in JSON Schema's if / then / dependentRequired , so the constraint is visible in the schema itself rather than only enforced after the fact in the function body?",
+    "developer": "stefisha",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "71"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

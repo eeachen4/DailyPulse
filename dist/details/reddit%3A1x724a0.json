@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x724a0",
+  "sourceItemId": "1x724a0",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1x724a0/chatgpt_kept_quoting_me_prices_that_were_weeks/",
+  "detail": {
+    "longDescription": "https://i.redd.it/wekbm2f74qvh1.png\n\nI was using ChatGPT to shop for a film camera, and it kept giving me prices with total confidence that turned out to be old. One camera it told me was going for about $600. When I actually opened the page, it was $950. I nearly bought at a couple of bad prices before I started checking every number myself, which kind of defeats the point.\n\nSo I went looking for why, and ended up building my own web reader to find out. A few things I learned that are useful even if you never touch code:\n\n**1. A lot of \"live\" prices aren't from the live page.** When the model can't get the page itself, it leans on whatever it can see: a search snippet, an older copy of the page, or what it remembers. The answer reads the same either way. The tell is that it can't point you to the exact page and the price on it.\n\n**2. Most failed page loads don't look like failures.** This was the big one. When I logged what pages actually contained, the bad reads were mostly normal-looking responses with nothing useful on them: a \"just a moment\" bot check, a cookie wall, a login redirect, or a shop's search page before its results had loaded. To the tool fetching it, that's a successful page load. In one of my test runs, 11 of my 13 misses were exactly this: pages that \"worked\" and were empty.\n\n**3. Prices are often the last thing on the page to load.** Plenty of shops fill in the price with JavaScript after the page arrives. A simple fetch gets the product name and description but no price, and the model fills the gap from somewhere else.\n\n**4. Sites really don't want to be read by bots.** Anti-bot services check everything from your connection fingerprint to how the page renders. Different sites block different tools, and no single tool got through everything when I tested them one by one.\n\n**What I do now when ChatGPT gives me a price:**\n\n* Ask for the exact URL and the price as shown on that page. If it can only give you a search result or a vague \"around $X\", treat it as a guess.\n* Ask when the page was last updated, or what date the price is from.\n* Open the link and check the number yourself before buying anything expensive.\n* For something that matters, use agent mode, which drives a real browser. It's slow, but it actually loads the page.\n\n**The rabbit hole part.** I wanted my agent to do the checking for me, so I stitched together a bunch of existing tools that read web pages: a plain fetch, a reader service, a few browsers, some stealth browsers that get past bot checks, and paid scraping services if you give it a key. It tries the cheapest first, and before handing a page back it checks the page is real: a search page needs actual results, a product page needs a price, a bot check counts as a failure. If the check fails, it tries the next tool up.\n\nI tested it on 150 sites picked before I'd looked at any of them. It read 96% of them properly. Firecrawl, the best single tool I tried, read 85% on its own. With only the free tools and no paid services at all, it read 88%, about level with the best paid tool alone. It's still slower than a single service on the hardest sites, and a few (Shopee, Temu) beat every tool I've got.\n\nIt's free and open source, and it plugs into ChatGPT's desktop apps and other agents as an MCP server (my project): [https://github.com/yail259/frankensurf](https://github.com/yail259/frankensurf)\n\nHave a play with it if you're keen! If you find a site it can't read, or a price it still gets wrong, send it my way. Really keen for feedback, good or bad.",
+    "developer": "Careless_Love_3213",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

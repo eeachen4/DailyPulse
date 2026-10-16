@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x701ns",
+  "sourceItemId": "1x701ns",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x701ns/your_ai_guardrail_blocked_the_action_but_did_the/",
+  "detail": {
+    "longDescription": "A refund gets stopped because company policy prohibits it. Another gets stopped because the agent returned malformed output. A third never gets an authorization decision because the service is down. Stopping execution may be appropriate in all three cases. Recording all three as POLICY\\_BLOCK is where I have a problem.\n\nSomeone reviewing those records later could reasonably conclude that policy rejected three refunds. But we only know that happened once. The other two records don't establish that the business policy rejected the refund. If those records feed into policy reviews or a customer dispute, the distinction has practical consequences. You could end up changing a policy that never caused the rejection.\n\nI'd still want the system to stop when it can't establish authorization. I just wouldn't want that uncertainty recorded as a policy decision. For those running agents in production, can you tell from your records whether business policy denied an action, output validation failed, or the authorization service was unavailable?",
+    "developer": "Portotify",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

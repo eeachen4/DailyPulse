@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6v5u7",
+  "sourceItemId": "1x6v5u7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x6v5u7/shrinking_codingagent_context_25_without_a_model/",
+  "detail": {
+    "longDescription": "![img](cox2cydonovh1 \"How Kompressor works\")\n\nHello everyone! I work at Hystax and we built this. It's open source (MIT).\n\nCoding agents re-send their whole history every turn, and in our traces about half of it is tool output: apt logs, compiler warnings, progress bars. Locally, that's context you run out of and prefill you wait for.\n\nWe built a compressor for it with one hard constraint: same input, same bytes, every turn. Prefix caching (llama.cpp's prompt cache, vLLM's prefix caching, or a provider's cache) only reuses what comes before the first changed token. A compressor whose output shifts between turns forces everything after that point to be processed again. So ours is rule-based: no ML, no clock, no randomness, about 0.2 ms per KB on CPU. No telemetry, no model download.\n\nResults on Terminal-Bench 2.1 (Codex CLI on GPT-5.5, per full run over 87 tasks):\n\n|\\~|No compression|Compressed|\n|:-|:-|:-|\n|Input tokens per run|96.1M|72.2M (−25%)|\n|90th-percentile request|106.9K tokens|66.5K tokens|\n|Requests over 100K tokens|11.2%|3.2%|\n|Tasks solved|82.2%|81.1% (not significant)|\n\nOn the heaviest tasks, mcmc-sampling-stan peaked at 60K tokens instead of 165K, and caffe-cifar-10 at 68K instead of 152K.\n\n**Why not a small model?** We compared against Headroom with its ModernBERT model on, using 34.2M characters of real tool output. It removed 22.6% at 87 ms per KB; our rules removed 62.8% at 0.2 ms per KB. The model also drops words inside lines: \"Process exited with code 0\" becomes \"Process exited code 0\". Ours either keeps a line verbatim or replaces it with a labelled marker the model can fetch back.\n\n**Caveat:** all of this was measured on a hosted model. We haven't benchmarked a local setup yet. If anyone runs it on one, I'd like to see the numbers.\n\nRepo: [https://github.com/hystax/optscale-kompressor](https://github.com/hystax/optscale-kompressor)\n\nMethodology and per-task results: [https://optscale.ai/blog/context-compression-coding-agents](https://optscale.ai/blog/context-compression-coding-agents)\n\nIf you think the measurement is flawed somewhere, I'd rather hear it.\n\n",
+    "developer": "MattAlreadyHere",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

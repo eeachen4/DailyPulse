@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x703wl",
+  "sourceItemId": "1x703wl",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x703wl/dugup_windows_linux_find_your_files_nearly/",
+  "detail": {
+    "longDescription": "DugUp: find your files by what is in them (words, OCR, meaning, what a picture looks like), all local. Alpha.\n\nDugUp was inspired by the macOS app DigUp but is a separate design, written from scratch in Python; it shares no code with it. It runs on Windows 11; Linux is supported and tested on Ubuntu (the full test suite runs there on every push, under Python 3.10, 3.12 and 3.13; the window, the tray and the search key have had real daily use only on Windows so far).\n\nStatus: alpha. The searches, the index and the file-changing paths (trash, rename, undo, near-duplicate cleanup) have been reviewed independently, probed, and tested on Windows and Linux; the guarantees they keep are stated below under What it touches on your disk. What makes it an alpha: one person has used the window for real; a whole search still runs on the window's thread (the model work does not), so a very large index can make it pause; the near-duplicate scan has no stated ceiling yet for collections past about 100,000 pictures; and the index is not encrypted. Bug reports with the dugup doctor output are welcome.\n\nWhat my project does: DugUp indexes the folders you choose and finds files by the words inside them, the words in a photo or a scan (OCR, with a crop showing where it found them), what a passage means, and what a picture looks like. Press Win+Shift+F anywhere, type a few letters, the file opens. It also finds near-duplicate photos (a resized copy, a re-save, a second shot of the same scene) with a keeper chosen by rules you can see, and can name camera-named pictures by what they show, with a preview and undo. Everything runs on your machine; nothing leaves it. SQLite FTS5 for words, ONNX models for meaning and pictures, tkinter for the window, a tray with a global key. Background index updates wait for mains power and never take every core.\n\nTarget audience People with a lot of files and photos who want to find them without uploading them anywhere. It’s an alpha: the searches and the file-changing paths (trash, rename, undo, duplicate cleanup) were independently reviewed and probed and the guarantees are written down in the README, but one person has used the window for real so far. Windows 11 and Linux (tested on Ubuntu), Python 3.10+. Bug reports with DugUp Doctor output are very welcome.\n\nComparison: Everything/Recoll/DocFetcher search names or words; DugUp does that and adds OCR, meaning, and picture likeness, plus duplicate and rename work with a record before every change. Inspired by the macOS app DigUp, written from scratch in Python; shares no code with it. PolyForm Noncommercial license (free to use, copy and modify; not for sale).\n\nhttps://github.com/benwade/DugUp",
+    "developer": "Intraluminal",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

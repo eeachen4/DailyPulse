@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50107729",
+  "sourceItemId": "50107729",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50107729",
+  "detail": {
+    "longDescription": "We noticed during the course of many many years of DBA related work that fixes to database issues and queries are always reactive. An entire database can fall over extremely quickly when an unbounded query grows without warning. Traditionally, DBAs hear complaints of slowness and follow a methodical process: - manually browse pg_stats or other database related performance internal tables - see which queries are slowest - figure out what indexes are missing - figure out which indexes are actually bad and slowing down writes - painstakingly implement a fix In the age of cheap intelligence, we decided that there is no reason we can’t have an always-on agent that is designed to do this job for you. Databases need something or someone that is always watching with a massive amount of contextual understanding to be able to take quick actions. We’ve watched the alternative play out repeatedly. One of our users’s checkout page went from loading instantly to taking 11 seconds in a single night with no code change. How? Well somehow their order table grew by 40M rows because BI team had injected historical data and suddenly postgres started doing full table scans. Sometimes routine operations have unintended results and can easily destroy your database. We wanted to catch these kinds of regressions instantly. So we built RDST. RDST is a desktop agent that runs on your PC and connects to PostgreSQL &#x2F; MYSQL (read only) and compares every query against its own performance every minute. Every expensive query is automatically EXPLAIN ANALYZED, stripped of PII and sent to U.S. based frontier or open model providers to analyze which indexes are missing, how the query could be rewritten, and provides the fix. We then run a classifier model (JEV) to decide if you should be notified (is this standard behavior for this particular query?), and the full history of the query performance is kept for years. RDST also keeps track of your entire database health in general, and recommends more fixes than simply bad queries. Since it runs locally we can keep the database credentials stored in your OS Keychain (RDST never keeps them in its own storage layer), and the connection goes straight to your database (using a jump host or SSH tunnel for private connections). You can read more about how we handle data especially as it pertains to LLM use here. https:&#x2F;&#x2F;readyset.io&#x2F;docs&#x2F;readyset-ai&#x2F;rdst&#x2F;desktop&#x2F;privacy We really want feedback from the community from people running Postgres and MySQL in production. We are giving inference away completely for free. Just as a reminder, RDST will NOT run any updates or indexes against your database at this time. We are considering a fully autonomous auto-pilot mode in the future, but for now we are leaving the actual fixes in your hands. Let us know what you think!",
+    "externalUrl": "https://github.com/readysettech/rdst",
+    "developer": "gvsg",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

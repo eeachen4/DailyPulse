@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6mlt5",
+  "sourceItemId": "1x6mlt5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x6mlt5/three_6minute_pauses_double_the_input_cost_of_a/",
+  "detail": {
+    "longDescription": "Take one 20-turn agent session and price it on Claude Sonnet 5.5 API list rates (chart above). The tokens are the same in both runs:\n\nUser replies within 5 minutes every turn: $0.138 in input cost  \nUser steps away for 6 minutes before turns 6, 11 and 16: $0.282\n\nThe prompt cache is the only difference. By default Anthropic keeps it for 5 minutes, and every hit resets that timer at no charge. If the window passes, the next call writes the whole context back to cache at $2.50 per million tokens. Reading it would have cost $0.10. That's 25x on Sonnet 5.5, which reads cache at 0.05x base, and 12.5x on Claude models with the usual 0.1x read rate.With 100k tokens of context, one expired cache costs $0.25 where a read would have cost $0.01.\n\nA per-call cost log hides the cause. Turn 16 shows up at $0.080, while the same turn with a warm cache costs $0.008. If you log usage fields, that row also shows a 32,000-token cache write. It doesn't show the 6-minute gap that caused it, because the gap sits between two rows.\n\nOpenAI works differently. On GPT-5.6 and later, a cached prefix lasts at least 30 minutes after its last use, so the same 6-minute pause costs nothing extra.\n\nWorth changing if you run agents on Claude:\n\n* Log cache\\_read\\_input\\_tokens and cache\\_creation\\_input\\_tokens on every call, next to the session ID and the seconds since the previous call. The gap then becomes a column you can sort by.\n* If your users pause for 5 to 60 minutes mid-task, try the 1-hour cache (\"ttl\": \"1h\"). Writes cost 2x base instead of 1.25x, and this session drops to $0.198.\n* Keep timestamps and per-request IDs out of the system prompt and tool definitions. If a value changes on every call and sits ahead of the cache breakpoint, every call misses.\n\nThe math: turn n sends 2,000 × n tokens. With a warm cache, each turn reads the previous 2,000 × (n-1) tokens and writes the new 2,000. A pause before turn k rewrites all 2,000 × k tokens. Output tokens are left out, and so is any fixed system prompt or tool set. An agent with a 30k-token system prompt pays more for each expired cache than this shows. The rates come from Anthropic's pricing and prompt caching docs and OpenAI's prompt caching guide.\n\nWhat's the longest gap you see between calls inside one session, and does your logging capture it?",
+    "externalUrl": "https://i.redd.it/3wms5pxq1nvh1.png",
+    "developer": "Future_AGI",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010422",
+  "sourceItemId": "80010422",
+  "sourceUrl": "https://stackoverflow.com/questions/80010422/getting-a-timeout-error-when-trying-to-make-a-node-web-server-run-a-stored-proc",
+  "detail": {
+    "longDescription": "It works just fine if I try to run a command from powershell to run the stored proc: sqlcmd.exe -S \"MYSERVERNAME\\SQLEXPRESS01\" -d DB1 -U \"User1\" -P \"Password1\" -Q \"declare @ReturnValue int declare @ReturnMessage nvarchar(4000) exec spMyStoredProc 'employeeNumber', null, null, @ReturnValue output, @ReturnMessage output select @ReturnValue ReturnValue, @ReturnMessage ReturnMessage\" However, when I try to execute this stored procedure by sending a web request via a powershell script, it gives an error. Below is the script I'm using. $body = @{ SQLDatabase = \"DB1\" FunctionID = 0 EmployeeNumber = \"employeeNumber\" } | ConvertTo-Json $response = Invoke-WebRequest -Uri \"http://MyServersIPAddress:8081/MyEndpointName\" -Method Post -Body $body -ContentType \"application/json; charset=UTF-8\" $response.StatusCode The error: Invoke-WebRequest : {\"ReturnFirstName\":\"\",\"ReturnLastName\":\"\",\"ReturnValue\":0,\"ReturnMessage\":{\"code\":\"ETIMEOUT\",\"originalError\":{\"code\": \"ETIMEOUT\"},\"name\":\"ConnectionError\"}} At C:\\Users\\MyWindowsUser\\Documents\\MyProjectFolder\\MyProjectSubfolder\\webRequest.ps1:7 char:13 + $response = Invoke-WebRequest -Uri \"http://MyIPAddress:8081/MyEndpointName ... + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ + CategoryInfo : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebException + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand So it seems like the request is reaching the web server, but it can't connect to SQL. If I look at the terminal window where I have the node web server running, it shows this: ConnectionError: Failed to connect to MyServerName\\SQLEXPRESS01 in 15000ms Any ideas?",
+    "developer": "FlyRunningHare5",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "32"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

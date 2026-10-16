@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x72oeh",
+  "sourceItemId": "1x72oeh",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x72oeh/should_agents_ever_hold_raw_api_keys_or_only_a/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nI've gone back and forth on this one for a while. Most agents I come across get raw provider keys. A search API key in the env, a scraping key, an image model key. The agent can call any of them as often as it likes, and the only real limit is whatever lands on the provider's invoice at the end of the month. That bothers me for a few reasons. A raw key was designed for a developer calling it from code they wrote and tested. An agent decides on its own how many times to call it, and it can decide badly. The worst case isn't one bad call, it's a loop. A tool fails, the agent retries, the retry fails, and so on. Each attempt might be cheap. A few hundred aren't. And prompt rules aren't limits. \"Don't spend more than $10\" is a polite request to a model that can forget it, misjudge it or get talked out of it by something it scraped. What I think an agent should get instead: - a prepaid balance rather than an open line of credit - limits on the credential itself: per hour, per day, in total, and per tool - an allow-list of the tools it's allowed to call at all - a price check before each call, so you can see what it's about to spend - a receipt for every call I work with the Agentik team, and that's roughly how their setup works: the keys carry these limits, and with caps set, the prepaid balance works as a hard ceiling. So I'm not neutral here. But I'd hold any setup to the same list, whether it's a gateway, a proxy you wrote yourself, or a virtual card per provider. The best counter-argument I've heard: limits slow agents down, and for real work you want the agent to finish the job without asking for more budget every hour. That's fair. I'd still rather raise a limit on purpose than discover a missing one on the invoice. Where do you land: raw keys with monitoring, hard limits on everything, or something in between?",
+    "developer": "Cold_Hall_5384",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

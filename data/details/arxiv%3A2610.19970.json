@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.19970",
+  "sourceItemId": "2610.19970",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.19970",
+  "detail": {
+    "longDescription": "arXiv:2610.19970v1 Announce Type: new Abstract: Repository-level code comprehension question answering (QA) supports developer reasoning over functionality and usage distributed across codebases. However, repository-specialized large language models (LLMs) can become misaligned as code evolves. We study this challenge as temporal repository adaptation: acquiring new knowledge, suppressing obsolete, retaining still-valid, and preserving semantically neighboring knowledge. Existing retrieval, fine-tuning, and model-editing methods address only parts of this problem. We propose Temporal Adaptive Fine-Tuning (TAFT), a novel adaptation approach that treats repository transitions as supervision. TAFT derives temporally grounded QA data from repository transitions, pairs newly valid with obsolete knowledge through preference optimization, and replays transition-conditioned retention examples to preserve still-valid knowledge. We evaluate TAFT on an augmented temporal SWE-bench dataset comprising 255,295 QA entries across ten temporal slices, comparing deferred (Baseline), per-slice retrained (Baseline-Batched), and variants with knowledge anchors along four dimensions: updated knowledge, obsolete-answer suppression, retention, and neighbor stability. TAFT consistently outperforms both the deferred and batched baselines, with an average relative improvement of 18% in updated/suppressed knowledge accuracy, doubled retention accuracy, and roughly 1.5 times the neighbor accuracy. With directly supplied knowledge anchors, TAFT-KANT further improves mean updated/suppressed, retention, and neighbor accuracy over TAFT by 3.55%, 8.35%, and 13.00%, respectively. Overall, TAFT demonstrates its effectiveness across all evaluated areas, effectively enabling code comprehension QA alignment with repository evolution.",
+    "developer": "Alex Wolf, Pooja Rani, Harald C. Gall",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alex Wolf, Pooja Rani, Harald C. Gall"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

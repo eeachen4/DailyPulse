@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.29054",
+  "sourceItemId": "2605.29054",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.29054",
+  "detail": {
+    "longDescription": "arXiv:2605.29054v3 Announce Type: replace Abstract: Migrating a machine-learning codebase across frameworks--for example from PyTorch to JAX--is a routine but costly engineering task that is fundamentally cross-paradigm: eager, stateful, object-oriented modules must be rewritten as pure, jittable functions over an explicit parameter pytree. We ask whether coding agents can perform such whole-repository migrations correctly, and argue that existing code benchmarks, which grade unit-test pass rates or surface-level similarity to a reference translation, cannot answer this: they neither require the migrated system to \\emph{behave} the same nor prevent a JAX reimplementation from faking equivalence by secretly importing PyTorch itself. We introduce T2J-BENCH, a benchmark of 63 whole-repository PyTorch-to-JAX migration tasks spanning 18 model families across both training and serving, where torch-free checkpoint conversion is itself part of the deliverable. T2J-BENCH grades execution-grounded functional equivalence: each candidate is run inside a separate, torch-free, offline verifier and scored against references frozen from the PyTorch original, under a hard independence gate and a continuous, threshold-free reward. Across twenty off-the-shelf agent--model configurations, the strongest recovers only 0.676 of the reward against a 0.980 oracle, with substantial numeric and behavioral divergence despite high spec pass rates. Finally, we contribute TWINHARNESS, a reference-grounded agent harness that turns the agent's executable PyTorch source into legitimate self-verification feedback; applied to an opus-5 agent it raises the reward from 0.649 to 0.723--the highest of any configuration--using only task-visible resources.",
+    "developer": "Tao Feng, Jiefeng Chen, Linxin Song, Yufan Zhuang, Yue Huang, Bhavana Dalvi Mishra, Chi Wang, Xiangru Tang, Jieyu Zhao, Ge Liu, Tomas Pfister, Jinsung Yoon",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.CL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Tao Feng, Jiefeng Chen, Linxin Song, Yufan Zhuang, Yue Huang, Bhavana Dalvi Mishra, Chi Wang, Xiangru Tang, Jieyu Zhao, Ge Liu, Tomas Pfister, Jinsung Yoon"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010006",
   "sourceItemId": "80010006",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010006/how-to-override-styles-of-react-component-with-vanilla-extract",
   "detail": {
     "longDescription": "How can I ensure style rules for extended component take precedence over style rules for the component I am extending using vanilla extract? Assuming code like this: // my-component.css.ts import { style } from \"@vanilla-extract/css\"; export const root = style({ background: \"green\", fontWeight: \"bold\", }); export const awesome = style({ background: \"red\", }); // MyAwesomeComponent.tsx import * as styles from \"my-component.css.ts\"; const MyAwesomeComponent = ({ className, ...props }) => ( <div className={[styles.root, className].join(\" \")} {...props} /> ); // MyMoreAwesomeComponent.tsx const MyMoreAwesomeComponent = ({ className, ...props }) => ( <MyAwesomeComponent className={[styles.awesome, className].join(\" \")} {...props} /> ); I find that MyMoreAwesomeComponent gets two classes added to it, both of which have a style rule for background. Both have the same specificity, so it's up to source order of the compiled app to determine which background to use. How can I make sure MyMoreAwesomeComponent overrides the background with its own value. I need a general pattern to use, not just for this one instance.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "69"
+        "value": "94"
       },
       {
         "label": "状态",

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6nzsy",
+  "sourceItemId": "1x6nzsy",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x6nzsy/why_are_we_still_reviewing_massive_prs_in/",
+  "detail": {
+    "longDescription": "I was looking into ways to improve how teams review pull requests now that engineers are using agents to generate large multi-file changes. But I noticed an issue with how fast mental models break down when reading a standard diff. \n\nWhen an agent puts together a 20-file change, git diff lists those files alphabetically. You end up reading utility helpers or UI components before you even reach the underlying database schema or core interfaces that dictate how they behave. You would spend half the review reconstructing the call graph in your head instead of evaluating the actual logic. \n\nDependency-aware reading orders (grouping files by architectural hierarchy rather than folder names) is like the correct thing to do, and it made me wonder why review interfaces still treat diffs like flat alphabetical lists.\n\nHow do you read a 20-file diff? Do you have a specific order you follow?",
+    "developer": "Chris__Codes",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

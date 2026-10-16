@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6viet",
+  "sourceItemId": "1x6viet",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1x6viet/screentinker_v30_opensource_digital_signage_now/",
+  "detail": {
+    "longDescription": "  Dev here. ScreenTinker is a self-hostable signage CMS (Node/Express/SQLite, MIT, Docker image on ghcr). v3.0 is out:\n\n  - Guided first run + Simple view for new users; import from Xibo, Yodeck, ScreenCloud and others.\n  - Content requests - an approval-gated link so people without an account can send content for the screens.\n  - Screen share (peer-to-peer WebRTC, TURN supported with short-lived credentials) to several screens at once.\n  - Blank/frozen screen detection, stale-content and accessibility checks, captions via a local Whisper server.\n  - Private A.I. - point it at your own Ollama/OpenAI-compatible box; a Data & privacy page lists exactly what leaves the server.\n  - Passkeys, SCIM, full data export, and moving an org to another server by import.\n  - Every install now ships its player packages: upgrade.sh fetches the signed APK etc. (checksum-verified), and the Docker image builds the native Pi player.\n\n  Upgrade notes: Node 22.14+ is now enforced, and the first start snapshots the DB. From a 2.6 git install, run 3.0's upgrade script (the command is in the release notes) - we hit an apt needrestart race on our own prod upgrade, so the notes include the\n  fix.\n\n  Thanks to gainskills and arminfauland for PRs.\n\n  **How A.I. is used:** most of the code is written with Claude Code, and I'm not going to pretend otherwise. \n I've been doing IT/telecom/security for 20+ years (network architecture, firmware RE, hardware hacking), so my job on this is the stuff AI is bad at: architecture, threat modelling, reviewing what it writes, and testing on real hardware (Fire TV, Android, Tizen,\n  webOS, Pi, BrightSign, Roku). Nothing reaches production without my sign-off, and community bug reports from people running real screens drive a lot of the fixes. This post was drafted with Claude and edited by me.\n\n  The A.I. features in the product (sign suggestions, translations, captions) are optional and off unless you configure a provider. Point them at your own hardware and nothing leaves your network.\n\n  MIT licensed, all the code is public - judge it on that.\n\nhttps://github.com/screentinker/screentinker\n",
+    "developer": "dw5304",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

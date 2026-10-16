@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6wys2",
+  "sourceItemId": "1x6wys2",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1x6wys2/arabic_egyptian_dialect_veterinary_diagnosis/",
+  "detail": {
+    "longDescription": "I'm a solo founder building an Arabic veterinary diagnosis assistant for livestock and pets in Egypt (poultry, cattle, buffalo, horses, cats, dogs).\n\n\n\nSetup: \\~216 English vet textbooks -> 530k chunks (Postgres + pgvector, paraphrase-multilingual-mpnet 768-d with a 128-token window, plus lexical search); Claude Haiku as the LLM.\n\n\n\nWhat we measured:\n\n\\- Retrieval-first (embed the Arabic symptoms -> top-10 chunks -> LLM) is weak.\n\n\\- Given the correct passage, the LLM gets \\~92% top-1, so the reasoning works.\n\n\\- \"LLM proposes 10 candidate diseases -> search the books by disease name -> LLM picks top-3\" reaches 92% top-3 on clean Arabic (MSA) case descriptions.\n\n\\- On real owner messages from Arabic Q&A sites, agreement is only \\~40% exact and \\~72% exact or related (labels are the replier's answers, not vet-reviewed).\n\n\n\nThe translation/dialect problem: owners write in Egyptian colloquial Arabic (\"الفراخ بتنهج وفاتحة بوقها\", \"الجاموسة مانعة الأكل\"), while all the evidence is English and organised by disease name. What we tried:\n\n1. AGROVOC Arabic-English glossary: +1 case, and generic terms (\"heat\", \"symptoms\") diluted queries.\n\n2. A 287-term Egyptian field-term dictionary: fixed 3 cases, broke 3.\n\n3. A 410-term controlled clinical vocabulary for poultry (MSA + Egyptian): did not meet our gate.\n\n4. LLM rewriting of the whole question into English clinical signs before diagnosis: 38.3% vs 40.4% without, so no gain.\n\n5. BGE-M3 instead of mpnet: not better on our pilot, and 7x slower.\n\n\n\nPlanned next: self-consistency over candidate lists, 2-3 follow-up questions to separate the top-3, a canonical disease list with hierarchical scoring, and a small paid vet audit.\n\n\n\nQuestions:\n\n1. What has worked for you mapping dialectal or lay symptom text to clinical concepts? Is the right move to normalise the dialect, or to ask follow-up questions?\n\n2. Do you know Egyptian/Arabic medical NLP resources (dialect symptom lexicons, annotated corpora) or veterinary ontologies (VeNom, SNOMED vet) that can be used?\n\n3. Any pitfalls with LLM-simulated owners for evaluation?\n\n\n\nThanks!",
+    "developer": "Mean_Photo8124",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

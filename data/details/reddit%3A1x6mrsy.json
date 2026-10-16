@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x6mrsy",
+  "sourceItemId": "1x6mrsy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x6mrsy/llm_coboltopython_translations_pass_99_of_the/",
+  "detail": {
+    "longDescription": "I wanted to know how far \"the translation passes the examples\" is from \"the translation is correct\" for LLM-generated code, on a domain with nasty semantics: COBOL to Python.\n\nSetup (open source, MIT):\n\n- Oracle: GnuCOBOL runs the original program; a differential harness runs the Python translation on the same inputs and compares output byte for byte.\n- 50 programs: 30 public (Rosetta Code, Open Mainframe Project examples) and 20 written for the repo. One model, 3 attempts per program, protocol fixed before any run.\n- The translator saw the COBOL source and two example input/output pairs. Scoring used hidden inputs: generated values plus PICTURE boundary values (max digits, sign flips, rounding ties).\n\n| condition | shown examples | hidden tests (public / own programs) |\n|---|---|---|\n| C: plain Python, stdlib only | 98.9% / 100% | 91.1% / 81.7% |\n| A: with a COBOL-semantics runtime library | | 98.9% / 98.3% (after fixing my own bug, see below) |\n| B: A plus up to 3 repair rounds with test diffs | | 100% / 100%, all after one round |\n\nWhat I took from it, for anyone building LLM code tools:\n\n- Examples in the prompt are a weak oracle. The plain-Python failures were not logic errors but domain semantics: COBOL cutting input to the field length, losing digits on the left on overflow, printing zero without a sign. None of that shows up in two happy-path examples.\n- Giving the model a library that encodes the domain semantics moved almost all failures out of the model's hands.\n- A repair loop that feeds back the first differing field (expected vs actual) on separate dev inputs fixed every remaining case in one round. Scoring stayed on held-out inputs, so the loop could not overfit to them.\n- My own runtime had a bug (CobDecimal compared objects by identity and had no ordering), which caused most condition A failures. The pre-registered numbers stay primary and a corrected sensitivity analysis sits next to them, with every flipped verdict listed. Check your tools before blaming the model.\n\nLimits: small corpus, one model on one date, GnuCOBOL instead of an IBM compiler, attempts of the same program are not independent, and at program level the A vs C difference is not statistically significant.\n\nRepo with protocol, raw prompts and replies, and the verifier: https://github.com/abdulazizbalu/cobol-equiv\n\nDisclosure: this post was drafted with AI assistance.",
+    "developer": "Balu0603",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

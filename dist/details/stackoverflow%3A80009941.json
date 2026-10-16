@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009941",
   "sourceItemId": "80009941",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009941/filtering-polars-using-a-dictionary",
   "detail": {
     "longDescription": "I work on python with polars. I have: A dataframe df with columns mc1 and mc2 and A dictionary dico . I would like to filter on df to keep only the rows for which mc1 is an existing key of dico and dico[mc1] == mc2 . Is it possible? I firstly tried something like this: import polars as pl import numpy as np df = pl.DataFrame({'mc1':[1,2,3,4], 'mc2':[5,6,7,8]}) dico = {1:5,2:2,4:8} df.filter(pl.col('mc1').is_in(dico.keys()) & (dico[pl.col('mc1')] == pl.col('mc2'))) But it didn't work. I also tried to produce a list of booleans indicating which row to keep, like it would work using pandas, doing this: mask = np.zeros(len(df),dtype=bool) for i in range(len(df)): mc = df['mc1'][i] mask[i] = (mc in dico) and (df['mc2'][i] == dico[mc]) And it succeeded, but then I don't know how to use this mask : looks like the pandas syntax df[mask] doesn't work. Do you have a solution?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "82"
+        "value": "98"
       },
       {
         "label": "状态",

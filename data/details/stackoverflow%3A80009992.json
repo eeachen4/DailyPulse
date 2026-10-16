@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80009992",
   "sourceItemId": "80009992",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
   "sourceUrl": "https://stackoverflow.com/questions/80009992/how-can-i-update-the-font-size-for-all-of-the-ui-in-pyqt",
   "detail": {
     "longDescription": "How can I set the font size for all of the elements in the UI? I also want to avoid setting the font at the app level; I want to have multiple fonts in my app, and I also would like to setting font size element by element. from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QLineEdit from PyQt6.QtGui import QFont import sys class AutomaticFont(QMainWindow): def __init__(self): super().__init__() widget = QWidget() self.setCentralWidget(widget) layout = QVBoxLayout() widget.setLayout(layout) font1 = QFont(\"Arial\", 24) font2 = QFont(\"Arial\", 12) label = QLabel(\"This is a test text\") label.setFont(font1) line_edit = QLineEdit() line_edit.setFont(font2) line_edit.textChanged.connect(lambda: font1.setPointSize(int(line_edit.text()))) layout.addWidget(label) layout.addWidget(line_edit) self.show() if __name__ == '__main__': app = QApplication(sys.argv) font = AutomaticFont() app.exec()",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "63"
+        "value": "83"
       },
       {
         "label": "状态",

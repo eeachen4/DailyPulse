@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.27193",
+  "sourceItemId": "2604.27193",
+  "fetchedAt": "2026-10-16T01:43:34.383Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.27193",
+  "detail": {
+    "longDescription": "arXiv:2604.27193v2 Announce Type: replace-cross Abstract: Automatic Emergency Braking (AEB) systems represent a safety-critical national interest, with the National Highway Traffic Safety Administration (NHTSA) Federal Motor Vehicle Safety Standard (FMVSS No. 127) requiring AEB in all new light vehicles sold in the United States by September 2029. However, production implementations frequently rely on deterministic stopping-distance or Time-to-Collision (TTC) thresholds that fail to capture uncertainty in sensing, road conditions, and vehicle dynamics. This paper presents a GPU-accelerated Monte Carlo framework for stochastic evaluation of emergency braking performance using a longitudinal vehicle model incorporating aerodynamic drag, road grade, brake actuator dynamics, and weight transfer effects. A one-thread-per-sample execution strategy exploits the independence of Monte Carlo rollouts, while deterministic CPU-generated sampling ensures bit-exact numerical consistency between CPU and GPU implementations. The framework is evaluated across four hardware platforms: two laptop GPUs (GTX 1650, RTX 5070) and two automotive-grade embedded platforms (Jetson Orin Nano, Jetson AGX Orin). Peak speedups of 54.57x are achieved. Real-time feasibility analysis with a complete AEB timing budget demonstrates that the Jetson AGX Orin can execute approximately 25,000 Monte Carlo samples within a 530 ms budget, enabling real-time probabilistic AEB evaluation as part of a complete embedded pipeline. Collision probability analysis demonstrates that a threshold set at the mean stopping distance of 79.2 m leaves a collision probability of approximately 47%, while the conservative 1% risk threshold requires a minimum safe headway of 111.1 m, an additional 31.9 m (40%). These results provide quantitative guidance for risk-aware AEB threshold selection under the NHTSA final rule.",
+    "developer": "Akshay Karjol, Shadi Alawneh",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.RO, cs.CE, cs.DC, cs.SY, eess.SY"
+      },
+      {
+        "label": "第一作者",
+        "value": "Akshay Karjol, Shadi Alawneh"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
