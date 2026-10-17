@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7r8qa",
+  "sourceItemId": "1x7r8qa",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x7r8qa/what_did_ai_assistants_get_wrong_in_your_specific/",
+  "detail": {
+    "longDescription": "So, I am using a bunch of different AI Assistants. At the moment GrokBot is among the strongest, but even that fails pathetically at times. Here are specific failures with GrokBot from the last 2 days:\n\n1) Tried booking a flight & hotel with Amex Travel - failed due to CDN blocking\n\n2) Tried filing for Sales tax - failed due to outdated certificate\n\n3) Tried checking on latest google reviews - failed because it cannot read properly\n\n4) Tried telling it to deal with amazon customer service for a return - failed because Amazon blocked it\n\nNow, the reason I am asking is because I see these small failures ALL the time, and for some reason nobody bothers fixing specific cases, even though I am sure tons of people would help out fixing this eco system voluntarily.\n\nI created my own Assistant, which handled all the above failures nicely. It basically required specific fixes for each website, but once fixed it worked like a charm. Internally I made each of these an \"app\", e.g. \"Sales Tax App\", \"Amex Booking App\", instead of a \"skill\". Why? Because skills are just instruction sets. The apps run each on their own docker and can only get the data that is permissioned, and only has the web egress that's allowed for the docker. Furthermore each container has its own browser for it's singular app purpose, so you can stay logged in, without ever worrying about cross site attacks. Now whether or not that should be called an \"app\" or whatever, is besides the point - what these containers do is they handle one specific task very well.\n\nSo I am wondering: instead of providing yet another assistant, maybe i should just open source my containerized app approach. Other developers could then add their own fixes for any of their own things that they see failing. And - I could expose this service online - so that even grokbot could simply use these apps via a simple curl call.\n\nThoughts on the above? What SPECIFIC apps would you like to see? What SPECIFIC issues cannot be handled currently by your AI Assistants that you would like to see handled? I would be happy to get started on that :)",
+    "developer": "NikEy",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

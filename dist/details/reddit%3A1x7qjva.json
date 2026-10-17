@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7qjva",
+  "sourceItemId": "1x7qjva",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x7qjva/i_built_a_code_index_for_ai_agents_with_no_parser/",
+  "detail": {
+    "longDescription": "My agents were burning context on grep-then-read cycles. Every \"where is X defined, who calls it\" turned into 3-4 tool round-trips, each one billed. So I built Reliary: a single offline Rust binary that indexes the repo into SQLite and serves it to agents over MCP.\n\nThe contrarian part: there is no parser. No tree-sitter, no AST, no per-language code. Definitions and call sites come from structural detection on brace/indent/blank-line boundaries. One codebase, every language, same code path. (If you think that can't work on your language, that's exactly what I'd like to hear about.)\n\nWhat the agent gets is 7 tools: find\\_references (defs, callers, methods, dead code through one entry point), search, call\\_graph, list\\_methods, find\\_dead\\_code, describe, plus a verify tool that checks a  symbol at file:line  claim against the index. There is also  reliary wrap , which you prefix onto verbose shell commands ( cargo test ,  git diff ) to compress the output before it reaches context.\n\nNumbers: on a 10-question comprehension bench (4 seeds, claim-verified against the index, not keyword matching), it bills \\~42% less than grep with \\~4x smaller tool output and zero dead-ends, at comparable accuracy. I am not claiming it is more accurate than grep; on this corpus the gap is within noise, and I published the full methodology including an edit-outcome experiment that came out a tie.\n\nThe win is cost and output size, reproducibly.\n\nInstall:  cargo install reliary-agent  or grab a prebuilt binary (linux/darwin/windows, x64+arm64) from the releases.  \"reliary trust .\"  to index,  \"reliary init\"  wires up Claude Code / OpenCode / Pi / Cline. MIT licensed. \n\nRepo: https://github.com/Reliary/reliary-agent \n\nMy question for you: where does a parser-free index break on your codebase? I have a list of languages it handles and I am more interested in the ones it doesn't.",
+    "developer": "microbass",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

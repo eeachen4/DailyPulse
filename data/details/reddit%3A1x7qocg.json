@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7qocg",
+  "sourceItemId": "1x7qocg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x7qocg/is_there_a_standard_architecture_for_decision/",
+  "detail": {
+    "longDescription": "ReAct is a common baseline for an LLM agent loop. What's the equivalent when you combine a fast decision model such as Jev, an LLM, and tool calling?\n\n\n\nI'm looking at this for game-agent experiments, where the world keeps running while the agent thinks. I'm trying to understand which parts of the loop should belong to each model.\n\n\n\nThe examples I've been reading seem to follow two patterns:\n\n\n\n\\- Confidence cascades: a decision model handles bounded choices, with an LLM fallback when confidence is low (REFLEX and JevAgentHarness).\n\n\\- Planner + chooser: an LLM plans or proposes actions, and Jev picks bounded actions (Hermes/Astra + Jev in Minecraft).\n\n\n\nIs there an accepted architecture or name for this combination yet? In particular, how do you decide when to replan, who generates the candidate actions, and when a tool decision should fall back to the LLM?\n\n\n\nPublic implementations or papers would help. This is a technical reference request for my own experiments; I'm not collecting personal data or monetizing responses.\n\n\n\nReferences:\n\n\n\nREFLEX: [https://arxiv.org/abs/2609.26532](https://arxiv.org/abs/2609.26532)\n\n\n\nJevAgentHarness: [https://arxiv.org/abs/2610.21412](https://arxiv.org/abs/2610.21412)\n\n\n\nHermes + Jev: [https://github.com/teknium1/hermes-and-jev-play-minecraft](https://github.com/teknium1/hermes-and-jev-play-minecraft)\n\n\n\nAstra + Jev: [https://github.com/rmalde/minecraft-agent](https://github.com/rmalde/minecraft-agent)\n\n\n\nEnglish wording refined with AI.ReAct is a common baseline for an LLM agent loop. What's the equivalent when you combine a fast decision model such as Jev, an LLM, and tool calling?\n\nI'm looking at this for game-agent experiments, where the world keeps running while the agent thinks. I'm trying to understand which parts of the loop should belong to each model.\n\nThe examples I've been reading seem to follow two patterns:\n\n\\- Confidence cascades: a decision model handles bounded choices, with an LLM fallback when confidence is low (REFLEX and JevAgentHarness).\n\n\\- Planner + chooser: an LLM plans or proposes actions, and Jev picks bounded actions (Hermes/Astra + Jev in Minecraft).\n\nIs there an accepted architecture or name for this combination yet? In particular, how do you decide when to replan, who generates the candidate actions, and when a tool decision should fall back to the LLM?\n\nPublic implementations or papers would help. This is a technical reference request for my own experiments; I'm not collecting personal data or monetizing responses.\n\nReferences:\n\nREFLEX: [https://arxiv.org/abs/2609.26532](https://arxiv.org/abs/2609.26532)\n\nJevAgentHarness: [https://arxiv.org/abs/2610.21412](https://arxiv.org/abs/2610.21412)\n\nHermes + Jev: [https://github.com/teknium1/hermes-and-jev-play-minecraft](https://github.com/teknium1/hermes-and-jev-play-minecraft)\n\nAstra + Jev: [https://github.com/rmalde/minecraft-agent](https://github.com/rmalde/minecraft-agent)\n\nEnglish wording refined with AI.",
+    "developer": "emersoftware",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

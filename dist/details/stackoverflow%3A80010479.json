@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010479",
+  "sourceItemId": "80010479",
+  "sourceUrl": "https://stackoverflow.com/questions/80010479/ad-hoc-temporary-print-based-debugging-rust-code-without-new-type-constraints",
+  "detail": {
+    "longDescription": "Suppose I have some Rust code like fn foo<T>(x: T) { // Complicated function. } fn function_that_calls_foo_to_honor_the_request_in_comments<T>(x: T) { foo(x) } that is called from a gazillion places all over my codebase. Suppose, then, that I realize that something is wrong deep within foo . Sometimes, I might want to do some quick print-based debugging within the function. That would entail printing T s with e.g. Debug formatting. Somewhere in the actual program being debugged, there are concrete instances of foo<T> , say e.g. foo<i64> . Since i64 implements Debug , I can easily add debugging print statements to foo<T> that would work for that particular monomorphization. However, since foo<T> is completely generic in T as it stands, the typechecker naturally demands that I restrict T: Debug . That would be OK to do temporarily and locally for debugging, except foo<T> is used in a gazillion places all over the code, so now all those sites need to get T: Debug too, which would be a real hassle to add and then remove. In the example above, imagine there are 100 more functions like function_that_calls_foo_to_honor_the_request_in_comments<T> and having to add the T: Debug constraint to all of them, and then remove that again after the debugging session. Question: Is there a quick and dirty way to, for temporary debugging purposes only , add print statements to foo<T> that essentially say \"if you're in a monomorphized version where T: Debug , perform these prints involving some T s, otherwise don't (you can even exit or crash, I don't care)\"? I know that Rust is not geared for run-time type introspection, and I certainly don't propose using such mechanisms in general – I'm merely asking for a crude escape hatch for temporary debugging. I can envision something where there's a runtime check of the type name of T , and if it's say \"i64\" there's some transmutes into an i64 that's printed. I guess that would work, but maybe there's something a bit tidier? Generally: I suppose the general question is \"is there a way to tell the Rust compiler to do something as if a trait were satisfied even when the constraints don't promise it, and just die in a fireball if runtime reality doesn't match up?\"",
+    "developer": "gspr",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "59"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

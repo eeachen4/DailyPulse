@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010563",
+  "sourceItemId": "80010563",
+  "sourceUrl": "https://stackoverflow.com/questions/80010563/busybox-httpd-does-not-display-directories",
+  "detail": {
+    "longDescription": "Using a busybox:1.37 container and its httpd command I am trying to display a react/ts website. I built the container by copying the dist files of my app and adding an httpd.conf containing only 'I:index.html'. I then start it with the command 'busybox httpd -f -vv -h <path_to_dist_files> -c <path_to_httpd.conf> -p <port>' When I request the root url in my browser, everything seems to work properly. For example, I get redirected to <url>/login from <url> if I am not authenticated. BUT when I try to go directly to <url>/login or any other non-root url I get a 404. My app does indeed not have a login directory as a folder, but a Route element from react-router. I thought the httpd.conf direction I:index.html is meant exactly for this case but it did seemingly nothing. I then tried to add E404:index.html to the httpd.conf and that technically worked but I get a 404 error in the console everytime I refresh a non-root page and this seems like an ugly workaround. Am I missing something?",
+    "developer": "Bel Shazzar",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

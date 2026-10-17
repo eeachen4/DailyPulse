@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010606",
+  "sourceItemId": "80010606",
+  "sourceUrl": "https://stackoverflow.com/questions/80010606/can-setting-retrieving-properties-on-any-html-element-be-a-security-risk",
+  "detail": {
+    "longDescription": "When assigning properties to a HTMLElement directly (so [Element].someProperty), it looks like anything goes. You would expect that invalid properties either throw some error or are weeded out silently on assigning them. This seems to be not the case. In the snippet is a minimal example, where after appending an element with a property that is function , that property can be referenced (and even invoked). Retrieving the value of it using getAttribute null is returned. Retrieving it directly however returns the property value (a function). I can't get my head around that. Will this constitute a security problem? And if so, how to circumvent it? const myBrandNewElement = document.createElement(`div`); myBrandNewElement.value = () => console.log(`**Hi from myBrandNewElement.value`); myBrandNewElement.id = \"hithere\"; document.body.append(myBrandNewElement); // invoke the elements value property document.querySelector(`#hithere`).value(); // retrieve the 'value' property two ways console.log(`myBrandNewElement.getAttribute(\"value\") => ${ myBrandNewElement.getAttribute(`value`)}`); console.log(`myBrandNewElement.value => ${myBrandNewElement.value}`); // the elements outerHTML doesn't show the 'value' property console.log(`myBrandNewElement.outerHTML => ${myBrandNewElement.outerHTML}`);",
+    "developer": "KooiInc",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

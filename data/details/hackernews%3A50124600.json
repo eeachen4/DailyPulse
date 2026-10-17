@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50124600",
+  "sourceItemId": "50124600",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50124600",
+  "detail": {
+    "longDescription": "We added Pion DTLS to Anthropic&#x27;s OSS scanner last week (https:&#x2F;&#x2F;github.com&#x2F;anthropics&#x2F;oss-scanner&#x2F;pull&#x2F;93), and today we woke up to a report with 36 bugs, including 6 security vulnerabilities: 2 critical, 3 high, and 1 moderate. Four of them affect WebRTC. Some of these vulnerabilities have been sitting in the codebase for over 4 years, surviving years of testing and security scans. It&#x27;s funny that our inboxes are constantly spammed with AI-generated security reports from people using Codex and Claude, most of which flag pointless issues. Yet somehow, none of them caught these. The funniest part? Anthropic also found 3 bugs that OpenAI&#x27;s internal code review missed. I had asked OpenAI to review a new DTLS API since they use Pion and had a use case for it in SPED. Their review didn&#x27;t flag any bugs. Anthropic found an authentication issue, a deadlock, and a TLS KeyUpdate bug (Maybe their model ignored this one because it&#x27;s not a WebRTC issue). Luckily, the API hasn&#x27;t been released yet. The fixes: https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;pull&#x2F;1236 Here are the security advisories for the CVEs Anthropic found (all of them are pre-chatgpt!): Critical: DTLS handshake signature confusion allows peer impersonation - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-7c2r-jhm9-43vf Critical: Client authentication bypass through premature session caching - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-hhpj-h56m-9f2p High: Client authentication bypass with shared session stores - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-cqhp-ggp7-58qj High: Unbounded handshake cache allows remote memory exhaustion - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-jm57-r6vj-mwg9 High: Oversized RSA keys allow CPU exhaustion - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-jp25-wc3w-p9xp Moderate: Repeated certificate verification allows CPU exhaustion - https:&#x2F;&#x2F;github.com&#x2F;pion&#x2F;dtls&#x2F;security&#x2F;advisories&#x2F;GHSA-qpgj-64qg-5m4r The most annoying part is that neither company&#x27;s models were willing to help with verifying or filtering the bugs, so we had to manually review them one by one (Spent all day :&#x2F;",
+    "developer": "JoTurk",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "8"
+      },
+      {
+        "label": "评论",
+        "value": "7"
+      }
+    ]
+  }
+}

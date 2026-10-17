@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7t4k1",
+  "sourceItemId": "1x7t4k1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x7t4k1/best_practices_and_patterns_for_integrating/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI'm setting up a browser automation workflow using Claude Code and Playwright. I already have the MCP server configured (`claude mcp add playwright`), but I'm running into some typical autonomous loop challenges when the agent interacts with the UI.\n\nFor those of you running this in production or advanced projects, what do you recommend for the following?\n\n* **Context Overflow:** When the agent runs scripts, the default Playwright logs generate tons of lines that eat up Claude's context window really fast. Do you have any specific prompts or setups to force minimal reporting (like `--reporter=line`) so the agent only reads what's strictly necessary?\n* **Authentication & Long Flows:** I've noticed that if I ask the agent to log in via the UI on every iteration, it becomes prone to failure. Are you injecting session tokens (like Playwright's `storageState`) before the agent takes control? How do you instruct Claude to assume it's already authenticated?\n* **Selectors & Resilience:** Sometimes Claude Code gets lazy or hallucinates selectors based on dynamic CSS classes that break the script on the next loop. Do you use any specific system prompts or instructions to force the agent to prioritize accessible locators (e.g., `getByRole`, `getByText`, `getByLabel`) over fragile XPath or CSS?\n\nAny experiences, `mcp.json` config snippets, or tips on how you structure your instructions so the agent doesn't get lost while navigating would be hugely appreciated. Thanks!",
+    "developer": "matias_flyfishing",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

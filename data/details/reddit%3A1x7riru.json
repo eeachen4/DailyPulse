@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7riru",
+  "sourceItemId": "1x7riru",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1x7riru/what_happens_to_github_contribution_graphs_and/",
+  "detail": {
+    "longDescription": "I want to change the author and committer email addresses in all my existing Git commits (private) from my personal Gmail address (`xyz@gmail.com`) to GitHub's private `noreply` email address (`12345678+username@users.noreply.github.com`).\n\nI already know how to configure Git to use the private email for future commits. My question is about updating my **existing commit history**.\n\nMost of these commits have already been pushed to GitHub, but the repositories I'm considering are private. I'm planning to use `git-filter-repo` to rewrite the commit emails and then force-push the rewritten history.\n\nI understand that changing commit metadata changes commit hashes. However, I'm unsure about the other consequences.\n\n**What exactly should I expect to change, and what should remain the same?**\n\n1. **Commit hashes:** I understand that rewriting the email changes commit hashes, throughout the descendants of rewritten commits. Is that correct?\n2. **GitHub contribution graph:** Will my existing contributions remain attributed to my account after rewriting the emails to my GitHub `noreply` address? Will GitHub recalculate the graph, remove the old one and add to when I change? or Could contributions be duplicated?\n3. **Commit dates and messages:** Original author dates, committer dates, and commit messages remain unchanged if I only rewrite email addresses. Correct?\n4. **GitHub attribution:** Will GitHub continue to link the rewritten commits to my profile automatically if the new `noreply` address is the one provided by my account settings?\n5. **Pull requests, issues, and links:** What happens to links referencing old commit hashes, pull request comparisons, releases, tags, and other GitHub features that reference the original commits?\n6. **Other side effects:** Are there any less obvious consequences of rewriting history that I should be aware of, even with private repositories?\n\nThanks!",
+    "developer": "iamanonymouami",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

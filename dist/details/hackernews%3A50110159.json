@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50110159",
+  "sourceItemId": "50110159",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50110159",
+  "detail": {
+    "longDescription": "When Apple left Clozure Common Lisp behind by switching to Apple Silicon, I started kicking around the idea of building my own Lisp&#x2F;Objective-C bridge by combining Apple Documentation, the clang AST, and introspection of the Objective-C runtime. There was a CCL porting effort, but I really wanted to use SBCL anyway. Truth be told — what I really wanted was a 21st-century CLIM variant on top of modern AppKit 26. So I let that idea rattle around in my skull for a while — and eventually it bounced up against the memory of Ck (Curses-based Tk). Anybody remember that? I liked Tcl&#x2F;Tk and [incr Tcl] and it had always stuck in my head how great an idea it was to have something along the lines of CLIM for regular terminals as well as GUI. So anyway, I stumbled upon the open-source CLIM2 source still maintained by Franz, and the wheels commenced to turn. Oh yeah, and my very first programming environment had been Turbo Pascal. That integrated debugger was really something. And y&#x27;know, it all started to come together as an idea about modernizing CLIM and modifying Portable Hemlock to run on top of it — and integrating a Debugger with conditional breakpoints and Step In&#x2F;Step Out&#x2F;Step Over, CLIM presentations, Inspector... And in years past, I&#x27;d have just dreamed about it. But the past three years have been crazy. GPT4 was the first time I seriously tried to build things with an LLM. And I&#x27;ve been pushing the LLMs as far as they would go to build my intuition mainly. But up until this year they&#x27;ve been mostly crap. I used &quot;Build Common Lisp&quot; as my north star because the Dietz ANSI tests seemed like a nearly perfect product specification. Long story short: I threw away 7 attempts before I won ANSI — https:&#x2F;&#x2F;gitlab.com&#x2F;patchwork1-ai&#x2F;whateverlisp — and while I was waiting for Claude and Codex to grovel through ANSI I was trying my hand at my grand idea of Turbo Lisp. Side note: my high score on ANSI is 21,916&#x2F;21,925 passing (99.96%); 21,925 executed; 9 failing. And those 9? Yeah I don&#x27;t think you could pass those without failing 30+ other ones. So anyway — It’s called *Turbo Lisp* (based on SBCL). It brings together a Listener, debugger, object inspector, conditional breakpoints + stepper, and Zeta—a variant of Portable Hemlock that uses WhateverCLIM as its front-end. On macOS, it uses native AppKit UI through *Chattanooga, a Lisp&#x2F;Objective-C bridge I built*. It also runs in the terminal through *Oak Ridge, my Lisp port of Ratatui*. Both use *WhateverCLIM*, which is the CLIM2 code from Franz plus my own modernization, including * presentations* : displayed Lisp objects you can click and inspect. *v0.2.1 patch release* is available for Apple Silicon Macs, Intel Macs, and Linux x86-64. The Mac builds currently require macOS 26. I’m especially interested in hearing: * Does it install and start properly on your machine? * Can you find your way around the Listener, editor, and debugger? * Does the terminal interface work with your terminal emulator? * Where does it feel confusing, awkward, or broken? A report that says “I tried this and got stuck here” is useful. Please include your OS, CPU architecture, and terminal emulator where relevant. It’s still early, and I’m looking for honest feedback from people using it outside my own setup.",
+    "externalUrl": "https://gitlab.com/patchwork1-ai/turbolisp",
+    "developer": "stray",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

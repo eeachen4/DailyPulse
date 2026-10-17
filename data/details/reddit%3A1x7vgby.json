@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7vgby",
+  "sourceItemId": "1x7vgby",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1x7vgby/formula_cat_was_built_with_astra_22_cats_on/",
+  "detail": {
+    "longDescription": "Formula Cat started with this prompt:\n\n>I want to make a racing game about cats driving roomabs. Can you make a model of a cat riding on a roomba and show it to me on a localhost? Bonus points if you can animate it.\n\nNow it has 22 cats, 11 teams, 31 circuits, and battery-swap pit stops. You play as Mochi, a rookie cat trying to win a championship on a racing vacuum.\n\nI wanted the cats to be ridiculous, but the racing to take itself seriously. You need to brake for corners, find opportunities to overtake, and decide when to pit.\n\nHere is how I’ve been building it with Astra.\n\nMost of my prompts came from playing a build and finding something wrong. The first cat looked like it was vibrating:\n\n>the animations of the cat don't look very good. It just looks like its vibrating, the tail especially. Can we add some tail movement?\n\nHandling went through the same process:\n\n>the handling needs work. It needs to handle more like a car, so I need to slow down for corners.\n\nOnce driving felt better, it became obvious the opponents were too slow. This prompt helped more than another request to “make them better”:\n\n>ok, I want to drive a race, and you record lap times for me and the cats, and then tell me why they lag behind so badly\n\nThat led to lap-recording tools and specific fixes. Some opponents lost time in traffic. Others made a steering decision, then braked to correct the problem they had just created.\n\nFor pit stops, I described what I wanted to physically do:\n\n>instead of pitting being a button, you need to mark which pit box is mine, and if I stop on it, replace the battery, then send me on my way.\n\nNow you drive into the pits, stop in your marked box, and a robot arm swaps the battery. Teammates share a box, so arriving together can cost you time.\n\nThe current game uses JavaScript and Three.js, packaged in Electron for Steam. I asked for a data-oriented structure, with race state in preallocated typed arrays and simulation separate from rendering. That lets us run races without graphics to investigate lap times and opponent behavior.\n\nWe also built an offline racing-line optimizer with Python, CasADi, and IPOPT. The resulting lines still needed testing with the game’s actual physics and driving controller.\n\nMy favorite testing failure: two banked corners on the Nordschleife leaned the wrong way, but the test passed. The implementation and test shared the same incorrect sign convention.\n\n[Formula Cat is now on Steam](https://store.steampowered.com/app/5193820/Formula_Cat/). Wishlists are appreciated!\n\nHappy to go into more detail about the opponent driving, track tools, or prompts.",
+    "externalUrl": "https://v.redd.it/3qyw6o770xvh1",
+    "developer": "ledniv",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

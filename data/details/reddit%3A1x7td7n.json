@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7td7n",
+  "sourceItemId": "1x7td7n",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x7td7n/writer_agent_separate_checker_agent_for_factual/",
+  "detail": {
+    "longDescription": "I'm building Noema. It turns any topic into a short interactive lesson using a team of agents. Right now one lesson costs about $0.13 and takes \\~2 min.\n\nThe weak spot is facts. The writer sounds confident even when it's wrong, and asking the same model to review itself mostly gets \"looks good\".\n\nPeople on Reddit gave me a really concrete plan, and I want to sanity-check it before building:\n\n1. Writer and checker are different calls with different prompts. The checker never sees the writer's reasoning.\n\n2. The checker extracts every factual claim, one per line.\n\n3. Each claim is either sourced or cut. No \"probably fine\".\n\n4. A list of common misconceptions per topic becomes tests.\n\n5. A human spot-checks a sample every week.\n\n\n\nQuestions:\n\n\\- Has anyone measured how much 2 and 3 actually catch vs. a single \"be a strict reviewer\" pass?\n\n\\- What do you use as a source for general topics without paying for a search on every claim?\n\n\\- Does the checker work on a cheaper model, or does it just miss the same stuff?\n\n  \nMy guess is the checker roughly doubles the cost per lesson. Would love to hear if it was worth it for you.",
+    "developer": "Gleb_SV",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

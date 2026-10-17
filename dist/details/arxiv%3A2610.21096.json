@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.21096",
+  "sourceItemId": "2610.21096",
+  "fetchedAt": "2026-10-17T01:35:51.510Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.21096",
+  "detail": {
+    "longDescription": "arXiv:2610.21096v1 Announce Type: cross Abstract: Domain-specific accelerators deliver high performance and energy efficiency through specialization but often lack support for extensible algorithm families. Existing FPGA accelerators for Krylov subspace methods, which iteratively solve sparse linear systems, typically support a single solver or require separate hardware configurations. Helix follows a systematic algorithm-family design methodology that first abstracts common computational primitives from diverse Krylov solvers and builds the architecture around efficient, programmable primitive kernels. Helix then introduces programmable datapaths to coordinate these primitives. Its architecture decouples hardware implementation from solver-specific execution, enabling HBM reuse and zero solver-switching latency. Finally, Helix provides a DSL compiler that efficiently maps different solvers onto the architecture while optimizing vector-operation performance for each solver. We prototype Helix on a Xilinx Alveo U55C FPGA and evaluate Helix's practicality and performance by using it to compile and execute eight solvers. Helix achieves up to 7.91x and 1.16x speedups over Xilinx XcgSolver and the state-of-the-art FPGA accelerator Callipepla, respectively, both of which support only JPCG. Across the eight solvers, Helix sustains 47.5% - 96.9% of the throughput of an NVIDIA RTX PRO 6000 GPU while delivering 2.29x - 4.66x higher energy efficiency and 1.89x - 3.85x higher throughput per unit peak memory bandwidth. The programmable components incur 0.25% - 0.57% execution-time overhead and 4.7% LUT and 4.0% FF overhead, demonstrating negligible overhead for programmability.",
+    "developer": "Wei Chen, Yizhi Yuan, Linghao Song",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Wei Chen, Yizhi Yuan, Linghao Song"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

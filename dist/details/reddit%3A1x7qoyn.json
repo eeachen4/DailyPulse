@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x7qoyn",
+  "sourceItemId": "1x7qoyn",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x7qoyn/beyond_react_whats_the_accepted_loop_for_jev_llm/",
+  "detail": {
+    "longDescription": "ReAct is a common agent loop, but what's the standard when you combine a System One decision model such as Jev, an LLM, and tool calling?\n\nI'm exploring this for game agents, where the world keeps moving while the LLM thinks. The question is how to divide planning, bounded decisions and tool execution between the two models.\n\nThe examples I've read seem to use two approaches:\n\n\\- REFLEX and JevAgentHarness use confidence-based delegation: the decision model handles a choice, with the LLM taking over when confidence is too low.\n\n\\- The Hermes + Jev and Astra + Jev Minecraft agents use a planner + chooser split: the LLM plans and Jev selects bounded actions.\n\nIs there an accepted pattern or name for this combination yet? If you've built one, what decides when to replan or escalate to the LLM? I'd be interested in papers or public implementations that make those boundaries clear.\n\nI'll put the four references in a comment, following the sub's rules.",
+    "developer": "emersoftware",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

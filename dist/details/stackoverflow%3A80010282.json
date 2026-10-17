@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010282",
   "sourceItemId": "80010282",
+  "fetchedAt": "2026-10-17T01:35:51.510Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010282/how-to-allow-a-user-to-remove-files-created-by-a-docker-service",
   "detail": {
     "longDescription": "I have the following docker-compose.yml : version: '3.3' services: transmission-openvpn: cap_add: - NET_ADMIN volumes: - '/home/me/data/:/data' - '/home/me/dev/docker-transmission/config/:/config' environment: - OPENVPN_PROVIDER=SURFSHARK - OPENVPN_CONFIG=uk-man.prod.surfshark.com_tcp,pt-lis.prod.surfshark.com_tcp,es-mad.prod.surfshark.com_tcp - OPENVPN_USERNAME=bla - OPENVPN_PASSWORD=bla - LOCAL_NETWORK=192.168.0.0/16 logging: driver: json-file options: max-size: 10m ports: - '9091:9091' image: haugene/transmission-openvpn Which I run with docker compose up . This container creates files in my 'data' folder, but these files are owned by root, I can't remove them unless I switch user. I tried to add a line containing user: \"1000:1000 (my ID and GID) in the docker-compose.yml , but the container fails launching with the following error: transmission-openvpn-1 | Creating TUN device /dev/net/tun transmission-openvpn-1 | mkdir: Permission denied So I guess that this container needs to be run as root. I checked Docker: non-root user does not have writing permissions when using volumes but my case does not fit the prerequisite \"The image needs to create the data directory, but it should be completely empty.\", because my 'data' folder contains files, my docker container adds files to this folder.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "71"
+        "value": "78"
       },
       {
         "label": "状态",

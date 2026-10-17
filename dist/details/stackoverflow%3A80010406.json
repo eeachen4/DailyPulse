@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010406",
   "sourceItemId": "80010406",
+  "fetchedAt": "2026-10-17T01:35:51.510Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010406/how-can-a-git-pre-receive-hook-reject-pushes-that-introduce-oversized-blobs",
   "detail": {
     "longDescription": "In a shared Git repository, generated build artifacts and large binary files can occasionally be committed accidentally. Removing these files in later commits removes them from the current working tree, but their historical versions can continue to contribute to repository size. I want to prevent this problem from recurring by enforcing a maximum size for newly introduced Git blobs at the remote repository. The policy should: Reject a push if it introduces a blob exceeding a configurable size limit. Allow ordinary source files and files that fall below the limit. Avoid rejecting unrelated pushes solely because oversized blobs already exist in the repository's history. Handle pushes that update multiple branches or tags. A .gitignore rule is not sufficient for this requirement because contributors can explicitly stage ignored files, and client-side hooks can be bypassed. How should I go about this?",
     "developer": "Aaqibhafeez Khan",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-3"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "35"
+        "value": "95"
       },
       {
         "label": "状态",
