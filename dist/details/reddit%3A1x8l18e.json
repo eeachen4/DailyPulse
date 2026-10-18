@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8l18e",
+  "sourceItemId": "1x8l18e",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8l18e/32gb_to_64gb_of_ram_took_qwen38flashnext_from_iq2/",
+  "detail": {
+    "longDescription": "I went from 32GB to 64GB of DDR5-5800 this week and moved my Strata setup off IQ2\\_XS.\n\nBox: RTX 4090 24GB, i9-14900K, 64GB DDR5-5800, Arch. The models sit on a SATA SSD (\\~550 MB/s), so anything Strata has to pull from disk while it generates hurts. I wanted every expert in RAM or VRAM. \n\nI skipped UD-Q4\\_K\\_XL. It wants \\~88GB to keep all its experts in RAM, and on 64GB it would stream \\~19GB of experts from that SATA drive. UD-IQ4\\_XS is \\~55GiB of experts. With a 40GiB RAM budget and the 4090 holding the rest, it fits. The log says it: 40.00 GiB of experts in RAM, 0 blob reads from the file.\n\nEngine is Strata 0.1.45, context 262K (native, no YaRN), q4\\_0 KV, MTP drafts at spec 4.\n\n**Quick numbers:**\n\n\\* Decode: 87-98 t/s on short prompts  \n\\* 36K-token needle test: found it, prompt 2,000 t/s, decode 94 t/s  \n\\* 136K-token needle test: found it, prompt 2,850 t/s, decode 92 t/s  \n\\* Expert cache hit rate: \\~91%  \n\\* Tool calls: clean, the right function and args on the first try  \n\\* RAM left while it runs: \\~11GB\n\nFor reference, IQ2\\_XS ran 140-160 t/s on the same card. I also tried IQ3\\_S along the way at 110-126 t/s. So I gave up some speed. In return, Strata's quant table has UD-IQ4\\_XS matching Q8\\_0's top token 88.9% of the time, against 84.5% for IQ3\\_XXS and 80.6% for Q2\\_0 (IQ2\\_XS sits between those two and isn't in the table).\n\n**Two things I found while tuning:**\n\n1. Strata 0.1.45 now uses the model card's sampling when a request sends none (temp 1.0 / top\\_p 0.95 / top\\_k 20 with thinking on). Older builds ran greedy, which explains some of the looping I saw before.  \n2. The default route tail skip (\\`STRATA\\_ROUTE\\_TAIL\\_SKIP=7\\`) roughly doubles KL against Q8\\_0 on the Unsloth files in RAM-budget mode. I set it to 0. If you moved up to a 4-bit quant for the quality, check that one.\n\nI'm running Strata's calibrator now (pcie-frac, pool workers, draft settings). Tonight I'm running it against NInfer on the same 4090 with the dense Qwen3.8 27B, on real coding tasks. I'll post the numbers. Also open to any tips from my 4bit users! ",
+    "developer": "Distinct-Pie2389",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

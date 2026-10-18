@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8l74g",
+  "sourceItemId": "1x8l74g",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1x8l74g/aelagents_trainable_jacobianrsa_multiagent/",
+  "detail": {
+    "longDescription": "Most multi-agent frameworks right now have two big engineering problems:\n\n1. **Zero trainable parameters**: \"Orchestration\" is just prompt chaining. Either every agent dumps its output into a shared context window (\\~30k–35k tokens/run), or you pay an LLM router 2,000+ tokens per step to guess which agent to listen to.\n2. **Overthinking & redundancy**: Generic agent personas (\"Planner\", \"Researcher\", \"Critic\") converge on the same mode in embedding space, and blind self-correction loops frequently talk themselves out of a right answer.\n\nI wanted to see if we could treat multi-agent routing as a **differentiable PyTorch computation graph** with **0 LLM routing tokens**, and test it on a vertical domain where outputs can be verified by deterministic scientific compilers (**RDKit** \\+ **SciPy ODEs**) rather than circular LLM-as-a-judge prompts.\n\n**GitHub**: [https://github.com/prannesshkva/Ael-Agents](https://github.com/prannesshkva/Ael-Agents)",
+    "developer": "prannesshkva",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

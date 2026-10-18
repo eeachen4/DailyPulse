@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8m0jj",
+  "sourceItemId": "1x8m0jj",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8m0jj/xolotl_strata_based_deepseekv41flash_552b_on_a/",
+  "detail": {
+    "longDescription": "Hey all, been meaning to post this for a while.\n\nI've been building an inference engine based off Strata called Xolotl that runs DeepSeek-V4.1-Flash, all 552B of it, on one gaming PC. My setup is a single RTX 4090 (24GB), a Ryzen 7 5700X, 90GB of DDR4 and an NVMe drive, nothing fancy. The weights get spread across VRAM, pinned RAM and NVMe, and the engine pulls in the experts each token actually needs.\n\nWhat I'm getting on that machine:\n\n* 27 tok/s decode, 180-320 tok/s prefill\n* 512K context\n* 21/21 HumanEval, 10/10 tool calls, 3/3 agentic bug-fix loops, all through the real server with thinking on\n\nIt also runs GLM-5.3-Flash, Qwen3.8-Flash-Next and Qwen3.8-27B from the same engine.\n\nGitHub: [https://github.com/Indras-Mirror/Xolotl](https://github.com/Indras-Mirror/Xolotl)\n\nMy current quant (uncensored V4.1, 152 GiB) is here: \n\n[https://huggingface.co/IndrasMirror/DeepSeek-V4.1-Flash-GSQ-Uncensored](https://huggingface.co/IndrasMirror/DeepSeek-V4.1-Flash-GSQ-Uncensored)\n\nThe 1017 update: I'm downloading the new DeepSeek-V4.1-Flash-1017 right now. It's slow going because my internet is a lemon, and it's 510GB, so yeah.  \n\nOnce it's down I'll abliterate it and quantise it for Xolotl. It's the same architecture and config as V4.1 (I checked, identical config and tokenizer), So it should run at the same throughput as the current one. The weights are all different though, so it's a full re-run of calibration and quant, not a  quick patch.\n\nHoping to have everything up in a couple of days, just wanted to get ahead of it since a few people have been asking. Happy to answer questions in the meantime.",
+    "developer": "indrasmirror",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

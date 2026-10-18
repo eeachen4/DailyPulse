@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8osos",
+  "sourceItemId": "1x8osos",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1x8osos/minecraft_servers_that_sleep_when_empty_and_wake/",
+  "detail": {
+    "longDescription": "I built a Minecraft server host where every server sleeps when nobody plays, and wakes when a friend joins. The hard part was the join itself, so here's how that works.  \n\n\n**The problem**   \n  \nA sleeping server suspended on Fly resumes in about 2 s. But one that has to boot (first start, after a change, or once the snapshot is gone) takes 40 to 50 s. The Minecraft client   \ngives up on a connection that says nothing for 30 s.\n\n  \n**The trick**   \n  \nEvery connection lands on an edge proxy first. If the server is asleep, the edge holds the login open and keeps it alive by sending a login query every few seconds. Every client since 1.13 answers it, which counts as the server talking. The edge keeps those answers to itself, buffers everything else the client sent, and replays it to the server once it's up, as if the player had just dialled in.  \n\n\n**Other bits**\n\n* The server list shows a sleeping server's own message plus a grey \"sleeping\" line, cut to fit the list's 305px row by measuring the default font's glyph widths.\n* A ping from the server list can wake a server early, asked once per network so random scanners don't keep waking things.\n* Routes change one hostname at a time through mc-router's API, because reloading its routes file drops players who arrive mid-reload.\n* Floods are refused per server at the edge, so one busy server doesn't slow every other server's joins.\n\nIt's open source (TypeScript, AGPL):   \n[github.com/cubepals/cubepals](https://github.com/cubepals/cubepals) (the edge is apps/edge)\n\n\n\nHappy to go deeper on any of it.",
+    "developer": "v0id_user",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

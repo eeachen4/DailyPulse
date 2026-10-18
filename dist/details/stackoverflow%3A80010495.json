@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010495",
   "sourceItemId": "80010495",
+  "fetchedAt": "2026-10-18T01:33:19.372Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010495/tabulator-with-nested-tables-jumping-to-top-when-updating-a-sub-table",
   "detail": {
     "longDescription": "I have a very long non-paginated (deliberate) tabulator table designed to create a quotation price list. I don't want a scrollbar inside the table, so I have set the height to 100%. The main table holds the categories and under each category is a nested table using a custom rowformatter that holds the items and their pricing details. On each row of the main table i have a button that adds a new row to its related sub-table. When you click add on a row part way down the page, it automatically scrolls back to the top of the page, as opposed to keeping the new row in view. If i set the table to a smaller size, say 500px, it works as intended however you have the scrollbar which I do not want. tl;dr Is there anyway to prevent the automated scroll back to the top of the page when you add a row programmatically to a sub-table that is part way down the page? An example is below and can be tested in this jsfiddle var rowTools = function (cell, formatterParams, onRendered){ var button = document.createElement(\"button\"); button.textContent = \"Add Item\"; button.addEventListener(\"click\", function (event) { event.preventDefault(); // Prevent the default button behavior cell.getRow().getData().subTable.addData({ item: \"New Item\" }, false); }); return button; }; var columns = [ { title: \"Category\", field: \"heading\", editor:\"input\", editorParams:{search:true}, validator:\"required\" }, { title:\"\", field: \"\", formatter: rowTools, formatterParams:{} } ]; var table = new Tabulator(\"#pricingGrid\", { height:\"100%\", columns: columns, placeholder: \"No Data Available\", rowFormatter:function(row){ //create and style holder elements var holderEl = document.createElement(\"div\"); var tableEl = document.createElement(\"div\"); holderEl.appendChild(tableEl); row.getElement().appendChild(holderEl); var subTable = new Tabulator(tableEl, { rowHeader: { headerSort: false, }, height:\"100%\", data:row.getData().items, columns:[ { title: \"Item\", field: \"item\"} ] }); row.getData().subTable = subTable; // Store the sub-table instance in the row data for later access) }, }); var data = fetch(\"https://raw.githubusercontent.com/thedigitaltailor/store/cb842c6d73ffaec1b7e3a0aa74cde31088c30041/sample.json\") .then(response => { if (!response.ok) { throw new Error('Network response was not ok'); } return response.json(); }) .then(data => { table.setData(data); // Process your JSON data here }) .catch(error => { console.error('Error loading JSON from GitHub:', error); });",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "79"
+        "value": "94"
       },
       {
         "label": "状态",

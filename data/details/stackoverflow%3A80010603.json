@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010603",
   "sourceItemId": "80010603",
+  "fetchedAt": "2026-10-18T01:33:19.372Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010603/nested-asyncio-timeout-both-expired-return-true-how-to-tell-which-one-rais",
   "detail": {
     "longDescription": "I have a retry loop with a per call timeout inside an overall budget: import asyncio async def fetch(budget, per_call): try: async with asyncio.timeout(budget) as outer: for i in range(3): try: async with asyncio.timeout(per_call) as inner: await asyncio.sleep(0.3) except TimeoutError: print(i, inner.expired(), outer.expired()) except TimeoutError: print(\"budget\", inner.expired(), outer.expired()) asyncio.run(fetch(0.2, 0.1)) Output: 0 True False budget True True When the second attempt deadline lands on the same tick as the budget the error correctly goes to the outer handle but inner.expired() is also True . I log per-call timeouts separately from budget timeouts so this gets counted as both. Is there a reliable way to know which timeout actually raised? Is comparing inner.when() with outer.when() the right approach or should I clamp the inner deadline to the outer one?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "51"
+        "value": "100"
       },
       {
         "label": "状态",

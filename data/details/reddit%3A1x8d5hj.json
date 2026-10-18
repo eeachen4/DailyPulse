@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8d5hj",
+  "sourceItemId": "1x8d5hj",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x8d5hj/how_does_your_organisation_handle_cicd_and_image/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI’m trying to understand how different organisations design their CI/CD workflows for microservices, particularly the deployment process after a Docker image is pushed to a container registry like JFrog Artifactory.\n\nI have a few questions:\n\nImage tagging strategy: Do you use Git commit SHA, build number, semantic versioning, or any other strategy? How do you promote the same image across QA, staging, and production?\n\nDeployment workflow: Do you handle deployments entirely through Jenkins pipelines, or do you use a GitOps approach with Argo CD, where image tags are updated in a Git repository and Argo CD syncs the changes?\n\nHelm and manifests: If you use Argo CD, how do you manage deployment manifests and Helm charts? Does Jenkins update the image tag in the Helm values file, or is this handled differently?\n\nProgressive deployments: Do you use Argo Rollouts with Argo CD for canary or blue-green deployments, or do you manage rollout strategies directly through Kubernetes deployments?\n\nEnd-to-end flow: How does the overall process work in your organisation, from code commit and image build to deployment in production?\n\nI’m particularly interested in understanding the different approaches organisations take and the reasoning behind their choices.\n\nWould appreciate it if you could share your workflow or experience. Thanks!",
+    "developer": "Calm_Pick_4250",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

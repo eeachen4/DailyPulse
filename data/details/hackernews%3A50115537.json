@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50115537",
+  "sourceItemId": "50115537",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50115537",
+  "detail": {
+    "longDescription": "I&#x27;m Dustin Kirkland, author of Byobu. I recently flew to Australia and kept nudging my Claude, Codex, and Bash jobs along back home from somewhere over the Pacific, at 700ms of latency. That&#x27;s what Trustmux is for: secure, asynchronous access to your tmux or Byobu sessions from your phone. I first posted this in June and since then there have been many point releases, lots of new features and testing, and a growing base of users. It&#x27;s now packaged in Ubuntu 26.10, Debian, Fedora, and Chainguard OS. Why not SSH, Mosh, or Claude Mobile? - SSH&#x2F;Mosh: a live, synchronous connection is brutal on a phone. Latency and WiFi-to-cellular handoffs make it laggy and fragile. - Claude Mobile: great for Claude, but I wanted access to whatever is running in my tmux session: shells, Claude, other code assistants. Trustmux is async by design. Connect, look, type a command, disconnect, with no fragile connection state to babysit. Security: TLS with real certificates, end to end. Uses Tailscale (cert provisioning via tailscale serve, no port forwarding) optionally, bind to your own network address, or bring your own or self-signed certs. Two security experts reviewed the design and I implemented their recommendations. More scrutiny is very welcome. Quick start: trustmux enable trustmux start trustmux pair # shows a QR code if qrencode is installed Open the URL on your phone, enter the 6-digit code, and add it to your home screen. It&#x27;s a PWA, so there&#x27;s no app store. Install: apt, dnf, pip install trustmux, or brew tap dustinkirkland&#x2F;trustmux &amp;&amp; brew install trustmux Under the hood: Python, libtmux, WebSockets, Tailscale, and no polling. The UI shell is cached for offline use. Part of Byobu, GPLv3. Trustmux isn&#x27;t affiliated with the tmux project. https:&#x2F;&#x2F;trustmux.dev https:&#x2F;&#x2F;github.com&#x2F;dustinkirkland&#x2F;byobu https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;trustmux&#x2F;",
+    "developer": "dustinkirkland",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

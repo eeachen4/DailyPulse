@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8lw55",
+  "sourceItemId": "1x8lw55",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x8lw55/local_ai_agentic_swarm/",
+  "detail": {
+    "longDescription": "It seems like alot of swarm frameworks right now seem to take 4-8 instances of large models (70B+ or frontier APIs), give them different system prompts, and let them chew through context windows and API tokens just to do routine filtering, JSON repair, and triage. This works well enough if you have stable internet and a big budget. \n\nI don't have either.\n\n​I’ve been testing an alternative, decoupled architecture designed to run on constrained, local hardware (sub-6GB VRAM ceilings):\n\n​The Executive / Orchestrator: A single dense reasoning model, like a 30b or 40b model or an API that handles multi-step decomposition, planning, and state updates.\n\nIt stays idle during routine operations.\n\n​The Worker Swarm: A fleet of custom, narrow nano-models (I call them ants) 1M-3M running directly on the CPU threads. They don't do open-ended reasoning; they handle high-frequency reflex tasks—signal/log triage, regex/syntax extraction, anomaly scoring, and schema coercion at sub-millisecond speeds.\n\n​Escalation Protocol: The micro-workers operate asynchronously. Only when an ant hits a low-confidence threshold or unhandled edge case does it escalate up to the orchestrator for arbitration and deeper reasoning.\n\n​The goal is an air-gapped, zero-cloud system where the workers consume virtually zero power/RAM, and the reasoning brain only fires when an actual cognitive decision is needed.\n\n​For those running or experimenting with heterogeneous/hierarchical swarms:\n\n​How are you handling queue backpressure and priority scheduling when multiple micro-agents escalate simultaneously?\n\n​Have you found custom micro-tokenizers (small vocabularies) or raw byte-level embeddings more stable for models under 5M parameters?\n\n​What architectural traps have you hit when bridging sub-millisecond workers with slower reasoning brains?\n\n​Curious to hear from anyone exploring this air gapped, edge-first, decoupled pattern instead of the standard all-monolithic agent approach.",
+    "developer": "everettplays",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

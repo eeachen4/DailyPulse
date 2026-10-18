@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8qol0",
+  "sourceItemId": "1x8qol0",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x8qol0/looking_for_feedback_on_a_agent_memory_i_built/",
+  "detail": {
+    "longDescription": "Hi Devs,\n\nA while back I was going through a DBMS course and thinking about the \"whys\" behind the architecture that made databases what they are today. I got curious about why we don't use the same ideas for LLM memory. That's basically where this project started, together with some interesting things I had been reading about RAG and Jev, and at some point my pipeline did include a classifier.\n\nOver many small experiments the design got simpler. The classifier, local LLM, bunch more stuff all turned out not to change the results, so the current version has no LLM nor classifier inside the memory engine.\n\n\\*How it works now\\*\n\n \\- The agent stores a conversation together with its own short summary and a few dated facts. And I am assuming that summarizing is something every agent can already do.\n\n\\- The engine keeps the original conversation compressed and lossless, also indexes the summary, the facts, and small chunks of the text with embeddings.\n\n\\- When the agent asks something, the engine finds the best matching memories and picks a layout from the shape of the question. Time questions get the dated facts first, some questions get the full conversations, and others gets summaries plus the best passages. \n\n\\- Text the engine gave back is marked, so that if the agent repeats it in a later conversation it isn't stored again as new information.\n\n![img](gvi09ndfn4wh1 \"bad quality hard to read pipeline image .jpg\")\n\nI tested it on BEAM and used the 128K split with 400 questions and BEAM's own rubric judge. Each system got the same answering model (gpt-4.1-mini) and the same budget of 1,300 tokens of memory.\n\nEngram scored 56.8, Mem0 55.1 and plain RAG 51.6. So it is basically on par with Mem0. Engram did better on time questions and on knowing when the answer isn't there, and Mem0 did better on following the user's preferences. \n\nOne thing that surprised me was a feedback loop. When an agent's recalled memories get stored again, accuracy dropped by 6 to 15 points in my tests, and marking the recalled text brought it back.\n\n\\*What I'd love feedback on\\*\n\n1. Do you think modelling memory after a database holds up at scale? I think it will need routine maintenance like a database does, and that's what I want to build next.\n\n2. How would you evaluate the retrieval itself, separately from the answering model?\n\n3. What would you check before trusting the comparison with Mem0?\n\nEverything is open source, with all the results and how to reproduce them: [https://github.com/Yunsmn/engram](https://github.com/Yunsmn/engram)",
+    "developer": "phecdaYm",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

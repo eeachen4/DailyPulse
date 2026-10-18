@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50100700",
+  "sourceItemId": "50100700",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50100700",
+  "detail": {
+    "longDescription": "So I&#x27;ve been working on a project (Make0 AI) for a long time where I wanted to give common context to both Codex and Claude Code. The problem is simple - while working on Claude and after exhausting the daily&#x2F;weekly limits I&#x27;ve start again from scratch in Codex. Of course I can prompt Claude to summarise a handoff that I can give to Codex but that is inefficient. So I thought of a creating a common context for both of them locally using a simple list of instructions like a shared md file. But the problem was the file kept on growing and after some point the common context went beyond 20k tokens and was just inflating the token budget unnecessarily. Then I implemented a RAG based retrieval approach on the list to only load what is required for that prompt and voila, after a few more iterations it resulted into a graph memory - Brain. So this product Make0 AI gives you the ability to create Brains that you can connect to any Ai agent via MCP and then they immediately know your likes, dislikes, preferences etc. AI agents can read, write to this memory. This can be your long term memory and the agents just become the token providers and task executors. You have full control over your data&#x2F;memories from a single place. Think of this as a &quot;USB thumb drive brain&quot; that you plug to any agent. I know I may not be the first one to implement this but I tried to make the UX simple and is not at all developer focused. You can just drag and drop your memories&#x2F;data to the brain and even play around with a visual brain. One more thing, i&#x27;ve done benchmarks on the memory. LoCoMo scores 83.3% overall, with Single hop 92.5% in standard mode (available now) and in another configuration (experimental max mode) it scores 92% overall and 94.4% in single hop. Available in the benchmark page. It uses hybrid search + graph memory and has built in conflict resolution for memories. Do let me know if you folks wanna try it!",
+    "developer": "heysrb",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

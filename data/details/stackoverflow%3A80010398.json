@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010398",
   "sourceItemId": "80010398",
+  "fetchedAt": "2026-10-18T01:33:19.372Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010398/can-i-broadcast-with-numpy-character-find",
   "detail": {
     "longDescription": "I have an array of potential substrings and an array of full strings. I'd like to know which elements of the potential substrings are indeed found as substrings in the full array. import numpy as np potential_substrings = np.array([\"visit a\", \"visit b\", \"visit c, 1\", \"visit d\"]) full_strings = np.array([\"visit a, ack\", \"visit b\", \"ackack, visit c, 1, notenote\", \"other random\"]) result = [] for check_string in potential_substrings: result.append(bool(np.max(np.char.find(full_strings, check_string)) + 1)) This returns the correct result of [True, True, True, False] But I'd like to do it without the loop and use array broadcasting if possible.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "124"
+        "value": "164"
       },
       {
         "label": "状态",

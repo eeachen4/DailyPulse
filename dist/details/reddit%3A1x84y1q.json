@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x84y1q",
+  "sourceItemId": "1x84y1q",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x84y1q/psa_since_135_the_kubelet_refuses_to_start_on/",
+  "detail": {
+    "longDescription": "Since v1.35 the kubelet setting `failCgroupV1` defaults to `true`, so on a node still running cgroup v1 the kubelet does not start. kubeadm's SystemVerification preflight also errors on init/join/upgrade once the kubelet is 1.35+. On a control-plane node that means the static pods (API server, etcd) do not come back after a reboot either.\n\nCheck a node:\n\n    stat -fc %T /sys/fs/cgroup/\n\n`cgroup2fs` = v2, fine. `tmpfs` = v1.\n\nCheck every node from your laptop, no SSH:\n\n    for n in $(kubectl get nodes -o name); do\n      printf \"%s \" \"$n\"\n      kubectl debug \"$n\" -n default -q -i --profile=general --image=busybox \\\n        -- chroot /host stat -fc %T /sys/fs/cgroup\n    done\n\nTwo gotchas from testing it on a 1.35 kind cluster:\n\n* Keep the `chroot /host`. Busybox's own `stat` does not know the cgroup2 magic and prints `UNKNOWN` on a healthy v2 node.\n* It leaves one `node-debugger-*` pod per node behind: `kubectl get pods -n default -o name | grep node-debugger | xargs kubectl delete -n default`\n\nDefaults to v1: CentOS 7, RHEL 7/8, Ubuntu 18.04/20.04, Amazon Linux 2. Most of those ship a kernel below the documented 5.8 minimum, and AWS does not support v2 on AL2 at all, so a kernel argument will not fix them. They need a new OS image.\n\n`failCgroupV1: false` is the escape hatch; KEP-5573 slates removal for no earlier than 1.38.\n\nI wrote up the full checklist (requirements, driver checks, in-place switch vs replace) here: [https://saipisey.com/blog/cgroup-v1-kubelet-check](https://saipisey.com/blog/cgroup-v1-kubelet-check)\n\nHappy to be corrected if your distro behaves differently.",
+    "developer": "SaiPisey02",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

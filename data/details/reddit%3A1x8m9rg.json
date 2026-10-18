@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8m9rg",
+  "sourceItemId": "1x8m9rg",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8m9rg/qwen_flash_next_on_mac_mini_is_runnable_without/",
+  "detail": {
+    "longDescription": "This is from my recent side project to optimise inference of QFN on a Mac Mini M5 64gb.\n\nI’ve known for a while it could be somewhat resilient to using less Gib, as the majority of the work is how to load experts from SSD into memory before they are needed. \n\nThe prompt processing uses a carousel buffering system which very efficiently solves for the pp side of things and it was good to see it hold up near perfectly even at lower amounts of experts hot cached.\n\nThe decode uses a trained prediction lookahead model to more accurately fetch experts from SSD before they are needed. This has worked very well and actually got good gains but ultimately with less experts hot this is still gonna take longer to fetch all the experts. I do still feel like there’s unlocks here but they haven’t popped into my head.\n\nPractically speaking  \n\\- For people doing stuff on their box besides hosting an LLM this is an insight into how much performance you give up for hosting X additional app e.g. \\~29 tks decode at max, drop down 4gb and you’re at \\~26tks.\n\n\\- If your workload has a lot of prompt processing and that’s what you care about you can really wind down the memory usage.\n\n\\- I found any less than \\~18gib of non-LLM server space on the box resulted in some form of swap. Not a big deal in small amounts but something to avoid if possible. It sort of depends on how the other apps behave as well as swings in memory are more where swap happens from what I’ve observed from how Mac reacts.\n\nhttps://github.com/skeggsguy/Flash-next-ssd",
+    "externalUrl": "https://i.redd.it/b4lugvcjm3wh1.jpeg",
+    "developer": "turtleninja99",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

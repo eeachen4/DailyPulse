@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8koix",
+  "sourceItemId": "1x8koix",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8koix/deepseek_v41_flash_1017_support_for_ds4_pr_1225/",
+  "detail": {
+    "longDescription": "Just pushed a PR for dwarfstar that adds support for Deepseek-v4.1-Flash-1017 with its new engrams and updated vision tower. The PR basically just adds compatibility for the file revisions and checks to make sure the vision+language model file combination matches, raising on mixed pairings. Any files quantized with the ds4 quantization suite will load without any special changes, and it introduces no regressions for the previous checkpoint.\n\nThis is a major revision, with \\~40% of the routed expert tensors changed, 30% in the engrams, and \\~50% of the vision tower's expert tensors changed. The architecture remains the same, so it just slots into the existing kernels with no changes to the core code once it's implemented in the PR.\n\nShortly, I will be uploading my Q2-Q8 mixed quant for 128GB w/ minor SSD offloading (152GB wired, 366GB total with engrams, following antirez's recipe for the previous checkpoint), and will make a thread when it's ready. It should decode around 20tps on an M5 Max.",
+    "externalUrl": "https://github.com/antirez/ds4/pull/1225",
+    "developer": "returnity",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

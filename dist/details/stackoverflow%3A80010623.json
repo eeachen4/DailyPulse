@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010623",
+  "sourceItemId": "80010623",
+  "sourceUrl": "https://stackoverflow.com/questions/80010623/qgraphicsscene-subclass-will-not-add-items-which-reimplement-qgraphicsitem-itemc",
+  "detail": {
+    "longDescription": "QGraphicsScene subclass will not add items which reimplement QGraphicsItem.itemChange , due to QGraphicsScene subclass which inherits QGraphicsScene twice. This is not allowed in C++/Qt, its the diamond inheritance problem. I subclass QGraphicsScene in two classes, SceneA and DiamondScene . class SceneA(QGraphicsScene): ... class DiamondScene(SceneA, QGraphicsScene): ... Note that DiamondScene inherits QGraphicsScene twice; the diamond inheritance problem. Question one: why didn't my diamond inheritance scene throw an error? Also, I reimplement ItemChangeRect.itemChange . All it does is call super().itemChange() . The default implementation of itemChange() \"does nothing, and returns value\". However, the mere presence of this reimplementation of itemChange , when combined with the diamond inheritance scene, has the effect that itemChangeRect will not be added to scene.items() when I call scene.addItem(itemChangeRect) . When I stop inheriting QGraphicsScene twice in my inheritance chain, items which reimplement itemChange() are added to the scene as normal. Question two: Why does the diamond scene seem to work, until I try to add items which have reimplemented QGraphicsItem.itemChange() ? from PySide6.QtWidgets import * from PySide6.QtCore import * from PySide6.QtGui import * import sys class ItemChangeRect(QGraphicsRectItem): def __init__(self, *args, **kwargs): super().__init__(*args, **kwargs) self.setFlags(QGraphicsItem.ItemIsMovable|QGraphicsItem.ItemIsSelectable) def itemChange(self, change, value): #When I reimplement itemChange and use diamondScene, item is not actually added to boardScene.items()... However diamond scene performs normally elsewise, except in this behavior return super().itemChange(change, value) class SceneA(QGraphicsScene): pass class DiamondScene(SceneA, QGraphicsScene): pass app = QApplication(sys.argv) view = QGraphicsView() # scene = QGraphicsScene() # Comment in to see that This works. Without diamond inheritance, itemChangeRect is added to scene as per normal. scene = DiamondScene() # DiamondScene seems to work, until you add an item which reimplements .itemChange. In fact, itemChangeRect is never even added to scene.items(), despite our call to .addItem(itemChangeRect) view.setScene(scene) magentaRect = QGraphicsRectItem(-10,-10,20,20) # magentaRect.setBrush(Qt.magenta) itemChangeRect = ItemChangeRect(-10,-10,20,20) itemChangeRect.setPos(50,50) scene.addItem(magentaRect) scene.addItem(itemChangeRect) print('SCENE.ITEMS:', len(scene.items()), scene.items()) # We can see that diamond scene never adds the item which reimplemented .itemChange view.show() sys.exit(qApp.exec())",
+    "developer": "robert driscoll",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "182"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

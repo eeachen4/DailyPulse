@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8peyq",
+  "sourceItemId": "1x8peyq",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x8peyq/how_do_i_actually_scan_for_cves_for_javascript/",
+  "detail": {
+    "longDescription": "Hello friends.\n\nI am implementing CI security scanning with Syft generating the SBOMs and uploading them to Dependency Track. \n\nTwo disclaimers:\n\n1- I hate frontend work and have a poor understanding of it.\n2- I am not a cybersecurity guy. This is just a new avenue I am exploring.\n\nI've faced an issue currently with CVE scanning for Javascript files, specifically it seems that there is no way for me to actually tell what packages made it into the bundler vs what was included in the lockfile. \n\nThis leads to the JS sbom including all the dev dependencies with nothing actually telling me what made it into the bundle.\n\nFor SPAs, this can be mitigated by ignoring dev dependencies, however most of my stack is Laravel, and from what I understand Laravel puts all its NPM packages in devDependency, meaning I cannot skip them in this stack.\n\nI have also tried generating sourcemaps while building (and I know you are supposed to .dockerignore them as it's a security concern), but without a reference to compare against, I do not know if this approach actually works or if it's a false sense of security. It does reduce the resulting sbom significantly, which seems to be a step in the right direction.\n\nI've also read this study from 2022 https://das.encs.concordia.ca/pdf/Latendresse_ASE2022.pdf and it seems to reinforce my point that what I'm asking for is (at this time) not possible.\n\nMy goal is to understand 2 things:\n\n1. Is it actually not currently possible to know what in the lockfile actually made it to through the bundler and into the final app.js that gets served?\n2. If 1 is true, do I just not run CVE scans on the lockfiles for Laravel projects? Do I just scan everything and force people to upgrade as much as possible to just \"lower CVE number\"?",
+    "developer": "saifxhatem",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8q6t6",
+  "sourceItemId": "1x8q6t6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8q6t6/deepseek_v41_flash_1017_on_2x_dgx_spark_57_toks/",
+  "detail": {
+    "longDescription": "**TL;DR:** DeepSeek-V4.1-Flash-1017 (EXL3 2.9bpw, 1M context) on two DGX Spark, TP=2 over the CX7 cable. On the same pair, with the same weights and the same prompts, TensorFold decodes 2.1-2.3x faster than the vLLM kit. It also does forced tool calls and JSON schema output, which the engine could not do before.\n\n\tvLLM kit\tTensorFold  \nDecode, text\t27.0 tok/s\t56.8 tok/s  \nDecode, code\t39.9 tok/s\t92.2 tok/s  \nNeedle in 64K tokens\t80.4 s\t35.9 s  \n4 requests at once, code, total\t(kit runs 1 at a time)\t140 tok/s\n\n**Credit where it is due:** the fast engine is bertholomus's DeepSeek-V4.1 port for TensorFold ([their recipe](https://github.com/bertholomus/deepseek-v4.1-tensorfold-tp2-2xgb10)). I did not make it faster. I made it usable for agents:  \ntool\\_choice: required and named tool choice on DeepSeek's DSML format (they returned 400 before);  \nprompts byte-identical to DeepSeek's reference encoder;  \njson\\_schema / regex / choice output on the speculative two-node decoder, also 4 at a time;  \none bad request no longer takes down the whole lane.  \n**Other things that turned out useful:**  \nPrompts survive a restart: kept prompts are also written to disk, so an 18K-token conversation resumes in 2.7 s instead of 16.8 s.  \nDraft depth 5 beats 4 on this model (code 95 vs 89 tok/s with bertholomus's benchmark client).  \n**What is not great yet:**  \nThe first long prompt after a start costs \\~6 s extra (probably cold Engram reads from NVMe).  \nLong-prompt prefill is 30-37% below bertholomus's published numbers (1,707 vs 2,421 tok/s at 32K). Different weights and nodes, cause unknown. If you have a Spark pair, I would love a comparison.\n\n**Links**  \nRecipe: [https://github.com/Elevatormusic/DeepSeek-V4.1-Flash-1017-EXL3-TensorFold-2x-DGX-Spark](https://github.com/Elevatormusic/DeepSeek-V4.1-Flash-1017-EXL3-TensorFold-2x-DGX-Spark)\n\nHF card: [https://huggingface.co/Elevatormusic/DeepSeek-V4.1-Flash-1017-2x-DGX-Spark-TensorFold-2x-Faster](https://huggingface.co/Elevatormusic/DeepSeek-V4.1-Flash-1017-2x-DGX-Spark-TensorFold-2x-Faster)\n\nWeights: LibertAIDAI's EXL3 quant + DeepSeek's Engram shards. Baseline: MiaAI-Lab's vLLM kit.",
+    "developer": "shayanx45",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

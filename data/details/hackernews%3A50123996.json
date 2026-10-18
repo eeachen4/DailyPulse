@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50123996",
+  "sourceItemId": "50123996",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50123996",
+  "detail": {
+    "longDescription": "Self-hosting instructions in the README. Hosted version: https:&#x2F;&#x2F;coastmath.com&#x2F; iOS app: https:&#x2F;&#x2F;apps.apple.com&#x2F;app&#x2F;id6809539979 This post is partially inspired by this thread: https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=50048344 ``` &gt; Somewhere around 20M people (0.2%) see first-hand that large, complex projects that used to take them weeks&#x2F;months can now be completed by agents with a prompt. &gt;&gt; No, they can&#x27;t, at least not any semblance of quality. The cases we&#x27;re seeing where this does kinda work is in ports and translation where all the rules are already documented in the best specification language possible with a way for the LLM to verify itself: code. We saw this close to a year ago now with Cloudflare and NextJS ``` This post mostly outlines how I am personally building with agents, as I am almost entirely hands-off. Desired feature-set determined by having agents research existing products and feedback &#x2F; feature requests on FIRE subreddits. Features built using Opus 5.5 (xhigh) &#x2F; Fable 5.1 (med&#x2F;high) as orchestrator and Opus-5-5 low&#x2F;medium as worker subagents. Quality is attempted by running Opus-5-5 agents in a perpetual audit + fixer loop on the calculation &#x2F; compliance engine until no medium+ severity can be found. The origin of each rule &#x2F; logic must be backed up and documented in the codebase with a source. Sonnet subagents run UX &#x2F; QA audit on iOS simulators within the Claude Code desktop app, and Opus agents resolve all medium+ sev issues; also run on a perpetual loop. I have not manually tested or used the app(s) for more than 30 minutes. For UX quality, agents&#x27; screenshots + associated context are fed to a combination of GPT &#x2F; Gemini &#x2F; Claude agents until consensus is achieved on quality (7&#x2F;10+). Early feedback from beta testers report extremely close results to Boldin &#x2F; Projection Lab. There is also a feature to import your data from Boldin and Projection Lab into CoastMath if you wish to compare the results yourself. There is also a SimpleFIN integration, if you wish to pull in your own transaction data and see how your financial future changes based on your monthly spending habits (e.g. when I will get to retire if I spend like I did in June vs. July?). I&#x27;m sure there are other features I don&#x27;t yet know about. Again, I&#x27;ve barely used the app. Anyway, feel free to use &#x2F; roast &#x2F; steal. I don&#x27;t think that any moat can exist in this class of products in the future (where the rules are laws that are visible to everyone) and I don&#x27;t expect to turn a profit. Estimated cost: maybe $2000 if done over the API? I did most of this using the $200 Max subscription.",
+    "externalUrl": "https://github.com/blank-slate-labs/coastmath",
+    "developer": "jfrbfbreudh",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

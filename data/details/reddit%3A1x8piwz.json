@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8piwz",
+  "sourceItemId": "1x8piwz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8piwz/basalt_nvfp4_faster_prefill_for_qwen38_flashnext/",
+  "detail": {
+    "longDescription": "![img](nj6axl8ud4wh1 \"Basalt: Qwen 3.8 FN NVFP4, single 5090\")\n\nHi guys, so I finally got a RAM upgrade and have been working on the top two pain points from Basalt: NVFP4 support and faster prefill.  \n  \n**NVFP4:** Basalt runs NVFP4 natively now, a new .basalt pack keeps stock NVIDIA experts and stores the dense layers as Q6\\_K. Numbers for a 5090 (400w) + 128 GB of DDR5 RAM:  \n  \n\\- struct: 304 tok/s  \n\\- prose: 183 tok/s  \n\\- w/ peer gpu (5060 Ti): struct 479 / prose 239  \n  \nQuality vs Q8\\_0 (100 chunks): PPL 3.308 (Q8\\_0: 3.286), KLD 0.068, 91.5% same top-1.  \n  \n**Prefill:** 8,582 tok/s on a 64K prompt (7.6s to first token). Against Infernix on the same NVFP4 weights and same box it's up to 1.3x on decode and 1.6x on prefill.  \n  \nAlso merged a bunch of stability and performance fixes over the last week, coming up next Unsloth Q4 + Q8 (near lossless) tuning. Give it a try:  \n  \nRepo: [github.com/jesdga95/basalt](http://github.com/jesdga95/basalt)  \nHF: [huggingface.co/jesdga/Qwen3.8-Flash-Next-Basalt](http://huggingface.co/jesdga/Qwen3.8-Flash-Next-Basalt)",
+    "developer": "jesdga95",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

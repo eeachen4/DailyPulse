@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8pnmp",
+  "sourceItemId": "1x8pnmp",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1x8pnmp/showoff_saturday_rebuilding_my_10yearold_clinical/",
+  "detail": {
+    "longDescription": "About ten years ago I built NoteCoder, a browser-based project that matched disease phrases in clinical notes to ICD-10 codes using a dictionary and trie.\n\nI’ve been revisiting it with local AI. The interesting challenge is connecting information across a document: a note might mention chronic kidney disease near the beginning, then clarify—or correct—its stage much later.\n\nRather than asking a model to invent codes, the dictionary proposes candidates, then a small local model checks the diagnoses and their qualifiers against the complete note.\n\nFrom the web-development side, it’s a static site with browser workers for candidate discovery and inference. The public version uses WebAssembly; note text isn’t uploaded for model processing. The biggest tradeoff is the roughly 2 GB initial model download.\n\nThe interface lets you inspect highlighted source phrases, review candidate codes, and copy selected results. The included synthetic CKD example demonstrates an updated stage superseding older documentation.\n\n[Try the demo](https://notecoder-navy.vercel.app/notecoder)\n\nIt’s free and experimental—not clinically validated or billing software. AI assisted the rebuild.\n\nI’d particularly appreciate feedback on the download experience, responsiveness, and whether the highlights make incorrect suggestions easier to spot.",
+    "developer": "imfinn005",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

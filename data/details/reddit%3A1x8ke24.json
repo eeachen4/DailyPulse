@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8ke24",
+  "sourceItemId": "1x8ke24",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x8ke24/deepseek_v41_flash_1017_gguf_abliterated/",
+  "detail": {
+    "longDescription": "Hi all, as many of you are probably aware DeepSeek V4.1 Flash 1017 was released yesterday. I put up an abliterated model + GGUF quants for both the base and abliterated version (no imatrix yet that's WIP)\n\nFor the abliterated model, most refusals are successfully removed. On the original V4.1 model, 97/100 prompts were refused; after abliteration only 4/100 are. In think mode refusals are down from 98/100 to 9/100.\n\nI optimized for keeping the model intact rather than trying to remove every last refusal, I created several iterations of this model and found this to be the best balance.\n\nI do believe this model will perform a bit better than typical abliteration / other abliterated models you might find. In V4.a chat mode and think mod refuse along different directions, so rather than ablating a single refusal direction I measured and removed the rank-2 subspace they span. Of course this still won't be perfect, so if you find any issues please let me know!\n\nAll the models are on the Hub and I also released a LoRA for the GUGFs if you'd rather not redownload weights. Any feedback is very welcome 🤗",
+    "externalUrl": "https://huggingface.co/collections/mrfakename/deepseek-v41-flash-1017",
+    "developer": "mrfakename0",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "huggingface.co"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
