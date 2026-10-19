@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9dpz8",
+  "sourceItemId": "1x9dpz8",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x9dpz8/splitting_planning_from_clicking_made_my_desktop/",
+  "detail": {
+    "longDescription": "I've been building a desktop agent for my Mac, and the biggest speedup came from splitting planning from acting.\n\n\n\nThe problem: when a frontier model drives a GUI directly, every click costs a screenshot plus a full reasoning pass. That's slow (several seconds a step) and expensive, even though most steps are trivial.\n\n\n\nWhat I do now:\n\n\\- Claude Code (the planner) writes the whole batch of steps up front: \"click Upload Document, then type the name, then choose Resume from the dropdown\".\n\n\\- A small, fast decision model (Jev, from TypeSafe) executes each step: it finds the target in a screenshot in about 0.6s and picks the move.\n\n\\- Plain steps (type text, press a key, choose from an open dropdown, attach a file) skip the model completely.\n\n\\- It reads the macOS accessibility tree first, and only falls back to pixels when an app exposes nothing.\n\n\\- After each batch it hands the planner a \\~20-line text report of the screen, so the planner rarely needs a screenshot.\n\n\n\nGuardrails: it refuses clicks that look like send/delete/pay unless I've approved them, and it stops the moment I touch the mouse.\n\n\n\nOn a test page of 12 randomly placed buttons it hit 47/48, at about 1.2s per click. It still gets lost in apps with custom-drawn UI (GitHub's web editor ate my keystrokes today).\n\n\n\nCurious whether others have landed on the same planner/executor split, or found a better way to handle apps with no accessibility tree. Code is open source; link in the comments per the sub rules.",
+    "developer": "Frosty-Hunt-7697",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

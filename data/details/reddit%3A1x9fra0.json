@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9fra0",
+  "sourceItemId": "1x9fra0",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x9fra0/longhorn_fails_to_mount_encrypted_volume/",
+  "detail": {
+    "longDescription": "Hey :) I'm trying to create an encrypted Longhorn volume on a NixOS node. The problem is, that it fails. I tried searching online but I couldn't find any helpful issues/discussions/articles.\n\nThe errors are:\n\n    Warning  FailedMount             34m                kubelet                  MountVolume.MountDevice failed for volume \"pvc-cb2e2720-36bb-4640-bf19-dab12812819c\" : rpc error: code = Internal desc = failed to encrypt device /dev/longhorn/pvc-cb2e2720-36bb-4640-bf19-dab12812819c with LUKS: failed after 10 attempts to refresh stale namespace directory: timeout executing: /usr/bin/nsenter [nsenter --mount=/host/proc/8419/ns/mnt --ipc=/host/proc/8419/ns/ipc cryptsetup -q luksFormat --type luks2 --cipher aes-xts-plain64 --hash sha256 --key-size 256 --pbkdf argon2i --pbkdf-force-iterations 200000 --pbkdf-memory 0 /dev/longhorn/pvc-cb2e2720-36bb-4640-bf19-dab12812819c -d -]\n\n    Warning  FailedMount             3s (x24 over 34m)  kubelet                  MountVolume.MountDevice failed for volume \"pvc-cb2e2720-36bb-4640-bf19-dab12812819c\" : rpc error: code = Internal desc = failed after 10 attempts to refresh stale namespace directory: failed to execute: /usr/bin/nsenter [nsenter --mount=/host/proc/8419/ns/mnt --ipc=/host/proc/8419/ns/ipc cryptsetup luksOpen /dev/longhorn/pvc-cb2e2720-36bb-4640-bf19-dab12812819c pvc-cb2e2720-36bb-4640-bf19-dab12812819c -d -], output , stderr No usable keyslot is available.: exit status 1\n\nI already thought of a PATH issue, because NixOS uses non-standard locations for it's binaries but wouldn't the error contain something like \"no such file or directory\" or \"couldn't be found\" then? (All containers in the `longhorn-system` namespace have a kyverno policy adding the NixOS directories to the PATH as suggested by the NixOS wiki.)\n\nIf i do `cryptsetup luksDump` on the volumes the key slot section is empty. (I don't know if it matters but i thought it might help) I also searched for `luks` or `nsenter` in the Longhorn manager logs. There are no occurrences.\n\nDoes anyone here have an idea what might cause the issue? I've tried fixing it for hours now and I'm really out of options. I appreciate any help!",
+    "developer": "minomy13",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

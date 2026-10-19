@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117462445500011025",
+  "sourceItemId": "mastodon.social/117462445500011025",
+  "fetchedAt": "2026-10-19T01:40:43.341Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117462445475915444",
+  "detail": {
+    "longDescription": "----------------\n\n🛠️ Tool: Harness², a framework for recursive agent harnessing\n===================\n\nOverview\n\nHarness² is an open source (Apache 2.0) framework for optimizing the orchestration layer around LLM agents. The authors define a harness as the system that enables a model to act as an agent: prompts, tools, memory, skills, orchestration, and more. Their premise is that agent performance can be improved by editing this layer continuously, task by task, while model weights stay fixed, and that the editing itself can be automated. The framework is positioned as plug-and-play: install it, point it at a benchmark, and let the recursion loop modify the harness between runs. The stated design goal is an open world, meaning tasks unseen during harness design.\n\nHow the recursion works\n\nTwo levels of recursion operate together, with model weights fixed throughout:\n• Task-level recursion refines the execution harness for the current task through a contrastive Propose–Probe–Compose step. An agent executor runs the initial harness, a harness editor proposes invariant and domain edits, candidate probes execute them on the same task, and a composer builds the final harness from behavioral contrasts between executions. Notably, it runs without ground-truth feedback.\n• Harnessing-level recursion maintains a persistent improvement harness: an experience reflector collects adopted harnesses and evidence-supported lessons from each completed task and uses them to guide refinement on the next task.\n\nPer the paper, a single Harness² step improves GLM-5 and Gemini 3.5 Flash over their base harnesses:\n• Up to 11.5 points on WorkBuddy-Bench\n• 4.5 points on JobBench\n• 11.8 percentage points on LAB's partial pass rate\n\nIncreasing the task-level recursion budget brings further gains.\n\nComponents and execution\n\nThe framework exposes eight editable components: system prompt, guardrails, memory, tool guidance, subagents, skills, scripts, plugins. They control context construction, the tool interface, delegation, and behavior inside the tool loop. Execution supports parallel and sequential recursion, with OpenCode and Codex executors. Three benchmarks ship in the release: JobBench, LAB, and WorkBuddy-Bench.\n\nSetup\n\nuv pip install -e '.[render]'\nharness2-setup jb\nharness2 --bench jb --k 1 --mode parallel\n\nConfiguration requires editing .env with your Vertex AI project and model IDs.\n\nLimitations\n\nThe numbers above come from the project README and the accompanying paper (arXiv 2610.14224), across four model–harness configurations. They are author-reported results on the team's own benchmarks, so treat them as unverified until reproduced outside the team. The \"open world\" framing is the design goal; published evidence covers the three included benchmarks, not arbitrary production workloads. Probe execution cost per recursion step, additional model calls against the same task, is not quantified in the README.\n\nReferences\n\nProject site: harness2.github.io. Paper: arXiv 2610.14224. License: Apache 2.0.\n\n🔹 tool #AIAgents #LLM #AgentFrameworks #Benchmarks\n\n🔗 Source: https://github.com/google-research/harness2",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

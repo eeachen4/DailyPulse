@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x8s0th",
+  "sourceItemId": "1x8s0th",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x8s0th/psa_eks_charges_6_once_a_cluster_falls_out_of/",
+  "detail": {
+    "longDescription": "Quick reminder that bit a team I know: when an EKS version leaves standard support (about 14 months after release), **extended support starts automatically** and the control plane goes from **$0.10 to $0.60 per cluster-hour**. That’s roughly **+$365/month per cluster**, and it shows up on the bill before anyone notices.\n\nThe other clouds handle it differently:\n\n* **EKS:** extended support is automatic, $0.60/hr, for up to 12 more months, then AWS force-upgrades the control plane.\n* **AKS:** staying supported past community support needs Long-Term Support, which requires the Premium tier ($0.60/hr vs $0.10 Standard). Without it, you’re simply unsupported.\n* **GKE:** only clusters on the Extended release channel get extended support, at +$0.50/hr. Everything else gets auto-upgraded.\n* **On-prem (kubeadm, k3s, RKE2, Talos):** no fee, but upstream patches stop at end of life, so you’re on your own for CVEs.\n\nI got tired of checking four lifecycle pages, so I built a small tool. You paste your clusters like this:\n\n    prod: eks 1.33 x3\n    staging: aks 1.33\n    analytics: gke 1.34\n    onprem: k3s 1.31\n    openshift 4.20\n\nand it tells you the support phase, days left, what to upgrade to, and what extended support costs. Real output for that example:\n\n>Amazon EKS 1.33 (3 clusters) is in extended support (about $1,095/month extra) until 2027-07-29, then AWS upgrades it automatically. Upgrade to 1.37 (newest) or at least 1.34.\n\n>Kubernetes (upstream / on-prem) 1.31 is past end of support (ended 2025-11-11). Upgrade to 1.34.\n\nThat example alone has about $1,800/month in possible extended-support fees.\n\nYou can run it on a weekly schedule with Slack or webhook alerts at 90/30/7 days. It only pings you when something changes, not every run. It also covers OpenShift (Full, Maintenance, then EUS) and Rancher. Dates come from [endoflife.date](http://endoflife.date), which tracks the official calendars.\n\nIt runs on Apify: [https://apify.com/sky\\_technologies/kubernetes-support-radar](https://apify.com/sky_technologies/kubernetes-support-radar) ($0.02 per cluster line, free to try right now).\n\nCurious how others track this. Calendar reminders? Renovate? Something in your IaC pipeline?",
+    "developer": "jsandhu0780",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9jo4x",
+  "sourceItemId": "1x9jo4x",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1x9jo4x/i_built_a_little_town_where_my_claude_code/",
+  "detail": {
+    "longDescription": "I got tired of reading agent sessions as walls of logs, so I built Runloop: a small 3D town that runs on your machine. You step into it like a game.\n\nThe town has 80 simulated residents with needs, schedules and friendships. They go to work, eat at the café, sit on benches and go home at night. Click any resident and it tells you *why* they’re doing what they’re doing, and every reason links back to the recorded decision behind it.\n\nReal agents move in as buildings in the Agent District. Add a project folder to the world, start Claude Code there with the Runloop plugin, and the building goes live about a second after your first prompt. Inside, little robots work by kind of tool (reading, searching, editing, running tests), subagents show up as helpers, and a failing test shows as an incident on the building. You can scrub back through the session, open the full trace, or compare two runs, all without leaving the town.\n\nA few things I cared about:\n\n* **Simulated and real never blur.** Residents are labelled Simulated; agents are “Real · Claude Code · observed”. Event sounds only play for real agent events.\n* **Replay never re-runs anything.** It just shows what was recorded.\n* **Runloop doesn’t run or approve anything by itself.** There’s an optional “assign a task” that shows you the exact `claude -p` command, and it only runs after you approve it.\n* **Everything stays local.** The town pauses while it’s off and tells you so when it resumes.\n\nIt’s a prototype. It’s been tested a lot, but only in software rendering, so I’d love to hear how it feels on a real GPU or phone. Next I want the town to be useful, not just alive: buildings with real functions, organisations with goals, and agent work that actually changes the world state.",
+    "developer": "arg7k",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9h9un",
+  "sourceItemId": "1x9h9un",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1x9h9un/mitlicensed_claude_code_plugin_cheaper_models/",
+  "detail": {
+    "longDescription": "If you run Claude Code on Opus for a whole session, you've probably seen this happen. A large share of the main context goes to reading files, searching and writing routine code. Then, when you need careful judgment or a real review of the change, the context is already crowded.\n\nSubagents are the usual answer. But setting them up and deciding when the main session should hand work off takes some thought. Most people end up with a different ad hoc setup in every project.\n\nclaude-agent-kit is an open-source Claude Code plugin that packages one way of doing this. The idea is simple: cheaper models do the I/O and the implementation, and Opus spends its context on judgment and on the review gate.\n\nWhat's in it:\n\n- Seven Claude Code subagents\n- Orchestration rules for the main session\n- A read-budget hook\n- A CLAUDE.md template\n\nTo install it inside Claude Code:\n\n/plugin marketplace add FlaviusBurghila/claude-agent-kit\n/plugin install agent-kit@agent-kit\n\nYou can also install it from a shell with claude plugin marketplace add and claude plugin install. Add --scope project to record it in the repo's .claude/settings.json so the whole team gets the same setup.\n\nOnce it's installed, /agent-kit:init writes the project's \"## Agent contract\" section into its CLAUDE.md. /agent-kit:doctor checks the setup and changes nothing, so it's safe to run whenever you want. It requires Claude Code 2.1.293 or later.\n\nOn licensing: it's MIT-licensed and hosted on GitHub. The free version is the only version. There's no paid tier and nothing is locked behind a pro license.\n\nOn cost: I won't quote savings figures, because I don't have measurements that would back them up, and the result depends on your workload. The design rests on one simple premise: per-token prices differ between Claude models (see Anthropic's published model pricing). Whether routing work this way helps you depends on how much of your sessions goes to I/O and implementation versus judgment. If you try it, comparing a few sessions with and without it will tell you more than any number I could give.\n\nRepo: https://github.com/FlaviusBurghila/claude-agent-kit\n\nA question for people who already split work across models in Claude Code: where do you draw the line between what a cheaper model handles and what goes to Opus? And has review been the step where the stronger model matters most for you, or somewhere else?\n\nDisclosure: I'm posting this on behalf of the github.com/FlaviusBurghila/claude-agent-kit team.",
+    "developer": "investigatormaker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

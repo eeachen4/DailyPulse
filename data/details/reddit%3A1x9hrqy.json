@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9hrqy",
+  "sourceItemId": "1x9hrqy",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1x9hrqy/a_supersimple_tool_for_managing_a_projects_open/",
+  "detail": {
+    "longDescription": "Hello people of the interwebs!\n\nFor around 4ish weeks now I have been working on a simple command-line utility to easily license your open source projects and add compliant SPDX identifiers to the top of all your code files. The tool is called Linim!\n\nQuick Summary of features:\n\n\\- **Single-Command Licensing:** On first setup, the program automatically writes / updates the root LICENSE file, records copyright decisions to a `.linim` file (which you commit to your repo), and then injects proper compliant SPDX headers into every source file. Then, when you create new files and need headers to be injected, you just run the command `linim` and it does it. The tool supports basically every programming language under the sun so it knows the comment format.\n\n\\- **Interactive License Picker:** A searchable prompt appears allowing you to select what license you want your project to have, from 18 embedded SPDX licenses from MIT to 0BSD. If a license needs you to put in the copyright holder and year, Linim handles that automatically. If your repository already has a license file, it will be auto-detected and you don't even have to go through the setup, Linim just auto sets-up.\n\n\\- **Preamble Preservation:** Everything from shebangs to XML declarations to doctypes are preserved above the injected SPDX header.\n\n\\- **EXTREMELY FAST:** Apart from it being written in Rust, it automatically skips the `.git` directory, it skips any files in your `.gitignore`, it skips hidden files, and it skips unsupported extensions. On top of all of this, it only reads the first 8 KB of each file and if the header is always correct, it ignores that file, if the file needs a change it goes back and reads the full file so it doesn't mess up the content. And finally, ON TOP OF ALL OF THIS, all files are processed in parallel.\n\n**Quick Benchmark:**\n\n178.2 Megabytes of 8004 Source Code files Across 12 Languages and Over 8 Nested Directories.\n\n>First Run (every file lacks a header): 358 ms (\\~22,400 files per second)  \nSecond Run (all files already correct, zero writes): 44 ms\n\n\\- **Some Extra Features:** Various CLI flags are included to reconfigure from scratch / change the license, to only create the license file without injecting headers, and to use a verbose logging mode.\n\nThe project is fully open source, and supports Linux, Windows, and macOS. Link to repo: [https://github.com/wendellmeset/linim](https://github.com/wendellmeset/linim)\n\nThis was a project I made to learn Rust, and as such I put a lot of effort into a plan and architecture before it was made. I'm sure something like this already exists but it was really fun to make, so try it out if you'd like and tell me if you like it!",
+    "developer": "Desperate-Extension7",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

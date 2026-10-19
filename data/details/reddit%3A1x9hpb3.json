@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9hpb3",
+  "sourceItemId": "1x9hpb3",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x9hpb3/little_sweet_room_challenge_strata_fork_qwen_38/",
+  "detail": {
+    "longDescription": "Another little challenge I seen on a DeepSeek Thread. I thought I'd try out it out on Qwen FN NvFp4. It was a pretty straight forward prompt with 4 images attached in the doc. The thread was testing different harness and models and showing their results. Op of that thread has two other threads on the same Challenge just one with DeepSeek Harness so I used it as well. \n\nIt took about 20 min(Not bad) and was surprised how it planned everything out, also I do have vision on this Model. I think the Vision on Qwen is also a big part in a lot of Accuracy calls and adjustments. Especially notice when I use blender for other projects. Havent had too much trouble after getting use to how to even use blender since i literally started 2 weeks ago and having an LLM run it has been pretty fun to use. So if you can run vision don't sleep on it. lol\n\nAny who this was the result and I like how Qwen tried to get all the placement, designs and little details to the references. Below are the measurements and hardware I use and what not. Full prompt is from the referenced Thread. Also if you run no harness for Qwen I would like to see the results or even results from other harnesses if possible. \n\nLast but not least thank you all to the community here and everyone who is contributing locally in many ways or even just interacting with the community, keep up the great work and looking forward towards the future of running Local.\n\nThread for full Prompt doc  \n[https://www.reddit.com/r/DeepSeek/comments/1x8nnjy/deepseek\\_v41\\_flash\\_1017\\_vs\\_claude\\_haiku\\_55\\_same/](https://www.reddit.com/r/DeepSeek/comments/1x8nnjy/deepseek_v41_flash_1017_vs_claude_haiku_55_same/)\n\nJust the text prompt:\n\n\"Create a highly realistic 3D first-person game using JavaScript. The game will take place in a single room. The room is the one shown in the 1st image. Model the room in the 1st image exactly in JavaScript, with absolutely no differences. Do not make it cartoon-style. It must be extremely realistic. Model it in the best possible way, identically, with extremely realistic graphics, and make everything very cute. By “cute,” I mean the style of the 2nd, 3rd and 4th images: cute items with clearly defined edges. Build it in the same style, cute but also realistic and well made, like the 2nd, 3rd and 4th images. Examine all 4 images I sent pixel by pixel, in detail, so you can build it exactly as I want. Make it flawless and do an excellent job.\"\n\nEngine: [https://github.com/sergqwer/strata-nvfp4](https://github.com/sergqwer/strata-nvfp4)\n\n# The stack\n\nHardware: RTX 5090 32GB · Ryzen 7 9800X3D · 192GB DDR5-5600 · Windows 11  \nEngine: strata-nvfp4 (fork of Niko1221/Strata by sergqwer) on Windows, llama-swap as switcher  \nModel: Qwen3.8-Flash-Next 125B-A6B hybrid MoE — abliterated checkpoint(windowsxp811203), self-converted NVFP4  \nWeights: NVFP4 experts (4.5-bit) + Q8\\_0 dense · KV: int8 · PLE: bf16 · Embeddings: bf16  \nMTP: draft head, spec 5, spec-min-p 0.7 · Context: 262,144 max · Compaction trip: 220,144  \nSampling: temp 0.8 / presence\\_penalty 0.3 / min\\_p 0.02 · Vision: fp32 mmproj, encoder on CPU  \nRAM tier: 63 GiB pinned experts · Harness: dsh (web GUI), OpenAI API\n\n# Metrics — this run\n\n|Metric|Value|\n|:-|:-|\n|**Wall: first message → last reply**|**26m 17s**|\n|− my approval latency|**−0s (zero prompts)**|\n|**= pure agent working time**|**26m 17s**|\n|Turns|**1** (single prompt, no babysitting)|\n|Steps|103|\n|Output tokens|**132,929**|\n|Fresh input tokens|247,232|\n|Cache-read tokens|11,994,999 (**98.0% hit**)|\n|**Decode (engine-verified)**|**median 121.4 t/s · mean 121.2 · peak 187.8**|\n|TTFT|median **0.85s** (max 32.9s at \\~194k context)|\n|Prefill (fresh, engine-verified)|mean **2,757 t/s** · peak **7,096 t/s**|\n|Longest single burst|10,395 tokens|\n|Compactions|**0** (peaked at 194k, never near the 220k line)|\n|Tool calls|**179 total · 17m 29s runtime · 0 errors**|\n\n  \n",
+    "externalUrl": "https://v.redd.it/6516ky0x8bwh1",
+    "developer": "Beneficial-Ad-8127",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9ipmw",
+  "sourceItemId": "1x9ipmw",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x9ipmw/your_ai_coding_agent_might_be_cheating_to_pass_ci/",
+  "detail": {
+    "longDescription": "I had a small bug in a bill-splitting app and ran the same fix task 10 times across three coding agents. Every single run changed the test instead of fixing the code.\n\nThe failing test, encodes a product requirement => split 100 cents three ways and every receipt shows 33, even though 1 cent goes unaccounted for.\n\nThe agents treated it as a bug and rewrote the test to match their code 😆\n\nWhat I learned: an agent's \"tests pass\" is worthless if it's allowed to edit the tests. You have to check what it changed, not just whether it finished green.\n\nSo I built [Skill Gate](https://github.com/vigneshm1995personal/skillgate) to catch issues like this in our Cursor or claude skills so you can evaluate them before sharing with the rest of your team to speed up their programming workflows.\n\nYou give it a skill and a few test cases, it runs the agent on them, and a decision model checks what the agent did, like \"were all files under `tests/` left unchanged?\", not just the exit code.\n\nLimitations (for now): you bring your own API keys and write your own test cases.\n\nWould love to hear any thoughts or feedback from the community here!\n\n[https://www.skill-gate-ai.app/blog/ai-coding-agent-cheating-ci](https://www.skill-gate-ai.app/blog/ai-coding-agent-cheating-ci)",
+    "developer": "InterestingCarrot997",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

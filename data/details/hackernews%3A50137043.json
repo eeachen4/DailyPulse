@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50137043",
+  "sourceItemId": "50137043",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50137043",
+  "detail": {
+    "longDescription": "Hi everyone, This started as an exploration into harnesses and locally hostable LLMs (the kind that uses less power than a small electric heater), and I used it as an opportunity to retool. I&#x27;ve tried popular ones like Cline, Claude Code, and Pi, but wanted a different UX and integrated sandboxes. The solution that I&#x27;ve landed on is a responsive web interface where I can quickly drive progress. It feels like a microcosm of my day job: define and delegate tasks, organize using kanban, then review deliverables. And it also feels like the time I used to spend coding is now spent in code review with the agent, so I tried to optimize the UX to make review feel nicer. One of my (maybe a bit niche) benchmark use-cases is how pleasant it is to make progress on hobby software projects while also out on a hike. This meant specifying low bandwidth usage and offline mode. Now I can jot down an idea, start the task, and at some point down the trail: get a notification* that either clarification is needed, a decision needs to be made, or the code is ready for review. I&#x27;ve been having a good time with this. To build MIKE, I exclusively used locally hostable LLMs (from Google, Meta, Qwen, Poolside, and DeepSeek) hosted with llama.cpp on my machines at home (Strix Halo and a 5090) to &quot;compile&quot; the code. The experience has gotten substantially better ever since DeepSeek’s release in July. Side note: I have a soft spot for llama.cpp since it was one of the first that made it possible to run this new tech at home, and its maintainers accepted a tiny improvement I made to error reporting. Oh the joys of having a PR get approved. I plan on maintaining this, at least until similar features are supported by better tools. Until then, hope you find this useful! 5 minute demo: https:&#x2F;&#x2F;youtu.be&#x2F;jexzLkZ50FU p.s. I didn&#x27;t mention details about the sandbox earlier since most people seem to find this a bit boring. It was one of my critical requirements, and I opted to use an existing battle-tested sandbox. I&#x27;m not an expert on how the Linux kernel works, but seeing all the VM escape exploits recently is a bit scary, and I liked gVisor’s approach to the problem. I&#x27;m also using Git worktrees to provision the agent’s workspace, as well as a read-only repository mount to provide relevant context when the agent looks for it. *off by default",
+    "externalUrl": "https://github.com/SoftwareRenderer/MIKE",
+    "developer": "SftwareRenderer",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "6"
+      }
+    ]
+  }
+}

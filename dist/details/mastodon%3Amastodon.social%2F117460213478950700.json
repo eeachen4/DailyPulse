@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117460213478950700",
+  "sourceItemId": "mastodon.social/117460213478950700",
+  "sourceUrl": "https://piefed.social/c/selfhosted@lemmy.world/p/2501982/gpu-dri-by-path-for-docker-compose-how",
+  "detail": {
+    "longDescription": "GPU dri/by-path for Docker Compose how? My Jellyfin config has some YAML like this. # Sometimes work devices: - /dev/dri/renderD128:/dev/dri/renderD128 - /dev/dri/card0:/dev/dri/card0 Occasionally when I reboot my server, I end up with no card0 and instead I have /dev/dri/card1 . This breaks my Jellyfin server… I noticed there is also dri/by-path , which I’m guessing is a more stable path than a card index… however, doing this doesn’t work for me. # No work devices: - /dev/dri/by-path/pci-0000:00:02.0-render:/dev/dri/renderD128 - /dev/dri/by-path/pci-0000:00:02.0-card:/dev/dri/card0 I tried with and without quotes and the result is the same. Error to start. I’m guessing Docker is failing to correctly parse the string because of the colons in pci-0000:00:02.0-card … How’s everyone else handling this problem? I’ve been updating my compose.yaml every time the index switches, card0 to card1 to card0 … but this is getting annoying now. (This is a worse problem now that I’m running Fedora IoT!) Any thoughts?",
+    "developer": "@uuj8za@piefed.social",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x97qxf",
+  "sourceItemId": "1x97qxf",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x97qxf/eu_cra_how_are_you_tracking_vulnerabilities_in/",
+  "detail": {
+    "longDescription": "Since 11 Sep the Cyber Resilience Act's reporting duty applies: if a vulnerability in a product you sell in the EU is actively exploited, you have 24 hours to send ENISA an early warning. It covers every version still in its support period, not just what's on main.\n\nMost of our tooling (Dependabot, scanners in CI) looks at the default branch. For older releases still in support, how are you doing it? Keeping SBOMs per release and rescanning them? A separate tool? Nothing yet?\n\nWhat I ended up doing: a GitHub Action that attaches an SBOM and signed attestations to each release, plus a daily job that rescans the SBOMs of all supported releases against OSV and opens an issue when CISA KEV or ENISA's EUVD lists one of the vulnerabilities as exploited. It's open source if anyone wants to compare notes: [https://github.com/keelinfra/release-ledger](https://github.com/keelinfra/release-ledger)\n\nI'm mostly curious how other teams handle the \"old release\" part, and whether anyone has already been through the ENISA reporting platform.",
+    "developer": "shenxianpeng",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
