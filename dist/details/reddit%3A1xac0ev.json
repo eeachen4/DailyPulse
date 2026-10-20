@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xac0ev",
+  "sourceItemId": "1xac0ev",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xac0ev/i_reimplemented_a_very_lightweight_opencode_v1/",
+  "detail": {
+    "longDescription": "I use opencode every day and the thing that kept getting in the way wasn't the client. It was the server. On my laptop it sat at about 2.4 GB RSS next to a 33 GB SQLite file, and searching inside a single session took roughly six seconds.\n\nSo I reimplemented the server in Rust. Same HTTP and SSE wire contract, so the real TUI attaches and the real web UI loads against it. No client changes, no patches to their project.\n\nSame box, same fixture data, back to back:\n\n• binary: 61 MB, upstream 185 MB\n\n• idle RSS: \\\\\\~100 MB, upstream \\\\\\~2.4 GB\n\n• boot: 0.6 s, upstream 4.7 s\n\n• session list and read p95: 0–2 ms, upstream 8–15 ms\n\n• search inside one session: 0.2 ms, upstream \\\\\\~6 s\n\n• web UI first load: 1.05 MB of assets, upstream 9.10 MB\n\nThen I ran a read-only load test, no model calls at all, both servers pinned to the same two cores. It held about 6,700 requests/sec against roughly 420 for upstream, with p95 latency an order of magnitude lower, and used about a quarter of the memory. That's a closed-loop test, so treat the throughput as capacity, not as a latency promise for your setup.\n\nWhat works: TUI attach, the embedded web UI, sessions and messages with cursor paging, streaming, tools, permissions, questions, PTY, shadow-git snapshots, revert, diff, in-session search, MCP, and plugins in both the v1 shape and the newer v2 shape. Auto-compaction and config hot-reload. The v2 API surface is bound and tested against the real 2.0.28 client.\n\nWhat doesn't: provider OAuth, the hosted share backend, and macOS/Windows: the PTY layer is Linux/glibc only.  \n\n\"cargo install ocserve\"  still gives you 0.3.1, because crates.io caps crate size and one crate carries the embedded web UI; the 0.4.0 tarball is on the releases page.\n\nIt's not a fork. Separate codebase, MIT, their notice retained. I read their source to port behaviour faithfully and I keep a differential harness that boots both servers and compares the bytes.\n\nIf opencode runs fine on your machine, keep using it. It's the reference implementation and it's good. This exists for the machines where the server is the thing falling over.\n\nMIT, source and releases: https://github.com/Reliary/ocserve",
+    "developer": "microbass",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

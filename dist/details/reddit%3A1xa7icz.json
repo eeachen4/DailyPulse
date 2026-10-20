@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xa7icz",
+  "sourceItemId": "1xa7icz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xa7icz/taco_crossplatform_llm_compression_that_doesnt/",
+  "detail": {
+    "longDescription": "1. **The problem:** an LLM compressor needs the decoder to compute exactly the same probabilities as the encoder. Floats differ across hardware; float GPT-2 encoded on a Mac decoded 0 of 4 windows on x86.\n2. **The approach:**\n   * integer-only inference (int8 weights, fixed rounding, lookup tables);\n   * an exact float32 → integer converter (mantissa × 2\\^exp);\n   * conformance vectors.\n3. **The proof:** one hash across 7 backends (Mac CPU/Metal, Linux CPU/CUDA, Windows CPU/CUDA/Vulkan\n\n[https://github.com/tac0mania/taco](https://github.com/tac0mania/taco)",
+    "developer": "phoenix10701",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9nw6a",
+  "sourceItemId": "1x9nw6a",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1x9nw6a/arrow_detection_with_convnext_pretrained_on/",
+  "detail": {
+    "longDescription": "Worked on this for about a month. I experimented a lot with resnets (pretrained on Imagenet) which performed quite well, pure ViT which performed worse. ConvNext DINOv3 performed the best.\n\nFor data I rendered about 40000 varied blender scenes, and used 8000 labelled real images. I had to label most of these real images by hand, which was a huge pain in the ass and about 20 hours of my life I'll never get back. Both registration and detection networks were trained on about 1 million samples (heavy augmentations of the 48k dataset).\n\nEnd result was F1 96.6% on test and whole image correctness of 80.5% (no missed arrows, no false detections).\n\nThe process is basically registration to identify target, semantic rings, centre, scoring zones. Detection then takes a cropped image and produces a heatmap of impact candidates. I run that image through the same detector mirrored and combine both in decoder to find local peaks. I tried a sliding window approach which didn't produce better results. I then apply a homography transform to remove perspective skew and flatten the target so the impacts conform to a canonical coordinate system. There's then a small correction step where I adjust impact coordinates to account for warped paper (homography can remove perspective skew but it can't fix warped paper that isn't planar). This is a neat trick because I basically compare the heatmap of the semantic rings produced by the registration model to the perfect geometric rings of the archery target and use that offset to make a radial correction.",
+    "developer": "BrashBunyip",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

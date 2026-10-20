@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xadfzn",
+  "sourceItemId": "1xadfzn",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xadfzn/i_audited_73_public_agent_trajectories_for_wasted/",
+  "detail": {
+    "longDescription": "I audited 73 public benchmark agent trajectories for wasted tokens — 74% carried measurable waste. Then I ran live agents to check.\n\n\n\nchewme-audit (MIT) is a CLI I built that reads agent traces — Langfuse, LangSmith, plain JSONL, and Claude Code transcripts — and reports where tokens were wasted, priced per provider, with a copy-paste fix for each pattern. It runs locally: no API calls, nothing uploaded.\n\n\n\nInstall: \\`pip install chewme-audit\\`, then \\`chewme-audit your\\_traces.jsonl --provider deepseek\\`\n\n\n\n\\*\\*Clearest case:\\*\\* one trajectory sent the same malformed edit command 283 times before hitting its step limit. I applied the recommended dedup fix and re-ran it with a real model call: the loop broke on the next call and the agent went back to investigating the actual bug. Waste on that trace dropped 77% (13,193 → 3,041 tokens), with a tamper-evident SHA-256 receipt for the result.\n\n\\*\\*Then I ran live agents on a real task:\\*\\*\n\n\\- \\*\\*Solo agent:\\*\\* 35% of its I/O was re-verification — the same \"find files\" script re-run 7 times. Competent, paranoid.\n\n\\- \\*\\*4 identical agents, same task, no coordinator:\\*\\* waste ranged 15–37%. One never finished. One deleted 117 lines of real docs after skimming files with \\`head -3\\` and mistaking a 60-line docstring for a stub (root cause in the write-up in Git)\n\n\\- \\*\\*A debugging run passed 12/12 for $0.013\\*\\* — but the trace shows the fix arrived through an accidental \\`git checkout --\\` (a rerun passed 12/12 cleanly for $0.0077). Pass/fail would have certified the first run; the trace didn't.\n\n\n\n\\*\\*Honest scope:\\*\\* it reads trace exports, so cache behavior and reasoning-token overspend need your API logs, and the report says so rather than guessing. Every dollar figure is labeled estimated unless you provide logs. The 74% comes from benchmark trajectories; benchmark agents loop more than production ones, so your own traces are the real test.\n\n\n\nTry it on your traces and tell me what it finds. I'm especially curious whether the re-verification pattern dominates elsewhere.\n\n",
+    "developer": "Impressive_Laugh_176",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

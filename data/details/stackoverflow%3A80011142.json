@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011142",
+  "sourceItemId": "80011142",
+  "sourceUrl": "https://stackoverflow.com/questions/80011142/typeerror-defaultmeta-object-is-not-iterable",
+  "detail": {
+    "longDescription": "I'm currently developing my first Python/Flask project and have come across an issue when trying to loop through my database and check whether the admin column in each row is true and if so it should then proceed to send an email to each admin. When triggering the function I'm getting the following error message TypeError: 'DefaultMeta' object is not iterable. Auth.py: # Sends confirmation email to user msg = Message( subject=\"BANK TIME REQUEST\", recipients=[current_user.email], ) msg.body = \"Your Bank Time request has been sent to your line manager for approval.\" mail.send(msg) # Sends Bank Time request notification to any admins for user in User: if User.admin is True: msg = Message( subject=\"BANK TIME REQUEST\", recipients=[User.email], ) msg.body = f\"{current_user.first_name} has raised a new Bank Time request.\" mail.send(msg) The database is created using SQL Alchemy however I'm still trying to learn the ins and outs of it as this project is a very much learn as you go type thing, which can be frustrating because there's a lot to learn and a lot that I need to loop back on personally. Just putting this post out there to see if there's an easier way to loop through the database that I'm missing.",
+    "developer": "gh0st_dancing",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "74"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

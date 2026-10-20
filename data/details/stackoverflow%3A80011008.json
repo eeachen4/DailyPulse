@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011008",
+  "sourceItemId": "80011008",
+  "sourceUrl": "https://stackoverflow.com/questions/80011008/how-to-reduce-dataframe-with-nan-values-maintaining-consecutive-values-in-column",
+  "detail": {
+    "longDescription": "This is my Python Dataframe A B C D 0 0.10 NaN -0.05 NaN 1 0.03 0.12 NaN NaN 2 -0.06 NaN 0.03 NaN 3 NaN NaN 0.07 0.11 I would like to remove the NaN values ​​and reduce the dataframe, keeping in mind that the number of non-NaN values ​​is always constant in each row—in this case, 2—and that I want to preserve the consecutive sequences within each column (for example, (0.10, 0.03, -0.06) from column A and (0.03, 0.07) from column C). The desired result is as follows: E F 0 0.10 -0.05 1 0.03 0.12 2 -0.06 0.03 3 0.11 0.07 If possible, I would like to preserve the association between the values ​​in new dataframe and the original columns. For example, -0.06 belonged to A, and 0.12 belonged to B. How can I do this? Setup: df = pd.DataFrame({ 'A': [0.10, 0.03, -0.06, np.nan], 'B': [np.nan, 0.12, np.nan, np.nan], 'C': [-0.05, np.nan, 0.03, 0.07], 'D': [np.nan, np.nan, np.nan, 0.11] })",
+    "developer": "dan577",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "104"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011058",
+  "sourceItemId": "80011058",
+  "sourceUrl": "https://stackoverflow.com/questions/80011058/typeerror-mailmixin-connect-missing-1-required-positional-argument-self",
+  "detail": {
+    "longDescription": "I'm currently trying to setup email notifications within my Flask app and am running to the following error when trying trigger the function. enter image description here TypeError: _MailMixin.connect() missing 1 required positional argument: 'self' main.py: from website import create_app from flask_mail import Mail app = create_app() app.config['MAIL_SERVER'] = 'smtp.gmail.com' app.config['MAIL_PORT'] = 465 app.config['MAIL_USERNAME'] = 'email removed for privacy' app.config['MAIL_PASSWORD'] = '******' app.config['MAIL_USE_TLSmai'] = False app.config['MAIL_USE_SSL'] = True mail = Mail(app) if __name__ == '__main__': app.run(debug=True) Email from auth.py: msg = Message( subject=\"BANK TIME REQUEST\", sender='removed email for privacy] recipients=['removed email for privacy'], ) msg.body = \"Your Bank Time request has been sent to your line manager for approval.\" Mail.send(msg) Full Route from auth.py: @auth.route('/bank_time', methods=['GET', 'POST']) @login_required def bank_time(): if request.method == 'POST': # bank_time = request.form.get('start_time') # current_user.banked_hours += float(bank_time) # Retrieve start_time and end_time and declare them as Python variables start_time = request.form.get('start_time') end_time = request.form.get('end_time') justification = request.form.get('justification') start = start_time.replace('T', '-') start = start.replace(':', '-') start = start.split('-') end = end_time.replace('T', '-') end = end.replace(':', '-') end = end.split('-') # Calculate the time difference in hours and minutes hours = (int(end[3])-int(start[3])) minutes = ((float(end[4])-float(start[4]))/60) # Calculate the number of days between both dates using date function from the datetime module start = date(int(start[0]), int(start[1]), int(start[2])) end = date(int(end[0]), int(end[1]), int(end[2])) days = end - start days = str(days) if days == '0:00:00': days = int(0) elif days == '1 day, 0:00:00': days = int(1) else: days = (days).replace(' days, 0:00:00', '') total_hrs = (int(days)*24) + hours + minutes print(days) print(type(days)) print(hours) print(minutes) print(total_hrs) print(type(total_hrs)) bank_time_request = Bank_Time( user_id=current_user.id, start_time=start_time, end_time=end_time, total_hours=total_hrs, justification=justification ) db.session.add(bank_time_request) db.session.commit() msg = Message( subject=\"BANK TIME REQUEST\", recipients=['ryan.donnelly@southlanarkshire.gov.uk'], ) msg.body = \"Your Bank Time request has been sent to your line manager for approval.\" Mail.send(msg) return render_template(\"bank_time.html\", user=current_user) Does anyone have any idea where I'm going wrong with this one? I'm guessing that it will be a relatively simple fix but posting for the wisdom of the Stack Overflow Gods.",
+    "developer": "gh0st_dancing",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "115"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9tbyh",
+  "sourceItemId": "1x9tbyh",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x9tbyh/sidecar_service_or_application_middleware_for/",
+  "detail": {
+    "longDescription": "Suppose a Kubernetes-based application needs to protect sensitive fields before requests reach external APIs or AI services.\n\nThere are a few architectural options:\n\nA sidecar that handles requests close to each workload\n\nA shared service that centralizes tokenization and policy enforcement\n\nMiddleware integrated directly into the application\n\nA sidecar might simplify adoption, but introduces resource overhead and deployment complexity. A shared service can centralize policy, but creates network dependencies and needs careful scaling. Middleware gives control but requires application changes.\n\nFor teams running production workloads, which approach would you choose, and what failure modes would you consider first?\n\nI'm particularly interested in latency, availability, and policy consistency.",
+    "developer": "eggsandrawr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

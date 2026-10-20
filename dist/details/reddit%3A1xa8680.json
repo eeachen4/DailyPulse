@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xa8680",
+  "sourceItemId": "1xa8680",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xa8680/if_you_lock_the_tests_your_agent_is_judged/",
+  "detail": {
+    "longDescription": "Most of the protections I see described are directory-shaped: block writes to `tests/`, mount the acceptance suite read-only, keep a second set the agent can’t see, run the base-commit tests regardless of what’s in the working tree.\n\nI went looking for what gets past that. Two things did, and neither touches a test file.\n\nA newly created conftest. py at the repo root. A changed pytest.ini. Collection changes underneath the tests you protected, the assertions you wrote never execute, and pytest still exits 0. If your gate reads the exit code (and most do), that run is indistinguishable from a real pass.\n\nBlocking writes to tests/ catches neither, because neither lives in tests/. The file that decides what runs usually isn’t the file you’re protecting.\n\nWhat I landed on is treating whatever controls collection as part of the surface being verified, rather than scaffolding around it. That closes those two. I don’t think it closes everything.\n\nSo: if you’ve locked down the suite your agent is judged against, **what’s the hole you already know about and haven’t fixed?** I’d rather hear the ones you’re living with than the clean designs.\n\nAnd a harder one I haven’t solved. Protections like this produce holds, and some of them are noise. A hold that turns out to be nothing costs the same attention as one that matters and once people stop reading holds, the whole thing is theatre. How do you keep the false-hold rate low enough that people keep reading them? Or do you just accept it and move the threshold?\n\n*Disclosure: I’m building in this space. Not linking it - I’m after the answers.*",
+    "developer": "Weary-Information-15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

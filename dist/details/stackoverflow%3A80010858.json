@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010858",
   "sourceItemId": "80010858",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010858/can-manually-closing-a-page-inside-puppeteer-cluster-cause-targetcloseerror-with",
   "detail": {
     "longDescription": "I'm using Puppeteer Cluster 0.25.0 with Puppeteer Core 24.30.0 and Firefox WebDriver BiDi on Linux. My cluster uses CONCURRENCY_CONTEXT , with maxConcurrency: 4 and retryLimit: 0 . During separate higher-concurrency experiments, I intermittently encountered errors including: TargetCloseError: script.callFunction: Target closed I noticed that my worker cleanup also explicitly closed the page supplied by Puppeteer Cluster. Here is a simplified excerpt of the original pattern: const cluster = await Cluster.launch({ puppeteer, concurrency: Cluster.CONCURRENCY_CONTEXT, maxConcurrency: 4, retryLimit: 0, puppeteerOptions: { browser: 'firefox', protocol: 'webDriverBiDi', headless: true, executablePath: firefoxPath } }); await Promise.all(jobs.map(job => cluster.execute(job, async ({ page }) => { try { await processJob(page, job); } finally { await page.close(); } }) )); await cluster.idle(); await cluster.close(); I understand that Puppeteer Cluster manages task resources internally. I've now removed the explicit page.close() from my actual runner and left page disposal to the cluster. However, that change hasn't yet been verified against the original intermittent failure, so I can't say whether it resolves the error. My question: Is manually closing the supplied page inside a cluster.execute() task unsupported or unsafe with CONCURRENCY_CONTEXT , particularly when using Firefox WebDriver BiDi? I'm trying to establish the correct page-lifecycle ownership before investigating any remaining worker failures. I've also reviewed the library's existing page-cleanup discussion in GitHub issue #34.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "52"
+        "value": "67"
       },
       {
         "label": "状态",

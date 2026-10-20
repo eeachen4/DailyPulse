@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80010667",
+  "sourceItemId": "80010667",
+  "sourceUrl": "https://stackoverflow.com/questions/80010667/pydantic-v2-default-a-generic-literal-discriminator-from-its-type-parameter",
+  "detail": {
+    "longDescription": "I have a generic event base where the discriminator is a type parameter so subclasses don’t redeclare kind : from typing import Annotated, Generic, Literal, TypeVar, Union from pydantic import BaseModel, Field, TypeAdapter K = TypeVar(\"K\", bound=str) T = TypeVar(\"T\") class Event(BaseModel, Generic[K, T]): kind: K data: T class Click(BaseModel): x: int y: int class Key(BaseModel): code: str class ClickEvent(Event[Literal[\"click\"], Click]): pass class KeyEvent(Event[Literal[\"key\"], Key]): pass AnyEvent = Annotated[Union[ClickEvent, KeyEvent], Field(discriminator=\"kind\")] print(TypeAdapter(AnyEvent).validate_python({\"kind\": \"key\", \"data\": {\"code\": \"Enter\"}})) print(ClickEvent(data={\"x\": 1, \"y\": 2})) Validating through the union works: kind='key' data=Key(code='Enter') Constructing the subclass directly fails: Exit code 1 pydantic 2.13.5 pydantic_core 2.46.5 kind='key' data=Key(code='Enter') Traceback (most recent call last): File \"/tmp/t.py\", line 24, in <module> print(ClickEvent(data={\"x\": 1, \"y\": 2})) ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^ File \"/usr/local/lib/python3.13/dist-packages/pydantic/main.py\", line 263, in __init__ validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self) pydantic_core._pydantic_core.ValidationError: 1 validation error for ClickEvent kind Field required [type=missing, input_value={'data': {'x': 1, 'y': 2}}, input_type=dict] For further information visit https://errors.pydantic.dev/2.13/v/missing kind can only be \"click\" so I expect pydantic to fill it in. The only fix I found is redeclaring kind: Literal[\"click\"] = \"click\" in every subclass, which is what the generic was meant to avoid. This works but it mutates model_fields and forces a rebuild: @classmethod def __pydantic_init_subclass__(cls, **kw): super().__pydantic_init_subclass__(**kw) args = get_args(cls.model_fields[\"kind\"].annotation) if args: cls.model_fields[\"kind\"].default = args[0] cls.model_rebuild(force=True) Is there a supported way to derive a field default from a Literal type argument or is redeclaring it per subclass the intended pattern?",
+    "developer": "Bhargav",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "104"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

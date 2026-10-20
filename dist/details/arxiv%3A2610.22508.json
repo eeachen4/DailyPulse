@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.22508",
+  "sourceItemId": "2610.22508",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.22508",
+  "detail": {
+    "longDescription": "arXiv:2610.22508v1 Announce Type: new Abstract: Data availability sampling (DAS) lets blockchain nodes verify a block's data availability by downloading only a few random pieces of it. Its network layer must disseminate each block in time for validators to attest (PUT), store it, and serve any piece on request (GET). A trustless DAS must sustain any number of Byzantine peers. The only known design with this guarantee, Robust Distributed Arrays (RDA), achieves it by full replication: each group of nodes responsible for part of a block stores that part in full, so a single good node per group suffices. The price to pay is a PUT load on the critical path to finality that grows with the network and cannot be tuned, hence the data may not reach validators before the attestation deadline. Coding is the natural remedy, but it was not known when a coded layer remains robust against an unbounded adversary, what it costs, or what it gains. We propose TCDA, a coded layer that is provably robust given enough good nodes, wherever they lie, with a tunable knob: how much of its assigned data each node keeps. Turning the knob trades PUT and storage costs against GET cost. It can be set per data type and adjusted as the good-node population changes. At Ethereum's parameters, our evaluation for a 32 MiB block at the recommended uplink shows that RDA misses the attestation deadline at any network size, whereas TCDA can be tuned to meet it from 868 good nodes up to the 40,000 tested, storing 1.7 to 32 times less per node than replication, at the price of 2.5 to 7.7 round-trips per sample instead of about one.",
+    "developer": "Duc A. Tran, Dung Truong, Duy Le",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.NI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Duc A. Tran, Dung Truong, Duy Le"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

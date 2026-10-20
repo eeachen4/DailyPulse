@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9yrul",
+  "sourceItemId": "1x9yrul",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x9yrul/when_does_a_service_mesh_actually_become_worth/",
+  "detail": {
+    "longDescription": "I am not sure if this is a dumb question..I'm trying to distinguish \"we need consistent network policy\" from \"we need a service mesh because we have microservices.\"  If the requirement is workload identity, mTLS, traffic policy, and visibility across many services, a mesh has a clear job. The difficult part is deciding when that shared control is worth the rollout, debugging, and operational ownership it introduces.  I'd want the decision tied to a specific requirement: which traffic needs protection, which policies must be enforced centrally, and what is missing from the existing platform. Counting services by itself doesn't seem sufficient.I also think runtime abstractions get compared with meshes too casually. Dapr and Diagrid Catalyst expose application capabilities such as state, pub/sub, and workflows. Those may address the reason a team originally started looking for \"more infrastructure,\" but they aren't a drop-in answer for every mesh traffic or security requirement. Durable workflow recovery and service-to-service traffic control are different jobs.\n\nThe strongest case for a mesh, to me, would include a clear owner and a debugging path: when a call fails, can the on-call person tell whether the cause is application behavior, policy, identity, or connectivity? What was the requirement that made a mesh worthwhile for your team? I'm more interested in the capability you couldn't reasonably get another way than in a general recommendation to install one.",
+    "developer": "MeatGrand8844",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

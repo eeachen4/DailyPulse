@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xaco01",
+  "sourceItemId": "1xaco01",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xaco01/qfn_strata_gufo_quants_and_cuda_questions/",
+  "detail": {
+    "longDescription": "I kind of went off the deep end testing different flavors of qwen-flash-next on a workstation with 5090+4090/96GB CPU RAM (152GB total RAM) and a Strix Halo with 128GB total RAM with Strata.\n\nVery long story short, I got the best results with ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF (Q3\\_S) and the larger unsloth quants were problematic with lots of tool calling issues. \n\nI decided to try [https://github.com/gufo-org/gufo](https://github.com/gufo-org/gufo) and I don't have the issues I saw with unsloth on Strata.\n\nGufo is a Strix Halo project, so I can't use it on the 5090/4090 box. \n\nThe appeal of Strata is the tweaks to LlamaCpp specific to QFN but there is a whole class of bad output error there I can't work around. The strix ecosystem has several options, what else is there in cudaville I should look at?",
+    "developer": "awitod",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

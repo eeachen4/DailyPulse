@@ -5,7 +5,7 @@
   "fetchedAt": "2026-10-19T01:40:43.341Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010672/python-cant-find-function-from-imported-module-first-time-creating-an-init",
   "detail": {
-    "longDescription": "I'm trying to better organize a long program I'm working on. In main.py I have this line: from core import * . There is a subfolder called core and in that folder I created a bunch of modules to organize my functions. One is called fileManagement.py . It has a couple functions in it including importInputs() . I also created an __init__.py file in the core folder with __all__ = [\"fileManagement\"] . Main.py includes this line: df=importInputs() . All of this worked when everything was in one .py file, but now I get NameError: name 'importInputs' is not defined . If I move fileManagement.py to the same directory as main.py , the problem goes away. I've read other posts, such as this one , that discuss adding to the PYTHONPATH. But in researching that, other threads elsewhere say it's not something that generally needs to be edited. Can someone clarify? EDIT: folder structure: main.py core/ __init__.py fileManagement.py To simplify things, I reduced the code to a minimum: main.py: from core import * df = importInputs() core\\init.py: __all__ = [\"fileManagement\"] core\\fileManagement.py: def importInputs(): print(\"Hi\") That's it. If I move fileManagement.py into the same directory as main.py, and replace from core import * with from fileManagement import importInputs it works.",
+    "longDescription": "In main.py I have this line: from core import * . There is a subfolder called core and in that folder I created a bunch of modules to organize my functions. One is called fileManagement.py . It has a couple functions in it including importInputs() . I also created an __init__.py file in the core folder with __all__ = [\"fileManagement\"] . Main.py includes this line: df=importInputs() . All of this worked when everything was in one .py file, but now I get NameError: name 'importInputs' is not defined . If I move fileManagement.py to the same directory as main.py , the problem goes away. I've read other posts, such as this Python can't find module to import despite init .py files being present , that discuss adding to the PYTHONPATH. But in researching that, other threads elsewhere say it's not something that generally needs to be edited. Can someone clarify? EDIT: folder structure: main.py core/ __init__.py fileManagement.py To simplify things, I reduced the code to a minimum: main.py: from core import * df = importInputs() core\\init.py: __all__ = [\"fileManagement\"] core\\fileManagement.py: def importInputs(): print(\"Hi\") That's it. If I move fileManagement.py into the same directory as main.py, and replace from core import * with from fileManagement import importInputs it works.",
     "developer": "OutThere",
     "comments": 3,
     "stats": [
@@ -19,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "167"
+        "value": "195"
       },
       {
         "label": "状态",

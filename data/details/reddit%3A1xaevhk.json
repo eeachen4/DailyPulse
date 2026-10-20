@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xaevhk",
+  "sourceItemId": "1xaevhk",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xaevhk/i_built_spanlight_an_opensource_llm_observability/",
+  "detail": {
+    "longDescription": "**What it is**\n\nSpanlight records every LLM call your app makes: prompt, reply, latency, tokens, cost and errors, grouped into traces (one request) and sessions (one conversation). Self-hosted: one Docker image plus one Postgres database, nothing else. The core is MIT licensed.\n\n**What it does**\n\nTracing\n\n* Search traces by name or by what the model was sent and said. Step-by-step view of each trace. Compare two traces side by side. Sessions shown as a chat.\n\nCost\n\n* Prices from a versioned table, with a per-call breakdown. An unknown price shows as *unknown*, never $0.\n* Daily check of traced spend against the provider's bill. Needs an Anthropic or OpenAI admin key, or a CSV upload.\n* Budgets that alert, or block gateway calls. The block is checked every 60 seconds, so it is a soft limit.\n\nFinding problems\n\n* The Doctor: 15 fixed rules; the rules use no language model (an optional \"Explain with Claude\" button can explain one finding). They flag retry storms, ignored `Retry-After`, truncated outputs, tool loops, cost and latency spikes, each with evidence and a suggested fix.\n\nGateway (optional; your provider key is stored in Spanlight)\n\n* Change your OpenAI or Anthropic client's `base_url`. Adds retries, fallbacks, per-key rate limits and a cache. An Integration Lab simulates provider failures (rate limits, server errors, broken streams and bad JSON) on non-production keys, so you can test your error handling.\n\nAlso: versioned prompts, a playground, datasets and experiments. Postgres row-level security keeps each project's data apart; secrets such as API keys are removed before storage.\n\n**How to try it**\n\nLive demo: [https://spanlight.dev](https://spanlight.dev/) (real Claude calls under a small monthly budget).\n\nSelf-host:\n\n    git clone https://github.com/dheerajkarwasra/spanlight.git\n    cd spanlight\n    cp deploy/.env.example deploy/.env    # fill in POSTGRES_PASSWORD, APP_DB_PASSWORD and SECRET_KEY\n    docker compose -f deploy/compose.yaml --env-file deploy/.env up -d\n\nThen open [http://localhost:8080](http://localhost:8080/). A fresh clone to the first stored trace took me 59 seconds with the prebuilt 0.6.0 images.\n\n**AI involvement**\n\nSolo developer. I used Claude Code heavily to write code; I design, review and test every change myself. The backend suite is 4,121 tests against a real Postgres.\n\n**Links**\n\n* Repo: [https://github.com/dheerajkarwasra/spanlight](https://github.com/dheerajkarwasra/spanlight)\n* Docs: [https://spanlight.dev/docs/](https://spanlight.dev/docs/)\n\n**The ask**\n\nPlease try it, on the demo or self-hosted, and tell me what you liked, what you disliked, what was confusing, what broke, and what is missing. GitHub Issues and Discussions are both welcome. Every report gets a reply.\n\n**Everything is MIT licensed and free.**",
+    "developer": "Cold-Conclusion-6511",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xaftsh",
+  "sourceItemId": "1xaftsh",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xaftsh/when_should_an_agent_combine_inventory_readings/",
+  "detail": {
+    "longDescription": "Consider a hypothetical agent answering whether a warehouse can fulfill an order. It has two read-only tools: one returns on-hand stock, and the other returns reserved stock. Each response includes its own timestamp, but the tools offer no shared snapshot or version identifier. Reservations can change between calls, and the agent cannot lock inventory or place a hold.\n\nThe design question is whether the agent should subtract those values and report an availability estimate at all. A short gap between timestamps limits how old the readings are, but does not establish that they describe the same inventory state. Repeating both reads also consumes calls without guaranteeing consistency.\n\nUnder these constraints, what should the response contract require? Would you allow a clearly qualified estimate, or require the agent to report the two readings separately and leave availability unresolved? I'm particularly interested in what evidence would justify combining the readings, and how you would test that the agent preserves uncertainty when that evidence is missing.",
+    "developer": "InformationLive493",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

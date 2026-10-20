@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xa7ytv",
+  "sourceItemId": "1xa7ytv",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xa7ytv/i_built_an_app_to_efficiently_run_decision_models/",
+  "detail": {
+    "longDescription": "LiquidAI d1-3B is currently on the Pareto frontier of the Decision Index 0.3.2 [https://huggingface.co/spaces/multimodalart/jev-decision-index](https://huggingface.co/spaces/multimodalart/jev-decision-index), and you can run it on the ANE with around 40 ms latency on warm short-context (<256 tokens) decisions, as measured on M5 Pro.\n\nWith Shortcuts integration, you can run efficient decisions on events such as incoming email and iMessages, folder and file modifications, time of day and alarms, and other triggers without writing a single line of code.\n\nDecision models are a good fit for ANE because they don't use token-by-token autoregressive decoding, which it struggles with due to relatively low memory bandwidth and static buffer limitations. Tinkerbox's implementation of d1-3B uses a tree structure to evaluate multiple decisions in a single pass, further reducing latency.\n\nSource code: [https://github.com/WeGoToMars/tinkerbox](https://github.com/WeGoToMars/tinkerbox)  \nAOT-compiled models: [https://huggingface.co/wegotomars/d1-3B-CoreAI-ANE](https://huggingface.co/wegotomars/d1-3B-CoreAI-ANE)  \nDownload the app: [https://github.com/WeGoToMars/tinkerbox/releases/tag/v2.0.0](https://github.com/WeGoToMars/tinkerbox/releases/tag/v2.0.0)\n\nI don't have access to any other Macs, so please report your results and any issues you encounter. I'm also taking model and feature suggestions! Embeddings, TTS, STT, and image segmentation models are on the roadmap. This isn't a one-off vibecoded repo, I want to continue supporting it and make it a real framework for ANE-optimized inference.\n\nI'm currently working on integrating vLLM d3 models (based on Qwen3.5), which would also allow you to use most other Qwen3.5 fine-tunes with minimal modification. 0.8B (lite), 2B (nano), and 4B (mini) should be available soon!",
+    "developer": "WeGoToMars7",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

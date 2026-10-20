@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.12146",
+  "sourceItemId": "2608.12146",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.12146",
+  "detail": {
+    "longDescription": "arXiv:2608.12146v2 Announce Type: replace Abstract: Reinforcement learning (RL) post-training of Mixture-of-Experts (MoE) models couples two load-balancing problems. Rollout-trajectory composition determines attention and dense feed-forward work across data-parallel (DP) replicas, while token routing determines expert work across expert-parallel ranks. Optimizing either side independently can worsen the other. Routing replay exposes trajectory lengths and layer-wise expert demand before training, creating an opportunity to coordinate both controls. We present RoutePack, a replay-guided planner that coordinates expert placement and rollout-trajectory scheduling. Its key insight is that placement determines a batchwise expert-rank load bound that trajectory scheduling alone cannot lower, while scheduling controls the hotspots within individual execution micro-steps. RoutePack incrementally adjusts expert placement while preserving expert residency, then uses parallel population annealing to reschedule complete trajectories into token-capped microbatches. Its objective jointly balances dense-side work and layer-wise expert peaks under a fixed, capacity-feasible micro-step count and the deployed synchronization groups. The planner preserves logical token routing and keeps placement fixed throughout forward and backward execution to maintain training-state consistency. We evaluate mixed-task RL post-training of two hybrid-attention MoE models (7.9B and 124B parameters) across six NVIDIA H20-3e configurations spanning 8K-32K contexts. Within the Megatron training region, RoutePack achieves 4.44-11.85% higher throughput than a DP-local first-fit-decreasing baseline and 1.33-5.28% higher throughput than expert rerouting alone. Additional evaluations of the 7.9B model on H200 and H20 retain positive gains. We separately characterize planning and admission costs.",
+    "developer": "Yibo Shen, Xudong Han, Xiaowei Zhu, Gen Li, Zhenxuan Pan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yibo Shen, Xudong Han, Xiaowei Zhu, Gen Li, Zhenxuan Pan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

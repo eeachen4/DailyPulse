@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50156970",
+  "sourceItemId": "50156970",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50156970",
+  "detail": {
+    "longDescription": "Hi HN! In Keen Code, a coding agent solo-developed by me, I have implemented a task-classifier using Jev and a simple auto-router based on the classification result. The article shares details about how it&#x27;s implemented. In short, it has a very simple idea: - For every user message, ask Jev to classify the task in one of the three categories (simple, standard, complex) given current state of the conversation. - Keen also asks Jev to put a probability on this question: &quot;is this a new task?&quot; - Based on the result, Keen uses a heuristic to switch the current model to one of the three pre-configured models by user for the three categories - To make the router work, users have to configure one model per task category inside the coding agent itself The heuristic is also very simple: When routing is enabled, Keen switches only if the selected-category probability is greater than 0.5 and either: - new-task probability is at least 0.6; or - category probability is greater than 0.8 and the target category is a higher tier than the active routed model. Thoughts and feedback are welcome. And if you are interested to know more about Keen Code, the repo can be found here: https:&#x2F;&#x2F;github.com&#x2F;mochow13&#x2F;keen-code",
+    "externalUrl": "https://mochow13.github.io/keen-code/docs/task-classification-using-decision-models.html",
+    "developer": "mochow13",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

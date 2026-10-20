@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2607.11611",
+  "sourceItemId": "2607.11611",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
+  "sourceUrl": "https://arxiv.org/abs/2607.11611",
+  "detail": {
+    "longDescription": "arXiv:2607.11611v2 Announce Type: replace Abstract: Large language models are increasingly used to find bugs in real-world programs, but they also produce a flood of false alarms that waste developers' time. We propose to prevent these false alarms by requiring an LLM to accompany each bug report with a machine-checked proof, in a program logic, that the reported bug is real. Unlike a test, such a proof is unaffected by how rarely a concurrency bug manifests, and can certify a bug against a library's specification rather than its implementation. We follow the approach of incorrectness logics, whose under-approximate reasoning establishes that a claimed behavior is genuinely reachable, and hence a true positive. In our case, however, the logic must model a realistic programming language, be mechanized so that proofs can be checked, and be complete, so that no real bug is ruled out for want of a derivation. We present Mizzle, an incorrectness separation logic for concurrent programs written in a substantial subset of OCaml, parametric in the notion of incorrectness. We mechanize Mizzle in the Rocq proof assistant on top of the Iris framework, and we prove that it is both sound, so that it never justifies a false alarm, and complete, so that every incorrect execution admits a derivation. We instantiate Mizzle with three notions of incorrectness: stuckness (triggering undefined behavior), the presence of a memory race (in a sequentially consistent setting), and the non-linearizability of a data structure. We show that an LLM agent can use Mizzle to certify seeded memory races and linearizability bugs for under a dollar per bug on average. We also report two previously unknown linearizability bugs in an OCaml library of concurrent data structures.",
+    "developer": "Alexandre Moine, Sam Westrick, Joseph Tassarotti",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alexandre Moine, Sam Westrick, Joseph Tassarotti"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

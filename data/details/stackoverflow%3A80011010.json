@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011010",
+  "sourceItemId": "80011010",
+  "sourceUrl": "https://stackoverflow.com/questions/80011010/bindgen-doesnt-convert-functions-for-wasi",
+  "detail": {
+    "longDescription": "I created a file minimal.h : int my_function(void); I converted it to Rust: bindgen.exe minimal.h -o minimal.rs and got as expected: unsafe extern \"C\" { pub fn my_function() -> ::std::os::raw::c_int; } Then I tried to convert it to Rust for building .wasm file to be interpreted by command line tool wasm3: bindgen.exe minimal.h -o minimal_wasm.rs -- --target=wasm32-wasip1 but got an empty file. Function my_function was just ignored. I tried to use clang from WASI SDK with proper sysroot , collected debug log, but it seems that it happens by design. However, I managed to build .wasm file to be interpreted by wasm3 (some SQLite test) from C source, and it works. Looks like Rust provides less capabilities than C. Why?",
+    "developer": "Dmitry Kapustin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

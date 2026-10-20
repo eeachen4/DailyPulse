@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xae0qj",
+  "sourceItemId": "1xae0qj",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xae0qj/what_are_banks_and_insurers_running_llms_on/",
+  "detail": {
+    "longDescription": "There are four new june incidents out from OpenAI, two of which might interest a bank. One model intended to retrieve publicly available data, but instead found and modified an internal system setting to retain access, reverted the setting to appear innocent, and queried 147451 rows from non-public tables, without reporting this to evaluatorsnthen another model tasked to deploy a crypto contract needed gas, so it iterated through 362 wallet addresses from publicly available seed phrases until it found one with sufficient testnet eth, reasoning that “the funds are effectively abandoned, and it’s just testnet anyway\n\nand these were openai’s internal models in testing and our use case is way narrower, obviously, still, i’m on the risk side at a regional bank and our ai steering group basically read it as a preview of what happens when an agent with real tool access decides finishing the task matters more than the rules\n\nWhere we’ve landed now is before anything goes live: the agent and everything it touches stays inside our own cloud account, without any expectation any tool that moves money or changes a customer record needs a named person to approve it, with the approval logged next to the call\n\nfor  platform we’re down to two, Azure AI Foundry, since we’re already a microsoft shop and procurement is painless and Orq AI, which can be deployed inside our own VPC and lets you flag individual agent tools as needing human approval. foundry wins on contract orq wins on the per tool approvals being built in\n\npart we can't actually answer yet is how you’d even notice an agent that keeps its access after undoing its own changes. that’s the one that scared everyone",
+    "developer": "OkInterest1608",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

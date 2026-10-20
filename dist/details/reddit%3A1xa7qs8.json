@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xa7qs8",
+  "sourceItemId": "1xa7qs8",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xa7qs8/rtx_5090_laptop_on_linux_gpu_hangs_with_xid_8/",
+  "detail": {
+    "longDescription": "I'm running Linux Mint on a Lenovo Legion with an NVIDIA RTX 5090 Laptop GPU (24 GB VRAM). When running local LLMs, I encounter GPU hangs associated with NVIDIA Xid 8.\n\nI initially wondered whether this was a hardware problem, but I found a directly relevant llama.cpp issue describing CUDA graph evaluation hangs and Xid 8 on an RTX 5090 Laptop GPU under Linux:\n\n[https://github.com/ggml-org/llama.cpp/issues/27330](https://github.com/ggml-org/llama.cpp/issues/27330)\n\nThat report identifies `GGML_CUDA_DISABLE_GRAPHS=1` as a workaround.\n\nKinda frustrating that it's not getting fixed, and the workaround is to slow down performance.\n\nI'm running 7.1.13 kernel with my audio drivers added. I couldn't run 7.2, I couldn't get nvidia drivers to play nice with it. 7.3 is supposed to have my audio drivers in it, but then there's the will it work with nvidia drivers question. I'm running 595.99.02**,** I couldn't get the newer drivers to work either.\n\n",
+    "developer": "SOC_FreeDiver",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

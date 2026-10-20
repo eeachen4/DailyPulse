@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xa968x",
+  "sourceItemId": "1xa968x",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xa968x/gamesummoner_ease_of_local_use_update/",
+  "detail": {
+    "longDescription": "Hey LocalLLaMA,\n\nI released [GameSummoner](https://github.com/ndamiano/GameSummoner) a bit over a week ago as an open source program and said \"it works locally, but is a bit hard to use.\" ([Post](https://www.reddit.com/r/LocalLLaMA/comments/1x0wki3/open_sourcing_game_summoner_my_prompt_to_game_site/)) Over the last few days I've cleaned up my prod host (https://gamesummoner.com) and made it much easier to run locally.\n\nIt's now one line:\n\n    git clone https://github.com/ndamiano/GameSummoner.git && cd GameSummoner && ./install.sh && GameSummoner\n\n`install.sh` lists the models your llama-swap serves, asks which one plays each part, checks ComfyUI has every node and model file the workflows need, and asks before installing anything. You need:\n\n* [**llama-swap**](https://github.com/mostlygeek/llama-swap), which switches between the models.\n* **LLM** Anything that handles tool calls. I use Qwen 3.8 Flash-Next IQ3\\_S\n* **ComfyUI** with the models listed in [models.md](https://github.com/ndamiano/GameSummoner/blob/master/docs/models.md), also behind llama-swap\n* **A decision model.** I use [JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL)\n\nSetup details are in [docs/llama-swap.md](https://github.com/ndamiano/GameSummoner/blob/master/docs/llama-swap.md). Once everything has been picked, run `GameSummoner` for a terminal dashboard of every game you've built (the video), or go straight to `GameSummoner summon \"roguelike deckbuilder where you're a wizard cat climbing a tower\"`.\n\nI've been using it locally with Qwen3.8 Flash-Next (IQ3\\_S on Basalt) and JEV 27B on my 5090 with 64 gb of RAM, and it's been a blast.\n\nI also ran the same ask through frontier models in the builder seat:\n\n* Claude Opus 5.5: [https://gamesummoner.com/g/r12ctNpfCeWH](https://gamesummoner.com/g/r12ctNpfCeWH) (the game in the video)\n* DeepSeek V4.1 Flash: [https://gamesummoner.com/g/jMvHoZ1bCo0h](https://gamesummoner.com/g/jMvHoZ1bCo0h)\n* Gemini 4 Argon: [https://gamesummoner.com/g/96sbF0IP6HI4](https://gamesummoner.com/g/96sbF0IP6HI4)\n* Local Flash-Next, for comparison: [https://gamesummoner.com/g/GZ7rQoheqoE9](https://gamesummoner.com/g/GZ7rQoheqoE9)\n\nI will be adding a \"bring your own key\" type local inference solution in the next couple of days so that you can use whatever inference provider you want without it being behind llama-swap",
+    "externalUrl": "https://v.redd.it/rnnwmlrenhwh1",
+    "developer": "demonicpigg",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

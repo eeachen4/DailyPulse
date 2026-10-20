@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9wadx",
+  "sourceItemId": "1x9wadx",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1x9wadx/why_vibecoding_infrastructure_is_an_existential/",
+  "detail": {
+    "longDescription": "The default advice in cloud-native engineering has become: \"Just click a button in EKS or GKE and pay the bill.\"\n\nThat works until your compute requirements grow, your managed egress costs eclipse your engineering payroll, or you encounter a networking failure inside a managed control plane that you have zero visibility into.\n\nFor our production platform architecture, we deliberately went sovereign: bare-metal Proxmox VE hypervisors across segregated failure domains, provisioned from Stage Zero up to autonomous Day-2 operations.\n\nHere is what the stack looks like when you refuse to rely on cloud magic:\n\n\\- Stage Zero: Automated Ubuntu golden images built via cloud-init with identity sanitation. Idempotent bootstrap runners that can partially fail and resume cleanly.\n\n\\- HA Endpoint: Dual HAProxy + Keepalived virtual IPs fronting three stacked control-plane nodes. We learned the hard way why \"kubeadm init\" must remain a deliberate manual operation, how a forgotten SAN in certSANs blows up worker joins, and how to recover an etcd cluster suffering from phantom limb syndrome after an ungraceful node crash.\n\n\\- eBPF Dataplane: Cilium without kube-proxy. Resolving the infamous Jinja2 \"trim\\_blocks\" newline collision that threw CoreDNS into a forwarding loop with systemd-resolved.\n\n\\- Private Supply Chain: Dedicated Harbor external to the cluster, distributed MinIO S3 object storage, and CloudNativePG for high-availability PostgreSQL with automated node fencing and split-brain prevention.\n\n\\- Declarative Reconciliation: ArgoCD in an App-of-Apps pattern, including the exact protocol for adopting legacy resources without controller reconciliation wars against Ansible.\n\nAnd at the very top: cluster-medic, an autonomous triage agent running in AWX that parses CI lint failures, generates diffs, and submits PRs—held in check by a structural scope fence that physically prevents it from mutating RBAC or Terraform state.\n\n\n\nI've documented the entire architecture, complete with runnable reproduction code for every failure mode, in \"Don't Trust. Don't Fear. Don't Beg: Infrastructure Engineering with AI\":\n\n[https://www.amazon.com/dp/B0HNGT7GR7](https://www.amazon.com/dp/B0HNGT7GR7)\n\n\n\n",
+    "developer": "vmosidze",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

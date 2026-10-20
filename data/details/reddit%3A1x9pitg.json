@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1x9pitg",
+  "sourceItemId": "1x9pitg",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1x9pitg/optscalekompressor_opensource_proxy_that/",
+  "detail": {
+    "longDescription": "https://i.redd.it/vulcz3l6cdwh1.png\n\nHello everyone! We open-sourced optscale-kompressor (MIT, single Rust binary).   \nIf your team runs coding agents on API keys, a chunk of that bill is the agent re-sending the same apt-get output and compiler warnings every turn. In our traces that was about half the prompt. The compressor sits between the agent and the provider and strips the repetition, keeping errors and anything the agent can't reconstruct, and it can fetch back whatever it removed.   \nEverything is rules, nothing is learned, so the same output always compresses the same way. That matters more than it sounds: break the byte-for-byte prefix and you lose the prompt cache discount, which is how these compressors usually end up costing more than they save.   \nReal numbers off actual API bills, not token math: 22.7% cheaper on Terminal-Bench with Codex, solve rate unchanged. Works with Codex, Aider and opencode. Nothing phones home. [https://github.com/hystax/optscale-kompressor](https://github.com/hystax/optscale-kompressor) — a star helps if it's useful to you.",
+    "developer": "MattAlreadyHere",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

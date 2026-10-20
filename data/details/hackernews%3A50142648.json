@@ -2,12 +2,13 @@
   "schemaVersion": 2,
   "id": "hackernews:50142648",
   "sourceItemId": "50142648",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50142648",
   "detail": {
     "longDescription": "A while back, I needed to make a webhook system for a project I was working on. I pretty quickly found out that webhook auth is not an entirely solved problem with people frequently implementing DIY solutions. I also found out that while using some form of asymmetric signature (eg. oauth tokens) is common with regular api auth, most webhook producers use symmetric signatures (HMAC) instead. This bugged the hell out of me because the webhook functionality I needed was pretty basic, but using symmetric signatures, which requires the webhook producer to hold onto a secret for every endpoint they send webhooks to, introduced a major secret management problem. Designing and implementing novel secret management techniques for my web app felt like a bad idea, so I started looking into why so many people use symmetric signatures instead of asymmetric signatures. I frequently saw performance listed as a problem with asymmetric signatures, so I thought this might be why they weren&#x27;t more broadly used, but a quick benchmark proved that wrong (HMAC signing is much faster, but ed25519 is still fast enough that it doesn&#x27;t matter). It seemed like the biggest barrier to using asymmetric signatures was added development complexity. There are small but important details that need to be included in an asymmetric signature, getting asymmetric keys into the right format is more complicated than for symmetric keys, and the crypto libraries you&#x27;re working with can have sharp edges. That complexity makes it more difficult for a webhook producer to implement (and document) asymmetric signatures, but then all of their consumers also have to implement the verification step (hopefully correctly). Building a library that does these steps for you is difficult because it has to be available in any language a webhook consumer might be using, not just the language the webhook producer uses. But it kept bugging me that we&#x27;re all using a less good form of authentication just because we haven&#x27;t packaged up the steps to sign and verify an asymmetric signature that is secure for webhooks, so now I&#x27;ve built that library. With a few language implementations to serve as a template, replicating this in enough languages that the large majority of developers can use it feels totally doable, and I am hoping to get several more languages implemented over the next few weeks.",
     "externalUrl": "https://github.com/handlewithcarecollective/correct-hooks",
-    "developer": "pdiffles",
-    "comments": 2,
+    "developer": "pdiffley",
+    "comments": 5,
     "stats": [
       {
         "label": "积分",
@@ -15,7 +16,7 @@
       },
       {
         "label": "评论",
-        "value": "2"
+        "value": "5"
       }
     ]
   }

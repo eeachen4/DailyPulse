@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2603.28002",
+  "sourceItemId": "2603.28002",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
+  "sourceUrl": "https://arxiv.org/abs/2603.28002",
+  "detail": {
+    "longDescription": "arXiv:2603.28002v2 Announce Type: replace Abstract: Decompilation is the task of recovering high-level source from a compiled binary. Conventionally, it is implemented as a series of analyses and rewrites over a single representation, committing at each step to a single interpretation and discarding the rest. We argue this premature commitment is why decompilers struggle to produce compilable output on whole real-world programs, which is necessary for further testing. Compilation is many-to-one: a single binary may admit many source programs, and the evidence that resolves an ambiguity often lies far from where it arises. We therefore preserve competing interpretations when their resolution depends on non-local evidence, while resolving purely local ambiguities in a final solving stage. We formalize this approach as Superset Decompilation: monotone Datalog rules accumulate candidate interpretations across an IR hierarchy, and a per-function weighted MaxSMT solver jointly selects a globally type-consistent C program. Our implementation lifts stripped x86-64 Linux ELF binaries to C99 through CompCert IRs in 50K lines of Rust and Datalog. On GNU coreutils, it achieves 93\\% recompilability and passes 7\\% of the test suite.",
+    "developer": "Chang Liu, Yihao Sun, Thomas Gilray, Kristopher Micinski",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Chang Liu, Yihao Sun, Thomas Gilray, Kristopher Micinski"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

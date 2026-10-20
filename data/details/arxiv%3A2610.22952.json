@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.22952",
+  "sourceItemId": "2610.22952",
+  "fetchedAt": "2026-10-20T02:08:24.797Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.22952",
+  "detail": {
+    "longDescription": "arXiv:2610.22952v1 Announce Type: new Abstract: Debloating shared libraries has been an active research topic for years. Tools for shared library debloating rely on either static or dynamic analysis techniques to discover which parts of the shared library is used. Once these parts are found, these tools take one of two routes, either removing parts of the library that are not used, requiring reconstruction of the library; or they simply overwriting the unused functions. However, recently a broad study~\\cite{brown2024broad} on debloating tools has shown that some of these tools either increase the static binary size, or are generally less effective for complex workloads. In this paper, we argue that shared-library debloaters' performance can be improved by proper reconstruction of the shared-libraries once the used functions in the library are identifies. We propose \\myapp, a novel tool for reconstructing shared libraries from a given set of file ranges to eliminate unused code based on user-specified requirements, without requiring access to source code. \\myapp takes as input a shared library and a set of file ranges to retain, and performs a two-phase reconstruction: merging nearby ranges to reduce loading overhead, and shuffling them to minimize file size while preserving page-aligned memory mappings. The shuffling problem is formulated as a variant of the Traveling Salesman Problem and solved using a heuristic algorithm. \\myapp utilizes program headers to remap retained code to its original memory addresses, preserving user-specified functionality. Our results show that \\myapp achieves up to 60\\% reduction in file size, 16\\% reduction in memory usage, and 32\\% reduction in runtime, while maintaining user-specified functionality and improving security.",
+    "developer": "Huaifeng Zhang, Ahmed Ali-Eldin",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Huaifeng Zhang, Ahmed Ali-Eldin"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

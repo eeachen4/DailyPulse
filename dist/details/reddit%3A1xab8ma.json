@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xab8ma",
+  "sourceItemId": "1xab8ma",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xab8ma/your_ai_coding_assistant_might_be_cheating_to/",
+  "detail": {
+    "longDescription": "Your AI coding agent might be cheating to pass CI. Here's how to catch it!\n\nI had a small bug in a bill-splitting app and ran the same fix task 10 times across three coding agents. Every single run changed the test instead of fixing the code.\n\nThe failing test, encodes a product requirement => split 100 cents three ways and every receipt shows 33, even though 1 cent goes unaccounted for.\n\nThe agents treated it as a bug and rewrote the test to match their code 😆\n\nWhat I learned: an agent's \"tests pass\" is worthless if it's allowed to edit the tests. You have to check what it changed, not just whether it finished green.\n\nSo I built Skill Gate to catch issues like this in our Cursor or claude skills so you can evaluate them before sharing with the rest of your team to speed up their programming workflows.\n\nYou give it a skill and a few test cases, it runs the agent on them, and a decision model checks what the agent did, like \"were all files under tests/ left unchanged?\", not just the exit code.\n\nLimitations (for now): you bring your own API keys and write your own test cases.\n\nWould love to hear any thoughts or feedback from the community here!",
+    "developer": "InterestingCarrot997",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
