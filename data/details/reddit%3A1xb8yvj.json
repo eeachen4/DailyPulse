@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xb8yvj",
+  "sourceItemId": "1xb8yvj",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xb8yvj/top_10_ai_agents_for_small_local_llms_in_2026/",
+  "detail": {
+    "longDescription": "I tested 10 agents, each with its own isolated settings folder. I ran them headless, with auto-confirmation and turned off telemetry where possible.\n\nThe idea was simple: give each agent 5 basic tasks, 10 minutes per task, a fresh copy of the fixture every time, and an automated check script (`check/check.sh`).\n\nThe tasks:\n\n* **T1** Read a DB port from YAML (don't confuse it with cache port), write to file\n* **T2** Write a `stats.py` script, run it, save output\n* **T3** Fix a bug in slugify so tests pass; hidden examples catch overfitting\n* **T4** Count ERROR lines across three log files, find most frequent error\n* **T5** Rename a function across three files without changing program output\n\n**Results**\n\n|Agent|T1|T2|T3|T4|T5|Total|\n|:-|:-|:-|:-|:-|:-|:-|\n|Pi v1.3.0|✅10s|✅14s|✅24s|✅19s|✅29s|5/5|\n|goose v1.55.0|✅16s|✅18s|✅26s|✅45s|✅66s|5/5|\n|Crush v0.98.1|✅24s|✅26s|✅64s|✅38s|✅59s|5/5|\n|Atomic Agent v0.6.9|✅11s|✅22s|✅77s|✅48s|✅104s|5/5|\n|Cline v3.0.73|✅22s|✅137s|✅51s|✅69s|✅77s|5/5|\n|OpenClaw v2026.10.5|✅29s|✅32s|✅107s|✅116s|✅60s|5/5|\n|OpenCode v1.19.3|✅241s|✅225s|✅178s|✅289s|✅130s|5/5|\n|Hermes v0.22.2|✅31s|✅37s|❌120s|✅45s|✅43s|4/5|\n|Qwen Code v0.25.3|✅47s|✅32s|✅123s|❌59s|✅99s|4/5|\n|Codex CLI v0.163.0|❌|❌|❌|❌|❌|0/5|\n\n* **Pi** (1m36s): Fastest overall. The model barely has to think about any tool formats.\n* **goose** (2m51s): Solid and consistent. Completed five tasks without fumbling.\n* **Crush** (3m31s): Clean run. Slightly more verbose in reasoning but got everything done without a hiccup.\n* **Atomic Agent** (4m38s): Took longer on T3 and T5 - the model needed extra steps to work through multi-file edits but nailed it every time. Did not have broken tool calls and not one had a false completion.\n* **Cline** (5m56s): Choked for over two minutes on T2 before writing the script correctly.\n* **OpenClaw** (5m44s): Ran in their `--local-model-lean` mode which is basically a small-model preset. Worked well for what it is, just slower than I'd like on T3 and T4.\n* **OpenCode** (17m43s): Completed everything but took nearly 4 minutes per task. The model was clearly overthinking simple steps.\n* **Hermes** (4m36s): Failed T3 because it only fixed the visible test case. Hidden example `C++ & Rust 2026` turned into `c++-&-rust-2026` instead of `c-rust-2026`.\n* **Qwen Code** (6m00s): Counted 40 ERROR lines on T4 instead of 43. Pure model miscount - the most frequent error was identified correctly though.\n* **Codex CLI**: Never even reached the model. Version 0.163 only speaks Responses API, llama.cpp translates to chat format, and the Qwen3.5 (4B Q4\\_K\\_M) template throws a 500 \"System message must be at the beginning\" before any request gets through.\n\n**What I actually learned**\n\nA 4B model is enough for basic agent work in almost any framework. Seven agents completed all five tasks. The bottleneck at this difficulty level isn't the model - it's the harness around it.\n\nCodex CLI is basically dead for local setups right now unless they add chat-completions back. That one stung because it used to work.\n\nError recovery matters more than raw capability. The two agents that dropped points (Hermes, Qwen Code) didn't fail on impossible tasks - they failed on edge cases where the model got slightly creative instead of literal.\n\nLet me know if you'd like to see anything else in the benchmark (actually has anyone tried this with sub-2B models yet?)",
+    "developer": "GapNew4766",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

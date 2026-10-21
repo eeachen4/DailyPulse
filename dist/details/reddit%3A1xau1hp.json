@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xau1hp",
+  "sourceItemId": "1xau1hp",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xau1hp/our_ci_security_gate_checked_the_wrong_branch_for/",
+  "detail": {
+    "longDescription": "We run a nightly pipeline of about 20 AI agents on our own software. One of them is a security audit gate. From 20 May it was inspecting the wrong branch, so it could not fail, and it approved every night for months.\n\nThe agents were not the problem. The approval was a sentence, not evidence. Nothing tied \"audit passed\" to the files the agent had actually read, so nothing could notice that the thing approved was not the thing shipping.\n\nOur fix was to bind each approval to a SHA-256 hash of the exact files inspected and re-check it before anything ships. If a file changed, is missing, was never attested, or the verdict was a fail, it refuses. No model calls, fully deterministic. We pointed it at the 23 agent pull requests open at the time and it refused all 23.\n\nI'm curious how others handle this. In your pipelines, what does the \"approved\" step actually verify, and would you notice if the check had been looking at the wrong thing?\n\nWe open sourced the gate as a GitHub Action (Apache-2.0) if anyone wants to look at it: https://github.com/founder-ship-it/Slipmark",
+    "developer": "Funny-Confusion4322",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

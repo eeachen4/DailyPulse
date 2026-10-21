@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xavxu8",
+  "sourceItemId": "1xavxu8",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xavxu8/eks_support_calendar_for_the_next_year_134_goes/",
+  "detail": {
+    "longDescription": "I pulled together the current EKS support dates, since a few are coming up soon:\n\n| Version | End of standard support | End of extended support |  \n|---|---|---|  \n| 1.31 | Nov 26, 2025 | Nov 26, 2026 |  \n| 1.32 | Mar 23, 2026 | Mar 23, 2027 |  \n| 1.33 | Jul 29, 2026 | Jul 29, 2027 |  \n| 1.34 | Dec 2, 2026 | Dec 2, 2027 |  \n| 1.35 | Mar 27, 2027 | Mar 27, 2028 |  \n| 1.36 | Aug 2, 2027 | Aug 2, 2028 |  \n| 1.37 | Dec 1, 2027 | Dec 1, 2028 |\n\nWhat this means:  \n\\- Once a version is in extended support, the control plane is $0.60/hr instead of $0.10/hr, about $365/month more per cluster. Running dev/stage/prod on 1.33 is roughly $1,100/month extra for nothing.  \n\\- 1.31 is 5 weeks from end of extended support (Nov 26). After that AWS upgrades the control plane for you, which is not a fun surprise if you have deprecated APIs in use.  \n\\- 1.34 is the next to tip over, on Dec 2. Upgrading to 1.35 buys you until Mar 27, 2027, and 1.37 (released Oct 1) gets you to Dec 2027.  \n\\- You can set the cluster upgrade policy to STANDARD so it won't drop into extended support, but then it auto-upgrades at end of standard support instead.\n\nBefore upgrading, the usual: check for removed APIs (pluto or kubent), bump add-ons (VPC CNI, CoreDNS, kube-proxy), and remember node groups can only be a limited number of minor versions behind the control plane.\n\nDisclosure: I built a free tracker with these dates plus RDS, Aurora, Lambda, etc. It refreshes daily from endoflife.date and AWS pricing: https://eolwatch.pages.dev. Happy to fix anything that's wrong.",
+    "developer": "timmywick",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

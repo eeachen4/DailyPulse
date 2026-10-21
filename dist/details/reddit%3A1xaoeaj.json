@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xaoeaj",
+  "sourceItemId": "1xaoeaj",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xaoeaj/zlb_many_loadbalancer_services_on_a_few_public/",
+  "detail": {
+    "longDescription": "I built zlb for clusters where:  \n\\- public IPs are scarce and routed to **one** machine;  \n\\- nodes have **no inbound internet access**;  \n\\- there's no BGP or shared L2, so MetalLB, Cilium and kube-vip don't fit.  \nA controller watches LoadBalancer Services and pushes the desired state to a small daemon on that machine. The daemon programs nftables DNAT from publicIP:port to node:NodePort, keeping the client IP.  \nServices are published on their **NodePort**, so all of them can share one IP: two Postgres Services on 5432 become IP:31543 and IP:30876. Literal ports like 80/443 come from explicit reservations (e.g Ingress Controller gets 80/443 on the public IP).   \nTCP/UDP/SCTP, Local/Cluster traffic policy, loadBalancerSourceRanges enforced at the edge  \nAtomic, verified nftables changes with rollback; forwarding survives crashes and upgrades  \nTLS/mTLS API, sandboxed non-root daemon, Helm chart with optional SSH bootstrap of the VM  \n**Limits:** the edge node is a single point of failure for now (active/standby with VRRP and conntrackd is planned). IPv4 only, no metrics yet.  \n[https://github.com/abexamir/zlb](https://github.com/abexamir/zlb) (Apache-2.0)  \nFeedback welcome, especially from anyone running a similar single-entry setup.",
+    "externalUrl": "https://i.redd.it/ereull3zllwh1.jpeg",
+    "developer": "abexami",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xb2xku",
+  "sourceItemId": "1xb2xku",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1xb2xku/vale_la_pena_un_verificador_independiente_o_es/",
+  "detail": {
+    "longDescription": "Buenas, aca  dandole vueltas a un problema de diseño en sistemas con agentes de IA y queria saber su opinion o si alguien ha implementado algo asi en produccion....que herramientas comunes se utilizan,framework,librerias, skill muy detallados, algun mcp etc.\n\nMe pasa seguido que cuando un agente ejecuta tareas complejas, al final declara que la tarea esta completada (\"task completed\", todo verde), pero cuando miras el detalle te das cuenta que en el camino se salto reglas de negocio o dio por bueno algo que no era.\n\nLa solucion tipica que veo es meterle un buen prompt o un Skill muy detallado  de autochequeo al mismo modelo para que revise su propia respuesta antes de entregarla. Pero me da la impresion de que cae en un sesgo de confirmacion gigante (si se equivoco al ejecutar, se suele equivocar igual al auditarse a si mismo).\n\nUn ejemplo super simple para graficarlo: Imagina que subes un contrato de 40 paginas a Claude y le preguntas \"cumple con todos los requisitos?\". Claude te dice feliz \"Si, cumple todo\". Pero resulta que las bases pedian una garantia de $5.000.000 y el documento venia con una de $3.000.000. Claude te la vendio y te dijo que estaba bien igual.\n\nAhi es donde entra la duda de si conviene armar un verificador independiente (un modelo mas chico, reglas deterministas en codigo, o un flow hibrido) que no busque ser \"mas inteligente\", sino comprobar sistematicamente requisito por requisito. Tipo un output asi:\n\n* Plazo de entrega: Exigido 30 dias / Propuesto 25 dias -> Cumple.\n* Garantia: Exigida $5.000.000 / Encontrada $3.000.000 -> No cumple.\n* Experiencia minima: Sin evidencia suficiente -> Requiere revision manual.\n\nO sea, pasar de una respuesta convincente a una revision comprobable punto por punto.\n\nEntonces mi duda de fondo para el debate es: \n\n**realmente puede un verificador independiente detectar estas infracciones durante la ejecucion con mayor precision que el mismo modelo usando un buen Skill, y con un costo/latencia extra lo suficientemente bajo como para que valga la pena en la practica?** \n\n**O al final el gasto extra de tokens no compensa?**\n\n",
+    "developer": "1982_miguel",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

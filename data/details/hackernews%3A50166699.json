@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50166699",
+  "sourceItemId": "50166699",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50166699",
+  "detail": {
+    "longDescription": "Hey Hacker News, we&#x27;re Ben, Josh, and Donnie, co-founders of PatchWave. PatchWave is a GitHub App that combines static analysis and eval&#x27;ed agents to analyze and (optionally) auto-merge PRs it deems as safe. If a Dependabot PR breaks your CI build, a fix agent works to get CI passing again. Dependabot PRs suck. Nobody likes dealing with them. Most of the time they go ignored or a senior engineer spends their valuable time dealing with them. Before PatchWave, I ran a freelance business charging clients hourly to do exactly this kind of &quot;keep the lights on&quot; work. Even at our small startup, we&#x27;d spend Monday mornings dealing with Dependabot PRs. Having a human-in-the-loop working with an agent on these PRs was time consuming and, often, agents would get lazy and not actually validate how an upstream change affected the codebase. And, as the quantity and severity of CVEs increases, merging security updates quickly becomes increasingly important. PatchWave is a set of specialized agents that uses static analysis tools on context we gather deterministically. 1. We pull the changelog, the code diff between versions, security advisories, and CI results. 2. The agent checks out your code in an isolated sandbox, where it uses structural code search, type checkers and your project&#x27;s own toolchain to understand how your codebase uses each dependency being updated. Every Dependabot PR gets a report. You can see a few examples (against OSS repos) here: https:&#x2F;&#x2F;reports.patchwave.ai&#x2F;alam00000&#x2F;bentopdf&#x2F;pull&#x2F;913 and https:&#x2F;&#x2F;reports.patchwave.ai&#x2F;shipshapecode&#x2F;shepherd&#x2F;pull&#x2F;355... 3. If CI fails, we automatically dispatch a fix agent to try to get CI green again. For most PRs, this means updating your code to use a newer API, fixing linting&#x2F;formatting issues, etc. 4. We have an optional feature that allows auto-merging certain PRs when PatchWave deems them as safe and the PR aligns with your auto-merge policy. Our recommended auto-merge policy is to auto-merge patch&#x2F;minor&#x2F;major dev dependencies and patch&#x2F;minor production dependencies. You can customize this policy or turn auto-merge off entirely. PatchWave will skip auto-merge in a bunch of cases where a human should review. For instance, if provenance changes (e.g., a package that&#x27;s usually published by GitHub Actions via Trusted Publishing is suddenly published by an API Key), we require human review before merging. Dependabot also instituted an on-by-default 3-day cooldown to reduce the risk of supply chain attacks. If PatchWave makes any changes via a fix agent, we&#x27;ll always require your review before merge. Currently, PatchWave only works with Dependabot and GitHub. We plan to offer Renovate support in the future. We&#x27;ve eval&#x27;ed the agents the most against TypeScript and Ruby, but are always adding to our eval suite to improve accuracy. The fix agent works best with PRs that require modest code changes. For large updates, especially updates that span multiple majors, our fix agent will give up and provide you a remediation plan to help you mitigate. On the privacy&#x2F;security side of the house, our SOC 2 Type II audit is in progress (see trust.contextbridge.ai). We only run on repos you select, our agents run in a short-lived microVM per run, we use Amazon Bedrock with zero-data-retention, and never train on your code. We&#x27;re offering 25 free PRs per GitHub org, per month with no credit card required. Additional PRs are billed at about $1&#x2F;PR, with discounts for higher volume. We also would love to accelerate OSS projects, so reach out to ask about additional free credits. If you hate dealing with Dependabot PRs, we&#x27;d love for you to give it a shot and tell us what you think. Josh, Donnie, and I will be around answering any questions and responding to any feedback you have.",
+    "externalUrl": "https://patchwave.ai/",
+    "developer": "blimmer",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "9"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

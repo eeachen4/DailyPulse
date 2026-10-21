@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xasl3j",
+  "sourceItemId": "1xasl3j",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xasl3j/declare_a_team_hermes_agent_in_a_manifest_run_it/",
+  "detail": {
+    "longDescription": "**Problem state**\n\nEvery team in my company started building its own AI agent and they were getting more out of control. Most use cases were similar: code review or doc Q&A, the kind of thing an general agent handles fine. The bigger issue was not the count, it was the state. What is that agent even doing? Which skills got installed on it, by whom? All of that lived in config files inside pods. So I've decided to build a platform to address it.\n\n\n\n**Components**\n\nThis platform consist of two components\n\n* Web: User-facing web server. It manages Hermes agents. \n* Custom resource operator: Reconcile a `HermesAgent` custom resource to manage Hermes agents.\n\n\n\n**State outside the pod**\n\nThe general agent we standardized on is Hermes. It is a personal agent: config.yaml plus skills, plugins, and cron jobs installed via commands, all stored in local files. Powerful for personal use, but hard for a team, because state inside a pod is invisible state.\n\nAn agent needs `config.yaml`, secrets, network, storage and etc. Kubernetes already has a mechanism for each, so I decided to declares agent state in a CRD. The operator \n\n* config.yaml comes from a ConfigMap the operator mounts\n* skills and plugins are listed by identifier in the spec, and init containers install them before the main container starts\n* pip/npm packages pre-install the same way\n\nEx) `HermesAgent`  custom resource\n\n    apiVersion: agents.hermeum.app/v1alpha1\n    kind: HermesAgent\n    metadata:\n      name: code-review-agent\n    spec:\n      hermes:\n        config:\n          raw:\n            model:\n              default: glm-5.3\n              provider: ollama-cloud\n            platforms:\n              webhook:\n                extra: ...\n        workspace:\n          files:\n            SOUL.md: You are a pragmatic repository maintainer ...\n        storage:\n          persistence:\n            enabled: true\n            size: 5Gi\n    \n\nNow, the agent is declared in a manifest and the operator keeps it in sync. The state of Hermes is configurable from outside the pod.\n\n\n\n**Hide the infra**\n\nThe CRD carries infra config too: storage, networking, security. But most users do not want any of it. Hermeum defines a thin agent spec holding only the core settings (config, skills, plugins, crons) plus an agent type field. A **mutating admission webhook** patches the HermesAgent resource at creation time, filling in the infra fields that match the type. The agent spec no longer touches infrastructure.\n\nEx) Agent spec\n\n    name: Hermeum GitHub Maintainer\n    description: Maintains hermeum/hermeum on ...\n    type: small       # <- This is the agent type. The admission server patches the storage and networking fields\n    soul: You are a pragmatic repository maintainer ...\n    config:\n      model:\n        provider: ollama-cloud\n        default: glm-5.3\n      platforms:\n        webhook:\n          extra: ...\n    \n\nAnd the greatest thing of management via manifesto is we can leverage the chatbot to create and manage any Hermes agent we want. The chatbot in the platform write up the manifest so non-dev members are able to create their own agent.\n\n  \n**What it left us with**\n\nEvery agent and its state are visible in one place. We raised agent visibility to tackle the agent sprawl problem.\n\nQuestions and criticism welcome. I am specifically curious how others here are handling per-agent config drift.",
+    "externalUrl": "https://i.redd.it/nah9rr3fmmwh1.png",
+    "developer": "noah-h-lee",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

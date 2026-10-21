@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50164316",
+  "sourceItemId": "50164316",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50164316",
+  "detail": {
+    "longDescription": "I follow a bunch of blogs and feeds, and Skimfeed was too busy for me. Initially I built a Glance page, and when colleagues saw it they asked me to share it. That led to (the idea of) okaeri, a minimal startpage &amp; feed recommendation algorithm that runs locally. In the background it runs EmbeddingGemma 2 (270M, 8-bit ONNX, on CPU) to embed new stories from the feeds you follow, and a custom ranking algorithm uses those embeddings (plus what you open, like and hide) to put the most relevant items on top. Preferences are kept per topic, so liking a lot of AI posts doesn&#x27;t bury everything else. You can also tune the ranking yourself by playing around with some sliders. Vectors are truncated to 256 dims and stored in SQLite, and the model runs in a short-lived child process, so the server itself stays light (peak around 1.3 GB while embedding). What I like about this is having a recommendation algorithm that runs on my own machine, and I can see and adjust what it does. Its AGPL and runs on macOS, Linux and Windows (Windows is new, be aware). Installing it takes a single command (see README). It&#x27;s still in development and very early, but I really like the feel and look of it. Some future ideas are: - Creating a self hosted version you can easily sync to your phone - Building &amp; hosting a public version. Clickdata and ranking will still be local, just the embeddings can be done globally. All feeds only have to be embedded once, the ranking &amp; pushing embeddings should be cheap. I don&#x27;t wanna deal with accounts though, so am open to suggestions. - For self hosted: Maybe syncing to your own social media feeds. That way you can sync up to twitter, linkedIn, etc, but you control the recommendation engine yourself (less doomscrolling!) Let me know what you guys think. I&#x27;m very open to feedback and contributions!",
+    "externalUrl": "https://github.com/DBvdHeijden/okaeri",
+    "developer": "dbvdh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xao29y",
+  "sourceItemId": "1xao29y",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xao29y/i_built_an_opensource_unitrecord_memory_engine/",
+  "detail": {
+    "longDescription": "Peace,\n\nIf you build long-running autonomous agents or pair-programming harnesses, you know the single biggest headache right now: \\*\\*Session Amnesia.\\*\\*\n\n\n\nWhenever an agent restarts or changes tasks, standard frameworks try to reconstruct context by replaying 80,000 to 120,000 tokens of chat transcripts through the context window. It eats your runway, costs a fortune on proprietary APIs, slows local inference down to a crawl, and causes models to hallucinate past their 75% context ceiling.\n\n\n\nI realized the problem isn't context size—it's how we model memory.\n\n\n\nBack in 1959, IBM 1401 systems processed mission-critical data without ever \"replaying history.\" They used immutable unit-record accounting: atomic, fixed-column registers where entries are state transitions, not re-read conversations.\n\n\n\nSo I built \\*\\*DUMEdb (Deterministic Unit-Record Memory Engine)\\*\\*:\n\n\n\n\\### How It Works Under The Hood:\n\n1. \\*\\*Zero-Turn Wake Handshake (\\`cabinet\\_wake\\`)\\*\\*: Instead of re-reading chat history, the agent passes a codeword (\"box is the game\") and receives an immutable status receipt + active registers in \\*\\*< 220 tokens\\*\\* with 99.8% clean context runway preserved.\n\n2. \\*\\*Deterministic LMDB Engine\\*\\*: Uses memory-mapped LMDB storage (\\`dumedb.mdb\\`) for sub-microsecond zero-copy register reads and schema packs (State, ADRs, Incident RCAs).\n\n3. \\*\\*Real-Math Disk Odometer\\*\\*: Audits \\`transcript.jsonl\\` directly on disk post-compaction to calculate ground-truth token consumption and triggers clean session handoffs before auto-compaction amnesia hits.\n\n4. \\*\\*Model Context Protocol (MCP)\\*\\*: Native bridge ready for Google Antigravity, Claude Desktop, Cursor, and Python agent loops.\n\n\n\nI  also made a short 88-second deadpan comedy video contrasting a modern Silicon Agent choking on 128k tokens inside an RTX 4090 with a 1959 IBM engineer named Frank:\n\n\n\n\\* 🎬 \\*\\*Watch the short trailer (YouTube)\\*\\*: [https://youtu.be/E1f8NzJlrB0](https://youtu.be/E1f8NzJlrB0)\n\n\\* 🌐 \\*\\*Live Studio & Interactive Odometer Calculator\\*\\*: [https://dumedb.developumaiengine.com/](https://dumedb.developumaiengine.com/)\n\n\\* 💻 \\*\\*GitHub Repo\\*\\*: [https://github.com/madbradsmith/DUMEdb](https://github.com/madbradsmith/DUMEdb)\n\n\\* 📦 \\*\\*Quick Install\\*\\*: \\`pip install dumedb\\`\n\n\n\nWould love to hear your thoughts, feedback, or roasts on treating agent memory like an IBM 1401 punched card ledger!\n\n",
+    "developer": "MadBradSmith",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

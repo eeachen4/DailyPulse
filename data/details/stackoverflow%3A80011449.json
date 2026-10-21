@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011449",
+  "sourceItemId": "80011449",
+  "sourceUrl": "https://stackoverflow.com/questions/80011449/git-pull-only-upstream-branch-and-nothing-else",
+  "detail": {
+    "longDescription": "I'd like to implement code in a Makefile that performs a git pull but should have as low a performance impact as possible. As such I'd like to prevent it from trying to fetch any references other than the upstream branch. If you assume the remote is called origin and the upstream branch matches the current branch name this is fairly trivial but that is not always the case. What is worse is that remote names and branch names can contain quotes and slashes and other special characters which greatly complicate escaping them in the context of a makefile in multiple steps. The following code creates a minimal setup to show the case I want to try to handle properly: mkdir example-remote cd example-remote git init -b 'a/the-\"real\"-code' echo text > example.txt && git add example.txt && git commit -m \"initial commit\" cd .. git clone ./example-remote ./example-local cd ./example-local git remote rename origin \"tadhg's-code/features\" git rev-parse --abbrev-ref @{upstream} # to print the remote branch ref The last line prints the upstream tracking branch tadhg's-code/features/a/the-\"real\"-code . This is valid git branch reference. The shortest simplest code I could come up with to properly handle any arbitrary remote and branch combo that only pulls from the upstream branch is this: CURR_BRANCH=\"$(git branch --show-current)\"; UPSTREAM_REMOTE=\"$(git config --get \"branch.${CURR_BRANCH}.remote\")\"; UPSTREAM_BRANCH=\"$(git config --get \"branch.${CURR_BRANCH}.merge\")\"; if [ -n \"${UPSTREAM_REMOTE} ] && [ -n \"${UPSTREAM_BRANCH} ]; then git pull --ff-only --no-tags \"${UPSTREAM_REMOTE}\" \"${UPSTREAM_BRANCH}\" fi If I extract any part of this as a Makefile variable it can only be inserted back as shell code which breaks with the quotes as I demonstrated so this whole thing has to be one single step in the make recipe which is way too long to expect a user to see and understand what the heck it is doing so I have to suppress the real rule from being printed as make is intended which I am not a fan of. considering how easy it is to do an unoptimized pull that also updates unrelated branches ( git pull ) and how easy it is to get the remote + branch reference seperated by a slash ( git rev-parse --abbrev-ref @{upstream} ) it seems crazy how complicated it is to specify the remote and branch to the git pull command. Am I missing something? Surely there is an easier way to do a \"update the current branch downloading the minimum data needed\" operation.",
+    "developer": "Tadhg McDonald-Jensen",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "43"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

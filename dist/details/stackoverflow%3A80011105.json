@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80011105",
   "sourceItemId": "80011105",
+  "fetchedAt": "2026-10-21T02:03:13.727Z",
   "sourceUrl": "https://stackoverflow.com/questions/80011105/how-do-i-find-callers-of-an-overridden-method-in-falkordb-code-graph",
   "detail": {
     "longDescription": "I'm using code-graph to figure out what might break when I change a method. It works fine for direct calls, but I keep missing callers that go through a base class. Here's a stripped-down example: class Shape: def area(self) -> float: raise NotImplementedError class Circle(Shape): def __init__(self, r: float): self.r = r def area(self) -> float: return 3.14 * self.r ** 2 def total_area(shapes: list[Shape]) -> float: return sum(s.area() for s in shapes) def print_report(shapes: list[Shape]) -> None: print(total_area(shapes)) After indexing, total_area has a CALLS edge to Shape.area , and Circle.area has an OVERRIDES edge to Shape.area . So if I change Circle.area , I'd expect total_area and print_report to show up. But this (what impact_analysis does) returns nothing: MATCH (:Class {name: 'Circle'})-[:DEFINES]->(m:Function {name: 'area'}) MATCH (m)<-[:CALLS*1..3]-(caller) RETURN DISTINCT caller.name Adding OVERRIDES to the pattern ( <-[:CALLS|OVERRIDES*1..3]- ) still returns nothing, I guess because OVERRIDES points the other way. Making it undirected works on this toy example. On my real repo, though, it also pulls in callees and every sibling override, so the results are useless. What's the right way to go \"up\" the OVERRIDES edge and then back along CALLS ?",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "39"
+        "value": "65"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

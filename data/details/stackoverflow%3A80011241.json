@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011241",
+  "sourceItemId": "80011241",
+  "sourceUrl": "https://stackoverflow.com/questions/80011241/how-should-i-define-structs-if-i-want-to-load-data-into-them-and-then-immediatel",
+  "detail": {
+    "longDescription": "I have come across a situation where I need to load information from a JSON file and then slightly modify certain fields. The modifications include changing the type of the information, in this case from String to u8 . I want to keep the structure of the data the exact same before and after the modification for clarity. How should I define my struct s for the most readability and clarity of their purpose? The situation is as follows: I have a JSON file in the following format: data.json { \"hand_id\": 1, \"cards\": [ { \"rank\": \"seven\", \"suit\": \"Hearts\" }, { \"rank\": \"Jack\", \"suit\": \"Hearts\" }, { \"rank\": \"three\", \"suit\": \"Clubs\" }, { \"rank\": \"Jack\", \"suit\": \"Diamonds\" }, { \"rank\": \"nine\", \"suit\": \"Diamonds\" } ] } I want to ultimately store the rank and suit fields as u8 numbers. To read the JSON file I am using Serde with the following structs: main.rs use serde::Deserialize; #[derive(Deserialize)] struct HandJson { hand_id: u32, cards: Vec<CardJson> } #[derive(Deserialize)] struct CardJson { rank: String, suit: String } And I would like to eventually store the data with the same structure so it is consistent with the JSON. main.rs struct Hand { hand_id: u32, cards: Vec<Card> } struct Card { rank: u8, suit: u8 } I am aware that I can use generics to unify the two structures but I'm concerned that the usage and intention of a generic struct is confusing for an outside observer, particularly as the String version is only used during the loading process. On the other hand, I'm concerned that having two virtually identical struct s are unnecessary and may also raise other questions from outside observers. As a note, there won't be any implementations for these structs either. I am curious to know what the best practice in this case should be and what the most \"rust-like\" way of handling this situation is.",
+    "developer": "cknott",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "124"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xb8cj7",
+  "sourceItemId": "1xb8cj7",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xb8cj7/i_built_a_3_mb_portable_image_optimizer_that_also/",
+  "detail": {
+    "longDescription": "I’ve been working on a small Windows image utility called **Save2Web**.\n\nIt originally started because I wanted a compact image optimizer that could produce very small files without dragging in a huge runtime or framework.\n\nA few years ago, the RIOT plugin disappeared from IrfanView. RIOT still exists as a standalone application, but with its Qt runtime the package has become much larger than the kind of tool I personally wanted to use.\n\nSo I started building my own alternative with a different goal: keep the whole program around **3 MB**, portable, installation-free, and still use strong image optimization methods rather than just basic “save as” compression.\n\nDespite its small size, the Save2Web optimizer is also available in **more than 30 languages**. I wanted it to stay lightweight without making it feel like a stripped-down niche tool.\n\nFor PNG in particular, I tested several optimizers and integrated the one that consistently gave me the smallest files in my own comparisons. Other well-known tools were very close, but usually slightly larger in the samples I tested. I’m not claiming it beats every image optimizer in existence, because I obviously haven’t tested them all, but my goal was to make the compression at least competitive with established tools while keeping the executable very small.\n\nThe same idea applies to the other supported formats: I wanted the optimizer to be useful on its own, not just a front-end around mediocre default encoders.\n\nDuring development, the project gradually grew into something more.\n\nOne unusual detail is that the EXE actually contains two interfaces. If the filename contains **“Save2Web”**, it starts as the image optimizer. If you rename it so that “Save2Web” is no longer part of the filename, the same executable starts a lightweight image viewer instead.\n\nThe viewer includes effects and filters, batch conversion, printing, screen capture, thumbnail browsing, slideshow mode, metadata editing and a few less common editing functions such as appending an image or a selected area to the side of another image.\n\nOne of the more interesting parts for me was optimizing the thumbnail browser. An early version was noticeably slower than IrfanView. After changing the loading path, reducing unnecessary image copies and moving thumbnail work into background processing, it now performs at least as fast as IrfanView on my own test folders.\n\nAnother thing I learned is how expensive seemingly harmless image conversions can become. For example, decoding a PNG to a full RGBA buffer, copying every pixel into another bitmap, swapping channels and only then scaling it down is barely noticeable for one image, but becomes very obvious when generating thumbnails for more than a thousand files.\n\nThe program is mostly written in **C**, with a smaller amount of **x64 assembly** and a very small Rust interface used for PNG optimization. I also use several specialized third-party image codecs and libraries where appropriate.\n\nMy main goal is not to compete with full image editors. I wanted a small portable tool that handles the image operations I personally use all the time, while keeping file size, startup time and dependencies under control.\n\nIf anyone is interested in trying it, I’d particularly appreciate feedback on performance, thumbnail browsing, the effects, batch conversion and the general workflow. The supported format list is intentionally kept limited because keeping the executable small is one of the main goals of the project.\n\n>!**Download / project page:**!<  \n>![https://notcompatible.li/#Save2Web](https://notcompatible.li/#Save2Web)!<\n\nThe program is free to use. Source code for parts of the project is available, but the entire program is not currently open source.",
+    "developer": "nullachtfuffzen",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

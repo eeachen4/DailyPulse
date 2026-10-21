@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011408",
+  "sourceItemId": "80011408",
+  "sourceUrl": "https://stackoverflow.com/questions/80011408/to-change-python-version-in-venv-change-pyvenv-cfg-manually-or-in-vs-code-pyth",
+  "detail": {
+    "longDescription": "I am trying to create a virtual environment for a Python project to be deployed in a Docker container. I have two versions of Python installed on my Windows11. I have 3.13.15 installed with anaconda3, and I also installed pythoncore-3.14-64 independently of anaconda3. When I create the virtual environment for my project ( python -m venv .venv ) it uses the path for the Python version installed with anaconda3. I need to learn how to change that and have venv point to Python I installed. In VS Code terminal, when I execute: python -m venv .venv it creates .venv folder and inside that folder pyvenv.cfg file containing the following information. home = C:\\Users\\<userid>\\anaconda3 include-system-site-packages = false version = 3.13.9 executable = C:\\Users\\<userid>\\anaconda3\\python.exe command = C:\\Users\\<userid>\\anaconda3\\python.exe -m venv C:\\Users\\<userid>\\OneDrive\\Projects\\pymovies\\.venv My problem is that anacond3 Python is not the right version for my project. It generates a huge list (hundreds) of Python package references in requirements.txt file when I execute: pip freeze > requirements.txt I would like to understand why anaconda3 Python is selected and how to change it. It's probably some environment variable that VS Code is using but I couldn't find any information about it. I also need to know how to change the selected Python version. Can I modify the information in pyvenv.cfg manually? What are the unexpected problems if I change pyvenv.cfg directly?",
+    "developer": "damovandG",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "77"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

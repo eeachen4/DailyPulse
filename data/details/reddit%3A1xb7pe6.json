@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xb7pe6",
+  "sourceItemId": "1xb7pe6",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xb7pe6/tried_all_4_rust_typescript_checkers_on_my_two/",
+  "detail": {
+    "longDescription": "So I kept seeing “faster than tsc 7” claims for these Rust ports and got curious whether they hold up on real code rather than toy benchmarks. I’ve got two TS repos for my SaaS, a backend (\\~1,120 files) and a frontend (\\~1,160 files, mostly tsx), so I ran all of them.\n\nWarm runs, median of 5, Linux VM:\n\n||backend|frontend|\n|:-|:-|:-|\n|tsc 7.0.2 (baseline)|21.0s|6.5s|\n|bun check (1.4.3)|1.7s|2.4s|\n|tsc-rs 0.7.0|1.4s|2.4s|\n|tsrs 0.11.0|0.8s|1.3s|\n|tsc-ts 0.0.5|2.0s|2.7s|\n\nHonestly I expected at least one of them to quietly miss errors, so I broke a copy of each repo with 3 type errors. All four caught exactly what tsc caught, same messages.\n\ntsrs is clearly the fastest, 28x on the backend. But it’s one person’s dev snapshot, built against 7.1-dev while I’m on 7.0.2, and it exits with code 2 instead of 1 on errors, so CI scripts need a tweak. tsc-rs says in its own README that it’s experimental and mostly written by an LLM. tsc-ts is at 0.0.5.\n\nI went with bun check in the end. Not the fastest, but I already use Bun, it’s an actual release, and 21s down to under 2s is plenty for me. I’ll look at tsrs again when it gets a proper release.",
+    "developer": "dryu12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

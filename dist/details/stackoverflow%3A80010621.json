@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80010621",
   "sourceItemId": "80010621",
+  "fetchedAt": "2026-10-21T02:03:13.727Z",
   "sourceUrl": "https://stackoverflow.com/questions/80010621/building-an-ai-chatbot-app-with-managing-your-own-context",
   "detail": {
     "longDescription": "I have a note taker app, and I'm trying to make an AI chat interface for the library, I want it to be cost efficient so I chose 'gpt-4o-mini' as the AI model. The biggest challenge for me is how to feed the AI context, as the notes are stored in folders(different names) and have dates like 'edited at', 'opened at', 'updated at' etc, and my notes have 'title', 'description', '<aforementioned date fiellds>', 'reminders' etc. So basically my datasource is my notes/folders and we can use the AI chat to query what's there. I've done some research and it sounds like a use case for RAG, so, vector databases, embeddings, semantic searches etc, But, I also found out that semantic searches are bad: - with 'membership' questions (like find me my notes in the folder I created 2 weeks ago, or, 'find my notes about travel not in the music folder that were updated before august) - with date ranges (last week, 2 days before thursday, 3 days before june 1, 1917) What I've thought so far A. Sending all the notes so far is an expensive option if I use powerful models, but, a hallucinating option for something 'gpt-4o-mini' B: i. Turn user's questions to filters first in the database, have 1 filter built for extracting date ranges from the questions, other for membership, so , basically feeding the prompt for user's question twice to get two filters I can apply to a mongo db, ii. Get the results from i. and apply semantic search on the results to get the top-k results and then feed those to the LLM So, what I set out building has multiplied with multiple complexities before even starting, but, I believe this is a problem already solved? - What's a tried and tested way to build this? - Any library/solution already there for me to plug and play? - Are my approaches correct? - Any model you'd suggest more powerful but comparable costs?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "130"
+        "value": "138"
       },
       {
         "label": "状态",

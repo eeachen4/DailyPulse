@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011452",
+  "sourceItemId": "80011452",
+  "sourceUrl": "https://stackoverflow.com/questions/80011452/why-is-my-countdown-timer-too-fast-and-negative-in-code-org",
+  "detail": {
+    "longDescription": "I'm working on an app lab project in code.org, and I'm trying to make a timer that will count down to zero at the click of a button. The format is supposed to be the typical 00:00 format. My problem is that The timer keeps going negative, ie. even after min = 0 and sec = 0 it continues to change the timer text to 0-1:0-1, 0-2:0-2, etc. Some iterations of the timer function happened quicker than others due to the relevant if statement being earlier in the code chunk. I know it's generally not good practice to throw in a bunch of if statements like I did, but I wasn't sure how to use my min and sec variables to print the remaining time while also checking their values (the stack overflow post linked below shows what I had written before where these variables are set I'm unfamiliar with both Code.org's app lab and JavaScript as a language, so I'm pretty stuck. I've already looked at another stack overflow post and the function code below is pretty much exactly what the answer says, but it still doesn't work. Mainly, I know that Code.org has some differences in programming with JavaScript and so I've yet to find a post that applies to Code.org yet. This is the relevant chunk of code that's meant to control both the text of the timer pre-button click and the subsequent changes to the text as the countdown (timer) function runs: Any help would be greatly appreciated. var startingMin = 0; var time; var min = 0; var sec = 0; onEvent(\"genButtonAdd1\", \"click\", function( ) { startingMin += 1; if(startingMin < 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + startingMin + \":\" + \"0\" + sec); } else if(startingMin >= 10){ setProperty(\"timerGeneral\",\"text\", startingMin + \":\" + \"0\" + sec); } time = startingMin * 60; }); onEvent(\"genButtonAdd5\", \"click\", function( ) { startingMin += 5; if(startingMin < 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + startingMin + \":\" + \"0\" + sec); } else if(startingMin >= 10){ setProperty(\"timerGeneral\",\"text\", startingMin + \":\" + \"0\" + sec); } time = startingMin * 60; }); onEvent(\"genButtonAdd10\", \"click\", function( ) { startingMin += 10; if(startingMin < 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + startingMin + \":\" + \"0\" + sec); } else if(startingMin >= 10){ setProperty(\"timerGeneral\",\"text\", startingMin + \":\" + \"0\" + sec); } time = startingMin * 60; }); onEvent(\"genButtonAdd30\", \"click\", function( ) { startingMin += 30; if(startingMin < 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + startingMin + \":\" + \"0\" + sec); } else if(startingMin >= 10){ setProperty(\"timerGeneral\",\"text\", startingMin + \":\" + \"0\" + sec); } time = startingMin * 60; }); onEvent(\"startGen\",\"click\", function timer(){ var countdown = setInterval(timer, 1000); min = Math.floor(time / 60); sec = time % 60; console.log(min+\" \"+sec); if(min < 10 && sec >= 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + min + \":\" + sec); } else if(sec < 10 && min >= 10){ setProperty(\"timerGeneral\",\"text\", min + \":\" + \"0\" + sec); } else if(min < 10 && sec < 10){ setProperty(\"timerGeneral\",\"text\", \"0\" + min + \":\" + \"0\" + sec); } else if(min >= 10 && sec >= 10){ setProperty(\"timerGeneral\",\"text\", min + \":\" + sec); } time--; if(min == 0 && sec == 0){ clearInterval(countdown); } });",
+    "developer": "Fried_Lemons",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "25"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xb35hf",
+  "sourceItemId": "1xb35hf",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xb35hf/is_an_independent_verifier_worth_it_or_is_it_just/",
+  "detail": {
+    "longDescription": "Hey everyone, I've been overthinking a system design issue with AI agents and wanted to get your take, or see if anyone has built something like this in production... what common tools are being used? Frameworks, libraries, highly detailed skills, custom MCPs, etc.?\n\nI keep running into this issue where an agent executes a complex task and marks it as \"task completed\" (all green), but when you look closely at the trace/output, it completely skipped business rules or passed something invalid as good.\n\nThe typical workaround I see is throwing a well-crafted prompt or a detailed self-checking Skill at the same model so it audits its own work before responding. But it feels like a massive confirmation bias trap to me (if it messed up during execution, it usually misses the error during self-audit anyway).\n\nTo give a super simple example: Imagine uploading a 40-page contract to Claude and asking \"does it meet all requirements?\". Claude happily says \"Yup, all good!\". But turns out the spec required a $5M guarantee, while the doc only had $3M. Claude completely hallucinated/missed it and sold you a confident answer anyway.\n\nThat's where the idea of an independent verifier comes in (a smaller SLM, deterministic code rules, or a hybrid flow). Not to make it \"smarter\", but to systematically cross-check requirement by requirement. Something like:\n\n* Delivery deadline: Required 30 days / Proposed 25 days -> Pass\n* Guarantee: Required $5,000,000 / Found $3,000,000 -> Fail\n* Min experience: Inconclusive evidence -> Needs manual review\n\nBasically moving from a persuasive answer to a point-by-point verifiable audit.\n\nSo my core question for discussion is: **Can an independent verifier actually detect rule violations during execution with higher accuracy than the same model using a well-crafted Skill, and with low enough cost/latency overhead to be practical?**\n\nOr does the extra token cost/latency make it not worth it in practice?",
+    "developer": "1982_miguel",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

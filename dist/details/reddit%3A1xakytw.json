@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xakytw",
+  "sourceItemId": "1xakytw",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xakytw/deep_agents_sandboxastool_vs_fullagentinsandbox/",
+  "detail": {
+    "longDescription": "Been reading through the Deep Agents sandbox docs and trying to decide which pattern to take for a research-synthesis agent we’re building on LangGraph.\n\nThe two options the docs lay out: sandbox-as-tool, where the agent runs outside and calls into the sandbox only for specific operations, or full-agent-in-sandbox, where the whole coordinator-worker tree runs inside.\n\nEach has real trade-offs. Sandbox-as-tool is lower overhead per step (no VM spin-up per call), easier to debug, and agent state lives alongside the graph. But every invocation is a boundary round trip, and if a subagent needs several code ops to finish one subtask you pay that round trip repeatedly.\n\nFull-agent-in-sandbox is cleaner for coordinator-worker setups where subagents keep their own working filesystem and nothing in the agent plane needs to be trusted. But cold start matters more, and surfacing subagent progress out of the sandbox into LangSmith takes extra plumbing.\n\nLeaning sandbox-as-tool for us (short tool ops per subagent, state mostly in the agent’s files/todos). On the backend side there’s Modal, Daytona, Deno, and Node VFS as the listed options. I’ve also been looking at GMI AgentBox since the create/upload/exec/result/delete API maps cleanly onto what sandbox-as-tool actually wants.\n\nThe part I’m less sure about is subagent state when the sandbox is per-tool-call. If subagent A writes a file and subagent B needs to read it in the next step, we’re either keeping the sandbox warm across the whole subagent run (which is almost full-in-sandbox anyway) or materializing state back into agent files between calls.\n\nHow are others handling this with Deep Agents? Specifically for multi-subagent setups sharing working state, did you collapse to full-in-sandbox, or keep sandbox-as-tool and route state through the agent’s files?",
+    "developer": "JasonReed1",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
