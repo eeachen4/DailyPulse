@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011460",
+  "sourceItemId": "80011460",
+  "sourceUrl": "https://stackoverflow.com/questions/80011460/how-to-get-a-value-generator-to-produce-a-non-variable-value-i-can-still-use-in",
+  "detail": {
+    "longDescription": "I have a program to create new rows on a table when a button is pressed. The background color of a cell is using the product variable from a random hex code generator. The variable is needed because it is used for CSS, and is a CSS variable. However, this means every time the random hex code generator is run, it changes the background color for ALL cells. I've looked into this issue, but I'm quite new to code so I was unable to find any relevant results. Is there any way to a value generator to spit out an 'unlinked' piece of text, or is there a better way? Here is my relevant code: // adds another tier to table function randomtier() { const newRow = `<tr> <td style= \"background-color:'--random-color';\"> <textarea> ex </textarea> </td> </tr>`; document.getElementById('Tier_table'). getElementsByTagName('tbody')[0]. insertAdjacentHTML('beforeend', newRow); getRandomColor() } The randomtier() function is used in the button code, but that works fine. function getRandomColor() { // random color for background // Storing all letter and digit combinations // for html color code let letters = \"0123456789ABCDEF\"; // HTML color code starts with # let color = '#'; // Generating 6 times as HTML color code // consist of 6 letter or digits for (let i = 0; i < 6; i++) color += letters[(Math.floor(Math.random() * 16))]; document.documentElement.style.setProperty('--random-color', (color)); } /* CSS variable for random color*/ :root { --random-color: (color); }",
+    "developer": "dessicatedcorpus",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "133"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117480117024495861",
+  "sourceItemId": "mastodon.social/117480117024495861",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://lemmy.ml/post/54321895",
+  "detail": {
+    "longDescription": "I’m currently running a bunch of services behind a reverse proxy and that proxy\nis configured to use let’s encrypt for ssl certs using DNS-01 challenges for\nrenewals. All of the services are configured to only work using Tailscale IPs,\nso, as far as I’m aware, none of the services are open to the internet, except\nfor port 80. I noticed if I don’t leave port 80 open, when it’s time for\nrenewal, everything fails. This leads to a bunch of logs on my Unifi setup\nsaying intrusion attempts have been blocked on port 80. I thought I could go to\nLet’s Encrypt’s website and find a list of IPs I could put on an allow list but\nthey don’t post those. So my questions are: 1. If I understand the process\ncorrectly, Let’s Encrypt checks the DNS TXT record to verify I own a domain,\nthen sends a new cert to my server over port 80; meaning, I have to have port 80\nopen during the renewal process, correct? Nope 2. If that’s correct, what do you\nall do about port 80? Do you just have a script to open the port during the\nrenewal process and close it afterwards or do you just leave it open all the\ntime? Is there maybe a tool that already has this functionality? not if using\nDNS-01 challenges 3. I think I have port 443 open as well but I don’t remember\nif that’s needed or if I just did that when I opened port 80 trying to get all\nmy services working again. Does 443 need to be open too? not if using DNS-01\nchallenges 4. If there is a better way to do all this or if I fucked up\nsomewhere, please share. This was just the first setup I got working. I fucked\nup, see below Thanks EDIT: After deleting the current certificate and going\nthrough the process of generating a new one, everything is working without port\n80 open. I’m using NGINX Proxy Manager and I must have clicked on “Lets Encrypt\nvia HTTP” and not “Lets Encrypt via DNS” when originally setting this up. Not\nsure how else this could have happened 😅",
+    "developer": "@tinfoilsocks@lemmy.ml",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

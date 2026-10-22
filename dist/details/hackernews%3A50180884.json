@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50180884",
+  "sourceItemId": "50180884",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50180884",
+  "detail": {
+    "longDescription": "My team has been working in a way we are calling calling wiki-driven development, where the wiki is written for the human, not the agent and the human uses primarily the wiki to set direction for the agent. This is different from Karparthy&#x27;s LLm I&#x27;m curious whether others do something like it. Once I run several coding agents at a time, I get overwhelmed and disorganized. Every session makes decisions and raises questions, and I can&#x27;t reread the transcripts. CLAUDE.md and agent memory help the agent, but they don&#x27;t give me a place to see what is going on and decide. The problem gets worse with a team. So, I have the agents write a wiki, and they write it for me. As they work, they record only what is significant: decisions with who made them, when, and the option we passed over; open questions with an owner; and a short summary of where each area stands. I ask it to focus on the big picture, strategy, key architectural or business decisions. In more detail: 1. Agents do the work and update the pages it affects with what is significant: key decisions, key strategic points, open questions, and a summary of where things stand. 2. I read the wiki to understand the big picture: the key points, where we are, and what still needs to be decided. It is short enough to read. 3. I think and decide there: I settle a question, change a decision, lay out some more strategy points, or rewrite a page to say where I want to go. 4. The next session builds from the page I changed. Karpathy&#x27;s LLM Wiki idea is related, but it compiles sources you collect into a knowledge base that keeps getting richer. His goal is completeness for research. Our approach is minimalistic: the pages distill way down from the agents&#x27; sessions, hold only what is significant, and exist only so I can think and decide. Spec-driven development has you write the spec up front for the agent to implement. Here the agent writes the wiki based on all the valuable detail that are in my session prompts and its response and I edit the wiki, so the document keeps up with the agents work and my job is thinking, organizing, deciding, direction. Here are some things I have learned doing this: - Organization is key for me as the human. I make the agent make a nice visual html with clickable links marketecture or architecture or business model canvas as the top page and navigate from there. I have it keep each page a page long so I actually am motivated to read stuff. - Have the decisions record the rejected options, so when someone brings a question back, the reasoning is available. We are constantly revisiting decisions as we work and learn and so this is very helpful. - The agent wants to write everything down. The criteria I give it is to only record what it would need to get back to where we are right now in terms of strategy, decisions, implementation. Its not that much. You can do the same with a CLAUDE.md that tells the agent what to record, and work in markdown files or Obsidian or Notion. We got so into this that we turned it into a free, MIT-licensed plugin for Claude Code and Codex that keeps the wiki as markdown files in your repo and lets you see the wiki in your browser locally: https:&#x2F;&#x2F;github.com&#x2F;nimbalyst&#x2F;nimbalyst-wiki. Do you work in this way? If so, what other things should we be doing and how have you made it work well?",
+    "developer": "wek",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

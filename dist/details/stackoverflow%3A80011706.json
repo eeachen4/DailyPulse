@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011706",
+  "sourceItemId": "80011706",
+  "sourceUrl": "https://stackoverflow.com/questions/80011706/unserialize-serialize-objects-in-node-js-similar-to-php",
+  "detail": {
+    "longDescription": "example from the DB: YTo2OntzOjExOiJkaXNwbGF5X2NhbSI7czoxOiIxIjtzOjEyOiJlbmFibGVfc291bmQiO3M6MToiMSI7czoxMToiZW5hYmxlX2VmZmUiO3M6MToiMSI7czoxMToic2hvd19teV9jYW0iO3M6MToiMSI7czoxMToib3Blbl9teV9jYW0iO3M6MToiMCI7czoxOToid2ViY2FtX25vcGVybWlzc2lvbiI7czoxOiIxIjt9 I have found a way to restore it to object using this with php-serialize let options = row[\"options\"]; let buf = Buffer.from(options, 'base64'); let newoptions = unserialize(buf); results: newoptions[\"display_cam\"] = '1'; newoptions[\"enable_sound\"] = '1'; newoptions[\"enable_effe\"] = '1'; newoptions[\"show_my_cam\"] = '1'; newoptions[\"open_my_cam\"] = '0'; newoptions[\"webcam_nopermission\"] = '1'; In that context, I often need to modify the data for example: newoptions[\"display_cam\"] = '0'; newoptions[\"enable_sound\"] = '1'; newoptions[\"enable_effe\"] = '1'; newoptions[\"show_my_cam\"] = '1'; newoptions[\"open_my_cam\"] = '1'; newoptions[\"webcam_nopermission\"] = '1'; const modifiedoptions = serialize(newoptions); console.log(modifiedoptions) //a:6:{s:11:\"display_cam\";s:1:\"1\";s:12:\"enable_sound\";s:1:\"1\";s:11:\"enable_effe\";s:1:\"1\";s:11:\"show_my_cam\";s:1:\"1\";s:11:\"open_my_cam\";s:1:\"0\";s:19:\"webcam_nopermission\";s:1:\"1\";} <-- this must be string encoded base64 as was before The problem arises with storage. No matter how much I’ve searched, I haven’t been able to find a way to store it back in the database the way PHP used to using base64_encode(serialize(options)) . I’m writing this because I’m migrating everything from PHP to Node, and the database contains thousands of these serialized fields that must not be lost. The base64_encode(serialize(...)) approach that needs to be used must also allow the data to be converted back into an object using the method mentioned above. Does anyone know a way to achieve this? If necessary, I’m also open to changing the method I’m currently using to convert it into an object—so that I have one process to turn it into an object, and another to restore it to its original, previously saved format.",
+    "developer": "user2730288",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "83"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011495",
+  "sourceItemId": "80011495",
+  "sourceUrl": "https://stackoverflow.com/questions/80011495/how-do-i-start-object-initialization-without-blocking-program-shutdown",
+  "detail": {
+    "longDescription": "In Python I want to initialize an object that takes very long to construct. The program might end its execution without using it. But, since it takes so long, I want to always start its initialization as soon as possible anyway. To do so I would use a ThreadPoolExecutor from concurrent.futures . from concurrent.futures import ThreadPoolExecutor executor = ThreadPoolExecutor(max_workers=1) heavy_future = executor.submit(HeavyObject) if need_object: obj = heavy_future.result() obj.do_something() If the program does not need the object, it might finish its execution before the object has been initialized. With the previous implementation the program will not close since the initializing thread is still execution. Therefore I need it to be a daemon thread. I believe I cannot configure the executor to use daemon threads. At the moment, I've created my own class that starts a daemon thread and uses a join call to wait until initialization has finished. from threading import Thread from typing import Callable, Generic, TypeVar T = TypeVar(\"T\") class AsyncInitializer(Generic[T]): def __init__(self, initializer: Callable[[], T]): self.value: T | None = None self.exception: Exception | None = None self._initializer = initializer self._thread = Thread(target=self._initialize, daemon=True) self._thread.start() def _initialize(self) -> None: try: self.value = self._initializer() except Exception as e: self.exception = e def get(self) -> T: # Wait for initialization to complete. self._thread.join() if self.exception is not None: raise self.exception return self.value However, I feel that this is somewhat reinventing the wheel, especially given the existing Future abstractions. How would be the most canonical way of achieving my purpose?",
+    "developer": "Jorge Luis",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "155"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

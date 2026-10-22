@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.27306",
+  "sourceItemId": "2610.27306",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.27306",
+  "detail": {
+    "longDescription": "arXiv:2610.27306v1 Announce Type: cross Abstract: DrugCLIP places small molecules and protein pockets in one space, turning genome-wide drug discovery into large-K retrieval by vector proximity. A campaign fixes over 20K pockets in advance for one library of over 500M molecules. Each pocket keeps K = 500K candidates, 0.1% of the collection, versus 100 in ANN benchmarks. Missed hits never get tested, so mean recall must reach 99% relative to exact search. Large answers make IVF probe every list holding a result and graph search track K or more candidates, so costs grow with K. On our CPUs and GPUs, neither index family reaches the target without losing most of its edge over scanning. SweepANN partitions compressed vectors across GPUs and scans each resident partition. One matrix multiplication scores each block for a whole query batch, reading it once. Several plans perform the K-dependent selection and merging of each query's K answers, each returning an exact top-K under compressed scoring. The window plan retains each query's best K from sampled blocks as its seed, and only rows above each seed's minimum score, shared once across GPUs, enter the buffers. Four Blackwell GPUs (RTX PRO 6000) answer all 26,562 pockets with a resident time of about 61 seconds, excluding library loading, and 99.6% mean recall relative to exact FP32 search. DrugCLIP reports roughly 24 hours with eight A100 GPUs in its own campaign. On 500M rows, the window plan runs 1.41x faster than SweepANN's grouped plan in the same memory. Across 25M-500M rows and K of 10K-500K, all GPU IVF configurations meeting the recall target take 8.2-24x SweepANN's resident time. On DEEP1B's 1B vectors across eight GPUs, against SweepANN's exact full-score scan of uncompressed FP32 rows, the window plan cuts resident time by 5.4x and 3.2x at K = 100K and 500K. It also cuts per-GPU peak memory by 6.0x and 5.3x, losing 1.0 and 0.7 mean-recall points.",
+    "developer": "Zhenyu Zhang, Qi Lin, Nan Zhang, Zhichao Cao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DB, cs.DC, cs.IR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zhenyu Zhang, Qi Lin, Nan Zhang, Zhichao Cao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

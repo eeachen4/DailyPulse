@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011523",
+  "sourceItemId": "80011523",
+  "sourceUrl": "https://stackoverflow.com/questions/80011523/stop-all-sources-from-an-array-in-web-audio-api",
+  "detail": {
+    "longDescription": "I am collecting all sound sources into an array so that I can stop them later. However, when I iterate through the array and call stop() , the sounds keep playing instead of stopping. Yet, if I call stop() on an individual source directly within the playSound() functions, they stop without any issues. I cannot figure out what the problem is. I am also aware that I could simply turn down the volume, but that doesn't seem like a proper solution to the problem. function audioContextCheck() { if(typeof AudioContext !== \"undefined\") { return new AudioContext(); } else if(typeof webkitAudioContext !== \"undefined\") { return new webkitAudioContext(); } else if(typeof mozAudioContext !== \"undefined\") { return new mozAudioContext(); } else { return false; } } var volumeAudio = 1; var sources = []; var context = audioContextCheck(); var gainNode; if(context) { gainNode = context.createGain(); gainNode.connect(context.destination); gainNode.gain.value = volumeAudio; } function stopAudio() { console.log(\"function: stopAudio\"); if(typeof sources !== 'undefined' && sources.length > 0) { for(var i = 0, len = sources.length; i < len; i++) { if(sources.indexOf(sources[i]) > -1) { sources[i].stop(); sources[i].disconnect(); sources.splice(sources[i], 1); } } } } function playAudio(url) { console.log(\"function: playAudio\"); if(!url || !context) { console.log(\"Audio not loaded\"); return; } var source = context.createBufferSource(); source.buffer = url; source.connect(gainNode); source.start(); sources.push(source); event(source, 'ended', function(e) { source.stop(); source.disconnect(); if(sources.indexOf(source) > -1) { sources.splice(source, 1); } }); } The code does not include decodeAudioData , as I perform that step beforehand. There are no issues with audio playback.",
+    "developer": "youkeow",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "86"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

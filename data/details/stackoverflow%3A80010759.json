@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "The code below contains a asynchronous def that sends a request to a OAuth2 server endpoint and when the server returns 200 , the client is redirected to the given redirect point called redirect_uri which is inside of params and inserts two parameters at the url which are code and state ( state is optional based off the API's official documents). async def get_access_token(self, refreshing): async with self.session.get(\"oauth2 api endpoint\", params={ \"response_type\": \"code\", \"client_id\": self.client_id, \"redirect_uri\": \"https://example.com\" # << Redirected automatically to this when the response is 200. }, headers={ \"Content-Type\": \"application/json\", \"User-Agents\": \"api/v0.0.1a\" }) as response: self.__log(response.url, \"info\") if response.status == 200: self.access_token = response.url.query.get(\"code\") # << Get code paramater here return self.access_token else: self.__log(f\"Server returned {response.status} and {response.json if not response.text else response.text}.\", \"err\") The main issue here is that the response.url doesn't change to redirect_uri to retrieve the parameters using url.query.get on the code but it's root API page. Example: GET >> \"https://api.web/login\" >> if 200 >> \"https://redirecting.url/?code=placeholder&state=placeholder\" >> but instead >> \"https://api.web/onboarding\" == the value for response.url (Disclaimer: this code belongs into a class , which explains why there's self and a private function being called in this function and it can be ignored)",
     "developer": "noseii",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "133"
+        "value": "185"
       },
       {
         "label": "状态",

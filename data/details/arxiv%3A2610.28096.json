@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.28096",
+  "sourceItemId": "2610.28096",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.28096",
+  "detail": {
+    "longDescription": "arXiv:2610.28096v1 Announce Type: new Abstract: Sparse attention reduces the computational cost of long-sequence video Transformers, but three-dimensional token layouts often leave selected blocks partially occupied, wasting physical tile capacity. We present KPage, a block-sparse attention scheme that packs valid 16-row K/V pages across logical-block boundaries into large tiles directly during loading, without materializing compacted tensors in high-bandwidth memory. KPage also routes Q blocks between 64x256 and 128x128 tiles to reduce query-side padding. Exact masking and K/V-owned page packing preserve the original sparse graph in forward and backward execution. Across five representative workloads, KPage achieves 1.35x-2.06x bare forward-kernel speedup over NVIDIA Block-Sparse Attention (BSA), with a geometric mean of 1.77x. It is near parity for fully occupied blocks (1.03x) but achieves 2.29x geometric-mean speedup on 3D layouts with partial blocks. KPage reduces physical query-key pair capacity from 334.1G to 177.5G while preserving 160.6G useful interactions. Across eight layouts from open-source SSTA, STA, and VSA systems, KPage achieves 1.13x-4.25x forward and 1.02x-2.71x forward-plus-backward speedup over the strongest exact sparse baselines. With independent Q/K partitions, KPage also achieves 1.49x speedup over the strongest exact sparse baseline and 1.57x over BSA on the SVG2 Wan 14B/720p configuration. After compliance review, we will open-source KPage and submit a pull request to NVIDIA cuDNN Frontend.",
+    "developer": "Junwei Feng, Qiaorui Chen, Chenyu Liang, Zhen Guo, Jingyi Yang, Xiaoling Zhou, Jiahao Zhang, Dongliang Huang, Yiqiao Liao, Chengru Song",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Junwei Feng, Qiaorui Chen, Chenyu Liang, Zhen Guo, Jingyi Yang, Xiaoling Zhou, Jiahao Zhang, Dongliang Huang, Yiqiao Liao, Chengru Song"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

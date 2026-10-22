@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.27325",
+  "sourceItemId": "2610.27325",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.27325",
+  "detail": {
+    "longDescription": "arXiv:2610.27325v1 Announce Type: new Abstract: Rust is increasingly used in Linux to improve memory safety, but its guarantees do not prevent logical races: individually synchronized operations can still interleave in ways that violate higher-level invariants. Detecting such bugs typically requires manually written specifications and carefully controlled execution environments. We present XRust, a technique for detecting logical races in Linux Rust drivers without manually specified invariants. Using Logical Happens-Before (LHB) analysis, XRust identifies shared-state accesses relevant to logical ordering, automatically constructs operation-pair harnesses, and uses serial differential oracles to detect concurrent executions inconsistent with either serial order. XRust also uses lightweight userspace abstractions to execute driver code under reproducible schedules. Applied to Linux 7.3-rc2, XRust identifies 17 shared objects across 102 Rust files from ten drivers, constructs 1,654 executable harnesses, and discovers two previously unknown logical races. The rnull block-driver race has been confirmed by Linux maintainers, with a fix accepted into the Linux block subsystem tree.",
+    "developer": "Qingxiao Xu, Ze Sheng, Zhicheng Chen, Arjun Manikandan, Jeff Huang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Qingxiao Xu, Ze Sheng, Zhicheng Chen, Arjun Manikandan, Jeff Huang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

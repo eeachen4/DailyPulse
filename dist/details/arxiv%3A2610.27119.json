@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.27119",
+  "sourceItemId": "2610.27119",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.27119",
+  "detail": {
+    "longDescription": "arXiv:2610.27119v1 Announce Type: new Abstract: LLM agents perform tasks over multiple steps and revise their actions based on feedback. As the total reasoning budget is often limited and must support future steps, the agent must choose between short and long reasoning before each action. Longer reasoning may improve the final task outcome by preventing later errors, but it also uses budget capacity that may be needed for future decisions. This creates two challenges: estimating the downstream value of long reasoning and deciding when that value is worth using the remaining budget. We propose Paired Outcome-guided Reasoning Allocation (PORA), which learns this decision by comparing short and long reasoning from the same interaction state. During training, \\method{} completes the task twice from each selected state, once with a short reasoning allowance and once with a long allowance, and compares their final quality and total processing to estimate when longer reasoning is valuable. During inference, a controller weighs this estimate against learned prices on remaining-budget pressure and chooses either short or long reasoning without running both alternatives. We evaluate PORA across application, memory, code, retail, and mathematics tasks, achieving strong results across all settings. On BFCL memory, it exceeds the strongest existing method by 17.4--32.9 percentage points. Within the same agent, it matches or exceeds always using long reasoning on code and mathematics with 50.6% fewer actor tokens and 31.2% fewer model requests, respectively.",
+    "developer": "Bo Yan, Qi Zhang, Zhen Tan, Tianlong Chen, Song Wang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Bo Yan, Qi Zhang, Zhen Tan, Tianlong Chen, Song Wang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

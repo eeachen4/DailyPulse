@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011542",
+  "sourceItemId": "80011542",
+  "sourceUrl": "https://stackoverflow.com/questions/80011542/how-can-chrome-s-built-in-pdf-viewer-download-button-use-a-custom-filename-for-a",
+  "detail": {
+    "longDescription": "I show a PDF from my backend in an <iframe> using Chrome's built-in PDF viewer. The endpoint requires a bearer token, so Angular fetches the PDF as a Blob and gives the iframe a blob: URL. The PDF displays correctly, but the viewer's own download icon (and \"Save as...\") saves it with the blob's UUID, for example cda675a6-10af-42f3-aa68-8795aa8c377d.pdf , instead of the custom name my backend sends. How can the download button of the native PDF viewer produce the custom file name? A custom download button ( <a download> ) is not an acceptable fix, because the viewer's own button stays visible and users will keep using it. Backend (Python/Quart): @bp.route(\"/<equipment_id>/equipment_pdf_preview\") @authorization.needs_authorization async def preview_equipment_pdf_preview(equipment_id, *args, **kwargs): equipment = equipments_service.get_by_id(equipment_id) if equipment is None: return to_response(f\"No equipment found with id {equipment_id}\", 404) pdf = get_equipment_file(equipment_id, watermark_text=\"IN PLANNING\") pdf_bytes = pdf.output() response = make_response(bytes(pdf_bytes)) file_name = f\"{equipment.name}.pdf\" response.headers[\"Content-Type\"] = \"application/pdf\" response.headers[\"Content-Disposition\"] = f'inline; filename=\"{file_name}\"' response.headers[\"Access-Control-Expose-Headers\"] = \"Content-Disposition\" return response Angular service (simplified): getPdfPreview(id: number): Observable<Blob> { return this.http.get(`${this.baseUrl}/${id}/equipment_pdf_preview`, { responseType: 'blob' }); } Angular component: viewPdf(equipment_id: number): void { this.equipmentService.getPdfPreview(equipment_id).subscribe({ next: (blob: Blob) => { this.pdfBlob = blob; const objectUrl = URL.createObjectURL(blob); this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(objectUrl); }, error: (err) => { console.error(err); this.pdfUrl = null; this.snackbar.open('Failed to load PDF preview.', 'Okay', { duration: 2500 }); }, }); } Template (simplified): <iframe [src]=\"pdfUrl\" width=\"100%\" height=\"800\"></iframe> What I observed: In DevTools > Network, the response has the correct Content-Disposition . With observe: 'response' , Angular also reads the right file name, so the header is not lost on the way to Angular. The viewer's toolbar title and its download name are the blob UUID. As far as I can tell from Chromium's pdf_viewer.ts , the viewer takes the file name from the URL it loaded and ignores the query and fragment. Because it is only given blob:http://.../<uuid> , it never sees the header. Is that understanding correct? I tried: Header plus Access-Control-Expose-Headers , read in Angular (above). The name reaches Angular, but it has no effect on the viewer. Service worker + Cache API serving a fake URL ending in the file name, as in the top answer to Can I set the filename of a PDF object displayed in Chrome? . The viewer shows the right name, but clicking its download button offers an .htm document instead of a PDF. That answer's own edit and comments report the same: the worker never sees the download request. This matches Chromium issue 40410035 , where the fetch event does not fire for browser-initiated downloads. Is there any way to make Chrome's built-in PDF viewer use a custom file name for its own download button when the PDF can only be fetched with an Authorization header? If it is impossible with blob URLs, what is the recommended way to serve this PDF from a real URL whose last path segment is the file name, while keeping Bearer authentication and without a custom download button? For example, a short-lived signed URL or a scoped cookie. What pitfalls should I expect, such as the viewer requesting the URL again on download, or range requests? Can I set the filename of a PDF object displayed in Chrome? and Set the default save as name for a an <embed> or <iframe> that uses a Blob say it is impossible with blob URLs or suggest the service worker trick, which fails on the viewer's download button. They do not cover an authenticated endpoint, where an iframe cannot send the Authorization header.",
+    "developer": "Monark Bhardwaj",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "88"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.28212",
+  "sourceItemId": "2610.28212",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.28212",
+  "detail": {
+    "longDescription": "arXiv:2610.28212v1 Announce Type: new Abstract: ExeBench is one of the most widely used benchmarks for evaluating LLM-based decompilers. We analyze ExeBench and identify nine issues that affect how faithfully a test measures a decompiler. Three of them prevent LLM decompilers from recovering C code from ExeBench's function. These are ambiguous parameter order when integer and floating-point types are mixed, unused parameters that optimized assembly may drop, and constants stored outside the function's assembly code. Six more affect test validity: non-void functions without a return, placeholder types, static or inline functions removed by the optimizer, functions named main, trivial bodies and truncated definitions. We present ExeBench-FHD, a backward-compatible revision of ExeBench that adds 16 new fields: call-site assembly, data sections, test wrappers, linked-binary disassembly and five warning flags. In ExeBench, 38.9% of functions have at least one of the five flags; dropping records with any of the four warning flags (all except unused_param, which marks functions that the new wrappers make evaluable) keeps 63.9% of the corpus. In an evaluation at -O2 on four architectures, the new fields raise GPT 6 Sol's re-execution rate by up to 26.5%, 19.1% and 21.0% on functions that read data sections, mix parameter types and have unused parameters, respectively.",
+    "developer": "Akarsh Ashok, Dinil Mon Divakaran, Vivek Balachandran",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.LG, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Akarsh Ashok, Dinil Mon Divakaran, Vivek Balachandran"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.27971",
+  "sourceItemId": "2610.27971",
+  "fetchedAt": "2026-10-22T01:48:18.384Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.27971",
+  "detail": {
+    "longDescription": "arXiv:2610.27971v1 Announce Type: cross Abstract: In industrial cells, commands from learned policies, operators and schedulers reach the controller after inference, confirmation and transport, and the plant may have changed meanwhile, for instance by an operator pause. Such a command is released, or takes effect, when it is no longer correct. We call this the execution gap and ask which component should make the last check, and against which version of which state. The Action Intent Schema (AIS) is a contract in which a producer states how long its decision stays valid and what it assumes. The runtime XAIR rechecks each intent before release, can commit its authorization atomically in the context store, and can release it as a version-conditional command, which the controller executes only if its version of the state is unchanged. In controlled ablations with declared ground truth on emulated and physical cells, OpenPLC and ARM and RISC-V boards, a check on a replica always left an unprotected interval: a pause written from a few to over 100ms after submission escaped it. Only a check in the scan of a software controller, either a controller-local interlock or the version-conditional command, closed the interval for the state that controller owns; only the version-conditional command also refused commands after a pause that had been undone. A global version revoked up to every valid command under unrelated updates. Versions scoped to what the intent reads, or to the truth of its predicates, did not; with continuous signals on the variables the intent reads, only the latter avoided false revocations, though it burdens the store as predicates accumulate. On one embedded-board core, XAIR validated 148-168 intents/s.",
+    "developer": "Luca D'Agati, Giuseppe Tricomi, Fabio Orazio Mirto, Giovanni Merlino",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.CR, cs.DC, cs.SY, eess.SY"
+      },
+      {
+        "label": "第一作者",
+        "value": "Luca D'Agati, Giuseppe Tricomi, Fabio Orazio Mirto, Giovanni Merlino"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
