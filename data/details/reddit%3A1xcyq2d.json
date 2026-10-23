@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcyq2d",
+  "sourceItemId": "1xcyq2d",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xcyq2d/i_built_a_0dependency_python_tool_that_cuts_agent/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\n\n\nWhen building agents that interact with external APIs (GitHub, Jira, Stripe, or internal microservices), tool outputs frequently flood the context window with hundreds of tokens of metadata: avatar URLs, HATEOAS links, node IDs, and null keys.\n\n\n\nThe common pattern of using an auxiliary model (like GPT-4o-mini) to summarize tool outputs before feeding them to the primary agent introduces 500ms–2s of external network latency and recurring API charges.\n\n\n\nI built \\*\\*TokenPrune\\*\\*, an open-source, zero-dependency Python package that executes deterministic, in-memory pruning and table compression:\n\n\n\n\\`\\`\\`bash\n\npip install tokenprune\n\n\\`\\`\\`\n\n\n\n\\### Quick Example\n\n\n\n\\`\\`\\`python\n\nfrom tokenprune import prune\\_tool\n\n\n\nu/prune_tool\n\ndef fetch\\_system\\_logs():\n\nreturn {\n\n\"cluster\\_id\": \"us-east-1\",\n\n\"service\\_url\": \"\\[https://internal.aws/k8s/node/12\\](https://internal.aws/k8s/node/12)\",\n\n\"health\": \"degraded\",\n\n\"errors\": \\[\n\n{\"code\": 500, \"reason\": \"Database connection pool exhausted\", \"doc\\_url\": \"\\[https://docs.internal/500\\](https://docs.internal/500)\"},\n\n{\"code\": 503, \"reason\": \"Upstream timeout\", \"doc\\_url\": \"\\[https://docs.internal/503\\](https://docs.internal/503)\"}\n\n\\],\n\n\"debug\\_trace\": None\n\n}\n\n\n\nprint(fetch\\_system\\_logs())\n\n\\`\\`\\`\n\n\n\n\\*\\*Pruned YAML output injected directly into the LLM prompt:\\*\\*\n\n\\`\\`\\`yaml\n\ncluster\\_id: us-east-1\n\nservice\\_url: \\[https://internal.aws/k8s/node/12\\](https://internal.aws/k8s/node/12)\n\nhealth: degraded\n\nerrors:\n\n  \\[table: code, reason, doc\\_url\\]\n\n  \\- 500, Database connection pool exhausted, \\[https://docs.internal/500\\](https://docs.internal/500)\n\n  \\- 503, Upstream timeout, \\[https://docs.internal/503\\](https://docs.internal/503)\n\n\\`\\`\\`\n\n\n\n\\### Benchmarks\n\n\\- \\*\\*Token reduction:\\*\\* 70–90% on enterprise API payloads.\n\n\\- \\*\\*Runtime overhead:\\*\\* < 0.5 ms (AST tree-shaking in pure Python standard library).\n\n\\- \\*\\*External API calls:\\*\\* 0.\n\n\n\n\\- \\*\\*GitHub:\\*\\* [https://github.com/GeekyMK/tokenprune](https://github.com/GeekyMK/tokenprune)\n\n\\- \\*\\*PyPI:\\*\\* [https://pypi.org/project/tokenprune/](https://pypi.org/project/tokenprune/)\n\n\n\nI would love to hear feedback from anyone running agent workflows on where the heuristics break or what schema formats you deal with most often.",
+    "developer": "Bubbly_Strike8915",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcmyts",
+  "sourceItemId": "1xcmyts",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xcmyts/anyone_experienced_docker_dnsnetworking_issues/",
+  "detail": {
+    "longDescription": "I’m running a DS423+ on DSM 7.2.2 with Container Manager (Docker 24.0.2), and I’ve been dealing with some frustrating Docker networking issues.  \nRecently had to do some recovery work after a Plex security incident, which involved restarting Docker. Since then, multiple containers (Immich, Paperless, Karakeep, etc.) have had issues communicating with their dependencies.  \nFor example, Immich couldn’t resolve its PostgreSQL container (ENOTFOUND database), and Paperless couldn’t resolve Redis/PostgreSQL. Some containers even show the correct network aliases in Docker metadata, but DNS resolution still fails.  \nI’ve been able to temporarily fix things by reconnecting network endpoints or restarting affected containers, but other services keep showing the same problems.  \nLooking into it, I found [this Docker issue](https://github.com/moby/moby/issues/45646), which seems almost identical. I’m running Docker 24.0.2 with live-restore enabled, and the logs show the same failed to populate fields for osl sandbox errors.  \nHas anyone experienced this on Synology? I’m wondering if disabling live-restore, updating DSM/Container Manager, or something else would be the best long-term fix.  \nReally don’t want to keep playing whack-a-mole with individual containers every few days.",
+    "developer": "Sea-Survey8037",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

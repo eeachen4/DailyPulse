@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.29183",
+  "sourceItemId": "2610.29183",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.29183",
+  "detail": {
+    "longDescription": "arXiv:2610.29183v1 Announce Type: new Abstract: Executing vision-language models (VLMs) aboard low-Earth orbit satellites enables flexible processing of observation data without first downlinking it to the ground. On commercial off-the-shelf payloads, however, a request may span multiple execution windows: power and thermal constraints, fault-triggered reboots, and competing payload demands can interrupt inference before it completes. Each shutdown discards volatile activations and KV caches, forcing an unprotected request to repeat work after restart. We present OrbitWeaver, a framework that preserves VLM inference progress across onboard interruptions through coordinated checkpointing and recovery. Its phase-aware checkpointing selects recovery boundaries according to the state lifetimes and computational characteristics of vision encoding, language-model prefill, and decoding, balancing storage traffic against recomputation. Its dependency-aware dynamic recovery schedules restoration from partially completed states across the layer and token-chunk dimensions. By overlapping checkpoint and weight reads with recomputation, it reduces restart latency; the recovery planner computes an optimal execution order under its scheduling model within 100 ms. Experiments on satellite payload hardware using on-orbit telemetry traces show up to a 4.07-fold end-to-end speedup and a 3.56-fold reduction in SSD write volume over the evaluated baselines. A 72-hour deployment on two low-Earth orbit satellites demonstrates that OrbitWeaver retains inference progress and resumes execution across repeated bus-enforced shutdowns.",
+    "developer": "Xiaolong Huang, Yinyuan Zhang, Daliang Xu, Yun Ma, Qing Li, Mengwei Xu, Shangguang Wang, Gang Huang, Xuanzhe Liu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xiaolong Huang, Yinyuan Zhang, Daliang Xu, Yun Ma, Qing Li, Mengwei Xu, Shangguang Wang, Gang Huang, Xuanzhe Liu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

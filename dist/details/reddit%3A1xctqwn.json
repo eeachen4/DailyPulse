@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xctqwn",
+  "sourceItemId": "1xctqwn",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xctqwn/built_an_open_llm_cost_calculator_because/",
+  "detail": {
+    "longDescription": "Built a small browser tool to compare actual API bill math across the main models (Claude 3.7, GPT-4o, DeepSeek R1/V3, Gemini Flash) without needing an account or login.\n\nTwo things that annoyed me while putting the math together:\n\n1. Standard rules of thumb like \"1 token ≈ 4 characters\" are completely wrong once you deal with code indentation or non-Latin scripts (Arabic, CJK). For Arabic UTF-8, it's closer to 1.8 chars per token, which blows up pricing estimates fast if you're building multilingual RAG.  \n2. The price gap right now is wild. Running \\~15k calls/month on DeepSeek R1 or Gemini Flash comes out to coffee money (<$40/mo), while the exact same token volume on Sonnet 3.7 or GPT-4o hits $170–$250/mo.\n\nIt runs 100% client-side with a slider for input/output tokens and calls/day, plus a quick benchmark table:\n\nhttps://gateofai.com/llm-cost-calculator/\n\nWould love feedback on the token heuristic formula from anyone handling non-Latin or code-heavy payloads. Let me know what models I should add next.",
+    "developer": "Moham-saed",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

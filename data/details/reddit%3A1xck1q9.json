@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xck1q9",
+  "sourceItemId": "1xck1q9",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xck1q9/java_based_numerical_library_can_java_give/",
+  "detail": {
+    "longDescription": "JNum is high performance math library written purely in Java using FFM(off heap allocation) and Vector API(SIMD). \n\nPerformance is comparable to Numpy. So what other programming language devs out there what do you guys think about using a project which is in your own language vs written in other language? And JVM devs will you guys use a Java project which gives on par performance to Python wrappers?  \n  \nWe have Gonum in Go, ndarray in Rust etc so is anyone using those over numpy?  \n\nAlso Check out JNum's internal docs which talk about technical ways project tries to get it's performance in Java to match on par to traditional native wrappers.\n\n[https://github.com/CH-Abhinav/JNum/tree/main/docs/internals](https://github.com/CH-Abhinav/JNum/tree/main/docs/internals)\n\n  \nThis docs talks about how JNum's matrix multiplication, off heap allocation, index calculations etc are done. While I was doing research on this topic I found out that Java's arrays are not flat like native C/C++ arrays . I knew arrays in Java are object's but array of array/2D arrays are just linked list of arrays effectively making arrays in Java completely useless when you want to write performant . This is why I needed to make my own Array or NDArray which is flat and works well and I can align the memory as I want! ",
+    "externalUrl": "https://github.com/CH-Abhinav/JNum/releases/tag/v0.2.0",
+    "developer": "CutGroundbreaking305",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

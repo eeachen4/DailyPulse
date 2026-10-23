@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcyswp",
+  "sourceItemId": "1xcyswp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xcyswp/i_built_a_compiler_for_agent_specs_because_my/",
+  "detail": {
+    "longDescription": "Kept running into the same thing with coding agents. I'd write the rule down in the spec (\"a refund never exceeds the captured amount\"), the agent would build the feature, tests pass, and the rule just... never got applied. Nothing failed so nobody noticed.\n\nThe problem is the spec is Markdown. The agent reads it like advice. Nothing checks that a rule is actually enforced somewhere, that there's a test for it, or that a reference even points at something real.\n\nSo I've been building SpecForge, an open-source compiler for specs (Rust). The agent writes the spec as small structured files instead of prose:\n\n```\ninvariant refund_within_capture \"Refunds never exceed the captured amount\" {\n  guarantee \"A refund larger than the capture is rejected\"\n  risk high\n  verify unit \"rejects a refund larger than the captured amount\"\n}\n\nbehavior issue_refund \"Refund a captured payment\" {\n  invariants [refund_within_capture]\n  produces   [refund_isued]\n}\n\nevent refund_issued \"A refund was issued\"\n```\n\nand `specforge check` catches stuff like:\n\n```\n[E003] unresolved reference 'refund_isued' in 'issue_refund'\n  Help: did you mean 'refund_issued'?\n[W007] event 'refund_issued' is not produced by any behavior\n```\n\nNo LLM in the checker, so same spec = same verdict every time. That matters if you want the agent to loop on it until it's clean.\n\nHow I use it: agent drafts the spec, check runs, agent builds against the checked spec (it queries it over MCP instead of re-reading a giant doc), then I look at what's promised vs what's actually proven by tests that ran.\n\nHonest limitation: right now \"proven\" means a named test ran and passed, not that the test really checks the behaviour. Working on that next.\n\nRepo: https://github.com/leaderiop/SpecForge (pre-release)\n\nCurious how people here handle this. Do you trust the agent to follow a Markdown spec, or do you have something that actually enforces it? And where would you run a check like this: before the agent starts, as a hook before it says \"done\", or in CI?\n",
+    "externalUrl": "https://v.redd.it/0tdjdmifx3xh1",
+    "developer": "JealousFix4955",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

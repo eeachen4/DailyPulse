@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50201860",
+  "sourceItemId": "50201860",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50201860",
+  "detail": {
+    "longDescription": "Hey HN, we recently open sourced our Consumer Agent Testing Tool to help teams iterate against proprietary assistants like Muse and Instinct. We built this to reduce our own frustrations with building an MCP&#x2F;API for these agents to consume. The problem: testing against these tools is hard! Agent memory + account statefulness make reproducibility, in the ways required for repeatable&#x2F;reliable outcomes, between agents and the APIs&#x2F;MCPs they interact with very challenging. The solution: CATT lets devs test their services against a surrogate Muse or Instinct agent (not affiliated with either of these companies). Testers define starting conditions, approvals, and success conditions for their service&#x27;s state. CATT then records the full interaction (incl. tool calls, responses) so it can diff what happened from what the agent reports. Runs can be tested in local builds or via CI, with or without LLM backing. CATT is designed to emulate the important parts of personal assistant interactions. Its got: - Tool calls and command-line tool access - Simulated approvals for service actions - Outcomes tracking and comparison - Optional MCP profile based on an unofficial Muse template There are limitations to how much we know about different assistant specific behaviors so the tool labels its assumptions as `documented`, `unofficial`, `assumed` or `unknown` for developer review. We&#x27;ll do our best to keep the tool updated as new insights about the internal workings of these assistants come to light. It is an area of active research and interest, a good example is this recent report on how Instinct uses Exa for web search [0]. Are you building a connector or MCP? If yes, we&#x27;d like to hear from you! Have you had assistants behave incoherently, use stale information, or procalim success without evidence? What else should we add tests for? The best way to get started is...to point your coding assistant at the repo and ask it to integrate the tool with your CI or local testing pipeline! Hope it&#x27;s helpful! [0]: https:&#x2F;&#x2F;www.sunbeam.ai&#x2F;thoughts&#x2F;instinct-is-using-exa-for-we...",
+    "externalUrl": "https://github.com/Coverage-Cat/consumer-agent-testing-tool",
+    "developer": "botacode",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

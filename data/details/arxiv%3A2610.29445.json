@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.29445",
+  "sourceItemId": "2610.29445",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.29445",
+  "detail": {
+    "longDescription": "arXiv:2610.29445v1 Announce Type: cross Abstract: The Open Compute Project's microscaling (MX) family includes MXFP4, which stores 32 four-bit elements with a shared power-of-two scale. When lowering a dot-product reduction, a compiler can apply these scales before the reduction, or defer scaling until afterwards. Although equivalent over real numbers, these formulations can produce different IEEE binary32 results through overflow or underflow, with equivalence also depending on the reduction tree. We study the legality of compiler rewrites in either direction by deriving conditions under which the two formulations are bitwise equivalent. To decide rewrite legality, we construct an integer state machine that exploits the finite element alphabet and shared power-of-two scales, modeling overflow, NaN, and subnormal rounding. We prove its faithfulness under bounded scale codes and integer coefficients, yielding an exact encoding of the equivalence query in quantifier-free linear integer arithmetic (QF_LIA). For MXFP4, we derive a closed-form sufficient upper bound on the sum of scale exponents for any fixed binary reduction tree within the supported coefficient range. This bound depends on the size of the largest proper subtree. For four tree shapes at block lengths $k\\in\\{2,3,4,8,16,32\\}$ and two shapes at $k=64$, SMT finds counterexamples when this upper bound is increased by one exponent step. Against the standard direct encoding in quantifier-free floating-point arithmetic (QF_FP), on matched queries cvc5 proves the integer version in seconds but reaches a configured one-CPU-hour limit on the floating-point proof even at $k=2$. The implementation was cross-checked using an independent floating-point encoding, exhaustive and stratified binary32 execution, and GPU replay of counterexamples. An MLIR lowering prototype demonstrates selection between the two formulations using the certified conditions as static or runtime guards.",
+    "developer": "Shreyas Vinayakumar",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LO, cs.AR, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shreyas Vinayakumar"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

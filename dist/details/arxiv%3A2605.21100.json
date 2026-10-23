@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.21100",
+  "sourceItemId": "2605.21100",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.21100",
+  "detail": {
+    "longDescription": "arXiv:2605.21100v2 Announce Type: replace Abstract: Modern serving systems for Mixture-of-Experts (MoE) models adopt hybrid data-expert parallelism: expert parallelism (EP) shards experts across GPUs to scale capacity, while data parallelism (DP) replicates attention layers across instances to process independent requests. Existing systems bind each request's attention, MoE communication, and KV cache to a single instance. Because attention latency scales with KV cache size while MoE communication latency scales with batch size, this binding cannot balance both simultaneously, producing EP stragglers; it also fragments KV memory across instances, inflating tail latency under long contexts. While existing context parallelism (CP) mitigates these constraints, existing group-level and uniform CP designs incur prohibitive communication and attention-side overheads. We present NanoCP, which decouples MoE communication from KV cache placement and achieves dual balance through dynamic context parallelism (DCP). DCP assigns each request a context-parallel degree sized to its KV footprint: long requests distribute attention across multiple instances; short requests remain local. This dynamic parallelism effectively liquefies the KV cache across DP instances within each node, balancing both the per-instance KV cache occupancy and batch sizes without unnecessary load-balancing costs. To bridge DCP with static execution, NanoCP introduces an ahead-of-time (AOT) graph engine paired with a custom routing-based communication backend. Experimental results show that, under 99% TPOT-SLO attainment, NanoCP achieves $3.27\\times$ and $2.11\\times$ the maximum sustainable request rate of the best-performing vLLM baseline on the DeepSeek-V3 Issue 1% and Issue 5% workloads, respectively, while reducing P99 TPOT by $1.94\\times$ and $2.01\\times$ on the same two workloads, respectively.",
+    "developer": "Jiefei Chen, Binbin Lin, Jinming Ma, Jiangfei Duan, Haojie Duanmu, Hao Liu, Qinxiu Cheng, Xiuhong Li, Zhilin Pei, Hui Wang, Xingcheng Zhang, Dahua Lin",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jiefei Chen, Binbin Lin, Jinming Ma, Jiangfei Duan, Haojie Duanmu, Hao Liu, Qinxiu Cheng, Xiuhong Li, Zhilin Pei, Hui Wang, Xingcheng Zhang, Dahua Lin"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

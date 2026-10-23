@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xczzvf",
+  "sourceItemId": "1xczzvf",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xczzvf/skilled_an_opensource_regression_test_loop_for/",
+  "detail": {
+    "longDescription": "I'm building skillEd, an Apache-2.0 evaluation toolkit for reusable agent skills. The problem it targets is repetitive work where a plausible answer can still violate a written policy.\n\n\n\nA concrete example in the repo is a refund skill that refunded shipping, rounded up and applied a 14-day cutoff instead of 30 days. Fixing its wording is only half the job: the same cases need to run again so a local fix doesn't hide another regression.\n\n\n\nThe workflow keeps YAML cases and fixtures alongside `SKILL.md`, validates them, saves a baseline, then compares the revised skill on unchanged cases plus separate holdouts. Exact assertions and scripts can check amounts and saved outputs; model judges are available for qualitative checks. Reports are JSON, HTML and JUnit. CLI and MCP routes let a coding agent run this loop and inspect the evidence.\n\n\n\nFor a policy task, I'd start with boundary dates, excluded charges, missing inputs and conflicting follow-up instructions. Keep expected answers independent of the skill being revised.\n\n\n\nThis is test evidence, not production permission enforcement or a guarantee of compliance. Live engine usage still follows your provider's billing and limits.\n\n\n\nSource, documented example and setup: [https://github.com/DeadHead04/skillEd](https://github.com/DeadHead04/skillEd)\n\n\n\nTry it with a synthetic policy task; a reproducible failing case would help improve the project. If useful, a GitHub star would help.\n\n\n\nAI-assisted write-up; feature claims are grounded in the linked public README.",
+    "developer": "MiserableFlatworm337",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

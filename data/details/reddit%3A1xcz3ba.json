@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcz3ba",
+  "sourceItemId": "1xcz3ba",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xcz3ba/how_do_you_run_a_host_command_on_every_node/",
+  "detail": {
+    "longDescription": "`kubectl debug node/<name>` puts the node's root filesystem at /host, but the pod isn't privileged, so `chroot /host` fails unless you add `--profile=sysadmin`. It also works one node at a time and leaves the pod behind until you delete it. When you need `journalctl -u kubelet` from every GPU node, what do you run, and who gets to run it?",
+    "developer": "Silva-Engineer",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcpbk6",
+  "sourceItemId": "1xcpbk6",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xcpbk6/one_way_to_run_image_security_checks_for_spring/",
+  "detail": {
+    "longDescription": "I kept running image scans one way on my laptop and another way in GitHub Actions, and the results never quite matched. So I put the checks in one container. You hand it the image tar you just built and it runs vulnerabilities, secrets, misconfiguration, SBOM, licences and malware, then gives one verdict. Same command on my laptop and in the pipeline, same answer.\n\nTwo things I cared about while building it. Every check has to show it actually did something before it can pass, because I have seen a scan go green with nothing scanned. And the policy lives in a small yaml next to the Dockerfile, where an accepted CVE needs a reason and an expiry date, so nothing gets waved through forever. It is Trivy and ClamAV underneath, nothing exotic. My own Spring Boot service goes through it now. \n\n(repo and package link in comment)\n\nWould something like this fit how you work, or do you already have it covered?\n\n",
+    "developer": "quiet_flare",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011084",
+  "sourceItemId": "80011084",
+  "sourceUrl": "https://stackoverflow.com/questions/80011084/how-to-make-clipboard-work-on-playwright",
+  "detail": {
+    "longDescription": "I am not able to make a simple copy-paste work in Playwright. My test looks like this: import os from 'os'; const platform = os.platform(); const ctrl = platform === \"darwin\" ? \"Meta\" : \"Control\"; export const SELECT_ALL_SHORTCUT = `${ctrl}+KeyA`; export const BACKSPACE_KEY = \"Backspace\"; export const ENTER_KEY = \"Enter\"; export const COPY_SHORTCUT = `${ctrl}+KeyC`; export const PASTE_SHORTCUT = `${ctrl}+KeyV`; export const END_KEY = \"End\"; test(`Snippet creation and usage from case closing page (${tenant.name})`, async ({ browser }) => { const context = await browser.newContext(); await context.grantPermissions([\"clipboard-read\", \"clipboard-write\"], { origin: \"https://staging.something.something.cloud\" },); const page = await context.newPage(); await test.step(\"edit and copy formatted content between fields\", async () => { // a text area const generalEval = page.getByTestId(\"general-evaluation-textarea\"); // another text area const treatmentRec = page.getByTestId(\"treatment-recommendation-textarea\"); await generalEval.click(); await page.keyboard.press(END_KEY); await page.keyboard.type(\" edited\"); await expect(generalEval).toContainText(\"edited\"); await generalEval.selectText(); await page.keyboard.press(COPY_SHORTCUT); // this to verify that clipboard ops are enabled -- FAILS const copied = await page.evaluate(() => navigator.clipboard.readText()); expect.soft(copied).toContain(\"edited\"); await treatmentRec.click(); await page.keyboard.press(END_KEY); await page.keyboard.press(ENTER_KEY); await page.keyboard.press(PASTE_SHORTCUT); // fails, end key and enter key work, but paste doesn't await expect(treatmentRec).toContainText(getRichText(snippet.evaluation)); await expect(treatmentRec).toContainText(\"edited\"); }); }); This is my package.json : { \"devDependencies\": { \"@types/node\": \"^18.11.18\" }, \"dependencies\": { \"@aws-sdk/client-s3\": \"^3.256.0\", \"@playwright/test\": \"^1.29.2\", \"@sentry/node\": \"^7.32.1\", \"@sentry/tracing\": \"^7.32.1\", \"body-parser\": \"^1.20.1\", \"dotenv\": \"^16.0.3\", \"express\": \"^4.18.2\", \"typescript\": \"^4.9.4\" } } I have tried everything, and found some similar issues online, such as this and tried all these but nothing seems to work, neither copy nor paste works.",
+    "developer": "Fi Li Ppo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "103"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

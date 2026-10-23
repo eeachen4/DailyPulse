@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcmiu5",
+  "sourceItemId": "1xcmiu5",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xcmiu5/i_run_production_on_k3s_on_a_single_ec2_box_for/",
+  "detail": {
+    "longDescription": "I got tired of paying the managed premium for boring workloads, so I moved a real production backend onto K3s on a single EC2 box. Total cost: $0.64/day, all in.\n\nWhat I expected to break: everything. What actually breaks is the disk first. One box means one disk, so I run automated snapshots and I test the restores, because a backup you never restored is a hope, not a backup.\n\nThen deploys. There is no rolling magic across nodes, so deploys are GitOps with health checks and automatic rollback. Boring on purpose.\n\nThe sneakiest one is my own complacency. The bill is so low you stop watching it, so I still run a weekly cost check, because the whole point dies the day something silently scales.\n\nWhat does not break: the app itself. K3s is boring in the best way once the manifests are right.\n\nThe honest catch: this is single-AZ by design. If you need multi-region failover, this is not your architecture. Most small workloads do not, and they pay the managed premium while running everything in one region anyway.\n\nWhat is the cheapest production setup you have actually trusted with real traffic?",
+    "developer": "PsychologicalFlan877",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

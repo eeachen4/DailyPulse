@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011954",
+  "sourceItemId": "80011954",
+  "sourceUrl": "https://stackoverflow.com/questions/80011954/minimize-code-duplication-across-electron-main-renderer-preload",
+  "detail": {
+    "longDescription": "I have a main-process Electron API that's meant to be exposed to the renderer process via what the Electron docs call two-way IPC , and I'm trying to figure out the best way to minimize repetition, boilerplate, and opportunities for mistakes. (This is just an example; one-way IPC in either direction faces the same problem.) Say I define an API that executes in the main process: // Interface can be shared among preload, main, and renderer interface MyApi { myProcedure: () => Promise<void> myFunction: (X) => Promise<Y> } // Class invokes main-process-only Electron and Node APIs, and // so can't be instantiated or imported in preload or renderer, // only in main process class MyApiImpl implements MyApi { myProcedure = async () => { … } myFunction = async (x: X) => { return y } } const apiImpl = new MyApiImpl() It turns out to be pretty easy to programmatically configure listener functions to handle API requests on the main-process side, and (this is important) in a way that the code doesn't need to be touched as new API methods are added: // Main-process code for (const [fname, fn] of Object.entries(apiImpl)) { // any new methods added to MyApiImpl will automatically get picked up ipcMain.handle(fname, async (_event, ...args) => await fn(...args)) } It also turns out to be pretty easy to call these from the renderer side, assuming all the ipcRenderer.invoke() work has been done in the preload script and follows the same naming conventions. // Renderer-process code type MyWindow = Window & typeof globalThis & { myApi: MyApi } const myWindow = globalThis as MyWindow const { myApi } = myWindow await myApi.myProcedure() const y: Y = await myApi.myFunction(x) However, there doesn't seem to be any obvious shortcut to wiring up those ipcRenderer.invoke operations — I have to write those out individually, repeating information that I've already captured twice (once in the MyApi interface, once in the MyApiImpl class). // preload.ts const api: MyApi = { myProcedure: ipcRenderer.invoke('myProcedure'), myFunction: (x: X) => ipcRenderer.invoke('myFunction', x) // any new methods added to MyApi have to be added here as well } contextBridge.exposeInMainWorld('myApi', api) (This has to be in preload.ts , AFAICT, because contextBridge , reasonably, isn't available from the main process.) The interface does at least let me check that I haven't omitted any calls, but it doesn't protect me from, for instance, using the wrong channel name myProcedure: (x: X) => ipcRenderer.invoke('myFunction' x), // ^ oops or forgetting an argument myProcedure: (x: X) => ipcRenderer.invoke('myProcedure') // ^ oops The problem I'm stuck with is that of the two places I've already captured the necessary information for the ipcRenderer.invoke mapping -- that is, the function / channel names, and the arguments (although I could probably get by with just the names and (...) => ipcRenderer.invoke('<name>', ...) , as with ipcMain.handle ), one, the MyApiImpl class, can't be loaded by preload.ts , and the other, the MyApi interface, is a TypeScript-only construct that's erased at run-time and so is effectively invisible to the preloading code (or any other runtime code). What's the best practice here? This feels like a problem that every Electron developer must have to solved somehow.",
+    "developer": "David Moles",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "30"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:50180280",
   "sourceItemId": "50180280",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50180280",
   "detail": {
     "longDescription": "We have built KeibiDrop because me and the people close to me were tired of cloud storages, and to copy data fully across our devices in order to use it. Now with KeibiDrop you can mount and stream folders between your computers (and web browser) access and edit data on-demand as if it was local. You can try it instantly in the browser https:&#x2F;&#x2F;web.keibidrop.com&#x2F; (you need two devices) or by building from source&#x2F; downloading from the github releases. (there are also demo recordings in the Readme on github). We also got a marketing website for it here: https:&#x2F;&#x2F;keibidrop.com The desktop app, engine and CLI are FOSS AGPL-v3 and in terms of architecture and stack the following holds: - It uses a full-duplex P2P IPv6 connection between peers with a fallback to a data forwarding relay. - We got a dual networking stack QUIC + TCP using protocol buffers (WebRTC to be added), and we use ML-KEM-1024 + X25519 for the handshake and either aes-gcm-256 or chacha20-poly1305 for the session, and we do a latency hiding re-key inspired by Signal&#x27;s SPQR. - it relies on FUSE, macFUSE, and WinFsp as filesystem drivers and the whole gist of it is to &quot;hide the latency&quot; of remote filesystems and to just give the feeling of teleporting files. - we use golang for the engine, and rust + slint.dev for the GUI Our goal was to have a lightweight, cross platform filesystem that does not use many resources, has the RAM usage bounded and gives the feeling as if working on a local filesystem. Currently the filesystem respects POSIX semantics, (except for symlinks and hardlinks, I have them disabled), and we tested it on intercontinental links (between Romania and Singapore), on both relayed connections and direct connections. You can use git, pijul, Premiere Pro, DaVinci Resolve or any tools you would normally use on your local computer, or use our docker image on your NAS storage and instantly access the data you need while you are travelling.",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "3"
+        "value": "4"
       },
       {
         "label": "评论",

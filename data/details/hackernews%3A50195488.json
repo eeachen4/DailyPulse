@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50195488",
+  "sourceItemId": "50195488",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50195488",
+  "detail": {
+    "longDescription": "Hi all I was pretty terrible at singing, now I’d say I’m bad but not terrible. This is because I’ve been using a singing app (won’t name it here) that scores me on my pitch and timing throughout the song so that I can improve. Lately however, the app I’ve been using has flooded their song list with songs that aren’t originals. I didn’t like this at all as for me, it’s easier to try to improve when you’re singing along to the original. So, I asked an agent (Claude Code) if it could write some code to listen to Spotify and also listen to me and see if it could detect both pitches and score me. It impressed me by writing some Python and showing me my pitch in the terminal! It couldn’t go all the way though and detect the singer’s pitch in real time. So I found the next best setup and built OnKey, a Mac app that needs to listen to the song once (it doesn’t save it) and then when it’s learnt the song (takes a couple of minutes), you can sing along to the pitch track that it’s learnt. OnKey is free to use and open source under the MIT license. It can listen to Spotify, Apple Music, and YouTube playing in your browser with the right permissions. During the build I found that someone had done something similar in Nightingale, but this requires a library of songs exported to disk and who has this in 2026 (maybe some of you ;) - but we need to help the normies too). You can check out a demo video on the site of me singing (warning given) here: https:&#x2F;&#x2F;singonkey.app The app sends out to find the song info (short Shazam fingerprint, and looks up song details), lyrics (from LRCLIB), and checks for updates. The app never sends the music (it doesn’t save this to disk) and your voice. Everything you’d expect to stay private does. It’s still weak in a few places: - when the song’s backing is noisy it’s hard to pick the pitch track out - sometimes it gets a note an octave off - it’s limited to Apple Silicon Macs, M1 or later, and only macOS 14.2 up because extra drivers aren’t required past this point - the scoring is built for beginners like me so it’s fairly easy on you Would love for people to try it out and let me know what works and what doesn’t for them!",
+    "externalUrl": "https://github.com/dsmurrell/onkey",
+    "developer": "dsmurrell",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

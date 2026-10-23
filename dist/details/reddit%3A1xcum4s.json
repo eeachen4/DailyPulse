@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcum4s",
+  "sourceItemId": "1xcum4s",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xcum4s/we_shrank_our_steerable_small_tts_to_1184_mb_wer/",
+  "detail": {
+    "longDescription": "A while back I posted SteerTTS v1, a small English TTS you steer with numbers ([https://huggingface.co/WhissleAI/steer-tts](https://huggingface.co/WhissleAI/steer-tts)). Today I am releasing the edge variant:\n\n[**https://huggingface.co/WhissleAI/steer-tts-edge**](https://huggingface.co/WhissleAI/steer-tts-edge)\n\n**Size:** everything an app has to ship (weights, voices, text front end and Python runtime) totals **11.84 MB**.\n\n**How:**\n\n* Acoustic model (9.25M params, attention + bidirectional Mamba-3) is quantization-aware trained to int4\n* 6.2M-param Vocos-style vocoder is distilled from `charactr/vocos-mel-24khz`, also int4 QAT\n* Text front end is pure numpy, with no NLTK, g2p\\_en, torchaudio or num2words at runtime\n\n**Quality** (Open TTS Leaderboard protocol, run locally, not an official submission):\n\n||Seed-TTS WER / UTMOS|CV3-Eval WER / UTMOS|\n|:-|:-|:-|\n|v1 fp32 (no refiner)|0.96% / 4.20|2.62% / 4.17|\n|**edge**|0.96% / 4.11|2.67% / 4.08|\n\n\n\nIntelligibility is essentially unchanged. UTMOS drops about 0.1, almost all of it from the small int4 vocoder.\n\n**Steering survives quantization.** Every one of the 12 controls (rate, loudness, pitch, pitch range, final rise, pauses, tilt, breathiness, and more) keeps at least 95% of its fp32 effect. You also get 50 style tags and inline markup:\n\n\n\n    Well, *that* was fast. [pause 400ms] <slow>Let me think.</slow> <whisper>Don't tell anyone.</whisper>\n\n\n\n**Speed** (CPU only, a 2018 Threadripper under load): RTF 0.053 with 4 threads (\\~19x realtime), \\~120 ms to first audio, with sentence-level streaming.\n\n\n\nBash\n\n    pip install .\n    steertts-edge \"Hello there, nice to meet you.\" -o hello.wav\n\n  \n**Limitations:**\n\n* English only, and 200 voices (a subset of the full model’s 2,825)\n* No voice cloning, free-text prompts or flow refiner on device. Those stay in the full model.\n* Weights are dequantized to fp32 at load, so the win is size, not speed. Unless we write new kernels for edge devices. \n* Emotion tags are mostly style switches, and `fast`/`anger` are weak\n\nI need feedback, especially on the vocoder quality gap and any edge targets you’d like to see (ONNX, mobile, WASM).\n\nSome examples here:\n\n[https://whissleai.github.io/steer-tts/](https://whissleai.github.io/steer-tts/)",
+    "developer": "Working_Hat5120",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50197889",
+  "sourceItemId": "50197889",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50197889",
+  "detail": {
+    "longDescription": "I&#x27;m the developer of NeoBox (https:&#x2F;&#x2F;neo-box.app). It&#x27;s a Neo Geo emulator frontend for Mac + iPhone + iPad as one universal app. I&#x27;m using Rupert Carmichael&#x27;s amazing Geolith library https:&#x2F;&#x2F;gitlab.com&#x2F;jgemu&#x2F;geolith for the actual emulation. I then have a Metal-backed rendering pipeline. Recent versions where I was porting NeoBox for iPhone and testing on my iPhone 15 Pro, I noticed it getting hot! Granted I&#x27;ve had the phone for a few years, but I was wondering if there were was something I could do about it. Enter Claude... Started profiling a frame and where time was being most spent, and it turns out that 81% of the frame time was being spent on signal masks . What this mean that a Neo Geo frame was taking 8.5 ms on Apple silicon . That&#x27;s all fine and dandy on my MacBook Pro with an M1 Max chip...but definitely was causing heat and battery drain issues on my iPhone. You would figure that most time should be on emulation time and not on two specifically on sigprocmask and sigalstack. Went deep with Claude and here&#x27;s what I learned: - How the CPU is being emulated, it traps errors before touching memory - Almost 25,000 times per frame! - The guard was using setjmp, which also saves the signal mask - But saving the mask was unnecessary, but that&#x27;s setjmp&#x27;s default behavior - There&#x27;s a variant _setjmp, that SKIPS that signal mask... and thus is WAY faster - measured on my iPhone: setjmp 281 ns per cal, _setjmp 2.1 ns per call - That&#x27;s around 130x improvement I&#x27;m happy to say that the change and improvement has been graciously merged upstream so anyone using Geolith can reap the benefits, not just NeoBox: https:&#x2F;&#x2F;gitlab.com&#x2F;jgemu&#x2F;geolith&#x2F;-&#x2F;merge_requests&#x2F;64 I just wanted to share this story as a gentle reminder to give back when you can graciously and without any sense of entitlement. AI can be a force for good should we choose it. Also it&#x27;s fun to freshen and learn more about OS primitives and syscalls :)",
+    "developer": "harisamin",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117486135244990535",
+  "sourceItemId": "mastodon.social/117486135244990535",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://pixelfed.social/p/sheepfreak/1018961488995172484",
+  "detail": {
+    "longDescription": "What was planned vs. what actually happened...\n\nSince this is my 500th post, I wanted to do something special: demonstrate ComfyUI running with ROCm on my RX 570 4GB, paired with an Intel Core i5-650 from 2010. The goal was to run modern AI image generation on a nearly 15-year-old PC!\n\nI even found a custom ROCm 7.14 build specifically for the RX 570's old gfx803 architecture and pulled its Docker image. But getting the software right wasn't enough.\n\nFirst, rocminfo inside Docker detected only the CPU. Then the host kernel log revealed the reason:\n\nkfd kfd: amdgpu: skipped device 1002:67df, PCI rejects atomics 730&lt;0\n\nI investigated further with lspci -vv. The RX 570 advertises some PCIe AtomicOps capabilities, but its parent PCIe root port, an Intel Core Processor PCI Express x16 Root Port, reports no AtomicOps support at all.\n\nSo the Docker image wasn't the problem. My ASUS P7P55D-E motherboard from 2009, my Intel Core i5-650 from 2010, or probably both are simply too old for this particular ROCm setup :(\n\nNo ComfyUI demo today. Fortunately, Vulkan-based image generation with stable-diffusion.cpp already works perfectly on this machine. The plan was to push the old hardware further with a more modern AI workflow, but PCIe had other ideas.\n\nAt least I found out why!\n\nAnd if you have no life whatsoever, but happen to have a Polaris GPU in a newer PC, feel free to pull ghcr.io/schaka/rocm-migraphx-ort-torch-builder:rocm7.14-gfx803 and give it a try xD\n\n#ROCm #AMD #RX570 #Polaris #LocalAI #Linux #ComfyUI #Hardware #OldHardware #Docker #FOSS #Opensource",
+    "developer": "@sheepfreak@pixelfed.social",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Pixelfed"
+      }
+    ]
+  }
+}

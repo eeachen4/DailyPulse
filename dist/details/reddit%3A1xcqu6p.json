@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcqu6p",
+  "sourceItemId": "1xcqu6p",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xcqu6p/i_didnt_want_to_rewrite_our_agents_onto_one/",
+  "detail": {
+    "longDescription": "Our stack is a mixed mess, some of them are on langgraph then one thing on the openai agents sdkthen a couple of random things a teammate built on vercel ai cause he was in a hurry\n\nand the problem with observability so far has been that every platform works best when you’re all-in on their ecosystem, so the price of actual useful traces was porting everything onto their sdk, which is a lot of rewrite just to figure out why an agent did that one weird thing in prod last tuesday\n\nwhat shifted my thinking was realising open telemetry is a way out of this. if a platform ingests otel traces your framework matters a lot less, you instrument each app, export spans in a common format, done. you still need the right instrumentation but you don’t have to pick one agent sdk and move everything onto it\n\nthe other half of this that nobody really talks about until it bites you is prompt versioning. when an agent does something dumb in production the first question is which prompt version and which model produced it, and if your prompts live in code with no history you’re doing git archaeology across three repos at midnight. you want versioned deployments you can actually diff and roll back without having to redeploy the whole thing skimmed thru a few options like langsmith has the smoothest path if you’re already a langchain or langgraph shop, and it supports otel. langfuse is solid on tracing, also supports otel. Orq AI has documented otel integrations for langgraph, vercel ai, pydantic ai, the openai agents sdk and agno which kinda matters as i could keep what we already have deployments have version history, you can diff between versions and restore an older one, and the experiments side lets you run prompts head to head. one caveat, the hosted SaaS runs on EU infra, which may or may not matter depending on your data stuff,  \n\nbut it's still on in theory and these looks good on paper but i'd rather ask here i anyone has ever used these before and for anyone else running a mixed agent setup, how are you actually doing this. all-in on otel, one platform’s sdk across everything, or stitching it together per agent. the per-agent thing is where we are and it’s getting really old",
+    "developer": "Swimming_Champion_75",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcoois",
+  "sourceItemId": "1xcoois",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xcoois/built_a_lightweight_15mb_ram_docker_compose_web/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI wanted a simple web UI to edit `compose.yaml` files and run `up -d` / `pull` without having to SSH into my server every time, but Portainer was overkill and Dockge pulls in a full Node.js runtime.\n\nSo I built **Composebox** — a single binary in Go with an embedded Svelte UI.\n\nGitHub: [https://github.com/composebox/composebox](https://github.com/composebox/composebox)\n\n**How it works:** There is no database. You just mount your stacks directory (`/stacks/<name>/compose.yaml`). If you edit a file directly from the CLI via nano or vim, the UI picks it up immediately.\n\nFeatures:\n\n* In-browser YAML & `.env` editor\n* Real-time container log streaming\n* Action console that streams live stdout/stderr when updating, starting, or pulling images\n* Uses \\~15MB RAM idle, container image is around 30MB\n* Single binary, builds for `amd64` and `arm64`\n\nQuick run:\n\n    docker run -d \\\n      --name composebox \\\n      -p 8086:8086 \\\n      -v /var/run/docker.sock:/var/run/docker.sock \\\n      -v /path/to/your/stacks:/stacks \\\n      ghcr.io/composebox/composebox:latest\n\nScreenshots and setup details are in the repo README.\n\nWould love any feedback or thoughts on it!",
+    "developer": "FeedbackNo7852",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

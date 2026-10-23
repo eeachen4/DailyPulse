@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcl8zo",
+  "sourceItemId": "1xcl8zo",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xcl8zo/after_the_opencode_breach_how_many_tools_hold_a/",
+  "detail": {
+    "longDescription": "OpenCode told some console users that a legacy system had been accessed and the OpenAI and Anthropic keys saved in their workspaces may be exposed which then linked to a large scale distillation attack with about 1.4% of console users, told to revoke and replace their keys and check their usage\n\nThough we weren't affected, this was a good reason to check all the places we have these keys. A quick scan revealed we have them in at least a couple of coding tools, two internal services, a shared notebook, our ci secrets, and at least one .env file which I'm sure has been pasted into a chat at some point lol. It's hard to not have these get leaked somewhere, and they're a pain to rotate everywhere you've stored them.\n\nWe ended up taking the plunge and setting up our own single model gateway that holds the provider keys. The apps use gateway keys, so if a tool leaks the key you can kill it without affecting the OpenAI and Anthropic keys. The issue is that the gateway itself needs to be somewhere you contro\n\nLiteLLM’s proxy does this self hosted with per key budgets and Orq AI is the other one we’re looking at, it routes to 130+ models on your own provider keys and can be deployed in your own VPC or on prem\n\nStill undecided whether one gateway with every key is safer than keys scattered everywhere, or just a bigger single target",
+    "developer": "radhyaa_15",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

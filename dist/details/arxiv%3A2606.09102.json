@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.09102",
+  "sourceItemId": "2606.09102",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.09102",
+  "detail": {
+    "longDescription": "arXiv:2606.09102v2 Announce Type: replace Abstract: The official C++ MPI bindings were removed from the standard in 2008, leaving a gap that numerous third-party libraries have attempted to fill. However, existing wrappers typically cover only a limited subset of MPI or target specific use cases, falling short of a general-purpose solution. A recent conceptual paper proposed general design principles for modern C++ bindings based on C++20 concepts, without committing to a concrete interface. We present the first concrete realization of these principles in a layered architecture. At the foundation, we define a core layer: refined C++20 concepts formalizing the MPI standard's notion of data buffers, automatic mapping of standard C++ constructs, non-intrusive customization points for third-party types, and concept-based wrappers for MPI procedures. The result is a low-level native C++ MPI interface that works directly with STL containers, is highly extensible, and lends itself to standardization. Built on this core, we present KaMPIng-v2 -- a C++ MPI library offering the convenience and memory-safety of KaMPIng with composable, pipe-based syntax inspired by C++ ranges for efficient, boilerplate-free MPI programming. Finally, we demonstrate the core layer's broad applicability by designing lightweight adapters for GPU and performance-portability libraries, making the HPC ecosystem a first-class citizen in MPI. Kokkos views, Thrust device vectors, and SYCL buffers can be passed directly to MPI procedures, with adapter logic remaining self-contained. All contributions are backed by a fully functional open-source reference implementation, demonstrating the practical viability of the proposed design.",
+    "developer": "Tim Niklas Uhl, Matthias Schimek, Daniel Brommer",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Tim Niklas Uhl, Matthias Schimek, Daniel Brommer"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

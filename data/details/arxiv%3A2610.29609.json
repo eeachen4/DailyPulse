@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.29609",
+  "sourceItemId": "2610.29609",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.29609",
+  "detail": {
+    "longDescription": "arXiv:2610.29609v1 Announce Type: new Abstract: In automation pipelines, a GUI agent's confident success report can let downstream stages proceed even when the recorded execution trace does not show that the agent produced the requested outcome. We call this case a dangerous misreport: an unhedged success claim that the trace does not support as causal accomplishment during the run. We study report--trace auditing, which checks an agent's completion claim against an independently recorded trace. A controlled aware/blind intervention reveals self-report leakage: the agent's own self-report changes how completion is judged. The same judge reads the same task and trace; only that self-report is included or withheld. Withholding it improves trace-only dangerous-misreport recall by 43.4 percentage points with Qwen3.5-35B-A3B and 13.3 percentage points with DeepSeek-284B-A13B, with the same trend on held-out Batch 2. This motivates report isolation. The report records what the agent claims, but it must not influence the trace-state judgment. We implement this separation with a structured auditor that separates claim interpretation from claim-blind trace analysis and applies deterministic rules to extracted evidence. Because evidence extraction is separated from the policy that consumes it, the same audit record can be replayed under alternative policies without new model calls. The auditor achieves F1 0.75--0.78 on the 465-record audit-target set and 0.77--0.81 on held-out Batch 2, outperforming claim-aware and prompt-blind controls in recall and F1. Under audit-stage gating, where flag and review both block automatic pass, it blocks 74--90% of dangerous misreports at 45--56% inspection load, or 16--19% of the full in-scope stream after coarse status triage.",
+    "developer": "Yunfeng Zhu, Shengcheng Yu, Zihan Li, Zhenyu Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yunfeng Zhu, Shengcheng Yu, Zihan Li, Zhenyu Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

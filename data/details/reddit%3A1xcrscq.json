@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcrscq",
+  "sourceItemId": "1xcrscq",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xcrscq/how_are_you_confirming_the_fix_actually_reached/",
+  "detail": {
+    "longDescription": "disclosure: i work on radar, an open source k8s ui. we just added a php version check for this to its mcp server and want to know what it's missing.\n\nphp2shell (CVE-2026-109618 / 109619) is all over the news: php core bugs that can allow unauthenticated rce, aws reports broad exploitation, fixed in 8.2.35 / 8.3.36 / 8.4.27 / 8.5.12.\n\nwith containers it's easy to think you're patched when you're not. images built FROM php keep the old php until someone rebuilds with --pull, and trivy doesnt flag it there because php is compiled from source. crane config <image> shows the PHP_VERSION the image declares without pulling layers, but images that don't set it are a blind spot.\n\nhow are you tracking which running workloads are still on an old php?",
+    "developer": "royLskyhook",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

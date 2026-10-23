@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80011608",
   "sourceItemId": "80011608",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
   "sourceUrl": "https://stackoverflow.com/questions/80011608/object-initialisation-and-firing-initialisation-event",
   "detail": {
     "longDescription": "I'm working on a project which is an interface handling thousands of rows of data, and I decided to make a \"pagination\" object. My idea is to give the object a collection of parent elements, and it will put a pagination control into each parent element. If you click on one pagination control, it will dispatch an event to keep all the pagination controls in sync, and to tell the document which results to display. Everything is working fine, apart from the initialisation. I want to be able to dispatch an event when the pagination object is created, so the first set of results is displayed. The problem is, I can't find an order which works. If I add the event listener before the object is created I get an error because the object doesn't exist yet, and if I add the event listener after the object is created, it's not listening when the initial event is fired. I thought I could perhaps use setTimeout to fire the initial event after a few milliseconds (after the event listener is added), but that doesn't seem very elegant. I'll add a much simplified version of my code below. You'll see that no results are displayed at first - they're only displayed when you start clicking on the paginations. Any suggestions? function pagination(parents) { for (let parent of parents) { let table = document.createElement(\"table\"); table.className = \"pagination\"; parent.appendChild(table); let tr = document.createElement(\"tr\"); table.appendChild(tr); for (let i = 0; i < 3; i++) { td = document.createElement(\"td\"); td.textContent = i + 1; tr.appendChild(td); td.addEventListener(\"click\", function(e) { if (e.target.className == \"enabled\") { let selected_index = Array.from(e.target.parentElement.querySelectorAll(\"td\")).indexOf(e.target); e.target.dispatchEvent(new CustomEvent(\"pagination_update\", {bubbles: true, detail: {selected: selected_index}})); } }); } document.addEventListener(\"pagination_update\", (e) => { let tds = parent.querySelectorAll(\"td\"); for (let td of tds) { td.className = \"enabled\"; } tds[e.detail.selected].className = \"selected\"; }); } let stylesheet = document.head.appendChild(document.createElement(\"style\")).sheet; stylesheet.insertRule(\".pagination {margin: 1em auto; border-collapse: collapse;}\"); stylesheet.insertRule(\".pagination td {border: 1px solid lightgrey; padding: 1em; width: 2em; text-align: center; font-size: 0.8em; user-select: none;}\"); stylesheet.insertRule(\".pagination td.enabled:hover {cursor: pointer; background-color: lightgrey;}\"); stylesheet.insertRule(\".pagination td.selected {background-color: grey; color: white;\"); parents[0].querySelector(\"td\").dispatchEvent(new CustomEvent(\"pagination_update\", {bubbles: true, detail: {selected: 0}})); } let results_pagination = new pagination(document.querySelectorAll(\".div_pagination\")); document.addEventListener(\"pagination_update\", function(e) { let tbody = document.querySelector(\"tbody\"); tbody.innerHTML = \"\"; for (let i = e.detail.selected * 10 + 1; i <= e.detail.selected * 10 + 10; i++) { tbody.innerHTML += \"<tr><td> result \" + i + \"</td></tr>\"; } }); .results { margin: 1em auto; border-collapse: collapse; text-align: center; } .results td { border: 1px solid black; padding: 0.25em 1em; } <div class='div_pagination'></div> <table class='results'> <tbody> </tbody> </table> <div class='div_pagination'></div>",
     "developer": "The Ratman",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -14,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "48"
+        "value": "90"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

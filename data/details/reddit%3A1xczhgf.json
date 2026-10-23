@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xczhgf",
+  "sourceItemId": "1xczhgf",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xczhgf/i_built_a_github_action_that_fails_the_build_if_a/",
+  "detail": {
+    "longDescription": "After PHP2Shell this week, most of the advice is \"pull php:8.4.27-fpm and rebuild\", which is right. The part that worried me is what happens in three months, when an old branch or a copied Dockerfile quietly brings back FROM php:8.3.10-fpm and nobody notices.\n\nSo I built a small GitHub Action that walks the whole repo and checks:\n\n\\- Dockerfiles with a pinned unfixed tag (like php:8.3.10-fpm): fails the build\n\n\\- Floating tags (like php:8.4-apache): warns you to rebuild so it pulls 8.4.27 or newer\n\n\\- composer.json config.platform.php set to an unfixed version: fails\n\n\\- composer.json require ranges that still allow versions with no fix (like \\^7.4|\\^8.0): warns\n\nIt only reads, nothing gets changed, and it handles monorepos with several Dockerfiles or composer.json files.\n\nFixed versions for reference: 8.2.35, 8.3.36, 8.4.27, 8.5.12. 8.1 and older got no official release.\n\nMarketplace: [https://github.com/marketplace/actions/php2shell-check](https://github.com/marketplace/actions/php2shell-check)\n\nCode (MIT): [https://github.com/KyleClouthier/php2shell-action](https://github.com/KyleClouthier/php2shell-action)\n\nIt's free. If you try it on a real repo and it misses something or flags something wrong, tell me and I'll fix it.\n\n",
+    "developer": "KnowledgeOk7634",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

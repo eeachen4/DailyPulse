@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xczcgk",
+  "sourceItemId": "1xczcgk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xczcgk/flint_40ba25b_vs_ornith_15_35ba3b_vs_nemotron_35/",
+  "detail": {
+    "longDescription": "Three small MoEs dropped within a couple of weeks, so I put all of them in the same seat. In Fusion mode Opus 5.5 plans and reviews, and three workers on the local model write the code in parallel. Only the worker model changes between runs. Same prompt, planner, quant, settings.\n\nThe task was one prompt: a 20 s Halloween chain reaction in Three.js (flint strikes steel → spark lights a fuse → fuse fires a rocket → rocket knocks a marble down a spiral → marble tips a match into a jack-o'-lantern), follow camera, seamless rewind loop. About 1,000 to 1,700 lines across 6 to 9 files.\n\n**Setup**\n\n* Agent: [Atomic Agent](https://atomicagent.io/) v0.6.10, one turn, no human in the loop\n* Planner: Opus 5.5 via OpenRouter. Workers: 3 in parallel on the local model, native chat template\n* Models: all Q8\\_0 GGUF, llama.cpp b11803, `--parallel 3`, 64K context per slot, vendor sampling\n* Hardware: one RTX PRO 6000 Blackwell 96 GB per model\n\n**Time & speed**\n\n|[Flint 40B-A2.5B](https://huggingface.co/Abiray/flint-40B-A2.5B-Q4_K_M-GGUF)|[Ornith 1.5 35B-A3B](https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B)|[Nemotron 3.5 Lightning 30B-A3B](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16)|\n|:-|:-|:-|\n|Wall time|**7:36**|9:04|\n|Decode, single request|244 t/s|143 t/s|\n|Decode, 3 workers at once|135 t/s|72 t/s|\n|Prefill|5,230 t/s|2,950 t/s|\n|Requests to the model|164|111|\n|Max context seen|54K|29K|\n\n**Tokens & cost**\n\n|Flint|Ornith 1.5|Nemotron 3.5 Lightning|\n|:-|:-|:-|\n|Local generated|74K|61K|\n|Local prompt read|306K|180K|\n|Opus in / out|155K / 3.0K|200K / 4.2K|\n|Opus calls|10|12|\n|Planning waves|3|3|\n|Opus spend|**$0.41**|$0.49|\n|Fixes needed to run|**6**|14|\n\n**What stood out**\n\n* **Raw speed didn't decide the run.** Nemotron had the best decode and prefill on paper, but it generated \\~5x more tokens than Flint, made \\~2x more requests, and the planner sent it back six times instead of three. The first wave built everything in \\~10:41, then five fix waves took another 16:57, longer than the build itself.\n* **Flint was the most efficient overall:** shortest wall time, fewest fixes, lowest Opus spend. It wrote slightly more than Ornith (74K vs 61K) but needed fewer round trips. Its bugs were two typos, one undeclared variable and a wrong method call on an array.\n* **The worker sets the planner's bill.** Same Opus, same prompt, spend went from $0.41 to $0.95 just by swapping who was underneath.\n* **Opus barely writes.** Input/output ratio was 48-76x per run. You pay for reading what the workers produced, not for generating code.\n\n**Stuff I only saw in the logs**\n\n* One Ornith worker overwrote its own 367-line file with a literal `...` and reported status \"ok\" to the planner. The task still passed because the other two workers covered it.\n* Nemotron's edit success rate was \\~17% (23 ok vs 109 failed), mostly \"oldString not found\". It kept re-applying the same fix to camera.js, adding an extra `}` each time until there were eight stray braces.\n* In Flint's integration wave one worker read the same three files 23 times without writing anything. Damage stayed small because the first-wave output was already sound.\n\n**Caveats**\n\n* One run per model, variance not measured.\n* Q8\\_0 on CUDA via llama.cpp b11803 (support landed a day before the run). NVFP4/MLX numbers will differ.\n* These are time/token numbers. Output quality is a separate writeup. None of the three delivered a fully working scene first pass; after minimal fixes Flint came out cleanest.\n\nHas anyone run these as sub-agents yet? Does raw tok/s predict wall clock on agentic coding for you, or is it edit success rate like here?\n\nDisclosure: I work on Atomic Agent, the open source agent this ran in so ask me anything!",
+    "externalUrl": "https://v.redd.it/wfj3gcol14xh1",
+    "developer": "GapNew4766",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

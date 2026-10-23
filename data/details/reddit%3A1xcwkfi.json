@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcwkfi",
+  "sourceItemId": "1xcwkfi",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xcwkfi/swift15qwen3827b_in_hipfire_for_amd_cards_22x/",
+  "detail": {
+    "longDescription": "Quantized the Swift-1.5 fine-tune of Qwen3.8-27B to hipfire's MQ4 format, with the MTP head bundled for speculative decoding. It's aimed at AMD users who want more speed than llama.cpp gives them on the same card.\n\n**Numbers (RX 7900 XT 20GB, ROCm 7.1, same fine-tune, Q4\\_K\\_S GGUF on llama.cpp as baseline):**\n\nPrefill is about 1.4–1.85x faster. At 16K it holds \\~1,100 tok/s, where llama.cpp drops to \\~700.\n\nDecode is 36.5 tok/s on real prompts with MTP (τ≈1.94), and 52–59 tok/s at 16–49K context.\n\nOn six real Rust coding tasks with \\~10–20K-token prompts, the full suite took 237s versus 530s on llama.cpp, so 2.24x faster end-to-end.\n\nIt fits in \\~17.5 GB VRAM at 8K context. 49K context with MTP is the recommended daily setting. Past that you can offload layers to system RAM (verified recall at 62K with MTP, and at 93K and 124K without it), but decode drops to \\~16–31 tok/s.\n\n**Caveats:**\n\nIt needs the hipfire runtime (v0.4.2.1+). These are .mq4 files, so llama.cpp can't load them. I've only tested on gfx1100 / 7900 XT.\n\nUn-fine-tuned base Qwen3.8-27B on hipfire is slightly faster end-to-end in my tests. \n\n**Swift's selling point is that it commits early and doesn't overthink, not raw speed.**\n\nRun command and full details are on the model card:  \n[https://huggingface.co/datayoda/Swift-1.5-Qwen3.8-27B-hipfire-MQ4](https://huggingface.co/datayoda/Swift-1.5-Qwen3.8-27B-hipfire-MQ4)\n\nIf you try it on other AMD cards (7900 XTX, 9070 XT, Strix Halo, etc.), please share your engine version, context length, and tok/s. I'd like to build up numbers beyond my one card.",
+    "developer": "Queasy_Asparagus69",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

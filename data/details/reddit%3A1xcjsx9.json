@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcjsx9",
+  "sourceItemId": "1xcjsx9",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xcjsx9/your_requirementstxt_never_mentions_litellm_a/",
+  "detail": {
+    "longDescription": "if you ran \\`pip install dspy\\` in a clean Python 3.10+ environment between 11:39 and 13:23 UTC on Oct 21, the resolver picked the backdoored litellm 1.107.0. You never typed the word litellm.\n\ndspy 3.4.1 lists \\`litellm>=1.65.8\\` as a regular dependency with no upper limit, and for those 103 minutes 1.107.0 was the newest release that matched.\n\nThe table shows each library's last release before the window. Eight list litellm as a required dependency with a range that allowed 1.107.0, and six more only pull it in through an extra like \\`crewai\\[litellm\\]\\`. aider and openhands pin an exact version, opik caps below 1.106, and browser-use doesn't depend on litellm.\n\nmini-swe-agent's range excludes 1.82.7 and 1.82.8, the two releases from the March compromise, and 1.107.0 still matched. strands-agents added a \\`<1.107.0\\` cap at 18:47 UTC.\n\nWere you exposed?\n\nOnly if something resolved litellm fresh inside the window: a new venv, a CI job or Docker build installing from ranges without a lockfile, \\`pip install -U litellm\\`, or a relock. Running \\`pip install -U dspy\\` on an existing env keeps the litellm you already had, since pip only upgrades a dependency when the installed version stops fitting. On Docker Hub, the LiteLLM proxy's \\`latest\\`, \\`main-latest\\` and \\`main-stable\\` tags pointed at the bad build from 11:46 to 14:20 UTC, so Watchtower-style auto-updates count too.\n\nThe wheel drops \\`cook.pth\\`, \\`cook.py\\` and \\`sitecustomize.py\\` into site-packages, so the payload runs on every interpreter start in that env, \\`pip\\` included. [Aikido's analysis](https://www.aikido.dev/blog/litellm-compromised-infostealer-rat) lists what it collected: SSH keys, cloud credentials, env vars, and tokens for Claude Code, Cursor, Copilot and Gemini CLI.\n\nChecking without starting Python in a suspect env\n\n|find / -name cook.pth 2>/dev/nullgrep -A1 'name = \"litellm\"' uv.lock poetry.lock 2>/dev/nullls .venv/lib/python3\\*/site-packages | grep litellm-|\n|:-|\n\n\nSkip \\`pip show\\` and \\`uv tree\\` here, since both can start that env's Python and fire the payload. An empty result doesn't clear you either. [LiteLLM's incident report](https://docs.litellm.ai/blog/security-incident-oct-21-2026) says to assume data left any host where 1.107.0 ran with internet access, then rebuild from scratch and rotate every credential that host could reach.\n\nFor next time\n\nBoth LiteLLM compromises this year sat on PyPI for about three hours or less. A one-week cooldown skips releases that young:\n\n|\\# pyproject.toml, uv 0.9.17 or newer\\[tool.uv\\]exclude-newer = \"7 days\"\\# pip 26.1 or newerpip install --uploaded-prior-to P7D -r requirements.txt|\n|:-|\n\n\nWe're curious whether anyone's CI ran inside that window. Is your framework in the table, and does your CI install from a lockfile or from ranges?",
+    "externalUrl": "https://i.redd.it/7s4nyccq11xh1.png",
+    "developer": "Future_AGI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

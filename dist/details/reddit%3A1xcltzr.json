@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcltzr",
+  "sourceItemId": "1xcltzr",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xcltzr/what_finally_made_my_internal_eval_set/",
+  "detail": {
+    "longDescription": "For a long time the eval set for the LLM app I work on was decorative. Every prompt tweak got scored against the same cases I had tuned on, so the numbers always looked great and told me nothing. What changed things was treating runs as two different kinds of work. Debug runs are cheap, messy, and constant, and they live on a scratch slice of data. Scored runs are infrequent, frozen, and written down with the model and prompt versions.\n\nThe Agent Memory Leaderboard's docs for its second cycle describe the same split. Smoke is a private compatibility test, at most 1 per hour and 30 per track this edition, and never counts toward the public board. Full is the only formal scored mode, at most 2 Full runs per key per track, with the second becoming available 30 days after the first Full run completes. Keeping the informal and formal paths apart like that reads to me as a sensible pattern worth borrowing.\n\nSince splitting mine, regressions actually show up before users do. When you run your own evals, where do you draw the line between a run you learn from and a run you trust as a score?",
+    "developer": "Designer_Bet_7673",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

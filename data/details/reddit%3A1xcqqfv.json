@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcqqfv",
+  "sourceItemId": "1xcqqfv",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xcqqfv/in_pursuit_of_speed_have_i_gone_down_the_wrong/",
+  "detail": {
+    "longDescription": "Hey Smart ppl,\n\nThought I'd look for some ideas on this, i'm constantly hitting a wall here so input would be highly appreciated.\n\nI've been working on Xyntetik-Runner for quite some time and the \"toolbox\" aspect has always been something that I've valued very high. \n\nit has a lot of features i'm not willing to give away in terms of speed but on the other hand speed is ... speed so it holds a value of course.\n\nand i'm also starting to contemplate if I've been looking at this wrong.\n\n  \nThe main focus for Runner has been two things:\n\n1. Stay as numerically close to the original model implementation as possible.\n2. Make inference reproducible and verifiable.\n\nthese two things have been a cornerstones in my development and also are the reasons some of my other features actually work (i might be wrong here but that's my perception).\n\n  \nSome measurements:\n\n![img](gdvi7gu772xh1 \"Fidelity is fine as expected, Runner beats Llama here on most models i've tested so far. now i'm not saying that's something you want or care about but i rest my case.\")\n\n\n\n\n\n![img](zgl64o0e72xh1 \"on CUDA runner is still way slower, the \\\"next\\\" column is the planned correction release after 1.5.0 so that will be released together with a few other features within a few days.\")\n\n![img](tweqa8wi72xh1 \"Metal has the same results, i only have a 8 GB RAM mac so model testing here is... interesting...\")\n\n\n\nThe latest 1.5.0 work includes tensor-core GEMM paths, tiled attention, CUDA graphs, MoE optimisations, improved quantized kernels, and reductions in memory movement and kernel launches. There's more planned across CUDA, Metal and CPU.\n\nI originally assumed that higher numerical fidelity would be especially valuable for things like tool calling, LoRA training/serving consistency, and long-running agent workflows.\n\nThe question i'm asking is a bit two-fold here since i feel a bit exhusted in options of improving \"speed\" at the moment....\n\nshould I accept it is what it is or should i try to contest my original assumptions? is FP32 worth keeping, or am i just looking at this the wrong way, are there any meaningful real-world applications to having higher activation precision or is it just in my head? \n\nRepo link also: [https://github.com/Joakimpalm-Zen/xyntetik-runner](https://github.com/Joakimpalm-Zen/xyntetik-runner)\n\n",
+    "developer": "ZenZombie117",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

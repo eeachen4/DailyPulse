@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.28939",
+  "sourceItemId": "2610.28939",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.28939",
+  "detail": {
+    "longDescription": "arXiv:2610.28939v1 Announce Type: new Abstract: Stateful dataflow systems must decide where state lives relative to the tasks that process it. For long-running applications that require frequent reconfiguration due to changes in resource allocation, partitioning, or task placement, this design choice presents a core trade-off between adaptability and performance. Co-locating state with computation ensures low latency at steady state but makes reconfiguration disruptive, as any change forces state migration. On the other hand, keeping state in an external store makes reconfiguration seamless, but incurs overhead on every access. We present Koala, a reconfiguration protocol for distributed dataflow systems that retains the operational performance of embedded-state architectures while matching the disruption-free adaptability of external-state designs. Unlike prior protocols which relocate all state regardless of whether it will soon be accessed, Koala migrates state in a fine-grained, lazy manner. To achieve that, it employs a lightweight ownership transfer mechanism that safely decouples event routing from state location. We implement Koala in a new streaming dataflow system and evaluate it on real-world and synthetic benchmarks. When compared with the state-of-the-art protocol DRRS, Koala consumes backlog up to 23x faster and transfers 8.7x less state on average during reconfiguration.",
+    "developer": "Lei Huang, Sakshi Sharma, Chenxu Yu, Zikun Wang, Yuanli Wang, Zichen Zhu, John Liagouris, Vasiliki Kalavri",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Lei Huang, Sakshi Sharma, Chenxu Yu, Zikun Wang, Yuanli Wang, Zichen Zhu, John Liagouris, Vasiliki Kalavri"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

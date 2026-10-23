@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcqtic",
+  "sourceItemId": "1xcqtic",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xcqtic/i_wrote_a_lossless_archiver_for_llm_weights/",
+  "detail": {
+    "longDescription": "More and more open-weight models keep coming out, and they keep getting better, but I don’t have the hardware to run most of them. Even just collecting them eats a lot of disk space, especially when a model has several good community variants.\n\nSo I asked Claude to research the problem. The result is OverCompressing, a lossless archiver for model folders (safetensors, GGUF, and whatever else is in the folder). Every file comes back bit for bit, checked against its SHA-256.\n\n**How it compresses**\n\n* Float weights (BF16/F16/F32/FP8): the exponent of each weight is split out into its own byte plane and entropy-coded, while the near-random mantissa bytes are left as they are. This is the byte-grouping idea from IBM’s ZipNN paper, implemented from scratch. General-purpose compressors miss it because the exponent bits straddle two bytes.\n* Fine-tunes: stored as a delta against their base model, tensor by tensor. Tensors are matched by name, so a different sharding or file layout doesn’t matter. The base model serves as the predictor for a small context-modelled entropy coder, and the base is chosen automatically from the models already in the archive.\n* Identical files (tokenizers, configs, re-uploads) are stored once.\n\n\n\n**Results (every number verified by restoring and matching the SHA-256)**\n\n|what|size vs. original|\n|:-|:-|\n|one BF16 model (Qwen2.5 0.5B / 7B)|\\~66.4 % (zstd -19: \\~75.9 %)|\n|official Instruct as a delta of its Base|44 % (0.5B), 30 % (7B)|\n|community fine-tunes (RL, abliteration, re-uploads)|0.1–5 %|\n|test archive: 6 Qwen2.5 repos, 34.3 GiB|17.2 GiB (50.1 %)|\n\n\n\n**Where it helps most**\n\n* Unquantized float weights (BF16/F16): about two thirds of the original size, close to the entropy limit (\\~66.2 %).\n* A model family stored together (a base, its Instruct, community fine-tunes): the more weights they share, the smaller each extra model gets.\n* Where it doesn’t help much: an already-quantized GGUF on its own (Q4\\_K\\_M, Q8\\_0) only gets to 95–99 %. A quantized fine-tune against a quantized base does better (\\~65 %).\n\n\n\n**Two forms of an archive (a “pack”)**\n\n* Pack folder: for upkeep. Add, replace, remove or rename models one change at a time. Files are shared between models, and removing a model deletes only what no other model still needs.\n* Pack file (.oczip): for cold storage. The same thing in a single ZIP file, written once and read-only afterwards. Easy to copy or shelve on a backup drive, and list/verify/restore read it in place. You can export a whole pack folder into one, or just a few models with everything they need.\n\n\n\n**Using it**\n\nIt runs on Python 3.13 with NumPy and zstandard. No GPU, no PyTorch, no compiled code. There’s a command line (every command can print JSON lines, for scripts and agents) and a small Tkinter window.\n\nThe easiest setup: point an AI agent at the repo and have it follow the build guide. It makes a portable copy (its own Python and packages in one folder, from pinned, hash-checked downloads), so nothing gets installed system-wide.\n\nOn an 8-core desktop, packing a 7B BF16 model takes about 1.5 minutes and restoring it about 30 seconds. Deltas are slower (about 5.5 minutes for the 7B Instruct), since the entropy coder is pure NumPy.\n\nTested on Windows; Linux was tested independently. Developed by Claude, verified by GPT6.\n\nRepo (MIT): [https://github.com/overdoingism/OverCompressing](https://github.com/overdoingism/OverCompressing)\n\nFeedback welcome, especially model families it does badly on.",
+    "developer": "overdoingism",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

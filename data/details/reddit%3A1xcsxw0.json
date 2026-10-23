@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcsxw0",
+  "sourceItemId": "1xcsxw0",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xcsxw0/lokalbot_is_now_on_linux_and_windows_alpha_local/",
+  "detail": {
+    "longDescription": "Took me a few months of LokalBot only on macOS to finally get to porting and shipping a Linux and Windows alpha. It does meeting transcription, notes with local models, dictation, autocomplete in other apps, and agent access to your work context. I like to call it my “personal context engine”.  \n  \nFree and open source, local by default but you can also use your own inference infra and other providers. No judging here, just a tool that's flexible and configurable per your needs.  \n  \nThe Linux/Windows alpha build uses Rust + GPUI. I built the port in a sprint with my agent swarm over three days after scrapping a first attempt from a few weeks ago that looked okayish but wasn't cross compatible. I was mainly testing it with my personal devices and some Vast AI /GCP rented machines so I am curious how it will perform on real users hardware.\n\nhttps://i.redd.it/0aps7jv0p2xh1.gif\n\nStill an alpha as some Mac features haven’t made it over completely yet, and autocomplete is patchy in some Linux apps, especially on Wayland it's not working yet.   \nWould be interested to hear what works or breaks on your setup and if you it to do something differently.  \n  \nRight now the default model stack is:\n\n* **Transcription:** Qwen3-ASR—0.6B on Linux/Windows, 1.7B on Mac.\n* **Notes and chat:** Qwen3.5 4B.\n* **Autocomplete:** LFM2.5 1.2B on Linux/Windows, Gemma 4 E2B Base on Mac.\n* **Semantic search:** EmbeddingGemma 2.\n* **Speaker separation:** pyannote + TitaNet on Linux/Windows, Nemotron 3 on Mac.\n\n  \n  \nYou can swap models in settings and there are some other recommended options for the compute rich.\n\n[GitHub / downloads](https://github.com/stevyhacker/LokalBot) · [Notes on building the port](https://stevan.bogosavljevic.me/blog/posts/porting-lokalbot-to-linux-and-windows/)",
+    "developer": "stevyhacker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

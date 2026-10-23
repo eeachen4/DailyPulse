@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcylhj",
+  "sourceItemId": "1xcylhj",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xcylhj/qwen_38_flash_next_129_gb_is_better_than_26_bpw/",
+  "detail": {
+    "longDescription": "I compared [Qwen3.8-Flash-Next-W4A16-FP8PLE](https://huggingface.co/albucino/Qwen3.8-Flash-Next-W4A16-FP8PLE) at xhigh reasoning vs [DeepSeek-V4.1-Flash-1017-dsx-2.6bit](https://huggingface.co/icecubetr/DeepSeek-V4.1-Flash-1017-dsx-2.6bit) (my own quant) at max reasoning by benchmarking using a modified version of [BenchKit](https://github.com/DogukanUrker/BenchKit). DeepSeek V4.1 Flash 1017 2.6 bit scored 23/25, while Qwen scored 25/25 (full marks). This is just a small sample of data, but it answers the question of which one I should use. I will keep using Qwen.\n\n**Humaneval benchmark, question 22:**\n\n    Complete the following Python function. Output ONLY the function body. No markdown fences, no explanation, no examples.\n    \n    from typing import List, Any\n    \n    \n    def filter_integers(values: List[Any]) -> List[int]:\n        \"\"\" Filter given list of any python values only for integers\n        >>> filter_integers(['a', 3.14, 5])\n        [5]\n        >>> filter_integers([1, 2, 3, 'abc', {}, []])\n        [1, 2, 3]\n        \"\"\"\n\nDeepSeek: thinked for 127.9 seconds, doom loop killed after a confirmed active cycle stayed at or above 80% for 10s\n\nQwen: correct answer after 18.8 seconds: `return [x for x in values if isinstance(x, int)]`\n\n**HumanEval/24:**\n\n    Complete the following Python function. Output ONLY the function body. No markdown fences, no explanation, no examples.\n    \n    \n    \n    def largest_divisor(n: int) -> int:\n        \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n        >>> largest_divisor(15)\n        5\n        \"\"\"\n\nDeepSeek: Failed by the software after failing to answer after 297.7s of waits and but waits.\n\nQwen: correct answer after 34.5s:\n\n    if n % 2 == 0:\n            return n // 2\n        i = 3\n        while i * i <= n:\n            if n % i == 0:\n                return n // i\n            i += 2\n        return 1",
+    "developer": "whiteh4cker",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

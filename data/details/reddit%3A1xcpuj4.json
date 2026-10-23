@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xcpuj4",
+  "sourceItemId": "1xcpuj4",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xcpuj4/im_a_one_man_devops_team_and_my_production_runs/",
+  "detail": {
+    "longDescription": "Most people writing cost posts here are spending their company's money. Mine comes out of my own pocket. I'm a solo DevOps engineer, I run the backend for a mobile app with real users, and the AWS bill is mine. That changes how you build things.\n\nReal setup, no dressing up. Two K3s nodes on t4g.small, one in each AZ. Two seperate database nodes, also t4g.small, running Postgres and Valkey. A tiny fck-nat box so I don't pay for a managed NAT. A bastion to get in. Backups go to S3, encrypted. Six small machines in total. I checked the AWS dashboard while it ran, it came to $0.64 a day. About $19 a month, everything included.\n\nBefore building it I priced the managed way, the way the tutorials tell you. EKS is $73 a month just for the control plane. Small RDS is $13. Load balancer $16. Managed NAT $33, and that's before data. So around $135 a month in extras, more than my whole setup costs, times seven. I get why teams pay it, they are buying sleep. I wanted sleep too, I just couldnt pay that much for it.\n\nWhat broke first was not the cheap machines. It was my own monitoring. I installed the full Prometheus stack like everyone says, and it ate my 2GB nodes. Memory got so low, like 513MB free, that etcd couldnt reach consensus. The cluster was dying because of the thing that watches the cluster. I still laugh about that one. I ripped Prometheus and Grafana out, put in Uptime Kuma for health checks, it's like 100MB, and metrics-server for the basics. Lesson is simple, your monitoring also has to fit the budget.\n\nDeploys are boring, in a good way. ArgoCD, GitOps, two replicas of the API. Bad deploy, it rolls back, I dont get a panic call.\n\nNow the honest part. The second database node never got its replication set up. Postgres runs on one node, the other one is just sitting there. If that node dies I am restoring from backups, there is no auto failover. That's the real price of my cheap setup, and I won't pretend otherwise. First thing I fix when the money is real.\n\nI did load test it before trusting it though. 133,722 requests, 300 people at the same time, zero failures. Small app, but it held.\n\nOther solo guys here, what does your full setup look like and what does it cost you? Curious where my number is actually dumb.",
+    "developer": "PsychologicalFlan877",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

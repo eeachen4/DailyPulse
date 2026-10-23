@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011903",
+  "sourceItemId": "80011903",
+  "sourceUrl": "https://stackoverflow.com/questions/80011903/how-can-i-split-double-hyphens-in-a-python-word-counter-while-preserving-single",
+  "detail": {
+    "longDescription": "I am working on a Python word-frequency counter. I want to keep contractions and hyphenated words together ( don't , check-in ), but treat a double hyphen as a separator. I tried using re.sub(r\"^\\W+|\\W+$\", \"\", word) to remove surrounding punctuation, but it doesn't split punctuation inside a token. Here is my current code: import re text = \"Don't forget the check-in! What about word--word?\" counts = {} for word in text.lower().split(): word = re.sub(r\"^\\W+|\\W+$\", \"\", word) counts[word] = counts.get(word, 0) + 1 print(counts) Actual output: {\"don't\": 1, \"forget\": 1, \"the\": 1, \"check-in\": 1, \"what\": 1, \"about\": 1, \"word--word\": 1} Expected output: {\"don't\": 1, \"forget\": 1, \"the\": 1, \"check-in\": 1, \"what\": 1, \"about\": 1, \"word\": 2} My current code separates words using text.lower().split() , which splits the text at spaces. However, this keeps word--word together instead of treating the double hyphen as a separator. How can I modify my tokenization so that single internal hyphens and apostrophes are preserved, while double hyphens separate words?",
+    "developer": "pg27",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "142"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

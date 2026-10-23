@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xd06hc",
+  "sourceItemId": "1xd06hc",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1xd06hc/a_practical_test_before_reusing_an_ai_workflow/",
+  "detail": {
+    "longDescription": "If you use AI for a recurring task with written rules, a polished answer isn't enough to judge whether the workflow is ready to repeat.\n\n\n\nConsider a fictional return policy: 30 days, no shipping refund, fractional cents rounded down. Three tiny tests can reveal very different failures:\n\n\n\n\\- An otherwise eligible return on day 30 should pass; day 31 should fail.\n\n\\- Adding a shipping charge should not increase the refund.\n\n\\- Changing a price to produce fractional cents should still follow the rounding rule.\n\n\n\nWrite down expected results first, keep those tests fixed, and rerun them whenever the instructions or model change. Keep a few separate cases that weren't used to guide the revision. This makes the decision to reuse a workflow depend on visible behavior, not just a more convincing prompt.\n\n\n\nI'm building skillEd to make that loop repeatable for agent skills, with a CLI, MCP tools and saved report comparisons. Its public Codex refund example caught wrong deadlines, shipping refunds and rounding mistakes. The documented workflow supports Codex and Claude Code; this isn't a ChatGPT chat plug-in.\n\n\n\nRepo and worked example: [https://github.com/DeadHead04/skillEd](https://github.com/DeadHead04/skillEd)\n\n\n\nIt's open source under Apache-2.0. Try a synthetic policy task and share a failing edge case. If it helps, an optional GitHub star is appreciated. Passing these tests is evidence for review, not a guarantee or permission to take live actions.",
+    "developer": "MiserableFlatworm337",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

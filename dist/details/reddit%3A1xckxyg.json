@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xckxyg",
+  "sourceItemId": "1xckxyg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xckxyg/opensource_tool_to_run_llm_models_on_dwh_data/",
+  "detail": {
+    "longDescription": "Hi folks, this is Burak, co-founder at Bruin. We built an open-source framework to run inference workloads on your DWH data, e.g. Snowflake, Databricks or BigQuery, and enrich the data using an LLM.  \nThere are a lot of cases where you have some data that lives inside Snowflake, and you want to enrich it using language models. This might be a call to a Haiku model to check if a ticket needs attention, or Typesafe's Jev to categorize the issue.  \n  \nGood luck if you want to do this inside your data pipeline. You will either have to run your dbt pipelines first and then do the enhancement, essentially splitting your pipelines and dependencies, or have to build a brand new Airflow pipeline.  \n  \nI think that should have been a better experience.  \n  \nWe are making inference a first-class primitive inside Bruin pipelines today. They allow bringing language models into your data pipelines. You can run models on every row in any table and produce additional tables with new columns. You can use Claude, GPT, Jev, or any other model on the planet.  \n  \nPoint your inference asset to a table, give the prompts for each column to be generated, and watch Bruin fill out all the columns you have as efficiently as possible. It takes care of compatibility across providers, preserving caches, and batching requests where possible.  \n  \nThis is all open-source and available today. You can point your agent to our docs and tell it to build a quick inference pipeline over your Snowflake/Databricks/BigQuery tables.\n\n[https://github.com/bruin-data/bruin](https://github.com/bruin-data/bruin)  \n\n\n[https://getbruin.com/docs/bruin/assets/inference.html#inference-assets](https://getbruin.com/docs/bruin/assets/inference.html#inference-assets)\n\nSuper excited to launch this, and I'd love to hear what you all think!",
+    "developer": "karakanb",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

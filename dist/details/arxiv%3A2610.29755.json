@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.29755",
+  "sourceItemId": "2610.29755",
+  "fetchedAt": "2026-10-23T01:56:56.896Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.29755",
+  "detail": {
+    "longDescription": "arXiv:2610.29755v1 Announce Type: new Abstract: LLM-based verification systems repair Rust proofs by revising programs in response to Verus diagnostics. When several error types are reported, pipelines such as AutoVerus and VeruSAGE select the next repair target using a preset priority. Yet each repair changes the program and the errors that follow, so the same reported types can require different choices at different states. We present VeruSteer, which learns to select error types from the outcomes of alternative repair trajectories. It constructs repair trees offline and compares paths from the same initial program by verification success, repair rounds, and final verification progress. These comparisons supervise a selector that combines step-wise imitation with trajectory preference ranking. The selector uses self-attention over the program, verifier feedback, and earlier selections to rank the currently reported types. It replaces the default priority within a single repair trajectory, keeping the existing repair agents and adding no repair or verifier calls for selection. We evaluate VeruSteer by replaying its choices on stored AutoVerus and VeruSAGE test trees under four generation configurations. Across 1,270 test trees, VeruSteer increases verified outcomes from 185 to 194 (14.57\\% to 15.28\\%), gaining 12 successes and losing three for a net improvement of 0.71 percentage points. Among trees where the default fails but a recorded alternative verifies, VeruSteer succeeds on 3 of 4 AutoVerus trees and 9 of 11 VeruSAGE trees. Among trees with recorded alternatives where the default verifies, it retains success on 14 of 15 AutoVerus trees and 12 of 14 VeruSAGE trees. It also finds shorter successful trajectories and improves final progress on some trees where all recorded trajectories fail.",
+    "developer": "Chao Jiang, Ding Wang, Chaohua Yang, Dugang Liu, Zhiwu Xu, Cheng Wen, Zhong Ming, Yuwei Liu, Xinyi Wan, Lin Huang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Chao Jiang, Ding Wang, Chaohua Yang, Dugang Liu, Zhiwu Xu, Cheng Wen, Zhong Ming, Yuwei Liu, Xinyi Wan, Lin Huang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
