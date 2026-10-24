@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdhf7r",
+  "sourceItemId": "1xdhf7r",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xdhf7r/r_the_hive_mind_is_a_single_reinforcement/",
+  "detail": {
+    "longDescription": "# TL;DR\n\nWe prove a mathematical equivalence between collective decision-making via local imitation (such as honey bees choosing a nest site via the waggle dance) and single-agent Reinforcement Learning (RL) in a multi-armed bandit setting. Even when individual members have no learning capability and merely blindly imitate peers, the population distribution pi updates according to a macroscopic bandit RL algorithm that we call Maynard-Cross Learning (MCL), where N individuals act as N parallel environment rollouts with an effective per-sample step size of alpha = 1/N.\n\n# Main intuition\n\nIn nature, optimal decision-making emerges through two seemingly distinct paradigms:\n\n1. Individual trial-and-error (RL): A single agent interacts with its environment and updates its policy based on reward signals.\n2. Collective imitation (Swarm Intelligence / Evolutionary Game Theory): Simple individuals copy neighbors' strategies (e.g., best-of-n collective decision-making).\n\nBiologists have long described insect colonies as \"superorganisms\" or \"hive minds\" with parallels to vertebrate brains. We wanted to see if this metaphor holds up mathematically under the lens of RL: Does a swarm of non-learning imitators literally execute a single-agent RL update at the macro level?\n\n# Core development\n\nThe paper's core theoretical development establishes a mathematical equivalence between decentralized social imitation in large populations and single-agent reinforcement learning (RL) in multi-armed bandits. By treating the proportion of individuals committed to each option as the action-probability policy of a single macro-agent, we use evolutionary replicator dynamics to bridge local individual interactions and global policy updates.\n\nFirst, we show that a population following the classic \"imitation of success\" protocol (where individuals copy neighbors with a probability proportional to those neighbors' payoffs) evolves identically to the expected update of the Cross Learning bandit algorithm. Extending this approach to the \"weighted voter\" model of the honey bee waggle dance (where scouts advertise nesting sites for a duration proportional to site quality and peers blindly copy the first advertisement they encounter without comparing payoffs) we derive a new macro-level RL algorithm that we call Maynard-Cross Learning. Under this duality, each non-learning individual acts as a single parallel environment sample whose fractional influence on the group mirrors an RL learning rate equal to the inverse of the swarm size.\n\nIn practice, this development demonstrates how blind local imitation aggregates into a coherent, parallelized reinforcement learner at the collective level.\n\n# Impact\n\nBy proving a mathematical equivalence between local social imitation and single-agent reinforcement learning, this work provides a formal mechanism explaining how \"hive mind\" intelligence and trial-and-error learning emerge at the group level from simple, non-learning individuals. Beyond substantiating evolutionary theories of collective cognition in biology, this framework offers new tools for analyzing imitative dynamics in social and economic systems and for designing scalable, decentralized swarm robotics algorithms.\n\n# Links\n\nPaper: [https://arxiv.org/abs/2410.17517](https://arxiv.org/abs/2410.17517)  \nProject page: [https://hivemind.yannbouteiller.com/](https://hivemind.yannbouteiller.com/)  \nCode/reproducibility: [https://github.com/MISTLab/HiveMindRL](https://github.com/MISTLab/HiveMindRL)",
+    "externalUrl": "https://arxiv.org/abs/2410.17517",
+    "developer": "mistlab",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "arxiv.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

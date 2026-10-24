@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.19385",
+  "sourceItemId": "2605.19385",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.19385",
+  "detail": {
+    "longDescription": "arXiv:2605.19385v3 Announce Type: replace Abstract: The explosive growth of AI-generated images has created a sustainability challenge for storage infrastructure. Platforms like Midjourney and Adobe Firefly already host billions of generative images, yet conventional object stores persist them as blobs with full-resolution pixels, consuming huge amounts of storage capacity and bandwidth. Unlike natural photos, however, AI-generated images can be deterministically reconstructed from compact, model-native latent tensors, making persistent image storage fundamentally redundant. This paper presents LatentStore, a latent-first storage system for AI-generated images. LatentStore treats compressed latents as durable storage objects and uses on-demand GPU reconstruction on the read path to trade inexpensive compute for large persistent storage savings. Our design is guided by the first large-scale analysis of AI-generated image access we are aware of, based on a 35-month, 2-billion-request production trace from a major generative-content platform. Motivated by the trace analysis, LatentStore keeps frequently accessed images in decoded pixel format for fast hits, stores less-active objects as compressed latents to expand effective cache capacity, and continuously adjusts the splits between the image and latent cache to optimize user-perceived access latency. We build a LatentStore prototype and evaluate it with the production trace. LatentStore reduces persistent storage by 78.7% with competitive or even lower mean and tail latency over a pure image-based storage.",
+    "developer": "Zirui Wang, Yunjia Zheng, Tingfeng Lan, Zhaoyuan Su, Haoran Ni, Juncheng Yang, Yue Cheng",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.DB"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zirui Wang, Yunjia Zheng, Tingfeng Lan, Zhaoyuan Su, Haoran Ni, Juncheng Yang, Yue Cheng"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

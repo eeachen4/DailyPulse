@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.14093",
+  "sourceItemId": "2606.14093",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.14093",
+  "detail": {
+    "longDescription": "arXiv:2606.14093v2 Announce Type: replace Abstract: Reasoning about concurrent system correctness requires detecting real-time operation precedence (<_H). In asynchronous shared-memory systems, real-time precedence and information-flow causality diverge, rendering causality-tracking techniques like vector clocks incapable of recovering <_H. An external monitor observing only operation boundaries faces an inherent limitation: it must either miss genuine precedences or report spurious ones. We formalize this challenge as the Causal Observability Problem (COP) and prove that strong consistency---achieving both soundness and completeness simultaneously---is unachievable at the observable boundary. We then establish a tight placement dichotomy: instrumenting externally guarantees soundness, whereas instrumenting internally guarantees completeness, independently of the timestamping algorithm. To construct sound monitors, we analyze three non-blocking implementations: FAInc (a centralized counter), Striped (a decentralized counter), and Collect (an iterative process snapshot). We prove that both FAInc and Striped are linearizable, whereas Collect fails all standard object consistency models---satisfying neither linearizability, sequential consistency, nor quiescent consistency. Crucially, we prove an invariance result: all three implementations provide identical COP soundness guarantees under external placement. This demonstrates a fundamental theoretical decoupling---observational soundness operates on pairwise interval precedence and does not require the global sequential witness that standard object consistency demands. Empirical evaluation on a 64-core NUMA system shows that Striped matches the high throughput and scalability of Collect while preserving linearizability and eliminating central counter contention.",
+    "developer": "Gilde Valeria Rodr\\'iguez, Armando Casta\\~neda, Miguel Pi\\~na",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Gilde Valeria Rodr\\'iguez, Armando Casta\\~neda, Miguel Pi\\~na"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

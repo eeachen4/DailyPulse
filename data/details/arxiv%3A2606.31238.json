@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.31238",
+  "sourceItemId": "2606.31238",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.31238",
+  "detail": {
+    "longDescription": "arXiv:2606.31238v2 Announce Type: replace-cross Abstract: Quantifying the marginal impact of individual optimization passes underpins phase ordering, pass selection, optimization design, and analysis of pass/hardware interactions. In LLVM, the standard backend for C/C++, Rust, and ML stacks via MLIR, interactions among passes, measurement noise, and pipeline scale make this difficult. We present a systematic empirical study of the LLVM -O3 pipeline. We decompose it into 113 cumulative per-pass prefixes and measure execution time, compile time, binary size, hardware counters, and RAPL energy on 30 PolyBench/C kernels (84,750 measurements). Transitions whose binary is byte-identical to their predecessor give us a built-in null distribution, which we use to calibrate every significance claim. On these compute-bound affine kernels, the pipeline is non-monotone: 36% of the transitions that significantly change runtime are regressions, found in 28 of 30 kernels. Gains are back-loaded (the median kernel needs 84.8% of the pipeline for 80% of its speedup) and concentrated in a small core of passes, a result that holds under both absolute and scale-free impact measures. IR instruction count is an unreliable runtime predictor, and runtime-targeted passes are de facto energy-targeted (30-60% savings). Finally, we bound the speedup lost to non-monotone behavior from above by 46.35% and decompose it: 9.7 points are measurement noise, 15.3 points are transient dips repaired within three passes, and only 21.3 points persist to the end of the pipeline. These findings inform pass pruning, cost-model calibration, and autotuning.",
+    "developer": "Federico Bruzzone, Walter Cazzola",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.PF, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Federico Bruzzone, Walter Cazzola"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

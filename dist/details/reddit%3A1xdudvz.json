@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdudvz",
+  "sourceItemId": "1xdudvz",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1xdudvz/i_gave_gpt6_astra_and_kimi_k31_one_prompt_build/",
+  "detail": {
+    "longDescription": "I wanted to see what happens when you give two of the newest models a real creative job instead of a chat question, and then just step back.\n\n**The task (same prompt for both)**\n\nA 28 second movie-style flight from Avatar: Toruk, the giant red dragon, with a Na'vi rider on its neck. Six camera shots like a film edit: it roars past overhead, dives under a stone arch, flies through a waterfall, skims a glowing jungle at night, then bursts out of the clouds into a sunrise and roars. The catch: everything had to be written as code in a single web page. No images, no 3D models, no downloads. The dragon, the islands, the clouds, the light, all of it drawn from scratch.\n\nEach model worked inside an agent, which means it could write files, run them, open the result in a browser, take screenshots and fix its own mistakes. Nobody helped either of them. They stopped when they decided they were done.\n\n**The numbers**\n\n|Metric|GPT-6 Astra|Kimi K3.1|\n|:-|:-|:-|\n|Time|**9:17**|12:28|\n|Steps|35|**20**|\n|Cost|\\~$2.63|**\\~$1.1 to $1.4** (est.)|\n|Thinking before acting|almost none|over half of its output|\n|Code written|217 lines|**746 lines**|\n|Looked at its own screenshots|**4 times**|never (bug on my side)|\n\n**How GPT-6 Astra did it**\n\n* 9 minutes 17 seconds, 35 steps, about $2.63\n* It worked in lots of small moves: write a bit, run it, look, fix\n* It took screenshots of its own scene at six moments and asked for a harsh review of each one. Then it acted on it: it rebuilt the forests so the page runs smoother, rechecked the night and sunrise shots, and even checked on its own that the rider's head doesn't get cut off on a phone screen\n* The result is tight and consistent from shot to shot\n\n**How Kimi K3.1 did it**\n\n* 12 minutes 28 seconds, only 20 steps, roughly half the price (K3.1 has no public price yet, so this is an estimate)\n* It thinks a lot before acting. More than half of everything it wrote was reasoning, and then it wrote the whole scene in a few big chunks, over 3x more code than Astra\n* It even wrote its own little tool to snap seven test frames of the scene, which nobody asked it to do\n* But it never got to see them. A bug on my side broke its screenshot review, so Kimi built the entire film blind. You can spot it: one 2 second moment at the sunrise comes out as a flat teal screen, exactly the kind of thing one look would have caught\n\n**So who won?**\n\nAstra was faster and more careful. Kimi was cheaper and wrote far more, without ever seeing its own work. Watch the video and tell me: which dragon would you rather ride?\n\n(Both ran inside Atomic Agent, an open source agent I work on. Link in the comments if you want to try it.)",
+    "externalUrl": "https://v.redd.it/6b86xncs3bxh1",
+    "developer": "GapNew4766",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

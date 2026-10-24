@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdkcav",
+  "sourceItemId": "1xdkcav",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xdkcav/stenosis_detection_in_coronary_angiograms_need/",
+  "detail": {
+    "longDescription": "Starting a project to detect candidate stenoses in x-ray coronary angiograms. The goal is high recall, false positives are fine as long as it doesn't flag half the image.\n\nI already tried YOLO on a couple of in-house datasets earlier. It looked fine in-domain and fell apart on the other dataset, and a big chunk of that turned out to be annotation format. One set had fixed-size boxes around a point, the other had boxes fitted to the lesion. Same disease, basically two different tasks.\n\nI also have vessel segmentation and centerlines, so my first instinct is a radius profile along the vessel to flag narrowing, then maybe a network to filter the candidates. Has anyone actually done something like that, or is there a smarter way in?\n\nThe part that bugs me most is evaluation. The labels come from doctors and they obviously don't mark every narrowing, so any recall I compute against them is probably too optimistic. How do you get an honest number when the ground truth is incomplete?\n\nAlso open to papers, repos, or public datasets beyond ARCADE. And if you think I'm approaching this wrong, say so.",
+    "developer": "Future-Structure-296",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

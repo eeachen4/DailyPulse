@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.31479",
+  "sourceItemId": "2610.31479",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.31479",
+  "detail": {
+    "longDescription": "arXiv:2610.31479v1 Announce Type: cross Abstract: Apple Silicon is among the most widely used platforms for local LLM inference, yet nearly all inference optimizations are designed and validated on server-class NVIDIA GPUs under batched serving workloads. Which optimizations retain their benefits when moved to Apple Silicon, and what determines their applicability? We evaluate four optimization families: KV-cache pruning, speculative decoding, ported GPU kernels, and post-training quantization. Experiments span four Apple machines under a common single-request decode workload, with matched RTX 4090 comparisons where possible. KV-cache pruning can reach up to 1.75 times end-to-end throughput on Apple but can reduce throughput on desktop NVIDIA GPUs. Under the common benchmark, all evaluated speculative decoding methods reduce throughput on Apple, despite reported 2-6 times gains on server GPUs. CUDA kernel designs transfer only partially: public Metal lacks asynchronous copy, and batch-one decode makes several serving-oriented mechanisms inapplicable, although transferable components yield up to 1.20 times decode throughput. Quantization gains vary by machine. Across four families, a reported speedup is not a portable property of a technique alone but a joint function of technique, runtime, hardware contract, and workload regime.",
+    "developer": "Kyrylo Yemets, Andrii Yaroshevych, Victor Muryn, Ostap Khomenko, Pavlo Kryven, Maksym Kmet, Maksym Shamrai, Mariya Hirna",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Kyrylo Yemets, Andrii Yaroshevych, Victor Muryn, Ostap Khomenko, Pavlo Kryven, Maksym Kmet, Maksym Shamrai, Mariya Hirna"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

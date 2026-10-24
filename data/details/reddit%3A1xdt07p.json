@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdt07p",
+  "sourceItemId": "1xdt07p",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xdt07p/once_cached_cybertiel_loads_fully_in_56s_vs_137s/",
+  "detail": {
+    "longDescription": "**Park in RAM.** An engine that can offload itself (ComfyUI, vLLM, SGLang, or any engine that serves the [park protocol](https://github.com/T-Crypt/berth/blob/main/contrib/PARK-PROTOCOL.md)) moves its weights to system memory on a drain and resumes from there instead of reloading from disk. Berth parks only when the RAM it measures covers the engine plus a floor, and stops parked engines first when memory runs short.\n\n# Swap numbers\n\nOn the reference RTX 4090 with 64 GiB of RAM, one chat request through llama-swap, from the request to the reply, lease included (2026-10-23):\n\n|Switch|Time|\n|:-|:-|\n|A 21 GB chat model, file in the page cache|5.6 s|\n|ComfyUI parks in RAM|under 1 s|\n|ComfyUI to a 27B chat model|13.6 to 16.3 s|\n\nStrata's numbers and the method are in [Benchmarks](https://github.com/T-Crypt/berth/blob/main/docs/benchmarks.md#swap-numbers)\n\nRepo: [Berth](https://github.com/T-Crpy/berth)",
+    "developer": "Distinct-Pie2389",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

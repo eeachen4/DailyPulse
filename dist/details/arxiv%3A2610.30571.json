@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.30571",
+  "sourceItemId": "2610.30571",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.30571",
+  "detail": {
+    "longDescription": "arXiv:2610.30571v1 Announce Type: new Abstract: Purpose: Coding agents follow a project's instruction file, such as CLAUDE.md or AGENTS.md, even when it disagrees with the existing code and even when they notice the disagreement. We measure this behaviour and test whether one sentence in the user's own instruction file makes agents follow the code instead. Methods: We built 40 Python projects in which the instruction file asks for one convention while the existing code uses another, for example print instead of logging. Claude Code and Codex CLI added a feature to each project, with and without a sentence in the user-level instruction file that gives the existing code precedence, in 320 runs. Results: Without the sentence, 90.1% of the agents' choices followed the stale file. Claude Code pointed out the conflict in 79 of 80 runs and still followed the file. Codex CLI rewrote the existing code to match the file in 20 of 80 runs, and the project's own tests then failed in 17 of them. The sentence raised the share of choices that follow the code from 4.2% to 91.4%, stopped the rewrites and raised the test pass rate from 89.4% to 100%. Conclusion: We attribute the behaviour to how agents receive the two sources: the instruction file reaches the model as an instruction and the code as tool output, which models are trained to rank lower. Users can add the sentence today, and makers of agents and models can build the same rule into their products.",
+    "developer": "Xiaonan Xu, Wenjing Wu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xiaonan Xu, Wenjing Wu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

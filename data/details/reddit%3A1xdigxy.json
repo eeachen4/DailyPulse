@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdigxy",
+  "sourceItemId": "1xdigxy",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xdigxy/terraform_cant_deploy_multiple_vms/",
+  "detail": {
+    "longDescription": "Hey guys,\n\nI'm kinda new to world of devops and automation so I thought I'll start easy by creating VMs on Proxmox with Terraform via my CI/CD Gitea.\n\nWhen I create 1 VM, everything works but when I create 2 or more I get this error : \n\n    Run terraform -chdir=terraform apply -input=false tfplan\n    proxmox_virtual_environment_vm.debian: Creating...\n    proxmox_virtual_environment_vm.debian: Still creating... [00m10s elapsed]\n    ╷\n    │ Error: All attempts fail:\n    │ #1: received an HTTP 500 response - Reason: mkdir /mnt/pve/NFS/images/121: File exists at /usr/share/perl5/PVE/Storage/Plugin.pm line 1060.\n    │\n    │ with proxmox_virtual_environment_vm.debian,\n    │ on main.tf line 13, in resource \"proxmox_virtual_environment_vm\" \"debian\":\n    │ 13: resource \"proxmox_virtual_environment_vm\" \"debian\" {\n    │\n    ╵\n    Error: Terraform exited with code 1.\n    Error: Process completed with exit code 1.\n\n  \nThis is my [main.tf](http://main.tf) : \n\n    # ===== Paramètres à adapter =====\n    locals {\n      template_id   = 7000\n      template_node = \"pve02\" # nœud qui héberge le template\n      datastore_id  = \"NFS\"\n      bridge        = \"vmbr0\"\n    \n      ci_user = \"deployment\"\n      #ssh_public_key = file(\"~/.ssh/id_ed25519.pub\")\n    }\n    \n    # ===== VM =====\n    resource \"proxmox_virtual_environment_vm\" \"debian\" {\n      name            = var.vm_name\n      node_name       = var.node_name\n      keyboard_layout = \"fr\"\n    \n      # Clone la template puis la transforme en VM\n      clone {\n        vm_id     = local.template_id\n        node_name = local.template_node\n        full      = true\n      }\n    \n      agent {\n        enabled = true\n      }\n    \n      cpu {\n        cores = var.vm_cores\n        type  = \"x86-64-v2-AES\"\n      }\n    \n      memory {\n        dedicated = var.vm_memory\n        floating  = var.vm_memory\n      }\n    \n      disk {\n        datastore_id = local.datastore_id\n        interface    = \"scsi0\"\n        size         = var.vm_disk_size\n        discard      = \"on\"\n        iothread     = true\n        ssd          = true\n      }\n    \n      network_device {\n        bridge = local.bridge\n        model  = \"virtio\"\n      }\n    \n      initialization {\n        datastore_id = local.datastore_id\n    \n        ip_config {\n          ipv4 {\n            address = \"dhcp\"\n            # address = \"192.168.1.50/24\"\n            # gateway = \"192.168.1.1\"\n          }\n        }\n    \n        # Compte qui sera créer dans la VM\n        user_account {\n          username = local.ci_user\n          password = \"TOPSECRET\"\n          #keys     = [local.ssh_public_key]\n        }\n      }\n    \n      lifecycle {\n        ignore_changes = [initialization] # évite de recréer la VM si cloud-init change\n      }\n    }\n\n  \nI don't understand why it wouldn't work when creating multiple VMs. Thanks for the help",
+    "developer": "Keensworth",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

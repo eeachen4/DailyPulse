@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.30595",
+  "sourceItemId": "2610.30595",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.30595",
+  "detail": {
+    "longDescription": "arXiv:2610.30595v1 Announce Type: cross Abstract: Transactions differ in how their value changes with execution time and relative position. Ethereum's EIP-1559 lets them compete through fee fields, but a fee bid gives no enforceable claim to an earlier position in the block, and no way to express willingness to accept a later one. Its base fee is a hard admission floor. We introduce temporal liquidity markets (TLM), a framework for crossing complementary temporal requirements: transactions seeking early-region execution (consumers) can fund transactions that opt into exclusion from that region (providers). Selected consumers complete within the early region and are ordered among themselves by authorization density, both validator-checked. In our block-local EIP-1559 extension, providers may be admitted below the base-fee floor. Under TLM regulation, funding-conditioned and capacity-capped provider gas is excluded from the ordinary EIP-1559 controller input. Counting it there instead raises the base fee and displaces ordinary demand at a positive base-fee fixed point. Exclusion lets the controller regulate ordinary demand at its original target and preserves the no-TLM ordinary allocation by construction; in synthetic experiments it raises total utilization with funded gas. Selected consumers pay their signed authorizations, which fund provider shortfalls; the surplus is burned. We state an adversary model with strategic senders and builders and prove eight properties under it, among them validator-checked rule validity, full burn of the base fee, and no subsidy. An inserted consumer bid cannot raise any other consumer's charge. With a provider fee-cap floor, a small, capped inclusion fee and a consumer allowance tied to funded provider gas by a large enough link ratio, no finite set of consumer bids or providers that the builder inserts raises its direct fee payoff.",
+    "developer": "Duanyang Dan Guo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.GT, cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Duanyang Dan Guo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

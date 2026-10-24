@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80011889",
   "sourceItemId": "80011889",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
   "sourceUrl": "https://stackoverflow.com/questions/80011889/variable-explorer-or-kernel-selection-dont-work-when-using-spyders-notebook",
   "detail": {
     "longDescription": "I have installed Spyder by conda create -c conda-forge -n spyder-env spyder numpy scipy pandas matplotlib sympy scikit-learn on my Linux. Here are a few lines from conda list (you can find the long complete output here ): # packages in environment at /home/sergio/lib/miniconda3/envs/spyder-env: # # Name Version Build Channel ca-certificates 2026.10.19 hbd8a1cb_0 conda-forge cairo 1.18.4 he90730b_1 conda-forge ipykernel 6.31.0 pyha191276_0 conda-forge ipython 9.17.1 pyh53cf698_0 conda-forge jupyterlab 4.4.10 pyhd8ed1ab_0 conda-forge matplotlib 3.11.1 py314h815e797_2 conda-forge nb_conda_kernels 2.5.1 pyh707e725_2 conda-forge nbclient 0.11.0 pyhcf101f3_1 conda-forge nbconvert 7.17.1 hb502eef_0 conda-forge nbconvert-core 7.17.1 pyhcf101f3_0 conda-forge nbconvert-pandoc 7.17.1 h08b4883_0 conda-forge nbformat 5.11.1 pyhcf101f3_0 conda-forge notebook 7.4.7 pyhd8ed1ab_0 conda-forge notebook-shim 0.2.4 pyhd8ed1ab_1 conda-forge numpy 2.5.3 py314hd3a7d6b_0 conda-forge pandas 3.0.5 py314hb4ffadd_1 conda-forge pyqt 5.15.11 py314h92491ac_2 conda-forge python 3.14.7 hcd007b5_106_cp314 conda-forge scikit-learn 1.9.0 np2py314hf09ca88_0 conda-forge scipy 1.18.0 py314hf07bd8e_0 conda-forge spyder 6.1.7 hd8ed1ab_0 conda-forge spyder-base 6.1.7 linux_pyha804496_0 conda-forge spyder-kernels 3.1.6 unix_pyh707e725_0 conda-forge spyder-notebook 0.7.1 pyhd8ed1ab_0 conda-forge spyder-terminal 1.3.1 pyhd8ed1ab_0 conda-forge sympy 1.14.0 pyh2585a3b_106 conda-forge I've then installed the notebook plugin by conda install spyder-notebook -c conda-forge , and got spyder-notebook 0.6.1. I wanted to use notebooks and select kernels according to other conda environments, so I've executed conda activate <other env> conda install ipykernel conda deactivate conda activate spyder-env conda install nb_conda_kernels All was working well, I could open a notebook and select the right kernel, open a console from the notebook's options menu, but the Variable Explorer pane always remained empty (\"No variables to show\"). I started Spyder form the command line, so I could see an error message when I opened a notebook: [27515:27560:1022/141938.440094:ERROR:nss_util.cc(283)] After loading Root Certs, loaded==false: NSS error code: -8018 So I've tried conda remove spyder-notebook conda install -c conda-forge spyder-notebook=0.7.1 Now I can open a notebook from the menu bar (fine), open a console, and see my variables in the Variable Explorer pane, but I can't select the kernel, I can only choose between \"no kernel\" and \"Python 3 (Spyder)\". The error message when I open a notebook now is [28612:29135:1022/142410.416888:ERROR:nss_util.cc(283)] After loading Root Certs, loaded==false: NSS error code: -8018 Thank you for any suggestions.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "42"
+        "value": "92"
       },
       {
         "label": "状态",

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdmmj9",
+  "sourceItemId": "1xdmmj9",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xdmmj9/lessons_learned_benchmarking_ebpf_grafana_beyla/",
+  "detail": {
+    "longDescription": "**While investigating why quantized \\`llama.cpp\\` inference pods behind a FastAPI gateway on a 3-node \\`kind\\` cluster were experiencing sudden P95 latency spikes (500ms jumping to 30s) and HTTP 502/504 timeouts, I ran a controlled benchmark across 64 reproducible fault and decoy runs to see which signals actually isolate the root cause.**\n\n\n\nHere are the 4 most interesting findings from the experiments:\n\n\n\n1. \\*\\*CFS CPU Throttling vs. Host CPU Contention (Linux PSI):\\*\\*\n\n   Looking only at pod CPU utilization misses the distinction between a container hitting its own \\`limits.cpu\\` (\\`container\\_cpu\\_cfs\\_throttled\\_periods\\_total / container\\_cpu\\_cfs\\_periods\\_total > 90%\\`) versus a noisy neighbor saturating the worker node's runqueue (\\`container\\_pressure\\_cpu\\_waiting\\_seconds\\_total\\` Linux PSI spike with 0% local CFS throttling). The remediation is completely different (raising CPU limits vs. adding \\`podAntiAffinity\\`).\n\n\n\n2. \\*\\*Why we dropped zero-code eBPF (Grafana Beyla v3.39.1) for GenAI spans:\\*\\*\n\n   We tested two modes:\n\n   \\- \\*Mode A (OTel SDK + Beyla):\\* Added 0.0% accuracy improvement over the OTel SDK alone while generating 73.5%–78.0% trace noise in Tempo from kubelet \\`/healthz\\` probes and \\`/metrics\\` scrapes.\n\n   \\- \\*Mode B (Beyla only, zero-code):\\* 0/32 traces carried \\`gen\\_ai.\\*\\` attributes, and broken context propagation across FastAPI worker threads caused pre-inference application delay detection to drop from 100% to 0%.\n\n\n\n3. \\*\\*Small local LLMs struggle with raw Kubernetes telemetry during an incident:\\*\\*\n\n   When evaluating a local CPU-served 0.5B model on 12 fault scenarios, each investigation consumed 33k–52k prompt tokens, took 31–164 seconds, and got distracted by decoy OOMs in neighbor namespaces. In contrast, 8 deterministic Go rules correlating OTel \\`gen\\_ai.\\*\\` spans + Prometheus + K8s Events resolved 24/24 held-out test faults in \\`< 0.5s\\` with 0/21 false positives on decoy windows.\n\n\n\n4. \\*\\*Rolling update false positives on Readiness Probes:\\*\\*\n\n   During a Deployment rollout, old terminating pods (\\`DeletionTimestamp != nil\\`) briefly flip \\`Ready=False\\`. Filtering out pods with a non-nil \\`DeletionTimestamp\\` was essential to avoid false-positive \\`readiness\\_failing\\` alerts during normal rollouts.\n\n\n\nAll 64 raw telemetry snapshots (\\`k8s-pods.json.gz\\`, \\`k8s-events.json.gz\\`, \\`prom-metrics.json.gz\\`, \\`tempo-traces.json.gz\\`), the pre-registration manifest, and the Go evaluation code are open-source here if you want to inspect the data or reproduce the numbers (\\`make eval-score SPLIT=test\\`):\n\n\n\n[https://github.com/iyedM/kubepilot](https://github.com/iyedM/kubepilot)\n\n\n\nHow are you currently separating application-layer delays from node PSI / cgroup throttling on your inference workloads?",
+    "developer": "iyedM",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

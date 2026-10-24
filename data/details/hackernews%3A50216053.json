@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50216053",
+  "sourceItemId": "50216053",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50216053",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Cody, I have 847 YouTube playlists, and always hated that YouTube failed to provide basic playlist management tools. Ctrl+F was never convenient and breaks past 200 playlists. So I built &amp; shipped my first Chrome extension. It replaces the Save dialog with a native-feeling searchable one that fetches all your playlists (and whether the current video is saved there) directly from YouTube&#x27;s InnerTube API. It works robustly across every current save surface (watch page, home feed, search results, Shorts via right-click or Alt+S). This version is faster and more stable than my original attempt. In 1.0 I read and wrote YouTube&#x27;s DOM directly. It felt like the efficient approach, but makes for constant UI regressions as YouTube changes, so I can&#x27;t recommend it. In 2.0 the UI lives outside YouTube&#x27;s app tree in a closed shadow root, and the data comes from YouTube&#x27;s internal InnerTube JSON API. The trigger it uses is a small hook wrapping the page&#x27;s fetch, i.e. when YouTube&#x27;s client requests the add-to-playlist panel. Privacy: As private as possible given it&#x27;s a YouTube extension. The extension only talks to youtube.com, doesn&#x27;t ship any third-party code, and stores nothing about your playlists, just two display preferences: sort order, and the privacy new playlists are created with. AGPL-3.0. Install: https:&#x2F;&#x2F;chromewebstore.google.com&#x2F;detail&#x2F;efgbkmnooapcpdpgmih... Source: https:&#x2F;&#x2F;github.com&#x2F;codyhxyz&#x2F;playlist-search-extension Site: https:&#x2F;&#x2F;playlist.codyh.xyz&#x2F; Bonus: Technically you can replicate the filter-bar functionality with a dev console script, which I&#x27;ve linked here: ( https:&#x2F;&#x2F;gist.github.com&#x2F;codyhxyz&#x2F;00001e74d238ae5911ccfc8f8d4... ). For obvious reasons, I prefer a dedicated extension. Happy to answer anything about my approach including the InnerTube API or about the shadow-root. Always looking to improve the extension&#x27;s architecture.",
+    "developer": "ydoc5212",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

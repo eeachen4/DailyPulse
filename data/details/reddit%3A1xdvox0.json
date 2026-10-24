@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdvox0",
+  "sourceItemId": "1xdvox0",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1xdvox0/a_code_execution_sandbox_in_go_without_docker/",
+  "detail": {
+    "longDescription": "I built a Containerization API that executes untrusted code and returns output plus memory and CPU metrics. Instead of running a container per submission, it creates the boundary directly with Linux primitives: PID, mount, network, and user namespaces, a chroot into a minimal per-language rootfs, cgroups v2 for memory and CPU limits, and a seccomp-BPF denylist. The sandbox root maps to host UID 65534, so root inside is never root outside.\n\nIt supports Python, C++17, C11, and Java, capped at 60s and 128MB, with a global admission controller that rejects work before a sandbox is created. Every limit is kernel-enforced.\n\nCode: https://github.com/Anga205/CodeExecutionAPI\n\nLive Demo Website: https://compiler.anga.codes\n\nAlthough I've done rigourous testing for resource management and permissions based sandbox escape, I've still hosted the api on a very small server on an isolated network, just in case im wrong\n\nI think its pretty cool, its faster in code execution than most of the other containerization services like docker or firejail, do check it out!",
+    "developer": "Anga205",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

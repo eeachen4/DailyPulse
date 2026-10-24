@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.30482",
+  "sourceItemId": "2610.30482",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.30482",
+  "detail": {
+    "longDescription": "arXiv:2610.30482v1 Announce Type: new Abstract: Distributed quantum computing (DQC) is a promising near-term approach for executing circuits that exceed the capacity of a single quantum processing unit (QPU). Prior work has made significant progress on circuit partitioning and reconstruction, but practical DQC requires more than cutting a circuit into smaller pieces. A runtime system must determine whether to execute the circuit intact, cut it for sequential execution on one QPU, or distribute it across multiple QPUs, while accounting for queueing, communication, reconstruction, and hardware constraints. We present a resource-aware scheduler for DQC that compares these execution alternatives at runtime using explicit models of QPU execution, communication, and host-side reconstruction, together with hardware-informed timing derived from simulated IBM QPUs. By treating communication and reconstruction as first-class scheduling costs, the scheduler selects execution plans using a more realistic view of end-to-end overhead than cutting-only approaches. Across our experiments, reconstruction accounts for over 83% of cutting overhead, distributed execution reduces P90 latency by up to 39% relative to uncut single-QPU execution, and scheduling overhead itself remains negligible, never exceeding 0.038% of end-to-end job latency. Together, these results show that DQC must be treated as a runtime scheduling problem over both quantum and classical resources, not just circuit partitioning.",
+    "developer": "Connor Howe, Raghav Mundada, Jake O'Shaughnessy, Ibrahim Abdullahi, Ali Anwar",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Connor Howe, Raghav Mundada, Jake O'Shaughnessy, Ibrahim Abdullahi, Ali Anwar"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

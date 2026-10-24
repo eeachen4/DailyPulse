@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdgnzm",
+  "sourceItemId": "1xdgnzm",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xdgnzm/one_headless_service_with_zero_pods_stopped_every/",
+  "detail": {
+    "longDescription": "A detail I hadn't fully appreciated until I rebuilt Monzo's 2017 outage: a normal Service always resolves (to its ClusterIP) even with no endpoints, but a **headless** Service (`clusterIP: None`) resolves straight to its ready Pods, so with zero Pods its name has no records at all.\n\nPut that name in an nginx `proxy_pass` and nginx won't start: it resolves every upstream once at startup and exits if any lookup fails. Running routers don't notice, because they loaded the config before the route was added. Restart them all at once and everything behind the router goes down:\n\n    nginx: [emerg] host not found in upstream \"cards-v2\" in /etc/nginx/conf.d/default.conf:6\n    \n\n`kubectl logs deploy/router --previous` is the command that finds it, since the crash-looping container has usually restarted by the time you look.\n\nGuide (free): [https://learn.k8sight.in/guides/nginx-host-not-found-in-upstream-kubernetes?utm\\_source=reddit&utm\\_medium=social&utm\\_campaign=nginx-host-not-found-in-upstream-kubernetes&utm\\_content=r-kubernetes](https://learn.k8sight.in/guides/nginx-host-not-found-in-upstream-kubernetes?utm_source=reddit&utm_medium=social&utm_campaign=nginx-host-not-found-in-upstream-kubernetes&utm_content=r-kubernetes)\n\nAlso new: CPU throttling from limits set to the average (Buffer), and Pods Running but not Ready after a `dnsPolicy: None` change (Salesforce). They're all at [https://learn.k8sight.in/guides?utm\\_source=reddit&utm\\_medium=social&utm\\_campaign=guides&utm\\_content=r-kubernetes](https://learn.k8sight.in/guides?utm_source=reddit&utm_medium=social&utm_campaign=guides&utm_content=r-kubernetes)\n\nDisclosure: I built the platform; the hands-on incidents are paid, the guides aren't. Which outage would you want rebuilt next?",
+    "developer": "Interesting-Ease3774",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

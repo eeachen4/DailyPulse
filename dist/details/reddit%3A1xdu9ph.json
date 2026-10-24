@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdu9ph",
+  "sourceItemId": "1xdu9ph",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xdu9ph/central_email_agent_for_org_looking_for_feedbacks/",
+  "detail": {
+    "longDescription": "The goal is to create a way to provide AI-assisted email use to employees and administrators of an organization.   \n  \nThere are lots of emails, different departments, and tasks handled by different people.   \n  \nThe admin needs access to all of these email addresses to audit and find things.   \n  \nThe users themselves also need to access the agent to have the ability to ask it to look through the emails and find things, etc.   \n  \nBasically, we want the employees, as well as the admin, to have an AI assistant that can go into their emails and manage their emails for them.\n\n  \nChallenges:  \n1. AI agent needs to be centralized and controlled by admins with basic user management (for employee access).   \n  \n2. Emails are in two locations, 1 live at production server (CPANEL) which deletes emails beyond 90 days old; and 1 at a local computer (backup). The agent needs to be able to traverse both servers to find emails and etc.  \n  \n3. Users must also be able to tell agent to draft and send email replies and etc.   \n\n\n4. Agents need to be able to open attachments too. Basically act like a real human secretary that handles emailing for the users.\n\n  \nMy Plan:  \n1. Develop a mail backup system (or use opensource one)  that can simply IMAP into the production mailserver pulling down emails and attachments every 5mins. This will be installed on the email backup server (local machine). This will also trigger automatic deletion for emails beyond 90days. NOTE: I'm looking into OSS BICHON as the backup system but i dont know if it's better to build my own archiver so i have full control over it (?) instead of trying to work w/ the OSS.  \n  \n2. Deploy Pi Agent on the local machine, and develop web-ui around it with access management etc etc. From here admin can create users, supply the IMAP credentials (for live email) and point accounts to the local mail folders which a particular user has access to (either only his own, or several departments, or all emails). In this web ui, logged in users can simply see all emails new and old, since all is already new and old will be on the local machine anyway, and ask the agent to search, compose, and send emails as well. - at this point it feels im simply making a basic webmail interface with AI assistant. For sending part, will simply supply the specific account's SMTP from live server.   \n  \n  \nWhat do you guys think?\n\n  \nfor #2, it seems i'm pretty much replacing CPANEL /ROUNDCUBE webmail with my own webmail already huh? I'm a bit concerned because I don't want to have to do a totally complete webmail system, since that's not the goal of this project. This project is basically to give AI access to users, to provide AI-assisted email access to users, and also backup. But since it's advantageous for people to be able to send emails from that AI-assisted interface, I guess it's evolving quickly into its own webmail.\n\nWould love to pick your brains, guys.",
+    "developer": "TruthTellerTom",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdq8go",
+  "sourceItemId": "1xdq8go",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xdq8go/i_made_an_opensource_alternative_to_the_turing_35/",
+  "detail": {
+    "longDescription": "Hey everyone!\n\nI recently finished the first release of **Ember**, a free and open-source Windows app for those little 3.5\" Turing/TURZX displays people put inside their PC cases.\n\nI always liked the hardware, but the original software felt painfully slow. Around 1 FPS, which is pretty disappointing for a screen that could do a lot more.\n\nSo I decided to build my own.\n\n### How I got it running faster\n\nThe display's USB connection is limited to roughly **157 KB/s**. A full 480×320 frame takes almost two seconds to transfer.\n\nInstead of constantly sending entire frames, Ember compares them in small tiles and **only sends the pixels that actually changed**.\n\nThe result? Small animations, gauges, clocks and graphs can reach **20–30 FPS**, while the app uses about **0.3% CPU and 70 MB RAM** on my system.\n\nIt's written in **C# / .NET 9**, using WPF and SkiaSharp.\n\n### What it can do\n\n- **8 built-in themes**, from minimal to colorful\n- **Visual theme editor** with layers, snapping and live preview\n- CPU/GPU temperatures, usage, clocks, RAM, network and disk monitoring\n- Custom themes that you can export and share\n- System tray controls and automatic Windows startup\n- English and Polish interface\n\nI also put quite a bit of effort into the UI. I used **Claude Opus 5.5** to help with parts of the interface design and implementation. Just wanted to be transparent about that.\n\n### Screenshots\n\n[Main application interface](https://raw.githubusercontent.com/cybvlsky/Ember/main/docs/app-screen.png)\n\n[Theme gallery](https://raw.githubusercontent.com/cybvlsky/Ember/main/docs/app-themes.png)\n\n[Visual theme editor](https://raw.githubusercontent.com/cybvlsky/Ember/main/docs/app-editor.png)\n\n[USB bandwidth visualization](https://raw.githubusercontent.com/cybvlsky/Ember/main/docs/bandwidth.png)\n\n### Download & source code\n\n**[GitHub — cybvlsky/Ember](https://github.com/cybvlsky/Ember)**\n\n**[Download the latest release](https://github.com/cybvlsky/Ember/releases/latest)**\n\nIt's completely free, MIT licensed, and there's a Windows installer available.\n\n**One limitation:** It currently supports the Turing/TURZX 3.5\" revision A (USB ID 1a86:5722) on Windows 10/11. Other models use different protocols. The installer isn't code-signed yet either, so SmartScreen may show a warning.\n\nThis is my first public release, and I'm still figuring out what to improve next.\n\nIf you've got one of these displays, I'd love to hear what you think. Bug reports, suggestions and custom themes are all welcome.\n\nThanks for checking it out!",
+    "developer": "Outside_Shopping762",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

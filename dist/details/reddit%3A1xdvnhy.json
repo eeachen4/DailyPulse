@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdvnhy",
+  "sourceItemId": "1xdvnhy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xdvnhy/glyphh_ada_precedentbased_classifier_and_llm/",
+  "detail": {
+    "longDescription": "Most teams routing tickets, evaluating approvals, or scoring fraud throw every single input directly at an LLM. It works, but it's expensive, non-deterministic, and lacks a strict audit trail.\n\nModels like Jev introduced transformer based classifiers, Glyphh took a pure hdc route and achieves better results in many use cases.\n\nWe built Glyphh Ada to sit in front of LLMs as a precedent-based classifier. You seed it with labeled historical cases. When a new input comes in, it returns:\n\nA classification decision\n\nA confidence score\n\nThe exact historical reference cases backing the decision\n\nIf confidence falls below your threshold, your pipeline passes that specific case to an LLM or human operator. Identical inputs return the exact same answer every time, backed by traceable source cases.\n\nBanking77 Benchmark (Routing 200 customer support messages across 77 categories):\n\nAda alone: 90.0% accuracy\n\nClaude (best model with context resends): 96.5% accuracy (\\\\\\~$300 total API cost across the run)\n\nAda + Claude hybrid (Ada handles high-confidence, routes 22% edge cases to Claude): 97.5% accuracy (\\\\\\~$0.22 total cost)\n\nNote: This is a single 200-message benchmark sample, not a universal guarantee. Methodologies, scripts, a loan-decision test, and a benchmark dataset where Ada performs poorly are all public in the repo.\n\nImplementation:\n\nHosted API with Python and TypeScript SDKs\n\nMCP server/plugin for model tuning inside Claude\n\nFree tier available; zero training on customer data\n\nLinks:\n\nSite: \\[https://glyphh.ai\\](https://glyphh.ai/)\n\nBenchmarks & Code: \\[https://github.com/glyphh-ai/glyphh/tree/main/benchmarks\\](https://github.com/glyphh-ai/glyphh/tree/main/benchmarks)\n\nLooking for feedback on edge cases, failure modes, or where this breaks on your datasets.",
+    "developer": "Successful-Seesaw525",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdpek9",
+  "sourceItemId": "1xdpek9",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xdpek9/are_we_solving_llm_memory_by_remembering_more/",
+  "detail": {
+    "longDescription": "Long-context models can now handle millions of tokens. But I've been wondering if we're focusing too much on recall and not enough on what happens when information changes.\n\nTake the example in the figure. A coding agent initially learns *get\\_user(user\\_id)*, but a later update changes it to *get\\_user(org\\_id, user\\_id)*. Both versions are still accessible. The agent now has to figure out which one to use.\n\nThere are two ways to handle this: update the stored memory itself, or keep both versions and resolve the conflict when reading.\n\nDifferent architectures approach this differently. Transformers and RAG mostly preserve history, linear attention compresses it, DeltaNet uses prediction-error-based updates, and BDH (Dragon Hatchling) explores Hebbian synaptic plasticity.\n\nBut better recall doesn't necessarily mean better revision. Even with the right information available, a model can still act on an outdated belief.\n\nI wonder if our memory benchmarks test this enough. Can a model update its answer when new evidence arrives, without losing what was previously true or disturbing unrelated memories?\n\nIs this primarily a memory-update problem, or a reasoning problem? And are there good benchmarks that specifically test this?",
+    "developer": "Prestigious-Tip6030",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

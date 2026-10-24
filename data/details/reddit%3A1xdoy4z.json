@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdoy4z",
+  "sourceItemId": "1xdoy4z",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xdoy4z/problem_with_komodo_webhooks_that_were_previously/",
+  "detail": {
+    "longDescription": "I have a locally hosted git instance that all of my compose files live in. All of my Komodo stacks pull from the repos in my git instance, and each repo is configured with a webhook to trigger builds on a push. \n\n  \nI have custom DNS routes set up in my internal network; I'm fudging the URLs here, git has git.home and komodo has komodo.home. I can fully access and use both services at their respective URLs. I can also confirm that Komodo can read Git; it is able to pull files just fine.\n\n  \nBut the webhooks, which previously were working fine, have stopped working. Whenever git tries to use one of the webhooks to trigger a new build, it gets the following error:\n\nDelivery: Post \"httos://komodo.home/listener/github/stack/6adbb97a51bdfd0051a9640d/deploy\": dial tcp 10.0.3.14:443: denied by egress policy: komodo.home (10.0.3.14) needs an explicit IP allow entry (non-public address) \n\n  \nThis isn't a network issue; like I said this was previously working. I suspect Komodo updated and added a new requirement for services calling its webhooks but I can't find any trace of that, and searching for this problem hasn't yielded any useful results.\n\n  \nI'm rather hoping someone here uses Komodo and knows how to fix this.",
+    "developer": "Rand_al_Kholin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

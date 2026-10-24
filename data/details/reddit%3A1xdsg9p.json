@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdsg9p",
+  "sourceItemId": "1xdsg9p",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xdsg9p/is_containment_rate_one_of_the_most_misleading/",
+  "detail": {
+    "longDescription": "Hi, I've been looking at how AI customer support platforms measure containment rate, and I'm starting to wonder how useful it actually is on its own.\n\nThe basic idea is simple:\n\nContainment rate = conversations that don't require human handoff / total eligible conversations.\n\nBut the problem is that a conversation ending without a human doesn't necessarily mean the customer's issue was resolved.\n\nFor example:\n\n* AI answers the question correctly → contained.\n* Customer gives up after getting an unhelpful response → potentially contained.\n* AI gets stuck in a loop and the customer leaves → potentially contained.\n* Customer can't figure out how to reach a human → potentially contained.\n\nDepending on how the platform defines containment, all four could contribute to the same metric.\n\nImagine two AI systems:\n\n**System A:** 90% containment, 60% verified resolution.\n\n**System B:** 75% containment, 70% verified resolution.\n\nI'd argue System B is doing a better job, even though its containment rate looks worse.\n\nI think containment is still useful for measuring how much support workload AI keeps away from human agents, but it shouldn't be treated as a proxy for customer success.\n\nIt probably makes more sense to evaluate it alongside resolution rate, repeat contact rate, and CSAT.\n\n**For anyone running AI customer support in production:**\n\nHow are you defining containment?\n\nDo you count abandoned conversations as contained?\n\nAnd do you actually use containment rate to evaluate performance, or have you moved toward verified resolution rate instead?",
+    "developer": "Informal-Dust4499",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

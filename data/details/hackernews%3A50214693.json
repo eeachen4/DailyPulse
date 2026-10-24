@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50214693",
+  "sourceItemId": "50214693",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50214693",
+  "detail": {
+    "longDescription": "So I found myself surprised today that exiting the CLI with CTRL-C does not, in fact, close Claude CLI. What it does is it closes the agent&#x27;s terminal interface, but it leaves a background process active, even if you didn&#x27;t work on anything at all. Try it yourself: run claude, exit to main conversations list, close it immediately with CTRL-C or &#x2F;exit, then `ps ax|grep claude`. Apparently it&#x27;s not a bug, it&#x27;s a &quot;feature&quot;, introduced earlier this year. You need to disable Agent View (https:&#x2F;&#x2F;code.claude.com&#x2F;docs&#x2F;en&#x2F;agent-view, disableAgentView in settings.json) to stop that behavior. But then you lose the ability to open the list all your chats in main view, effectively crippling it. This is yet another frustrating anti-pattern they introduce and it personally upsets me that 5 decades of established paradigms (CTRL-C is CTRL-C!) continue to be thrown out of the window just like that. I guess at 30k changes a day you kinda have to fell entitled to not care about anything legacy. EDIT: you can still show a list of chats with disableAgentView, just need an explicit `claude --resume`. It&#x27;s a different UI, but with an actual search!",
+    "developer": "cromka",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

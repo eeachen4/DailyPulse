@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdnsj9",
+  "sourceItemId": "1xdnsj9",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xdnsj9/i_built_a_selfhosted_map_of_my_homelab_every_host/",
+  "detail": {
+    "longDescription": "After a few years of self-hosting across several boxes, I kept losing track of what runs where, which stack talks to which database, and whether last night's backup actually ran. My \"documentation\" was always out of date, so I built something that reads it from the servers themselves, and I've made it \\*\\*open source (MIT)\\*\\*.\n\n\n\n\\*\\*ServChart\\*\\* draws a live, zoomable map of all your Docker hosts: hosts → Compose stacks (and the folder they live in) → containers, networks and published ports.\n\n\n\n\\- \\*\\*Lines come from real traffic\\*\\*, not config files. The agent sees which containers actually connect to each other, on the same host and across hosts. Point at a container to see what it calls (blue) and what calls it (green).\n\n\\- \\*\\*Health at a glance:\\*\\* CPU, RAM and disk per server, per-container resources, backup status (works with any backup tool via a tiny status file), certificate expiry and newer image versions.\n\n\\- \\*\\*A printable report\\*\\* with findings (full disks, failed backups, expiring certs, outdated images) and CSV exports.\n\n\n\nHow it works: one small agent per host (Python standard library only, \\~13 MB RAM, \\~0% CPU on my servers) reads the Docker API and \\*\\*pushes outbound\\*\\* to the hub every 60 s, so there are no ports to open and it works behind NAT and on cloud VMs. The hub is Django + React in a single container, SQLite by default.\n\n\n\nSecurity, since it touches the Docker socket: the agent only sends GET requests, never reads environment variables or container commands, redacts secret-looking labels, and the hub re-checks every report against an allow-list. Traffic observation and log viewing are opt-in. You can put a read-only socket proxy in front if you prefer.\n\n\n\nIt's early (v0.4) but I run it daily on 6 servers. It isn't a container manager: it sits alongside Portainer/Dockge, Homepage, Beszel etc. and answers \"what is connected to what, and is it healthy?\"\n\n\n\nTry it with fictional demo data in two minutes: set \\`SERVCHART\\_DEMO: \"1\"\\` in the compose file.\n\n\n\n\\*\\*GitHub:\\*\\* [https://github.com/opticodev/servchart](https://github.com/opticodev/servchart)\n\n\n\n\\*\\*I'd really appreciate your feedback.\\*\\* What's missing, what's confusing, what would make this useful for your setup? I'm especially interested in setups I can't test myself: Unraid, Synology, TrueNAS, Podman, Raspberry Pi/ARM. Bug reports, \"the map looks wrong here\" screenshots (with the demo data or your names blurred) and ideas are all welcome as \\[issues\\](https://github.com/opticodev/servchart/issues) or in \\[Discussions\\](https://github.com/opticodev/servchart/discussions).\n\n\n\n\\*\\*Contributions are very welcome too\\*\\*, from docs and install guides for your platform to code. There are some \\[good first issues\\](https://github.com/opticodev/servchart/labels/good%20first%20issue) to start with, and \\[CONTRIBUTING.md\\](https://github.com/opticodev/servchart/blob/main/CONTRIBUTING.md) explains the setup and the few safety rules (the agent stays read-only and dependency-free). Stars help others find it, but honest feedback helps more. Thanks!",
+    "developer": "Many-Chemist-4056",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

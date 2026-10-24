@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.17528",
+  "sourceItemId": "2610.17528",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.17528",
+  "detail": {
+    "longDescription": "arXiv:2610.17528v2 Announce Type: replace Abstract: The throughput of an LLM training job depends on its recipe: how the model is split across GPUs, how memory is traded for compute, and which kernels and communication overlaps it uses. The best recipe changes with every model, accelerator and framework version. Automated tuners search a fixed space of knobs and check only that a job runs, so they miss levers outside that space and can ship a configuration that silently changes training. ATTUNE is a coding agent that tunes any working recipe unattended within a GPU-hour budget. Guided by a skill of search rules, scripts and lessons from past tuning campaigns, it diagnoses each run and changes one lever at a time. A correctness gate outside the agent refuses any argument known to change the training objective. ATTUNE tunes Amazon's production post-training recipes on H100, H200 and B200 clusters, raising throughput by 1.7x on average. It beats the published throughput of four of NVIDIA's own benchmark recipes on NVIDIA's AutoModel framework by 6-17%. On models held out from its development, it improves the strongest public recipes most where they were written for another setting, by up to 2.6x on MiniMax-M2, and least where the vendor tuned them for the same hardware. Given the same GPU-hour budget, it outperforms existing automated tuners, including Bayesian optimization, random search and OptiCo, a recent LLM-agent tuner. Its gain on GLM-4.5 is more than four times the best alternative's. The same coding agent without ATTUNE's skill gains less and fails half its launches. We release ATTUNE at https://github.com/amazon-science/attune and OpenRecipes, a leaderboard of tuned and verified training recipes, at https://openrecipes.ai.",
+    "developer": "Leo Fan, Hongyang Wang, Wenbo Chen, Jingguo Liu, Xian Li, Xuan Wang, Ruochen Wen, Yiming Yan, Hao Wu, Yichuan Li, Qian Qu, Zheshen Wang, Benoit Dumoulin",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Leo Fan, Hongyang Wang, Wenbo Chen, Jingguo Liu, Xian Li, Xuan Wang, Ruochen Wen, Yiming Yan, Hao Wu, Yichuan Li, Qian Qu, Zheshen Wang, Benoit Dumoulin"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

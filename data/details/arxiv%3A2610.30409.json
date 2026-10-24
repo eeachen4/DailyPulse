@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.30409",
+  "sourceItemId": "2610.30409",
+  "fetchedAt": "2026-10-24T02:01:18.792Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.30409",
+  "detail": {
+    "longDescription": "arXiv:2610.30409v1 Announce Type: new Abstract: Commitment services, such as timestamping, transparency logs and provenance registries, let a party prove that it bound itself to a record without publishing the record. Today an operator runs them, or a blockchain replaces the operator at the cost of network-wide agreement on every write. We present Cambium, a permissioned peer-to-peer service in which participants build each cycle's commitment root together, so that no single party decides which inputs the root includes. Fixed-size committees certify inputs and use a recursive-doubling merge, in which disjoint groups recompute every intermediate value, to spread root construction across all participants. A successful cycle costs each node $O(c\\log(n/c))$ messages for committee size $c$, and each node stores its own $O(\\log(n/c))$ proof per cycle, along with the $O(n)$ membership roster. A Go prototype on AWS with $c=4$, 8-256 nodes and simulated stragglers completes cycles in 12-148 ms and verifies proofs in under 1.5 ms, and demonstrates logarithmic growth. We show that conflicting certificates identify their signers, that a proof binds a signed input to its root, and that two conflicting roots both become final only if at least a third of the nodes are Byzantine, except with probability exponentially small in the number of committees. We also set out the membership, proof-availability and exclusion questions a community deploying Cambium must answer.",
+    "developer": "Mansoor \"Manny\" Ahmed, Dann Toliver, Ekaterina Pavlova",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mansoor \"Manny\" Ahmed, Dann Toliver, Ekaterina Pavlova"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

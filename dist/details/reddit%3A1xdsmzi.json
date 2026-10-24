@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdsmzi",
+  "sourceItemId": "1xdsmzi",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xdsmzi/tool_to_reduce_test_times/",
+  "detail": {
+    "longDescription": "I think some of you have the same problem as I do. As we generate more code, faster, our tests take longer and longer to run. In one of my projects my tests take over 45 minutes to run. Which kills productivity. To address this, I created a tool that maps out call paths for all of your tests, and only runs the tests where code has changed along those paths. This way you aren't running tests against code that hasn't changed. It has significantly reduced my test times. Some changes now run under a minute. \n\nI wanted this tool to be able to slip in seamlessly to our development environments, and in all of the most popular test libraries. It's called **cbd**, and can be found here: [https://github.com/SpikedPunchVictim/cbd](https://github.com/SpikedPunchVictim/cbd)\n\nFor a vitest example:\n\n\\`\\`\\`\n\n    // vitest.config.ts\n    import { defineConfig } from 'vitest/config'\n    \n    export default defineConfig({\n      test: {\n        setupFiles: ['@spikedpunch/cbd-vitest/setup'],\n      },\n    })\n\n  \n\\`\\`\\`\n\nThen run : \n\n    pnpm exec cbd collect -- pnpm vitest run\n\nAnd the only tests that will run, will be those that test the call paths where your code changes have been made.\n\nThe tools does more than this, and can integrate with any custom test frameworks too, as well as map function calls for services, for integration testing. Let me know how much time you end up saving on your tests.",
+    "developer": "SpikedPunchVictim",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

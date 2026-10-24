@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdtbor",
+  "sourceItemId": "1xdtbor",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xdtbor/some_of_the_recently_tested_models_quants/",
+  "detail": {
+    "longDescription": "|Delta score\\*|Model|Relevant llama.cpp / other flags|\n|:-|:-|:-|\n|2.86|\\*\\*DeepSeek-V4-Flash-Vision-Exp|\\-hf ggml-org/DeepSeek-V4-Flash-Vision-Exp-GGUF:MXFP4|\n|2.38|Qwen3.8-Flash-Next-Q4KXL-STRATA|\\-hf unsloth/Qwen3.8-Flash-Next-GGUF:Q4\\_K\\_XL + *strata flags: -kv int8*|\n|1.76|\\*\\*Qwen3.8-27B-unsl|\\-hf unsloth/Qwen3.8-27B-GGUF:Q8\\_0 -ctv q8\\_0|\n|1.68|\\*\\*Qwen3.8-Flash-Next-Q4KXL|\\-hf unsloth/Qwen3.8-Flash-Next-GGUF:Q4\\_K\\_XL -ctv q8\\_0|\n|1.67|\\*\\*Qwen3.8-27B-unsl-UDQ3KXL-13.4G-T0.6|\\-hf unsloth/Qwen3.8-27B-GGUF:UD-Q3\\_K\\_XL -temp 0.6|\n|0.17|\\*\\*Gemma4-26B-A4B-Q8|\\-hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8\\_0|\n|\\-1.10|Ling-3.0-Flash-Sante-IQ4XS|\\-hf AtomicChat/Ling-3.0-flash-Sante-GGUF:IQ4\\_XS -ctv q8\\_0 -ctk q8\\_0|\n|\\-1.11|Sage-A1.5-Q8|\\-hf InternScience/Sage-A1.5-Q8\\_0-GGUF:Q8\\_0|\n|\\-1.18|K2-Horizon-7B-Q8|\\-hf bartowski/K2-Horizon-7B-GGUF:Q8\\_0|\n|\\-1.25|Nemotron-3.5-Bolt-74B-A9B-IQ2\\_XXS|\\-hf unsloth/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-GGUF:IQ2\\_XXS|\n|\\-1.35|Kolibri1-Q4|\\-hf bartowski/Kolibri-1-GGUF:IQ4\\_XS -ctv q8\\_0 -ctk q8\\_0|\n|\\-2.15|Recursive-Flint-Q8|\\-hf bartowski/RecursiveSI\\_flint-GGUF:Q8\\_0 -ctv q8\\_0|\n|\\-2.38|LFM2.5-24B-A2B-Q4\\_0-QAD|\\-hf LiquidAI/LFM2.5-24B-A2B-GGUF -hf-file LFM2.5-24B-A2B-QAD-Q4\\_0.gguf|\n\n***\\*Delta score is a measure of how much above average a model is.***\n\n***\\*\\*Those models were released and tested long before, given for reference***\n\nResults for me are that for 2xRTX3090+128GB RAM no new models reach the capabilities of DS/Qwen models aged few months. Hopefully this changes with Qwen4.\n\nThe tasks include an agentic coding task (rather easy one which only top models did well anyway), reasoning, tricky, spatial reasoning, physics, adversarial, needle in the haystack questions.\n\nThis is just the quants I used with the settings I used. Please share your impressions if they are different, so that I can improve the test/quants/params. Sometimes the stock parameters may have been inferior, sometimes I tried to squeeze models into VRAM+RAM too much (especially with ctv/ctk). Maybe I should try bigger quants, and drop ctk/ctv for smaller models, but I don't expect pivotal changes.\n\nThings I didn't expect 1) Qwen3.8-Flash-Next on Strata does not have quality degradation, and does actually speed things up; 2) Nemotron is disappointing at the claimed QAT quant 3) Ling Sante became much faster, but quality didn't improve. 4) K2-Horizon-7B isn't bad for its size.\n\nMaybe this saves someone from lots of GB downloaded and some disappointment.\n\n![img](vuibs05jwaxh1 \"source: https://beta.locallm.top/home?question=9\")\n\n",
+    "developer": "EmilPi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

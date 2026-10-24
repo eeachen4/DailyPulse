@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdkt8m",
+  "sourceItemId": "1xdkt8m",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xdkt8m/depgate_an_opensource_repository_firewall_that/",
+  "detail": {
+    "longDescription": "I’ve spent a while working in product/application security, and one thing always bugged me: most supply-chain tools scan dependencies *after* `npm install` or `pip install` has already run — by which point the install scripts have executed. The decision happens too late.\n\nSo I built **DepGate**, an open-source dependency gateway. It’s a single proxy + policy engine that sits in front of npm, PyPI, Maven, Go modules, NuGet, Cargo, Composer and RubyGems. Your devs and CI point their package managers at DepGate instead of the public registry. It fetches the package, checks it against a malware feed and your policies, and either serves it or returns a 403 naming the exact policy and reason.\n\nWhat it does:\n\n* **Known malware never downloads** — every request is checked against a synced feed of 200k+ malicious packages before any policy runs.\n* **Readable policies** — block by CVSS/EPSS, license, release age, release type, OpenSSF Scorecard, or package name. One rule per policy, stated in a sentence.\n* **Monitor mode** — run a new policy against real traffic first and see exactly what it would break before you enforce it.\n* **Dependency-confusion protection** — internal names are served only from internal registries, never a public look-alike.\n* **Decision Ledger** — every block is recorded with the reason and who asked, down to the CI job.\n* **Self-hosted, one Docker image** (Postgres + Redis), runs air-gapped, and can sit in front of or behind Artifactory/Nexus.\n\nIt’s basically meant to be the open-source answer to the commercial “repository firewall” products, with a lot fewer moving parts. TypeScript end to end, MIT licensed.\n\nRepo (quick start + docs): [https://github.com/secmods/depgate](https://github.com/secmods/depgate)\n\nStill early and I’m actively building — would genuinely appreciate feedback, criticism of the approach, or feature requests. Heuristic detection of never-before-seen malware is on the roadmap. Happy to answer anything in the comments.",
+    "developer": "Silver-Barracuda-621",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

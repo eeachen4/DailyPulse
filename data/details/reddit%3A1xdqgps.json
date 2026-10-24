@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdqgps",
+  "sourceItemId": "1xdqgps",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xdqgps/revolta_012_dflash_speculative_decoding_running/",
+  "detail": {
+    "longDescription": "Quick release post. I maintain ReVolta, a vLLM fork (through 1Cat-vLLM) that keeps my home server useful — 4× V100 32GB PCIe, no NVLink. Today's 0.1.2 adds DFlash2 speculative decoding on SM70. I haven't seen DFlash running on Volta anywhere else, so this may be the first one out there.\n\nThe drafter is incoai's DFlash2 checkpoint: it drafts an 8-token block from the target's hidden states and the target verifies in one pass. Model is Qwen3.8 Flash-Next (AWQ), 512K context, FP8 KV with CPU offload, TP4 + DCP2.\n\nSome numbers, greedy with 512-token replies:\n\n||DFlash2|MTP4|\n|:-|:-|:-|\n|1 request, English code|201 tok/s|163|\n|1 request, English reasoning|195|163|\n|1 request, Chinese|85–101|100–105|\n|8 requests, mixed|331|357|\n\nThe KV pool gets about 10% bigger too, up to 1.27M tokens.\n\nWhere it doesn't help: Chinese is slower than plain MTP (the drafter was trained on English, acceptance is worse), 8 concurrent requests are a bit slower, and on replays of my real agent sessions it's basically a wash. So MTP stays the default and DFlash is opt-in. I kept it because single-stream English/code is what I run most of the day.\n\nThe rest of 0.1.2 is mostly fixes — tool calling, the Anthropic messages endpoint, and large images getting resized instead of eating the whole token budget.\n\nIf anyone else is still running V100s, I'd be interested in numbers from an NVLink box.\n\nGitHub: [https://github.com/Leonccaa/ReVolta](https://l.meta.ai/?u=https%3A%2F%2Fgithub.com%2FLeonccaa%2FReVolta&h=AUAJ_ZdOA_d7OqPQAIl6Ih8OUywrTXzOytteRB6WsMIWlGo7Ub0qVoscb-bWEa5t0f_GYcO77gbQdKtuEXDqOaMJY3Cdu0INOUncUFPY-3ojVjq3iVNS4A)  \nRelease notes: [https://github.com/Leonccaa/ReVolta/releases/tag/v0.1.2](https://l.meta.ai/?u=https%3A%2F%2Fgithub.com%2FLeonccaa%2FReVolta%2Freleases%2Ftag%2Fv0.1.2&h=AUAJ_ZdOA_d7OqPQAIl6Ih8OUywrTXzOytteRB6WsMIWlGo7Ub0qVoscb-bWEa5t0f_GYcO77gbQdKtuEXDqOaMJY3Cdu0INOUncUFPY-3ojVjq3iVNS4A)  \nDrafter: [https://huggingface.co/incoai/Qwen3.8-Flash-Next-DFlash2](https://l.meta.ai/?u=https%3A%2F%2Fhuggingface.co%2Fincoai%2FQwen3.8-Flash-Next-DFlash2&h=AUAJ_ZdOA_d7OqPQAIl6Ih8OUywrTXzOytteRB6WsMIWlGo7Ub0qVoscb-bWEa5t0f_GYcO77gbQdKtuEXDqOaMJY3Cdu0INOUncUFPY-3ojVjq3iVNS4A)",
+    "developer": "Major_Ingenuity_6364",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

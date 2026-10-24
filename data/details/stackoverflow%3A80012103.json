@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012103",
+  "sourceItemId": "80012103",
+  "sourceUrl": "https://stackoverflow.com/questions/80012103/what-is-metric-compute-and-metric-reset",
+  "detail": {
+    "longDescription": "I am studying Machine Learning and I encounter a line of code metric.reset() but Idk what is the metric variable as far as I know Ageron didn't create a metric variable. Here is the chunk of code where it get used(the code block is at last) I am also pasting the repo link here so if anyone want to check that out to understand what even I am saying btw go directly to code block 37 there you will find this exact code this code below is just the first chunk of the entire block. If I didn't phrase ques well sry for that. repo link: https://github.com/ageron/handson-mlp/blob/main/12_deep_computer_vision_with_cnns.ipynb def evaluate_tm(model, data_loader, metric): model.eval() metric.reset() with torch.no_grad(): for X_batch, y_batch in data_loader: X_batch, y_batch = X_batch.to(device), y_batch.to(device) y_pred = model(X_batch) metric.update(y_pred, y_batch) return metric.compute()",
+    "developer": "NeuronEdge",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-5"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "110"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xdvp8q",
+  "sourceItemId": "1xdvp8q",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xdvp8q/5_openaicompatible_lies_we_ran_into_building_an/",
+  "detail": {
+    "longDescription": "We work on an AI gateway (chat, images, voice and video in one place), which means a lot of our time goes into making sure \"compatible\" is actually compatible. Most providers do take the same OpenAI request shape. Until you run it.\n\n\\*\\*1. OpenAI isn't compatible with OpenAI.\\*\\*\n\nThis one's fairly well known (search it): from gpt-5.4 on, Chat Completions refuses reasoning and function tools in the same request. From 5.6 the models reason by default, so you don't even have to ask for reasoning to hit it. Send tools, get an error, from OpenAI's own endpoint.\n\n\\*\\*2. Free money.\\*\\*\n\nOpenRouter's model list uses a price of \"-1\" to mean \"unknown\" (7 models right now, screenshot). We parsed it as a number, so those models cost minus a dollar per token, and our \"route to the cheapest model\" option picked them every time.\n\n\\*\\*3. \"stop\" means \"I called a tool\".\\*\\*\n\nWhen you force a tool with tool\\_choice, OpenAI answers with finish\\_reason: \"stop\", not \"tool\\_calls\". Gemini does the same. If your agent loop decides what to do from finish\\_reason, it sees \"stop\", thinks the model is done, and never runs the tool.\n\n\\*\\*4. Streams that just leave.\\*\\*\n\nSome servers never send the final \\[DONE\\], so you can't tell a finished stream from a dropped one. Gemini also sometimes stops mid-answer without a finishReason, which means it was cut off. We used to pass that on as a normal stop, so the agent used half an answer as if it were complete.\n\n\\*\\*5. The signature only the first call gets.\\*\\*\n\nGemini 3 attaches a \"thought signature\" to the function calls it makes and wants it back when you send the conversation again. But it only signs the first of a turn's parallel calls, and most clients drop the signature when they rebuild the history. Result: a 400 on the next request (ADK #3705 is 30+ comments of people finding this out).\n\nThe gateway isn fully OSS: [https://github.com/respanai/respan-gateway](https://github.com/respanai/respan-gateway)",
+    "developer": "respan-81",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
