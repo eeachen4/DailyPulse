@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50226642",
+  "sourceItemId": "50226642",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50226642",
+  "detail": {
+    "longDescription": "Blue noise is the task of sampling a collection of points optimally placed to cover space randomly yet uniformly. -randomly: no periodic pattern or undesired ordered structure, to prevent aliasing effects. -uniformly: no empty regions, clusters... that would unavoidably appear by just using a raw random generator because of natural fluctuations. In spectral language, one can take the Fourier transform of the point cloud. For a blue noise, it&#x27;s amplitude should be: - 0 or small at low frequencies. This ensures long-range order. - 1 or not too big at high frequencies (short-range disorder). Hence blue noise: Imagine sending light on the point cloud; in some abstract sense, only the blue (high frequency) will pass through. Many popular algorithms can sample blue noise: Poisson disks, void and clusters, Lloyd relaxation... but the bluest blue noise (those that show up as a hard 0-1 spectral step) comes from the most basic, brute-force algorithm you can imagine. Take points from a purely random generator, compare the Fourier transform with the 0-1 target, launch gradient descent... and wait. Wait because it has O(N^2) complexity. Well, it turns out in 2D &#x2F; 3D, advanced fast Fourier techniques can bring it down to N log N, see https:&#x2F;&#x2F;github.com&#x2F;martiniani-lab&#x2F;FReSCo (not me), but this is limited to 2D &#x2F; 3D point clouds. So, all this just to say that I launched a high-quality but slow blue noise optimiser on the GPU, collected the samples in a reusable database and hope it could interest people from graphics, statistical physics, maybe also quasi-Monte Carlo integration (but this one is just a maybe, simple Sobol sequences are better than blue noise on many tasks) or just curious hackers. Sampled clouds, all open access: 2D to 32D 1k to 130k points (and up to 30 millions in 2D &#x2F; 3D thanks to the mentioned fast Fourier speed-up).",
+    "externalUrl": "https://github.com/For-a-few-DPPs-more/hyperuniform-samplers",
+    "developer": "adec314",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

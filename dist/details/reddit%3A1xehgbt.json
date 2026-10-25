@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xehgbt",
+  "sourceItemId": "1xehgbt",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xehgbt/im_building_reeve_an_opensource_windows_pwa/",
+  "detail": {
+    "longDescription": "A work-in-progress, open-source experiment, and an invitation to criticize it\n\nOpen five Electron apps and you are running five full Chromium trees. Each app ships its own browser, and none of those browsers can share a renderer or a GPU process with the others. The result is heavy RAM use and slow startup, and anyone with an older laptop knows how that feels. We have mostly accepted this as the price of building desktop software with web technology, but I'm not convinced it has to be.\n\nThat doubt is behind Reeve, a native launcher for progressive web apps on Windows. Reeve is very much a work in progress. Things are rough, and I am sharing it now because I would rather shape it with other people's input than build it in a vacuum. It is also open source, so anyone can clone it, run it, break it, fork it, or send a pull request.\n\nThe core idea is simple. Instead of one Chromium per app, every app runs inside a single shared WebView2 environment, which means one browser process, one GPU process, and a set of isolated renderers. The launcher is a lightweight Rust process with no bundled Chromium and no Node runtime. Five Electron apps become five Reeve apps running under one browser process and one resource budget.\n\nThe first open question is whether sharing an environment is wise at all. The benefit is clear: fewer processes and a lower memory footprint. The cost is that apps now share a browser process, and I expect to hit gotchas around crash isolation, profile separation, and GPU contention. People who have worked with WebView2 at scale will probably know these better than I do.\n\nThe second design decision is memory. Many tools handle a runaway app by polling its memory usage and reacting after the damage is done. Reeve takes a different route. Each renderer is attached to a Windows Job Object shortly after it spawns, with per-renderer and total memory caps. When a renderer tries to commit memory past its budget, the Windows kernel fails the allocation, so one misbehaving app cannot starve the others. A kill-on-close setting ensures no orphaned renderers are left behind. I call the Job Object API directly through the windows crate (CreateJobObjectW, SetInformationJobObject and AssignProcessToJobObject), because the win32job crate only wraps working-set limits, not the committed-memory limits this project needs. I would welcome anyone who can tell me what I am overlooking in this approach.\n\nThe third piece is the native bridge. Web apps often need desktop features such as file access and notifications, and granting those carelessly would undo the sandbox. In Reeve, apps reach those features only through an IPC bridge, and every call is checked against a per-app manifest for capability, scope, and origin before any native code runs. Nothing is granted by default. Whether a capability manifest is the right permission model, or whether something else would serve better, is exactly the kind of feedback I am after.\n\nI also plan a dashboard that shows live memory per app, permission grants, and session history. The goal is for the savings to be visible rather than a marketing claim, and I would like to hear what else such a dashboard should show.\n\nReeve is early and changing quickly. Expect missing features, rough edges, and breaking changes. Under the hood it is a Rust supervisor with a SQLite app catalog and a permission store.\n\nIf you have thoughts on any of this, I would like to hear them, including blunt criticism. If you think the approach is flawed, tell me why. And if you have an app you would want to throw at it first, tell me that too.\n\nThe project lives at https://github.com/MarcelNazare/Reeve, and contributions are welcome.",
+    "developer": "marcelnazare",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

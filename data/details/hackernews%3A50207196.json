@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "hackernews:50207196",
   "sourceItemId": "50207196",
+  "fetchedAt": "2026-10-25T01:38:05.363Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50207196",
   "detail": {
     "longDescription": "steamcmd is the official command line tool from Steam. Gamedevs work with it to get builds uploaded to Steamworks. And it doesn&#x27;t support Apple Silicon. To upload games to Steam, devs either go through Steamworks website, or use steamcmd. The web upload on Steamworks website mostly works for small zips, just it is unreliable. At bad times one can stare at the web upload for 10 minutes of failure, errors, &quot;did not receive the entire file&quot; after timeout. I have finally decided to migrate to upload using steamcmd today. I usually work on a Windows machine and build my game for Windows and Linux. The build and the upload worked flawlessly. It seems steamcmd compares my local build with contents in the depot and only upload some deltas. Saves time and bandwidth. Until I try to set it up on my Mac. Because of the hellish codesign and notarization, it is better (or less bad) to build everything macOS on a Mac. Then this hits me. &gt; .&#x2F;steamcmd zsh: bad CPU type in executable: .&#x2F;steamcmd &gt; file steamcmd steamcmd: Mach-O 64-bit executable x86_64 In comparison, this is Godot: &gt; file &#x2F;Applications&#x2F;Godot.app&#x2F;Contents&#x2F;MacOS&#x2F;Godot &#x2F;Applications&#x2F;Godot.app&#x2F;Contents&#x2F;MacOS&#x2F;Godot: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64] I&#x27;ve cursed Apple because Xcode, codesign, notarization are all hell of a maze to navigate, but the expectations of developing a game on a Mac has always been low (at least when you&#x27;re not developing exclusively for macOS and latest iPhone). I just never thought I&#x27;d be mad at Steam. A developer tool, at 2026, under folder `builder_osx`, doesn&#x27;t support Apple Silicon. My disappointment is immeasurable and my day is ruined.",
     "developer": "stdc105",
-    "comments": 4,
+    "comments": 6,
     "stats": [
       {
         "label": "积分",
@@ -14,7 +15,7 @@
       },
       {
         "label": "评论",
-        "value": "4"
+        "value": "6"
       }
     ]
   }

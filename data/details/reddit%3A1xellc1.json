@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xellc1",
+  "sourceItemId": "1xellc1",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xellc1/built_a_purposebuilt_video_editor_for_ai_agents/",
+  "detail": {
+    "longDescription": "i've been building kimo, a free, open-source (MIT) video editor with no GUI that AI agents drive over MCP. the idea was pretty simple: instead of letting an agent like codex, cursor, opencode or any other MCP client just shell out to raw ffmpeg and hope the command works, give it a purpose-built editor where every edit is an explicit tool call - cut, trim, keyframe, titles/captions, colour grade, tracking, particles, audio, export. and because it's built around the loop, the agent can render a single frame to check its own work before committing the whole timeline.\n\nwhy a purpose-built editor at all? raw ffmpeg is amazing, but composing a timeline from shell commands is brutal for an agent - off-by-one frame errors, audio/video drift, guessing whether a filter chain actually produced what it wanted. with kimo the agent just calls tools. it can render one frame, verify the result, and keep going. everything is explicit, everything is reproducible, and it's one small binary (~15 MB, CPU-only, rust) that runs on a 2 GB box. no GPU, no containers, nothing to install besides the binary.\n\nhonestly it's still early. there are rough edges, the docs are catching up, and i'm sure some workflows are awkward right now. i'd love for people to try it and tell me what breaks - weird filter combos, exports that don't match expectations, MCP handoffs that feel clunky, whatever. the more i hear about what's annoying, the faster i can fix it.\n\nit's free and MIT-licensed, built by me (naman, college student). if you want to poke around:\n\nsite: https://getkimo.tech\ngithub: https://github.com/naman-sharma12345/kimo\n\nhappy to answer questions here. thanks for reading.re.",
+    "developer": "LieTop7965",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

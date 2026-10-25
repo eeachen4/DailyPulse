@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80011987",
+  "sourceItemId": "80011987",
+  "sourceUrl": "https://stackoverflow.com/questions/80011987/error-calling-setstate-synchronously-within-an-effect-can-trigger-cascading-ren",
+  "detail": {
+    "longDescription": "When I define a function that updates state and call it inside useEffect , I get a cascading render lint error. Here is the relevant code: export default function AdminDashboardPage() { const [stats, setStats] = useState<DashboardStats | null>(null); const [recentUsers, setRecentUsers] = useState<RecentUser[]>([]); const [recentSkills, setRecentSkills] = useState<RecentSkill[]>([]); const [topSkills, setTopSkills] = useState<TopSkill[]>([]); const [loading, setLoading] = useState(true); const [error, setError] = useState<string | null>(null); // Quick Skill Add state const [quickSkillName, setQuickSkillName] = useState(''); const [quickSkillLoading, setQuickSkillLoading] = useState(false); const [quickSkillSuccess, setQuickSkillSuccess] = useState<string | null>(null); const [quickSkillError, setQuickSkillError] = useState<string | null>(null); const fetchDashboardData = async () => { try { const res = await api.get('/api/admin/stats'); if (res.data.success) { setStats(res.data.stats); setRecentUsers(res.data.recentUsers || []); setRecentSkills(res.data.recentSkills || []); setTopSkills(res.data.topSkills || []); } } catch (err) { setError(getApiErrorMessage(err, 'Failed to fetch platform dashboard statistics')); } finally { setLoading(false); } }; useEffect(() => { fetchDashboardData(); }, []); const handleQuickAddSkill = async (e: React.FormEvent) => { e.preventDefault(); if (!quickSkillName.trim()) return; setQuickSkillLoading(true); setQuickSkillError(null); setQuickSkillSuccess(null); try { const res = await api.post('/api/admin/skills', { name: quickSkillName.trim(), }); if (res.data.success) { setQuickSkillSuccess(`Skill \"${res.data.skill.name}\" added directly to database!`); setQuickSkillName(''); // Refresh dashboard data fetchDashboardData(); } } catch (err) { setQuickSkillError(getApiErrorMessage(err, 'Failed to create skill')); } finally { setQuickSkillLoading(false); } }; return ( <> ... ... </> ) Initially, I defined fetchDashboardData before handleQuickAddSkill and placed useEffect immediately after it. This triggered the lint error. However, when I moved fetchDashboardData below handleQuickAddSkill , without changing the function's implementation, the error disappeared. Some thing like this :- export default function AdminDashboardPage() { const [stats, setStats] = useState<DashboardStats | null>(null); const [recentUsers, setRecentUsers] = useState<RecentUser[]>([]); const [recentSkills, setRecentSkills] = useState<RecentSkill[]>([]); const [topSkills, setTopSkills] = useState<TopSkill[]>([]); const [loading, setLoading] = useState(true); const [error, setError] = useState<string | null>(null); // Quick Skill Add state const [quickSkillName, setQuickSkillName] = useState(''); const [quickSkillLoading, setQuickSkillLoading] = useState(false); const [quickSkillSuccess, setQuickSkillSuccess] = useState<string | null>(null); const [quickSkillError, setQuickSkillError] = useState<string | null>(null); const handleQuickAddSkill = async (e: React.FormEvent) => { e.preventDefault(); if (!quickSkillName.trim()) return; setQuickSkillLoading(true); setQuickSkillError(null); setQuickSkillSuccess(null); try { const res = await api.post('/api/admin/skills', { name: quickSkillName.trim(), }); if (res.data.success) { setQuickSkillSuccess(`Skill \"${res.data.skill.name}\" added directly to database!`); setQuickSkillName(''); // Refresh dashboard data fetchDashboardData(); } } catch (err) { setQuickSkillError(getApiErrorMessage(err, 'Failed to create skill')); } finally { setQuickSkillLoading(false); } }; const fetchDashboardData = async () => { try { const res = await api.get('/api/admin/stats'); if (res.data.success) { setStats(res.data.stats); setRecentUsers(res.data.recentUsers || []); setRecentSkills(res.data.recentSkills || []); setTopSkills(res.data.topSkills || []); } } catch (err) { setError(getApiErrorMessage(err, 'Failed to fetch platform dashboard statistics')); } finally { setLoading(false); } }; useEffect(() => { fetchDashboardData(); }, []); return ( <> ... ... </> ) I don't understand why simply changing the order of the function declarations fixes the issue. Since the function's logic remains exactly the same, what causes the lint error in the first place, and why does moving the function declaration resolve it? Is this related to how React handles state updates inside useEffect , JavaScript function hoisting, or the ESLint rules for React hooks?",
+    "developer": "Pankaj Choudhary",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "113"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

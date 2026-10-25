@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50214578",
+  "sourceItemId": "50214578",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50214578",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m Faithful. I built dánwò, an open-source (Apache-2.0) end-to-end testing framework for web and mobile apps, written in TypeScript. The problem: a UI test can click &quot;Pay&quot;, see &quot;Payment successful&quot; and pass, while the card was charged twice, the webhook was handled twice, or the receipt email never went out. With coding agents writing more of our code, that gap between &quot;the screen looks right&quot; and &quot;the right things happened&quot; is where I kept finding bugs. How it works: - Tests drive the app like a user, with locators or plain-English agent steps. An agent step calls a model once; danwo records the actions and replays them on later runs with no model calls, so CI doesn&#x27;t need an API key. - Your app runs behind an egress proxy. Calls to Stripe, Clerk, Resend, Slack, Google and about 20 other providers are answered by local emulators at the real hostnames, so there are no sandbox keys and no code changes. For Node apps a preload routes the calls; Bun honours HTTPS_PROXY. - An invariant is a check that runs after the test and compares two sides: what the provider says happened (charges, emails, messages) and what your app stored. For example, credits granted must equal paid checkouts times 500. - `danwo matrix` replays a test once per fault it could meet: a 500 or 429 from a provider, a declined card, a duplicate, late, forged or replayed webhook, a double-submit, a database commit whose reply is lost, Postgres unreachable for a few seconds. The invariant judges every run, so you see exactly which failure your app mishandles. - Every run leaves a flight record: video, each step, every provider call, webhook delivery and database statement, with secrets redacted. It runs in Chromium, Firefox and WebKit, and on the Android emulator and iOS Simulator. It ships an MCP server and a skill, so coding agents (Claude Code, Cursor, Codex) can write and run tests and fix what fails. Limitations, honestly: the emulators are only as good as their fidelity to the real APIs. Each one has a suite that runs against the real provider to catch drift, but they won&#x27;t cover every edge of Stripe&#x27;s API. Backend routing is built for Node and Bun today. Mobile tests need macOS or Linux. It&#x27;s early (v0.1.2). The name is Yorùbá: &quot;dán an wò&quot; means &quot;try it and see&quot;. Quickstart: npx @danwo&#x2F;cli init (docs: https:&#x2F;&#x2F;danwo.dev&#x2F;docs&#x2F;quickstart ) I&#x27;d love feedback, especially on faults you&#x27;ve been bitten by that aren&#x27;t in the matrix yet.",
+    "externalUrl": "https://github.com/carbonmeai/danwo",
+    "developer": "faithfulojebiyi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

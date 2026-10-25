@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xei6pc",
+  "sourceItemId": "1xei6pc",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xei6pc/made_a_rhythm_game_where_4_small_neural_nets/",
+  "detail": {
+    "longDescription": "not an llm post exactly, but it's all local inference so i figured people here might like it\n\ni made a browser rhythm runner where the song builds the world you run through. you can throw in your own mp3s and the whole \"listening\" happens on your device, inside the tab. nothing gets uploaded\n\nthe models, all running locally on onnxruntime-web (wasm, each in its own web worker), and what the game does with each:\n\n\\- \\*\\*BeatNet\\*\\* (beat + downbeat tracking, \\~1.6 mb) - finds every beat and where each bar starts. this is the grid the whole level sits on: every obstacle, every jump and kick is placed on one of its beats, and the drops land on its bar lines\n\n\\- \\*\\*Basic Pitch\\*\\* by spotify (note transcription, \\~0.2 mb) - figures out which notes are playing. a long held note becomes a bar or a line you swing on, and a solo turns into a string of rings you fly through, each one at the pitch of its note\n\n\\- \\*\\*Spleeter\\*\\* vocals net (source separation, \\~20 mb) - pulls the voice out of the mix so the rest of the song doesn't confuse the next model\n\n\\- \\*\\*SwiftF0\\*\\* (pitch tracking, \\~0.1 mb) - how high the voice sings and when each syllable starts, every 16 ms. in a sung verse you fly through rings on the singer's syllables, going up and down with the melody of the voice\n\nall four are about 22 mb together and get cached after the first load. if a device can't run them in time, the game falls back to plain dsp and still works\n\non top of the models it's regular dsp: onsets, loudness of every bar, where the drops hit. that picks the world and the weather, and when the drop hits the world goes crazy. same song always gives the same world, so you can learn it\n\nthe video is the whole of Cannibal by Pendulum & WARGASM, played by the game's own bot\n\ncode (MIT): [https://github.com/Felliks/Struna](https://github.com/Felliks/Struna)\n\nplay it: [https://struna.ai](https://struna.ai) (works on phone too)\n\nenglish isn't my first language so i used ai to help word this post. a lot of the code was also written with ai help (claude code), not hiding that\n\nanyone else running audio models in the browser? curious what you use for beat tracking, mine still sometimes reads a fast song at half its tempo",
+    "externalUrl": "https://v.redd.it/0uxdq7gmzgxh1",
+    "developer": "MrFelliks",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

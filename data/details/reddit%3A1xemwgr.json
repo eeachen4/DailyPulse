@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xemwgr",
+  "sourceItemId": "1xemwgr",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xemwgr/bridging_two_unmodified_game_engines_at_runtime/",
+  "detail": {
+    "longDescription": "A side project where Minecraft's player fights inside Mount & Blade II: Bannerlord. The three parts never call each other; they only meet in five named shared-memory blocks:\n\n\n\n\\- a Bannerlord module (C#, Harmony patches),\n\n\\- a Minecraft Fabric mod (Java 25, Mixin, the Foreign Function & Memory API),\n\n\\- a ReShade add-on (C++) with an HLSL shader that composites Minecraft's frame into Bannerlord's.\n\n\n\nSome of the interesting problems:\n\n\\- lock-free sharing with seqlocks and single-writer ring buffers, so neither game ever waits for the other\n\n\\- comparing two different reversed-Z depth buffers per pixel, and reprojecting a Minecraft frame that's a frame or two old\n\n\\- making Minecraft's own attack code hit soldiers that only exist in the other game (invisible, frozen stand-in mobs)\n\n\\- rebuilding Bannerlord's terrain around the player as invisible Minecraft blocks, without stutter while flying\n\n\n\nWrite-up of every byte: [https://github.com/emretrksy/bannerlord-minecraft-passthrough/blob/main/docs/PROTOCOL.md](https://github.com/emretrksy/bannerlord-minecraft-passthrough/blob/main/docs/PROTOCOL.md)\n\nRepo (MIT): [https://github.com/emretrksy/bannerlord-minecraft-passthrough](https://github.com/emretrksy/bannerlord-minecraft-passthrough)",
+    "externalUrl": "https://www.nexusmods.com/mountandblade2bannerlord/mods/14241",
+    "developer": "psicodart_games",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "nexusmods.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

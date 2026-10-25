@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012012",
   "sourceItemId": "80012012",
+  "fetchedAt": "2026-10-25T01:38:05.363Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012012/why-does-my-local-qwen-llm-report-that-no-business-indicators-are-available-when",
   "detail": {
     "longDescription": "I'm building a Python-based forecasting and business analytics pipeline in a Jupyter Notebook. The pipeline processes operational and financial data, generates statistical forecasts, evaluates them through walk-forward backtesting, and uses a local LLM to generate business insights. I'm using: Python and pandas Qwen 2.5 1.5B Instruct (Q4_K_M GGUF) llama-cpp-python Kaggle with a Tesla T4 GPU The forecasting pipeline executes, but I'm having trouble with the final LLM analysis. The problem My notebook contains several populated pandas DataFrames, including: op : daily operational data fin : financial transaction data rv : filtered revenue transactions BT : backtesting predictions and actual values I wrote a function that automatically discovers pandas DataFrames, selects relevant columns, calculates descriptive statistics, and sends the resulting JSON summary to Qwen. However, the generated response states that there are no available indicators to evaluate the business. This is unexpected because the DataFrames contain operational and financial measurements. Relevant code The DataFrame discovery logic: frames = { name: obj for name, obj in list(globals().items()) if isinstance(obj, pd.DataFrame) and not obj.empty } I identify relevant columns using keywords: keywords = [ \"revenue\", \"budget\", \"actual\", \"spend\", \"cost\", \"profit\", \"forecast\", \"ticket\", \"problem\", \"provision\", \"register\", \"branch\", \"target\" ] relevant_cols = [ col for col in df.columns if any(k in str(col).lower() for k in keywords) ] For numeric columns, I calculate statistics such as the minimum, maximum, mean, total, and median. The resulting summaries are serialized into JSON. Before passing them to the model, I try to keep the input under a token budget: max_input_tokens = 950 while len(llm.tokenize( compact_text.encode(\"utf-8\") )) > max_input_tokens: # Remove categorical distributions first. # If necessary, remove additional table summaries. ... The LLM is called with: response = llm.create_chat_completion( messages=messages, temperature=0.1, max_tokens=350, response_format={\"type\": \"json_object\"} ) Actual output The notebook prints: DataFrame yang ditemukan: ['op', 'fin', 'rv', 'BT'] But the LLM generates: { \"project_health\": \"Data Belum Cukup\", \"insight\": \"Tidak ada indikator yang tersedia untuk menilai kesehatan proyek, performa keuangan, atau kinerja operasional.\", \"risk\": \"Tidak ada indikator yang tersedia untuk menilai risiko.\", \"recommendation\": \"Perlu penambahan data untuk memenuhi kriteria penilaian kesehatan bisnis.\" } Expected behavior I expect the LLM to identify the indicators that are actually present in the structured summary and generate observations supported by those indicators. If the supplied data is insufficient to determine overall business health, it should explain which specific information is missing without incorrectly claiming that no indicators exist. What I'm trying to understand I suspect that my JSON summarization or token-budget reduction logic may be removing information required for the model to interpret the data. I'm also unsure whether the model receives enough context to understand the relationships between financial, operational, and forecasting metrics. How can I determine whether the necessary indicators are being lost during JSON construction and token-budget reduction, rather than being misinterpreted by the LLM? I would appreciate suggestions for debugging the actual serialized payload and identifying where the information is lost.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-5"
+        "value": "-6"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "123"
+        "value": "175"
       },
       {
         "label": "状态",

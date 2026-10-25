@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117497122277054702",
+  "sourceItemId": "mastodon.social/117497122277054702",
+  "fetchedAt": "2026-10-25T01:38:05.363Z",
+  "sourceUrl": "https://void.lgbt/objects/019648a7-fef1-4c83-8682-8b5f6a4f21b1",
+  "detail": {
+    "longDescription": "I'm currently again thinking about the #Kittyscript compiler, specifically about compile time side effects. What should happen if a nested function contains a call to an identifier that is a macro in top level scope, but in a scope between that call and the top level, but *behind* the aforementioned nested function in the AST, the same identifier is defined differently to shadow the top-level macro. Example in Lisp-style syntax: (defmacro foo whatever) (defn outer () (defn inner () (foo) ) (defmacro foo something-else) ) When should (foo) be expanded? On first pass? If on first pass, should it be recompiled once the shadowing foo is hit? Or should macro expansion be deferred until after we have gone through the code once and know which definition applies? What if foo expands to further definitions, possibly to macros or other compile-time side-effected code like eval-when? How to undo those? #programming #PLDev #LangDev",
+    "developer": "@LunaDragofelis@void.lgbt",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

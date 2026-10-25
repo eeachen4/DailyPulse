@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xelx2b",
+  "sourceItemId": "1xelx2b",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xelx2b/i_built_a_web3_tool_that_verifies_wallet_balances/",
+  "detail": {
+    "longDescription": "Hey guys,\n\nI wanted to share a web3 side project I’ve been coding called [pof.lol](http://pof.lol) I built it to solve the friction of verifying a client's on-chain balance for large P2P or OTC deals without forcing them to connect a wallet extension or dox their public key.\n\nInstead of dealing with front-end wallet signing primitives, the backend uses a state-tracking architecture. The app generates a temporary scratch address, the user sends a flat 10-cent transaction from the wallet they want to verify, and the backend tracks the incoming transaction hash to isolate the sender's address. From there, it queries the ledger state for the absolute token balance and generates a shareable receipt link that completely strips out the raw public address from the UI to prevent tracking.\n\nRight now, it processes state evaluations across Bitcoin, Ethereum, Litecoin, Solana, and Toncoin. I also threw in a baseline check that flags and blocks fresh burner/hotwallets so people can't easily spoof a fake balance profile.\n\nI’d love to get some technical feedback from this sub on the stack and logic. Is forcing a 10-cent on-chain transaction too high of a UX barrier compared to a standard WalletConnect login, or is the security trade-off of zero wallet connection worth it for privacy-conscious users? Let me know what you think or if there are any glaring edge cases I might have missed in the verification loop.",
+    "developer": "Sxcythe_",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

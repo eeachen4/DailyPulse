@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xejv61",
+  "sourceItemId": "1xejv61",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xejv61/m6_mac_mini_owners_32gb_now_you_can_run_qwen3827b/",
+  "detail": {
+    "longDescription": "ANEMLL Forge 0.2.1: Qwen3.8-27B on the M6 Neural Engine now runs up to 192K context (M6 32GB).\n\nNew: INT8 K/V cache (half of FP16) and a smaller drafter sharing the target's output head — 0.86 GB less ANE memory, same speed.\n\nDecode depends on content: JSON 35–62 tok/s, code 18–32, prose 10–17. Prefill 260 tok/s at short context, 62 at 192K. 128K–192K use a smaller prefill batch (32 vs 64 rows) to stay within memory budget.\n\nHeads up: full 192K first compile takes \\~2h on M6 (one time, cached). \\`--ctx\\` exports only the entries you need, so compile is much faster: 16K is \\~10 min from download to running server. IMO 96K is the sweet spot for size/speed on 32GB: 123 tok/s prefill, \\~27 tok/s decode, \\~21.4 GB total memory.\n\nRelease notes: https://github.com/Anemll/anemll-forge/blob/main/docs/RELEASE\\_NOTES\\_v0.2.1.md\n\nVideo (Tetris generated over \\~150K tokens, no compaction): https://x.com/anemll/status/2111941341819408866\n\nPaper: Three Bit MLP Vector Quantization in Apple Neural Engine — https://github.com/Anemll/anemll-forge/blob/main/docs/papers/anemll-forge-v02.pdf\n\nCheers,\nAnemll 🤖",
+    "developer": "Competitive-Bake4602",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

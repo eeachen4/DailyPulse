@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012239",
+  "sourceItemId": "80012239",
+  "sourceUrl": "https://stackoverflow.com/questions/80012239/setting-italic-conditional-formatting-in-openpyxl",
+  "detail": {
+    "longDescription": "I'm trying to set a conditional formatting based on an expression to mark certain cells with grey, italic font. I have tried dxf = DifferentialStyle(font=Font(color='FFD9D9DB', italic=True)) newrule = Rule(type=\"expression\", dxf=dxf, stopIfTrue=False, priority=7) # Set priority to an unused int or behavior will be wonky newrule.formula = ['INDEX(Attributter!$1:$100000,XMATCH(E$5,INDEX(Attributter!$1:$100000,0,$C$3),0,1),XMATCH($B$3&\"-\"&$A6,Attributter!$3:$3,0,1))=\"<\"'] templatesheet.conditional_formatting.add(sqref_sample, newrule) and newrule = FormulaRule(formula = ['INDEX(Attributter!$1:$100000,XMATCH(E$5,INDEX(Attributter!$1:$100000,0,$C$3),0,1),XMATCH($B$3&\"-\"&$A6,Attributter!$3:$3,0,1))=\"<\"'], font=Font(italic=True, color='FFD9D9DB'), stopIfTrue=False) newrule.priority=7 templatesheet.conditional_formatting.add(sqref_sample, newrule) The rule inserts, but the rule doesn't \"trigger\" until I go into the conditional formatting in Excel, open the rule, and press \"ok\". I don't need to add the italic rule in there, pressing ok does the job. The priority is not used for other rules. I have also tried adding the rule with italic only (not editing the font color) with the same result. Any ideas to what goes wrong and how to fix it?",
+    "developer": "CADV",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "110"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
