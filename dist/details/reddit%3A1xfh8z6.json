@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfh8z6",
+  "sourceItemId": "1xfh8z6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xfh8z6/whats_the_average_cache_miss_rate_of_large_moe/",
+  "detail": {
+    "longDescription": "Whats the average cache miss rate of large MoE models like deepseek v4.1 flash 1017., glm5.3 flash? Because it seems like having a general sense of what a typical cache miss rate would be during inference would be helpful, since it would directly impact the amount of expert GBs that need to stream across pcie and how much that streaming rate would be capped by the pcie lane type in question, which directly affects inference speeds\n\nSome other questions to clarify my understanding:\n\n\\- wouldnt this mean that better designed and stronger models would converge to having a “core set of experts” that are often hit, so that fewer experts need to be hit across the rest of the model, to preserve speeds as much as possible? (Assuming not all the weights are only ok vram)\n\n\\- also, would this help explain why qwen 27b dense has been so strong, because its essentially an extraction of the “core experts” found in a large MoE, and its just simply missing the rest of the experts that might hold world knowledge, but the core “intelligence, reasoning, cognition” is baked into those core experts?",
+    "developer": "Ambitious_Fold_2874",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfa13f",
+  "sourceItemId": "1xfa13f",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xfa13f/what_belongs_in_a_handoff_and_what_should/",
+  "detail": {
+    "longDescription": "Genuine question for people running multi agent workflows.\n\nWhen one agent hands work to the next, there is a tension that keeps coming up. Give the next agent too much context and it drowns in history it never needed, and may even act on a stale fact that was sitting in that history. Give it too little and it guesses, or it asks for help in a way that reopens the whole history you were trying to bound.\n\nSo what do you actually put in a handoff, and what do you deliberately leave out? For a coder, is the atomic spec plus the target file enough, or does it need the surrounding files too? For a reviewer, is the diff plus test logs enough, or does it need the spec to judge whether the change is right?\n\nAnd how do you handle the case where the slice was too narrow? Do you let the agent request a named dependency and return a bounded excerpt, or do you fall back to giving it more of the history and accept the cost?\n\nI am curious what failure taught you that a slice was too narrow, and what failure taught you that it was too wide. Is there a rule you use to decide, or is it still judgment call by judgment call?",
+    "developer": "MemStrata",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

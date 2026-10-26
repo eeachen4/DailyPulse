@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xeyuel",
+  "sourceItemId": "1xeyuel",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xeyuel/i_built_a_small_validation_layer_that_stops_llm/",
+  "detail": {
+    "longDescription": "Agents call tools with arguments the model made up: an order ID that doesn’t exist, a negative amount, a date like “yesterday”. Most of us patch this with try/except inside every tool.\n\nagentic-gate sits between the model and your tools. It validates the arguments against a Zod (or Pydantic) schema before anything runs, sends the validation error back to the model so it can fix the call, and trips a circuit breaker if the same call keeps failing, so you don’t burn 50 turns in a retry loop.\n\nIt’s provider-agnostic: adapters for OpenAI, Anthropic, Bedrock and Gemini, plus an async `validate()` hook for your own checks.\n\nI wrote a small benchmark so I wasn’t just claiming it works. It uses a scripted model, so it measures the gate and not any particular LLM. In 3 scenarios (refund, payment transfer, DB query), a stubborn agent got 150 bad calls through to the system without the gate and 0 with it. Model turns went from 150 to 12. The script is in `benchmarks/` and you can run it yourself.\n\nIt only checks the shape of arguments. It doesn’t replace permissions or review of risky actions, and the README says so.\n\nRepo: [https://github.com/Akhilesh-Varute/agentic-gate](https://github.com/Akhilesh-Varute/agentic-gate) · `npm i agentic-gate` / `pip install agentic-gate`\n\nI’d like feedback on the API and on which failure cases you hit most in production.",
+    "externalUrl": "https://v.redd.it/dpqwt6m0blxh1",
+    "developer": "Nice_Current_8581",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xeu0ht",
+  "sourceItemId": "1xeu0ht",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xeu0ht/memt10_architecture_breakdown_gated_deltanet2/",
+  "detail": {
+    "longDescription": "been digesting the details behind memt-1.0's memory-native architecture recently, and the engineering tradeoffs between full context kv caching and internalized parametric memory are pretty wild.\n\ninstead of using append-only prompt stacking or external rag pipelines, memt-1.0 bakes memory directly into the model computation layer using gated deltanet-2 with a stable token-level memory update mechanism within each turn, combined with a mixture-of-storage (mos) layer to scale capacity.\n\na few quick technical takeaways from the setup:\n\n**internalizing procedural experience:** standard agents retrieve past execution logs as raw text, which bloats the context window. memt-1.0 continuously internalizes retrieved procedural experience into model weights/states during multi-turn agentic tasks.\n\n**efficiency at 128k context:** at a history length of 128k tokens, memt-1.0-nano delivers roughly **1.86x end-to-end inference speedup** and a **66x reduction in persistent storage** compared to a full-context kv cache setup.\n\n**general capability preservation:** training parametric memory layers usually degrades base llm capabilities, but their two-stage training pipeline (continued pre-training + post-training across 34b tokens) keeps general reasoning competitive while outperforming existing parametric memory baselines.\n\nfor those building long-horizon agents, is internalizing state via architecture-level update layers (like gated deltanet / mos) the endgame to escape kv cache memory bottlenecks?",
+    "externalUrl": "https://i.redd.it/yo2dl9avujxh1.jpeg",
+    "developer": "Mrs-Grumpy23",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

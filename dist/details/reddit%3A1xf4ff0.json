@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xf4ff0",
+  "sourceItemId": "1xf4ff0",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xf4ff0/dflash2_on_qwen3827b_154_toks_on_code_35_on_prose/",
+  "detail": {
+    "longDescription": "Been pushing Qwen3.8-27B on Kaggle's free 2x T4 (no P2P, 70W cap per card) for a while. Current setup: EXL3 4.0bpw on exllamav3, tensor parallel over PCIe, DFlash2 block drafter (7 tokens), greedy and exact vs no-draft.\n\nNumbers over a 38 prompt suite:\n- overall 55-57 tok/s (no draft is ~18-19)\n- HumanEval 154 tok/s\n- prose 35-37 tok/s\n\nFor comparison on the same 2 T4s: llama.cpp best was 16.5 (MTP crashed on tensor split), vLLM int4 + its own MTP drafter did 40.8.\n\nProse is the wall. Acceptance sits around 2.5 tokens per step, vs ~7 on code.\n\nQuestions:\n1. Has anyone got prose acceptance above ~2.5 with DFlash2 or MTP on the 27B?\n2. Has anyone tried switching drafters mid generation (short block for prose, long for code)?\n3. Any tricks for TP all-reduce on PCIe cards without P2P? That's next on my list.\n\nHappy to share the notebook if people want to try it.",
+    "developer": "Ishannaik",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

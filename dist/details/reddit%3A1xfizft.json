@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfizft",
+  "sourceItemId": "1xfizft",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xfizft/psa_llamacpp_cve2026116096/",
+  "detail": {
+    "longDescription": "[https://nvd.nist.gov/vuln/detail/cve-2026-116096](https://nvd.nist.gov/vuln/detail/cve-2026-116096)\n\n25-10-2026\n\nDescription\n\n\nA weakness has been identified in ggml-org llama.cpp. Affected by this issue is the function list\\_pockettts\\_state\\_slots of the file tools/mtmd/models/pockettts-gen.cpp of the component Pocket-TTS. This manipulation of the argument mmproj causes out-of-bounds write. The attack requires local access. The exploit has been made available to the public and could be used for attacks. Upgrading to version b11796 can resolve this issue. Patch name: 0a1ef309cdbb9f2024f58a38fb4c42352c5db569. The affected component should be upgraded. The reported heap out‑of‑bounds write (gen‑audio / pocket‑tts state\\_out path) is no longer a silent exploitable heap write on current master and the latest release b11871 - a malicious mmproj that previously triggered it now trips a release‑active GGML\\_ASSERT and aborts. But the submitter's recommended by‑construction fix (PR #29360 \"prevent OOB accesses from malformed mmproj files\") is still open. So the root cause is detected‑and‑aborted, not prevented‑by‑design.",
+    "developer": "Bulky-Priority6824",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

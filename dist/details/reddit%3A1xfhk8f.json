@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfhk8f",
+  "sourceItemId": "1xfhk8f",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xfhk8f/same_answer_different_tool_path_checking_a/",
+  "detail": {
+    "longDescription": "I maintain AgentInspect, an MIT-licensed TypeScript library and CLI for recording agent runs locally and checking their execution paths.\n\nThe example I’d like feedback on is small: two runs return the same refund-policy answer, but one generates the answer before retrieving the policy. The final-text comparison passes for both. An explicit ordering rule rejects the reversed run.\n\nThe demo uses scripted responses, so there’s no API key or model charge. It also includes repeated retrieval in the allowed order that passes—I want to test a requirement without rejecting every harmless path change.\n\nThe workflow is local JSONL → execution tree → named check failures → an evidence bundle you can review before attaching it to an issue or PR.\n\nThe limits matter: this checks recorded events and rules you supply. Calling the right tool doesn’t prove the answer used its result correctly. LangSmith and Promptfoo already support trajectory checks; I’m testing whether this local debugging and evidence workflow is useful enough to add.\n\n[Repository](https://github.com/rajudandigam/agent-inspect) · [Pinned example](https://github.com/rajudandigam/agent-inspect/tree/e65e94452fe784908565144b95c63366bfca96f6/examples/starters/broken-agent-debugging)\n\nThe corrected example was checked against published 6.31.27.\n\nWhat’s one unacceptable agent behavior in your workflow that these checks would miss?",
+    "developer": "Evening-Let-7562",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

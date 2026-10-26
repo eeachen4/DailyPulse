@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfha1p",
+  "sourceItemId": "1xfha1p",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xfha1p/running_a_full_voice_agent_stt_llm_tts_on_a/",
+  "detail": {
+    "longDescription": "I'm building [ComputeNexa](https://computenexa.com), a GPU platform for running open models privately, and wanted to see how good a voice agent can get with **no third-party AI APIs at all**: speech-to-text, the LLM and the voice all on one GPU.\n\n**Stack (one 48 GB A40):**\n\n* Speech-to-text: Whisper large-v3-turbo on vLLM\n* LLM: Gemma 4 12B (4-bit) on vLLM, thinking off\n* Voice: Kokoro (ONNX Runtime on the GPU), streamed sentence by sentence\n* Orchestration: Pipecat over a WebSocket, Silero for end-of-speech\n\n**Latency from 73 spoken replies** (from when you stop talking to the first audio, measured on the GPU):\n\n|Part|Median|P90|\n|:-|:-|:-|\n|End-of-speech pause|200 ms|200 ms|\n|Speech-to-text|271 ms|352 ms|\n|LLM, first sentence|372 ms|634 ms|\n|Voice, first audio|298 ms|427 ms|\n|**Total**|**1.28 s**||\n\nReplies that search the web take 2–4 s (it says \"let me check\" first), which pulls the overall P90 up to about 3.9 s.\n\n**Things worth trying:**\n\n* Interrupt it mid-sentence\n* \"What time is it in Tokyo?\" (a clock tool, not a guess)\n* Ask it what ComputeNexa is (it answers from a fact sheet, and says so when something isn't on it)\n* Type instead of talking if you're somewhere quiet\n\n**Demo:** [https://demo.computenexa-apps.com/?src=llmdevs](https://demo.computenexa-apps.com/?src=llmdevs)\n\nVisits last 5 minutes, with a short line if it's busy. Your voice isn't recorded; the text of questions and answers is kept for 30 days to improve it.\n\nHappy to go deep on latency tuning, running several conversations on one GPU, or the gotchas: Gemma's empty thinking block after tool calls, Qwen's chat template rejecting mid-conversation system messages, and a websocket client bug that dropped all audio after the first interruption.\n\nCurious what others get for time-to-first-audio with open models, and whether anyone has found a better end-of-speech setting than 200 ms.",
+    "developer": "Broad_Breakfast_1172",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

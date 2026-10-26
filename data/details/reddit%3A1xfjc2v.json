@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfjc2v",
+  "sourceItemId": "1xfjc2v",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xfjc2v/we_built_powerful_reasoning_harnesses_only_to/",
+  "detail": {
+    "longDescription": "Going a full day in 2026 without being gaslit by AI sycophancy feels harder than playing Dark Souls on max difficulty. Every time you bounce an idea off a model, it tells you that you are a visionary genius. I had to actively fight that default model flattery just to write down a take I have been mulling over.\n\n**The take is simple: we should stop trying to script an agent's steps with rigid state machines like LangGraph or n8n. Instead, we should childproof the harness by combining hard environmental boundaries, external code checks, and test-driven evals.**\n\nTo test this, I built a prototype called **Customer Pulse** (a general-purpose harness running as a complete application) and successfully configured two entirely different fictional clients (a zendesk and bigquery bank setup, and a raw CSV airline survey processor) on the exact same codebase using nothing but plain English.\n\nThe core architectural ideas I wanted to test:\n\n* **Verification over orchestration:** Use code scripts to handle what must be exact (counting, rendering, sanitizing) and check the *evidence* at the end of each step, rather than forcing the agent down a rigid flowchart path.\n* **The harness is the application:** Let the model plan and run the execution loop. Hard-coding workarounds for today's model limitations just bakes in tech debt for when tomorrow's model natively bypasses them anyway.\n* **English changes the system:** Splitting the \"use case engine\" from a client's plain-English \"profile\" lets domain experts adjust priorities, routing, and behavior in minutes without waiting on an engineer to rewire code.\n\nI wrote a deep-dive think piece on this setup, getting honest about the real-world results of this approach, from rapid plain-English onboarding to the raw trade-offs in tokens, latency, and sandbox security.\n\nDespite all the childproofing metaphors, I am not a parent. If you are, feel free to extend the analogy. For everyone else, tear this apart and tell me where my thinking or architecture is wrong. I will go back to the drawing board and think some more.",
+    "developer": "BuildOnSundays",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

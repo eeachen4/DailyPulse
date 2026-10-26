@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xf6b6t",
+  "sourceItemId": "1xf6b6t",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xf6b6t/opensource_tool_that_tells_your_agents_when_a/",
+  "detail": {
+    "longDescription": "Typed code crashes when a third-party API changes. Agents usually don't: they read the new response, fill the gaps and keep going, which is worse.\n\nI built Tiltmeter to catch that:\n\n\\- It learns the shape of the JSON APIs you depend on from real responses, no spec needed. The baseline is the last 20 checks and it only reports contradictions: removed fields, type changes, new nulls, a JSON body that became an HTML error page.\n\n\\- It runs an MCP server, so a LangChain or LangGraph agent (via langchain-mcp-adapters) can call has\\_drifted or get\\_schema before trusting a response.\n\n\\- tiltmeter fix hands the drift to a Deep Agent that edits the code in a temporary git worktree and opens a pull request, leaving what it can't know (is \"1200\" cents or dollars?) for a human.\n\nThe pipeline is a small LangGraph graph (observe → compare → explain → persist → notify), and the diff itself is plain deterministic Python, no LLM in the loop.\n\nMIT, runs locally: pip install tiltmeter\n\n[https://tiltmeter.dev](https://tiltmeter.dev)\n\nIf you run agents against third-party APIs, what breaks you most often?",
+    "developer": "Superb-Hornet-5730",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

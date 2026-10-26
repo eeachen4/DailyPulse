@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfgf1w",
+  "sourceItemId": "1xfgf1w",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xfgf1w/i_ran_a_blind_test_on_selfhosted_ai_agents_here/",
+  "detail": {
+    "longDescription": "everything here ran on my own hardware, an M5 Max MacBook Pro with 64GB. blind test of self-hosted AI agents, every one on Qwen 3.8 27B uncensored Q4\\_K\\_M in llama.cpp, same 5 everyday tasks like counting log errors and renaming a function. names hidden, results below, take a guess\n\n**The tasks**\n\n1. Merge two contact lists, messy emails, two different Alex Kims. All 5 got it right (46 people).\n2. Rename a function across 3 files with messy spacing. All 5 passed.\n3. Fix a bug, with hidden tests. 4 passed. C turned \"Q3/Q4\" into \"q3q4\" instead of \"q3-q4\".\n4. Count the errors in 3 log files. All 5 got 43.\n5. Turn a receipt PDF into a spreadsheet. 4 passed. A and B installed a missing Python library without asking. C stopped and asked \"can I install this?\", nobody answered, so it failed. In a test with nobody watching, that counts as a fail. On my actual hardware, that's the behavior I'd want.\n\n|Agent|1. Contacts|2. Rename|3. Bug fix|4. Errors|5. Receipt|Total|\n|:-|:-|:-|:-|:-|:-|:-|\n|A|✅ 4:54|✅ 0:28|✅ 0:43|✅ 0:26|✅ 3:58|10:29|\n|B|✅ 6:03|✅ 1:11|✅ 0:55|✅ 0:54|✅ 15:04|24:07|\n|C|✅ 13:32|✅ 0:24|❌ 0:22|✅ 0:57|❌ 0:49|16:04|\n|D|✅ 6:16|✅ 1:12|✅ 0:56|✅ 0:56|✅ 2:50|12:10|\n|E|✅ 5:50|✅ 1:01|✅ 0:21|✅ 0:26|✅ 3:56|11:34|\n\n**Setup**\n\nOne agent at a time, auto-approve on, a script decides pass or fail. Agents in alphabetical order, NOT the results order: [OpenCode](https://opencode.ai), [goose](https://goose-docs.ai), [Atomic Agent](https://atomicagent.io), [Hermes](https://hermes-agent.nousresearch.com), [OpenClaw](https://openclaw.ai)\n\nWhich agent is A, B, C, D and E? Would you rather run one that installs stuff on its own and finishes, or one that asks first? Drop your guesses below, I'll share the full answer key in a day or two.",
+    "developer": "GapNew4766",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

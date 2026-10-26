@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfg345",
+  "sourceItemId": "1xfg345",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xfg345/is_full_ai_reasoning_actually_valuable_for/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nI've been experimenting with exporting and preserving AI conversations, reasoning summaries, tool activity, and evaluation evidence.\n\nDuring a controlled test with Claude Sonnet at Extra effort, I captured:\n\n\\- 1 thinking block\n\n\\- 35 \"thinking\\_summary\\_delta\" events streamed before the final answer\n\n\\- All 35 summaries available again in the conversation history\n\n\\- No readable full internal reasoning (\"thinking\" was empty and marked hidden)\n\nThis got me thinking about a bigger question.\n\nIs there real commercial value in preserving detailed AI reasoning, or are summaries plus verifiable execution traces more useful?\n\nI'm working with three components: a conversation exporter, a persistent memory/retrieval engine, and an independent RAG evaluation toolkit.\n\nOne potential application is an audit-case memory system for AI agencies. Teams could store previous investigations, failed hypotheses, retrieval rankings, metrics, tool executions, confirmed root causes, and fixes. An AI assistant could then search across those cases and suggest relevant diagnostic tests.\n\nBut I'm uncertain whether reasoning summaries would contribute meaningful value, or just add noise.\n\nI'd like to hear from people who actually debug, evaluate, or operate AI systems:\n\n1. For debugging and auditing, would you prefer full reasoning traces (when legitimately available), concise thinking summaries, or structured execution evidence? Why?\n\n2. Have thinking traces ever helped you discover a problem that tool logs, inputs/outputs, and evaluation metrics couldn't explain?\n\n3. Would a searchable memory of past technical investigations save your team time, or do your current tools already solve that problem?\n\n4. Would this capability be more valuable in RAG audits, coding agents, autonomous workflows, incident investigation, or another application?\n\n5. Have you ever paid for something that solves this problem? What made it worth paying for?\n\nI'm not claiming access to hidden chain-of-thought. My experiment only confirmed that user-visible reasoning summaries are transmitted and recoverable.\n\nI'm trying to identify a problem worth solving before investing further development time.\n\nCritical feedback and examples from production environments are particularly welcome.",
+    "developer": "Additional-Ladder-24",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

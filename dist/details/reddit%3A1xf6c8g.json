@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xf6c8g",
+  "sourceItemId": "1xf6c8g",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xf6c8g/failing_ci_when_a_vendor_silently_changes_their/",
+  "detail": {
+    "longDescription": "Vendors change APIs without telling anyone: a field gets renamed, a number becomes a string, a 200 starts returning an HTML error page. Contract testing doesn't help because the vendor won't run your contracts, and OpenAPI diffs only see what they bother to document.\n\nTiltmeter learns the response shape from real calls and gives you an exit code that knows what broke:\n\n0  no drift\n\n1  warning (new enum value, latency 3x the baseline)\n\n2  breaking (removed field, type change, new nulls)\n\n3  the check couldn't run\n\n4  config error\n\nThe GitHub Action keeps the baseline in the Actions cache and writes the changes to the job summary; GitLab CI and cron work too. Slack or webhook alerts take one line of config. Credentials stay as ${VAR} placeholders and are never written to disk, and it stores shapes, not response bodies, in one SQLite file.\n\nMIT: pip install tiltmeter\n\n[https://tiltmeter.dev](https://tiltmeter.dev)\n\nHow do you cath third-party API changes today? Synthetic checks with hand-written assertions, or waiting for the incident?",
+    "developer": "Superb-Hornet-5730",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

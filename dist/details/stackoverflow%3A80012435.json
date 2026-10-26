@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012435",
+  "sourceItemId": "80012435",
+  "sourceUrl": "https://stackoverflow.com/questions/80012435/valueerror-failed-to-validate-multipolygons-when-trying-to-create-interactive-m",
+  "detail": {
+    "longDescription": "I am trying to produce an interactive map on bird migration. I am joining a data set of bird observations from GBIF with geographic shape files (ecoregions by RESOLVE) and a base map from CARTO. I am fairly new to Python and coding in general. I have imported these packages: cartopy.crs, panel, hvplot.pandas, holoviews,calendar, os, pathlib, pandas, geopandas, earthpy The code in question: ### get the plot bounds xmin, ymin, xmax, ymax = occurrence_gdf.total_bounds ### define the slider widget slider = pn.widgets.DiscreteSlider( name = 'month', options = {calendar.month_name[i]: i for i in range(1, 13)} ) ### make the basemap tile object carto_tiles = hv.Tiles( (\"https://basemaps.cartocdn.com/rastertiles/voyager/{Z}/{X}/{Y}.png\" \"?key=cb1_446c_1_8946b413de0ace50f732dbf1\"), name = \"CARTO\" ) ### plot occurrence by ecoregion and month migration_plot = ( occurrence_gdf .hvplot( ### Color by number of observations c = 'norm_occurrences', groupby = 'month', ### use background tiles, basemap from Carto geo = True, crs = ccrs.Mercator(), tiles = carto_tiles, ### add a title title = \"Least Sandpiper Migration Based on Normalized Mean Number of Monthly Observations\", ### set plot boundaries xlim = (xmin, xmax), ylim = (ymin, ymax), ### set dimensions of map frame_height = 600, frame_width = 900, ### put the widget at the bottom of the map widget_location = 'bottom', colorbar = True, clabel = 'Normalized Mean Number of Observations', ### So that color bar values remain stable across ecoregions and easier to interpret numbers clim = (0, 0.014565), widgets = {'month': slider} ) ) ### wrap plot in the Panel layout interactive_migration_plot = pn.panel(migration_plot) ### check it out interactive_migration_plot Error message is: AbbreviatedException: ValueError: failed to validate MultiPolygons(id='1f61360d-ed95-4b4d-85ad-0f1422d27353', ...).hatch_color: expected an element of either String, Nullable(Color), Instance(Value), Instance(Field), Instance(Expr), Struct(value=Nullable(Color), transform=Instance(Transform)), Struct(field=String, transform=Instance(Transform)) or Struct(expr=Instance(Expression), transform=Instance(Transform)), got dim('norm_occurrences') I don't get the error if I comment out the chunks relating to CARTO. Some online research suggests there is a conflict between polygons and multipolygons but I don't know where that conflict occurs and I don't fully understand how to resolve it.",
+    "developer": "Honeywood",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "104"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

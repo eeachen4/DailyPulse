@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xeq87p",
+  "sourceItemId": "1xeq87p",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xeq87p/review_your_coding_agents_diff_line_by_line_in_vs/",
+  "detail": {
+    "longDescription": "I work on software where a bad merge is expensive to roll back. Agents write a lot of my code now, but I still have to read and understand every line before it goes to my team.\n\nPull requests didn't work well for that stage. A PR on GitHub is visible to everyone, so I don't leave \"wait, what does this flag do?\" comments there. And pasting snippets into a chat window loses the line context.\n\nSo I built \\*\\*NITL (Nit-In-The-Loop)\\*\\*. It's a local review step that sits between \"the agent finished\" and \"I open a PR\":\n\nhttps://i.redd.it/hzdfxyneyfxh1.png\n\nhttps://i.redd.it/b557q9mfyfxh1.gif\n\n\\- It shows your uncommitted changes in VS Code's native diff editor.\n\n\\- You comment on a line or a range, like in a PR review.\n\n\\- \\*\\*Send to Agent\\*\\* runs your agent (Claude Code, Codex, or any CLI) with that thread as the prompt. The answer shows up as a reply in the thread. If the agent is allowed to edit, the diff updates in place.\n\n\\- \\*\\*Add to Queue\\*\\* lets you collect comments while you read, then send them all in one run.\n\n\\- With Claude Code, each thread keeps its own session, so follow-up questions keep the context.\n\n\\- You can also comment on commits from a Git history view.\n\n\\- Everything stays in \\`.git/agent-review/review.json\\` on your machine. There's no account, server, or telemetry.\n\nSetup is one setting:\n\n\"agentReview.agentCommand\": \"claude -p --permission-mode acceptEdits\"\n\nNITL never adds permission flags of its own, only reads this setting from user settings (never from a workspace), and only runs in trusted workspaces.\n\nMarketplace: [https://marketplace.visualstudio.com/items?itemName=NickyKim.nitl](https://marketplace.visualstudio.com/items?itemName=NickyKim.nitl)\n\nSource (Apache 2.0): [https://github.com/harderthan/Nit-In-The-Loop](https://github.com/harderthan/Nit-In-The-Loop)\n\nIt's early (v0.2). I'd love feedback, especially from anyone else who reviews agent output in a strict-quality domain. What does your review step look like today?",
+    "developer": "Agreeable_Serve4563",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

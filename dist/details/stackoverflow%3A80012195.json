@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012195",
   "sourceItemId": "80012195",
+  "fetchedAt": "2026-10-26T01:40:20.151Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012195/for-loop-within-a-function-that-writes-contents-of-list-parameter-to-desired-fil",
   "detail": {
     "longDescription": "I have created a function to save contents of a created objects of id's to a different files based on what kind of objects they are, however I can't seem to fix it. Here is my code: def write_to_file( file_name: str, list_name: list, ): \"\"\"This function is to write id's to file. It creates file with given file_name parameter and it loops through the list that we pass from another function. \"\"\" try: id_to_write = \"\" if file_name == \"dummy_test1_datas.txt\": id_to_write == \"test_1_id\" elif file_name == \"dummy_test2_datas.txt\": id_to_write == \"test_2_id\" elif file_name == \"dummy_test3_datas.txt\": id_to_write == \"test_3_id\" print(id_to_write) with open(file_name, \"w\", encoding=\"utf-8\", newline=\"\") as f: for data in list_name: f.writelines( data.user_id if file_name == \"dummy_user_datas.txt\" else data ) print(f\"Alle toegevoegde id's zijn opgeslagen in {file_name} bestand.\") except: print(\"Probleem bij het schrijven naar een bestand.\") The issue that I am having is that I can't make it sure that, if my parameter of file_name equals \"user.txt\" then f.writelines (should be data.user_id ), if file_name is something else then it should be data.something_id for example. Expectation: based on file_name it should conditionally change to data.user_id or data.test_id e.t.c. Currently it does not save any id to file, since i have this: data.user_id if file_name == \"dummy_user_datas.txt\" else data What do i need to change in the code above so this conditionally changes to user_id or test1_id or test2_id e.t.c. in order to save id's?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "210"
+        "value": "277"
       },
       {
         "label": "状态",

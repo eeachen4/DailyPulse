@@ -2,9 +2,10 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012328",
   "sourceItemId": "80012328",
+  "fetchedAt": "2026-10-26T01:40:20.151Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012328/windows-webdav-client-fails-to-read-files-over-a-certain-size-50-mb-0x800700d",
   "detail": {
-    "longDescription": "Stack Overflow 热门问题",
+    "longDescription": "I’m building a portable encrypted vault in Python that runs from a USB stick. It has to work without admin rights, without driver installs, and without writing plaintext to the host’s disk. On Linux I use FUSE and it behaves exactly as I want. On Windows I serve the vault over WebDAV on 127.0.0.1 and map it as a drive with net use . The problem is reading big files back out. Opening or copying any file over about 50 MB from the mapped drive fails with: Error 0x800700DF: The file size exceeds the limit allowed and cannot be saved. It happens in Explorer and in the Media Player app, and in PowerShell’s Copy-Item , so it isn’t specific to one program. Minimal reproduction (no custom code, I used WsgiDAV, and my own server behaves the same): Terminal 1: mkdir C:\\temp\\share fsutil file createnew C:\\temp\\share\\big.bin 60000000 fsutil file createnew C:\\temp\\share\\small.bin 10000000 pip install wsgidav cheroot wsgidav --host=127.0.0.1 --port=8080 --root=C:\\temp\\share --auth=anonymous Terminal 2: net use Z: http://127.0.0.1:8080 copy Z:\\small.bin C:\\temp\\small_out.bin copy Z:\\big.bin C:\\temp\\big_out.bin Output: > net use Z: http://127.0.0.1:8080 The command completed successfully. > copy Z:\\small.bin C:\\temp\\small_out.bin > copy Z:\\big.bin C:\\temp\\big_out.bin copy : The file size exceeds the limit allowed and cannot be saved. + CategoryInfo : NotSpecified: (:) [Copy-Item], IOException + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.CopyItemCommand What I found while testing (Windows 11, build 26200, WsgiDAV 4.3.5, Python 3.14): FileSizeLimitInBytes under HKLM\\SYSTEM\\CurrentControlSet\\Services\\WebClient\\Parameters is 0x2faf080 (50,000,000), the default. Uploads work. I copied a 60 MB file and a 450 MB video into the drive and both went through. The server logged a normal PUT with the full body. Reads fail. For the failed copy, the server log shows only repeated PROPFIND /big.bin requests and no GET . My guess is that the client decides from the metadata and gives up before requesting any data, but I haven’t confirmed that. Other approaches I looked into but haven’t tried myself. I haven’t built or tested any of these. From the documentation and other posts, they all look like dead ends for my constraints, so please correct me if I’m wrong: Changing the registry value is the documented fix, but it lives in HKLM and needs admin, which I can’t assume on the machines this runs on. WinFsp / Dokan seem to need a kernel driver install, so admin rights. Cloud Files API / ProjFS seem to need NTFS, and hydrated files end up as plaintext on the host disk. subst with sparse files: I couldn’t find any way to intercept reads on a normal local file from user mode. A userspace SMB server: as far as I can tell, the Windows client only accepts a non-445 port from Windows 11 24H2 onwards, so it wouldn’t cover older machines. Question: Is there any way, as a standard user, to let the Windows WebDAV client read files over 50 MB from my own server? For example, does the check depend on something in the PROPFIND response that I can influence? If the honest answer is no, what else lets Explorer open large files from a user-mode virtual drive without admin?",
     "developer": "Fungus",
     "comments": 0,
     "stats": [
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "64"
+        "value": "147"
       },
       {
         "label": "状态",
