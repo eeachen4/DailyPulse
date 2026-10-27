@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012600",
+  "sourceItemId": "80012600",
+  "sourceUrl": "https://stackoverflow.com/questions/80012600/trivy-scan-issue",
+  "detail": {
+    "longDescription": "Trivy Kubernetes Full Scan Extremely Slow in GitLab CI, but Completes Quickly on EC2 Environment Scanner: Trivy, using trivy k8s Target: An Amazon EKS Kubernetes cluster CI environment: GitLab CI job running a scanner container through a Docker-compatible runtime (Podman-based build environment) Comparison environment: EC2 instance running Trivy directly Image source: Private container registries Scan scope: Entire Kubernetes cluster Trivy options: --debug --image-src remote --disable-node-collector --timeout 2h --report all --format json The vulnerability database is downloaded from an internal registry mirror. Problem A full Trivy Kubernetes scan takes approximately 5 minutes when run directly on an EC2 instance. However, running the same full scan against the same cluster from GitLab CI takes over an hour and makes extremely slow progress. The scan has been observed progressing at approximately 7 / 415, sometimes displaying 0 p/s. The CI scan runs inside a scanner container rather than directly on the runner host. Diagnostic tests performed I ran two scans from GitLab CI: Diagnostic scan with image scanning disabled I added --skip-images to the trivy k8s command. This scan completed successfully in approximately 6 minutes and 45 seconds and generated a JSON report. 2. Full scan with image scanning enabled The full scan was allowed to run for over an hour but made very little progress. The scan uses a two-hour timeout. Both scans target the same Kubernetes cluster. The full scan enables workload image scanning, while the diagnostic scan skips it. What I have ruled out so far Trivy installation: The scanner installs and runs successfully. Vulnerability database download: The database downloads successfully in approximately 1–2 minutes. Basic Kubernetes connectivity: Trivy successfully connects to the EKS cluster and completes the diagnostic scan. Cluster scope alone: Both environments target the same cluster with the same intended broad scope, so scope alone does not explain the large runtime difference. What I suspect The slowdown is associated with the workload image-scanning path, but I have not yet established the exact cause. Potential areas to investigate include: Differences in registry access or image retrieval between direct EC2 execution and execution inside the GitLab CI scanner container. Private registry authentication, retries, or slow manifest/layer retrieval. Differences in image caching between the two environments. Image analysis performance or resource constraints inside the CI container. Differences in how the container runtime, network path, or available resources affect Trivy's image-scanning workflow. I have not yet confirmed whether the slow stage is image acquisition or analysis of image data that has already been acquired. Questions What is the best way to identify the exact image or operation causing trivy k8s to make extremely slow progress? Which Trivy debug logs should I inspect to distinguish image manifest/layer retrieval from vulnerability analysis? Can running Trivy inside a Podman-based CI environment cause significant performance differences compared with running it directly on EC2, even when scanning the same cluster? What is the recommended way to compare image scanning performance across these environments? Are there known performance issues or configuration considerations when using trivy k8s --image-src remote with private registries? I want to identify and fix the bottleneck while retaining full workload image-scanning coverage, rather than disabling image scanning or reducing the scan scope.",
+    "developer": "Tuấn Anh Nguyễn Đ&#236;nh",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-8"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "37"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

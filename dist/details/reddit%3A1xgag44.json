@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgag44",
+  "sourceItemId": "1xgag44",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xgag44/naughty_keyboard_test_input_fields_with_one/",
+  "detail": {
+    "longDescription": "I had just released [Naughty Keyboard](https://github.com/donislawdev/Naughty-Keyboard), it's a tool for testing input fields, the idea is simple:\n\nThe app comes with values packs, each value pack is a set of problematic data, with one shortcut we can write the problematic data, with other we can switch the pack, the app is cross-platform, full GUI + CLI (there is nkb emit, so we can export the values and use in own tests form the code). **Like the project? Please give it a star.** [GitHub](https://github.com/donislawdev/Naughty-Keyboard) If you got any questions, features requests feel free to share them :-) The technologi is Rust + slint. The memory ussage is 5-6mb?\n\n\n\nRight now there are 208 values, and packs like export breakers, extreme numbers, some specific data, in the future there are plans for 1000+ values, you can read here: [full list of packages](https://naughtykeyboard.donislawdev.com/packs/). Like I said it's simple, keep it in background, use when needed, in the feature I will expand the ability for creating own packages and shortcuts, let's say we would automate whole input fields on website with one shortcut :D And I think the tool can automate some boring work too, because right now I'm using the copy/write mode for testing values, but if in easily way other pepole could create own packs for work, so there is potential.\n\n\n\nPlease, don't ask me about some girls emojis or anything like that, the \"naughty\" in the name is in sense of \"testing\" not some girl things :( You now like a big list of naughty strings. I mean, in theory it's possible, but it's not in the scope of the project.\n\n  \n\n\nFull features list:\n\n* **One shortcut, one value** \\- `Alt+Shift+N` (`Option+Command+N` on macOS, `Ctrl+Alt+N` on Linux) clears the line and types the next value of the current pack into whatever window has the keyboard. Previous and restart are one chord away, and every chord can be changed.\n* **Values that explain themselves** \\- each one carries `breaks` (what it usually breaks, and why) and `expect` (what a correct application does). The pack file, `nkb show` and the report block all say so.\n* **Invisible characters made visible** \\- the palette draws one as a marker, `␣`, instead of showing nothing, and counts every value four ways: graphemes, code points, bytes and UTF-16 units.\n* **Know where you are** \\- the palette shows the value that comes next and a counter of how far through the pack you are, and the value window searches the values of every pack at once.\n* **A bug report in one chord** \\- `Alt+Shift+B` copies a block for the last value: which value, from which version of the pack, typed as what, how large, and whether all of it arrived. The value is written in a form someone else can type back, never as the marker the palette drew.\n* **Never takes the keyboard** \\- the palette is a display driven by shortcuts and does not take focus, so the cursor never leaves the field you are testing.\n* **Clipboard mode** \\- put values on the clipboard to paste yourself, for one window or for all of them.\n* **Packs you can check** \\- a pack is a plain TOML file, `nkb lint` checks it against the format rules, `nkb fmt` puts it in canonical shape, and `nkb new-pack` writes the skeleton.\n* **Made for scripts too** \\- `nkb emit` prints a pack as JSON, CSV or one value per line, escaped or raw, optionally as base64. Every command has exit codes you can branch on.\n* **Offline, free, no telemetry** \\- GPL-3.0, no account, and it opens no network connection.",
+    "externalUrl": "https://github.com/donislawdev/Naughty-Keyboard",
+    "developer": "DonislawDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

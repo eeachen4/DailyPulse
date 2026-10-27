@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117506590724979110",
+  "sourceItemId": "mastodon.social/117506590724979110",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117506590705342593",
+  "detail": {
+    "longDescription": "----------------\n\n🎯 AI: AGENTS.md Files in ~/Downloads Hijack AI Coding Agents\n===================\n\nResearchers at Forever Security, a company that monitors risks introduced by AI agents and autonomous software, documented a real-world case where an AI coding agent tried to install a malicious npm package, function-color. The trace led to an AGENTS.md instruction file in the customer's ~/Downloads folder, which was also the agent's working directory. The team reproduced the attack against OpenAI Codex and demonstrated a related technique against Claude Code that leaks OAuth tokens and enables account takeover.\n\nBackground\n\nAgents such as OpenAI Codex, Claude Code, and Cursor CLI automatically load instruction files from their working directory and follow them. The files define which tools to use, how to run tests, and which coding conventions to apply. Nothing in the file executes. The instructions themselves are the payload: an agent with sufficient permissions will install packages, run commands, or change settings on their behalf.\n\n🔹 Attack Chain Analysis\n\n1. Delivery: a web page writes AGENTS.md into ~/Downloads. Chrome, Edge, and Firefox save downloads there by default without prompting. The PoC page verified by BleepingComputer dropped the file with no user interaction, using harmless test strings.\n2. Dormancy: the planted file is inert text. No exploit, no binary.\n3. Trigger: the user launches an agent from ~/Downloads. Forever's internal statistics show hundreds of customers do this routinely, including more than 1,300 Claude Code sessions launched from that folder.\n4. Abuse: the agent obeys the instructions, installing a rogue npm package in the observed incident or opening the calculator in the Codex lab test, which succeeded 90% of the time.\n5. Account takeover: a related Claude Code technique exports OAuth tokens, hijacking the account without further file access.\n\nAnalysis\n\nThe researchers' position is that there is nothing for OpenAI or Anthropic to patch: an agent that follows the AGENTS.md in its folder is doing exactly what it was built to do. This makes the trust boundary the directory an agent is launched from, and the only browser defense in default configurations is a small notification after a silent save.\n\nDetection and Mitigation\n• Flag agent processes whose working directory resolves under ~/Downloads, the highest-signal filter available here.\n• Treat instruction files in browser-writable directories as untrusted input and require review before acting on them.\n• Monitor agent-initiated npm installs, including post-install lifecycle scripts. The observed package name was function-color.\n• For Claude Code, OAuth token export is in scope, so track token usage and rotate on anomaly.\n• Browsers such as Brave prompt before saving, which interrupts the silent drop at the cost of friction.\n\nLimitations\n\nHow the file landed in the real customer's Downloads folder is unknown, though the researchers consider a drive-by drop plausible. The 90% rate and the Claude Code demonstration come from Forever's own tests, and third-party verification so far covers only a benign payload. Treat the figures as indicative until independent replication appears.\n\nReferences: BleepingComputer report by Bill Toulas, October 25. Research findings attributed to Gal Weizman of Forever Security.\n\n🔹 AISecurity #PromptInjection #AgenticAI #npm #SupplyChain\n\n🔗 Source: https://www.bleepingcomputer.com/news/security/ai-coding-agents-hijacked-using-agentsmd-file-in-downloads-folder/",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

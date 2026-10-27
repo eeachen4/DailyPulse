@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfp7x9",
+  "sourceItemId": "1xfp7x9",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xfp7x9/how_are_you_testing_tools_that_move_money_in/",
+  "detail": {
+    "longDescription": "Building agents with a pay or transfer tool, and I've run into a testing problem I don't see talked about much.\n\nUnit tests with a mocked payment tool pass every time, because the mock does exactly what you told it. The bugs I actually care about only show up when the world misbehaves:\n\n* the transfer goes through but the tool call times out, so the agent retries\n* the API says success but the transaction reverted\n* two branches of the graph both decide to pay the same invoice\n* the process crashes halfway through and resumes from a checkpoint (this one's very LangGraph-shaped, since resuming is the whole point)\n\nI've seen a real-world case where a mocked test meant the code that checked the payment receipt never ran at all, and it was broken. Every success was reported as a failure.\n\nWhat I ended up doing (full disclosure, I turned it into a project called EmberTail): run the agent as a normal process against a fake ledger that injects those faults on purpose, then compare what the agent *said* happened with what the ledger *shows* happened. Exact same scenario every run, so it works in CI.\n\nRight now you connect an agent over a small JSON-lines protocol. I'm trying to decide whether a proper LangGraph adapter is the next thing to build. So, two questions:\n\n1. How do you test money-moving tools today? Just mocks, a testnet, something else?\n2. If there were a drop-in way to run your graph against scenarios like the ones above, would you use it, or is this a problem only I have?\n\n",
+    "developer": "Tiny_Associate_8254",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

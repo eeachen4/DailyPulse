@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.32027",
+  "sourceItemId": "2610.32027",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.32027",
+  "detail": {
+    "longDescription": "arXiv:2610.32027v1 Announce Type: new Abstract: HPC clusters are shared among many projects, each holding an allocation of node-hours, and ensuring fairness is becoming harder. Foundation models workflows and automated pipelines have made job submissions bursty and concentrated among a few heavy users, so occasional users absorb queueing delays created by frequent ones, with no indication of how long their jobs will wait. Existing schedulers either forget past usage, protect only the job at the head of the queue, or assume that running jobs can be preempted. We propose HyDRA, a Hybrid Deadline and Ranking-Aware scheduler that enforces fairness among users while bounding the queue wait of every job. HyDRA assigns each job a deadline on arrival based on its size, the priorities of its project and user, the current backlog, and how far its project and user are from their entitled share. It ranks waiting jobs by a priority score that grows with waiting time, serves jobs close to their deadlines first, and backfills a job only when no deadline, or fairness limit is violated. We evaluate HyDRA on workloads derived from a year of ALCF Polaris job traces, against conventional schedulers and variants inspired by PCS, Themis, and the PBS job-sort formula used at ALCF. HyDRA achieves $2\\times$ the project-level Jain's fairness of the best baseline, starts 47\\% of jobs by their deadlines compared with at most 36\\% for the baselines even for largest workloads, and lowers the 95th-\\%ile bounded slowdown by 4.2$\\times$ relative to the next best baseline, at a moderate cost in utilization.",
+    "developer": "Karaen Senthilkumar, Suman Raj, Maxime Gonthier, Kyle Chard, Donpaul Stephens, Ian Foster",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Karaen Senthilkumar, Suman Raj, Maxime Gonthier, Kyle Chard, Donpaul Stephens, Ian Foster"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

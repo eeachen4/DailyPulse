@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xg1695",
+  "sourceItemId": "1xg1695",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xg1695/scoring_idp_r/",
+  "detail": {
+    "longDescription": "This is a \"survey of current practices\" type of research for a niche area, nothing earth-shattering. I’ve written a 2-part Medium series (free, no paywall) on scoring Intelligent Document Processing (IDP). It focuses on Key Information Extraction (KIE) from structured documents, especially forms. I lean heavy on metrics derived from the confusion matrix: different ways to map items such as blanks or misreads to the four possible values, how to count them, when to use each metric.\n\n* [Scoring IDP, Part 1: Confidence Is Not Correctness](https://medium.com/@paul.d.short/scoring-idp-part-1-confidence-is-not-correctness-71384dc15f56)\n* [Scoring IDP, Part 2: Approaches to Evaluating Form Extraction](https://medium.com/@paul.d.short/scoring-idp-part-2-approaches-to-evaluating-form-extraction-b3c7eafb3379)\n\nTopics I include, but not limited to: recording raw outcomes before mapping them to the confusion matrix (correct, misread, missed, invented, correct blank); confusion matrix scoring for text fields and checkboxes; misread conventions and their effect on scores (FN-only, FP-only; FN & FP); how blanks, NULLs, unreported checkboxes, and unreadable values are counted; F1 vs. Recall vs. Accuracy, including how correctly identified blanks inflate Accuracy; Jaccard Index (IoU) as Accuracy without True Negatives, and its conversion to F1; Precision, Specificity, and False Positive Rate for LLM hallucination control; micro, macro, and weighted F1; choosing a headline score and stating the convention behind it; confidence vs. correctness and calibration (ECE, MCE); and Key Information Extraction (KIE) vs. OCR metrics (CER, WER).\n\nI believe these would fall under \"machine learning scoring techniques\" applied to Intelligent Document Processing (IDP)--how to measure (score) rather than how to implement. It may also help folks understand how to read results coming from different benchmarks.\n\nI try not to recommend one opinionated way of doing things and instead cover the variations I’ve run into and the tradeoffs between them. I’m not endorsing any vendor; the series is about scoring itself.",
+    "developer": "pshort000",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

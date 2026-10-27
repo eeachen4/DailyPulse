@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.31827",
+  "sourceItemId": "2610.31827",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.31827",
+  "detail": {
+    "longDescription": "arXiv:2610.31827v1 Announce Type: new Abstract: Long-context LLM serving for agentic, coding, and document workloads reuses prefixes whose key-value (KV) cache outgrows GPU and host memory, putting storage I/O on the critical path of the inference step for retrieving prefixes. A single node-local NVMe absorbs all retrievals, while the parallel file system or cloud file store that nodes already mount carries almost no inference traffic. We cast prefix retrieval as aggregate-bandwidth scheduling across these tiers and present KVStream, a KV cache engine that batches a step's reads, defers writes behind the forward pass, replicates each chunk on every tier, and lets each tier adaptively claim the next unread chunks once it is free. Our performance model shows this routing attains the aggregate-bandwidth bound without prediction or tuning, whereas any static split misses it by a margin that grows as per-tier bandwidths drift or fluctuate. It also predicts that the time-to-first-token (TTFT) gain grows with load, as faster retrieval drains the queue, and disappears when host memory or arrival order keeps reuse in cache. Plugged into LMCache and evaluated on four models, six datasets, and up to 128 GPUs, KVStream retrieves within 5% of the bound, delivers up to 1.49$\\times$ higher offline throughput than LMCache, and lowers mean TTFT by up to 6.1$\\times$ under bursty arrivals.",
+    "developer": "Avinash Maurya, Jaiaid Mobin, Jie Ye, M. Mustafa Rafique, Franck Cappello, Bogdan Nicolae",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Avinash Maurya, Jaiaid Mobin, Jie Ye, M. Mustafa Rafique, Franck Cappello, Bogdan Nicolae"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

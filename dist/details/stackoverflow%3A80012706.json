@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012706",
+  "sourceItemId": "80012706",
+  "sourceUrl": "https://stackoverflow.com/questions/80012706/atomic-jsonb-update-in-python-sqlalchemy-postgresql",
+  "detail": {
+    "longDescription": "I need to update json column of a row in datebase, this json is a 'dict' where session_id : group_key , on the insert some key value pairs will be added, but then i need to add a new session to this json, so it should be atomic in one update operation and i don't need to select this json first, update it and write back in the row I have already written the code that works, but is it realy atomic and efficient? first solution: async def add_group_member_session_group_key( session: AsyncSession, group_id: int, user_id: int, user_session_id: uuid.UUID, session_group_key: tuple ): query = ( update(GroupChatMember) .where( GroupChatMember.group_id==group_id, GroupChatMember.user_id==user_id, ) .values( group_key=GroupChatMember.group_key.op(\"||\")( cast( {str(user_session_id): session_group_key}, JSONB, ) ) ) ) await session.execute(query) await session.commit() second solution: async def add_group_member_session_group_key( session: AsyncSession, group_id: int, user_id: int, user_session_id: uuid.UUID, session_group_key: tuple ): query = ( update(GroupChatMember) .where( GroupChatMember.group_id==group_id, GroupChatMember.user_id==user_id, ) .values( group_key=GroupChatMember.group_key + literal( {user_session_id: session_group_key}, JSONB ) ) ) await session.execute(query) await session.commit() Is there any differance between them? Thanks",
+    "developer": "madjetmax",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "59"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

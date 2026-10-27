@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgb48s",
+  "sourceItemId": "1xgb48s",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xgb48s/typed_tool_calls_only_no_raw_ffmpeg_strings_and/",
+  "detail": {
+    "longDescription": "disclosure: i'm the author.\n\ni've been building kimo, a free, open-source (MIT) video editor with no GUI that AI agents drive over MCP - codex, cursor, opencode, or any other MCP client. the fresh angle here is that everything is typed tool calls only, no raw ffmpeg strings. and because it's built around the edit loop, the agent can actually render a frame to verify its own work before committing the timeline.\n\nwhy bother? raw ffmpeg is incredible but composing a timeline from shell commands is brutal for an agent - off-by-one frame errors, audio/video drift, guessing whether a filter chain actually produced what it wanted. with kimo the agent just calls tools: cut, trim, keyframe, titles/captions, colour grade, tracking, particles, audio, export. and that render-a-frame-to-check-its-work thing is the part i keep coming back to. it changes the loop from \"run and hope\" to \"run, verify, keep going.\"\n\nit's one small CPU-only Rust binary (\\~15 MB), runs on a 2 GB box. no GPU, no containers, nothing to install besides the binary.\n\nhonestly it's still early. there are rough edges, the docs are catching up, and i'm sure some workflows feel awkward right now. i'd love for people to try it and tell me what breaks - weird filter combos, exports that don't match expectations, MCP handoffs that feel clunky, whatever. the more i hear about what's annoying, the faster i can fix it.\n\nit's free and MIT-licensed, built by me (naman, college student). if you want to poke around:\nsite: https://getkimo.tech\ngithub: https://github.com/naman-sharma12345/kimo\n\nhappy to answer questions here. thanks for reading.",
+    "developer": "LieTop7965",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

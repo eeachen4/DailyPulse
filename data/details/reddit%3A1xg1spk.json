@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xg1spk",
+  "sourceItemId": "1xg1spk",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xg1spk/5090_for_qwen_38_27b_vs_just_paying_the_api_the/",
+  "detail": {
+    "longDescription": "Qwen 3.8 27b is a appropriate one for the card vs api question since its the same weights on both sides. alibabas intl api lists it around 55 cents in, $3.25 out and 11 cents on cache hits per million (its priced in yuan so it moves a bit) and pay per token hosts can go lower, on deepinfra for example its $0.15 in, $0.038 cached and $1.875 out with a 25% promo on rn\n\nsomeone in localllama posted a week of their agent usage at about 800M cache hits, 200M fresh input and 35M out. on alibaba pricing thats around $310 for the week and about $125 at the cheaper listing. they put their power for that week at $8 so electricity is pretty much a rounding error tbh\n\n5090s are going for $6k and up right now, so at that volume the card pays for itself in about 5 months vs alibaba or around a year vs the cheaper price. thats on a tuned setup like nvfp4 with mtp or dflash tho, plain llama.cpp would have to run flat out 24/7 to keep up with 35M output a week. at a more normal 5M tokens a day its over a decade vs alibaba and basically never vs the cheap one\n\nfew things move it a lot. used 3090s are around $1,000-1,200 now so resale has held up weirdly well this year, idle draw adds up if the box stays on (nvidia-pstated helps), local q4 can trail whatever precision the endpoint runs, and batching a few agents on vllm cuts the local cost per token by a lot. privacy and no rate limits are reasons on their own ofc",
+    "developer": "Mission-Leave-6551",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

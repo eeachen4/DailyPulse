@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012509",
   "sourceItemId": "80012509",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012509/why-does-my-js-make-the-browser-scroll-to-the-bottom-of-the-page-when-switching",
   "detail": {
     "longDescription": "Here's my JS: function ClearPage() // unloads every page { document.getElementById('home').style.display = 'none'; document.getElementById('menu').style.display = 'none'; document.getElementById('teasers').style.display = 'none'; document.getElementById('nopage').style.display = 'none'; } function SetPage(page) // loads specified page { ClearPage(); if (document.getElementById(page)) document.getElementById(page).style.display = 'block'; else document.getElementById('nopage').style.display = 'block'; } // Called on hash change - calls SetPage and passes in whatever page is in the hash function UpdatePage() { window.scrollTo(0, 0); const hash = window.location.hash; if (hash.substring(1) == '') SetPage('home'); else SetPage(hash.substring(1)); } and the relevant HTML: <img id=\"logo\" src=\"resources/images/logo.webp\" onclick=\"SetPage('home'); document.location='#'\"> <div id=\"desk-nav-buttons\"> <button class=\"desk-nav-button\" onclick=\"SetPage('menu'); document.location='#menu'\"> Menu </button> <button class=\"desk-nav-button\" onclick=\"SetPage('teasers'); document.location='#teasers'\"> Teasers </button> </div> ... <div id=\"container\"> <section id=\"home\"> ... </section> <section id=\"menu\"> ... </section> <section id=\"teasers\"> ... </section> <section id=\"nopage\"> ... </section> </div> The CSS for #container: #container { min-height: calc(100vh - var(--container-sub)); max-height: fit-content; padding-left: 10px; font-family: 'Press Start 2P'; } #container h1, h2, h3, h4, h5, h6 { margin-top: 0px; padding-top: 18px; color: rgba(255, 145, 0, 1); } When clicking on the nav button for \"Menu\" (the page with the longest content), the view scrolls to the bottom of the page. It doesn't happen for the top section, #home, so i can only assume it's to do with the positioning of the sections though I wouldn't know how to go about fixing that. I tried using window.scroll(0, 0); in UpdatePage() , but it occasionally caused a flicker, and didn't affect anything if you clicked \"menu\" while you were already on that page.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "4"
       },
       {
         "label": "回答",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "28"
+        "value": "305"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

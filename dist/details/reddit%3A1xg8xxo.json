@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xg8xxo",
+  "sourceItemId": "1xg8xxo",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xg8xxo/i_tested_my_api_docs_on_two_agents_that_had_never/",
+  "detail": {
+    "longDescription": "It's my own open-source project (Angelia, MIT, a local gateway between WhatsApp/Telegram and the coding agent CLI on your Mac). This post is about the docs test, though.\n\nBefore the release that made its local API a documented contract, I wanted to know if an agent could use it from the docs alone. So two Claude Code subagents that had never seen it, one on Sonnet and one on Haiku, each got a user request and one starting link: the site's llms.txt. No source code. They ran against a real daemon on my Mac. The chat's \"agent\" on the other end was a stand-in that echoes the prompt, so no real assistant answered anything.\n\nBoth ended up with working scripts. Sonnet wrote Python in 6 tool calls, Haiku wrote Node in 11. Each also listed what slowed it down. 16 points in total: 12 fixed, 1 partly, 3 left as they were.\n\nThe ones that cost the most:\n\n1. The core flow only lived in the example code. The docs said \"print the out events that follow your turn event\", which is easy to misread. Now it's 4 numbered steps.\n2. A side effect nobody wrote down: by default a task's answer also goes to the real chat. A script that only wanted the answer would have messaged the chat too. The default is stated now, plus the option that keeps it out.\n3. No standard-library Python sample for a Unix socket. You need a small custom connection class and the quick start only had curl. Added one, and a test runs it exactly as printed.\n4. Two descriptions of history paging contradicted each other. That one leads to wrong code, not just slow code.\n\nSmaller, but it still cost real time: my links pointed to three places (the site, GitHub main, a release tag), and a cold agent started wondering if the spec was missing.\n\nHaiku ran on the docs after the first round of fixes, so this isn't a clean A/B. Two passes, that's all.\n\nThe llms.txt, if you want to see where it ended up: useangelia.com/llms.txt\n\nDoes anyone run something like this on a schedule, a cold agent against the docs in CI?",
+    "developer": "Unusual-Albatross43",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

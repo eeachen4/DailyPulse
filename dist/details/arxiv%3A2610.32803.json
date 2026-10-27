@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.32803",
+  "sourceItemId": "2610.32803",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.32803",
+  "detail": {
+    "longDescription": "arXiv:2610.32803v1 Announce Type: new Abstract: The consensus protocols of most high-performance blockchains use quorum certificates, which bundle the signatures of a quorum of validators. Signature schemes such as BLS can aggregate the signatures of a whole quorum into a single short signature, which keeps these certificates small. A large-scale quantum computer would break these schemes, and no post-quantum scheme with comparable aggregate size and aggregation time is known. Without aggregation, a certificate holds one large post-quantum signature per member of the quorum, so it becomes infeasible for each validator to broadcast certificates, as modern consensus protocols often require. We present Quantum Cadence, a post-quantum consensus protocol with multiple concurrent proposers that avoids certificates altogether: every validator counts quorums among the messages it has received itself. Its safety and liveness do not even depend on signatures, although we add signatures to obtain accountability. Quantum Cadence builds on Cadence and replaces its slot consensus, Chorus, with Quantum Chorus, which keeps the optimal fast-path latency of Chorus: dissemination followed by two rounds of votes. When its fast path fails, Quantum Chorus runs Coda, our signature-free Byzantine agreement for multiple proposers. We also outline how the Conductor, which schedules the slots of Cadence, can be adapted to Quantum Cadence. In simulations with 200 validators, Quantum Chorus has a latency comparable to that of Chorus and scales better with the number of proposers.",
+    "developer": "Mohammad Mussadiq Jalalzai, Tobias Klenze, Jovan Komatovic",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.CR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mohammad Mussadiq Jalalzai, Tobias Klenze, Jovan Komatovic"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

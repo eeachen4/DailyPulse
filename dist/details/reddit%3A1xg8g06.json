@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xg8g06",
+  "sourceItemId": "1xg8g06",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xg8g06/removed_by_moderator/",
+  "detail": {
+    "longDescription": "I wanted a CamScanner replacement that doesn't show ads, doesn't need a subscription and doesn't send my bills and contracts to someone else's cloud. Nothing I found was phone-first and handled Arabic well, so I built one. It's called Waraq (ورق, Arabic for \"paper\"), and today I'm releasing 0.1.0 as open source.\n\nRepo: [https://github.com/d7omdev/waraq](https://github.com/d7omdev/waraq)\n\nYou open it in your phone's browser, point the camera at a page, and it finds the edges, flattens it and cleans it up. Waraq turns the scan into a PDF, runs OCR in the background, and from then on you can find it by searching for any word in it.\n\n**What it does**\n\n* Scanner that runs in the browser. OpenCV.js does edge detection and the perspective warp in a web worker, on the phone. Auto capture, batch mode for multi-page documents, manual crop handles.\n* Filters: Magic, Grayscale, B&W, Lighten.\n* Import PDFs and photos, or share them into Waraq from other apps (Android share menu once installed).\n* OCR with OCRmyPDF + Tesseract, Arabic and English by default. The PDFs get a real text layer.\n* Full text search over titles and OCR text (SQLite FTS5), Arabic included.\n* Page editing: reorder, rotate, delete, replace, re-crop. Split, merge, compress, export as PDF (optionally password protected), images or text.\n* Folders, tags, stars, trash with restore.\n* Share links with expiry, optional password, download on/off, QR code, and revoke.\n* Optional Google Drive mirror using only the `drive.file` scope, so it can only see files it created. Your server stays the source of truth.\n* Installable PWA with an offline shell and an update prompt.\n\n**Self-hosting**\n\nIt's built for one person or a family on one server. The first visit asks you to create the owner account, and setup closes after that. There's no sign-up page, no user management and nothing to configure if you don't want Google.\n\n    git clone https://github.com/d7omdev/waraq.git && cd waraq\n    cp .env.example .env\n    sed -i \"s/^SESSION_SECRET=.*/SESSION_SECRET=$(openssl rand -hex 32)/\" .env\n    docker compose up -d --build\n\nDocuments are plain PDFs in a folder next to one SQLite file. There are CLI commands for `backup`, `restore`, `doctor` and `reset-password`, plus a systemd unit and a Caddy example if you'd rather not use Docker. The Docker image is tested on amd64; arm64 should work but I haven't tried it yet.\n\n**Privacy**\n\nWaraq has no analytics, telemetry or tracking cookies, and doesn't load any third party scripts. Your server only talks to Google if you turn on Google sign-in or the Drive mirror.\n\n**Stack**\n\nNext.js 16, React 19, TypeScript, SQLite (WAL + FTS5), Better Auth, OpenCV.js, pdf-lib, sharp, qpdf, Poppler, OCRmyPDF, Tesseract. License is AGPL-3.0.\n\n**Known limits**\n\n* The camera needs HTTPS, so for phone scanning you need a domain and a reverse proxy (or Tailscale with HTTPS).\n* It's one account by design. Anyone you give the password to sees everything.\n* No native app yet, it's a PWA.\n* OCR is only as good as Tesseract. Clean printed text is great, handwriting isn't.\n\nI'd love feedback, especially on how the scanner behaves on different phones and how OCR does in other languages. Issues and PRs are open.",
+    "developer": "Morphyas",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

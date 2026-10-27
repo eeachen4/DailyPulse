@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgdoar",
+  "sourceItemId": "1xgdoar",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xgdoar/i_built_a_tiny_selfhostable_kanban_board_mcp/",
+  "detail": {
+    "longDescription": "I built kanzo, a tiny self-hostable kanban board that's also an MCP server, so Claude Code and Codex can pick tasks from the same board I use. Free and open source (AGPL). The whole point is to keep it simple, small and cheap for agents.\n\n* One Rust binary with SQLite inside, \\~5k lines total. No Docker, no database server, no account, no cloud.\n* One-line install on macOS/Linux, then run `kanzo`. The board opens in your browser, and agents connect with `kanzo mcp`.\n* The whole board is one folder on your machine. It can sync between machines through your own private git repo if you want.\n\nTokens\n\n* Counted with Anthropic's count\\_tokens endpoint: one call with kanzo's tools and instructions, one without. The tokenizer is Claude's own, so nothing is estimated.\n* The client's system prompt is the same with or without kanzo, so the fair number is what the server adds. And that part is cached after the first call.\n* What grows over a session is the replies: 10–60 tokens of plain text each. Tasks come back one per line, not as JSON, and a single next\\_task call takes the top card, moves it to doing and returns it, so the agent doesn't chain list → choose → update.\n\nMemory\n\n* RSS is 4.5 MB at start and settles around 6 MB with the board open, flat over a day.\n* About half of that is the binary's code and shared system libraries, which the OS can drop and reload from disk. The memory kanzo actually owns (macOS footprint, what Activity Monitor shows) is \\~3 MB after an hour of polling.\n\nOf course, all of this can still be improved, and ideas or PRs are very welcome.\n\nRepo: [https://github.com/emanuele-em/kanzo](https://github.com/emanuele-em/kanzo) \n\ncount\\_tokens docs: [https://platform.claude.com/docs/en/build-with-claude/token-counting](https://platform.claude.com/docs/en/build-with-claude/token-counting)\n\n",
+    "externalUrl": "https://i.redd.it/tma64k3ejwxh1.gif",
+    "developer": "allmudi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

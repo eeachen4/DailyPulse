@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "hackernews:50227527",
   "sourceItemId": "50227527",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50227527",
   "detail": {
     "longDescription": "reVault is a new, secure-by-default archive format called a lockbox, designed to be simple to use. I&#x27;ve been working on reVault for about 2 years. It was originally written in Dart, but with the improvements in AI, I decided to port it to Rust using AI. It&#x27;s now in beta, so I&#x27;m looking for feedback, particularly around the different language bindings. A lockbox is encrypted, signed and compressed by default. Each can be disabled selectively. - Hybrid post-quantum or passphrase encryption, including metadata. - Zstd compression. - Pure Rust libraries wherever possible. We intend to phase out remaining C code as alternatives become available. The project has been scanned using OpenAI&#x27;s Daybreak cyber security tools. The manual is a work in progress: https:&#x2F;&#x2F;docs.revault.onepub.dev&#x2F; reVault supports Linux, macOS and Windows, x64 and arm64, plus Wasm. The core is Rust, with bindings for C&#x2F;C++, Java, Dart, Python, Ruby, JS&#x2F;TypeScript, Go, C#, Kotlin, Lua, PHP and Swift. Within a lockbox you can store: - Files, directories, permissions and symlinks. - Variables. - Forms. Variables, forms and the lockbox itself can have descriptions. reVault uses a portable vault (just another lockbox with structured content) to hold your keys, contacts&#x27; keys, lockbox aliases and form definitions. It ties into your platform&#x27;s secure store, so logging into your desktop unlocks your vault. You don&#x27;t have to enter a passphrase every time you access a lockbox. You can disable this. There are lots of shortcuts. Creating a lockbox stores an alias in your vault, based on its filename or a name you choose: lbx create &#x2F;some&#x2F;path&#x2F;mybox.lbox lbx mybox open --duration 1h lbx mybox var set KEY VALUE Set a default lockbox and you can leave its name out: lbx session default mybox lbx var get KEY You can mirror a directory tree into a lockbox and update it when the directory changes: lbx store.lbox mirrors project create --from .&#x2F;project --to &#x2F;projects&#x2F;project lbx store.lbox mirrors update The API lets you read, write and seek within files without extracting them to the filesystem. Each lockbox has a table of contents, so extracting a single file from a multi-gigabyte lockbox is fast. Recovery Updates are transactional, with automatic rollback for failed updates. The format is designed for recovery: content is stored in pages, allowing unaffected content to be recovered if part of a lockbox is corrupted. Sharing An encrypted lockbox is more useful if you can share it. reVault has an open-source keyserver for exchanging public keys, with validation through a second trusted channel. It&#x27;s still experimental. OnePub has donated a server to run a single keyserver. If you&#x27;re interested in donating resources, I&#x27;d like to bring up a second redundant server. It&#x27;s pure Rust, uses under 100 MB RSS and supports rate limits. To publish your default profile&#x27;s public key: lbx vault profiles email you@example.com lbx vault profiles publish Give the publish code to your contact. They can import your key: lbx vault contacts receive &lt;publish-code&gt; &lt;contact-name&gt; Display your profile&#x27;s fingerprint and exchange it through a second trusted channel: lbx vault profiles fingerprint Repeat the process in the opposite direction to get their key. Once you have it, grant them access to your default lockbox: lbx access grant alice You can then email the encrypted lockbox to Alice. To install the CLI and get started: cargo install revault_cli lbx vault init lbx completion install Completion installation detects your shell. To diagnose issues: lbx doctor The language bindings are published to their respective package repositories. I&#x27;m looking for constructive criticism of the project on its own merits, particularly the APIs and language bindings. I&#x27;m not interested in a debate about using AI.",
     "developer": "bsutto",
-    "comments": 5,
+    "comments": 9,
     "stats": [
       {
         "label": "积分",
@@ -14,7 +15,7 @@
       },
       {
         "label": "评论",
-        "value": "5"
+        "value": "9"
       }
     ]
   }

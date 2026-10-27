@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012424",
   "sourceItemId": "80012424",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012424/how-to-ignore-whitespace-in-the-review-page-when-calling-git-commit-verbose",
   "detail": {
     "longDescription": "I like to use git commit --verbose to review my changes before committing. However, there are too many (wanted) whitespace changes showing up, that they are hiding the meat of my commits. Is there a setting similar to option for git diff that will change the output of git commit --verbose to not include whitespace? And just to demonstrate what I mean, here is a quick example, using Git Bash. Let's say I make a change and also add some whitespace to a file, then stage it and run git commit --verbose . This is what the command window will pop up with. # Please enter the commit message for your changes. Lines starting # with '#' will be ignored, and an empty message aborts the commit. # # On branch main # Your branch is up to date with 'origin/main'. # # Changes to be committed: # modified: SimpleProgram.java # # ------------------------ >8 ------------------------ # Do not modify or remove the line above. # Everything below it will be ignored. diff --git a/SimpleProgram.java b/SimpleProgram.java index fc064be..28d9008 100644 --- a/SimpleProgram.java +++ b/SimpleProgram.java @@ -1,5 +1,5 @@ public class SimpleProgram -{ +{ - public static void main(final String[] args) + public void main(final String[] args) { How do I edit it so that only the non-whitespace changes show up here? Or am I forced to just call git diff --ignore-all-space prior if I want to see only the substantive changes?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "76"
       },
       {
         "label": "状态",

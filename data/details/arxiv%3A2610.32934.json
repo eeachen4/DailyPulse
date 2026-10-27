@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.32934",
+  "sourceItemId": "2610.32934",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.32934",
+  "detail": {
+    "longDescription": "arXiv:2610.32934v1 Announce Type: cross Abstract: Bidirectional (right-to-left, RTL) layout defects arise when interfaces authored with physical directional CSS (margin-left, border-left, text-align:left) are rendered under dir=\"rtl\" without being mirrored. Accessibility engines (axe-core), actionability engines (Playwright), and even Stylelint's current core logical-property rule fail to localise these defects. We present runtime structural invariants -- a zero-golden mode over computed style and geometry, and a bidi-conservative differential mode -- that catch them in a headless browser. On a held-out benchmark of 14 real RTL bugs reconstructed from dated fix commits in Bootstrap and Material Components Web, the detector recovers 13/14 (2 via zero-golden, 11 via the differential mode), with no false alarm on any patched version; on the actual committed historical bootstrap.rtl.css it catches 1 of 2 attempted. It reports 0 false positives on 16 negative LTR-island cases and, in both modes, on 43 unmodified real components across four design systems and three RTL architectures (rule-of-three 95% upper bound <= 7%), and it surfaced a real directional defect in the current Bulma 1.0.4. By contrast, Stylelint's core rule emits an identical 1744 warnings on Bootstrap's LTR and correct-RTL builds, pseudo-localisation detects none of the mirroring bugs, and a naive pixel mirror-and-diff reaches only F1 0.87 with a test-set-tuned threshold. The two modes are complementary: zero-golden is the sole detector of the decoration/styling-asymmetry class (5/6) but false-flags the correct logical border-inline-end, while the differential detects none of that class yet never false-alarms and is empirically exact on the block-level inset/margin class. We scope this paper to detection; repair is future work.",
+    "developer": "Karan Yadav",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.HC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Karan Yadav"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

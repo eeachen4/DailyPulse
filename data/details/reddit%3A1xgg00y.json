@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgg00y",
+  "sourceItemId": "1xgg00y",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xgg00y/what_should_an_approval_bind_to_when_an_llm_agent/",
+  "detail": {
+    "longDescription": "Disclosure: I maintain AEGIS at Escape Studio. It's free and MIT-licensed; AI assisted with development and this write-up.\n\n\n\nWhen an LLM agent calls a tool, approving only the tool name leaves an important question: what exactly is it asking the tool to do? A file-writing tool called with a notes path and the same tool called with a credential-file path share a name, but not the same consequences.\n\n\n\nAEGIS is a Windows-first desktop beta for reviewing local agent activity and selected actions. One part of it is a validating MCP gateway: on a configured route, it checks the accepted tool and schema, and requires a one-use approval for the exact tool call and arguments. The grant is consumed before forwarding; a different request needs its own approval. Separately, a configured selected-action policy can deny a routed command before process creation.\n\n\n\nThere's also static review of a selected skill or project, process/activity investigation and a manual pause or stop for an observed process. These controls require explicit setup; the ordinary monitoring view doesn't automatically block agent actions.\n\n\n\nThe implementation is available for review:\n\n[https://github.com/antropos17/Aegis](https://github.com/antropos17/Aegis)\n\n\n\nGateway implementation at the beta source revision:\n\n[https://github.com/antropos17/Aegis/blob/274d65711ac858c9d309c73f1f7c9c4e52872ed1/src/main/mcp-gateway.js](https://github.com/antropos17/Aegis/blob/274d65711ac858c9d309c73f1f7c9c4e52872ed1/src/main/mcp-gateway.js)\n\n\n\nThe attached screenshot shows the Local security source UI preview with simulated data, captured 11 October 2026. It illustrates the interface, not an executed blocking test.\n\n\n\nI'd value technical feedback: what context beyond tool name and arguments would you want available when deciding whether to approve a call?\n\nhttps://i.redd.it/a45uxtn52xxh1.png\n\n",
+    "developer": "Leather_Tour_794",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

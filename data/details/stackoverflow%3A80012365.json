@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012365",
   "sourceItemId": "80012365",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012365/how-can-i-ensure-a-20-microsecond-cycle-during-real-time-testing",
   "detail": {
     "longDescription": "I am tasked with finding a software solution to a jitter problem occurring on our real time testing system. Our HiL has a frequency of 50kHz and I want to ensure one cycle is completed every 20 microseconds. The system sometimes forgets where it's at, proceeding with the wrong timestamp (jitter or task overrun). The dSpace hardware uses Python library rttlib . I cannot go to the HiL testing station because our engineers are busy, hence I create scripts before I book an appointment. I've thought of, or tried: Nested generator functions, one to create the signal, another to calculate the cycle time and wait the difference to the 20 microseconds. This failed due to jitter and messing up the cycle's timeline. Enforcing a 20 microsecond waiting time in-between calculations: #An attempt to create a buffer for signal generation to only use every second value from rttlib import utilities from rttlib import variables TrgtVel_rpm = variable.Variable(HiL_variable_path) currentTime = utilities.currentTime b = 0 def signalGeneration(): for i in range(0,1000): TrgtVel_rpm.Value += 1 yield None def forcedWait(): b += 1 if b % 2 == 0: utilities.Wait(0.00002) def MainGenerator(): yield scheduler.Parallel(forcedWait(), signalGeneration()) Same issue and the results are skewed. Creating a constant and comparing the cycle time to it: #Using a constant as a filter from rttlib import utilities from rttlib import variables const = 0.00002 currentTime = utilities.currentTime for i in range(0,1000): start = currentTime.Value TrgtVel_rpm.Value += 1 total = currentTime.Value - start if total == const: print(gesamt) yield None Same issue. Using a filter and exporting the correct timestamps in a list/deque/.mat file with the relevant values and using this data via DataReplay() . I am not sure if this works in a real time testing environment. I am looking for ideas on how to tackle this. The code I posted are just ideas on how I would manifest the script.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "152"
+        "value": "283"
       },
       {
         "label": "状态",

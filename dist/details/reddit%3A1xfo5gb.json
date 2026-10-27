@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xfo5gb",
+  "sourceItemId": "1xfo5gb",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xfo5gb/rag_evaluation_framework/",
+  "detail": {
+    "longDescription": "I recently built a complete RAG Evaluation Framework from scratch: a 43-question test dataset, 6 retrieval metrics, 5 generation metrics, and one final report that shows exactly where a RAG system is strong and where it breaks. We start with the concepts, explained with simple worked examples, and then walk through the code line by line.\n\n**What this covers:**\n\n* Why retrieval and generation must be evaluated separately\n* How to build an evaluation dataset with expected answers, graded pages and key facts\n* Retrieval metrics: Hit Rate@K, Precision@K, Recall@K, MRR, MAP and NDCG@K\n* The difference between one question (RR, AP) and many questions (MRR, MAP)\n* Generation metrics: Faithfulness, Hallucination Rate, Answer Relevance, Context Relevance and Answer Correctness\n* How to use an LLM-as-a-judge that only counts, while your code does the maths\n* How to save results safely and turn them into a clear evaluation report\n\n**KEY TAKEAWAYS:**\n\n* No single metric tells the whole story: Hit Rate was 1.00, but Recall, MAP and NDCG showed where pages were missed or buried\n* Precision@5 looks low (0.34) for single-fact questions, so compare systems with each other, not with 1.0\n* Faithful does not mean correct: an answer can be backed by the chunks and still miss the key facts\n* Retrieval scores and answer quality are not the same thing\n* Our Cohere-reranked pipeline scored MRR 0.95, MAP 0.87, NDCG@5 0.91, Faithfulness 1.00 and Answer Correctness 0.97\n\nTECH STACK: Python, Qdrant (vector database), Embeddings (3072-dimension), Cohere Rerank, LLM for answers + LLM-as-a-judge, pdfplumber (checking pages in the PDFs)\n\n* 5 real payments documents: PCI DSS, CPMI-IOSCO PFMI, CPMI cross-border roadmap, Stripe payment methods guide, FCA approach document\n\n\n\n* Full Code (clone it, fork it, break it): [https://github.com/saurabhkamal/RAG-ReRanker-Comparison](https://github.com/saurabhkamal/RAG-ReRanker-Comparison)\n* Full Video Walkthrough: [https://youtu.be/\\_bVzDU-yBnA](https://youtu.be/_bVzDU-yBnA)\n\nWould love to hear.\n\n",
+    "developer": "Affectionate_Slip654",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

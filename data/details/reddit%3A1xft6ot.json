@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xft6ot",
+  "sourceItemId": "1xft6ot",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xft6ot/potential_bug_gke_anetd_mtu_shrinking_leads_to/",
+  "detail": {
+    "longDescription": "Cluster Info:\n\n* **Cluster note**: GKE Dataplane V2 with WireGuard inter-node encryption (UDP 51871)\n* **Versions**: Control plane and all live pools 1.35.8-gke.1796000, channel REGULAR (changed to STABLE during this incident)\n* **Anetd Image**: cni-writer v0.1.40-gke.6, cilium v1.18.7-gke1.35-gke.39\n\nI have also posted on [https://discuss.google.dev/t/gke-anetd-mtu-shrinking-leads-to-network-failure-dataplane-v2/408300](https://discuss.google.dev/t/gke-anetd-mtu-shrinking-leads-to-network-failure-dataplane-v2/408300) but wanted to get more insights from everyone here that I've been following. Please let me know if this is not the right place.\n\nSummary:\n\nMy team just recovered from a downtime started from a GKE control plane upgrade last night. Our observation so far points to a suspected bug somewhere in anetd cni-writer. I'm hoping for anyone who may have experienced something similar and can give pointers to the right direction.\n\n* GKE's anetd cni-writer `v0.1.40-gke.6` lowers a node's MTU by 80 bytes on every anetd restart.\n* Pods created earlier keep the larger MTU, and their full-size packets vanish.\n* We recover by recreating pods that predate anetd restart, then to be on the safer side, we replace every node to reset the MTU to baseline.\n* Current measures my team is taking: monitor anetd pods for any restart/delete. Every node MTU is fresh at 1460, so one anetd restart drops that node MTU to 1380 while its running pods keep 1460. We observe that mismatch to be the outage.\n* Logs from our apps:\n\n&#8203;\n\n    App -> RabbitMQ: Broker closed AMQP connections for missed heartbeats; unhandled ECONNRESET exits the process\n    \n    App -> Valkey: Valkey replies dropped; ioredis waited for the kernel retry limit, then failed every queued command\n\n\n\nSo, the suspected bug, step-by-step:\n\n1. A fresh node starts at MTU 1460: NIC, CNI configuration, host-side pod interfaces, and pod eth0. WireGuard cilium\\_wg0 is 1380, leaving 80 bytes for encryption.\n2. Every anetd pod start reruns its cni-writer init container. Control-plane upgrades roll anetd on every node, including pools with node auto-upgrade off.\n3. cni-writer reads cilium\\_wg0 (1380) as the base MTU and writes it as the CNI pod MTU.\n4. Host-side pod interfaces shrink to 1380. Running pods keep eth0 at 1460 and send packets the host side drops, with no ICMP back. Large replies stall; clients time out.\n5. Cilium subtracts 80 from the smaller base: WireGuard becomes 1300. The next restart copies 1300, and so on.\n\n\n\nLogs from cni-writer anetd pods:\n\n    # anetd-9j66s on 3fc1dd1c-6nrh, second anetd start on this node\n    I1025 19:18:02.916461 cni_writer.go:378] Checking priority interface \"cilium_wg0\" for MTU.\n    I1025 19:18:02.916725 cni_writer.go:383] Using MTU 1380 obtained from priority interface cilium_wg0\n    I1025 19:18:02.916738 cni_writer.go:518] Successfully determined and cached MTU: 1380 (from cilium_wg0)\n    \n    # anetd-cdmvs on 521c6876-gk4s\n    I1025 19:04:35.214705 cni_writer.go:383] Using MTU 1220 obtained from priority interface cilium_wg0\n    \n    # anetd-l8mf6 on 56b8fd8a-mdxw, control-plane upgrade roll\n    I1025 17:23:25.846768 cni_writer.go:383] Using MTU 1300 obtained from priority interface cilium_wg0",
+    "developer": "Arzhon-",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

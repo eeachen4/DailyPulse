@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2511.10442",
+  "sourceItemId": "2511.10442",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2511.10442",
+  "detail": {
+    "longDescription": "arXiv:2511.10442v2 Announce Type: replace Abstract: Dynamic graph neural networks repeatedly construct k-nearest-neighbor graphs in learned latent spaces, making GPU-accelerated graph construction an important operation in scientific point-cloud workloads. We present FastGraph, a PyTorch-integrated primitive for exact kNN graph construction in low-to-moderate-dimensional spaces. FastGraph uses a PCA-subspace cell list: it fits a compact binning coordinate system to the input tensor, uses that subspace for spatial pruning, and evaluates all candidate distances in the original feature space. The data-adaptive orthonormal subspace improves uniform-grid pruning in the d=4-10 range evaluated around the d=4 GravNet operating point. Point data remain GPU-resident, with small host synchronizations for control metadata. The implementation ships with an eager-mode PCA API and an opt-in differentiable GravNetOp integration. On a 5 M-point, single-segment detector-derived HGCAL recHit stress test, FastGraph builds the exact graph in 7.5 s at d=8, k=40, achieving speedups of up to 41x over FAISS-GPU, 19x over cuVS brute force, and 17x over approximate CAGRA while retaining exact neighbor sets under the paper's distance-based convention.",
+    "developer": "Aarush Agarwal, Jan Kieseler, Raymond He, Matteo Cremonesi, Shah Rukh Qasim",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Aarush Agarwal, Jan Kieseler, Raymond He, Matteo Cremonesi, Shah Rukh Qasim"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

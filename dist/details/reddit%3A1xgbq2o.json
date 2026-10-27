@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgbq2o",
+  "sourceItemId": "1xgbq2o",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xgbq2o/this_community_is_awesome/",
+  "detail": {
+    "longDescription": "I posted on here exactly a week ago and the community here is awesome!\n\n[Berth](https://github.com/T-Crypt/berth) is at 223 stars and I just want to say how thankful I am for everyone's support and helping out recently!\n\nAnyone not aware, berth is handling your GPU at the driver level, I provided a list of what it does for those curious below and supported platforms.\n\n# What Berth does\n\n* Several AI engines share one GPU and take turns: llama.cpp, llama-swap, Ollama, vLLM, SGLang, ComfyUI and LM Studio. Berth stops the engine on the card and starts the next one only after the driver shows the memory free, so two models never load on top of each other.\n* Priorities decide who waits: foreground, interactive and batch, with a hold above them all. A minimum turn keeps an engine on the card for a set time, and a ranking stops two clients from bouncing the card back and forth.\n* One OpenAI-compatible port. Name a model and Berth starts its engine, queues the request, and sends it on when the engine is ready. It also proxies ComfyUI's API, and a bookmark to a stopped engine's web UI shows who holds the card.\n* ComfyUI hands the card over between jobs, never in the middle of a render. Jobs sent while the card is busy wait on disk and run when it's free.\n* Engines that can offload to RAM (ComfyUI, vLLM, SGLang) park there instead of reloading from disk. ComfyUI parks in under 1 s.\n* Games get the card while you play: Steam, Lutris and gamescope on Linux, and Steam, Epic, GOG, EA, Ubisoft, Xbox and [Battle.net](http://Battle.net) games on Windows. Blender, Resolve, OBS, Kdenlive, Premiere and After Effects keep their memory, and Berth labels it instead of flagging it.\n* berth hold frees the card for a call or a game. berth run --pinned protects an app that must never be stopped.\n* Any process using VRAM without going through Berth is reported with its PID and how much it holds.\n* Engines in Docker or Podman containers.\n* Engines keep running through a Berth restart or upgrade.\n* A model library: berth pull from Hugging Face or CivitAI with resume and hash checks, berth verify, berth storage, berth models export ollama and berth prefetch.\n* A local web dashboard, desktop or webhook alerts, Prometheus metrics, and an agent skill that teaches Claude Code, Codex, OpenCode and Hermes Agent to ask Berth for the card instead of fighting over it.\n* Measured on an RTX 4090: a 21 GB chat model loads in 5.6 s when its file is already in RAM, and switching from ComfyUI to a 27B chat model takes 13.6 to 16.3 s.\n\n# Platforms\n\n* Linux with NVIDIA is supported.\n* Windows 10/11 with NVIDIA is experimental. It reads per-process VRAM from the same counter Task Manager uses, and the full test suite runs on Windows in CI.\n* AMD on Linux is experimental and validated on a W7900 and a 780M APU.\n* Multiple GPUs: one Berth daemon per card. One card can be passed through to a VM while the other keeps serving.\n\n# Real setups people run it on\n\n* A 4090 desktop where llama-swap models, an MoE expert-offload engine, ComfyUI, a music model and Steam games all share one card.\n* A Windows 16 GB card running a 27B llama.cpp model next to a Docker-based Immich pet tagger that needs up to 6.7 GiB during a scan.\n* A five-GPU rig where a voice assistant borrows 6.6 GiB from a large MoE server that keeps streaming its answer. The longest pause between tokens was 0.38 s.\n* AMD workstation and laptop GPUs.\n* Two NVIDIA cards, with one passed to a VM.",
+    "externalUrl": "https://i.redd.it/jkxmd3cjxvxh1.png",
+    "developer": "Distinct-Pie2389",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

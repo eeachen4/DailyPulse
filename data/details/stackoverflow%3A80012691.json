@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012691",
+  "sourceItemId": "80012691",
+  "sourceUrl": "https://stackoverflow.com/questions/80012691/yaml-pipelines-server-imposed-system-pre-steps-yml-forcing-agent-version-res",
+  "detail": {
+    "longDescription": "##[error]No agent found in pool [pool] which satisfies the following demand: Agent.Name. All demands: Agent.Name -equals '[name]', Agent.Version -gtVersion 5.279.0 Log: Job preparation parameters ContinueOnError: False TimeoutInMinutes: 60 CancelTimeoutInMinutes: 5 Expand: MaxConcurrency: 0 ########## System Pipeline Decorator(s) ########## Begin evaluating template 'system-pre-steps.yml' Evaluating: eq('true', variables['system.debugContext']) Expanded: eq('true', Null) Result: False Evaluating: resources['repositories']['self'] Expanded: Object Result: True Evaluating: not(containsValue(job['steps']['*']['task']['id'], '6d15af64-176c-496d-b583-fd2ae21d4df4')) Expanded: not(containsValue(Object, '6d15af64-176c-496d-b583-fd2ae21d4df4')) Result: False Finished evaluating template 'system-pre-steps.yml' ******************************************************************************** Template and static variable resolution complete. Final runtime YAML document: steps: [] MaxConcurrency: 0 Environment type: Self-Hosted Server type: Azure DevOps Server Server version: Azure DevOps Server 2022.2 Agent version: 4.275.0 Operating system: SUSE Linux Enterprise Server 15 SP6 This is my entire yaml file presently: trigger: none jobs: - job: Build pool: name: [pool name] demands: - Agent.Name -equals '[name]' steps: - checkout: none I don't understand why system-pre-steps.yml is imposing a restriction of Agent.Version -gtVersion 5.279.0, or if it's not imposing it itself, it's being imposed from elsewhere. I have attempted to specify agent version 4.275.0 but I receive the same error as it attempts to match agent version 4.275.0 and agent version greater than 5.279.0 which is obviously impossible. As documentation is sorely lacking, I am unsure as to how to proceed from here. I cannot simply update the agent as the Linux operating system I am attempting to host the agent on cannot support .NET 10 which is required by agent versions 5.XXX.X. Nothing in the Microsoft documentation that I found mentions a 'system-pre-steps.yml' and I am unsure as to why it's even required. Has anybody else run into this issue? How can I bypass these restrictions?",
+    "developer": "RedHexagon",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "27"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

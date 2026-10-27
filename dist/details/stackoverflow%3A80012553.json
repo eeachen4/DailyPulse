@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012553",
+  "sourceItemId": "80012553",
+  "sourceUrl": "https://stackoverflow.com/questions/80012553/multithreaded-web-server-is-not-threading-requests",
+  "detail": {
+    "longDescription": "I refer to this multithreaded-web-server-in-python post and there, to this answer . I removed for simplicity reasons the HTTPS part. This is the running MRE: from http.server import HTTPServer, BaseHTTPRequestHandler from socketserver import ThreadingMixIn import threading import time class Handler(BaseHTTPRequestHandler): def do_GET(self): self.send_response(200) self.end_headers() time.sleep(2) # <--- Simulate some work. self.wfile.write(b'Hello world\\t' + threading.current_thread().name.encode() + b'\\t' + str(threading.active_count()).encode() + b'\\n') class ThreadingSimpleServer(ThreadingMixIn, HTTPServer): pass def run(): server = ThreadingSimpleServer(('myhost', 4444), Handler) server.serve_forever() if __name__ == '__main__': run() Running on Windows Server 2025, Python 3.14.8 When I run this loop on Linux, then each request waits until the previous has been finished: for i in $(seq 1 100); do curl http://myhost:4444/$i --connect-timeout 3 --insecure; done The output is showing indeed a different thread number, but the requests are not threaded, they are processed sequentially: Hello world Thread-1 (process_request_thread) 2 Hello world Thread-2 (process_request_thread) 2 Hello world Thread-3 (process_request_thread) 2 Hello world Thread-4 (process_request_thread) 2 Hello world Thread-5 (process_request_thread) 2 Hello world Thread-6 (process_request_thread) 2 I expected, that the requests are processed immediatelly without waiting the 2 seconds until the previous thread has been finished. What am I doing wrong, what did I misunderstand? PS: I ran different solutions from here and from web, which are supposed to run multithreaded, and always the same: Each request waits until the previous has been finished. So it must be me that I do something wrong.",
+    "developer": "RS8",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "193"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

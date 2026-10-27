@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012687",
+  "sourceItemId": "80012687",
+  "sourceUrl": "https://stackoverflow.com/questions/80012687/why-doesnt-my-pyqt5-progress-bar-dialog-stay-visible",
+  "detail": {
+    "longDescription": "I'm trying to create a progress dialog box with 2 progress bars: the first for the number of files processed, and the second for the number of rows processed in the current file. I've simplified down to the following: import sys from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QVBoxLayout, QPushButton, QWidget, QProgressBar, QDialog, QSpinBox) from PyQt5.QtGui import QFont from PyQt5.QtCore import pyqtSlot, QThread, pyqtSignal, QObject import time #%% class MainWindow(QMainWindow): work_requested = pyqtSignal(int, int) def __init__(self, parent=None): super(MainWindow, self).__init__(parent) self.setWindowTitle(\"Data Mining\") self.resize(1280,720) self.initUI() def initUI(self): layout = QVBoxLayout() self.sbx = QSpinBox() self.sbx.setValue(5) layout.addWidget(self.sbx) self.sby = QSpinBox() self.sby.setValue(10) layout.addWidget(self.sby) self.btnstart = QPushButton(parent=self, text=\"Start\") self.btnstart.setFixedSize(200, 80) self.btnstart.setFont(QFont('Arial',16)) self.btnstart.clicked.connect(self.begin) layout.addWidget(self.btnstart) central = QWidget() central.setLayout(layout) self.setCentralWidget(central) def begin(self): self.worker = ProcessData() self.worker_thread = QThread() self.progress = ProgressDialog(self.sbx.value(), self.sby.value()) self.progress.show() self.worker.progress.connect(self.update_progress) self.worker.completed.connect(self.complete) self.work_requested.connect(self.worker.process) self.worker.moveToThread(self.worker_thread) self.worker_thread.start() self.work_requested.emit(self.sbx.value(), self.sby.value()) def complete(self): self.progress.destroy() self.worker_thread.quit() def update_progress(self, i, j): self.progress.updateUI(i, j) #%% class ProcessData(QObject): progress = pyqtSignal(int, int) completed = pyqtSignal() @pyqtSlot(int, int) def process(self, x, y): for i in range(x): for j in range(y): self.progress.emit(i, j) time.sleep(3) self.completed.emit() #%% class ProgressDialog(QDialog): def __init__(self, x, y, parent=None): super().__init__(parent) self.setWindowTitle(\"Processing\") self.resize(400,300) self.initUI(x, y) def initUI(self, x, y): layout = QVBoxLayout() self.lblesn = QLabel() layout.addWidget(self.lblesn) self.pbvehicles = QProgressBar() self.pbvehicles.setMaximum(x) layout.addWidget(self.pbvehicles) self.lbladr = QLabel() layout.addWidget(self.lbladr) self.pbadrs = QProgressBar() self.pbadrs.setMaximum(y) layout.addWidget(self.pbadrs) def updateUI(self, i, j): self.lblesn.setText(f\"Processing file {i}...\") self.pbvehicles.setValue(i) self.lbladr.setText(f\"Row # {j}\") self.pbadrs.setValue(j) #%% def main(): app = QApplication(sys.argv) ex = MainWindow() ex.show() sys.exit(app.exec_()) if __name__ == '__main__': main() When I run the above, the main window comes up just fine. When I click the start button, the Progress dialog box comes up, but the labels and progress bars never populate. What am I doing wrong?",
+    "developer": "Kes Perron",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "54"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

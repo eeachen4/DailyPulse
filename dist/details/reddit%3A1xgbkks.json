@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgbkks",
+  "sourceItemId": "1xgbkks",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xgbkks/tool_calling_is_still_just_a_prompt/",
+  "detail": {
+    "longDescription": "Tool calling used to feel like a special feature to me, something the model gets through its own channel. When we built it into our gateway, we realized it's still just text in the prompt.\n\nHere's what Qwen3's real chat template does with one tool. It pastes your tool's JSON into the system prompt between \\`<tools>\\` tags. The model \"calls\" the tool by writing a \\`<tool\\_call>\\` block as ordinary tokens. The server (vLLM, llama.cpp, or a hosted API) finds that block in the text and turns it into the \\`tool\\_calls\\` field your code receives. The result goes back the same way: a user message wrapped in \\`<tool\\_response>\\` tags.\n\nClosed models work the same way; you just can't see the template. Anthropic says so in their docs: when you send tools, they add a hidden system prompt for tool use, 286 tokens on Claude Opus 5.5, before counting your tool definitions.\n\nSeeing tools as text changed how we built our gateway's tool loop: the model only sees tokens, so the gateway decides what gets included, what a failure looks like, and when the loop stops. We cap each tool result at 64 KB with a \\`\\[cut: N more bytes\\]\\` note so the model knows something is missing, send failed tools back as \\`Error:\\` text instead of failing the request, and turn tools off on the last round so the model has to answer. LiteLLM's proxy runs one round of tools and returns, pasting the tool output back as is.\n\n[https://github.com/respanai/respan-gateway](https://github.com/respanai/respan-gateway)",
+    "developer": "Main-Fisherman-2075",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

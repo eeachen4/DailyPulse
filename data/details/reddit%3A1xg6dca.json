@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xg6dca",
+  "sourceItemId": "1xg6dca",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xg6dca/built_on_langgraph_one_request_fans_out_to_three/",
+  "detail": {
+    "longDescription": "This is protoAgent, an open-source agent runtime I've been building. In the clip I ask my lead agent to ship a slugify() function for a small Python library. It hands the implementation to an engineer agent and the edge-case tests to a QA agent, each with its own Claude Code, and has a researcher check how python-slugify handles unicode. All three run in parallel.\n\nWhen they report back, the lead's own Claude Code runs the 74 test cases, fixes what fails, and adds the function to the README. The org chart on the right updates live while this happens, and each delegate keeps its run count, success rate and cost. The whole run cost $0.22.\n\nThe coders use your existing Claude Code login over the Agent Client Protocol, and their tool calls stream back into the chat in order. The agents talk to each other over A2A. Everything stays in SQLite on your machine, with no telemetry. MIT licensed.\n\n[github.com/protoLabsAI/protoAgent](http://github.com/protoLabsAI/protoAgent)",
+    "externalUrl": "https://v.redd.it/ogoll7ke3vxh1",
+    "developer": "protoLabsAI",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012532",
+  "sourceItemId": "80012532",
+  "sourceUrl": "https://stackoverflow.com/questions/80012532/code-completion-is-not-working-in-rust-clippy-repository-using-zed-editor",
+  "detail": {
+    "longDescription": "I was using Linux, the Zed editor and the rustc 1.101.0-nightly (7df81381d 2026-10-14) version. When I cloned the Clippy repository and ran cargo check then it succeeds, but the code completion is not working. According to the Getting code-completion for rustc internals , I had to set the { \"rust-analyzer.rustc.source\": \"discover\" } LSP configuration in the settings.json file: { // other configs \"lsp\": { \"rust-analyzer\": { \"initialization_options\": { \"rustc\": { \"source\": \"discover\" } } } } } However, it still not solved the code completion. The problem was that the extern rustc crates could not be resolved. I reached out the Zulip message board, and someone provided the following workaround.",
+    "developer": "P&#233;ter Szilv&#225;si",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "91"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

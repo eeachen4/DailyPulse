@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.32583",
+  "sourceItemId": "2610.32583",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.32583",
+  "detail": {
+    "longDescription": "arXiv:2610.32583v1 Announce Type: cross Abstract: Multiagent deterministic GLP (madGLP) runs Grassroots Logic Programs (GLP) as agents that communicate solely by asynchronous message passing, and assumes fair delivery: every message sent is eventually delivered. Each agent runs on a person's smartphone, named by the person's public key. A grassroots platform depends on no global resource but the network, so agents must reach one another over Bluetooth Low Energy, on a local network, and across the Internet from behind NAT, via rendezvous servers anyone can run. What madGLP requires of such a network, and what the network requires of the platform, has not been specified. We specify the networking layer beneath madGLP. Anything that can be done in GLP is done in GLP: the layer provides only what GLP cannot reach - the network stack, the location service, application attestation, and cryptographic primitives. Three transport underlays share one interface. Over PAN and LAN, an agent advertises a rotating recognition token derived from its key and time slot, so a peer who knows the key recognises it before contact and nobody else can track it; whether it answers unrecognised contacts is a per-underlay trust level set by GLP. Over WAN, a rendezvous server is a static-address host running the headless layer and a GLP rendezvous agent that coordinates hole punching, relays no payload, and belongs to no social graph. On every underlay, peers establish a mutually authenticated Noise session from Ed25519 keys, then attest, bound to the handshake hash, that each runs the application published under its developer's key, verified against Apple's and Google's roots with no third party contacted. One message protocol, over UDP datagrams and GATT writes, provides the fair, unordered, atomic and authenticated delivery madGLP assumes.",
+    "developer": "Dan Bachar, Ehud Shapiro",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI, cs.DC, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dan Bachar, Ehud Shapiro"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

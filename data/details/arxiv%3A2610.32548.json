@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.32548",
+  "sourceItemId": "2610.32548",
+  "fetchedAt": "2026-10-27T02:28:34.013Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.32548",
+  "detail": {
+    "longDescription": "arXiv:2610.32548v1 Announce Type: new Abstract: Existing evaluation protocols for unit tests rely on aggregate metrics such as branch coverage and mutation score. These metrics quantify the extent to which a test suite exercises program behavior, but do not identify the behavioral obligations it systematically leaves unchecked. We propose BlindSpotEval, an obligation-based evaluation framework aligned with the Arrange-Act-Assert pattern. The framework comprises three metrics, Boundary-Value Adequacy, Control-Flow Adequacy, and Oracle Strength, complemented by an assessment of execution reliability. We also introduce ObligBench, a complexity-stratified Java benchmark comprising 895 complex and 700 low-complexity functions with source-side obligation annotations. Evaluating 14,320 tests from four LLMs under four prompting strategies reveals systematic blind spots. Incorrect assertions account for 15.6% of test failures, illustrating that coverage alone does not establish oracle correctness. Among executable tests, coverage of null, negative, and empty arguments reaches only 34.8%, 23.8%, and 38.8%, compared with average coverage above 93% for booleans. Catch blocks and default groups have Control-Flow Adequacy scores of only 0.100 and 0.312. Across both dimensions, LLM-generated tests exhibit the happy-path bias observed in human-written tests, concentrating on normal inputs and expected flows while leaving unusual values and exceptional paths unchecked. Oracle strength is high on average but uneven, with weaker assertions for object return property values and exceptions. These blind spots also occur in low-complexity functions, suggesting that code complexity alone does not explain them. BlindSpotEval provides construct-level adequacy profiles that identify under-tested obligation types and can guide targeted improvements beyond those supported by aggregate scores alone.",
+    "developer": "Xiaoyu Shi, Wenqiang Luo, Boyang Yang, Haoye Tian",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Xiaoyu Shi, Wenqiang Luo, Boyang Yang, Haoye Tian"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
