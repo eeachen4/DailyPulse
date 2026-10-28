@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012958",
+  "sourceItemId": "80012958",
+  "sourceUrl": "https://stackoverflow.com/questions/80012958/tkinter-toplevel-windows-persisting-in-memory-when-deleted",
+  "detail": {
+    "longDescription": "I'm working on a notepad program for Python and Tkinter. Whenever a Toplevel is created and then destroyed, it still seems to exist in memory and in Tkinter. I checked both the name of the Toplevel when created, which increases with each subsequent Toplevel after the first, and Task Manager, where the memory usage for the application increases a small amount each time the Toplevel is closed and then re-opened. See the code below: from tkinter import Tk, Misc, Toplevel from tkinter.ttk import Button class FontSettingsWindow(object): root: Misc | None = None def __init__(self) -> None: self.top = Toplevel(FontSettingsWindow.root) self.top.protocol('WM_DELETE_WINDOW', self._close_protocol) self.top.title('Pawpad - Font Settings') self.top.resizable(width=False, height=False) self.top.grab_set() print(self.top) # Lots of stuff would go between here def _close_protocol(self): for child in self.top.winfo_children(): child.destroy() del(child) self.top.destroy() def show(self): self.top.wm_deiconify() self.top.wait_window() return (\"Returned Value\") if __name__ == '__main__': root = Tk() root.title('Test') root.geometry('150x100') def show_window(): tl = FontSettingsWindow tl.root = root value = tl().show() print(value) del tl Button(text='Click Me', command=show_window).pack(anchor='center') root.mainloop() Whenever the Toplevel is created, it prints its name, and with each closure and re-open, it looks as if the previous window was not deleted properly. When running the code, pressing the Click Me button, and closing the Toplevel twice, the print log looks like this: .!toplevel Returned Value .!toplevel2 Returned Value I am referencing the code used in this question , which I tested as-is, and it has the same issue. Is there something missing to completely eliminate the original Toplevel from the root window? Python version 3.15.2 Tkinter version 9.0 Windows version 11",
+    "developer": "MikaPika",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "37"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

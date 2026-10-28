@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgxezk",
+  "sourceItemId": "1xgxezk",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xgxezk/im_building_rilldex_to_help_understand_what/",
+  "detail": {
+    "longDescription": "I’ve been working on Rilldex, and wanted to share where it’s got to. \n\nWhat interested me was the gap between watching training metrics and reading individual rollouts. You can see reward changing, then open a long trace and still spend a lot of time figuring out what the agent actually did differently.\n\nI wanted to make that easier to follow. Rilldex brings the usual training charts and run comparisons together with maps of the agent’s work. You can look closely at actions and tool feedback, zoom out to plans and branches, then compare how those patterns change across rollouts and training. \n\nOne thing I kept coming back to while building it: counting behavior is surprisingly easy to get wrong. An agent making fewer checks could be getting more efficient, or just checking less. A retry could be wasted effort, or a useful experiment. That pushed me toward keeping the original evidence close to the charts and maps. \n\nThere’s also an execution timeline for seeing where training time goes, context inspection for checking what the agent was given, and reward-hacking checks you can customize for your own setup. You can search the rollouts and save an investigation to come back to. \n\nIt runs locally, works with saved traces or live training, and lets you add your own analysis through Python and SQL. \n\nGitHub and a short video tour：[https://github.com/Sheltercosmo/Rilldex-RL-Studio](https://github.com/Sheltercosmo/Rilldex-RL-Studio) \n\nI’d be interested to hear how people here investigate behavior changes during training, especially the parts you still end up doing manually.",
+    "externalUrl": "https://i.redd.it/t6r94lqlc1yh1.png",
+    "developer": "Capital-Vehicle9906",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

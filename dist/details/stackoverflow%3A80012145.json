@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I'm building a web-based text/font tool where users can enter Unicode characters and preview them using different font families. The problem is that not every font supports every Unicode character. When a character isn't available in the selected font, the browser may silently use a fallback font, which makes it difficult to know whether the original font actually contains that glyph. For example: <span style=\"font-family: Arial\"> Hello ★ こんにちは </span> Some characters may come from Arial, while others may be rendered using a fallback font. Is there a reliable way in JavaScript or the browser APIs to determine whether a specific font actually supports a given Unicode character? Ideally, I'd like to do something similar to: supportsCharacter(\"Arial\", \"★\"); // true/false supportsCharacter(\"Arial\", \"あ\"); // true/false I've considered comparing rendered text widths using canvas.measureText() , but I'm not sure whether that is reliable because of browser font fallback. Is there a standard browser API for checking glyph availability, or is measuring/rendering against a known fallback font the usual approach?",
     "developer": "George Joseph",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "360"
+        "value": "425"
       },
       {
         "label": "状态",

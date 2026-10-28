@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50264240",
+  "sourceItemId": "50264240",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50264240",
+  "detail": {
+    "longDescription": "Hello HN! We&#x27;re building a single search&#x2F;browse API interface to thousands of ecommerce stores (hopefully, eventually, all of them). Inspired by Shopify&#x27;s https:&#x2F;&#x2F;shop.dev , we embedded a WASM bridge of our CLI in our website. The idea is to provide an efficient commerce interface for agents; personal assistants (Instinct et al) or otherwise. The alternatives are to build a crawling system &#x2F; Firecrawl, use an LLM search api (Exa, Parallel etc) or use embedded headless browsers. Collective action by brands&#x2F;retailers to implement agentic-protocols (UCP, ACP etc) is unlikely; so we&#x27;re doing it for them. Surprisingly, despite our coverage list being smaller than Shopify&#x27;s and the search endpoint being slower (~3k ms for p90; because there is JEV and&#x2F;or LLM to convert free form search to facets) the search results are often subjectively better: ``` storerouter search &#x27;gold frame pink tint sunglasses&#x27; --facet category_path.depth_3=sunglasses --facet temple_color=gold --facet lens_color=pink --facet eyewear_frame_material=metal ``` vs Shop.dev&#x27;s: ``` shop search &#x27;gold frame pink tint sunglasses&#x27; --category gid:&#x2F;&#x2F;shopify&#x2F;TaxonomyCategory&#x2F;aa-2-27 # dropped facet temple_color=temple_color__gold (no Shopify filter) # dropped facet lens_color=lens_color__pink (no Shopify filter) # dropped facet eyewear_frame_material=eyewear_frame_material__metal (no Shopify filter) # category &#x27;sunglasses&#x27; → Apparel &amp; Accessories &gt; Clothing Accessories &gt; Sunglasses ```",
+    "externalUrl": "https://storerouter.ai/playground",
+    "developer": "marram",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

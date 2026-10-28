@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh3uqz",
+  "sourceItemId": "1xh3uqz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xh3uqz/watching_terminal_coding_agents_grep_a_500kline/",
+  "detail": {
+    "longDescription": "to start with, software engineering spent the last thirty years building compilers, language servers, and IDE indexers that resolve type hierarchies, overloaded methods, and cross-package call graphs in milliseconds.   \nnow we give a terminal AI coding agent bash access on a 500,000-line repository, and it spends ten minutes running `ripgrep` loops across the entire directory tree, likemissing overloaded methods in test fixtures, confusing shadowed variables, and burning 50,000 input tokens just trying to find which interface implemented a method.  \nand If you are working on a self-contained Python script or a small greenfield microservice, text search and embeddings in a big context window work fine. But watching an agent guess at symbols on a multi-module Java or Kotlin monolith through raw file search feels like an absurd technological regression.  \n\n\nwe also noticed this contrast immediately when testing standalone CLI agents (Claude Code, Aider) against an IDE integrated AI coding agent. When we run Junie connected to IntelliJ via /ide, it doesn't need to grep the file tree—it queries the IDE's running AST symbol index directly (Find Usages, type hierarchies, and compiler-verified renames) before generating code.  \n  \nand now this left me guessing (maybe you would answer..) are we leaning so hard into terminal minimalism that we are literally throwing away the compiler tools we spent decades building, or have you found a way to make pure text-search CLI agents reliable on massive codebases without burning a fortune in input tokens?\n\n",
+    "developer": "Evening_Hawk_7470",
+    "comments": 35,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

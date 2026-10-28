@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:50244993",
   "sourceItemId": "50244993",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50244993",
   "detail": {
     "longDescription": "Hi HN. A while ago I started building a generic people matching app based on LLM-as-a-judge. I needed a way to bypass the O(n^2) &quot;everyone rates everyone else&quot; trap, but generic RAG was much worse than expected. DNA is a search-like API at the core of that product. It stores one embedding per item (like a vector DB) and gives the best match(es). You evaluate them in some way (LLM &#x2F; Decision Model &#x2F; users), and send the score back. This makes it improve in real time, so next time it gives you better results. In my tests, it needed 7x fewer LLM judgments than scoring down the embedding list. Paper in progress. What I don’t know yet is what demo would make you want to try building with it. What would you want to see it do?",

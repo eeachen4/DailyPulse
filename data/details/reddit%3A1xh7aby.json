@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh7aby",
+  "sourceItemId": "1xh7aby",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xh7aby/contextfirst_productlanguage_skill_for_coding/",
+  "detail": {
+    "longDescription": "I built an open-source, Apache-2.0 licensed skill for coding agents that improves product language while agents are building real interfaces:\n\n\n\n[https://github.com/RicardoGurrola15/adaptive-product-language](https://github.com/RicardoGurrola15/adaptive-product-language)\n\n\n\nThis is my project.\n\n\n\nThe problem is that an agent can implement a functional screen while producing copy that is generic, repetitive or inconsistent with the actual product behavior.\n\n\n\nThe skill provides a modular language layer for:\n\n\n\n\\- landing pages\n\n\\- onboarding\n\n\\- login and registration\n\n\\- forms\n\n\\- pricing and paywalls\n\n\\- CTAs\n\n\\- errors and recovery\n\n\\- loading, empty and success states\n\n\\- localization\n\n\\- product copy audits\n\n\n\nIt uses project context such as:\n\n\n\n\\- product and domain\n\n\\- audience\n\n\\- market and locale\n\n\\- real features and limits\n\n\\- pricing\n\n\\- approved terminology\n\n\\- tone and communication constraints\n\n\n\nThe router separates:\n\n\n\n\\- compose\n\n\\- improve\n\n\\- audit\n\n\\- remediate\n\n\\- localize\n\n\\- context\n\n\n\nThe goal is not to change model weights or force every product to sound the same. The skill should adapt its language to the product, audience and situation while avoiding unsupported claims and behavior mismatches.\n\n\n\nI also built a small evaluation harness to separate:\n\n\n\n\\- copy quality\n\n\\- unsupported claims\n\n\\- behavioral congruence\n\n\\- CTA expectations\n\n\\- repeated patterns across unrelated products\n\n\\- context size\n\n\\- latency\n\n\\- output telemetry\n\n\n\nThe benchmark is designed around a few principles:\n\n\n\n1. The same screen may require different copy when product behavior changes.\n\n2. Unsupported promises should fail independently from clarity and concision.\n\n3. A shorter output is not automatically a better output.\n\n4. A style judge should not reward polished but inaccurate claims.\n\n5. The skill should not make unrelated products sound like the same template.\n\n\n\nPreliminary observations from one sample per model:\n\n\n\n\\- Gemini 3.8 Flash: 2,912 baseline UTF-8 output bytes vs 2,663 with the skill\n\n\\- Claude Sonnet 4.6 Thinking: 3,289 baseline bytes vs 3,034 with the skill\n\n\\- Codex contextual pilot: baseline and skill both scored 3.89/4\n\n\n\nThese are small preliminary samples. The byte measurements are not token savings, and the Codex result did not show an improvement. I am not claiming statistical superiority.\n\n\n\nI would appreciate feedback from people building LLM systems and agent workflows:\n\n\n\n\\- Which evaluation signals would you trust for generated product copy?\n\n\\- How would you test unsupported promises?\n\n\\- Would you use binary constraints, human review or both?\n\n\\- How would you measure repetition across different products?\n\n\\- Where should a skill stop loading context to remain efficient?\n\n\n\nThe attached image shows the preliminary output-byte observations. The repository includes the skill, context template, references, examples and benchmark harness.",
+    "externalUrl": "https://i.redd.it/ntrs9mq293yh1.png",
+    "developer": "Life_Assist5275",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

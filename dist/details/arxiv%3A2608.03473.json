@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2608.03473",
+  "sourceItemId": "2608.03473",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
+  "sourceUrl": "https://arxiv.org/abs/2608.03473",
+  "detail": {
+    "longDescription": "arXiv:2608.03473v4 Announce Type: replace-cross Abstract: Table-driven DFA lexing is sequential, since each transition depends on the previous byte's state. Scanning one input in parallel needs each chunk's entry state, which existing methods recover by simulation, speculation, prescanning, or overlap. We give two conditions under which none is needed. For a longest-match scanner restarting from q0 at every token boundary, a byte b is a certified split symbol when no reachable state other than q0 has a b-transition whose target can reach acceptance, and q0 is not re-entrant if it has one. Every occurrence of such a byte in completely tokenizable input begins a token, so chunks starting there reproduce the serial sequence of kinds and lengths. The condition is necessary and sufficient, but one string, comment, or whitespace run can remove every useful certificate. Comments and whitespace are usually discarded, so we weaken the guarantee to equality after deleting a declared discarded set and give a second condition, a precomputed constant-time one-bit test. It is sound but incomplete and more permissive, strictly so on suitable token sets and discarded sets. It recovers newline for a conventional C-like tokenization and tab, newline and carriage return for JSON, and refuses newline where block comments are unrestricted. Safety modulo the discarded set is decidable in PSPACE for every token automaton and in polynomial time for literal vocabularies, and every unsafe byte has a replayable counterexample. On the fifteen token sets studied the second condition is already exact. Splitting at exact certificates in munch reaches 92.6-95.3% parallel efficiency at eight threads on a restricted CPU set and a 512 MiB corpus, and a 3.46-3.94x end-to-end speedup at four threads, on one machine. It turns delimiter-based parallel lexing from a language-specific assumption into a property a compiler checks.",
+    "developer": "Nicklas Nidh\\\"ogg",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.FL, cs.DC, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nicklas Nidh\\\"ogg"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

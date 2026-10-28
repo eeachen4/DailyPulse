@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgjr0w",
+  "sourceItemId": "1xgjr0w",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xgjr0w/ontogr_agent_memory_open_source_memory_for_agents/",
+  "detail": {
+    "longDescription": "I've been working on RAG and agent memory, and the recurring problem is trust. An agent saves something it learned, and later nobody can say where it came from, whether it is still true, or what it believed at an earlier date. We're building an open source Python library for this.\n\n\\- **Grounded ingestion and extraction**: Messages, documents, tool outputs, events, and record rows become episodes. Entities and facts are extracted in two separate passes, and every fact carries a verbatim quote from its episode.\n\n\\- **Per-tenant ontology:** Each tenant defines the entity and relation types it allows. A model can propose additions, but a person approves every change.\n\n\\- **Reversible entity resolution**: It uses the cheapest evidence first and asks a model only about ambiguous pairs. Every merge can be undone.\n\n\\- **Two time axes**: Valid time and system time let a read ask what was true on a date, or what the system believed on that date. A new value closes the old version instead of overwriting it.\n\n\\- **Contradiction rulings**: Rules, an optional model judge, and a person's decision settle conflicts, and the person's decision overrides both. A failed judge call is never stored as \"no conflict\".\n\n\\- **Traceable and auditable**: Every fact traces back to a quote and an episode, and every temporal write goes into a hash-chained ledger. Per-tenant grants, an audit log, previewed and resumable forget and erase, and deterministic export are built in.\n\n\\- **Four-lane retrieval**: Vector, keyword, entity, and graph lanes are fused with reciprocal rank fusion. The result is a token-budgeted context block that reports which lanes failed.\n\n\\- **Fits your stack**: It runs on FalkorDB or Neo4j, with pgvector or Postgres if you want them. A background consolidation job deduplicates, summarizes, scores, and archives. You bring your own LLM and embedder.\n\n**Repo**: [https://github.com/ontogr/ontogr-agent-memory](https://github.com/ontogr/ontogr-agent-memory)\n\nI'd like feedback on the time model and on which benchmarks you'd want to see first.",
+    "developer": "vm324234",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

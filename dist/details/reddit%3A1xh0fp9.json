@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh0fp9",
+  "sourceItemId": "1xh0fp9",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xh0fp9/cael_036_a_nonneural_cpu_assistant_with_symbolic/",
+  "detail": {
+    "longDescription": "I’m the developer of CAEL, an experimental assistant combining symbolic solvers, counted language statistics, retrieval and automaton components. It runs without neural networks, transformers or external LMs at runtime.\n\nVersion 0.3.6 focuses on conversation reasoning: retrieving stated facts, following corrections, identifying conflicting reports and combining values across messages. It uses compact clause records, WordNet lemmas/synonyms and bounded symbolic operations.\n\nSome examples from the clean-install checks:\n\n\\- Remember a locker code and apply a later correction.  \n\\- Flag disagreement when two sources give different opening times.  \n\\- Combine “I bought 12 eggs” and “we used 7” to answer 5 remaining.  \n\\- Say a price wasn’t stated instead of borrowing another item’s price.\n\nOn the same locally authored, phrase-graded 400-question conversation test:\n\n| System | Correct |  \n|---|---:|  \n| CAEL 0.3.5 | 53/400 |  \n| CAEL 0.3.6 | 122/400 |  \n| Qwen2.5-0.5B-Instruct, float32 | 102/400 |  \n| Qwen3-0.6B, float32 | 121/400 |\n\nThe one-answer difference from Qwen3 is effectively a tie. This is a narrow local evaluation, not an independent leaderboard result or evidence of general superiority. CAEL still struggles with references, planning and unsupported questions.\n\nThe release passed 172 focused tests, 129 subtests and 12 clean-install checks. The approximately 563 MB bundle includes chat, math, bounded Python helpers, stories, prompts and emoji. Picture-generation weights are excluded.\n\n\\*\\*Licence disclosure:\\*\\* source-available under the CAEL Non-Commercial License; personal and research use are free, while commercial use requires a separate licence.\n\nWriting assistance: Codex. Technical statements were checked against release artifacts; AI coding assistants also contributed to development.",
+    "developer": "Silver_Employ2617",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

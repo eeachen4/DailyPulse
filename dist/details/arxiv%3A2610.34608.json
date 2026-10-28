@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.34608",
+  "sourceItemId": "2610.34608",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.34608",
+  "detail": {
+    "longDescription": "arXiv:2610.34608v1 Announce Type: new Abstract: Distributed vector databases increasingly support security-sensitive applications, yet existing systems primarily protect index integrity or replica availability rather than the trustworthiness of retrieved results. Consequently, a compromised replica can return a plausible but manipulated result that remains cryptographically valid, while conventional replication and Byzantine defenses do not directly establish whether the retrieved results are trustworthy. We present TrustANN, a middleware layer that provides query-level trust for distributed approximate nearest-neighbor (ANN) retrieval without modifying the underlying ANN algorithm. TrustANN introduces three complementary protocols: TrustBind, which verifies retrieval trust from authenticated, consistent, and failure-domain-independent replica evidence; CoordShift, which asynchronously constructs reusable coordination epochs outside the query critical path; and AvailGuard, which performs bounded recovery when replicas are unavailable, stale, or conflicting while preserving the trust criterion. Queries are marked Trusted only when sufficient independent evidence exists for every relevant shard; otherwise, TrustANN returns Unverified. On an AWS deployment using distributed FAISS HNSW, TrustANN reduces retrieval attack success rate from 1.000 to 0.000 under the tested Byzantine-retrieval attack with two-of-three replica verification. The verification layer increases clean p95 latency by only 9.36%. Under replica crashes, TrustANN maintains trusted retrieval through 33% failures and correctly returns Unverified when sufficient evidence is unavailable.",
+    "developer": "Abdullah Al-Mamun",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Abdullah Al-Mamun"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

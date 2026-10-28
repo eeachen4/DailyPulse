@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012969",
+  "sourceItemId": "80012969",
+  "sourceUrl": "https://stackoverflow.com/questions/80012969/unable-to-build-using-python-3-16-current-python-main",
+  "detail": {
+    "longDescription": "I like to run multiple versions of Python on my Mac, including whatever the current HEAD on main is. Pip installs pillow for the 3.15 release just fine, but fails on 3.16, currently reported as 3.16.0a1+dev . When I run python setup.py build many files compile successfully, but a few fail with this error: src/libImaging/ImPlatform.h:15:2: error: Sorry, this library requires support for ANSI prototypes. 15 | #error Sorry, this library requires support for ANSI prototypes. Picking one, src/libImaging/BitDecode.c , I stripped out the non-CPP command line flags and ran just the C preprocessor. Output includes these lines at the start: # 1 \"src/libImaging/BitDecode.c\" # 1 \"<built-in>\" 1 # 1 \"<built-in>\" 3 # 477 \"<built-in>\" 3 # 1 \"<command line>\" 1 # 1 \"<built-in>\" 2 # 1 \"src/libImaging/BitDecode.c\" 2 # 16 \"src/libImaging/BitDecode.c\" # 1 \"src/libImaging/Imaging.h\" 1 # 13 \"src/libImaging/Imaging.h\" # 1 \"src/libImaging/ImPlatform.h\" 1 # 11 \"src/libImaging/ImPlatform.h\" # 1 \"/Users/skip/py316/include/Python.h\" 1 # 13 \"/Users/skip/py316/include/Python.h\" # 1 \"/Users/skip/py316/include/patchlevel.h\" 1 # 14 \"/Users/skip/py316/include/Python.h\" 2 # 1 \"/Users/skip/py316/include/pyconfig.h\" 1 # 15 \"/Users/skip/py316/include/Python.h\" 2 # 1 \"/Users/skip/py316/include/pymacconfig.h\" 1 # 16 \"/Users/skip/py316/include/Python.h\" 2 # 1 \"/Users/skip/py316/include/pyabi.h\" 1 # 17 \"/Users/skip/py316/include/Python.h\" 2 Note that include/pyconfig.h is processed. It does define STDC_HEADERS : /* Define to 1 if you have the ANSI C header files. */ #define STDC_HEADERS 1 It's #include d before the check in imPlatform.h . I see no place in the intervening code where STDC_HEADERS is undefined. What am I missing?",
+    "developer": "smontanaro",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "44"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

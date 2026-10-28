@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh7f9s",
+  "sourceItemId": "1xh7f9s",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xh7f9s/i_built_a_prototype_that_turns_claudes_raw_sse/",
+  "detail": {
+    "longDescription": "image in the comment below👇\n\nI've been following the discussions here about how current logging tools (like the CLI or web UI) show what an agent did, but they make it really hard to see why it failed and which exact tool call caused a regression.\n\nSo I ran an experiment. I intercepted the SSE stream from claude.ai, parsed the raw JSON, and built a \"Case Package\" generator. The image shows the dashboard I created from the data.\n\nIn this test, I asked the agent to write a Python script that divides by zero, run it, fix it, and run it again. The dashboard reconstructs the exact causality:\n\n· It links the bash\\_tool call directly to the ZeroDivisionError.\n\n· It shows the exact str\\_replace diff used to fix the bug.\n\n· It groups the \"Evidence\" (the failure and the subsequent success) so an independent investigator can verify the fix.\n\nThe best part? This doesn't require the official API. It works by parsing the streaming data the web UI already sends.\n\nHas anyone else tried to build a \"Session Forensics\" layer for agent debugging? What other events would you want to see captured in this timeline?\"",
+    "developer": "Additional-Ladder-24",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

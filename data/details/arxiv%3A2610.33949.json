@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.33949",
+  "sourceItemId": "2610.33949",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.33949",
+  "detail": {
+    "longDescription": "arXiv:2610.33949v1 Announce Type: new Abstract: Pipelines that require structured outputs from hosted language models often specify a Pydantic schema in the prompt, validate the response, and retry when validation fails. Although native structured-output modes provide an alternative, application-side validation remains important for enforcing custom constraints. Yet pipeline reliability is often summarized by a single validity rate, which obscures why outputs fail and which interventions may help. We introduce a fine-grained taxonomy of schema-conformance failures and a deterministic classifier that assigns failure categories from model responses and Pydantic validation errors. We apply this framework to 3,997 generation attempts across nine OpenAI and Anthropic model/API configurations, using questions from HotpotQA and FinanceBench. Our results show that similar validity rates can mask different failure patterns, and that dominant failure categories vary with schema constraints and task. Markdown-fenced JSON is the most common failure: among 681 fenced failures, only 48.0% pass validation after fence removal, while the remainder conceal additional violations, predominantly field-length violations. In an exploratory prompt ablation, variants that suppress fences appear to shift failures toward length violations, but the shift is consistent with exposing violations that were already present, illustrating how aggregate validity rates can obscure changes in failure composition. We derive four engineering practices for validator, schema, retry and evaluation design, three supported by our data and one, on retry feedback, proposed but not tested, and release the classifier, completions, and annotations.",
+    "developer": "Amit Verma",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Amit Verma"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

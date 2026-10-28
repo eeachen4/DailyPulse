@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh50su",
+  "sourceItemId": "1xh50su",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xh50su/selfhosting_langgraphdeep_agents_how_do_you/",
+  "detail": {
+    "longDescription": "I’m building a Python/FastAPI application with LangGraph/Deep Agents and PostgreSQL. I’m running my own background workers instead of using Agent Server.\n\nHow do you handle:\n\n* Exclusive execution for a conversation across multiple workers?\n* Leases and heartbeats to detect failed workers?\n* Recovery when a lease expires but the old worker is still alive?\n* Preventing that old worker from saving checkpoints after another worker takes over?\n* Cancellation and graceful shutdown without losing accepted work?\n\nThe difficult case seems to be distinguishing a dead worker from a slow or disconnected worker. A lease alone doesn’t prevent stale checkpoint writes.\n\nAre there open-source frameworks that provide these guarantees out of the box, preferably with LangGraph integration? Or do most teams build this coordination themselves?\n\nI’d appreciate examples from production systems, including failure cases you encountered.",
+    "developer": "NeitherSearch4661",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

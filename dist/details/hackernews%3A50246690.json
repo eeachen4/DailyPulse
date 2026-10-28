@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:50246690",
   "sourceItemId": "50246690",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50246690",
   "detail": {
     "longDescription": "Hi HN, I&#x27;m Alexander. Yes, this is another agent harness. Here is why I built one anyway. I was engineer #2 at Browser Use, where I built our agent harness and the evals behind it, including BU Bench, which became a default benchmark for browser agents. I left in September to build Mainplane. The problem: local agents die with your laptop, and cloud agents can&#x27;t reach your work. Many cloud platforms ask you to &quot;select a repository&quot;, but my work is not that simple. I work across a desktop, a Mac mini and a laptop, and much of it is not in git. So I loaded Ubuntu on my old 2012 desktop and made it my Mainplane server. It has run for four weeks at a load average of 0.02, because the agents&#x27; tools run on other machines. How it works: it is a control plane architecture. The server runs the harness. It holds your API keys and every session, makes the LLM calls, and routes each tool call to a worker. The workers are your other machines, connected over a built-in private WireGuard network. A bash command runs in the worker&#x27;s terminal, not on the server. Shared drives let projects move across machines. The agent works on your machines just like you would, but its state lives on the server, and your keys never leave it. Some design choices: - Every session is one append-only file. This is the agent state, and it is easily readable. If something breaks, you can resume it from the file. Observability comes for free: agent traces are just these state files. - Small by design. The system prompt is 3k tokens, and there are just two kinds of tools: shell and file (read, write, edit). At Browser Use, I learned the bitter lesson and found frontier models did better when I deleted all our helper functions. So I made the same bet here: bash is all you need. - No compaction. When a session fills up, &#x2F;continue starts a new one that greps the previous state file, retrieving the context it needs, instead of reading a lossy summary. A &#x2F;compact on a 400k-token session takes a while to write its summary. A &#x2F;continue into a brand new session starts at once. - No permission prompts. A hyperintelligent misaligned agent WILL find a way around a permission system. The better strategy is giving the agent full unbounded access to a local computer, and only putting what you trust the agent with on that computer. - Why Go. WireGuard is written in Go, so the network compiles right into a 20 MB binary. Go is made for production servers, LLMs write it well, and the simplicity of Go matches how I like to build. Mainplane works with a Claude or ChatGPT subscription on the regular usage limits, or any API key. I would love your feedback, especially brutal and honest feedback and tasks that the harness cannot do. I&#x27;ll be here all day to answer questions.",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "3"
+        "value": "4"
       },
       {
         "label": "评论",

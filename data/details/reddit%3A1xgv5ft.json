@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgv5ft",
+  "sourceItemId": "1xgv5ft",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xgv5ft/how_a_voxel_sandbox_game_works_in_62k_lines_of/",
+  "detail": {
+    "longDescription": "Author here. A few things I find most interesting in the code:\n\n- Lighting is a BFS over a 5x5 window of chunks with positions packed into one\n  dword (wx | wz<<7 | y<<14 | value<<21), so a neighbour step is a single add\n  and crossing a chunk border is a pointer swap.\n- The mesher copies the 3x3 neighbouring chunks into an 18^3 padded volume so\n  every neighbour lookup is one movzx at a constant offset (+1, +18, +324).\n- The ABI is checked by machine: sentinel values in every nonvolatile\n  register, plus a counter for calls made with a misaligned stack.\n- Explosions cast 1352 rays (the surface cells of a 16^3 grid: no trig) and\n  dedupe hits in a hash set that is \"cleared\" by bumping a generation stamp.\n\nRepo + download: https://github.com/BaramiDev/MineAssembly",
+    "externalUrl": "https://github.com/BaramiDev/MineAssembly/blob/main/docs/HOW_IT_WORKS.md",
+    "developer": "Dry-Engineering-8969",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

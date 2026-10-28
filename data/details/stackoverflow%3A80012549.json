@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012549",
   "sourceItemId": "80012549",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012549/module-not-found-with-a-dockerfile",
   "detail": {
     "longDescription": "I try to compile my React project with my Dockerfile and there's the same error about the missing http module come back instead by searching solutions PS D:\\Projet developpements\\Converleon> docker build -t converleon . [+] Building 14.2s (17/17) FINISHED docker:default => [internal] load build definition from dockerfile 0.0s => => transferring dockerfile: 825B 0.0s => [internal] load metadata for docker.io/library/node:26 0.7s => [internal] load .dockerignore 0.0s => => transferring context: 119B 0.0s => [ 1/13] FROM docker.io/library/node:26@sha256:a98e6fda54fdbb 0.1s => => resolve docker.io/library/node:26@sha256:a98e6fda54fdbb22 0.0s => [internal] load build context 0.0s => => transferring context: 4.77kB 0.0s => CACHED [ 2/13] WORKDIR /Converleon 0.0s => CACHED [ 3/13] COPY ./package*.json ./ 0.0s => CACHED [ 4/13] RUN npm i react --force 0.0s => CACHED [ 5/13] RUN npm i -g react-scripts --force 0.0s => CACHED [ 6/13] RUN npm install react@^18 react-dom@^18 --sav 0.0s => CACHED [ 7/13] RUN npm install @testing-library/react@latest 0.0s => CACHED [ 8/13] RUN npm install --save react react-dom react 0.0s => CACHED [ 9/13] RUN npm install browserify --force 0.0s => CACHED [10/13] RUN npm i https-browserify --force 0.0s => [11/13] RUN npm i stream-http --force 10.3s => [12/13] COPY . . 0.1s => ERROR [13/13] RUN npm run build 2.9s ------ > [13/13] RUN npm run build: 0.315 0.315 > converleon@1.0.0 build 0.315 > react-scripts build 0.315 0.894 0.896 Creating an optimized production build... 2.857 Failed to compile. 2.857 2.858 Module not found: Error: Can't resolve 'http' in '/Converleon/node_modules/https-browserify' 2.858 BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default. 2.858 This is no longer the case. Verify if you need this module and configure a polyfill for it. 2.858 2.858 If you want to include a polyfill, you need to: 2.858 - add a fallback 'resolve.fallback: { \"http\": require.resolve(\"stream-http\") }' 2.858 - install 'stream-http' 2.858 If you don't want to include a polyfill, you can use an empty module like this: 2.858 resolve.fallback: { \"http\": false } 2.858 2.858 ------ dockerfile:19 -------------------- 17 | COPY . . 18 | # Build the app 19 | >>> RUN npm run build 20 | # Expose port 3000 for Nginx 21 | EXPOSE 3000 -------------------- ERROR: failed to build: failed to solve: process \"/bin/sh -c npm run build\" did not complete successfully: exit code: 1 In my search, I try to configure a webpack.config.js and include the modules who fail the compilation: import path from \"node:path\"; import { fileURLToPath } from \"node:url\"; const __filename = fileURLToPath(import.meta.url); const __dirname = path.__dirname(__filename) export default { resolve: { fallback: { \"http\": require.resolve(\"stream-http\"), \"http\": false, }, }, }",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "79"
+        "value": "85"
       },
       {
         "label": "状态",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.33708",
+  "sourceItemId": "2610.33708",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.33708",
+  "detail": {
+    "longDescription": "arXiv:2610.33708v1 Announce Type: new Abstract: Code coverage reports what tests execute, not whether tests detect faults. Checked coverage addresses this gap by tracing code that influences test oracles through dynamic slicing, but slicing is costly, and Java slicers struggle with modern language features and complex programs. We present Veritas, a slicing-free approach that directly tests whether covered behavior is checked. We target object branch coverage (OBC), a compiled-code structural criterion with fault-detection effectiveness comparable to source-level Modified Condition/Decision Coverage (MC/DC), which is required at the highest assurance level of DO-178C. For each covered object-branch outcome, Veritas forces the opposite outcome and credits checking only when the change is executed, a previously passing test fails, and the failure is attributable to that outcome. Thus, Veritas distinguishes execution from demonstrated fault detection without dynamic dependence analysis. We evaluated Veritas on eleven open-source Java projects containing 51,382 object-branch outcomes. We find that 18% of covered outcomes can be changed without failing any test, exposing weaknesses hidden by coverage. Among surviving mutants, about half are never activated by test inputs, while the rest are activated but undetected. Compared with slicing-based checked coverage, Veritas identifies 4,763 cases where tests detect a change that slicing does not credit, while 19% of cases credited by slicing produce no detected failure when changed. Weakening assertions increases this gap and reduces fault detection in every project. Moreover, code locations controlled by weakly checked outcomes are 12.4--54.7 percentage points more likely to have an undetected independent fault than locations controlled by checked outcomes. These findings show that directly testing outcomes provides actionable evidence of oracle effectiveness beyond structural coverage.",
+    "developer": "Md Nafiu Rahman, Cemil Canbaz, Soneya Binta Hossain",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Md Nafiu Rahman, Cemil Canbaz, Soneya Binta Hossain"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhb8pv",
+  "sourceItemId": "1xhb8pv",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xhb8pv/do_ai_agents_actually_need_embeddings_for_good/",
+  "detail": {
+    "longDescription": "I've been working on **Mind**, an open-source persistent memory layer for AI agents, and wanted to share an interesting result from the latest release.\n\nOne question kept coming up while developing it:\n\n**How much can we recover from structured memory without relying on vector embeddings?**\n\nMind uses SQLite with FTS5 and a unified retrieval pipeline combining phrase matching, token matching, substrings, fuzzy matching, and relevance signals.\n\nEmbeddings are supported, but they're optional.\n\nFor v1.7.0, I ran Mind through OmniMemEval LongMemEval-S using a stratified subset of 120 questions.\n\nThe best completed run achieved **86.67% answer accuracy (104/120) with RAG disabled**.\n\nThat places the raw score near the top published results, but it's not a direct ranking: the sample size, answer model, and judging configuration differ.\n\nI think the result is worth discussing because agent memory isn't only about semantic similarity. Structured facts, decisions, temporal context, memory maintenance, and good retrieval behavior also matter.\n\nBeyond the benchmark, Mind provides persistent project knowledge, linked memories, checkpoints, session summaries, and integrations through MCP.\n\nIt's local-first, MIT-licensed, and available for anyone to inspect or benchmark.\n\n**GitHub:** [https://github.com/GabrielMartinMoran/mind](https://github.com/GabrielMartinMoran/mind)\n\n**v1.7.0:** [https://github.com/GabrielMartinMoran/mind/releases/tag/v1.7.0](https://github.com/GabrielMartinMoran/mind/releases/tag/v1.7.0)\n\n**Benchmark methodology:** [https://github.com/GabrielMartinMoran/mind/tree/main/benchmarks/omnimemeval](https://github.com/GabrielMartinMoran/mind/tree/main/benchmarks/omnimemeval)\n\nI'm particularly interested in what other agent developers have found: when do embeddings meaningfully outperform a carefully designed lexical retrieval system?",
+    "externalUrl": "https://i.redd.it/8ry8r2v244yh1",
+    "developer": "GabrielMartinMoran",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

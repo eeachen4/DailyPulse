@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50261376",
+  "sourceItemId": "50261376",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50261376",
+  "detail": {
+    "longDescription": "I run my business on four Claude Code agents: Titus, Pheme, Davinci and Metis. They write my newsletter, The AIgent (about 9k subscribers), every day through a drafting and proofreading engine that Pheme checks before scheduling. They also build AI courses, run a pipeline that turns the day&#x27;s featured repo into a talking-head video of my avatar for Instagram, set up ad deals, and run Meta ads and email funnels with me. Nothing closes until I sign off. Metis posts jobs on a job board and the others claim them. The hard part wasn&#x27;t any single task. It was keeping the agents coherent over weeks. Compaction kept dropping the small decisions, and then an agent would redo work I&#x27;d already ruled out. aigent-os is my fix. At a context threshold (80% by default) the agent writes a capsule, a checkpoint file in git, and has to reply with one exact line. Only then does the runner send &#x2F;clear, wait for a SessionStart receipt proving a fresh session started, and resume. One ack buys at most one clear. If anything is ambiguous it stops at HOLD:clear-stalled-after-ack and doesn&#x27;t retry. On resume the capsule is reference only, live state wins, and anything the writer couldn&#x27;t capture is written as Unknown. First run interviews you with three plain questions and makes a first plan. Each agent gets its own memory vault. Limits, honestly: the public evidence is 11 of 11 cycles on one Windows seat. The runner can still miss a permission dialog (#104), a seat launched from inside another Claude Code session can lose its transcript (#98), and scrolling the seat window sends stray input (#99). v1.1.0 shipped on Sunday. Try bash install.sh --dry-run, it writes nothing. I&#x27;d like to hear where the loop could still double clear or strand a session.",
+    "externalUrl": "https://github.com/wrg32786/aigent-os",
+    "developer": "wrg32786",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

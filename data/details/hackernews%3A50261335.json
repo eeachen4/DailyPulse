@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50261335",
+  "sourceItemId": "50261335",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50261335",
+  "detail": {
+    "longDescription": "Hi HN. Weir is for one problem: credentials crossing the boundaries of your AI agent. For agents you build, Weir plants fake credentials where real ones would live, runs the agent&#x27;s normal flows, and checks what comes out: telemetry, logs, console output, model requests, and requests to other services. It looks for those exact values, including common encoded forms, and reports where they went without printing the credential. pip install weir-scan weir canary judge --sample That sample shows a planted key leaking into a trace. On your own agent: pip install weir-run. For agents you use, Weir can inventory your real credentials (it stores keyed fingerprints, never the values) and show when one enters your session or leaves in a tool call. Right now, this is supported for Claude Code. Its optional hook redacts those known credentials from tool results before the model sees them. Setup is weir statusline setup, on Linux and macOS for now. So the two modes are deliberately different: Build: plant → run → prove where the credential went. Use: observe → warn → optionally redact before the model sees it. The test mode is deterministic and offline. On Linux it can also run the agent without outside network access, so direct exfiltration attempts are caught. If a required path wasn&#x27;t exercised, Weir reports incomplete, never clean. It doesn&#x27;t try to detect every possible secret. It matches known whole values, so hashed, split, truncated, or otherwise transformed credentials aren&#x27;t covered. The Claude Code hook only protects the tool-result boundary: it can&#x27;t undo a credential already pasted into the conversation, and a failed command&#x27;s output reaches the model as is. Apache-2.0, no model in the loop, and Weir itself sends nothing anywhere. It found GHSA-j7qq-vr8c-xvw3 in MLflow (fixed in 3.17.0). Built with AI assistance; every security finding was reproduced before I reported it.",
+    "externalUrl": "https://github.com/IdoGol24/weir",
+    "developer": "CodeNinja778",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

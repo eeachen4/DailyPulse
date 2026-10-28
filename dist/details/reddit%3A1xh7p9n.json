@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh7p9n",
+  "sourceItemId": "1xh7p9n",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xh7p9n/risky_actions_should_require_approval_not_review/",
+  "detail": {
+    "longDescription": "Full disclosure, I am one of the founders of Conecto. Our lessons come from building it.\n\n  \nFor context, Conecto gives agents access to over 580 tools across 52 business areas. The agent has both read and write access to a company’s data. An agent can update books, create invoices, send booking invitations, among other write capabilities. That ability had to be taken into account when we designed the tools.\n\n**Lesson 1, put the price in the tool description ->** \n\n* Every description states what a tool costs.\n* Every action returns the cost and the balance after the tool call.\n* An agent can add up a job before it starts. \n\n**Lesson 2, retries have to be safe ->** \n\n* An agent that times out retries, and no one wants to be billed multiple times for the same job.\n* All calls take an idempotency key, meaning that retries do not result in multiple charges.\n\n**Lesson 3, approval is superior to review ->** \n\n* Since it is unlikely that a human reads every action of an agent, those that are risky require approval.\n* Some actions default to waiting for explicit owner approval, such as modifying HubSpot/Salesforce records, canceling meetings, or replacing files in Google/Microsoft 365 workspaces. Those actions display the new and old values to the owner.\n* Any tool can require approval, always or only over a set amount.\n* The caller can never be the approver (i.e. the agent can't approve itself).\n\n**Lesson 4, budgets act as the safety net ->** \n\n* Daily budgets of $20 and monthly ones of $100 by default.\n* The cap prevents rogue loops from hitting the bank account.\n\n**What we haven’t definitively solved yet ->** \n\n* There are actions that are in a gray zone, neither safe nor risky, for example rescheduling an event.\n* These gray zone actions do not require a human in the loop, unless the owner enables it.\n* Every business is different, so what may be safe for one business may be seen as risky for another.\n\n**Question ->**  For your systems, what requires an approval from a human, and which actions are run on autopilot? \n\n",
+    "developer": "Similar_Confusion534",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

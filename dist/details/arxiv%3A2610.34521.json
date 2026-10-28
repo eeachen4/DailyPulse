@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.34521",
+  "sourceItemId": "2610.34521",
+  "fetchedAt": "2026-10-28T02:39:00.548Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.34521",
+  "detail": {
+    "longDescription": "arXiv:2610.34521v1 Announce Type: new Abstract: Actor frameworks on mainstream runtimes advertise Erlang/OTP-style supervision, but OTP's consistency contracts assume a synchronous, single-threaded supervisor, and ports inherit that assumption's absence as unexamined risk. We evaluated every supervision guarantee against pinned OTP documentation and source read verbatim, against the source of three further Rust actor frameworks at fixed revisions, and against the actor-model literature, recording the evidence behind each design decision. Blind adversarial audits and the cross-framework study surfaced 24 defect classes, of which eight reduce to one root cause: reconstructing, by explicit mechanism, the atomicity a synchronous supervisor gets implicitly. We introduce a supervision runtime that closes all 24 cataloged classes through supervisor-owned completion values, per-incarnation identity, and a single lifecycle state machine, validated by 241 tests including reverted-fix reproductions. The result holds OTP's verbatim-verified contracts while adding two properties OTP does not offer: a supervisor that remains responsive throughout group restarts, and message handlers that are never cancelled mid-execution. We delimit the forcing guarantees no cooperative runtime can honor.",
+    "developer": "Sam Uwejan, Erdogan Dogdu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sam Uwejan, Erdogan Dogdu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

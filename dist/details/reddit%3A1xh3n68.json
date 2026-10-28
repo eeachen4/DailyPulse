@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xh3n68",
+  "sourceItemId": "1xh3n68",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xh3n68/i_gave_my_local_llm_a_real_phone_number_to_make/",
+  "detail": {
+    "longDescription": "I've been really into the AI phone agent products that have popped up in the last few months (e.g., AgentPhone, Poke etc) but what I don't love: the audio, the transcripts, who you talked to and what was said, all sitting with a third party company. For calls with real people in my life, that felt like a lot to hand over.\n\nSo I built my own version that runs entirely on my Mac. You call a normal phone number, a local model answers, and nothing about the conversation leaves my machine. During a call the only thing it talks to is the phone line itself.\n\n**What's running locally (MLX on Apple Silicon):**\n\n* Speech to text: Parakeet TDT 0.6B\n*  LLM: Qwen3.5 4B by default (9B if you have 32 GB), 4-bit\n*  Text to speech: Kokoro 82M\n\n**How it reaches the phone network:** it registers over SIP with Telnyx or Twilio straight from your Mac. A setup wizard takes your carrier API key so can buy a number or connect one you already have. It's pretty cheap, around $1 a month per phone number. (I'm moslty using Telnyx)\n\n**What it does today:**\n\n* Answers and places real calls\n* Interruption: talk over it and it stops mid-sentence\n* Replies in roughly 1 to 1.5 seconds on real calls on my M5 Pro\n* You can choose between multiple models\n* Other agents (Claude Code, Codex, etc.) can make calls through a small CLI: call, listen, say, hangup\n*  If you'd rather trade privacy for a smarter brain, it can also use your own endpoint or the Claude or ChatGPT subscription you already pay for. Local is the default. So no additional monthly payments for AI Phone tools if you have a sub.\n\nLimits, up front:\n\n\\- macOS on Apple Silicon only\n\n\\- You need a Telnyx or Twilio account with credit (a US number is about $1/month)\n\n\\- English only, one call at a time\n\n\\- It's early. It works for me, but I'd love to hear where it breaks for you.\n\nRepo: [github.com/oxwn/ai-phone](http://github.com/oxwn/ai-phone)",
+    "externalUrl": "https://i.redd.it/l0hzu99mj2yh1.png",
+    "developer": "Agent007_MI9",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

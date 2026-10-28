@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xgx1c8",
+  "sourceItemId": "1xgx1c8",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xgx1c8/built_a_langgraph_selfcorrection_loop_that/",
+  "detail": {
+    "longDescription": "I built prbot, a 3-agent LangGraph app: reviewer, then a ReAct patcher, then a Docker pytest tester, with a conditional edge back to the patcher on failure (capped at 3).\n\nA few design choices that made the loop work better than plain \"retry with the error\":\n\n- The state keeps attempted_patches, and every failed diff plus its test tail goes into the patcher's system prompt with \"pivot to a structurally different solution\". The write_patch tool rejects exact repeats\n- The reviewer does two focused structured-output passes (security, performance) instead of one, because single-pass reviews kept stopping at the most severe bug\n- AST hotspot hints (queries inside loops, nested loops over the same iterable) go into the context as leads for the model to confirm\n- A baseline node runs the tests before any patching and aborts if the suite is already red\n- On the last attempt it narrows to the most severe finding, so a partial verified fix still beats nothing\n\nLive result on the demo PR with gpt-4.1-mini: 3 of 3 bugs found. Attempt 1 broke an ordering test (a seen-set returned ['b', 'a'] instead of ['a', 'b']), and attempt 2 passed. 24.7s, about 17k tokens, $0.008.\n\nRepo with the graph diagram and telemetry: https://github.com/ayanag5076-commits/prbot\n\nHappy to answer questions on the graph design or the sandboxing.",
+    "developer": "Wide_Psychology_8378",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
