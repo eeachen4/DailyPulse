@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "hackernews:50258875",
   "sourceItemId": "50258875",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50258875",
   "detail": {
     "longDescription": "Hi HN, I&#x27;m Richard, founder of Native. I&#x27;m working on open-source context ownership, to stop AI centralisation: https:&#x2F;&#x2F;github.com&#x2F;withnative&#x2F;native My first focus has been making Markdown vaults powerful enough so that teams can self-host all of their context (messaging, docs and projects), without it being externally fragmented or rate-limited. I&#x27;m sharing some early results: Markdown vaults can be 40× more efficient with SQLite! https:&#x2F;&#x2F;www.withnative.ai&#x2F;research-and-posts&#x2F;markdown-contex... Here&#x27;s some of the main ideas: - SQLite or Markdown folders, you pick. You can project the same authoritative event log into either form; more projection formats will follow (e.g. maybe neo4j; we do use a graph structure). - Empirically: SQLite is better for agents! On a 120 trial evaluation for 11,000 records, agents use 40× fewer tokens with SQLite vs Markdown, per correct answer. - Everything is a file or SQLite row. Messages, documents and projects: all can be modelled in your vault. You get local-first collaboration with teammates, synced to a cloud of your choice. - You can render your vault with arbitrary UI. Your WhatsApp-like UI speaks to your teammate&#x27;s Slack-like UI; both are just views over the same database. A few things I&#x27;ve learned building this: - Agents do pretty well even without SQL if you give them strongly typed Markdown frontmatter. This was one arm of the trial I ran. I didn&#x27;t have any clear expectations, but it was cool to watch: agents ended up writing Python scripts to do SQL-like queries. - Cumulatively, cached input tokens can get expensive. I feel silly in hindsight here. I&#x27;d gotten used to letting my sessions run long, &quot;It&#x27;s all cached so it&#x27;s very cheap&quot;. But when I looked at my results here, over 2&#x2F;3 of the token bill on long sessions was cached input... - &quot;Markdown vaults don&#x27;t scale as well as databases&quot; isn&#x27;t as self-evident as I think. This is why I decided to benchmark it... I&#x27;ve had some very blank stares when I try to explain how Markdown files might break at true agent-scale volume. Unfortunately, the dataset is private, because it&#x27;s two months of my own work. I am considering open-sourcing it even so, but there is definitely some embarrassing stuff in there. TBD... I know that independent result verification matters! The core engine that I evaluated is open-source, with more to be released soon: https:&#x2F;&#x2F;github.com&#x2F;withnative&#x2F;native If you&#x27;re interested in trying connected context on an open engine, you can get updates from our website or email me directly: richard@withnative.ai https:&#x2F;&#x2F;www.withnative.ai&#x2F;",
@@ -11,7 +12,7 @@
     "stats": [
       {
         "label": "积分",
-        "value": "8"
+        "value": "10"
       },
       {
         "label": "评论",

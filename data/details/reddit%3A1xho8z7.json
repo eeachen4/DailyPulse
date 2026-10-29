@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xho8z7",
+  "sourceItemId": "1xho8z7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xho8z7/all_tests_passed_but_real_requests_started/",
+  "detail": {
+    "longDescription": "The agent we're building has a piece of code that reads a user's request (in Korean) and decides what has to be produced before the task counts as done. It's one file, 4,915 lines, 191 regexes. Two bugs in it misjudged real user requests. We turned that into a task and gave the exact same task to Claude Code (Sonnet) and to a local model.\n\n● Setup\n\n\\- Claude wrote 36 tests as the pass rules. We showed 19 and hid the other 17.\n\n\\- Both started from the same commit, with the same request text and the same check command.\n\n\\- Grading: the hidden tests, the 82 existing tests, and a replay of 2,672 real past requests through the code before and after the fix. If even one request ends up judged differently from the fix we actually merged, the run fails.\n\n● Results (3 runs each)\n\n  \\*Please refer to the photo. \n\nThe 0 in the local column is a run that stopped halfway. Our edit tool couldn't match a line full of quote characters, so that one's on our harness, not the model.\n\nGraded on tests alone, SWE-bench style, Sonnet passes 3/3. Both failed on the same last check: the real-request replay.\n\n● Caveats\n\n\\- \"Judged differently\" doesn't automatically mean \"wrong\". Our fix is just one valid answer, and we haven't gone through the changed requests one by one yet to see which got better and which got worse.\n\n\\- One task, three runs each. Not enough to rank models.\n\n\\- The fix we merged was written while looking at that 2,672-request replay. Both models only had the tests.\n\nThe one thing we took away: all-green tests don't guarantee that the behavior people actually rely on hasn't quietly changed. Tonight we're rerunning both with a tool that shows how a changed rule spreads across the real requests, without showing the expected answers.\n\n**How do you catch an AI fix that passes the tests but changes real behavior? Do you replay real inputs, or is there another way?**",
+    "externalUrl": "https://i.redd.it/whscxbbzn7yh1.png",
+    "developer": "Stunning-Sherbet1853",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

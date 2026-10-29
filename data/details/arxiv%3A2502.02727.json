@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2502.02727",
+  "sourceItemId": "2502.02727",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2502.02727",
+  "detail": {
+    "longDescription": "arXiv:2502.02727v4 Announce Type: replace-cross Abstract: Client-drift compensation methods mitigate the impact of data heterogeneity in federated learning (FL). While drift correction is well studied for stochastic gradient descent (SGD)-based FL, its interaction with adaptive client optimizers remains less understood. Adaptive optimizers such as Adam build each update from running averages of past gradients, so correcting only the final update direction leaves those averages, and the drift they contain, unchanged. We propose Federated Adaptive Gradient Correction ({\\tt FA-GC}), which corrects each gradient before it enters these running averages, and compare it with Federated Adaptive Naive Tracking ({\\tt FA-NT}), which adds the correction to the final direction. We show that, in an idealized setting without gradient noise, the direction FA-GC follows vanishes only at stationary points of the global objective, whereas the direction FA-NT follows can vanish elsewhere when the optimizer is nonlinear. We also prove convergence of FA-GC for Adam-family methods, gradient normalization, and Muon, which orthogonalizes matrix updates. Unlike our bound for FA-NT, these bounds contain no term for client heterogeneity. On seven image and language tasks, FA-GC with Adam needs the fewest rounds on average to reach the target accuracy, and on the three image tasks it also uses less total communication than uncorrected local Adam and FA-NT. On the QNLI question-entailment task with SOAP, which applies Adam in a rotated basis, and Muon under strong heterogeneity, FA-GC gives the highest accuracy, while FA-NT falls below the uncorrected optimizers.",
+    "developer": "Evan Chen, Shiqiang Wang, Dong-Jun Han, Shahryar Zehtabi, Christopher Brinton",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.AI, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Evan Chen, Shiqiang Wang, Dong-Jun Han, Shahryar Zehtabi, Christopher Brinton"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhoqdk",
+  "sourceItemId": "1xhoqdk",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xhoqdk/the_87k_api_key_leak_had_nothing_to_do_with_env/",
+  "detail": {
+    "longDescription": "Every time someone posts about a leaked API key, the top advice is the same. Put it in .env, add .env to .gitignore, done.\n\nAfter the OpenCode breach and the LiteLLM mess this month I went back through the leaked key stories people posted this year. Found 10, with bills from $2 to about $87K. Not one was \"I pushed my .env to GitHub\".\n\nWhere the keys actually were:\n\n\\> In the JS bundle. A VITE\\_ variable in a gitignored .env, repo scanner said clean, then the build shipped it to every visitor. One scan of 978 AI-built apps found 37 doing this.\n\n\\> In an agent config file. LiteLLM's master key sat in opencode.json, got force pushed over but never revoked, and was used 136 days later.\n\n\\> In someone else's tool. Keys saved in OpenCode's console got drained, one person lost $5,200 of company credits.\n\n\\> In a WordPress backup plugin. One root AWS key reused across sites, tested on Aug 23, used 56 days later for about $8K of Bedrock.\n\n\\> In old Google keys that quietly gained generative AI access. That's the $87K one.\n\n\\> In nobody's leak at all. Someone got into an Anthropic console through email login and created 3 new keys, $5,473 in a few hours.\n\nAnd then last week Railway got hit. Attackers decrypted customer environment variables straight from the platform, and Railway told everyone to rotate every key. Gitignored, never pushed, stolen anyway.\n\nWhat actually helped was boring:\n\n\\> Hard spending caps. The one person who had one lost a few minutes of usage and that was it.\n\n\\> An alert isn't a cap. The $87K team's budget alert fired at $550, five hours in.\n\n\\> Revoke, don't clean up. Force pushing doesn't un-leak anything.\n\n\\> Delete keys you don't use, and know where every key lives (Infisical, Vault, whatever you already have).\n\n\\> Don't count on a refund. The $87K bill got $55K off, they still owe about $32K.\n\nI'm not saying stop using .env locally. I'm saying \"it's gitignored\" isn't the end of the conversation. ",
+    "developer": "notomarsol",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

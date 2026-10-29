@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhtfxb",
+  "sourceItemId": "1xhtfxb",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xhtfxb/how_do_you_prevent_analytical_queries_from/",
+  "detail": {
+    "longDescription": "I was checking out how to build a live operational dashboard for a logistics app and found out about composed vs. converged HTAP architectures.  \nI’ve always been warned never to run heavy analytical aggregations on the primary transactional DB because the contention spikes your transaction latency. But a guide I was reading explained how HTAP systems are handling this now. A “converged” system runs both through the same engine (which sounds risky for resource contention), while a “composed” system actually separates the compute engines and keeps them in sync through shared storage or replication, so each side stays optimised for its own workload.  \nApparently, you’re supposed to measure p99 transaction latency while the analytical queries are running, not separately.  \nIf you are running live analytics on operational data, how are you keeping the two from interfering with each other?",
+    "developer": "Chris__Codes",
+    "comments": 12,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

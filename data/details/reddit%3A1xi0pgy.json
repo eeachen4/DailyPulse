@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xi0pgy",
+  "sourceItemId": "1xi0pgy",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xi0pgy/built_something_in_c20_qt_quick_libtorrent_that/",
+  "detail": {
+    "longDescription": "Just shipped **BitFly v1.0.4** streams torrents into VLC/mpv/MPC-HC before the download finishes. Median first frame: **567 ms**.\n\nThe hard parts:\n\n1. **Seeking reshuffles everything.** Jump ahead and the old piece order is useless priorities shift to the player's new range without dropping in-flight reads.\n2. **MP4 metadata can sit at EOF.** BitFly prioritizes the final 1 MiB (piece-aligned) so the decoder gets its index.\n3. **Resume across sessions.** Localhost URLs change every launch, so playback position is keyed to torrent + file identity, not URL.\n4. **Separate budgets:** 64 MiB verified-piece LRU cache, configurable read-ahead, separate disk quota.\n\nQt Quick UI, no browser engine, MIT-licensed, x64 + ARM64.\n\nRepo: [https://github.com/aryan-astra/BitFly-torrent-stream](https://github.com/aryan-astra/BitFly-torrent-stream)\n\nWould love feedback on the range-serving architecture.",
+    "externalUrl": "https://i.redd.it/zrvbz010x9yh1.png",
+    "developer": "aryanastra",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

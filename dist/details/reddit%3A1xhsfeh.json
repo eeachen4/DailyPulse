@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhsfeh",
+  "sourceItemId": "1xhsfeh",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xhsfeh/i_built_kubetz_to_manage_kubernetes_pod_timezones/",
+  "detail": {
+    "longDescription": "I wanted to explore whether Kubernetes timezone injection could be handled using MutatingAdmissionPolicy instead of a dedicated admission webhook.\n\nThat led me to build kube-tz, an open-source project that uses Kubernetes admission-time mutation to configure timezone data for eligible Pods.\n\nThe approach uses an init container to prepare the timezone files and supports cluster-wide defaults, per-Pod overrides, and opt-out annotations.\n\nI'm particularly interested in feedback on a few questions:\n\n* Is this a useful abstraction for platform teams?\n* What edge cases would you want covered before running it in production?\n* Are there workloads or deployment patterns where this approach would be unsuitable?\n* What would you improve in the architecture?\n\nRepository: [https://github.com/kube-tz/kube-tz/](https://github.com/kube-tz/kube-tz/)\n\nI'd appreciate honest technical feedback, including criticism of the approach.",
+    "developer": "kube-tz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

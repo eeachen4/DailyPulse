@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013016",
+  "sourceItemId": "80013016",
+  "sourceUrl": "https://stackoverflow.com/questions/80013016/jquery-when-apply-fails-when-there-is-only-one-ajax-request-instead-of-seve",
+  "detail": {
+    "longDescription": "I'm working on a practice project with jQuery and AJAX, and I'm building the interface with Bootstrap 5. The project consumes the public Rick and Morty API. In the API, each character has an array of URLs for the episodes they appear in, and I need to implement a feature that shows the character's detail card with a dropdown that, when opened, lists all of the character's episodes. This is my code: const promesas = personaje.episode.map((urlEpisodio) => { return $.ajax({ url: urlEpisodio, method: 'GET', dataType: 'json' }); }); $.when.apply($, promesas).done(function () { const episodiosPersonaje = Array.from(arguments); episodiosPersonaje.forEach((episodio) => { const $li = $(`<li class=\"dropdown-item\">${episodio[0].id} - ${episodio[0].name}</li>`); $('#dropdown-episodios').append($li); }); }); The problem is that when a character has several episodes, episodio[0] works correctly, but when the character has only one episode, $.when() doesn't wrap anything, so the arguments arrive \"flat\" and the first one is directly the episode object. I found this question , where the answer works when there are several requests, but it doesn't explain what happens when there is only one and how it should be handled. I want to understand why this happens and whether it's a good idea to keep using $.when() and add code to handle the single-episode case.",
+    "developer": "Mijeli Lucero",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "80"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

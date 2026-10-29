@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.26599",
+  "sourceItemId": "2610.26599",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.26599",
+  "detail": {
+    "longDescription": "arXiv:2610.26599v2 Announce Type: replace Abstract: Hardware components communicate through clock-cycle-sensitive protocols. Hardware Description Languages (HDLs), however, provide limited support for expressing these protocols or for checking that independently developed components agree on them. When components disagree, the composed design can perform unsynchronized exchanges or stop making progress. We call these failures communication-safety violations. Communication safety is thus a global property, determined by interactions between components. This makes it difficult to check modularly. This paper presents Pact, a typed extension of Anvil for modular verification of communication safety in synchronous hardware. Pact types describe message-passing, control-flow, and clock-cycle behaviour. Each component is checked against its type. Compatible types guarantee that the components compose into a communication-safe system. Pact also supports incremental design. It can check a subsystem before the rest of the system exists. The check produces a summary type that captures the communication behaviour left for future compositions. To reduce annotation burden, Pact infers types by abstracting payload values while preserving communication, timing, control, and fairness. These inferred types are optimal for the checker: whenever some checker-accepted types can prove compatibility, the inferred types can prove it as well. Type inference and type checking are decidable, and compatibility is decided by a sound and complete algorithm. We implement Pact by extending the Anvil compiler and evaluate it along five dimensions: detecting communication errors in incremental design, expressiveness on ten clock-cycle-accurate translations of open-source hardware IPs, compatibility-checking time, generated hardware overhead, and annotation burden. Pact expresses realistic protocols and verifies all ten benchmarks in reasonable time.",
+    "developer": "Aditya Ranjan Jha, Jason Zhijingcheng Yu, Umang Mathur, Prateek Saxena",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.AR, cs.LO"
+      },
+      {
+        "label": "第一作者",
+        "value": "Aditya Ranjan Jha, Jason Zhijingcheng Yu, Umang Mathur, Prateek Saxena"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.35981",
+  "sourceItemId": "2610.35981",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.35981",
+  "detail": {
+    "longDescription": "arXiv:2610.35981v1 Announce Type: new Abstract: Small open language models can call tools, but they do not reason about what a call does: they delete without asking, repeat writes, re-read state they already hold, and issue one call per turn where a short program would do. We introduce EffectWorld, an executable world of effect-typed tools in which every tool declares its effect, whether it is idempotent, and which resources it reads and writes. These declarations let a replay verifier decide whether a trace is effect-safe without labels or judge models, let an executor run tool programs of several dependent calls in one turn, and let a compiler-style optimizer turn wasteful traces into verified training signal; together they make EffectWorld a benchmark of effect safety and call efficiency. Low-rank adapters trained on this data deliver large gains: on Qwen3-4B, they raise task success from 53% to 99% in distribution, from 52% to 81% on a held-out split with unseen task kinds and distractor tools, and from 74% to 83% on an unseen domain, with about a third of the output tokens. The gains carry over to other model families. On the Berkeley Function-Calling Leaderboard (BFCL), the adapter matches the base model's live accuracy and raises multi-turn accuracy from 21.9 to 26.6, and a recipe with near-miss declines lifts the BFCL average above the base model's while matching its irrelevance detection. Along the way we uncover and fix a pitfall that in-domain evaluation alone would miss: refusal templates in widely used public tool-use corpora teach a small model not to call tools, cutting BFCL non-live accuracy from 88.0 to 31.4, and filtering them restores 84.8. We also find that positive examples, not negative ones, carry the learning: suppression and preference objectives on the verified negatives add nothing over an SFT-only control, while targeted positives move exactly the behaviour they show.",
+    "developer": "Alexander Kovalenko, Artem Redchych",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alexander Kovalenko, Artem Redchych"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

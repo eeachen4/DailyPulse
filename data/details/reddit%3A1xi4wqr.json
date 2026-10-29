@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xi4wqr",
+  "sourceItemId": "1xi4wqr",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xi4wqr/is_rag_dead_does_stair_change_the_future_of/",
+  "detail": {
+    "longDescription": "I recently came across **STAIR (STructure Aware Information Retriever)**, a research paper published on arXiv in September 2026, and it made me think about the limitations of traditional RAG systems.\n\nFor years, RAG has been one of the most popular approaches for building LLM applications that work with external knowledge. The typical pipeline involves chunking documents, generating embeddings, storing vectors in a database, retrieving the most relevant chunks, and passing them to an LLM.\n\nBut there is a problem: **documents are not just collections of independent text chunks. They have structure.**\n\nA technical document might contain chapters, sections, subsections, tables, and relationships between different pieces of information. When we split everything into chunks and rely primarily on semantic similarity, we can lose some of that structure.\n\nThis is where STAIR becomes interesting.\n\nSTAIR focuses on structure-aware information retrieval, using document hierarchies and table-of-contents information to improve retrieval. Instead of treating retrieval purely as a similarity search problem, it attempts to leverage the document's structure to identify the most relevant section.\n\nThe paper reports promising results on SearchTome, a benchmark containing 18 books across six domains.\n\n**My questions for the community**\n\n**Is traditional RAG becoming obsolete**, or is STAIR simply another retrieval strategy that can be integrated into a RAG pipeline?\n\nCould structure-aware retrieval outperform embedding-based retrieval for technical documentation, research papers, and long PDFs?\n\nShould we move away from chunk-first architectures toward document-first architectures that preserve hierarchy and relationships?\n\nCould combining STAIR-style retrieval with hybrid search (BM25 + dense embeddings), reranking, and metadata filtering produce better results than either approach alone?\n\nWhat are the practical trade-offs? For example, how does this approach handle unstructured documents, websites, databases, and constantly changing information?\n\nMy current opinion is that **RAG is not dead, but retrieval is evolving beyond naive vector search**. The real question is whether our retrieval architecture should understand the structure of the knowledge it searches, rather than relying only on semantic similarity.\n\nI'd love to hear from people who have implemented production RAG systems or experimented with structure-aware retrieval.\n\nWhat do you think: is STAIR a meaningful step forward, or is it a specialized retrieval technique rather than a fundamental shift in RAG?",
+    "developer": "Money-Designer-9724",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

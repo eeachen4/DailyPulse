@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013112",
+  "sourceItemId": "80013112",
+  "sourceUrl": "https://stackoverflow.com/questions/80013112/why-is-pyright-saying-i-have-already-declared-this-enum-member",
+  "detail": {
+    "longDescription": "I'm adding terminal colours to one of my Python scripts. Initially I used global constants: def supports_color() -> bool: \"\"\"Check whether terminal supports color\"\"\" ... return True if supports_color(): RED = \"\\033[31m\" GREEN = \"\\033[32m\" YELLOW = \"\\033[33m\" BLUE = \"\\033[34m\" PURPLE = \"\\033[0;35m\" RESET = \"\\033[0m\" else: RED = GREEN = YELLOW = BLUE = PURPLE = RESET = '' Then I attempted using a StrEnum : from enum import StrEnum class Color(StrEnum): if supports_color(): RED = \"\\033[31m\" GREEN = \"\\033[32m\" YELLOW = \"\\033[33m\" BLUE = \"\\033[34m\" PURPLE = \"\\033[0;35m\" RESET = \"\\033[0m\" else: RED = GREEN = YELLOW = BLUE = PURPLE = RESET = '' But Pyright flagged the assignments in the else clause, saying: Enum member \"RED\" is already declared Enum member \"GREEN\" is already declared ... Enum member \"RESET\" is already declared I tried breaking it down into multiple assignments, but the flag persisted: else: RED = '' GREEN = '' YELLOW = '' BLUE = '' PURPLE = '' RESET = '' However, the following works: s = supports_color() class Color(StrEnum): RED = \"\\033[31m\" if s else '' GREEN = \"\\033[32m\" if s else '' YELLOW = \"\\033[33m\" if s else '' BLUE = \"\\033[34m\" if s else '' PURPLE = \"\\033[0;35m\" if s else '' RESET = \"\\033[0m\" if s else '' Why does Pyright flag my first attempt, but not the others?",
+    "developer": "JadenV15",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "187"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

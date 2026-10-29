@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhz7fo",
+  "sourceItemId": "1xhz7fo",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xhz7fo/optimal_setup_research_by_inordic_gemma_4_31b_on/",
+  "detail": {
+    "longDescription": "Hi,\n\nWe are a small research lab in North sweden and today we want to share another \"optimal setup\" that are researching.\n\nResearch was done using Claude, skyclaw (our own Sysops AI harness)\n\nOur hopes is that by sharing this - others will be able to run great models at home and that we will get some good suggestions for improving.\n\nSo.. a bit of stats..\n\n|Prompt|Fast profile (NVFP4, live)|Max-context profile (QAT Q4)|Start (abliterated Q4\\_K)|\n|:-|:-|:-|:-|\n|2K|3,067|1,427|1,335|\n|8K|**4,154**|1,531|1,409|\n|32K|3,438|1,332|1,272 (24K)|\n|64K|2,579|1,092|—|\n|\\~130K|\\~1,600|\\~710 (before FP8 attention)|—|\n|\\~185K / \\~231K|—|613 / 528|—|\n\n**Decode.** One user, MTP with 7 drafts (greedy / sampled tok/s):\n\n|Workload|Fast profile (live)|Max-context profile|Start|\n|:-|:-|:-|:-|\n|Short chat, 10 prompts × 512 tokens|**118.4 / 114.0**|106.8 / 99.7|33.2|\n|After 2K of context|107.3 / 119.6|93.2 / 110.0|32.6|\n|After 8K of context|110.3 / 118.9|106.2 / 104.7|32.3|\n\nAny feedback or recomendations are welcome: [https://github.com/inordic/rtx5090-NInferno-gemma4-31b](https://github.com/inordic/rtx5090-NInferno-gemma4-31b)",
+    "developer": "leonbollerup",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.35971",
+  "sourceItemId": "2610.35971",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.35971",
+  "detail": {
+    "longDescription": "arXiv:2610.35971v1 Announce Type: new Abstract: Early stopping promises to reduce compute costs for autonomous coding agents by terminating unpromising runs early. Deciding when to abandon a run requires separating baseline issue difficulty from the trajectory of an individual attempt. We study the distinction in 147,002 execution traces from two public corpora spanning four model-framework settings. Comparing pre-execution issue context against early execution prefixes, we evaluate linear count models, initial-turn text embeddings, task-conditional rankers, and a fine-tuned Qwen3-0.6B monitor. Although early prefixes modestly improve cross-task outcome ranking, within-task discrimination remains near chance across early landmarks (5k-20k tokens): initial-turn embeddings and 20k-token task-conditional models yield AUCs around 0.50, and three-seed neural evaluations across 32,406 attempts at 20k tokens achieve a mean within-task AUC of 0.50 [0.48, 0.51] across tasks of varying solve rates. To evaluate how these predictions translate into stopping decisions, we replay score-guided and matched random restarts under shared token budgets alongside uninterrupted continuation. Under a 75k-token cap, learned restarting improves resolution over matched random restarting by up to 1.98 percentage points. An exact algebraic decomposition resolves this paradox: the gain over random restarting stems almost entirely from between-task stopping allocation (avoiding stops on easy issues), whereas attempt-level selection within a task contributes near zero (-0.11 to +0.24 percentage points). Across all four settings at the 75k cap (and 216 of 224 tested budget-threshold configurations overall), uninterrupted continuation achieves higher solve rates at lower mean token cost than both restart policies. Practical evaluations of early stopping must therefore establish attempt-level discrimination and demonstrate net compute savings relative to continuation.",
+    "developer": "Srinath Srinivasan, Lunxiao Li, Tim Menzies, Wesley Assun\\c{c}\\~ao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Srinath Srinivasan, Lunxiao Li, Tim Menzies, Wesley Assun\\c{c}\\~ao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

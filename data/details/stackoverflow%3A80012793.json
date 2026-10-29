@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80012793",
   "sourceItemId": "80012793",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
   "sourceUrl": "https://stackoverflow.com/questions/80012793/how-to-avoid-rendering-delays-when-switching-from-text-to-dynamic-selects",
   "detail": {
     "longDescription": "I'm using Vue 3 with TypeScript and Element Plus to render a dynamic form. In view mode, fields are displayed as text. In edit mode, they are replaced with el-select components using v-if / v-else . When switching to edit mode, there's a noticeable delay before the selects appear. All data is already loaded, so this is a rendering issue, not an HTTP request issue. Simplified example: <template> <div v-for=\"field in fields\" :key=\"field.id\"> <span v-if=\"!isEditing\"> {{ field.value }} </span> <el-select v-else v-model=\"field.value\"> <el-option v-for=\"option in field.options\" :key=\"option.value\" :label=\"option.label\" :value=\"option.value\" /> </el-select> </div> </template> Using v-show would avoid remounting the selects, but it would also mount every select during the initial page load. How can I defer mounting these selects until after the initial render, while keeping them ready for a fast transition to edit mode?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "155"
+        "value": "170"
       },
       {
         "label": "状态",

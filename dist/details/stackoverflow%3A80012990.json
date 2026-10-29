@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80012990",
+  "sourceItemId": "80012990",
+  "sourceUrl": "https://stackoverflow.com/questions/80012990/why-did-anthropic-theorems-formal-verification-work-restrict-itself-to-single-t",
+  "detail": {
+    "longDescription": "Anthropic and Theorem's recent large-scale formal verification work is explicitly restricted to single-threaded RISC-V binaries. https://www.anthropic.com/research/formal-verification I am trying to understand the reason for this particular restriction. Specifically, which of the following best describes the current situation? The formal model is not ready for multithreading. For example, their current RISC-V/Linux process semantics may not yet model multiple threads, the RISC-V memory model, synchronization, atomics, futex, scheduler nondeterminism, etc. The required semantics are understood/modelled, but verification becomes prohibitively expensive. For example, the number of possible interleavings or the required concurrent invariants makes the proof-generation approach used in this project scale poorly. There is no known fundamental obstacle; multithreading was simply outside the scope of this experiment and has not yet been seriously attempted. I'm not asking the general question \"why is concurrent program verification difficult?\" I'm specifically interested in the current limitation of this Anthropic/Theorem verification pipeline . Has Theorem or Anthropic discussed which of these is the actual reason? If the limitation is technical, what concrete component of the current formalization or proof-generation pipeline would need to change?",
+    "developer": "macomphy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-7"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "65"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50274358",
+  "sourceItemId": "50274358",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50274358",
+  "detail": {
+    "longDescription": "I’ve spent the last year building context for AI analysts in the mid-market. I’ve open sourced a library from my learnings, along the same principles of the Matt Pocock skills. Principles: * Claude &#x2F; Codex &#x2F; Cursor etc are great data agents - you just need context to enable them to answer business questions correctly. * Much of the important context lives in analysts heads&#x27; * Context must be maintainable (short, human readable - markdown and yaml) * Added context should be load bearing, not repeat of information that is available in another source of truth - and evaluations prove the value of the context * Companies should own their own context, and must be shareable with any model * Context should be version controlled (and github works as a context store). What the library does: * Performs an interview with your analysts (context-interview skill), one domain at a time, similar to what I have done as a consultant. The interview is informed by your query logs. * The AI develops evaluation questions at the same time as building the context - and at the end of each domain interview asks you to run an evaluation with and without the context. The evaluation will actually check the results against your dashboards if you allow it. We have shown increases in accuracy from 87% to 95% by adding this context in our imaginary open-source company, Shorelane. * Provides a set of skills to use the context that follow best practices for self service analytics: * Write a plain english plan for the business user to approve * Execute the plan * Verify that the execution followed the plan, and provide a simple uncertainty score. * Enable a adversarial review of the answer if their are doubts. What you get: Context repo written in markdown and yaml after you finish the interview. We use a single github repo, divided into domains. The interview can be shared and restarted by checking in&#x2F;out of github. A set of skills to share with your business team Optional: We offer a fast MCP server to serve the Github-based context to your team.",
+    "externalUrl": "https://github.com/nodal-data/nodal-context",
+    "developer": "ronpotok",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "4"
+      }
+    ]
+  }
+}

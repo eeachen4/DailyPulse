@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xi4941",
+  "sourceItemId": "1xi4941",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xi4941/designing_the_approval_screen_for_an_agent_the/",
+  "detail": {
+    "longDescription": "Many agent setups add an approval step and then find that the approvals get a glance, not a read. One factor I think gets overlooked is what the reviewer is shown. Here’s a made-up example of the same action on two different screens.\n\n**Version 1: the narrative**\n\n    The agent wants to issue a credit to Acme Corp to\n    compensate for the billing mix-up reported in the ticket.\n    \n    [Approve]  [Reject]\n\nIt reads reasonably, and a well-written summary of a bad action reads reasonably too. The reviewer has to trust the explanation or go look things up.\n\n**Version 2: the effect**\n\n    Action:           issue_credit\n    Account:          Acme Corp (id 4821)\n    Amount:           $40.00\n    Changes:          1 record (account balance 0.00 -> 40.00)\n    Last credit:      none in 90 days\n    Policy check:     above the $25 auto-approve limit -> needs review\n    Reversible:       no (the customer sees it immediately)\n    Source:           ticket #1093\n    \n    [Approve]  [Reject]  [Ask the agent why]\n\nWhy the second one holds up better:\n\n* The reviewer can judge it in seconds from facts, not from prose.\n* It states reversibility and the policy trigger, which are the reasons a human is involved at all.\n* Rejecting is as easy as approving.\n\n**Where to put the gate in the first place:**  \nThe variables I’d weigh: how hard the step is to undo, whether a mistake would announce itself, how expensive the review is, and how many of these happen per day. A drafted reply is cheap to discard. A refund or a deleted record is not. Spending review on the second kind, and covering the first with logs, rules and sampling, tends to keep the gate meaningful.\n\n**Limits of this:**\n\n* A better screen doesn’t fix a volume problem. If one person sees thousands of items a day, the gate will degrade whatever it looks like.\n* If an automated rule shares a blind spot with the agent, the check passes while the mistake repeats.\n* Some domains require a named human sign-off regardless of risk, and then the work is making that sign-off real.\n* I’d track the rejection rate along with sampled audits. A gate that never rejects could mean a good agent or a review that isn’t catching anything, and approval rates alone can’t tell you which.\n\nWhat do your approval screens show, and has anyone measured whether reviewers actually read them?",
+    "developer": "ClickOk5811",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

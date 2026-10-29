@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhrvab",
+  "sourceItemId": "1xhrvab",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xhrvab/preventing_duplicate_llm_generations_across/",
+  "detail": {
+    "longDescription": "When serving LLM streams over SSE or WebSockets, a common production leak is duplicate active generations from the same user. A second tab, a reload mid-generation, or an auto-reconnect can leave the first stream running on another worker, so a single user runs two parallel generations, burning upstream tokens or GPU capacity for both.\n\nStandard per-minute rate limiters don't catch this because sending 2 or 3 requests in a minute is valid traffic. The real question is \"how many token streams does this user have open right now across all API workers?\"\n\nI built `fastapi-stream-lease` (free, MIT, standalone library with no paid tier or hosted service) to enforce active stream concurrency limits across FastAPI/Starlette workers using Redis sorted sets and atomic Lua scripts.\n\n```text\nTab 1 -> Worker A -> Redis Lua (1/1 active) -> 200 SSE stream\nTab 2 -> Worker B -> Redis Lua (limit hit)  -> 429 Retry-After (no LLM call)\n```\n\nHow it works in front of an LLM call:\n\n1. Before the streaming generator starts, the worker acquires a lease with a short TTL in Redis (scoped per user or globally; you can pass an IP or account ID as the user key).\n2. If the user is already at their active stream limit, the endpoint returns HTTP 429 with a `Retry-After` header before calling the LLM provider. No prompt prefill or token generation is triggered.\n3. While tokens are streaming, a background heartbeat renews the lease.\n4. When the stream finishes or the client disconnects, the lease is released immediately. If an API worker crashes hard (OOM or `SIGKILL`), the lease expires automatically via TTL.\n\nExample wrapping an upstream LLM stream:\n\n```python\n@app.post(\"/chat/stream\")\nasync def chat_stream(req: ChatRequest, user_id: str = Depends(get_user_id)):\n    async def token_stream():\n        async for chunk in llm_client.stream(req.messages):\n            yield f\"data: {chunk}\\n\\n\"\n\n    return await manager.stream(user_id, token_stream())\n```\n\nIt also supports WebSocket sessions, graceful worker drain on deployment, and configurable fail-open/fail-closed behavior if Redis goes down. Current release is v0.6.4. CI runs against real Redis 5, 7, and 8, plus Sentinel and Redis Cluster failover, and the suite reports 100% line and branch coverage.\n\nTo try the concurrency cutoff locally without an LLM API key: `docker compose up --build demo` and open `http://localhost:8080` in three tabs (the first two stream, the third gets 429 with `Retry-After`).\n\nRepo: https://github.com/agustin18/fastapi-stream-lease\nDocs: https://agustin18.github.io/fastapi-stream-lease/\n\nCurious how others here handle client reconnections on streaming endpoints: when a user opens a new stream while one is already running, do you reject the new request with 429, or do you prefer cancelling the older in-flight generation to let the new one through?",
+    "developer": "Calm_Exchange_989",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

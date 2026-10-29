@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50273438",
+  "sourceItemId": "50273438",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50273438",
+  "detail": {
+    "longDescription": "For a few weeks I&#x27;ve been digging into breaking changes in the third-party APIs a company depends on. Nowadays, companies run more tools than they used to, and with time, it will drastically increase. First, because of vibe coding and apps built by agents, which can hallucinate an endpoint or a model name. And secondly, because there are more and more new tools in production for every team, aiming to be more productive or more profitable. Those tools add more connectors to your stack. Maintaining a handful of connectors is manageable, but when you have dozens integrated with several apps and for different cases, it becomes a huge and complex workload. We&#x27;ve seen cases where one missed change gets very expensive. An endpoint that doesn&#x27;t work in production can take an app down for several minutes. It can have an impact on your team&#x27;s productivity and on your sales, or simply on your image, because your app looks less reliable. To fix that, we built okapi.bot. Its agents scan your repo and learn how your code calls each API. When a vendor changes something, Okapi opens pull requests that keep those connections up to date. As an example, here are 13 breaking changes coming in November: - Nov 1, Jira Software Cloud: the &#x2F;rest&#x2F;agile&#x2F;1.0&#x2F; issue endpoints that page with startAt are removed. Use &#x2F;rest&#x2F;software&#x2F;1.0&#x2F; and page with nextPageToken. - Nov 2, Shopify: the Global Catalog REST API stops answering. - Nov 7, Zoom: Meeting SDK for Web below 4.0.0 stops working. - Nov 13, AWS Bedrock: Claude 3 Haiku, 3 Sonnet, 3.5 Sonnet and 3.7 Sonnet reach end of life in some regions. - Nov 16, LinkedIn Marketing API: version 202511 is turned off. - Nov 16, Discord: the guild channels endpoint stops returning channels the bot can&#x27;t view, with no error. - Nov 17, Gemini API: the preview TTS and Live models shut down. - Nov 18, Auth0: Rules and Hooks stop running. Their logic has to move to Actions. - Nov 19, Azure OpenAI: o1, o1-pro, o3, o3-pro, o3-mini, o4-mini and o3-deep-research retire. - Nov 23, Cloudflare: the DNS settings API stops accepting foundation_dns. - Nov 30, Anthropic: claude-sonnet-4-5-20250929 retires. - Nov 30, OpenAI: the reusable prompts API (v1&#x2F;prompts) shuts down. - Nov 30, OpenAI: the Evals API (&#x2F;v1&#x2F;evals) shuts down. This is just a small sample, there are a lot more that are going to happen. If you want to make sure none of them breaks your app, just install okapi on your GitHub repo. It&#x27;s free to use. If you want to know more, DM me or ask in the comments. And if you try it, I&#x27;d love your feedback.",
+    "developer": "stosssik",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

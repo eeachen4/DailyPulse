@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhza5n",
+  "sourceItemId": "1xhza5n",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xhza5n/long_mcp_tool_calls_kept_timing_out_so_i_wrote_a/",
+  "detail": {
+    "longDescription": "Agents calling slow MCP tools (test suites, crawls, evals) either hit the client's tool timeout or block the whole turn. MCP added Tasks for this, but almost no servers implement them yet.\n\nmcp-coatcheck sits in front of any stdio MCP server, no changes to the server:\n\n    npx mcp-coatcheck -- <your server command>\n\nIf a call runs longer than a few seconds, the agent gets a ticket and collects the result later. Clients that speak Tasks get real tasks, others get a job id plus a tool to fetch it. Fast calls pass straight through.\n\nTested with Claude Code and mcpc. Codex and Cursor not yet, so reports are welcome.\n\nIf it's useful, a star helps others find it: [https://github.com/emrehangorgec/mcp-coatcheck](https://github.com/emrehangorgec/mcp-coatcheck)",
+    "externalUrl": "https://v.redd.it/8ntamtynn9yh1",
+    "developer": "Awacer",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

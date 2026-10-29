@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50280650",
+  "sourceItemId": "50280650",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50280650",
+  "detail": {
+    "longDescription": "Hey HN, I’m Abhishek. I&#x27;m building Opslane, a tool that finds reliability issues in your code. On every PR, it spins up your entire app and then tries to find weak spots that would break in production. Demo: https:&#x2F;&#x2F;youtu.be&#x2F;47phxkdh6f0 Example: We tested Opslane on Lago (open-source billing) and found a bug where customers get double charged. Opslane made Stripe take the money and then return a 500. Lago marked the payment failed. A retry from the dashboard charged the customer again. https:&#x2F;&#x2F;github.com&#x2F;getlago&#x2F;lago-api&#x2F;issues&#x2F;6903 Why I built this I used to work on reliability at Robinhood. We used to run chaos testing in our staging environments: inject faults in various parts of the system and see what breaks. We found issues like Kafka or Redis being unavailable for a few seconds could take the whole app down. But that kind of testing was expensive. It needed a well maintained staging environment. Engineers needed to know what to test. Most teams never actually did it. Over the last year, coding agents have gone writing some of my code to almost all my code now. Teams are shipping way more code than they were 6 months ago. Code review tools read the diff, but a lot of reliability bugs aren&#x27;t in the diff. They&#x27;re in how your code behaves when Stripe, Redis or the network misbehaves. And e2e tests usually mock those services out and test the happy path. Agents have made this type of testing a lot cheaper. And we will see more of this (kinda like security scanning &#x2F; testing) How it works A full copy of your app per PR: Postgres, Redis, Kafka, SQS, S3. Working copies of your third-party dependencies: Stripe, Slack, Gmail and more. Traffic goes through our proxy, which lets us inject failures. The agent picks what to test: It reads every PR and writes down invariants that need to hold (for e.g. a customer should never be charged twice). It then injects faults likely to break the invariants. Bugs we&#x27;ve found We ran Opslane on some popular open-source apps and here are some of the bugs we have found: 1&#x2F; Twenty: deleting a workspace while Stripe is failing locks everyone out, and billing keeps going. Twenty merged a fix. ( https:&#x2F;&#x2F;github.com&#x2F;twentyhq&#x2F;twenty&#x2F;issues&#x2F;28043 ) 2&#x2F; Dub: a restart in the middle of a payout paid a partner $240 for $120 owed. ( https:&#x2F;&#x2F;github.com&#x2F;dubinc&#x2F;dub.link&#x2F;issues&#x2F;4707 ) Full list: opslane.com&#x2F;open-source Opslane is pretty early - we have a couple of early customers. We have found bugs in their system that their other code review tools missed. Would love to get feedback from folks and how they are seeing the reliability of their systems evolve over time with agents.",
+    "developer": "aray07",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "6"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

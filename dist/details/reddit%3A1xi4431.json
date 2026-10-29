@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xi4431",
+  "sourceItemId": "1xi4431",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xi4431/two_random_search_apis_matched_the_single_best/",
+  "detail": {
+    "longDescription": "Saw some numbers on search APIs for agents that surprised me.\n\nSetup: 12 providers, same 363 queries, metric = known answer in top 5 results.\n\n|\\# of Providers|Hit rate|\n|:-|:-|\n||\n|1 (best)|68%|\n|2|77%|\n|3|\\~80%|\n|all 12|84%|\n\nWhat I didn't expect was that two providers picked at random hit 68%, which is basically the same as just the single best one. So having any fallback seems to matter more than benchmarking your primary to death.\n\nAlso, for 16% of queries, no provider had the answer at all. So that’s not something switching vendors fixes, and it’s on how the agent searches or whether it reads pages.\n\nAnyone doing fallback-on-miss vs. fanning out to multiple providers every time?",
+    "developer": "Dry-Golf-5690",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

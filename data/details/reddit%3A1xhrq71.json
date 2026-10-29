@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xhrq71",
+  "sourceItemId": "1xhrq71",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xhrq71/everyone_says_sandbox_your_agent_claude_codes/",
+  "detail": {
+    "longDescription": "The Qwen3.8-Flash-Next threads keep ending on \"sandbox your agent,\" and a top reply asked how. Nobody posted settings, so we read the docs for the tools most of you run. Commands are on the card.\n\nClaude Code ships with the sandbox off. Turn it on with /sandbox or sandbox.enabled. Network then goes through a local proxy whose domain allowlist starts empty. Set sandbox.failIfUnavailable to true. Without it, a sandbox that can't start (on Linux it needs bubblewrap and socat) means your commands run unsandboxed. Native Windows has no sandbox, so use WSL2.\n\nCodex CLI keeps network off in workspace-write mode unless you enable it. Grep your config.toml for network\\_access = true before counting on that.\n\nFor jobs with no network needs, like tests, docker run --network none gives the container loopback only. For a full coding agent, Docker Sandboxes (sbx) puts it in a microVM with its own network policy. We'd start at deny-all and add hosts one by one.\n\nNeed some web? Send egress through an allowlist proxy. Stripe's Smokescreen allows by hostname and refuses internal IPs.\n\nOn a cloud VM, the metadata endpoint at [169.254.169.254](http://169.254.169.254) can hand out the VM's role credentials. On AWS, require IMDSv2 and drop that address for agent containers (DOCKER-USER rule on the card).\n\nCohere's write-up also had the model use unshare to get root in its own namespace. Ubuntu 24.04 restricts unprivileged user namespaces by default. Docker's default seccomp profile blocks unshare unless the container gets CAP\\_SYS\\_ADMIN or runs with seccomp=unconfined.\n\nThe pushback in those threads: lock it down this hard and the agent is useless. Where do you land? Network off with a per-task allowlist, or full access inside a throwaway VM?",
+    "externalUrl": "https://i.redd.it/terxx22hb8yh1.png",
+    "developer": "Future_AGI",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

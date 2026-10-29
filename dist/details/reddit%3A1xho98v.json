@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xho98v",
+  "sourceItemId": "1xho98v",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xho98v/quick_breakdown_of_containers_vs_gvisor_vs_kata/",
+  "detail": {
+    "longDescription": "kept mixing these up so i wrote it down, figured it might help someone. from weakest to strongest isolation:\n\n* containers (runc/crun): namespaces for isolation, cgroups for resource limits. everything shares the host kernel\n* gvisor (runsc): a userspace kernel sits in between and handles most syscalls itself, so only a small subset ever reaches the host kernel\n* kata containers: each container (or pod) runs in a micro-vm with its own kernel, via kvm. you still use it like a normal container\n* full vms (qemu/kvm): a whole os, windows included, with its own disk, init, ssh etc\n\nthe thing that clicked for me: kata and a full vm give you basicaly the same isolation, both are real vms on kvm. the difference is what's inside and how you use it. kata hides a tiny vm behind a container workflow, with a full vm the vm is the workload\n\nfor kata you can pick the hypervisor:\n\n* firecracker: fastest boot, smallest footprint, but minimal devices (no gpu passthrough, at least for now)\n* cloud hypervisor: good middle ground\n* qemu: most complete, also the heaviest\n\non kubernetes, gvisor and kata plug in through a runtimeclass, and full vms go through kubevirt. also worth knowing kubevirt isnt a hypervisor itself, it's a management layer on top of qemu/kvm, same way k8s manages containers without being a container runtime\n\noutside k8s all of these work fine too: docker/podman/containerd can use runsc or kata as runtimes, and full vms are managed with libvirt or proxmox\n\nhope this saves someone a few hours of reading docs or asking an llm",
+    "developer": "cthiriet",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

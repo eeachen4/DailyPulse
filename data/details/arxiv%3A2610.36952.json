@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.36952",
+  "sourceItemId": "2610.36952",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.36952",
+  "detail": {
+    "longDescription": "arXiv:2610.36952v1 Announce Type: new Abstract: Many LLMs now emit an explicit reasoning trace before they write code, but benchmark results for code generation and bug fixing usually report correctness alone. It is therefore unclear how much the extra reasoning contributes relative to the tokens it consumes. We examine this question with 866 Python tasks drawn from HumanEval Pro, MBPP Pro, and BugsInPy under five model settings. We look at the accuracy gain and token overhead of reasoning, the behaviors that appear inside reasoning traces, and whether a shortened trace still leads to a correct solution. Turning reasoning on in Qwen3-32B over five runs improves mean pass@1 on HumanEval Pro from 71.1% to 76.5% and mean tests pass on BugsInPy from 3.5% to 7.9%. On MBPP Pro the improvement from 68.1% to 69.5% is not statistically significant, even though the model uses a median of over 2,000 thinking tokens per task. Across models, a longer median trace does not reliably mean higher accuracy. A qualitative analysis shows that traces mostly choose and check an implementation in code generation, while in bug fixing they mostly locate the fault and plan the repair. We then truncate stored traces offline and ask Qwen3-32B with reasoning off to produce a solution from what remains. Retaining the first half of a trace yields no statistically significant drop in correctness. Stopping when the trace becomes repetitive seldom triggers, and stopping once solution code first appears benefits some models but harms others. Neither rule beats plain fixed truncation. These results suggest that more reasoning is not always better and that studies should report reasoning cost alongside correctness.",
+    "developer": "Andie Huang, Ying Pang, Qian Zhang, Yihang Cheng, Lin Ma",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Andie Huang, Ying Pang, Qian Zhang, Yihang Cheng, Lin Ma"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

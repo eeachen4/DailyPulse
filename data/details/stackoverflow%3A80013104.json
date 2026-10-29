@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013104",
+  "sourceItemId": "80013104",
+  "sourceUrl": "https://stackoverflow.com/questions/80013104/next-js-15-memory-usage-keeps-increasing-when-polling-a-live-darts-api-every-sec",
+  "detail": {
+    "longDescription": "I'm building a live darts scoreboard using Next.js 15 (App Router) and TypeScript. The application fetches live match data from a sports API every second to display the current score, legs, sets, and match status. The problem is that Node.js memory usage keeps increasing while the page is open, even though I'm only storing the latest API response. I'm using a Route Handler to proxy the API request so the API key stays on the server. Server-side Route Handler: // app/api/darts/live/route.ts import { NextResponse } from \"next/server\"; export const dynamic = \"force-dynamic\"; export async function GET() { const response = await fetch( process.env.DARTS_API_URL!, { headers: { Authorization: `Bearer ${process.env.DARTS_API_KEY}`, }, cache: \"no-store\", } ); if (!response.ok) { return NextResponse.json( { error: \"Failed to fetch matches\" }, { status: response.status } ); } const data = await response.json(); return NextResponse.json(data); } Client-side polling: \"use client\"; import { useEffect, useState } from \"react\"; export default function LiveDarts() { const [matches, setMatches] = useState<unknown>(null); useEffect(() => { const interval = setInterval(async () => { const response = await fetch(\"/api/darts/live\", { cache: \"no-store\", }); const data = await response.json(); setMatches(data); }, 1000); return () => clearInterval(interval); }, []); return <pre>{JSON.stringify(matches, null, 2)}</pre>; } After running the application for an extended period, the Node.js process shows increasing memory usage. I suspect that overlapping requests might be contributing to the problem, especially when the API takes longer than one second to respond. However, I'm unsure whether the memory growth is caused by: Overlapping setInterval requests Retained fetch responses or JSON objects Next.js Route Handler behavior Node.js garbage collection My questions: Can overlapping fetch() calls from setInterval() cause memory retention even when React state only stores the latest response? Would recursive setTimeout() with AbortController be a better approach for preventing overlapping requests? What is the recommended way to determine whether the memory growth is a genuine leak or normal Node.js heap behavior? I'm particularly interested in understanding the underlying cause rather than simply increasing the Node.js memory limit.",
+    "developer": "tudiude",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "91"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

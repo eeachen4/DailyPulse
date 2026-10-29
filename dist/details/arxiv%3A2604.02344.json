@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2604.02344",
+  "sourceItemId": "2604.02344",
+  "fetchedAt": "2026-10-29T02:50:47.883Z",
+  "sourceUrl": "https://arxiv.org/abs/2604.02344",
+  "detail": {
+    "longDescription": "arXiv:2604.02344v2 Announce Type: replace-cross Abstract: WebGPU's security-focused design imposes per-operation validation that compounds across the many small dispatches in neural network inference, yet the true cost of this overhead is poorly characterized. We present a systematic characterization of WebGPU dispatch overhead for LLM inference at batch size 1, spanning four GPU vendors (NVIDIA, AMD, Apple, Intel), two native implementations (Dawn, wgpu-native) and three browsers (Chrome, Safari, Firefox), and two model sizes (Qwen2.5-0.5B and 1.5B). Our primary contribution is a sequential-dispatch methodology that reveals naive single-operation benchmarks overestimate dispatch cost by ${\\sim}20\\times$. The true per-dispatch cost of WebGPU API overhead alone is 24-36 $\\mu$s on Vulkan and 32-71 $\\mu$s on Metal, while the total per-operation overhead including Python cost is ${\\sim}95$~$\\mu$s, which turns out to be a distinction critical for optimization. On Vulkan, kernel fusion improves throughput by 53%, while CUDA fusion provides no benefit, confirming that per-operation overhead is a primary differentiator. LLM inference was tested across three major operating systems (Linux, Windows, macOS). We built $\\texttt{torch-webgpu}$, a PrivateUse1-based out-of-tree PyTorch backend and an FX-to-WebGPU compiler, which on our reference platform achieves 11--12% of CUDA performance. At dtype-matched float32, RTX PRO 2000 achieves 1.4$\\times$ WebGPU's throughput despite ${\\sim}6\\times$ less compute than RTX 5090. For dispatch overhead, backend choice is the dominant factor, although implementation choice also matters substantially within a backend (2.2$\\times$ for Metal). In terms of dispatch vs kernel compute efficiency, we conclude that at batch=1 with the current dispatch-heavy pipeline, per-operation overhead dominates regardless of kernel quality. All code, benchmarks, and raw data are open source.",
+    "developer": "J\\k{e}drzej Maczan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.LG, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "J\\k{e}drzej Maczan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
