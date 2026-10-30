@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50276431",
+  "sourceItemId": "50276431",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50276431",
+  "detail": {
+    "longDescription": "hi everyone! I wanted to share what I&#x27;ve been working on these past 6~ years. TL;DR: Rust is great, but somewhere along the way, I learned that I was too dumb to read and write Rust. As I worked on larger and larger Rust projects, I also became frustrated with the developer experience of working in Rust (slow compile time), so I wanted a better way. Vu&#x27;s language changed a bit over time but the core principles remained the same: 1. It should be easy to read and write 2. It should be memory safe 3. It should be fast to run 4. It should be fast to compile Here&#x27;s how I approached each: 1. Vu is syntactically very close to Python. The ownership rules are the ones Rust has, but I personally find it a lot easier to parse and understand. I&#x27;ve tested this with various LLMs and found it can read and write Vu out the box because of the similarity to Python. 2. Vu uses the same principles of Rust. Every value has one owner, borrows can&#x27;t escape or outlive what they borrow, and nothing changes while it&#x27;s borrowed. 3. Vu compiles down to C at the end of the day, so everything runs approximately at C speeds. 4. vuc check on the compiler’s own source (about 21,500 lines of Vu), takes about 0.4~ s. This check covers parsing, type and borrow checking. cargo check on a Rust project that size usually takes several seconds from scratch. Then there are other opinionated language decisions. Vu has no macros, Vu&#x27;s borrow checker is lighter weight than Rust&#x27;s with simpler interfaces and generics. However, in the past few years, as Vu&#x27;s language evolved and AI began to take over, I expanded Vu&#x27;s principles to include a couple additional principles: 5. It should be secure 6. It should be efficient for LLMs to write 5. I want to pen test Vu in public. In https:&#x2F;&#x2F;github.com&#x2F;vu0tran&#x2F;vu&#x2F;tree&#x2F;main&#x2F;tests , you&#x27;ll see a battery of tests where I&#x27;m trying to basically pwn Vu. There are explicit language decisions in there as well that tries to prevent a host of security flaws that exist in other languages, e.g, integer overflow stops the program instead of quietly wrapping around. 6. The syntax of Vu is designed to be tokenizer efficient. In addition, when Vu checks throws errors, the errors are designed to be token efficient and written in a way that guides LLMs to more easily fix bugs, reducing turns overall. So, in summary, Vu is still experimental. The compiler is 21,500 lines of Vu and compiles itself. The standard library also has TLS, HTTP&#x2F;2, WebSockets and a PostgreSQL client, all tested against Python’s implementations and hostile input. I think most of the pieces are there. It does also compile down also to WebAssembly so you can play around w&#x2F; the checker on the website! Feel free to try to break it! What&#x27;s next: 1. Figure out how to get Vu to perform faster than Rust 2. Rewrite some OSS libraries in Vu to further prove the language",
+    "externalUrl": "https://vulang.org/",
+    "developer": "vu0tran",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

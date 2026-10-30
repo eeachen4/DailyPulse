@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013337",
+  "sourceItemId": "80013337",
+  "sourceUrl": "https://stackoverflow.com/questions/80013337/how-to-deal-with-this-torch-acceleratorerror-cuda-error-device-side-assert-tr",
+  "detail": {
+    "longDescription": "I am trying to compute the diagonal of the Fisher information matrix. I found this code that appears to do just that, but there are some issues with the code. First consider the code in its original form: estimated_fisher = {} for n, p in model.named_parameters(): estimated_fisher[n] = torch.zeros_like(p) model.eval() for i, (input, target) in enumerate(dl, 0): model.zero_grad() output = model(input.to(device)) label = target.to(device) loss = F.nll_loss(F.log_softmax(output, dim=1), label) loss.backward() # populate grad data # accumulate all the gradients for n, p in model.named_parameters(): estimated_fisher[n].data += p.grad.data ** 2 / len(dl) estimated_fisher = {n: p for n, p in estimated_fisher.items()} where dl is a data loader. This produces an error: RuntimeError: only batches of spatial targets supported (3D tensors) but got targets of size: : [32, 1, 420, 420] I can fix this error by changing the code estimated_fisher = {} for n, p in model.named_parameters(): estimated_fisher[n] = torch.zeros_like(p) model.eval() for i, (input, target) in enumerate(dl, 0): model.zero_grad() output = model(input.to(device)) label = target.to(device) loss = F.nll_loss(F.log_softmax(output, dim=1), label[:,0,:,:]) loss.backward() # populate grad data # accumulate all the gradients for n, p in model.named_parameters(): estimated_fisher[n].data += p.grad.data ** 2 / len(dl) estimated_fisher = {n: p for n, p in estimated_fisher.items()} But this results in another error RuntimeError: expected scalar type Long but found Float Again I can modify the code to try and fix this error estimated_fisher = {} for n, p in model.named_parameters(): estimated_fisher[n] = torch.zeros_like(p) model.eval() for i, (input, target) in enumerate(dl, 0): model.zero_grad() output = model(input.to(device)) label = target.to(device) loss = F.nll_loss(F.log_softmax(output, dim=1), label[:,0,:,:].long()) loss.backward() # populate grad data # accumulate all the gradients for n, p in model.named_parameters(): estimated_fisher[n].data += p.grad.data ** 2 / len(dl) estimated_fisher = {n: p for n, p in estimated_fisher.items()} Which results in the error in the title of this post EDIT: On changing my device to cpu I receive the following error message:",
+    "developer": "HMPtwo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "69"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

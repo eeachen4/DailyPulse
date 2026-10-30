@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50292363",
+  "sourceItemId": "50292363",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50292363",
+  "detail": {
+    "longDescription": "Hey HN, We build financial AI agents, and Apgar is the tool we wrote to see whether a harness change made an agent better or worse in production. Our offline evals can&#x27;t cover every kind of question or session real users bring, and the LLM judge we run in Langfuse is too expensive to use on more than a small slice of traffic, so some failures get through. Apgar is a small release health checker that sits on top of our Langfuse data. It picks up the release from the production traces, and for the first hours of each new release it compares the agent&#x27;s behavior with the previous release on things like tool calls per turn, retries of the same failing call, loops, output length and cost per turn (11 metrics right now). The release page shows what moved in both directions. When something gets worse, we get a Slack message (and a webhook) saying which metric moved and where the change is concentrated, for example only on Telegram or only in long sessions. We&#x27;ve been running it for a while and decided to open-source it: https:&#x2F;&#x2F;github.com&#x2F;oimo-ai&#x2F;apgar It&#x27;s not meant to be another monitoring tool. We still use Langfuse for that. Apgar only tries to answer &quot;is this release worse than the last one?&quot; It works with Langfuse or with anything that sends OpenTelemetry. There&#x27;s no LLM judge in it, so it&#x27;s cheap enough to run on all traffic. The downside is that it can&#x27;t tell that an answer is wrong if everything else about the turn looks the same. That&#x27;s still what our evals are for. It runs on Docker Compose (or Helm) with ClickHouse, and it&#x27;s Apache-2.0. The Agents page can load demo data if you want to try it without connecting anything. Curious how others deal with this. When you change your harness or prompts, how do you find out whether the agent actually got better or worse?",
+    "externalUrl": "https://github.com/oimo-ai/apgar",
+    "developer": "jtkm6",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

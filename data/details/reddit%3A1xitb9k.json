@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xitb9k",
+  "sourceItemId": "1xitb9k",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xitb9k/i_built_a_harness_that_everybody_on_my/",
+  "detail": {
+    "longDescription": "I'm an engineer at RudderStack and I started building DevBox in April, and over the next six months everybody on our engineering team ended up using it. We open-sourced it this week (MIT License).\n\nMy main frustration was that there is always some engineering work worth doing but never getting prioritized. And it keeps accumulating, too many Linear tickets in the backlog. So I built a harness to which I can assign these linear ticket and it will get back with a draft PR I'd actually merge.\n\nIt plans the change, finds out relevant org repos, writes the code, runs the tests, reviews its own diff, and opens the PR. It works on the code review comments or CI failures as well and  it pushes the fix to the same branch. What it learns about a repo, goes back to the repo as a commit on the PR and gets reviewed like code.\n\n**Some notes about the architecture and the journey (top of my mind, ask me anything I miss)**\n\n1. As I deployed it to our own cloud, other engineers started using it. And it led to a shared knowledge improving our coding harness output at a faster pace.\n\n2. My first version let a coding agent (Codex CLI) drive everything but that approach led to unexpected outcomes many times. Now the pipeline is fixed stages: orientation, planning, plan review, implementation, self-review. No code gets written until the plan passes review.\n\n3. I replaced Codex CLI with Deep Agents. Giving us more control over choosing the model and reasoning effort for each stage.\n\n4. Separated the agents from secrets and the control plane. The control plane never calls an LLM. It handles webhooks, task state and sandboxes. The harness runs inside the sandbox.\n\n5. The LLM never sees the secrets (Github tokens, LLM API Key, etc.), they are added via a proxy on its way out from sandbox to the real API.\n\n6. It struggles with vague tickets and big unspecified features. It's best on small, well-defined tasks.\n\nRepo: [https://github.com/rudderlabs/devbox](https://github.com/rudderlabs/devbox)\n\nDemo Video: [https://www.youtube.com/watch?v=F5RIdaJRal8](https://www.youtube.com/watch?v=F5RIdaJRal8)\n\n  \nThis week, I open sourced it, MIT license. Deploy it in your cloud with Docker/Kubernetes, bring your own models (OpenAI/Anthropic supported for now), no telemetry. Let me know your experience.",
+    "externalUrl": "https://i.redd.it/fqx85ap84gyh1.gif",
+    "developer": "rudderstackdev",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

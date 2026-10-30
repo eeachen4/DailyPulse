@@ -2,20 +2,21 @@
   "schemaVersion": 2,
   "id": "hackernews:50277662",
   "sourceItemId": "50277662",
+  "fetchedAt": "2026-10-30T02:57:10.630Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50277662",
   "detail": {
     "longDescription": "I built this because I tried many sales tax APIs and the problems were: a) the rates were a black box with no source attached b) lookups resolved by ZIP code. ZIP codes are postal routes, not tax jurisdictions. Stripe&#x27;s Tax team wrote a good post on this [1]: two houses in Drexel, MO share a city, a ZIP, and nearly a house number, but sit in different counties with different rates. If your lookup key is the ZIP, you are wrong on those addresses, even when the rate table is accurate. OpenTaxRate resolves the street address instead: - SST member states (24): the quarterly rate + boundary files, street ranges and ZIP+4, not just the rate tables - Non-SST states: a custom adapter for each state, using its DOR&#x27;s own published tables and boundary files (TX Comptroller, FL DR-15DSS, ALDOR, IDOR, NY Pub 718, California via CDTFA&#x27;s lookup, etc) - Census TIGER for geometry I tried with multiple open source geocoders you can self-host: Nominatim, Photon and Pelias, as well as proprietary ones (HERE, Geocodio, Mapbox, Google). Proprietary ones have higher accuracy, ~99.3% correct vs. 97.1% with just open source. For comparison: Avalara AvaTax 99.6%, TaxJar 98.2%. Public benchmark set are in the repo and at opentaxrate.com&#x2F;benchmarks. Rates are just one part of sales tax, but also there&#x27;s a ton of work in maintaining it as rules change. It doesn&#x27;t handle exemptions, holidays, and caps. It returns the rate, plus the state&#x27;s own location and jurisdiction codes for the address, resolved to the address, with its official source attached. MIT licensed, you can self-host with Postgres + PostGIS. [1]: https:&#x2F;&#x2F;stripe.dev&#x2F;blog&#x2F;how-we-built-it-jurisdiction-resolut...",
     "externalUrl": "https://github.com/equated-org/opentaxrate",
     "developer": "winxton",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "积分",
-        "value": "4"
+        "value": "5"
       },
       {
         "label": "评论",
-        "value": "0"
+        "value": "1"
       }
     ]
   }

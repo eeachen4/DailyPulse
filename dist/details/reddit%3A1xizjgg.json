@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xizjgg",
+  "sourceItemId": "1xizjgg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xizjgg/the_agent_doesnt_lie_when_it_says_done_it_answers/",
+  "detail": {
+    "longDescription": "the agent doesn't lie when it says \"done\". it answers a different question.\n\nan agent was asked to verify a security fix. it found the patch, the tests, the advisory, and the CVE text. everything matched. it said the issue was resolved.\n\nthe patch was real. the bug was different. the original trigger still fired.\n\nthat's the failure mode i care about: confident, well-sourced, and wrong about which question it answered.\n\nmost agent evals ask \"was the answer correct?\" the useful question is \"which claim did the evidence actually support?\"\n\nso i'm building a verification layer that forces the claim and the evidence to share a referent: same ticket, same PoC, same artifact, same action. if they don't, the review is about a different bug wearing the same words.\n\nif you run agent reviews, put a claim and its evidence in the comments. i'll tell you which question the evidence actually answered. first one is free.",
+    "developer": "AIGODSEND",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

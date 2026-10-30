@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xiifx4",
+  "sourceItemId": "1xiifx4",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xiifx4/running_soci_stargz_or_nydus_containerd_25/",
+  "detail": {
+    "longDescription": "A node of ours stopped starting pods for hours while it reported Ready. The root cause: containerd's snapshot GC called a proxy snapshotter plugin (soci in our case) with no deadline, the plugin stopped answering, and GC sat on a lock that everything else on that snapshotter needed. Nothing times out, so nothing recovers.\n\nWhat changes: containerd now has a `default_timeout` on proxy plugins. Every call containerd makes to the plugin gets that deadline when the caller didn't set one. That covers all 10 snapshotter calls, not only the GC path.\n\n    [proxy_plugins.customsnapshot]\n      type = \"snapshot\"\n      address = \"/var/run/mysnapshotter.sock\"\n      default_timeout = \"30m\"\n\nThings to know before you set it:\n\n1. It's merged on main (containerd#14187) and ships in 2.5, planned for January 6. Not in 2.4.\n2. Pick a value well above your slowest healthy call. A call that hits it fails.\n3. Without it, a wedged plugin can hold its lock for good. The node keeps reporting Ready the whole time.\n\nHow it got there: my first fix was a 17-line timeout on the one call that hung on my nodes. It merged after 30 review rounds, then got reverted 13 days later, because Fu Wei pointed out the plugin is an external process and can deadlock on any call, GC is just one victim. The maintainers were right, and this version is the one I should have written first.\n\nWrite-up with the review thread and the timeline: https://www.catchkill9.dev/posts/containerd-part-4-the-fix-lands.html",
+    "developer": "Fabulous-Confection6",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

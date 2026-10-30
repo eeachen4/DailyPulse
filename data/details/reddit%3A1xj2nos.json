@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj2nos",
+  "sourceItemId": "1xj2nos",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xj2nos/we_moved_60_of_our_own_agents_off_one_shared_api/",
+  "detail": {
+    "longDescription": "Last week about 113 of our scripts and agents read our systems with one master key. Only 2 went through a gateway. Here's what moving them to one key per agent taught us:\n\n1. Writing down what each agent actually calls was the slow part. We ended up with 60 separate allow-lists; six of the first 25 turned out to be identical and were merged.\n2. Most agents only needed reads. Each list names exact routes with no wildcards, and anything outside it gets a 403.\n3. Every call now needs a short-lived run (60 seconds, one call), so a runaway loop can't keep hitting the API.\n4. Retiring the master key had to come last. We turned it off only after a scan of every script and scheduled job found no reference to it, and each agent's own key had carried real traffic.\n\nCurious how others handle this: per-agent keys, a proxy, or just trusting the prompt?",
+    "developer": "No_Reindeer3079",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

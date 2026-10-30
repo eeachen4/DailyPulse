@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj2dps",
+  "sourceItemId": "1xj2dps",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xj2dps/reponative_tooling_suits_sandboxed_agents/",
+  "detail": {
+    "longDescription": "Repo native tooling come with some advantages in that they use already approved transports, like Git. Every extra channel is a negotiation with security, and a way out.\n\nMy setup:\n\n\\- OpenShell runs the agents (planner, implementer, reviewer). No secrets inside; a proxy adds them on the way out.\n\n\\- The agents and a human-supervised gatekeeper never talk directly. They leave notes in a separate Git repo, like a dead drop, which leaves an audit trail.\n\n\\- The host only reads code through bare, shallow clones, with hooks and attributes off, so nothing the sandbox writes can make the host run anything.\n\nFull write-up, on benefits and limitations: [https://ljtn.github.io/epiq/blog/repo-native-tooling-for-sandboxes.html](https://ljtn.github.io/epiq/blog/repo-native-tooling-for-sandboxes.html)\n\nDisclosure: I built Epiq, the workflow tool used as the dead drop.",
+    "externalUrl": "https://ljtn.github.io/epiq/blog/repo-native-tooling-for-sandboxes.html",
+    "developer": "OutrageousAbies5835",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "ljtn.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

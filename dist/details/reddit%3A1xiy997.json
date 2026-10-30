@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xiy997",
+  "sourceItemId": "1xiy997",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xiy997/keeping_tool_results_out_of_context_the_model/",
+  "detail": {
+    "longDescription": "A pattern I kept hitting: a tool fetches 47 rows. Put them all in context and you pay \\~2,000 tokens on every later turn. Summarise them and the model starts describing rows it never saw. Then it asks \"which one?\" in prose, and you parse \"the second one\" out of the reply.\n\nSo I built HaiKIT (MIT, TypeScript), which splits every tool result in two:\n\n* **Model channel:** a digest you write, required by the types. 67 tokens for those 47 flights, with the cheapest, the cheapest nonstop and the fastest worked out in advance, plus a handle.\n* **UI channel:** the full rows, streamed to the browser as a component. They never enter context.\n* **Dereference:** the model can query the handle through `query_ui`, and a query can only return a value made by a cap function, so a filter that matches everything can't refill the context.\n* **Elicit:** a tool emits `tool_use` and sends no `tool_result`. The turn is stored, the response closes, and the user's click becomes the result, however long it takes.\n* **Injection boundary:** the browser sends only `{handle, action, value}`. It can't name a tool or a target, and the value is checked against the action's schema.\n\nAdapters for Claude and OpenAI's Responses API, and a Postgres store with fenced turn leases.\n\n* Code: [https://github.com/wfoxd/haikit](https://github.com/wfoxd/haikit)\n* Website: https://haikit.app\n* Live demo on Claude Haiku 5.5: [https://rebook.haikit.app](https://rebook.haikit.app)\n\nI'd most like to hear what HaiKIT would need before you'd use it, and what you'd build with it.",
+    "developer": "Head_Inspector2200",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

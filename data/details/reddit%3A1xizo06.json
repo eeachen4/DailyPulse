@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xizo06",
+  "sourceItemId": "1xizo06",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xizo06/humanintheloop_in_langgraph_dodont_pairs_for/",
+  "detail": {
+    "longDescription": "Notes on placing human approval in a LangGraph agent, as pairs. I’m describing how I understand the current API, so check the docs for your version.\n\n**Don’t: pause before every node.**  \n**Do: pause only before steps that are hard to undo and wouldn’t announce themselves if wrong** (issuing a refund, deleting records, sending an email). A drafted reply is cheap to discard. If every step asks for approval, reviewers learn to click without reading.\n\n**Don’t: show the model’s explanation of what it plans to do.**  \n**Do: put the effect in the interrupt payload:** the action name, the target record, the amount, and a dry-run or diff if you have one. A well-written summary of a bad action reads fine. The effect usually doesn’t.\n\n    from langgraph.types import interrupt\n    \n    def issue_credit(state):\n        decision = interrupt({\n            \"action\": \"issue_credit\",\n            \"account_id\": state[\"account_id\"],\n            \"amount\": state[\"amount\"],\n            \"reversible\": False,\n        })\n        if decision != \"approve\":\n            return {\"status\": \"rejected\"}\n        # perform the side effect only after approval\n        ...\n\n**Don’t: run side effects before the** `interrupt()` **call in the same node.**  \n**Do: do the work after it.** As I understand it, when the graph resumes, the node runs again from the start, so anything before `interrupt()` can happen twice. Keep code ahead of it free of side effects, or make it idempotent.\n\n**Don’t: forget persistence.**  \n**Do: compile the graph with a checkpointer and pass a stable** `thread_id`**,** because the run has to be saved while it waits and found again on resume. Use a real database-backed checkpointer if approvals can take hours or days.\n\n**Don’t: treat the approval rate as a success metric.**  \n**Do: track rejections and sample reviews,** for example from your traces in LangSmith or your own logs. A gate that never rejects may mean a good agent or a review that isn’t catching anything, and approval counts alone can’t tell you which.\n\n**Don’t: assume one approver is enough for everything.**  \n**Do: give rejecting the same one-click cost as approving,** and decide in advance who is allowed to say no and what happens after: a retry, an edit by the reviewer, or a stop.\n\n**Open questions I have:**\n\n* Do you use `interrupt()` inside tool nodes, or static `interrupt_before` on nodes? What made you choose?\n* How do you handle approvals that arrive hours later, and timeouts?",
+    "developer": "ClickOk5811",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

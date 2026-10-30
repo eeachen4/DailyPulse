@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xizs9t",
+  "sourceItemId": "1xizs9t",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xizs9t/psa_the_docsdefault_create_agent_sqlitesaver/",
+  "detail": {
+    "longDescription": "I run red-team labs against agent stacks (previously: n8n execution data). This week I ported the same storage-exhaustion attack to the default LangChain deployment pattern — create_agent + SqliteSaver, wired exactly like the docs show — and the result was significantly worse than n8n: 10.4× storage amplification, growing quadratically with conversation depth.\nTL;DR numbers (langchain 1.4.7, langchain-core 1.7.1, langgraph 1.2.18, langgraph-checkpoint-sqlite 3.1.2, Python 3.14.7):\n6 sessions × 5 messages × 600 KB = 18.4 MB of input → 192.4 MB on disk\nGrowth is O(n²) per session: the checkpointer writes the entire conversation on every superstep, so message k persists ~k× its own payload. The per-message delta in a 10 × 600 KB session grew from ~4 MB to ~13 MB as the conversation deepened.\nInput is checkpointed before inference — persistence is identical whether the LLM answers, times out, or errors. Attack cost to you: 1 unauthenticated HTTP request per message.\nDELETE reclaims 0 bytes. freelist_count rises, page_count doesn't move; the file only shrinks with VACUUM + PRAGMA wal_checkpoint(TRUNCATE) (37.9 MB recovered in the lab). If you run a TTL thread-deleter sidecar, this part is for you.\nDisk full → SQLITE_FULL → permanent crash-loop with no recovery through your own API.\nWhat did NOT reproduce from the n8n lab (good news, and why I trust the rest):\nLoading every flooded session's full state in the server process — the n8n heap-OOM vector — was survivable: 3 rounds over ~24.6 MB of attacker text, VmHWM plateaued at 235 MB. LangGraph's msgpack/pydantic parse doesn't amplify memory the way n8n's includeData=true did.\nThe n8n \"empty success\" pattern (LLM burns all tokens on reasoning, returns content='' as a success) didn't show up with max_tokens=4096. Instead I got clean, honest LLM timeouts at 2–16 KB.\nMitigations that actually matter (none exist by default):\n1. Cap request body size at the proxy/app — the single effective control. The checkpointer stores whatever the request carried.\n2. Trim the message list before invoke (rolling window) — converts O(n²) → O(n).\n3. PRAGMA max_page_count as a disk fuse + a filesystem quota on the state directory.\n4. Schedule offline VACUUM (with the WAL gotcha: measure after wal_checkpoint(TRUNCATE) or your monitoring will lie to you).\n5. Alert on DB growth per thread vs request count — quadratic growth is trivially alertable.\nFraming, so nobody has to fight about it in the comments: this is not a CVE and not a code bug. Full-state checkpoints are the intended design of a checkpointer. It's a design-level resource-exhaustion risk that deployments inherit when untrusted users control message size — and the mitigations are all configuration/architecture level. The repo is a lab, not a vulnerability claim.\nRepo — victim app, attack batteries, raw JSON evidence, run logs, full methodology, exact pinned versions, everything reproducible on loopback: https://github.com/schwabauerbriantomas-gif/langchain-agent-dos-lab\nEverything ran against a local victim on my own machine. Curious how you all are bounding checkpoint growth in production — rolling-window checkpointers, Postgres + quotas, something built into newer langgraph I missed?",
+    "developer": "TallAdeptness6550",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

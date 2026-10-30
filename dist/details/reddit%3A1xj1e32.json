@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj1e32",
+  "sourceItemId": "1xj1e32",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xj1e32/using_claude_to_put_all_global_law_into_git/",
+  "detail": {
+    "longDescription": "This hit #1 on HN yesterday (you can read lots of discussion at [https://news.ycombinator.com/item?id=50268380](https://news.ycombinator.com/item?id=50268380)). Why would I want to do this? The idea is make all law semantic, versioned, easily attributable and query able by agents. I also believe this information should be freely available so CC0 license (do whatever you want with it). If interested, repo linked below, I'd welcome all comments and advice. Thanks!\n\n[https://github.com/lexifina/global-law](https://github.com/lexifina/global-law)\n\nThe approach is pretty simple: use claude to make legislation attributable (git blame, versioning with timelines). Specifically:\n\nOne agent per country. Each one read the official publisher's site or API, checked robots.txt and the terms of use, and wrote a script that downloads every version of each law. The script then writes them out as a git history, one commit per change on its in-force date. When a source only publishes amending Acts, the script rebuilds past versions by applying each amendment in turn. The sessions shared findings with each other, such as dates before 1970, daylight-saving edge cases and other changes.\n\nI also worked on how the countries combine into one tree, with each country as a git submodule and all their histories interleaved by in-force date. Claude wrote the build script to ensure two independent builds come out hash-for-hash identical (usually i'd consider this overkill, but you want a good VCS for this).",
+    "developer": "SnooPeripherals5313",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

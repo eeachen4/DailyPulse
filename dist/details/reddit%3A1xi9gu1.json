@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xi9gu1",
+  "sourceItemId": "1xi9gu1",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xi9gu1/deleted_workloads_can_leave_a_storage_bill_behind/",
+  "detail": {
+    "longDescription": "I maintain [**OrphanScan**](https://github.com/ClusterLedger/OrphanScan) under the ClusterLedger GitHub organization. It’s a free, open-source CLI in beta for finding PVCs and AWS resources worth reviewing before the next bill.\n\nIt checks PVCs with no existing Pod references, unattached EBS volumes, unassociated Elastic IPs, and load balancers without registered backends.\n\n**Example report excerpt — synthetic data, baseline estimates:**\n\n    Unattached EBS volumes               1   $8.00/month\n    Load balancers without backends      1   $16.20/month\n    PVC candidates                      1   $8.00/month\n    \n\n**It’s read-only and never deletes resources.** Reports mask resource identifiers, and optional telemetry is off until you opt in.\n\n**Try a Kubernetes-only scan:** [download v0.1.0](https://github.com/ClusterLedger/OrphanScan/releases/tag/v0.1.0), then run with your current Kubernetes context:\n\n    orphanscan --sources=kubernetes --verbose\n    \n\nFindings need human review: retained storage can be intentional, and AWS/PVC cost estimates can overlap.\n\nIf it turns up something unexpected in your test cluster or AWS account, I’d like to hear what you found.\n\n[Detection rules](https://github.com/ClusterLedger/OrphanScan/blob/main/docs/detection-and-pricing.md) · [Overview diagram](https://github.com/ClusterLedger/OrphanScan/blob/main/docs/images/orphanscan-overview.png)",
+    "externalUrl": "https://i.redd.it/0ee8yg6iubyh1.png",
+    "developer": "neha037",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

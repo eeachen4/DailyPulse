@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj1gnw",
+  "sourceItemId": "1xj1gnw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xj1gnw/ninfer2080ti22g_now_supports_windowsnative_and_is/",
+  "detail": {
+    "longDescription": "[v0.3.0 of NInfer for Turing](https://github.com/mr-september/ninfer-2080ti-22g/releases/tag/v0.3.0) is out, and this is all about streamlining the UX. \n\nFor context, this is an engine for running Qwen3.6/8-27B (and ONLY Qwen3.6/8-27B) on a single modded 22 GB RTX 2080 Ti. It is designed to ONLY use VRAM, no system RAM offloading, hence it does not support 35B-A3B. Fine-tunes and abliterations etc are supported as well, just use the \\`.ninfer\\` checkpoint converter.\n\n\\*\\*What's new\\*\\*\n\n\\- \\*\\*Native Windows.\\*\\* Previously this required Linux, WSL2, or Docker. Now Windows users don't need to worry about partitioning/releasing CPU/RAM.\n\n\\- \\*\\*Prebuilt releases.\\*\\* You can still compile it yourself, requiring CUDA, Visual Studio and FFmpeg and takes a while, but now you can also just download a pre-compiled zip and run a single script.\n\n\\- \\*\\*Streamlined.\\*\\* Removing \"useless\" (for us) code paths for RTX 5090, FP8, FP4, and 35B-A3B (fits fully in 32GB VRAM but not in 22GB) cut the built binaries from 1.56GB to 0.28 GB. Builds now take minutes, not hours. Outputs remain bit-identical.\n\n\\*\\*What you get\\*\\*\n\n\\- OpenAI-compatible and Anthropic-compatible APIs, plus a command-line tool.\n\n\\- Image and video input, thinking mode, and CUDA Graph decode.\n\n\\- 64k context by default, using an INT8 KV cache. The weights take 15.4 GiB, so you need the 22 GB card.\n\n\\- MTP speculative decoding, on by default.\n\n\\*\\*Numbers\\*\\* (one 2080 Ti 22 GB, Windows 11, single request)\n\n| | |\n\n|---|---|\n\n| prefill, 512-token prompt | 616 tok/s |\n\n| prefill, 64k-token prompt | 458 tok/s |\n\n| decode, no MTP | 27.0 tok/s |\n\n| decode, MTP, real code prompt | 47.5 tok/s (26.3 without MTP) |\n\n| decode, MTP, real prose prompt | 28.8 tok/s (26.0 without MTP) |\n\n\\* MTP helps a lot on code and little on prose.\n\n(Apache-2.0, derived from [Neroued/ninfer](https://github.com/Neroued/ninfer))",
+    "developer": "xrailgun",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xigylx",
+  "sourceItemId": "1xigylx",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xigylx/i_landed_a_devops_role_as_a_junior/",
+  "detail": {
+    "longDescription": "30K\\~ DAU, I have full ownership over an infra under AWS/multiple on premise servers.\n\nwe use ECS, terraform, instead of ansible I use a [deploy.sh](http://deploy.sh) that i give to my boxes with terraform, no graceful deploys. we have our own orchestrator (K8S like) for stateful containers that we have to spin up and down very often (median 1 min of uptime per container) with unsafe code coming from AI/users.\n\nI took the place of someone who left that company and explained me nothing, we are 2 devs, nobody understands how this entire infra works expect me. have been adding observability a lot using cloudwatch, multiple alerts so I page myself at the right times, it's stable but we need to scale to at least 5x (an objective the hierarchy gave me). it currently costs 3.5k/month in aws/on premise servers. btw it's not a classical rest api where you run stateless apis and that's it. \n\nI just discovered how redis worked under a distributed system like this, it's quite good :) I have been a postgresql guy but redis has been a saver for our threat model.\n\nI often read here that you should put everything : EKS + K8S, ansible, terraform, make HA, grafana etc.. but since I manage this entire infra I have been resilient to all of this. If I refactor everything right now they have nobody to do the backend (which is also what I do here) -> \"startup\" role where one guy has multiple roles.\n\nfor the terraform it's all AI, I have been doing a lot of modifications and have created a terraform plan under ci cd so I can review myself, I removed a lot of \"destruction\" like the database, i versionned the s3, versionned the terraform state, put it to a private s3 etc...\n\nnothing rly interesting maybe for you guys in this experience but I have learned a lot, it has been a crescendo experience where i'm getting to understand more and more which tools to put there because I am the one who owns it 100%, and have to also do features (backend) so not much time either. ",
+    "developer": "CounterStrike17",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
