@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjtrvz",
+  "sourceItemId": "1xjtrvz",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xjtrvz/how_do_you_verify_what_your_agent_actually/",
+  "detail": {
+    "longDescription": "I kept hitting this: an agent reports \"updated customer 3,\" the trajectory looks fine, but it also modified customer 5 and never mentioned it. Reading the transcript (or having an LLM grade it) misses this, because both trust the agent's story.\n\n\n\nMy current approach: run the agent against a throwaway DB, route every tool call through a gateway that logs what really executed, then diff before/after state and run deterministic checks. The agent's claims are compared to the diff but never decide pass/fail.\n\n\n\nIt's caught extra-row changes, claimed updates that never ran, and attempts to edit its own test criteria.\n\n\n\nHow are others handling this? Snapshot diffs, DB triggers, something else? Happy to share the code if useful.",
+    "developer": "dead_man_walking67",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

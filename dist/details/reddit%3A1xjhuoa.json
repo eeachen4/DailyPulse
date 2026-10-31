@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjhuoa",
+  "sourceItemId": "1xjhuoa",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xjhuoa/where_do_you_keep_upstream_api_keys_for_an_llm/",
+  "detail": {
+    "longDescription": "the litellm 1.107.0 stealer didnt stop at env vars, going by the writeups it also queried the proxys own postgres for saved provider credentials. those are encrypted at rest with the salt key but that key usually sits in the same process env so anything running inside the proxy gets both\n\nwhich makes me wonder if a gateway should hold long lived upstream keys at all\n\nfor keys that have to exist it seems to come down to a scoped key per team with a spend cap, or short lived keys per workload from vault, hush security or a broker you run yourself. defining models in config with os.environ references at least keeps them out of the db, tho theyre still in the process and claude takes oidc tokens through workload identity federation now so for that one provider theres nothing stored to steal",
+    "developer": "Early-Sir-932",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

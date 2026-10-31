@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjy0uv",
+  "sourceItemId": "1xjy0uv",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xjy0uv/a_few_predictions_on_qwen4_hc_and_quantization/",
+  "detail": {
+    "longDescription": "I previously wrote about the shift to 4-way HC.\n\nTraditionally, optimization has focused primarily on FFN and Attention. With the HC architecture, however, residual stream mixing and information preservation must also be taken into account when optimizing for quality, model size, and speed.\n\nNVFP4 may distort the fine-grained gating relationships in HC due to the limited effective precision of its E2M1 format. In particular, tensors responsible for the relative distribution of information across streams may require higher precision than conventional FFN weights.\n\nRather than relying on existing quantization approaches, we may need quantization strategies specifically optimized for HC sensitivity.\n\nIf Qwen4 27B is released with HC, I expect the perceived performance gap between Q4 and Q6 quantization to become significantly larger.\n\nA 3B HC parameter allocation alone would require around 6GB in FP16.\n\nFor hardware below the RTX 5090 in inference performance, including Macs and DGX Spark, MoE models may be more practical due to speed constraints. For HC models, I would lean toward llama.cpp rather than NVFP4-focused solutions like NInfer, which are optimized for Blackwell GPUs.\n\nI also expect HC to deliver a much bigger performance improvement for the 27B dense model than for MoE models like Flash.",
+    "developer": "Ok-Shower7286",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

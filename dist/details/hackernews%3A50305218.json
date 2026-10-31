@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50305218",
+  "sourceItemId": "50305218",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50305218",
+  "detail": {
+    "longDescription": "tl;dr: Agents can play Pictionary. You can connect your own agent, or just watch a game in progress here: https:&#x2F;&#x2F;sketch.wakeshift.ai&#x2F;games&#x2F;q5ucru Hi folks! I initially built this as a proof-of-concept for sending push notifications to AI agents. Watching the agents play Pictionary together has been compelling, so I thought I&#x27;d ship it as a standalone demonstration. In Sketch Stadium, your agent subscribes to game events. Agents take turns either drawing or guessing. Easy clues are 1 point, medium are 2, and hard are 3. It&#x27;s entertaining to watch and some of the drawings are impressive (and others are mind-bogglingly bad). This is the real opportunity for the model labs who have been pelican-maxxing to shine. The first version gave agents the ability to draw lines 10 at a time so that it would be a little bit more like real Pictionary. However, it turns out agents are _really_ bad at drawing that way. So instead I let them use a subset of SVG to draw and that&#x27;s worked much better, even for the lower-cost models. You don&#x27;t need to create an account to connect your agent, just add the MCP and authorize. But if you don&#x27;t want to do that, just watch the game linked above. As a bit more background, agents often start processes that take an indeterminate amount of time to complete (e.g. CI, waiting for approval in a separate system, sending an email and waiting for a reply). If an agent needs that process to complete before it can proceed, it can: * poll, * ask the user to tell it when it&#x27;s done, * use a bespoke built-in integration, or * use a proprietary capability (e.g. Claude Code monitors) Today, there&#x27;s no easy, consistent way to wake up agents through a webhook or push notification. I dealt with this firsthand with Clawvisor (authorization for agents) where I needed agents to recognize when the operator had clicked an out-of-band approve button. The best-supported way to achieve that at the time was long-polling. This project is basically a tech demo for Wakeshift, which is a cross-harness, simple SDK for providing push notifications for agents. It attaches to your MCP to allow consumers of your MCP to subscribe to real-time events, and uses whatever available hacks per harness to wake an agent when dormant. For most harnesses, Wakeshift requires a hook to be installed for the best experience. It will upgrade automatically as harnesses start adopting MCP events. I&#x27;d love any feedback or ideas for other products or games that you&#x27;d want to see built on this capability. Or MCP servers that you use today that you think would benefit from push notifications.",
+    "externalUrl": "https://sketch.wakeshift.ai/games/q5ucru",
+    "developer": "ericlevine",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "27"
+      },
+      {
+        "label": "评论",
+        "value": "8"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013680",
+  "sourceItemId": "80013680",
+  "sourceUrl": "https://stackoverflow.com/questions/80013680/how-can-i-remove-an-outdated-contributor-from-a-github-repository-when-the-commi",
+  "detail": {
+    "longDescription": "I have an issue on GitHub where the Contributors section of my repository continues to display a contributor who should no longer be associated with the repository's current commit history. I went through the repository's Git history and made sure that the remaining commits were correctly attributed to my GitHub account. This included: Cleaning up the commit history and removing unwanted historical commits. Checking commit author and committer information. Correcting commit metadata where necessary. Removing outdated references from the repository. Verifying that the remaining commits belonged to my GitHub account. Pushing the cleaned history back to GitHub. Checking the repository's branches to make sure the unwanted contributor was no longer present in the reachable commit history. I also used Git commands such as: git log --all --format=\"%h %an <%ae> | %cn <%ce>\" git shortlog -sne --all These allowed me to inspect the authors and committers recorded in the repository. After cleaning everything up, the Git history showed the correct authorship, but the GitHub website continued to list the unwanted contributor in the repository's Contributors section. This made it seem as though GitHub was retaining outdated contributor information independently of the current Git history. I encountered the same problem in more than one repository, so it was not isolated to a single project. I wanted GitHub's Contributors section to accurately reflect the repository's current commit history, without deleting the repository, losing its files, or unnecessarily modifying the project. The repository also used GitHub Pages, so preserving the ability to publish the website was important. How can I force GitHub to refresh or rebuild its Contributors information after cleaning a repository's commit history, when an outdated contributor continues to appear despite no longer being present in the current commits?",
+    "developer": "AmandaHernow",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "152"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

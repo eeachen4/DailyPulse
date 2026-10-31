@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjykzx",
+  "sourceItemId": "1xjykzx",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xjykzx/larawag_a_threejs_npm_package_for_rendering/",
+  "detail": {
+    "longDescription": "Hey guys, I wanted to share this package I've been working on in the last few days for a bigger project. It's basically **a NPM package that allows you to create your custom stellar systems and uses three.js to render them in 3D.**\n\n**Live example:** [**https://larawag.rachzy.dev/**](https://larawag.rachzy.dev/)\n\nIt's mostly intended for drawing hypothetical, highly speculative visualizations of stellar systems for exoplanets (keep in mind that it's 100% Artist's Conceptions).\n\nLarawag core is environment agnostic (which means it can run even on vanilla HTML as long as you have a Node setup), but you can also use its integrations with third-party frameworks:\n\n* Larawag's Core: [@larawag/core](https://www.npmjs.com/package/@larawag/core)\n* React: [@larawag/react](https://www.npmjs.com/package/@larawag/react)\n* Angular: [@larawag/angular](https://www.npmjs.com/package/@larawag/angular)\n\n# How to use\n\nAs I mentioned before, the usage is very straightforward:\n\nFirst, download the package and its dependencies: `npm install @larawag/core three@0.186`\n\nThen, import it and create your own system:\n\n    import { createStarSystem } from '@larawag/core';\n    \n    const view = createStarSystem(document.getElementById('stage')!, {\n      star: { name: 'Example K dwarf', teff: 5100, radius: 0.8, mass: 0.85 },\n      planets: [\n        { name: 'Candidate b', period: 4.2, radius: 1.5, phase: 0.6 },\n        { name: 'Candidate c', period: 18.5, radius: 3.6, phase: 2.9 },\n      ],\n    });\n    \n    view.pause();\n    view.setScaleMode('true');\n    view.destroy();\n\nThis will use the `#stage` element as the window for rendering your system and set the scale mode to `true`, and you should already see it working in your HTML page.\n\n# Contributing\n\nThere are still some things I'm willing to implement in the future, such as planet moons, eccentric/inclined orbits, and a more accurate orbital system for planets in binary systems. I left all of them in a TO-DO list in README.md\n\nIf any of you are perhaps interested in contributing to the project, I'd really appreciate it.\n\n**Source code**: [https://github.com/rachzy/larawag](https://github.com/rachzy/larawag)\n\n**License**: MIT",
+    "externalUrl": "https://i.redd.it/l9pc5ntxqpyh1.png",
+    "developer": "rachzera",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

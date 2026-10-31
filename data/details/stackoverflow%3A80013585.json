@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013585",
+  "sourceItemId": "80013585",
+  "sourceUrl": "https://stackoverflow.com/questions/80013585/netbox-plugin-with-template-extension-does-not-take-account-of-plugintemplateext",
+  "detail": {
+    "longDescription": "I break down my issue in a generic netbox plugin stub arranged this way: . └── my_plugin_name ├── __init__.py └── template_content.py my_plugin_name/template_content.py is based on template_content.py of NetBox's plugin tests. However, the plugin works for global sites, but not for the given model: class SiteContent(PluginTemplateExtension): models = ['dcim.site'] I adapted the classes in order to just print out invoked class and functions: from netbox.plugins.templates import PluginTemplateExtension from . import MyPlugin import inspect def log_result(classname,funcname): txt = classname+\".\"+funcname+\"()\" print(\"LOG\\t\"+MyPlugin.name+\"\\tINFO\\t\"+txt) return txt class SiteContent(PluginTemplateExtension): models = ['dcim.site'] def head(self): return \"<!-- \"+log_result(str(type(self).__name__),str(inspect.stack()[0][3]))+\" -->\" def navbar(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def buttons(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def alerts(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def left_page(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def right_page(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def full_width_page(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) def list_buttons(self): return log_result(str(type(self).__name__),str(inspect.stack()[0][3])) class GlobalContent(SiteContent): models = None template_extensions = [GlobalContent, SiteContent] for https://.../dcim/devices/ it logs (and shows on the web page): LOG my_plugin_name INFO GlobalContent.head() LOG my_plugin_name INFO GlobalContent.navbar() LOG my_plugin_name INFO GlobalContent.navbar() LOG my_plugin_name INFO GlobalContent.list_buttons() for https://.../dcim/devices/1 LOG my_plugin_name INFO GlobalContent.head() LOG my_plugin_name INFO GlobalContent.navbar() LOG my_plugin_name INFO GlobalContent.navbar() LOG my_plugin_name INFO GlobalContent.buttons() LOG my_plugin_name INFO GlobalContent.alerts() LOG my_plugin_name INFO GlobalContent.left_page() LOG my_plugin_name INFO GlobalContent.right_page() LOG my_plugin_name INFO GlobalContent.full_width_page() and for for https://.../dcim/devices/edit LOG my_plugin_name INFO GlobalContent.head() LOG my_plugin_name INFO GlobalContent.navbar() LOG my_plugin_name INFO GlobalContent.navbar() However, only GlobalContent is invoked (models = None ) but not SiteContent ( models = ['dcim.site'] ) and I wonder why as it comes from a NetBox's test. I also try models = ['dcim.sites'] as netbox/dcim/models has no file site.py but sites.py . And I try models = ['dcim.Site'] as this is listed in sites.py:prerequisite_models() but without any change.",
+    "developer": "Rainer",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "87"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50310690",
+  "sourceItemId": "50310690",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50310690",
+  "detail": {
+    "longDescription": "In 2014 I wrote a tutorial on how to write an efficient matrix multiplication that can achieve near peak performance. This is actually not achieved by some Strassen algorithm variant. It&#x27;s achieved through a cache friendly algorithm (exploiting the cache hierarchy) and SIMD register instructions. The tutorial showed how to achieve that step by step. Beginning with a naive implementation using three loops. Then using buffers to first cache matrix blocks and then performing the matrix product block wise. That actually means you make copies of blocks and then do computations with the blocks. Sounds stupid but makes sense: Assume you have square N x N blocks then cost of make making a copy is O(N^2) and for the computation it&#x27;s O(N^3). If the computation with the copied&#x2F;cached blocks is much faster this actually pays of. Anyway the details are explained in the tutorial. As the university web server has changed many times after 2014 I moved it to GitHub: https:&#x2F;&#x2F;github.com&#x2F;michael-lehn&#x2F;gemm-tutorial From the tutorial I created ulmBLAS (ulm makes sense, as I work at Ulm University) which is a complete BLAS implementation. Recently I started with a tutorial for the matrix multiplication with Cuda. Currently there is not much text, I just outlined a possible step by step approach to go from naive to a performant implementation (actually the goal was to be on par with NVIDIA&#x27;s cuBLAS; but it&#x27;s more on parish ... but I think still gives an idea). It in the cuda subdirectory of ulmBLAS: https:&#x2F;&#x2F;github.com&#x2F;michael-lehn&#x2F;ulmBLAS",
+    "developer": "michael-lehn",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

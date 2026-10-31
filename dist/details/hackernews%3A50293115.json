@@ -2,20 +2,21 @@
   "schemaVersion": 2,
   "id": "hackernews:50293115",
   "sourceItemId": "50293115",
+  "fetchedAt": "2026-10-31T02:45:37.361Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50293115",
   "detail": {
     "longDescription": "Hi HN, I&#x27;m Ruud, co-founder of Lont. We turn company emails into personalized videos. Video captions cost us manual work twice: fixing misheard words, then fixing layout, like lines ending on “the”. Overtone uses multiple models to listen to the audio: gpt-transcribe, Azure STT, and Elevenlabs Scribe. When they return conflicting results, Overtone sends small clips to the models again, and then lets an LLM decide what was actually said. The LLM is like a human doing a sanity check on the transcription model. Humans would easily recognize a word to be different based on context. The LLM basically does the same, using an optional context prompt + its world knowledge. Because of this the Word Error Rate (WER) on many test files is lower when using Overtone, compared to just using a model without it. Sure, the cost is higher because we use up to 3 different STT models + an LLM, but it still removes mistakes, reducing the time needed to fix captions to a minimum, and reducing the chance you&#x27;ll miss something. For us it&#x27;s worth it. For ultra high volume use cases it may not be. The rules-based cutter nicely cuts the transcript into captions that look good, depending on screen size: 16:9 is different from 9:16, and the Overtone Format we created supports any type really. Pauses become breaks, captions are grouped per speaker, and names&#x2F;numbers are never spread out over multiple captions. How to add these captions to your videos? A videojs plugin can do this automatically, so you don&#x27;t burn in your captions. The plugin lets you cycle between styled captions, plain captions, and off. You can burn them into an MP4 file with overtone burn. Quickly try it out just the cutter? Try: npx overtone-captions recut yoursub.srt Transcribing audio with API keys works too. Use --dry-run to show a cost estimate before you send. We open-sourced this first version (MIT) because we believe many people can benefit from this, especially if your captions just need to be good. There&#x27;s plenty of room to improve though, so we&#x27;ve made it easy to help contribute to add style packs, languages, and providers&#x2F;models. You can find a demo at: https:&#x2F;&#x2F;overtone.lont.ai&#x2F; Find the code and benchmarks here: https:&#x2F;&#x2F;github.com&#x2F;lonthq&#x2F;overtone-captions",
     "externalUrl": "https://github.com/lonthq/overtone-captions",
     "developer": "rvanderlinden",
-    "comments": 2,
+    "comments": 10,
     "stats": [
       {
         "label": "积分",
-        "value": "37"
+        "value": "43"
       },
       {
         "label": "评论",
-        "value": "2"
+        "value": "10"
       }
     ]
   }

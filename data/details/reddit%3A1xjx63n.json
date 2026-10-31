@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjx63n",
+  "sourceItemId": "1xjx63n",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xjx63n/just_rediscovered_batching_and_swarming_while/",
+  "detail": {
+    "longDescription": "Running one harness/agent gives overall less tokens-per-second (tps) than running multiple agents at the same time. Who'd have thought?\n\nThough each agent has slower tps and a smaller cache, on average they are much more efficient overall in the token generation.\n\nI'm Running a 3090 with 24gb of VRAM.\nQwen3.8 27B Q4_K_M    \nContext: 197k\n\nOf course the more agents you have, the less context each gets. Thus one needs to auto-compact / loop efficiently. This way one can run multiple agents on one piece of hardware and maximise the burn-rate without increasing the energy used.\n\nFrom there swarms can be allowed, were each agent has the ability to spawn as many sub-agents with small tasks upto the optimum amount of agents per machine (12 on mine).\n\nAgents generating | Total tok/s | Per agent\n---|---|----\n1 | 30 | 30\n2 | 46 | 23\n4 | 64 | 16\n6 | 74 | 12\n8 | 78 | 10\n12 | 110 | 9\n16 | 111 | 7",
+    "developer": "Mchanger",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

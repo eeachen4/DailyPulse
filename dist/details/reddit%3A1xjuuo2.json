@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjuuo2",
+  "sourceItemId": "1xjuuo2",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xjuuo2/agents_never_rechecked_a_write_on_their_own_only/",
+  "detail": {
+    "longDescription": "I tested how agents handle a write tool that returns “success” but doesn’t actually save anything. I used 20 τ-bench airline tasks with Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4.1 Flash, at low and high reasoning effort.\n\nThe part that matters for anyone building with tool calls:\n\n* When a later write to the same booking returned the full booking, agents caught the failure 21 of 28 times\n* When there was no later write, they caught it 0 of 90 times\n* Not once did an agent call a read tool to confirm a write before moving on\n* Turning up reasoning effort didn’t change any of this\n\nSo what’s in the tool response matters way more than the model. If your write tools return the saved record, read back fresh from the database, the agent can actually see when something went wrong.\n\nIf anyone's interested: \n\nWrite-up: [https://outsideengineer.substack.com/p/thinking-harder-doesnt-help-ai-catch](https://outsideengineer.substack.com/p/thinking-harder-doesnt-help-ai-catch)  \nCode and transcripts: [https://github.com/brianna-rose05/thinking-harder-silent-failures](https://github.com/brianna-rose05/thinking-harder-silent-failures)",
+    "externalUrl": "https://i.redd.it/kmmxr6w7woyh1.png",
+    "developer": "TruthDeep8659",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

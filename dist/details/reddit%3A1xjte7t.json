@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjte7t",
+  "sourceItemId": "1xjte7t",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xjte7t/made_a_really_good_qwen38_27b_16gb_setup_no/",
+  "detail": {
+    "longDescription": "I wanted to share my setup thats working really well for my fellow 16GB desktop suffrage crew. I am able to get 110k context with \\~1.5GB to spare and around 55 t/s on my 5070 TI.  \n\nFirst off I found this model [https://huggingface.co/hitsfmdj/Qwen3.8-27B-GGUF-4.2BPW-16GB](https://huggingface.co/hitsfmdj/Qwen3.8-27B-GGUF-4.2BPW-16GB) with custom weights that seems to be pretty good and only 11.8GB. However even with this model, I ran into issues with context windows greater than \\~60k. Sometimes it would fit on the GPU and other times it didnt. It was a good size, but not enough for larger coding tasks and network automation stuff.  \n\nSo I setup my computer to utilize my iGPU on my 9800X3D as my main display driver instead of the 5070 TI 16GB. Xorg alone was eating up 600-800MB of VRAM. The more applications I opened, the more VRAM I used the more problems/slowness I had. With my motherboard MSI MAG x870e Tomahawk, I can enable Hybrid Graphics which allows me to set the primary display driver as the iGPU instead of the 5070 TI but still utilize the 5070, reserving the full 16GB of VRAM for llama and gaming. I tested playing my main game Overwatch on my main display at 1440P 144hz and the game ran just fine at my FPS cap of 300. Ive been very happy so far with this setup, the extra context size has been a real game changer for longer and more complex tasks, its fast enough to persuade me away from ChatGPT.  \n\nI do also have a pretty decent overclock on my GPU. +350 Core, +4000 Mem, +350 Xbar and 350 watt bios, I have 32GB DDR5.\n\n\n\n=========================================================================================|\n\n|    0   N/A  N/A            1638      G   /usr/lib/xorg/Xorg                       55MiB |\n\n|    0   N/A  N/A           44165      C   ...ma.cpp/build/bin/llama-server      14734MiB |\n\n\\+-----------------------------------------------------------------------------------------+\n\nExecStart=/home/jayecin/AI/llama.cpp/build/bin/llama-server \\\\\n\n\\--model /home/jayecin/AI/Models/Qwen3.8-27B-4.2BPW-16GB.gguf \\\\\n\n\\--alias Qwen3.8-27B \\\\\n\n\\--host [0.0.0.0](http://0.0.0.0) \\\\\n\n\\--port 8080 \\\\\n\n\\--ctx-size 110000 \\\\\n\n\\--fit on \\\\\n\n\\--flash-attn on \\\\\n\n\\--cache-type-k q8\\_0 \\\\\n\n\\--cache-type-v q4\\_0 \\\\\n\n\\--batch-size 256 \\\\\n\n\\--ubatch-size 256 \\\\\n\n\\--parallel 1 \\\\\n\n\\--reasoning-effort medium \\\\\n\n\\--reasoning-budget 4096 \\\\\n\n\\--no-reasoning-preserve \\\\\n\n\\--metrics\n\n  \nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.55.877.747 I slot print\\_timing: id  0 | task 3302 | n\\_gen =   3460, tg =  54.69 t/s, tg\\_3s =  54.09 t/s\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.317 I slot print\\_timing: id  0 | task 3302 | prompt eval time =      70.53 ms /     4 tokens (   17.63 ms per token,    56.71 tokens per second)\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.319 I slot print\\_timing: id  0 | task 3302 |        eval time =   63510.16 ms /  3474 tokens (   18.29 ms per token,    54.68 tokens per second)\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.320 I slot print\\_timing: id  0 | task 3302 |       total time =   63580.69 ms /  3478 tokens\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.320 I slot print\\_timing: id  0 | task 3302 |    graphs reused =       6840\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.321 I slot print\\_timing: id  0 | task 3302 |   graph reallocs =          0    /     0        (same size) / (changed size)\n\nOct 30 18:25:11 9800X3D llama-server\\[44165\\]: 26.56.136.582 I slot      release: id  0 | task 3302 | stop processing: n\\_tokens = 16449, truncated = 0\n\n\n\n",
+    "developer": "jayecin",
+    "comments": 17,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

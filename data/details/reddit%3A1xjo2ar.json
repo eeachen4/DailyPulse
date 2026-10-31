@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjo2ar",
+  "sourceItemId": "1xjo2ar",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xjo2ar/yet_another_performance_degradation_research/",
+  "detail": {
+    "longDescription": "Couple years ago Marko decided to remove a partioned LRU cache from MariaDB(it is still used in MySQL code). There was a lot of doubt regarding this but his solution worked as good as a previous one for most of microbenchmarks except one. However at the time of the transition this performance regression had not been noticed. In March 2025 Mark Callaghan demonstrated the regression that has been introduced in 10.5. However his statistical results contained an interesting outlier for 10.8.8 that was on par with 10.4 and 3x faster than any version after 10.5. Alessandro Vetere was able to find out an offending mutex that syncs B-tree read operations running the microbenchmark reclaiming the lost performance.    ",
+    "externalUrl": "https://mariadb.org/how-mariadb-11-8-became-about-3x-faster-on-some-in-memory-workloads-fixing-a-regression-dating-back-to-10-5/",
+    "developer": "drrtuy-b",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "mariadb.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

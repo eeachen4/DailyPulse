@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjwg3y",
+  "sourceItemId": "1xjwg3y",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xjwg3y/sparrow_an_mitlicensed_selfhosted_webhook/",
+  "detail": {
+    "longDescription": "Most webhook tooling is either a hosted SaaS that sees every payload, or something every team ends up rebuilding: a queue, a retry loop and a signing scheme. I wanted an open-source service that does the whole job inside my own network, so I built Sparrow.\n\nIt’s MIT licensed, one Go binary with an embedded dashboard, and PostgreSQL is its only dependency (no Redis, no broker). It can:\n\n* deliver webhooks reliably\n   * at-least-once, retries with backoff, per-endpoint rate limits, respects 429s\n* sign deliveries in the Standard Webhooks format (HMAC-SHA256 or Ed25519)\n* encrypt secrets at rest using envelop encryption\n* track each endpoint’s health and pause receivers that keep failing\n* keep the full request and response history for every attempt\n* bulk re-push and retry\n* reshape payloads with Go templates\n   * ready-made recipes for Slack, Discord, PagerDuty, ntfy, ClickHouse, Twilio, SendGrid and CloudEvents\n* version event types and validate them against a schema without dropping events\n* give your customers an embeddable portal to manage their own endpoints\n* export OpenTelemetry traces, metrics and logs\n\nThere is also a CLI that receives deliveries locally, pushes test events and debugs templates.\n\nContributions are welcome: there’s a contributing guide, a code of conduct and a security policy. Bug reports for receivers that behave in unexpected ways are especially useful.\n\nI'd like feedback on what’s missing, what’s confusing, and which webhook problems you’ve hit that nothing handles well.  \n\n\n[https://github.com/sarathsp06/sparrow](https://github.com/sarathsp06/sparrow)",
+    "developer": "sarathsp06",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

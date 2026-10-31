@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013736",
+  "sourceItemId": "80013736",
+  "sourceUrl": "https://stackoverflow.com/questions/80013736/how-to-display-the-numbers-after-using-api-get-question",
+  "detail": {
+    "longDescription": "Goal: Display a number of the content fron the list. The list is from the API get. The expected result is to retrieve the data and then display it. Problem: Cannot read properties of undefined (reading 'length') TypeError: Cannot read properties of undefined (reading 'length') I tried with different solution but It doesn't work. App.tsx import React, { useEffect, useState } from 'react'; import { fetchUsers, fetchUsersWithErrorHandling } from './apiClient'; type User = Awaited<ReturnType<typeof fetchUsers>>['users'][number]; function App() { const [users, setUsers] = useState<User[]>([]); const [loading, setLoading] = useState<boolean>(true); const [error, setError] = useState<string | null>(null); useEffect(() => { const getUsers = async () => { try { const response = await fetchUsersWithErrorHandling(); if (response === null) { setError('Failed to fetch users.'); return; } setUsers(response.users); console.log('Fetched users:', response.users); } catch (err) { setError('Failed to fetch users.'); } finally { setLoading(false); } }; getUsers(); }, []); if (loading) return <p>Loading...</p>; if (error) return <p>{error}</p>; return ( <> Count: {users.length} </> ); } export default App; apiClient.tsx import axios, { AxiosResponse } from 'axios'; const apiClient = axios.create({ baseURL: 'https://jsonplaceholder.typicode.com', headers: { 'Content-Type': 'application/json', }, }); // Define a generic API function export const apiRequest = async <T,>(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', data?: any): Promise<T> => { const response: AxiosResponse<T> = await apiClient({ method, url, data, }); return response.data; }; export const fetchUsersWithErrorHandling = async (): Promise<UserListResponse | null> => { try { return await apiRequest<UserListResponse>('/users', 'GET'); } catch (error) { console.error('Failed to fetch users:', error); return null; } }; interface User { id: number; title: string; body: string; } interface UserListResponse { users: User[]; total: number; } export const fetchUsers = async (): Promise<UserListResponse> => { return await apiRequest<UserListResponse>('/users', 'GET'); }; interface CreateUserRequest { name: string; email: string; } interface CreateUserResponse { id: number; name: string; email: string; } export const createUser = async (userData: CreateUserRequest): Promise<CreateUserResponse> => { return await apiRequest<CreateUserResponse>('/users', 'POST', userData); };",
+    "developer": "What ups",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "28"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

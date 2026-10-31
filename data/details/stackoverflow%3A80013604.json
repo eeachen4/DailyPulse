@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013604",
+  "sourceItemId": "80013604",
+  "sourceUrl": "https://stackoverflow.com/questions/80013604/git-filter-repo-excludes-hidden-files",
+  "detail": {
+    "longDescription": "I am combining some git repositories. The first step in the process is to clone each original repository and usie git filter-repo to prepend a tag to each commit message. The purpose of the tag is to tell which repository each commit is from. The command that I use is git filter-repo --message-callback 'return b\"repo: \" + message' . It works otherwise as expected, but it causes all hidden files (files with leading dot in their names) to disappear. What am I doing wrong? Edit: I am doing this in Linux so the missing files are \"natively\" hidden files. The missing files exist in a fresh clone of the original repository, but not after running git filter-repo. When I run git show for a commit that touches one of those files in the filtered repository, there is no sign of that file. The files are project configuration files of a tool I am using i.e. not some local configurations.",
+    "developer": "TheAG",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "67"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

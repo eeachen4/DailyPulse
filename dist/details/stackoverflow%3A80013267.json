@@ -2,15 +2,16 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80013267",
   "sourceItemId": "80013267",
+  "fetchedAt": "2026-10-31T02:45:37.361Z",
   "sourceUrl": "https://stackoverflow.com/questions/80013267/can-i-make-pyright-catch-unnecessarily-broad-type-annotations",
   "detail": {
-    "longDescription": "Pyright warns me when the annotated return type of a function is narrower than the actual return type. However, it doesn't warn me when it's broader . See this example: class User: def __init__(self, id: int) -> None: self.id = id users: list[User] = [] def get_user(id: int) -> User | None: # forgot to remove `None` user = next((u for u in users if u.id == id), None) if user is None: raise ValueError(f\"user {id} not found\") return user I had changed the body of get_user to always return a User , but forgot to change the annotation. However, Pyright doesn't tell me that User | None is broader than - and can be simplified to - User . This is expected, because User is assignable to User | None . According to the type annotations docs (emphasis mine): Expressions whose type is assignable to a specific argument type are also accepted for that argument. Similarly, an expression whose type is assignable to the annotated return type can be returned from the function. Can I configure Pyright to detect certain unnecessarily broad annotations, e.g. TypeA | TypeB when just one of the union types is returned?",
+    "longDescription": "Pyright warns me when the annotated return type of a function is narrower than the actual return type. However, it doesn't warn me when it's broader . See this example: class User: def __init__(self, id: int) -> None: self.id = id users: list[User] = [] def get_user(id: int) -> User | None: # forgot to remove `None` user = next((u for u in users if u.id == id), None) if user is None: raise ValueError(f\"user {id} not found\") return user I had changed the body of get_user to always return a User , but forgot to change the annotation. However, Pyright doesn't tell me that User | None could be narrowed to User . This is expected, because Pyright won’t do anything as long as User is assignable to User | None . According to the type annotations docs (emphasis mine): Expressions whose type is assignable to a specific argument type are also accepted for that argument. Similarly, an expression whose type is assignable to the annotated return type can be returned from the function. Can I configure Pyright to detect certain unnecessarily broad annotations, for example, the annotation -> TypeA | TypeB when just one of the union types is returned?",
     "developer": "JadenV15",
     "comments": 0,
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "153"
+        "value": "195"
       },
       {
         "label": "状态",

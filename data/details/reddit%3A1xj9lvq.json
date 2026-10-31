@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj9lvq",
+  "sourceItemId": "1xj9lvq",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xj9lvq/i_wrote_an_empirical_research_paper_on_stateful/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\n\n\nStateless containers are trivial to move around - you just kill the pod and let the orchestrator spin it up somewhere else. But moving stateful workloads without downtime is still a headache.\n\n\n\nI've been digging into this for the past few months and just put together a research paper benchmarking stateful container live migration. I mainly tested CRIU with pre-copy memory migration, looking at downtime, memory dirtying rates, and network switchover overhead under different loads.\n\n\n\nThe paper is up on Zenodo if anyone wants to check out the numbers:\n\n[https://zenodo.org/records/23779338?preview\\_file=Stateful\\_Container\\_Live\\_Migration\\_IEEE\\_NativeTeX.pdf](https://zenodo.org/records/23779338?preview_file=Stateful_Container_Live_Migration_IEEE_NativeTeX.pdf)\n\n\n\nI’m really curious to hear from folks running prod clusters:\n\n\\- Does anyone actually bother with container-level live migration, or does everyone just fall back to app-level replication and failover (e.g. database replicas)?\n\n\\- If you've played with CRIU or similar tooling in production, what was the biggest pain point? (For me, write-heavy workloads degraded the pre-copy phase pretty fast).\n\n\n\nWould love any brutal feedback, critique on the methodology, or edge cases I might have missed. Thanks!",
+    "developer": "Heavy_Cow5349",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

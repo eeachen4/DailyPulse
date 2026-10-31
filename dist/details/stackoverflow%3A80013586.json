@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013586",
+  "sourceItemId": "80013586",
+  "sourceUrl": "https://stackoverflow.com/questions/80013586/function-bubble-wrapped-in-propagation",
+  "detail": {
+    "longDescription": "I was trying to create a function that would toggle between 2 commands, but it seems to be a victim of Event Bubbling and I don't know how to get past it. event.stopPropagation() doesn't prevent the problem from happening, so there's obviously more to it than I'm grasping. I've read through https://javascript.info/bubbling-and-capturing and a few other references to the phenomenon, but I'm stuck and don't know where to look next. If you run the code the console.log commands multiply exponentially as you continue clicking. That's what made me think that it was related to Event Bubbling, but that's as far as I got. It's always taken two clicks to get anything to work and that was the first sign that things were going sideways. function elementClick(ele, ele2, cmd, cmd2) { document.querySelector(`${ele}`).addEventListener('click', (event) => { if(document.querySelector(`${ele}`).classList.contains('on')) { document.querySelector(`${ele2}`).setAttribute('style', `${cmd}`); document.querySelector(`${ele}`).classList.remove('on'); // document.querySelector(`${ele}`).click(); event.stopPropagation(); console.log('on removed!'); } else { document.querySelector(`${ele2}`).setAttribute('style', `${cmd2}`); document.querySelector(`${ele}`).classList.add('on'); event.stopPropagation(); console.log('on added!'); } }); } body { margin: 50px; font-family: sans-serif; text-align: center; } <div id=\"color_me\">Color Me</div> <button id=\"uncolor_it\" class=\"on\" onclick=\"elementClick('#uncolor_it', '#color_me', 'background:blue;color:white', 'background:yellow;color:black');event.stopPropagation();return false\">Recolor</button>",
+    "developer": "Realto619",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "153"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

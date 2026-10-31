@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjwx04",
+  "sourceItemId": "1xjwx04",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xjwx04/qwen_38_27b_vs_flash_next_for_32gb_vram_and_64gb/",
+  "detail": {
+    "longDescription": "I got qfn working on my 5090 + 64gb ddr using basalt with 256k int8 kv and had been testing it out.  Based on vibes it seemed worse than 27b but I kept seeing posts of people saying qfn is so much better so I thought I'd test the 'best possible' setups of each model for my 5090 32gb + 64gb ddr system.\n\nQwen Flash Next using basalt, nvfp4 quantization, 256k int8 kv cache, one slot.\n\nQwen 3.8 27b nvfp4 quasar qat, 570k nvfp4 kv cache pool using ninfer, four slots.\n\nQwen Flash Next:\n\n| BFCL category | accuracy | correct/total | 95% CI |\n|---|---:|---:|---:|\n| simple_python | 92.50% | 370/400 | 89.5–94.7% |\n| multiple | 92.00% | 184/200 | 87.4–95.0% |\n| parallel | 86.50% | 173/200 | 81.1–90.6% |\n| parallel_multiple | 78.50% | 157/200 | 72.3–83.6% |\n| live_simple | 75.97% | 196/258 | 70.4–80.8% |\n| irrelevance | 76.25% | 183/240 | 70.5–81.2% |\n| multi_turn_base | 56.00% | 112/200 | 49.1–62.7% |\n| multi_turn_long_context | 54.50% | 109/200 | 47.6–61.3% |\n| **BFCL all (item-weighted)** | **78.19%** | 1484/1898 | 76.3–80.0% |\n\n| LiveCodeBench | value |\n|---|---:|\n| problems (graded) | 231 / 231 |\n| **pass@1** | **79.22%** |\n| empty answers (counted as fails) | 27 |\n| pass@1 easy | 100.00% (57) |\n| pass@1 hard | 59.00% (100) |\n| pass@1 medium | 90.54% (74) |\n| pass@1 atcoder | 67.86% (140) |\n| pass@1 leetcode | 96.70% (91) |\n\n\nQwen 3.8 27b\n\n| BFCL category | accuracy | correct/total | 95% CI |\n|---|---:|---:|---:|\n| simple_python | 89.75% | 359/400 | 86.4–92.4% |\n| multiple | 91.00% | 182/200 | 86.2–94.2% |\n| parallel | 91.50% | 183/200 | 86.8–94.6% |\n| parallel_multiple | 83.50% | 167/200 | 77.7–88.0% |\n| live_simple | 83.72% | 216/258 | 78.7–87.7% |\n| irrelevance | 79.58% | 191/240 | 74.0–84.2% |\n| multi_turn_base | 64.00% | 128/200 | 57.1–70.3% |\n| multi_turn_long_context | 60.50% | 121/200 | 53.6–67.0% |\n| **BFCL all (item-weighted)** | **81.51%** | 1547/1898 | 79.7–83.2% |\n\n| LiveCodeBench | value |\n|---|---:|\n| problems (graded) | 231 / 231 |\n| **pass@1** | **86.15%** |\n| pass@1 easy | 98.25% (57) |\n| pass@1 hard | 75.00% (100) |\n| pass@1 medium | 91.89% (74) |\n| pass@1 atcoder | 80.00% (140) |\n| pass@1 leetcode | 95.60% (91) |\n\n27b dominates in the long context, harder to solve problems.  QFN had a small advantage in the short single answer categories.  To me this is a conclusive result that also aligns with my own experience.  I'm glad it turned out this way, having 4 concurrent agents and a huge kv cache pool is just too good to give up.",
+    "developer": "Fragrant_Scale6456",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

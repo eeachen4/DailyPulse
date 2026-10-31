@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjxusq",
+  "sourceItemId": "1xjxusq",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1xjxusq/fix_chatgpt_ignoring_your_returnenter_keyboard/",
+  "detail": {
+    "longDescription": "ChatGPT started submitting messages whenever I pressed plain Return, even though I'd configured Ctrl+Shift+Return as the send shortcut.\n\nAfter some fault isolation:\n\n* Reproduced in both Firefox and Edge.\n* Verified shortcut settings independently in each browser.\n* Confirmed normal keyboard events using APEXtester and DevTools.\n* Inspected ChatGPT's editor elements and keyboard-handling JavaScript.\n* Wrote a tiny Tampermonkey userscript that actually works!\n\n**The workaround:** Intercept unmodified Return before ChatGPT processes it, then dispatch a synthetic Shift+Return event to the editor.\n\nResult on my machine:\n\n* Return → newline\n* Shift+Return → newline\n* Ctrl+Shift+Return → send\n\n**Script:** \\[Greasy Fork link\\]\n\nTested on Windows 11 with Firefox. Other platforms/browsers not yet verified.\n\nI've also submitted a bug report to OpenAI, so hopefully this becomes unnecessary soon enough. XD",
+    "externalUrl": "https://greasyfork.org/en/scripts/603079-chatgpt-return-key-fix",
+    "developer": "YesOfficial",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "greasyfork.org"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

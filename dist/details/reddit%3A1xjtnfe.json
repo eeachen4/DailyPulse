@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjtnfe",
+  "sourceItemId": "1xjtnfe",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xjtnfe/headsup_if_you_pinned_the_wordpress69_docker_tags/",
+  "detail": {
+    "longDescription": "Ran into this tonight while patching a WordPress container. The official wordpress:6.9-* tags (6.9-apache, 6.9-php8.3-apache, 6.9-php8.4-apache) were last rebuilt on May 20, so they still have libbrotli1 1.1.0-2+b7. The current tags (latest, 7-apache, 7.1-apache) were rebuilt on Oct 29 and have the fixed 1.1.0-2+deb13u1.\n\nWhy it matters for WordPress: an unauthenticated pingback.ping to /xmlrpc.php makes WordPress fetch a URL the attacker picks, and libcurl decodes a br response inside the PHP worker. There's a public lab that gets a segfault or a worker stuck at 100% CPU that way: https://github.com/Nyamort/brotli-pingback-lab. As far as I know nobody has shown RCE through this path publicly, but it's the same out-of-bounds write that got RCE in Node.\n\nCheck yours:\n\n    docker exec <container> dpkg-query -W libbrotli1\n\nIf it says 1.1.0-2+b7:\n\n1. Move to a current tag if your theme and plugins are fine with WP 7.x.\n2. Or patch inside the container and restart it:\n\n        docker exec <container> sh -c 'apt-get update && apt-get install -y --only-upgrade libbrotli1'\n        docker restart <container>\n\n   An apache graceful reload isn't enough, the workers keep the old library mapped. This is lost every time the container is recreated, so either script it or build your own image FROM the 6.9 tag with the upgrade in it.\n3. If nothing you use needs XML-RPC (Jetpack, the mobile app, pingbacks), block /xmlrpc.php at your reverse proxy anyway.\n\nTo confirm nothing still has the old library loaded after patching:\n\n    docker exec <container> sh -c \"grep -l 'libbrotli.*(deleted)' /proc/[0-9]*/maps | wc -l\"\n\nshould print 0.",
+    "developer": "No_Mycologist1806",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjnz40",
+  "sourceItemId": "1xjnz40",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xjnz40/multitoken_prediction_done_right_r/",
+  "detail": {
+    "longDescription": "Sharing one of our latest papers on Multi-Token Prediction (MTP). MTP is now a standard recipe for frontier pre-training but turns out, it can be done much better. \n\nWe show the standard MTP gradient hides a KL self-distillation signal (which we want for improving speculative decoding) behind a noisy residual (that harms next-token prediction). \n\nI think the coolest part was the KL gradient–recovery trick to extract the KL gradient. You just need a one-line code change:  \n\n\nh\\_ntp += h\\_mtp.detach() - h\\_mtp\n\n  \n**Soft Multi-Token Prediction (Soft-MTP)** is essentially a free lunch that improves MTP across a range of tasks.\n\nI'm super excited about this work. Please do check it out below:\n\n💻 Code: [https://github.com/JaydenTeoh/Soft-MTP](https://github.com/JaydenTeoh/Soft-MTP)  \n📝 Paper: [https://arxiv.org/abs/2610.38331](https://arxiv.org/abs/2610.38331)  \n🤗 HuggingFace: [https://huggingface.co/collections/JaydenTeoh/soft-multi-token-prediction](https://huggingface.co/collections/JaydenTeoh/soft-multi-token-prediction)\n\n",
+    "externalUrl": "https://i.redd.it/pdz8voy3inyh1.png",
+    "developer": "jayden_teoh_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

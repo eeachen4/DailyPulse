@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjtflr",
+  "sourceItemId": "1xjtflr",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xjtflr/intel_1x_b65_with_xestrata_flashnext_4bit_60toks/",
+  "detail": {
+    "longDescription": "Howdy All, more test results from my b65 rig!  This time I'm focusing more on what one single B65 can do, specifically 1x B65 with XeStrata.  \nI threw in my A6000 for comparison, and I have to say, surprising how well B65 stacks up if you have the system ram to offload.  Now my A6000 with Strata is faster, but when I'm using flash-next in librechat, 60 Tok/s feels fast... and when I compare the price to my A6000... I really start to question my setup.\n\nI think people really need to give the intel lineup a 2nd look, a lot has changed in only 6 months and even with this recent price bump, it's still the best entry level stack I've found.\n\nGraphs on my site:  \n[https://b65.thekaiser.us/by-model/qwen38-flash-next/xestrata-20261030/](https://b65.thekaiser.us/by-model/qwen38-flash-next/xestrata-20261030/)\n\nHow was AI used? I wrote what's above, I build the tests, or get them from vetted sources, AI monitors their execution.\n\nAI Summary of my testing data:\n\n# Qwen3.8-Flash-Next: One B65 · XeStrata 4-bit\n\nFlash-Next on one 32 GB card with experts in host RAM. Faster for one user; more users queue behind each other.\n\n# 1x B65: speed and waiting time\n\nMedian of three measured requests. Multi-user tok/s is aggregate across users. Single-user runs are Verified by Localmaxxing; concurrent runs are unverified.\n\n*Output falls as users queue, Aggregate output (tok/s) by Users at once*\n\n|Setup|1|2|4|\n|:-|:-|:-|:-|\n|One B65 · tuned XeStrata|62.4|48.7|44.6|\n\n*First-token wait grows, Time to first token (seconds) by Users at once*\n\n|Setup|1|2|4|\n|:-|:-|:-|:-|\n|One B65 · tuned XeStrata|2.10|5.20|11.4|\n\n**Results (tok/s, median of 3 measured requests)**\n\n|Run|Settings|Users|tok/s|TTFT|LocalMaxxing|\n|:-|:-|:-|:-|:-|:-|\n|u4x-t-c1|tuned: SPEC\\_MIN\\_P 0.6, VRAM reserve 1024 MiB, MAX\\_CONTEXT 65536, PCIE\\_FRAC 0.5 (the 61.0 IQ3\\_S run's settings)|1|62.4|2.1 s|Verified, cmvvay4210pqbs601m4prw5t8|\n|u4x-t-c2|tuned|2|48.7 aggregate|5.2 s|unverified (concurrency), cmvvay8z70pqhs601kski9lk7|\n|u4x-t-c4|tuned|4|44.6 aggregate|11.4 s|unverified (concurrency), cmvvaybe90pqks601goocrtlr|\n|u4x-d-c1|recipe defaults|1|57.5|2.2 s|Verified, cmvvay6e40pqes60146qql6s0|\n\n# Same 4-bit files, different serving setups\n\nHistorical comparison supplied by the campaign. The final IQ3\\_S row uses a different quantization; older B65 rows carry the contention caveat above. Engines and host environments differ; this does not isolate GPU performance.\n\n*Same UD-IQ4\\_XS files · two complete setups, Aggregate output (tok/s) by Concurrent users*\n\n|Setup|1|2|\n|:-|:-|:-|\n|B65 · XeStrata|62.4|44.6|\n|A6000 · llama.cpp MTP-2|52.8|75.2|\n\n**Against the other Flash-Next UD-IQ4\\_XS results**\n\n|Rig, engine|1 user|4 users|Source|\n|:-|:-|:-|:-|\n|B65, XeStrata (this round)|62.4|44.6|above|\n|RTX A6000, llama.cpp b11889 + MTP-2|52.8|75.2|cuda-vm ranking round|\n|RTX A6000, llama.cpp --fit, no MTP|41.3|—|cuda-vm round|\n|B65, llama.cpp SYCL, experts in RAM|17.9|18.8|b65-vm round|\n|B65, XeStrata, ISTA IQ3\\_S (tuned)|61.0|47.1|b65-vm round|\n\nFull page, with interactive charts and the raw data behind every number: [https://b65.thekaiser.us/by-model/qwen38-flash-next/xestrata-20261030/](https://b65.thekaiser.us/by-model/qwen38-flash-next/xestrata-20261030/)",
+    "developer": "SamSausages",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

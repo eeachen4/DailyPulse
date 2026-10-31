@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xj5dm2",
+  "sourceItemId": "1xj5dm2",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xj5dm2/i_opensourced_my_rag_platform_chatviaai/",
+  "detail": {
+    "longDescription": "After more than a year of building, I am open-sourcing 🔗 [https://chatvia.ai](https://chatvia.ai) today.\n\nIt started with a simple question: why does every team pay a monthly subscription for an AI agent that reads their own docs?\n\nSo I built one you can run on your own server. Unlimited agents. Unlimited replies. Your data never leaves your machine. And the whole retrieval stack lives inside Postgres, so there is no separate vector database to run.\n\n**One-line installation, with automatic updates.**\n\nHere is the RAG pipeline, stage by stage:\n\n* Ingestion. Files, websites, plain text, Q&A pairs and YouTube transcripts become documents. Web crawls honor your path rules, and re-crawls only re-embed what changed.\n* Content-aware chunking. Markdown splits by heading, prose by sentence, and everything else by a fixed window with overlap. Chunk size and overlap are yours to tune per agent.\n* Contextual chunk enrichment. Before embedding, each chunk gets a short LLM-written context of where it sits in the document, so a chunk that says “the second option” still retrieves well on its own.\n* Embeddings from the provider you prefer. OpenAI, Mistral, Gemini, Cohere, Jina, Voyage, Qwen3 or OpenRouter. Stored as halfvec with an HNSW index, so the index is half the size at the same recall.\n* Hybrid search. Every query runs two retrievers in parallel: dense vector similarity through pgvector, and sparse BM25 keyword search inside Postgres. Semantic matches and exact-term matches both make it in.\n* Reciprocal Rank Fusion. The two ranked lists are merged with RRF, so a chunk that ranks well in both rises to the top without hand-tuned score weighting.\n* Cross-encoder reranking. A reranker (Cohere, Jina, Voyage and more) re-scores the fused candidates against the actual question and keeps only the top passages. A similarity gate drops weak matches, so a greeting does not drag in random chunks.\n* Query rewriting. Follow-up questions like “and the second one?” are rewritten with the conversation context before retrieval, and the agent can ask a clarifying question when the query is too vague to search.\n* Citations. Every answer links back to the chunks it came from, so people can check the source instead of trusting the model.\n* Guardrails. Prompt injection, off-topic questions, toxic content and personal data are stopped before they reach the model.\n* Retrieval evaluations. Write test questions once. An LLM-as-a-judge scores every answer, so you know whether a chunking, embedding or reranker change made retrieval better or worse before it reaches a chatter.\n* Any generation model. Open-weight models like Qwen3, or anything on OpenRouter, Mistral, Groq or Scaleway. Switch whenever you like.\n\nAround the pipeline: a chat widget, hosted chat page, ⌘K command bar, Slack, WhatsApp, Telegram, Teams, Instagram and Messenger. Tools and MCP with approval and logging. Teams, roles, audit logs, two-factor codes and passkeys.\n\nAnd because a one-person project needs to pay for its own coffee, a Pro key unlocks the extras: the REST API, live human handoff, forms and leads in chat, voice conversations, image, video and audio generation, deeper analytics, custom domains and more workspaces. Everything above stays free either way.\n\nIf you have built RAG and fought with chunking, recall or reranking, I would love to hear what you think. And if you try it, tell me what breaks.",
+    "developer": "ahmadalmayahi",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

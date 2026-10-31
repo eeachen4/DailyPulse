@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013732",
+  "sourceItemId": "80013732",
+  "sourceUrl": "https://stackoverflow.com/questions/80013732/dealing-with-unsupported-media-type-in-html5-audio-element",
+  "detail": {
+    "longDescription": "I running into an issue whereby the audio player, is not creating an error event for media types it doesn't support. My test is providing an MP4 file containing an Apple Lossless Audio (ALE) payload as an audio source. Behaviour: Safari: Nothing logged in the console; no 'error' event or on play() promise Chrome: Nothing logged in the console; no 'error' event or on play() promise Firefox: Warnings displayed in the console; no 'error' event or on play() promise The HTML: <audio controls=\"\" class=\"main-audio\"> <source src=\"/music/myaudiofile.mp4\" type=\"audio/x-flac\"> </audio> The JS for initiating the play start: const player = document.querySelector('.main-audio'); player.play().catch(error => { console.log('error promise', error); }); and the JS for catching the 'error' event: const player = document.querySelector('.main-audio'); player.addEventListener('error', (error) =\\> { console.log('error event', error); }); If I provide a compatible audio type then everything works (media plays). Ideally I'd want to display an error indicating the provided source is unsupported, but I'm not sure what I am should be doing since I am not getting any error I could handle?",
+    "developer": "Andre M",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "42"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

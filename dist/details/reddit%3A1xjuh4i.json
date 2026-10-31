@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjuh4i",
+  "sourceItemId": "1xjuh4i",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xjuh4i/litellm_silently_drops_reasoning_effort_for_some/",
+  "detail": {
+    "longDescription": "I was testing whether higher reasoning effort helps agents catch silently failed saves on τ-bench and wanted to share what I found. τ-bench uses LiteLLM with `drop_params = True`, which silently dropped a standard `reasoning_effort` argument for these models through OpenRouter. My first test’s “high” runs weren’t high effort at all. Sending it in OpenRouter’s own `reasoning.effort` field fixed it.\n\nOnce effort was actually applied:\n\n* **It didn’t help.** High effort caught 11 of 59 silent failures vs 10 of 59 at low (exact McNemar p = 1.00 for every model).\n* **It did change reasoning a lot:** about 2× for Claude Sonnet 5.5 and 43× for GPT-6.1 Sol. DeepSeek V4.1 Flash’s didn’t go up at all.\n* **Every catch came from a later save’s response showing the booking**, never from the agent choosing to re-check.\n\nIf anyone's interested:\n\nCode and transcripts: [https://github.com/brianna-rose05/thinking-harder-silent-failures](https://github.com/brianna-rose05/thinking-harder-silent-failures)  \nWrite-up: [https://outsideengineer.substack.com/p/thinking-harder-doesnt-help-ai-catch](https://outsideengineer.substack.com/p/thinking-harder-doesnt-help-ai-catch)",
+    "externalUrl": "https://i.redd.it/zx9vafybtoyh1.png",
+    "developer": "TruthDeep8659",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

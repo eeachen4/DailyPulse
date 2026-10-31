@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xjxzlp",
+  "sourceItemId": "1xjxzlp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xjxzlp/i_built_a_small_opensource_rag_evaluator_after/",
+  "detail": {
+    "longDescription": "While reviewing a RAG evaluation dataset, I noticed an interesting issue with how unanswerable questions were being handled.\n\nIf a question has no relevant documents, treating it as a perfect retrieval result can inflate Recall@K.\n\nIn one small example with 8 questions:\n\n\\* Naive average Recall@K: 0.75\n\n\\* After excluding the unanswerable question: 0.714\n\nThe retriever hadn't improved. The measurement was misleading.\n\nI maintain a small open-source RAG evaluation starter that includes retrieval metrics, answer evaluation, and optional LLM-based judging. The core metrics can run without an API key.\n\nGitHub: [https://github.com/infrixo-systems/rag-evaluation-starter](https://github.com/infrixo-systems/rag-evaluation-starter)\n\nI'd be interested in how others handle unanswerable questions in their RAG evaluation datasets. Do you exclude them from retrieval recall and evaluate them separately?",
+    "developer": "infrixo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
