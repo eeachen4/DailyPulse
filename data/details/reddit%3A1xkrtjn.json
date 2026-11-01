@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkrtjn",
+  "sourceItemId": "1xkrtjn",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xkrtjn/rootless_docker_ping_from_within_container_is_way/",
+  "detail": {
+    "longDescription": "Hey, I'm trying to monitor my ping to external servers using BlackBox and I'm running into an issue that seems to be a general docker issue:\n\nI'm running rootless docker and did this simple test:\n\n    $ docker network create ping-test\n    e4b47f5a00d890828f84b688d5490b6addfc465b892762381ba9a149d5095e81\n    $ docker run --rm --network ping-test alpine ping -c 10 1.1.1.1\n    PING 1.1.1.1 (1.1.1.1): 56 data bytes\n    64 bytes from 1.1.1.1: seq=0 ttl=63 time=0.997 ms\n    64 bytes from 1.1.1.1: seq=1 ttl=63 time=0.716 ms\n    64 bytes from 1.1.1.1: seq=2 ttl=63 time=0.642 ms\n    64 bytes from 1.1.1.1: seq=3 ttl=63 time=2.441 ms\n    64 bytes from 1.1.1.1: seq=4 ttl=63 time=0.800 ms\n    64 bytes from 1.1.1.1: seq=5 ttl=63 time=0.691 ms\n    64 bytes from 1.1.1.1: seq=6 ttl=63 time=3.087 ms\n    ^C\n    --- 1.1.1.1 ping statistics ---\n    7 packets transmitted, 7 packets received, 0% packet loss\n    round-trip min/avg/max = 0.642/1.339/3.087 ms\n\nThese ping times are wayyyy to low. When doing a ping directly on the host, I get around 10ms.\n\nOn another host that runs rootful docker this issue doesn't occur (ping inside of the container and host's ping are roughly the same).\n\nOnly similar issue I found was [this issue](https://forums.docker.com/t/ping-from-within-a-container-does-not-actually-ping/11787) from 2016 but that bug must have been fixed by now 😅 \n\nIs there any way to fix this without returning to rootful docker? Or is this just a limitation with rootless docker?",
+    "developer": "Bj_Go",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

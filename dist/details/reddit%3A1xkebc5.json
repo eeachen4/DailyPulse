@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkebc5",
+  "sourceItemId": "1xkebc5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xkebc5/googles_open_knowledge_format_okf_an/",
+  "detail": {
+    "longDescription": "Google published the Open Knowledge Format this summer. It is a way to write knowledge down as a folder of Markdown files with a YAML header, so that people and AI models read the same files. Each file is a concept (a rule, a procedure, a metric, a role) and the header says where it comes from, who checked it, when it expires and whether it is still current. No server, no database. If you can `cat` a file, you can read it.\n\nGreat concept, but the spec stops at the format. It does not say how knowledge gets into a bundle, how to know a bundle is right, what to do when two documents disagree, or how a correction found by a user gets back in. In a company, that is the hard part.\n\nThis project tries to answer real organizations problems using OKF with skills for coding agents (Claude Code and Pi):\n\n* `okf-produce` reads the documents, agrees with their owner on what the bundle is for, writes it with a source behind each claim, and keeps it current.\n* `okf-validate` checks a bundle against the spec. Plain Python, runs in CI too.\n* `okf-answer` answers questions from one or several bundles, with a reference after each claim and a warning when a fact is unchecked, expired or not covered.\n\nThe same documents can give different bundles for different readers (angle), the skill will ask: an employee, an auditor and a documentation officer do not want the same thing from the same quality manual. The steps that need no judgment are code, not model: hashing, indexes, trust tiers, dates. The model never marks its own work as verified, a person does. Readers that did not write the bundle check it. When a user finds a mistake, the consumer writes a report and the producer picks it up at the next update.\n\nI tested it in a real organization, with several bundles. Token usage and accuracy were satisfactory, good enough that the org wants to keep going.\n\nThe repo has three sample bundles made from the same 240 Wikipedia pages on Greek mythology, each from a different angle: the family tree, the stories by theme, and the English words that come from the myths. The family tree bundle includes a calculation (how is Perseus related to Heracles?) with a small checker that proves the approved script ran.\n\nRepo: [https://github.com/wmahfoudh/okf](https://github.com/wmahfoudh/okf)  \nSpec: [https://github.com/GoogleCloudPlatform/open-knowledge-format](https://github.com/GoogleCloudPlatform/open-knowledge-format)\n\nAre you using OKF, where do you think it breaks, and how you handle trust and sources when you let a model answer from company documents.",
+    "externalUrl": "https://i.redd.it/zrabn8kavtyh1.png",
+    "developer": "chlankboot",
+    "comments": 22,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

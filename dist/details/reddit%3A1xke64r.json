@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xke64r",
+  "sourceItemId": "1xke64r",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xke64r/are_github_actions_bills_catching_your_team_off/",
+  "detail": {
+    "longDescription": "Hi everyone \n\n\n\nI’ve been looking into GitHub Actions billing across a few repos recently, and I keep running into the same visibility wall.\n\nGitHub gives you a high-level usage summary at the end of the cycle, but finding out *which* specific repo, workflow, or rogue PR is silently burning your budget feels unnecessarily painful. For instance, it's way too easy for someone to accidentally leave a heavy test suite or a `macos-latest` runner (which costs roughly 10x more than Linux) active on a feature branch without anyone noticing until it's too late.\n\nI talked to a few engineers who admitted they just run manual checks or quick `grep` commands every few months and hope for the best, while constantly putting off writing a proper internal reporting script.\n\nFor those managing CI/CD pipelines and multiple repos:\n\n1. How do you currently audit or track GHA spending per workflow/repo?\n2. Have you ever been hit by a surprise bill due to an inefficient runner or a looping workflow?\n3. What would your ideal tool look like to catch these issues early? (A simple dashboard, automated Slack alerts, or something else?)\n\nWould love to hear how your teams handle this today!\n\n>Hey everyone,  \n>  \n>Quick question for those running multiple repos on GitHub: how do you deal with the lack of detailed billing visibility?  \n>  \n>Right now, GitHub's default usage tab gives you a macro-level view, but drilling down to see *who* or *what*caused a cost spike is a headache. It's dangerously easy for a rogue PR, an endless workflow loop, or an accidental `macos-latest` runner to sit unnoticed until the monthly invoice arrives.  \n>  \n>I was chatting with some dev friends recently, and their answers ranged from \"we just grep through files and pray\" to \"we keep meaning to build an internal dashboard, but never have the time.\"  \n>  \n>Curious to know from your experience:  \n>  \n>  \n>  \n>Appreciate any insights!",
+    "developer": "Enar_ram",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

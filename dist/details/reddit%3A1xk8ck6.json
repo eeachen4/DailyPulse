@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xk8ck6",
+  "sourceItemId": "1xk8ck6",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xk8ck6/building_a_whatsapp_coworker_for_small_trade/",
+  "detail": {
+    "longDescription": "I’m building an assistant for small trade businesses (tree care, plumbers, electricians, 3 to 15 people). The idea is a coworker that lives in WhatsApp, because that is where these teams already communicate and where things get lost. Workers and the office talk to it like to a colleague, and it does the office work.\n\nWhat it should do:\n\n* Worker sends a voice note from the site (“hedge at Müller done, rest on Monday, photos attached”). It finds the job, files note and photos, asks back via buttons if something is unclear.\n* “At Schmidt we’re missing two bags of mulch.” It creates a material task for the office and tells the worker when it’s ordered.\n* Office: “Mrs. Berger called, she needs the invoice for the tree work on Oct 12.” It looks up the job, drafts the invoice in the accounting system, sends it to the office for approval, or assigns it to a person if they prefer.\n* “Lukas continues at Schmidt tomorrow, Kevin goes to Berger.” It updates assignments and messages both with address and open items.\n* Every morning each worker gets their sites and open items, every evening the office gets a digest of what happened and what’s missing.\n* Jobs with no update for two days get a nudge.\n* Workers can ask it things (“which house number is Schmidt, do they have a dog”).\n\nSome customers have a CRM with an API, most have nothing beyond accounting software, so it keeps its own job store and syncs to the CRM where there is one.\n\nRequirements:\n\n* per-sender conversation state (which job, what’s still missing, pending confirmation) that survives restarts\n* hard human-in-the-loop before anything is written to CRM or accounting, enforced in code, not in the prompt\n* multi-tenant from day one, one app, many businesses\n* roles (office vs. field)\n* structured state over chat history, I don’t want the chat log to be the memory\n* small team, I need to be able to read the whole codebase\n\nI know LangGraph a bit and could prototype in a week, checkpointer plus interrupt() looks like a fit. I keep hearing “just use Pydantic AI and write the state machine yourself” and “LangGraph gets messy beyond one graph”.\n\nIf you’ve shipped something like this (messaging bot with real state and writes to external systems, not a chat UI), what did you use and what would you do differently? Especially interested in context growth per thread, multi-tenant checkpointing, and evals with real voice notes.",
+    "developer": "Asleep_Gur_341",
+    "comments": 16,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

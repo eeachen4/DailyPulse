@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkr0e6",
+  "sourceItemId": "1xkr0e6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xkr0e6/llamacpp_setup_qwenflashnext_vulkan_q4_with/",
+  "detail": {
+    "longDescription": "I just setup my server:\n\n64GB DDR4 2133 4CH (Broadwell Xeon)  \n2 x RX 6800 16GB  \n1 x Rx 580 2048sp (16GB)\n\nI am using the Q4 of Qwen Flash Next, with the prompt:  \nudo ./llama-server -m ./models/Qwnflash180b-Q4.gguf --host [0.0.0.0](http://0.0.0.0) \\--port 8081 -ngl 99 -fa on  --moe-cache-mib 16384 --log-verbosity 4 --metrics -mg 1\n\nI am able to get 19-21t/s generation at full context (262K) (which is why i capped the moe-cache-mib at 16GB)\n\nHowever note: when I set any context size with the -c or --ctx-size flags, performance tanked to 8t/s even when the context was smaller (100K). ",
+    "developer": "IVequalsW",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

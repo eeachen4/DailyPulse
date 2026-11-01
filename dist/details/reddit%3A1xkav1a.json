@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkav1a",
+  "sourceItemId": "1xkav1a",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xkav1a/is_a_separate_llm_gateway_overengineering_for_a/",
+  "detail": {
+    "longDescription": "I've been exploring an architectural problem that seems increasingly relevant as teams start adding LLM features to existing enterprise applications.\n\nImagine a Java monolith that has handled support-ticket classification for years. The business now wants an LLM to classify tickets more intelligently.\n\nThe obvious implementation is straightforward: add an LLM API call to the existing service.\n\nBut that introduces some uncomfortable questions:\n\n* What happens when the provider times out?\n* How do we prevent invalid or incorrect model responses from affecting existing workflows?\n* How do we evaluate the new classifier without risking production?\n* What happens when the AI service becomes unavailable?\n\nMy preferred approach is to use the **Strangler Fig pattern** to isolate the classification capability.\n\nThe architecture is relatively simple:\n\n**1. Facade:** Introduce a stable classification interface in front of the existing implementation.\n\n**2. LLM gateway:** Move model-specific logic into a separate service.\n\n**3. Shadow evaluation:** Run the LLM classifier independently while keeping the legacy implementation authoritative.\n\n**4. Feature flags:** Gradually route eligible requests to the new classifier.\n\n**5. Validation and fallback:** Validate model output and return to the legacy classifier when the model fails, times out, or produces unacceptable results.\n\nOne distinction I find particularly important:\n\n**Schema-valid ≠ Semantically correct ≠ Authorized.**\n\nAn LLM can return perfectly valid JSON containing a completely incorrect classification.\n\nAnd even a correct classification shouldn't automatically grant the model permission to change application state.\n\nThe existing application should remain responsible for business actions.\n\nThe potential downside is additional infrastructure and operational complexity. For a small, low-risk feature, an external gateway may be unnecessary.\n\nI've written a longer technical article exploring the architecture, failure scenarios, and implementation considerations:\n\n[https://medium.com/@tmucb.all/adding-llms-to-a-legacy-monolith-without-breaking-production-df7296c11052](https://medium.com/@tmucb.all/adding-llms-to-a-legacy-monolith-without-breaking-production-df7296c11052)\n\n**I'm curious how others would approach this.**\n\nWould you isolate the LLM behind a separate service, or keep it inside the monolith with appropriate resilience mechanisms?\n\nAt what point does the additional architectural separation become worth the operational cost?",
+    "developer": "Dense-Set4765",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

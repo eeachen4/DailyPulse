@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xklf5c",
+  "sourceItemId": "1xklf5c",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xklf5c/openmem_bring_your_own_memory_backend_and_trim/",
+  "detail": {
+    "longDescription": "I built \\[OpenMem\\](https://github.com/bcmyguest/openmem) for sharing memory between coding agents and trimming long sessions.\n\n\\*\\*\\[Docs and setup\\](https://bcmyguest.github.io/openmem/)\\*\\* · Apache-2.0 · Local setup only for now, no hosted OpenMem service.\n\n### 1. Bring your own memory backend\n\nThe idea is to have a consistent memory Interface you can use with any memory backend. Hindsight, mem0, Cognee, or add an adapter for your own system. OpenMem connects that backend to Claude Code, Codex, Cursor and OpenCode.\n\nIt exposes memory through MCP (Model Context Protocol): a way to give an agent tools it can call. In this case, tools to save notes, search memory and recall previous decisions.\n\nThe agents use a common interface, so switching your memory backend doesn’t mean rebuilding each agent’s integration.\n\n### 2. Trim context without throwing away the transcript\n\nOpenMem saves the full conversation in local SQLite, removes older history from the active prompt, and lets the agent search or retrieve it later.\n\nThe trimming step makes \\*\\*zero LLM summarization calls\\*\\*. Currently works with Claude Code, Codex and OpenCode.\n\nFrom the published ContextBench log-triage tests with Haiku 5.5:\n\n| | OpenMem | Keep everything |\n|---|---:|---:|\n| Cost per trial, at list prices | $0.32 | $1.88 |\n| Total tokens, including cache reads and output | 10.6M | 32.6M |\n| Prompt-cache hit rate | 96% | 99% |\n\nSmall synthetic tests: three OpenMem trials and two baseline trials, with unequal seed counts. Full coding and Luna results are still pending.\n\n\\[Benchmark details and limitations\\](https://bcmyguest.github.io/openmem/docs/context-management/)\n\nThe context trimming idea (and masking) comes from:\n\n\\[MemGPT\\](https://arxiv.org/abs/2310.08560) for external memory, \\[Mainplane\\](https://github.com/mainplane-ai/mainplane) for transcript pointers, and \\[The Complexity Trap\\](https://arxiv.org/abs/2508.21433) for observation masking. \\[Context Language Models\\](https://arxiv.org/abs/2609.37725) explores the related approach of letting the model edit its own context.\n\nIf you try it, I’m interested in which memory backend you use and what the agent fails to retrieve after a trim.\n\nThx!",
+    "externalUrl": "https://bcmyguest.github.io/openmem/",
+    "developer": "goost95",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "bcmyguest.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

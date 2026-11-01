@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkoj2m",
+  "sourceItemId": "1xkoj2m",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xkoj2m/i_built_this_project_myself_as_an_opensource_tool/",
+  "detail": {
+    "longDescription": "* \\*\\*Disclaimer:\\*\\* Personal affiliation — I am the author of this free, open-source project.\n* Hey r/devops,\n* I wanted to share some practical lessons learned while building an automated perimeter scanner using Next.js, Node.js sockets, and TypeScript.\n* When building an external auditing service, the biggest risk is that malicious actors use your scanner backend as an open proxy or an SSRF vector against internal infrastructure. Here is how I approached the hardening:\n* 1. \\*\\*Strict Anti-SSRF:\\*\\* Filtering out private RFC 1918 blocks (\\`10.0.0.0/8\\`, \\`172.16.0.0/12\\`, \\`192.168.0.0/16\\`) and loopback/link-local ranges before issuing TCP connects.\n* 2. \\*\\*Redirect Bypass Protection:\\*\\* Forcing \\`redirect: 'manual'\\` in fetch calls so the auditor doesn't silently follow a target redirecting into internal services.\n* 3. \\*\\*Slowloris & Socket Hanging:\\*\\* Using \\`AbortSignal.timeout(4000)\\` along with defensive socket timeouts to keep serverless/Node processes from freezing on unresponsive ports.\n* The core checks evaluate TLS 1.3/1.2 negotiation, basic TCP service exposure, and OWASP defensive headers (HSTS, CSP, X-Frame-Options, etc.).\n* \\* \\*\\*Live Demo:\\*\\* \\[Tu enlace de Vercel\\]\n* \\* \\*\\*GitHub Repository:\\*\\* \\[Tu enlace a GitHub\\]\n* I'd love feedback from the community: what edge cases or additional network vectors would you recommend testing against when validating external perimeter exposure?",
+    "developer": "Some-Onion4062",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

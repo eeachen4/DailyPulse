@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xk97wj",
+  "sourceItemId": "1xk97wj",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xk97wj/tested_whether_ai_noise_cleaning_improves/",
+  "detail": {
+    "longDescription": "I've been building an audio cleaning tool as a side project. I assumed the obvious pipeline: clean the audio first, then transcribe. Better input, better output.\n\nTested it properly with 6 clips — news audio, a lecture, mixed Hindi-English speech. Ran each twice: raw → transcript, and cleaned → transcript. Sarvam's Saaras v3 for transcription, Cleanvoice for cleaning.\n\nCleaning made it worse in 4 of 6.\n\nOne clip, raw: \"आज मेरे परिवार में से यहां कोई मरेगा\" — complete, coherent. Cleaned: \"हाँ, मैं कोई मर भी नहीं। हो जाओ, हो जाओ।\" Meaningless.\n\nAnother, code-switched. Raw correctly caught the Hindi inside an English sentence: \"he says ya chalo chai peeke jaate hai.\" Cleaned: \"he says yeah let's go pick up the child.\" Fabricated.\n\nMy read: neural denoising reconstructs rather than filters. It strips detail the ASR model relies on, and the model fills gaps with plausible-sounding words — confident and wrong, which is worse than garbled.\n\nCaveats: small sample, short clips, one denoiser. Genuinely curious whether anyone's seen different results.\n\nSeparately — Sarvam handled code-switching noticeably better than I expected on raw audio.",
+    "developer": "Noisecleanai",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

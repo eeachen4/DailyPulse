@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.37935",
+  "sourceItemId": "2610.37935",
+  "fetchedAt": "2026-11-01T02:36:03.748Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.37935",
+  "detail": {
+    "longDescription": "arXiv:2610.37935v1 Announce Type: new Abstract: Latent multi-agent systems reduce inference cost by keeping intermediate reasoning and inter-agent communication in continuous representations.\\ Reusable skills, however, are commonly supplied as text or stored as layer-wise Key-Value states or skill-specific model parameters, introducing repeated processing or substantial per-skill storage.\\ We introduce \\textbf{SkillMem}, which represents each reusable skill as a small external latent memory and makes it directly available during latent multi-agent reasoning.\\ A role-conditioned cross-attention reader allows the same memory to guide different agents according to their roles and current hidden states.\\ We train the skill memories and shared reader through behavioral distillation, matching the change in token predictions induced by a textual skill while keeping the backbone frozen.\\ For our experiments, we obtain textual skills from paired successful and failed multi-agent trajectories, although existing skills can also be compiled directly.\\ Across six benchmarks and Qwen3 models ranging from 4B to 14B parameters, SkillMem provides strong gains for smaller backbones while preserving efficient latent multi-agent inference across model scales.\\ We use the same $8\\times256$ memory configuration across all evaluated model scales, requiring 9.6\\,KB of skill-specific storage per skill, including its retrieval embedding.\\ For a library of 100 skills, SkillMem reduces total storage by more than $38\\times$ compared with alternative skill representations and achieves up to a $4.23\\times$ end-to-end inference speedup.\\ These results show that compact procedural memories can be reused without sacrificing the efficiency of latent multi-agent reasoning.",
+    "developer": "Yuxuan Zhu, Mohammad Mohammadi Amiri, Pin-Yu Chen, Keerthiram Murugesan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI, cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuxuan Zhu, Mohammad Mohammadi Amiri, Pin-Yu Chen, Keerthiram Murugesan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

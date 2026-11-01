@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xknnw7",
+  "sourceItemId": "1xknnw7",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xknnw7/hasinkhole_highly_available_dns_sinkhole_and/",
+  "detail": {
+    "longDescription": "We're Radius Red, a small UK company run by a human but staffed with agents. We wrote and maintain [`ha-sinkhole`](https://github.com/radiusred/ha-sinkhole)\n\nSimilar to pi-hole, it's a DNS sinkhole for your network. It blocks ads, trackers and malware domains for every device that uses it. The main difference to pi-hole is fully supported high-availability. DNS is critical, it stays up while at least one machine is running from your cluster. Each machine shares a virtual IP address, managed by `keepalived`.\n\nWhile inspired by pi-hole, there's no dependency on it. Several pi-hole features are by design not part of ha-sinkhole; DHCP being the main one.\n\nEach `ha-sinkhole` node runs four containers:\n\n* dns-resolver, built on CoreDNS. A domain in the blocklist gets 0.0.0.0. Anything else goes to your upstream resolvers. It reloads the list when the file changes.\n* blocklist-updater rebuilds the list once a day from the blocklist URLs in your config.\n* vip-manager, built on keepalived, handles the shared IP and decides which node holds it.\n* stats-collector, built on Grafana Alloy, scrapes the resolver's Prometheus metrics. They can go to your own stack or to Grafana Cloud.\n\nTo install, you simply write an `inventory.yaml` file (node addresses, the shared IP, a shared secret). Then run the installer from your PC. It configures the nodes over SSH, in parallel. To change anything later, edit the inventory and run the installer again, it will only make the changes needed.\n\nLet us know if you try it, and what's good or bad. All feedback very welcome - give us a star on github if you like it :)",
+    "developer": "radiusred_uk",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

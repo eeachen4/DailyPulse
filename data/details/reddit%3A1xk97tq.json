@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xk97tq",
+  "sourceItemId": "1xk97tq",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xk97tq/i_built_a_custom_sliding_window_attention_from/",
+  "detail": {
+    "longDescription": "Hey everyone. I'm 15, and I've been trying to solve the VRAM bottleneck for long context in local LLMs and video processing.  \n   \nStandard nn.MultiheadAttention in PyTorch eats up VRAM and slows down heavily on long sequences (e.g., 15,000 tokens). The standard library tries to compute the full QxK matrix, which results in OOM (Out of Memory) errors on consumer GPUs.  \n   \nI wrote a custom SlidingWindowAttention from scratch that physically truncates old tokens before computing the QxK matrix, using chunking. This prevents the creation of massive NxN matrices.  \n   \nMy benchmark on a Tesla T4 (15,000 tokens, FP16):  \n• Standard PyTorch (nn.MultiheadAttention): \\~867 ms | 1.12 GB VRAM  \n• My implementation: \\~208 ms | 0.89 GB VRAM   \nResult:  \n• 4.16x faster  \n• 21% less VRAM   \nI know FlashAttention exists, but I wanted to build this from scratch to understand the mechanics. I'm not sharing the raw code yet because I want to make sure the implementation is robust, but I'm happy to discuss the math and architecture with anyone interested.  \n   \nQuestions for the community:  \n1. Is this approach viable for real-world video processing?  \n2. What bottlenecks am I missing if I try to scale this to 100k+ tokens?",
+    "developer": "vankownlaw",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

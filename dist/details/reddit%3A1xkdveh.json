@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkdveh",
+  "sourceItemId": "1xkdveh",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xkdveh/what_i_learned_about_the_windows_clipboard_while/",
+  "detail": {
+    "longDescription": "Full disclosure: I'm the developer of Edge-Drop, a free, open-source (Apache-2.0) clipboard manager for Windows. Most of what I learned building it is about how the Windows clipboard itself works, and some of it is useful even if you never install a clipboard tool.\n\n**1. Password managers can mark a copy as private, but only apps that check will respect it**\n\nWhen a password manager copies a password, it can attach extra clipboard formats that mean \"don't record this\". Windows has `ExcludeClipboardContentFromMonitorProcessing`, plus `CanIncludeInClipboardHistory` and `CanUploadToCloudClipboard` (a value of 0 means keep it out of history and cloud sync). A third-party clipboard manager only honours them if it looks for them.\n\nTwo traps I ran into:\n\n* Windows compares these format names without caring about upper or lower case, but apps report them in whatever casing they registered. A check for one exact spelling misses some.\n* Chromium-based apps (Electron included) often don't list these formats at all, so you have to ask for each one by name.\n\nQuick test for whatever clipboard manager you use: copy a password from your password manager and see if it shows up in the history.\n\n**2. A copied file is a list of paths, not the file**\n\nWhen you copy files in File Explorer, the clipboard holds a list of file paths (the `CF_HDROP` format), not the files. That's why a clipboard manager can capture a 4 GB video as instantly as a line of text: it only keeps a pointer to the original.\n\nThe easy way to read that list is to spawn PowerShell, which is what Edge-Drop used to do. It took about 300 ms per copy and garbled file names with non-English characters. Reading it directly through the Windows API (`DragQueryFileW`) takes under 1 ms and keeps the names intact.\n\n**3. Dragging something out means making a real file**\n\nDesktop apps expect actual file paths when you drop something on them. So to drag a copied image or a snippet of text into another app, a clipboard tool has to write it out as a real file first. In Edge-Drop, files leave as the originals, images as named image files, and text and links as text files.\n\n**4. A clipboard window must never take focus**\n\nA paste goes to whichever window has keyboard focus. If a clipboard window grabs focus when you open it, \"click to paste\" pastes into the clipboard window instead of your document. Edge-Drop's shelf never takes keyboard focus, so clicking a card pastes straight into the app you were in.\n\n**The app, briefly**\n\nEdge-Drop keeps your clipboard history on a shelf at the edge of the screen. Move the pointer there (or press Alt+C), click a card to paste it, or drag it into any window. 0.4.0 added a right-click menu (paste as plain text, copy a link without tracking parameters, copy a color as HEX/RGB/HSL), notes on cards and a redesigned drop zone. The GIF is its welcome tour.\n\nHistory stays on your PC, encrypted with Windows' DPAPI, with no account or telemetry. Windows 10/11 64-bit only, and not related to Microsoft Edge (the name is about the edge of your screen).\n\n* Source: [https://github.com/Deepender25/Edge-Drop](https://github.com/Deepender25/Edge-Drop)\n* Microsoft Store: [https://apps.microsoft.com/detail/9P3JMHN9M4NR](https://apps.microsoft.com/detail/9P3JMHN9M4NR)\n* Website: [https://edgedrop.app](https://edgedrop.app)\n\nHappy to go deeper on any of these in the comments.",
+    "externalUrl": "https://i.redd.it/p3hhxz3qrtyh1.gif",
+    "developer": "AdiArtist",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

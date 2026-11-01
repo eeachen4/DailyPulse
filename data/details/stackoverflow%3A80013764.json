@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013764",
+  "sourceItemId": "80013764",
+  "sourceUrl": "https://stackoverflow.com/questions/80013764/how-to-idiomatically-map-data-in-my-case-prime-numbers-to-a-reusable-class-in",
+  "detail": {
+    "longDescription": "I am working with a standard FrenchDeck class. This is the exact example from the book Fluent Python: import collections Card = collections.namedtuple(\"Card\", [\"rank\", \"suit\"]) class FrenchDeck: ranks = [str(n) for n in range(2, 11)] + list(\"JQKA\") suits = (\"Spades\", \"Hearts\", \"Diamonds\", \"Clubs\") def __init__(self) -> None: self._cards = [ Card(rank, suit) for suit in self.suits for rank in self.ranks ] def __len__(self): return len(self._cards) def __getitem__(self, key): return self._cards[key] def __repr__(self) -> str: return f\"FrenchDeck(ranks=({self.ranks}, suits=({self.suits}))\" I want to map a list of primes to my ranks, like so: Ranks Primes 2 2 3 3 4 5 5 7 6 11 7 13 8 17 9 19 10 23 J 29 Q 31 K 37 A 41 I still want FrenchDeck to remain reusable and \"pure\", without adding the mappings directly into the class itself, so my question is: what is the idiomatic \"pythonic\" way of mapping the primes to my ranks? I want something like this: primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41] FrenchDeck.ranks.map(primes) but python only has a global map function (as far as I am aware), therefore I thought this might work: primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41] ranks = FrenchDeck.ranks result = map(primes, ranks) But it does not.",
+    "developer": "gnarol ",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "166"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkluu4",
+  "sourceItemId": "1xkluu4",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xkluu4/local_multimodal_indexing_in_tensoragent_making/",
+  "detail": {
+    "longDescription": "I’m the author of TensorSharp. One feature I’ve been working on in TensorAgent is a local knowledge base that brings different kinds of files into a searchable collection: documents, CSVs, images, audio, and video.\n\nThe idea is to make information scattered across file formats accessible to an agent, while keeping the connection to the original sources.\n\n**How the indexing works**\n\n* Documents and CSVs contribute extracted text and structured content.\n* Images can contribute descriptions and visible text through a compatible vision model.\n* Supported audio can contribute transcribed content through a compatible audio model.\n* Videos contribute information from sampled frames. The soundtrack is not indexed.\n\nThese extracted representations become searchable locally. Retrieval defaults to BM25, with optional embeddings. This is not a claim that all modalities are embedded directly into one shared vector space.\n\nCoverage is explicit: media extraction can be partial, and indexing a file does not mean every detail in it has been understood. Collections must also be explicitly enabled for each conversation.\n\n**From an index to an agent task**\n\nThe attached walkthrough uses a fictional café campaign. A PDF specifies a 15% discount, while a poster advertises 20%. The illustrated workflow retrieves the conflicting evidence, opens the complete sales CSV for calculation, and produces a source-linked action plan.\n\nThe distinction matters: search helps locate the evidence; access to the original file lets a calculation use the complete dataset rather than a handful of retrieved rows.\n\n**Video disclosure:** This is an 83-second demonstration using the real TensorAgent UI, synthetic data, and scripted responses—not a live model run or benchmark. The calculations were independently checked in Python.\n\n[GitHub](https://github.com/zhongkaifu/TensorSharp) · [Knowledge Base documentation](https://github.com/zhongkaifu/TensorSharp/blob/main/docs/knowledge-system.md)\n\nFor your own local files, which indexing challenge matters most: text in images, audio transcription, video-frame coverage, or retrieving evidence across all of them?",
+    "externalUrl": "https://v.redd.it/yd3zq0geevyh1",
+    "developer": "fuzhongkai",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

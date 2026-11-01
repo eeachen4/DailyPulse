@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xkfk8o",
+  "sourceItemId": "1xkfk8o",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xkfk8o/my_claude_code_agents_burned_945_million_tokens/",
+  "detail": {
+    "longDescription": "    solo dev here, building a toy-brick rts in ue5 with a bunch of claude code agents doing roles (engine, ai opponent, modeller, qa, etc).\n    \n    on sep 22 the token ledger said ~9.45 million tokens in a single day. i figured it was the hard stuff that day, a rig audit and a map-load memory fix. nope.\n    \n    when i dug in, the agents were mostly reading. whole source files when the task needed like 40 lines. and our own docs. between sep 22 and 25 the four big logs grew from ~1m to ~2.5m characters. the handoff file alone went from 78,631 to 373,789 characters, so any agent that opened it whole read ~93k tokens before doing a single thing. i was paying them to read their own diary lol\n    \n    what fixed it:\n    \n    - a one-page brief (Docs/BRIEF.md, ~1,350 tokens) every agent reads first, instead of the logs\n    - a reading budget: under 6,000 tokens per role before work starts\n    - a compactor role that rolls finished work into Docs/archive/ with a pointer left behind. it runs a script (compact_docs.py) that moves text byte for byte and never rewords. the first big roll took ~295k characters (~73,800 tokens) out of the live files\n    - three rules in CLAUDE.md: never read a whole source file. edits, never full rewrites (a rewrite resends the whole file and can silently drop lines). one deliverable per run, stop near 250k tokens, hand a short state to a fresh agent\n    \n    that last one hurt the most. a resumed agent isn't a continuing worker, it's a very expensive reader. one resumed cinematics agent cost about 450k tokens per swap.\n    \n    the lesson if you run agents on a long project: your docs are a cost, not just context. log file sizes and tokens per run before you blame the model.\n    \n    anyone else tracking tokens per role? what was your biggest hidden eater?",
+    "developer": "WWEtrump",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

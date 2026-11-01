@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xk3c19",
+  "sourceItemId": "1xk3c19",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xk3c19/built_a_dropin_circuit_breaker_to_prevent_runaway/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nOne of the biggest worries when working with autonomous agents and LLM tool-calling is the risk of an unhandled exception triggering a retry loop with a heavy context window, racking up surprise API bills overnight.\n\nCloud billing alerts from OpenAI or Anthropic often arrive hours after the damage is already done.\n\nTo solve this, I built a zero-dependency local circuit breaker in Python & TypeScript that acts as a hard stop:\n\n* Hard per-session USD budget cap (e.g. aborts immediately if spend hits $1.00)\n* Infinite loop detector (catches cyclic/repetitive tool calls)\n* Real-time cost calculation across OpenAI, Claude, and Gemini models\n\nHere is the core cyclic loop detection logic in pure Python for anyone building their own agent loop:\n\n    import hashlib\n    \n    class CircuitBreaker:\n        def __init__(self, max_repeats=3):\n            self.max_repeats = max_repeats\n            self.hashes = []\n    \n        def check(self, action_signature: str):\n            h = hashlib.sha256(action_signature.encode()).hexdigest()\n            self.hashes.append(h)\n            recent = self.hashes[-self.max_repeats:]\n            if len(recent) >= self.max_repeats and len(set(recent)) == 1:\n                raise RuntimeError(f\"Infinite loop detected! Tripped circuit on: {action_signature}\")\n\nI also put together a free web calculator comparing token costs across 13+ current models: [https://manoharpiridi-stack.github.io/llm-cost-calculator/](https://manoharpiridi-stack.github.io/llm-cost-calculator/)\n\nIf you want the complete production package with pre-configured token pricing for 15+ models, USD caps, and TypeScript version, I packaged it on Polar for $19: [https://buy.polar.sh/polar\\_cl\\_0JFekJY0Rc3bDuKnN2cUEDB20VB9QAXF8AtPz2C2OMs](https://buy.polar.sh/polar_cl_0JFekJY0Rc3bDuKnN2cUEDB20VB9QAXF8AtPz2C2OMs)\n\nWould love any feedback on the calculator or the circuit breaker logic!",
+    "developer": "Disastrous-Word7185",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
