@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlika8",
+  "sourceItemId": "1xlika8",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xlika8/our_agent_posts_to_tiktok_from_a_real_phone_every/",
+  "detail": {
+    "longDescription": "Follow-up to my post about running agents on an Android phone. This week we added TikTok publishing for a small meat farm with a big account, through the app on the phone, because the official API won't let you post publicly to your own account without an audit.\n\nThe tapping part was easy. What bit us:\n\n1. TikTok keeps 5 hashtags and silently deletes the rest. Our check saw tags missing from the caption field and refused to post, so for a day the \"bug\" was a platform rule nobody told us about.\n\n2. After tapping Publish, a warning dialog shows up (\"situation evolving in your country, please be careful...\"). Our failure detector matched the word \"violation\" in it and reported a rejection. The post was sitting there waiting for one more tap.\n\n3. Confirming the post exists: we open the profile and match the caption. A caption with quotes in it broke the parser, so the agent kept searching for 5 minutes and reported \"not confirmed\" on a post that was live.\n\n4. Meanwhile the caller timed out and retried the same video. The second run died before Publish, which was luck. Now a second call with the same idempotency key while the first is running gets \"in progress\", and every error says whether Publish was already pressed.\n\nLesson for us: the agent needs a cheap, reliable way to answer \"did my action happen?\", and the caller has to treat a timeout as \"unknown\", never as \"failed\".\n\nHow do you verify side effects in your agents when the platform gives you no API to check?",
+    "developer": "Orfeo_Lyrakis",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

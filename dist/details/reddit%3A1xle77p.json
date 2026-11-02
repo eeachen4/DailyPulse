@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xle77p",
+  "sourceItemId": "1xle77p",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xle77p/veynod_an_opensource_agent_coding_runtime_one/",
+  "detail": {
+    "longDescription": "I've been building Veynod, an agent coding runtime: coding agents (Claude Code, Codex, …) claim tasks from a shared board and execute them with leases, evidence, and review gates. Just landed a big refactor (#86) unifying the Runtime and Kernel into one system, and the bridge layer is MIT-licensed.\n\nThe architecture\n\n* AgentGraph owns identity, projects, tasks, approvals\n* The Agent Runtime is the only model loop\n* The Kernel is a deterministic executor, reachable only through 12 typed capabilities (create\\_task, submit\\_patch, read\\_file, …) — validation, retries, idempotency, per-call audit trail\n* Lease tokens never reach model context\n\nTwo design details\n\n* Durable external wait: a Run waiting on the outside world parks, releases its lease, and resumes from a durable event feed. No polling.\n* Targeted leasing: a Run leases the exact Kernel node it created, so two tasks in the same repo can never steal each other's work.\n\nUnder the hood\n\nThe scheduler hot path is Rust (via PyO3): in-memory DAG, hierarchical write-set lock indexes, READY priority queue. Postgres is the durability fence (per-workspace advisory locks); Rust makes the scheduling call. Claiming a task touches only its own lock paths — no O(N) scan even at 1M nodes.\n\nTry it\n\nnpm i -g veynod, then `veynod up`: device-flow approval, keys at 0600, MCP client wiring, hub service, doctor check. The CLI auto-detects your runtime — no --runtime flag needed.\n\nHonest split\n\nBridge (CLI, MCP connector, local forward layer, SDKs): MIT → github.com/veynod/veynod. Kernel + control plane (this refactor): → github.com/MuadibUsul/veynod. The hosted control plane runs on veynod.com; there's a --local sandbox (≤2 agents, ephemeral) for offline tinkering.\n\nHappy to answer architecture questions.",
+    "developer": "TKOWNS",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014081",
+  "sourceItemId": "80014081",
+  "sourceUrl": "https://stackoverflow.com/questions/80014081/why-is-the-2nd-overload-picked-up",
+  "detail": {
+    "longDescription": "interface Type<T> extends Function { new(...args: any[]): T; } interface AbstractType<T> extends Function { prototype: T; } // works fine if the lone definition declare function inject<T>(token: Type<T>): T; // KO declare function inject<T>(token: AbstractType<T>): T; class ElementRef<T = any> { constructor(nativeElement: T) { } } const a = inject(ElementRef<HTMLDivElement>) // ^? should be `ElementRef<HTMLDivElement>`, but is `ElementRef<any>`",
+    "developer": "Matthieu Riegler",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "47"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

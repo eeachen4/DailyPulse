@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlh0zw",
+  "sourceItemId": "1xlh0zw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xlh0zw/glb3dcoder_a_tiny_4b_coding_model_that_creates_3d/",
+  "detail": {
+    "longDescription": "Hey everyone!\n\nAfter sharing my previous 3D coding model, a lot of you asked about using it to generate **assets for your games**. That sounded like a fun direction to explore, so I started training a version focused on exactly that.\n\nThe model writes **Three.js scenes with GLB export**, so you can take the generated assets into editors like **Godot**. The video shows some examples I've been testing, including assets imported into Godot.\n\nYou don't need complicated prompts. **Use the** [**system prompt in the model card**](https://huggingface.co/ccore/Qwen3.5-4B-GLB-3D-Coder#system-prompt), then try a simple request like **“Create a mana potion”** or **“Build a weathered frontier medic station.”** English prompts have worked best in my tests.\n\nThis is the **first functional checkpoint**, and training is still running. I'm sharing it now so people can start experimenting. Most generations have worked on the first attempt in my tests, but some still need a retry or a small code fix. I'm hoping later checkpoints will improve on that.\n\n**My current settings:** temperature **0.8**, top-k **40**, top-p **0.95**, min-p **0**. Feel free to experiment with other combinations!\n\nTraining is expected to finish **tomorrow evening (UTC)**, depending on progress. **Just like with the previous model, I'll release the full Safetensors weights and the training dataset once it finishes**, so others can build on this and experiment with training their own models.\n\n**Model:** [Qwen3.5-4B-GLB-3D-Coder](https://huggingface.co/ccore/Qwen3.5-4B-GLB-3D-Coder)\n\nThanks for all the feedback on the previous release ... it directly shaped this one. I'd love to see what you make with it and hear what works and what breaks!",
+    "externalUrl": "https://v.redd.it/6ssijtngz2zh1",
+    "developer": "ConfidentDinner6648",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

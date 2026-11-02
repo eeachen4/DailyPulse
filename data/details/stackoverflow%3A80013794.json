@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80013794",
   "sourceItemId": "80013794",
+  "fetchedAt": "2026-11-02T02:47:24.980Z",
   "sourceUrl": "https://stackoverflow.com/questions/80013794/why-does-python-return-true-when-comparing-two-datetime-objects-with-different-u",
   "detail": {
     "longDescription": "I'm developing a Python application that stores scheduled events using timezone-aware datetime objects. I encountered an unexpected behaviour when handling Daylight Saving Time (DST). from datetime import datetime from zoneinfo import ZoneInfo tz = ZoneInfo(\"America/New_York\") first = datetime(2024, 11, 3, 1, 30, tzinfo=tz, fold=0) second = datetime(2024, 11, 3, 1, 30, tzinfo=tz, fold=1) print(\"First timestamp:\", first.timestamp()) print(\"Second timestamp:\", second.timestamp()) print(\"Are they equal?\", first == second) events = { first: \"First event\", second: \"Second event\" } print(\"Dictionary length:\", len(events)) print(\"Dictionary contents:\", events) Expected output: Are they equal? False Dictionary length: 2 Actual output: First timestamp: 1730611800.0 Second timestamp: 1730615400.0 Are they equal? True Dictionary length: 1 Dictionary contents: {datetime.datetime(...): 'Second event'} Both datetime objects represent different UTC moments, separated by one hour. However, Python considers them equal, causing the dictionary to overwrite the first event. I verified that converting both objects to UTC produces different datetime values. Why does Python consider these two datetime objects equal despite their different Unix timestamps, and what is the correct way to use them as separate dictionary keys?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "202"
+        "value": "242"
       },
       {
         "label": "状态",

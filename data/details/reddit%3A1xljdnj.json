@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xljdnj",
+  "sourceItemId": "1xljdnj",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xljdnj/sorry_sam_my_quite_terrible_home_dram_is_at_100/",
+  "detail": {
+    "longDescription": "Sam Altman recently said that \"from a global allocation perspective, actually, it's quite terrible to have everybody have a bunch of the world's limited supply of DRAM sitting in their own computer, and being used maybe 5% of the time.\"\n\nChallenge accepted. Here's my \"quite terrible\" home setup: an RX 9070 XT 16 GB, a 5800X3D, 64 GB of DDR4 that's now worth more than the rest of the PC, and a PCIe 3.0 NVMe. It runs **DeepSeek V4.1 Flash at 1M context** (IST-DAS 1.75 bpw; the lab reports 98.7% of the full model's task average) through [Strata](https://github.com/Niko1221/Strata), fully offline, with the experts spread across VRAM, RAM and the SSD.\n\nGeneration at \\~7 tok/s was fine. The problem was **prompt reading**: every new OpenCode session re-read the full \\~37K-token system prompt plus tools, about **100 s** before the first token. That's datacenter-grade waiting without the datacenter.\n\nSo I patched the DeepSeek engine. Two changes:\n\n**1. KV splice: stop re-reading what you already read**\n\nAgents put per-session text (working directory, date, project CLAUDE.md, skill paths with random IDs) *inside* the system prompt, so the prefix cache misses on every new session. The engine now aligns a new prompt against every saved conversation, cuts the stale lines out of the cached state (moving the cached rows down, rotating the window rings, recording a RoPE gap), and reads only the changed lines plus your message. Changed lines move as whole lines, so the model never sees fragments.\n\n**2. Resident-only routing: make the RAM earn its keep**\n\nEven a short prompt touches nearly every expert of every layer, so prompt reads streamed most of the model off the SSD: **58 GB for a 1.2K-token prompt**. During prompt reading only, tokens now pick from experts already sitting in VRAM or RAM. Generation routes normally. Turns out home DRAM is pretty useful when you actually let it do things.\n\n**Results (same machine) as seen above on the body image**\n\n**Caveats:**\n\n* **HIP (gfx1201) only.** I haven't built or tested CUDA, SYCL or Metal.\n* **The splice is approximate:** tokens after a cut were computed with the removed text in context. I haven't seen it matter for short guidance lines, but there's no formal eval.\n* **Resident routing changes answers slightly** (substitute experts during prompt reads). My hard coding suite didn't move (12/13 both ways), but that's one run each.\n* Both are **on by default in the branch**; `STRATA_DS4_REORDER=0` and `STRATA_DS4_PROMPT_RESIDENT=0` turn them off.\n* It also includes a one-line fix for a GPU page fault I hit on a 37K-token prompt (#4912).\n\n**Branch:** [https://github.com/PhialsBasement/Strata/tree/dsv41-kv-splice](https://github.com/PhialsBasement/Strata/tree/dsv41-kv-splice)\n\n**Build (HIP example):**\n\n    git clone -b dsv41-kv-splice https://github.com/PhialsBasement/Strata.git\n    cd Strata\n    cmake -S . -B build-hip -G Ninja -DCMAKE_BUILD_TYPE=Release -DSTRATA_ENABLE_HIP=ON \\\n      -DSTRATA_ENABLE_CUDA=OFF -DCMAKE_HIP_ARCHITECTURES=gfx1201 -DSTRATA_BUILD_DSV41=ON\n    cmake --build build-hip --target strata-dsv41\n    DS4_CHUNK_MIN=16 STRATA_DSV41_EXE=$PWD/build-hip/strata-dsv41 strata launch --preset <your preset>\n\nIf you use OpenCode, also add `\"interleaved\": { \"field\": \"reasoning_content\" }` to the model entry, otherwise OpenCode drops earlier reasoning and the cache misses more often.\n\nUpstream issues with details: [\\#4921](https://github.com/Niko1221/Strata/issues/4921) (splice), [\\#4936](https://github.com/Niko1221/Strata/issues/4936) (resident routing). If you try it on other hardware, especially CUDA, numbers in those threads would really help get it merged.\n\nUtilization report for Sam pissman, VRAM holding experts, RAM holding experts, SSD streaming the rest at full bandwidth. The only idle component in this system is my wallet, thanks to DRAM prices.",
+    "externalUrl": "https://i.redd.it/dwgmz70zi3zh1.png",
+    "developer": "HearMeOut-13",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

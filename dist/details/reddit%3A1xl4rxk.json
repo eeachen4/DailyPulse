@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xl4rxk",
+  "sourceItemId": "1xl4rxk",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xl4rxk/first_time_building_a_cicd_pipeline_automated/",
+  "detail": {
+    "longDescription": "Cybersecurity student here. For my internship I kept seeing the same pattern: every new server gets hardened manually and inconsistently, and nobody re-checks it once it's deployed (there is always at least one server that have config /sec drift ). So instead of hardening after the fact, I built a pipeline that bakes it into the image itself.\n\nPacker builds Ubuntu 24.04 (VirtualBox + GCP, same Ansible roles for both, just different variables — e.g. GRUB hardening is skipped on the cloud image since it doesn't apply there). Ansible then applies SSH/PAM/sudo hardening, sysctl, nftables, auditd, AppArmor, GRUB, etc. After a reboot, a separate Ansible verification pass checks hardening didn't break anything functional, then Lynis and OpenSCAP gate the build — it fails if the hardening score drops below a threshold.\n\nThis is my first CI/CD pipeline of this size, so there's probably stuff that's over-engineered or done the wrong way. Genuinely curious what an experienced eye would flag — especially around how I'm gating the build (Lynis score threshold feels a bit arbitrary) and whether reusing the same Ansible roles across platforms is the right call vs. just diverging them.\n\nRepo: [https://github.com/Yasserkdr1/golden-image\\_factory](https://github.com/Yasserkdr1/golden-image_factory)\n\nPost is awaiting moderator approval.",
+    "developer": "123fgta8",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

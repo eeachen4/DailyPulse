@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013933",
+  "sourceItemId": "80013933",
+  "sourceUrl": "https://stackoverflow.com/questions/80013933/adding-a-private-property-to-canvasrenderingcontext2d",
+  "detail": {
+    "longDescription": "I am trying to extend CanvasRenderingContext2D to add a few more methods. I know that it’s not a simple matter of using extends because, apparently CanvasRenderingContext2D doesn’t permit normal construction. I found the technique at How to extend CanvasRenderingContext2D (in ES6-style scripts, if possible) . I have that working well enough, but I now want to add a private method. I can’t get that working at all using the normal technique. Here is an unsuccessful test script: class Context2D extends CanvasRenderingContext2D { constructor(context) { Object.setPrototypeOf(context, new.target.prototype); // other properties return context; } test(x) { return x * 2; } #thing = 42; whatever() { return this.#thing; } } var canvas = document.querySelector('canvas#testing'); var context = new Context2D(canvas.getContext('2d')); console.log(context.test(7)); console.log(context.whatever()); // TypeError: can't access private field or method: object is not the right class <canvas id=\"testing\"></canvas> Normally I should be able to create the private variable #thing and access it. In this case it doesn’t work, presumably because the constructor works differently. Is there a way I can add private properties?",
+    "developer": "Manngo",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "87"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

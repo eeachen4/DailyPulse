@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xl7l45",
+  "sourceItemId": "1xl7l45",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xl7l45/i_animated_what_gpt4os_tokenizer_does_to/",
+  "detail": {
+    "longDescription": "I made this explainer for my small channel and would like feedback from people learning this, especially if anything is wrong.\n\nIt follows one word the whole way:\n\n* \"How many r's are in strawberry?\" is 8 tokens in o200k\\_base (the GPT-4o / GPT-5 tokenizer). \" strawberry\" is a single token, id 101830, so the three r's are hidden inside one id.\n* Why pieces of words: letters make sequences about 4x longer, whole words need a huge vocabulary and can't handle new words.\n* A tiny byte pair encoding run on a made-up text, merge by merge, until strawberry becomes st | raw | berry.\n* The space belongs to the word: \"strawberry\", \" strawberry\" and \"Strawberry\" are three different token sequences.\n* Why reasoning models count letters better: in OpenAI's 2025 paper \"Why Language Models Hallucinate\", DeepSeek-R1 spells DEEPSEEK out letter by letter before counting, while DeepSeek-V3 answered 2 or 3 (the answer is 1).\n* Bonus: the same Hindi sentence took 21 tokens with GPT-4's tokenizer and 5 with GPT-4o's.\n\nEvery split comes from running tiktoken 0.14.0. The narration is an AI voice reading my own script.\n\nVideo: [https://www.youtube.com/watch?v=FdWcUJAhfpo&pp=0gcJCSsMAYcqIYzv](https://www.youtube.com/watch?v=FdWcUJAhfpo&pp=0gcJCSsMAYcqIYzv)",
+    "developer": "Rajucg",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

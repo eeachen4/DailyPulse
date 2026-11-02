@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlchk7",
+  "sourceItemId": "1xlchk7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xlchk7/if_you_quantize_your_rag_index_measure_it_on_your/",
+  "detail": {
+    "longDescription": "I was planning to move a RAG index to binary/halfvec to save memory and wanted to know how much retrieval I'd actually lose. The answer was \"it depends on your embeddings\" way more than I expected.\n\nBinary + rerank kept 0.992 of the true top 10 on OpenAI embeddings, 0.348 on GloVe and 0.055 on SIFT. Same method, same settings.\n\nSo I built shrinkvec. You give it your vectors (a .npy/.parquet file or a Postgres table), it holds out queries, computes the exact neighbours, and reports recall, size and latency for 13 options (halfvec, int8, binary, RaBitQ, TurboQuant, rerank pipelines). Then it picks the smallest one that hits your target.\n\nThe part I use most: run it in CI with --min-recall 0.95, so the build fails if switching embedding models quietly hurts search.\n\npip install 'shrinkvec[pg]'\nDemo: docker run --rm -p 8080:8080 ghcr.io/ahmad-codex/shrinkvec:demo\nRepo (MIT): https://github.com/ahmad-codex/shrinkvec\n\nHas anyone checked recall after switching to a compressed index, or do most people just trust the defaults?",
+    "developer": "Plane-Preference6245",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

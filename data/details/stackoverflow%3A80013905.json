@@ -2,27 +2,28 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80013905",
   "sourceItemId": "80013905",
+  "fetchedAt": "2026-11-02T02:47:24.980Z",
   "sourceUrl": "https://stackoverflow.com/questions/80013905/python-3-14-nameerror-for-a-self-referencing-annotation-but-only-when-it-s-rea",
   "detail": {
     "longDescription": "The Python 3.14 docs say annotations are now evaluated lazily, so forward references work without from __future__ import annotations . I removed that import from my mini ORM. Now defining any model that refers to itself crashes. Reading Category.__annotations__ after the class is defined works fine. class Model: registry = {} def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs) cls.fields = dict(cls.__annotations__) Model.registry[cls.__name__] = cls class Category(Model): name: str parent: Category | None print(Category.fields) What I expected (Python 3.14.6): {'name': <class 'str'>, 'parent': __main__.Category | None} What happened instead: Traceback (most recent call last): File \"models.py\", line 10, in <module> class Category(Model): name: str parent: Category | None File \"models.py\", line 6, in __init_subclass__ cls.fields = dict(cls.__annotations__) ^^^^^^^^^^^^^^^^^^^ File \"models.py\", line 12, in __annotate__ parent: Category | None ^^^^^^^^ NameError: name 'Category' is not defined I tried: Putting from __future__ import annotations back. It no longer crashes, but every field is now a string, like {'name': 'str', 'parent': 'Category | None'} , and I need the real types. Changing fields to a @classmethod that reads cls.__annotations__ when it’s called. That returns the real types, but then I can’t validate fields at class-creation time. Questions: Why does the lazy annotation still raise NameError here? What’s the correct way in 3.14 to read a class’s annotations inside __init_subclass__ when some of them refer to classes that aren’t defined yet?",
     "developer": "Muhammad Raham Saleem",
-    "comments": 0,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "4"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "52"
+        "value": "154"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

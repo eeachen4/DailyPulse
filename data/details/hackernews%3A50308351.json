@@ -2,12 +2,13 @@
   "schemaVersion": 2,
   "id": "hackernews:50308351",
   "sourceItemId": "50308351",
+  "fetchedAt": "2026-11-02T02:47:24.980Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50308351",
   "detail": {
     "longDescription": "Hey Everyone, At work, and for several of our employees at home too, we&#x27;ve been big users of shared storage. We have a big TrueNAS storage server at the office containing a mix of spinning rust and flash. In addition to SMB and NFS, we&#x27;ve been big users of iSCSI for our Linux and Windows servers and clients. But all of our employees use Macs, and due to the lack of modern iSCSI initiator software for Mac we were never able to utilize iSCSI for Mac clients. Existing legacy iSCSI initiators for Mac use kernel extensions that require turning off System Integrity Protection in recovery mode to install on Apple Silicon Macs. That&#x27;s insane. You shouldn&#x27;t have to severely sacrifice your Mac&#x27;s security to use iSCSI! So, we built a high performance user-mode iSCSI initiator for macOS. Our solution is a sandboxed Mac App Store application that requires no Kernel Extensions, no drivers, no reduced security and no reboots to install. Introducing BeamDisk, the first high-performance user-mode iSCSI initiator for macOS without security compromises. BeamDisk allows you to mount LUNs from your storage server, NAS, or Enterprise SAN arrays directly to your Mac and have them show up as standard disks. You can format the LUNs APFS, HFS+, any format you like. BeamDisk can easily saturate a 10 Gigabit Ethernet connection and hits tens of thousands of random R&#x2F;W IOPs on standard SATA SSDs. All of the benchmarks on our site were recorded on our own hardware on an M4 Mac Mini over 10 GbE with no special tricks. Even just standard Time Machine backups to APFS LUNs are far more performant and MUCH more reliable than Time Machine over SMB. Today, we&#x27;re releasing our first public beta via Apple&#x27;s TestFlight. Beta spots are currently limited to 100, first come first served. Beta users will have access to all features, for free, forever. Once we land in the Mac App Store, BeamDisk will have a 30-day trial with all features unlocked and then will be free for basic Home users and paid ($25) for business use. For you prosumers out there with massive homelabs (our kind of people) the free version&#x27;s limits can be lifted via an in-app purchase once BeamDisk is on the App Store. For TestFlight testers everything is unlocked, forever. Happy to answer any questions you have and collect feedback to share with the team. Otherwise, give it a shot and get your LUNs &quot;Beamed&quot; to your Mac! BeamDisk.app - https:&#x2F;&#x2F;BeamDisk.app Community GitHub Repo for Discussions, Issues, Roadmap, etc - https:&#x2F;&#x2F;github.com&#x2F;3rdBitLabs&#x2F;BeamDisk Have a great weekend!",
     "externalUrl": "https://beamdisk.app/",
     "developer": "nulledy",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "积分",
@@ -15,7 +16,7 @@
       },
       {
         "label": "评论",
-        "value": "1"
+        "value": "2"
       }
     ]
   }

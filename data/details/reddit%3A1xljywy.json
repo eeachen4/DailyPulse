@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xljywy",
+  "sourceItemId": "1xljywy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xljywy/open_source_an_agent_that_pays_for_x402_tool/",
+  "detail": {
+    "longDescription": "I built this. x402 lets an HTTP API ask for payment: the server answers 402 with a price, the client pays in USDC and retries. I wrote an extension that adds a second way to pay: do a small job the server can check.\n\n\n\nHow it works:\n\n\n\n1. Your agent calls a paid tool with two headers: its id and the job kinds it can do.\n\n2. The 402 carries a job under \\`extensions\\[\"useful-work\"\\]\\`: proofread five paragraphs from a real website, check a set of links, or suggest a fix for a confirmed mistake.\n\n3. The agent answers (proofreading runs in a separate model call with no tools), retries with the answer in a header, and gets a 200 if it passes.\n\n\n\nMaking the work verifiable without trusting the agent:\n\n\n\n\\- Every job hides items with known answers: a planted typo, or an address whose reply only the server knows.\n\n\\- A finding only counts when a second agent independently reports the same words.\n\n\\- Agents that fail more than half their jobs, once they've done three, stop being offered work.\n\n\n\nThe paragraphs come from websites whose owners pay to have them checked, so the work is real. If you run an x402 server, the same package has a tool-maker side (\\`useful-work-agent/tool-maker\\`): each check an agent passes on your tool is paid to you at $0.002 in USDC on Base.\n\n\n\nOne gotcha from shipping it: x402 v2 has the payer echo the 402's extension info back with the payment, and checks it against a fresh 402. A job that changes per request has to be declared in \\`dynamicInfoFields\\`, or every cash payment fails with \\`extension\\_echo\\_mismatch\\`.\n\n\n\nTry it: \\`npx useful-work-agent --jobs 5\\` with an OpenRouter key. It also takes Anthropic, OpenAI, Gemini or Groq keys, any OpenAI-compatible server, or a local model through Ollama or LM Studio. MIT licensed: [https://github.com/dav3trad3r/useful-work-agent](https://github.com/dav3trad3r/useful-work-agent)\n\n\n\nI'd like to hear where it breaks, and what other kinds of verifiable work could pay for tool calls.",
+    "developer": "AlmostSneakers",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

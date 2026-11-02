@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlavh5",
+  "sourceItemId": "1xlavh5",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1xlavh5/entra_make_single_signon_popups_less_frequent/",
+  "detail": {
+    "longDescription": "At my workplace we use GitHub and our accounts live in M365.\n\nAbout once per hour we get this annoying popup in GitHub:\n\n> Single sign-on to Contoso\n>\n> Authenticate your account by logging into Contoso’s single sign-on provider\n\nWe then have to click *Continue* to get rid of the popup.\n\n**Does anyone know how to make this popup appear less often?**\n\n[On a Microsoft forum](https://learn.microsoft.com/en-us/answers/questions/1639412/how-to-set-sessionnotonorafter-attribute-in-entra) I found this info:\n\n> Entra ID does not support SessionNotOnOrAfter attribute and does not allow configuration of session lifetimes derived from the SAML Response.\n>\n> Github uses the SAML SessionNotOnOrAfter value on the SAML Assertion to define the relying application's session length (…)\n>\n> A potential solution would be to configure conditional access policies with session frequency.\n\nDoes anyone know if it helps to configure a conditional access policy?\n\nI’m not an M365 admin in our org, but if there is any way to fix this I would like to relay that info to our IT dept.",
+    "developer": "giffengrabber",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xl6nkr",
+  "sourceItemId": "1xl6nkr",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xl6nkr/i_started_asking_claude_for_state_diagrams_when/",
+  "detail": {
+    "longDescription": "I keep having this thing happen where Claude explains a flow, I read the whole thing, and I still can’t picture what happens when something fails.\n\nSo I added a state-diagram skill to MEX, an open-source project memory tool I maintain for Claude Code and Codex.\n\nYou can already ask Claude for Mermaid. What I wanted on top of that was for the explanation to use the relevant decisions and gotchas recorded in the project, with sources I could inspect.  \nThe screenshot is MEX’s own setup/recovery flow.  \nThe first pass over the code covered the normal pauses, retries, and saved files. A project note then surfaced a more awkward case: rebuilding the CLI while an old setup process is still running can remove a module that process still references. Hitting Retry doesn’t replace its cached imports.  \nThat changes the recovery path. You need a fresh CLI process, but you can still reuse the prepared setup files. The diagram spells out the conditions: the old process has exited, the current build is coherent, and the prepared files still exist.\n\nThat was the useful addition from MEX here. A recorded project gotcha became an explicit condition in the diagram, with the note and supporting code references attached. I’ve selected that recovery transition in the screenshot so you can see its condition alongside the full flow.\n\nYou can ask for the diagram in the conversation, or open it in the local Hub to inspect transitions, conditions, and evidence.  \nThe skill also supports TLA+/TLC checks for the modeled rules; those checks apply to the model and its assumptions.  \nWhen you ask an agent for diagrams, is it mostly for planning, or for understanding something it already built?  \nRepo: [github.com/mex-memory/mex](https://github.com/mex-memory/mex)",
+    "externalUrl": "https://i.redd.it/ximxnumax0zh1.png",
+    "developer": "DJIRNMAN",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

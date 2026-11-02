@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80013974",
+  "sourceItemId": "80013974",
+  "sourceUrl": "https://stackoverflow.com/questions/80013974/do-i-need-a-try-finally-clause-when-calling-cv2-videocapture-release",
+  "detail": {
+    "longDescription": "I'm learning how to capture video from camera using opencv for Python. The official tutorial provides the following example (modified): import cv2 as cv cap = cv.VideoCapture(0) if not cap.isOpened(): print(\"Cannot open camera\") exit() while True: # Capture frame-by-frame ret, frame = cap.read() # if frame is read correctly ret is True if not ret: print(\"Can't receive frame (stream end?). Exiting ...\") break # Display the resulting frame cv.imshow('frame', gray) if cv.waitKey(1) == ord('q'): break # When everything done, release the capture cap.release() cv.destroyAllWindows() According to this question , the final cap.release() call is important because it releases the hardware and software resource. In that case, why is it not wrapped in a try/finally clause? This answer , which provides a context manager for reading VideoCapture , does use try/finally. Considering how many exceptions I get while playing around with opencv , I've missed the final cap.release() call dozens of times already.",
+    "developer": "JadenV15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "112"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlfhrd",
+  "sourceItemId": "1xlfhrd",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xlfhrd/speedy_is_shockingly_good_for_qwen38_fn/",
+  "detail": {
+    "longDescription": "I had *just* finished setting up avalon, then i found speedy, which crushed avalon.\n\nhttps://github.com/freriadoc/Avalon  \nhttps://github.com/DevDock-AI/Speedy\n\nHardware: 4090, 128gb ddr5 3600, ryzen 9 7950x\n\nISTA IQ3_S quant:\n\n| Context | Reading: cold prefill s                  | Reading: reported tok/s              | Writing: generation tok/s                 | Whole exchange: wall s                   |\n| ------: | ---------------------------------------- | ------------------------------------ | ----------------------------------------- | ---------------------------------------- |\n|     60K | Strata 54.7 / Avalon 22.4 / Speedy 13.7  | Strata — / Avalon 2678 / Speedy 4389 | Strata 75.0 / Avalon 102.5 / Speedy 110.0 | Strata 66.6 / Avalon 32.1 / Speedy 23.9  |\n|    120K | Strata 110.7 / Avalon 42.1 / Speedy 26.0 | Strata — / Avalon 2849 / Speedy 4622 | Strata 71.8 / Avalon 101.6 / Speedy 105.8 | Strata 123.2 / Avalon 52.0 / Speedy 37.0 |\n|    198K | Strata 187.2 / Avalon 71.2 / Speedy 44.1 | Strata — / Avalon 2779 / Speedy 4494 | Strata 71.9 / Avalon 103.0 / Speedy 104.3 | Strata 199.8 / Avalon 81.5 / Speedy 56.1 |\n\n| Context | Writing Strata -> Speedy | Writing Avalon -> Speedy | Reading Strata -> Speedy | Reading Avalon -> Speedy | Wall Strata -> Speedy | Wall Avalon -> Speedy |\n| ------: | -----------------------: | -----------------------: | -----------------------: | -----------------------: | --------------------: | --------------------: |\n|     60K |                     +47% |                      +7% |                     4.0x |                     1.6x |           64% shorter |           26% shorter |\n|    120K |                     +47% |                      +4% |                     4.3x |                     1.6x |           70% shorter |           29% shorter |\n|    198K |                     +45% |                      +1% |                     4.2x |                     1.6x |           72% shorter |           31% shorter |\n\n",
+    "developer": "MotorNetwork380",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

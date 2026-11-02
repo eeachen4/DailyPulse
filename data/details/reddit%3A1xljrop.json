@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xljrop",
+  "sourceItemId": "1xljrop",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xljrop/benchmarking_qwen_27b_35b_qfn180b_nemotron_bolt/",
+  "detail": {
+    "longDescription": "hey folks, I'm Ye, one of the contributors to Kapitsa, an open-source inference engine optimized specifically for Apple Silicon to run Qwen, Nemotron, Flint and Clover models locally. Our custom-written Metal kernels let us tune for each chip and each model. [https://github.com/nace-ai/kapitsa/](https://github.com/nace-ai/kapitsa/)\n\nThe latest update, 0.2.26, is out. Since our last M5 Max numbers, Flash-Next 180B reads prompts 46% faster and the 27B writes 8% faster, and DiffuSpace's Clover 35B joins the catalog. Kapitsa also runs **Qwen Flash-Next 180B with SSD offloading**: on a Mac that can't hold it, the experts that don't fit in RAM stream from the SSD, so it runs on a 48 GB MacBook Pro at 61 tok/s.\n\n`kapitsa serve` gives you OpenAI and Anthropic APIs on localhost, with streaming, tool calls and JSON-schema output, and a follow-up turn on a cached conversation starts in 0.04-0.13 s. Here are six models on a 2026 MacBook Pro 16 with an M5 Max and 128 GB, from 1K context up to 32K.\n\nTry it (any Apple Silicon Mac; models in this post: `35b`, `27b`, `flash-next`, `bolt`, `flint`, `clover`):\n\n    brew install nace-ai/tap/kapitsa\n    kapitsa serve --model 35b       # OpenAI and Anthropic APIs on localhost\n    kapitsa opencode --model 35b    # or claude, codex, pi\n    kapitsa bench                   # benchmark your own Mac\n\n# Results\n\nDecode is a 512-token coding answer, prefill a 4K prompt, median of 3 runs:\n\n|Model|Decode, tok/s|Prefill, tok/s|\n|:-|:-|:-|\n|Qwen3.6 35B-A3B|346|6,036|\n|Clover 35B-A3B|304|5,981|\n|Flint 40B|265|5,770|\n|Nemotron Bolt 74B|154|1,075|\n|Qwen3.8 27B|143|904|\n|Qwen Flash-Next 180B|108|1,701|\n\nhttps://i.redd.it/y68hbxttk3zh1.png\n\nFrom 1K context all the way up to 32K. At 32K the 35B still writes 175 tok/s, and Flash-Next barely drops (90 to 78):\n\nhttps://i.redd.it/gflxdnvtk3zh1.png\n\nhttps://i.redd.it/nvdsjfxtk3zh1.png\n\n# Against the other engines\n\nAgainst the next-fastest engine for each model on the same Mac: 1.23x Splash on the 35B, 2.2x oMLX on Bolt, 1.18x rec on Flint and 1.12x mlx-serve on the 27B. Flash-Next is a tie with mlx-serve, Splash still reads prompts faster on the two Qwens, and nothing else runs Clover on a Mac.\n\nhttps://i.redd.it/h19ii7ztk3zh1.png\n\nEvery cell with versions and flags: [benchmarks](https://github.com/nace-ai/kapitsa/blob/main/docs/benchmarks.md#m5-max). Raw runs: [results](https://github.com/nace-ai/kapitsa/tree/main/bench/results/2026-11-01-m5-max-kapitsa).\n\n# Why it's fast: KFlash\n\nOther engines check the drafter's guesses as one chain and stop at the first wrong one. KFlash checks a tree of the drafter's best guesses in the same pass, so more tokens survive each pass.\n\nhttps://i.redd.it/4amjxx0uk3zh1.png\n\nOn Apple GPUs that's nearly free: the GPU works in 8-row tiles, and a one-token step already pays for 8. Every token it keeps is one the big model would have written itself, so the output doesn't change, only the speed. [How KFlash works](https://github.com/nace-ai/kapitsa/blob/main/docs/kflash.md)\n\n# Send us your benchmarks\n\nRun the same test on your Mac and add it to the [community results](https://github.com/nace-ai/kapitsa/blob/main/bench/community/RESULTS.md). It takes 3-15 minutes:\n\n    brew install nace-ai/tap/kapitsa\n    brew install gh && gh auth login    # results are sent as a GitHub pull request\n    kapitsa bench --submit              # pick a model; it asks before sending anything\n\nPlug in and close heavy apps while it runs. At the end it asks once: Enter sends the result as a pull request from your GitHub fork, and `n` keeps it on your Mac. What it sends is about 2 KB: your Mac's model, chip, RAM, macOS version and the numbers, with no serial number, user name or paths (add `--dry-run` to see exactly what it would send). No GitHub? Paste the numbers it prints in a comment here.\n\n# One more ask\n\nIf your client or framework breaks against `kapitsa serve`, [open an issue](https://github.com/nace-ai/kapitsa/issues) with the request body.",
+    "externalUrl": "https://i.redd.it/hnz5l36cm3zh1.png",
+    "developer": "DotaMate",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlicia",
+  "sourceItemId": "1xlicia",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xlicia/qwen_38_flash_next_nvfp4_on_64gb_ram_and_5090/",
+  "detail": {
+    "longDescription": "So, I was asleep on Strata and its specialized forks. Tried basalt and i'm very impressed with the speed/intelligence QFN gives you. Here is my benchmark:\n\nhttps://i.redd.it/8qhp92ql73zh1.png\n\nI cannot get it to work fast enough with windows, because W11 eats 1.5GB of VRAM and 6GB of RAM. At that point, experts spill to RAM and CPU gets hit hard... decode/prefill drops by 70% because there is not enough of available RAM anyway.\n\nSwitched experimentally to cachy just to test... and It's amazing that my AI box can now reach 9K\\~ prefill. And regarding quality, its just better than qwen 27b at many tasks. Yet to find something it genuinely cannot do. The prefill boost is around 2-3x coming from ninfer and dense 27b model.\n\nCherry on top is, that I can even fit vision adapter to it, and that helps a lot for certain scenarios regarding coding. I usually run some small model on another machine for OCR and VISION as an adapter (sidecar) my harness can use for being to able look at things.\n\nVivid user of omo stack, configured now for locally hosted qwen: [https://github.com/code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)\n\nIt's a glorified pi harness, but it does so much, and im quite happy with its robustness, anyway, QFN 3.8 rocks, and now im really thrilled if qwen 4 will be any good, because I suspect i may be the new flash model this fast basically. So I hope it will be good :D   \n\n\nIm genuinely interested how 2x 5060/5070/5070ti fares. Because anything above 100\\~ decode and 3k prefill is genuinely usable for work. And it is my experience that 27b dense -> 125BA6 is a very good quality and speed jump. Absolutely love it now. \n\nAlso, finetunes can be easily converted into basalt format if you need to do it yourself, especially those swift/reverse engineering variants are good.\n\nAnyway: CachyOS, 64gb RAM, 32GB VRAM, 5090, 200tps decode, 9k tps prefill, nvfp4 QFN 3.8, 256k context! If you have similar hardware, and are not using at least strata... but more specially basalt, you sleep on performance hard! See ya!\n\nPS: Would absolutely love to see your perf benchmarks if you have similar setups\n\n",
+    "developer": "Rozzemak",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

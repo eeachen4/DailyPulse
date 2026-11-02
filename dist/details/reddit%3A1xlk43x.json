@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlk43x",
+  "sourceItemId": "1xlk43x",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xlk43x/8_agents_250k_context_concurrently_on_two_3090s/",
+  "detail": {
+    "longDescription": "I am wide open to the idea that I am misguided or misinformed, but my findings feel worth sharing:\n\nShort video of my UI with 8 agents each explaining a codebase in parallel long prose: https://imgur.com/JSqlXIi\n\nA few days ago I read the [Stanford/Berkeley TokenGate paper](https://old.reddit.com/r/LocalLLaMA/comments/1xfovxr/researchers_from_stanford_and_uc_berkeley/). The idea is to make long context cheap by pruning tokens up front.\n\nI tried it. It's fine for one question, but agents keep asking new ones, and by then the tokens they need are gone, so code recall drops hard.\n\nSo I went the other way - don't throw anything away, just don't look at all of it at once. Keep the whole context in system RAM and at each step pull in only the ~1% that matters right now.\n\nA few days later, I have two 3090s run 8 coding agents at once, **each holding a 250K-token context**:\n\n- Every decode step, each attention layer reads only ~1% of the tokens, picked with a tiny `rank-64` \"key sketch\".\n- The full KV cache lives in system RAM (`int4`). The GPU keeps the sketch and a small hot set.\n- Only the picked tokens cross PCIe.\n\nWhat it took:\n- **Triton kernels** that build the sketch, score every token, pick the top ~2K and pack them for the stock int8 attention kernel. CUDA-graph safe.\n- **vLLM patches** that switch dense/sparse per step, so short chats stay full speed.\n- **A RAM tier for the KV cache** with a prefix cache and recurrent-state checkpoints, so follow-ups don't recompute.\n- **Follow-ups fetch only the picked rows.** v1 re-copied the whole document every turn (`~8 GB`), which capped me at 2 agents per card.\n- **A scheduler fix** so one agent reading a huge prompt doesn't freeze the rest.\n- A frozen sketch basis (one file) plus the script to refit it.\n\nIt's all in the repo as patches, not a fork. Apply them on top of [HyperQwen](https://github.com/syv-ai/HyperQwen) @ `ce9615c` (a public vLLM fork) and run the install script. Tests and every bench script and result are included.\n\nModel: [`dbirks/Qwen3.8-27B-W4A16-AutoRound`](https://huggingface.co/dbirks/Qwen3.8-27B-W4A16-AutoRound) + HyperQwen's `prepare/fetch_fast_variant.py`. All numbers were measured with [gpu-unlock](https://github.com/Zagitta/gpu-unlock) loaded (a kernel module that roughly doubles 3090 BF16 tensor throughput, mostly faster prompt reading).\n\nMeasured (`Qwen3.8-27B W4A16`, `MTP-7`, 3090 Ti + 3090 at 250 W):\n- 8 × 250K: `~545 tok/s` total on explain-style output, `~790` on copy-heavy.\n- 8 agents at 176–205K generating nonstop for 6 min: `657 tok/s` box average, 69–90 per agent.\n- Recall at 250K: 31/32. Follow-ups start in ~5 s.\n- **Single long chats are faster too**: +15–41% at ~113K vs dense.\n\nCaveat: attention is approximate, so near-duplicate code lines occasionally get mixed up.\n\nCode:\n- Serving (patches + kernels): https://github.com/bradj00/sparsekv-hyperqwen\n- Experiments: https://github.com/bradj00/sparsekv-lab\n\nRig:\n* i9-12900K\n* Z790 motherboard\n* 96 GB DDR5 RAM\n* 3090 Ti + 3090, power capped at 250 W",
+    "developer": "o2beast",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

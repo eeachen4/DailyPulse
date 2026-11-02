@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014004",
+  "sourceItemId": "80014004",
+  "sourceUrl": "https://stackoverflow.com/questions/80014004/looking-for-a-practical-example-where-making-a-super-call-in-the-body-of-init",
+  "detail": {
+    "longDescription": "Consider the following class Point and its metaclass PointMeta . What happens if I omit the super call in __init__ method of PointMeta class, is there any difference in behavior? class PointMeta(type): def __new__(cls, name, bases, attrs): return super().__new__(cls, name, bases, attrs) def __init__(self, name, bases, attrs): super().__init__(name, bases, attrs) # more logic here class Point(metaclass=PointMeta): def __init__(self, x, y): self.x = x self.y = y p1 = Point(1, 1) I have tried it and seem to see no difference. The newly created class returned by __new__ method of PointMeta already contains all its attributes, is it still necessary to make the super call in __init__ ? I have seen large codebases still make the super call, why? Can someone help with an example where making/not making the super call can make a difference?",
+    "developer": "ariko stephen",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "100"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

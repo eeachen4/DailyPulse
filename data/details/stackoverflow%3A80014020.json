@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014020",
+  "sourceItemId": "80014020",
+  "sourceUrl": "https://stackoverflow.com/questions/80014020/why-does-attrs-treat-a-frozen-attrs-class-differently-from-a-frozen-attrs-field",
+  "detail": {
+    "longDescription": "I have these two attrs classes in Python: import attrs @attrs.define(frozen=True) class FooA: x: int @attrs.define class FooB: x: int = attrs.field(on_setattr=attrs.setters.frozen) In #1, the whole class is frozen, whereas in #2 the field is frozen. However, as there is only one field, I expect attrs to treat them both as frozen. Since attrs.define has slots=True by default, creating new attributes will fail. And since both have frozen fields, modifying the attribute will fail. So both are effectively immutable. In that case, why does attrs allow hashing #1 but not #2? print(hash(FooA(1))) # 3264857540732998219 print(hash(FooB(1))) # TypeError: unhashable type: 'FooB'",
+    "developer": "JadenV15",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "5"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "83"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}
