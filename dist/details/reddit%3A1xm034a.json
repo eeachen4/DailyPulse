@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xm034a",
+  "sourceItemId": "1xm034a",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xm034a/i_built_an_opensource_cli_that_upgrades/",
+  "detail": {
+    "longDescription": "Keeping provider versions current across a lot of modules was a constant chore for me: bump a version, find out a shared module caps it, fix the constraint, regenerate lock files for every platform, repeat. Version bots can bump a number, but they don't understand dependency ceilings, constraint styles, or lock files that need hashes for every OS/arch.\n\nSo I built **provlift**, a small Go CLI (Apache-2.0):\n\n* `provlift check`: inventories every `required_providers` entry across all modules, shows what's outdated and **why** an upgrade is blocked (your own constraint vs. a module's ceiling)\n* `provlift drift`: finds version skew between modules\n* `provlift upgrade`: rewrites constraints with the **smallest possible diff** (keeps your `~>` / range style and comments), then runs `terraform init -upgrade` → `providers lock` for each platform you list → `validate`. It never writes the lock file itself.\n* Major upgrades need an explicit `--allow-major`, and it can step one major at a time.\n* Example GitHub Actions workflow that opens **one PR per provider**.\n\nWorks with any registry provider (AWS, AzureRM, Google, GitHub, Kubernetes, private registries) and with OpenTofu (`--terraform-binary tofu`, uses `registry.opentofu.org`).\n\n**What it doesn't do (yet):** module version upgrades are out of scope, Terragrunt config isn't evaluated, and `.tf.json` is reported rather than edited. It's early (v0.1.x), so expect rough edges.\n\nI'd really appreciate feedback, especially on edge cases in your setups that it gets wrong. There are also good-first-issues if anyone wants to contribute.\n\nGitHub: [https://github.com/provlift/provlift](https://github.com/provlift/provlift)  \nDocs: [https://provlift.github.io/provlift/](https://provlift.github.io/provlift/)",
+    "externalUrl": "https://i.redd.it/vnq2342sv7zh1.png",
+    "developer": "Longjumping_Rich_692",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014124",
+  "sourceItemId": "80014124",
+  "sourceUrl": "https://stackoverflow.com/questions/80014124/python-api-returns-8-and-22-instead-of-dates-and-symbols-when-selecting-individu",
+  "detail": {
+    "longDescription": "I query a DFS table from Python. select * gives me correct dates and tickers, but as soon as I list the columns, TIME turns into 8 and CODE turns into 22 — the numeric columns are fine. raw = session.run(\"select TIME,CODE,OPEN from loadTable('dfs://basic_alpha_db', 'alpha191_prepared') limit 5\") print(raw) # TIME CODE OPEN # 0 8 22 1123.910034 # 1 8 22 341.769989 A tiny in-memory table reproduces it, so it's not about the DFS table: t = table(2016.01.04 2016.01.05 as TIME, `000001.XSHE`000004.XSHE as CODE, 1.0 2.0 as OPEN) select * from t is fine, select TIME, CODE, OPEN from t gives 8 and 22. What's going on?",
+    "developer": "Ethan",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "131"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

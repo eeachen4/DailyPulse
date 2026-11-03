@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlu12y",
+  "sourceItemId": "1xlu12y",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xlu12y/agent_graph_engineering_parts_2_to_7_services/",
+  "detail": {
+    "longDescription": "Hi all,\n\nA while back I shared the start of a series on building a LangGraph app that survives contact with production ([that post](https://www.reddit.com/r/LangChain/comments/1x0r8mf/productiongrade_agent_graph_engineering_a/)). Six more parts are up since then. These are the architecture-heavy ones, so I thought I would come back with what is in them.\n\nNone of this is from a side project. It comes out of production AI systems we have built and run, and most of it we learned from bugs rather than from planning.\n\nThe whole series: [https://huynguyengl99.github.io/series/agent-graph-engineering/](https://huynguyengl99.github.io/series/agent-graph-engineering/)\n\n* [Part 2: Split the Services, and Know Where the Line Goes](https://huynguyengl99.github.io/posts/agent-graph-engineering/split-the-services/): what it costs to keep the agent and the product in one service. A prompt that goes quietly out of date the day billing adds a tier, and a graph you cannot run in a test without a database and fixtures. By the time you want the agent deployed on its own, because the model calls are slow and the web workers are blocked waiting on them, you cannot.\n* [Part 3: Contracts, Not Conventions](https://huynguyengl99.github.io/posts/agent-graph-engineering/contracts-not-conventions/): three services in two languages. Renaming one field used to mean a customer told us the frontend was still reading the old one.\n* [Part 4: The Agent and the Graph](https://huynguyengl99.github.io/posts/agent-graph-engineering/the-agent-and-the-graph/): the one I would send to someone starting out. A model call and the flow around it are easier to learn together, and getting them to fit means the model cannot wander into a branch you never planned for.\n* [Part 5: Tools and Guardrails](https://huynguyengl99.github.io/posts/agent-graph-engineering/tools-and-guardrails/): the money one. An action you cannot undo, running twice because a crash re-runs the step it was in. The other half is what the model may say, where the guard that holds up is fencing a customer's own words as data rather than scanning them for bad ones.\n* [Part 6: Subgraphs, the Multi-Agent System You Can See](https://huynguyengl99.github.io/posts/agent-graph-engineering/subgraphs-multi-agent-system/): one graph split into specialists with a supervisor routing between them, which is a multi-agent system, just not the kind where agents negotiate with each other. \"An agent cannot go off script\" is a cost in an open-ended assistant and the whole point in something that issues refunds.\n* [Part 7: Human in the Loop, Not in the Graph](https://huynguyengl99.github.io/posts/agent-graph-engineering/a-run-that-stops-for-a-person/): stopping to ask a person. Went up last week and it is the one I would read first. A reply sitting there waiting for a reviewer, which gets approved and then silently never sent, is not a failure you find in a test.\n\nCompanion repo, a full working system rather than snippets: [https://github.com/huynguyengl99/agent-graph-engineering](https://github.com/huynguyengl99/agent-graph-engineering)\n\nStill to come, and these are the parts people keep asking me about: how progress from inside a graph reaches a browser, what tracing a run actually tells you and what it costs, and how to change a model or a prompt without crossing your fingers.\n\nSo depending on where you are:\n\n* Already shipping something on LangGraph: a reference for when a particular thing starts hurting.\n* Still deciding: the choices that are cheap this month and expensive next year.\n* Learning it properly: a whole system to read, with the reasoning sitting next to each decision.\n* Building for clients: a base you can hand over without it becoming unmaintainable.\n\nIf any of it is useful, a star on the repo would be appreciated 😄 and I am happy to answer anything in the comments.",
+    "developer": "huygl99",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

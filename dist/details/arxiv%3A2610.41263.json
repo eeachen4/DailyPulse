@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.41263",
+  "sourceItemId": "2610.41263",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.41263",
+  "detail": {
+    "longDescription": "arXiv:2610.41263v1 Announce Type: new Abstract: Migration benchmarks need projects whose tests pass before migration begins. Yet an old project can behave differently without any change to its code. Reinstalling it today may introduce newer libraries, changing both its initial test results and the failures observed during migration. We investigate this effect in PHP 7.4-to-8.3 migration. Using unchanged project source and saved package records, we compare two dependency policies. Modern selection allows all versions in the snapshot, while release-date selection allows only versions published by the project's release date. With Composer 2 fixed, release-date selection improves the PHP 7.4 pass rate by 7.1 pp across 3,660 releases. A separate comparison against committed locks shows that it also recovers recorded dependency versions more closely than modern selection. The choice matters after migration as well. Among projects that pass on PHP 7.4 under both policies, PHP 8.3 test outcomes differ in 15.0% of eligible pairs. We use a shared test runner and bypass Composer's platform check to isolate test behavior. The resulting candidate migration task sets overlap by only 58.5%. Most differences arise in Laravel projects, where older dependencies trigger deprecations that newer versions avoid. Targeted interventions show that removing these initial failures can restore passing tests or expose further incompatibilities. Thus, dependency selection changes not just whether an old project passes, but also which migration failures a benchmark can observe. Preserved locks provide the strongest available version reference; without them, release-date selection offers a historically grounded alternative. Migration benchmarks should make this choice explicit and report its effect on their results.",
+    "developer": "Afridi Mahmud, Md. As-Aid Rahman, Rifat Shahriyar",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Afridi Mahmud, Md. As-Aid Rahman, Rifat Shahriyar"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

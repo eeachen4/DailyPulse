@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xm9zmg",
+  "sourceItemId": "1xm9zmg",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xm9zmg/removed_by_moderator/",
+  "detail": {
+    "longDescription": "Hi all,\n\nI am currently working through a rebuild of my homelab and am re-evaluating how I access my stuff remotely. Local access is controlled via Caddy+Authelia, and I would like to keep Authelia for authentication at the very least. I had been using a mix of Cloudflare tunnels and twingate for remote access, but I would like to get that more centralized. Also, no port forwarding as I am behind CGNAT with no way to get a public IP (parent's internet at home and dorms at college). I do have a PAYG Oracle VM, 2c+12gb for hosting the coordination services.\n\nWhy even bother with a reverse proxy you may ask? Well, I would like to access some services on my iPhone, which already has a 24/7 VPN needed for another app. I would like to access services like Obsidian-Livesync, Cal/CardDAV (unless ios or gmail calendar uses something else), and potentially some other small web services. I will not be exposing any management tools, rest assured.\n\n* Pangolin is from what I have heard the self-hosted replacement for Cloudflare tunnels, giving you a reverse proxy with solid access controls and object-based permissions. It also has a VPN now, which is really neat!\n   * How are the speeds on this?\n   * For the VPN client, would it be possible to make a small TUI script for the Linux CLI? My mother would be using the VPN and I want to make it simple for her to connect (yes, she will be using Mint).\n   * I like the simplicity of the central server that everything goes through, I have also heard that the rules are easier to understand here?\n* Netbird is effectively a WireGuard overlay network AFIAK, really nice for P2P connections. Network and device based rules, wireguard is fast and reliable, plus native GUI clients for all operating systems. Some people say that they are moving faster than Pangolin?\n   * Mesh based VPN, having used this a little I can say that the access rules seem really complex to me, but maybe I just need to spend more time with them? Due to the mesh I will have to manage inter-device relations, Pangolin not so much.\n\nSome other architectural questions:\n\n* Do I point the reverse proxy endpoints directly at my Caddy instance, or should they point at the service itself? This would make two paths for authentication, Caddy for internal/local only, and Netbird/Pangolin for public/remote.\n   * If I do split them, is there a good way to manage the permissions for both using IaC like ansible?\n\nLooking for advice and feedback!",
+    "developer": "Entity_Null_07",
+    "comments": 39,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

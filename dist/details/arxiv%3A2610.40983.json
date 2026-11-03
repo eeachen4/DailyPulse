@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.40983",
+  "sourceItemId": "2610.40983",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.40983",
+  "detail": {
+    "longDescription": "arXiv:2610.40983v1 Announce Type: new Abstract: Serverless execution of Large Language Models (LLMs) is becoming important, reflecting their wide societal use. An increasingly present stage in LLM pipelines is fine-tuning, which specializes trained models and improves inference performance. Serverless operation of LLM fine-tuning workloads shifts operational concerns from the user to the provider. For these new workloads, providers face important operational complexities, such as performance issues, resource waste, and even service failure due to misconfiguration. However, optimizing such workloads is still at an early stage, and, relevant to this work, relatively little is currently known about how LLM fine-tuning workloads run in practice. In this work, we address the knowledge gap by characterizing the execution of LLM fine-tuning workloads on clusters equipped with different GPUs, running LLM models at various scales. We analyze IBM's LLMFineTuningBench, a large-scale, diverse profiling dataset of 30,920 fine-tuning experiments that records both successful and failing configurations. We provide quantitative insight into throughput (expressed in tokens/s), scaling, failure, and potential for performance optimization for four commonly used GPU types, in setups of 1 to 32 GPUs. We find that (1) job feasibility (run or fail) depends on workload properties, with failure ratios rising from 52% for small batch sizes (16-64) up to 95% for the largest (1,024); (2) throughput grows logarithmically with batch size; (3) scaling is near-linear when the workload is deployed intra-node, and optimizations such as RoCE substantially improves efficiency for inter-node deployment (e.g., 0.72 vs. 0.26 efficiency without RoCE); and (4) system-level optimizations can outweigh application-level ones (RoCE, up to 2.9$\\times$, vs. Fast MoE, 1.7$\\times$).",
+    "developer": "Radu Nicolae, Daniele Lotito, Alexandru Iosup",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Radu Nicolae, Daniele Lotito, Alexandru Iosup"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

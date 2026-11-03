@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.41878",
+  "sourceItemId": "2610.41878",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.41878",
+  "detail": {
+    "longDescription": "arXiv:2610.41878v1 Announce Type: new Abstract: One of the most common failure reasons of LLM-based test generation pipelines is import errors. Grammar constrained decoding can modify the probabilities of the LLM's final layer during token generation to guarantee valid imports. However, we find that it can lead to degenerate solutions, i.e., repetitive valid imports (import streaks) that exhaust the token budget before a test is generated. We propose Constrained Beam Decoding with Lookup (CBDL), a novel method that guarantees import validity while addressing import streaks by avoiding premature commitment to tokens that lead to repetitive imports. Because it operates at the decoding stage, CBDL can be integrated into existing LLM-based test generation pipelines. We implement CBDL for Python and Java and evaluate it on two test generation tasks, showing that generated tests have 100% valid imports, outperforming both static (RAG and LIBRO) and dynamic (Agentic Repair) import-validity approaches that leave 45%, 10%, and 43% of import errors unresolved. CBDL converts on average 14% of initial import errors into functionally correct tests, increasing overall test correctness by 1-4 percentage points over unconstrained generation. Even when import validity does not directly lead to a correct test, it allows agentic repair pipelines to allocate the repair budget to remaining errors, increasing correct tests by 2-7 percentage points for Python and 1-6 for Java. Finally, we show that a hybrid pipeline, where a small local model equipped with CBDL generates imports while the frontier GPT-5.2 model generates the test body, outperforms generating both with GPT-5.2 alone by 1-3 percentage points. Overall, CBDL removes a major bottleneck in LLM-based test generation: by guaranteeing import validity with a small overhead (16-21 seconds per test), it improves test correctness and enables cost-effective hybrid generation.",
+    "developer": "Konstantinos Kitsios, Matteo Biagiola, Guido Salvaneschi, Alberto Bacchelli",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Konstantinos Kitsios, Matteo Biagiola, Guido Salvaneschi, Alberto Bacchelli"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

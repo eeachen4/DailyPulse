@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmbomg",
+  "sourceItemId": "1xmbomg",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xmbomg/removed_by_moderator/",
+  "detail": {
+    "longDescription": "I'm one of the maintainers, so this is self-promotion. I want honest feedback more than upvotes.\n\n**What it is**\n\nSurfSense is an open-source (Apache-2.0) NotebookLM alternative: cited Q&A over your documents, mind maps, flashcards, quizzes and podcasts, and an agent that writes Word, PDF, PowerPoint and Excel files and edits your own files as a new copy, with Word edits coming back as tracked changes. It started as a desktop app, and since 2.3.0 the same app runs as one container.\n\n**Why self-host it**\n\nNotebookLM sends every document to Google and only works with Gemini. That rules it out for contracts, client files, medical or company documents. SurfSense keeps your documents on your own server and works with any model.\n\n**The container**\n\n- One image, `ghcr.io/modsetter/surfsense`, with one service and one `/data` volume. No Postgres, Redis or other services to run alongside it.\n- Caddy is the only thing listening. Everything else stays on the container's loopback, and it needs no Docker socket.\n- Local models run inside it on the CPU (llama.cpp, plus local OCR, embeddings and voices), or you can point it at Ollama, vLLM or any OpenAI-compatible API on your network.\n- One password, no accounts. You can set the password on first visit or with `SURFSENSE_PASSWORD`, or turn sign-in off when your own reverse proxy handles it.\n- HTTPS on your LAN through Caddy's own certificate authority, or with Let's Encrypt for a public domain.\n\n**Getting it running**\n\n    curl -fsSL https://raw.githubusercontent.com/MODSetter/SurfSense/main/docker/scripts/install.sh | bash\n\nOr grab `docker/surfsense/docker-compose.yml` and `.env.example` from the repo and run `docker compose up -d`. It's on port 4929, and 4943 for HTTPS. Running the script again updates it.\n\n**Good to know**\n\n- amd64 and CPU only for now. A GPU image and arm64 are planned.\n- The image is several GB: Docling, torch and about 1 GB of bundled models. Chat models download into `/data` at run time.\n- Docker's published ports bypass ufw, so if the server is reachable from the internet, set `SURFSENSE_PASSWORD` before the first start.\n\n**How we used AI in development**\n\nMost of the code is written with AI coding assistants, mainly Claude Code and some Cursor, with maintainers designing the features, reviewing every change and testing the releases. New behaviour starts with a failing test, and each feature has an architecture doc the assistants read before changing it.\n\nRepo: https://github.com/MODSetter/SurfSense\n\nDocs: https://surfsense.com/docs",
+    "developer": "FurtiveMirth",
+    "comments": 11,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2606.26439",
+  "sourceItemId": "2606.26439",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2606.26439",
+  "detail": {
+    "longDescription": "arXiv:2606.26439v2 Announce Type: replace-cross Abstract: MaxSim scoring dominates the cost of multi-vector retrieval. Several groups built fused GPU kernels for it independently during 2026, and all report one measure of success: the fraction of peak memory bandwidth reached. That measure assumes the operator is limited by the bytes it moves. We show the assumption fails in two ways, and that two other quantities decide performance: which side of the roofline ridge a shape falls on, and how many dependent gathers the scoring path performs. We first locate the boundary. Fused arithmetic intensity is Nq*Nd /(Nq + Nd) FLOP per byte, against an H100 dense-FP16 ridge of 295.4. The operator is therefore memory-bound at ColBERT shapes and compute-bound at ColPali-scale query lengths. Published analyses report one side each and do not reconcile them. We measure the crossover at three document lengths, and a closed form predicts it inside the measured bracket each time. Past the crossover, percent of peak bandwidth falls to 4% while percent of peak FLOPs rises above 40%. The reported measure is therefore defined on only one side of a boundary that real workloads cross. We also validate the underlying traffic model against DRAM counters, to 0.003%. We then show that moving fewer bytes does not make the kernel faster. Fusing product-quantized asymmetric distance computation into the kernel moves 15.9x fewer bytes than exact FP16 on tensor cores and runs 3.0x slower. Counters rule out the usual causes: it reaches 1.23% of peak DRAM throughput at 98.2% occupancy. The limit is 6.5*10^9 dependent gathers, a count that does not fall when the codes get smaller. A hand-written CUDA version with a staged table recovers 4.7x and remains slower than exact scoring. Finally, we give the first head-to-head comparison of three fused MaxSim kernels, over 28 shapes, with every result checked against an exhaustive FP32 reference.",
+    "developer": "Ashutosh Sharma",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.IR, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ashutosh Sharma"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlzoze",
+  "sourceItemId": "1xlzoze",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xlzoze/smallscale_check_of_good_views_beat_nexttoken/",
+  "detail": {
+    "longDescription": "The paper claims text models align with image models faster when trained on \"good views\" (two different captions of one photo) than on bad views (one caption, words hidden) or next-token prediction. Its largest run used captions written by an image captioner, so image information could have leaked in. I tried a laptop-scale version with human captions only.\n\nSetup\n\n* Data: 10,000 COCO photos, 5 human captions each. 8,000 train, 1,000 val, 1,000 test.\n* Image side: frozen DINOv2-base, embedded once.\n* Text side: same 4-layer, width-256 encoder (11M params) for all three. Same captions, 3000 steps, batch 256, same anti-collapse loss (VICReg-style variance and covariance, not the paper's SIGReg). Only the training pairs differ. The text models never see an image.\n* Score: mutual 10-NN between caption embeddings and DINOv2 embeddings on the 1,000 test photos (chance 0.010).\n\nResults (same learning speed, mean of 3 seeds)\n\n* Good views (2 different captions): 0.320\n* Bad views (1 caption, masked spans): 0.192\n* Next-token prediction: 0.148\n\nEach method also got a small learning-rate search. Best speed, 1 seed: 0.328 / 0.196 / 0.168. Order unchanged.\n\nLimits\n\n* 11M params and 8,000 photos, not the paper's 109M or 72B.\n* Good views need to know which captions describe the same photo. Annotators wrote them looking at the photo.\n* Retrieval (R@1 with one fitted rotation) shows a smaller gap: 0.084 vs 0.063 vs 0.057.\n* Next-token prediction's best learning speed was the top of my range.\n* One dataset, one image model. I added the extra speed step after seeing the first search; it is noted in the repo.\n\nCode, chart and per-run results: [https://github.com/IFAKA/platonic-lab](https://github.com/IFAKA/platonic-lab)\n\nWhat I would test next: does the gap shrink as the encoder grows? I could not test that on a laptop. Has anyone tried?",
+    "externalUrl": "https://i.redd.it/j2humdsjq7zh1.png",
+    "developer": "Traditional_Frame763",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

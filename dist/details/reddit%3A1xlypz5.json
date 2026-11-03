@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xlypz5",
+  "sourceItemId": "1xlypz5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xlypz5/slow_hpa_scaledown_on_purpose_or_let_it_drop_to/",
+  "detail": {
+    "longDescription": "We're tuning this on a cluster right now. How we do it today: a 300 second stabilization window and then at most 2 pods a minute on the way down, a target somewhere between 50 and 70 percent, and CPU requests taken from a week or two of real usage before anyone touches the HPA.\n\nNot all of us agree. Some of us think the slow scale-down is paying for idle pods to hide a requests problem, and once the requests are right the defaults are fine.\n\nThe drawback we live with is that cost. Getting from 30 replicas back to 3 takes a quarter of an hour of mostly idle compute after every spike.\n\nFor the people running the default scale-down in production, how do you keep the survivors from going over target when it drops everything at once?",
+    "developer": "michaelzion",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

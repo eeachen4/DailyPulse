@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50339422",
+  "sourceItemId": "50339422",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50339422",
+  "detail": {
+    "longDescription": "I&#x27;m one of those who doesn&#x27;t like dangling top-level functions polluting the package namespace and has to belong to some type via receiver to make some logical sense and &quot;feel less cluttered&quot; after decade in the other language ecosystems. After leaving this exact complaint (among others) in hundreds of PR reviews, I thought it&#x27;s going to be fun automating this, as wanted to dig through golang.org&#x2F;x&#x2F;tools&#x2F;go&#x2F;analysis for quite a while now. It turned out that analysis.TextEdit is more fun than the linter itself, so that fixes could happen automatically and funcs undangle as pointer receiver methods if a concrete func is used just within one type. Give it a spin and tell me what you think. My two hours of internet search didn&#x27;t yield any similar things out there. As the most of the linters, it&#x27;s a stylistic choice, that may or may not fit your orgs. Maybe it&#x27;ll make your life easier. CAUTION: Don&#x27;t run with `-fix` on non-staged changes yet. PRs are very welcome, especially with more corner-case fixtures.",
+    "externalUrl": "https://github.com/nfx/go-ownfunc",
+    "developer": "nf-x",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

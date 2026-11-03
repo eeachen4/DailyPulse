@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmfz2b",
+  "sourceItemId": "1xmfz2b",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1xmfz2b/codex_can_upload_a_tiny_github_release_asset_but/",
+  "detail": {
+    "longDescription": "I’m using ChatGPT Codex with a cloud environment to edit a PDF and upload it to a GitHub release.\n\nUploading a 43-byte sample text file worked. However, uploading the finished PDF (about 26 MB) to the same repository and release consistently fails.\n\nThe error is:\n\n    HTTP 401\n    Unauthorized: authentication failed for integration codex-secret-uploads.github.com\n\nWhat we’ve checked:\n\n* GitHub API requests can read the repository and release assets.\n* Retrying the existing sample filename returns GitHub’s expected `422 already_exists` response.\n* Uploading the PDF fails using both `gh release upload` and Python.\n* Streaming/chunked upload also fails.\n* The environment reports its configured credentials as ready.\n* [`api.github.com`](http://api.github.com) and [`uploads.github.com`](http://uploads.github.com) are allowed by the network policy.\n\nThis suggests an issue with the cloud environment’s upload integration, but I haven’t confirmed the cause.\n\nHas anyone encountered this? Is there a request-size limit, proxy setting, or integration reset that could fix it? I’d like to upload directly from Codex rather than download the PDF and upload it manually.",
+    "developer": "cicona12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

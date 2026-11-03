@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.41457",
+  "sourceItemId": "2610.41457",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.41457",
+  "detail": {
+    "longDescription": "arXiv:2610.41457v1 Announce Type: new Abstract: Modern recommender models scale sparse representations and dense computation together. They process thousands of heterogeneous feature fields, long user-behavior sequences, and trillion-scale Embedding parameters, while their dense networks increasingly use large Transformer architectures. The resulting execution mismatch creates fine-grained operations within stages, load imbalance and synchronization delays across devices, and GPU resource bubbles between stages. As models grow, these costs become a primary limit to scalable recommender training. Although existing systems improve Embedding caching and data prefetching, these inefficiencies still coexist in the GPU-centric workloads we study and jointly limit end-to-end throughput. We present RecIS, a unified framework for GPU-centric recommender training. RecIS treats the complete path from input features to dense computation as one optimization target and coordinates three complementary mechanisms. First, adaptive fusion combines fragmented feature transformations with vectorized memory access. Second, a GPU Embedding engine uses hash-based sharding and hierarchical communication to balance request placement and eliminate redundant transfers; it also specializes aggregation for forward and backward index structures. Third, a multistage pipeline overlaps input preparation for future iterations with dense computation in the current iteration. Together, these mechanisms reorganize a fragmented sparse front end into a dataflow that continuously feeds dense computation. We evaluate RecIS on representative industrial recommender models across distributed training platforms. Compared with PICASSO and TorchRec, RecIS reaches up to $2.62\\times$ and $1.15\\times$ their throughput, respectively, while reducing step latency by up to 61.5\\% and 12.9\\%. RecIS provides an efficient and scalable training system for large recommender models.",
+    "developer": "Hua Zong, Shuai Yang, Zhengxiong Zhou, Qingtao Zeng, Jiawei Liu, Hao Wan, Hongbin Zhou, Jiahao Wang, Hao Zhang, Bencheng Yan, Yuheng Huang, Huimin Yi, Jiamang Wang, Han Zhu, Jian Xu, Bo Zheng, Lin Qu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hua Zong, Shuai Yang, Zhengxiong Zhou, Qingtao Zeng, Jiawei Liu, Hao Wan, Hongbin Zhou, Jiahao Wang, Hao Zhang, Bencheng Yan, Yuheng Huang, Huimin Yi, Jiamang Wang, Han Zhu, Jian Xu, Bo Zheng, Lin Qu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

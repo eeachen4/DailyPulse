@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.41508",
+  "sourceItemId": "2610.41508",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.41508",
+  "detail": {
+    "longDescription": "arXiv:2610.41508v1 Announce Type: new Abstract: Hybrid large language models combine full-attention and recurrent linear layers to reduce inference costs. Prefix caching can further reduce redundant computation across requests, but a recurrent checkpoint cannot recover an earlier state corresponding to a shorter prefix. Existing hybrid prefix caching systems retain checkpoints at selected boundaries to support common reuse patterns in conventional conversations. However, agent workloads modify and revisit earlier contexts, exposing reusable prefixes whose checkpoints were never saved or have already been evicted. A straightforward approach is to retain more checkpoints to reduce recomputation, but their cumulative footprint can displace reusable prefixes from other sessions and cause additional cache misses. To address these problems, we present HiState, a prefix cache management system for hybrid models serving agent workloads. Our key observation is that prefix reuse accesses all matching key-value (KV) entries but only one recurrent checkpoint, regardless of how many checkpoints are retained. This asymmetry allows HiState to retain historical checkpoints on SSD while prioritizing fast memory for KV entries: each hit retrieves only one checkpoint whose size is independent of context length. Within this hierarchy, we propose adaptive interval control to balance checkpoint storage against recomputation, and unified eviction to coordinate checkpoint sparsification with reclamation of stale trajectories. We implement HiState on top of vLLM and evaluate it on two public coding-agent trace datasets and controlled microbenchmarks. On real agent traces, HiState achieves up to 5.73x and 5.44x speedups in p99 TTFT over vLLM-Marconi and SGLang-HiCache, respectively.",
+    "developer": "Zaifeng Pan, Lucas Wang, Xinwei Qiang, Yanbo Zhou, Chang Chen, Zhengding Hu, Yue Guan, Yufei Ding",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zaifeng Pan, Lucas Wang, Xinwei Qiang, Yanbo Zhou, Chang Chen, Zhengding Hu, Yue Guan, Yufei Ding"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

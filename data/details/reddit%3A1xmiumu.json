@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmiumu",
+  "sourceItemId": "1xmiumu",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xmiumu/claude_code_caches_are_modelspecific_do_you/",
+  "detail": {
+    "longDescription": "Anthropic's Claude Code docs describe something that is easy to miss when you run agents: every request re-sends the full context (system prompt, project context, every earlier message and tool result). The API only avoids reprocessing the part that exactly matches what it saw recently, so some actions make the next turn slower and more expensive.\n\nWhat the docs list as cache-breaking:\n\n\\- Switching models. Each model has its own cache, so the next request reads the whole history uncached, even though the content is identical. The docs say entering or leaving plan mode counts as a model switch when you use the opusplan setting.\n\n\\- Compacting. It replaces the history with a summary, so the conversation part has to be cached again. The docs advise doing it at a natural break between tasks, not mid-task.\n\n\\- Idle time. Cache entries expire after inactivity. The lifetime is five minutes or one hour depending on how you sign in and are billed.\n\nWhat they list as cache-safe: editing CLAUDE.md mid-session (it also doesn't apply until the next /clear, /compact or restart), switching permission modes, and rewinding to an earlier turn.\n\nThat is one tool's documentation. Other frameworks and providers cache differently, so treat this as one example, not a rule.\n\nQuestion for people who run long agent loops: do you design around caching (one model per run, a stable prompt prefix, compacting at task boundaries), or just accept the cost and watch the bill? Has anyone measured the difference on their own workload?",
+    "developer": "shoumikgoswami",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

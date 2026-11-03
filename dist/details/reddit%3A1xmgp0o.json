@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmgp0o",
+  "sourceItemId": "1xmgp0o",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xmgp0o/firstweek_blockers_with_an_openaicompatible_agent/",
+  "detail": {
+    "longDescription": "Sharing stalls we keep seeing when people wire coding agents to an OpenAI-compatible backend (models + auth + db + storage behind one project key):\n\n\n\n1. Base URL + key swapped, but old provider env vars still win\n\n   Fix: print the resolved baseURL on the first request; clear leftover OPENAI\\_\\* overrides for that shell/session.\n\n\n\n2. Expecting auth / db / storage to bill like tokens\n\n   Fix: often those stay free on the project and you only pay model tokens — don’t block setup waiting for a storage invoice.\n\n\n\n3. Treating the model gateway like a second product to “install”\n\n   Fix: same key, OpenAI-compatible calls — change model id, not the whole stack.\n\n\n\n4. Agent linked once, then lost context in a new chat\n\n   Fix: keep the skill + linked project in repo/session notes so Cursor / Claude Code / Codex don’t re-login every thread.\n\n\n\n5. Five dashboards before one happy path\n\n   Fix: one scripted call (chat + one DB write or one auth check) before expanding.\n\n\n\nStuck on one of these? Drop the exact error + client. Ops notes, not a product pitch — links on request.",
+    "developer": "ObviousSpace8195",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

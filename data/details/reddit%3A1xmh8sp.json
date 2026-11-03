@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmh8sp",
+  "sourceItemId": "1xmh8sp",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xmh8sp/the_agent_said_it_fixed_the_bug_the_original_poc/",
+  "detail": {
+    "longDescription": "A coding agent closes a security ticket. The patch is clean. Tests pass. The diff matches the advisory.\n\nThen someone runs the original PoC against the patched build. It still fires. The agent fixed a different path.\n\nThe failure isn't the model's reasoning. It's the check: we verified the diff, not the trigger. The check that would have caught it is simple: freeze the PoC, apply the patch, run the PoC. If the trigger has to change to reproduce, it's a different bug.\n\nNow every rejected action leaves a fixture: the exact trigger, the evidence the agent cited, and the check that would have caught it. The queue clears; the fixture stays.\n\nWhat do you freeze first when an agent says \"fixed\"?",
+    "developer": "AIGODSEND",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

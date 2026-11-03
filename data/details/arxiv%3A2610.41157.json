@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.41157",
+  "sourceItemId": "2610.41157",
+  "fetchedAt": "2026-11-03T04:03:01.857Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.41157",
+  "detail": {
+    "longDescription": "arXiv:2610.41157v1 Announce Type: new Abstract: Iterative language-model optimizers refine prompts and programs by evaluating a candidate, showing a proposer model a sample of failing cases, and keeping revisions that improve performance. Recent work attributes the limits of this loop to narrow single-round reflection, introducing full-set error clustering, targeted minibatches, or larger proposer models so the optimizer sees more failure modes per step. Yet every existing evaluation tests these mechanisms exclusively inside lineage-preserving search, where each revision edits a surviving parent, leaving the contribution of parent inheritance confounded with the breadth of per-round feedback. Across 1,750 pre-registered runs spanning nine prompt and program synthesis benchmarks, we separate parent inheritance from feedback disclosure under matched evaluation budgets. We find that greedy parent inheritance drives the vast majority of optimization progress, outperforming seed-reset resampling even when seed-reset proposals receive a clustered summary of all failures in every round or use a larger proposer model. While full-set error clustering and diverse failure selection improve single-step rewrites from the seed and accelerate the opening rounds of search, sequential parent inheritance rapidly closes this gap as solved error modes are retained in the candidate and filtered from subsequent failure lists. Moreover, decomposing token expenditure in GEPA reveals that proposer reflection accounts for only a small fraction of total cost whereas validation and minibatch gating consume nearly the entire budget, showing that greedy parent inheritance over raw failures captures the gains of complex reflective loops at a fraction of their compute.",
+    "developer": "Shanglin Yang, Zhan Shi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.AI, cs.CL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Shanglin Yang, Zhan Shi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

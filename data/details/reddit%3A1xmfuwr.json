@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmfuwr",
+  "sourceItemId": "1xmfuwr",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xmfuwr/how_big_should_the_prometheus_pvc_be_a_calculator/",
+  "detail": {
+    "longDescription": "Sizing the Prometheus volume in kube-prometheus-stack is usually a guess, and the failure mode is unpleasant: the disk fills, or retention silently drops because \\`retentionSize\\` kicks in.\n\n\n\nI built a free calculator for it (browser-only, my own site):\n\n[https://opshubs.space/tools/prometheus-storage-calculator/](https://opshubs.space/tools/prometheus-storage-calculator/)\n\n\n\nYou enter active series (or targets x series per target), scrape interval and retention. It estimates blocks + WAL + head chunks, keeps \\`retentionSize\\` at about 80% of the volume so compaction has room, and prints:\n\n\n\n\\`\\`\\`yaml\n\nprometheus:\n\n  prometheusSpec:\n\nretention: 15d\n\nretentionSize: 16GB\n\nstorageSpec:\n\nvolumeClaimTemplate:\n\nspec:\n\nresources:\n\nrequests:\n\nstorage: 20Gi\n\n\\`\\`\\`\n\n\n\nIt also handles replicas (each replica gets its own PVC) and shows how many days fit on a volume you already have. The page lists the PromQL to pull your real series count and bytes per sample, which makes the estimate much better than a guess.\n\n\n\nFeedback welcome, especially if your real disk use is far off from what it predicts.",
+    "developer": "kkkevinkkkk",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

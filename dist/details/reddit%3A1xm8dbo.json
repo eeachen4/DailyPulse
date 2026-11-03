@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xm8dbo",
+  "sourceItemId": "1xm8dbo",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xm8dbo/lightmis_ultralightweight_medical_image/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI am one of the authors of LightMIS, and I would like to share our work on 2D binary medical image segmentation. LightMIS has 131K parameters and aggregates multi-scale encoder features directly, without a learned stage-wise decoder. It achieves close observed modality-macro Dice and IoU averages to nnWNet, while using 98.14% fewer parameters and 94.58% fewer GFLOPs, with both models trained and evaluated under the same nnU-Net protocol.\n\nPaper: [https://arxiv.org/abs/2609.28327](https://arxiv.org/abs/2609.28327) \n\nCode: [https://github.com/AndreiiArhire/LightMIS](https://github.com/AndreiiArhire/LightMIS)\n\nWe also tested LightMIS and the reference models on a real edge device with an Arm Mali-G52 MC2 GPU, where the full LightMIS model ran around 10.5× faster than nnWNet. All LightMIS variants achieved 100% GPU operator coverage, without CPU fallback.\n\nWe started by training several popular medical image segmentation architectures, both lightweight and heavyweight, from scratch in the same controlled environment using nnU-Net v2.3.1. The experiments covered six datasets and five imaging modalities. Our goal was to develop a lightweight architecture that performs well across these modalities, which led us to the current version of LightMIS.\n\nThe source code, checkpoints, and details needed to reproduce the results are publicly available. Feel free to experiment with it and try it on your own segmentation tasks. I would  be happy to hear how it works for you! Any suggestions or feedback are welcome!",
+    "developer": "OkLion2068",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

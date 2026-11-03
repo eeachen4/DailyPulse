@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50330213",
+  "sourceItemId": "50330213",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50330213",
+  "detail": {
+    "longDescription": "Hi HN! We built nonce, an open-source tool that sits between personal AI agents (Muse, Grok, ChatGPT, Claude) and your personal data in Gmail, Calendar, Drive and more. Today, if you connect Gmail to an AI agent like Muse, it can read your entire inbox. Whether on purpose or not, they can read far more emails than needed. This poses a huge data-privilege risk, in which personal data is accessed without limits. With nonce, the AI will no longer hold your Google or Slack tokens. To read anything, it has to show its intent first: User&#x27;s question: When does my flight to Tokyo leave? Agent&#x27;s justification: Need the airline confirmation email Agent&#x27;s search query: from:united.com Tokyo Access needed: 10 minutes If the justification and search query are reasonable, nonce issues a scoped token to the AI Agent. AI Agent can only query data using a token. If something looks fishy, i.e the AI is acting on its own, wants too much, or wants sensitive emails like bank statements, medical results, or password resets. nonce sends you a notification to approve or deny. By default, nonce denies massive crawling behaviors How it works 1. nonce scores each search against your original question before running it, to ensure its relevance. 2. Every search is combined with the token&#x27;s search. If the AI searches &quot;bank statement&quot;, nonce runs (from:united.com Tokyo) AND (bank statement). It can narrow its access, but not widen it. 3. The token is scoped to that agent only, with a TTL for X minutes. Limitations: nonce can&#x27;t see your chat with the AI, so it can&#x27;t prove you asked, which leaves a risk that the AI Agent can fake the intent. However, users can audit past accesses in nonce portal and identify these bypasses. Give it a shot at https:&#x2F;&#x2F;github.com&#x2F;roe-ai&#x2F;nonce We&#x27;d love to hear what you think. Website: https:&#x2F;&#x2F;anonce.io",
+    "externalUrl": "https://www.anonce.io/",
+    "developer": "richardmeng",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

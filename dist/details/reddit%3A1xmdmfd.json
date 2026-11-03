@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmdmfd",
+  "sourceItemId": "1xmdmfd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xmdmfd/a_bigger_fallback_llm_didnt_fix_our_agent_router/",
+  "detail": {
+    "longDescription": "*Disclosure: I build Herald Router and Ultimate Assistant (open source, AGPL-3.0), where this router lives. The post was drafted with AI assistance; every number comes from the per-case results linked at the bottom.*\n\nOur desktop assistant routes each turn before the main model starts: which of 6 specialist agents takes it, and whether it needs tools at all. Fast yes/no decider models handle most turns, and an LLM is the fallback when they aren't sure.\n\nThe local fallback was qwen3.5:9b at 37/40 on our routing set. The obvious question was whether a bigger fallback is worth it, so I rented one RTX 5090 on Vast and ran three larger stock models (ggml-org GGUFs under Ollama) on the same 62 prompts:\n\n| LLM router | GPU | Routing (40) | Adversarial (10) | Multi-question (12) | Median server time |\n|---|---|---|---|---|---|\n| qwen3-1.7b | 4070 Ti SUPER | 20/40 | 6/10 | 4/12 | 961 ms |\n| qwen3.5-9b | 4070 Ti SUPER | 37/40 | 9/10 | 12/12 | 460 ms |\n| Qwen3.8-27B Q4_K_M | RTX 5090 | 39/40 | 9/10 | 12/12 | 656 ms |\n| Qwen3.6-35B-A3B Q4_K_M | RTX 5090 | 39/40 | 9/10 | 12/12 | 266 ms |\n| Gemma 4 26B-A4B Q8_0 | RTX 5090 | 39/40 | 9/10 | 12/12 | 316 ms |\n\n**The interesting part: all three bigger models miss the exact same two prompts**, \"I love the wallpaper in this painting\" and \"I already finished my Python homework and closed all my windows, time to relax\".\n\nIn both, every model picks the right agent (the conversational one). The miss is the \"needs tools\" flag, and that comes from our router, not the model: any turn that reaches the LLM fallback gets marked as needing tools. \"Wallpaper\" and \"windows\" hit a keyword pre-filter, which is how those turns reached the LLM in the first place.\n\nSo past ~9B, model size stopped mattering for this task. The remaining errors were in our harness. We're not just flipping the flag to false for the conversational agent, though, because that agent owns the memory tools and \"remember X\" turns genuinely need them. The plan is to ask the fallback LLM \"needs tools?\" as its own question.\n\nOther things from the run:\n\n- **MoE won on speed:** the 3B-active Qwen3.6-35B-A3B answered in 266 ms median vs 656 ms for the dense 27B, at the same accuracy.\n- **Startup on a rented GPU is mostly download:** 19 GB took 3m23s, 20.4 GB 4m45s, 26.9 GB about 7 min (~590 Mbit/s host). The whole session cost $0.39.\n- **The dedicated deciders still beat every LLM** on this task: e.g. Together AI's Tev1-4B-experimental got 40/40 routing, zero confident-wrong, ~120 ms locally on the 4070 Ti SUPER.\n\nCaveats: one run per model, 62 prompts, one project's routing task. It's not a leaderboard, and the two GPU groups' latencies aren't comparable to each other.\n\nPer-case results for all 10 engines: https://huggingface.co/datasets/Krioasns/system1-decision-routing-bench\n\nHas anyone else found that a \"the model is wrong\" result was really their harness? Curious how others separate the two before paying for a bigger model.",
+    "developer": "ThatOneSnare",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmgw5g",
+  "sourceItemId": "1xmgw5g",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xmgw5g/your_ai_agent_passed_ci_but_do_you_know_what_it/",
+  "detail": {
+    "longDescription": "I've been thinking about a problem with AI agents running in CI/CD.\n\nWe spend a lot of time defining what a pipeline should execute, but once we introduce AI agents, things get less predictable.\n\nAn agent might pass every test while exercising capabilities we never explicitly reviewed.\n\nSo I started building **Drifti**, an open-source CLI written in Rust.\n\nThe idea is to make an agent's exercised capabilities explicit and reviewable.\n\nThe workflow looks like this:\n\n1. Observe what an agent actually does.\n2. Learn its filesystem, process, and network capabilities.\n3. Generate a proposed `drifti.yaml` contract.\n4. Review and commit that contract.\n5. Verify future executions against it.\n\nIf an execution violates the contract, verification returns exit code 121, which CI can use to fail the job.\n\nOne design decision I'm particularly interested in: incomplete observation must never be treated as success. If Drifti doesn't have enough evidence, it returns an indeterminate result (122).\n\nThe current MVP uses Linux ptrace, stores evidence locally in SQLite, and keeps policy evaluation deterministic.\n\n**It's not a sandbox**, and the observation coverage still has limitations.\n\nI'm sharing it early because I'd rather get feedback from engineers dealing with these problems than build something nobody needs.\n\nGitHub: [https://github.com/lucabecci/drifti](https://github.com/lucabecci/drifti)\n\nFor those running agents in CI: are you explicitly tracking their capabilities, or are you mostly relying on runner/container permissions?",
+    "developer": "DiscombobulatedAd712",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

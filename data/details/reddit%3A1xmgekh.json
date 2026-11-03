@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmgekh",
+  "sourceItemId": "1xmgekh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xmgekh/subtitle_foundry_separating_asr_timing_evidence/",
+  "detail": {
+    "longDescription": "I'm the developer of **Subtitle Foundry**, an AGPL-3.0 subtitle workbench. I'm a former professional translator/subtitler/interpreter, and the goal is to make subtitles for films and other material that would otherwise struggle to reach a global audience.\n\n**I'm not making money from the project, and I'll keep maintaining it.** I'm building it around state-of-the-art (SOTA) speech and language tools, with replaceable stages so the workflow can evolve as those tools improve.\n\nRepository: https://github.com/mrtdlgc/subtitle-foundry\n\nA few implementation decisions that may interest people working on LLM pipelines:\n\n**1. Keep transcription, timing and translation separately inspectable.**\n\nThe default ASR route sends the full recording to ElevenLabs Scribe v2 and uses native word timestamps. Other providers and speech-aware chunking are available. Chunked workflows can use applicable energy/Silero speech-activity alignment; that is different from word-level forced alignment. Suitable existing subtitle tracks can also bypass ASR entirely.\n\n**2. Give translation dialogue context, while retaining source timing evidence.**\n\nThere is an exact-timing translation mode for existing cues and an editorial mode that forms target-language cues using source words and speaker turns. Context helps with ambiguous dialogue, but a plausible correction of an ASR error can itself be wrong. The source transcript and timing evidence remain inspectable, and the editor lets a person listen, compare and correct the output.\n\n**3. Make paid stages resumable without silently repeating uncertain requests.**\n\nThe pipeline keeps intermediate artifacts, raw provider responses and request identity. Matching completed work can be reused. An uncertain paid submission requires reconciliation instead of an automatic retry that could charge twice. Manual review doesn't rerun ASR or translation.\n\n**4. Treat authentication and billing as explicit choices.**\n\nPersonal installations prioritize subscription connections through Codex, Claude Code and Grok Build when available. API translation adapters include OpenAI, Anthropic, Gemini, xAI and OpenRouter. A failed subscription connection doesn't silently fall back to a billed API. Providers still impose their own availability, allowances and charges; the open-source app has no paid feature tier.\n\n**5. Finish in a review tool.**\n\nThe app includes video playback, a waveform, subtitle editing, persisted corrections and SRT/ASS export. Self-hosting the application does not make requests to cloud ASR/translation providers offline.\n\nMy film testing so far has been Turkish-to-English and Ukrainian-to-English, primarily with ElevenLabs plus Codex. I haven't published a comparative benchmark, and the other provider integrations haven't all had the same film evaluation.\n\nThe README links installation instructions and provider documentation. For a first run, use a short clip or an existing SRT before committing to a full film.\n\nDisclosure: I used Codex while building the project, and this write-up was prepared with Codex using the repository and my project notes.",
+    "developer": "mrtdlgc",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xltnnz",
+  "sourceItemId": "1xltnnz",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xltnnz/my_agent_push_warning_arrived_after_the_push_had/",
+  "detail": {
+    "longDescription": "Claude Code runs in repos where other sessions are working too, so a git push can carry commits that session never made. In October i added a warning that lists those commits. The warning came back with the tool result, and by then the push was done.\n\n\n\nSo it runs before the command now. Each commit a session makes goes into a small ledger, and on push:\n\n\n\noutgoing=$(git rev-list \"$ref\" --not --remotes=\"$remote\")\n\nforeign=$(comm -23 <(sort <<<\"$outgoing\") <(sort \"$ledger\"))\n\n\\[ -n \"$foreign\" \\] && deny \"this push carries commits you didn't make\"\n\n\n\nThe agent can't override it alone. The override only goes in after i say ok in the chat.\n\n\n\nOf 78 hard denies in the last 30 days, 58 were this rule.\n\n\n\nAnyone else gating agent pushes before they run, or is branch protection enough for you?",
+    "developer": "Ok-Motor-9812",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

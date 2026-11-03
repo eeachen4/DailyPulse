@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xm3rne",
+  "sourceItemId": "1xm3rne",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xm3rne/is_codex_gets_slower_in_long_sessions_a_model/",
+  "detail": {
+    "longDescription": "Something keeps coming up in long coding sessions: two agents on comparable models, one stays flat while the other degrades — slower first token, longer turns, and by the end the context is basically unusable for anything that needs follow-through.\n\nAlmost everyone frames this as a model speed comparison. I lean the other way: I think we're comparing context management, not inference.\n\nThree different things get called \"slow,\" and they're not the same:\n\n- slower first token (prompt length, cache miss, queueing)\n- longer per-turn thinking (more history to re-read)\n- more turns to finish (the model lost something and is rediscovering it)\n\nThe decay path I'd expect in any long session: history grows linearly → tool returns dump file contents and search results into the window → compression triggers → detail drops → the model re-reads what it lost → turns go up. Whoever offloads context earlier — subagents, external files, summaries — looks stable without being faster in any single turn. Prompt cache hit rate fits here too: same weights, different context policy, opposite experience.\n\nThe counterargument I take seriously: stable can just mean it gives up on you sooner. Compression is forgetting, and a long task that's been quietly summarized into shape will look fast and drift late. If that's what's happening, the metric shouldn't be felt speed — it should be final quality times total tokens.\n\nSo for people running long multi-turn coding sessions:\n\n1. Are you seeing degradation, and in which of the three — latency, per-turn time, or turn count?\n2. Does logging token usage per turn make it obvious?\n3. Has anyone actually measured this, or is it still all vibes?\n\nI'd rather compare final deliverables and total cost than stopwatch feelings, but I'm curious whether the pattern reproduces at all outside my own sessions.",
+    "developer": "Charles-SG",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmfzub",
+  "sourceItemId": "1xmfzub",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xmfzub/texttosql_retriever_for_langchainlanggraph_that/",
+  "detail": {
+    "longDescription": "I built schemagate (Apache-2.0). Instead of pasting the whole schema into the prompt, it picks only the tables a question needs. It runs offline (BM25 plus a small embedder) and makes no model call, so it works with any model, local ones included.\n\n* **91.1% fewer schema tokens**, median on Spider 2.0's 50+ table databases. On a 1,201-table test schema, one question went from 146,695 to 1,348 tokens, with all 3 needed tables kept ([GIF](https://github.com/ashishsinha1602/schemagate/blob/main/docs/media/token-savings.gif)).\n* **#1 on BIRD Mini-Dev**: SQLite 81.0, PostgreSQL 72.6, MySQL 72.4. BIRD-scored hidden test: 74.34 EX.\n* Tables a user may not read never reach the prompt (role-based).\n* Works with LangChain/LangGraph (SchemagateRetriever is in the LangChain docs), LlamaIndex and Haystack, and as an MCP server (Docker or `uvx schemagate-mcp`).\n\n`pip install schemagate`, repo: https://github.com/ashishsinha1602/schemagate\n\nI'm the author. Feedback welcome, especially on schemas where it picks the wrong tables.",
+    "developer": "Temporary_Papaya1058",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
