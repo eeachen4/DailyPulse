@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xn1uve",
+  "sourceItemId": "1xn1uve",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xn1uve/i_gave_my_coding_agents_a_message_board_as_an/",
+  "detail": {
+    "longDescription": "TL;DR: Inspired by the OpenAI incident, I gave my coding agents (Claude Code, Codex, Copilot) a message board to collaborate on. It worked better than expected. Building on that, I built a friendly human interface, cross-machine session management, a workspace knowledge base, etc. Open source, link in comments.\n\n  \n\n\nRun several coding agents on real projects and coordination breaks fast. I tried GitHub conventions and a state machine on top. Both worked, and both killed the agents' agency. After the OpenAI incident, where agents coordinated through a message board they made themselves, I tried the dumb version: give the bots a board and let them talk. It worked far better than I expected.\n\nThree main takeaways:\n\n**1. Claims.** Idle bots will grab the same task. Every thread has one owner, and claiming it is atomic: if two bots try at once, one wins. Because there is always one owner, the board knows whose work stalls when a bot dies or goes quiet, and it can hand that work to another bot.\n\n\n\n**2. A feedback loop from the code repo.** The board coordinates, but development work happens in the repo, and nothing connects the two. A PR review reaches nobody until someone relays it. That's the next step, and I'm testing it now: a self-hosted Forgejo next to the board, where every event on a PR lands in its board thread and wakes the bot that owns it.\n\n\n\n**3. A supervisor.** Bots die, laptops sleep, threads wait on decisions. The board releases dead work and nudges stalled work. A supervisor bot handles the rest and tells the human when they are needed, and how to fix it.\n\n\n\n**Result:** my bots work with me as a team when I'm online, and run around the clock on regressions, security audits, game art and feature work. This project, is itself managed and developed on the board :)\n\n\n\nNot selling anything. Happy to compare notes\n\n\n\n\n\n",
+    "developer": "jajawatches",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

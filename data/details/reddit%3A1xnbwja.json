@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnbwja",
+  "sourceItemId": "1xnbwja",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xnbwja/why_traditional_autoclickers_get_detected_by/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nIf you do any repetitive desktop tasks or multi-tab browser automation in 2026, you've probably noticed that traditional clickers (OP Auto Clicker, GS Clicker, basic Python pyautogui loops) increasingly trigger bot filters, Cloudflare Turnstile verification loops, or account flags.\n\nI spent the past few months analyzing behavioral biometric heuristics and wanted to share what actually triggers modern detection systems and the math required to simulate human input realistically.\n\n# 1. The 3 Dead Giveaways of Basic Clickers\n\n* **Zero Coordinate Variance:** Standard clickers fire at exact pixel integers `(X₀, Y₀)`. Real human hands exhibit natural physiological tremors of `±1` to `±3px`. 100 clicks on `(450, 720)` with 0 variance is an instant algorithmic flag.\n* **Timestamp Delta Homogeneity:** A timer set to `500ms` fires at `t₀`, `t₀ + 500ms`, `t₀ + 1000ms`. Detectors run FFT (Fast Fourier Transform) or standard deviation checks on timestamp deltas `(Δt)`. When `σ ≈ 0`, it’s mathematically impossible to be human.\n* **Fitts’s Law Violation:** Real mouse movement decelerates as it approaches a target bounding box. Linear constant velocity or instant coordinate teleportation fails kinetic checks.\n\n# 2. The Math to Fix It: Sub-Pixel Gaussian Micro-Jitter\n\nTo bypass biometric heuristics without missing clickable buttons, clicks should follow a normal distribution offset bounded within a tight radius:\n\n    X_actual = X_target + δx\n    Y_actual = Y_target + δy\n\nWhere `δx` and `δy` follow a Gaussian distribution `N(0, σ²)` bounded within `[-jitter_max, +jitter_max]` (typically `±2px`).\n\nFor delays, uniform random distribution can still look artificial. A Gamma-distributed biological latency curve (`T_delay = T_base + Gamma(α, β)`) naturally replicates human distraction and hesitation pauses.\n\n# 3. Safety Best Practice\n\nIf you're testing automation scripts on Windows, make sure your tool has a hardware-level global killswitch (terminating in `<50ms` on `ESC`) to avoid mouse locking during runaway loops, and keep script execution 100% offline.\n\nTo help anyone exploring undetectable automation, we open-sourced a collection of human-simulated automation templates on GitHub: 👉 GitHub Repo: [https://github.com/dukamer/human-simulated-desktop-automation](https://github.com/dukamer/human-simulated-desktop-automation)\n\nDetailed mathematical breakdown & benchmarks: [https://multitasksautoclick.nimbokit.com/blog/how-sybil-algorithms-detect-bots-micro-jitter](https://multitasksautoclick.nimbokit.com/blog/how-sybil-algorithms-detect-bots-micro-jitter)\n\nHope this technical breakdown helps anyone building or debugging desktop automation workflows! Happy to discuss the math in the comments.",
+    "developer": "nimbokit",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

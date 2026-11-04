@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xn43t4",
+  "sourceItemId": "1xn43t4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xn43t4/standard_pytorch_attention_ooms_at_32k_tokens_my/",
+  "detail": {
+    "longDescription": "I've been working on a custom attention mechanism for long-context processing. I built a kernel that mimics human memory: it keeps the first few tokens as \"sinks\" (core memories) and uses a rolling window with entropy decay for the rest.\n\nI ran a benchmark on a Tesla T4:\n\nAt 10,000 tokens:\n\n* Standard `nn.MultiheadAttention`: 0.0893 sec\n* My kernel: 0.0148 sec\n* Speedup: 6.03x\n\nAt 32,000 tokens:\n\n* Standard `nn.MultiheadAttention`: CUDA Out of Memory (cannot allocate the NxN matrix)\n* My kernel: 0.0148 sec (runs smoothly)\n* Speedup: 11.43x (since standard doesn't run at all)\n\nI know FlashAttention exists, but it still scales quadratically in memory. My approach physically doesn't store the full NxN matrix.\n\nI'm looking for real-world feedback. Where can I improve this?",
+    "developer": "vankownlaw",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

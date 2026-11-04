@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50359936",
+  "sourceItemId": "50359936",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50359936",
+  "detail": {
+    "longDescription": "Hi Folks, I&#x27;m Sergey, founder of Spooler ( https:&#x2F;&#x2F;spooler.sh ) -- a durable, fully managed message queue, inspired by the simplicity of Go channels. Why? Whenever I needed a queue for something, it often felt that adding one would be a bigger project than the solution. Existing systems offered far more than I needed, while using a relational database usually meant inventing queue semantics on the go. What I really wanted was just a send and recv with retries. After nearly six months of engineering, I&#x27;m really happy to share the result with you. How it works: you send a message to the queue, you recv it leased; when the message processing is done you acknowledge it, if the lease times out, the message gets back to the queue to be delivered again or into the failed state on too many retries. There is an atomic ack-and-send: you can acknowledge a message and append another in a single operation. You can model state machines with it: a queue is a state, a message in the queue is an object in that state, and ack-and-send is the transition. Each Spooler queue lives in a spool: a storage isolation unit (hence the product name) with its own write-ahead log and replication. That means that durable operations succeed only after the log entry is durable on disk and confirmed by the required number of replicas. Feel free to try it out! There is a docker image for testing it locally: https:&#x2F;&#x2F;docs.spooler.sh&#x2F;local (it uses the same API but with in-memory storage, which means messages live only as long as the container runs). Spooler has an open-source CLI and Go library and there is also a repo of agent skills for it. The server itself is closed source, so there is no self-hosted options today. Please do share your thoughts about the product -- I really hope it feels ordinary to use. Sergey.",
+    "externalUrl": "https://spooler.sh/",
+    "developer": "gobwas",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

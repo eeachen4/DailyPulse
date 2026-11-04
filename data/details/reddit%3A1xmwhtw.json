@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmwhtw",
+  "sourceItemId": "1xmwhtw",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xmwhtw/nextrole_is_now_hosted_a_multiagent_career/",
+  "detail": {
+    "longDescription": "A while back I shared [NextRole](https://next-role.dev/) here. It’s a side project where a supervisor agent runs three subagents (hiring recon, resume tailoring and interview coaching) on LangGraph + DeepAgents.\n\nIt’s now deployed, so you can try it without cloning anything: [https://app.next-role.dev](https://app.next-role.dev)\n\nGive it your CV and a job description (or just the job link). You get back a tailored resume PDF, research on the company and role, interview prep for each round with STAR stories, and a one-page cheat sheet for interview day.\n\nWhat changed going from local to hosted:\n\n* **Multi-user:** sign in with Google or email (Better Auth). Each user’s files and memory live under their own prefix in object storage. It’s still the same composite filesystem backend, just scoped per user.\n* **Memory unchanged:** semantic (AGENTS.md), procedural (SKILL.md, loaded when needed) and episodic (MEMORY.md) now kept separately for each user.\n\nSelf-hosting still works, including fully local with Ollama or LM Studio.\n\nMeet the agents: [https://youtu.be/YUFFjFgR4Ig](https://youtu.be/YUFFjFgR4Ig)  \nRepo: [https://github.com/tam159/next-role](https://github.com/tam159/next-role)\n\nI’d especially like feedback on keeping each user’s agent memory and files separate, and on what breaks first when you run it on your own CV.",
+    "developer": "False-Song-2482",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

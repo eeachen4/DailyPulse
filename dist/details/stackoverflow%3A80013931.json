@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I am building a small task list where items are added with JavaScript. Instead of adding a click listener to every button, I added one listener to the list itself. Each item has a delete button with a small icon inside it. When I click the text part of the delete button, the item is removed as expected. When I click directly on the icon inside the same button, nothing happens. There is no error in the console, and the item stays on the page. Here is a simplified version of what I have: <ul id=\"taskList\"> <li>Buy milk <button data-action=\"delete\">Delete <svg viewBox=\"0 0 10 10\"><path d=\"M1 1 L9 9\" /></svg></button></li> </ul> const list = document.getElementById('taskList'); list.addEventListener('click', function (event) { const action = event.target.dataset.action; console.log(action); if (action === 'delete') { event.target.closest('li').remove(); } }); What I tried: I checked that the listener is attached to the list, not to each button, because the items are added later. I logged event.target and saw it is different when I click the icon. Expected result: clicking anywhere on the delete button, including the icon, should remove the item. Actual result: clicking the button text removes the item, but clicking the icon logs undefined and does nothing. Why does the target change like this, and what is the reliable way to handle clicks on buttons that contain child elements when using event delegation?",
     "developer": "mith sams",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "125"
+        "value": "140"
       },
       {
         "label": "状态",

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117553586942786686",
+  "sourceItemId": "mastodon.social/117553586942786686",
+  "fetchedAt": "2026-11-04T03:15:35.892Z",
+  "sourceUrl": "https://defcon.social/@think/117553586924162788",
+  "detail": {
+    "longDescription": "Attached: 1 image\n\nDay 22 of #CloudSecurity: EKS security fundamentals\n\nThe scariest EKS default: no network policies. Every pod can reach every other pod.\n\nMinimal fix:\n\n```yaml\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: default-deny\nspec:\n  podSelector: {}\n  policyTypes:\n  - Ingress\n  - Egress\n```\n\nApply per namespace, then selectively open paths. Also: enable IRSA, enforce restricted pod security standards, and turn on audit logging.\n\n#Kubernetes #EKS #InfoSec #DevSecOps #Security",
+    "developer": "@think@defcon.social",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "DEF CON Social"
+      }
+    ]
+  }
+}

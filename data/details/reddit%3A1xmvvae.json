@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmvvae",
+  "sourceItemId": "1xmvvae",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xmvvae/image_volumes_are_stable_in_136_anyone_mounting/",
+  "detail": {
+    "longDescription": "With image volumes now GA, you can mount an OCI artifact read-only into a pod, so the serving image and the model version separately. On paper that kills the init container that pulls weights from S3. I help maintain KitOps, which packages models as OCI artifacts (ModelKits) with weights, config, and adapters as separate layers. \n\nMost people run it as an init container that does `kit unpack`. Image volumes could make that step disappear, so I'm trying to learn what actually works before we lean on it. For anyone who's tried it: which runtimes handled non-image OCI artifacts for you, and which forced you to wrap the model as a fake image? How did 20 replicas cold-starting at once behave? Are you pinning by digest, or does a tag move trigger a rollout? Mostly want to hear what broke.",
+    "developer": "iamjessew",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

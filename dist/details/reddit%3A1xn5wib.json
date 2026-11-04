@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xn5wib",
+  "sourceItemId": "1xn5wib",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xn5wib/how_do_you_catch_thirdparty_api_schema_drift_when/",
+  "detail": {
+    "longDescription": "A tool calls a vendor API. The vendor renames `customer_id` to `id`, the response is still valid JSON, and the tool call succeeds at the HTTP level. The first obvious failure might be a later step that can’t find the customer ID.\n\nThe approach I’m testing is to capture a bounded sample at the tool boundary, compare it with a known-good window for the same operation, and report which field changed. That also raises a practical question: how do you keep optional fields and legitimately different response shapes from drowning out the real changes?\n\nI’m building Agindow, a pre-alpha tool for detecting and repairing API drift at runtime. If you run LangChain tools against third-party APIs, **where would you put this check**: inside each tool, in a shared HTTP client, or in a separate monitor? I’m curious where you’ve found it easiest to preserve enough context to debug the change.",
+    "developer": "FinancialTopic6522",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

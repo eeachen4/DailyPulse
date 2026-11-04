@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117551942101137434",
+  "sourceItemId": "mastodon.social/117551942101137434",
+  "fetchedAt": "2026-11-04T03:15:35.892Z",
+  "sourceUrl": "https://social.treehouse.systems/@juliancalaby/117551942063557696",
+  "detail": {
+    "longDescription": "Cursed homelab nanoupdate:\n\nManaging Kubernetes resources using Terraform continues to be a bad idea.\n\nToday's brain damage: if you mix init containers (no restart policy) and sidecar containers (restart policy is \"Always\") in a deployment, Terraform's official provider sets all the restart policies to \"Always\" which results in the init container being restated forever after it completes it's task.\n\nBut for some reason, exporting the deployment as YAML using kubectl, removing the offending line, and re-importing it using apply didn't actually fix the problem, so maybe this is also a Kubernetes problem?\n\nI cannot find any reference to this bug online which makes me think that either everyone is doing relatively simple things with the Terraform provider, I'm doing something cursed, or nobody is using this method to manage their Kubernetes resources.\n\nIn before anyone complains about either of these technologies. I know, this is what I've got.\n\n#terraform #kubernetes #tech #cursedhomelab",
+    "developer": "@juliancalaby@treehouse.systems",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "3"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Treehouse Mastodon"
+      }
+    ]
+  }
+}

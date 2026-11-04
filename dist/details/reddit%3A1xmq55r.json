@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmq55r",
+  "sourceItemId": "1xmq55r",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xmq55r/a_medium_cve_in_a_sidecar_turned_out_to_be/",
+  "detail": {
+    "longDescription": "Had a fun week. We run \\~40 clusters on GKE and EKS, platform team of six, security is split between us and a small central team.\n\nA pen tester found that a logging sidecar we inject into most pods had a medium-rated CVE in its HTTP admin endpoint, and on a handful services that port was reachable thru the ingress because of an overly broad networkpolicy plus a service that someone exposed for debugging and never cleaned up. Scanner had it as medium for months. Nobody looked at it because we only triage criticals.\n\nSo the CVSS score was fine. What we were missing was \"is this thing reachable from outside, and is the vulnerable code actually running\". I'd like to fix that properly instead of just the one sidecar.\n\nWhat I've looked at so far: -Writing something that walks services/ingresses/networkpolicies and joins it with trivy output. Doable, but it's a project. -A colleague showed me upwind's runtime view, which maps internet-facing paths down to the pod and flags which vulnerable packages are actually loaded. Looks like what we want, but I dont know how it holds up on 40 clusters. -Cilium/Hubble flow logs to see real traffic rather than inferring from config.\n\nHow are other people handling exposure plus vulnerability together? Is anyone doing this inhouse at scale, or does everyone end up buying something?",
+    "developer": "TotGaH",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

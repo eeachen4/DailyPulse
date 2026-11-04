@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014347",
+  "sourceItemId": "80014347",
+  "sourceUrl": "https://stackoverflow.com/questions/80014347/setattr-on-frozen-slotted-dataclass-raises-frozeninstanceerror-in-py3-13-but-typ",
+  "detail": {
+    "longDescription": "I have the following code: from dataclasses import dataclass @dataclass(frozen=True, slots=True) class Foo: attr1: int f = Foo(1) f.attr2 = 42 In Python 3.13+, I get a FrozenInstanceError , as expected: Traceback (most recent call last): File \"c:\\Users\\1\\Downloads\\stackoverflow.py\", line 10, in <module> f.attr2 = 42 ^^^^^^^ File \"<string>\", line 15, in __setattr__ dataclasses.FrozenInstanceError: cannot assign to field 'attr2' But in Python < 3.13, I get a strange TypeError : Traceback (most recent call last): File \"c:\\Users\\1\\Downloads\\stackoverflow.py\", line 10, in <module> f.attr2 = 42 ^^^^^^^ File \"<string>\", line 5, in __setattr__ TypeError: super(type, obj): obj must be an instance or subtype of type What is the reason for this behaviour? How can I work around it in Python < 3.13? E.g. how can I catch the exception raised by f.attr2 = 42 ? Note: I also tested @dataclass es using the following args with no problems: frozen=True, slots=False : this correctly raises dataclasses.FrozenInstanceError: cannot assign to field 'attr2' on both 3.12 and 3.13. frozen=False, slots=True : this correctly raises AttributeError: 'Foo' object has no attribute 'attr2' on both versions. Note: I've been here , here and here , which ask about calling super() in dataclasses. They exhibit a similar TypeError , but mine happens in __setattr__ whereas theirs is in a user-defined method.",
+    "developer": "JadenV15",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "180"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

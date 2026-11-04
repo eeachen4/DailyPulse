@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014144",
+  "sourceItemId": "80014144",
+  "sourceUrl": "https://stackoverflow.com/questions/80014144/why-can-a-parameterized-class-be-instantiated",
+  "detail": {
+    "longDescription": "I have this generic class: class Box[T]: def __init__(self, val: T): self.val = val In Python <3.12, that would be written: from typing import TypeVar, Generic T = TypeVar('T') class Box(Generic[T]): def __init__(self, val: T): self.val = val According to the docs , I can instantiate it like this: box = Box[int](42) However, I don't understand why this even works. If I print the type of Box[int] : klass = Box[int] print(type(klass)) # <class 'typing._GenericAlias'> According to the docs and this Q&A , a generic alias is supposed to represent a type annotation by storing the original type and type args. In that case, why can a _GenericAlias object be instantiated like the class it's annotating? How does it mimic my original Box() constructor?",
+    "developer": "JadenV15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "248"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

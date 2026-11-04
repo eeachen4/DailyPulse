@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmmlaz",
+  "sourceItemId": "1xmmlaz",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xmmlaz/cgroups_a_deep_dive_into_resource_management_in/",
+  "detail": {
+    "longDescription": "You set CPU and memory requests and limits in a Kubernetes pod spec:  \n\n\n    resources:\n        requests:\n           cpu: 500m\n           memory: 256Mi\n       limits:\n           cpu: \"1\"\n           memory: 512Mi\n    \n\nWhat happens next?  \n  \nKubernetes uses requests to schedule your pod, and CPU requests also decide your share of the CPU when the node is busy. On Linux, the kubelet and container runtime set up cgroups, and the kernel enforces the limits.  \n  \nA CPU limit can throttle your workload. A memory limit can lead to an OOM kill when the container tries to use more than its limit and the kernel can’t reclaim enough memory. You can see the kernel’s side of the story in a few files on the node.  \n  \nThis three-part series follows the path from your pod spec to the kernel, with diagrams and hands-on labs:\n\n🧱 Part 1: Foundations\n\n[https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-1/](https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-1/)\n\n⚙️ Part 2: CPU\n\n[https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-2/](https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-2/)\n\n🧠 Part 3: Memory\n\n[https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-3/](https://nithinjohngeorge.com/blog/cgroups-deep-dive-kubernetes-part-3/)\n\n",
+    "externalUrl": "https://i.redd.it/5pvhlj76nczh1.png",
+    "developer": "Nithin_John",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

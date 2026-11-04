@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xn802v",
+  "sourceItemId": "1xn802v",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xn802v/llvm_vulkan_11_dropin_compiler_passes_gvn_cse_cfg/",
+  "detail": {
+    "longDescription": "Hey r/programming and r/Compilers,\n\nI've just released **LLVM Vulkan 1.1**, an open-source project that moves beyond an experimental prototype into a **drop-in pass plugin** that accelerates LLVM middle-end passes using portable Vulkan compute shaders:\n\n- **Live Project Site**: https://hecer.github.io/llvm-vulkan/\n- **GitHub Repository**: https://github.com/HECer/llvm-vulkan\n- **GitHub Release v1.1.0**: https://github.com/HECer/llvm-vulkan/releases/tag/v1.1.0\n- **Interactive Benchmark Dashboard (109 rows)**: https://hecer.github.io/llvm-vulkan/graphs/benchmarks.html\n- **12-Slide Offline Project Presentation**: https://hecer.github.io/llvm-vulkan/project-presentation.html\n\n### What it actually does\nRather than claiming to rewrite LLVM or port the entire backend to GPU, LLVM Vulkan provides a standalone C++17 bulk-compute library (`LLVMVulkan::compute`) and an LLVM pass plugin with **strict host semantic authority**:\n1. **GPU-Accelerated GVN (`gvn` / `lv-gvn`)**: Computes dense dominator trees on GPU workgroups to eliminate redundant expressions across basic blocks dominated by the candidate.\n2. **Commutative CSE (`early-cse` / `lv-cse`)**: Normalizes operand IDs for commutative operations (`add`, `mul`, `and`, `or`, `xor`, `eq`, `ne`) before GPU record hashing, deduplicating reversed expressions like `a + b` and `b + a`.\n3. **Control Flow Graph Simplification (`simplifycfg` / `lv-cfg`)**: High-throughput reachability closure over module-wide control flow graphs.\n4. **Dead Code Elimination (`dce` / `adce` / `lv-dce`)**: Backward def-use reachability closure, salvaging debug records and dropping dead SSA cycles.\n5. **Integer Constant Folding (`instcombine` / `lv-fold`)**: Batched modular integer arithmetic and bitwise folding through 64 bits (`shaderInt64`).\n\n### Quick Drop-in Usage with Clang and opt\n```bash\n# Direct opt pipeline using standard pass aliases:\nopt -load-pass-plugin=LLVMVulkan.so -passes='early-cse,gvn,simplifycfg,dce' input.ll -S -o output.ll\n\n# Automatic Clang -O2 integration via extension points:\nexport LV_AUTO_INSERT=1\nclang -fpass-plugin=LLVMVulkan.so -O2 -c main.c -o main.o\n```\n\n### The Numbers: RTX 5090 vs Ryzen 9 5950X (1,048,576 elements)\nWe measured complete host wall times including upload, GPU dispatch, convergence, synchronization, and host readback:\n\n| Workload | Ryzen 9 5950X | RTX 5090 | Speedup |\n| :--- | :--- | :--- | :--- |\n| **Sort keys** (radix sort vs `std::sort`) | 55.96 ms | 1.67 ms | **33.59×** |\n| **Integer fold** (32-bit scalar batches) | 12.66 ms | 4.17 ms | **3.04×** |\n| **Integer fold** (64-bit) | 16.18 ms | 7.10 ms | **2.28×** |\n| **Hash records** (instruction tuples) | 3.33 ms | 2.65 ms | **1.26×** |\n| **Exclusive scan** (prefix sums) | 1.28 ms | 1.47 ms | *0.87× (CPU wins)* |\n\n### Where the CPU Still Wins\nTransparency is our top priority:\n- **Small Workloads**: At 1,024 elements, the CPU wins every benchmark due to kernel launch and transfer latency. The plugin defaults to scalar CPU unless `LV_BACKEND=vulkan` or automatic threshold batching is enabled.\n- **Sparse / Long-Chain Graphs**: On long single-chain graphs, the CPU is up to **151× faster** (0.064 ms vs 9.71 ms) because worklist algorithms beat GPU fixed convergence rounds.\n- **Memory SSA / Pointer Aliasing**: The plugin deliberately handles pure SSA values, leaving complex memory disambiguation and pointer aliasing to upstream LLVM.\n\n### Testing & Packages\n- Verified against LLVM 21 and pinned LLVM main: 19/19 fixtures pass, 8,192 constant oracle tests pass, and semantic fuzzing passes.\n- Relocatable packages for Windows (`.zip`) and Linux (`.tar.gz`) available on the GitHub Release page.\n- Self-contained offline HTML presentation and interactive benchmark explorer.\n\nFeedback, benchmark reproductions, and thoughts on GPU-accelerated compiler passes are very welcome!",
+    "externalUrl": "https://hecer.github.io/llvm-vulkan/",
+    "developer": "TotalCreations",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "hecer.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

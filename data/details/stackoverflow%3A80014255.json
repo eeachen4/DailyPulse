@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014255",
   "sourceItemId": "80014255",
+  "fetchedAt": "2026-11-04T03:15:35.892Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014255/why-does-contextvar-return-its-default-value-inside-run-in-executor-in-python",
   "detail": {
     "longDescription": "I'm working on an asynchronous Python application where I use ContextVar to store request-specific information, such as a request ID. This allows me to access the current request ID from different functions without passing it as an argument everywhere. import asyncio from contextvars import ContextVar request_id = ContextVar(\"request_id\", default=\"missing\") def read_request_id(): return request_id.get() async def main(): token = request_id.set(\"request-123\") try: print(\"Inside async function:\", request_id.get()) loop = asyncio.get_running_loop() result = await loop.run_in_executor( None, read_request_id ) print(\"Inside executor:\", result) finally: request_id.reset(token) asyncio.run(main()) The value works correctly inside my asynchronous functions, but when I execute a synchronous function using loop.run_in_executor() , the function receives the default value instead of the value set by the current request: Inside async function: request-123 Inside executor: missing I want: Inside async function: request-123 Inside executor: request-123 I understand that run_in_executor() executes the function in a separate thread. However, I expected the current execution context to be available to the submitted function, since the ContextVar is already set in the calling asynchronous task. I also need to use a preconfigured ThreadPoolExecutor in my actual application, so simply replacing run_in_executor() with asyncio.to_thread() is not necessarily an option. What is the correct and thread-safe way to propagate the current Context when submitting a synchronous function through loop.run_in_executor() , particularly when using a custom ThreadPoolExecutor , without manually passing every ContextVar value as an argument?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "88"
+        "value": "135"
       },
       {
         "label": "状态",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014259",
+  "sourceItemId": "80014259",
+  "sourceUrl": "https://stackoverflow.com/questions/80014259/how-to-write-a-generic-class-that-accepts-ellipsis-like-tupleint",
+  "detail": {
+    "longDescription": "As noted in this answer 's footnote and this docs page , Python's builtin tuple supports Ellipsis ( ... ) in generic annotations. For example, the following denotes a variable-length homogenous tuple of int s: tuple[int, ...] As explained here , typing.Callable supports ... too. For example, the following denotes a callable that returns an int without specifying its signature: Callable[..., int] I would like to implement a custom generic class Foo that allows ... syntax: Foo[int, ...] Let's say I want Foo to emulate tuple in terms of typing, such that all parameterisations supported by tuple are are also supported by Foo . For example, Foo[int, str] should denote a fixed-length sequence of an int then a str , and Foo[int, ...] should denote a variable-length homogeneous sequence of int s. I tried this: from typing import Generic, TypeVarTuple Ts = TypeVarTuple(\"Ts\") class Foo(Generic[*Ts]): def __init__(self, *values: *Ts) -> None: ... It works fine for the following: Foo[int](1) Foo[int, str](1, 'cabbage') But the moment I add an ellipsis, Pyright screams \"...\" is not allowed in this context : Foo[int, ...](1, 2, 3, 4, 5) # type error! How do I use ... in a user-defined generic? Is there a native solution, or would I need to write my own __class_getitem__ ?",
+    "developer": "JadenV15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "186"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

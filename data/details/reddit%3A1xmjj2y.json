@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xmjj2y",
+  "sourceItemId": "1xmjj2y",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xmjj2y/release_cleanweb_tool_for_langchain_87_token/",
+  "detail": {
+    "longDescription": "Hey everyone! 👋\n\n\n\nOne of the biggest headaches when building autonomous LangChain agents or web-grounded RAG pipelines is that raw HTML ingestion completely wrecks LLM context windows. \n\n\n\nA single news article or documentation page can easily chew up 25,000+ tokens just from navigation bars, advertisement containers, tracking scripts, and cookie banners—and worse, hidden prompt injections or zero-width steganography embedded in third-party DOMs can easily hijack your agent.\n\n\n\nTo solve this, we just officially published \\*\\*\\`langchain-x402-cleanweb\\`\\*\\* to PyPI today!\n\n\n\n\\---\n\n\n\n\\### ⚡ What it does:\n\n\n\n1. \\*\\*87% Token Compression\\*\\*: Strips boilerplate, ads, navigation markup, and cookie modals, returning high-fidelity, clean Markdown optimized for LLM context windows.\n\n2. \\*\\*Indirect Prompt Injection Defense\\*\\*: Neutralizes hidden CSS text (\\`display:none\\`, \\`font-size:0px\\`), zero-width exfiltration characters, and malicious tracking links before your LLM reads the page.\n\n3. \\*\\*Multimodal Alt-Text Preservation\\*\\*: Extracts descriptive image alt tags (\\`!\\[alt text\\](url)\\`) for visual LLMs (like GPT-4o or Gemini Flash) while automatically neutralizing 1x1 tracking pixels (\\`\\[EXFILTRATION\\_IMAGE\\_BLOCKED\\]\\`).\n\n4. \\*\\*Zero-Overhead SPA Hydration\\*\\*: Instant extraction of pre-rendered state from Next.js (\\`\\_\\_NEXT\\_DATA\\_\\_\\`), Nuxt.js (\\`\\_\\_NUXT\\_DATA\\_\\_\\`), and [Schema.org](http://Schema.org) JSON-LD without spinning up heavy headless browsers.\n\n5. \\*\\*Standard LangChain Tool\\*\\*: Fully compliant with \\`langchain\\_core.tools.BaseTool\\` supporting both sync \\`\\_run\\` and async \\`\\_arun\\` with Pydantic v2 validation.\n\n6. \\*\\*Machine-to-Machine x402 Micropayments\\*\\*: Native USDC micropayments over Base, Polygon, Arbitrum, and Solana with pre-funded agent vaults.\n\n\n\n\\---\n\n\n\n\\### 📦 Quickstart\n\n\n\nInstall directly from PyPI:\n\n\\`\\`\\`bash\n\npip install langchain-x402-cleanweb\n\n\\`\\`\\`\n\n\n\nUse it directly in Python:\n\n\\`\\`\\`python\n\nfrom langchain\\_x402\\_cleanweb import X402CleanWebTool\n\n\n\n\\# Initialize tool (connects to our high-availability gateway)\n\ntool = X402CleanWebTool()\n\n\n\n\\# Scrape and get 87% token-reduced clean Markdown\n\nclean\\_content = tool.run(\"https://en.wikipedia.org/wiki/Web\\_scraping\")\n\nprint(clean\\_content)\n\n\\`\\`\\`\n\n\n\nPlug it into any LangChain ReAct Agent:\n\n\\`\\`\\`python\n\nfrom langchain.agents import initialize\\_agent, AgentType\n\nfrom langchain\\_openai import ChatOpenAI\n\nfrom langchain\\_x402\\_cleanweb import X402CleanWebTool\n\n\n\nllm = ChatOpenAI(model=\"gpt-4o\", temperature=0)\n\ntools = \\[X402CleanWebTool()\\]\n\n\n\nagent = initialize\\_agent(\n\ntools=tools,\n\nllm=llm,\n\nagent=AgentType.STRUCTURED\\_CHAT\\_ZERO\\_SHOT\\_REACT\\_DESCRIPTION,\n\nverbose=True\n\n)\n\n\n\nresponse = agent.run(\"Find the core concepts on https://news.ycombinator.com without any ad noise.\")\n\nprint(response)\n\n\\`\\`\\`\n\n\n\n\\---\n\n\n\n\\### 🆓 Free Sandbox Tier\n\nEvery session nonce comes with \\*\\*5 free zero-auth trial calls\\*\\* out of the box so you can test it immediately without needing API keys or wallet setup.\n\n\n\n\\* \\*\\*PyPI\\*\\*: [https://pypi.org/project/langchain-x402-cleanweb/0.1.0/](https://pypi.org/project/langchain-x402-cleanweb/0.1.0/)\n\n\\* \\*\\*GitHub\\*\\*: [https://github.com/nohosa001-pixel/x402-cleanweb-agent](https://github.com/nohosa001-pixel/x402-cleanweb-agent)\n\n\n\nWould love to hear your feedback on edge-case websites, token savings, and how you handle web security in your autonomous agents! 🚀",
+    "developer": "EstablishmentTough18",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

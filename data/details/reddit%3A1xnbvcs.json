@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnbvcs",
+  "sourceItemId": "1xnbvcs",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1xnbvcs/graded_1300_wordassociation_clues_googles_models/",
+  "detail": {
+    "longDescription": "I run a word-association benchmark: one model gives a one-word clue meant to point at several of its team's words on a 5x5 board, and a teammate model guesses. Each clue is graded 0-100, mostly on how many of its own words a guesser is expected to find before hitting a wrong one. Models play each other in paired games under the same rules and the same grader.\n\nAverage clue grade (± is a 95% interval):  \nGemini 4 Argon: 67 ±3  \nGemini 3.8 Flash: 64.5 ±2  \nGPT-6.1 Terra: 64 ±4  \nGPT-6 Astra: 63 ±2  \nGPT-6.1 Sol: 61 ±2.5  \nClaude Opus 5.5: 58 ±2  \nClaude Sonnet 5: 57 ±4  \nClaude Fable 5.1: 56 ±3\n\nGuesses that hit the other team's word or the assassin: Gemini 0-0.5%, GPT-6 0.8-1.9%, Claude 1.7-6%.\n\nThe cheap tier with thinking off showed the same OpenAI-over-Anthropic gap: GPT-6 Luna beat Claude Haiku 5.5 14-2 in a 16-game head-to-head.\n\nCaveats: it's one task, the grader is partly LLM raters, and the older paid-API models (thinking off) don't follow the pattern: Claude Opus 4.6 topped that table at 55.\n\nSo is this a real difference in how well these labs' models handle word meaning and association, or something narrower about how they play games? One idea I can't test: could ChatGPT's and Google's huge consumer user bases give them more human language data to learn from?",
+    "developer": "Hardicecream17",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014173",
   "sourceItemId": "80014173",
+  "fetchedAt": "2026-11-04T03:15:35.892Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014173/why-is-my-etc-timezone-a-directory-insted-of-a-file",
   "detail": {
     "longDescription": "During building my project with docker, I encountered an issue with volumes. It turned out that on my system(Ubuntu 26.04.1 LTS) /etc/timezone is a directory but on the container It is a file. ls /etc -alt | grep timezone output for my machine: drwxr-xr-x 2 root root 4096 Nov 2 08:25 timezone ls /etc -alt | grep timezone output for my container: -rw-r--r-- 1 root root 4 Nov 2 07:43 timezone From what I've found /etc/timezone should be file. Is there a reason why this is a directory? I need to have It mapped on the container. I'm running my container with docker compose and mapping is done by: volumes: - /etc/timezone:/etc/timezone:ro Error during build: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting \"/etc/timezone\" to rootfs at \"/etc/timezone\": mount src=/etc/timezone, dst=/etc/timezone, dstFd=/proc/thread-self/fd/14, flags=MS_BIND|MS_REC: not a directory: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-6"
+        "value": "-7"
       },
       {
         "label": "回答",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "127"
+        "value": "144"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

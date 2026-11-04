@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xncvt5",
+  "sourceItemId": "1xncvt5",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xncvt5/singlepass_doc_parsing_vs_staged_pipelines_whats/",
+  "detail": {
+    "longDescription": "I've been running doc OCR benchmarks since the old opencv+tesseract days. Vision-language models were supposed to kill that whole stack. They didn't. Getting clean markdown out of a two-column academic PDF with tables and footnotes still wrecks most tools I try.\n\nThe handoff problem is what gets me. Detection runs, then crops go to recognition, then some geometry heuristic guesses reading order. By the time a figure spans columns or a table nests inside another, you're already toast. I hit this again this week on the same stress-test PDFs I always use. Table+figure+caption groupings split apart or land in the wrong order. Same story as three years ago.\n\nI've been looking at OXR from SoMarkAI. Single pass for recognition plus reading order, and the layout part is swappable without touching the backbone. That's the part I'm actually curious about. I still run my own hybrid pipeline for production stuff. The question is whether anyone here has moved to a single-pass setup for real workloads, and whether pluggable layout is worth the tradeoffs in practice. What breaks when you actually own the maintenance?",
+    "developer": "Sussybaka800869",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
