@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117556747241905040",
+  "sourceItemId": "mastodon.social/117556747241905040",
+  "fetchedAt": "2026-11-05T03:45:54.800Z",
+  "sourceUrl": "https://himself.alexanderdunkel.com/@alex/117556747147867814",
+  "detail": {
+    "longDescription": "Just realized: If you deploy Mastodon via Docker and proxy everything to `127.0.0.1:3000`, Rails is forced to read and stream all images & attachments from disk using `RAILS_SERVE_STATIC_FILES=true`. This has a massive performance impact. \n\nHowever, the host Nginx can serve all media directly with zero CPU/RAM overhead using kernel `sendfile`:\n\n```nginx\nlocation ^~ /system/ {\n    root /srv/mastodon/data/public;\n    add_header Cache-Control \"public, max-age=31536000, immutable\";\n    add_header X-Content-Type-Options nosniff;\n    try_files $uri @mastodon_proxy;\n}\n\nlocation @mastodon_proxy {\n    proxy_pass http://127.0.0.1:3000;\n    proxy_set_header Host $host;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n    proxy_set_header X-Forwarded-Proto $scheme;\n    # Security fix (GHSA-qp4r-p842-mw5c):\n    proxy_set_header Forwarded \"\";\n    proxy_set_header Proxy \"\";\n}\n```\n\n#MastodonAdmin #SelfHosted #SysAdmin #DevOps #Docker #Nginx",
+    "developer": "@alex@himself.alexanderdunkel.com",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "Alex himself"
+      }
+    ]
+  }
+}

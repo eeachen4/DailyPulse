@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117547213091455135",
+  "sourceItemId": "mastodon.social/117547213091455135",
+  "fetchedAt": "2026-11-05T03:45:54.800Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117547212967228240",
+  "detail": {
+    "longDescription": "----------------\n\n🎥 Video: Agent Improvement Loops: Model, Harness, Context (Interrupt London)\n===================\n\nHarrison Chase, co-founder and CEO of LangChain, gave a talk at Interrupt London on building agents that improve over time. The core move is decomposition: an agent consists of three parts, and each part has its own improvement loop.\n\nThe three parts\n• Model: the core workhorse that does the reasoning and decision making. Peripheral models for guardrails and evals sit around it but are not the main workload.\n• Harness: the system around the model that makes it useful. He names Deep Agents, Claude Code, and Codex as examples. The harness decides what the model sees and handles the machinery around the reasoning.\n• Context: everything the agent works with at runtime, including memory.\n\nLoop 1: the model\n\nSupervised fine-tuning through LangSmith Fine-Tuning and the smithtune CLI, or reinforcement learning for more complex tasks.\n\nLoop 2: the harness\n\nLangSmith Engine is described as a deep agent that runs over the traces of your agent, clusters recurring issues, and proposes fixes, with a human approving the changes. Red teaming inside the same system looks for agent mistakes proactively instead of waiting for production failures.\n\nLoop 3: the context\n\nMemory. He points to Hex and Profound as companies he thinks do context well, and to OpenWiki, an open source LangChain project that gives coding agents a persistent, updatable knowledge base.\n\nThe shared foundation\n\nChase argues that traces and evals underpin all three loops, which is why LangChain built SmithDB and LangSmith AI Search for storing and querying trace data. On evals, he names the hard parts: getting realistic inputs, defining what good looks like, and building simulation environments so evals can run without touching production systems. Two more lines worth noting: evals are the new PRD, and there is no universal judge for correctness, which makes evaluation design more open-ended than model benchmarks.\n\nThe North Star\n\nHe closes with a fully automated improvement loop: an agent that notices its own mistakes, creates its own eval data points, and suggests its own fixes. He is explicit that the fully automated version is not coming anytime soon.\n\nNotes\n\nThis is a vendor talk, and the framing sits conveniently on top of the LangSmith product line, so treat the architecture argument separately from the product pitch. The trace-collection-and-evals-first argument stands on its own even if the stack is different. Teams with agents already in production get a useful map here: find the failing loop, work on its input data, and keep the harness fixes human-approved until the red teaming signals are trusted. Tools described were not independently tested.\n\nReferences:\n• LangSmith Engine: https://www.langchain.com/langsmith/engine\n• smithtune docs: https://docs.langchain.com/langsmith/smithtune\n• OpenWiki: https://github.com/langchain-ai/openwiki\n\n🔹 AIAgents #LangChain #LangSmith #Evals #AgentEngineering\n\n🔗 Source: https://www.youtube.com/watch?v=xy_7SzwsIjM",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

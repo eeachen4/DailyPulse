@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnsc70",
+  "sourceItemId": "1xnsc70",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xnsc70/building_barista_postgres_embeddings_and_jev/",
+  "detail": {
+    "longDescription": "Author here. The part I found most interesting: when a stage processes a post, claiming the queue row, saving the result and enqueuing the next stage all happen in one Postgres transaction. A crash rolls everything back and the row gets picked up again, so there’s no dual-write problem and no outbox pattern needed. That’s the main reason I didn’t use Kafka, more than scale.\n\nRetries are a not_before column with exponential backoff, dead letters are a rejected table, and per-user schedules are timestamp columns that each stage advances. Happy to discuss the tradeoffs, especially where this approach stops working.",
+    "externalUrl": "https://read.thecoder.cafe/p/barista-1",
+    "developer": "teivah",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "read.thecoder.cafe"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

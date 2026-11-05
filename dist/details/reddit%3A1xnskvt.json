@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnskvt",
+  "sourceItemId": "1xnskvt",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xnskvt/do_looped_transformers_save_hbm_traffic_profiling/",
+  "detail": {
+    "longDescription": "Do looped transformers, which reuse the same weights at every iteration, also save HBM traffic? In my new post I cover the looped architecture (Huginn), then model and measure its performance on a B200: how much data each iteration reads from memory, how long it takes, and why the shared weights usually don't stay on chip until the next iteration.  \nA few results:\n\n\\- A chain of eight matmuls with one shared 72 MiB weight ran 24% faster than the same chain with eight identical copies, and read almost nothing from HBM. At 288 MiB, larger than L2, the difference disappeared.\n\n\\- In a full Huginn Core (teaching implementation, random weights), eight iterations took about eight times as long as one and read about eight times as much data from HBM.\n\n\\- Sharing saves storage, but by itself it doesn't stop the GPU from reading the weights from HBM again at every iteration.\n\n👀Post: [https://dinara-dl.github.io/posts/looped-transformer/](https://dinara-dl.github.io/posts/looped-transformer/)\n\n🤖Code and raw Nsight Compute data: [https://github.com/dinara-dl/looped-transformer](https://github.com/dinara-dl/looped-transformer)\n\nI'd be curious whether anyone has tried keeping recurrent weights on chip across iterations, for example with a persistent kernel.  \n",
+    "externalUrl": "https://i.redd.it/h7a0hkamgmzh1.jpeg",
+    "developer": "2dayyy6",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

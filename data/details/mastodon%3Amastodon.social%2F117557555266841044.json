@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117557555266841044",
+  "sourceItemId": "mastodon.social/117557555266841044",
+  "fetchedAt": "2026-11-05T03:45:54.800Z",
+  "sourceUrl": "https://zhub.link/@habr/117557555229226308",
+  "detail": {
+    "longDescription": "UFW говорит «всё закрыто», а Postgres торчит наружу: пишем аудит портов для docker compose на Python На этой неделе в топе снова всплыла старая история: свежий VPS, ufw default deny incoming , наружу только 22, 80 и 443, а потом в compose-файле появляется ports: - \"5432:5432\" — и через пару дней в базе лежит записка с биткойн-кошельком. Почему так происходит, уже разобрали подробно. Я хочу про другое: как сделать так, чтобы такой compose-файл вообще не доехал до сервера. Ниже — два небольших скрипта на Python. Первый проверяет compose-файлы до деплоя и падает с ненулевым кодом, если порт опубликован на все интерфейсы. Второй смотрит, что реально слушает на машине, без ss и netstat , прямо из /proc . Весь код я запускал на Python 3.13 и PyYAML 6.0.3, вывод в статье — настоящий. https:// habr.com/ru/articles/1103458/ # безопасность # python # iptables # ci # devops # ufw # docker # docker_compose",
+    "developer": "@habr@zhub.link",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Mastodon on ZHub"
+      }
+    ]
+  }
+}

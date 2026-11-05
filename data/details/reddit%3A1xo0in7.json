@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo0in7",
+  "sourceItemId": "1xo0in7",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xo0in7/opensourced_the_aws_audit_we_run_on_every_new/",
+  "detail": {
+    "longDescription": "We’re a small managed-DevOps team, and after doing the same first-call audit enough times we turned it into a CLI: [https://github.com/jetonecloud/preflight](https://github.com/jetonecloud/preflight)\n\nThe part I think is a bit different from the usual security scanners is that it also looks at the people side: how deploys happen, and how much of the infrastructure effectively depends on one or two engineers. Output is a report you can hand to a CTO or the rest of the team.\n\nDesign choices:\n\n* Read-only IAM, modules declare the exact actions they need so you can trim the policy\n* Local execution, nothing sent anywhere by default (there’s an opt-in “email me the report” feature and `preflight preview` shows exactly what would be sent)\n* Cost figures are labeled estimates and each shows how it was computed\n\nDisclosure: it’s from our company, and we also sell the fixing part, but the tool is Apache-2.0 and works fine without us.\n\nCurious how people here handle this today (Prowler? hand-rolled scripts? nothing?) and what checks would make this actually useful for you.",
+    "developer": "1200isplenty",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

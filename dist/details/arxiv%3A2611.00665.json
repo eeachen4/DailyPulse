@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.00665",
+  "sourceItemId": "2611.00665",
+  "fetchedAt": "2026-11-05T03:45:54.800Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.00665",
+  "detail": {
+    "longDescription": "arXiv:2611.00665v1 Announce Type: new Abstract: Subliminal learning allows AI models to inherit hidden preferences from seemingly unrelated training data, such as number sequences. Safety audits may evaluate models at standard 16-bit precision, while deployments may use compressed, quantized weights. We ask whether quantization changes the expression of a subliminal preference and what drives any resulting change. To investigate, we implant a \"favourite animal: panda\" preference into Qwen2.5-7B-Instruct. We define its net strength as the difference in mean panda-answer probability between subliminal models and neutrally trained controls under the same quantization setting. Applying this metric across different compression levels reveals a stark contrast. While behaviour remains stable at 8 bits, 4-bit quantization triggers severe, opposing shifts depending on the quantizer. Half-Quadratic Quantization (HQQ) amplifies the preference, raising the subliminally trained model's panda probability from roughly 55% at 16 bits to 64% at 4 bits, while the controls stay near 17%. This raises the trait's net strength ~1.3 times its 16-bit value. In contrast, NormalFloat (NF4) at 4-bit suppresses it, shrinking the net strength to just ~0.3 times its 16-bit value, despite producing rounding errors of the same size to within 4%. We examine the structure of the rounding errors and find that their arrangement drives the divergence. Randomly shuffling HQQ's errors within each quantization group, without changing their magnitude, shifts the trait's net strength between 0.2 and 1.6 times its 16-bit value. Despite these opposing shifts, the underlying fine-tuning signal remains largely intact. Because a model's internal state and outward behaviour diverge so unpredictably under compression, a 16-bit audit cannot reliably bound real-world risks. Safety evaluations must test the exact quantized weights intended for deployment.",
+    "developer": "Md Rayhanul Masud, Mst Suraiya Akter Shefa",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Md Rayhanul Masud, Mst Suraiya Akter Shefa"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117559324310315767",
+  "sourceItemId": "mastodon.social/117559324310315767",
+  "fetchedAt": "2026-11-05T03:45:54.800Z",
+  "sourceUrl": "https://hachyderm.io/@zrail/117559324153172553",
+  "detail": {
+    "longDescription": "#ai #llm #selfhosted \n\nI've found myself using a stack of weird tricks to get reasonably reliable performance out of local models.\n\nFirst and foremost, I use a revised chat template for Qwen 3.8 Flash Next that fixes a few bugs as well as gives it more examples for batched tool calling, otherwise it tends to do one at a time.\n\nSecond, I use a pi extension called pi-vcc, which is deterministic compaction. Super fast, no LLM involved.\n\nThird, because pi-vcc can be a little too aggressive sometimes, I have a skill that injects whatever task I've give a subagent directly into the system prompt so it can't get compacted away. This one change has probably increased acceptance rate more than anything else.",
+    "developer": "@zrail@hachyderm.io",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "Hachyderm.io"
+      }
+    ]
+  }
+}

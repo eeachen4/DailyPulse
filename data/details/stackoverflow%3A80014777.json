@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014777",
+  "sourceItemId": "80014777",
+  "sourceUrl": "https://stackoverflow.com/questions/80014777/how-can-i-sum-elements-of-a-tensor-based-on-a-condition-of-one-out-of-two-values",
+  "detail": {
+    "longDescription": "Given the following index tensor: id = ([[0, 1], [0, 2], [1,2]]) that corresponds to the tensor: val = ([[a, b, c], [e, f, g], [h, i, j]]) such that element [a, b, c] has an index of [0,1], element [e, f, g] has an index of [0, 2], ectara. How can I return a tensor where in index representation it is new_ten_id = ([[[0, 1] + [0, 2]], [[1, 2] + (-[0, 1])], [(-[0, 2]) + (-[1, 2])]]) and the tensor of values would be new_ten_val = ([[a+e, b+f, c+g], [h-a, i-b, j-c], [-e-h, -f-i, -g-j]]). ----- I have tried the following code: n_part = 3 F_sum_empty = torch.zeros(n_part, 3) F_sum = torch.scatter_add(F_sum_empty, 1, id[:, 0], val) F_sum = torch.scatter_add(F_sum_empty, 1, id[:, 1], -val) ==> RuntimeError: Index tensor must have the same number of dimensions as self tensor along with multiple other variations of indexing and troubleshooting with little success. It says the index tensor must have the same number of dimensions as the self tensor, but I need them to stay in this specific shape. I am not sure if I need some other sum function or if it is an inherent issue with how the index, source tensor, and output tensor correlate with each other. I've read through the PyTorch documentation, but it has not been very helpful to me. Maybe I'm missing something obvious? The application is summing forces found from the Lennard-Jones potential in x, y, and z directions of particle pairs to find acceleration. The idea is that it should hopefully scale with higher orders of n.",
+    "developer": "user33280062",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "107"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

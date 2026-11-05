@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo1t2n",
+  "sourceItemId": "1xo1t2n",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xo1t2n/what_broke_first_when_i_let_agents_edit_video/",
+  "detail": {
+    "longDescription": "i built a video editor with no gui because i figured ai agents would be the only users anyway. it's kimo - free, open-source (mit), and you drive it over mcp as tool calls from codex, cursor, opencode or any other mcp client.\n\ncut, trim, keyframe, titles and captions, colour grade, tracking, particles, audio, export - everything is a tool call. and one thing that is actually useful in practice: the agent can render a single frame to check its own work before committing the whole timeline, which saves a lot of wasted encode time.\n\nit is one \\~15mb cpu-only rust binary. runs fine on a 2gb box.\n\nhonestly the rough edges are real. the mcp protocol is great but some clients serialize things differently and i have hit edge cases around float timecodes, and the captioning pipeline can get confused if the model hallucinates timestamps. tracking and particles are working but still basic - nothing like a mature editor. i am also a college student so i do not have a huge test matrix and i have mostly been running this against whatever agent i had open at 2am.\n\ni would really like people to try it and tell me what breaks. when you do, please mention which mcp client you used (and which version if you can) so i can pin it down faster.\n\nhttps://getkimo.tech\nhttps://github.com/naman-sharma12345/kimo",
+    "developer": "LieTop7965",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

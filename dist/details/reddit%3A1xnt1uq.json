@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnt1uq",
+  "sourceItemId": "1xnt1uq",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xnt1uq/giving_an_ai_agent_real_access_to_your_computer/",
+  "detail": {
+    "longDescription": "I built barebox, a small sandbox you can start for an agent in under a second. The idea is simple. Every action gets one of three letters, like file permissions:\n\n→ r: reading and looking things up. It just happens.\n\n→ w: changes that can be undone. Kept on an undo layer you keep or throw away at the end.\n\n→ x: things that can't be taken back, like paying, sending or deleting. It waits for your yes.\n\n\n\nAnd you pick one of three modes, like any command-line tool:\n\n→ ask: it checks with you before any change\n\n→ auto: only the irreversible things need you (the default)\n\n→ trust: it runs on its own\n\nPayments ask in every mode.\n\nIt's built for spinning up agents on the fly: no setup, no root, no Docker image, about 8 MB each, up to 40 side by side on one laptop.\n\nIn the demo, Meta's muse model books a trip inside barebox. It searched, compared and planned on its own, and stopped only for the 8 things that couldn't be undone: payments, bookings, a calendar entry, messages and an email. The agent never saw the real payment key.\n\nHonest limit: it's a guardrail against mistakes and tricked agents, not a fortress. Open source under Apache-2.0.\n\n[https://github.com/hamr0/barebox](https://github.com/hamr0/barebox)",
+    "externalUrl": "https://i.redd.it/tcgrpo81kmzh1.gif",
+    "developer": "Tight_Heron1730",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

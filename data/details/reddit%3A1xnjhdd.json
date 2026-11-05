@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnjhdd",
+  "sourceItemId": "1xnjhdd",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xnjhdd/hydrogen10_openweight_scientific_model_beats_gpt6/",
+  "detail": {
+    "longDescription": "Hey everyone— we’re the Deep Principle team behind Mira AI Scientist. We just released **Hydrogen-1.0**, an open-weight model post-trained from GLM-5.3 for chemistry, materials science, and life sciences.\n\nHere’s how it performed in our evaluations:\n\n1. **FrontierScience Research:** **38.3%** pass rate vs. **33.3%** for GPT-6 Astra at max thinking—a **5 percentage point lead**.\n2. **Estimated output-side cost on FSR:** **$0.25 per problem** vs. **$0.88** for Astra at max thinking—about **72% lower**under our evaluation setup.\n3. **GPQA Diamond:** **92.9%** accuracy, compared with Kimi K3’s **93.5%**.\n\nOn separate internal task sets, Hydrogen also scored higher than GPT-6 Astra at max thinking on scientific computing (+5.13 percentage points) and single-step forward reaction prediction (+4.76 points). It trailed Astra on NMR structure elucidation (−3.33 points).\n\nThe write-up covers the evaluations and five workflow examples.\n\n# Why we built it\n\nIf you’ve used LLMs for research, you’ve probably spent a fair amount of time connecting the steps yourself: turning a question into a plan, preparing inputs, running tools, checking the output, and figuring out what to try when something breaks.\n\nWe wanted to see whether training on scientific workflows could make the model better at handling those connected decisions.\n\n# How we trained it\n\nWe used supervised fine-tuning and reinforcement learning with domain data, scientist feedback, records from our own labs, and discovery trajectories.\n\nThe lab records keep the research goal, procedure, observations, and outcome together. The discovery trajectories include how the next step changes after feedback, failed attempts, or unexpected results.\n\nSFT gives the model worked examples of scientific reasoning, experiment planning, protocol design, and analysis. RL uses feedback on research outcomes to improve its decisions.\n\n# What the workflows look like\n\nThe article walks through five cases:\n\n1. **Polymer molecular dynamics:** Builds a polyethylene melt with Python, runs GROMACS, checks and repairs the topology, and restarts the simulation. Outputs include a corrected **40 ns trajectory** and analyses of density, molecular packing, diffusion, and chain dimensions.\n2. **Reaction networks:** Explores connected molecular structures, competing pathways, and recorded energy barriers.\n3. **NMR interpretation:** Compares **seven candidate structures** against a supplied proton NMR spectrum.\n4. **Experiment planning:** Generates a machine-readable protocol for a **12-vial Suzuki coupling study**, with virtual checks of equipment capabilities and action prerequisites.\n5. **Materials search:** Uses feedback over **five rounds** to guide a search for transition-metal complexes with larger HOMO–LUMO gaps.\n\nA bit of context: these are selected model-plus-tool walkthroughs, not an overall autonomous-research success rate. GROMACS does the MD calculations, and the protocol validation is virtual—it doesn’t mean the physical experiment was carried out.\n\nThe attached video gives a quick look at the research interactions. The article has the detailed walkthroughs, evaluations, and training approach.\n\n# Links\n\n1. **Weights and model card:** [Hydrogen-1.0 on Hugging Face](https://huggingface.co/deep-principle/Hydrogen-1.0)\n2. **Technical write-up, evaluations, and cases:** [Introducing Hydrogen-1.0](https://blog.deepprinciple.com/introducing-hydrogen-1.0/)\n3. **Try it:** [Mira AI Scientist](https://mira.deepprinciple.com/chat)\n\nWe’d especially like to hear from people working in computational chemistry and materials science. **What would you try it on first, and what would you check before trusting the result?**\n\n",
+    "developer": "AKAMA199",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

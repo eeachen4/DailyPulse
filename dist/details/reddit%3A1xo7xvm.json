@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo7xvm",
+  "sourceItemId": "1xo7xvm",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xo7xvm/i_built_a_native_mac_app_that_turns_messy_lambda/",
+  "detail": {
+    "longDescription": "Debugging one Lambda failure shouldn’t mean opening six log streams, scrolling past a dozen concurrent requests, and rebuilding the timeline in your head. I built LogStitch to do that part for you.\n\n[https://www.logstitch.app](https://www.logstitch.app/)\n\n**The problem:** CloudWatch puts log lines from every concurrent execution into one stream sorted by timestamp. If five requests hit your function at once, their lines are all mixed together. Finding the one that failed means picking request IDs out by hand.\n\n**What LogStitch does:** It reads the request ID on each log line and puts the lines back together, one card per invocation. Each card shows duration, memory, cold start, and parsed JSON. If a request touched several functions, you can follow it across them on a single swim-lane timeline and see where the error started.\n\nSome other things it does:\n\n* Groups recurring errors into patterns, so you see “this exception is getting worse” instead of 2,000 separate hits\n* Shows p99 trends, cold-start breakdowns, memory right-sizing, and cost projections, calculated from logs already on your disk\n* Live tail that still groups lines by invocation\n* A local MCP server, so Claude Code, Cursor, and similar tools can query your logs without ever getting your AWS credentials\n\n**Privacy:** Everything is local-first. There’s no LogStitch backend. The app talks directly to AWS with your own credentials, which are stored in Keychain. Logs live in a local SQLite file, and you can browse history offline.\n\n**Pricing:** One-time purchase. It’s $49 for personal use and $99 for business use, with a 14-day trial that needs no card and no account. It requires macOS 26.1 or later.\n\nIf you just want to see the idea, there’s a free in-browser version at logstitch.app/stitch. You paste in raw logs and it stitches them, and nothing is uploaded.\n\nI’d really like feedback from anyone who works with Lambda regularly. What’s the most annoying part of debugging it for you right now? ",
+    "developer": "quietmacbuilder",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

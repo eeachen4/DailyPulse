@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo70ct",
+  "sourceItemId": "1xo70ct",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xo70ct/day_4_part_2_my_ai_website_auditor_passed_4_tests/",
+  "detail": {
+    "longDescription": "I'm experimenting with an AI-powered website auditor, starting with a UX evaluation engine.\n\nToday I tested the same evaluation prompt against five websites using screenshots and structured data extracted through Playwright.\n\nThe goal was to determine whether the model could identify evidence-supported UX issues without inventing problems.\n\nI independently reviewed all 27 findings as a UX designer.\n\n**Results:**\n\n* 20 accurate\n* 5 partially accurate\n* 2 incorrect\n\nThese are subjective professional review results, not independently benchmarked model accuracy.\n\nThe interesting part wasn't the successful tests. It was the failure.\n\nThe fifth website was arguably the strongest of the group. The model correctly identified no critical or high-priority issues.\n\nThen it produced four lower-priority findings anyway.\n\nTwo were false positives.\n\nIt treated intentional progressive disclosure in an accordion as a UX deficiency and questioned navigation categories that legitimately represented different concepts.\n\n**The model appeared to be looking for problems because the audit format encouraged it to find them.**\n\nThat's a serious issue for an evaluation product.\n\nI'm now considering several changes to the evaluation logic:\n\n* Require concrete evidence of user friction before reporting an issue.\n* Explicitly allow zero findings in any severity category.\n* Evaluate established design patterns in context.\n* Distinguish observations from verified problems and potential concerns.\n* Avoid reporting design preferences as usability defects.\n\nI also discovered an issue with the evidence pipeline.\n\nPlaywright successfully extracted structured content, but automated screenshots sometimes missed entire dynamically rendered sections.\n\nFor the MVP, I'm considering a hybrid approach: URL for structured data, user-uploaded full-page screenshot for visual evidence, and an optional website description for additional context.\n\nLonger term, I'd like the system to generate a UX blueprint or wireframe, not just an audit report. But that's outside the current scope.\n\n**Question for people working with LLM evaluation systems:**\n\nHow do you design prompts or validation layers that encourage the model to return *no issue* when the evidence doesn't support one?\n\nI'm particularly interested in approaches to reducing false positives without making the model overly conservative.",
+    "developer": "noya1979",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

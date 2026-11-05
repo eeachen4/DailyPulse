@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014677",
+  "sourceItemId": "80014677",
+  "sourceUrl": "https://stackoverflow.com/questions/80014677/what-does-the-output-of-v8s-debugprint-mean",
+  "detail": {
+    "longDescription": "V8 has what I think is called a \"runtime function\" called %DebugPrint that can be used to output a bunch of... stuff... about whatever argument you pass to it: $ node --allow-natives-syntax Welcome to Node.js v22.14.0. Type \".help\" for more information. > x = 'hello world' 'hello world' > %DebugPrint(x) DebugPrint: 0x3ed84509909: [String] in OldSpace: #hello world 0x32a231900691: [Map] in ReadOnlySpace - map: 0x32a231900841 <MetaMap (0x32a231900099 <null>)> - type: INTERNALIZED_ONE_BYTE_STRING_TYPE - instance size: variable - elements kind: HOLEY_ELEMENTS - enum length: invalid - stable_map - non-extensible - back pointer: 0x32a231900069 <undefined> - prototype_validity cell: 0 - instance descriptors (own) #0: 0x32a231900c91 <DescriptorArray[0]> - prototype: 0x32a231900099 <null> - constructor: 0x32a231900099 <null> - dependent code: 0x32a231900c51 <Other heap object (WEAK_ARRAY_LIST_TYPE)> - construction counter: 0 'hello world' > arr = [1, 2, , , 4] [ 1, 2, <2 empty items>, 4 ] > %DebugPrint(arr) DebugPrint: 0x228e12cc13a1: [JSArray] - map: 0x2f20d258beb1 <Map[32](HOLEY_SMI_ELEMENTS)> [FastProperties] - prototype: 0x12e7cee04261 <JSArray[0]> - elements: 0x211a7bb4d2c9 <FixedArray[5]> [HOLEY_SMI_ELEMENTS (COW)] - length: 5 - properties: 0x32a231900c31 <FixedArray[0]> - All own properties (excluding elements): { 0x32a2319017c9: [String] in ReadOnlySpace: #length: 0x32a2319108f1 <AccessorInfo name= 0x32a2319017c9 <String[6]: #length>, data= 0x32a231900069 <undefined>> (const accessor descriptor), location: descriptor } - elements: 0x211a7bb4d2c9 <FixedArray[5]> { 0: 1 1: 2 2-3: 0x32a231900c69 <the_hole_value> 4: 4 } 0x2f20d258beb1: [Map] in OldSpace - map: 0x2f20d25811a1 <MetaMap (0x2f20d2581231 <NativeContext[287]>)> - type: JS_ARRAY_TYPE - instance size: 32 - inobject properties: 0 - unused property fields: 0 - elements kind: HOLEY_SMI_ELEMENTS - enum length: 0 - back pointer: 0x2f20d25aa139 <Map[32](PACKED_SMI_ELEMENTS)> - prototype_validity cell: 0x32a231901249 <Cell value= 1> - instance descriptors #1: 0x03b9fd441fa9 <DescriptorArray[2]> - transitions #1: 0x2f20d258bef9 <TransitionArray[4]>Transition array #1: 0x32a2319018d1 <Symbol: (elements_transition_symbol)>: (transition to PACKED_DOUBLE_ELEMENTS) -> 0x16998f154449 <Map[32](PACKED_DOUBLE_ELEMENTS)> - prototype: 0x12e7cee04261 <JSArray[0]> - constructor: 0x2f20d2585039 <JSFunction Array (sfi = 0x32a2319118f1)> - dependent code: 0x32a231900c51 <Other heap object (WEAK_ARRAY_LIST_TYPE)> - construction counter: 0 [ 1, 2, <2 empty items>, 4 ] I can sense that there's some stuff here that can help me understand the performance implications of code that I write, and I'm already able to make use of some of it. (For instance, by using it to check the memory addresses of strings, I was able to confirm that in V8 .toLowerCase() doesn't needlessly copy strings that are already all lowercase.) But the meaning of most of the output is opaque to me, and as far as I can tell, there are simply no official docs for this function at all. In essence, I am seeking some unofficial docs on this function's behaviour. I don't have any further particular problem in mind that I want to solve with it - after all, I don't yet know what it can do! - but rather would like to figure out what it offers me, so that in future I can recognise if I encounter a situation where it could be useful. Thus I ask: what fields can %DebugPrint output, and what do they all mean?",
+    "developer": "Mark Amery",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "97"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

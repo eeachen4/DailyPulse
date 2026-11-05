@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo7kse",
+  "sourceItemId": "1xo7kse",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xo7kse/the_truck_is_ready_is_dock_4_still_assigned/",
+  "detail": {
+    "longDescription": "Suppose a dispatch agent gets two events for truck T17.\n\n\n\n\\- 08:00, event A assigns dock 4 and sets the status to waiting.\n\n\\- 08:05, event B sets the status to ready. It contains no dock field.\n\n\n\nIf B is a partial update that leaves omitted fields alone, the truck is ready with dock 4 assigned. If B is a full snapshot whose omitted fields are defined as unknown, the truck is ready and its dock is unknown.\n\n\n\nI'd use those as two eval cases, changing only the declared update type. Score the dock and status separately. In the partial update case, the dock needs evidence from A and the status needs evidence from B. In the snapshot case, the agent should say the dock is unknown.\n\n\n\nIn the context sent to the model, keep the update rule and the source of each resolved value. Then when the agent gives the wrong dock, you can check whether it misread the evidence or received the wrong state in the first place.",
+    "developer": "jylusdev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

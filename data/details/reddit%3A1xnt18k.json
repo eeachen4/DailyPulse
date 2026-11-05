@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnt18k",
+  "sourceItemId": "1xnt18k",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xnt18k/what_it_actually_costs_to_move_email_templates/",
+  "detail": {
+    "longDescription": "A company I used to work for sent all transactional email through Mandrill for years. Password resets, invoices, reports. It worked, so nobody touched it.\n\nWhen we wanted to leave, the sending API was not the problem. The templates were.\n\nWhat it cost day to day:\n\n* Every copy change needed a developer. A one line fix became a ticket and waited a week in a queue.\n* Finding the right template in a flat list of a few hundred was awful. Inconsistent names, no history beyond draft and published, no rollback.\n\nWhat it cost when we wanted to leave:\n\n* The product stood still for years, while the rest of email tooling moved on.\n* Templates were in Mandrill’s own dialect (`*|TAG|*`, `mc:edit`). Export gives you that dialect, not clean HTML.\n* We had never rendered an email outside Mandrill, so there was no test corpus to compare against. We had to build one first.\n* Price. Blocks of 25k emails for $20 on top of a Mailchimp plan. About $60 for 50k. Resend charges $20 for the same volume.\n\nIf the provider renders your templates, you cannot leave until you can render them yourself.\n\nThree ways to avoid this:\n\n1. Templates in the repo (React Email, MJML, plain HTML). Render at send time, pass `html` to any provider. Cheap, but every copy change is a deploy.\n2. Templates in your own database with an editor in front. No deploys, no lock in, but now you maintain an email editor.\n3. A separate template layer that renders and hands HTML to the provider you already use. [Customer.io](http://Customer.io) and Braze do this. I’m building an open source one, so I’m biased here.\n\nIf you have moved templates off Postmark or SES, what broke for you?",
+    "developer": "Then_Dragonfly2734",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

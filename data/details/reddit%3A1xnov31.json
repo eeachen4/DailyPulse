@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnov31",
+  "sourceItemId": "1xnov31",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xnov31/victorialogs_vs_loki_elasticsearch_opensearch/",
+  "detail": {
+    "longDescription": "Hey folks at r/kubernetes,\n\nI posted this to r/observability and got some useful feedback there, so I'm sharing it here too. If you've already seen it, sorry for the repeat.\n\nDisclosure first: I work at VictoriaMetrics, on VictoriaLogs.\n\nBefore becoming a maintainer of VictoriaLogs, I was the one who had to set up the log system at my previous company, and I struggled a lot to decide which one we should go with, considering our use case and budget at that time.\n\nRecently I was asked to benchmark VictoriaLogs to find areas to improve. Many of our users also ask which use cases it fits best, so I decided to publish the benchmark too.\n\nThe setup is Loki, Elasticsearch, OpenSearch, SigNoz, ClickStack and VictoriaLogs, each on an identical 8-core machine, with structured Kubernetes-style logs ramped up until each one choked.\n\nFun fact: VictoriaLogs is not the one that ingested the most. Each system makes its trade-offs somewhere, and the post explains each one.\n\nI also spent almost 3 months digging into each system's internals, so I could explain the numbers and what's behind them. The full write-up is about a 20-minute read: [https://victoriametrics.com/blog/structured-log-ingestion-benchmark/](https://victoriametrics.com/blog/structured-log-ingestion-benchmark/)\n\nI'm sure I got something wrong somewhere. If you run any of these in production and see something off in my setup, please tell me here or open an issue in the repo: https://github.com/VictoriaMetrics/logs-benchmark. That's the feedback I'm most looking for.\n\nThanks for reading!",
+    "externalUrl": "https://victoriametrics.com/blog/structured-log-ingestion-benchmark/",
+    "developer": "lllkong",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "victoriametrics.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

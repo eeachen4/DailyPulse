@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnra77",
+  "sourceItemId": "1xnra77",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xnra77/my_docker_backup_worked_but_my_recovery_plan_didnt/",
+  "detail": {
+    "longDescription": "I thought my backup setup was fine. the Compose file was in Git and the vm was backed up. Then I tried restoring everything instead of just assuming it would work. I started with easy test and restored my serverspace vm backup to a second server. The app came back with the database and uploads. Then I created a blank ubuntu vm, cloned the repo and ran docker compose up d. Every container was healthy but the app was empty. The Compose file could rebuild the stack, not the data.\n\nI’ve since added separate postgres dumps and copies of the uploads and secrets outside the VM. The provider backup is still my quick recovery option but at least I can now rebuild elsewhere if I need to. For those who test their backups regularly how ofen do you actually rebuild everything on a clean vm? I need help",
+    "developer": "NebulaKaiz",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

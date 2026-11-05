@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xo5ird",
+  "sourceItemId": "1xo5ird",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xo5ird/how_to_verify_a_llm_providers_zero_data_retention/",
+  "detail": {
+    "longDescription": "I’m reading enough security doomer posts here and on X that I’ve gotte nreal paranoid about sensitive client docs leaking through my model use. Am I crazy or is this what you’re all seeing too?\n\n* If you’re trying to set up ZDR, it’s usually subject to approvals, not on by default. OpenAI requires approval ahead of time and \"*reserves the right to make certain models ineligible*\" for a client’s ZDR ask.\n* Anthropic says ZDR = \"*no storage after response, except when requiredfor legal compliance.*\" But Fable 5 for example requires 30 day retention and can’t be used with ZDR at all. And what exactly would qualify a prompt for compliance holdover?\n* Gemini caches inputs in memory by default. Having ZDR means disabling caching??\n* If you use Google or Amazon Bedrock to serve your models, their **ZDR is only a policy, not a guarantee**. How are you supposed to verify that?\n* Routers like OpenRouter may have a lot of providers but seem totally unfit for enterprise or sensitive data use. Don’t even see encrypted support for OS models, which shouldn’t be a problem…\n\nAn app vendor, router, model provider, cloud host… each have their own ZDR claim AND exceptions. Even Cursor’s docs say ZDR doesn’t apply if you use your own API key. Should I just treat the weakest link as the actual policy?",
+    "developer": "SlopTheCannon",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xner88",
+  "sourceItemId": "1xner88",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xner88/cilium_troubleshooting_command_reference/",
+  "detail": {
+    "longDescription": "**Cilium 1.18 to 1.19/1.20 upgrade stuck at Init:CrashLoopBackOff: Working workaround**\n\nWhile upgrading Cilium from 1.18.16 to 1.19.10, the worker agent got stuck in `Init:CrashLoopBackOff`. The same issue occurred with 1.20.4.\n\nThe failing `config` init container was running `cilium-dbg build-config` and reporting:\n\n    Unable to contact k8s api-server\n    Get \"https://10.96.0.1:443/api/v1/namespaces/kube-system\":\n    dial tcp 10.96.0.1:443: i/o timeout\n\nInterestingly, the worker could reach the API ClusterIP using `curl`, but Cilium couldn't.\n\n**What fixed it**\n\nFirst, check whether you're using `CiliumNodeConfig`:\n\n    kubectl get ciliumnodeconfigs.cilium.io -A\n\nIf you're not using per-node configuration overrides, add this to your existing Helm values:\n\n    daemon:\n      configSources: \"config-map:cilium-config\"\n\nApply the configuration using Helm with your current target version:\n\n    helm upgrade cilium cilium/cilium \\\n      --version 1.20.4 \\\n      -n kube-system \\\n      -f my-values.yaml\n\nThis removes the `config` init container and makes Cilium read its configuration directly from the ConfigMap.\n\nBoth agents subsequently started successfully on 1.20.4.\n\n**Important:** This is a workaround, not a fix for the underlying API connectivity problem. It also disables `CiliumNodeConfig` as a configuration source.\n\nI found the workaround in an existing Cilium issue:\n\n[https://github.com/cilium/cilium/issues/44464](https://github.com/cilium/cilium/issues/44464)\n\nThe issue describes a similar failure with kube-proxy IPVS. My cluster uses kube-proxy with iptables rules, so the symptoms match, but the underlying cause may differ.\n\nHopefully this saves someone else a few hours of troubleshooting.",
+    "developer": "Few-Exam-6625",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

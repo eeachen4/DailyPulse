@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xnzgpw",
+  "sourceItemId": "1xnzgpw",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xnzgpw/intermittent_900ms_gap_before_first_paint_in/",
+  "detail": {
+    "longDescription": "I'm comparing a React site against an Astro rebuild of the same page. In mobile Lighthouse, both sometimes sit blank for a long time before first paint, and other runs of the exact same page paint fast.\n\nSetup: Lighthouse 13.0.1, Chrome 156, cold loads in separate fresh profiles, default mobile simulated throttling. I kept the traces, network logs and filmstrips.\n\nHere's one matched pair (observed trace timings, not Lighthouse's simulated FCP):\n\n**Astro**\n\n* CSS done: 203ms\n* Last preloaded font done: 286ms\n* DOMContentLoaded: 426ms\n* First Paint: 1301ms\n* FCP: 1320ms\n\n**React**\n\n* CSS done: 573ms\n* Last preloaded font done: 494ms\n* DOMContentLoaded: 584ms\n* First Paint: 1525ms\n* FCP: 1540ms\n\nThe filmstrips stay blank right up to those first-paint times. Once painting starts, Paint to DrawFrame is only 10-13ms. So on Astro there's close to 900ms where everything's loaded and nothing shows up.\n\nI don't see a long task on the renderer main thread covering that gap, though I know that doesn't prove the browser was actually idle.\n\nI wondered about animations, so I ran one normal-motion vs reduced-motion pair on the Astro page. Both came back fast (FCP 318ms and 311ms), and the normal one still had its reveal animations, so that told me nothing either way. Desktop loads and a different page also painted quickly in the runs I checked.\n\nOne more thing: the fast traces show Scheduler::SetDeferBeginMainFrame events with short true-to-false spans. But the slow traces were captured with Lighthouse's default trace categories, which don't include those scheduler events, so I can't compare yet.\n\nHas anyone run into this? A few things I'd like to figure out:\n\n1. How do I tell whether the page is causing the delay, or whether it's Chrome's scheduling or something in the test environment?\n2. Which trace categories or events would show *why* the first paint starts late, and not just that it did?",
+    "developer": "techtsp",
+    "comments": 13,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
