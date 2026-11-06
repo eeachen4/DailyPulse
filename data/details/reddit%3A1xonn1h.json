@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xonn1h",
+  "sourceItemId": "1xonn1h",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xonn1h/elegant_solution_to_keep_personal_perproject/",
+  "detail": {
+    "longDescription": "The solution to this is actually just a bit more plain Git with usual commands that Git users are already used to.  \n  \nSuppose have notes, skills, and agent instructions that are part of your personal workflow, so you do not want them committed to the public repo, but at the same time, you want them to be in the project at the correct locations (e.g., [AGENTS.md](http://AGENTS.md) file locations matter), and these files cannot be simply gitignored because you want per-project versioning for them just like your public files.\n\nhttps://i.redd.it/s8m6yaldntzh1.png\n\nThe solution, in brief, is versioning those agent files in a repo, say <private-repo> (this repo is private to you and holds the history for your agent files) that shares the same worktree as the public repo <public-repo>. You essentially overlap the two, with <private-repo> in .git/ (and .git/ is that of the public repo) for an elegant solution.\n\nIf you want to read more about it, there is more comprehensive documentation about the strategy used in the repo.\n\nRepo: [https://github.com/BrianWeiHaoMa/git-dupe](https://github.com/BrianWeiHaoMa/git-dupe)   \n  \nPublic MIT License, Linux/Windows/macOS support",
+    "developer": "BrianW_undercover",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

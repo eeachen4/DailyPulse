@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I am trying to move from a prepackaged Flask/uWSGI to a custom Docker with Gunicorn. My Dockerfile is changed into: FROM python:3.13-slim ENV PYTHONDONTWRITEBYTECODE=1 \\ PYTHONUNBUFFERED=1 \\ PIP_NO_CACHE_DIR=1 \\ PIP_DISABLE_PIP_VERSION_CHECK=1 WORKDIR /app # RUN apt-get update && apt-get install -y --no-install-recommends \\ # gcc \\ # && rm -rf /var/lib/apt/lists/* COPY app/requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY . . RUN useradd --create-home appuser && chown -R appuser /app USER appuser EXPOSE 8000 CMD [\"gunicorn\", \"--bind\", \"0.0.0.0:8000\", \"--workers\", \"4\", \"--timeout\", \"120\", \"project3.wsgi:application\"] With a requirements.txt as this: Flask==3.1.3 flask-babel==4.0.0 Flask-Login==0.6.3 Flask-Migrate==4.1.0 Flask-SQLAlchemy==3.1.1 gunicorn==26.2.0 My app stays 100% the same, I still have SQLAlchemy with this config URI: SQLALCHEMY_DATABASE_URI = 'sqlite:///db/app.db' However my app crashes at DB level with a following Flask sqlalchemy.exc.OperationalError sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file (Background on this error at: https://sqlalche.me/e/21/e3q8 ) The file is still there, owned now by appuser but Flask / SQLite seems it can't find the file. It used to work for years but due to changes I described in Moving from legacy docker / uWSGI / Flask to new best practice I am looking for a new architecture. How can I make Flask find my DB file whilst the only change is the WSGI?",
     "developer": "Jurian Sluiman",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "148"
+        "value": "173"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

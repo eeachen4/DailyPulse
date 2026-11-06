@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014848",
+  "sourceItemId": "80014848",
+  "sourceUrl": "https://stackoverflow.com/questions/80014848/how-to-build-pip-rpm-from-bootstrap-using-tarball-wheel",
+  "detail": {
+    "longDescription": "I am packaging pip v26.2.2 as an RPM ( python311-pip ) to be installed inside a custom, isolated prefix. The target build environment is a completely clean, empty Docker container that does not have a pre-installed system pip or any pre-packaged PEP 517 build backends. Modern versions of pip have dropped traditional setup.py scripts and now rely strictly on PEP 517 build backends (specifically flit_core ) via pyproject.toml . When attempting to build the pip wheel using: %{\\__python3} -m flit_core.wheel --outdir dist It fails because flit_core is not present in the clean environment. However, my build constraints strictly limit me to using only python311-devel , python311-setuptools , pyproject-rpm-macros , python3-rpm-generators , and basic archiving utilities ( zip / unzip ). I cannot rely on a pre-existing host pip to install build-time dependencies. I've tried: Downloading flit_core as a secondary source ( Source1 ) : I successfully unpack flit_core alongside pip during %prep and export its src/ path to PYTHONPATH . Extracting wheels manually : I tried building flit_core locally into a staging folder and extracting its .whl archive via Python’s zipfile module to avoid calling pip install (since pip isn't installed yet). Despite this, how can I properly bootstrap and orchestrate flit_core as a local build backend during the RPM %build phase to successfully generate and install the pip wheel into a custom prefix without relying on a pre-existing pip binary?",
+    "developer": "Somya Ranjan Jena",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "107"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

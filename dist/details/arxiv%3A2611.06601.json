@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06601",
+  "sourceItemId": "2611.06601",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06601",
+  "detail": {
+    "longDescription": "arXiv:2611.06601v1 Announce Type: new Abstract: Function-as-a-Service (FaaS) simplifies distributed application development by offloading operational concerns to the platform, but developers remain responsible for recovering from failures. Retries require idempotent functions, which means that developers have to write complex, error-prone code that undoes or skips the already completed operations of a failed function. To address this, we propose AtomicFaaS, a platform extension that provides semantic atomicity for the external side effects of a function invocation, whether the function fails or its instance crashes, without developer-written compensation code. AtomicFaaS intercepts outbound calls and records their effects in a fault-tolerant log, from which the platform compensates leaked effects outside the failed instance. Compared with a manually implemented saga, AtomicFaaS eliminates compensation code and leaves no compensatable effects after any tested failure, while adding ~1 ms per intercepted call. Under load, it lowers the sustainable throughput of CPU-bound functions, while its latency overhead becomes negligible once calls to external services dominate the invocation time.",
+    "developer": "Jonas Heisterberg, Sebastian Koch, Trever Schirmer, David Bermbach",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jonas Heisterberg, Sebastian Koch, Trever Schirmer, David Bermbach"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

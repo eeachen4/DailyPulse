@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xomhqp",
+  "sourceItemId": "1xomhqp",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xomhqp/i_run_ai_coding_agents_inside_my_k3s_cluster_each/",
+  "detail": {
+    "longDescription": "I've been running Claude Code agents inside my homelab cluster and treating them like a teammate I can give tasks to from my phone: fix a bug, bump a dependency, chase a failing deploy, figure out why a pod is crash-looping.\n\nThe interesting part was making that safe enough to say \"go ahead\" without thinking twice:\n\n- **Kata Containers** so each agent gets its own guest kernel. A normal container shares the host kernel; with Kata an escape needs a hypervisor bug, not a kernel one.\n- **Read-only RBAC** for cluster debugging: `view` plus a small ClusterRole for nodes, webhooks, RBAC and CRDs. Read verbs only, never Secrets, 24h tokens from `kubectl create token`.\n- **Git tokens that can open PRs but not merge.** `main` is protected and Argo CD only syncs `main`, so nothing reaches the cluster until I've reviewed it.\n- **No inbound ports.** Claude Code's Remote Control connects out over HTTPS, so there's no SSH or VPN to expose.\n- **Default-deny egress** and throwaway pods, with state in a PVC and Git.\n\nWrite-up with the actual RBAC config: https://rohitpotato.xyz/thoughts/running-ai-agents-in-kubernetes\n\n(It's my blog.) Curious how others here are sandboxing agents. Is anyone doing FQDN egress policies with Cilium for this, or running gVisor instead of Kata?",
+    "developer": "theinfamouspotato218",
+    "comments": 19,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

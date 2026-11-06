@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.05419",
+  "sourceItemId": "2611.05419",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.05419",
+  "detail": {
+    "longDescription": "arXiv:2611.05419v1 Announce Type: cross Abstract: The RTX 2080 Ti (TU102) ships full second-generation Tensor Cores in hardware, yet the vendor throttles FP16 matrix multiplication at the driver level, leaving usable tensor throughput well below the hardware peak. turing-unlock lifts this restriction with a kernel module that, before the nvidia driver binds the device, writes the FP16 speed selectors (SS0=0x88888888, SS1=0x8) and releases the ACR mutex; published measurements report cuBLAS FP16 matmul throughput rising from 55.7 to 91.4 TFLOPS (about 1.6x). On the same 22G 2080 Ti and under the same from-scratch pre-training protocol as the companion memory ledger (five tiers of Chinese encoder-decoder models, 2,451 steps per tier, 16,384 tokens per step, seed 42), we obtain a before/after throughput account: the small tier (75.7M parameters, 512-wide, 8+8 layers, activation checkpointing on) improves in steady-state throughput from 6,480 to 7,246 tok/s (+11.8%) with wall time cut from 1.77h to 1.61h (9.0% saved); the tiny tier goes from 15,150 to 15,866 tok/s (+4.7%) with wall time savings of 3.8%; the three smaller tiers (pico-micro) gain at most +0.3%; per-tier peak memory stays bit-identical, and final quality metrics are bit-identical or consistent within 10^-3. We conclude that the unlock gain is a function of matrix size, rising monotonically with tier -- imperceptible for pico-micro, visible from tiny upward, and cashed out as a double-digit percentage at small -- and that it is a pure throughput gain that leaves training dynamics untouched.",
+    "developer": "Dezhou Shen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.CL, cs.DC, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dezhou Shen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014683",
   "sourceItemId": "80014683",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014683/do-proxy-credentials-containing-or-need-percent-encoding-in-requests-proxie",
   "detail": {
     "longDescription": "I'm sending HTTPS requests through an authenticated HTTP proxy with the Requests library. The password contains @ and : , which are reserved characters in a URL's userinfo part. import requests from urllib.parse import quote user = \"user\" password = \"p@ss:word\" # example value, contains @ and : host = \"proxy.example.com:8080\" proxy_url = f\"http://{quote(user, safe='')}:{quote(password, safe='')}@{host}\" proxies = { \"http\": proxy_url, \"https\": proxy_url, } r = requests.get(\"https://httpbin.org/ip\", proxies=proxies, timeout=10) print(r.status_code, r.text) The same URL can also be supplied through the environment instead of the proxies argument: export HTTPS_PROXY='http://user:p%40ss%3Aword@proxy.example.com:8080' python script.py My understanding is this: Without encoding, p@ss:word makes the URL ambiguous, because everything after the last @ is read as the host. With quote(password, safe='') , the string becomes p%40ss%3Aword . Requests is supposed to percent-decode the userinfo again before it builds the Proxy-Authorization: Basic ... header for the CONNECT request. I could not find this stated explicitly in the Requests documentation. I only want to rely on it if it is guaranteed behavior and not an accident of the current implementation. When credentials are embedded in a proxy URL passed to Requests (via proxies= or HTTPS_PROXY ), does Requests unquote them before sending Proxy-Authorization , and is urllib.parse.quote(value, safe='') the right way to encode them? I'm also interested in whether the answer differs between the proxies= argument and the environment variables, since both go through different code paths in Session . Environment: Python 3, Requests v2.x, urllib3 v2.x, HTTP proxy that requires Basic authentication.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "115"
+        "value": "146"
       },
       {
         "label": "状态",

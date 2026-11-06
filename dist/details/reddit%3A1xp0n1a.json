@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xp0n1a",
+  "sourceItemId": "1xp0n1a",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xp0n1a/smarter_compact_72_cheaper_agent_sessions_nothing/",
+  "detail": {
+    "longDescription": "I built Smarter Compact to keep long coding-agent sessions cheap without losing anything.\n\nApache-2.0 · Local only, no hosted service, and it doesn't need its own API key.\n\n\\*\\*1. What it does\\*\\*\n\nIt saves the full conversation in local SQLite, removes older turns from the prompt once you hit your limit (95k on Haiku), and leaves a short note telling the agent where they went. The agent can then search them, run SQL over them (so \"how many X\" is just a count) or pull back an exact message. These are MCP tools, so it's the same setup in Claude Code, Codex, OpenCode and Pi.\n\nZero LLM summarization calls. The cut also stays the same between requests, so the prompt cache keeps hitting.\n\n\\*\\*2. How much cheaper, and does it still get the job done?\\*\\*\n\nCheaper only counts if the agent still finishes, so here's both. ContextBench with Haiku 5.5, same seeds as keeping everything:\n\n| Longest log task | Keep everything | Smarter Compact |\n|---|---|---|\n| Score | 0.35 | 1.00 |\n| Peak prompt | 762k | 95k |\n| Cost per trial | $6.07 | $0.38 |\n\nAcross the four task sizes it's 72% cheaper on average (−87%, −19%, −89%, −94%, the small one isn't significant), and +0.47 score on the log tasks.\n\nThe agent also goes back for trimmed stuff on its own. Before I changed the note to name the search tools, it never searched and answered \"unknown\" to 16 of 24 questions. After, every run searched (6–14 searches and 10–16 SQL queries each) and none said \"unknown\". That's one task with five runs though.\n\n\\*\\*3. A couple of things I learned building it\\*\\*\n\n- Trimming to about half your limit works better than cutting deep. Cutting to 30% made the agent re-read files it had literally just read.\n- Trimmed user turns can still have corrections that apply, so the note tells the agent to search those before changing course. Haven't benchmarked the \"decision reversed, then trimmed\" case yet, it's next.\n\nThough I wouldn't put too much into these numbers: synthetic tasks, 2–3 runs per size, and real coding sessions will be different. What really matters imo is cost per finished task, so that's what I'm testing next.\n\n\\`\\`\\`\nnpm install -g smarter-compact\nsmarter-compact enable -g\n\\`\\`\\`\n\nRepo and full results: [https://github.com/bcmyguest/smarter-compact](https://github.com/bcmyguest/smarter-compact)\n\nIf you try it, I'm interested in what the agent fails to find after a trim :)",
+    "externalUrl": "https://v.redd.it/gzk08udxdwzh1",
+    "developer": "goost95",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

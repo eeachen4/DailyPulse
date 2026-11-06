@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014691",
   "sourceItemId": "80014691",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014691/mqtt-over-multiple-threads",
   "detail": {
     "longDescription": "I am trying to create a Python script that, upon receiving a message from an HTTP server, redirects this message to an MQTT broker. I have created the mqtt broker through amqtt, and I am using the same library in this project to run a publisher. import asyncio import logging import time import threading from MessageInterface import MessageInterface,MessageType, HearthBeatMessage from amqtt.client import MQTTClient from amqtt.errors import ClientError, ConnectError from amqtt.mqtt.constants import QOS_1, QOS_2, QOS_0 class MQTTNEXSOSClient: def item_added(uselessself, client, msg): asyncio.run(client.sendInformation(msg.AgentBaseTopic(), msg.message(), msg.qos)) def __init__(self): self.logger = logging.getLogger(__name__) self.MQTTBrokerAddess = \"mqtt://localhost:1883\" self.SubscriberActive = True self.messageQueque = [] self.threads = (threading.Thread(target=self.checkQueque)) self.threads.daemon = True self.threads.start() asyncio.get_event_loop().run_until_complete(self.test()) def checkQueque(self): while self.SubscriberActive: time.sleep(1) print(\"Hi\") for msg in self.messageQueque: val = str(msg.message()).encode(\"utf-8\") <INSERT HERE THE OPTIONS BELOW> self.messageQueque.clear() async def test(self): print(\"Hello 2\") c = MQTTClient() await c.connect(\"mqtt://localhost:1883\") def turnOff(self): self.SubscriberActive = False def sendMessage(self, messageType, digitaltwin): if messageType == MessageType.heartbeat: msg = HearthBeatMessage(digitaltwin) else: msg = WARAPSMessageInterface(digitaltwin) self.messageQueque.append(msg) In the code above, I am trying to estabilish a connection to the broker in the test function. when the function is invoked in the init function, there are no problem and the broker register the new client. However, if I try to invoke the same function in the check queque the system stops due to erros independently on the soltion I try. If I try the same code: asyncio.get_event_loop().run_until_complete(self.test()) Exception has occurred: RuntimeError There is no current event loop in thread 'Thread-7 (checkQueque)'. File \"C:\\Users\\mattiagi\\OneDrive - KTH\\Streaming element\\BackEndServer_Python_tentative\\file.py\", line 59, in checkQueque asyncio.get_event_loop().run_until_complete(self.test()) RuntimeError: There is no current event loop in thread 'Thread-7 (checkQueque)'. If I use the asyncio.run(self.test()) Exception has occurred: ConnectError Too many failed attempts RuntimeError: cannot schedule new futures after interpreter shutdown During handling of the above exception, another exception occurred: RuntimeError: cannot schedule new futures after interpreter shutdown The above exception was the direct cause of the following exception: File \"C:\\Users\\mattiagi\\OneDrive - KTH\\Streaming element\\BackEndServer_Python_tentative\\file.py\", line 65, in test await c.connect(\"mqtt://localhost:1883\") File \"C:\\Users\\mattiagi\\OneDrive - KTH\\Streaming element\\BackEndServer_Python_tentative\\file.py\", line 58, in checkQueque asyncio.run(self.test()) amqtt.errors.ConnectError: Too many failed attempts If I create the loop and run it with loop = asyncio.new_event_loop() asyncio.set_event_loop(loop) asyncio.run_coroutine_threadsafe(self.test(), loop) loop.close() C:\\TPFAPPS\\Python\\Python310\\lib\\asyncio\\base_events.py:671: RuntimeWarning: coroutine 'MQTTNEXSOSClient.test' was never awaited self._ready.clear() RuntimeWarning: Enable tracemalloc to get the object allocation traceback If I create the thread: threads = (threading.Thread(target=asyncio.run, args=(self.test(),))) threads.daemon = True threads.start() Exception has occurred: ConnectError Too many failed attempts RuntimeError: cannot schedule new futures after interpreter shutdown During handling of the above exception, another exception occurred: RuntimeError: cannot schedule new futures after interpreter shutdown The above exception was the direct cause of the following exception: File \"C:\\Users\\mattiagi\\OneDrive - KTH\\Streaming element\\BackEndServer_Python_tentative\\fil.py\", line 65, in test await c.connect(\"mqtt://localhost:1883\") amqtt.errors.ConnectError: Too many failed attempts Has anyone any suggestions? This seems to be a conflict between corutines and threads, but I have no idea of how to solve it. thank you",
     "developer": "M_G_Shad_Man",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
-      },
-      {
-        "label": "回答",
         "value": "2"
       },
       {
+        "label": "回答",
+        "value": "1"
+      },
+      {
         "label": "浏览",
-        "value": "94"
+        "value": "113"
       },
       {
         "label": "状态",

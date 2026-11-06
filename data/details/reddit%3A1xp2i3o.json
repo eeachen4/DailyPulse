@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xp2i3o",
+  "sourceItemId": "1xp2i3o",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xp2i3o/we_benchmarked_6_llm_inference_engines_on_speed/",
+  "detail": {
+    "longDescription": "Most LLM inference benchmarks focus on tokens/sec, TTFT, or throughput.\n\nBut faster inference doesn't necessarily mean better inference, especially when quantization, speculative decoding, long contexts, and concurrency enter the picture.\n\nSo we ran a comprehensive benchmark of **Qwen3.8-27B across six inference configurations**, measuring not just speed, but also output quality.\n\nhttps://i.redd.it/3pdpxpufuwzh1.png\n\nFull disclosure: I'm the author of [TensorSharp](https://github.com/zhongkaifu/TensorSharp), one of the engines being benchmarked.\n\n# What makes this benchmark different?\n\n**1. Speed AND quality, measured together**\n\nWe compared:\n\n* Time to First Token (TTFT)\n* Prefill throughput (tokens/sec)\n* Decode throughput (tokens/sec)\n* End-to-end task latency\n* Concurrent request performance\n* Answer quality against automated checks\n\nA fast engine isn't particularly useful if its optimizations introduce incorrect outputs.\n\nThat's why we included quality validation alongside performance measurements, rather than assuming that every engine produces equivalent results.\n\n**2. Ultra-long contexts: 64K, 128K, and 256K tokens**\n\nMany benchmarks use relatively short prompts, but real-world agentic workloads can be very different.\n\nThink about coding agents processing entire repositories, RAG pipelines handling large documents, or multi-agent systems maintaining extensive histories.\n\nWe tested long-context inference at **64K, 128K, and 256K**, including concurrent workloads.\n\nAt these context lengths, KV-cache management, memory pressure, prefill efficiency, and scheduling become critical.\n\nAn engine that wins at 4K or 8K doesn't necessarily win at 256K.\n\n**3. GGUF vs NInfer model formats**\n\nAnother interesting aspect is comparing inference configurations using **GGUF and NInfer model representations**.\n\nThe goal isn't just to compare engines, but also to understand how model format, quantization, and inference optimizations affect performance and quality.\n\nThis matters because developers often choose a model format based on compatibility or memory requirements without fully understanding its performance implications.\n\n**4. Real-world task latency, not just synthetic throughput**\n\nWe also measured end-to-end latency across different task scenarios, including coding, reasoning, and agent-oriented workloads.\n\nFor production applications, the fastest tokens/sec number doesn't always translate into the fastest completed task.\n\n# Why this matters\n\nI think inference benchmarks should answer three questions together:\n\n1. **How fast is it?**\n2. **Does it still produce correct answers?**\n3. **Does it remain practical at long context lengths and under concurrency?**\n\nOptimizing only one of these can be misleading.\n\nThe attached poster includes the engine rankings, speed/quality comparisons, 64K–256K context results, task-level latency, and test configurations.\n\n# I'd love feedback from other LLM developers\n\n* Do you consider quality validation mandatory when comparing inference engines?\n* How important is 128K–256K context support for your production workloads?\n* Have you observed meaningful differences between GGUF and other model formats?\n* Which matters more in your applications: TTFT, decode speed, concurrent throughput, or end-to-end agent latency?\n\nI'm particularly interested in what additional tests would make benchmarks like this more useful and reproducible for the community.\n\n**Project:** [https://github.com/zhongkaifu/TensorSharp](https://github.com/zhongkaifu/TensorSharp)\n\n*Benchmark details and results are in the attached poster.*",
+    "developer": "fuzhongkai",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

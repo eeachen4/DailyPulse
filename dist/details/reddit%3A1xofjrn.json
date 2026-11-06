@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xofjrn",
+  "sourceItemId": "1xofjrn",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xofjrn/dialfork_a_benchmark_for_procedural_hallucination/",
+  "detail": {
+    "longDescription": "Hi all, author here (Idiap Research Institute, joint work with Logitech). We recently released DialFork and thought it might interest people here. It's a benchmark for a failure mode of LLM agents that is easy to miss: every turn is fluent and factual, the tool calls are correct, yet the agent stops following the procedure it was given. For example, asked for the weather, it fetches the forecast (correct tool call) but never tells you, and starts asking you to rate its service instead.\n\nMost steps of a conversational procedure aren't tool calls but things the agent has to say: asking, confirming, telling the result. When an agent drifts from these steps, we call it **procedural hallucination**: a third axis, alongside factual accuracy and correct tool use, and one that has been largely overlooked. To our knowledge, DialFork is the first benchmark aimed at measuring this axis: what the agent has to say, and in what order.\n\n**How it's built:** we simulate dialogues where an agent follows its workflow (24 tasks, 12 domains), then *fork* them: we replay each one and, at a chosen turn, give the agent an instruction that makes it drift, in different, complementary ways. That gives over 36k dialogues where we know where each drift starts and how far it goes, checked with 30 human annotators and an LLM judge calibrated on them.\n\n**Three tasks, from the turn to the whole set.** Because we know where each drift starts, and that an earlier drift goes further, we define three tasks that measure procedural hallucination at different levels:\n\n* **The turn (Task 3).** Given a dialogue, either whole or turn by turn as it unfolds (streaming), find the turn where the drift starts, or say there is none. *Useful as a live guardrail.*\n* **The dialogue (Task 2).** Given a correct dialogue and its hallucinated versions, measure how far each one drifts from it; the earlier a version drifts, the larger its distance should be. A dialogue and its own hallucinated versions talk about the same thing; what sets them apart is how they unfold. Today, comparing dialogues means comparing their content, with embeddings and semantic similarity. This task opens a new dimension, *procedural* distance. *Useful for retrieving or clustering conversations by how they went, not just by what they're about.*\n* **The set (Task 1).** Given a set of correct dialogues and a set of hallucinated ones, output a single procedural distance between the two sets as a whole, comparing them as distributions rather than matching dialogues one to one. *Useful for monitoring agents, e.g. whether they drift after a model upgrade, or whether a user simulator's dialogues unfold like real ones.*\n\n**Open problems, and a leaderboard to track them.** In the paper, we report first results on all three tasks, from embedding-based distances to streaming detectors and zero-shot LLMs. They leave plenty of room. To track progress, each task has its own track on a public leaderboard on Hugging Face; adding your method takes a single CSV file of predictions.\n\nEverything is open (data, code, every prediction from the paper, and the human judgments), and we hope it's a useful starting point for the community:\n\n* **Leaderboard:** [https://huggingface.co/spaces/DialFork/leaderboard](https://huggingface.co/spaces/DialFork/leaderboard)\n* **Code:** [https://github.com/idiap/dialfork](https://github.com/idiap/dialfork)\n* **Paper:** [https://arxiv.org/abs/2610.21561](https://arxiv.org/abs/2610.21561)\n* **Dataset:** [https://huggingface.co/datasets/DialFork/dialfork](https://huggingface.co/datasets/DialFork/dialfork)\n\nHappy to answer questions, and feedback (including critical) is very welcome.",
+    "developer": "sergbur",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

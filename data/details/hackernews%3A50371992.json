@@ -2,20 +2,21 @@
   "schemaVersion": 2,
   "id": "hackernews:50371992",
   "sourceItemId": "50371992",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50371992",
   "detail": {
     "longDescription": "I started building Aggregate Finance a couple of years ago because I was manually updating a Google Sheet to track my credit card statements, monthly recurring transactions, and spending habits. This seemed perfect for automation as I was having to log in to six separate banking apps to pull this information together. My original intention was to use this tool locally, but I figured it would be an excellent learning opportunity to understand how to scale the application for others to use. The core functionality of Aggregate Finance revolves around syncing banks and brokerages through Plaid to create visuals and data analytics in Google Sheets and OneDrive&#x2F;Excel, but I&#x27;ve also added Stripe for payments, passkey and TOTP support for MFA (wanted to better learn how WebAuthn works, mostly), and Resend for emailing account updates. The first question you&#x27;re likely thinking is: isn&#x27;t this just reinventing the wheel? There&#x27;s plenty of other personal finance&#x2F;budgeting apps out there like Rocket Money, Monarch, Copilot Money, YNAB, Tiller, Credit Karma, etc. I personally tried Rocket Money but it left a bad taste in my mouth how my entire financial history was stored on their servers without having direct ownership of the data. Another pain point with these personal finance apps is you&#x27;re locked into their subscription and lose access to your financial data if you cancel. That&#x27;s why I opted for the Google Sheet and OneDrive&#x2F;Excel approach since this persists financial data over time and provides direct data ownership. There&#x27;s a fair argument that these options still share your financial data with Google or Microsoft, so I built a way to download your financial data locally via CSV&#x2F;Excel&#x2F;LibreOffice exports. In terms of data encryption, Aggregate Finance encrypts financial data before it reaches MongoDB: balances, transactions, merchants, statements, holdings, and any user customizations. Each user gets their own AES-256 key rather than a shared key. The reason I went with this approach is for data deletion: when someone deletes their account, their encryption key is deleted as well, so any financial data stored in prior database backups can&#x27;t be decrypted. I&#x27;ve been using Aggregate Finance with my own live bank accounts and investment holdings, and it&#x27;s already been helpful. I can see when my credit card statements are due, monitor my entire investment portfolio, keep track of recurring charges, create budgets, and see how my spending pans out over a given month or over the past year. I&#x27;m curious whether it&#x27;s useful for anyone else, and I&#x27;d of course welcome any feedback on how I can improve it. You can try it with a free sample spreadsheet that contains a year of example data with no bank connection required at https:&#x2F;&#x2F;app.aggregatefi.com .",
     "externalUrl": "https://app.aggregatefi.com/",
     "developer": "mitchthebaker",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "积分",
-        "value": "2"
+        "value": "5"
       },
       {
         "label": "评论",
-        "value": "2"
+        "value": "3"
       }
     ]
   }

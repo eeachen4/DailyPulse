@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.03917",
+  "sourceItemId": "2611.03917",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.03917",
+  "detail": {
+    "longDescription": "arXiv:2611.03917v2 Announce Type: replace Abstract: Low-precision numeric types such as 8-bit integers, bfloat16, and half-precision floating point (fp16) are often used in AI inference workloads to reduce memory bandwidth, and RISC-V's openly specified Vector extension (RVV) is a natural target for compiling such workloads with auto-vectorization. This paper examines whether LLVM's RISC-V auto-vectorizer handles these narrow types equally well, using a multiply-accumulate loop written for fp32, int8, bf16, and fp16. Under a common baseline target (-march=rv64gcv), int8 and fp32 vectorize cleanly, while bf16 and fp16 degrade to increasingly scalar-heavy fallback code, with fp16 falling back to per-element software conversion calls, unless additional target-feature extensions (zvfbfmin/zvfbfwma, zvfhmin) are enabled. Under QEMU user-mode emulation, the baseline bf16 and fp16 kernels execute $17.0\\times$ and $75.9\\times$ as many dynamic instructions as their extension-enabled counterparts. Compiler diagnostics do report this degradation, but do not distinguish, in their wording, between a limitation that a compiler flag resolves entirely and one reflecting an inherent conversion cost, leaving no direct signal toward the fix. These results are supported by assembly-level instruction analysis, by direct inspection of LLVM's optimization remarks, and by dynamic instruction counts collected under emulation.",
+    "developer": "Vaishnavi Kouru, Robert Chun",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Vaishnavi Kouru, Robert Chun"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

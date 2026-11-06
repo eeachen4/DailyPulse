@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xoukmj",
+  "sourceItemId": "1xoukmj",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xoukmj/how_do_i_make_colleagues_aware_of_the_risks_of/",
+  "detail": {
+    "longDescription": "I could use some advice on a situation at work.  \nA few colleagues in ops have, almost overnight, started to fully trust their LLM agent because it has gotten so good lately and \"doesn't make mistakes anymore\". They built their own harness around it and log what it does (using Grok and Google models), but the agent still runs with root access to our entire production infrastructure. We have no clear team rules or policy yet, and they don't see the danger themselves.  \nA typical example: whenever the agent needs to check something on a server, they just hand it full access. But looking at info only needs read-only access. The permission should match the task, not the most convenient option.  \nMy concerns:  \n**Logging is detection, not prevention.** It shows what broke afterwards, but doesn't stop anything.  \n**Root bypasses the harness.** An agent with root can in theory edit the harness, the logs and the backups, so those logs are not a reliable audit trail.  \n**No least privilege.** One wrong command or misread context can touch everything.  \n**Prompt injection** via logs, tickets or web pages the agent reads.  \n**Model updates.** Providers change models without us deciding when, so \"no mistakes in recent months\" says little about the next version.  \n**Data going to third parties.** With root, the agent can read .env files, keys and customer data, which then end up with the model provider (a GDPR question too).  \n**\"It has gone fine so far\"** only means the failure hasn't happened yet.  \nI don't want to ban anything. I want them to see the risk themselves and set up proper guardrails together with me: a read-only user by default, scoped credentials, just-in-time access, human approval for write actions, staging first, and no access to backups and logs.  \nQuestions for you:  \nHow do I explain the difference between \"we log it\" and \"it can't do it in the first place\"?  \nHow have you convinced overconfident colleagues about AI tooling risks without a confrontation?  \nDo you have horror stories or post-mortems I can share? Concrete incidents tend to work better than theory.  \nWhich guardrails or policy examples have worked well for you?  \nHow do you raise this with management without coming across as \"anti-AI\"?",
+    "developer": "apotacyll",
+    "comments": 43,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

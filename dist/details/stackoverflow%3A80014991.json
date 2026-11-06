@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014991",
+  "sourceItemId": "80014991",
+  "sourceUrl": "https://stackoverflow.com/questions/80014991/handling-cache-invalidation-while-a-shared-in-flight-task-is-still-running",
+  "detail": {
+    "longDescription": "I'm experimenting with an async cache where multiple callers requesting the same key share one running task. Most things seem to work fine, but I'm not sure how to handle it when a key gets invalidated before the original fetch has finished. Here's a simplified version of what I'm working with: import asyncio cache = {} pending = {} versions = {} async def fetch(key, version): await asyncio.sleep(1 if version == 0 else 0.2) return f\"{key}-v{version}\" async def get_data(key): version = versions.get(key, 0) if key in cache: return cache[key] if key not in pending: pending[key] = asyncio.create_task(fetch(key, version)) task = pending[key] try: result = await task cache[key] = result return result finally: pending.pop(key, None) async def invalidate(key): cache.pop(key, None) versions[key] = versions.get(key, 0) + 1 async def main(): first = asyncio.create_task(get_data(\"user-1\")) await asyncio.sleep(0.1) await invalidate(\"user-1\") second = asyncio.create_task(get_data(\"user-1\")) results = await asyncio.gather(first, second) print(results) print(cache) asyncio.run(main()) What I'm not sure about is what should happen when the second request comes in after invalidation but the first fetch is still running. Should the second request wait for the existing task, or should it start a new fetch using the updated version? If both requests are allowed to run independently, how do I prevent the older task from writing stale data into the cache when it eventually finishes? Also, can the finally block cause problems when multiple callers are sharing the same task, particularly if one caller finishes before another? What's the best way to handle this without introducing race conditions?",
+    "developer": "Faheem",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "39"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014074",
   "sourceItemId": "80014074",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014074/swapping-unique-values-in-mongoose-without-swapping-all-properties",
   "detail": {
     "longDescription": "I need to swap a value of a field with a unique constraint ( order ) between several (>2) documents in a MongoDB collection without having to swap the document content (see this answer ). This is because I need to preserve the _id of each document. The solution below obviously does not work; it throws E11000 duplicate key error collection . const CategoryModel = new mongoose.Schema({ order: {type: Number, required: true, unique: true} }); // for example, the current order of example_mongo_id0 is 0, for example_mongo_id1 it is 1, and for example_mongo_id2 it is 2 const newCategories = [{categoryId: \"example_mongo_id0\", \"order\": 2}, {categoryId: \"example_mongo_id_1\", \"order\": 0}, {categoryId: \"example_mongo_id_2\", \"order\": 1}]; for (const category of newCategories) { await CategoryModel.updateOne({ _id: category.categoryId }, { order: category.order }) }",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "121"
+        "value": "126"
       },
       {
         "label": "状态",

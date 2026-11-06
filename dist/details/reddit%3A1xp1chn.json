@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xp1chn",
+  "sourceItemId": "1xp1chn",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xp1chn/netalertx_problems_at_initially_starting_the/",
+  "detail": {
+    "longDescription": "I'm starting with the docker compose setup of NetAlertX using the guide on the github page. It's a Rocky Linux 9.7 system that has been running a couple other docker containers without any issues.\n\nThe error message isn't too helpful:\n\n\\[dockeruser@rocky-mini-01 NetAlert\\]$ docker compose up  \nAttaching to netalertx  \nError response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: sysctl \"net.ipv4.conf.all.arp\\_announce\" not allowed in host network namespace\n\nI've been using docker for a while, but I am about an intermediate user at best. I can't tell if there are multiple errors listed here or just 1.\n\nThe last part is plain (*runc create failed: sysctl \"net.ipv4.conf.all.arp\\_announce\" not allowed in host network namespace*), but none of the remedies solve it. The compose.yaml file already has the \"NET\\_ADMIN\" and \"network\\_mode: ${NETALERTX\\_NETWORK\\_MODE:-host}\" and the entry for\n\nsysctls:  \nnet.ipv4.conf.all.arp\\_ignore: 1  \nnet.ipv4.conf.all.arp\\_announce: 2\n\nI've tried using:\n\nsudo sysctl -w net.ipv4.conf.all.arp\\_ignore=1  \nsudo sysctl -w net.ipv4.conf.all.arp\\_announce=2\n\nI've tried running the docker compose command as the dockeruser and root.\n\nLiterally, the only thing I changed from the NetAlertX compose file with the path:\n\n\\# Example custom local folder called /home/user/netalertx\\_data\n\n\\- type: bind  \nsource: /mnt/disk/docker/NetAlertX/netalertx\\_data  \ntarget: /data  \nread\\_only: false\n\nAny clues?",
+    "developer": "ticedoff8",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014897",
+  "sourceItemId": "80014897",
+  "sourceUrl": "https://stackoverflow.com/questions/80014897/amazon-bedrock-token-quotas-stuck-at-0-on-new-aws-accounts",
+  "detail": {
+    "longDescription": "We recently created 5 new AWS accounts (after October 15, 2026) using a mix of common and unique registration details to explore Amazon Bedrock and access foundation models. We are seeing inconsistent behavior across these accounts, and we have now found the root cause. We still need a way to resolve it. 𝗪𝗵𝗮𝘁 𝗪𝗲 𝗙𝗼𝘂𝗻𝗱 Token quotas are 0: In Amazon Bedrock → Quotas, the affected accounts show TPM = 0 and RPM = 0 (or “-”) for every model, including Claude Haiku 4.5/5.5, Opus 4.5/4.6 and Fable 5/5.1. Global and geo cross-region rows are all 0, and the values are not adjustable. ThrottlingException: Because of the zero quota, every model invocation fails with ThrottlingException: Too many tokens per day. This is an account-level quota problem and not a usage or credits problem. Inconsistent accounts: Other accounts created in the same period work normally and have non-zero quotas. Plan upgrade did not help: We switched the affected accounts to Paid and Advanced options. The quotas are still 0. Account nurturing activities done: We completed all 5 activities and the accounts still have no model access. 𝗪𝗵𝗮𝘁 𝗔𝗪𝗦 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗦𝗮𝗶𝗱 We opened a case with the AWS Billing and Accounts team. The reply said that default quotas or model access may be restricted based on regional factors, payment history, past Bedrock usage and demand. They declined the request for now and advised us to: Use 90% of the current quota, then request an increase again after the next billing cycle. Contact our AWS Account Manager or sales team for urgent needs. 𝗧𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺 We cannot use 90% of a quota that is 0, so we cannot build the usage history they ask for. We have replied to the case to point this out and to ask for a starter quota on one small model. 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗖𝗼𝗺𝗺𝘂𝗻𝗶𝘁𝘆 Has anyone had Bedrock quotas stuck at 0 on a new account lifted? What worked, and how long did it take? Is there a self-service path (console option, specific case type or verification step) to get an account verified faster? Does a registration pattern (shared email domain, payment method, phone or address) cause 0 quotas? Our working and non-working accounts used a mix of common and unique details. Does small, steady paid usage or one billing cycle change the quota? If so, how did you get started with a 0 quota? Has AWS changed its model access or quota policy for accounts created after October 15, 2026? Has anyone succeeded through an Account Manager, sales or partner route? What did you need to show? 𝗪𝗵𝗮𝘁 𝗪𝗲 𝗔𝗿𝗲 𝗧𝗿𝘆𝗶𝗻𝗴 𝗡𝗼𝘄 Asking Support to provision a starter quota for one model (Nova 2 Lite or Claude Haiku). Contacting AWS sales and account management with our business case. Running small, steady paid usage on the accounts that work, to build billing history. We are looking for practical steps or proven solutions from people who have faced the same issue. We have already contacted AWS Support, so suggestions beyond Support would help most. Any insights, documentation or workarounds are greatly appreciated. Thanks in advance for your guidance and support!",
+    "developer": "Milind kuwar",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-6"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "66"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

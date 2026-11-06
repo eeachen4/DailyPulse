@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06513",
+  "sourceItemId": "2611.06513",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06513",
+  "detail": {
+    "longDescription": "arXiv:2611.06513v1 Announce Type: new Abstract: LLM inference is inherently heterogeneous, with performance bottlenecks shifting throughout inference phases down to individual operators. This has motivated heterogeneous serving systems that disaggregate execution across specialized accelerators, typically through fixed partitions such as prefill/decode or attention/FFN. However, these approaches commit to a partitioning strategy in advance, limiting their ability to adapt to different workloads and model architectures while forcing emerging accelerators into predefined roles. We present HELIX, a vLLM-based software stack that discovers, compiles and dispatches workload-aware partitions across heterogeneous accelerators at the operator granularity. At engine initialization, HELIX automatically determines hardware-specific operator placements that minimize execution latency, accounting for profiled execution costs, communication overheads, device capabilities, and memory constraints. It combines dynamic programming, piecewise compilation, and heterogeneous subgraph dispatch, enabling accelerators with partial operator coverage to participate in LLM inference without predefined model partitions. HELIX provides an open-source unified framework for exploring, evaluating, and integrating heterogeneous accelerators for LLM inference, lowering the barrier to emerging hardware by exposing them as subgraph executors. In systems combining H100 and B200 GPUs with emerging accelerators, HELIX resolves LLM partitions that multi-query decoding latency by up to 3$\\times$ for dense and sparse transformer models and up to 3.5$\\times$ for hybrid state-space models, relative to standard attention-FFN disaggregation.",
+    "developer": "Victoria Clerico, William Simon, Corey Liam Lammie, Orhun G\\\"orkem, Athanasios Vasilopoulos, Hsinyu Tsai, Jeronimo Castrillon, Abu Sebastian, Hadjer Benmeziane",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Victoria Clerico, William Simon, Corey Liam Lammie, Orhun G\\\"orkem, Athanasios Vasilopoulos, Hsinyu Tsai, Jeronimo Castrillon, Abu Sebastian, Hadjer Benmeziane"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

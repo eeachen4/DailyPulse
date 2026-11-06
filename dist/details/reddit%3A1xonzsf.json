@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xonzsf",
+  "sourceItemId": "1xonzsf",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xonzsf/kubernetes_secret_mount_propagation_vs_nginx/",
+  "detail": {
+    "longDescription": "I'm not using cert-manager (yes, I know 😅). I've had a simple certbot -> Kubernetes Secret -> nginx reload setup running for years without issues.\n\nLast month, though, nginx kept serving an expired certificate for a month. The reload command returned exit code 0 and happily reported success, but it had actually reloaded the old cert.\n\nI traced it to a timing issue:\n\n* T+0s: certbot hook updates the Secret\n* T+61s: hook reloads nginx\n* T+67s: kubelet finally updates the mounted Secret in the pod\n\nSo my 60-second wait lost the race by 7 seconds.\n\nThe docs describe Secret volume updates as eventually consistent, with propagation depending on the kubelet sync period and cache strategy.\n\nTwo questions:\n\n1. With the default Watch strategy, is there any practical upper bound on propagation delay, or can watch lag become effectively unbounded under node load?\n2. Is polling the mounted file until its fingerprint matches the updated Secret, then reloading nginx, the right approach? Or is there a supported way to know when a particular Secret generation has actually been mounted in a pod?\n\nI'm aware cert-manager exists. I'm just trying to make this particular setup deterministic without introducing more moving parts.\n\nCurious how others handle this.",
+    "developer": "lolzinventor",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06436",
+  "sourceItemId": "2611.06436",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06436",
+  "detail": {
+    "longDescription": "arXiv:2611.06436v1 Announce Type: cross Abstract: We show that a hardwired distributed processing unit (HDPU) can take a neural decision at the sensor and so remove the inference from the host. Built for zebra-crossing detection on a low-cost Artix-7 FPGA, the unit decides on every camera frame in a fixed 2,269,477 clock cycles (34.04 ms depends upon Fpga clk ), inside the 37.49-ms frame period, and on the board it returns the same scores and decisions as its bit-exact software model on all 639 test images. The whole detection path, from camera pixels to decision, takes 1,814 LUTs, with no processor, no operating system and no full-resolution frame store. When the unit answers instead of reporting \"not sure\", 95.7% of its answers on street photographs are correct, and a hardware contrast stage lifts accuracy on camera-like dashcam frames from 47.7% to 78.2%. The host is spared all of the inference: 8.13 ms of a core in every frame period, where a full-precision ResNet-18 would need more than a frame period even on 16 threads. It also receives 16 bytes per frame instead of 614,400, 38,400 times less. The unit is an 80x60-pixel pipeline feeding a four-layer binarized CNN with 93,408 one-bit weights, verified bit-exactly from a Python model through RTL simulation to the board. Earlier HDPUs did pre-processing (edges, corners, steering); this one shows that the decision itself can move to the sensor.",
+    "developer": "Raj Mali",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AR, cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Raj Mali"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

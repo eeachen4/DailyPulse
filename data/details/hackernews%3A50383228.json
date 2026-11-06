@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50383228",
+  "sourceItemId": "50383228",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50383228",
+  "detail": {
+    "longDescription": "I’ve been doing a lot of solo development lately and found myself hitting Claude token limits halfway through the week constantly. Even with a Max plan, I’d have to switch over to Codex or Cursor, and it would be a bit difficult to get used to the nuances of each harness. It’s still a problem for me, but I finally built Thinker to save me some tokens and help me get a bit more out of my coding agent subscriptions. I started off a bit in the dark about how token billing works, and had to dig deeper to figure out what workflows ended up hurting my budget the most. By far, it was large context windows. Claude tries to help out on costs by offering prompt caching - which is sort of a bandage on the bigger problem: context bloat. I find that my context window gets bloated with unneeded tokens in two main ways: Tool outputs from subtasks that are long finished. File reads, Bash commands, MCP outputs, etc. Main idea is that the model finished the work but carries the weight of it for every subsequent call - translating to wasted token usage. CLAUDE.md &#x2F; AGENTS.md getting way too big. Lots of content gets dumped into these files as your agents work in your repo. I found that it’s not clear what is actually useful to be included there. Every token here counts, because it will be paid for in every session, and its cost scales linearly with the duration of your session. Thinker addresses both of these issues. We have a proxy that wires in between your harness and model to cut out old context that we determine is no longer needed for your current task. Based on the provider you’re using, we determine the right time to batch enough context to cut that justifies the cache re-write cost, which gets paid off after X subsequent calls. We also analyze your sessions and figure out which parts of your instruction files don’t really get used - and send you suggestions to cut or compress those sections. Thinker will kick off a subagent to do that work for you and open a PR you can review. Finally, we use your sessions to record knowledge notes by distilling your sessions with a cheap model (Haiku, Luna). These notes are then served at prompt time via a cross-encoder, also on your machine, that decides whether a note is relevant to the user’s prompt. Here are some data points to show how exactly Thinker saves you coding agent costs: https:&#x2F;&#x2F;thinker.sh&#x2F;see-the-data If you’re hitting problems at all with usage limits, it’d be great to hear how you’ve been trying to mitigate it. Our open-source repo here (MIT License): https:&#x2F;&#x2F;github.com&#x2F;yoavshmariahu&#x2F;thinker",
+    "externalUrl": "https://thinker.sh/how-it-works",
+    "developer": "yoavshmariahu",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

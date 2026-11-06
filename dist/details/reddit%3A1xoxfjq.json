@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xoxfjq",
+  "sourceItemId": "1xoxfjq",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xoxfjq/mise_installations_of_cspell_dont_work_on_windows/",
+  "detail": {
+    "longDescription": "I'm not entirely sure if this is relevant enough of a question for this subreddit, but frankly I haven't thought of a better place to ask.\n\nI've been experimenting with using [Mise](https://mise.jdx.dev/) to manage project-specific tool installations in a way that would bring local and CI environments closer together. One of these tools is `cspell`, a seemingly popular option for spell-checking software projects.\n\nThis has largely worked great. However, for some strangely illusive reason, the only time things go wrong is with GitHub Actions jobs on Windows runners. The `cspell` Mise installs fails to start, because it can't find a dependency called `picomatch`: https://github.com/Diapolo10/python-rust-template/actions/runs/42123444840/job/127581444522#step:5:1\n\nThis issue does not manifest on Ubuntu/MacOS runners, nor on my local Windows development machine.\n\nI wrote [a GitHub issue about this](https://github.com/jdx/mise/issues/14417) to the Mise project about three weeks ago. They allegedly fixed it, so I've been patiently waiting to see if things would resolve on their own (they did not), and today I attempted to manually update things by\n\n1. Updating Mise itself locally (in CI the installer action should always use the latest version)\n2. Updating tooling, like `cspell`, via Mise and its lockfiles\n3. Updating other project dependencies just to see if that helped somehow\n\nbut it didn't help, the Windows runners are still consistently failing.\n\nAt this point I don't know how to keep troubleshooting this. Hell, I don't even know if this is\n\n1. a bug in Mise,\n2. a bug in `cspell`,\n3. a problem with the runners themselves, or\n4. I've made some dumb mistake myself somewhere (probably the most likely option at this point, but I still wouldn't know what exactly)\n\nso if anyone else has any ideas, I'm listening.",
+    "developer": "Diapolo10",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

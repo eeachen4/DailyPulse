@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014652",
   "sourceItemId": "80014652",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014652/python-sqlmodel-fastapi-get-1-row-with-2-connected-table-datas",
   "detail": {
     "longDescription": "I have this API which should get one item_1 with (connected table to) item_2.id and item_2.title . @app.get(\"/placeholder/{item_id}\", status_code=200) def get_one_item(*, session: Session = Depends(get_session), item_id: UUID): \"\"\"This function (api) gets one specific item_id.\"\"\" specific_item = session.exec( select(Item, Item_2) .where(Item.item_id == item_id) .where(Item.item_2_id == Item_2.item_2_id) ).first() if not specific_item : raise HTTPException(status_code=404, detail=\"Deze item bestaat niet.\") return specific_item When I test this API in FastAPI-Swagger UI, I get the following error: ValueError: [ValueError('dictionary update sequence element #0 has length 18; 2 is required'), TypeError('vars() argument must have __dict__ attribute')] I have another API which was returning all items, had the same issue like this but since it was returning .all() instead of .first() fixed it by adding this: return [ { \"item\": vars(item), \"item_2\": {\"id\": item_2.id,\"title\": item_2_title}, } for (item, item_2) in items ] This code makes nested dictionary in list where I can access item and item_2 details that I have specified. How would I make sure that I can get same results without for loop in get_one_item function?",
     "developer": "xAvareS",
-    "comments": 2,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "3"
       },
       {
         "label": "浏览",
-        "value": "89"
+        "value": "121"
       },
       {
         "label": "状态",

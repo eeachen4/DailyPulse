@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117565219166274144",
+  "sourceItemId": "mastodon.social/117565219166274144",
+  "fetchedAt": "2026-11-06T03:41:49.625Z",
+  "sourceUrl": "https://infosec.exchange/@l3v13v4/117565219119394856",
+  "detail": {
+    "longDescription": "Продолжаю ковырять FreeBSD-серверок — труженик, на котором крутятся Jellyfin, qBittorrent, Syncthing и куча всего нужного. И есть там замечательная сеть Tailscale, объединяющая все мои устройства: телефоны, малинку, PC… \n\nВсё было прекрасно, пока сегодня я не заметила: после перезагрузки FreeBSD перестаёт отвечать по Tailscale.\n\nЗахожу в `tailscale status` — а там мой `freebsd` висит в каком-то подвешенном состоянии. Не падает, но и не работает. Приходится каждый раз вручную:\n\n```bash\nsudo service tailscaled restart\n```\n\nИ вот тут — магия: с ручным перезапуском всё работает нормально. Демон запускается, поднимает интерфейс, сеть оживает.\n\nНо меня это, конечно, не устраивало. Сервер должен работать сам, а не ждать, пока я приду и поглажу его по черепушке.\n\n## Копаем глубже\n\nПервое, что я проверила — `rc.conf`. Может, забыла включить автозапуск?\n\n```bash\ntailscaled_enable=\"YES\"\n```\n\nВключён. Тогда пошла смотреть, что происходит при старте. И вот тут началось интересное.\n\nЗапускаю `service tailscaled restart` от обычного пользователя — сыпется куча ошибок:\n\n```\neval: cannot open /var/run/tailscaled.pid: Permission denied\nlimits: setrlimit datasize: Operation not permitted\nWARNING: failed to start tailscaled\n```\n\nАга, хомяк подгнивший, значит, дело в правах!!! Но нет. С `sudo` всё запускалось с пол-оборота. Значит, проблема не в правах пользователя при ручном запуске.\n\nЗаглянула в логи ядра:\n\n```bash\nsudo tail -f /var/log/messages\n```\n\nИ увидела ключевую строчку:\n\n```\nkernel: tun0: changing name to 'tailscale0'\n```\n\nTailscale для работы нуждается в сетевом интерфейсе `tun0`, который при запуске переименовывает в `tailscale0`. Но при чистой загрузке системы этого интерфейса ещё нет — и демон просто не знает, откуда его взять.\n\nА ручной перезапуск работал потому, что `tun0` к тому моменту уже был создан (либо мной ранее, либо системой после каких-то манипуляций).\n\n## Проверяю гипотезу\n\nСоздаю интерфейс вручную:\n\n```bash\nsudo ifconfig tun0 create\nsudo service tailscaled restart\ntailscale status\n```\n\nИ фсё пашет. Гипотеза подтвердилась: проблема именно в том, что при загрузке `tun0` не создаётся, а сам `tailscaled` этого не делает.\n\n## Решение\n\nСначала я попробовала добавить в `/etc/rc.conf`:\n\n```\ncloned_interfaces=\"tun\"\n```\n\nЛогично вроде — пусть система создаёт `tun` при старте. Но это не всегда срабатывает как надо: интерфейс может создаваться позже, чем запустится `tailscaled`, и проклятие остаётся.\n\nПришлось залезть в сам rc-скрипт и посмотреть, как он устроен. Там уже была логика подтирания жопы за укакаными интерфейсами (`tailscaled_prestart`), но не было создания `tun0`. Порывшись в рассылках FreeBSD, за ноябрь 2023 года вроде, я нашла обсуждение именно этой проблемы — и там был предложен патч.\n\nРедактирую `/usr/local/etc/rc.d/tailscaled` (через `sudo nano`) и добавляю в начало функции `tailscaled_prestart()`:\n\n```sh\nif [ ! -c /dev/tun ]; then\n        logger -s -t tailscale \"Interface /dev/tun0 not found. Creating /dev/tun0\"\n        /sbin/ifconfig tun0 create\nfi\n```\n\nФункция целиком теперь выглядит так:\n\n```sh\ntailscaled_prestart()\n{\n        # Если /dev/tun не существует, принудительно создаём tun0\n        if [ ! -c /dev/tun ]; then\n                logger -s -t tailscale \"Interface /dev/tun0 not found. Creating /dev/tun0\"\n                /sbin/ifconfig tun0 create\n        fi\n\n        # Check for orphaned tailscale network interface\n        /sbin/ifconfig ${tailscaled_tun_dev} >/dev/null 2>&1 && (\n                /sbin/ifconfig ${tailscaled_tun_dev} | fgrep -qw PID ||\n                /sbin/ifconfig ${tailscaled_tun_dev} destroy\n        )\n\n        if ! checkyesno tailscaled_telemetry_enable; then\n                logger -s -t tailscale \"Opting out of client logging telemetry.\"\n        fi\n}\n```\n\nПерезагружаюсь:\n\n```bash\nsudo reboot\n```\n\nИ после загрузки — проверяю:\n\n```bash\ntailscale status\n```\n\nВсё работает! 🎉 Демон сам создаёт `tun0`, сам поднимается, все узлы на месте. Никаких ручных перезапусков.\n\n## Что я вынесла из этой истории\n\n1. Логи — наше всё. Одна строчка `kernel: tun0: changing name to 'tailscale0'` в `messages` раскрыла всю картину.\n2. «Работает вручную, не работает автоматом» — почти всегда признак гонки или недостающего шага в процессе инициализации.\n3. rc-скрипты. Это не какая-то магия — это shell-скрипты, и их можно понять за 10 минут.\n4. FreeBSD — это интересно. Тут можно найти решение на уровне ядра и интерфейсов, а не просто «поставь галочку в GUI». \n5. Теперь я люблю RHEL ещё больше (ну и Fedora Core 1-45 в частности тоже люблю).\n\n#freebsd #Tailscale #Homelab #SelfHosted #SysAdminLife`",
+    "developer": "@l3v13v4@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}
