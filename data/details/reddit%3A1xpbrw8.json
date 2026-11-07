@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpbrw8",
+  "sourceItemId": "1xpbrw8",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xpbrw8/dialfork_llm_agents_can_be_factual_call_the_right/",
+  "detail": {
+    "longDescription": "Most steps of a conversational procedure aren't tool calls but things the agent has to say: asking for information, confirming, telling the result. Saying them, in the right order, is **a third axis of an agent's reliability**, alongside factual accuracy and correct tool use, and one that has been largely overlooked. For example, an agent can fetch the forecast correctly and never tell you, or issue the right refund without first asking you to confirm it: everything it said was true, the tool calls were correct, and still a step of the procedure was skipped.\n\nSince we felt this gap was worth working on, in collaboration between Idiap and Logitech, we decided to take a first step: we built a dataset of over 36k dialogues, defined three tasks on it, from finding the turn where an agent drifts to comparing whole sets of dialogues, and wrote a paper with first baselines for each. Together, they make **DialFork**, to our knowledge **the first benchmark** for this *procedural hallucination*.\n\n**Three tasks, from the turn to the whole set:**\n\n* **The turn (Task 3):** find the turn where the drift starts, on the whole dialogue or turn by turn as it unfolds.\n* **The dialogue (Task 2):** measure \"how far\" (distance) a dialogue drifts from a correct one. Both talk about the same thing, so this needs a *procedural* distance, not semantic similarity.\n* **The set (Task 1):** a single procedural distance between two sets of dialogues, e.g. an agent before and after a model upgrade.\n\nThe reported baselines, from embedding-based distances to streaming detectors and zero-shot LLMs, leave plenty of room. Each task has its own track on a **public leaderboard** on Hugging Face. If you'd like to try your own method, all it takes to add it is a CSV file of predictions.\n\n* **Leaderboard:** [https://huggingface.co/spaces/DialFork/leaderboard](https://huggingface.co/spaces/DialFork/leaderboard)\n* **Paper:** [https://arxiv.org/abs/2610.21561](https://arxiv.org/abs/2610.21561)\n* **Code:** [https://github.com/idiap/dialfork](https://github.com/idiap/dialfork)\n* **Dataset:** [https://huggingface.co/datasets/DialFork/dialfork](https://huggingface.co/datasets/DialFork/dialfork)\n\nI'm one of the authors btw. Since the problem lies in what the agent says (language) rather than in its tool calls, we thought people here might find it useful, and feedback, including critical, is very welcome.",
+    "developer": "sergbur",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.07760",
+  "sourceItemId": "2611.07760",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.07760",
+  "detail": {
+    "longDescription": "arXiv:2611.07760v1 Announce Type: new Abstract: Anomaly detection on software logs ensures system reliability through failure identification, root cause analysis and fault localization. While supervised models show excellent performance, in a practical setting there rarely are labeled training data available. This calls for the use of unsupervised models. We study effects of data preprocessing, anomaly detection method, and the dataset. For preprocessing, we examine three options: The use of anomaly-free training data, using randomized as opposed to chronologically selected training data, and the use of a custom loader to extract log message from the log line. Regarding anomaly detection we use four models (KMeans, IsolationForest, RarityModel, Out-Of-Vocabulary Detector) and three representations (Words, trigrams, and parsed events). We evaluate these approaches on seven datasets: BGL, HDFS, Hadoop, Spirit, Thunderbird, Liberty, and LO2Token. We run each combination of the selected factors and measure performance with AUCROC and F1-score metrics. Then we utilize a generalized linear model to establish relationships between the factors. Furthermore, we address execution times. Our evidence reveals large variability across all datasets, preventing us from making recommendations that apply universally. For instance, log parsing enhances performance on some datasets but reduces it on others. The evidence suggests that using anomaly-free data for training unsupervised models can improve anomaly detection performance, though this requires extra effort to identify such data.Previous work has argued that shuffling data leads to unrealistic model performance (data leakage). Yet, our results show this does not hold for the unsupervised models we tested, while it remains true for supervised models in the same setup. For fast execution of the pipeline, use word representation and avoid IsolationForest model.",
+    "developer": "Jesse Nyyss\\\"ol\\\"a, Mika M\\\"antyl\\\"a, Yuqing Wang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jesse Nyyss\\\"ol\\\"a, Mika M\\\"antyl\\\"a, Yuqing Wang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

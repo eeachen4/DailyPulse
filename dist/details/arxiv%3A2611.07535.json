@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.07535",
+  "sourceItemId": "2611.07535",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.07535",
+  "detail": {
+    "longDescription": "arXiv:2611.07535v1 Announce Type: new Abstract: Low latency is critical to user experience. As NVIDIA Blackwell and Rubin GPUs advance multi-die scaling, data placement and cross-die communication become increasingly important. However, the latency implications and underlying costs of cross-die communication and die-aware execution remain largely unexplored. In this report, we present a comprehensive evaluation of the Locality Domain (LD) feature introduced in CUDA 13.4. Conducted on a single node equipped with eight NVIDIA B300 GPUs, our study examines three aspects: memory management and access, computation, and communication, to identify the sources of latency and, more importantly, explore how LD can mitigate them. Our measurements show that the benefits of LD depend on data access patterns. Through die-aware adaptations and integration with widely used libraries and tools, we achieve speedups of up to 43.5% for NCCL 2.32.3 (AllGather), 111.3% for nvbandwidth (DtoD), and 37% for DeepGEMM (EP). We also identify non-negligible LD-related GPU memory allocation overhead when allocation sizes exceed 32 MB due to barrier and TLB invalidation, we propose a fix to the GPU driver kernel module (submitted to NVIDIA) and show that overhead could be reduced 7x ~ 10x without requiring any user-code changes.",
+    "developer": "Rocky Wang, Joyce Zhou, Keith Jiang, Jason Zhao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Rocky Wang, Joyce Zhou, Keith Jiang, Jason Zhao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

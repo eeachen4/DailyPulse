@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xprpm3",
+  "sourceItemId": "1xprpm3",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xprpm3/any_tools_for_managing_longterm_memory_beyond_the/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI am relatively new to local LLMs, and recently I have been trying to understand how people handle long conversations that eventually exceed the model's context window.\n\nFor example, let's suppose I am writing a novel with the help of an LLM. As the story progresses, the conversation history becomes longer and eventually exceeds the context window. At that point, the model may lose track of earlier events, character relationships, or important details that could become relevant later in the story.\n\nFrom what I understand, one possible solution is to maintain an external knowledge base containing summaries of previous chapters. Before generating a new chapter, the system could retrieve relevant information from this knowledge base and include it in the prompt.\n\nHowever, I am wondering how reliable this approach is in practice.\n\nIf we continuously summarize previous conversations to fit within a limited context window, we are essentially performing lossy compression. Some information will inevitably be discarded, and the problem is that we may not know which details will become important later.\n\nFor instance, a seemingly insignificant detail from Chapter 3 might become crucial in Chapter 40. If that detail was discarded during summarization, the model would have no way to recover it from the summary alone.\n\nOf course, keeping the complete conversation history in an external database could prevent permanent information loss, but that introduces another problem: how does the system determine which information should be retrieved for the current task?\n\nSo I am curious how people actually approach this problem in practice.\n\nI would also be interested in hearing how well these solutions work in practice, especially over very long conversations where maintaining consistency becomes increasingly difficult.\n\nThanks in advance!",
+    "developer": "either_T_or_F",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

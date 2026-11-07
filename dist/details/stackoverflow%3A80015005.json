@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015005",
   "sourceItemId": "80015005",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015005/keycloak-setup-script-configure-local-dev-w-o-setup-script",
   "detail": {
     "longDescription": "I'm trying to write a deploy script that I can use to configure keycloak from a base docker image pull: docker run -p 127.0.0.1:8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.8.2 start-dev (as described in the docs). I then want my deploy script to create the necessary realms and clients according to git-trackable json configs. This seems very doable with the API documentation, with one issue: getting a token for the security-admin-console client, which, afaik, is the only client authorized to create realms out of the box. The only way to get this token would be to initiate the OIDC flow, which would require the deploy script user to login with their configured admin username and password OR to open the keycloak UI and enable direct authorization grants. I can't find anything in the docs about how to do this. It doesn't seem like an unreasonable use case. Hopefully I missed something obvious. I am just trying to get the bearer token, everything after that is easy enough. Edit: I failed to mention that I did try to use the admin-cli creds to perform these actions. This is my current script, which returns 401. set -a && source ../../.env 2>&1 >/dev/null && set +a KEYCLOAK_HOST=localhost BASE_URL=http://\"${KEYCLOAK_HOST}\":\"${KEYCLOAK_PORT}\" # Check container with keycloak image is running KEYCLOAK_IMAGE_MUST_INCLUDE=keycloak docker ps --format json | jq '.Image' | rg -q \"$KEYCLOAK_IMAGE_MUST_INCLUDE\" if [[ $? -ne 0 ]]; then error \"No container running with a keycloak image. Please start keycloak and rerun.\" fi # Get admin-cli bearer token RAW=$(curl -s -X POST \"${BASE_URL}\"/realms/master/protocol/openid-connect/token \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --data \"client_id=admin-cli\" \\ --data \"grant_type=password\" \\ --data username=\"${KC_BOOTSTRAP_ADMIN_USERNAME}\" \\ --data password=\"${KC_BOOTSTRAP_PASSWORD}\") if [[ $? -ne 0 ]]; then error \"Failed to fetch admin-cli client bearer token via direct authorization grant. Raw curl response: ${RAW}\" fi ADMIN_CLI_TOKEN=$(jq '.access_token' <<< \"${RAW}\") CREATE_REALM_URL=\"${BASE_URL}\"/admin/realms curl -sS -X POST \"$CREATE_REALM_URL\" \\ -H \"Authorization: bearer \"\"${ADMIN_CLI_TOKEN}\" \\ -H \"Accept: application/json\" \\ -H \"Content-Type: application/json\" \\ -d \"{\\\"realm\\\": \\\"\"${KC_REALM}\"\\\", \\\"enabled\\\": true}\"",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "41"
+        "value": "72"
       },
       {
         "label": "状态",

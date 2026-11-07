@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpmapv",
+  "sourceItemId": "1xpmapv",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xpmapv/guidance_please_on_my_first_docker/",
+  "detail": {
+    "longDescription": "I'm setting my first docker container, for SyncThing.  The host is a Debian Trixie VM running in Proxmox.  The VM has 2 virtual disks.  One is the root file system and all its directories.  I've created a directory \"data01\" for the second, bigger partition.\n\nI've installed Docker, and all the tests show that it's ready to go to work, as far as I can tell.  Systemctl status shows it ready.\n\nThe plan is to create a directory /data01/docker/syncthing and have it use that as the \"home\" for this container.  Are there strict rules around where the compose YAML file needs to reside, or can I just put it in that folder?  Does the file name have to be \"compose.yaml\"?  I think the content will look something like this:\n\n    services:\n      syncthing:\n        image: lscr.io/linuxserver/syncthing:latest\n        container_name: syncthing\n        hostname: debian-syncthing\n        environment:\n          - PUID=0  # Run as root user\n          - PGID=0  # Run as root group\n          - TZ=America/New_York\n        volumes:\n          - /data01/docker/syncthing/config:/config \n          - /data01/docker/syncthing/data:/data \n        ports:\n          - 8384:8384       # Web GUI\n          - 22000:22000/tcp # Listening port for data sync (TCP)\n          - 22000:22000/udp # Listening port for data sync (UDP)\n          - 21027:21027/udp # Local discovery broadcasts\n        restart: unless-stopped\n\nIs there a better option than specifying the root user, or is that not relevant because it's going to be started at system boot?\n\nAny advice appreciated.",
+    "developer": "BudTheGrey",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

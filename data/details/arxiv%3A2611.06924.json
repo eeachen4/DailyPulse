@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06924",
+  "sourceItemId": "2611.06924",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06924",
+  "detail": {
+    "longDescription": "arXiv:2611.06924v1 Announce Type: new Abstract: Event-sourced agent runtimes commonly claim deterministic replay, cheap forking, and lineage. These are families of assertions, not one guarantee. A fixed-log fold may be deterministic while reactive settlement remains schedule-sensitive; a recorded oracle result can enable zero-call replay while the original interaction still changed cost or world state; and a prefix copy cannot undo an action in a discarded suffix. We present an executable F# contract that separates facts from effect requests, makes scheduling explicit, and assesses a cut relative to projection, strict execution replay, external continuation, or a declared counterfactual-world observation. Preserved counterexamples show that general settlement is neither terminating nor confluent and that disjoint declared writes do not prevent read/trigger interference. Against 5,540 public runtime logs, all 317,296 projection cuts satisfy the stated observation, while 36,251 cuts split a model request and do not license continuation; another 120,969 are Conditional because a committed oracle result must be served from the record without re-execution. In 121 observed forks, 16,625 retained-prefix events have zero structural mismatches, but none crosses an external-effect boundary. A separate public offline conformance fork crosses a committed, recorded oracle boundary. Its generator observes that the inherited result is served without a second fixture-oracle call; its verifier checks receipt/log consistency and a fork-bound HMAC assertion under a public conformance key. The result reframes cheap forking as a property-indexed semantic contract with explicit evidence and environment preconditions.",
+    "developer": "Yohei Nakajima",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yohei Nakajima"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

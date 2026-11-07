@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpcy61",
+  "sourceItemId": "1xpcy61",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xpcy61/guide_to_longrunning_agentic_workflow_design/",
+  "detail": {
+    "longDescription": "**TL;DR:** Long-running AI agents eventually suffer from context bloat, state loss, or hallucination loops. I've just published an open-source guide detailing architecture patterns for maintaining state, checkpointing progress, and structuring long-running agentic execution.  \nNot only me, my orchestrator agent has been using it to give long-running tasks to my agent swarms as well!!  \nIn a nutshell - If you’ve built non-trivial agentic pipelines, you’ve likely hit the **\"Turn 20 Wall\"**: an agent starts with a clear plan, but after dozens of tool calls, search queries, and file writes, the context window fills up with noise. The agent forgets original constraints, duplicates work, or hallucinates completed tasks. This guide specifically helps you avoid that problem.\n\nThe key topics include:\n\n1. Ephemeral Execution vs. Persistent Planning\n2. State Checkpointing & Resume Boundaries\n3. Context Window Compaction & Aggressive Pruning\n4. Verification & Guardrail Loops\n\n📖 **Full Guide & Specifications on GitHub:**\n\n[GSA-TTS / devCrew\\_s1 – longrunningWorkflowsDesign.md](https://github.com/GSA-TTS/devCrew_s1/blob/master/advanced_task_guides/planning/guide_longrunningWorkflowsDesign.md)\n\n**Wanna keep the conversation going? Please chime in on these questions:**\n\nHow are you currently handling state preservation and context drift across multi-step execution runs? Are you leaning toward micro-sessions with checkpointing, context compaction/summarization, or using state-graph engines like LangGraph/Temporal?",
+    "developer": "The_Research_Ninja",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

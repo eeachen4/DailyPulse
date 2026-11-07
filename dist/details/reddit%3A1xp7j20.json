@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xp7j20",
+  "sourceItemId": "1xp7j20",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xp7j20/fluxcd_helmrelease_inline_specvalues_vs/",
+  "detail": {
+    "longDescription": "I've been reading Octopus Deploy's article about ArgoCD anti-patterns, and I came across anti-pattern #17: Hardcoding Helm data inside Argo CD applications:\n\n(https://octopus.com/blog/30-argo-cd-antipatterns-for-gitops#anti-pattern-17--hardcoding-helm-data-inside-argo-cd-applications)\n\n  \nThe general idea is separation of concerns. You shouldn't be mixing information that operators/administrators are concerned about (ArgoCD App CRD) with information that developers are concerned about (Helm values). And there were a bunch of other things under that anti-pattern that were mentioned.\n\n  \nNow, I no longer use ArgoCD since I moved to FluxCD + Flux Operator. However, I'm wondering if the same \"principle\" applies to HelmRelease in FluxCD. When I examine the HelmRelease CRD, it's doing a lot of things that are very close to how you'd normally use \"helm install\". As such, is it really necessary for you to make the HelmRelease the operator's concern instead of the developers'?\n\nI usually inline helm values via .spec.values instead of .valuesFrom. So I'm just wondering.\n\nThere are other paths as well, though. For example, according to HelmRelease docs, you don't need to use one or the other. You can provide inline values alongside values from a ConfigMap. Maybe setting inline values for fields that rarely ever change, and ConfigMap values for fields that change per environment, etc.\n\nWhat are your thoughts?",
+    "developer": "Niovial",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpak4s",
+  "sourceItemId": "1xpak4s",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1xpak4s/carquet_parquet_at_the_speed_of_c/",
+  "detail": {
+    "longDescription": "I'm the author. carquet is a C11 Parquet reader/writer, about 500 KB with no Arrow dependency. On an M3 it writes compressed files 4.6–5.9x faster than Arrow C++ and reads them 1.9x faster.\n\nMost of the work went into SIMD. There are about 30 kernels across SSE4.2, AVX2, AVX-512, NEON and SVE, in one binary that picks at runtime. A few things I learned the hard way:\n\n\\- MSVC emits FMA/BMI anywhere in an \\`/arch:AVX2\\` file, so checking only for AVX2 at dispatch isn't enough.\n\n\\- x86 and ARM disagree on \\`min(x, NaN)\\`, so float statistics needed a NaN contract that every ISA follows.\n\n\\- Bit-unpacking needs a different shuffle per bit width and must never read past the buffer, so all 32 widths are tested against a scalar reference.\n\n\\- Sometimes the compiler wins. For plain min/max, the auto-vectorized scalar loop matched my NEON code.\n\n\\- The worst bug wasn't SIMD at all: MSVC x86 miscompiled a 64-bit bit-width loop and silently wrote corrupt files.\n\nRepo: [https://github.com/Vitruves/carquet](https://github.com/Vitruves/carquet)",
+    "externalUrl": "https://vitruves.github.io/carquet/",
+    "developer": "Vitruves",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "vitruves.github.io"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50399373",
+  "sourceItemId": "50399373",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50399373",
+  "detail": {
+    "longDescription": "Hi HN. I made AJX (Agent Journey Experience). It is a CLI and skill bundle that you run to test what your product feels like to use from the point of view of an agent, and you get back a list of &quot;asks&quot; that would improve your product from an agentic usability perspective: so that agents spend less time, tokens and retries to accomplish tasks with it. How? It works by having an outer loop (AJX harness skill + CLI) that controls an &quot;inner loop&quot;: the agent that actually tries out your product. The outer loop investigates the inner loop once it finishes. To try it, copy the prompt from the main page into your favorite agent and it will install the skill and CLI and you can then trigger &#x2F;ajx skill, give it a prompt and some simple configuration as text, and it helps you with the rest. The outer loop starts loading the configured harness of your choice (claude, codex, kiro-cli etc..) in an environment and configuration of your choice (docker, VM, local, with or without specific skills, specific model, amount of runs, and more), and provides the harness (inner loop) with your input prompt and links, and &quot;definition of done&quot; - what does it mean to succeed with this product? For example with vercel cli you could say &quot;build and deploy a simple hello world with vercel CLI [link]&quot; as the prompt for the AJX test. Once the inner loop harness runs its course, the outer harness loop examines the run, logs and details, and outputs and extract the needed information from that run: retries, tokens, mistakes, assumptions and more, and created a very detailed report, as well as a list of asks that if applied to the product, would improve the agentic journey given the same prompt in the future. I call this &quot;Agent Journey eXperience&quot; it&#x27;s the agentic equivalent of &quot;User Experience&quot; - if we were to document the journey an agent does when trying your product for the first time in a specific scenario. - Where does it go astray and makes mistakes? - How many retries does it take to succeed with the task? - How much time? - How many tokens? List of ASKS as an output: What features&#x2F;fixes would the agent want the product to have to save it from making these mistakes or costing extra time and token in the future? here are some examples: - CLI missing a --JSON, which cost lots of parsing of unneeded code - CLI missing commands like doctor, help aliases - DOCS disagree with behavior of the product - Skills pull the agent in the wrong direction - lack of feedback while product is executing - Human friendly CLIs outputs break the agent loop - and much more. Why? I&#x27;m a startups solutions architect @ AWS, and previously wrote the art of unit testing and did lots of work on code quality, engineering practiced and continuous delivery) I built AJX (ajx.dev) when I was tasked with giving feedback on an internal upcoming AWS product that is meant to be used by agents. The team wanted feedback from potential users, and I figured that agents are the new potential users. I figured that if I was a product owner, I&#x27;d love to know what it feels like to work with my product (CLI, SDK, Website, Docs etc), and that the harder the agents work to use my product, the less people would point their agent at it, or the less the agent would tend to recommend it. Also I think it&#x27;s useful to have &quot;brag points&quot; that your product is &quot;agent-friendly&quot;. I even tested AJX with AJX and it found great of issues with the CLI (for example ajx status was returning the wrong status sometimes, ajx init --task behaved differently than expected, and other cool stuff like that. I envision this being used as part of a CI&#x2F;CD cycle with a loop until AJX returns &quot;all green&quot; and no ASKS. AJX is still very new - so probably lots of rough edges but in an agent first world, I think it&#x27;s a step in the right direction: see the world from an agent&#x27;s POV.",
+    "externalUrl": "https://ajx.dev/",
+    "developer": "royosherove",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

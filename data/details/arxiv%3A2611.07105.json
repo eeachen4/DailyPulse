@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.07105",
+  "sourceItemId": "2611.07105",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.07105",
+  "detail": {
+    "longDescription": "arXiv:2611.07105v1 Announce Type: new Abstract: For sufficiently large transformer-based Large Language Models (LLMs), whose parameters cannot be retained in on-chip caches, prefill throughput on multi-socket CPUs is often limited by sustainable DRAM bandwidth rather than peak floating-point throughput. In the standard PyTorch compilation (i.e., TorchInductor) path, model weights are allocated without considering the Non-Uniform Memory Access (NUMA) topology: specifically, the affinity between memory banks and compute cores is disregarded. This causes a substantial fraction of weight accesses to traverse the inter-socket interconnect, severely degrading the effective memory bandwidth available to each socket. We address this bottleneck through a compiler-level solution that makes TorchInductor NUMA-aware. Treating each NUMA socket as an independent tensor-parallel partition, we introduce NUMA-aware Tensor Parallelism (NUMA-TP). This approach transparently shards weights across sockets and schedules compute kernels such that thread pools and memory allocations remain strictly local to their respective sockets using CPU affinity. We evaluate the approach on GPT-2 (117M, 345M, 762M) and BERT (Small, Large), which exercise standard multi-head attention and MLP, as well as Gemma 3 270M, which combines Multi-Query Attention with a GeGLU-gated MLP. By strictly enforcing data locality, our approach successfully mitigates cross-socket traffic, achieving prefill speedups of up to 2.63x on a dual-socket Haswell platform, up to 1.87x on a dual-socket Cascade Lake platform, and up to 2.27x on a four-socket Haswell-EX platform.",
+    "developer": "Thisara Rathnayaka Weerakoon (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Ishan Dewpura (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Niman Ransindu (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Shavin Anjitha (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Tharindu R. Patabandi (Independent Researcher, San Jose, CA, USA), Sanath Jayasena (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka)",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.PF, cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Thisara Rathnayaka Weerakoon (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Ishan Dewpura (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Niman Ransindu (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Shavin Anjitha (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka), Tharindu R. Patabandi (Independent Researcher, San Jose, CA, USA), Sanath Jayasena (Department of Computer Science & Engineering, University of Moratuwa, Sri Lanka)"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015000",
   "sourceItemId": "80015000",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015000/how-can-i-check-whether-a-lazy-import-has-executed-in-python-3-15-without-trigge",
   "detail": {
     "longDescription": "I'm testing the new lazy imports in Python 3.15. I have a module called example.py : print(\"Module executed\") value = 42 And this code in main.py : lazy import example print(\"Checking module\") print(hasattr(example, \"value\")) print(example.value) I want to check whether the module has already been executed without causing it to execute. The problem is that hasattr() accesses the module's attributes, which appears to trigger the lazy import. I also considered checking sys.modules : import sys lazy import example print(\"example\" in sys.modules) But I'm not sure whether this is a reliable way to check the execution state of a lazy import. Is there a supported way in Python 3.15 to check whether a lazy-imported module has already been loaded and executed, without triggering its execution?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "4"
+        "value": "14"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "68"
+        "value": "449"
       },
       {
         "label": "状态",

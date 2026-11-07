@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06965",
+  "sourceItemId": "2611.06965",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06965",
+  "detail": {
+    "longDescription": "arXiv:2611.06965v1 Announce Type: new Abstract: Self-play loops in which a model writes tasks, derives an answer key and trains on its own matching solutions are often called grounded when the key comes from executing code. We ask which false beliefs such a loop removes. We run expert-iteration self-play with Qwen3-4B-Base on output-prediction tasks, vary the source of the answer key, and track natural beliefs about Python semantics and two misreadings of task specifications planted by fine-tuning (\"at most n\" read as < n; \"the k-th smallest\" read as 0-indexed). Executing the generator's own code gave a key that encoded the \"at most\" misreading on every audited task, and training on it never raised the truth rate above 0.03. A key from an implementation by the unplanted model, a teacher without the error, raised it to 0.23-0.58 after three rounds in four runs. A correct key is not sufficient: the pass band, which keeps tasks solved 1-7 times of 8, admits almost no corrective task while a belief is held on nearly every sample. Execution keys sharply reduced both natural runtime beliefs on diagnostic items in both seeds. Corrections came with replacement rules that fail on neighbouring items the old belief got right. The robust case, present in all four spec runs, is that after the \"at most\" fix the model increasingly counts the nearest value above a limit that is absent from the list (overcount 0.18-0.38 of control samples at round 3), a case our planted generators almost never wrote (4 of 10,924 tasks); diagnostic-only metrics miss it. Asked for those cases, the planted generator wrote none in 2,061 checkable tasks, against 27% for the untrained unplanted model in one round. Both generators often moved the request into the specification instead (\"the cap itself does not count\"), and a decorrelated key follows the specification.",
+    "developer": "Nirdesh Chauhan, Dushyant Rajput, Siddharth Kosaraju",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Nirdesh Chauhan, Dushyant Rajput, Siddharth Kosaraju"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.06967",
+  "sourceItemId": "2611.06967",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.06967",
+  "detail": {
+    "longDescription": "arXiv:2611.06967v1 Announce Type: new Abstract: Durable execution engines replay a recorded history and do not compare activity payloads. When a model repairs a workflow that failed partway through, it must either pay again for calls that succeeded or accept a recorded result whose payload changed. We define a revision contract for workflows whose orchestration code is written by a model. Each capability call carries a structural identity built from its callsite, its fanout position, and its occurrence count, and the identity stays stable under rewrites that leave the call in place, so committed identities form a frozen prefix. The frozen unit is the call expression, and the surrounding code stays writable. A static gate rejects a rewrite that would change a committed call before a container starts. A runtime digest stops a changed payload at a committed identity, and an occurrence ledger names a repeated paid payload. Under three assumptions, a candidate the gate accepts replays every committed call it invokes, executes only new work, and reports the identities it skips. No local identity is both relocation-invariant and free of wrong reuse, so callsite identity turns a relocation into a pre-spend stop. On media workflows, 22 gate-passed repairs replay 258 committed identities with no duplicate, and a live six-way fanout makes seven paid calls instead of twelve. A 12-task customer-support study applies the same identity, replay, and boundary checks on two models.",
+    "developer": "Chenyang Jiang, Benyang Pan, Puqu Wu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Chenyang Jiang, Benyang Pan, Puqu Wu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

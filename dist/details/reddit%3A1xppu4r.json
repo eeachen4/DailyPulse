@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xppu4r",
+  "sourceItemId": "1xppu4r",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xppu4r/showoff_saturday_phone_ranking_engine_on_nextjs/",
+  "detail": {
+    "longDescription": "Solo project: Specmob (specmob.com), a phone comparison site. The engineering parts I enjoyed:\n\n* **ISR on server components** (900s home, 3600s best/brand pages, 86400s phone/compare pages), client components only where needed\n* **Async TTL+LRU cache with in-flight de-duplication** on FastAPI + Postgres (asyncpg), so concurrent identical requests share one DB call on a free host\n* **Mirrored rounding:** the budget slider’s price range (0.90x to 1.05x) is rounded round-half-up in both JS and Python, so the range shown equals the range queried\n* **One DB view** computes every price, and nothing else does\n* **AI copy with fallbacks:** two providers raced, first valid response wins, deterministic fallback if both fail\n\nIt’s a free site with affiliate links on buy buttons, so I’m not calling it non-commercial. I’m here for technical feedback: would you handle free-tier cold starts differently, and are those ISR times sensible?",
+    "developer": "iamryanmsd",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

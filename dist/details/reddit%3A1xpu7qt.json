@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpu7qt",
+  "sourceItemId": "1xpu7qt",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xpu7qt/why_my_incident_response_agent_stores_what_failed/",
+  "detail": {
+    "longDescription": "While building this, I ran into a few interesting problems:\n\n**1. Testing Hindsight before building around it**\n\nI ran a separate spike against [Hindsight](https://github.com/vectorize-io/hindsight) to understand its actual behaviour.\n\nI verified that:\n\n* Retain is synchronous, and newly retained information can be recalled immediately.\n* Re-retaining the same `document_id` replaces the previously retained information.\n* Incident information can evolve as more investigation outcomes become available.\n\n**2. Extraction didn't preserve everything**\n\nI noticed something interesting during testing.\n\nThe incident code consistently survived extraction, but the literal outcome label `WORSENED` didn't always survive. It could be paraphrased.\n\nThat made me question whether I should trust extracted memory for critical incident facts.\n\n**3. Recall is not the same as relevance**\n\nAn unrelated query still returned 19 results in my testing.\n\nThis highlighted an important problem: just because a memory system returns something doesn't mean the result is relevant to the current incident.\n\n**4. Separating memory from authoritative incident facts**\n\nI decided not to make Hindsight responsible for authoritative incident outcomes.\n\nInstead:\n\n* Hindsight identifies potentially relevant past incidents.\n* The application maintains structured incident records and action outcomes as the source of truth.\n* Grok generates the briefing using the retrieved context.\n* Before a warning reaches the engineer, the application validates the recorded outcome against the original incident records.\n\nI also store the raw Hindsight recall, raw LLM response, and validation result side by side so I can inspect what happened when something goes wrong.\n\n**Tech stack:**\n\n* Java + Spring Boot\n* Hindsight Cloud\n* Grok LLM\n\nThe article includes the architecture, ER diagram, Hindsight spike results, and implementation details of the retrieval and validation flow.\n\nUseful references:\n\n* [Hindsight GitHub](https://github.com/vectorize-io/hindsight)\n* [Hindsight Documentation](https://hindsight.vectorize.io/)\n* [What is Agent Memory?](https://vectorize.io/what-is-agent-memory)\n\nI'm particularly interested in hearing how others handle relevance when a memory system returns results even for unrelated queries.\n\n**Would you trust an agent's retrieved memory to generate operational warnings, or would you always validate those warnings against structured incident records?**",
+    "developer": "noufal_rizwan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

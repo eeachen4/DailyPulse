@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50393793",
+  "sourceItemId": "50393793",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50393793",
+  "detail": {
+    "longDescription": "I built a pay-as-you-go two star hotel for bots that you’re only charged for while it’s active. Typically wakes in under a second, runs on a vm, and costs very little while it’s paused. In my free time I’ve been building a firecracker based vm orchestration platform. In order to dogfood the thing I put together a place to run agent harnesses (openclaw etc) on machines but only pay for them when they are in use. What started as a demo has grown legs into a more unique product than the platform. Botel has prebaked templates for each harness, with a daemon of mine running beside it monitoring the harness’ activity. It communicates out to the host over a link-local self api; instructing when to pause or wake next based on stored schedules. With a proxy in front to wake on http. The harnesses are preconfigured to point to my llm gateway that proxies through to openrouter. One of the biggest struggles while building it was preventing claude from going off the rails with hotel metaphors in the ui. Once it sees a joke it really strangles the hell out of it. A more real ;) awkward part is that the harnesses don’t expose exactly what I needed in order to detect activity. I&#x27;m still struggling with how to handle the fact that background job can be short or long lived (http&#x2F;dev servers etc). I’m hoping to propose changes to hermes, openclaw, and dsh soon for a consistent way to know what kind of a job is running with annotated lifecycle hooks. Some of the nicest things about the bot hotel are: - You get a proper linux vm with sudo, so you can ssh in, scp, or run docker. - You can ask the agent to expose something publicly or privately (behind your login). A port gets a unique hostname&#x2F;url. Those endpoints also wake the vm. So you could build and host a little app or self host something. - Guided telegram setup. It’s pretty awkward in general&#x2F;my setup hopefully takes some of the edge off. A friend of mine who built a website for his local orienteering club has used this to make it easy for peoge on the committee to update news and events. All in all it should cost something like 40 cents a month to run so long as the club members don’t get too friendly with the agent. If you’re interested, give the thing a spin. The first 50 signups get $2 credit. Price is pretty low at 3c per GB of ram per hour awake, plus a few cents per GB-month asleep. You use credit for inference or byok. Let me know how you get on and whether you have any ideas or requests for it. Thx!",
+    "externalUrl": "https://botel.dev",
+    "developer": "4ver",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

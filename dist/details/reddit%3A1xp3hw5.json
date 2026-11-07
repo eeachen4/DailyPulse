@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xp3hw5",
+  "sourceItemId": "1xp3hw5",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xp3hw5/should_i_use_nomad_for_single_vm/",
+  "detail": {
+    "longDescription": "I'm looking for some architectural advice on building a lightweight, self-hosted job execution platform on a single VM (8C/32GB).\n\nI want something with semantics similar to Google Cloud Run / Cloud Run Jobs:\n\n* Execute Python scripts and arbitrary Docker containers.\n* Trigger jobs through an API.\n* Configure CPU, memory, environment variables, timeouts, etc.\n* Track execution status, exit codes, and logs.\n* Handle retries and concurrency limits.\n* Integration with Artifact/Container Registry\n\nCurrent constraints:\n\n* Only one VM for now & no need for HA.\n* No Kubernetes requirement or plans for a multi-node cluster.\n* Jobs are primarily internal workloads, and quite lightweight.\n* I'd prefer something relatively lightweight and easy to maintain.\n\nTechnologies I'm considering\n\n1. HashiCorp Nomad \n2. Docker Sock + custom built runner – Build my own execution manager, scheduling, lifecycle management, and monitoring.\n\n**Questions**\n\n1. Is Nomad overkill for a single VM? Does it provide enough value over simply using Docker directly?\n2. Would you use Nomad in production for this use case?\n3. Are there simpler alternatives that provide similar execution semantics?\n4. What operational overhead should I expect from running Nomad on a single node?\n\nI'm particularly interested in hearing from people who have actually run Nomad in production, especially for single-node deployments.\n\nThanks!",
+    "developer": "LowProgram6449",
+    "comments": 12,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

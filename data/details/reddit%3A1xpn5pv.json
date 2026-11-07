@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpn5pv",
+  "sourceItemId": "1xpn5pv",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xpn5pv/higgs_realtime_duplex_a_45b_moe_fullduplex_model/",
+  "detail": {
+    "longDescription": "Disclosure: I'm at Boson AI and this is our release. Not open weights; the Duplex API has a waitlist, and the previous turn-based Higgs Realtime is available now.\n\nMost voice models are still turn-based: listen, wait for end of turn, think, speak. Duplex runs all streams at once and keeps working in the background while it talks.\n\n**Streams.** Everything is cut into 160 ms chunks:\n\n* Audio in: 1 token per chunk (6.25 tokens/s)\n* Audio out: 2 tokens per chunk (12.5 tokens/s)\n* Video in: one \\~12-token camera frame every 6 chunks\n* Face out: 2 latents per chunk\n* Text in and out alongside\n\nSilence is represented as chunks too, which is what the model uses to decide when to backchannel, interrupt or stay quiet. That comes to \\~2.6K tokens per minute for audio and video, 2.6K to 5K with thinking and tool traces (progressively compacted). The last 5 minutes plus compacted text history is 13K to 25K tokens; older history is kept as text.\n\n**Background work.** Thinking, tool calls and delegation are spans in the same stream and can cover many chunks. Tool results can arrive in stages and the model can start speaking before they are complete. Harder problems are delegated to a much larger backend model with the full shared context. This is the main difference from Thinking Machines' interaction models, where all reasoning and tool use goes to the background model, which can mean 10+ seconds per answer and makes cost harder to control.\n\n**Voice and face.** Set zero-shot at deployment: a short reference clip for the voice, one image for the face, and a text prompt for behavior. No fine-tuning. Audio comes from a causal flow-matching decoder (2 frames per chunk), the face from a causal DiT conditioned on the reference image and the previous two latents.\n\n**Training.** Starts from a text-pretrained LLM, continued pretraining on \\~2T tokens of text, audio and video on our own H100 cluster (Megatron-based stack). Post-training is multi-teacher on-policy distillation: specialist teachers trained with RL (including GRPO) on conversation, interaction timing, delegation and task completion, distilled into one student. On top of that, a self-improvement loop in simulated environments with realistic timing, interruptions, overlapping speech and background noise.\n\n**Benchmarks.** Best published or reproduced configuration from each lab (we reproduced more than half of the competitor numbers):\n\n|Benchmark|Duplex (45B)|TML Interaction Small (276B)|OpenAI best|Google best|\n|:-|:-|:-|:-|:-|\n|Big Bench Audio|**98.9**|96.5 (75.7 w/o background agent)|97|98|\n|Audio MultiChallenge (APR)|44.9|43.4|**48.5**|36.1|\n|Full-Duplex-Bench v1.5|75.5|77.8|**80.1**|54.3|\n|QIVD (streaming)|56.0|54.0|**58.2**|56.1|\n|ProactiveVideoQA (PAUC)|31.9|**33.5**|25.0|–|\n|τ-Voice (pass@1)|69.8|–|**74.5**|68.6|\n|IFEval|94.1|89.7|**95.2**|90.0|\n\nOpenAI's best settings lead on five of seven, by 1 to 5 points, several at their highest thinking setting. Turn-taking (Full-Duplex-Bench) is where we're furthest behind. Our takeaway is that at this size, data and training matter more than parameter count; the front model is deliberately mid-sized because the design target is that an hour of model time costs at most a tenth of an hour of human time.\n\nAnnouncement with demos: [https://www.boson.ai/blog/higgs-realtime-duplex](https://www.boson.ai/blog/higgs-realtime-duplex) My write-up: [https://alex.smola.org/posts/50-talking-while-thinking/](https://alex.smola.org/posts/50-talking-while-thinking/)\n\nHappy to answer questions about the chunked-stream design and the delegation setup.",
+    "developer": "Cali_Cobarde",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

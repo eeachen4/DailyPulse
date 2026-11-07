@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpjnl7",
+  "sourceItemId": "1xpjnl7",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1xpjnl7/how_are_you_managing_github_configuration_at/",
+  "detail": {
+    "longDescription": "Hi all,\n\nI work on the platform team at a company with about 4,000 repos, 100 teams, and 1,400 people with GitHub access. GitHub hasn’t been managed well here historically - lots of click-ops, inconsistent org and repo settings, too many admins, little traceability of changes, etc. My team is on the journey to fix that. We’re just starting discovery on a migration to an EMU enterprise. We know what we need to create on the new instance and we’re hoping to do as much as is feasible using infrastructure as code.\n\nWe are a Terraform/Pulumi shop, but the gap between what the GitHub API exposes and what providers cover can still be….large. They’ve improved in the past year, but we see gaps, especially at the enterprise level (hosted compute networking and private networking configurations, Actions runner and runner group setup, enterprise teams, enterprise policies, etc). We’re trying to figure out the best path forward: keeping click-ops, storing “configuration as code” that is just API payloads that are passed to gh api calls, generating Pulumi dynamic providers from GitHub’s API spec, etc.\n\nSo, I’m hoping to hear from companies that are more mature in their GitHub management:\n\n1. What’s your primary tool? Terraform? Pulumi? A repo of YAML/JSON config that drives gh api calls? A custom control plane? Probot-style apps? Something else? If you use multiple methods, what controls and defines what?\n2. How do you handle provider gaps? Do you use wrappers around gh api, fork the provider, Pulumi dynamic providers generated from the API specs, or just accept that some settings stay manual? If you built custom providers, how has the maintenance been as the API changes?\n3. How far did you take it? Enterprise and org settings only, or also repo creation, branch protection/rulesets, teams and membership, Actions permissions, runners, secrets/variables, and so on? Is every repo in state? How have your teams reacted to this?\n4. How do you keep plans fast with thousands of repos? Do you split state by org or domain? Did you hit API rate limits?\n5. Self-service vs. central control: Can teams request repos or changes via PR to a config repo, or does the platform team own everything? Is the platform team bombarded with requests? And how do your teams like it? How much friction?\n6. How do you detect and handle people changing settings in the UI anyway?\n7. Anything you wish you’d known before setting up an EMU enterprise? How did you handle enterprise teams, IdP group-to-team mapping, and enterprise-level policies. Did you manage those in code or through the UI/API?\n\nI feel like we have the universe of options in front of us. Unfortunately, we don’t have endless time to spike everything out so having some direction from others would be super helpful. If you’ve gone down this road and loved or regretted something - too much automation, too little, wrong tool, etc - I’m very interested in hearing it.\n\nThank you!",
+    "developer": "stinkynathan",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

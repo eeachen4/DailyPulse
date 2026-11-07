@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.07916",
+  "sourceItemId": "2611.07916",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.07916",
+  "detail": {
+    "longDescription": "arXiv:2611.07916v1 Announce Type: new Abstract: Lightweight methods like QuickCheck have proven to be successful in functional languages and beyond, as they let users specify properties as Boolean functions directly in code. We can replicate some of their benefits for (bounded) proofs via symbolic execution. If we can execute arbitrary functions symbolically, we can specify properties just as easily. Unfortunately, existing symbolic execution tools for Haskell are restricted to a subset of the language that excludes many real-world applications like IO; they also have a hard time scaling to larger programs, making them a poor fit for general purpose lightweight verification. One reason behind these limitations is that existing techniques only offer fixed symbolic semantics for SMT base types. This makes it hard to cover more programming constructs and libraries; it also makes it difficult to fine-tune symbolic representations for better performance. We present SymFC, a new symbolic execution method for Haskell that offers configurable semantics via embeddings. An embedding of a function in SymFC is just another Haskell function that can use arbitrary code, as well as SMT primitives. Embeddings make it easy to support new programming constructs and fine-tune symbolic representations for speed. To integrate embeddings into Haskell's type system, we make use of Haskell's coercions, which let us transparently convert between a Haskell type and the type of its embedding. We realize embeddings in SymFC, an all-paths symbolic execution engine for Haskell, which lets us symbolically represent arbitrary types and values in GHC core. We implement SymFC as a GHC plugin, and evaluate it by checking properties of Haskell's container library, and the iproute library. We build embeddings for IORef, Haskell's Ptr/ForeignPtr interface, and the hardware library Clash, and our evaluation reports a 6.25x speedup on G2's own benchmarks.",
+    "developer": "Robin Webbers, Wind Wong, Klaus v. Gleissenthall",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Robin Webbers, Wind Wong, Klaus v. Gleissenthall"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

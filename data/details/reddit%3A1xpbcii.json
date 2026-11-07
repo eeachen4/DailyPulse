@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpbcii",
+  "sourceItemId": "1xpbcii",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xpbcii/our_wer_on_claims_calls_dropped_5_points_after/",
+  "detail": {
+    "longDescription": "Two weeks ago my manager put the LibriSpeech leaderboard on HyperAI on the screen in our Monday meeting, every row there sits around 2% WER and our Whisper setup was at 14.8% on held out claims calls, and nothing on that page says how each paper normalized its text, though most of the papers barely say it either.\n\nI pointed out that LibriSpeech is audiobooks read into decent mics and our audio is 8kHz phone calls with hold music in the middle, which was true and did not help much.\n\nWe do transcription for insurance claims lines, Whisper large-v3 through faster-whisper with our own VAD and chunking in front. The transcript fills the call notes but the short clip where the caller reads their policy number to the phone menu and gets transcribed during the transfer. Yeah the policy is already on the agent’s screen but...nobody has to ask for it twice. Our reference transcripts come from two people who used to do medical transcription.\n\nOur eval script compared raw strings. The model writes numbers however it feels like, sometimes \"4170023391\" but sometimes 4 1 7 oh oh 2. You know every comma in the wrong place counted as an error too. What was left at the top of the error list was ok against okay, the normalizer does not merge those.\n\nWe ended up at 9.6 once everything was normalized and the meeting moved on, nobody asked about it again. The policy numbers were still bad though. I checked them on their own and about 1 in 9 had a digit off (so the agent gets someone else’s policy or nothing). So this week it is a digits only pass on the menu clips.",
+    "developer": "Competitive_Bat6905",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

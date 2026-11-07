@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014856",
   "sourceItemId": "80014856",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014856/python-sqlmodel-fastapi-update-existing-data",
   "detail": {
     "longDescription": "I have an API which should update the title of item and it also should check if there is already a record stored in database before update with that new title and with the same foreign_key_id , but doesnt seem to work. @app.patch( \"/update_item/{item_id}\", response_model=ItemPublic, status_code=200, ) def update_item( *, session: Session = Depends(get_session), item_id: UUID, item: UpdateItem, ): \"\"\"This function (api) is to update item.\"\"\" db_item = session.get(Item, item_id) if not db_item : raise HTTPException( status_code=404, detail=\"Dit item bestaat niet.\" ) item_data = item.model_dump(exclude_unset=True) db_item.sqlmodel_update(item_data) check_if_item_exists = session.exec( select(Item) .where(Item.title == item.title) .where(Item.foreign_key_id == item.foreign_key_id) ).first() if check_if_item_exists: raise HTTPException( status_code=409, detail=\"Dit item bestaat al.\" ) session.add(db_item) session.commit() session.refresh(db_item) return db_item When I try to update a specific item I get greeted with this specific error: { \"detail\": \"Dit item bestaat al.\" } I think it compares title to original title instead of the new title . My expectation: My expectation is to check if the new title that I provided are already added by foreign_key_id , if yes then he should get Dit item bestaat al. otherwise it should update it. I am trying to prevent updating an item title to already existing item with that title of foreign_key_id but cant figure out what i need to do to solve this.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "102"
+        "value": "132"
       },
       {
         "label": "状态",

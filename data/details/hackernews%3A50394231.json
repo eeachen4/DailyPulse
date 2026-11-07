@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50394231",
+  "sourceItemId": "50394231",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50394231",
+  "detail": {
+    "longDescription": "Nowadays, unless you’re training a frontier model from scratch, finding spare GPU capacity for training and post-training on some cloud is manageable. But a lot of the time, I’m just too lazy to move my work or even go through the signup processes and deal with their limits and regions and shit. So I wasted a lot of money keeping GPUs idle or gambling on a paused instance, crossing my fingers that the node would still be available when I wanted it again (usually didn’t work). So here’s my journey trying to automate this process, and it was a lot harder than you might think. 1. Shared File System “Just mount a network filesystem… duhh.” Well, not so fast. Many providers have random restrictions and sandboxed compute; the RunPod containers I tested, for example, didn’t expose FUSE. To build a universal solution, I needed another way. I built a custom LISAFS adapter and, over months of refinement, got it to the point where it outperforms even network filesystems through clever syncing: packing small files into fewer transfers, fetching file ranges on demand, and using a Rust-based storage engine to reuse cached content-addressed blocks instead of copying whole files. The system works so efficently, you can transfer an uncompressed 3GB 50k file build folder on your laptop to the cloud file system faster than transfering the same folder through a wired connection to a Samsung T5 SSD (crazy right?!) Once machines can efficently share a filesystem, they can also cooperate. Imagine a TPU running a JAX teacher model, publishing training targets that GPUs on a different provider use to train a PyTorch student. It works like magic. 2. Virtual Clusters Booting up separate GPUs&#x2F;TPUs into the same workspace comes in clutch in a bunch of situations I hadn’t even realized were possible until it became easy to do. Pushing the abstraction further, I (with the help of ~$50k in research agents) created a new library to optimize many core training functions across compute from different providers. It no longer mattered where my compute came from; it could run distributed workloads automatically under the hood while operating like a single machine. Some notes here: planning which regions to place the machines in, even across different providers, was extremely important. Distributed training still never matched the validation loss of single-cluster training, but it came damn close—within ~0.2%, while being 2.3x cheaper, on a post training experiment with a 27B param LLM. btw this is what I’m building at meshia.io -- check it out :) I’m a one-man team and love feedback, so please lmk your thoughts or if you have any questions about this!",
+    "developer": "lukefrisker",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

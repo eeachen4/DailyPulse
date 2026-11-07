@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.07198",
+  "sourceItemId": "2611.07198",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.07198",
+  "detail": {
+    "longDescription": "arXiv:2611.07198v1 Announce Type: new Abstract: Each new GPU generation is showcased by its peak instruction rates, yet users hardly ever run instructions directly: they reach the hardware's performance through vendor libraries, applications and devices shared with other jobs. How much of a theoretical speedup survives these layers is rarely measured, so a team deciding whether to move to a new generation, or to adopt FP8 or 2:4 sparsity, lacks adequate guidance. AMD's MI300A (CDNA3) adds new FP8 matrix instructions and 2:4 structured-sparse instructions that the predecessor, the MI250X (CDNA2), does not have. We analyze this theoretical speedup gap on AMD's MI300A (CDNA3) against the MI250X (CDNA2) by defining a new metric, capability gain. Capability gain is the fraction of a feature's instruction-level speedup that it keeps at a higher level, such as a library, an application or a shared device. We trace it from ISA microbenchmarks through hipBLASLt and hipSPARSELt to LLM inference and mixed-precision HPL, and onto a device shared by up to eight concurrent streams. FP8 keeps most of its speedup through the library, completing an $8192^3$ GEMM \\genCapPkgEndToEndGainEightK{} faster than the MI250X with FP16, but unfused quantization turns it into a per-layer slowdown in an LLM, and 2:4 sparsity keeps at most about half of its speedup in hipSPARSELt. Under queue sharing, FP8's GEMM capability gain rises above 1. How fairly streams share the device depends on the number of hardware queues, not on the numeric precision, yet shared LLM serving gains nothing from FP8.",
+    "developer": "Aaron Jarmusch, Sunita Chandrasekaran",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Aaron Jarmusch, Sunita Chandrasekaran"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

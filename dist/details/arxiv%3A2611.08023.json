@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.08023",
+  "sourceItemId": "2611.08023",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.08023",
+  "detail": {
+    "longDescription": "arXiv:2611.08023v1 Announce Type: new Abstract: Complete-block offloading reduces model residency but requires each transferred block to fit the GPU budget. We present Precision-Preserving Subtensor Inference (PSI), a fixed-arena runtime that combines sub-block weight streaming with separately managed intermediate state for the BF16 LTX-2.5 22B joint audio-video transformer. The contribution is a construction whose managed GPU footprint is determined by reusable pages, live state, and bounded workspace, together with controls that separate resource use, transport correctness, and numerical fidelity. Its partitioned operators preserve the dense real-arithmetic construction under stated assumptions. Across nine matched full-prompt cases on RTX A6000, modified PSI reduces sampled transformer-process peak memory from 8,578 to 360 MiB relative to official MATH, while mean time for the eleven transformer invocations rises from 247.11 to 349.00 s. Its managed arena is 80 MiB. Complete native generation and a complete-block FLASH path both succeed under a fixed 3 GiB available-memory cap. The matched A6000 comparison and separate DGX Spark service suite both achieve 100% success in complete audiovisual decoding. FFN reuse lowers mean block time by 4.0% with unchanged BF16 outputs; a fixed-arithmetic one-token transport control preserves all saved states bitwise. Targeted bias and attention changes improve local and one-token numerical comparisons, while mean endpoint error increases across nine full-prompt cases. The construction enables BF16 audiovisual inference with an explicit transformer-memory budget and makes numerical fidelity a separate, testable property of the implementation.",
+    "developer": "Hanyue Shen, Xinling Liao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hanyue Shen, Xinling Liao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

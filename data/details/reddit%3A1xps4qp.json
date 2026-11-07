@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xps4qp",
+  "sourceItemId": "1xps4qp",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xps4qp/why_does_an_ai_coding_agent_revert_its_own/",
+  "detail": {
+    "longDescription": "One of the weirdest failure modes I kept watching in coding agents is what happens on multi-step bugs. The agent fixes a parser issue (Rung 1), runs the tests, and now the test runner prints a brand-new stream lifecycle error further downstream (Rung 2).\n\nBecause an unscarred LLM only understands binary pass or fail, it panics—\"Oh no, the test is still red! My edit didn't work!\"—and reverts its own working Rung 1 fix. Or conversely, when it's stuck in a rut, it tries 14 variations of the same broken line on the exact same rung.\n\nWhen I thought about how I know after 50 years of programming whether I'm making progress or spinning my wheels, it came down to one rule: **iterations should look different—I know I'm climbing because I have a different problem at each ladder rung.**\n\nOnce we wired that distinction into our subagent loop (locking the checkpoint when the failure moves to a new downstream rung, and killing the hot context to drop to a \"Null State\" when two iterations stay on the same rung), the revert spirals disappeared.\n\nHow are you handling multi-step debugging ruts in your agent loops so the model doesn't undo its own progress?",
+    "developer": "RandalSchwartz",
+    "comments": 16,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

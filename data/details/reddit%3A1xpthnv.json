@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpthnv",
+  "sourceItemId": "1xpthnv",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xpthnv/built_a_selfhosted_retro_library_for_my_synology/",
+  "detail": {
+    "longDescription": "I'm the dev. Figured I'd share this here because a bunch of the design decisions came from hanging around self-hosted setups like yours.\n\n\n\nI got tired of the usual mess: ROMs copied onto every device, saves living in three different places, and half the \"living room\" apps feeling like phone UIs stretched onto a TV. I already had a Synology, so I wanted the boring version of the dream:\n\n\n\n\\- games stay on the NAS\n\n\\- TV just browses and plays\n\n\\- no account, no cloud from me, no ads\n\n\n\nSo I built Retro Console around that.\n\n\n\nThere's a small library server you run yourself (Docker on a normal machine, or a native DSM 7 SPK on Synology). It keeps the library organized — covers, categories, saves — and serves it on your LAN. Clients are Android TV, Apple TV, iPhone, and a Mac app. Point the client at something like http://NAS\\_IP:8282/library/, pair a controller, done.\n\n\n\nI care a lot about the couch stuff that usually feels broken: menu focus not leaking into the game, sane d-pad repeat timing, game keeping its aspect ratio instead of getting stretched. Sounds minor until you live with it every night.\n\n\n\nPrivacy is intentionally boring. No login. No analytics. The apps only talk to the server/devices you set up. I don't get your library, play history, or credentials.\n\n\n\nSystems in the public build are the usual classics plus some arcade: NES/SNES, N64, Sega stuff, GB/GBC/GBA, WonderSwan, NGP, Atari, PS1, PC Engine, Neo Geo/Capcom/etc. Compatibility is game-by-game, some titles need BIOS files you provide, arcade wants proper complete sets. The downloads ship with none of that on purpose. There's one original mini trainer game so you can poke at controls before importing anything.\n\n\n\nStuff I'd tell a friend before they install it:\n\n\\- treat it as LAN-first; don't port-forward this thing to the internet\n\n\\- HTTP library server can do save sync across devices; SMB is more limited\n\n\\- Android TV is sideload APK for now\n\n\\- Synology needs Node.js 18+ from Package Center, then manual SPK install, and the internal user FCEmulatorLibrary needs real r/W on the library folder (that permission step bites people)\n\n\n\nSite/docs: [https://getretroconsole.com/](https://getretroconsole.com/)\n\nServer downloads (Docker + Synology): [https://getretroconsole.com/en/server.html](https://getretroconsole.com/en/server.html)\n\nApple TV / iPhone app: [https://apps.apple.com/app/id6806745032](https://apps.apple.com/app/id6806745032)\n\n\n\nIf you try it, tell me what broke. NAS model + client device is especially useful. Happy to answer Synology / Docker / token setup questions.\n\n",
+    "developer": "No_Laugh8346",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

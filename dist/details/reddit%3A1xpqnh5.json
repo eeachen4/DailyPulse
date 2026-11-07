@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpqnh5",
+  "sourceItemId": "1xpqnh5",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xpqnh5/what_i_put_between_my_agents_draft_and_the_send/",
+  "detail": {
+    "longDescription": "    My agents write a lot of text that real people read: client emails, support replies, pr descriptions. Two things kept going wrong. it sounded like an agent wrote it and when i ran it through a humanizer the humanizer would sometimes change a name a number or the meaning. An email with the wrong amount in it is worse than one that sounds a bit robotic.\n    \n    So I created reright to be a step the agent calls before it sends anything. The agent passes through its draft and gets back a version that sounds like you. reright checks that numbers, names, links and code still match, that the language is the same and that the length is close. If any check fails, the agent gets its own text back. The agent then compares the meaning itself and keeps its original if something shifted.\n    \n    It functions on Claude Code (MCP server + a hook that stops commits, PR text and Gmail sends that weren't filtered through it) and on Claude.ai and ChatGPT with a custom connector. It picks up on your corrections, and on what you add by writing so it moves toward your voice.\n    \n    Numbers, because people will ask: I did my own test on public AI Humanizer Benchmark texts that the benchmark team did not see. Over three months reright changed a number, name or quote in 1% of the texts. The other 9 tools were 30%-46%. On open AI detectors it was third of 10 so I don't sell it on that.\n    \n    free plan is 3,000 words a month. I'm curious to know how others approach this step in their agent configurations. Link in the first comment.",
+    "developer": "paulofilip3",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

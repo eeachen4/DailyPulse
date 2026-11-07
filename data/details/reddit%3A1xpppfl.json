@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpppfl",
+  "sourceItemId": "1xpppfl",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xpppfl/zmlllmd_a_fast_and_universal_inference_server/",
+  "detail": {
+    "longDescription": "Hey all,\n\nI wanted to share that we're working on zml/llmd, a fast (we believe the fastest) inference engine that currently runs on NVIDIA, AMD, Intel, TPU and Metal.\n\nIt has all the features of a modern LLM server: continuous batching, prefix-caching, speculative decoding (DFlash, DFlash2 and DSpark), tool calling, tensor and experts parallel automatic sharding, native VFS with `s3://` and `hf://` support streaming straight to GPU.\n\nThe currently supported models are:\n\n* Qwen 2, 3, 3.5, 3.6 and 3.8 series (dense and MoE)\n* Gemma 3 and 4 series (dense and MoE)\n* LFM2.5 series\n* Mistral 3 and Ministral series\n* LLaMa 2 and 3 series\n* Poolside's Laguna S 2.1\n* DeepSeek 4.1 Flash\n* Muse Glimmer\n* Qwen3.8 Flash Next\n* Xiaomi MiMo V2.6\n* Mistral Large 4\n* GLM 5.2\n* GLM 5.3\n* LFM 3\n* Beam 1.0\n* Ripple 65B\n\nOur images are a lot smaller than alternatives:\n\n|Platform|Image|Size|\n|:-|:-|:-|\n|**CUDA**|`zmlai/llmd:cuda`|**1.96 GB**|\n|**ROCm**|`zmlai/llmd:rocm`|**4.77 GB**|\n|**TPU**|`zmlai/llmd:tpu`|**272 MB**|\n|**OneAPI**|`zmlai/llmd:oneapi`|**454 MB**|\n|**Metal**|`brew install zml/zml/llmd`|**142 MB**|\n\nWe just came out with a [new release today: zml/llmd llmd-20261106.0](https://zml.ai/posts/llmd-20261106.0/) and we'd love to get your feedback on it!",
+    "developer": "siwu",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

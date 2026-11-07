@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xplb98",
+  "sourceItemId": "1xplb98",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xplb98/question_over_general_docker_usageconcept/",
+  "detail": {
+    "longDescription": "Greetings,\n\nI would like to share a problem that I'm facing with Docker, looking for some ideas.\n\nIn our company we've started to use docker hosted in an Azure DevOps cloud ubuntu machine, there we have an Azure self-hosted agent installed. We work only with firmware projects and this is our build server. We have this setup for 3 years.\n\nUsually, I generate the docker images on demand according with the project requirements.   \nIn our firmware projects hosted in git we have a yaml pipeline configuration where we set the image tag so that the proper container can be raised to process the build. \n\nWe have a requirement from safety standards (we must keep the project artifacts/infrastructure from 10 to 15 years), because of that I keep all the dependencies I need to reproduce/re-create an image as debian installers (for offline installation). I've created a script which runs prior the build process, which creates a yaml manifest containing all the image packages and include this manifest also in the image (at /etc/manifest.yaml) for runtime check. Then it's possible to verify the content via the manifest hash. Examples of dependencies we have are cmake, unit test tools, static code analyzer, and so on.  \nWe decided to keep everything in a single image because most of the tools require the compiler, so that the image complexity keeps lower as possible.\n\nAs we have different projects using the same images, we keep the Dockerfiles under version control, where the image name is the compiler version (the most significant dependency for our projects), something like this:\n\n    docker-<compiler>-<version>\n      ubuntu-24.04\n        Dockerfile\n        build-image.sh\n        manifest.yaml\n      ubuntu-22.04\n        Dockerfile\n        ...\n\nWhen a new image is generated, I tag the commit with the same tag I use in the container (e.g commit tag ubuntu24.04-v1.0-0, for a created container named gcc-13.3.0:ubuntu24.04-v1.0-0).\n\nAs our concept is based on tags, and the docker tags are not the most reliable thing in the world, I keep also the tagged image name as a LABEL within the image.  \n\n\nAt this point I ask myself if we are going in the right direction and the increased complexity in the toolchain management is because of the concept we've decided to go for, or if it's just what we have to do in order to be compliant with such safety requirements. Or even I ask if we are drifting from the docker concept or using the tool in a wrong way.\n\nI would really like to hear opinions, especially from other colleagues in similar situation.\n\n  \nThanks in advance.\n\n  \n",
+    "developer": "vaugsantos90",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

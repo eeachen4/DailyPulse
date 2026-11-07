@@ -5,8 +5,8 @@
   "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://arxiv.org/abs/2611.06079",
   "detail": {
-    "longDescription": "arXiv:2611.06079v1 Announce Type: new Abstract: Statically scheduled accelerators such as Groq's Tensor Streaming Processor (TSP) achieve low-latency large language model inference by stripping dynamic synchronization hardware from the chip. With no caches, arbiters, or hardware schedulers, the compiler must fix the exact slice and issue cycle of every operation, so when an operation runs is a condition for correctness. Existing kernel languages cannot target such machines because they rely on hardware to resolve cycle timing and instead encode schedules implicitly in code structure. We present TauLang, a kernel language and compiler that makes time a first-class citizen of the program. The programmer schedules operations, loops, and composed kernels with parameterized explicit times, so exploring schedules means changing parameter values rather than rewriting code. TauLang validates explicit times algebraically in TauIR, its timed intermediate representation. It then solves tensor placement and cycle scheduling jointly in an integer linear program, using explicit times to group connected operations into timing clusters that prune the search space. On a cycleaccurate model of a TSP-like machine, joint search achieves a $1.40\\times$ latency speedup across ten kernels over a space-first flow. A few explicit time pins keep latency within one cycle of the untimed schedules and scale joint search to 1,636 GEMM blocks, whereas untimed search finds no schedule at 32.",
-    "developer": "Xuxiao Yang, Junchi Wu, Feiyang Wu, Zhuoran Li, Shuo Tao, Dongyi Fan, Yiming Zhang, Keqin Luo, Xingrui Gao, Xuehai Qian, Youwei Zhuo",
+    "longDescription": "arXiv:2611.06079v2 Announce Type: replace Abstract: Statically scheduled accelerators such as Groq's Tensor Streaming Processor (TSP) achieve low-latency large language model inference by stripping dynamic synchronization hardware from the chip. With no caches, arbiters, or hardware schedulers, the compiler must fix the exact slice and issue cycle of every operation, so when an operation runs is a condition for correctness. Existing kernel languages cannot target such machines because they rely on hardware to resolve cycle timing and instead encode schedules implicitly in code structure. We present TauLang, a kernel language and compiler that makes time a first-class citizen of the program. The programmer schedules operations, loops, and composed kernels with parameterized explicit times, so exploring schedules means changing parameter values rather than rewriting code. TauLang validates explicit times algebraically in TauIR, its timed intermediate representation. It then solves tensor placement and cycle scheduling jointly in an integer linear program, using explicit times to group connected operations into timing clusters that prune the search space. On a cycleaccurate model of a TSP-like machine, joint search achieves a $1.40\\times$ latency speedup across ten kernels over a space-first flow. A few explicit time pins keep latency within one cycle of the untimed schedules and scale joint search to 1,636 GEMM blocks, whereas untimed search finds no schedule at 32.",
+    "developer": "Xuxiao Yang, Junchi Wu, Yuqi Peng, Feiyang Wu, Zhuoran Li, Wei Kong, Shuo Tao, Dongyi Fan, Yiming Zhang, Keqin Luo, Xingrui Gao, Xuehai Qian, Youwei Zhuo",
     "stats": [
       {
         "label": "作者",
@@ -18,11 +18,7 @@
       },
       {
         "label": "第一作者",
-        "value": "Xuxiao Yang, Junchi Wu, Feiyang Wu, Zhuoran Li, Shuo Tao, Dongyi Fan, Yiming Zhang, Keqin Luo, Xingrui Gao, Xuehai Qian, Youwei Zhuo"
-      },
-      {
-        "label": "网站",
-        "value": "arXiv.org"
+        "value": "Xuxiao Yang, Junchi Wu, Yuqi Peng, Feiyang Wu, Zhuoran Li, Wei Kong, Shuo Tao, Dongyi Fan, Yiming Zhang, Keqin Luo, Xingrui Gao, Xuehai Qian, Youwei Zhuo"
       }
     ]
   }

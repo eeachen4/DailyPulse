@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117570956762645939",
+  "sourceItemId": "mastodon.social/117570956762645939",
+  "fetchedAt": "2026-11-07T03:13:20.778Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117570956740465361",
+  "detail": {
+    "longDescription": "----------------\n\n🎯 AI\n===================\n\nExecutive summary\nMicrosoft Threat Intelligence published a report on November 3 titled \"Threat actors use agentic AI tooling to find and abuse exposed secrets.\" The headline finding is the title itself: threat actors are putting agentic AI tooling to work, and what that work hunts for is exposed secrets. The report runs about 14 minutes of reading on the Microsoft Security Blog.\n\nWhat the source actually supports\nThe version here is a title plus a short summary. It contains no actor aliases, no victim list, no IoCs, no ATT&CK technique IDs, and no named tools from the full report. Reproducing details that are not in the snippet would be speculation, so this writeup stays inside what the title and summary state and labels all background as background.\n\nContext: agentic AI tooling\nAgentic AI tooling means AI agents built on large language models that chain tasks on their own: searching sources, running code or commands, calling external tools, and iterating on partial results with light supervision. It looks like commodity agent harnesses have made this loop cheap enough to matter, though the snippet does not name any specific harness. Where a manual sweep for secrets is slow and patchy, an agent repeats the sweep, varies the queries, and processes whatever turns up inside one session.\n\nContext: exposed secrets\nExposed secrets, in standard usage, are credentials that were never meant to be public: API keys, OAuth tokens, access tokens, and cloud keys that land in public repositories, CI logs, configuration files, documentation, or paste sites. A single valid, unrotated key often grants direct access to a cloud tenant or a SaaS environment. No exploit, no malware, no phishing email. That immediacy is what makes the target set attractive.\n\nAttack Chain Analysis (title-level)\n1. Discovery: per the title, agents sweep exposed surfaces for secret material.\n2. Abuse: whatever the agent recovers gets used directly for access.\n\nThat is the full chain the title supports. Stages beyond it, lateral movement, persistence, or monetization, are not in the snippet.\n\nDefensive notes (standard practice, not from the snippet)\nThe summary does not carry the report's own guidance, so the notes below are general practice around exposed secrets:\n1. Run secret scanning at pre-commit, repository, and CI pipeline levels, not only at deploy time.\n2. Rotate anything exposed immediately, and prefer short-lived credentials where the platform supports them.\n3. Baseline automated, repetitive secret-hunting patterns, since agent-driven sweeps look different from one-off manual leaks.\n4. Audit internal agent deployments that can read code or logs, because they quietly expand what \"exposed\" means inside an org.\n\nReferences\nMicrosoft Threat Intelligence, report published November 3, 2025, on the Microsoft Security Blog. The full text is the source of record for actor names, tooling specifics, and guidance.\n\n🔹 ThreatIntelligence #AgenticAI #ExposedSecrets #SecretManagement #AI\n\n🔗 Source: https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

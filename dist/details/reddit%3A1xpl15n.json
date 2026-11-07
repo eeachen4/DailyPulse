@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xpl15n",
+  "sourceItemId": "1xpl15n",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xpl15n/first_paper_on_how_to_train_actual_sota_decision/",
+  "detail": {
+    "longDescription": "  \nhey **r/LLMDevs** folks! my name is Alt, and I'm on the technical staff at Nace AI - Research Lab. .\n\nwe just published a principled 50-page technical report detailing how our Drex decision models are built, trained, and evaluated. We believe our report is the first meaningful contribution in the community to defining decision models and describing how to train them. In it, we reveal several innovative techniques in post-training such as Reinforcement Learning from Adjusted Feedback (RLAF), confidence calibration, and option shuffling, that allowed Drex to stay SOTA for several weeks straight.\n\nOur models were already open sourced earlier - Drex DLM, v1.5, v2.0, Drex Max (links below).\n\nSome interesting technical details:\n\n**1. Models**\n\n\\* Specialized family of models ranging from 9B to 35B parameters in size\n\n\\* Various architectures including Dense Causal Transformers, Diffusion LMs, Mixture of Experts  \n  \n\\* Experimental design choices like partial or full bidirectional attention, sparse attention, and tuned pointer decision heads.\n\nhttps://i.redd.it/79e830mjh10i1.png\n\n\n\n[](https://preview.redd.it/first-paper-on-how-to-train-actual-sota-decision-models-v0-ud9ub9rvg10i1.png?width=1502&format=png&auto=webp&s=09432c346f78d5e7b9361b490330c93ea52268d5)\n\n**2. Training**\n\n\\* Full-parameter SFT on \\~1.15M verified decision records\n\n\\* Consistency training for option ordering and state shuffling\n\n\\* RLAF with verified outcomes and judge feedback\n\n\\* Ablation studies examining which methods actually contributed to performance\n\nInterestingly, most of Drex's improvements came from SFT, while RLAF delivered smaller gains and improved calibration.\n\n**3. Evaluation**\n\n\\* Drex v1.5 has accuracy of 93.4% on our long context benchmark: 32K–128K tokens\n\n\\* 1.37% calibration ECE for Drex v2.0 on \\~115K held-out decisions\n\n\\* Option-order shuffling changes the top answer in 4-6% of decisions, without changing aggregate accuracy\n\n\\* <100 ms latency on 128K-token context\n\nWe also discuss limitations, including closed-book knowledge and missing same-backbone architecture ablations.\n\n**4. Running locally**\n\nThe models are available in safetensors and GGUF formats, with llama.cpp and Ollama support. Our report includes details on quantization, caching, inference, and reproducibility.\n\n**Links:**\n\n\\* Paper link: [https://arxiv.org/pdf/2611.07854](https://arxiv.org/pdf/2611.07854)\n\n\\* Technical blogpost: [https://www.nace.ai/research/towards-foundation-decision-models](https://www.nace.ai/research/towards-foundation-decision-models)\n\n\\* Model weights: [https://huggingface.co/collections/nace-ai/drex](https://huggingface.co/collections/nace-ai/drex)\n\n\\* Github repo: [https://github.com/nace-ai/drex-decision-models](https://github.com/nace-ai/drex-decision-models)\n\nWe wanted to document the architecture and training methodology publicly, rather than just share the benchmark results.\n\nHopefully it's useful for anyone experimenting with local agent routers, tool selection, or training their own decision models.",
+    "externalUrl": "https://i.redd.it/c909x2tkh10i1.png",
+    "developer": "m4rkGS",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xplbuu",
+  "sourceItemId": "1xplbuu",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xplbuu/muir_linear_attention_with_sensitivityallocated/",
+  "detail": {
+    "longDescription": "Paper: [https://arxiv.org/abs/2611.08376](https://arxiv.org/abs/2611.08376)  |  HF: [https://huggingface.co/papers/2611.08376](https://huggingface.co/papers/2611.08376)\n\nAt 10M tokens, a 1.3B Transformer needs 2.1 TB of KV cache (0.32 TB even at 2.5-bit quantization). Channel-wise gated delta models (like Gated DeltaNet-2 / GDN-2) compress history into a fixed 25 MB state, but hit three bottlenecks across 100B-token training that *Muir* (Google Research) resolves:\n\n* **100x slow-channel glare -> Matched-filter readout:** Slow-decaying rows accumulate up to 100x more energy than fast rows, swamping query readout and forcing harsh write-time erasure that overwrites early facts. Equalizing rows via an inverse fractional power law + per-token query modulation relaxes write erasure by 17% and extends lookback horizon by 60%.\n* **13x write-vs-erase sensitivity -> +30.4% wider FFN:** Normalized keys concentrate onto \\~5% of state rows while values stay diffuse, making updates 13x more sensitive to value writes than key erasure. Fusing all 5 gates into one rank-512 projection cuts gate parameters 4.5x to widen the FFN by +30.4% at strict parameter budget.\n* **Numerically-stable, large-chunk parallel kernel:** Unpivoted decay division underflows fp32 and NaNs 25% of heads at large chunk sizes. Boundary-pivoted multiplicative decays stay in (0, 1\\] with zero division, while a recursive block-Neumann solver routes 98% of chunkwise FLOPs onto matrix units (24x fewer vector FLOPs).\n\nhttps://i.redd.it/1pm0m4cch10i1.png\n\nhttps://i.redd.it/azwcmirah10i1.png\n\nResults:\n\n* **Quality and speed:** Beats GDN-2 and Transformer on perplexity and zero-shot reasoning at every scale (1.2x token efficiency vs. GDN-2), and trains 2.7x faster than Splash Attention at 32K.\n* **Recall beyond passkey:** Compared to GDN-2, lifts RULER 5-hop Variable Tracking root retention (28.4% -> 48.0%), early-depth recall at 8K (1% -> 31%), and real-world extractive QA (+2.5 avg pts).\n* **10M streaming and 1M passkey:** Streams 10M tokens without perplexity drift in a 25 MB state (dynamic readout), and hits 90.0% zero-shot / 99.4% post-cooldown passkey accuracy at 1M tokens (static readout, where GDN-2 collapses past 4K-8K and Transformer OOMs past 64K).",
+    "developer": "CategoryNormal149",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
