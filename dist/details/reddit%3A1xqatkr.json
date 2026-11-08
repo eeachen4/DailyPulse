@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqatkr",
+  "sourceItemId": "1xqatkr",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xqatkr/winappmigrator_05_turn_an_installed_windows_app/",
+  "detail": {
+    "longDescription": "WinAppMigrator is a free, open-source (MIT) Windows tool I made. You pick an installed app, on this PC or on a drive pulled out of one that won't boot, and it builds one self-extracting installer you run on the other machine. It works backward from what's installed, so it helps when the original installer or the vendor is gone.\n\nThat makes it most useful for older paid apps you can't just download again. You choose whether the license migrates too: tick \"License and activation data\" and its license files, values and stores go in the installer, and it reports which ones look tied to the old machine. It never decrypts license data or bypasses activation, so a license locked to the old hardware may still need reactivating.\n\nWhat else goes in: program files, the app's registry keys, services and drivers it owns, scheduled tasks, shortcuts, file types, COM classes, firewall rules, and the Visual C++ and .NET 6 to 10 runtimes it needs, embedded so they install offline. User data is optional too. Anything that looks like a password, token or private key is left out and named before you build.\n\n0.5 is a big update:\n\n- Before you build, it shows what goes in, how big the installer can be and whether it fits. Untick folders, services or tasks you don't want, and it offers near matches that exact names missed.\n- The installer checks its package's hashes, lists everything it will set up before it changes anything, rolls back if the install fails or you cancel, and uninstalls from Settings like any other app.\n- Builds are much faster (nearly 10x on the largest app measured), and a connected drive is treated as untrusted.\n- CI moves 7-Zip, PuTTY, Mosquitto, windows_exporter and Git LFS to fresh Windows Server 2022, Server 2025 and Windows 11 on Arm machines on every push, and checks they actually work there.\n- The app is now signed.\n\nLimits, so nobody gets surprised: Microsoft Store apps aren't listed, the app's own updater may not know it moved, and if a drive is failing, image it first. Try an installer before you rely on it.\n\nPortable exe, nothing to install: https://github.com/RandyNorthrup/WinAppMigrator",
+    "developer": "randynorthrup",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015187",
   "sourceItemId": "80015187",
+  "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015187/where-to-add-the-enable-native-access-all-unnamed",
   "detail": {
     "longDescription": "I was upgrading some code that helps changing an HTML project to an APK. All is working, but I keep getting the following warning: WARNING: A restricted method in java.lang.System has been called WARNING: java.lang.System::loadLibrary has been called by org.conscrypt.NativeLibraryUtil in an unnamed module (file:/home/user/.android/sdk/build-tools/37.0.0/lib/apksigner.jar) WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module WARNING: Restricted methods will be blocked in a future release unless native access is enabled The code has the following steps : subprocess.run([ TOOLS[\"aapt2\"], \"compile\", \"--dir\", self.res_dir, \"-o\", compiled_res_zip ], check=True, stdout=subprocess.DEVNULL) subprocess.run([ TOOLS[\"aapt2\"], \"link\", \"-I\", TOOLS[\"android_jar\"], \"--manifest\", os.path.join(self.build_dir, \"AndroidManifest.xml\"), \"-o\", os.path.join(self.build_dir, \"temp_link.apk\"), \"--java\", os.path.join(self.build_dir, \"gen\"), compiled_res_zip, \"--auto-add-overlay\" ], check=True, stdout=subprocess.DEVNULL) subprocess.run([ \"javac\", \"--release\", JAVA_VERSION, \"-sourcepath\", TOOLS[\"android_jar\"], \"-classpath\", TOOLS[\"android_jar\"], \"-J--enable-native-access=ALL-UNNAMED\", # <-- test it there os.path.join(self.src_dir, \"MainActivity.java\"), r_java ], check=True) subprocess.run([ TOOLS[\"d8\"], \"--output\", self.build_dir, \"--lib\", TOOLS[\"android_jar\"], *class_files ], check=True) subprocess.run([ TOOLS[\"aapt2\"], \"link\", \"-I\", TOOLS[\"android_jar\"], \"--manifest\", os.path.join(self.build_dir, \"AndroidManifest.xml\"), \"-o\", unaligned_apk, \"-A\", self.assets_dir, compiled_res_zip, \"--auto-add-overlay\" ], check=True, stdout=subprocess.DEVNULL) subprocess.run([ TOOLS[\"apksigner\"], \"sign\", \"--ks\", self.keystore_path, \"--ks-pass\", \"pass:android\", \"--out\", final_apk, unaligned_apk ], check=True, stdout=subprocess.DEVNULL) As you can see, I have try to add it in the 'javac' call with its '-J' option (-J<flag> : Pass <flag> directly to the runtime system), but I keep getting the same warning. I tried to add it as-is (without the -J prefix) and to other calls, but I either get the same warning or they outright say that they don’t know this flag. Am I missing something? Are there some steps missing?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "99"
+        "value": "158"
       },
       {
         "label": "状态",

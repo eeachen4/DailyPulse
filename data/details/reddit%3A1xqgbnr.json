@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqgbnr",
+  "sourceItemId": "1xqgbnr",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xqgbnr/troubleshooting_a_kubernetes_controlplane_failure/",
+  "detail": {
+    "longDescription": "I recently worked through a difficult recovery scenario in a self-managed Kubernetes environment. I'm sharing the technical lessons without identifying the infrastructure or exposing operational details.\n\nThe main problem was that the control plane became unavailable following an underlying storage failure. Some workloads continued running on the workers, which made the platform failure less obvious than a complete cluster shutdown.\n\nThe more serious issue was that the control-plane state had no independently validated backup available for a straightforward restore.\n\n# What made recovery difficult?\n\nThere were several distinct problems:\n\n* The control plane was a single point of failure.\n* The storage failure affected the VM hosting the control-plane services.\n* The original etcd database was structurally damaged.\n* Some workers continued running existing workloads despite API unavailability.\n* After extended API unavailability, restarting the kubelets was necessary to recover normal pod-management behavior on affected workers.\n\nThe first lesson was that a running application does not necessarily mean the Kubernetes control plane is healthy.\n\nExisting containers can continue running without normal communication with the API server, while new scheduling, reconciliation, and management operations are impaired.\n\n# Recovery approach\n\nI recovered the control-plane VM data from damaged storage and rebuilt a compatible control-plane environment.\n\nRestoring etcd exposed a second problem: the database could not pass its structural checks.\n\nLow-level bbolt inspection and page-level repair helped make further recovery possible. The important distinction is that this was an emergency recovery technique, not a recommended database maintenance procedure.\n\nAfter recovering enough state to proceed, the critical steps were to create a snapshot, test its restoration in an isolated environment, and establish a clean recovery baseline.\n\nOperating on the patched original for longer than necessary was a mistake. A database that has been manually repaired should not be treated as trustworthy merely because it starts.\n\n# What I would change\n\n1. Use an appropriate highly available control-plane architecture for the required availability target.\n2. Schedule etcd snapshots and store them outside the control plane's storage failure domain.\n3. Test snapshot restoration regularly, rather than checking only whether snapshot creation succeeded.\n4. Document the control-plane rebuild process, including version compatibility, PKI, and cluster identity considerations.\n5. Monitor API availability independently of application availability.\n6. Test how workers behave during prolonged API unavailability and document the recovery procedure.\n\nOne important caveat: multiple control-plane nodes improve availability, but they do not eliminate the need for independent backups or protect against every shared-storage and data-corruption scenario.\n\nFor people running self-managed Kubernetes: **how do you test your etcd disaster-recovery procedure?** Do you regularly restore snapshots into an isolated environment, or have you only tested backup creation so far?",
+    "developer": "ibrahim_djadir",
+    "comments": 11,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

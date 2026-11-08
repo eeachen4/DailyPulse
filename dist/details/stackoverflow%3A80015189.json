@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015189",
   "sourceItemId": "80015189",
+  "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015189/docker-registry-v2-unexpectedly-losing-image-tags-despite-cleanup-retention-rule",
   "detail": {
     "longDescription": "We are using a self-hosted Docker Registry v2 ( registry:2 ) to store container images for our applications. Our CI/CD pipelines publish images with tags such as: main-123 dev-456 staging-789 production-101 We have a scheduled Bash cleanup script that is intended to retain the latest three images per environment (tag prefix) in each repository and delete older images. However, we have noticed that some image tags disappear unexpectedly, including cases where the only remaining tag for an environment is removed . For example, one repository had a single staging-* image, but that tag disappeared even though our cleanup logic should have protected it. We have temporarily disabled the cleanup cron job while investigating. We suspect that another process, registry configuration, or storage-level mechanism might be responsible for deleting images, but we have not identified the cause. My questions are: Does Docker Registry v2 have any built-in image expiration, retention, or automatic deletion mechanism? Are there any registry or storage settings that could cause images or tags to disappear automatically? Is there a way to audit or log image deletion requests to identify which process initiated them? What is the recommended approach to safely implement image retention and garbage collection without accidentally removing the last image for a branch or environment? Any suggestions on troubleshooting or identifying the root cause would be appreciated.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "89"
+        "value": "99"
       },
       {
         "label": "状态",

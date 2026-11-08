@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqj8az",
+  "sourceItemId": "1xqj8az",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqj8az/ever_blamed_your_llm_for_something_that_was/",
+  "detail": {
+    "longDescription": "Ok so this happened this week and I feel kind of dumb about it.\n\n I'm building a memory thing for company AI, my users are French. I was testing other models to maybe replace gpt-oss-120b, using the exact prompts my app sends. One answer came back completely in Dutch, for a normal French question. I was pretty sure gpt-oss was the problem and I was already looking at other models.\n\n Then I opened the actual prompt and at the bottom there's a line from my own language detection telling the model to answer in Dutch. Like, an absolute rule. So it did lol.\n\n The detection just counts small words, and the question had \"de\" twice and \"en\" once, which it thought were Dutch. Only one word it saw as French. So the whole conversation switched to Dutch.\n\n I fixed it with more French words and a rule that if there's é or à or ç in the message it can't switch to English/Dutch/German. Seems ok now, real Dutch still gets detected.\n\n Honestly the prompt is like 15k characters now with a bunch of parts adding instructions, so I guess any of them can make the model look bad.\n\n Do you guys log the full final prompt for every request? Or how do you catch stuff like this?",
+    "developer": "Initial_Orange2985",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

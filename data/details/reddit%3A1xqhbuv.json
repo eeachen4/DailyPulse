@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqhbuv",
+  "sourceItemId": "1xqhbuv",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xqhbuv/i_built_pacboard_a_readonly_dashboard_for_tekton/",
+  "detail": {
+    "longDescription": "We moved our CI from Jenkins to Tekton with Pipelines-as-Code. The Tekton Dashboard worked, but for PR-driven CI it shows a flat list of PipelineRuns and knows nothing about GitHub. So I wrote pacboard.\n\nWhat it does:\n\n- **Repositories grouped by health**: failing first, the last runs as a strip, typical duration, and a flag when the same commit both passed and failed (flaky).\n- **Failure banner**: the failed task and step and the first `::error::` line from its log, with a button that jumps to that line.\n- **A correct graph**: `runAfter`, result-reference edges, `finally`, matrix fan-out (×N) and skipped tasks.\n- **Live**: step logs stream while running, and status updates arrive over SSE.\n- **Links back to GitHub**: PR, commit and check run. It also understands old Tekton Dashboard deep links, so the PaC console URLs keep working.\n- **Optional rerun**: `/retest` is posted as a PR comment with the logged-in user's GitHub token, so PaC's own ACL decides.\n\nDesign choices:\n\n- **Read-only on the cluster**: the ClusterRole is get/list/watch only, plus `pods/log`.\n- **One Go binary with the UI embedded**, no database; state comes from informers.\n- **Auth**: GitHub OAuth with an org gate, or none behind a VPN.\n\nInstall with Helm:\n\n    helm install pacboard oci://ghcr.io/m0rf30/charts/pacboard --version 0.2.0\n\n- Repo: https://github.com/M0Rf30/pacboard\n- Artifact Hub: https://artifacthub.io/packages/search?repo=pacboard",
+    "externalUrl": "https://i.redd.it/2qk2tczlc90i1.png",
+    "developer": "M0Rf30",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

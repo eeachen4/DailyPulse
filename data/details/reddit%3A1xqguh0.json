@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqguh0",
+  "sourceItemId": "1xqguh0",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqguh0/open_source_steerforge_dataset_driven_activation/",
+  "detail": {
+    "longDescription": "I open sourced SteerForge, a pipeline for turning a contrastive dataset into a portable steering artifact.\n\nThe artifact is a .persona JSON file containing:\n- model fingerprint\n- human readable neuron edits\n- canonical per layer residual vectors\n- eval samples and scores\n- the original server command\n\nThe serving path is the part I care about: steerforge serve evil.persona replays your existing llama.cpp or Transformers config and injects the persona. No model conversion for the persona itself; the neuron deltas collapse to residual vectors.\n\nDiscovery is staged: diff in means directions, gradient attribution plus firing contrast plus alignment, teacher forced screening, generation validation, dose search, greedy combination, coherence budget.\n\nCurrent backends: Transformers, llama.cpp, vLLM with EasySteer, MLX dense. MoE models use dense residual steering.\n\nRepo: https://github.com/MahmoudAdelbghany/steerforge\nResults: docs/RESULTS.md\n\nFeedback on the .persona format, backend adapters, and eval methodology welcome.",
+    "developer": "Abghany",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015095",
   "sourceItemId": "80015095",
+  "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015095/why-does-milvus-query-fail-with-vector-float-when-sorting-by-an-integer-id",
   "detail": {
     "longDescription": "I'm using PyMilvus to retrieve IDs and their stored vectors, ordered by the integer primary key. The vector is only included in output_fields ; It is not a sorting key. My environment is: Milvus server build: 3.0-20260810-e2820e273c PyMilvus: 3.0.1rc48 Cluster deployment with Woodpecker Here is a minimal example using a collection with an INT64 primary key and a four-dimensional FLOAT_VECTOR field: import uuid from pymilvus import DataType, MilvusClient client = MilvusClient(uri=\"http://localhost:19530\") name = \"ordered_vectors_\" + uuid.uuid4().hex[:12] schema = client.create_schema( auto_id=False, enable_dynamic_field=False, ) schema.add_field(\"id\", DataType.INT64, is_primary=True) schema.add_field(\"vector\", DataType.FLOAT_VECTOR, dim=4) indexes = client.prepare_index_params() indexes.add_index( field_name=\"vector\", index_name=\"vector_index\", index_type=\"AUTOINDEX\", metric_type=\"L2\", ) client.create_collection( collection_name=name, schema=schema, index_params=indexes, consistency_level=\"Strong\", ) client.insert( collection_name=name, data=[ {\"id\": i, \"vector\": [float(i), 0.0, 0.0, 0.0]} for i in range(10) ], ) client.load_collection(name) query_args = { \"collection_name\": name, \"filter\": \"id >= 0\", \"limit\": 10, \"consistency_level\": \"Strong\", } # This works: return IDs sorted by ID. ids_only = client.query( **query_args, output_fields=[\"id\"], order_by_fields=[\"id:asc\"], ) assert [row[\"id\"] for row in ids_only] == list(range(10)) # This also works: return IDs and vectors without ordering. with_vectors = client.query( **query_args, output_fields=[\"id\", \"vector\"], ) assert len(with_vectors) == 10 assert all(\"vector\" in row for row in with_vectors) # This fails: return IDs and vectors, sorted by ID. result = client.query( **query_args, output_fields=[\"id\", \"vector\"], order_by_fields=[\"id:asc\"], ) The final call raises Milvus error code 2000 , with this message excerpt: Operator::GetOutput failed for [Operator:Project Operator] unsupported data type VECTOR_FLOAT I expected ten rows ordered by id from 0 to 9 , each containing its stored vector. For this two-field schema, using output_fields=[\"*\"] produces the same error. Why does adding the vector to output_fields cause this query to fail when order_by_fields contains only the integer primary key?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "87"
+        "value": "131"
       },
       {
         "label": "状态",

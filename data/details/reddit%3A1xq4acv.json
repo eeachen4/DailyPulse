@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xq4acv",
+  "sourceItemId": "1xq4acv",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xq4acv/is_committing_configonly_env_files_no_secrets_to/",
+  "detail": {
+    "longDescription": "I'm working on a project split across several private GitHub repos. The ones that matter here are the Docker repo, the backend and an indexer. Each has its own .env files, and what's in them falls into three groups:\n\n\\- Secrets like DB passwords, API keys and tokens\n\n\\- Infra config such as private IPs of our fixed servers\n\n\\- Backend tuning parameters we adjust depending on VPS size and load\n\nSome fine gentleman on X posted this. \"Not pushing .env files even to a private repo is like locking your front door but still keeping your valuables in a safe.\" I fully agree with that for secrets. They stay out of git, no debate there.\n\nThis is only about the config part. Having it in the repo would make DevOps work a lot easier. We'd get change history and PR review when someone tweaks a value, and no more copying files around by hand when setting up a server or onboarding someone.\n\nMy main concern is whether committing config-only .env files to a private repo is an actual security problem, or if \"never commit .env\" is really just about secrets. Also, is it a \"security sin\" to push a .env with private IPs? And how do you split secrets from config in practice, especially across multiple repos?\n\nThanks in advance!",
+    "developer": "tomoglava",
+    "comments": 43,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

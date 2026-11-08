@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xq2aem",
+  "sourceItemId": "1xq2aem",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xq2aem/a_pdb_can_block_a_node_drain_while_your/",
+  "detail": {
+    "longDescription": "For a three-replica Deployment, `minAvailable: 3` in a PodDisruptionBudget doesn't force a rollout to keep all three available. The Deployment controller uses its own rolling-update settings.\n\nTake this synthetic example: three Ready and available Pods, no other failures or scaling, and a PDB that selects those same three Pods. Relevant fields only; the normal Deployment selector and Pod template are omitted:\n\n    # Deployment.spec\n    replicas: 3\n    strategy:\n      type: RollingUpdate\n      rollingUpdate:\n        maxUnavailable: 1\n        maxSurge: 0\n\n    # PodDisruptionBudget.spec\n    minAvailable: 3\n    selector:\n      matchLabels:\n        app: api\n\nOnce the PDB status has caught up:\n\n| Operation | Result under these settings |\n|---|---|\n| Evict one healthy Pod through the Eviction API, as a normal node drain does | Blocked: the healthy-Pod eviction budget is `3 - 3 = 0`. |\n| Roll out a new Deployment Pod template | The controller can reduce availability to `3 - 1 = 2` while replacing replicas. |\n\nWith `maxSurge: 0`, the Deployment can scale down the old ReplicaSet before the replacement becomes available. The PDB doesn't veto that scale-down. Kubernetes' [disruption documentation](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-budgets) states that workload controllers aren't limited by PDBs during rolling upgrades.\n\nThe unavailable Pod still counts against the disruption budget. A drain can therefore remain blocked during the rollout, even though the PDB did not prevent the rollout from taking that Pod down.\n\nIf the release requirement is to retain three available replicas during a normal update, `maxUnavailable: 0` with `maxSurge: 1` expresses that in the Deployment. You need capacity and suitable placement for the new Pod; if it can't schedule, the rollout can stall. Review readiness and `minReadySeconds` too: those determine when the controller considers a new Pod available. They don't establish that the application can handle the traffic.\n\nChoose the PDB for the maintenance policy you can support. Requiring all three healthy replicas while running exactly three leaves no room for a healthy-Pod eviction.\n\n[Deployment strategy reference](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy).\n\nAI helped research and draft this post. The example is synthetic; it wasn't run on a cluster.",
+    "developer": "MongooseWonderful198",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

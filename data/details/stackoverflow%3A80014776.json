@@ -5,7 +5,7 @@
   "fetchedAt": "2026-11-06T03:41:49.625Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014776/bug-between-v10-7-and-v10-8-and-later",
   "detail": {
-    "longDescription": "Using OpenLayers since 2015, I moved smoothly to latest version up to v10.7. The bug occurs since v10.8 (and later to v10.11). The instruction that fails - in try...catch - is right after printing \"before\": console.log(\"before ...\"); // 1. Create an initially empty map. const olMap = new OLMap({ target: options.target, view: new View({ 'center': fromLonLat(options.center), 'zoom': options.zoom, 'extent': WERMAEXTENT, 'projection': OUTPROJ }) }); console.log(\"after map\"); which yields: before ... Uncaught (in promise) Error: Error: in prepareMap t.view.then is not a function for I can console.log just before but not after. I am stuck in v10.7 and I dont know from where promise t.view may come. The release notes for v10.8 mention \"Functions for transforming a promise for a view by @tschaub in #17197\" but I do not see what could be at fault",
+    "longDescription": "Using OpenLayers since 2015, I moved smoothly to every latest version up to v10.7. The bug occurs since v10.8 (and later to v10.11). The instruction that fails - in try...catch - is: import OLMap from 'https://esm.sh/ol@10.11.0/Map.js'; import View from 'https://esm.sh/ol@10.11.0/View.js'; import { fromLonLat, transformExtent} from 'https://esm.sh/ol@10.11.0/proj.js'; function makeView(center, zoom) { try { const OUTPROJ = 'EPSG:3857'; //ol-featureprojection = Pseudo-Mercator const GPSPROJ = 'EPSG:4326'; //geojson-dataprojection = GPS geographic console.log(`OUTPROJ ${OUTPROJ}, zoom ${zoom}, center ${center.join()}`); const WERMAEXTENT = transformExtent([-10.5,35.7,19.3,58.7], GPSPROJ, OUTPROJ); center = fromLonLat(center); console.log(`GPSPROJ ${GPSPROJ}, center ${center.join()} no WERMAEXTENT`); return new View({ 'center': center, 'zoom': zoom, 'extent': WERMAEXTENT, 'projection': OUTPROJ }); } catch (err) { throw Error(`in makeView ${err.message}`) } } // ... try { console.log(\"before ...\"); const olMap = new OLMap({ target: options.target, view: makeView(options.center, options.zoom) }); console.log(\"after map with VIEW\"); // ... } catch ... which yields: before ... OUTPROJ EPSG:3857, zoom 9, center 2.43,46.6 GPSPROJ EPSG:4326, center 270506.3626276548,5877026.55203768 no WERMAEXTENT Uncaught (in promise) Error: Error: in prepareMap t.view.then is not a function instead of (with 10.7): before ... OUTPROJ EPSG:3857, zoom 9, center 2.43,46.6 GPSPROJ EPSG:4326, center 270506.3626276548,5877026.55203768 no WERMAEXTENT after map with VIEW ... Hence, the promise t.view comes from Map or View, what is puzzling.",
     "developer": "allez l&#39;OM",
     "comments": 1,
     "stats": [
@@ -19,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "86"
+        "value": "100"
       },
       {
         "label": "状态",

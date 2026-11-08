@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015253",
   "sourceItemId": "80015253",
+  "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015253/how-can-i-serialize-a-python-3-15-sentinel-value-to-json-and-restore-its-identit",
   "detail": {
     "longDescription": "I'm testing the new sentinel type in Python 3.15. I want to use a sentinel to distinguish a missing value from None . Here is my code: import json MISSING = sentinel(\"MISSING\") data = { \"name\": \"John\", \"age\": MISSING } print(json.dumps(data)) This raises a TypeError because the sentinel is not JSON serializable. I also tried converting it to a string: data[\"age\"] = str(MISSING) encoded = json.dumps(data) decoded = json.loads(encoded) print(decoded[\"age\"] is MISSING) But this returns False . Is there a simple way to serialize a sentinel to JSON and restore it as the original sentinel object when decoding, while keeping it different from ordinary strings?",
     "developer": "Daniel Sodkiewicz",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "43"
+        "value": "145"
       },
       {
         "label": "状态",

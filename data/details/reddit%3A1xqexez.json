@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqexez",
+  "sourceItemId": "1xqexez",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqexez/multiagent_fiction_one_model_per_character_plus_a/",
+  "detail": {
+    "longDescription": "I've been running a weekly mystery serial where every character is a separate agent, with a \"Director\" agent running the scenes. Output so far is here if you want to judge the result: [https://saltmarrow.substack.com/p/chapter-1-the-night-the-bay-glowed](https://saltmarrow.substack.com/p/chapter-1-the-night-the-bay-glowed)\n\n\n\n\\*\\*The setup\\*\\*\n\n\n\n\\- \\*\\*Actors + Director: DeepSeek V4.1 Flash.\\*\\* Each actor only sees its own character's secrets. The Director holds the season plan, sets each scene's goal, and calls CUT.\n\n\\- \\*\\*Narrator + Editor: GLM-5.3.\\*\\* Turns the scene transcripts into chapters. Noticeably better prose than Flash.\n\n\\- \\*\\*A shared lorebook\\*\\* for world facts, plus a separate continuity pass after each chapter.\n\n\n\n\\*\\*What broke\\*\\*\n\n\n\n\\- \\*\\*GLM's reasoning ate the whole reply budget\\*\\* and returned empty chapters. Setting reasoning effort to low fixed it.\n\n\\- \\*\\*A 4k context made the agents forget the scene\\*\\* halfway through. At 64k, the drift mostly went away.\n\n\\- \\*\\*Flash invents facts\\*\\* that contradict earlier chapters. The lorebook plus the continuity pass catches most of it.\n\n\\- \\*\\*Agents speak for each other.\\*\\* An actor will write another character's lines, or even a fake Director line. Right now I trim the output after the first foreign speaker name.\n\n\\- \\*\\*The Director never called CUT on its own,\\*\\* even when told to. A short injected producer note works every time.\n\n\n\n\\*\\*Verifiability:\\*\\* I locked the season's ending before Chapter 4 and published its SHA-256 hash, so readers can check at the finale that I didn't steer the story. Only the Director knows the ending.\n\n\n\n\\*\\*Question for this sub:\\*\\* how are you handling multi-agent turn-taking? I'm using a Director agent plus manual triggers. When one agent keeps talking for the others, what's worked for you: stop sequences, structured output, or a separate router?",
+    "developer": "chappieblu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

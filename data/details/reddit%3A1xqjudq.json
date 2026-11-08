@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqjudq",
+  "sourceItemId": "1xqjudq",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqjudq/we_opensourced_gelato_a_protocol_for_connecting/",
+  "detail": {
+    "longDescription": "We’ve open-sourced Gelato, an Apache-2.0 protocol and SDK stack for connecting AI systems to phones, smart glasses, cameras, and embedded devices.\n\nWe built it around a problem we kept encountering: multimodal models can understand images, audio, and instructions, but connecting them to real hardware usually requires a separate integration for every model–device combination.\n\nGelato separates the system into three parts:\n\n* A device agent advertises the capabilities available on that device.\n* A controller handles pairing, identity, routing, media, commands, cancellation, and policy.\n* An optional model runtime interprets device input or proposes actions.\n\nAn important boundary is that the model never receives device-pairing credentials and cannot execute actions directly. It can propose an action, but the controller and device retain control over whether it is routed and executed.\n\nThe current MVP includes:\n\n* Android and iPhone\n* Rokid smart glasses\n* Seeed XIAO ESP32S3 Sense camera\n* Qwen Live, Codex, provider-neutral HTTP, and StreamingTelligence model integrations\n\nhttps://i.redd.it/6jg0rdcdx90i1.png\n\nhttps://i.redd.it/g7uczwyex90i1.png\n\nRepository: [https://github.com/StreamingTelligence/Gelato](https://github.com/StreamingTelligence/Gelato)  \n1:46 demo: [https://streamingtelligence.com/blog/gelato-v1#demo](https://streamingtelligence.com/blog/gelato-v1#demo)  \n",
+    "developer": "Milo_Bindu",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

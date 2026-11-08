@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqhapy",
+  "sourceItemId": "1xqhapy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqhapy/i_made_my_research_agent_say_i_dont_know_instead/",
+  "detail": {
+    "longDescription": "I've been building a multi-agent research system (supervisor → retrieval → sandbox → synthesizer → critic). The part that took the most work wasn't the report. It was stopping the model from filling gaps with made-up facts.\n\nWhat ended up working:\n\n\\- Every claim in the report has to point to a snippet from a fetched page, and that snippet is checked word for word against the page. If it's not there, the claim fails.  \n\\- The model never does math. Prices and metrics are calculated in a sandbox with code, and the critic recomputes them.  \n\\- Facts and hypotheses are kept separate. If the evidence isn't strong enough, the verdict is \"inconclusive\" instead of a confident guess.  \n\\- 8 rule-based checks run first, then an LLM judge. If something fails, the report goes back for revision.\n\nIn a test run on Stripe's public pages: 108 citations verified, 60 prices extracted, and 2 of 3 hypotheses came back inconclusive because the evidence wasn't there. Honestly that was the result I was happiest with.\n\nTry it: https://nexus-agent-rub3.onrender.com (free hosting, so the first run can take \\~40s to wake up)  \nCode: https://github.com/santinogenta27/nexus-agent\n\nI'm thinking about pulling the critic out into its own library so it works with any agent (LangChain, Vercel AI SDK, plain API calls). You'd pass it the answer and the sources, and it tells you which claims are backed and which aren't.\n\nTwo questions for people shipping agents:  \n1. How do you catch made-up numbers or citations today?  \n2. Would you use something like this, or is it easier to build your own?",
+    "externalUrl": "https://nexus-agent-rub3.onrender.com",
+    "developer": "ApprehensiveMark1308",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "nexus-agent-rub3.onrender.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

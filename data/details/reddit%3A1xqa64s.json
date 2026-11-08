@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqa64s",
+  "sourceItemId": "1xqa64s",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xqa64s/left_my_job_to_run_ci_on_bare_metal_boxes_2/",
+  "detail": {
+    "longDescription": "Disclosure first since mods are strict here, I run compiler.dev. not linking it, this isnt a pitch, I actually want to be told if im wrong.\n\nso quick background. I was founding engineer at a  tech startup, we got to \\~15 engineers. around engineer 10 our github actions bill went from “whatever” to something I had to justify to the CTO every month. and the annoying thing was it kept going up while the runs got slower??  \n\n anyway I left and did the thing I’d been muttering about for a year.  bought a few  AX102s  and built a runner service on top. you change runs-on, thats it. the economics are just a different sport when you own the box, I can undercut blacksmith by a lot and still make some lunch money.  \n\nthings that bit me, not the things I expected:\n\ncapacity planning is the whole product. cloud brain says “just scale up” but I cant spin up a physical server in 30 seconds. so we do commit first, you lock in a period, I provision, then you go live. thought it would scare people off. the 4e companies paying didnt care because their bill became smaller. but im not sure a 1000+ eng team would accept it.\n\nspeed wasnt were I thought. literally nobodys pipeline is slow because of compiling. its postgres migrations, cold caches, docker pulls and 40 seconds of npm install. bare metal with a warm local cache fixed most of it by accident. its I/O not CPU.\n\nthe one I didnt plan for and now think is the actual thing: coding agents. everyone has claude code or codex going and they want the full test suite on every iteration. on a laptop its miserable, on hosted runners it eats minutes insanely fast. so we satrted giving agents their own VM with the repo + a db, and letting two people or a person and an agent share one. people ask about that more than the CI now and I cantt tell if its a real signal or just shiny.\n\nso, for people who’ve done this longer than 3 months. if you left hosted runners what did you go to and what bit you after 6 months not 6 days? and is owning hardware an actual moat or just a cost advantage somebody with more money erases in a year. thats the one keeping me up. Please be nice but direct. ",
+    "developer": "cashrichman",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

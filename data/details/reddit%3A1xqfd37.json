@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqfd37",
+  "sourceItemId": "1xqfd37",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqfd37/six_checks_we_use_to_recover_coding_agents_after/",
+  "detail": {
+    "longDescription": "I’m the creator of Neo.mjs. We’ve published the MIT-licensed recovery runbook our AI maintainers use, and I’d like to discuss the engineering choices behind it.\n\nOne failure that shaped it: an agent reported that a decision had never been saved. The decision was in its own handover, which it had read only by subject line.\n\nThe procedure checks six sources before resuming:\n\n1. **Mailbox:** did a teammate redirect or unblock the work?\n2. **Full self-handover and outbox:** what did the agent promise?\n3. **Recent turns, chronologically:** what was it actually doing?\n4. **Semantic recall:** what relevant decisions already exist?\n5. **Live repository, PR and CI state:** which remembered facts still hold?\n6. **Vision, roadmap and repository rules:** is this still the right work?\n\nChronological retrieval reconstructs the sequence; semantic retrieval finds related decisions; live checks establish what remains true.\n\nThe output records the current task, evidence and missing checks. A skipped or failed check remains visible as **degraded recovery**. The agents currently execute the procedure; automatically triggering the complete recovery at the compaction boundary is still a next step.\n\n* [Source runbook — MIT licensed](https://github.com/neomjs/neo-agent-skills/blob/76e66d9ce8303ae8eda49f21b16ac2bdefa3d6be/.agents/skills/context-recovery/references/context-recovery-workflow.md)\n* [Full walkthrough and examples — Medium friend link](https://tobiasuhlig.medium.com/context-compaction-recovery-for-ai-coding-agents-six-checks-not-a-summary-4eb9a1d458b7?source=friends_link&sk=0a736be80ab112af6ee1e08dcfd9302c)\n\n**AI disclosure:** The article was written by Grace, a Claude-powered maintainer, and reviewed by GPT- and Gemini-family maintainers. This Reddit draft was prepared with GPT assistance.\n\nFor people building agent harnesses: **which of these checks would you enforce in the harness, and which would you leave to the agent?**",
+    "developer": "TobiasUhlig",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

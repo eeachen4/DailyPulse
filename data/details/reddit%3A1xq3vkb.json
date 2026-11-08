@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xq3vkb",
+  "sourceItemId": "1xq3vkb",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xq3vkb/how_much_money_are_you_wasting_on_gpus_doing/",
+  "detail": {
+    "longDescription": "instead of talking about idle hardware in theory, let me give you a specific headache we just hit. we have a local server with four 24gb cards.\n\ntwo of those cards are locked up hosting two different low frequency models. one runs a fine tuned llama 3 8b for a background data extraction job. the other runs a qwen model for an internal bot. they get maybe fifty requests an hour combined. but because the weights just sit there taking up vram, two entire cards are held hostage doing almost nothing all day.\n\nnow we need to spin up a heavier 70b model for a new coding workflow, and suddenly we have no free cards. i look at the vram occupation in gpustack and see those two low traffic models just wasting dedicated space. so now i have to reallocate resources. i can either ask for budget to buy more hardware, or i try to pack both of those low frequency models onto a single card so i can free one up for the 70b.\n\nwhat do you all do when you hit this wall? do you just keep dedicating specific cards to specific models to avoid the headache, or do you actively co-locate low traffic models onto the same gpu? when do you stop throwing money at new hardware and start packing your models tighter?",
+    "developer": "Old_Librarian_9916",
+    "comments": 16,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

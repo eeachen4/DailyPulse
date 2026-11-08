@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015170",
   "sourceItemId": "80015170",
+  "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015170/benchmarking-python-decorator-overhead",
   "detail": {
     "longDescription": "I am working on the project Type Enforced which is a framework for enforcing python type hints using a decorator. I am trying to benchmark this project vs other fast frameworks like Beartype. Essentially, the overhead for initializing a function is far greater than the overhead of adding the decorator. In this sense, I have been taking the differential of execution time between the decorated function time and the undecorated function time averages. Now, these differential measurements are falling at about 10 ns for Type Enforced vs about 200 ns for Beartype on basic validations like: def my_fn_vanilla(a:int): pass @type_enforced.Enforcer def my_fn_te(a:int): pass @beartype def my_fn_bt(a:int): pass Essentially, I run each of these functions n times and take the average time of running them. I then subtract the average of n runs for: te_diff = avg_time_my_fn_te - avg_time_my_fn_vanilla bt_diff = avg_time_my_fn_bt - avg_time_my_fn_vanilla Such that I can compare the additional apples to apples on added overhead since just running the vanilla function takes about 5000 ns while the added overhead for type_enforced and beartype are about 10 ns and 200 ns respectively. These timings are pretty stable at smaller and larger sizes of timing samples and across system architectures (relative to processor and memory yada yada - but still relative on orders of magnitude). My concern stems from the fact that we are measuring python in terms of 20 clock cycles of differential. Assuming there are no bug in the code or measurements, is this something that can be trusted? I am looking for some holes in the methodology that I should be checking for and potential edge cases I may be missing. Are there documented other ways that this can be measured / benchmarked / tested? Related to a previous post: https://codereview.stackexchange.com/questions/302938/benchmarking-type-hint-validation-in-python/302948#302948 . Note that recent speedups in the framework are driving this new thread of questions.",
     "developer": "conmak",
-    "comments": 0,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "2"
+        "value": "5"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "114"
+        "value": "181"
       },
       {
         "label": "状态",

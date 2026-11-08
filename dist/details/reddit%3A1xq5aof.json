@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xq5aof",
+  "sourceItemId": "1xq5aof",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xq5aof/how_to_enable_ssh_clone_on_self_hosted_gitlab/",
+  "detail": {
+    "longDescription": "We have self-hosted GitLab CE on an AWS EC2 instance.\n\nCurrent setup:\n\nThe instance is in a private subnet with no public IP.\n\nUsers reach GitLab through an Application Load Balancer on HTTPS, with access restricted to our office IPs.\n\nHTTPS clone with personal access tokens works fine.\n\nThe problem:\n\nWe're moving our repos from gitlab.com to this server. On gitlab.com, all our Jenkins jobs and developers clone over SSH (git@...). On our server SSH clone doesn't work, because the ALB only supports HTTP/HTTPS, so port 22 has no way in.\n\nOur Jenkins agent runs in the same AWS VPC. Developers connect from the office network or VPN.\n\nWhat's the best way to enable SSH clone here, keeping it secure and limited to our office and Jenkins? Any suggestions or experience with a similar setup would help.",
+    "developer": "Manoj-praba",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
