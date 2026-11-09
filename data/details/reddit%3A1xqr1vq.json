@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqr1vq",
+  "sourceItemId": "1xqr1vq",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xqr1vq/making_old_newspaper_scans_usable_reading_order/",
+  "detail": {
+    "longDescription": "I've been helping a small archive turn a run of early-1900s newspapers into something researchers can search and read. Getting the text off the page turned out to be the easy half.\n\nThe pages are six to eight columns, ads break across gutters, headlines span several columns, and articles jump to another page. Plain OCR reads in horizontal strips, so you get line one of every column, then line two, and so on. The words are all there, but no article can be read start to finish, and nobody has time to reassemble them by hand.\n\nThe other loss is structure. A table of shipping arrivals or election returns comes out as a paragraph of numbers. A caption gets separated from the engraving it describes. For research use, those relationships matter as much as the text.\n\nWhat has helped so far:\n\n\\- running layout detection before recognition, so each column block is read on its own\n\n\\- keeping a small set of the worst pages (boxed sidebars, a full-width engraving between columns) as a regression set\n\n\\- spot-checking reading order on a sample from every reel instead of trusting a confidence score\n\nFor the hardest pages I've been testing OXR from SoMarkAI, an open-weight parser that handles recognition and reading order in one pass and keeps the layout model as a separate, swappable part. Too early to say whether it holds up across a full reel.\n\nFor anyone who has done large newspaper or archival runs: how do you check reading order at scale? Human sampling, or have you found an automated check that catches the bad reorderings?",
+    "developer": "Sussybaka800869",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

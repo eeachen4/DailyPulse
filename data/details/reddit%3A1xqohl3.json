@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqohl3",
+  "sourceItemId": "1xqohl3",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xqohl3/zerodowntime_container_swaps_on_a_single_box/",
+  "detail": {
+    "longDescription": "My self-hosting tool (hoist) deploys Dockerfile and Compose apps on one machine. Early on, swapping to a new container left a 0.65 to 1.45 s gap where the public URL failed.\n\nWhat fixed it: a tiny TCP front owns the public port; the new container starts next to the old one on a fresh port; the front switches only once the new one answers HTTP; then the old one is stopped. A broken build never gets switched to, so the live version keeps serving.\n\nMeasured against Dokploy on the same laptop: 0.00 s vs ~0.1 s downtime during the swap. Method in docs/benchmark.md.\n\nBuilt with AI assistance, tested by me.\n\nhttps://github.com/nikhilcherry/hoist\n\nHow do you handle this without Swarm or k8s?",
+    "developer": "mynameiscorange",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117581158877586581",
+  "sourceItemId": "mastodon.social/117581158877586581",
+  "fetchedAt": "2026-11-09T03:01:56.464Z",
+  "sourceUrl": "https://discuss.tchncs.de/post/70559556",
+  "detail": {
+    "longDescription": "I just set up my Onkyo AVR to be a player for my LMS [https://lyrion.org/]\nsetup, using the AirPlay Bridge [https://github.com/philippe44/LMS-Raop]. As I\nwas a little confused regarding the volume mapping, I thought I’d share how I\nmade it work here. Connecting was dead simple, just install the plugin and make\nsure your AVR has AirPlay enabled. Everything worked flawlessly, except that the\nvolume shown in LMS didn’t match that shown on my AVR. The bridge has a ‘Volume\nMapping’ option for this, where you can specify which AirPlay volume level\ncorresponds to which LMS volume level. Now, the AirPlay volume levels are a bit\nconfusing, as they go from -30 to 0. What’s also confusing to me, the bridge\nseems to round the values reported by my AVR very oddly. Either way, whenever\nyou change the volume on your AVR, you should be able to find the corresponding\nAirPlay volume value in the logs of the LMS docker container (or if you don’t\nhave it in a container wherever else the program outputs them to). Here is an\nexample from my testing earlier: 2026-11-08 12:23:46.142363+00:00[13:23:46.142]\nActiveRemoteThread:1060 raw active remote: get\n/ctrl-int/1/setproperty?dmcp.device-volume=-13.536585 http/1.1 2026-11-08\n12:23:46.142412+00:00host: server.local. 2026-11-08\n12:23:46.142427+00:00active-remote: <some ID> 2026-11-08\n12:23:46.142439+00:00user-agent: airplay/366.0 2026-11-08\n12:23:46.142450+00:002026-11-08T12:23:46.142450036Z 2026-11-08\n12:23:46.142460+00:002026-11-08T12:23:46.142460668Z 2026-11-08\n12:23:46.142471+00:00[13:23:46.142] ActiveRemoteThread:1094 [<some ID2>]: remote\ncommand setproperty?dmcp.device-volume=-13.536585 2026-11-08\n12:23:46.142483+00:00[13:23:46.142] ActiveRemoteThread:1149 [<some ID2>]: volume\nfeedback 45 (-13.54) 2026-11-08 12:23:46.143354+00:00[13:23:46.143]\nsq_callback:354 [<some ID2>]: volume ignored 44 2026-11-08\n12:23:46.150985+00:00[13:23:46.150] PlayerThread:595 [<some ID2>]: processing\nvolume device:29 request:-13.54 When reading these logs, make sure to take the\nremote command setproperty?dmcp.device-volume=... value, as for me the rounded\nvalues were often incorrect.\nNow, get your AVRs AirPlay volume for one over 0 and the AVR volume levels which\ncorrespond to AirPlay level -15 and -30. This will lead to three value pairs,\nwhich you can enter into the mapping field. For me with an Onkyo TX-NR686, the\nmappings are -29.63:1, -15:41, 0:82 (yes the AirPlay volume caps at 100 % when\nthe AVR reaches volume level 82). For me the AirPlay connection terminated as\nsoon as no music was playing, which made it ‘impossible’ to get the AVR volume\nfor AirPlay volume 0. I solved this by creating an mp3 file with silence, which\nI played during my testing. The following ffmpeg command will generate a 300 s\n(5 min) silent mp3: ffmpeg -f lavfi -i anullsrc=r=44100:cl=mono -t 300 -q:a 9\n-acodec libmp3lame out.mp3 After all this effort, the volume levels often still\ndon’t correspond exactly, due to the bridge turning e. g. -29.43 into -28.88 for\nsome reason. But in my heart I at least now that my mapping is correct. I hope\nthis is helpful to someone. If you have a different AirPlay device which is not\nan AVR, just substitute “AVR” with the device you have.",
+    "developer": "@eco_game@discuss.tchncs.de",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

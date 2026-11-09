@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrbo0j",
+  "sourceItemId": "1xrbo0j",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xrbo0j/architecture_comparison_exody_vs_cursor_vs_claude/",
+  "detail": {
+    "longDescription": "Over the past months I built Exody, a native macOS workbench for autonomous software engineering and visual design that treats local Ollama models and BYOK API keys as first-class citizens.  \n  \nWhy build another autonomous coding agent when Cursor, Claude Code, and OpenAI Codex already exist?  \n\\- Single-vendor terminal CLIs (Claude Code / OpenAI Codex) are great at file loops, but locked to one model vendor and cannot visually inspect WebGL canvases, live UI layouts, or the iOS Simulator.  \n\\- Cloud-proxied VS Code forks (Cursor / Windsurf) route your code through proprietary proxy servers and charge $20-$40+/mo plus token markups.  \n  \nHere is the architecture we ended up building in Exody:  \n  \n1. 5-Stage Autonomous Engineering Loop + Isolated Git Worktrees:  \nInstead of one-shot edits on your working tree, every task executes 01 Investigate -> 02 Plan -> 03 Build -> 04 Verify -> 05 Fresh Diff Review. Parallel sub-agents work in isolated Git worktrees, run your test suite + tsc + headless browser/iOS Simulator checks, and pass the diff to an independent cross-model reviewer before merging (10/12 blind benchmark wins against raw frontier calls).  \n  \n2. Per-Step Smart Model Router (100% BYOK & Local Ollama, $0 Markup):  \nYou connect your own API keys for Anthropic Claude, OpenAI GPT, Google Gemini, xAI Grok, DeepSeek, Kimi, or run 100% offline with local Ollama models. The Smart Router picks the optimal model per step based on task difficulty, tool-use accuracy, and token cost.  \n  \n3. Design Studio (Web, 3D WebGL & Motion Film):  \nMeasures typography, spacing, and curated art-direction references; renders and critiques UI before shipping (6/6 blind visual wins).  \n  \n4. EXO Desktop Assistant + Real-Time iPhone Companion:  \nCaptures Zoom/Meet/Teams audio locally on macOS, automates native Mac apps, and pairs with your iPhone over local Wi-Fi or P2P WebRTC to monitor runs and approve diffs away from your desk.  \n  \nHappy to answer any questions about the per-step routing heuristics, isolated worktree orchestration, or cross-model diff review!",
+    "developer": "Smokiezzz",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

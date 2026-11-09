@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xr97iz",
+  "sourceItemId": "1xr97iz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xr97iz/resurrecting_2013_ewaste_native_cuda_mamba1/",
+  "detail": {
+    "longDescription": "Hello!\n\nI want to share an active development project. If you have a drawer full of old NVIDIA GPU's collecting dust because modern AI stacks refuse to compile for them, this is for you.\n\nI have ported the modern LLM training stack on Windows to legacy CUDA GPUs (sm\\_35 through sm\\_75):\n\n* PyTorch (v2.7.1) (custom build compiled with CUDA 11.8, keeping the legacy SASS) (\\[[https://github.com/theIvanR/torch-on-clunkers\\]](https://github.com/theIvanR/torch-on-clunkers]))\n* causal-conv1d (v1.7.0) ([https://github.com/theIvanR/conv-on-clunkers](https://github.com/theIvanR/conv-on-clunkers))\n* mamba\\_ssm (Mamba-1) with pure native CUDA kernels ([https://github.com/theIvanR/mamba-on-clunkers](https://github.com/theIvanR/mamba-on-clunkers))\n* Windows NCCL (DDP) for multi-GPU training across Kepler cards ([https://github.com/theIvanR/nccl-on-windows](https://github.com/theIvanR/nccl-on-windows))\n\n# Status\n\n* **Mamba-1 (Pure CUDA):** Fully functional with optimized execution across legacy GPU architectures (**SM 3.5–SM 7.5**). Tested on a 2013 NVIDIA Tesla K40c, achieving a maximum absolute error of `3.8e-06` against the PyTorch reference implementation.\n* **Mamba-2 & Mamba-3:** Currently supported with optimized execution on Turing (**SM 7.5**) and newer architectures, due to their reliance on Triton and TileLang.\n* **Graceful Fallback:** On older hardware, the package detects unavailable Triton-dependent modules and automatically falls back to the pure-CUDA Mamba-1 implementation.\n\nThe fallback initialization produces the following output:\n\n    ================================================================================\n    [!] MAMBA-ON-CLUNKERS FALLBACK INITIATED\n    \n    [!] The following modules are unavailable on this platform:\n        - Mamba-2 (requires Triton)\n        - Mamba-3 (requires Triton + TileLang)\n    \n    [!] Falling back to Mamba-1 (Pure CUDA).\n        This is expected on legacy GPUs.\n    ================================================================================\n\n*Future development: Backporting Mamba-2 and Mamba-3 to legacy GPU architectures.*\n\n# Community Testing\n\nIf you have an older NVIDIA GPU lying around, I'd love for you to test the Mamba wheel and report whether it works on your architecture!\n\nI'm particularly interested in **Maxwell and Pascal**, since my local testing hardware is currently limited to Kepler.\n\nAny benchmarks, performance comparisons, or profiling data from legacy GPUs would be greatly appreciated. Contributions and feedback are welcome!\n\n>Acknowledgements: This project is based on the research and original implementation by Tri Dao and Albert Gu. Special thanks to both for their contributions to the development of Mamba.",
+    "developer": "TheSpicyBoi123",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

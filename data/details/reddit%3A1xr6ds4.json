@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xr6ds4",
+  "sourceItemId": "1xr6ds4",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xr6ds4/i_put_an_ai_agent_on_our_sales_texts_911/",
+  "detail": {
+    "longDescription": "Every \"AI SDR\" post I see is screenshots and vibes. So here's mine with the actual numbers. I'm still early at this and I don't know everything, so take it as notes from someone figuring it out.\n\nI sell business funding with a small team, from Madrid, to US business owners. Leads text back at 8pm their time, which is 3am for me. So at the end of September I built an AI that answers our leads' texts: it holds the conversation, asks for what we need (bank statements), reads them when they come in, and hands the lead to one of us when it should.\n\nFirst 6 weeks:\n\n- 911 conversations, 5,326 texts and 309 emails sent\n- median reply time under 2 minutes\n- about 1 in 5 replies went to texts that came in at night or on a Sunday\n- 48% of its texts got a reply within 48 hours, about 1% said stop\n- 532 hand-offs to a person, 355 times it decided to say nothing\n- total AI bill about $110\n\nWhat made it work:\n\n- warm leads only, never cold lists\n- it waits a minute or two before answering, because people text in bursts\n- one goal per conversation\n- every number in a draft is checked against what the lead actually said; one rewrite, then a person takes over\n- follow-ups capped at 3, 7am to 10pm their time\n- it never pretends to be a person\n\nWhat it got wrong:\n\n- I added one line to its instructions and that night it offered calls and asked for screenshots across a bunch of conversations. One sentence, hundreds of threads. Now: replay every change on old conversations first.\n- It took a call note (\"statements from March\") literally and kept asking for the wrong months.\n- It sent a calendar invite to the email on our list instead of the guy's real email.\n- The number check was too strict at first: it read \"Chase 5230\" as a dollar amount and blocked good replies.\n\nThis is one piece of it. I ended up building my whole CRM mistake by mistake (calling, pipeline, texts, all of it), so ask me literally anything, I'm not gonna hide anything.\n",
+    "developer": "Bcssel",
+    "comments": 17,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

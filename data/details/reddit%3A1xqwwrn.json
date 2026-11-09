@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqwwrn",
+  "sourceItemId": "1xqwwrn",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqwwrn/ai_agents_can_call_any_api_we_hand_them_the_hard/",
+  "detail": {
+    "longDescription": "That's what rwxmap does. It reads an API's OpenAPI spec and gives every operation a letter:\n\n\n\nr = only reads, nothing changes\n\nw = changes something you can set back\n\nx = can't be taken back (deletes, and also handing out keys, adding users, webhooks to outside URLs)\n\n\n\nSimple rules settle most operations. For the unclear ones, rwxmap used to ask Jev, a paid hosted model. As of rwxmap 0.11.0, a small local model of mine replaces Jev: rwxlite 0.3.1.\n\nIt's a drop-in. rwxlite takes the same questions Jev takes and answers in the same JSON shape, so rwxmap only swapped the client. It gets its adapters from rwxmap, and you can use it with rwxmap or on its own.\n\n\n\n\\- Built: fine-tuned from all-MiniLM-L6-v2 on about 102,700 labelled API operations from about 690 public providers, and shipped as a 23 MB model.\n\n\\- Saves: no per-call bill, no spec text leaving your machine, about 17-20 ms per operation on a laptop CPU.\n\n\\- Scored: on 1,443 operations from 7 vendors it had never seen, through rwxmap, it got 87.9% right, sent 9.3% to a human, and called 2.8% too loose.\n\n\n\nThe trade-off is yours to set. rwxlite only gives probabilities, and you pick how confident it must be before it lowers a risk letter. Raise that bar and you get more \"ask a human\" and fewer leaks. Lower it and you get fewer questions but more risk. rwxmap ships at 0.90.\n\n\n\nBoth are open source (Apache 2.0) and on npm:\n\nrwxmap: [https://github.com/hamr0/rwxmap](https://github.com/hamr0/rwxmap)\n\nrwxlite: [https://github.com/hamr0/rwxlite](https://github.com/hamr0/rwxlite)",
+    "developer": "Tight_Heron1730",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

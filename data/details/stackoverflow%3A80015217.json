@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80015217",
+  "sourceItemId": "80015217",
+  "sourceUrl": "https://stackoverflow.com/questions/80015217/amcharts4-legend-clipping-issue",
+  "detail": {
+    "longDescription": "I have a clipping issue with the legend of a chart, I found a possible solution but it just throws an error. The error in console is: Uncaught TypeError: Cannot set properties of undefined (setting 'mask') The code is: function createPie(chartDiv, legend, labels) { am4core.useTheme(am4themes_material); am4core.useTheme(am4themes_animated); var chart = am4core.create(chartDiv, am4charts.PieChart); var chartID = $('#' + chartDiv).data(\"chart\"); let title = $('#' + chartDiv).data(\"title\"); if (legend) { chart.legend = new am4charts.Legend() chart.legend.position = \"absolute\"; chart.legend.align = \"left\"; chart.legend.valign = \"top\"; chart.legend.x = am4core.percent(60); chart.legend.y = am4core.percent(1); chart.legend.hide(); } chart.dataSource.url = baseGraphsURL + chartID; chart.dataSource.parser = new am4core.JSONParser(); chart.dataSource.events.on(\"done\", function (ev) { if (ev.target.data.length < 3) { var label = chart.createChild(am4core.Label); label.text = \"No Data Available!\"; label.fontSize = 20; label.align = \"center\"; label.dy = -150; } chart.data = JSON.parse(ev.target.data); }); if (title != '') { var header = chart.titles.create(); header.text = title; header.fontSize = 15; header.fontWeight = \"bold\"; header.marginBottom = 0; header.marginTop = 10; } var pieSeries = chart.series.push(new am4charts.PieSeries()); pieSeries.dataFields.value = \"v\"; pieSeries.dataFields.category = \"c\"; pieSeries.slices.template.stroke = am4core.color(\"#fff\"); pieSeries.slices.template.strokeOpacity = 1; if (labels) { pieSeries.labels.template.disabled = false; chart.plotContainer.mask = null; } else { pieSeries.labels.template.disabled = true; } pieSeries.legendSettings.labelText = '{c}'; pieSeries.legendSettings.valueText = '{v}'; pieSeries.hiddenState.properties.opacity = 1; pieSeries.hiddenState.properties.endAngle = -90; pieSeries.hiddenState.properties.startAngle = -90; chart.hiddenState.properties.radius = am4core.percent(0); chart.chartContainer.events.on(\"over\", function (ev) { if (legend) chart.legend.show(); }); chart.chartContainer.events.on(\"out\", function (ev) { if (legend) chart.legend.hide(); }); chart.events.on(\"ready\", function () { if (chart.svgContainer && legend) { chart.svgContainer.measure(); chart.mask = undefined; chart.mainContainer.mask = undefined; } }); } It is erroring on the chart.mainContainer line and the chart is a pie chart. I have tried doing it at different places and at different times using the event. But it always errors",
+    "developer": "P S",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "55"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

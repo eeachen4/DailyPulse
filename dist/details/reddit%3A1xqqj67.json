@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqqj67",
+  "sourceItemId": "1xqqj67",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xqqj67/grfnet_pytorch_model_for_multichannel_timeseries/",
+  "detail": {
+    "longDescription": "Hi all,\n\nThrough my MSc work on EEG decoding, I built a novel (partially) architecture tailored to the constraints of EEG. The datasets are small, the subject variability is high, and signal acquisition variables differ significantly. I’ve now extracted that model to develop into an open source PyTorch model and would like some input on anything that comes to mind with regard to direction, etc.\n\nThe design builds on ROCKET, using random, untrained convolutional kernels to yield strong time-series features.  Learned spatial filters first mix the input channels, and if you provide sensor positions they initialize from the electrode layout instead of noise. The resulting components pass through a bank of dilated convolutions that are mostly random and frozen, with a few learnable kernels. Several summary statistics are extracted from the bank, combined through a learned gate, and classified by a small head.\n\nThe default model (22 channels, 4 classes) has 3,847 parameters and It accepts any input length and adapts to the sampling rate.\n\nI'm now building a subject-independent evaluation on PhysioNet's EEGMMIDB (109 subjects), where each subject goes entirely into train or test. I'll compare against EEGNet and ShallowConvNet and report scalp topographies, confusion matrices, saliency maps and speed benchmarks. I’m also going to build four variants to compare results and analyse reasons why. I have no benchmark numbers yet (except my MSc work) as i’m early into starting, any input would be greatly appreciated.\n\nWould love a couple stars and follows if you think its decent work 😘",
+    "externalUrl": "https://github.com/Joekrry/GRFNet",
+    "developer": "joekrry",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

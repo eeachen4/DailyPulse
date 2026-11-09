@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrdn7p",
+  "sourceItemId": "1xrdn7p",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xrdn7p/loraconditioned_model_skips_the_first_line_of_its/",
+  "detail": {
+    "longDescription": "I'm doing an MSc project on BrickNet (kulits/BrickNet on GitHub, CVPR 2026). It writes LEGO models as plain text and fine-tunes Qwen3 (I'm using 0.6B) with LoRA: a PT adapter that learns the text format, and an SFT adapter that conditions on a caption. The text is one root line (\"a <part> | <colour>\"), then repeated pairs of a node line and an edge line.\n\nSetup: I merge PT, then SFT (peft merge\\_and\\_unload, bf16) and prompt with the caption tokens plus a newline token. That matches train.py, which trains on caption + \"\\\\n\" + path + EOS with loss on the path only.\n\nProblem: with short captions (e.g. \"A red car.\", about 4 tokens) the model never writes the root line. The first generated token is \"b\" every time, so the output breaks the grammar. In my tests that was 0/12 correct for each of five different objects. With captions of about 18+ tokens it writes \"a\" every time (36/36 on three new objects with template-expanded captions).\n\nWhat I've ruled out:\n\n\\- Saving/decoding bug: I checked the raw tokens, the first one really is \"b\".\n\n\\- Tokenisation mismatch: train.py encodes the caption alone and appends a newline token, same as generate.py.\n\n\\- Forcing an \"a\" as a prefix doesn't help. The model then writes a node and straight away an edge, as if the root had already been written.\n\n\\- It's not only about informative captions: a 31-word caption that is mostly filler also works. But it's unreliable around 15 tokens (a 9-word parts list worked for a car, 1/12 for a chair).\n\nWorkaround: expanding short captions into full descriptions fixes it, but I'd like to understand the cause.\n\nQuestions:\n\n1. Have you seen LoRA-conditioned models fail like this when the conditioning text is much shorter than in the SFT data? (I haven't seen the training captions yet; I'm guessing they're all long descriptions.)\n\n2. Could bf16 merging of two stacked adapters be a factor? I'm about to test fp32.\n\n3. Anything better than prompt expansion, e.g. constrained decoding for the first line, or fine-tuning with short-caption augmentation?\n\nCaveats: small samples (12 per caption), only the 0.6B model, parsing checked but model quality judged by eye. Happy to share code or outputs.",
+    "developer": "prathamdmehta",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

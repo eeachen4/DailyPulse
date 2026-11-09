@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqy4k3",
+  "sourceItemId": "1xqy4k3",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqy4k3/letting_an_llm_edit_desktop_apps_live_in_lisp/",
+  "detail": {
+    "longDescription": "I’ve been working on AffrescoUI, an open-source engine for native desktop apps that their users can reshape while they’re running, just by asking an LLM. I’d love feedback from people building with LLMs.\n\nEach app is a program in a small Lisp I wrote, with commands, settings, hooks and advice, holding the app’s whole layout, data and behaviour. A native C++/OpenGL engine runs it, and every app is sandboxed. When a user asks for a change, the model proposes a small edit, the user previews it live in the running app, and then keeps it or undoes it. The model can never approve its own change. There’s also a two-way MCP server, so agents can read and edit the running apps.\n\nThe part I found most interesting: I expected the model to struggle with s-expressions, but it handles them really well. Because code is data, every edit is a small, targeted change to a tree, and hooks and advice let it wrap existing behaviour instead of rewriting it.\n\nI’d really value your take on:\n\n* Have you seen LLMs do well with Lisp or other less common languages, or does it break down as edits get bigger?\n* How do you keep model edits small and reviewable in your own projects?\n* What would you want an MCP server like this to expose?\n\n\n\nGitHub repo if interested: [https://github.com/RiccardoSottini/AffrescoUI](https://github.com/RiccardoSottini/AffrescoUI)",
+    "externalUrl": "https://v.redd.it/8qdyl0fz1e0i1",
+    "developer": "Free_Occasion_8354",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

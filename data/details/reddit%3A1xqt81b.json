@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqt81b",
+  "sourceItemId": "1xqt81b",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xqt81b/apiiro_found_1122_public_claudesettingslocaljson/",
+  "detail": {
+    "longDescription": "Apiiro scanned 104,185 public copies of .claude/settings.local.json on GitHub between Nov 1 and 3, 2026. 1,122 of them (1.1%) held at least one secret, 1,379 in total. Among them: 379 database passwords, 43 SSH logins, 42 GitHub, GitLab or npm tokens and 23 AWS keys.\n\nThe mechanism is in Anthropic's permissions docs. When a user picks \"Yes, and don't ask again\" on a shell command, Claude Code saves an allow rule in that file. If the prompt offered the exact command, any password typed into it is saved in plain text. Claude Code adds the file to the user's global git excludes, but that covers one machine only, and nothing goes into the project's own .gitignore. In 539 of 1,105 traced repositories, a commit listing Claude as co-author changed the file.\n\ngitleaks caught 564 of the 1,122 files and TruffleHog 643. Neither caught 215. Most misses are passwords after PGPASSWORD=, sshpass -p or mysql -p, which look like ordinary words to a scanner built for key formats. Apiiro sells security products and did not test whether the secrets work. One company it notified confirmed its key was live.\n\nRotate first. Then run git rm --cached .claude/settings.local.json and add the file to the repository's .gitignore. Older versions stay in history: Apiiro found 734 more secrets there that no current copy holds.\n\nDo you scan agent config files for secrets, or only source code?\n\nSources: Apiiro research (Nov 5), The Hacker News (Nov 7).",
+    "developer": "Capital_Attention702",
+    "comments": 13,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqv76o",
+  "sourceItemId": "1xqv76o",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xqv76o/frontier_labs_are_bringing_software_security_into/",
+  "detail": {
+    "longDescription": "Since Anthropic announced Mythos, Software security has came into lime light. Multiple famous products have seen orders of magnitudes of novel attacks that have discovered, which can expose data, corrupt systems or just make the life of Information Security and SRE teams a hell.\n\nBut an interesting finding was, all of this comes at exorbitant costs, which only the large corporations and venture funded frontier labs can spend. For example, OpenAI just announced finding a 1000 vulnerabilities in Linux Kernel and each vulnerability costs a blended average of USD $1000 to discover.\n\nThe way this works is, a LLM frontier model goes through the source code, analysis how the code is written, the entry points and then finally starts evaluating if they can be exploited through one or more than one attack vectors. While this works, it is neither deterministic nor cheap when the LLM has to manage millions of tokens in ingested source code, a few additional thousands to millions on reasoning and finally the output.\n\nSo, I started thinking what if we could flip this and make it cheaper?\n\nThe idea being, why make LLMs do the whole discovery, enumeration, validation and reporting. Why not use LLMs where they are good at and make everything else deterministic. And there came the idea about Code Context Driven Vulnerability Scanner.\n\nThe whole project has 5 core stages:\n\n1. Code Context Graph: Map the whole source code as a Code Context Graph where every single relation and type is resolved\n2. Leverage this Code Context Graph to find the user data entry points (Sources) and final sinks (Databases, Files, Remote Server Calls, etc.) and trace the path from sources to sinks\n3. Flow Determination Phase: An LLM is fed the whole source to sink path, such that it can reason about it with confidence. The LLM also gets a query budget to resolve any missing details. The output is either Flow Confirmed (Unsanitized user data reaches the sink from source), Blocked (No possible way for data to travel from source to sink without sanitization)\n4. Condition Stage: LLM goes ahead and searches the code context graph to validate what conditions need to be met for this flow to materialize or if the default settings of the project prevents it. The output is similar to the Flow stage\n5. Adversarial Challenge: Another class of LLM then reasons over the cases where the confirmation came up as Flow Confirmed. This phase is tweaked to try its best to refute the claims made by earlier phases. If the phase cannot refute the flow, the particular path graduates to a Confirmed Finding / Vulnerability.\n\nThis has been under testing for a week, with a reference being checked against CodeQL (an industry standard static code based vulnerability scanner by Github).\n\nDuring a single day of run accounting for \\~USD $20 over 5 open source projects, the project has filed for 10 vulnerabilities with severity ranging between MEDIUM to CRITICAL. Out of these 4 are already confirmed and 6 are in investigation stage with the respective open source projects security teams\n\nAn interesting bit is, out of the 10 vulnerabilities filed, only 2 of them were detected by the published rule set of CodeQL, while 8 other vulnerabilities were completely Novel.\n\nCurious if anyone else has been experimenting with something similar 😄",
+    "externalUrl": "https://i.redd.it/y82ypsh56d0i1.png",
+    "developer": "_h4xr",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

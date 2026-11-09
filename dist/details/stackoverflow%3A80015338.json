@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015338",
   "sourceItemId": "80015338",
+  "fetchedAt": "2026-11-09T03:01:56.464Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015338/how-can-a-cmake-release-tag-and-an-embedded-about-screen-version-stay-in-sync",
   "detail": {
     "longDescription": "I maintain an independent release reference for a CMake-based desktop application. One published asset is tagged build-94 , while the binary's About dialog and logs say build-95 . The mismatch makes it difficult to connect a bug report to the actual package: a tester may paste the About string, while someone else searches the Git release tag. The release listing and its note about the differing labels illustrate the exact user-facing case. I want a build-time solution, not a rename in the documentation. A minimal example of the two sources of truth is: # CMakeLists.txt set(APP_VERSION \"build-95\") configure_file(version.h.in version.h @ONLY) // version.h.in #define APP_VERSION \"@APP_VERSION@\" The release automation separately publishes the compiled package under the Git tag build-94 . The program reads APP_VERSION for About and diagnostics. I can change the hard-coded value manually, but that still allows the next release to drift. I have considered using git describe --tags at configure time; however, a source archive may lack the .git directory, and local development builds should not misleadingly present themselves as the final tagged release. How should CMake receive an authoritative release identifier from CI, embed it into the binary, and fail the release build if it disagrees with the tag? What fallback should be used for local builds or exported source archives? I would prefer a small CMake example showing the check and the generated header, rather than a process that depends on manually editing two labels.",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "59"
+        "value": "80"
       },
       {
         "label": "状态",

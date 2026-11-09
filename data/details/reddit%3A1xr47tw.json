@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xr47tw",
+  "sourceItemId": "1xr47tw",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xr47tw/i_merged_attention_and_mlp_processing_into_a/",
+  "detail": {
+    "longDescription": "Hi everyone!\n\nI've been experimenting with an alternative Transformer architecture called **GAP (Gated Attention Projection)**.\n\nThe main idea is to combine attention and MLP-style processing into a single gated block, instead of using the standard separate attention and feed-forward sublayers.\n\nI tested it against a standard Transformer using 100 million scored training tokens per model from WikiText-103.\n\n**Some results:**\n\nGAP20 used **19.91% fewer parameters** than the standard Transformer.\n\nA smaller configuration can reduce parameters by **34.31%**, although that version did not fair as well as the current model against the regular transformer, so i ended up giving 14% of my perameters savings to the GAP model for extra width, leaving the model at about 20% fewer perameters, which is why i called it in testing GAP20\n\nThe standard Transformer performed better on final language-model accuracy.\n\nCompiling GAP20 with torch.compile improved training throughput by approximately **19.9%** in one CPU benchmark compared with running GAP20 without compilation.\n\nI've included the architecture code, configurable model sizes, speed benchmark and research paper.\n\nThis is an experimental architecture, not a claim that it outperforms Transformers overall. I'd be interested in feedback on the design, mathematics and possible improvements.\n\n**GitHub:**\n\n [https://github.com/rickey1990/Gated-Attention-Projection](https://github.com/rickey1990/Gated-Attention-Projection)",
+    "developer": "WAMFT",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xqoinr",
+  "sourceItemId": "1xqoinr",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xqoinr/measured_my_singlemachine_deploy_tool_against/",
+  "detail": {
+    "longDescription": "I built hoist, a small push-to-deploy tool for one Linux box (systemd + Cloudflare Tunnel, Python stdlib). To keep myself honest I installed Dokploy on the same laptop and deployed the same Dockerfile app through both, polling the public URL every 50 ms:\n\n- push to live, median of 6: 1.54 s vs 2.53 s\n- downtime during swap: 0.00 s vs ~0.1 s\n- broken build: old version keeps serving on both\n\nThe first run, hoist lost (0.65 to 1.45 s gap during rollover). The fix was a small TCP front that owns the public port and only switches once the new container answers HTTP. Method, raw logs and bugs found are in docs/benchmark.md.\n\nOne laptop, one competitor: a method, not a verdict. I'd like critique on the method more than the tool.\n\nBuilt with AI assistance (Claude), designed and tested by me.\n\nhttps://github.com/nikhilcherry/hoist",
+    "developer": "mynameiscorange",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

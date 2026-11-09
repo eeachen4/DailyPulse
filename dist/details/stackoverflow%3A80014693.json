@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014693",
+  "sourceItemId": "80014693",
+  "sourceUrl": "https://stackoverflow.com/questions/80014693/not-sure-about-positioning-of-const-video",
+  "detail": {
+    "longDescription": "I use an application called \"Übersicht\" that allows for custom widgets on Mac desktops. It just uses JavaScript. I came up with the idea to have a little photo/video in the corner of my desktop. I looked at some pre-existing code for this. The code for the photo worked fine. The code for the video worked too, but I wanted the ability to pause it by clicking. I don't want any control pop-ups or play buttons, only that when you click the video it will pause, and another click will play it again. I found some code that seemed to fit this! I had the widget with the video running and added the code in at the top of the JSON file, along with the other \"const\" functions, and on refresh it worked. Later in the day, I reloaded the widgets and the video didn't show up despite it working previously. I took a look at the console and it says \"null is not an object (evaluating 'video.addEventListener')\". I fiddled around with it for a bit and realised that if I put the \"const video\" function that defined the pausing feature below the HTML that runs the video, the video works fine but the pausing feature doesn't work anymore (clicking does nothing). I can only assume that the error is due to an ordering of the scripts as the \"const video\" pausing script worked previously. And putting it above just causes the video to disappear along with the error message in the console. Below is my code. The settings.json file just defines the source location of the video, so I can't imagine it has anything to do with this. import { css } from \"uebersicht\"; const settings = require(\"./settings.json\"); const video = document.querySelector('video'); video.addEventListener('click', function() { if(this.paused == false) { this.pause(); } else { this.play(); } }); /* The const video bit above is the pausing feature that I was referring to in my post. */ const container = css` display: flex; justify-content: center; position: absolute; object-position: 30px 30px; z-index: ; width: 30vw; height: 30vh; left: 1112px; top: 0; `; const mediaBgEl = css` position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; object-fit: cover; `; const containeroriginal = css` display: flex; justify-content: center; position: relative; object-position: 30px 30px; z-index: -1; width: 30vw; height: 30vh; `; const mediaEl = css` width: 100%; height: 100%; object-fit: contain; `; export const render = () => { const mediaSource = settings.isLocal ? `${settings.folderName}/${settings.type}/${settings.fileName}` : settings.src; switch (settings.type) { case \"image\": return ( <div className={container}> <img src={mediaSource} className={mediaEl} /> </div> ); case \"video\": switch (settings.muted) { case true: return ( <div className={container}> <video autoPlay loop muted playsInline className={mediaEl}> <source src={mediaSource} /> </video> </div> ); case false: return ( <div className={container}> <video autoPlay loop playsInline className={mediaEl}> <source src={mediaSource} /> </video> </div> ); default: } default: } };",
+    "developer": "Choi Soobin",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "100"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
