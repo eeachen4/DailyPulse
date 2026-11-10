@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs05uo",
+  "sourceItemId": "1xs05uo",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xs05uo/latent_prediction_beats_reconstruction_for/",
+  "detail": {
+    "longDescription": "New paper from Robbyant, with inference code and checkpoints already public.\n\nLingBot-Touch is a self-supervised tactile encoder trained JEPA-style: it predicts latent representations of masked contact instead of reconstructing raw sensor signals. The paper tests it against same-size MAE and VAE reconstruction models on the same data. Tactile-to-video top-5 recall at 1K hours: 32.1% (JEPA) vs 5.6% (MAE) vs 4.4% (VAE). At 4K hours JEPA reaches 49.3% and MAE stays under 9%, while the VAE actually gets worse, down to 3.1%. Their explanation: most of a tactile clip is near-zero background, so reconstruction loss can shrink without learning anything about actual contact.\n\nTwo design choices stood out. The masking ratio warms up from 40% to 80% over 300 steps, because starting at high masking hid every contacting taxel in sparse signals and caused gradient explosions. Three sensor types (magnetic, piezoresistive, visuotactile) feed one shared Transformer through canonical fingertip coordinates with 5D RoPE (time, finger, 3D position).\n\nOn 26 real robot tasks with 4 policies, frozen encoder features scored highest in 89 of the 104 policy and task combinations. On a magnetic hand never seen in pretraining, LingBot-VLA went from 57.21 to 75.04.\n\nThe Tiny model levels off around 4K hours while Small keeps improving, so a bigger version trained on more data looks like the natural next step.",
+    "developer": "Zealousideal-War7154",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

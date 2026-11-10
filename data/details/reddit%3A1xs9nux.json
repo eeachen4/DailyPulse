@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs9nux",
+  "sourceItemId": "1xs9nux",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xs9nux/i_made_a_400m_model_for_npc_judgement_calls_in/",
+  "detail": {
+    "longDescription": "The model is an encoder (Ettin-400M) fine-tuned to answer small game questions. You give it a scene, a question, and some options, and it returns probabilities or \"not sure\". The model was inspired by Jev.\n\n\n\nStuff like: is the player threatening this guard, is that apology sincere, which memory fits what they just said, did my LLM's reply leak a secret or make something up.\n\n\n\nThe idea is your local LLM writes the dialogue, and this handles the yes/no and pick-one calls next to it, cheaply. It works as a checker too: generate a few replies, keep the one that passes.\n\n\n\n\\- \\~0.1s per check on a 3060 Ti, about 1s on CPU. Up to 5 questions on the same scene cost the same as 1\n\n\\- 42 adapters for common questions (threat, apology, persuasion, Skyrim-style memory matching, NPC mood)\n\n\\- \\`pip install\\` runtime, local server, no network calls\n\n\n\nWeak spots: CPU is slow during long scenes, English-only, and the planning stuff is only tested on our own generated data.\n\nHaven't run public benchmarks yet, that's next.\n\n\n\n[https://huggingface.co/holdoutlabs/gamedecider](https://huggingface.co/holdoutlabs/gamedecider)\n\n\n\nFeedback appreciated :)",
+    "developer": "NoahPersaud",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

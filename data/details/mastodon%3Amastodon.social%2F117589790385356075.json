@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117589790385356075",
+  "sourceItemId": "mastodon.social/117589790385356075",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://hachyderm.io/@claus/117589790334737072",
+  "detail": {
+    "longDescription": "In #kubernetes , preventing creation of workload pods until every required service in the cluster is ready (admission controller, sensors, monitoring stack, etc) is surprisingly difficult.  Sure, there are scheduling gates, but then we have each pod's startup be dependent on the gate itself.  \n\nWe can naively create a controller to remove scheduling gates from already-created pods, but that means that future pods will need to wait until the controller removes its label.  \n\nWe can complement that with a mutating webhook that removes the scheduling gate automatically for new pods, but that can become fragile. \n\nWe can reduce the number of pods that need to be mutated if we use Helm or ArgoCD by running a pre-install or pre-sync hook, so that we only need to gate one pod per workload.  However, if there's a problem with the spec of said hook, then you're stuck with a permanently undeletable job, because most of the job's spec is immutable.\n\nA more coarse approach might be to build the readiness signals into the workloads themselves, or use any signals already present.  For example, the admission controller will most likely have a callback service for event webhooks.  If this service's port is also used for health checks, then you can have the hook pod query that service until it gets a healthy response. \n\nOr you can wait for the existence of a specific resource in your namespace, such as a stub secret or configmap, and mount that into the job's container.  Then the container will not start until said resource exists in the namespace.  A replication controller can be used to copy said resources from a predefined location, and the workloads that you're waiting for can create said resource at the location when ready.  This approach trades a more complicated setup for a more elegant wait condition, in particular because it also allows you to manually create the resources that are being waited for to unblock the job.",
+    "developer": "@claus@hachyderm.io",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Hachyderm.io"
+      }
+    ]
+  }
+}

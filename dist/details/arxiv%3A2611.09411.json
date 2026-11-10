@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09411",
+  "sourceItemId": "2611.09411",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09411",
+  "detail": {
+    "longDescription": "arXiv:2611.09411v1 Announce Type: new Abstract: Multimodal model training breaks the loose coupling between data loading and model execution assumed by conventional training pipelines. Large per-sample variation in decoding cost, token/latent count, and tensor size causes both CPU preprocessing time and GPU compute time to vary substantially across data-parallel ranks (training processes). In synchronous training, these two sources of heterogeneity interact tightly: GPU execution determines how long the input pipeline has to prepare the next batch, while delayed preprocessing in any rank in turn stalls all GPUs at synchronization. As a result, optimizing CPU throughput or GPU load balance in isolation cannot eliminate pipeline bubbles. We present DataHelix, a metadata-first CPU-GPU co-scheduling data plane for multimodal training. DataHelix jointly reasons about preprocessing demand and GPU execution progress, treating each GPU compute window as the readiness budget for the next batch and coordinating preprocessing across ranks to minimize deadline misses rather than CPU makespan. To avoid expensive data movement, placement is decided while samples remain lightweight descriptors, before decoding and collation amplify them into large tensors. Descriptor-level token-latent-aware batching performs coarse pre-balancing, while cost-gated collective rebalancing corrects residual skew only when its expected benefit exceeds transfer cost. Across 11 video and multimodal workloads on 8 Ascend 910B accelerators, DataHelix reduces mean deadline-miss rate by 67.8% and mean p95 input-wait latency by 87.0%, while achieving 2.72x geometric-mean throughput over rank-local DataLoaders and 1.82x over a Ray actor pool under the same CPU budget.",
+    "developer": "Yuanhe Li, Jiazhen Wu, Dian Ding, Guangtao Xue, Yiming Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Yuanhe Li, Jiazhen Wu, Dian Ding, Guangtao Xue, Yiming Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

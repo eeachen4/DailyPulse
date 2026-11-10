@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsacej",
+  "sourceItemId": "1xsacej",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xsacej/do_i_need_release_branches_in_this_workflow_or/",
+  "detail": {
+    "longDescription": "Developing a new workflow for my team but i am new to a lot of these concepts.\n\nCurrent approach is generally:\n\n1. Devs cut from main\n\n2. Make changes & PR back to main. Automated tests run\n\n3. At end of sprint, release branch is created, cut from main. Full integration test is run on this along with some manual checks. This technically runs every evening on main as well (minus the manual checks)\n\n4. Github Release is created from release branch.\n\n5. Hotfix - changes are PR into main same as any other change and cherry picked onto latest release branch. New release created.\n\nDoes this sound reasonable? \n\nAnother solution might be to have another long lived branch called prod. Hotfixes are PRs to both main & prod. Every sprint we merge main into prod, then Release from prod. This seems simpler, but maybe I’m missing something ",
+    "developer": "Data-Panda",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

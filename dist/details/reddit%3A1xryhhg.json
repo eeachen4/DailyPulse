@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xryhhg",
+  "sourceItemId": "1xryhhg",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xryhhg/twindex_exact_replayable_proofs_that_your_data/",
+  "detail": {
+    "longDescription": "PINNs, least squares and Bayesian fits all return a parameter. None of them tell you, with a proof, whether a very different parameter fits your data just as well.\n\nTwindex finds those \"twins\" and proves it. It writes a small JSON certificate, and an exact checker (standard-library Python, rational arithmetic, no floats) replays it: VALID, INVALID or INCONCLUSIVE. A VALID twin pair means no estimator can recover that parameter better than +/- half the gap from those data, under a stated bounded-noise assumption.\n\nReal-data example: the 1978 boarding-school flu outbreak (BMJ). After 5 days of counts, SIR models with R0 = 2.5 and R0 = 20 both fit every count. Twindex identified the next-day count that would separate them, and the real count ruled out both. You can check the proofs in your browser here (runs locally via Pyodide, \\~0.2 s per proof): [https://arnav-m10.github.io/Twindex/demo/](https://arnav-m10.github.io/Twindex/demo/)\n\nIt also goes the other way: full-prior pavings that prove an upper bound, i.e. \"the data pin this parameter down to within U\".\n\nWhat it covers:\n\n\\- ODE models with polynomials, division, exp, sin, cos (Michaelis-Menten, Hill, SIR, PK, predator-prey...)\n\n\\- 1-D/2-D elliptic and heat-equation PDEs\n\n\\- any Python simulator, as a numerical audit (clearly labeled, not a proof)\n\nLimitations, honestly: bounded noise (not statistical), proofs are conditional on the model and noise bound you state, scaling beyond a few parameters is hard, and there's no independent expert proof audit yet. Bounded-error estimation with validated integration is established prior work; the new part here is portable exact certificates plus a small checker anyone can replay.\n\npip install twindex\n\nGitHub: [https://github.com/Arnav-M10/Twindex](https://github.com/Arnav-M10/Twindex)\n\nFeedback very welcome, especially attempts to break the checker.",
+    "developer": "Longjumping_Glass852",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsdy76",
+  "sourceItemId": "1xsdy76",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xsdy76/audio_embeddings_inference_in_cggml_with_clapcpp/",
+  "detail": {
+    "longDescription": "I implemented **clap.cpp**, audio embedding inference in C++/GGML. It uses GGUF models and provides a CLI, an HTTP server, and Python, Rust, and Node.js bindings.\n\n* Models including CLAP, CLAP2, CLaMP3, MERT, MuQ, and MuQ-MuLan.\n* WAV, MP3, and FLAC input, with automatic resampling and mono downmixing.\n* An HTTP endpoint with an OpenAI-compatible **text embeddings request format**.\n\nGitHub: [https://github.com/gorse-io/clap.cpp](https://github.com/gorse-io/clap.cpp)\n\nAudio files could be searched by text via CLAP embedding:\n\n    $ clap search esc5 --model larger_clap_general-q4_k_m.gguf --text 'dog' --top-k 10\n    \n    [\n      {\"path\": \"esc5/2-118072-A-0-dog.wav\", \"score\": 0.3736357720143104},\n      {\"path\": \"esc5/1-110389-A-0-dog.wav\", \"score\": 0.36165991257288893},\n      {\"path\": \"esc5/4-183992-A-0-dog.wav\", \"score\": 0.3574270305924374},\n      {\"path\": \"esc5/1-30226-A-0-dog.wav\", \"score\": 0.34910229736736315},\n      {\"path\": \"esc5/3-180977-A-0-dog.wav\", \"score\": 0.34359234068457495},\n      {\"path\": \"esc5/4-194754-A-0-dog.wav\", \"score\": 0.3425423428503198},\n      {\"path\": \"esc5/2-118964-A-0-dog.wav\", \"score\": 0.3389233902904601},\n      {\"path\": \"esc5/1-100032-A-0-dog.wav\", \"score\": 0.33009392183878733},\n      {\"path\": \"esc5/5-9032-A-0-dog.wav\", \"score\": 0.3280081351893563},\n      {\"path\": \"esc5/4-182395-A-0-dog.wav\", \"score\": 0.32210240115509925}\n    ]",
+    "developer": "zhenghaoz",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

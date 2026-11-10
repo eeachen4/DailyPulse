@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xscv76",
+  "sourceItemId": "1xscv76",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xscv76/amazon_eks_a_successful_rolling_deployment_doesnt/",
+  "detail": {
+    "longDescription": "**One thing I learned while working with Amazon EKS: A successful deployment doesn't always mean a reliable application.**\n\nWhen working with Kubernetes on AWS, it's easy to focus on getting deployments running, configuring CI/CD pipelines, and achieving successful rolling updates.\n\nBut production reliability goes beyond that.\n\nOne scenario worth paying attention to is node failure or node rotation.\n\nEven if your application has multiple replicas and rolling deployments are configured correctly, you can still experience downtime if all replicas are scheduled on the same worker node.\n\nA few Kubernetes configurations can help reduce this risk:\n\n* **PodDisruptionBudget (PDB):** Helps maintain minimum application availability during voluntary disruptions.\n* **Topology Spread Constraints:** Distributes replicas across different nodes or availability zones.\n* **Pod Anti-Affinity:** Helps prevent replicas from being scheduled on the same node.\n* **Readiness Probes:** Ensures traffic is sent only to pods that are ready to serve requests.\n\nOne important distinction: a PDB doesn't prevent involuntary node failures, but it helps protect availability during supported voluntary disruptions.\n\n**My takeaway:** Don't just test whether your application can deploy successfully. Test what happens when a node disappears, a pod crashes, or an update goes wrong.\n\nThat's where you start discovering whether your Kubernetes setup is actually production-ready.\n\nCurious to hear how others handle node failure and workload availability in their EKS environments. What configurations have made the biggest difference in your experience?",
+    "developer": "rahulsharma_rks31",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09172",
+  "sourceItemId": "2611.09172",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09172",
+  "detail": {
+    "longDescription": "arXiv:2611.09172v1 Announce Type: cross Abstract: The B+-tree is a ubiquitous search index due to its provable I/O (cache) efficiency. Yet unlike batch-parallel binary search trees, which are both fast and widely available, no batch-parallel B+-tree offers strong empirical performance together with provable, near-optimal I/O efficiency. Prior B+-tree-based designs are either parallel but purely theoretical, with no high-performance implementation, or concurrent indexes such as the Bw-tree and Masstree, which run an order of magnitude slower on batch updates. We present PaB-tree, the first batch-parallel B+-tree with guarantees on work, span, and cache complexity alongside strong practical performance. Its core challenge -- repairing node overflows and underflows without eroding the tree's I/O advantage -- is resolved by one simple invariant: a repair never touches a sibling and is always pushed to the parent. A Promote primitive reduces batch construction and insertion to repeated node promotion, and batch deletion to reinsertion. Batch updates take O(B log_B n) work and O(log_B n) I/O per element, matching the sequential B+-tree bounds, with polylogarithmic span. Against highly-optimized parallel and concurrent baselines, PaB-tree delivers the best overall performance trade-off: up to 1.4x faster on construction and up to 3.6x faster on batch insertion than the strongest baseline, while preserving B+-tree query efficiency.",
+    "developer": "Ziyang Men, Yan Gu, Yihan Sun, Helen Xu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DS, cs.DB, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ziyang Men, Yan Gu, Yihan Sun, Helen Xu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

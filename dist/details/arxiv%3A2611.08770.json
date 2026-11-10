@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.08770",
+  "sourceItemId": "2611.08770",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.08770",
+  "detail": {
+    "longDescription": "arXiv:2611.08770v1 Announce Type: new Abstract: Prefill--decode disaggregation moves a prompt's key--value (KV) cache between workers before the first token can be generated. Reducing this handoff to either cache compression or recomputation misses a useful choice: which layers to transmit, at what precision, and which layers to execute again on the decode worker. ReKV transfers a quantized prefix KV cache and one BF16 boundary state, then reconstructs a contiguous suffix while the prefix is in flight. In a model-shaped synthetic benchmark on cross-node H100s, the Q8 configuration meeting separately evaluated quality criteria reduces 8K handoff latency by $2.36\\times$, $2.84\\times$, and $3.65\\times$ over BF16 transfer for Qwen2.5-7B, Qwen2.5-3B, and Qwen3-8B. It is also faster than the best measured transfer-only or recompute-only action at those points. A separate real-weight BF16 recomputation experiment reduces prefill-to-token-return time by $1.16$--$1.63\\times$. The preferred action changes with prompt length and link bandwidth.",
+    "developer": "Guangjian Dong",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Guangjian Dong"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

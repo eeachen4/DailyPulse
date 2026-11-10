@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50424070",
+  "sourceItemId": "50424070",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50424070",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;ve been building TimeScroll since September 2025. It&#x27;s a Mac app that records your screen in the background, so you can scroll back through your day or search for anything you&#x27;ve seen. It is local and open-source. The key features are introduced on the site, so I&#x27;ll try to reduce the repetition in this post. My motivation for building was (1) Rewind shutting down and the lack of alternatives that are as polished and direct; (2) Most apps like this (including Rewind really) are super CPU and storage intensive, to the point of having a noticeable impact on your battery life. I identified a few issues with the &#x27;standard&#x27; way of capturing and made it a point to fix them in this app. 1. The part I spent the most time on is how the text gets captured. Basically all the apps run OCR on every screenshot, which means the heavy OCR step will always take a certain amount of CPU. I noticed that the text is already inside the apps, so I took the completely different approach of reading it through the macOS Accessibility API instead (which I call Direct mode). It has big advantages - gets the exact text with no misread characters, along with the position of each line, and it&#x27;s much cheaper than OCR. The problem was that Chrome and Electron apps don&#x27;t work very well with it, as they wouldn&#x27;t create an accessibility tree unless requested, so I needed to set AXManualAccessibility attribute. Also, the text can be buried under many layers of the tree, so I have to write logic to traverse the tree within a time limit and capture as much useful text as possible. I haven&#x27;t seen any screen capture app do these, so I had to figure most of it out on my own. There are also a lot of implementation details - like first computing which windows are on each display and which parts of them are visible on screen. Ultimately, my measurements were around 9ms of CPU time to read a frame initially, but on subsequent reads, it can go as low as 0.4 ms. The newest feature is summaries. You can select any range on the timeline and get your time in each app plus a written summary from a local model through Ollama. The main implementation trick used in the summary is (1) dividing the usage into &#x27;sessions&#x27; using heuristics and (2) using the existing embeddings (from AI search) to choose a few representative screens to pass to the model. 2. Storage optimizations. I chose HEVC video to store the snapshots with one &quot;segment&quot; file per minute. The encoding process was something I needed to tune over time. Currently, I am using a constant quality setting with one keyframe per segment. On text-heavy frames, the approach I used managed to reduce it from 84 KB per frame to 20 KB, at slightly better quality. There is also a lot of duplicate text that would multiply the storage use if stored for each snapshot, so deduplication and compression were huge things to figure out. Needless to say, all of this took many tries to get right, especially working with extracting&#x2F;storing frames to the video files efficiently. The end result is that TimeScroll uses ~2GB&#x2F;month with normal daily usage and averages 1.1% CPU and 150-250MB memory on an M4 over a few days of normal use, whereas an older post about Rewind I found measured it to be &quot;200MB&#x2F;hour&quot; and 20% CPU, which is ... a lot in comparison. There are a lot of other things and approaches I tried that I can&#x27;t fit here, but anyways, I&#x27;d really like feedback, especially on Direct mode and on the newer features - hope you enjoy the app!",
+    "externalUrl": "https://github.com/XInTheDark/TimeScrollApp",
+    "developer": "XInTheDark",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

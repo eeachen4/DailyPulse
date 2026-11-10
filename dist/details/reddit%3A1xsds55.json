@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsds55",
+  "sourceItemId": "1xsds55",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xsds55/agent_sessions_are_the_real_record_of_how/",
+  "detail": {
+    "longDescription": "I've been working on Wisdom for the past few weeks, and this is actually the problem that got me started.\n\nWhen you work with coding agents, a lot happens inside a session. You give instructions, the agent explores the codebase, tries different approaches, runs commands, hits errors, gets corrected and eventually makes the changes.\n\nBut once the session ends, most of that context is gone. You're left with the final code and maybe a commit message.\n\nI've been wanting to preserve that history, not just the final output.\n\nSo I built Wisdom. It keeps a local record of Claude Code, Codex and Pi sessions, including prompts, commands and their actual outputs, and file changes as diffs.\n\nOne thing I particularly wanted was for agents to be able to access this history themselves. Each supported agent gets a skill to look through previous sessions and retrieve the relevant context.\n\nI've been using it for things like handing off work from Claude to Codex when I hit usage limits, or letting an agent understand why a particular piece of code was written a certain way without having to explain everything again.\n\nI also think this could become greatly valuable when a fleet of agents work on the same project. Instead of relying only on summaries passed between them, they could look at what actually happened in previous sessions.\n\nI've released the first version.\n\nGitHub: [https://github.com/Oqura-ai/wisdom](https://github.com/Oqura-ai/wisdom)\n\nIt's open source and everything stays local.\n\nWould be great to hear how u guys solve these problem",
+    "externalUrl": "https://i.redd.it/2fs35ndsqp0i1.png",
+    "developer": "Fit-Fail-3369",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs4hq8",
+  "sourceItemId": "1xs4hq8",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xs4hq8/forecasting_new_power_outages_per_county_hourly_2/",
+  "detail": {
+    "longDescription": "Hi all! I built an hourly **power** **outage** **forecast** for 216 counties (MO + IL): P(≥5% of a county's customers newly out in the 6 h starting 2 h from now). Model: XGBoost on HRRR storm-related data (gusts, shear, CAPE, icing, etc.), county-specific facts, current outages and neighboring counties.\n\nSetup decisions I'd like feedback on:\n\n* Target is *new* outages only (no credit for predicting ones already underway). I thought predicting current outages was too easy and quite useless, so I chose to make it just for new outages, which was much harder to beat the ceiling.\n* Trained 2020–2024, tested on 2025 using the HRRR forecasts as issued, the mean of the last 5 runs, not observed weather. The model validates on 2024, tests on 2025.\n* Baseline: a rate table of NWS warnings + SPC Day 1 outlook, fit on the same rows.\n* Uncertainty: bootstrap over storm days, paired.\n\nResults on 2025: **PR-AUC 0.094** vs **0.039** (ratio \\~2.4×, 95% range 2.0–3.3×). At equal alert volume: 30% of new outages caught vs 17%; precision 15% vs 11%. Base rate is 0.5% of county-hours, so the precision is honest but low.\n\nEarly transfer test: trained only on MO + IL, it caught 31% vs 19% in Iowa, Indiana and Michigan (combined)\n\nLive since Nov 1, with every forecast saved for a blind test. Write-up, code, and the leakage audit: [https://ugobruzadin.github.io/storm-outage-risk/](https://ugobruzadin.github.io/storm-outage-risk/)",
+    "developer": "CarRepresentative843",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

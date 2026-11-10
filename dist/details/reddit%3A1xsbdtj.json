@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsbdtj",
+  "sourceItemId": "1xsbdtj",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xsbdtj/i_tried_replacing_ai_multiplication_with_a_giant/",
+  "detail": {
+    "longDescription": "This started with what felt like a slightly dumb question:\n\nWhy does an AI model keep multiplying and adding numbers? What if we calculated the answers once, stored them, and looked them up later? It’s the same idea as memorizing multiplication tables in school. You don’t work out `7 × 8` every time. You remember that the answer is 56.\n\nSo I built that idea for AI calculations. I called it **Product Atlas**: a giant book containing multiplication answers. Instead of asking the processor to multiply two numbers, my program would use those numbers to find the correct page and retrieve the answer. Instinctively, It felt promising. The program was avoiding a lot of multiplication, and it still produced the correct results.\n\nThe problem is it's still slow. The computer could multiply the numbers faster than my program could find the stored answers. I tried a couple of optimizations like organizing the book better. I grouped nearby answers together. I replaced large identifiers with smaller ones. I fetched several answers at once. That helped. Groups of four worked particularly well in some tests. But even after those improvements, It was still slow. As one last effort, I tried to cache multiplication+additions involved and made the multiplication input as the address for saved the result. It still ended up being too slow to give any meaningful difference. I have stopped working on the project as I am stuck.\n\nI have published a cleaned-up C++ reconstruction here: [https://github.com/coconinja2/llm-inference-lab/tree/master/product-atlas](https://github.com/coconinja2/llm-inference-lab/tree/master/product-atlas). Hopefully someone else can carry on or someone can build something better.",
+    "developer": "Dry_Mixture130",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

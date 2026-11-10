@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09744",
+  "sourceItemId": "2611.09744",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09744",
+  "detail": {
+    "longDescription": "arXiv:2611.09744v1 Announce Type: new Abstract: Layered architecture recovery (LAR) reconstructs a system's architectural layers from its package dependencies, and is defined as a combinatorial optimisation problem solved with classical search. We investigate whether the Quantum Approximate Optimization Algorithm (QAOA) can be applied to LAR, and with what practical limitations. We formulate LAR as a Quadratic Semi-Assignment Problem, transform it into a Quadratic Unconstrained Binary Optimisation (QUBO) problem in which each package is penalised unless it is assigned to exactly one layer, and encode it as an Ising Hamiltonian solved by QAOA. To reach instances beyond the qubit budget of a single circuit, we also apply an impact-guided decomposition that solves the problem as a sequence of smaller sub-problems. We evaluate the approach on three real Java systems ($15$, $18$, and $24$ qubits), studying the effect of circuit depth and sampling budget (RQ1), a comparison with a classical Tabu Search baseline (RQ2), robustness to simulated quantum noise (RQ3), and the decomposition (RQ4). We find that monolithic QAOA is feasible and accurate on the two smaller systems but fails on the $24$-qubit instance, that the sampling budget rather than circuit depth governs its accuracy, and that it is competitive with but does not outperform Tabu Search. Decomposition restores reliable recovery on the $24$-qubit instance, raising the optimal rate from $6.7\\%$ to $93.3\\%$; its accuracy is governed by the size of each sub-problem and, unlike the monolithic pipeline, improves as the sampling budget is reduced. Our results indicate that, in the current noisy intermediate-scale regime, problem decomposition, rather than larger circuits or more sampling, is the key to applying QAOA to software architecture recovery.",
+    "developer": "Julien Cardinal, Andrew Chedid, Imen Benzarti, Ghizlane El Boussaidi, Christophe Pere, Jean-Marc Robert",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Julien Cardinal, Andrew Chedid, Imen Benzarti, Ghizlane El Boussaidi, Christophe Pere, Jean-Marc Robert"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

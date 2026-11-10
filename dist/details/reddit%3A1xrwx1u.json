@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrwx1u",
+  "sourceItemId": "1xrwx1u",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xrwx1u/i_built_p9s_a_k9sstyle_terminal_ui_for_gatekeeper/",
+  "detail": {
+    "longDescription": "I work on multi-tenant Kubernetes clusters and kept answering the same policy questions with long kubectl and jq pipelines: what is violating which policy, which team owns it, what would break if we switched a policy from audit to enforce, and why a deploy was just blocked. So I built a TUI for it.\n\nRepo: [https://github.com/yindia/p9s](https://github.com/yindia/p9s)\n\nWhat it does:\n\n* Shows policies, violations, admission denials and engine health for OPA Gatekeeper, Kyverno and native VAPs, side by side, from your kubeconfig\n* Groups violations by owner, so a Deployment with 30 violating Pods is one row. You can group by a `team` label instead\n* Shows what a policy in audit mode would reject if you enforced it today, by namespace and owner\n* Lists recent admission denials with the user who made the request, from the engines’ Events\n* Shows the policy’s own remediation text on a violation (Kyverno and gatekeeper-library metadata)\n* Health view: fail-open webhooks with no endpoints, expiring webhook certs, crash-looping controllers, stale audits, policies that never loaded\n* Constraint templates with highlighted Rego and CEL, Kyverno policies and reports, VAPs and their bindings\n\nIt is read-only and installs nothing in the cluster. It uses informers rather than polling, and works with limited RBAC, down to a single namespace, telling you what it could not read.\n\nOutside the TUI:\n\n    p9s get v -n payments -o json             # any view as a table or JSON\n    p9s report --format html -o report.html   # report with Pod Security Standards coverage\n    p9s report --fail-on critical             # non-zero exit for CI\n    p9s snapshot -o prod.json                 # record a cluster, browse it later offline\n\nInstall:\n\n    brew tap yindia/p9s https://github.com/yindia/p9s\n    brew install p9s\n\nor `go install` [`github.com/yindia/p9s/cmd/p9s@latest`](http://github.com/yindia/p9s/cmd/p9s@latest), or the binaries on the releases page.\n\nIt is early (v0.0.2). CI runs end-to-end tests on kind against current Gatekeeper and Kyverno charts. VAP violations only show up if Kyverno is writing reports for them, since VAPs don’t report violations on their own.\n\nI’d like feedback from people running these engines in production, especially on large clusters and on views you would want that are missing. Issues and PRs welcome.",
+    "externalUrl": "https://v.redd.it/mdmgs2b0am0i1",
+    "developer": "Outrageous-Income592",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

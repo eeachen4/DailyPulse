@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs6uob",
+  "sourceItemId": "1xs6uob",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xs6uob/when_is_it_time_to_move_from_a_custom_llm_proxy/",
+  "detail": {
+    "longDescription": "I initially built a small FastAPI proxy for one of our apps so we could switch between OpenAI and Anthropic without having to change anything in the application code.\n\nIt worked fine when we only had one app using it. Now we're at four apps across three teams, all sharing the same two provider API keys, and the setup is getting harder to maintain.\n\nWe're starting to run into issues around team-level API keys, usage limits, tracking requests properly, and keeping sensitive customer data out of prompts before they reach external providers. Right now, most of our logging is handled through a basic Postgres table, which isn't exactly ideal.\n\nFor developers who've moved away from a homegrown proxy, what did you end up using? Was a dedicated LLM gateway worth the switch, or did you find it easier to keep building on your existing setup?",
+    "developer": "Kev926",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

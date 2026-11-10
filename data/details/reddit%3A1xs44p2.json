@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs44p2",
+  "sourceItemId": "1xs44p2",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xs44p2/reviewing_the_rubrics_behind_rubricgraded/",
+  "detail": {
+    "longDescription": "Wrote this up with Aich et al. (2026) and thought it would be interesting for this community. It looks at the rubrics behind rubric-graded benchmarks. When an LLM judge scores a response against a list of criteria, the score depends on that list. We reviewed those lists.\n\nRIFT (RubrIc Failure mode Taxonomy) evaluates the rubric rather than the model’s response. It computes signals from a rubric’s content (which criteria a panel of simulated experts calls essential, how well the criteria cover the task, near-duplicates, and whether the point weights match the panel’s view of importance) and maps them to nine failure modes. In a test where known defects were injected into 60 expert rubrics, the signals picked the injected failure mode 75.0% of the time (chance is 12.5%), against 56.7% for an LLM judge reading the same rubrics.\n\nApplied to 147 tasks from five public rubric-graded benchmarks (finance, medicine, software engineering, professional advice, reasoning), the share of tasks flagged were:\n\n* Missing criteria (a prompt requirement no criterion checks): 50%\n* Misaligned (a criterion grades something the task didn’t ask for): 48%\n* Ungrounded verification: 37%\n* Redundant: 35%\n* Miscalibrated weighting: 29%\n* Subjective wording: 10%\n* Non-atomic (bundled) criteria: 7%\n\nIn one example, a medical task asked how to reduce postoperative vomiting anxiety for a patient. The rubric had six criteria and none of them mentioned anxiety, so the part of the question the asker cared about most wasn’t scored at all. So, the model could ignore the question and still score fairly well.\n\nWrite-up with the criteria and signal values can be found here: [https://snorkel.ai/blog/checking-the-rubrics-rift-results-on-five-public-benchmarks/](https://snorkel.ai/blog/checking-the-rubrics-rift-results-on-five-public-benchmarks/)\n\nPaper (Aich et al., 2026): [https://arxiv.org/abs/2604.01375](https://arxiv.org/abs/2604.01375)\n\nThanks y’all!",
+    "externalUrl": "https://i.redd.it/66vht0tqln0i1.png",
+    "developer": "NaivelyBayesic",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

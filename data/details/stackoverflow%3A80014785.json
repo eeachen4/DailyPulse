@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014785",
   "sourceItemId": "80014785",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014785/confirmit-respondent-data-fetch-erroring-out-in-forsta",
   "detail": {
     "longDescription": "I have a confirmit survey where i have BG fields S_state_fips, S_state , respemail variables. My survey page gets email and State (dropdown field) from the respondent and i want to validate the combination on respondentdata: Survey page: on the custom validation, I am trying to verify email and state combo as below: if (f(CurrentForm()).toBoolean()) { // Values entered by respondent var enteredEmail = String(f(\"verify_email\")).Trim().ToLower(); var selectedState = String(f(\"verify_state\")).Trim(); // Pull background values using the native GetRespondent method var storedEmail = String(GetRespondent(\"respemail\")).Trim().ToLower(); var storedState = String(GetRespondent(\"S_state_fips\")).Trim(); // Normalize numeric state codes: 01 and 1 should match var stateMatches = Number(selectedState) == Number(storedState); if (enteredEmail != storedEmail || !stateMatches) { RaiseError(); SetErrorMessage( 9, \"The email address and state do not match our records. Please verify your information.\" ); } } I get an error for this as: Error in QuestionValidationCode : Variable 'GetRespondent' has not been declared I also tried: var storedEmail = String(f(\"respemail\").Value).Trim().ToLower(); var storedState = String(f(\"S_state_fips\").Value).Trim(); StoredEmail and storedState comes as \"Undefined\". Can someone please guide on how to fix this?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "62"
+        "value": "119"
       },
       {
         "label": "状态",

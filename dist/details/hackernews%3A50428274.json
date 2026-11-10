@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50428274",
+  "sourceItemId": "50428274",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50428274",
+  "detail": {
+    "longDescription": "I made this webapp (vibecoded) with Meta&#x27;s AI models during the Meta AI hackathon that just ended (Oct 26-Nov 4). So far it contains public 33,000 companies, and 100k+ &#x27;flows&#x27;. A company X has a flow to another company Y if X funds Y or owns its shares, or vice versa. It collects business data from SEC&#x27;s EDGAR (Electronic Data Gathering, Analysis, and Retrieval), Wikidata company lists, and other regional company indices of Europe and Asia to build a database of companies to display on the map. SEC provides financial information liberally, while for the European counterpart I didn&#x27;t find an equivalent yet. I geocoded the business addresses using OpenStreetMap&#x27;s Nominatim (hopefully that doesn&#x27;t break their terms somehow; I love OSM). But it was slow... (1 API call = 1 address translation per second; I did not have the time&#x2F;space to download the whole Nominatim database.) There&#x27;s also this amazing database from OpenAlex, where you can see billions of connections between funders and research institutions, authors, and OpenAccess papers. It&#x27;s a continuation of Microsoft Academic Graph, which was discontinued in 2021. It&#x27;s a goldmine for studying study financing &#x2F; grants, and their API allowances are great, and very clear. I made that a part of the app too (just on a small scale). You can increase the sliders on the top right to increase the scope of data shown. It needs to be raised to show the university grant data (will fix it soon, AI kept failing on this). It was pretty fun building it. There are amazing APIs for this type of work online (free), like from the SEC, Wikidata, some European company indices, though seemingly the hardest part was getting AI to read the API terms and rate limit the API calls interestingly. I think the most fun I had was because I used a non-Claude(?) model, I had to continuously reprompt things that it did not get right intuitively on its own, but I had the sense to know what was broken, so it felt like the fun of programming. I&#x27;d say this is my first vibecoded project so maybe that fun dies away soon after. I want to incorporate private company information, donations , or big individual share holders&#x27; data into the charts too. I think it&#x27;d be cool to see who are some of the individual owners of large portions of the public companies. I&#x27;m not sure how to source the info for the private companies yet though, I&#x27;ll look into it later. Again, you can search for companies by their name, address, Stock Exchange ticker, etc. Right now the data is quite static, but I want to make it dynamic eventually with daily or bi-weekly data ingestion for the latest data. As it stands, it&#x27;s just a pretty visualization, with lots of company data still missing, but nonetheless it&#x27;s kind of fun to explore. There&#x27;s a demo in the GitHub; if anyone has thoughts or any advice, I&#x27;d love to read them. Thanks!",
+    "externalUrl": "https://github.com/feeRnt/whofundsit/tree/post_demo_cloudflare_cdn",
+    "developer": "feearent",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

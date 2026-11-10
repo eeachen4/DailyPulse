@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsazlf",
+  "sourceItemId": "1xsazlf",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xsazlf/minifold_a_privacy_focused_selfhosted_file/",
+  "detail": {
+    "longDescription": "\n\n\n\nMost \"compress your PDF / photo\" sites want your files on their servers. I wanted the same thing on my own box, so I made Minifold.\n\nYou drag files in, pick a level (low / medium / high / extra) and download smaller versions. That's basically it.\n\nSome details:\n\n* Files keep their format. JPEG stays JPEG, MP4 stays MP4. Under the hood it's mozjpeg, oxipng + pngquant, libwebp, gifsicle, libvips (HEIC, AVIF, TIFF), qpdf + Ghostscript for PDFs and FFmpeg for video. Anything else gets compressed with zstd.\n* If it can't make a file smaller, you get the original back instead of a bigger file.\n* Metadata like GPS location and camera info is stripped by default. Color profile and rotation are kept so photos still look right.\n* Nothing leaves the server. Fonts and icons are bundled and the page blocks outside requests.\n* Files clean themselves up: uploads are deleted right after the job, results after a retention time you pick, and leftovers are wiped on restart.\n* Optional GPU video encoding (NVENC, Quick Sync, VA-API). Off by default because the CPU makes smaller files.\n* It's one Rust binary plus the tools above. Images for amd64 and arm64.\n\nQuick start:\n\n    docker run -d --name minifold -p 8080:8080 \\\n      -v minifold-config:/config -v minifold-data:/data \\\n      --restart unless-stopped ghcr.io/a-mayur/minifold:latest\n\nIt generates an access token and an admin token on first start and prints them in `docker logs minifold`. There's an Unraid template in the repo too.\n\nIt's early (v0.2.0), so be warned:\n\n* one shared access token, not real user accounts\n* no camera RAW, AVI or JPEG XL yet\n* I've mostly tested it on my own files\n\nIf you throw something at it that it handles badly, I'd really like to know. Issues and PRs welcome.\n\nGitHub: [https://github.com/a-mayur/minifold](https://github.com/a-mayur/minifold) (MIT)",
+    "externalUrl": "https://i.redd.it/m8ibx68k2p0i1.gif",
+    "developer": "Code__Block",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

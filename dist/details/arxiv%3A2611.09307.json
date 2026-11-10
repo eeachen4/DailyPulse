@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09307",
+  "sourceItemId": "2611.09307",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09307",
+  "detail": {
+    "longDescription": "arXiv:2611.09307v1 Announce Type: new Abstract: Smart-contract fuzzers differ by an order of magnitude in throughput and by design in how they construct inputs, yet published comparisons rarely separate the two. We present Wake 5, an open-source Python framework for Solidity testing, fuzzing and static analysis, and use it to locate the binding constraint of stateful smart-contract fuzzing. Wake 5 replaces the JSON-RPC connection to an external node with an in-process EVM (revm) and exposes its static analysis to language-model agents through a Model Context Protocol (MCP) server. On the Daedaluzz maze benchmark (153 reachable assertions, guard constants below 2^32), Wake 5 executes 29,931 transactions per second, on par with Foundry (30,186) and 11.5x faster than Echidna (2,600). In eight-hour campaigns, however, the three tools plateau at medians of 75, 71 and 70 assertions, and their union reaches 93. We show that Wake's integer generator places 51% of its probability mass below 2^32 and that, once shallow assertions are exhausted, the generator prior rather than throughput bounds every tool. A harness written by a language-model agent, which derives inputs with a constraint solver, reached all 153 assertions in each of five campaigns executed by Wake, in 33 to 79 minutes. A complementary ablation in an agentic audit of a production Go codebase found that static-analysis tools improved recall for none of three models, raised precision for all three, and increased language-model cost by up to 12.7%. We discuss correlated oracles and non-deterministic completion, and argue that the fuzzer's role is shifting from search to execution.",
+    "developer": "Josef Gattermayer, Michal P\\v{r}evr\\'atil",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Josef Gattermayer, Michal P\\v{r}evr\\'atil"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

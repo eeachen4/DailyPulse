@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80014764",
   "sourceItemId": "80014764",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
   "sourceUrl": "https://stackoverflow.com/questions/80014764/how-to-use-ellipsis-as-function-argument-default",
   "detail": {
     "longDescription": "After reading this Q&A , I decided to try using Ellipsis as a function argument default: def func(arg: int = ...): print(arg) However, Pyright complains: Expression of type \"EllipsisType\" cannot be assigned to parameter of type \"int\" \"EllipsisType\" is not assignable to \"int\" Because ... isn't an int . So I tried using a Union : def func(arg: int | Ellipsis = ...): print(arg) Pyright still complains: Variable not allowed in type expression (variable) Ellipsis: Unknown It only works if the function body is a literal Ellipsis (not print(arg) or even pass ): def func(arg: int = ...): # happy pyright! ... Why does it work here but not anywhere else? How can I make ... work in all situations?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "93"
+        "value": "390"
       },
       {
         "label": "状态",

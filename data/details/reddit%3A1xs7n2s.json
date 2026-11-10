@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs7n2s",
+  "sourceItemId": "1xs7n2s",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xs7n2s/open_record_a_selfhosted_music_player_with_a/",
+  "detail": {
+    "longDescription": "Open Record is a music player built around a vinyl record shop. You browse the crates, build playlists, import your own files or Spotify exports, and play on a virtual turntable. Tracks you save are stored on your device, so your library doesn't depend on a streaming subscription. It has crossfade, pre-buffering of the next track and offline playback. It runs as a web app, a Linux and Windows desktop app, and an Android APK. iOS works if you build it from source.\n\nThe self-hosted part is a small Fastify server that uses yt-dlp to resolve stream links. You run it on your own machine, and the app only talks to the server you point it at. With no server configured, the app makes no network calls. The server syncs metadata, playlists and saved songs, never audio. Run it on loopback behind your own reverse proxy or Tailscale, and set TRUST\\_PROXY and PUBLIC\\_URL if you expose it. I recommend never port-forwarding it directly. It works on your own network, but streaming from a self-hosted server on mobile data needs HTTPS through Tailscale or a trusted proxy.\n\nIt's MIT-licensed and in beta, so expect rough edges. There's no Docker image yet, and the setup docs are in the repo. Feedback, bug reports and PRs are welcome: [https://github.com/ahnafone/open-record](https://github.com/ahnafone/open-record)",
+    "developer": "ahnav",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

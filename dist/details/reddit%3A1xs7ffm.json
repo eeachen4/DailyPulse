@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs7ffm",
+  "sourceItemId": "1xs7ffm",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xs7ffm/same_prompt_deepseek_v41_flash_vs_qwen_38_fn_94/",
+  "detail": {
+    "longDescription": "I wanted to see how big of a difference there is between arguably two of the top MoE models that you can actually run locally, so I ran the same one shot prompt and left it unattended for a while. The prompt asks for a fully interactive V8 engine... yes, you're probably familiar with it and I'm aware this is not the best test and it only covers some of the capabilities of each model, and this particular test is likely on both of their training data, but still a fun experiment and the results were definitely interesting:\n\n**DeepSeek V4.1 Flash 1017, UD IQ1\\_M** (yup a \"lobotomized\" IQ1 quant, stop reading if this triggers you)\n\nSingle agent took about 60 minutes, 250k tokens generated at \\~94 tok/s. 346k context, never compacted. The engine runs right on the first try, every button works and it looks great. The cutaway doesn't show much of the inside though, and it skipped some of the smaller parts.\n\n![img](du0slvsh8o0i1 \"DSV4.1 V8 Engine\")\n\n**Qwen 3.8 FN, NVFP4**\n\nMain agent + 5 subagents (up to 3 at once), \\~350 tok/s aggregate. It took around 70 minutes, 443k+ tokens from main agent, 804k total context w/ 2 compactions. Two subagents said \"I'll start writing the file now\" and never did. Main agent gave up on them and wrapped up. It built way more parts and a much better cutaway, but the engine never actually starts\n\n![img](54up659l8o0i1 \"QFN 3.8 V8 Engine\")\n\nOnce again do keep in mind this was a one shot experiment, I use Qwen 3.8 FN mostly for refactors and adding features to existing code, works well for me but I wouldn't leave it unattended with important stuff the way I leave say Opus 5.5 or larger cloud frontiers. Deepseek 4.1 is a lot better at figuring things out by itself it seems.\n\nHere's the full prompt if you wanna give it a shot:\n\n    Let's build a V8 engine.\n    \n    A stunning, fully interactive 3D simulation of a 90-degree V8 on an industrial\n    engine test stand, in Three.js/WebGL, running in the browser.\n    \n    Eight cylinders in two banks of four, cross-plane, with visible pistons, rods,\n    crankshaft, camshafts and valves.\n    Detailed heads, intake, exhaust headers, bolts and pipework.\n    Realistic PBR metals.\n    Real, synchronised animation: pistons driven off the crank, cams turning at\n    half crank speed, and a full four-stroke valve sequence.\n    An RPM slider from 0 to 4 000, plus slow motion.\n    WASD plus mouse walking, orbit, and smooth zoom.\n    Working controls: START / STOP, RPM CONTROL, CUTAWAY, EXPLODED VIEW, ASSEMBLE,\n    PART INSPECTION, RESET CAMERA.\n    Procedural geometry only — no downloaded models.\n    Every control functional, and nothing floating apart.\n\nYou can open both builds and play with them yourself [here](https://basalt.jgulfo.com/showcase/v8-engine/). I ran this on [Basalt](https://basalt.jgulfo.com), using [Quecto Harness](https://quecto.jgulfo.com/harness/) (disclaimer, I'm a maintainer of both), rig: RTX 5090 + RTX 5060 Ti, Ryzen 9 9950X and 128 GB of DDR5.",
+    "developer": "jesdga95",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015538",
   "sourceItemId": "80015538",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015538/runpod-serverless-load-balancer-endpoint-running-llama-cpp-server-always-fails-w",
   "detail": {
     "longDescription": "I'm trying to serve a 27B GGUF model on RunPod Serverless with an OpenAI-compatible API, scaling to zero when idle. Setup: Endpoint type: Load Balancer (so I get a real /v1/chat/completions path) Image: ghcr.io/ggml-org/llama.cpp:server-cuda GPU: 96 GB RTX PRO 6000 (fallback H100 80 GB) Workers: 0 active, 1 max, idle timeout 300 s Start command: llama-server \\ --host 0.0.0.0 --port 8080 \\ -hf <user>/<repo>:<quant> \\ -c 262144 \\ -ngl 99 \\ --flash-attn on \\ --cache-type-k q8_0 --cache-type-v q8_0 When I send a request after the endpoint has been idle, a worker starts, but the request fails with: timed out waiting for worker The worker logs show the model downloading and loading normally, and if I keep retrying for a few minutes, a request eventually succeeds and everything works while the worker stays warm. Why does RunPod give up on the worker even though llama-server is starting fine, and how can I make the first request succeed (or at least make cold starts usable)?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "55"
+        "value": "107"
       },
       {
         "label": "状态",

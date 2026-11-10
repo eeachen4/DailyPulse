@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.08666",
+  "sourceItemId": "2611.08666",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.08666",
+  "detail": {
+    "longDescription": "arXiv:2611.08666v1 Announce Type: cross Abstract: Interactive debuggers are indispensable to human software development, yet coding agents overwhelmingly rely on edit-execute-observe loops, using common bash tools, test scripts, and print statements to debug via repeated shell commands. Stepping through a debugger provides live access to runtime state, which may enable different problem-solving capabilities. However, prior work typically introduces the debugger as an additional tool or through a new subagent, making its individual contribution difficult to isolate from the associated scaffold changes. To address this, we compare a debugger-only agent against a bash-only agent on all 500 SWE-bench Verified instances, holding the rest of the scaffold fixed. We evaluate both architectures on two models, GPT-OSS-120B and Nemotron-3-Ultra-550B, with three independent runs per architecture $\\times$ model configuration. Crucially, to distinguish interface specialization from expanded coverage under repeated sampling, we introduce pass$_X$@$k$, a cross-agent pass@$k$ that provides an unbiased estimator of the probability that at least one of $k$ agents is successful. Although the bash and debugger agents solve partially disjoint subsets of the benchmark in any single pair of runs, our pass$_X$@$2$ estimator reveals that this is largely due to run-to-run variance rather than tool complementarity. Across both models, we find that two bash rollouts outperform the combination of one bash and one debugger rollout. Our findings highlight the importance of accounting for stochastic variance in evaluating agent and tool diversity, and we hope that pass$_X$@$k$ will serve as a useful framework for the community.",
+    "developer": "Ryan Magnuson, Ellie Kitanidis, Ariel Lee",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ryan Magnuson, Ellie Kitanidis, Ariel Lee"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

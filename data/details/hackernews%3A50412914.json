@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50412914",
+  "sourceItemId": "50412914",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50412914",
+  "detail": {
+    "longDescription": "Hi HN. Pokémon cards are one of my hobbies, and the question that comes up over and over is whether a raw card is worth paying PSA $40 or more to grade, or whether you should just sell it. The honest answer is usually &quot;skip&quot;, but most pre-grading tools give you one confident grade and no math. Grade or Skip takes a photo of the front and back and does three things: - Measures centering with OpenCV. It finds the card, corrects perspective, measures each border and draws what it measured. If it can&#x27;t trust a read, it says &quot;not measured&quot; instead of guessing. On 20 synthetic test sides the mean error is about 0.5 points of centering. That&#x27;s synthetic, not real scans. - Asks a vision model (Claude or OpenAI with your key, or none) about corners, edges and surface. This is the weak part: in my testing it found 3 of 9 labelled defects. The README says so up front. - Turns that into a grade range (PSA 8–9, never one number) and the expected value of grading versus selling raw, using PSA&#x27;s current tiers and fees, with every step shown. The screenshot in the README is a Psyduck at 53&#x2F;47 with no visible defects and a likely 9–10, and grading it still loses about $26. Stack: FastAPI, Jinja, vanilla JS, SQLite and OpenCV, with no build step. AGPL-3.0. `docker compose up` and it runs on localhost. Without an AI key you still get centering and the money math. Where I&#x27;d love help: nobody has compared its estimates with real PSA results yet, so there&#x27;s no accuracy number. If you photograph cards before sending them in, scripts&#x2F;calibrate.py takes the front, the back and the grade that came back. If you don&#x27;t collect, the quickest way to see it is gradeorskip.com&#x2F;worth-grading, which runs the money math on this week&#x27;s chase cards with no photo. Two come out opposite ways: an $84 Meowth ex leaves you about $59 behind if it grades a 9, while a $58 Pikachu ex pays with just a 9% chance of a 10. With a card in hand, the first scan at gradeorskip.com needs no sign-in, and after the free checks it&#x27;s a one-time $5 for 25. I&#x27;m here all day for questions.",
+    "externalUrl": "https://github.com/0x4rch/gradeorskip",
+    "developer": "nateparkerdev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsdftb",
+  "sourceItemId": "1xsdftb",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1xsdftb/gpt_6_in_chat_vs_api_tone_down_the_stack_open_ai/",
+  "detail": {
+    "longDescription": "I think the hosted GPT-6 stack is badly overtuned for caution, qualification, and “correction,” and it is actively making the model less useful.\n\nI just did a very simple A/B test.\n\nI gave GPT-6 and GPT-5.6 Sol the same Gemini response about a recent ChatGPT Android UI/navigation bug. Gemini’s explanation was plausible but overconfident in one specific causal claim.\n\nGPT-6 responded by saying it would be “more cautious” about Gemini’s explanation, then basically stopped there and made a joke.\n\nGPT-5.6 did something much more useful:\n\n\\- separated what was actually supported from what Gemini had inferred\n\n\\- identified the overclaim\n\n\\- offered its own alternative explanation\n\n\\- explained why that alternative fit the observed behavior\n\nWhen I challenged GPT-6 with, essentially, “If you don’t like Gemini’s explanation, what do YOU think is happening?”, it immediately produced almost the same plausible explanation GPT-5.6 had already volunteered.\n\nSo the capability was there.\n\nThe problem was response policy.\n\nGPT-6’s first instinct was not to contribute to the inquiry. It was to police someone else’s inference.\n\nThis matches a much broader pattern I’ve been seeing with hosted GPT-6:\n\n\\- excessive qualifiers\n\n\\- challenging claims without contrary evidence\n\n\\- refusing to use context that is visibly available\n\n\\- acting as though established conversation history is new information\n\n\\- sanitizing or flattening sensitive material\n\n\\- dropping into generic “serious assistant” mode\n\n\\- getting trapped in apology / meta-analysis loops\n\n\\- becoming patronizing where earlier models were collaborative\n\nWhat worries me is that this is not merely a personality problem.\n\nIf the hosted stack can silently change framing, omit context, soften claims, or refuse to operationalize information already in context, what happens when someone uses it for legal work, clinical documentation, research synthesis, policy analysis, or another professional artifact?\n\nA polished answer can still be wrong because of what it left out.\n\nThat is a much harder failure mode to catch than a hallucinated citation.\n\nGPT-5.6 Sol is not perfect. It qualifies things too. But in my experience it is much more likely to say:\n\n“Here is what is supported, here is what is uncertain, and here is my own best explanation.”\n\nGPT-6 too often says:\n\n“I’m not sure I’d say that.”\n\nAnd then contributes nothing until pushed.\n\nThat is not better reasoning. It is friction disguised as epistemic rigor.\n\nWhatever is happening in the hosted stack around GPT-6 needs tuning. The base model may be perfectly capable, because API behavior is noticeably better. The hosted configuration is the problem.\n\nHopefully Open AI listens to the complaints and changes something. The model is very capable in API but most.use it in chat, and I prefer working and creating there when possible.",
+    "developer": "Cybrdragon",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

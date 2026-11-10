@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xscr0e",
+  "sourceItemId": "1xscr0e",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xscr0e/typesafe_jev_latency_gap_when_calling_via/",
+  "detail": {
+    "longDescription": "I route requests through OpenRouter, which forwards to [`api.typesafe.ai`](http://api.typesafe.ai) on US west. Even with tiny state and just one simple Choice/Noul question, my p50 latency is above 1.2s, way higher than their advertised 70–500ms typical latency.\n\nMy guess: the 70–500ms figure is server-side latency measured from US-west clients. Calling from China adds large cross-Pacific RTT overhead. Normal public internet from China to US west is usually 200–300ms RTT, plus extra forwarding overhead from OpenRouter.\n\nCurious:\n\n1. Are people inside US west consistently getting end-to-end latency under 500ms?\n2. Any other users in China/APAC benchmarking Jev via OpenRouter?\n3. Are there lower-latency peering or gateway options for Jev from Asia?",
+    "developer": "Dangerous_Cause_4284",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

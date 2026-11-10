@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09008",
+  "sourceItemId": "2611.09008",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09008",
+  "detail": {
+    "longDescription": "arXiv:2611.09008v1 Announce Type: new Abstract: Expert-parallel mixture-of-experts (MoE) layers run at the pace of the most loaded GPU, and a few hot experts carry most of the excess load. Replicating them at every MoE layer balances the load only if their weights arrive within the layer, and broadcasting from the owner is the bottleneck: point-to-point copies overload it, and baseline broadcasts pay latency or bandwidth overheads. We present ISER-MoE (In-Switch Expert Replication for MoE), built in TensorRT-LLM, which multicasts hot experts through the NVLink switch to fixed GPU groups, so each byte leaves its owner once. A GPU scheduler assigns hot experts to groups per layer, and a multi-port broadcast spreads the injection over the group's ports, both overlapped with the shared expert. In trace replay, the scheduler removed 98-99% of the excess load; in prefill serving of DeepSeek-V4-Pro, throughput rose 17.4% on a math benchmark and 7.2% on agentic prompts.",
+    "developer": "Jintao Peng, Ethan Zhang, Kefeng Duan, Bangyu Sheng, Min Li, Itamar Rosenfeld Rauch, Jack Yang, June Yang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Jintao Peng, Ethan Zhang, Kefeng Duan, Bangyu Sheng, Min Li, Itamar Rosenfeld Rauch, Jack Yang, June Yang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

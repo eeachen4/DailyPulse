@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs483b",
+  "sourceItemId": "1xs483b",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xs483b/docker_engine_29100_packaging_changes/",
+  "detail": {
+    "longDescription": "Hi, many people were asking for a long time about official packages for AlmaLinux, Oracle Linux and Rocky Linux, and I'm happy to announce that they will finally be available in the upcoming Docker Engine 29.10.0!\n\n29.10.0-rc.1 is already on the test channel, so you can try them now using the convenience script:\n\n  \n`curl -fsSL [https://test.docker.com](https://test.docker.com) | sh`\n\n\n\nOr set up the repo yourself (replace **rocky** with **alma** or **oracle**):\n\n```\nsudo dnf -y install dnf-plugins-core\nsudo dnf config-manager --add-repo https://download.docker.com/linux/rocky/docker-ce.repo\nsudo dnf config-manager --set-enabled docker-ce-test\nsudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n```\n\nThis only applies to new installs. If you already installed Docker using the RHEL or CentOS repo, you'll keep getting packages from there until you switch the repo URL yourself:\n\n```\nsudo rm /etc/yum.repos.d/docker-ce.repo\nsudo dnf config-manager --add-repo https://download.docker.com/linux/rocky/docker-ce.repo\n```\n\n\n  \nThere are also other changes related to static packages published on [https://download.docker.com](https://download.docker.com)\n\n- The CLI and the Engine also ship as separate docker-cli and docker-engine archives, so you don't have to download the whole bundle if you only need the CLI. The combined docker archive is still there:  \n  [https://download.docker.com/linux/static/test/aarch64/docker-29.10.0-rc.1.tgz](https://download.docker.com/linux/static/test/aarch64/docker-29.10.0-rc.1.tgz)  \n  [https://download.docker.com/linux/static/test/aarch64/docker-cli\\_29.10.0-rc.1.tgz](https://download.docker.com/linux/static/test/aarch64/docker-cli_29.10.0-rc.1.tgz)  \n  [https://download.docker.com/linux/static/test/aarch64/docker-engine\\_29.10.0-rc.1.tgz](https://download.docker.com/linux/static/test/aarch64/docker-engine_29.10.0-rc.1.tgz)\n\n- Each new static package archive now also has a sha256 file: [https://download.docker.com/linux/static/test/aarch64/docker-29.10.0-rc.1.tgz.sha256](https://download.docker.com/linux/static/test/aarch64/docker-29.10.0-rc.1.tgz.sha256)\n\n- Windows arm64 binaries: [https://download.docker.com/win/static/test/aarch64/](https://download.docker.com/win/static/test/aarch64/)  \n\n\nFull changelog here: [https://github.com/moby/moby/releases/tag/docker-v29.10.0-rc.1](https://github.com/moby/moby/releases/tag/docker-v29.10.0-rc.1)\n\nDetailed installation instructions will be published on docs.docker.com after the GA release (which should be this week).\n\n\nPlease let us know if you encounter any issues!\n\nPackaging issues: [https://github.com/docker/packaging/issues/](https://github.com/docker/packaging/issues/)  \nEngine issues: [https://github.com/moby/moby/issues/](https://github.com/moby/moby/issues/)\n\n",
+    "developer": "gronodev",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

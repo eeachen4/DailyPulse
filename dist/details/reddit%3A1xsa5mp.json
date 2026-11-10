@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsa5mp",
+  "sourceItemId": "1xsa5mp",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xsa5mp/i_ripped_260_hidden_247_spyware_services_and_cpu/",
+  "detail": {
+    "longDescription": "I got a Redmi Note 15 5G recently and started digging into why the phone was lagging.\n\nWhen you actually look at what Xiaomi (and Redmi/Poco) runs in the background out of the box, it is honestly insane. There are over 260 hidden system services running 24/7. Some of them listen to microphone triggers and call audio, scan your private gallery photos, read text straight off your screen inside messengers and banking apps, watch everything you copy to your clipboard, and track your location through Wi-Fi and Bluetooth beacons even when GPS is off. On top of that, there is a cloud service that literally pulls throttling tables from Xiaomi servers to slow down your CPU so the phone feels older than it is.\n\nNormally you need a PC and ADB cables to strip this garbage out, so I wrote a small open-source app called BakaBlocker (v1.5.1, GPLv3) to do it directly on the phone without root or a computer.\n\nYou just do a quick one-time setup on the phone with Termux in split-screen, and then the app rips out the spyware, locks battery-draining apps in a background jail so they stay dead when closed, unlocks real 120Hz, and frees up around 2 GB of RAM (mine went from 2.8 GB to 5.0 GB free). Xiaomi is super aggressive about trying to revive some of its junk when you restart the phone, so after a reboot you just open the app and tap once to clean out whatever tried to come back. Banking apps, SMS codes, alarms, and system updates still work fine.\n\nSmartphone hardware reached a point years ago where we really do not need to buy new phones anymore, and mine now flies like a rocket even with 20 apps minimized in the background.\n\nThe whole thing is 100% free and open source.\n\nGitLab (source & APK): https://gitlab.com/YKupriyanov/BakaBlocker\nCodeberg mirror: https://codeberg.org/11010001101001/BakaBlocker\n\nCurious if anyone else here on HyperOS or MIUI has looked into how many background packages their phone is running right now?\n\n",
+    "developer": "Sad_Standard9503",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

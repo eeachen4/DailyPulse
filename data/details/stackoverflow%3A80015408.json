@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015408",
   "sourceItemId": "80015408",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015408/t-string-html-renderer-ignores-2f-and-escapes-nested-templates-as-raw-text",
   "detail": {
     "longDescription": "I’m switching my HTML helpers from f-strings to t-strings so user input gets escaped automatically. Escaping works, but number formatting is gone. When I put one template inside another, the inner template comes out as an escaped object dump instead of HTML. from string.templatelib import Template, Interpolation import html def render(template: Template) -> str: parts = [] for item in template: if isinstance(item, Interpolation): parts.append(html.escape(str(item.value))) else: parts.append(item) return \"\".join(parts) name = \"<b>Rahum</b>\" price = 19.999 row = t\"<td>{name}</td><td>${price:.2f}</td>\" page = t\"<tr>{row}</tr>\" print(render(row)) print(render(page)) What I expected: <td><b>Rahum</b></td><td>$20.00</td> <tr><td><b>Rahum</b></td><td>$20.00</td></tr> What happened instead (Python 3.14.6): <td><b>Rahum</b></td><td>$19.999</td> <tr>Template(strings=(&#x27;<td>&#x27;, &#x27;</td><td>$&#x27;, &#x27;</td>&#x27;), interpolations=(Interpolation(&#x27;<b>Rahum</b>&#x27;, &#x27;name&#x27;, None, &#x27;&#x27;), Interpolation(19.999, &#x27;price&#x27;, None, &#x27;.2f&#x27;)))</tr> Questions: Why is :.2f ignored? With an f-string, the same code prints $20.00 . Why does the nested row template turn into a Template(...) repr instead of rendering? How should render handle format specs, !r / !s conversions, and nested templates without double-escaping the inner HTML? Related question: This answer about t-string logging shows how to apply conversions and format specifications, but does not address nested HTML templates or double escaping.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "235"
+        "value": "313"
       },
       {
         "label": "状态",

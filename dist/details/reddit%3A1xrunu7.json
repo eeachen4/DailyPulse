@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrunu7",
+  "sourceItemId": "1xrunu7",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xrunu7/using_latentagent_swarms_for_math_discovery_and/",
+  "detail": {
+    "longDescription": "Last year Google DeepMind's AlphaEvolve found a faster way to multiply 4x4 complex matrices, beating a record that had stood since 1969. The idea is to let an LLM write a program, score it, and iteratively improve it. So it's called \"**evolve**\". \n\nBut AlphaEvolve runs on Gemini models. Similar open-source implementations are also usually slow and expensive. We tried to make it faster, cheaper, and better. \n\nSwarmEvolve is our new paper, a scalable framework for math discovery and optimization.\n\nWe run swarms of hundreds of latent-reasoning agents on Qwen3 8B, 14B and 32B. In \\~5 minutes, they reach scores that took OpenEvolve, ShinkaEvolve and CodeEvolve >1 hour. \n\nHere's how:\n\n1. Inspired by recent works in LatentMAS, our agents never write out their thoughts. They reason in latent space and pass KV caches to each other, so ideas from different agents mix right inside the model. This massively improved throughput.\n\n2. Small agents are cheap, so we can run a lot of them, each with a different focus, organized in swarms. More agents means more diverse ideas each round, more exploration of the solution space, and the swarm finds good programs much faster.\n\n3. It works at every model size we tried. With just the 8B model, it even matched the best known circle packing. Framework has been extended to work with Qwen3.5 and Muse models as well, showing even better performance.\n\nPaper: [https://www.alphaxiv.org/abs/2611.08483](https://www.alphaxiv.org/abs/2611.08483)\n\nCode (available soon): [https://github.com/Qile-J/SwarmEvolve](https://github.com/Qile-J/SwarmEvolve)\n\nLet me know if this makes sense or not. Also I'm really interested in apply such \"evolve\" frameworks on real scientific discovery problems - material science, biology, etc - so if anyone has any ideas for next steps / collaboration, I'm open to hear about it! ",
+    "developer": "QileHQ",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

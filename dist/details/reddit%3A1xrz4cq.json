@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrz4cq",
+  "sourceItemId": "1xrz4cq",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xrz4cq/weeks_of_troubleshooting_taught_me_why_kubernetes/",
+  "detail": {
+    "longDescription": "Our setup: an on-prem Kubernetes cluster talking to an external MySQL InnoDB Cluster. MySQL Routers sit outside the cluster in three zones. Apps use port 6446 for read-write traffic and 6447 for read-only.\n\nThe symptom: pods couldn’t reach zone 1’s router on 6446 (“connection refused”). Port 6447 on the same IP worked. Zones 2 and 3 worked on both ports. VMs connected to everything.\n\nOur first theory was that 6446 was blocked on zone 1. So we went through the usual suspects:\n\n* Checked every NetworkPolicy. Nothing blocking inside the cluster.\n* Asked the security and infra teams. They confirmed nothing was blocked. Since the cluster and routers share a subnet, traffic never reached their gateway, so they had nothing to trace.\n* Packet captures on the router and on a cluster VM.\n\nThen came the first real clue. We deployed a test pod and found the traffic wasn’t leaving the node at all. The router never saw it, and the network team couldn’t see it either, because it never reached the network.\n\nThat changed the question from “who is blocking us?” to “what is happening inside the cluster?” Out of curiosity, we listed Services across all namespaces. There it was: a stale Service in an unrelated namespace, with `externalIPs` set to the router IPs on port 6446 and no endpoints behind it.\n\nkube-proxy was intercepting every pod’s traffic to that IP and port, from every namespace, and rejecting it because there were no backends. That explains everything:\n\n* Only 6446 was affected, because the Service only declared that port.\n* Only pods were affected. VMs never go through kube-proxy.\n* The router logs were empty, because the traffic never reached the router.\n\nThe fix was removing one field in Rancher.\n\n**Takeaways**\n\n* When packets never leave the node, stop looking at the network.\n* `externalIPs` is cluster-wide. Namespaces don’t contain it.\n* Run `kubectl get svc -A -o wide` early, not last.\n* Consider an admission policy that blocks `externalIPs`.\n\n",
+    "developer": "Specialist_Horror400",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

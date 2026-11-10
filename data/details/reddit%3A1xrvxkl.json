@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xrvxkl",
+  "sourceItemId": "1xrvxkl",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1xrvxkl/is_your_github_actions_oidc_role_pinned_to_a/",
+  "detail": {
+    "longDescription": "Thinking about how much github oidc really buys you after this years secret dumping campaigns, ghostaction, prt-scan and the gheist writeup going around. every thread ends with move off stored keys and onto oidc and it seems like that only goes as far as the role trust policy\n\nFrom what gets posted a lot of trust policies match the sub claim with something like repo:org/repo:\\*. that covers every branch, tag, pull request and environment in the repo, so anyone who can push a branch, or a stolen token that can, gets to assume the deploy role\n\nthe part i keep going back and forth on is the secrets that cant go oidc at all, mostly saas api keys. npm and pypi have trusted publishing now, and for the rest there are short lived per run creds from vault dynamic secrets, hush security or any other issuer a team already runs. no idea how many teams actually go that far tho\n\nthe tighter setup seems to be deploys running in an environment, the trust policy matching repo:org/repo:environment:prod exactly and branch rules on that environment so only main can use it. environment secrets only reach jobs that pass those rules, so pulling secrets out of repo and org level closes the rest\n\nfork PRs dont get secrets or a writable oidc token by default so it mostly comes down to who has write access.",
+    "developer": "Mission-Leave-6551",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

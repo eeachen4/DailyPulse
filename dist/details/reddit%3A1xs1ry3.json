@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xs1ry3",
+  "sourceItemId": "1xs1ry3",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xs1ry3/best_backup_strategy_for_my_home_server/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\nI'm looking for advice on setting up a reliable, automated backup system for my Debian home server. I recently bought three additional 500 GB HDDs and I'm trying to figure out the best way to use them.\n\n**My server:**\n\nLenovo ThinkCentre M710q Tiny\n\nIntel Celeron G3930T (2C/2T)\n\n16 GB RAM, Debian 13\n\nMain drive: 500 GB WD Black 7200 RPM HDD\n\nAdditional drives: 3× Seagate BarraCuda 500 GB 5400 RPM (SMR)\n\nAround 38 Docker containers, including Immich, Nextcloud AIO, Jellyfin, RomM, Sonarr, Radarr, Seerr, Pi-hole and others.\n\nEverything currently runs from the main WD Black HDD, including Docker, databases and media files. I plan to keep all active services there.\n\n**My planned setup**\n\n**HDD 1 — Daily backup:** Always connected, automatic incremental backups with versioning.\n\n**HDD 2 — Weekly backup:** Normally disconnected. I'll connect it every weekend, run a backup, then safely disconnect it.\n\n**HDD 3 — Cold storage:** Rarely accessed files and archives, without continuous read/write activity.\n\nI don't want RAID(in case tell me why should i use It). Both backup drives should contain independent, recoverable copies.\n\n**What I want to back up**\n\n**Immich:** Original photos/videos, PostgreSQL database and metadata.\n\n**Nextcloud AIO:** User files, database and configuration.\n\n**Docker:** Compose files, persistent configurations and databases for Jellyfin, Seerr, Sonarr, Radarr, RomM and other containers.\n\nI **don't need to back up** Jellyfin movies/TV shows, RomM game files, torrents or other easily recoverable content.\n\nMy priority is protecting personal files and application configurations.\n\n**What would you recommend?**\n\nI've been considering **Backrest/Restic, Kopia, BorgBackup and Duplicati**, but I'm not sure which would fit best.\n\nA few questions:\n\nWhat's the best tool for managing two independent backup drives with different schedules?\n\nCan backups start automatically when I connect the weekly USB HDD?\n\nHow should I handle consistent backups of Immich and Nextcloud databases?\n\nShould I use Nextcloud AIO's built-in BorgBackup alongside another tool?\n\nAre there any concerns about using SMR HDDs for incremental backups?\n\nI'd prefer something **open-source, self-hosted, with a web UI**, and relatively easy to maintain.\n\nThanks for any advice!",
+    "developer": "Kooky_Big_4741",
+    "comments": 11,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -7,19 +7,19 @@
   "detail": {
     "longDescription": "I swapped ThreadPoolExecutor for the new InterpreterPoolExecutor to get real parallelism for CPU-bound work. With the thread pool, my except BadInput catches bad items and skips them. With the interpreter pool, the same exception goes straight past the except and kills the script. The traceback even names the class <fake __main__>.BadInput . from concurrent.futures import InterpreterPoolExecutor class BadInput(Exception): pass def check(n): if n == 3: raise BadInput(f\"bad value: {n}\") return n * 2 if __name__ == \"__main__\": with InterpreterPoolExecutor(max_workers=2) as pool: try: print(list(pool.map(check, range(5)))) except BadInput as e: print(\"skipping bad input:\", e) What I expected (this is what ThreadPoolExecutor prints): skipping bad input: bad value: 3 What happened instead (Python 3.14.6, internal frames trimmed): exception is not shareable: Traceback (most recent call last): File \".../concurrent/futures/interpreter.py\", line 11, in do_call return func(*args, **kwargs) File \"pipeline.py\", line 8, in check raise BadInput(f\"bad value: {n}\") <fake __main__>.BadInput: bad value: 3 Traceback (most recent call last): File \"pipeline.py\", line 14, in <module> print(list(pool.map(check, range(5)))) ... File \".../concurrent/interpreters/__init__.py\", line 222, in _call raise ExecutionFailed(excinfo) concurrent.interpreters.ExecutionFailed: <fake __main__>.BadInput: bad value: 3 Uncaught in the interpreter: Traceback (most recent call last): File \".../concurrent/futures/interpreter.py\", line 11, in do_call return func(*args, **kwargs) File \"pipeline.py\", line 8, in check raise BadInput(f\"bad value: {n}\") <fake __main__>.BadInput: bad value: 3 Questions: What is <fake __main__> , and why isn’t it the same BadInput class I defined? Why does the pool raise ExecutionFailed instead of my exception, and what does “exception is not shareable” mean? What’s the right way to catch specific exceptions from tasks in an InterpreterPoolExecutor ?",
     "developer": "Muhammad Raham Saleem",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "-1"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "195"
+        "value": "260"
       },
       {
         "label": "状态",

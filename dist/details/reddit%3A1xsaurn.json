@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsaurn",
+  "sourceItemId": "1xsaurn",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xsaurn/cudarocm_dualbackends_llm_inference_for/",
+  "detail": {
+    "longDescription": "I have seen potential in combining Strix Halo's iGPU with RTX 5090 for LLM inferencing. Initially I found no inference engine that can run LLM inference on both these GPUs at the same time, inference engine such as vLLM support inference on all CUDA GPUs, or all AMD GPUs. llama.cpp Vulkan backend was the only inference engine I found that support both, but it has a huge limitation on the prefill performance on the RTX 5090.\n\nFinally, based on the amazing inference engine Project MAYA, I developed my fork to run GLM-5.3-Flash Maya-M GGUF prefill and decode cooperatively on both GPUs. The CUDA backend (runs on a RTX 5090) working on attention, dense/shared layers and expert cache, the ROCm backend (runs on the Strix Halo iGPU) executes complementary experts in the same process, contributing during prefill and decode.\n\nCheck out the experiment results and try yourself at my GitHub PR: [https://github.com/mw00/project-maya/pull/879](https://github.com/mw00/project-maya/pull/879)\n\nthe creator of project-maya has welcomed the design and plans to test it before deciding on a merge. I believe we can improve it further with the community!",
+    "developer": "Ren-WuJun",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

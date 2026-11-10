@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsb7bm",
+  "sourceItemId": "1xsb7bm",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xsb7bm/changelog_pages_for_products_that_deploy/",
+  "detail": {
+    "longDescription": "We deploy continuously, so our changelog gets a lot of small releases with no regular rhythm. A long single page works for browsing, and in-app “what’s new since you last visited” covers people who are already in the product. Neither helps when I want to send someone a link to a specific set of changes. An anchor can show where to start reading, but not where to stop.\n\nSo I borrowed git’s range syntax for the URL:\n\n    /changelog/v1.50.0..v1.54.2    1.50.0 through 1.54.2 on one page\n    /changelog/v1.47.0,v1.52.0     just those two\n\nThe page shows only those releases, with a combined summary and its own link preview. Different spellings of the same set redirect to one URL, and set pages are `noindex`, so only single releases show up in search.\n\nThe places it’s been useful are mostly outside the product. Support can send a customer everything since the version they reported a bug on, and a newsletter can link the month’s range instead of rewriting it. The comma list helps most when a customer’s complaints got fixed across scattered releases, because you can send them just those releases and skip everything in between.\n\nI haven’t seen another changelog do this, so I’m not sure if it’s useful or if I’m solving a problem only we have. Curious if anyone’s run into the same thing or handled it differently.",
+    "developer": "codectl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.09410",
+  "sourceItemId": "2611.09410",
+  "fetchedAt": "2026-11-10T04:51:31.226Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.09410",
+  "detail": {
+    "longDescription": "arXiv:2611.09410v1 Announce Type: new Abstract: In mainstream shared-memory languages, programmers use synchronisation mechanisms such as locks to isolate shared data accesses across threads to avoid data races. Yet synchronisation enforces only a temporal ordering, while shared memory still communicates updates between threads at every ordinary read and write. To achieve isolation, programmers therefore need to understand the connection between ordering and communication, and to apply synchronisation correctly and consistently, while compilers and hardware optimise assuming they have. When programmers synchronise incorrectly, they lose isolation, and the semantics of their programs change without notice. We propose Sync-as-Share, a memory model built on isolation and communication rather than on the ordering of accesses to shared memory. We start from thread isolation, where each thread reads and writes a private view of memory, and reinterpret programs' existing synchronisation actions to also communicate updates explicitly. As nothing is communicated outside synchronisation actions, data races become impossible by construction. Instead, conflicting updates are detected at synchronisation points. Viewing synchronisation as explicit communication exposes the design decisions of what should be communicated, to whom, and what counts as a conflict. We propose two communication topologies with different trade-offs. We instantiate Sync-as-Share for Java by making the synchronisation actions already defined by its memory model the only points at which threads communicate, so Java programs can adopt Sync-as-Share unmodified. We formalise this instantiation as version-controlled memory, in which synchronisation actions push and pull updates between private views, and mechanise it in Rocq. We show that Java programs that are correctly synchronised under the Java memory model behave identically under shared memory and Sync-as-Share.",
+    "developer": "Luke Cheeseman, Elias Castegren, David Black-Schaffer, Erik \\\"Osterlund, Tobias Wrigstad",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Luke Cheeseman, Elias Castegren, David Black-Schaffer, Erik \\\"Osterlund, Tobias Wrigstad"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
