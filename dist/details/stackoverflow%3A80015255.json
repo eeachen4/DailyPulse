@@ -5,21 +5,21 @@
   "fetchedAt": "2026-11-08T02:44:59.777Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015255/how-do-i-write-a-string-to-a-file-or-socket-in-python",
   "detail": {
-    "longDescription": "I want to make a one time pad in Python. This example I found on Stack Overflow: def encrypt(pad, secret): return ''.join([chr(ord(c) ^ ord(secret[i])) for i, c in enumerate(pad[:len(secret)])]) I need to write the cipher (what the above function returns) either to a file or TCP/IP connection. When I tried to write the cipher to a file, I got: UnicodeEncodeError: 'charmap' codec can't encode characters in position 6-7: character maps to <undefined> How do I write the cipher to a file or socket with socket.sendall(...) ?",
+    "longDescription": "I want to make a one time pad in Python. This example I found on Stack Overflow: def encrypt(pad, secret): return ''.join([chr(ord(c) ^ ord(secret[i])) for i, c in enumerate(pad[:len(secret)])]) I need to write the cipher (what the above function returns) either to a file or TCP/IP connection. When I tried to write the cipher to a file, I got: UnicodeEncodeError: 'charmap' codec can't encode characters in position 6-7: character maps to <undefined> How do I write the cipher to a file or socket with socket.sendall(...) ? EDIT I try to use this : def one_time_pad_encode(message: str, key: bytes) -> bytes: return bytes(p ^ s for p, s in zip(message.encode()[: len(key)], key)) def one_time_pad_decode(cipher: bytes, key: bytes) -> str: return bytes(p ^ s for p, s in zip(cipher, key)).decode() from below answer. I use then the code import secrets, random, string msg = \"Hello World !\" key = secrets.token_bytes(len(msg)) # First key key = ''.join(random.choices(string.ascii_letters + string.digits, k= len(msg))).encode() # Second key print(msg) print(key) cipher = one_time_pad_encode(msg, key) print(cipher) msg2 = one_time_pad_decode(cipher, key) print(msg2) This works correctly, however if I use for example : msg = \"Hello World !é\" I get the error UnicodeDecodeError 'utf-8' codec can't decode byte 0xc3 in position 13: unexpected end of data with either first ot second key generation type. Furthermore, if I try : msg = \"Hello World !ée\" It works again with either firt or second key generation type. However, the message returned by the decode function is Hello World :é , it lacks the last character ! There is something I do not understand with Unicode Character, if there are accentuated characters in the message, or special character \"€\", the returned message is truncated, e.g. for \"Hello World ééààà !{}]e\" I am returned \"Hello World ééààà\" . Could you help me in making the above code more robust with respect to unicode characters ? Solution Core functions : def one_time_pad_encode(message: bytes, key: bytes) -> bytes: return bytes(p ^ s for p, s in zip(message[: len(key)], key)) def one_time_pad_decode(cipher: bytes, key: bytes) -> bytes: return bytes(p ^ s for p, s in zip(cipher, key)) Test : import secrets msg = \"Hello World ! Héhé €€\" bmsg = msg.encode(\"utf-8\") key = secrets.token_bytes(len(bmsg)) print(msg) print(bmsg) print(key) cipher = one_time_pad_encode(bmsg, key) print(cipher) bmsg2 = one_time_pad_decode(cipher, key) msg2 = bmsg2.decode(\"utf-8\") print(msg2) which results into : Hello World ! Héhé €€ b'Hello World ! H\\xc3\\xa9h\\xc3\\xa9 \\xe2\\x82\\xac\\xe2\\x82\\xac' b'-\\x80\\x9b|\\xe0\\xf1\\x1d\\x1d\\xd9m\\xe0\\xd8j\\xf8+R\\xb7\\xd1\\x1b\\x0c\\xb4\\xf6\\xa0\\x02\"\\xfd\\xb0' b'e\\xe5\\xf7\\x10\\x8f\\xd1Jr\\xab\\x01\\x84\\xf8K\\xd8c\\x91\\x1e\\xb9\\xd8\\xa5\\x94\\x14\"\\xae\\xc0\\x7f\\x1c' Hello World ! Héhé €€",
     "developer": "deb2014",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "202"
+        "value": "462"
       },
       {
         "label": "状态",

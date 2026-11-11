@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50439845",
+  "sourceItemId": "50439845",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50439845",
+  "detail": {
+    "longDescription": "Hi HN, I decided to move away from Google Contacts and self-host my contacts two months ago. After installing a Radicale server, I was really missing a way to edit my contacts on the desktop. Nextcloud is overkilled for my needs, and InfCloud is the only other web contacts editor but it hasn&#x27;t had a release in more than 10 years. So I built what was the missing piece in my setup : Natel, a lightweight self-hosted contacts editor for a CardDAV server. The goal is to edit your contacts on the web, be robust enough to not make you lose anything when there&#x27;s an edit conflict with the server, and be super light in resources on the server. I came up with building a docker image of just a proxy caddy server and a go process that stores your credentials only in-memory, for a compressed image of less than 30MB and it uses less than 20MB of RAM when idle. Tested against four CardDAV servers : Nextcloud, Radicale, Baïkal and Xandikos. I already use it myself and it syncs with my server and DAVx5 back-and-forth, but I consider it still in beta and want to add more testing to prove compatibility for features I don&#x27;t (yet ?) use. Note that any field that isn&#x27;t displayed is never lost, it&#x27;s just written back as-is. Demo: https:&#x2F;&#x2F;demo.natel.app&#x2F;contacts Website: https:&#x2F;&#x2F;natel.app I wouldn&#x27;t have done this side-project if I couldn&#x27;t delegate writing the code to agents. We iterate on architectural decisions together, and once I&#x27;m satisfied with the direction, they write the result in a file (find it in docs&#x2F;DECISIONS.md in the repo), then write the code to meet the expectations and independently review each other&#x27;s iterations. I drive the project&#x27;s direction and decisions, but I don&#x27;t review the code myself. I keep an eye on the tests to know what&#x27;s covered, and will read and review code when an agent draws my attention to it. The e2e tests were able to find a bug in SoGO, a CardDAV server : https:&#x2F;&#x2F;bugs.sogo.nu&#x2F;view.php?id=6269 (and I didn&#x27;t add that server in the compatilibity list yet because that bug breaks one the promises of the app, which is to be warned if we&#x27;re trying to delete a contact that is modified elsewhere ; the server doesn&#x27;t correctly enfore the If-Match instruction) As I don&#x27;t have that many users yet, I welcome feedback on any part of the project but especially the parts that I have not yet tested like Contacts on a Mac !",
+    "externalUrl": "https://github.com/KewinDousse/natel",
+    "developer": "Protectator",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

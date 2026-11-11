@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt52aq",
+  "sourceItemId": "1xt52aq",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xt52aq/r1_distills_reprefill_their_previous_answer_every/",
+  "detail": {
+    "longDescription": "Feedback from this sub shaped two of the changes: timestamps in any format are now caught, and so is a restart that recomputes a prefix it could have shared.\n\nPrefixwise has improved a lot over the last two days, so here is the full picture.\n\n\\*\\*The problem.\\*\\* Your agent resends its whole conversation every turn. One changed byte near the top (a reordered tool list, a timestamp in the system prompt, an evicted prefix) and the provider charges full price for everything after it. Providers and engines report how many tokens were cached, never why the rest weren't.\n\n\\*\\*What Prefixwise does:\\*\\* names why each request missed the prompt cache, prices it, fixes the common causes, and stops regressions in CI. Open source (MIT, I'm the author), runs locally, stores hashes and token counts, never prompts.\n\n\\*\\*Identify.\\*\\* One of 19 causes per request, marked waste or legitimate, with the first block that changed (tools\\[0\\], messages\\[12\\]) and the cost: tools in another order (including a schema's required list), a timestamp or id in the system prompt, rewritten history, a misplaced Anthropic cache marker, an expired TTL, an engine eviction, a request routed to a replica without the cache. \\`prefixwise report --session latest\\` shows a session turn by turn. It agrees with Anthropic's own miss diagnostics 32 of 32.\n\n\\*\\*Fix.\\*\\* \\`--optimize\\` turns on the fixes that passed live replays: sorting a drifting tool list (99.9% of predicted saving on Claude, 97.5% on vLLM) and adding cache\\_control markers on Anthropic's API (prompt cost down 85.6% with the write surcharge counted), task success flat on both. Fixes that would change what the model reads stay advice. \\`prefixwise fixes\\` ranks fixes by dollars and says whether one paid off.\n\n\\*\\*Prevent.\\*\\* \\`prefixwise check -- pytest tests/agent\\_scenarios\\` runs your scenarios against a local mock, no API calls, and fails CI when a change would break the cache. Also a GitHub Action. \\`prefixwise explain --diff a.json b.json\\` compares two requests offline.\n\n\\*\\*Self-hosted engines.\\*\\* It detects vLLM and SGLang from the URL and reads their KV-cache events: evictions confirmed (5 of 5), a prefix LMCache or HiCache restored from CPU labelled host\\_restored (5 of 5), and the cost of reasoning templates that re-prefill the last answer (57% of prompt tokens on DeepSeek-R1-Distill-Qwen-1.5B on vLLM, 0% on Qwen2.5). Runs inside vLLM with one flag. Ollama and most llama.cpp builds report no cached tokens; it says so and still names every prompt change.\n\n\\*\\*Ways in.\\*\\* Wrap any agent (\\`prefixwise run -- claude\\`), a proxy for a service, the vLLM middleware, Python \\`wrap()\\` or a LiteLLM callback, or import Claude Code and Codex logs if you're on a subscription. Out: Prometheus and Grafana, OpenTelemetry, an HTTP API, JSONL and CSV. Overhead: 3 ms per request.\n\n\\*\\*Limits.\\*\\* The fixes are proven on scripted sessions and small models, not weeks of production traffic. OpenAI's own diagnostics answered unavailable on every call, so that comparison is unchecked. DeepSeek's hosted API reports cache hits in its own fields, which Prefixwise doesn't read yet; if you use the API and want that, say so.\n\npip install -U prefixwise  \nprefixwise run -- <your agent>  \nprefixwise report --session latest\n\nRepo, with a run record behind every number: https://github.com/tejachavali/prefixwise\n\nWhat should it catch next?",
+    "externalUrl": "https://i.redd.it/wrf8q5t71w0i1.jpeg",
+    "developer": "No-Individual159",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

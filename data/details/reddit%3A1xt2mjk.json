@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt2mjk",
+  "sourceItemId": "1xt2mjk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xt2mjk/xemaya_an_intel_arc_inference_engine_to_run/",
+  "detail": {
+    "longDescription": "I've been trying to get some of the newer MoE models running on my Intel Arc GPUs, mainly DeepSeek V4.1 Flash and GLM 5.3 Flash. Intel support for these models is still pretty limited, and while I could get some things working through patched llama.cpp builds, performance wasn't exactly great.\n\nfable 5.2 ended up making XeMaya, a fork of XeStrata focused on getting these models running natively on Intel Arc through SYCL and Level Zero. The idea is basically to bring the kind of model support Project Maya has to Intel GPUs.\n\nI've been testing it on my Ubuntu server with a B70 32GB, B65 32GB, B60 24GB, Ryzen 9950X, and 128GB RAM.\n\nHere are some of the results so far. All speeds are prefill / generation in tok/s.\n\n**GLM 5.3 Flash**\n\n* Stock llama.cpp SYCL: 68.3 / 13.6\n* Experimental grouped-matmul SYCL: 108.9 / 14.0\n* XeMaya: 152–161 / 17.4 (around 20 generation with MTP)\n\n**DeepSeek V4.1 Flash Coder**\n\n* First XeMaya implementation: 48.5 / 16.3\n* After optimization: 224.8 / 21.7\n\n**DeepSeek V4.1 Flash (regular 384-expert model)**\n\n* Previous patched llama.cpp setup: 45.6 / 10.9\n* XeMaya on B70 + B65: 11.4 / 14.56\n* XeMaya on all three GPUs: 11.2 / 11.58\n\nPrefill on the regular model still needs a lot of work. Also found out that using two GPUs is actually faster than three for this model because my B60 is connected through a slower chipset link.\n\n**Qwen3.8 Flash-Next**\n\n* Strata: 2,211 / 78.3\n* XeMaya: 1,842–1,884 / 76.6\n\nStrata is still slightly faster for Qwen, which makes sense since that's not really where I've been focusing my time.\n\nThese aren't all perfectly controlled comparisons. Different model files, prompts, and GPU configurations were used during development, so I wouldn't treat them as definitive benchmarks.\n\nIt's still an early alpha, but I've gotten DeepSeek V4.1 Flash, Coder, GLM 5.3 Flash, and Qwen3.8 Flash-Next running. There's plenty left to fix and optimize.\n\nAlso, I want to credit **MistVVK (XeStrata), Niko1221 (Strata), and mw00 (Project Maya)**. XeMaya wouldn't exist without their work. The llama.cpp contributors have also been a huge help through their reference implementations.\n\nFigured I'd share it here since I'm sure there are others trying to run these models on Intel hardware. Would be interested to hear how it runs on other Arc cards.\n\nGitHub: [https://github.com/Jumbomuffin777/XeMaya](https://github.com/Jumbomuffin777/XeMaya)",
+    "developer": "Jumbomuffin1312",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

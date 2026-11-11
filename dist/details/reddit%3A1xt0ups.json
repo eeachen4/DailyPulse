@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt0ups",
+  "sourceItemId": "1xt0ups",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xt0ups/i_built_an_agent_platform_with_deterministic/",
+  "detail": {
+    "longDescription": "Hi all,\n\nI’ve been building A3T.io , an agent platform aimed at a few problems I kept running into when putting agents into production.\n\n**1. Agent memory is a mess of separate stores**  \nMost agent stacks need a vector DB for semantic recall, a time-series store for event history, and a key-value store for state, and then you have to keep them in sync. A3T has a single multi-model memory layer that covers all three, so you query one place instead of running three systems.\n\n**2. Workflows should be deterministic where they can be**  \nNot every step needs an LLM call. A3T runs agent workflows deterministically by default and only calls a model where judgement is actually needed. Workflow execution is in the microsecond range, which makes it a good fit for streaming and event-processing agents where per-event latency matters.\n\n**3. Governance shouldn’t be bolted on later**  \nGovernance is a core feature. You write Cedar policies to control what an agent can access and do, and every action is audited. So you can answer “what did this agent do, and why was it allowed?” without digging through logs.\n\n**Who it’s for:** teams running agents on live data streams, or anyone who needs auditable, policy-controlled agents in a regulated environment.\n\nI’d really value feedback from people building agents in production:\n\n* How are you handling agent memory today?\n* Is policy-as-code governance something you need, or is it overkill for your use case?\n* What would stop you from trying something like this?\n\nHappy to answer questions about the architecture.",
+    "developer": "Tough-Ice4217",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

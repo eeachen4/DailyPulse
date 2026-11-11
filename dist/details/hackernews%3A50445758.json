@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50445758",
+  "sourceItemId": "50445758",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50445758",
+  "detail": {
+    "longDescription": "Hey, Alex here, I&#x27;m one of the founders. We&#x27;ve built phone agents for enterprise customers for two years and kept seeing the same failure: agents that mishear callers and then do something confidently wrong. We&#x27;re announcing two things in this launch. #1 is the stack: instead of one transcription model → one LLM → one TTS, most conversation turns runs through several transcription models and LLMs (a fast and a slow LLM in the same call, models switched per turn, audio sent straight to an LLM alongside transcripts). That gets us 99.4% on Big Bench Audio. That&#x27;s the second-highest published score; the only model above us takes almost 9 seconds to start talking as far as we&#x27;ve measured, which doesn&#x27;t work on a phone call. Eval set and transcripts are on Hugging Face - http:&#x2F;&#x2F;huggingface.co&#x2F;datasets&#x2F;kolchinski&#x2F;bba-storm-eval #2 is Zeus, an agent that configures our voice AI stack per use case and per conversation. We tried doing this with Claude Code and Codex and they were bad at it: they can&#x27;t run simulated calls out of the box, don&#x27;t do well with audio input and spotting problems in calls, and tend to blindly believe vendor marketing about which model is best vs actually trying the models. Zeus has evals on real calls, can simulate calls in hard situations, and listens to production calls to find problems, so it can check its own work the way a coding agent runs tests to make sure the code it wrote actually works. Pricing is cost-plus (vendor prices + hosting + a 17–25% margin), no subscription. Zeus is free for now. You can try it with a free $10 credit. Happy to answer questions.",
+    "externalUrl": "https://thunderphone.com/blog/introducing-zeus",
+    "developer": "kolchinski",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

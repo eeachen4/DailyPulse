@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015577",
   "sourceItemId": "80015577",
+  "fetchedAt": "2026-11-11T03:05:12.684Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015577/should-i-use-space-static-body-or-create-my-own-static-body",
   "detail": {
     "longDescription": "I want to create a static body in Pymunk. I've been using pymunk.Body so far: space = pymunk.Space() body = pymunk.Body(body_type=pymunk.Body.STATIC) shape = pymunk.Circle(body, radius=10) space.add(body, shape) But I recently learnt that space has its own static body space.static_body : space = pymunk.Space() shape = pymunk.Circle(space.static_body, radius=10) space.add(shape) From the docs : property static_body: Body A dedicated static body for the space. You don’t have to use it, but many times it can be convenient to have a static body together with the space. Another docs page : Static bodies are bodies that never (or rarely) move. [...] Every space provide [sic] a built-in static body for your convenience. It certainly is very convenient, as I don't need to manually create a static body now. In that case, why do we still have pymunk.Body(body_type=pymunk.Body.STATIC) ? In what situation would I need to create a static body manually?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "124"
+        "value": "131"
       },
       {
         "label": "状态",

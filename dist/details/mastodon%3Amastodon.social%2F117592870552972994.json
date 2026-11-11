@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117592870552972994",
+  "sourceItemId": "mastodon.social/117592870552972994",
+  "sourceUrl": "https://meerjungfrauengrotte.de/@admina/117592870498465205",
+  "detail": {
+    "longDescription": "Hm, habe ein Problem mit Docker. Habe in docker-compose.yml u.a.: services: (...) app: (...) ports: - \"3000:3000\" (...) (...) und in docker-compose.override.yml lediglich: services: app: ports: - \"127.0.0.1:3600:3000\" Allerdings führt docker compose up -d nur die ursprüngliche Anweisung für die Ports aus, nicht die erwünschte Anweisung aus dem Override. Wenn ich Docker richtig verstehe, sollte er aber das Override ausführen und dementsprechend Port 3600 an Localhost binden? Wo liegt mein Fehler? EDIT: Ich habe ihn selbst gefunden... ports: !override - \"127.0.0.1:3600:3000\" # Docker",
+    "developer": "@admina@meerjungfrauengrotte.de",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "1"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

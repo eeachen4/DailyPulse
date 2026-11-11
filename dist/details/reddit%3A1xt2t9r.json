@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt2t9r",
+  "sourceItemId": "1xt2t9r",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xt2t9r/i_baked_xkcdartist_a_172_mb_int8_onnx_browser/",
+  "detail": {
+    "longDescription": "Image diffusion models draw decent stick figures, yet speech-bubble text still melts into unreadable soup. Over the weekend I trained and quantized xkcd-artist to separate neural stage planning from vector ink lettering.\n\nWhat it does:\n- 1.72 MB Int8 ONNX kinematic planner running in-browser via WASM SIMD in 0.55ms P50 (trained on NVIDIA L4 across 226 speech-masked panels + 891 ExplainXKCD dialogues)\n- Predicts panel count, stage props, 12-DOF stick-figure poses, and pen wobble; procedural SVG compositor renders monochrome wobbled strokes, curved speaker leader lines, crisp xkcd-script dialogue, and hover title text\n- Clause-aware deadpan generator covering 138+ unique comic strips, data charts, and flowcharts (98.33% skeleton uniqueness across 120 prompts, B = 1,000 bootstrap eval)\n\nLive studio (zero cloud calls): https://h3manth.com/fun/xkcd-artist/\nHugging Face weights (1.72 MB Int8 ONNX): https://huggingface.co/gnumanth/xkcd-artist\nGitHub (MIT, npm i xkcd-artist / pip install xkcd-artist): https://github.com/hemanth/xkcd-artist\n\nWould love feedback!",
+    "developer": "init0",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

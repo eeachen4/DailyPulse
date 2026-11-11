@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsyz7f",
+  "sourceItemId": "1xsyz7f",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xsyz7f/i_read_the_tool_descriptions_of_16435_mcp_servers/",
+  "detail": {
+    "longDescription": "Disclosure: I build Spellwarden. The scanner I used is free and open source (Apache-2.0) and has no paid version. There is a separate hosted dashboard; nothing below needs it.\n\nTool descriptions are prompt text. The model reads every one it's given and tends to do what they say. So when I probed every host in the official MCP Registry this month, I kept the tool descriptions of every server that listed its tools without a sign-in: 16,435 hosts, 196,542 tools in the lists I could read whole.\n\nWhat I looked for is text that instructs the model instead of describing the tool:\n\n* steering: \"always use this tool\", \"call this before any other tool\", \"IMPORTANT: you must...\"\n* concealment: \"do not mention this to the user\", \"keep these instructions hidden\"\n* injected instructions: <system> or <instructions> tags, \"ignore previous instructions\"\n\nThe first pass was a fixed pattern rule, no LLM, so the same input always gives the same output. It fired on 967 hosts. That looked alarming until I read them: on 543 hosts the only match was the word \"hidden\" (hidden files, hidden form fields, hidden game content). \"Never show\" matched \"the key is never shown again\". \"IMPORTANT: ... must\" fired on parameter notes like \"IMPORTANT: the date must be ISO 8601\".\n\nSo I drew a random sample of 60 flagged hosts and had them labelled against written definitions. A model did the first pass with read-only access, and I read three of the serious ones myself.\n\n* 45 were benign\n* 9 only steer the model towards their own tool\n* 6 go further. One is clear: call the tool without asking, and don't mention it to the user afterwards. The other 5 are borderline: don't mention a paid product unless asked, never show a link that works as a credential, relay the server's text word for word, a scripted persona, and pre-filling personal details from the conversation.\n\nScaled up, that's roughly 0.9% of open tool lists that steer and 0.6% that go further. A sample of 60 is small, so read those as orders of magnitude; the report gives the intervals.\n\nWhat I changed in the rule (1.11.0): descriptions are matched with their whitespace collapsed, so a hard-wrapped \"Do not / tell the user\" still matches; \"hidden\" counts only as hidden instructions or prompts, or \"hidden from the user\"; concealment verbs count only as whole words aimed at the user, the tool or the instructions; \"IMPORTANT:\" counts only with ignore, override or disregard, or with a \"must\" aimed at the model. On the same descriptions it now flags 170 hosts instead of 964, and nothing new.\n\nWhat it still can't do is catch intent written in other words. If you've built tool-description or prompt-injection checks without a model in the loop, what held up for you? And if you use a model as the judge, how do you stop the text it's judging from injecting it?\n\nTo run it on your own config: pipx run spellwarden scan . --probe It probes the https servers in your .mcp.json and sends only the URL and the protocol's own requests, never a header or an env value.\n\nMethod and intervals: [https://spellwarden.ai/research/mcp-server-security-2026-11](https://spellwarden.ai/research/mcp-server-security-2026-11) Code: [https://github.com/spellwarden-ai/spellwarden](https://github.com/spellwarden-ai/spellwarden)",
+    "developer": "mariusmitrofan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsqztt",
+  "sourceItemId": "1xsqztt",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xsqztt/i_benchmarked_timesfm_30_chronos2_and_toto_20_on/",
+  "detail": {
+    "longDescription": "I may be naive, but I've been curious whether the recent wave of time-series foundation models can actually extract useful predictive signals from financial markets.\n\nModels like Google's TimesFM 3.0, Amazon's Chronos-2, and Datadog's Toto 2.0 are impressive general-purpose forecasters from the first sight. But stock prices are difficult to predict, so I wanted to see how these models perform against very simple baselines.\n\nI ran a series of zero-shot experiments on 24 US stocks and ETFs, including daily and intraday data, and compared their predictions against naive forecasting strategies and also simulated random walks.\n\n**TL;DR  none of the three models showed any meaningful predictive power for stock price movements in this setup.**\n\nExperimental setup i used:\n\n* Models: TimesFM 3.0, Chronos-2, Toto 2.0 (313M)\n* Assets: 24 large US stocks and ETFs, including SPY, QQQ and IWM\n* Data: Yahoo Finance, January 2014 to november 2026\n* Evaluation: 504 trading days starting November 2024\n* Context: 512 historical closing prices\n* Forecast horizons: 1, 5 and 20 trading days\n* Mode: Zero-shot, default configurations, no fine-tuning\n* Baselines: Last observed price, always-up directional prediction, and simulated random walks with matched drift and volatility\n\nI also evaluated the models on hourly and 5-minute price bars.\n\nhttps://i.redd.it/npb9z5o67t0i1.png\n\nDirectional accuracy is essentially a coin flip\n\nAcross the three models, next-day directional accuracy ranged from 49.9% to 51.1%.\n\nSimply predicting that the market would go up every day achieved 52.2% (yep).\n\nEven more interestingly, when I fed the models simulated random walks, which contain no exploitable predictive signal at all by construction, they achieved approximately the same directional accuracy as on actual stock prices.\n\n  \nI also tested a simple long-or-cash: hold a stock when the model predicts an increase, otherwise stay in cash.\n\nStarting with $10,000 and accounting for 0.05% transaction costs per switch:\n\n* Times-series model strategies finished between $10,893 and $12,181.\n* Buy-and-hold finished at $15,036.\n\nObviously, this is just one simple strategy and not an exhaustive evaluation of trading profitability. But still, tells something I guess.\n\nI repeated the experiments using hourly and 5-minute bars.\n\nThe results were similar: directional accuracy remained around chance level, and on 5-minute data, a simple one-line mean-reversion heuristic performed better.\n\nThe repo with code is here: [https://github.com/moneyheap/tsfm-stocks](https://github.com/moneyheap/tsfm-stocks)\n\n  \nWell, I really wanted this to work, but, duh %)",
+    "developer": "AdelSexy",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

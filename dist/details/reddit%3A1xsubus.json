@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsubus",
+  "sourceItemId": "1xsubus",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xsubus/llx_a_fast_lightweight_coding_agent_in_rust_one/",
+  "detail": {
+    "longDescription": "I've been building **llx**, an agent runtime that is a single static binary (2.8 MB, macOS and Linux, MIT). The video is a real session on Claude Haiku 5.5, with long model waits trimmed:\n\n1. `/model` lists every model from the providers you're signed in to, and you pick one\n2. it fixes a failing test in a sandbox: 5 s, $0.0007\n3. two agents work in parallel (one adds `mode()` with a test, one writes a README), and the main agent checks their work\n4. `git diff | llx decide …` answers a question about the diff in \\~0.4 s\n5. `llx exec --schema` checks the change as CI would and prints JSON\n\n**What it is**\n\n* **Five tools and nothing else:** `bash`, `apply_patch`, `ask`, `agents`, `jobs`. No plugins, no MCP servers, no skills inside the agent.\n* **Any provider:** a ChatGPT sign-in, OpenRouter, or your own key for 200+ providers via the [models.dev](http://models.dev) catalog. Switch models mid-session.\n* **Sandboxed by default:** commands run in the OS sandbox (Seatbelt on macOS, Landlock + seccomp on Linux). They write only inside the workspace (never `.git`), with no network; anything beyond that is asked. Rules come from your command line and settings, never from the repo.\n* **Built for pipelines:** `llx exec` runs one task, prints JSON events and ends with an exit code you can branch on. `--schema` makes it end with data matching your JSON Schema. `--budget`, `--timeout` and `--max-turns` cap a run. A GitHub Action wraps the same step.\n* **A quick judgment for scripts and other agents:** `llx decide \"does this diff break the API?\" --choices yes,no` prints one option on stdout. Pipe `rg` into it and you get a code search by what code *does*, not what it's named.\n\n**Try it**\n\n* Site and docs: [https://llx.sh](https://llx.sh)\n* Source: [https://github.com/rsaryev/llx-cli](https://github.com/rsaryev/llx-cli)\n* Ready-made uses of llx: [https://github.com/rsaryev/llx-cli/tree/main/examples](https://github.com/rsaryev/llx-cli/tree/main/examples)\n\nI'd love feedback, especially on the `exec`/`decide` workflow in CI, and on what breaks for you.",
+    "developer": "Awkward-Let-4628",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

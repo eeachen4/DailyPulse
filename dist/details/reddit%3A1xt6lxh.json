@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt6lxh",
+  "sourceItemId": "1xt6lxh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xt6lxh/we_built_an_ai_agent_that_actually_remembers_bad/",
+  "detail": {
+    "longDescription": "The Problem\n\nIndian businesses waste countless hours on manual GST reconciliation every month. The biggest workflow gap is that existing tools treat every month as a blank slate. If a supplier constantly files late or messes up their GSTIN, finance teams have to re-discover and manually re-handle that exact same error every single filing cycle. Stateless automation isn't enough.\n\nOur Solution\n\nWe built an autonomous AI agent that reads purchase registers and GSTR-2B files to not only match invoices, but actually learn from past vendor behavior to make smarter decisions over time. The core focus is persistent memory—moving from a generic agent to one that adapts to specific business contexts.\n\nHow the Persistent Memory Works\n\nWe integrated Hindsight by Vectorize to give our agent long-term memory across monthly reconciliation cycles. Here is how the learning loop plays out:\n\n \\* Month 1: The agent spots a GSTIN mismatch from a vendor, recommends a generic fix, and stores the event and resolution outcome.\n\n \\* Month 3: The same vendor makes a similar mistake. The agent recalls the previous mismatch, recognizes the recurring pattern, and drafts a highly specific follow-up message based on the communication method that worked last time.\n\n \\* Month 6: The agent identifies the vendor's historical habit of filing late and proactively warns the finance team before the deadline, shifting the tool from reactive matching to predictive intelligence.\n\nThe Tech Stack\n\n \\* AI Memory Layer: Hindsight SDK (to handle the statefulness and memory recall).\n\n \\* LLM: Groq for fast inference, utilizing models like GPT-OSS-120B or Qwen3-32B, heavily relying on function calling to let the agent select its own tools dynamically.\n\n \\* Backend & Match Engine: Python, FastAPI, and Pandas for deterministic CSV/Excel data matching (keeping the LLM away from doing raw math).\n\n \\* Frontend: HTML5, CSS3, JavaScript.\n\nWe deliberately avoided building another generic chatbot and focused entirely on a knowledge-heavy workflow where an agent with a memory layer acts as a massive force multiplier for a finance team.\n\nWhat edge cases should we watch out for in the invoice matching logic? Has anyone else here built agents that rely on persistent, cross-session memory?",
+    "developer": "Vast-Moose639",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

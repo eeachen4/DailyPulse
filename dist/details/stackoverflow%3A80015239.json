@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80015239",
+  "sourceItemId": "80015239",
+  "sourceUrl": "https://stackoverflow.com/questions/80015239/ga4-generate-lead-event-fires-twice-per-contact-form-7-submission-via-google-tag",
+  "detail": {
+    "longDescription": "I'm tracking Contact Form 7 submissions on a WordPress site with Google Tag Manager, and every successful submission produces two generate_lead events in GA4. Google Ads, which imports the same conversion, also counts two leads per form. Setup A Custom HTML tag in GTM listens for CF7's wpcf7mailsent DOM event and pushes to the dataLayer: <script> document.addEventListener('wpcf7mailsent', function (event) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'generate_lead', form_id: event.detail.contactFormId }); }, false); </script> Tag: Custom HTML (code above), trigger: All Pages Trigger: Custom Event, event name generate_lead Tag: GA4 Event, event name generate_lead , fires on that trigger What I see In GTM Preview, a single form submission shows two generate_lead events in the event list, and the GA4 Event tag fires on both. GA4 DebugView shows two generate_lead events a millisecond or two apart. The form itself submits once (one email arrives, one network request to the CF7 REST endpoint). What I've tried Confirmed the GA4 tag is not also hard-coded in the theme (only GTM loads gtag ). Checked that there's only one GA4 Event tag for generate_lead . Turned off GA4 Enhanced Measurement \"Form interactions\". No change. Question Why does the wpcf7mailsent listener push generate_lead twice, and what's the correct way to make it fire once per successful submission?",
+    "developer": "SOFTLOGIX Technologies",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "75"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

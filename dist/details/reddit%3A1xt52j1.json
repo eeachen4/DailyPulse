@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt52j1",
+  "sourceItemId": "1xt52j1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xt52j1/i_tried_to_automate_did_it_actually_do_the_thing/",
+  "detail": {
+    "longDescription": "short version: i spent three weeks on the part i was most confident about, it doesn’t work, and not for the reason i expected.\n\nthe idea was ordinary. pull the commitments out of an assistant’s replies, then look for a later sentence that says one got done, and close it out. i built a scorer, froze a list of 49 closures as ground truth, and had a second model judge them blind.\n\nthe blind judge got 11 out of 20 on the hidden controls. coin flip. fine, i thought, bad judge.\n\nso i sat down and did the 10 disputed ones myself. i agreed with 5. of my own ground truth. rejected two of my own lines outright. i had written those down a few weeks earlier as obvious.\n\nthen two careful judges on the same 10 rows agreed with each other on 6.\n\nthat’s the finding. “does this sentence mean the job is done” has no stable answer. not between models, not between people, not between me and me a month apart. i’d been trying to measure accuracy against a label that moves.\n\nwhat survived: it closes something when i say it’s done, in my own words, because “whose words are these” is an easy label. 2 of the 49 made it through that. everything else just sits in a list, open, getting older, with a button next to it.\n\nother thing worth stealing, cheaper than three weeks: before you measure anything, write down what else could produce the number you’re hoping for. i had a “confirmation rate” that counted never-having-seen-the-suggestion as a rejection. the metric literally could not tell refusal from absence and i didn’t notice for days.\n\nreal question, because people here are further along than me on unattended runs: when nobody’s watching, do you have anything that decides a step is done other than the model saying so? code checking a typed output is the only honest answer i’ve seen, and that only works when the output has a shape.",
+    "developer": "chich2017",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

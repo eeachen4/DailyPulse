@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xt3hjd",
+  "sourceItemId": "1xt3hjd",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xt3hjd/i_built_a_zerodependency_streaming_markdown/",
+  "detail": {
+    "longDescription": "I've been building chat UIs for agents and kept running into the same issues with react-markdown: it re-parses the whole reply on every token, so long answers get noticeably slower, and you see raw `**` and half-typed `[links](htt` until the token that closes them arrives.\n\nSo I wrote my own renderer. It parses incrementally and repairs unfinished syntax while the reply streams:\n\n    <Markdown streaming={!done}>{text}</Markdown>\n\nOn a 100k-character reply it takes 0.25 s of main-thread time in total. markdown-to-jsx takes 2.4 s, Streamdown 6.3 s, and react-markdown didn't finish within the 30 s budget. The benchmark scripts are in the repo if you want to check them.\n\nThe other part is the syntax. Agents often want to show steps, alternatives or pros and cons, and plain Markdown flattens all of that into bullet lists. So on top of GFM I added a few blocks in the same style as GitHub alerts:\n\n    > [!STEPS]\n    1. **Back up the database**\n    2. **Run the migration**\n\nThere are also tabs, stats, pros/cons, sources, file trees, and Mermaid and KaTeX support. The source still reads fine as plain Markdown when it isn't rendered. The package exports a system-prompt snippet that teaches the model this syntax.\n\nIt has no dependencies and comes in at 30 KB gzipped. Its parser passes the CommonMark and GFM spec tests. It doesn't support remark/rehype plugins, so if you rely on those, react-markdown is still the better choice.\n\n[https://github.com/rsaryev/llx-markdown](https://github.com/rsaryev/llx-markdown)",
+    "developer": "Awkward-Let-4628",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

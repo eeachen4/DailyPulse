@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50448400",
+  "sourceItemId": "50448400",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50448400",
+  "detail": {
+    "longDescription": "Hi HN, we&#x27;re Zach and Evan, founders of Rystic ( https:&#x2F;&#x2F;www.rystic.ai ). As LLMs have progressed, producing code has become fast and cheap but verification has not. At my previous company I noticed that whenever I could test a service locally or in CI this bottleneck went away. If a service needed to use a shared sandbox or staging environment to run integration tests, verification was a huge pain. At Rystic we are taking that idea and applying it to every third-party service. We are trying to give developers a way to verify that their code works without calling real systems. To do this, we build deterministic simulators of APIs like Slack, Stripe and S3. You can control these locally; set their state and inspect it. Our aim is to make these a controllable stand-in for the real service, much more so than any sandbox. For this we offer fault injection, latency injection and multiple actor support. So for example you can cancel a subscription mid-cycle as the customer in the billing portal, then check that your app handles the proration and removes access. In the Stripe sandbox someone has to click through the portal by hand. We recreate these applications as Go binaries to make them performant. A single simulator can handle thousands of requests per second. You can even control whether they get rate limited or not depending on how realistic you want your test to be. To make the simulators we construct a set of tests based on their docs, probe their API, gather traces then use that to reverse engineer the state transitions of the application. Then we iterate on this by running deterministic tests and actively trying to break it. Proving this state machine is the same as the original would be NP hard but we can still show that they are equivalent over several hundred multi-step workflows. To make sure that our version stays accurate we test every night to catch drift and repair it. Each simulator&#x27;s fidelity card lists its score, which is how closely it matches the real API across those workflows, and we share the failing tests with customers: https:&#x2F;&#x2F;www.rystic.ai&#x2F;simulators It is frustrating to have these incredibly powerful tools for producing code but then be left with the annoying work of verifying that what is produced actually works. No one wants to spend their day finding API keys, setting up sandbox accounts and manually clicking through applications. We are trying to make a future where that does not happen, where you can move fast and not break things. We would love for you to give it a try. Any feedback is very welcome. Here&#x27;s a quick video on using the Slack twin to run evals: https:&#x2F;&#x2F;youtu.be&#x2F;qwin0LAeaeU Install: curl -fsSL https:&#x2F;&#x2F;www.rystic.ai&#x2F;install.sh | sh brew install rystic-inc&#x2F;tap&#x2F;rystic or download a binary with checksums from https:&#x2F;&#x2F;github.com&#x2F;Rystic-Inc&#x2F;rystic&#x2F;releases . Free: the Slack, GitHub and Linear simulators. No card needed. Everything else is $90 a month, and code HACKERNEWS will get you a month free. Current simulators: Stripe, Slack, GitHub, Kalshi, PayPal, Lob, Okta, Linear, Resend, Anthropic, Clerk, Dropbox, Gmail, Google Drive, Notion, S3, Shopify Storefront, Word. Coming: OpenAI, ElevenLabs, NetSuite, QuickBooks, Square, Sentry, PostHog. We are rapidly adding more to our catalog and if there are any that you would like to see added, please let us know in the comments.",
+    "externalUrl": "https://www.rystic.ai",
+    "developer": "evan_whitehouse",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

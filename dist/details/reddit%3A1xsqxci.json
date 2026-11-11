@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xsqxci",
+  "sourceItemId": "1xsqxci",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xsqxci/i_stopped_giving_my_langchain_agent_the_stripe/",
+  "detail": {
+    "longDescription": "Small thing I built after getting nervous about agents holding real API keys.\n\nThe agent's tools call a local proxy instead of Stripe. The proxy holds the real key (encrypted in Postgres) and checks each call against rules you set. For anything marked \"requires approval\", like POST /v1/refunds, it holds the request open and posts to Slack. You click Approve, the proxy adds the key and forwards it. The agent never sees the key at any point.\n\nThe tool side looks like this:\n\n```python\nimport os\nfrom langchain_core.tools import tool\nfrom langchain_agentic_iam import SecureAPIWrapper\n\nstripe = SecureAPIWrapper(agent_token=os.environ[\"AGENT_TOKEN\"])\n\n@tool\ndef refund_charge(charge_id: str) -> str:\n    \"\"\"Refund a Stripe charge in full.\"\"\"\n    return stripe.post(\"https://api.stripe.com/v1/refunds\", data={\"charge\": charge_id})\n```\n\nA couple of details that turned out to matter:\n\n- a denial comes back as normal tool output (\"Action denied by human overseer\"), so the agent can tell the user instead of crashing\n- the tool call blocks while it waits (up to 5 min by default), so the wrapper's HTTP timeout is set longer than that\n\n`pip install langchain-agentic-iam`. The proxy itself is self-hosted with docker compose. It's v1 and there's no policy UI yet.\n\nRepo: https://github.com/tusharfc/agentic-iam-proxy\nDemo: https://youtu.be/ZSnzTrGhXpM\n\nWould like to hear how others handle credentials for tool-calling agents. Env vars and hope?",
+    "developer": "tushar_iitkgp",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
