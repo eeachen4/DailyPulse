@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xu2by7",
+  "sourceItemId": "1xu2by7",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xu2by7/untether_open_source_mit_macos_follow_and_run/",
+  "detail": {
+    "longDescription": "I run Claude Code and Codex on my Mac pretty much all day. The annoying part was never the coding, it was me sitting there waiting to see if one of them had finished or was stuck on a permission prompt.\n\nSo I built Untether. It's a menu bar app with a local server, and you open it from any browser. I mostly use it from my phone.\n\nThe part I actually care about is tasks. You type `ut task new \"add rate limiting to the API\"` and it starts an agent in its own git worktree. When the agent says it's done, a second agent reviews the diff and your test command runs. If that's all green it merges by itself. If not, it goes back to the agent. You can also make it wait for you before merging.\n\nA few things people asked me in other threads:\n\n* the sessions are plain tmux underneath, so closing the tab or losing signal doesn't kill anything\n* a failed task doesn't block the queue, the next one starts from the last good commit\n* nothing is opened to the internet. I reach it over Tailscale and there's a login on top\n* you get a push when something finishes\n\nIt's free and MIT, repo here: [https://github.com/Nachx639/untether](https://github.com/Nachx639/untether)\n\nYou need an Apple Silicon Mac on macOS 14 or later. There's no installer yet so you have to build it, the steps are in the README. It's beta and I'm sure it breaks in ways I haven't seen.\n\nIt started as a fork of VibeTunnel, which is what gets the terminals into the browser. Most of the rest I wrote with Claude Code, about half the commits in the repo are co-authored by it, and for a while now new features get built by queueing them as Untether tasks.\n\nIf you try it, tell me where it falls over.",
+    "developer": "KingOfChateau",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

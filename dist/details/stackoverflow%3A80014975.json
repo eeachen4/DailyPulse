@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80014975",
+  "sourceItemId": "80014975",
+  "sourceUrl": "https://stackoverflow.com/questions/80014975/web-page-not-displaying-correctly-when-html-is-loaded-directly-or-through-local",
+  "detail": {
+    "longDescription": "I have an html file, css file, and javascript file. When run from live server in vscode, the browser window shows what I expect with the canvas element sized according to the canvas.width and canvas.height settings in JS. When I load the exact thing directly into a browser, the canvas element appears as a small area in the window. I cannot get it to take on the correct size. I've also tried loading the html file from an http server, the python server in this case, and the same thing happens. If I use the developer tool from the browser, the canvas shows being 300x150 pixels instead of the desired 600x600. Why the different behavior betwee live server and a stand-alone server. I've tried both Chrome and Brave with the same behavior occuring. Here are my 3 files --- HTML File --- <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <title>Dynamic Spiral</title> <link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\" /> </head> <body> <canvas id=\"canvas1\"></canvas> <script src=\"./script.js\" defer/> </body> </html> --- CSS File --- * { padding: 0; margin: 0; box-sizing: border-box; } canvas { background: black; position: absolute; top: 0px; left: 0px; } --- JS File --- const canvas = document.getElementById('canvas1'); const ctx = canvas.getContext('2d'); let width = 600; let height = 600;; canvas.width = width; canvas.height = height; const particles = []; const particleCount = 1500; // Initialize particles with random angles and radii for (let i = 0; i < particleCount; i++) { particles.push({ angle: Math.random() * Math.PI * 2, radius: Math.random() * (width / 2), speed: Math.random() * 0.01 + 0.001, size: Math.random() * 2 + 1 }); } function animate() { // Create trail effect with semi-transparent background ctx.fillStyle = \"rgba(0, 0, 0, 0.05)\"; ctx.fillRect(0, 0, width, height); particles.forEach(p => { // Update angle for rotation p.angle += p.speed; // Calculate position using polar coordinates const x = width / 2 + Math.cos(p.angle) * p.radius; const y = height / 2 + Math.sin(p.angle) * p.radius; ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI * 2); ctx.fillStyle = \"#ffffff\"; ctx.fill(); }); requestAnimationFrame(animate); } animate();",
+    "developer": "Larry k",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "46"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

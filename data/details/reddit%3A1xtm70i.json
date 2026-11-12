@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtm70i",
+  "sourceItemId": "1xtm70i",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xtm70i/spinning_up_a_linux_container_just_so_an_ai_agent/",
+  "detail": {
+    "longDescription": "When an AI agent builds a small internal tool, a CRM table, or a webhook receiver, the default setup right now is spinning up a Docker container or microVM, running npm install, waiting a minute for a Next.js build, and paying a few dollars a month while it sits idle 99% of the time.\n\nOn top of the cost and cold starts, there is a trust problem. Giving an autonomous agent full Node or Python execution plus production API keys means either reviewing 3,000 lines of generated boilerplate on every change or hoping a prompt injection never exfiltrates a Stripe key to an arbitrary domain.\n\nThere is a temptation to throw heavier VM sandboxes at this, when the real culprit is using an unrestricted runtime for apps that only read a database, call an allowlisted API, and render a UI.\n\nIf the language itself is Turing-incomplete and compiles to a static data-flow graph, the compiler can prove every outbound host, every secret read, and every tenant boundary before anything runs. No loops that hang forever, no dynamic imports, no VM needed. That is the idea behind Safescript (`@uri/safescript`), a small statically verified subset of TypeScript with JSX support.\n\nIn practice, a full interactive CRM with a SQLite table and form submission looks like 12 lines of JSX, deployed in a single unauthenticated HTTP request in about 50ms:\n\n```tsx\nadd = (lead) => dbTransact({ namespace: \"leads\", patch: lead })\n\nrender = () => (\n  <Card title=\"Leads CRM\">\n    <Table rows={dbQuery(\"leads\").items} />\n    <form onSubmit={add}>\n      <input name=\"company\" placeholder=\"Company\" />\n      <input name=\"contact\" placeholder=\"Contact\" />\n      <input name=\"status\" placeholder=\"Status\" />\n      <button type=\"submit\">Add</button>\n    </form>\n  </Card>\n)\n```\n\nThe compiler splits `add` onto the server, keeps `render` on the client, generates the RPC bridge between them, and rejects the deploy at compile time if a secret ever flows to the browser bundle or an unapproved host. Because everything runs in-process on SQLite-backed Durable Objects, idle apps cost zero.\n\nAgents are going to generate disposable software per ticket, per deal room, and per workflow. That only works economically and safely when deploying an app is closer to sending a message than provisioning a server.",
+    "developer": "uriwa",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

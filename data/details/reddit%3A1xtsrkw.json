@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtsrkw",
+  "sourceItemId": "1xtsrkw",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xtsrkw/i_challenged_llamacpp_on_a_4gb_rtx_3050_laptop/",
+  "detail": {
+    "longDescription": "Hi all. For the past few weeks I’ve been building **ge**, a GGUF inference engine with its own CPU kernels (int8, AVX2), its own Vulkan GPU kernels, and an automatic CPU/GPU split for models that don’t fit in VRAM. It’s a single \\~4 MB executable with an OpenAI and Anthropic-compatible server built in.\n\nI tried to make the comparison fair: same GGUF files, back-to-back runs, and llama.cpp’s own `llama-bench`.\n\n**Machine:** Ryzen 5 5600H, 16 GB DDR4-3200, RTX 3050 Laptop 4 GB at a 35 W power limit (low end for this GPU), Windows 11, llama.cpp b9102 (Vulkan).\n\n**Where ge wins**\n\n* **CPU prompt processing** (Qwen3-4B Q4\\_K\\_M): 84 vs 59 tok/s at 512 tokens, 65 vs 51 at 2K, 36 vs 32 at 8K\n* **RAM:** 2.4 GB vs 4.7 GB peak for Llama-3.1-8B in CPU+GPU hybrid mode\n* **8-bit KV cache by default with no speed loss.** At 8K context with *both* engines on 8-bit KV, ge generates at 6.4 vs 3.6 tok/s on CPU. At llama.cpp’s default f16 it’s a tie (6.3).\n* **When a 16K context overflows 4 GB of VRAM:** 37 vs 22 tok/s generation (Qwen3-4B, same 33 layers on GPU)\n\n**Ties**\n\n* CPU generation: 11.8 vs 11.6 tok/s. Both hit the RAM bandwidth limit.\n* 8B hybrid generation: 13.8 (ge, 22 GPU layers) vs 13.0 (llama.cpp `-ngl 21`; `-ngl 22` OOMs and drops to 4)\n\n**Where llama.cpp wins**\n\n* **GPU prompt processing:** 1,282 vs 968 tok/s on the 3050. llama.cpp uses `VK_NV_cooperative_matrix2`, which my shader compiler can’t express yet.\n* **8B hybrid prompt processing:** 535 vs 425 tok/s\n* **Breadth:** far more architectures, quant types and backends, and years of testing. ge is an alpha tested on one laptop.\n\n**Caveats:** two runs per point on CPU, single runs for some GPU numbers. Treat gaps under \\~5% as ties. The source isn’t public yet (binaries for Windows and Linux only). I’m still deciding on licensing. [`SECURITY.md`](http://SECURITY.md) lists exactly what it does: no network connections, no telemetry, and it only writes its cache files.\n\n**What I’d love:** run `ge bench-all -m your-model.gguf --runs 5 --out results` on your hardware and post the table. AMD and Intel GPUs, AVX-512 CPUs and desktop cards especially. I only have the one machine.\n\nCharts, methodology and downloads: [https://github.com/Ad74751/ge](https://github.com/Ad74751/ge)",
+    "externalUrl": "https://i.redd.it/nkg1iypgm11i1.png",
+    "developer": "Raptor2496",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015769",
   "sourceItemId": "80015769",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015769/why-does-milvusclient-query-fail-with-vector-float-when-sorting-by-a-scalar-id",
   "detail": {
     "longDescription": "I am using Milvus 3.0-20260810-e2820e273c in cluster mode with PyMilvus 3.0.1rc48 . I want to retrieve each record’s ID and vector, sorted by ID. Here is the collection setup: from pymilvus import DataType, MilvusClient client = MilvusClient(uri=\"http://localhost:19530\") collection_name = \"query_orderby_vector_output_repro\" schema = client.create_schema( auto_id=False, enable_dynamic_field=False, ) schema.add_field(\"id\", DataType.INT64, is_primary=True) schema.add_field(\"vector\", DataType.FLOAT_VECTOR, dim=4) index_params = client.prepare_index_params() index_params.add_index( field_name=\"vector\", index_name=\"vector_index\", index_type=\"AUTOINDEX\", metric_type=\"L2\", ) client.create_collection( collection_name=collection_name, schema=schema, index_params=index_params, consistency_level=\"Strong\", ) client.insert( collection_name=collection_name, data=[ {\"id\": i, \"vector\": [float(i), 0.0, 0.0, 0.0]} for i in range(10) ], ) client.load_collection(collection_name) common = { \"collection_name\": collection_name, \"filter\": \"id >= 0\", \"limit\": 10, \"consistency_level\": \"Strong\", } Sorting by id works when I only request the ID field: client.query( **common, output_fields=[\"id\"], order_by_fields=[\"id:asc\"], ) Returning both fields also works when I leave out order_by_fields : client.query( **common, output_fields=[\"id\", \"vector\"], ) However, combining the two fails: client.query( **common, output_fields=[\"id\", \"vector\"], order_by_fields=[\"id:asc\"], ) The SDK returns error code 2000 , with this message in the error output: unsupported data type VECTOR_FLOAT Using output_fields=[\"*\"] produces the same error. I expected IDs 0 through 9 in ascending order, with each record’s vector included. The sort key is the scalar id field; I am not trying to sort by the vector. How can I return the FLOAT_VECTOR field while sorting the results by id with order_by_fields ?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "63"
+        "value": "73"
       },
       {
         "label": "状态",

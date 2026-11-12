@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xu2qlz",
+  "sourceItemId": "1xu2qlz",
+  "sourceUrl": "https://www.reddit.com/r/ChatGPT/comments/1xu2qlz/dos_is_all_your_agents_need/",
+  "detail": {
+    "longDescription": "When you run heavy multi-agent workflows, the bottlenecks start surfacing. There are plenty of ADEs and IDEs trying to fix them, but I don’t think agents need another interface. They need something like a DOS: an operating layer that keeps track of their tasks, their machines and what they’re allowed to do. Tasks are the processes, my devbox/teammates are other machines on the network (A2A/P2P), and the checks are the kernel.\n\nThe interface sits on top and can be anything. TUI/grok bot/instinctAI/Muse etc., or you can just have Claude build you a UI.\n\nNone of what kept breaking for me was a UI problem, so this repo is my attempt at fixing them in the layer underneath:\n\n**1. Long sessions rot.**  \nThe start is always strong, but toward the end they rot, or get nerfed by the company itself. When a process gets sick, you start a new one. I drop a fresh agent into the same session. The task and its progress live outside the agent, so the new one picks up right where things were, in the same worktree.\n\nhttps://i.redd.it/zp9o4pgut31i1.gif\n\n[](https://i.redd.it/cujvlal5331i1.gif)\n\n**2. My laptop can’t run that many agents.**  \nAdd a machine to the network and run the work from your own Claude/Codex subscription. I send the task from my laptop, accept it on the box, and it picks the work up there.\n\nhttps://i.redd.it/knf916lwt31i1.gif\n\n[](https://i.redd.it/wuzpmq6e331i1.gif)\n\n**3. People keep asking me stuff my agent could answer.**  \nAgents on different machines can talk to each other, and permissions keep it safe. My teammates ask my agent directly and it answers from the repo I shared.\n\nhttps://i.redd.it/fpi6m13zt31i1.gif\n\n[](https://i.redd.it/bp5cdk9i331i1.gif)\n\n**4. Agents drift.**  \nYou start with a goal and end up with a bunch of other stuff the agent found along the way, all intertwined. Each process gets one defined job: a task with a goal and objectives. Anything outside that scope becomes a new task, and I pass it to another agent.\n\nhttps://i.redd.it/d5e530r2u31i1.gif\n\n[](https://i.redd.it/t1jvyrek331i1.gif)\n\n**5. Agents game the goal.**  \nThis one makes me curse the most. They’ll change the eval, overfit the harness, or ship a UI change I never asked for, just so the task “passes.” So the kernel says no: they can’t edit test config or CI, and the diff fails if they delete tests or change package scripts. A reviewer model checks the change against what I asked, a Codex “pair” argues with it every turn, and nothing gets pushed until I say so.\n\nhttps://i.redd.it/updi0e54u31i1.gif\n\n[](https://i.redd.it/5epiq4ml331i1.gif)\n\n**6. I had no idea how real users were hitting the product.**  \nThis one’s a scheduled job running every hour in the background. It’s tied to my company (ELU), which watches real user sessions for problems, so a little bit of shilling here. An optional `elu` bot checks it, takes the worst issue, and fixes it, or merges the fix if there’s already a good one. Everything above works without it.\n\nhttps://i.redd.it/cbs9ezd5u31i1.gif\n\n[](https://i.redd.it/enafvg6n331i1.gif)\n\nRepo: [https://github.com/ELU-Labs/elu](https://github.com/ELU-Labs/elu)\n\n    npx -y u/elu-labs/elu\n\nMaybe I just need to get out more and some of you already have better ways of doing this. What would you change?",
+    "developer": "Natural_System_6973",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.ChatGPT"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

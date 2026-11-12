@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtk1x8",
+  "sourceItemId": "1xtk1x8",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xtk1x8/how_would_you_decide_which_entity_matches_need_an/",
+  "detail": {
+    "longDescription": "I’ve been working on an entity-resolution pipeline that uses embeddings to narrow down candidate matches, then sends only the uncertain pairs to an LLM. What looks promising to me is the routing logic, especially the decision about when a second pass is worth the cost.\n\nThe setup embeds product records and uses VectorAI DB to retrieve the 10 nearest candidates from the other source. A similarity threshold then handles the clear matches and clear non-matches. Anything in the uncertain band is sent to Gemini 4 Argon for a match-or-no-match decision.\n\nOn Abt-Buy, blocking reduced 1,180,452 possible pairs to 10,810 while keeping 99% of the true matches. The threshold alone reached an F1 of 0.813. Sending 13.2% of candidates to the model raised F1 to 0.915 and precision to 0.998.\n\nAn embedding model can score a wrong Sharp TV above the correct one because the model numbers differ by only one character. The threshold sees two very close records and has no reliable way to decide between them.\n\nThe pipeline sends the middle band to the model because that is where most of the threshold’s errors sit. On Abt-Buy, 206 of the threshold’s 279 errors fell inside the band. But widening it did not always help. Doubling the band width added 78 more model calls and only one additional threshold error, so the extra spend bought almost nothing.\n\nThat makes me question whether the band you sent contains enough errors to justify the calls.\n\nHow do you decide which candidate pairs need a model review? Do you use score bands, near-tie detection, disagreement between rules and embeddings, or something else? And how do you measure whether the second pass is actually improving the final result rather than just adding cost?",
+    "developer": "OkShirt9372",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

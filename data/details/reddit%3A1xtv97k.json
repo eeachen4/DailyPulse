@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtv97k",
+  "sourceItemId": "1xtv97k",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xtv97k/i_built_an_interactive_kubernetes_cli_into_my/",
+  "detail": {
+    "longDescription": "Hey r/devops,\n\n\n\nInstead of building another static landing page with skill bars, I wanted my portfolio to feel like an actual environment reflecting what I enjoy working on (containers, Linux systems, networking).\n\nI put together an interactive terminal on the front page simulating a mini cluster:\n\n\\- **Kubernetes simulation:** Supports commands like \\`kubectl get/describe/delete pods\\` (and the \\`k\\` alias). Pod deletion behaves like an actual ReplicaSet (re-spawns with a new random hash), while a broken coffee-maker pod acts like a StatefulSet with an exit code 418.\n\n\\- **CLI-first routing:** Visiting via a browser displays the UI, but running \\`curl [https://www.noamroger.fr\\`](https://www.noamroger.fr) serves an ANSI-colored terminal resume. Endpoints like \\`/healthz\\`, \\`/version\\`, and \\`/metrics\\` return clean JSON and Prometheus format.\n\n\\- **Honeypot/Trap routes:** Looking for common targets (\\`/.env\\`, \\`/wp-admin\\`, \\`/.git\\`, \\`/id\\_rsa\\`, etc.) serves custom terminal outputs while keeping the 404 HTTP status code.\n\n\\- **Client-side CTF:** 3 main flags and a DNS bonus flag are hidden across HTTP response headers, comments, RFC 2324 specs, and DNS TXT records. Entering them validates against client-side SHA-256 hashes and grants persistent \\`sudo\\` access, unlocking a root prompt (\\`#\\`), extra files, and a recruiter secret.\n\n\n\nYou can test it out in your browser or directly from your terminal:\n\n\\- **Web:** [https://www.noamroger.fr](https://www.noamroger.fr)\n\n\\- **CLI:** \\`curl -sL [https://www.noamroger.fr\\`](https://www.noamroger.fr)\n\n\n\nCurious to hear your thoughts, feedback on edge cases, or Easter egg ideas!",
+    "developer": "noam1206",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

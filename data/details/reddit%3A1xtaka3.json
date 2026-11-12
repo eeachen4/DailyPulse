@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtaka3",
+  "sourceItemId": "1xtaka3",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xtaka3/we_built_deployerr_an_opensource_onpremise_local/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI got tired of the \"works on my machine\" headache whenever I needed to quickly spin up local QA previews or isolate multi-container project builds without manually setting up reverse proxies and port mappings every single time.\n\n**So We built Deployerr—an on-premise, local PaaS and sandbox engine.**\n\n# ⚡ What it does:\n\nYou drag and drop a `.zip` archive of a web application into the UI. Deployerr automatically extracts it safely, generates a hardened Docker container, hooks it into an internal bridge network, registers a dynamic route via Caddy, and gives you a ready-to-test `http://<deployment-uuid>.localhost` link with live SSE terminal logs.\n\n# 🔒 Key Security Features:\n\n* **Zip-Slip & Path Traversal Prevention:** Enforces strict canonical path validation during extraction.\n* **Zip-Bomb Safety:** Automatic extraction limits (1 GiB total uncompressed size, 50,000 file caps).\n* **Zero Host Exposure:** Workloads don't bind to host ports (`0.0.0.0`). Everything stays locked down on an isolated Docker bridge network (`preview_net`) routed through Caddy.\n* **Container Hardening:** `security-opt: no-new-privileges`, 512MB RAM cap, PID limits, `init: true` for zombie reaping, and `CapDrop.ALL`.\n\n# 💻 Stack:\n\n* **Backend:** Spring Boot 3 (Java 17+) written using **Hexagonal Architecture**\n* **Frontend:** Next.js 14 (App Router, Tailwind CSS, SSE hooks)\n* **Proxy:** Caddy 2\n\n# 🚀 Quick Start:\n\nBash\n\n    git clone https://github.com/venkatasailohith/Deployerr\n    cd deployerr\n    ./start.sh\n    \n\n(Unified script checks dependencies, sets up the Docker network, and launches all tiers)\n\nI’d love for people to try it out, tear down the architecture, report bugs, or submit PRs!\n\n👉 **GitHub Repository:**[https://github.com/venkatasailohith/Deployerr](https://github.com/venkatasailohith/Deployerr)\n\nLet me know what you think or what features you'd like to see added next!",
+    "developer": "Ok_Expert_2612",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

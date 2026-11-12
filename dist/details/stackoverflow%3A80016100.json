@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016100",
+  "sourceItemId": "80016100",
+  "sourceUrl": "https://stackoverflow.com/questions/80016100/why-is-my-code-not-adding-the-last-character-when-converting-roman-numerals",
+  "detail": {
+    "longDescription": "I'm trying to create a Roman numeral converter. My code compares two consecutive characters to determine whether the first value should be subtracted or added, following the Roman numeral rules. However, I'm having a problem: the last character entered by the user is not being added to the final result. For example, when I enter XV , the expected result is 15, but my code does not add the last character ( V ) correctly. I tried using len() to control the loop and check the position of each character, but I still haven't figured out how to solve this problem. Why is the last character not being added and how I can fix this without completely rewriting my code? roman_numerals = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"M\": 1000} b = 0 h = 0 g = 1 input_roman_numeral = input(\"Enter the Roman numeral: \") if input_roman_numeral == int: print(\"Invalid value!\") exit(1) length = len(input_roman_numeral) for i in input_roman_numeral: if i not in roman_numerals: print(\"Enter valid Roman numerals instead of regular numbers.\") exit(1) for x in input_roman_numeral: current = roman_numerals[input_roman_numeral[h]] next_value = roman_numerals[input_roman_numeral[g]] if current < next_value: b -= current if current > next_value: b += current b += next_value if g == length - 1: break g += 1 h += 1 if b > 3999 or b < 1: print(\"Please enter a value within the valid range!\") exit(1) if length < 1 or length > 15: print(\"Enter a value with at least 1 and no more than 15 characters.\") exit(1) print(f\"Your Roman numeral is {b}\")",
+    "developer": "Capit&#227;o Mendig&#227;o",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "5"
+      },
+      {
+        "label": "浏览",
+        "value": "184"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

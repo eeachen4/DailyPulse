@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.13741",
+  "sourceItemId": "2611.13741",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.13741",
+  "detail": {
+    "longDescription": "arXiv:2611.13741v1 Announce Type: new Abstract: Modern hardware accelerators achieve high performance through specialized instructions coupled with tightly managed memory hierarchies. These instructions impose strict layout requirements on their operands: where tensor fragments reside, how they are organized, and how parallel units access them. Such instruction-visible layout is critical to kernel performance, as it determines whether instructions execute correctly and how much data movement they incur. However, existing compilers either scatter layout requirements across handwritten programs and local scheduling rules, or provide layout representations and conversions specific to a single class of targets. Both approaches expose the same abstraction gap: the absence of a unified model for instruction layout requirements across backends. This paper presents Arknife, a retargetable compiler that treats instruction-visible layout as first-class instruction semantics. Its central idea is a constraint-based layout algebra: tensor layouts map logical axes to hardware axes spanning parallel levels and memory spaces. Instruction operands declare layout requirements, and target-provided repairs resolve conflicts. Layouts are then solved globally across the program. ISA-specific layout facts are supplied by target-side instruction descriptions rather than hardcoded in the compiler. Retargeting reuses the layout algebra and solver while defining the new target's instructions and their operand requirements. We evaluate Arknife across x86 CPU, Hexagon NPU, and NVIDIA A100 GPU. Arknife matches cuBLAS on A100, and on x86 and Hexagon outperforms vendor-optimized libraries by $2.17\\times$ and $3.78\\times$ and the retargetable compiler MISAAL by $5.08\\times$ and $4.53\\times$, respectively.",
+    "developer": "Likai Ma, Renze Chen, Tianqi Li, Yuhao Luo, Youwei Xiao, Size Zheng, Xiuhong Li, Yun Liang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Likai Ma, Renze Chen, Tianqi Li, Yuhao Luo, Youwei Xiao, Size Zheng, Xiuhong Li, Yun Liang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

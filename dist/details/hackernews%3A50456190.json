@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50456190",
+  "sourceItemId": "50456190",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50456190",
+  "detail": {
+    "longDescription": "Hey! About 6 months ago, I started looking for a tool to safely run coding agents on my (security sensitive) developer machine. Specifically, I wanted a tool that: - I could use regardless of the model or harness running underneath - I could build simple, composable, plaintext security policies for - Provided strong vm level isolation - Hid credentials from agents - Scanned and monitored everything going in and out of agent workspace - Allowed me to use the same mobile flow I had gotten used to with claude code, but with arbitrary harnesses I couldn&#x27;t find a tool that met all of these, so I started bot-bottle. It&#x27;s evolved into what I&#x27;m hoping will be the best security conscious, local first coding agent orchestrator out there. Here&#x27;s how it works: Each agent runs in its own microVM (Firecracker on Linux, Apple&#x27;s container on macOS, Docker as a weaker fallback), with whichever harness you want. Claude Code, Codex and pi are built in, and custom agent providers are supported (still being documented&#x2F;tested). What an agent can reach is defined in a &quot;bottle&quot;, which is just a short markdown file listing hosts, repos and which secret goes to which host. Bottles are enforced by a gateway outside the agent VM, which adds the real credentials to requests on the way out, so the agent only sees placeholders. Bottles stack, so you can keep small ones around (npm read only, one repo, one API, etc) and combine them per task. Repos can ship their own bottles, which only run after you trust their exact contents. Outgoing requests and git pushes are scanned for secrets, and everything is logged locally (you can stream it to your own endpoint as NDJSON or OCSF). Anything a bottle doesn&#x27;t allow comes to you for approval, in the terminal or on your phone through an optional paired console. It&#x27;s in alpha (the console especially), so UI polish is still in progress. Install: curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;diderisoft&#x2F;bot-bottle&#x2F;main&#x2F;install.sh | sh Docs: https:&#x2F;&#x2F;bot-bottle.com&#x2F;docs Would love feedback, especially on the threat model and on whether bottles are the right abstraction.",
+    "externalUrl": "https://github.com/diderisoft/bot-bottle",
+    "developer": "didericis",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

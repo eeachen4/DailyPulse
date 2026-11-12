@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtq41d",
+  "sourceItemId": "1xtq41d",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xtq41d/nomosguard_the_model_explains_the_rules_decide_a/",
+  "detail": {
+    "longDescription": "nomosguard (Apache-2.0, Python 3.11+, zero runtime dependencies, 0.7.11) is a gate that sits in front of an agent's tool calls. The split it enforces: a model may produce evidence and explain a decision, but it never crosses the decision boundary. The verdict comes from a deterministic rule engine over the evidence that was actually collected.\n\nFive MCP tools over stdio:\n- evidence_ingest - every claim must cite an evidence fragment (log line, config text, CVE record); a claim without evidence is rejected, not down-weighted\n- assert_claim - single claim, same rule\n- derive_paths - attack-path rules over what the ledger already holds\n- decide - ALLOW / ALERT / BLOCK, fail-closed when nothing is derived\n- explain - the reasoning trail, deliberately separate from the verdict\n\nTwo details that matter more than the tool list:\n\n1. The MCP decide tool only accepts fallback=ALERT or fallback=BLOCK. A per-call ALLOW default would let the audited agent lower the floor of its own review, so the server refuses that argument instead of silently coercing it. A silent coercion would hide the client bug.\n\n2. The ledger is an append-only SHA-256 hash chain: atomic save, full-chain verify on load, and a torn final line is reported through LedgerLoadReport rather than silently dropped. Recovery of that tail is only allowed under a digest pin, because this writer never produces a torn line itself - an unpinned load refuses to guess.\n\nThe gap worth being explicit about: a chain proves the records agree with each other, not that the file is the one you reviewed. A consistent full rewrite passes an internal check. For that you pin the bytes:\n\n    pin = ledger_digest(\"ledger.jsonl\")   # \"sha256:...\" - commit this\n    EvidenceLedger.load(\"ledger.jsonl\", expected_digest=pin)\n\nA mismatch raises LedgerFileError. What does not exist yet: verify() walks the entire chain and takes no anchor or checkpoint argument, so per-entry anchoring is not exposed. The pin is whole-file. Checkpointed verification at entry N is an open design question, not a feature.\n\nNumbers measured on main rather than quoted from a badge: 1082 test functions across tests/*.py (pytest collects 1361 cases); 0.7.11 is the version on PyPI and the release tag as of 2026-11-10.\n\nRepo: https://github.com/Furox-Art/nomosguard\nDocs (ledger contract and threat model): https://github.com/Furox-Art/nomosguard/tree/main/docs\n\nDisclosure: the submitter is the repository's maintainer.",
+    "developer": "Emergency-Tutor-7",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

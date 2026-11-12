@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.13802",
+  "sourceItemId": "2611.13802",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.13802",
+  "detail": {
+    "longDescription": "arXiv:2611.13802v1 Announce Type: new Abstract: LLM services have become essential infrastructure for applications such as chat assistants and coding agents. Service providers need to attribute resource consumption to individual requests for purposes such as billing. Among these resources, energy is a key metric for assessing the cost of serving each request. However, serving engines batch requests together, and GPUs report only aggregate energy consumption. Providers typically estimate each request's share in proportion to its token consumption, but this approach can produce substantially unfair estimates. The Shapley value provides a principled solution to fair energy allocation, but computing it directly requires $2^N-1$ GPU runs for $N$ requests, which is infeasible for large batches. To address this problem, we propose StepSplit. Across GPU generations, we observe that the energy consumed by each inference step, a forward pass over a batch, consists of a shared energy, largely due to reading model weights, and a request-specific energy. We derive a closed-form Shapley value: each request is charged its own energy plus an equal part of the shared energy of every step in which it participates. A microbenchmark of 2.5-17.8 minutes calibrates both parts of the step energy once per model and GPU configuration. Under static batching, StepSplit uses this closed form in a single pass over the scheduler log. Under continuous batching, removing a request can change how the remaining requests are batched, so StepSplit adds a correction to the closed form, computed by replaying the scheduler on a CPU. We evaluate StepSplit against Shapley values measured using 529,513 GPU runs. Under static batching with batch sizes of 8-256, StepSplit achieves an $L_1$ error of 0.4-4.3%, compared with 13.4-61.3% for token-proportional allocation. Under continuous batching with 8-128 requests, the corresponding errors are 0.5-6.4% and 20.6-71.7%.",
+    "developer": "Qi Luo, Ziwen Wang, Kunlin Li, Changxi Liu, Yun Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR, cs.PF"
+      },
+      {
+        "label": "第一作者",
+        "value": "Qi Luo, Ziwen Wang, Kunlin Li, Changxi Liu, Yun Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

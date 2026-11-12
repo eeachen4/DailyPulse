@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50454221",
+  "sourceItemId": "50454221",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50454221",
+  "detail": {
+    "longDescription": "Hi HN, I have been working on mxRaven: https:&#x2F;&#x2F;mxraven.com for the past couple of months, and it has been hard to explain the idea without actually showcasing a functional use case, hence I decided to build perch. Perch is a single binary Go program that can serve IMAP + SMTP as a complete mailbox service and has an agent-friendly CLI to access and manage emails. Note that perch is open source under the MIT-0 license but it requires mxRaven to handle the public edge. However, the CLI (the `perch mail` command) can be used against any generic IMAP or SMTP submission servers (which are not necessarily perch). You can try out perch without signing up for mxRaven at https:&#x2F;&#x2F;tryperch.mxraven.com and can sign up for a free account with monthly 1k inbound + 1k outbound emails without a card. The agent-friendly CLI was not an afterthought, since LLMs have been trained heavily for utilizing POSIX-compatible shell tools for various benchmarks, I believe agents are unbelievably good when you give them tools in the language they understand: CLI. Perch can run on an old workstation in your homelab behind CGNAT or firewalls as it pulls mail in real-time from mxRaven&#x27;s notification stream over a websocket. It also doesn&#x27;t need to run 24*7, it can come online atleast once a day to pull the emails from mxRaven. mxRaven will not retain emails that are older than 48 hours as per our privacy policy, and it will not serve them to the pull-based consumer beyond 24 hours. The hardest part about self-hosting email is the public edge, which requires managing IP reputation, throttles and a convoluted set of authentication protocols (DKIM, SPF, DMARC, ARC etc.) and mxRaven handles that. Note that we also made a Show HN post for mxRaven itself here: https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=50338055 tldr, for those who don&#x27;t want to read that: think of mxRaven as the WAF + router for your emails, while your applications can sit on the driver&#x27;s seat for the email highway.",
+    "externalUrl": "https://perch.mxraven.com",
+    "developer": "ku5h",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

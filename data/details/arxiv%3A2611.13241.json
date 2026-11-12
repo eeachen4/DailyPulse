@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.13241",
+  "sourceItemId": "2611.13241",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.13241",
+  "detail": {
+    "longDescription": "arXiv:2611.13241v1 Announce Type: new Abstract: LLM-based coding agents such as Claude Code can resolve real-world repository issues, but their iterative interaction loop can be expensive. Existing approaches reduce this cost primarily by limiting, compressing, or selectively avoiding information and actions within the repair process. We investigate a complementary question: Can an agent reason about a repair at an abstract program level, rather than repeatedly operating over raw source code, to reduce both the exploration needed to identify a repair and the repeated checking needed to verify it afterward? We present FlowPlan, an abstraction-guided repair approach that structures localization, planning, and verification around per-function control-flow or data-flow graphs. The agent first localizes the candidate fault location on the program abstraction and expresses the intended repair as explicit graph deltas before modifying the concrete source. After the edit, FlowPlan reconstructs the same abstraction and compares the observed structural change with the planned one. Then, a verification checks the complete repair before termination. Across all six benchmark-model settings, FlowPlan does not significantly change resolution rate relative to the vanilla agent while reducing token consumption in every setting, significantly in five of six settings. With Claude Haiku 4.5, it uses only 0.46-0.47x the baseline tokens on SWE-bench Pro, 0.32-0.35x on SWE-bench Verified, and 0.68-0.74x on SecBench; with Sonnet 5, it uses 0.72-0.76x, 0.73-0.74x, and 0.92-0.94x, respectively. Overall, FlowPlan achieves the largest token reduction among the compared methods in three of the six settings and ties the strongest compared method in a fourth. Trajectory analysis shows that FlowPlan saves tokens by replacing much of the costly post-edit re-reading and testing with explicit verification and reducing per-call context.",
+    "developer": "Melika Sepidband, Jiho Shin, Song Wang, Hadi Hemmati",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Melika Sepidband, Jiho Shin, Song Wang, Hadi Hemmati"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

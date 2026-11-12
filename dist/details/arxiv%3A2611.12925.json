@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.12925",
+  "sourceItemId": "2611.12925",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.12925",
+  "detail": {
+    "longDescription": "arXiv:2611.12925v1 Announce Type: new Abstract: We present a two-sided type system with potential for verifying resource lower bounds of functional programs. Automatic amortized resource analysis (AARA) verifies upper bounds: types carry potential, and typing certifies sufficient resources. A lower bound, however, is a necessity statement---the program evaluates only if enough resources are available---and prior type-based approaches obtain it by switching the substructural discipline of potential, so that upper and lower bounds live in separate type systems. Matching upper and lower bounds characterize a program's cost exactly. Our system combines AARA-style potential with the two-sided type systems of Ramsay and Walpole, whose central guarantee is that ill-typed programs do not evaluate. Typing formulas may constrain arbitrary terms and appear on both sides of the turnstile; the judgment $t : A \\vdash q$ states that if $t$ evaluates to a result of type $A$, then at least $q$ units of resource must be available---that is, $q$ is a lower bound. Because potential makes typing formulas non-replicable, our system follows an affine discipline instead of the replicable contexts of the original framework. We interpret types by semantic typing over value states, pairs of values and remaining resources, and we prove soundness on a safety fragment; corollaries recover the classical two-sided guarantees and the soundness of both kinds of bounds in a single proof system. A prototype type checker in OCaml verifies, on a suite of 19 benchmarks, matching pairs of bounds that characterize costs exactly, as well as lower bounds for programs whose upper bounds are unavailable. In a parallel exploration, we study a two-sided linear type system in which every value is a non-replicable resource; there, closures that capture linear resources call for dual typing formulas, and the exact accounting explains the affine design of the main system.",
+    "developer": "Zimu Chen, Di Wang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zimu Chen, Di Wang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015579",
   "sourceItemId": "80015579",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015579/how-to-remove-a-body-shape-constraint-from-pymunk-space-without-exceptions",
   "detail": {
     "longDescription": "In Pymunk, I can call the .remove() method of a Space to remove bodies, shapes and/or constraints from it. However, it will raise an error if the object doesn't exist in the space (e.g. was already removed). Example: import pymunk space = pymunk.Space() body = pymunk.Body() space.add(body) space.remove(body) space.remove(body) # call it again On the second .remove() call, I get: Traceback (most recent call last): File \"c:\\Users\\CHU0094\\Downloads\\x\\main.py\", line 7, in <module> space.remove(body) File \"C:\\Program Files\\Python310\\lib\\site-packages\\pymunk\\space.py\", line 401, in remove self._remove(*objs) File \"C:\\Program Files\\Python310\\lib\\site-packages\\pymunk\\space.py\", line 413, in _remove self._remove_body(o) File \"C:\\Program Files\\Python310\\lib\\site-packages\\pymunk\\space.py\", line 470, in _remove_body assert body in self._bodies, \"body not in space, already removed?\" AssertionError: body not in space, already removed? How can I remove object(s) from a space only if they are present? E.g. a space.discard(*objs) method? (Similar to set.remove() vs set.discard() , and list.remove() vs list.discard() .)",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "141"
+        "value": "147"
       },
       {
         "label": "状态",

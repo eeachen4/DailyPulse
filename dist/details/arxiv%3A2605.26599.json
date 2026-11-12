@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.26599",
+  "sourceItemId": "2605.26599",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.26599",
+  "detail": {
+    "longDescription": "arXiv:2605.26599v2 Announce Type: replace Abstract: Divide-and-conquer (D&C) is the natural parallel strategy for symmetric tridiagonal eigenvalue decomposition, yet eigenvalue-only solvers fall back to serial QR algorithm because the quadratic transform state each merge carries exhausts memory at scale. In this paper, we demonstrate that each merge stage in D&C needs only two boundary rows, the first and last rows of a node's eigenvector block, and these close into a recurrence whose parent rows follow from its children's and local merge data alone, so the state is carried up the tree with nothing replayed and persistent memory drops from quadratic to linear. Because this state keeps no replay workspace, adapting the schedule to each merge's post-deflation active rank is a scheduling choice, so both CPU and GPU spend finer-grained parallelism only where substantial secular work survives. We evaluate optimized CPU and GPU implementations, with complexity and correctness analysis, against QR, bisection, and D&C routines in standard libraries.",
+    "developer": "Ruiyi Zhan, Dajun Huang, Lu Shi, Shaoshuai Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.NA, math.NA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ruiyi Zhan, Dajun Huang, Lu Shi, Shaoshuai Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016122",
+  "sourceItemId": "80016122",
+  "sourceUrl": "https://stackoverflow.com/questions/80016122/how-can-i-programmatically-create-an-mdlist-with-kivymd",
+  "detail": {
+    "longDescription": "I am trying to create an MDList programmatically, but it keeps returning a blank screen. What am I forgetting? Here is what I'm trying: I've created a two item list in my ProfileScreen class. Here is my main.py class ProfileScreen(Screen): container = ObjectProperty(None) def __init__(self, **kwargs): super(ProfileScreen, self).__init__(**kwargs) Clock.max_iteration = 1000 self.trigger = Clock.create_trigger(self.create_scrollview) def trigger(self): self.trigger() def create_scrollview(self, dt): characters = [ {\"name\": \"Aragorn\", \"class\": \"Ranger\"}, {\"name\": \"Gandalf\", \"class\": \"Wizard\"}, {\"name\": \"Legolas\", \"class\": \"Archer\"}, ] layout = GridLayout(cols=2, spacing=15, size_hint_y=None, padding=40) self.ids['grid'] = weakref.ref(layout) layout.bind(minimum_height=layout.setter(\"height\")) for c in characters: # primary: title, secondary: attributes item = TwoLineListItem(text=c[\"name\"], secondary_text=f'{c[\"class\"]}') scrollview = MDRecycleView(md_bg_color=self.theme_cls.primaryColor, size_hint=(1, None), adaptive_height=True, adaptive_width=True) scrollview.add_widget(item) self.ids.container1.add_widget(scrollview) Here is my kv file, storyteller.kv ScreenManagement: ProfileScreen: id: Profile <ProfileScreen> name: 'Profile' id: Profile container: container1 view: container1 MDBoxLayout: orientation: 'vertical' id: box MDBoxLayout: size: (64, 64) size_hint: (1, None) ScrollView: id: container1 MDList: id: agent_list Here is how I run the app: class StoryTellerApp(MDApp): def build(self): self.theme_cls.primary_palette = \"DeepOrange\" self.theme_cls.theme_style = \"Light\" if __name__ == \"__main__\": StoryTellerApp().run()",
+    "developer": "Jesse Galdamez",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "77"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

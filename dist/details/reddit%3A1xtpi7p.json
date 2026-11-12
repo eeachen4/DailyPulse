@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtpi7p",
+  "sourceItemId": "1xtpi7p",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xtpi7p/architectural_gravity_crossmodel_agent_control/",
+  "detail": {
+    "longDescription": "[https://github.com/ArchitecturalGravity/ArchitecturalGravity](https://github.com/ArchitecturalGravity/ArchitecturalGravity)\n\nArchitectural Gravity explores a problem in LLM-agent workflows: how much model effort is spent reconstructing task structure from natural-language instructions rather than reasoning about and executing the task itself?\n\nThe project centers on ArcGrav, a prompt-native, cross-model *Agent Control Language* for expressing context, constraints, priorities, references, and operations using familiar structural conventions.\n\nExpected improvements include:\n\n* *Token Efficiency*: Reduced token consumption and agentic costs\n* *Interpretive Precision*: Less ambiguity in instruction interpretation\n* *Execution Consistency*: Fewer mistakes and reduced scope overstepping\n* *Context Retention*: Reduced drift and improved reasoning continuity across context windows\n* *Workflow Efficiency*: Faster prompt responses and increased execution throughput\n\nThe following intentionally elaborate example demonstrates several of ArcGrav's capabilities through a Unicode character assembly task:\n\n    [Blueprint]:\n    \"\"\"\n    Char_01: U+0048\n    Char_02: U+0065\n    Char_03: U+006C\n    Char_04: U+006C\n    Char_05: U+006F\n    Char_06: U+0020\n    Char_07: U+0057\n    Char_08: U+006F\n    Char_09: U+0072\n    Char_10: U+006C\n    Char_11: U+0064\n    Char_12: U+0021\n    \"\"\"\n    \n    [CharacterFactory]:\n    - `value`\n    => Create a fresh record whose `value` is the character decoded from the supplied Unicode code point\n    \n    [Constraint]:\n    P0. Output only the assembled characters on one line\n    \n    [Message]: []\n    \n    Task:\n    1. Select Char_* entries from [Blueprint] in name order AS [Codes]\n    2. For each code point in [Codes] in order:\n      => Invoke [CharacterFactory] and append its `value` to [Message]\n    3. Output [Message] ↳\n      - Follow [Constraint]\n\nArcGrav uses named contexts, symbolic references, priority lists, and operations that models can interpret directly within ordinary prompt input, and *without* pre-training. It requires no external runtime, parser, or model-specific integration to use.\n\nThe repository includes several connected components:\n\n* *ArcGrav*: The language specification, syntax reference, design principles, and reusable agentic patterns\n* *AgStudio*: A local editor and analysis environment with structural navigation, syntax highlighting, and diagnostics\n* *AgMark*: A benchmarking application for comparing prompt representations under controlled execution conditions, with retained evidence and evaluation results\n* *Research*: The ongoing investigation into Model-Native Structural Representation, Interpretive Efficiency, token costs, context relationships, and agentic operational leverage\n\nThe broader objective is to investigate how explicit representations of task structure can be further optimized to minimize interpretive overhead, repeated specification, and corrective interaction, allowing more of a model's available capacity to be directed toward reasoning, verification, and execution.\n\nDirect agent-readable references:\n\n* *Language*: [https://github.com/ArchitecturalGravity/ArchitecturalGravity/tree/main/ArcGrav/Guide/Agent\\_References](https://github.com/ArchitecturalGravity/ArchitecturalGravity/tree/main/ArcGrav/Guide/Agent_References)\n* *Research*: [https://github.com/ArchitecturalGravity/ArchitecturalGravity/tree/main/Research/Agent\\_References](https://github.com/ArchitecturalGravity/ArchitecturalGravity/tree/main/Research/Agent_References)",
+    "developer": "ArchitecturalGravity",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

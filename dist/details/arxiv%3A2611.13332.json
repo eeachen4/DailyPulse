@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.13332",
+  "sourceItemId": "2611.13332",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.13332",
+  "detail": {
+    "longDescription": "arXiv:2611.13332v1 Announce Type: new Abstract: A growing industry narrative holds that native double precision can be deprioritized in HPC accelerators, on the hypothesis that low-precision tensor cores can emulate FP64 on demand, and that most HPC workloads are bandwidth-bound. This paper evaluates some of those claims and explores the importance of FP64 in scientific computing. We show roofline profiling data of representative HPC workloads, across a variety of common computational motifs, to evaluate the arithmetic-intensity and accuracy requirements of these workloads. We also consider FP64 emulation via the Ozaki method to ascertain some of the possibilities and limitations of these approaches. These results indicate that Ozaki emulation should not be evaluated as a general replacement for FP64, but as an optimization for the subset of workloads whose dominant computation is sufficiently large, dense, and GEMM-shaped. Our analysis indicates this is less than 10\\% of the HPC ecosystem. Furthermore, even in this favorable regime, standalone GEMM speedup is not enough to accelerate (or avoid performance regression) for the application: numerical behavior, workspace requirements, matrix shape, and integration overhead determine whether the benefit survives at application scale. This paper characterizes those boundaries empirically. Furthermore, we show that dense GEMM accounts for only a small fraction of FP64 computation across HPC workloads, leaving most application-level FP64 work beyond the reach of GEMM-based emulation.",
+    "developer": "Katarzyna (Kasia), Swirydowicz, Nicholas Malaya, Noah Wolfe, Paul Bauman, Pieter Ghysels, Jonathan Belof",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.NA, math.NA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Katarzyna (Kasia), Swirydowicz, Nicholas Malaya, Noah Wolfe, Paul Bauman, Pieter Ghysels, Jonathan Belof"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

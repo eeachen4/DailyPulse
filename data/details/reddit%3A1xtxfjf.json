@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xtxfjf",
+  "sourceItemId": "1xtxfjf",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xtxfjf/review_request_hardened_docker_image_alpine/",
+  "detail": {
+    "longDescription": "This is a school project on Docker and container hardening. I'm responsible for\n\nthe application image (minimal secure images + vulnerability scanning in the registry).\n\nIt's my first time working with Docker, so I'd really appreciate a review.\n\n\\- Built the same Flask app on three base images (slim, Alpine, Distroless) and\n\n  compared size and vulnerabilities with Trivy\n\n\\- Chose Alpine and fixed all HIGH/CRITICAL findings\n\n\\- Non-root user (UID 10001) and a HEALTHCHECK\n\n\\- Multi-stage build so pip is not in the final image\n\n\\- Base image pinned by digest\n\n\\- Hardened run options: read-only filesystem, \\`--cap-drop ALL\\`,\n\n  \\`no-new-privileges\\`, memory/CPU/PID limits\n\n\\- GitHub Actions workflow that builds, pushes to GHCR and signs with Cosign (keyless)\n\n\\- Weekly scheduled Trivy scan of the published image\n\n\n\nResult: image went from 135 MB (slim) to 62.4 MB, with 0 HIGH/CRITICAL vulnerabilities.\n\n1. Is my \\`app/Dockerfile\\` following best practices? Anything I should remove or add?\n\n2. Is choosing Alpine over Distroless a reasonable decision, given that Alpine\n\n   still ships a shell and \\`apk\\`?\n\n3. Are my two workflows (\\`publish-sign.yml\\`, \\`registry-scan.yml\\`) correct and\n\n   safe (permissions, pinned versions)?\n\n4. Is there a hardening step I missed for the image or the run options?\n\n\n\nAny comment, even a small one, helps. Thank you!",
+    "developer": "Aggravating_Drink590",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

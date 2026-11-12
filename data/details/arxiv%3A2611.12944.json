@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.12944",
+  "sourceItemId": "2611.12944",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.12944",
+  "detail": {
+    "longDescription": "arXiv:2611.12944v1 Announce Type: new Abstract: Modern accelerators specialize recurring computation and replicate it across regular hardware structures to achieve high performance. Sustaining this parallelism requires equally deliberate data delivery. Yet design tools often express these structures as sequential programs or flatten them into separate hardware modules and connections. This obscures shared patterns and leads to repeated compiler work. We introduce Single Program, Multiple Connected Work Units (SPMW), a grid-based programming model for scalable accelerator design that makes grid regularity a first-class abstraction. SPMW decouples local work-unit behavior from grid connectivity and data delivery. To our knowledge, SPMW is the first programming model to retain regularity throughout the compilation process, combining behavioral HLS with structural RTL generation for both fixed-function and domain-specific instruction-programmable accelerators. We implement SPMW with a Python frontend and an MLIR-based compiler that synthesizes each distinct kernel configuration once for reuse across independent hardware instances. Preserving regularity also enables parallel compilation and functional simulation to accelerate iterative design feedback. We use SPMW to generate a 32x32 systolic array that reduces GEMM latency and parallel kernel-to-RTL compilation time by 4.36x and 619x relative to AutoSA. Our FFT achieves up to 2.65x lower latency than HP-FFT. Our mini-TPU and our SPMW implementation of the FEATHER accelerator demonstrate complex composition and outperform their RTL baselines. Parallel functional simulation provides up to 18.4x speedup over Vitis HLS C simulation on the mini-TPU workloads. SPMW is also agent-friendly: given the same design specification, all five coding agents produce SPMW designs that satisfy the correctness and latency requirements, with 7.51x lower token usage than for SystemVerilog.",
+    "developer": "Hongzheng Chen, Shihan Fang, Niansong Zhang, Sunwoo Kim, Weiran Liu, Zhiru Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hongzheng Chen, Shihan Fang, Niansong Zhang, Sunwoo Kim, Weiran Liu, Zhiru Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

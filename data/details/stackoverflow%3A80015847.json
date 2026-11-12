@@ -2,27 +2,28 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015847",
   "sourceItemId": "80015847",
+  "fetchedAt": "2026-11-12T04:12:01.938Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015847/asyncio-unhandled-exception-in-atexit",
   "detail": {
     "longDescription": "I have a python script that uses nodriver and has worked for years. Suddenly I started getting errors (code: -32000) from website changes I think (nothing else make sense - worked one day, not the next). During my research on this type of error, i found comments about zendriver and claims about improvements in it vs. nodriver. I easily switched to zendriver and found that my script (webscraping on a very specific site) immediately was working again. However, I now have an error from asyncio I believe that does not arise with nodriver. I have taken a pretty large script and scaled it back so that the basics are presented with the error condition in tact. It appears that zendriver raises an error that was not present/detected in the nodriver version - (literally to switch to zendriver all i had to do was modify the import statement). The slimmed down code is as follows: from asyncio import timeout from datetime import timedelta from keyboard import press_and_release from time import sleep from tkinter.scrolledtext import * import asyncio import datetime import sys import os import pyautogui import queue import random import subprocess # To override system sleep setting import tkinter as tk import tkinter.messagebox import threading import zendriver as uc class ThreadedClient: def __init__(self, master): self.master = master self.thread1 = threading.Thread(target=self.time_thread, args=\"1\") self.thread1.start() def time_thread(self, thread): print(\"In Mainline\") driver = asyncio.run(a_main_line_processing(self)) print(\"returned from details\") sleep(1) print(\"closing chrome\") driver.stop() # Terminate NoDriver print(\"driver closed\") sleep(5) return driver async def temp(self): print(\"In temp\") sleep(4) return(1) # THIS ROUTINE CONTROLS THE SCRIPT AND SERVES AS THE MAINLINE async def a_main_line_processing(self): result, page, driver= await b_initialize(self) if not result: print(\"A130 - \") print(\"Leaving section a\") return driver async def b_initialize(self): result, driver = await c_start_chrome(self) if not result: print(\"B157 result =\", result) return result, page, driver result, page, driver = await d_access_website(self, driver) if not result: print(\"B160 result =\", result) return result, page, driver sleep(2) return True, page, driver async def c_start_chrome(self): # Screen may be turned off - press 'enter key' to awaken it press_and_release('enter') sleep(2) # Start a new Chrome instance try: driver = await uc.start() await driver.main_tab.maximize() # Expand screen size to maximum sleep(1) return True, driver # Success - all done except Exception as e: return False, driver async def d_access_website(self, driver): try: page = await driver.get(\"https://www.google.com/\", new_tab=False, new_window=False) sleep(1) except Exception as e: print(\"D100 Error Starting Mediterra Site:\", e) return False, page, driver # Find and fill User Name Entry field using xpath result = await m_locate_and_send_keys(self, page, \"#ti6dpd\", \\ \"Superbowl\", \"D110\", \"User Name\", .2) sleep(2) if not result: return False, page, driver return True, page, driver async def m_locate_and_send_keys(self, page, element_locator, value_to_enter, msg_number, field_name, delay): if delay != 0: sleep(delay) try: # Locate the element being entered field = await page.find(element_locator) except Exception as e: print(\"M2 -\", msg_number, \"Find Failed Using\", element_locator, \"Error Msg:\", e) self.queue.put(\"M2 - \" + msg_number + \" - Error Processing: \" + field_name) return False # Test for \"None\" before attempting next step if field == None: print(\"M1 - Error Finding\", field_name, \" - returned:\", field) return False try: # Send the data if delay != 0: sleep(delay) await field.send_keys(value_to_enter) #self.queue.put('M2 - ' + msg_number + '- Found and Entered ' + field_name) return True except Exception as e: print(\"M3 - \",msg_number, \"- Find Failed Error Msg:\", e) self.queue.put(\"M3 - \" + msg_number + \" - Error Entering: \" + field_name) return False class p_display_gui: def __init__(self, master, queue, queue2): print(\"line 769\") #_______________________________________________________________________________________________________________________ current_dt = datetime.datetime.now() subprocess.call(\"powercfg /change standby-timeout-ac 0\") # Suspend system sleep root = tkinter.Tk() client = ThreadedClient(root) root.mainloop() subprocess.call(\"powercfg /change standby-timeout-ac 10\") # Restore system sleep sys.exit() I placed a few print statements in the script so that i could get a handle on exactly where/when the error arose. The output and error message i am getting is a follows: In Mainline Leaving section a returned from details Unhandled exception in asyncio atexit callback <bound method Browser._atexit_cleanup of <zendriver.core.browser.Browser object at 0x00000220293BF7A0>>: Executor shutdown has been called C:\\MyStuff\\Travels\\Python312\\Projects\\Automated Tee Times\\temp2026-11-10 final.py:36: RuntimeWarning: coroutine 'Browser.stop' was never awaited driver.stop() # Terminate NoDriver RuntimeWarning: Enable tracemalloc to get the object allocation traceback closing chrome driver closed While the script completes its task successfully, clearly something is not quite right and I'd like to clean up the sloppy ending. I have tried to discover the problem and read everything I can find, but I am hoping someone out there can give me some good advice/clues. Thanks.",
     "developer": "Shankboy",
-    "comments": 1,
+    "comments": 3,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
-      },
-      {
-        "label": "回答",
         "value": "1"
       },
       {
+        "label": "回答",
+        "value": "3"
+      },
+      {
         "label": "浏览",
-        "value": "75"
+        "value": "120"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }
