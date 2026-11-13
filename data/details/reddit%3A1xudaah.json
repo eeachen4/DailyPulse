@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xudaah",
+  "sourceItemId": "1xudaah",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xudaah/umap_06_new_initialization_new_optimizers_and/",
+  "detail": {
+    "longDescription": "# UMAP 0.6 is out!\n\nA new initialization, new optimizers, and faster nearest neighbour search make UMAP much faster and far better at large scale. On 3 million arXiv papers it finishes in under 5 minutes, before UMAP 0.5 has even found its nearest neighbours. ([race between UMAP0.5 and UMAP 0.6 video](https://www.youtube.com/watch?v=l1oZREHTvuY))\n\n**Code:** [https://github.com/lmcinnes/umap](https://github.com/lmcinnes/umap)\n\n**Install:** `pip install -U umap-learn` (also on conda-forge)\n\n# Speed\n\n* Neighbour search is \\~4x faster by making better use of PyNNDescent.\n* Initialization is faster with a new init method.\n* With the new optimizers, the whole run is reproducible with a fixed seed while using every core. A seeded 0.5 run is single-threaded: 52 minutes, 12x longer.\n\n# Quality\n\nJust as important as how quickly we get a result is the quality of the result. UMAP 0.6 works far better on million-scale datasets thanks to a new, better initialization and significant improvements in the optimizer. It resolves finer cluster structure in fewer epochs, with much finer-scale detail and better neighbourhood accuracy than UMAP 0.5, despite being faster.(video of a tour of finer details in the arXiv map)\n\n# Recursive initialization\n\nA large part of the improvement comes from a brand-new initialization scheme that initializes UMAP using UMAP itself: it lays out a coarse version of the graph structure, then refines it, in a recursive tower of initializations. ([video of the unfolding](https://www.youtube.com/watch?v=vjMx9yzPhKs))\n\nThe result is a starting point much closer to UMAP's final result than the messy blurs from spectral initialization or PCA, and it is produced faster than either. It lets the optimizer settle (to within 3% of the final layout) in far fewer epochs than older initialization approaches. ([initialization race](https://www.youtube.com/watch?v=52tLDhgeF7I))\n\n# New optimizers\n\nMost of the gain in fidelity at scale comes from a very efficient form of hard-negative mining, which makes negative sampling far more effective on very large datasets, together with better handling of high repulsion strengths. ([hard-negative mining video](https://www.youtube.com/watch?v=EHd-vBwonxo))\n\nUMAP was originally designed around a small portion of the [attraction-repulsion spectrum](https://www.jmlr.org/papers/v23/21-0055.html). The new optimizers lift these restrictions, allowing UMAP to perform well at much higher repulsion strengths and giving better kNN recall. ([video exploring the repulsion strength dials](https://www.youtube.com/watch?v=JqhJofvpaKM))\n\n# Try it now\n\nThe new optimizers and initialization are currently opt-in, as they change the output: set `compatibility_layout=False`. Future versions will make them the default, so please try them and let me know how they work for you.\n\n* [Optimizers documentation](https://umap-learn.readthedocs.io/en/latest/optimizers.html)\n* [Large datasets documentation](https://umap-learn.readthedocs.io/en/latest/large_datasets.html)\n\nThank you to all the contributors who provided features and bug fixes for this release, and to everyone who reached out with comments, suggestions, and feature requests. This would not have been possible without your help.",
+    "developer": "lmcinnes",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xunjax",
+  "sourceItemId": "1xunjax",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xunjax/benchmarking_llm_gateways_why_p50_latency_tells/",
+  "detail": {
+    "longDescription": "I've been working on LLM gateway performance benchmarking recently, and one thing that keeps coming up is how misleading the headline latency numbers can be.\n\nIt's not unusual to see gateway benchmarks claiming overhead measured in microseconds. But what exactly is being measured? Routing logic? Time spent inside the gateway? Or the actual additional latency experienced by the client?\n\nThose are three very different numbers.\n\nA few things I've found particularly important when evaluating gateways:\n\n* **Measure against a direct baseline.** A mock LLM provider with fixed response latency makes it easier to isolate the overhead introduced by the gateway, network, and load generator.\n* **Use open-loop load generation.** Otherwise, a gateway slowing down can also slow the rate at which new requests arrive, masking problems under load.\n* **Don't ignore HTTP versions.** At 5,000 req/s with a 1.5-second provider response time, you're looking at roughly 7,500 concurrent requests. HTTP/1.1 versus HTTP/2 can make an enormous difference in how those requests are handled.\n* **Benchmark streaming separately.** A gateway that performs well with regular JSON responses can behave very differently when handling thousands of concurrent SSE streams, particularly when translating between OpenAI and Anthropic formats.\n* **Look beyond the median.** Low p50 latency is nice, but p99 time to first token and stream completion latency can reveal bottlenecks that averages completely hide.\n\nI'm increasingly convinced that streaming behavior under sustained concurrency is a more meaningful benchmark for production LLM gateways than the microseconds spent on routing.\n\nCurious what others are seeing in production. Are you measuring gateway overhead explicitly, and which metrics have been most useful for identifying actual bottlenecks?\n\nDisclosure: I work on LLM gateway infrastructure, and these observations come from that engineering work.",
+    "developer": "jkriket",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

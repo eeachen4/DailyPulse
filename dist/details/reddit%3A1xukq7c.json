@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xukq7c",
+  "sourceItemId": "1xukq7c",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xukq7c/cleaning_quoted_replies_and_signatures_out_of/",
+  "detail": {
+    "longDescription": "I build an email product for agents, and email is a bad input for a model as it arrives. A reply usually carries the thread quoted below it, plus signatures and legal footers. So each message goes through a cleaning step with no model in it, and the summarizer, the embeddings and the auto-reply all read that cleaned text. It cuts at the earliest quote boundary (an \"On ... wrote:\" line, an Outlook header block, the Spanish, French and German versions of those), then drops trailing \">\" lines, then cuts marketing footers, then signatures.\n\nIf the cuts would leave nothing, it returns the original text, so a message that is only a quote doesn't come back empty. The rules are blunt, though. A signature only goes if it has a marker like the RFC 3676 \"-- \" line or \"Sent from my iPhone\", so a plain \"Thanks, name, title\" block stays in, and a body line starting with \"Unsubscribe\" cuts everything after it.\n\nIf you feed email to a model, are you cleaning it with rules like this or leaving the noise for the model to ignore?",
+    "developer": "kumard3",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

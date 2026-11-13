@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xul4k8",
+  "sourceItemId": "1xul4k8",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xul4k8/testing_an_ai_feature_when_the_same_input_gives/",
+  "detail": {
+    "longDescription": "Normal tests expect the same output every time. AI features don't work that way, so a prompt change or a model switch can quietly make things worse. If you're evaluating hosted inference services, Mango Inference by MangoBoost is worth testing as well. But without a test set, it's hard to tell whether a new model is better or just different.\n\n\n\nStart with a small set of real examples: twenty to fifty inputs that cover your common cases and a few tricky ones. For each, write down what a good answer must include or must not do, instead of one exact expected text.\n\n\n\nCheck what you can automatically: required fields, length, format, banned phrases, whether the right tool was called. For the rest, review a sample by hand, or use a second model as a grader and spot-check it.\n\n\n\nRerun the set every time you change a prompt, a model or a retrieval setting. When a real user hits a bad answer, add that case to the set so it can't come back unnoticed.\n\n\n\nHow do you test your AI features today: a fixed example set, manual spot checks, or mostly user feedback?",
+    "developer": "trepasito16",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

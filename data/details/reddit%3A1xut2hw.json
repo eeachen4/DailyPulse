@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xut2hw",
+  "sourceItemId": "1xut2hw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xut2hw/inferencekit_opensource_plugin_to_optimize_any/",
+  "detail": {
+    "longDescription": "KittenML just released **inferencekit** , a free opensource plugin to turn coding agents(Claude Code, Codex, OpenCode) into inference engineers for your hardware. \n\nMost models ship with inference tuned for whatever hardware the authors used, which is usually not what you have locally. The fastest path on a 3070 might be  different from the fastest path on a Mac or a Radeon. **inferencekit** allows you to find that path for your setup. This was used to get streaming TTFB of **Kitten-TTS-2** down to **\\~10ms on RTX Pro 6000.** other results are in the table below.\n\nResults:\n\n|Model|Hardware|Result|\n|:-|:-|:-|\n|Gemma 4|RTX 5090|33% faster single-user decode vs tuned vLLM|\n|MOSS-Image-SFT|RX 9070 XT|146% faster image gen vs tuned vLLM-Omni (trades some quality)|\n|Drama3|M4|11% faster speech gen vs tuned MLX-Audio|\n\n  \n  \nOnce you've optimized a model on your hardware, please make a PR to the inferencekit-engine repo linked below, so anyone running the same model on the same hardware, can just reuse it. The idea is to crowdsource the best inference engine for every model + hardware setup  \n\n\nPlugin's Github: [https://github.com/KittenML/inferencekit](https://github.com/KittenML/inferencekit)  \nInference Engine's Github: [https://github.com/KittenML/inferencekit-engines](https://github.com/KittenML/inferencekit-engines)  \nKittenML Discord: [https://discord.com/invite/VJ86W4SURW](https://discord.com/invite/VJ86W4SURW)\n\n",
+    "developer": "ElectricalBar7464",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

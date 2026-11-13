@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80015139",
   "sourceItemId": "80015139",
+  "fetchedAt": "2026-11-13T03:39:11.436Z",
   "sourceUrl": "https://stackoverflow.com/questions/80015139/python-sqlmodel-fastapi-get-unique-values-from-database",
   "detail": {
     "longDescription": "I have this an API which should get all unique titles with limit of 5. @app.get( \"/placeholder/{item_title}\", response_model=list[ItemPublic] ) def suggest_item( *, session: Session = Depends(get_session), item_title: str ): item_interests = session.exec( select(Item) .distinct() .where(col(Item.title).ilike(f\"%{item_title}%\")) .limit(5) ).all() return item_interests I should actually be getting all unique title s that are stored in database based on what user types, however I can't make .distinct() work. I have tested this API and it returns duplicate title s. Where does my code go wrong?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "214"
+        "value": "288"
       },
       {
         "label": "状态",

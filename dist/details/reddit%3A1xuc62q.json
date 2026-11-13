@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuc62q",
+  "sourceItemId": "1xuc62q",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xuc62q/sharding_vs_replicas_across_multiple_gpus_just/",
+  "detail": {
+    "longDescription": "Hey all, I’m planning a small multi-GPU setup across two boxes, with a mix of long-context and short-chat workloads. Should a bigger model be sharded across all the cards, or is it better to run smaller independent instances per card and load-balance?\n\nMy gut says sharding helps single-request latency and replicas help concurrency. But where’s the crossover? Is it just model size vs VRAM?Also, pooled GPU scheduling isn’t magic VRAM merging managing multiple cards doesn’t automatically turn them into one big VRAM block any model can use. i was wondering Is the usual answer “only shard when it won’t fit, otherwise replicas behind a router”? I’m curious about GPUStack, but first I want to get the memory budget straight: how much RAM/VRAM do weights, KV cache, and the loading process each actually need?",
+    "developer": "hulakrtahukhula",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -8,15 +8,15 @@
     "longDescription": "Browsers natively handle a lot of what used to take 50 lines of JS (or a dependency): `CSS.highlights` for text range highlighting without &lt;span&gt;s everywhere, `&lt;dialog&gt;` and showModal() give you backdrops and ideal focus management, `field-sizing` to auto-grow textareas as the user types.. (Something yesterday&#x27;s ftrain post touched on [0]) Models know about some of these by name, but consistently won&#x27;t default to using the platform-native solution and instead prefer the incumbent &lt;div&gt;+JS based pattern. We started an effort in Chrome to supplement coding agents with this key domain knowledge and we&#x27;re shipping our 1.0 today, in collaboration with Firefox, MDN, and Edge. 200+ guides (~1.7MB) of curated, hand-crafted implementation best-practices from web experts, updated as the web evolves. (Open source, obv, so.. we&#x27;ll welcome your bikeshedding ;) Readable versions here: [1] I&#x27;ve spent the last 9 months obsessing over how to ship this as an agent skill + (Agentic RAG) CLI without blowing up your context window. (Or cedeing activation mechanics to MCP dynamic tool search). The skill description is minmaxed for activating on relevant frontend tasks. The RAG work I&#x27;m pretty proud of… originally a 500mb native stack down to a ~7MB pure-JS package, ~10ms search on your CPU. We just introduced a deterministic &#x27;legacy-scan&#x27; (trained on 30k github repos) to identify old &#x27;n dusted patterns that your agent can modernize. (92% avg precision on held-out repos.) People make a lot of claims about what coding agents are good&#x2F;bad at. We wanted receipts, so we invested heavily in eval infra [2] to help us hill-climb, but also to identify when knowledge is common enough we can prune our guides. (Ofc, some of the things we thought AI didn&#x27;t know turned out to be wrong :) We run codex&#x2F;claude&#x2F;agy against 200 tasks without the skill and then with.. In total ~1,700 playwright&#x2F;AST-based assertions. Agents go from 55% pass unguided to 92% guided. Try it out: DISABLE_TELEMETRY=1 npx modern-web-guidance@latest install DISABLE_TELEMETRY=1 npx modern-web-guidance@latest search &quot;animate dialog modal&quot; DISABLE_TELEMETRY=1 npx modern-web-guidance@latest legacy-scan .&#x2F;src If you spot something wrong or weird, give us a holler! Longer write-up on the 1.0: https:&#x2F;&#x2F;developer.chrome.com&#x2F;blog&#x2F;modern-web-guidance-v1 --- 0: https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=50416456 1: https:&#x2F;&#x2F;developer.chrome.com&#x2F;docs&#x2F;modern-web-guidance&#x2F;guides 2: https:&#x2F;&#x2F;googlechrome.github.io&#x2F;modern-web-guidance-src&#x2F;",
     "externalUrl": "https://github.com/GoogleChrome/modern-web-guidance",
     "developer": "paulirish",
-    "comments": 142,
+    "comments": 145,
     "stats": [
       {
         "label": "积分",
-        "value": "425"
+        "value": "435"
       },
       {
         "label": "评论",
-        "value": "142"
+        "value": "145"
       }
     ]
   }

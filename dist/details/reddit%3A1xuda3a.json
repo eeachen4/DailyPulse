@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuda3a",
+  "sourceItemId": "1xuda3a",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xuda3a/thoughts_on_deterministic_governance_over_ai_sre/",
+  "detail": {
+    "longDescription": "Hello everyone,\n\nI’ve been working on Themis, an open-source project exploring the unsafe nature of AI-driven Kubernetes remediation, and how to mitigate it.\n\nThe core question is, if we let AI SRE agents investigate incidents and suggest remediations, how do we prevent them from making things worse?\n\nThemis sits between an AI agent and the Kubernetes API, such that the agent suggests changes and performs investigation, but can’t make any changes directly. Proposed actions are filtered through deterministic policy checks, an approval process, and a separate execution process/service. There’s also post-change verification and rollback.\n\nIt’s currently in an extremely early stage (v0.1.0 alpha) and focused on Deployment objects for the time being. By no means is it production ready, and I’m particularly interested in constructive feedback from people in platform engineering and/or SRE tooling space to steer the tool to the right direction\n\nDoes the general direction of this approach make sense to you? Where do you see architectural flaws? Is this something you'd find valuable, or do you think this is over-engineering a solution to a non-problem?\n\nI’m looking to find as much critical feedback as possible to help guide development in the right direction.\n\nYou can find the source here: [https://github.com/hzerrad/themis](https://github.com/hzerrad/themis)",
+    "developer": "hzerrad",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

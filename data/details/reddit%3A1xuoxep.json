@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuoxep",
+  "sourceItemId": "1xuoxep",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xuoxep/i_tried_shipping_an_app_as_a_spec_instead_of_code/",
+  "detail": {
+    "longDescription": "I've been testing an idea and I'd like some honest pushback from people who build with agents.\n\nInstead of sharing an app, you share one text file, a \"capsule\": what the app does, with acceptance criteria, which decisions are fixed and which can adapt, and the order to build it in. A coding agent builds the app from it for your own setup, in your language and on the hosting you already pay for. I've only tried this with Claude Code so far. The spec is meant for Codex and Cursor too, but I haven't tested them.\n\nI'm least sure about the next part. It works a bit like compression. Code zips fine, I know, but the capsule keeps what the app has to be and drops how one copy happens to be written. My only example is a small nutrition tracker, and I've built it from scratch eight times with Claude Code, unattended.\n\nThe early capsules were about 15 KB, and the builds kept passing their own tests while the app was still wrong. Two builds of the same capsule wrote very different tests and both passed. So the capsule now carries a conformance kit, checks the agent has to run and isn't allowed to edit. That pushed it to about 74 KB, against 113 KB for the app. The last build passed 28 of 28 checks on the first round, in 15 minutes.\n\nMost of the problems came from gaps in the capsule. But an agent writing its own tests can also miss the same mistakes it makes in the app.\n\nWhat I can't tell yet:\n\n\\- does this fall apart once the app is big and real?\n\n\\- the spec uses YAML because it's easier to validate. Would you rather write a capsule in Markdown anyway?\n\n\\- how would you check that \"built from this capsule\" means the same thing in Claude Code and in Codex?\n\n\\- has anyone seen something close to this? I found spec-driven tools, AGENTS.md and at least one other single-file app spec, but nothing with acceptance criteria, fixed and adaptable decisions and a conformance kit in the same file.\n\nDisclosure: it's my project (DNApps). The spec is a v0.1 draft, open source (CC BY 4.0 for the text, Apache-2.0 for the schema), open for comments until January 10, 2027: [https://github.com/asimovia/dnapps](https://github.com/asimovia/dnapps)",
+    "externalUrl": "https://i.redd.it/yr5ikki7z81i1.jpeg",
+    "developer": "Psychological_Arm645",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

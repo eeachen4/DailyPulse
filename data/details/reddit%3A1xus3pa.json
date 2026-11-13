@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xus3pa",
+  "sourceItemId": "1xus3pa",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xus3pa/argocd_kargo_and_image_updates_in_complex/",
+  "detail": {
+    "longDescription": "**Background/Environment:**\n\n  \nI've been running off of Argocd for a few months now. I've been provisiong the K8s clusters using TF and then handing it off to argocd where:\n\n \\-  an Application is defined that monitors git for new ApplicationSet  \n \\- ApplicationSet manages a cluster and all of its apps.  (Including cert-manager, ESO, etc) and user level type of apps, insert your favorite www pod etc or service.\n\n  \n**Problem:**\n\n1. I have bit rot accumulating of say app that are running a 6 month old version of cert manager that could use an update.   \n2. I would like to detect that a new artifacts exists that I should pull in (Say an OCI artifacts with SQL migrations I should pull in)\n\n**Solutions?**\n\nA. I'm exploring **kargo** right now but it feels really convoluted, I don't mind the concepts of warehouse, stage, freight etc but the amount of code I need to basically say:\n\n\\- git-clone  \n\\- yaml-update  \n\\- git-commit  \n\\- git-push  \n\\- git-open-pr\n\nAll to basically try to facilitate changing a tag in this code block:\n\n  \n\n\n  `migrations:`  \n`image:`  \n`tag: \"20261109-8d43de4\"`\n\n\n\nB. I looked at Argo Image Updater but it also has a similar issue of polluting my AppSet with annotations in order to drive behavior.\n\nI have heard others mention packaging the entire app config + app into OCI and update that, I'm still trying to wrap my head around how that works. \n\nHow do others keep up with all the updates you need to do on a cluster. Between all the operators, app definitions and need to test, validate and deploy. It feels like there should be some automation that makes this into a sane pattern. \n\n",
+    "developer": "csgeek-coder",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

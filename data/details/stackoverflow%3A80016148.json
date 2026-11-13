@@ -2,15 +2,16 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80016148",
   "sourceItemId": "80016148",
+  "fetchedAt": "2026-11-13T03:39:11.436Z",
   "sourceUrl": "https://stackoverflow.com/questions/80016148/does-sys-set-lazy-imports-accept-none",
   "detail": {
-    "longDescription": "According to the docs : sys. set_lazy_imports ( mode ) Sets the global lazy imports mode. The mode parameter must be one of the following strings: \"normal\" : Only imports explicitly marked with the lazy keyword are lazy \"all\" : All top-level imports become potentially lazy However, according to typeshed : _LazyImportMode: TypeAlias = Literal[\"normal\", \"all\", \"none\"] if sys.version_info >= (3, 15): def set_lazy_imports(mode: _LazyImportMode) -> None: ... Is \"none\" a supported mode for sys.set_lazy_imports() ? What does it do? Note 1: \"all\" does not mean \"all imports are lazy\"; it means \"all imports are potentially lazy\", i.e. both lazy import ... and import ... are lazy unless made otherwise by sys.set_lazy_imports_filter() Note 2: I'm not suprised if this is a documentation error, as lazy imports are still a new feature",
+    "longDescription": "According to the docs : sys. set_lazy_imports ( mode ) Sets the global lazy imports mode. The mode parameter must be one of the following strings: \"normal\" : Only imports explicitly marked with the lazy keyword are lazy \"all\" : All top-level imports become potentially lazy However, according to typeshed : _LazyImportMode: TypeAlias = Literal[\"normal\", \"all\", \"none\"] if sys.version_info >= (3, 15): def set_lazy_imports(mode: _LazyImportMode) -> None: ... Is \"none\" a supported mode for sys.set_lazy_imports() ? If so, what does it do? Note 1: \"all\" does not mean \"all imports are lazy\"; it means \" all imports are potentially lazy\", i.e. both lazy import ... and import ... are lazy unless made otherwise by sys.set_lazy_imports_filter() Note 2: I'm not suprised if this is a documentation error, considering lazy imports are still a new feature",
     "developer": "JadenV15",
     "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "1"
+        "value": "3"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "24"
+        "value": "128"
       },
       {
         "label": "状态",

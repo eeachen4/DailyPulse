@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xunxas",
+  "sourceItemId": "1xunxas",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xunxas/infradeck_100_one_dashboard_for_your_servers/",
+  "detail": {
+    "longDescription": "I've been building **Infradeck**, a self-hosted dashboard for homelabs, and just released 1.0.0.\n\nOne machine runs the dashboard, and every other machine runs a small collector. It works the same on one LAN or across sites and VPSes.\n\n**What it does**\n\n* **Hosts:** CPU, RAM, load, swap, network, and disk and inode usage for every mounted filesystem.\n* **Containers:** CPU, memory, I/O, ports, health, restarts and exit codes, grouped by Compose project, with history.\n* **System events:** reboots, OOM kills, kernel faults, pending updates, listening ports and firewall changes.\n* **Uptime checks:** HTTP, keyword, JSON value, TCP, TLS expiry, DNS and ping, run from the machines you pick, so you can tell a broken service from a broken network path.\n* **Incidents:** one incident per problem, closed automatically when it clears. Notifications go to ntfy, Discord, a webhook or email.\n* **Statistics:** from the last hour to all time, plus a \"disk full in \\~N days\" estimate.\n\n**Security, since it touches Docker on every host**\n\n* Collectors never get the Docker socket. A tiny proxy allows a few read-only requests and nothing else.\n* Collector endpoints are only reachable through a separate gate bound to your VPN address, not your public domain.\n* Every image is signed with cosign and built for amd64 and arm64, and installs pull them by version or digest.\n* Two-factor sign-in is required for admins.\n\n**Optional AI incident agent, off by default.** Bring your own Anthropic, OpenAI or Gemini key and it diagnoses incidents from masked data and suggests a fix. It only reads; it never runs commands on your servers.\n\n**What it isn't:** not a log collector, not a remote control (it never restarts or changes anything), and not a high-resolution time-series database.\n\n**GitHub:** [https://github.com/karloks2005/Infradeck](https://github.com/karloks2005/Infradeck)\n\nFeedback is very welcome, especially on setup and on what's missing for your setup.\n\nhttps://i.redd.it/wo2ppa1nr81i1.png\n\n",
+    "externalUrl": "https://i.redd.it/y2rivapnr81i1.png",
+    "developer": "karloks2005",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

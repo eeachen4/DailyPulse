@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuillf",
+  "sourceItemId": "1xuillf",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xuillf/does_metas_brainresponse_model_tribe_v2_actually/",
+  "detail": {
+    "longDescription": " TRIBE v2 predicts fMRI from video/audio/text. Its own paper never tested whether it reproduces classic topographic maps (retinotopy, tonotopy, motion selectivity) — and its methods section admits video features get spatially averaged before prediction, which should wreck position info. Nobody checked. I ran the classic mapping stimuli (checkerboard wedges/rings, hemifield flicker, moving dots, tone sweeps) through it and fit the same models you'd fit to real fMRI, validated against a synthetic ground-truth control first.\n\nResults: no retinotopic map (d=0.05, n.s.), no tonotopic map (ρ=-0.07, n.s., even with loudness controlled), but motion selectivity is sharp and lands precisely in MT+ (d=4.31, 52x enrichment over chance).\n\n The fun part: eccentricity looked null by default, but flipped to significant and \"correct\" under three separate stimulus-geometry controls — a classic image-statistics confound masquerading as a positional code, not a real signature of position.\n\nSolo project, self-funded, code+paper here: [https://jakubstrawa1.github.io/audit-multimodal-brain-response/](https://jakubstrawa1.github.io/audit-multimodal-brain-response/)\n\nCurious if anyone's seen this WHERE-vs-WHAT dissociation checked in other brain-encoding or video models — feels like it should generalize.",
+    "developer": "Own_Tank1283",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

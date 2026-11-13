@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xurv95",
+  "sourceItemId": "1xurv95",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xurv95/you_can_read_which_gpu_a_model_was_initialized_on/",
+  "detail": {
+    "longDescription": "Interesting forensics writeup: PyTorch fills initial weights with Philox via cuRAND, and the thread count (2,048 per SM) decides where each random number lands. Rows that training never touches keep their initial values, so you can search seed + thread count and recover the SM count of the GPU that generated them.\n\nTheir readings: Llama 3.1 = 132 SMs (H100, matches Meta's disclosure), Nemotron-3 Ultra = 152 (GB200, matches NVIDIA's report). They say the method agrees with all 24 models whose hardware is publicly disclosed. They also reproduced 445 rows of DeepSeek-V4-Flash bit for bit on a physical B300.\n\nThe headline claim is that six recent Chinese models (DeepSeek-V4-Flash/Pro, Kimi K3/K3.1-Pro, MiniMax-M3, Ling-3.1-flash) read as Blackwell (148/152 SMs). The author is explicit that this shows the initialization hardware, not where the chips were or whether any rule was broken.\n\nThe part I find wild for devs: your published checkpoint leaks your hardware unless you init on CPU (some Qwen3 models did) or use a framework without this layout. Anyone here ever thought about seed hygiene before releasing weights?\n\n[https://unemploymentlabs.com/checkpoint-forensics](https://unemploymentlabs.com/checkpoint-forensics)",
+    "developer": "Antique_Atmosphere97",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

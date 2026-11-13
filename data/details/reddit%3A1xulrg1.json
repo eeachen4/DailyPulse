@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xulrg1",
+  "sourceItemId": "1xulrg1",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xulrg1/tired_of_paid_airplay_apps_on_windows_so_i_built/",
+  "detail": {
+    "longDescription": "Like many of you who use an iPad alongside a Windows desktop or laptop (for note-taking, drawing, lectures, or work presentations), I got really frustrated by the state of AirPlay mirroring on Windows:\n\n* Commercial solutions like AirServer or Reflector charge expensive one-off fees ($20–$40) or push recurring subscriptions, and their free trials slap giant watermarks across your screen.\n* Older open-source tools were either strictly terminal-based, suffered from audio desync, or completely broke on modern iPadOS versions due to missing GStreamer dependencies or Linux D-Bus requirements.\n\nSo I spent the last few weeks building UxPlay Desktop: a modern, native, 100% free and open-source (GPLv3) AirPlay receiver for Windows 10 and 11.\n\n### What makes it different?\n\n* Direct3D 11/12 Hardware Acceleration: Ultra-fluid 60 FPS mirroring with sub-frame latency. Drawing with Apple Pencil in GoodNotes, Freeform, or Notability feels instantaneous.\n* 1-Click Self-Contained Installer: No compiling, no hunting down missing DLLs, and no messy dependencies. The installer bundles everything and configures Apple Bonjour and Windows Firewall automatically.\n* Performance Presets with Real Latency Indicators:\n  * Low Latency Gaming (~30–50 ms): Minimal buffering for interactive apps and games.\n  * Teaching & Presentations (~120–150 ms): Direct3D text sharpness optimization plus automatic Windows sleep and screensaver inhibition.\n  * Cinema Mode (~500–1000 ms): Generous jitter buffer for stutter-free movie streaming.\n  * Audio Only (~200–250 ms): Headless mode to stream music, podcasts, or system audio without video overhead.\n* Modern Fluent Dark UI: Real-time HUD showing connected device model, resolution, FPS, and live stream duration, plus quick volume control, 1-click screenshot capture, and session recording.\n* Auto-Healing Bonjour & Network Doctor: Includes a built-in diagnostic modal to inspect network adapters, mDNS discovery, and AirPlay ports.\n* Fully Multilingual & Auto-Updating: Supports 16 languages with instant live switching and clean 1-click in-app updates.\n\n### Tech Stack\n* UI & Client: C# / .NET 8 (WPF, MVVM architecture).\n* Core Engine: Hardware-accelerated GStreamer pipeline plus patched upstream UxPlay core for modern iOS and iPadOS handshake stability.\n\n---\n\n### Project & Download\n\n* GitHub Repository: https://github.com/jorjanion/uxplay-desktop\n* Latest Installer (.exe): https://github.com/jorjanion/uxplay-desktop/releases/latest\n\nIt is completely free, tracker-free, and open source forever. \n\nI would really love your feedback, bug reports, and suggestions for future features. And if you find it useful for your setup, leaving a star on the GitHub repo helps tremendously to get the word out.\n\nThanks for checking it out!",
+    "developer": "jorjanion",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

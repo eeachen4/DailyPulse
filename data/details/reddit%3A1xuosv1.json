@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuosv1",
+  "sourceItemId": "1xuosv1",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xuosv1/got_fed_up_with_my_authentik_forward_auth_setup/",
+  "detail": {
+    "longDescription": "**Title:** got fed up with my authentik + forward auth setup and ended up building my own SSO/gateway thing\n\nLong post, sorry.\n\nSo for about two years my homelab login setup was authentik plus traefik forward auth in front of everything. It worked, mostly. But every new app was the same dance: make a provider, make an application, make an outpost binding, add the middleware labels, restart, find out I typo'd the outpost URL, repeat. The one that finally broke me was when I gave a friend access to Jellyfin and a week later noticed he could also open Grafana and the Paperless admin. I had put him in the wrong group months earlier. Nothing told me, and there was no single place where I could see \"this person can reach these apps, and here's why.\"\n\nAround the same time I started letting a couple of AI agents do small things for me (open issues, poke my home assistant setup), and there was basically nothing to stop one from calling whatever it had a token for.\n\nSo me and another dev I know started building Ianua, and it kind of got out of hand. It's now:\n\n* an identity provider: passkeys, MFA, magic links, OIDC/SAML login through other providers, plus OIDC/OAuth for your own apps, SCIM and LDAP\n* a gateway in front of your apps that blocks anything it doesn't have a rule for. Every request gets logged with who it was, which app, and which rule let it through or blocked it. That's the \"why can my friend see Grafana\" screen I wanted.\n* identities for AI agents. Each one gets its own login and a spending cap, can only reach what you gave it, and some actions wait for a human to click yes first. There's also a workflow builder with a bunch of integrations, but that's more of a side thing.\n\nBackend is Rust, runs on Postgres + NATS + Redis.\n\nIf you want to poke at it locally:\n\n    git clone https://github.com/IanuaIDP/ianua.git\n    cd ianua\n    make start\n\nthen go to app.localhost:3000. Emails get caught at 127.0.0.1:8025 so you don't need SMTP for testing.\n\nFor an actual server there's a compose setup in `deploy/compose`. You'll need 80/443 open, a couple of DNS records plus a wildcard for your apps, and SMTP. There's a helm chart too if you're on k8s.\n\nSince someone always asks: idle it uses about 250 MB of RAM for the whole stack (the server around 80-140 MB, postgres about 90, the gateway about 15, nats and redis about 10-20 each). CPU is basically nothing at idle, a few percent of one core in total. That's measured in Docker on my M-series Mac, so take it as a ballpark.\n\nHeads up on the license so nobody feels tricked: it's source-available, not OSI. Free for homelab, personal use, or your own company. You just can't resell it or run it as a login service for other people.\n\nrepo: [https://github.com/IanuaIDP/ianua](https://github.com/IanuaIDP/ianua) docs: [https://ianuaidp.github.io/ianua/](https://ianuaidp.github.io/ianua/)\n\nWould really like to hear from people on authentik / keycloak / authelia. What would actually make you switch, and what's obviously missing? Still early, so be honest.",
+    "externalUrl": "https://i.redd.it/1h4g60sby81i1.png",
+    "developer": "WesternNo2429",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

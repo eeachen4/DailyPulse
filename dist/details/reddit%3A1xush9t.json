@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xush9t",
+  "sourceItemId": "1xush9t",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xush9t/agent_make_phone_calls_businesses_before_it_dials/",
+  "detail": {
+    "longDescription": "saw a post this week and it gave me something to think about. went through the repo on github and through voygr-tech/sf-from-memory. code, data and answer keys are all public so would like to tell a bit more about my experience\n\nthe setup: six models get 41,526 coordinates across san francisco with no map and no web access, and have to say what's at each point (water, park, building, street, or something else). every answer is scored against openstreetmap.\n\nwhat came out of it, very briefly\n\n1. the best models land around 86% overall. a dumb baseline that answers \"not water, not park\" everywhere already gets 61%\n2. they place the coastline, golden gate park and the presidio fine. the street grid is mostly wrong\n3. on a 500 m block of the marina, the best street score was 0.32. a random shuffle of the streets scores 0.23\n4. the model that costs about 5x more tied with the cheaper ones, and high reasoning effort didn't fix the grid. one model painted the marina as nearly solid building, 3% street against 21% in reality\n\nthe reason i care at all: if a model can't place a street from memory, it knows nothing about whether a specific shop is open today or which number reaches the front desk. once an agent gets an openclaw phone call skill or any calling tool, those facts have to come from a live lookup or from the call itself, never from the weights.\n\nthe repo looks easy to rerun, so i want to try a local model on the marina block next. has anyone run it on qwen or llama yet? and also, would like to know and ask.. for people building agents that touch real places: how much do you let the agent take straight from the model before it checks a live source?\n\n>",
+    "developer": "Evening_Hawk_7470",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

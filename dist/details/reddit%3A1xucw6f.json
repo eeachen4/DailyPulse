@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xucw6f",
+  "sourceItemId": "1xucw6f",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xucw6f/added_episodic_memory_to_my_opensource_agent/",
+  "detail": {
+    "longDescription": "The gif is the time cursor of CtxVault, an open-source (MIT) local memory for AI agents I’ve been building. Drag it and you see what the memory held on that day. This post is about why that exists.\n\nI kept hitting the same thing with agents that run for weeks: a fact changes, the agent overwrites it in memory, and a month later nobody can tell what it believed at the time or why it did what it did. Vector stores don’t have a concept of “this was true until April”.\n\nA few months ago I posted here about the first version, which only had semantic memory and procedural memory: https://www.reddit.com/r/LangChain/comments/1seul6d/i\\_gave\\_my\\_langchain\\_agent\\_both\\_knowledge\\_and/. This is the same project with the third type added.\n\nThe memory is a set of folders (\"vaults\"), and each one is one of three types:\n\n* semantic: documents, local embeddings, search by meaning\n* skill: markdown procedures the agent reads by name\n* episodic: facts with two dates, when they were true in the world and when the memory learned them\n\nThe episodic part is the one I care about. These are some primitives:\n\n* `supersede`: the fact changed. The old one is closed where the new one starts, both are kept, and they're linked.\n* `revise`: the world didn't change, the wording did. The new text inherits the old one's confirmations.\n* `invalidate`: it stopped being true on a date, nothing replaces it.\n* `confirm`: a second source agrees, so the fact gets more weight.\n* `dispute`: two sources disagree. Both stay open and marked, nobody picks a winner.\n\nThen you query with `valid_at=\"2026-03-02\"` (what was true then) or `known_at=\"2026-03-02\"` (what the memory knew then), which are different questions. Under the hood it's SQLite in a file inside the vault folder.\n\nHooking it to LangGraph is MCP, nothing custom:\n\n    from langchain_mcp_adapters.tools import load_mcp_tools\n    from mcp import ClientSession, StdioServerParameters\n    from mcp.client.stdio import stdio_client\n    \n    params = StdioServerParameters(command=\"ctxvault-mcp\", args=[\"--agent\", \"support-bot\"])\n    async with stdio_client(params) as (r, w), ClientSession(r, w) as s:\n        await s.initialize()\n        tools = await load_mcp_tools(s)\n        agent = create_agent(ChatOpenAI(model=\"gpt-4o-mini\"), tools)\n    \n\n`--agent` is what the access control keys on: each vault lists which agents can reach it, and the check is server-side, so two agents sharing one memory folder can't read each other's vaults by accident.\n\nThe UI in the gif is `ctxvault ui`, read-only. If you’d rather click around than install, this is a static snapshot of the same UI, no server: [https://filippo-venturini.github.io/ctxvault/demo.html](https://filippo-venturini.github.io/ctxvault/demo.html)\n\nWhat it doesn't do: no graph memory yet, no auto-sync from the filesystem, and it doesn't extract facts from conversations for you, the agent decides what to write (I'm on the fence about adding an optional extraction layer, which would also make it benchmarkable on LongMemEval).\n\nRepo: https://github.com/Filippo-Venturini/ctxvault. Example 06 is the smallest episodic one, example 05 is the LangChain + MCP one.",
+    "externalUrl": "https://i.redd.it/0sf2r9irn61i1.gif",
+    "developer": "Comfortable_Poem_866",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

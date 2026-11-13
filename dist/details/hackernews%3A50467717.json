@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50467717",
+  "sourceItemId": "50467717",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50467717",
+  "detail": {
+    "longDescription": "I&#x27;m creating a tool (starting with a TUI MVP) for exploring and managing user files with tags, breaking out of rigid hierarchical silos across devices. I&#x27;d love your feedback on how useful my approach could be to you. Here are the core features of my MVP, addressing typical concerns with tag-based&#x2F;non-hierarchical approaches, like efficient discovery, the tedium of creating&#x2F;managing tags, lock-in, and portability: - Query DSL: A simple but expressive query language is provided to search for files&#x2F;folders, based on their tags stored in a local db. Tags can be bare or categorized, and the categories can be user-defined or system generated. - Dynamic Virtual Folders: Guided drill-down file browsing via query-backed dynamic virtual folders as a first-class feature. Research shows spatial browsing&#x2F;exploration is just as critical to file discovery as direct search. - Heuristic auto-tagging &amp; triage queue: Tags are automatically generated on initial indexing using sophisticated heuristics based on file&#x2F;folder metadata (path, name, os metadata, etc). Any existing or newly created files&#x2F;folders that remain under-tagged go into a triage queue for quick manual bulk or individual tagging. - Managed, flat, sharded storage: On import, files are moved, flattened and name-normalized with their tags, into a sharded internal store, with all subsequent access routed through the tool&#x27;s interfaces. While this breaks from file managers that typically leave files in place, it enforces the workflow shift needed for non-hierarchical organization to work well. Tags can be exported back to standard folder structures at any time. - &quot;Project&quot; folders as atomic units: Project directories like code repositories are not flattened, and can be tagged and retrieved as single, atomic units (in addition to their contents), which avoids flooding listings with thousands of their nested files&#x2F;folders. Portability &amp; Privacy: All files and project folders retain their exact contents. Since their tags are embedded in their names, and the original structure can be exported back if desired, there is no lock-in or loss of tags if the tool and its metadata db are uninstalled. Also, although file paths and metadata might be sent to a central API server to support features like the automatic tags and dynamic virtual folders generation, file contents stay strictly local. Roadmap As mentioned, the initial MVP is a TUI which provides a rich interface for browsing, search, basic file operations, and import, plus a CLI for some basic administrative actions. Eventually, I plan to support: - A native GUI interface - Self-hosted and Cloud-hosted servers for web UI access - Bring-Your-Own-Cloud-Storage (e.g., S3 and&#x2F;or Google Drive) to replicate the internal flat shared storage in the cloud, for backup and access from other devices - Import from IMAP, mobile devices, etc. - Versioning What are your thoughts? Do you think these approaches address the limitations of hierarchical file organization, as well as the friction involved with typical tag-based tools? Would you be comfortable with file metadata being processed or stored in the cloud? And, do you think this tool could provide you enough value to pay for it?",
+    "developer": "prmph",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

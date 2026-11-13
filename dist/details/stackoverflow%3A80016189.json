@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016189",
+  "sourceItemId": "80016189",
+  "sourceUrl": "https://stackoverflow.com/questions/80016189/why-does-milvusclient-query-return-only-4-rows-with-limit-10-after-inserting-d",
+  "detail": {
+    "longDescription": "I am using Milvus master-20260817-c2a92a8a in cluster mode with PyMilvus 3.0.1rc48 . My collection contains 13 distinct primary keys, with three copies of each inserted in a single batch. When I query with limit=100 , I get all 13 distinct IDs. With the same filter and limit=10 , I get only four. This is the simplified reproduction: import random from pymilvus import DataType, MilvusClient client = MilvusClient( uri=\"http://localhost:19530\", token=\"root:Milvus\", ) collection_name = \"repro_duppk_single_seg\" schema = client.create_schema( auto_id=False, enable_dynamic_field=False, ) schema.add_field(\"primary_key\", DataType.INT64, is_primary=True) schema.add_field(\"vector\", DataType.FLOAT_VECTOR, dim=128) client.create_collection( collection_name=collection_name, schema=schema, ) def rows(): random.seed(1) return [ { \"primary_key\": pk, \"vector\": [random.random()] * 128, } for pk in range(100001, 100014) ] client.insert( collection_name=collection_name, data=rows() + rows() + rows(), ) client.flush(collection_name) index_params = client.prepare_index_params() index_params.add_index( \"vector\", index_type=\"FLAT\", metric_type=\"L2\", ) client.create_index(collection_name, index_params) client.load_collection(collection_name) result = client.query( collection_name=collection_name, filter=\"primary_key >= 0\", output_fields=[\"primary_key\"], limit=10, order_by_fields=\"primary_key:asc\", ) print([row[\"primary_key\"] for row in result]) The output is: [100001, 100002, 100003, 100004] I expected ten distinct IDs, from 100001 through 100010 , because all 13 distinct IDs match the filter. The query completes without an error. Changing only limit to 20 returns seven distinct IDs, while limit=100 returns all 13. Why does MilvusClient.query() return fewer than ten distinct records with limit=10 when enough matching primary keys exist?",
+    "developer": "Civic Fiction",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "91"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

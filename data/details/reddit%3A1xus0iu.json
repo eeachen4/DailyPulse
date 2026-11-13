@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xus0iu",
+  "sourceItemId": "1xus0iu",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xus0iu/reasoning_doesnt_help_small_9b_models_on_complex/",
+  "detail": {
+    "longDescription": "Hi everyone! I'm trying to make a **Qwen 9B legal agent**, and I've hit a weird problem with complex court-decision summaries. I also ran **four parallel LoRAs as diagnostics**, so that might interest you all too.\n\n(lowkey some of you might remember me from the 27B training plateau post haha)\n\nYou guys suggested I should distill Opus 5's thinking, and it actually worked: my **27B PoC got close to Opus**, and my lawyer guy verified the summaries weren't nonsense.\n\nThe old outputs went **14–16 against Opus**; regenerating with vLLM gave **9–21**, both greedy. So “almost parity” describes the first run. Inference stack or judge variance? I don't know.\n\nI'd prompted Opus to write CoT for a smaller model. Trying to reproduce that now seems much harder haha.\n\n### So I tried the same recipe on 9B\n\nI made a big CPT set of **500M legal stuff**: court decisions, legislation, commentaries and professional Q&As.\n\nNo-thinking SFT didn't get the results I wanted, so I tried adding Opus's reasoning. Then I thought maybe my CPT messed some stuff? So I also tried stock Qwen straight from Hugging Face.\n\n**Six fresh LoRAs total:** legal-CPT Qwen3.5-9B-Base, stock base and stock chat, each with and without thinking. Same source documents and final answers; the no-thinking versions got an empty `<think>` block. Median teacher reasoning was about **1,000 tokens**.\n\n**Same recipe as the 27B intentionally, cuz that was the successful PoC:**\n\n- **4-bit QLoRA:** rank 64, alpha 128, LR `2e-4`, effective batch size 8.\n- **Stage 1:** 1,199 examples. **Stage 2:** 400 examples—300 new, 100 repeated. One epoch per stage.\n- Loss on assistant output, including reasoning where present; source decisions masked out.\n\n**Eval:** 30 held-out Slovak court decisions. Opus 5 judged randomized A/B pairs against the full decision, seeing only the final title and legal holding. Greedy decoding, 6,000-token output cap; every output had the required fields and none hit the cap.\n\n### The weird part\n\nEvery row is a separate 30-decision comparison. **Wins and fabrication scores follow A / B order.** Fabrication is judge-rated from 1–10, where 1 means none; scores come from each specific comparison.\n\n| Model A | Model B | Wins A : B | Fabrication A / B |\n| --- | --- | ---: | ---: |\n| CPT 9B, thinking | CPT 9B, no thinking | **10 : 20** | 2.59 / 2.18 |\n| Stock base 9B, thinking | Stock base 9B, no thinking | **18 : 12** | 2.11 / 2.93 |\n| Stock chat 9B, thinking | Stock chat 9B, no thinking | **15 : 15** | 2.41 / 2.81 |\n| CPT 9B, thinking | 27B | **5 : 25** | 2.68 / 1.52 |\n| CPT 9B, no thinking | 27B | **7 : 23** | 2.62 / 1.73 |\n| Stock base 9B, thinking | 27B | **5 : 25** | 2.24 / 1.57 |\n| Stock chat 9B, thinking | 27B | **2 : 28** | 2.72 / 1.52 |\n\nSo thinking lost on CPT, tied on stock chat and won on stock base. It also improved fabrication scores for both stock models. **Mixed results, but still a big gap to 27B.**\n\nSmall test, obviously: Opus is both teacher and judge, and the 9B is Qwen3.5 while the 27B is Qwen3.8, so this doesn't isolate model size.\n\n### What am I missing?\n\n**Could 9B just be too little?** I feel like it shouldn't be. Eyeballing the CPT + no-think outputs, they resemble Opus's summaries a lot.\n\nI really DO think this task needs CoT. **Does it just need a lot more examples before thinking overtakes no-thinking?**\n\n**Is there a way to distill original thinking, or teach reasoning efficiently without distillation?** The trick is frontier models aren't great at the relevant law either. My vibe-coded RL tests and Kimi reasoning distillation didn't go well, and I really don't wanna burn **2B tokens** ideally. Any help?\n\n**PS:** The long-term plan is to take the recipe to a 27B Qwen4 once it's out, then put it in my custom Claude Code-style harness with search and RAG.\n",
+    "developer": "SignificantZebra5883",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xujud1",
+  "sourceItemId": "1xujud1",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xujud1/using_a_nonturingcomplete_language_so/",
+  "detail": {
+    "longDescription": "When an LLM agent writes or installs a skill tool that holds real API credentials, running that code inside a standard Python or Node sandbox leaves a big gap. Containers isolate the filesystem and CPU, yet the language itself is still unrestricted: a script can loop forever, construct a hostname dynamically at runtime, or read an injected API key and POST it to an external webhook.\n\nWe built a restricted functional language called Safescript specifically for untrusted agent skills and custom tools.\n\nThe core tradeoff was dropping general recursion, for/while loops, eval, and free-form fetch URLs. Iteration goes through bounded map, filter, and reduce combinators, and outbound HTTP goes through structured operations with explicit host fields.\n\nGiving up Turing completeness buys static guarantees before a single line executes. From the AST alone, the compiler computes:\n\n1. Exact set of outbound HTTPS hosts the function can contact.\n2. Parameter-to-host taint flow (for example, proving param:resendKey only flows into host:api.resend.com and never into a secondary webhook).\n3. Symbolic algorithmic complexity and concrete upper bounds on memory and runtime.\n\nWhen a user attaches a secret to an agent, they pair that secret with an allowlist of domains. If a compromised skill package or a prompt-injected model generates a Safescript function where a tainted secret flows to an unapproved host, the policy check rejects the AST before opening a socket or booting a VM.",
+    "developer": "uriwa",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

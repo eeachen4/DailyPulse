@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xumqjn",
+  "sourceItemId": "1xumqjn",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xumqjn/how_are_you_handling_dispatch_and_verification_in/",
+  "detail": {
+    "longDescription": "purpose up front so this doesn't read like a survey: i'm rebuilding my own orchestrator and i want to see how other people solved this. i'm not collecting anything and there's no product behind it.\n\n  \nwhere i am today. Claude Code and Codex behind a task queue, one git worktree per task, a script that spawns a session per task and reads the output back. the model part works fine. the plumbing doesn't.\n\n  \nthree things i haven't solved:\n\n  \n1. dispatch. right now it's a flat for loop over pending tasks. it needs a real scheduler, but i don't know whether people reach for redis and celery or just a sqlite table with a worker loop. curious what the actual pattern looks like at 5 to 20 concurrent agents.\n\n  \n2. verification. a worker returns done and i have no cheap way to know if that's true. the options seem to be: test suite as the gate, a second model doing review, or inspecting the diff. what actually catches bad output for you in practice.\n\n  \n3. runaway control. an agent that misreads a task can spend an hour refactoring something nobody asked for. i want a hard budget and a kill path, not a sentence in the prompt telling it to be careful.\n\n  \nand the boring question. is there a repo or a tool people are converging on for this? i see T3 Code mentioned, a few open source orchestrators, and a lot of people rolling their own. if something already handles dispatch plus verification well, i would rather read it than rebuild it.\n\n  \nif this belongs in a weekly thread instead, happy to move it.",
+    "developer": "W1141175",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuphns",
+  "sourceItemId": "1xuphns",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xuphns/keeping_the_model_away_from_the_tools_a_boundary/",
+  "detail": {
+    "longDescription": "My open-source app builder uses a local LLM in two places: drafting a design, and an assistant inside each built app. The rule is \"AI summarizes, code calculates\":\n\n\n\n\\- The model only composes from a catalog. Its output never reaches the filesystem, a command, the network or a settings write. Tests pin each of those.\n\n\\- Four tools exist in the built app: three reads, and one save that requires the user's approval.\n\n\\- Every number in a reply is checked against a tool result, after the model reported a filtered sum as a total.\n\n\\- \"Done\" lines are computed from the spec diff, never from the model's own summary, because it kept claiming work it had not done.\n\n\n\nInjected records got nothing written without approval across six test runs. Boundary doc and tests: [https://github.com/ChristianMunoz31/local-app-studio](https://github.com/ChristianMunoz31/local-app-studio)\n\nI would value criticism of the threat model.",
+    "externalUrl": "https://v.redd.it/6j7aavqi391i1",
+    "developer": "Revibed69",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

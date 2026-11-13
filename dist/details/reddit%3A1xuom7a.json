@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xuom7a",
+  "sourceItemId": "1xuom7a",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xuom7a/how_do_you_tell_that_a_job_is_running_but_the/",
+  "detail": {
+    "longDescription": "My orchestrator computes its own health: stalled ticks, rows stuck in running, no worker attached, dev branch not moving, cron drift, unclosed loops, and stale state files. Output is a JSON status file and a readable status doc. A repair routine only touches plumbing, logs a lesson each time, and is barred from the product work itself.\n\nIt still fooled me. A watcher's state file had been frozen three days while the health pass reported fine, because it checked file mtime instead of the timestamps inside it. The loop was alive and the thing it watched was dead. It's a named signal now but I don't trust my detector.\n\nHow do you verify the state inside a process is advancing, not just that the file exists? Heartbeat sequence numbers, a counter the writer bumps each pass?\n\nSecond. Every ledger row carries an owner and a next_action_due, and a closer runs on a beat to close, re-own or escalate. At 5 to 15 parallel jobs is that plus a lock the sane primitive, or do people reach for a real queue sooner?\n\nAsking to decide, not collecting anything. If a public repo already does this, T3 Code or otherwise, say so.",
+    "developer": "W1141175",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
