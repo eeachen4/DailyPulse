@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016580",
+  "sourceItemId": "80016580",
+  "sourceUrl": "https://stackoverflow.com/questions/80016580/ts-node-typescript-error-cannot-find-module-or-its-corresponding-type-declarati",
+  "detail": {
+    "longDescription": "I installed a package and I can see it in node_modules with its type declarations file. But I’m still getting the “cannot find module or its corresponding type declarations” error when I attempt to start the dev server using ts-node. I’ve tried deleting and reinstalling node_modules and pnpm-lock.yaml , and restarting the VSCode TS server. A rough sketch of the project directory structure: MainProjectDir - package.json - tsconfig.base.json - tsconfig.json - vite.config.ts - server/ - tsconfig.json - ... - src/ - node_modules/ - ... When I attempt to start the dev server using npx ts-node --showConfig -P server/tsconfig.json server/server.ts , here are the ts compilerOptions that are displayed: \"compilerOptions\": { \"target\": \"es2022\", \"noImplicitAny\": true, \"strictNullChecks\": true, \"esModuleInterop\": true, \"allowJs\": true, \"skipLibCheck\": true, \"types\": [ \"vite/client\", \"jest\", \"node\" ], \"module\": \"commonjs\", \"moduleResolution\": \"node10\", \"paths\": { \"@shared/*\": [ \"../src/shared/*\" ], \"@lib/*\": [ \"../src/lib/*\" ] }, \"sourceMap\": true, \"inlineSourceMap\": false, \"inlineSources\": true, \"declaration\": false, \"noEmit\": false, \"outDir\": \"./.ts-node\", \"allowSyntheticDefaultImports\": true, \"useDefineForClassFields\": true } I’m confused about why typescript isn’t detecting the package’s type declarations file that is definitely present in node_modules. Would really appreciate any guidance.",
+    "developer": "JPR",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "19"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

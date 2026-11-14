@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80016294",
   "sourceItemId": "80016294",
+  "fetchedAt": "2026-11-14T03:36:22.528Z",
   "sourceUrl": "https://stackoverflow.com/questions/80016294/hierarchical-clustermap-with-0-sum-columns-and-valueerror",
   "detail": {
     "longDescription": "As part of my research, I have made hierarchical cluster maps of antimicrobial genes found in the samples. I successfully made clustermaps by dropping antibiotic genes that didn't appear in the sample group (meaning the sum of how many times an antibiotic gene was found in a sample group was 0). But my professor asked me to calculate the root mean square deviation between groups. He asked me to add the missing genes. Here I ran into trouble. The only thing I got was: \"ValueError: The condensed distance matrix must contain only finite values\". Naturally, I assumed it was a \"division-by-zero problem\", but I still got the error when I turned 0s into 0.00000000001s. Can the analysis be done with a dataset like this: Gene A Gene B Gene C Gene D Gene X 1 1 0 0 0 1 1 0 0 0 1 0 0 0 0 1 0 1 1 0 1 0 1 1 0 (Where each row is a different sample, and gene X doesn't appear in this group but does in others.) And how do I need to change the data set to make the code run? I used the standard seaborn clustermap code: X=pd.read_csv(\"dataset.csv\", sep='\\t') y=X.corr() kuv=sns.clustermap(y, method=\"average\",cmap=\"oranges\", annot=True, annot_kws={\"size\": 5}, fmt=\".2f\", figsize=(15,17), xticklabels=True, yticklabels=True, square=False) # 'kuv' was for making labels easier to read. There are many genes in the samples. plt.title(\"Title\") kuv.tick_params(axis=\"x\", labelsize=6, rotation=-55, rotation_mode=\"xtick\") kuv.tick_params(axis=\"y\", labelsize=6) plt.show()",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "68"
+        "value": "80"
       },
       {
         "label": "状态",

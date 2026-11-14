@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvihou",
+  "sourceItemId": "1xvihou",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xvihou/vellium_195_visual_novels_that_actually_work_on_a/",
+  "detail": {
+    "longDescription": "Vellium 1.9.5: Visual Novel Mode Update\n\n\n\nVellium is a free, open-source, local-first AI chat and roleplay app with a built-in visual novel mode.\n\n\n\nVersion 1.9.5 focuses on making visual novels work reliably with smaller local models like Gemma 12B, improving image consistency, reducing prompt overhead, and adding new ways to generate and manage scenes.\n\n\n\nWhat's new:\n\nLite mode for small models. Instead of generating structured JSON, the model writes plain text using simple markers (\\`Name: line\\`, \\`## Place\\`). Vellium parses the output into scenes automatically. Even malformed output can fall back to plain narration. The system prompt has been reduced from \\~8k to \\~1k characters, and text streams directly into the reader without waiting for the full response.\n\n\n\nPrompt cache preservation. Requests are constructed by appending each new turn to the previous context without modifying existing content. This keeps the prefix cache reusable and avoids unnecessary prompt reprocessing, which can otherwise take over a minute on slower local setups.\n\nInline image generation. The narrator can insert tags such as \\`\\[pic: Mira | she hangs her raincoat by the door\\]\\` directly into the story. Images can start rendering through ComfyUI while text is still streaming, including when ComfyUI runs on another machine. A lightweight follow-up can detect and fill missing image tags, with the reason shown in the reader.\n\n\n\nConsistent character appearances. Each character now has a compact English visual description and a pinned outfit, instead of passing the entire character card to the image model. This helps preserve skin tone, body type, clothing, and other visual details between scenes. Outfits only change when the story explicitly calls for it.\n\n\n\nBackgrounds and sprites mode. Locations can reuse generated backgrounds, while characters use reusable cut-out sprites for each outfit. Full illustrations are reserved for scenes that need more than static sprites. Background removal uses chroma-key processing directly in the app, without loading another neural network into VRAM.\n\n\n\nImproved first-person POV. Image prompts now account for the protagonist's perspective. First-person scenes can show the protagonist's hands and interactions from their viewpoint, while third-person shots can include the protagonist based on the user's persona.\n\n\n\nIntegration with other Vellium features. Visual novels support user personas as protagonists, attached RAG knowledge collections, conversion between regular chats and visual novels, and exporting stories into Writer projects.\n\nAdditional changes:\n\n\\- 12 new visual style presets optimized for anime image models, tested with Anima.\n\n\\- Redesigned reader toolbar.\n\n\\- Image redraw and editing controls.\n\n\\- A \"picture for this line\" option for generating illustrations for individual passages.\n\n\\- Scene-level image regeneration without regenerating the story.\n\n\n\nLite mode can be enabled in the narrator settings. The update is primarily tested with Gemma 12B, and feedback from users running other small models is welcome.\n\n\n\nFree and open source: [https://github.com/tg-prplx/vellium](https://github.com/tg-prplx/vellium)",
+    "developer": "Possible_Statement84",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

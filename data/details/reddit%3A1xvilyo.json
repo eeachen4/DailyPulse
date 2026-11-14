@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvilyo",
+  "sourceItemId": "1xvilyo",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xvilyo/empty_replies_cut_streams_silent_truncation_a_cli/",
+  "detail": {
+    "longDescription": "[https://github.com/ayushh0110/Weight-Space-Repair](https://github.com/ayushh0110/Weight-Space-Repair)  \n  \nSo i use Localmodels where i keep hitting output failures .I usually kept debugging the same handful of failures by reading raw JSON, so I wrote a tool that does the reading. You give it the request and the response you saved:\n\nwsr triage --response resp.json --request req.json\n\n\n\n3. Response\n\n  \\[FAIL\\] REASONING\\_EXHAUSTED: cap reached before any answer: the budget went to reasoning\n\nfix: raise max\\_tokens (currently 256) or lower the reasoning effort / thinking budget\n\n\n\nVERDICT: REQUEST\n\n  blank output explained by REASONING\\_EXHAUSTED\n\n\n\n\n\nWhat it reads:\n\n\\- finish reasons in the OpenAI, Anthropic, Gemini and Ollama shapes, including the ones that mean \"filtered\" or \"refused\"\n\n\\- a reply that's empty because the thinking budget used every token\n\n\\- input that was truncated before the model saw it\n\n\\- tool calls whose arguments don't match the schema you sent\n\n\\- SSE and NDJSON streams that were cut, carried an error event, or had malformed chunks\n\n\\- the output text itself: loops, truncation, leaked control tokens, invented turns, JSON wrapped in a think block or a code fence, the wrong language\n\n\\- request settings that cause the above (a repetition penalty high enough to damage the output, stop strings, max\\_tokens)\n\n\n\nIt has no dependencies and doesn't need a GPU or a server for this, only the two JSON files. With a server it can also rerun the request changing one setting at a time to see which one flips the failure.\n\n\n\nWhat's tested: live runs were against llama.cpp's server. The hosted-API shapes come from the providers' docs and fake-server tests, so there will be gaps. On 184 real replies, the repetition-penalty check raised 0 false alarms on 82 normal ones and caught 19 of 24 at penalty 2.0.",
+    "developer": "Top_Speaker_7785",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

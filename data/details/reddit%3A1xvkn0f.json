@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvkn0f",
+  "sourceItemId": "1xvkn0f",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xvkn0f/can_a_cheap_laptop_run_a_coding_agent_with_no/",
+  "detail": {
+    "longDescription": "i keep getting comments that my agent tests only use powerful hardware and the biggest models, which most people don't have. so this time i went the other way: a normal 16gb macbook air and two small open models, qwen 3.5 4b and 9b. everything ran on the laptop, no api, no cloud, no internet needed.\n\nquick terms if you're new to this:\n\n* 4b / 9b = 4 or 9 billion parameters. small enough to run on a laptop\n* agent = the model doesn't just answer, it works on its own: writes files, runs code, reads errors, fixes things\n* hidden tests = checks the model never sees, so the score is fair\n\nthe job: build a personal expense tracker in python.\n\nresults:\n\n* the 4b, given one real function (read two messy bank csv formats): 10/10. it even wrote its own test file and fixed its own bugs before time ran out\n* the 9b on the same function: 7/10\n* the 9b on the whole app (5 files, 50 tests, 25 min): 22/50. it wrote 638 lines in its first few minutes, then kept running and fixing its code until time ran out\n\none focused task, a small model on a cheap laptop can do it. a whole app, you get about half in 25 minutes.\n\nthe agent was atomic agent. it has a loop check that stepped in a few times when the model started repeating itself, which matters a lot with small models.\n\n1 run per setup, one task, so treat it as a first look, not a benchmark.\n\nWhat models are we using and on what hardware??",
+    "developer": "Ok-Brush8377",
+    "comments": 11,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

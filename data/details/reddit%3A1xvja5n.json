@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvja5n",
+  "sourceItemId": "1xvja5n",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xvja5n/i_have_trained_a_model_to_predict_my_blood_sugar_p/",
+  "detail": {
+    "longDescription": "I have trained a custom 31,253 parameter encoder-only transformer on a pregenerated synthetic CGM dataset and fitted it to my own personal data using LoRA. It is competitive among other published models. I used 115 days of CGM data, of which 80 was used for training the adapter and 35 for testing. The model began with a pretraining stage where it consumed \\~19,200 CGM-years worth of synthetic data, consisting of 1 million simulated type 1 diabetics at 7 days each. The simulator is designed to aid in counterfactual reasoning, but I don't yet have a benchmark to test these capabilities downstream. Simply using these models on my phone gives me the impression that they do indeed react appropriately when forced to consider future insulin & carbs.\n\nIn addition to time series input, two additional inputs are provided: insulin (U) and carbs (G, GI) as action curves where U = units of insulin, G = carbs in grams, GI = glycemic index. U is exact, while (G, GI) is my best estimate.\n\nThe model is trained to output BG in Kovatchev risk-space using {DILATE,MSE} and pinball loss combined with learned Kendall-Gal weights. The figures above show models trained using DILATE. It can predict 2 hours into the future, infill missing traces, and do backcasts (predictions into the past).\n\nSource code: [https://github.com/0xdeadf1sh/T1DMAI](https://github.com/0xdeadf1sh/T1DMAI)\n\nThe model is also trained to predict time-of-day given past blood sugar, in contrast to other models that consume time-of-day as input feature. This capability emerges in >=48h context windows (i.e. 48 hours of past CGM trace). Natively the model has a variable context window size of 3.5 - 7.0 days.\n\nThe model is still worse than me when it comes to predicting hypoglycemia in the next \\~30 minutes.",
+    "developer": "0xdeadf1sh",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

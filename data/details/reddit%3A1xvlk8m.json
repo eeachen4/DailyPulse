@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvlk8m",
+  "sourceItemId": "1xvlk8m",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xvlk8m/removed_by_moderator/",
+  "detail": {
+    "longDescription": "I run a small weekly scan of the Tranco top 10,000 sites to see who negotiates hybrid post-quantum key exchange (X25519MLKEM768) in TLS. Some numbers from this week (2026-W46):  \n60.5% of reachable top-10k sites negotiate it (4,390 of 7,251)  \nTop 1,000: 61.2% (422 of 689)  \nEuropean banks on my watchlist: 61 of 85. MENA banks: 9 of 23  \nI also tested every IPv4/IPv6 address of the top 300 sites separately: 165 have more than one address, and none disagreed. Big CDNs roll it out consistently. Where it's missing, it's usually the origin config, not the edge  \nThe most common thing I see on self-hosted servers: OpenSSL 3.5+ and current browsers already support it, and ssl\\_ecdh\\_curve auto would offer it. But a lot of us copied an explicit curve list from an old hardening guide years ago, and that list silently removes it. The fix in nginx is one line, with the hybrid group first:  \nssl\\_ecdh\\_curve X25519MLKEM768:X25519:prime256v1;  \nOn OpenSSL 3.0 (Debian 12, Ubuntu 22.04) it's not available yet. You need a newer OpenSSL, or terminate TLS in something that has it.  \nWhy bother: traffic recorded today with classical key exchange could be decrypted later by a quantum computer (\"harvest now, decrypt later\"). The hybrid mode costs about 1 KB extra per handshake.  \nDisclosure: I built the scanner. You can check your own server for free, no signup: [https://ather-quantum.com](https://ather-quantum.com/). The full nginx guide is at [https://ather-quantum.com/guides/enable-x25519mlkem768-nginx](https://ather-quantum.com/guides/enable-x25519mlkem768-nginx) and the weekly data is open (CSV/JSON, CC BY 4.0) at [https://ather-quantum.com/adoption](https://ather-quantum.com/adoption)  \nHappy to answer questions about the measurement method. It's one handshake per public address from a single location, so it can't see everything.",
+    "developer": "Parking-Muscle-7170",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016537",
+  "sourceItemId": "80016537",
+  "sourceUrl": "https://stackoverflow.com/questions/80016537/efficient-way-of-adding-borders-with-openpyxl",
+  "detail": {
+    "longDescription": "I want to add borders in a range with openpyxl. All I've found online is that you need to add borders cell per cell, like this for example. import openpyxl, time from openpyxl.styles.borders import Border, Side startTime = time.time() wb = openpyxl.Workbook() ws = wb.active border = Side(border_style = 'dashed', color = '000000') border = Border(left = border, right = border, bottom = border, top = border) wsRange = 'A1:AZ2500' for rows in ws[wsRange]: for cell in rows: cell.border = border print(time.time() - startTime) However, the larger the range the longer it takes. In this example with a ~130,000 cells range, it takes around 5 s. Is there a better way to do this?",
+    "developer": "Auguste Eclancher",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "88"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

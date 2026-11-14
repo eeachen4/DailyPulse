@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016481",
+  "sourceItemId": "80016481",
+  "sourceUrl": "https://stackoverflow.com/questions/80016481/how-can-i-use-a-variable-from-file-to-another-file-using-python",
+  "detail": {
+    "longDescription": "I am working on a simple GUI interface using Tkinter that takes the name and the displays a welcome message when you click a button, but I need to split the GUI code to a file and the function of say_hello to another file, I do not want the code in one file. main.py : from tkinter import Tk , Label , Button , Entry , END from welcome import say_hello window = Tk() window.title(\"Welcome User\") window.geometry(\"400x300\") askName = Label(window , text=\"Enter Your own name : \") askName.pack(pady=20) nameEntry = Entry(window , width=24) nameEntry.pack(pady=10) btn = Button(window , text=\"Say Hello\" , command=say_hello) btn.pack(pady=10) welcomeUser = Label(window , text=\"Waiting Your Name\") welcomeUser.pack(pady=20) window.mainloop() welcome.py : from main import nameEntry , welcomeUser def say_hello(): userName = nameEntry.get() welcomeUser.config(text=f\"Welcome in our Program {userName}\") userName.delete(0,END) The error message is: Traceback (most recent call last): File \"c:\\Users\\hp\\Desktop\\Matplotlib_tutorial\\Python_GUI\\main.py\", line 2, in <module> from welcome import say_hello File \"c:\\Users\\hp\\Desktop\\Matplotlib_tutorial\\Python_GUI\\welcome.py\", line 2, in <module> from main import nameEntry , welcomeUser File \"c:\\Users\\hp\\Desktop\\Matplotlib_tutorial\\Python_GUI\\main.py\", line 2, in <module> from welcome import say_hello ImportError: cannot import name 'say_hello' from 'welcome' (consider renaming 'c:\\\\Users\\\\hp\\\\Desktop\\\\Matplotlib_tutorial\\\\Python_GUI\\\\welcome.py' if it has the same name as a library you intended to import)",
+    "developer": "Shehab Helmi",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "134"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

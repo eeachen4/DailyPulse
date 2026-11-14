@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117609975415087574",
+  "sourceItemId": "mastodon.social/117609975415087574",
+  "fetchedAt": "2026-11-14T03:36:22.528Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117609975393256365",
+  "detail": {
+    "longDescription": "---------------- 🛠️ Tool: HolmesGPT for Production Incident Investigation =================== HolmesGPT is an open-source SRE agent that queries live observability data to investigate production incidents and identify potential root causes. It is a CNCF sandbox project, originally created by Robusta.Dev with major contributions from Microsoft. The repository also describes a new Operator mode for background health checks. Key features The agent connects to built-in toolsets for systems including Kubernetes, Prometheus, Grafana and Datadog. It can also use REST APIs and custom toolsets. Alert integrations cover AlertManager, PagerDuty, OpsGenie and Jira, with support for fetching alerts and writing findings back. Supported model providers include OpenAI, Anthropic, Azure, Bedrock and Gemini. The supplied material does not establish that every provider or integration has identical capabilities. Operator mode runs in Kubernetes and performs scheduled health checks or deployment verification. Its checks can query connected sources outside the cluster, including VMs, cloud services, databases and SaaS platforms. According to the project, it sends findings to Slack and can open pull requests when connected to GitHub. Technical implementation HolmesGPT uses an agentic loop to query multiple live data sources during an investigation. The project describes server-side filtering, JSON tree traversal and output transformers as ways to keep large responses out of model context windows. It also lists per-tool memory limits, streaming large results to disk and output budgeting as measures for handling large observability queries. The repository describes this as petabyte-scale data handling, but the supplied excerpt does not provide a benchmark or workload details to independently assess that claim. It also does not specify how frequently scheduled checks run or how proposed fixes are validated. Use cases • Investigate an alert by querying connected monitoring systems and writing findings back to the alert source. • Run a health check alongside an application deployment to assess whether the new version is healthy. • Schedule checks against connected services and send findings to Slack. • Use the GitHub integration to open a pull request for a proposed fix. Setup and scope 1. The main agent can operate without Kubernetes, including against VMs, bare metal, cloud services or containers. 2. Operator mode itself requires Kubernetes, even when its checks query other infrastructure. 3. The project documentation covers installation, model providers, built-in toolsets and Operator mode. The supplied excerpt does not include installation commands or configuration examples. Limitations The tool has not been independently tested for this summary. The source describes capabilities and intended behavior, not measured root-cause accuracy or evidence that issues are consistently found before customers notice. Automatic pull requests are described as an integration capability, not as verified or automatically deployed fixes. 🔹 HolmesGPT # Kubernetes # SRE # tool 🔗 Source: https:// github.com/HolmesGPT/holmesgpt",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      }
+    ]
+  }
+}

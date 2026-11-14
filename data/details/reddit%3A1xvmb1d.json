@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvmb1d",
+  "sourceItemId": "1xvmb1d",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xvmb1d/a_small_frozen_eval_set_is_enough_to_tell_if_your/",
+  "detail": {
+    "longDescription": "A lot of agent work is judged by a good demo or a vibes-based rerun after a prompt change. That makes it hard to know whether a change helped, or whether it just passed the task you happened to try today.\n\nYou do not need a public benchmark for this. A small, frozen eval set is enough.\n\nPick about 20 tasks from the real workflow, not invented demos. Write each one down with the input, the tools the agent is allowed to use, and a clear definition of done. Include a few tasks the agent should refuse or fail safely, not only ones it should complete. Then freeze the set. Do not tweak the examples to make a new prompt look better.\n\nRun the same 20 after every change to the prompt, the tools, the model, or the scaffolding. Keep the traces. Score a small number of things that actually matter, for example:\n\n- Did it finish the task, or only sound like it did?\n- Did it take an action it was not allowed to take?\n- Did it ask for a human when it should have stopped?\n- How much time and money did it use?\n\nIf a change improves some tasks and quietly breaks others, you will see it. If you cannot write 20 realistic tasks, the agent is probably not ready to run unattended.\n\nThis does not replace sandboxing, secret handling, or budget caps. Those still have to live outside the model. The eval set only tells you whether a change made the agent better at the work you already understand.\n\nIf you already do this, I would like to know how large your set is, and what you score besides \"it worked.\"",
+    "developer": "ChefOk4636",
+    "comments": 16,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

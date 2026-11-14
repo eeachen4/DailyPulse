@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xv7dsp",
+  "sourceItemId": "1xv7dsp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xv7dsp/i_tried_to_fix_repetition_loops_in_a_small_lm_by/",
+  "detail": {
+    "longDescription": "Small models loop. I’m training a research small model and wanted to see how far I could get on repetition without a decoding penalty and without more training. find the weights that cause the loop and edit them.\n\nThat turned into Weight-Surgery, a Claude Code plugin (a skill plus one PyTorch file) that lets a coding agent do this end to end on any trained transformer: scan heads (induction/copy scans, ablation and scaling), attribute feed-forward writers, split two jobs inside one head with contrast directions, apply reversible edits, screen with dose series and random controls, test on generation, and save a new checkpoint with a verified diff, a manifest and an undo file.\n\nThe scans found the exact culprit: one true induction head behind the loops (induction score 0.425, plain copy 0.012). Switching it off cut loops from 29.4% to 25.4%, but that head also copies names into reading answers, so instead of killing it I split the two jobs inside the copy heads and cut only the loop directions. Result: loops down from 30.5% to 25.2% on 960 fresh rows (2.6 SE), greedy loops from 41.6% to 35.3%, with reading untouched (+0.01) and general loss up just 0.08. No training, no decoding penalty.\n\nTwo more things that worked. The cheap place to cut is the writing weights: +0.001 loss, versus +0.32 when the same direction is projected out of the residual stream. And a rank-1 edit on one feed-forward layer halved loops under T 0.7 sampling, from 19.4% to 9.4%.\n\nTell me what you think about it.\n\n  \n[Github Repo Link](https://github.com/achelousace/weight-surgery)",
+    "externalUrl": "https://i.redd.it/0aqdzoh7pd1i1.png",
+    "developer": "AchelousAce",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

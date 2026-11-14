@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xv6xpp",
+  "sourceItemId": "1xv6xpp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xv6xpp/i_let_qwen3827b_build_a_game_overnight_on_an_rtx/",
+  "detail": {
+    "longDescription": "I've been experimenting with qwen3.8 27B on an RTX 5060 Ti 16GB, trying to find a practical balance between context length, decode speed, and vram usage for local agentic workloads.\n\none  optimization I found was ascii vocabulary pruning, which reduced the vocabulary from 248,320 to 129,006 tokens while retaining byte fallback for non ascii text. This freed up enough vram to fit a compatible Q2\\_K DFlash draft alongside the Unsloth Q3\\_K\\_XL target. Some benchmarks on a few set of sample prompts:\n\nFull vocabulary + MTP2:\n\nHighest working context allocation tested: \\~104K\n\nDecode: 34.90 tok/s at \\~50K prompts; 28.24 tok/s at \\~90K\n\nCold prefill: 732.67 tok/s at \\~50K; 629.39 tok/s at \\~90K\n\n\n\nFull vocabulary + DFlash4:\n\nHighest working context allocation tested: \\~80K\n\nDecode: 41.73 tok/s at \\~50K prompts\n\nCold prefill: 715.01 tok/s at \\~50K\n\n\n\nASCII condensed vocabulary + pruned DFlash4:\n\nHighest working context allocation tested: \\~109K\n\nDecode: 39.92 tok/s at \\~50K prompts; 37.30 tok/s at \\~90K\n\nCold prefill: 712.40 tok/s at \\~50K; 619.80 tok/s at \\~90K\n\nWith the pruned target and DFlash4, the setup reached a working context allocation of roughly 109K and 37.3 tok/s decode at \\~90K prompt depth, about 32% faster than the full-vocabulary MTP2 configuration. All tests used Q4\\_0 KV cache.\n\nTo put the setup under some stress, I built a minimal pi based harness for long horizon game development experiments. It takes a task prompt, reference images, and a time budget, then lets the model build, test, and iterate using playwright and a game-testing contract,  while recording agent traces.\n\nqwen3.8 27B was given minimal instructions for a 2D stealth infiltrator  game, a few reference images, and a nine hour time budget. After working 9 hours, it had produced a playable browser game with three levels, sprites, and audio.\n\nThe idea is to use the same harness to test more models and quantizations, compare their behavior on similar tasks, and inspect the agent traces.\n\nHarness, game results, and agent traces: [https://github.com/BlazeStorm001/gameruns-lite](https://github.com/BlazeStorm001/gameruns-lite)\n\nModel setup and llama.cpp configuration: [https://github.com/BlazeStorm001/llama-cpp-5060ti-presets](https://github.com/BlazeStorm001/llama-cpp-5060ti-presets)",
+    "externalUrl": "https://v.redd.it/6abizxaild1i1",
+    "developer": "Antique_Grass_73",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

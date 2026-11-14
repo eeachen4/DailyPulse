@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvb67x",
+  "sourceItemId": "1xvb67x",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xvb67x/i_built_a_lossless_compressor_for_gguf_files_9/",
+  "detail": {
+    "longDescription": "Hi everyone. I've released my first open-source project, foldz, a lossless compressor built specifically for GGUF model files.\n\nWHY\n\nGGUF repos on the Hub are big, and quantized weights barely shrink with general-purpose tools because they look almost random. foldz reads the GGUF structure instead: it unpacks the quantized blocks into their real values and scales, then codes them with adaptive probability models. Decompressing gives back the exact original file, byte for byte, so it works with llama.cpp, Ollama and LM Studio as before.\n\nTo be clear: foldz makes files smaller to store, download and share. It doesn't make inference faster, because the file has to be decompressed before use.\n\nHOW IT WORKS (SHORT VERSION)\n\nFor 4-bit values, I fold the upper half of the range onto the lower half with XOR, so each value needs only 3 bits. Undoing that needs one extra bit per value to say which ones were folded, which brings the size back to 4 bits. But those extra bits are very predictable, so instead of storing them raw, foldz codes them with probability models, and that's where the savings come from. Q6\\\\\\_K, Q8\\\\\\_0 and float tensors get their own context models, and everything else goes through a byte-level model.\n\nRESULTS\n\n9 public Q4\\\\\\_K\\\\\\_M models from the Hub, all round trips byte-identical:\n\n• Qwen1.5-0.5B-Chat: 8.93% smaller\n\n• Qwen3-0.6B: 7.82%\n\n• Qwen2.5-1.5B-Instruct: 7.64%\n\n• Qwen3.5-2B: 8.30%\n\n• Qwen2.5-Coder-3B-Instruct: 8.70%\n\n• Llama-3.2-3B-Instruct: 7.55%\n\n• Qwen3-4B: 12.94%\n\n• Qwen2.5-7B-Instruct: 7.89%\n\n• Gemma-4-E2B (fine-tune): 7.73%\n\nTotal: 16.7 GiB → 15.2 GiB, 8.66% saved.\n\nLIMITATIONS\n\n• Speed: about 19 MiB/s on my phone, and decompression is as slow as compression.\n\n• Quant types: IQ quants, Q2\\\\\\_K, Q3\\\\\\_K and Q4\\\\\\_0 gain little for now.\n\n• Baselines: I haven't measured zstd or xz on these models yet.\n\n• Format: it's pre-1.0, so the file format may change between versions.\n\nTRY IT\n\nOne C file, no dependencies, Apache 2.0. Works on Linux, macOS, BSD, Android (Termux), and Windows via WSL.\n\ngcc -O2 -pthread -ffp-contract=off -o foldz foldz.c -lm\n\n./foldz t model.gguf\n\nThe \"t\" command compresses and decompresses in memory and checks the result is identical, so nothing is written to disk.\n\nI'd love results on other models and quant types (Q5\\\\\\_K\\\\\\_M, Q6\\\\\\_K, Q8\\\\\\_0), comparisons with zstd and xz, and anyone willing to fuzz the decoder. If you post results, please include the model name from the Hub and your CPU or device.\n\nThe fold logic and probability approach are my own ideas, and the C implementation was written with AI. I developed and tested everything on my phone.\n\nGitHub: [foldz](https://github.com/nsiddiqui248/foldz)",
+    "developer": "Simpli-curious",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

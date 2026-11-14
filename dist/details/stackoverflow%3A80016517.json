@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016517",
+  "sourceItemId": "80016517",
+  "sourceUrl": "https://stackoverflow.com/questions/80016517/how-to-pass-file-path-to-jsonschema-compile-validator-macro",
+  "detail": {
+    "longDescription": "How to create a compile time json schema validator by passing path to the schema file using jsonschema compile time validator macro? main.rs use const_format::formatcp; #[jsonschema::validator(path = formatcp!(\"{}/../schemas/schema.json\", std::env!(\"CARGO_MANIFEST_DIR\")))] struct SchemaValidator; Cargo.toml const_format = \"0.2.37\" jsonschema = { version = \"0.61\", default-features = false, features = [\"macros\"] } Error error[E0277]: the trait bound `CompactFormatter: Default` is not satisfied --> /home/harry/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jsonschema-0.61.2/src/canonical/json.rs:131:5 | 129 | #[derive(Default)] | ------- in this derive macro expansion 130 | struct CanonicalFormatter { 131 | default: CompactFormatter, | ^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `CompactFormatter`",
+    "developer": "Harry",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "60"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

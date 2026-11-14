@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016443",
+  "sourceItemId": "80016443",
+  "sourceUrl": "https://stackoverflow.com/questions/80016443/converting-matlab-code-to-python-show-different-output",
+  "detail": {
+    "longDescription": "I want to convert a MATLAB code to a Python code. As per the MATLAB the start state is on collision. However as per the Python start state is free. Why do the two codes return different answers? The MATLAB code is as follows pcd_file_name = \"abc.pcd\"; ptCloud = pcread(pcd_file_name); startSt = [1.005, 2.257, 0.2 1 0 0 0]; goalSt = [4.5 3.5 0.2 1 0 0 0]; rotationAngles = [0.0, 0.0, 0.0]; translation = [0.0, 0.0, 0.0]; tform = rigidtform3d(rotationAngles,translation); ptCloud = pctransform(ptCloud,tform); map3D = occupancyMap3D(4); map3D.FreeThreshold = 0.5; pose = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]; maxRange = 15; insertPointCloud(map3D,pose,ptCloud,maxRange); ss = stateSpaceSE3( ... [double(ptCloud.XLimits); double(ptCloud.YLimits); double(ptCloud.ZLimits); inf inf; ... inf inf; ... inf inf; ... inf inf]); sv = validatorOccupancyMap3D(ss); sv.Map = map3D; sv.ValidationDistance = 0.01; % check whether the start and goal states are valid states isValidStartState = isStateValid(sv, startSt); isValidGoalState = isStateValid(sv, goalSt); if isValidStartState == 1 && isValidGoalState == 1 fprintf(\"both the start and goal states are valid states\\n\"); else fprintf(\"Start or Goal state is in collision.\\n\"); return end Equivalent Python code import numpy as np import open3d as o3d # 1. Load your point cloud pcd = o3d.io.read_point_cloud(\"abc.pcd\") pcd_tree = o3d.geometry.KDTreeFlann(pcd) print(f\"Loaded point cloud with {len(pcd.points)} points.\") # 2. Define start and goal points start_st = np.array([1.005, 2.257, 0.2]) # Example start position (X, Y, Z) goal_st = np.array([4.5, 3.5, 0.2]) print(f\"Start Position (X, Y, Z): {start_st}\") print(f\"Goal Position (X, Y, Z): {goal_st}\") def is_state_valid(pcd_tree, point, radius=0.15): \"\"\"Check if a 3D point is free of collision using Open3D KDTree.\"\"\" query_point = np.array([point[0], point[1], point[2]], dtype=np.float64) [k, idx, _] = pcd_tree.search_radius_vector_3d(query_point, radius) if k > 0: return False return True # Free space voxel_size = 0.05 voxel_grid = o3d.geometry.VoxelGrid.create_from_point_cloud(pcd, voxel_size=voxel_size) if is_state_valid(pcd_tree, start_st): print(\"Start state is valid (free space).\") else: print(\"Start state is inside an obstacle!\") if is_state_valid(pcd_tree, goal_st): print(\"Goal state is valid (free space).\") else: print(\"Goal state is inside an obstacle!\")",
+    "developer": "Encipher",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "135"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

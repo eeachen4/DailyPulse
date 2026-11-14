@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvc05r",
+  "sourceItemId": "1xvc05r",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xvc05r/same_json_schema_three_providers_three_different/",
+  "detail": {
+    "longDescription": "Disclosure: this is from my open-source project (Apache-2.0), CloudArchitect Lite, which turns a plain-English app description into an AWS architecture diagram. Sharing two things I learned while adding OpenAI and Gemini next to Claude.\n\n1) \"Structured output\" is not one standard.\n\nI keep one source schema (Zod) and convert it per provider. Each provider rejected something different:\n- OpenAI strict mode: \"$ref cannot have keywords {'description'}\". A description next to a shared $ref is fine elsewhere and an error here.\n- Anthropic: \"For 'integer' type, properties maximum, minimum are not supported\". My 0–3 score range had to move out of the schema into my own validation.\n- And valid JSON that is still wrong: a reviewer model returned two reviews for one design and none for another. No schema can say \"each item exactly once\".\n\nWhat worked: one source schema, a small adapter per provider, and re-validating every answer in code against the original schema plus the rules a schema can't express.\n\n2) A blind review panel with one reviewer per provider.\n\nTo compare 6 models (two per provider) without a model grading its own family, designs were anonymised (renumbered ids, no names) and scored by three reviewers, one each from Anthropic, OpenAI and Google, on a 7-dimension rubric. The published score is the median of the three.\n- GPT-6.1 Sol beat Claude Sonnet 9 of 9 pairs; even the Claude reviewer preferred Sol (4–3, one tie).\n- On the pair closest to its own provider, each reviewer leaned slightly toward it. On other pairs the lean disappears. The median of three dampens it.\n- Deterministic rule checks found things the reviewers didn't weigh: the best-reviewed model still left a public API without stated auth in 6 of 15 designs.\n\nLimits: 9–12 reviewed designs per model, model reviewers rather than human architects, and in 3 packets one reviewer answered only part of the packet. The whole benchmark cost about $12 in API calls.\n\nFull method, numbers and limits: https://github.com/aliaksandr-liapin/cloudarchitect-lite/blob/main/docs/product/phase3-provider-benchmark.md\nCode (the three adapters are in packages/generator/src): https://github.com/aliaksandr-liapin/cloudarchitect-lite\n\nCurious how others handle schema differences across providers: one schema plus adapters, or provider-native schemas?",
+    "developer": "WorthRow3022",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

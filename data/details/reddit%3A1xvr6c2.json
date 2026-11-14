@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvr6c2",
+  "sourceItemId": "1xvr6c2",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xvr6c2/thinking_mode_is_bad_design/",
+  "detail": {
+    "longDescription": "If you using agent, most of the time it is tool calling.\n\nAnd most of tool call dont need thinking at all. I personally only choose those model that can switch off thinking. Thinking have significantly slow down the speed and bloat the context in a unreasonable way.\n\nAnd actually, thinking is just produce tokens before answering. Which mean it is same as giving tools like a note for agent write down somethings. But  I didnt give that because it is also meaningless.\n\n I use deepseek , it is fast and support switch off thinking .\n\nBut deepseek have a very big problem is that it always fall in micro-patch and deadlock. I can tell their post-training have a big issue. BTW, it is unrelated to thinking off. Because with thinking on, it actually even worse. (grounding is much more important, thinking is like bullshit ping pong)\n\nSo my solution is add a supervisor/advisor which periodically (every 7-8 tool call) checking the trace.\n\nIt very simple, but very powerful. It help the agent jump out of rabbit holes.(that because the supervisor have a different angles, even using a same model)\n\nalthough it is very powerful , it is very limited to the model quality. I didnt use claude before(unfortunately i am in limited region), but i think maybe strong model like opus or fable didnt need a advisor.",
+    "developer": "ngcheck03",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

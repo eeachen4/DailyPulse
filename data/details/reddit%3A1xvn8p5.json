@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvn8p5",
+  "sourceItemId": "1xvn8p5",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xvn8p5/cache_reads_were_97_of_my_coding_agent_tokens_but/",
+  "detail": {
+    "longDescription": "I keep every Claude Code session transcript and price each request at API list prices (I'm on a sub, so it's what it would cost, not what I pay). split by token type, Claude models only, about 205B tokens since January:\n\n- cache read: 97.2% of tokens, 58.0% of cost\n- cache write: 2.5% of tokens, 30.6% of cost, 1h writes alone 23.7%\n- output: 0.3% of tokens, 10.9% of cost\n- fresh input: 0.07% of tokens, 0.6% of cost\n\nso in my numbers a raw token count is mostly cache reads, and a third of the cost sits in 2.5% of the tokens. 1h writes are 2x input, 5m writes 1.25x, which is why the 1h share shows up that big\n\ntwo things that tripped me up pricing it:\n\n- the cache read multiplier isn't 0.1x everywhere anymore. Opus 5.5 and Sonnet 5.5 are 0.05x, Fable 5.1 and 5.2 are 0.025x. one flat multiplier gets those wrong\n- Claude Code logs one streamed reply several times under the same requestId. sum the lines and you count it twice or more, keep the biggest\n\nnumbers are from claudit, a self-hosted dashboard I built, MIT. it reads Claude Code, Codex and Kimi CLI transcripts from a bucket you keep, because Claude Code prunes old local ones, and its token breakdown puts tokens and cost side by side. panels ported from nhz-io/ccusage-plot\n\npricing source: https://platform.claude.com/docs/en/about-claude/pricing\n\nlive one, guest login is read-only: https://all.nitjsefni.eu\n\nhttps://github.com/Nitjsefnie/claudit",
+    "developer": "Nitjsefnie",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

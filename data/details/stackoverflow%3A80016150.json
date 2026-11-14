@@ -6,19 +6,19 @@
   "detail": {
     "longDescription": "Why there is an error about broadcasting? ValueError Traceback (most recent call last) Cell In[7], line 3 1 import numpy as np 2 x = [] ----> 3 x += np.array([1, 2]) ValueError: operands could not be broadcast together with shapes (0,) (2,) The real puzzle is not that x += y raises an error by itself, but that it behaves differently from x = x.__iadd__(y) . According to the data model docs : [...] if x is an instance of a class with an __iadd__() method, x += y is equivalent to x = x.__iadd__(y) Since list.__iadd__ exists and does not return NotImplemented , why does x += y raise an error while x = x.__iadd__(y) does not? I expected x += y to append the elements of y to the list one by one rather than raise an error.",
     "developer": "朱爱兵",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "11"
+        "value": "14"
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "487"
+        "value": "797"
       },
       {
         "label": "状态",
