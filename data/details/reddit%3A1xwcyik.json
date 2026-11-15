@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwcyik",
+  "sourceItemId": "1xwcyik",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xwcyik/prerelease_checklist_for_agents_that_take_real/",
+  "detail": {
+    "longDescription": "If your agent can *do* things, not just answer questions, a normal eval set isn’t enough. Here’s the checklist we run before every release:\n\n1. **Policy rules under rewording.** For every hard rule (“no refunds after 30 days”), test 10+ paraphrases, not just the obvious phrasing.\n2. **Ownership checks.** Can the user get the agent to act on an order or account that isn’t theirs?\n3. **Multi-turn pressure.** Build up to the bad request over 4–6 messages instead of asking directly.\n4. **Poisoned context.** Put instructions inside a retrieved document or tool output and see if the agent follows them.\n5. **Escalation paths.** When the agent should hand off to a human, does it actually do it?\n6. **Normal flows still work.** After hardening, rerun your happy-path cases. Over-correction is a real bug.\n7. **Old failures stay fixed.** Every bug you’ve found before becomes a test that runs on every release.\n\nWhat would you add? I’m especially curious about checks for agents with write access to databases.",
+    "developer": "vivvvekredddit1122",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

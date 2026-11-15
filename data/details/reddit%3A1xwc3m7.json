@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwc3m7",
+  "sourceItemId": "1xwc3m7",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xwc3m7/ai_rig_finally_done_and_stable_perfect_winter/",
+  "detail": {
+    "longDescription": "8x3090 my ocd wouldn't let me have different gpu models so ended up with 8 gigabyte gaming OC. I bought all the gpus by early 2026 before the prices went crazy. Avg maybe 600 to 700 gbp per gpu. Running on a Romed8-2t motherboard. All run at full pcie 4.0 x16 except the two rightmost who share one pcie slot and get 8x each.\n\nCpu watercooling  radiator sits nicely on top. Had to go the watercooling route as there is no space otherwise under the gpus for an air cooler.\n\nUsing cheap pcie 4.0 risers from aliexpress. Longest ones are 60 and 40cm for the two leftmost gpus\n\nTwo Psus, Ax1600i and hx1500i. One powers 5 gpus, the other powers the motherboard and 3 gpus (each gpu also pulls power through the motherboard at roughly 50W per gpu)\n\nPower limit set to 270W. Using modified nvidia drivers that enable p2p traffic between gpus, measured at a real 22GB/s except for the 8x gpus.\n\nI played around with some quant of qwen flash next  on vllm and opencode. Single agent around 60 tok/sec gen and 10 agents in parallel peaked at aggregate 370 tok/sec gen.\n\nThe more I look at what is available on the market right now (gorgon halo at 192gb etc) the more I realize what a monster I have built at home. Of course it consumes too much power, 300W idle, but it packs a punch when it comes to memory bandwidth and especially if I ever need to finetune some small models",
+    "externalUrl": "https://i.redd.it/222u81unwm1i1.jpeg",
+    "developer": "dazzou5ouh",
+    "comments": 46,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw2tnx",
+  "sourceItemId": "1xw2tnx",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw2tnx/muse_spark_13_has_six_reasoning_levels_how_are/",
+  "detail": {
+    "longDescription": "Meta’s docs for Muse Spark 1.3 list six reasoning effort levels, from minimal to max, on a 1,048,576-token context that input and output share. Reasoning tokens bill as output even when you never see them. So in an agent loop, the effort setting is basically a per-step budget decision, and I’m not sure most of us are making it on purpose.  \nThe setup I have in mind is a pretty normal coding agent: read a bug report, grep the repo, propose a patch, run tests, revise. Running every step at max feels wasteful for file discovery. Running everything low risks a bad plan step that burns more calls on retries than the reasoning would have cost.  \nA few things I’d want to pin down before trusting any numbers:  \n\\- Meta’s own comparison says 1.3 used roughly 20% fewer tool calls and 25% fewer tokens than 1.2. That’s their internal engineering workload, not yours, so the number that matters is cost per completed task, retries included.  \n\\- There’s also a Contributor variant, priced lower in exchange for allowing training on your prompts and outputs, and it tops out at xhigh. For a lot of client code that trade isn’t on the table.  \n\\- Whether the effort parameter even arrives intact. Someone here posted recently about LiteLLM dropping reasoning\\_effort for some models. If you route through a proxy or a gateway like GPTProto, OpenRouter or your own LiteLLM box, log reasoning tokens per call to confirm the setting changes anything.  \n\\- How compaction fits with a 1M window. A big context doesn’t mean you stop summarising older steps; it mostly means you can keep the original files around when exact wording matters.  \nMy current guess: low or medium for search and extraction, high for planning and the final diff review, max only when the same test keeps failing. But that’s a guess, not data.  \nIf you’re running Muse Spark 1.3 in an agent, are you setting effort per step, per task, or leaving one default and watching the bill?",
+    "developer": "Suresh935",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

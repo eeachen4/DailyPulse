@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117616303517559200",
+  "sourceItemId": "mastodon.social/117616303517559200",
+  "fetchedAt": "2026-11-15T03:03:29.162Z",
+  "sourceUrl": "https://infosec.exchange/@thecybersecguru/117616303482284067",
+  "detail": {
+    "longDescription": "Revolut's 11-hour outage on October 20 took out card payments, ATM withdrawals, balances and transfers for millions of customers. The postmortem shows the Google Cloud failure hit a system whose redundancy had already worn away. An underground utility cable fault cut power to Google's London facility, and a generator failure meant backup power never started. Some of Revolut's five-member database coordination groups had been running with four members for weeks because server replacements had failed. Monitoring never raised an alert. When the availability zone went offline, some groups were left with two of the three votes needed for quorum. PostgreSQL then refused to promote replicas. With replication lag, a new primary could only be promoted by risking acknowledged transactions and data consistency. Google got its infrastructure back, but Revolut's banking services weren't fully restored until 17:15 UTC. On paper Revolut had redundancy. In practice its failure tolerance had disappeared weeks earlier and nobody noticed, because monitoring tracked whether the system was up and not how close it was to going down. Full breakdown covering the Google Cloud power failure, quorum math, Patroni, PostgreSQL failover, Kubernetes limits and the monitoring gaps: https:// thecybersecguru.com/news/revol ut-outage-20-october-2026-quorum-loss-google-cloud-postmortem/ # Revolut # GoogleCloud # CloudOutage # PostgreSQL # DevOps # SRE # CloudInfrastructure # CyberSecurity",
+    "developer": "@thecybersecguru@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

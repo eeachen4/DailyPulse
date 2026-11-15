@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwe5sd",
+  "sourceItemId": "1xwe5sd",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xwe5sd/anyone_running_kubernetessigsagentsandbox_in_prod/",
+  "detail": {
+    "longDescription": "I’m currently evaluating kubernetes-sigs/agent-sandbox to run autonomous coding agents (like Claude Code, custom harness ,etc) on our own Kubernetes cluster, and I’d love to get feedback from anyone who has deployed it beyond a quick local test.\n\n​**Context & Current Setup:**\n\n* ​**Cluster:** AWS EKS \n* ​**Workload:** Ephemeral dev/test environments where agents clone repos, run builds/tests, and execute arbitrary shell commands via MCP or tool calls\n* ​**Isolation:** Evaluating gVisor  vs. Kata Containers vs recently introduced AWS nitro sandboxes\n\n​**Questions for folks actually running this:**\n\n1. ​**Cold-start latency & SandboxWarmPool:** What kind of pod startup and readiness times are you seeing in practice? Are warm pools reliable enough to make interactive/agentic loops feel snappy, or are you seeing churn issues?\n2. ​**Runtime performance hit:** If you’re pairing agent-sandbox with gVisor or Kata, how noticeable is the performance hits\n3. ​**Egress & network isolation:** How are you locking down outbound network access (e.g., allowing git clone and package registries while blocking internal VPC/metadata endpoints)? \n4. ​**Workspace caching:** Are you doing anything clever to cache dependencies across ephemeral sandbox runs without compromising isolation between sessions?\n5. ​**Hidden gotchas:** Any rough edges around CRD lifecycle cleanup, orphaned PVCs/volumes, or resource quotas when an agent loop goes rogue?\n\n​If you looked at agent-sandbox and decided to go a different route—like self-hosting E2B, rolling custom Firecracker microVMs, or just using hardened Kubernetes Jobs—I’d also love to hear what pushed you away from it.",
+    "developer": "Upbeat_Vermicelli_58",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

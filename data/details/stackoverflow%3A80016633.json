@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016633",
+  "sourceItemId": "80016633",
+  "sourceUrl": "https://stackoverflow.com/questions/80016633/jekyll-build-always-generates-cached-css",
+  "detail": {
+    "longDescription": "Every time I run jekyll build for some reason the CSS is always cached. If I run jekyll serve --livereload the site builds with cached CSS then if I change a file, the live reload updates all of the CSS. Currently the only way to push updated code to my Netlify instance is to run jekyll serve --livereload , update a file and copy everything from the _site folder, which seems silly and counterintuitive. Plus my client would like to run jekyll build as they normally would. I have tried adding this: {% assign cacheVersion = site.time | date:'?v=%s' %} <link rel=\"stylesheet\" href=\"{{ \"/assets/css/style.css\" | prepend: site.baseurl | append: cacheVersion }}\"> This seems to truncate the current time integer by a few digits For example '1794661783' which translates to 'Wed Jan 21 1970 19:31:01 GMT+0100 (Greenwich Mean Time)' I am seeing variations of this but it's always 1970. So I tried a pure JS solution like so: // append css with todays date as integer and version const now = new Date().getTime(); const head = document.querySelector('head'); const template = <link rel=\"stylesheet\" href=\"/assets/css/style.css?v=${now}\">; head.insertAdjacentHTML('beforeend', template); Same net result the URL looks like it is updated: <link rel=\"stylesheet\" href=\"/assets/css/style.css?v=1794661953231\"> but the CSS is still cached. I've tried updating html markup in include layouts (header.html, footer.html), as well as adding a javascript logger. Both the updated markup and the logger work and are showing as updated. So it only seems to be CSS caching for some reason. Then I wondered about trying to disable sass-cache. In the config.yml I have tried sass: cache: false As per https://github.com/jekyll/jekyll-sass-converter/issues/36 sass: cache: --no-cache As per Cannot disable SASS cache Neither seems to have worked. Although I can't find anything about disabling sass-cache for Jekyll specifically, even so I don't think this would resolve the issue. Any pointers?",
+    "developer": "lharby",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "44"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

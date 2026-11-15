@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwd1sf",
+  "sourceItemId": "1xwd1sf",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xwd1sf/how_to_provide_secure_bootstrap_access_in_the/",
+  "detail": {
+    "longDescription": "If my house burned down, everything is backed up off-site but is protected with complex encryption keys which are all stored in Bitwarden (Vaultwarden) that's self-hosted. I've always tolerated the local cache on my phone / laptop as being acceptable to recover, but if these burnt down too I'd be toast.\n\nI want a completely out-of-band way of getting my Bitwarden safe, so I can get started again.\n\nI have devised a plan and I'm interested in challenges on it or better ideas:\n\n1. Vaultwarden safe is exported in JSON password protected\n2. Encrypted export is further encrypted with [age](https://github.com/filosottile/age) and a genuinely long/complex password I remember\n3. Age export is then hosted on public cloud storage and has a public share link but needs a password to access (another one I remember)\n4. The public cloud link is hosted on my public website at a well-known URL\n\nMy thinking is I could get back in to this reliably, and it's the most secure way I can think of doing it. But it sits uncomfortably with me that the keys to my life are stored \"publicly\". \n\nThe alternative I was thinking is instead of Step 3 going to public cloud, it goes to a USB drive that a close friend/family has, but these seems less reliable (albeit more secure). \n\nAny thoughts / how are other people doing this?",
+    "developer": "langdalenerd",
+    "comments": 18,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

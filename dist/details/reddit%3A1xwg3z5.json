@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwg3z5",
+  "sourceItemId": "1xwg3z5",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xwg3z5/showoff_saturday_160000_internet_archive_films_to/",
+  "detail": {
+    "longDescription": "Had a lil’ too much fun building this https://github.com/Shannon-Goddard/movies  \n\nNo database. No API. No Lambda. No bill. Just a 3MB JSON file and a service worker  \n\nCore architecture  \n•  Catalog: One static data/index.json (\\~3 MB gzipped) holds all metadata (titles, genres, types, eras, series, durations, language flags, etc.)  \n\n•  Service worker: On first visit it pre-caches the JSON (and app shell). After that, every filter, search, and navigation is pure in-memory array work — no network round-trips for the catalog.  \n\n•  Client-side SPA: Vanilla JS + hash routing handles filtering (stackable chips for genre/type/era/color), series browsing, watchlist/continue-watching (localStorage), deep links, Google Cast, Media Session API, keyboard shortcuts, etc.  \n\n•  Delivery: GitHub Pages CDN for the static files. Zero databases, APIs, Lambdas, or monthly bills. Hosting cost is $0.",
+    "developer": "Free_Band_Shan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016693",
+  "sourceItemId": "80016693",
+  "sourceUrl": "https://stackoverflow.com/questions/80016693/gemini-live-api-closes-sessions-at-exactly-58-minutes-with-1011-deadline-expire",
+  "detail": {
+    "longDescription": "In Askie, our voice app for kids (I'm the founder), every gemini-3.8-live session that reaches an hour is closed by the server at almost exactly 58:00 after connect, even with context window compression and session resumption enabled: config = types.LiveConnectConfig( response_modalities=[\"AUDIO\"], session_resumption=types.SessionResumptionConfig(handle=None), context_window_compression=types.ContextWindowCompressionConfig( trigger_tokens=7000, sliding_window=types.SlidingWindow() ), ) Timeline from a standalone google-genai script (no tools): 57:09.8: go_away with time_left=50s 57:59.8: close 1011 Deadline expired before operation could complete. Resuming with the latest handle is unreliable: sometimes it works, sometimes it fails within a second with 1007 Request contains an invalid argument. , and later handles then get 1011 Internal error encountered. Is 58 minutes a hard session lifetime that compression and resumption don't extend? Is a resumption handle supposed to be valid after this close, or should the client always open a fresh session on go_away ? Also reported on the Google AI forum: https://discuss.ai.google.dev/t/gemini-3-8-live-live-sessions-are-closed-at-exactly-58-00-with-1011-deadline-expired-resumption-afterwards-fails-with-1007/186392",
+    "developer": "Beno",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "56"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

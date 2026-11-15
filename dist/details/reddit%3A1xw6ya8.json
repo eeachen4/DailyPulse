@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw6ya8",
+  "sourceItemId": "1xw6ya8",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw6ya8/help_needed_fireworks_lora_adapter_shows_ready/",
+  "detail": {
+    "longDescription": "I fine-tuned a LoRA adapter on Fireworks today (GLM 5.3 Flash, rank 16, 3 epochs). Training finished without problems, the adapter promoted cleanly, and it shows READY under Custom Models.\n\nUsing it is where it breaks:\n\n* **Chat completions API** with `model=accounts/myaccount/models/my-adapter` returns \"Model not found, inaccessible, and/or not deployed\".\n* **Playground**: custom models don't appear in the model picker at all.\n* **Self-serve load from the SMI docs**: I tried both `POST /deployedModels` with `{\"serverless\": true}` and `firectl model load-lora --serverless`. Both return PERMISSION\\_DENIED: \"serverless LoRA is not enabled for this account\".\n\nHas anyone else run into this? Or is there a self-serve route I'm missing?",
+    "developer": "techtsp",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

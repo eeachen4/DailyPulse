@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwgtjz",
+  "sourceItemId": "1xwgtjz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xwgtjz/fi_an_opensource_coding_agent_that_reuses_the_ai/",
+  "detail": {
+    "longDescription": "I wrote fi because I wanted one local coding agent that could talk to more than one vendor account I already pay for.\n\nMost coding agents are either tied to a single product (Claude Code, Codex, Cursor, Copilot, …) or they want an API key and a new bill. I already had the subscriptions. I didn't want another meter if I could use those accounts from one workspace, pick a model per conversation, and keep the agent loop on my own machine.\n\nfi is an MIT-licensed coding workspace (desktop, web, or headless CLI) that does that for a supported provider list. You sign in under Settings → Models, then choose the model for the conversation.\n\nSupported today:\n\n- Subscription sign-in: Claude, ChatGPT/Codex, Grok\n- Browser, device, or account-key sign-in: GitHub Copilot, Cursor, Kiro, Cline, Gemini Code Assist\n- Google account: Antigravity\n- OpenCode Console, and Ollama Cloud (cloud, not a local Ollama daemon)\n- API keys and custom OpenAI/Anthropic-compatible endpoints, including a self-hosted or local server if you point the base URL there\n\n**Important limitation, because this community cares about accuracy:** a successful sign-in does not guarantee inference. Credits, quotas, and entitlement stay with the provider.\n\nThe agent side is a fairly complete loop: file tools, terminals, planning, subagents, persistent conversations, per-turn change review with restore for supported edits, and managed Git worktrees that start from committed HEAD. Web search can use a subscription's native search when available, otherwise free Bing, or a configured search vendor. Image generation exists, but only through an eligible Codex, Grok, or Antigravity account.\n\nIt is built on DeepSeek Harness and Cordis. I'm the only author so far. Latest release is v1.0.1. macOS Apple Silicon builds are signed and notarized; the Windows and Linux builds are currently unsigned.\n\nRepo, downloads, and source instructions: https://github.com/OJamals/fi\n\nIf you try it, I'm especially interested in provider-protocol edge cases (quota errors, model catalog gaps, tool-calling differences across vendors) and whether the worktree isolation is enough for parallel agent tasks. Issues with app version, OS, provider, and exact model id are the most useful. I'll hang out in the comments.",
+    "developer": "Great_Ad2919",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

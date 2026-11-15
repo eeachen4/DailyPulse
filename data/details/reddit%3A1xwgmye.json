@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwgmye",
+  "sourceItemId": "1xwgmye",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xwgmye/does_gkes_node_kernel_have_the_sctp_sctp_init/",
+  "detail": {
+    "longDescription": "I've been checking which Linux kernels still carry an SCTP bug that panics the host: \\`sctp\\_init\\_cause()\\` checks buffer room for an error cause but not for the up-to-3 bytes of 4-byte alignment padding the write adds, so a crafted INIT (listener) or INIT-ACK (outbound association) can walk an skb one byte past its end and hit \\`skb\\_over\\_panic()\\`. It's fixed upstream in \\`ed6c53b27be4\\` (mainline 7.4-rc2, Cc: stable), introduced back in 2018.\n\nAs of 14 Nov I've read the guard in the shipped source of every maintained stable branch and several distro kernels, and none of them had the fix yet. That includes the current Ubuntu kernels (jammy 5.15, noble 6.8, resolute 7.0). GKE Standard supports SCTP on Ubuntu nodes with Dataplane V2, and Google documents it as on by default from \\`1.32.2-gke.1297000\\`. Since GKE's Ubuntu node images are built from Ubuntu kernels, my working assumption is that most GKE Ubuntu nodes are running the unpatched code. I haven't confirmed a specific GKE node-image build, which is where I could use help.\n\nIf you run SCTP workloads on GKE (telecom CNFs especially), could you check a non-production node and report back:\n\n\\- \\`uname -r\\` on the node, and whether \\`ed6c53b27be4\\` is backported (the node's kernel source/changelog, not the version string, since backports move independently)\n\n\\- whether \\`lsmod | grep '\\^sctp '\\` shows the module loaded, i.e. a workload is actually using it\n\n\\- the GKE version and node image\n\nAll read-only. Please don't send anything at a listener or a live service; I'm after kernel/config state, not a crash.\n\nIf it turns out a GKE configuration is unpatched and reachable, that belongs in a report to Google's Vulnerability Reward Program, not in this thread. I'll help put that together rather than post specifics here.\n\nMechanism and the full affected-version matrix (no exploit) are written up here:\n\n[https://blog.jamessawyer.co.uk/2026/sctp-cause-pad-panic-affected-products/](https://blog.jamessawyer.co.uk/2026/sctp-cause-pad-panic-affected-products/)\n\nMainly I want to nail down one thing: is a default-config GKE Ubuntu node running the fixed kernel yet, or not?\n\n",
+    "developer": "mario242-ta",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

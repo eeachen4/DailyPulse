@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwg1lk",
+  "sourceItemId": "1xwg1lk",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1xwg1lk/whats_one_paid_tool_you_replaced_with_an_open/",
+  "detail": {
+    "longDescription": "spent a chunk of this year moving out team's paid tools to open source ones we host ourselves. Here's the rough scorecard so far\n\nuptime monitoring went to uptime kuma. took 20 minutes and zero regrets\n\nanalytics went to plausible community edition. fine for traffic but we lost funnels, so we still pay for a second tool for that\n\nerror tracking went to glitchtip. it accepts the sentry sdk so the code change was one line, it's just lighter on performance tracing\n\nfeature flags went to unleash. works great, except now someone has to own the box it runs on and that someone is me\n\nthe one i rolled back was transaction email. tried postal instead of postmark and half our password resets landed in spam for a week. back on postmark, never again\n\ntotal went from about $310 a month to a $24 server, but the real cost is maybe 2 hours a month of babysitting\n\nwhat did you swap this year, and is there one you moved back to?",
+    "developer": "TotGaH",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.opensource"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

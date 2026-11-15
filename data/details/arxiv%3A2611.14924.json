@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.14924",
+  "sourceItemId": "2611.14924",
+  "fetchedAt": "2026-11-15T03:03:29.162Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.14924",
+  "detail": {
+    "longDescription": "arXiv:2611.14924v1 Announce Type: new Abstract: Deployment of retrieval-augmented generation (RAG) for Edge-AI is constrained by memory and bandwidth limitations. A standard 7B parameter model consumes 14 GB Video Random Access Memory (VRAM) in half-precision (FP16), precluding co-location of vector indices and Key-Value (KV) caches. This paper presents an engineering integration and empirical evaluation of a multimodal RAG framework optimized for consumer-grade Turing hardware (e.g., NVIDIA Tesla T4). Our system-level analysis identifies a critical trade-off: while generative pre-trained transformer quantization (GPTQ) offers superior throughput (51.6 tok/s), it exhibits significant context instability at 2048+ tokens on Turing architectures. Conversely, NormalFloat 4-bit (NF4) maintains robust long-context performance with viable latency (81 ms/tok). By coupling NF4 with a decoupled Florence-2 vision integration, we achieve visual reasoning with only 430 MB VRAM overhead. Furthermore, empirical observations of prompt-induced search space pruning show that structured prompting reduces latency by 47% without altering computational intensity (1.88 GFLOPs/token). The integrated architecture maintains an 8.37 GB footprint, establishing a viable RAG pipeline for 12-16 GB GPUs. Finally, structured few-shot prompting effectively compensates for quantization-induced reasoning loss, restoring mathematical accuracy from 35.0% to 92.0% across 200 trials.",
+    "developer": "Zahraa Selim, Menna Hamed, Wesam Ahmed, Sohyla Said, Sara Basheer, Rami Zewail",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Zahraa Selim, Menna Hamed, Wesam Ahmed, Sohyla Said, Sara Basheer, Rami Zewail"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

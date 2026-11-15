@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xweviv",
+  "sourceItemId": "1xweviv",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1xweviv/moved_my_backups_off_docker_to_rootless_podman/",
+  "detail": {
+    "longDescription": "Got tired of maintaining a separate Docker Compose stack just to run scheduled backups, so I finally migrated the whole setup to rootless Podman with Restic and put Zerobyte in front of it.  \n  \nHonestly, Podman just makes way more sense for backup infrastructure than Docker. Having a root daemon running 24/7 just to trigger a cron-like backup job always felt wrong, especially when the container needs read access to sensitive host directories. Running it rootless via systemd Quadlets means there's no background daemon overhead, proper systemd logging out of the box, and much tighter privilege isolation if anything ever goes sideways.  \n  \nRestic does all the heavy lifting—deduplication, encryption, and fast incremental snapshots. The main friction I used to have was quickly checking repo health or browsing snapshots without SSHing in and typing out long CLI flags every time. Throwing Zerobyte on top solved that completely. It gives me a clean web UI to check if last night's run actually finished and browse files when I need a quick restore, without wrapping my data in some proprietary format. If the UI dies tomorrow, my repos are still plain Restic directories I can mount or restore from any CLI.  \n  \nIt’s a much lighter setup, takes ten minutes to wire up with Quadlet files, and feels a lot easier to reason about when you actually need to recover something in a hurry.Anyone else running?  \n  \nIf anyone has an alternative approach for Docker, I’d be happy to hear it.",
+    "developer": "Particular_Lime_7004",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

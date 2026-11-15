@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwi4tb",
+  "sourceItemId": "1xwi4tb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xwi4tb/5_things_i_think_every_production_llm_application/",
+  "detail": {
+    "longDescription": "hey everyone, been thinking about how many LLM applications work reasonably well in a demo but start running into problems when you try to use them in actual workflows.\n\ngetting a model to generate a response is only one part of the engineering. the harder part is everything around it.\n\nhere are five areas I think are worth paying attention to:\n\n**1. Retrieval architecture**\n\nbasic vector search isn't always enough. combining keyword retrieval, semantic search and reranking can make a significant difference when working with complex documents.\n\n**2. Tool execution**\n\ngiving an LLM access to tools is easy. making sure it calls the right tool, passes valid arguments and recovers from failures is a different challenge.\n\n**3. Persistent memory**\n\nconversation history and persistent memory aren't the same thing. applications need a way to retain useful information across sessions without carrying unnecessary context everywhere.\n\n**4. Guardrails and recovery**\n\nwhat happens when a tool fails, the model returns an invalid response or the workflow encounters unexpected input? these cases need to be designed for, not handled as an afterthought.\n\n**5. Evaluation and observability**\n\nyou need to understand why an application produced a particular result, where retrieval failed and how changes affect performance.\n\nbtw we're also organizing a hands-on workshop on November 28 covering hybrid RAG, tools, persistent memory, guardrails, evaluation and observability.\n\nI'd be happy to discuss the technical curriculum with anyone interested.\n\nWorkshop details in comments, if anyone is interested",
+    "developer": "camerongreen95",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

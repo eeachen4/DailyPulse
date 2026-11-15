@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw9jbp",
+  "sourceItemId": "1xw9jbp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw9jbp/a_single_reddit_post_flipped_my_ai_courts_verdict/",
+  "detail": {
+    "longDescription": "I'm building a tool that stress-tests institutional decisions with LLMs. AI advocates argue a question for and against across three angles (\"lenses\"), then a court of **18 LLM judges** votes, each with a written reason. Solo project, built from Gaza.\n\n**Two things broke in ways I didn't expect.**\n\n# 1. All 18 judges agreed. That was the bug.\n\nIn an early session, the verdict was **18 out of 18**. The judges were too similar: same instructions, same model. So I changed four things:\n\n* Each judge on a panel got a **different mandate**: evidence, risk, implementation, long term, stakeholders, devil's advocate.\n* The judges were spread over **three Claude models**.\n* A third of them read the debate in **reversed order**.\n* One rule for everyone: **a claim with no evidence earns no credit for either side.**\n\nVerdicts started to split: **5-1, 2-4, 0-6**. In a later session, average vote agreement was **0.82**, but the similarity of the judges' written reasons was only **0.29**. Similar conclusions, reached by different routes.\n\n# 2. A Reddit post flipped a verdict.\n\nTest question: *should a university endowment allocate 10% to private credit?*\n\n* In **English**, the first lens voted **5-1 for**.\n* I ran the same question in **Arabic**, and that lens flipped to **0-6 against**.\n\nWhen I traced it, a Facebook post and a Reddit post had made it into the evidence, and the judges weighed them like sources.\n\nThe fix was boring:\n\n* No social media or forums as evidence.\n* Every source labelled: official, research, press, web, or the institution's own.\n* A fact only counts if it comes with a **verbatim quote** from its source.\n\nI re-ran it in Arabic: **back to 5-1 for**, and the decisive lenses matched the English run (overall 7 for and 11 against in English, 5 and 13 in Arabic).\n\n**Caveat:** this is a handful of sessions, not a benchmark. Both final decision records are public if you want to check the reasoning:\n\n* [English record](https://fasil.quotefather.com/debate/44/result/)\n* [Arabic record](https://fasil.quotefather.com/debate/46/result/)\n\n**Two questions might help alot :**\n\n1. How do you keep low-quality sources out of LLM judgment pipelines without throwing away useful informal knowledge?\n2. Is there a better way to measure judge independence than the similarity of their reasons?",
+    "developer": "RhubarbFlat6247",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

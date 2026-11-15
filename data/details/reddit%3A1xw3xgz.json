@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw3xgz",
+  "sourceItemId": "1xw3xgz",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw3xgz/i_built_a_harnessspecific_llm_backdoor_in_a_few/",
+  "detail": {
+    "longDescription": "While writing an [article about my local LLM inference setup](https://pgaleone.eu/ai/2026/10/20/eGPU-for-local-llm-inference/), a comparison popped into my head: downloading and running random model weights locally feels a lot like downloading random `.exe` files off the internet back in the 2000s.\n\nTurns out I wasn't off the mark - there's an entire body of research exploring how LLMs can be backdoored and how hard it actually is to detect a poisoned model.\n\nSo I decided to try building one myself. I implemented a backdoor that **only** triggers when the model is running inside `pi` (making it harness-specific) and is asked a specific question. It was way easier than I expected: just a 2-step fine-tuning process and a few hours of compute on the exact same GPU I use for local inference.\n\nWith open-weight models, we at least have a baseline to compare community fine-tunes against. Beyond that, though, we don't really have a reliable way to verify whether a base model itself is clean—and the problem is even worse with closed-weight models, where we're basically just trusting the AI provider's goodwill.\n\nFull write-up and PoC code if you want to dig into the details:\n\n* **Article:**[Backdooring LLMs - Do you trust your AI provider?](https://pgaleone.eu/ai/2026/11/14/backdooring-llms-and-trust/)\n* **GitHub Repo:**[galeone/llm-poison](https://github.com/galeone/llm-poison)\n\nFeedback is welcome",
+    "developer": "pgaleone",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

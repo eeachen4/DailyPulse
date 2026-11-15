@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw3mal",
+  "sourceItemId": "1xw3mal",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw3mal/letting_the_model_write_a_tiny_dsl_instead_of/",
+  "detail": {
+    "longDescription": "Purpose: looking for real experience before trying this, not promoting anything.\n\nMost agent setups have the model return JSON tool calls, one step at a time. An alternative is to give the model a small DSL and let it write a short program for the whole task, which an interpreter then runs and validates.\n\nThis looks better in several ways:\n\n* much fewer output tokens, a DSL line is way shorter than JSON\n* one program instead of a round trip per step\n* you can force the grammar while decoding, so even small or quantized models can’t break the format\n* the interpreter catches errors before anything runs.\n\nWhat is unclear is the downside. Models have seen tons of JSON and none of your DSL, so maybe they reason worse in it. Also whole program written upfront can’t react to intermediate results the way step by step tool calls can.\n\nHas anyone tried this in production or in a side project? Did a smaller model actually hold up, and did you end up mixing it with normal tool calls?",
+    "developer": "bye_ella",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016596",
+  "sourceItemId": "80016596",
+  "sourceUrl": "https://stackoverflow.com/questions/80016596/javascript-synchronous-code",
+  "detail": {
+    "longDescription": "I am confused by some of the terminology on how JavaScript manages its code. Suppose I have some simple code like this: a = 4; var a; function doit() {} a *= 3; setTimeout(…, 0); a /= 2; Promise.resolve().then(() => { a *= 5; }); a += 6; Obviously, the code doesn’t do anything useful. As far as I understand: Each statement is performed synchronously, in order. The setTimeout and Promise statements are executed synchronously, in that they put something something on the task or microtask queues; the task or microtask are then executed later, asynchronously, in the fullness of time. The var and function statements are special. As declarations, they are processed before the rest of the actual code is executed, a process known as hoisting . My question relates to the code statements. There are many discussions of various components of the execution model, such as the task and microtask queues and the event loop. What is structure which holds the statements to be executed called? Most of the discussions on the Internet start with the call stack, but don’t actually reference the original statements.",
+    "developer": "Manngo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "111"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

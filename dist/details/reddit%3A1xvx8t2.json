@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvx8t2",
+  "sourceItemId": "1xvx8t2",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xvx8t2/wfxloot_what_the_stealer_leaves_behind_after_you/",
+  "detail": {
+    "longDescription": "Aikido reported the campaign on Nov 12. From Nov 10, an attacker used 4,837 hijacked GitHub accounts to open pull requests titled \"docs: dependency audit notes\" from a branch named wfx-docs in 61,764 repositories. Where the account could write, a stealer of about 1,500 lines went into an existing workflow, a new workflow or an npm postinstall hook. SafeDep counted 8,093 public repos with malicious commits (771 through the npm hook). Aikido says secrets left at least 1,800 repos.\n\nRotating the repo secrets is the first step. The reports say the script can also do these, depending on the permissions the workflow had:\n\n\\- Rewrite an AWS role's trust policy so any AWS account can assume the role, and create long-lived access keys for IAM users.\n\n\\- Add federated identity credentials with the prefix wfx-ci- to Azure AD applications. Workflows can then sign in without a stored secret.\n\n\\- Delete its own workflow run and logs, so the trace is a gap in run numbers.\n\nWhat to check: CloudTrail for UpdateAssumeRolePolicy and CreateAccessKey since Nov 10, Entra app registrations for wfx-ci- credentials, and the Actions run numbers of every workflow in the affected repos. If a developer ran npm install on an affected commit, SafeDep says to treat that machine as compromised.\n\nStepSecurity traced 173 probe PRs to tokens issued to the Fly.io GitHub app and says it has no evidence Fly.io was breached. The reports do not say how the 4,837 accounts were taken.\n\nHas anyone found the wfx-docs branch in their org yet?\n\nSources: https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html , https://www.bleepingcomputer.com/news/security/hackers-compromise-4-800-github-accounts-to-steal-cloud-credentials/ , https://www.securityweek.com/attacker-targets-60000-github-repositories-in-credential-theft-campaign/",
+    "developer": "Capital_Attention702",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

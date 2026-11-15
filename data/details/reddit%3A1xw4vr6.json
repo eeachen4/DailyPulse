@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xw4vr6",
+  "sourceItemId": "1xw4vr6",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xw4vr6/basalomni20mini_typed_decision_model/",
+  "detail": {
+    "longDescription": "An early release of the small model of basal-omni 2.0, on Gemma 4 E4B. The model reads the state in both directions before it answers and scores 0.811 on Werdykt (5,000 hidden decisions in Polish and English). It runs on the public basal engine 2.8.0, with the same API as basal-omni-1.0.\n\nWhat's new in 2.0\n\n* **Two-way reading.** The model reads the state in both directions before it answers. This needs basal engine 2.5 or later. For long prompts, see the limitations.\n* **Higher accuracy** on our hidden Polish and English decision benchmark Werdykt and on the held-out tests below.\n* **More decisions automated** at a given error target. Coverage is in the section on confidence.\n* **Unchanged: a calibrated probability** for each allowed answer, in one forward pass. The answer never falls outside the options you give, and the probability says how sure the model is.\n\nThe question types remain: `choice` (one option), `noul` (yes / no), `score` (a score), and in the basal engine also `multi`, `act` and `tool`. Options get codes (A–Z, then two-character codes, up to 255 options). The decision is a probability distribution over these codes only, with no text generation.\n\nhttps://i.redd.it/w1vsirwuhl1i1.png\n\nMore info: [https://basal.si5.pl/en/blog/basal-omni-2-0-mini/](https://basal.si5.pl/en/blog/basal-omni-2-0-mini/)\n\nHF: [https://huggingface.co/Remek/basal-omni-2.0-mini-preview](https://huggingface.co/Remek/basal-omni-2.0-mini-preview)\n\ngit hub (inference engine): [https://github.com/rkinas/basal](https://github.com/rkinas/basal)  \n",
+    "developer": "rkinas",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

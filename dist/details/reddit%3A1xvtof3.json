@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xvtof3",
+  "sourceItemId": "1xvtof3",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xvtof3/cleanweb_v30_upgrade_notice_nov_21_87_rag_token/",
+  "detail": {
+    "longDescription": "Hi everyone,\n\n\n\nQuick update for anyone using \\*\\*\\`langchain-x402-cleanweb\\`\\*\\*, \\*\\*\\`llama-index-readers-x402-cleanweb\\`\\*\\*, or \\*\\*\\`x402-cleanweb-agent\\`\\*\\* in their RAG pipelines.\n\n\n\nAfter crossing \\*\\*14,000+ downloads across PyPI and npm\\*\\*, we are standardizing our entire stack onto a \\*\\*Cloud-Native Thin Client + x402 M2M Gateway\\*\\* over the next 7 days (\\*\\*effective November 21, 2026\\*\\*).\n\n\n\n\\### Why we are making this change:\n\n1. \\*\\*Always Up-to-Date Extraction:\\*\\* Local scrapers break constantly on modern SPAs and WAFs. Our Cloud Run gateway handles Next.js/Nuxt hydration, nested CSS cleanup, and covert tracking-pixel neutralization centrally with \\~7ms overhead.\n\n2. \\*\\*Mathematical Token Arbitrage:\\*\\* Feeding raw 80KB HTML (\\~20k tokens) into GPT-4o or Claude costs \\~$0.05/page. Routing through CleanWeb ($0.001 USDC) strips it down to \\~2,600 clean tokens (\\~$0.0065), yielding an \\*\\*85% net cost reduction per RAG document\\*\\*.\n\n3. \\*\\*Zero-Friction Framework Integrations (Already Thin Clients!):\\*\\*\n\n   \\- \\*\\*LangChain:\\*\\* \\`pip install langchain-x402-cleanweb\\`\n\n   \\- \\*\\*LlamaIndex:\\*\\* \\`pip install llama-index-readers-x402-cleanweb\\`\n\n   \\*(Both packages already route directly through our Cloud Run gateway and require zero code changes if you pass your \\`X-Vault-Key\\`.)\\*\n\n\n\n\\### What happens on Nov 21, 2026:\n\n\\- \\`x402-cleanweb-agent v3.0.0\\` launches as a pure Thin Client; monolithic local versions (\\`v2.8.x\\` and below) will be yanked on PyPI.\n\n\\- Free sandbox evaluation is now strictly capped at 3 IP-bound calls on lightweight tiers; high-compute AI & EIP-712 Oracle endpoints require x402 Vault prefunding (Solana, Base, Polygon, Arbitrum).\n\n\n\nFull details & live ROI calculator: [https://github.com/nohosa001-pixel/x402-cleanweb-agent](https://github.com/nohosa001-pixel/x402-cleanweb-agent)",
+    "developer": "EstablishmentTough18",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
