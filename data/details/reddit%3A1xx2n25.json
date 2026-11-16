@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx2n25",
+  "sourceItemId": "1xx2n25",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xx2n25/making_cudamemcpy_5x_faster_on_a_b300_p/",
+  "detail": {
+    "longDescription": "https://i.redd.it/cjz9xy3rht1i1.png\n\n\n\nHi everyone,\n\nI made a tool that can speed up pageable transfers for cudaMemcpy. For example:\n\n\n\n    # B300, copying a 1 GB tensor to the GPU and back:\n    \n    import time, torch\n    x = torch.ones(1 << 30, dtype=torch.uint8)\n    y = x.to(\"cuda\"); y.cpu()\n    for name, copy in [(\"CPU -> GPU\", lambda: (x.to(\"cuda\"), torch.cuda.synchronize()))]:\n        t = time.perf_counter()\n        for _ in range(5):\n            copy()\n        print(f\"{name}: {5 * x.nbytes / (time.perf_counter() - t) / 1e9:.1f} GB/s\")\n    \n    \n    $ python bench.py\n    CPU -> GPU: 10.2 GB/s\n    \n    \n    $ cmt tune -- python bench.py\n    CPU -> GPU: 51.5 GB/s\n\n\n\nblog: [https://maknee.github.io/blog/2026/CudaMemcpy/](https://maknee.github.io/blog/2026/CudaMemcpy/)\n\ncode: [https://github.com/Maknee/cudamemcpy-tuner](https://github.com/Maknee/cudamemcpy-tuner)",
+    "developer": "makneeee",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

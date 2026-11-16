@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwwpi5",
+  "sourceItemId": "1xwwpi5",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1xwwpi5/ust_got_hit_with_a_1340_aws_bill_in_6_hours_after/",
+  "detail": {
+    "longDescription": "Learned an expensive lesson this week and I'm still not sure how it happened, so posting in case someone here knows.\n\nWhat happened. I was working on a side project late on Sunday and committed a config file with an AWS access key in it to my private repo. I told myself it's private, I'll move it to env vars tomorrow. Around 6 hours later I woke up to a billing alert. $1,340. Someone had launched a pile of GPU instances in us-east-2 and ap-southeast-1, which I've never used.\n\nHere's what I don't understand. The repo is private. It's not a fork of anything. It has no collaborators and no GitHub Apps installed except Actions. The key was created the same day, so this wasn't an old leak somewhere else.\n\nThe only thing I can think of is my laptop. I installed a \"theme pack\" VS Code extension that week that I've already uninstalled because it had 200 downloads and no repo. But I have no proof it was that.\n\nQuestions for you all. How do attackers find keys in a private repo this fast? Can an extension read files from your workspace and send them out without you noticing? And how do you stop this happening again, besides the obvious \"don't commit keys\"?\n\nI've already:\n\n\\- Deactivated the key and deleted the IAM user it belonged to\n\n\\- Moved every key I have out of files and into Infisical, so the project gets them at startup and there's nothing to commit or for an extension to read\n\n\\- Added a gitleaks pre-commit hook and a budget action that stops instances instead of just emailing me\n\n\\- Started auditing my VS Code extensions (40 of them, going slowly)",
+    "developer": "Imaginary-Mix-7777",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

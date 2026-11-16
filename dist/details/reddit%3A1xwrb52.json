@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwrb52",
+  "sourceItemId": "1xwrb52",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xwrb52/reviewing_agent_written_helm_changes_when_the/",
+  "detail": {
+    "longDescription": "We run about 30 services on two EKS clusters and a lot of our Helm values changes now come from agents. They're usually small and they usually look fine.\n\nLast week one changed the default resource requests in our shared chart from 250m to 500m CPU \"to reduce throttling\". Review was clean. coderabbit reviewed the values file, it catches things like missing limits or a probe pointing at the wrong port, and there was nothing wrong with the YAML itself.\n\nThe problem was everything else. 30 services picked up the new default on their next deploy, the cluster autoscaler added 6 nodes overnight, and our bill for that week jumped by about $1,900 before anyone noticed.\n\nThe diff was 2 lines. The impact was the whole cluster, and nothing in the PR showed that.\n\nWhat we're looking at now:\n\n\\- running helm diff for every release that uses the shared chart in CI and posting the summary on the PR  \n\\- requiring a second reviewer from platform for any change to shared chart defaults  \n\\- some kind of cost estimate on PRs that change requests\n\nHow do you review changes to shared charts? Do you diff every consumer, or is it mostly \"be careful with the shared one\"?",
+    "developer": "stfufeedmenuggets",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

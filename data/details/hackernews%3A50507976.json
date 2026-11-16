@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50507976",
+  "sourceItemId": "50507976",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50507976",
+  "detail": {
+    "longDescription": "Hi HN! profiler-md is a CLI and JS library that converts performance profiles to Markdown across 17 formats (e.g. pprof), 29 profilers (e.g. py-spy), 22 languages (e.g. Rust), and 4 profile types (call stack profiles, call graphs, heap snapshots, and traces). Earlier this year I tried using AI agents for performance optimization. They weren&#x27;t very effective because they frequently: - Speculated about why something was slow from just reading the code - Made changes, measured the wall time before vs after, and struggled to distinguish real improvements from noise - Analyzed raw profiles using one-off scripts, which were often subtly incorrect The issue was that the agents couldn&#x27;t read a flamegraph like I could. In a flamegraph, I could see what was slow, and when I made changes, I could see whether the targeted work was eliminated. The agents needed a feedback loop like that. So I wrote a small converter from Node CPU profiles to Markdown. The agents were much more effective when using it, and I realized I also liked reading the Markdown myself! I felt this had potential, and I use many different programming languages at work, so I decided to build profiler-md. I also wrote an agent skill [1], which I&#x27;ve successfully used to optimize profiler-md itself and its pprof-format dependency (a 78x speedup on a large pprof file [2] and a 3.3x speedup more broadly [3]). I got to solve some fun problems for this project: - Making it so that adding a new format, profiler, or profile type is as simple as implementing an interface and adding to a registry. I also have project skills for this! - Resolving weirdly differing profiler semantics (e.g. around what line numbers mean [4] [5] [6] [7]) by setting up the right interface boundaries. - Matching functions across profiles for the Markdown diff output. A profile doesn&#x27;t contain the full code, so this required some heuristics. I evaluated the algorithm by measuring recall (99.9%) and precision (99.7%) on diffs from real version upgrades. - Designing a call tree renderer that maximizes metrics such as how many of the hottest functions it shows and how much of the profile&#x27;s self value it covers [8]. I&#x27;d love to hear what you think. Try it out and let me know if you have any feedback or questions! Full disclosure: I work at Anthropic, but this personal project is unrelated to my employer. [1] https:&#x2F;&#x2F;github.com&#x2F;TomerAberbach&#x2F;profiler-md&#x2F;#skill [2] https:&#x2F;&#x2F;github.com&#x2F;DataDog&#x2F;pprof-format&#x2F;pull&#x2F;77 [3] https:&#x2F;&#x2F;github.com&#x2F;DataDog&#x2F;pprof-format&#x2F;pull&#x2F;107 [4] https:&#x2F;&#x2F;github.com&#x2F;rbspy&#x2F;rbspy&#x2F;issues&#x2F;409 [5] https:&#x2F;&#x2F;github.com&#x2F;oven-sh&#x2F;bun&#x2F;issues&#x2F;29240 [6] https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;pprof-nodejs&#x2F;issues&#x2F;361 [7] https:&#x2F;&#x2F;github.com&#x2F;NixOS&#x2F;nix&#x2F;blob&#x2F;16fa212a96192479593620e9b9... [8] https:&#x2F;&#x2F;github.com&#x2F;TomerAberbach&#x2F;profiler-md&#x2F;blob&#x2F;a1ee95e4b5...",
+    "externalUrl": "https://github.com/TomerAberbach/profiler-md",
+    "developer": "tomeraberbach",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

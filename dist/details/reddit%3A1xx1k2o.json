@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx1k2o",
+  "sourceItemId": "1xx1k2o",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xx1k2o/meta_fair_nyu_unbundling_multimodal_vision/",
+  "detail": {
+    "longDescription": "X threads (with videos!): \n\n* [https://x.com/choang333/status/2121335484236386574](https://x.com/choang333/status/2121335484236386574)\n* [https://x.com/\\_ellisbrown/status/2121335477244428419](https://x.com/_ellisbrown/status/2121335477244428419)\n\nPaper: [https://www.alphaxiv.org/abs/2611.17334](https://www.alphaxiv.org/abs/2611.17334)\n\nBlog and FAQ: [https://unbundling.github.io](https://unbundling.github.io/)\n\n**Labs disagree on vision encoders right now.** Gemma 4 12B dropped the encoder, Kimi K3 trains its encoder from scratch, and Inkling 2 Small brought an encoder back. Published models can't settle this, because they differ in data and compute and rarely account for encoder pretraining. A standard encoder also bundles three choices: separate pretraining, parameters that only vision tokens use, and placement before the LLM. We tested each choice separately.\n\nSetup:\n\n* 200+ models, all trained from scratch (LLM included) on the same data.\n* Lifetime compute: encoder pretraining counts against the same budget as multimodal training.\n* Main comparisons use Qwen3-1.7B and 4B configurations with 0.4B parameters of vision capacity. A scaling ladder covers 0.6B to 6.4B backbone sizes.\n* Evaluations are on 16 VQA benchmarks from Cambrian at 448 px. and 12 language benchmarks testing commonsense, QA, and broad knowledge.\n\nFindings:\n\n1. **Separate pretraining is optional.** Encoders pretrained with four objectives (contrastive, self-supervised, two captioning) at best tie an encoder trained from scratch with the LLM at matched compute. Even free pretraining doesn't help. Pretraining MetaCLIP 6.5x longer raised ImageNet linear-probe accuracy (80.4% → 84.4%) but not VQA.\n2. **Vision-only parameters are required.** Encoder-free models trail at every size from 0.6B to 6.4B and need about 3x the compute to catch up. Giving the LLM the encoder's parameters instead improves text, not VQA.\n3. **Placement before the LLM is optional.** \"In-fusion\" adds zero-initialized vision-only weights (attention projections and FFNs) to the LLM's first 8 layers, and text tokens never use them. It's on par with the encoder from 1.7B to 6.4B, with about 13% lower time to first token. At 1.7B, vision-only branches in layers 1–8 reach 45.0 VQA (encoder 44.4), versus 42.3 when text shares them and 35.1 in the last 8 layers.\n4. **The same holds with a pretrained LLM** (vision added to a pretrained 1.7B LLM in midtraining).\n\nSo vision needs its own parameters, but not its own pretraining or its own encoder.\n\nDisclosure: I'm one of the authors. Happy to answer questions!",
+    "externalUrl": "https://i.redd.it/rcfmbufjbt1i1.png",
+    "developer": "trungh98",
+    "comments": 12,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

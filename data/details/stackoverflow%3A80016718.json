@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016718",
+  "sourceItemId": "80016718",
+  "sourceUrl": "https://stackoverflow.com/questions/80016718/how-does-the-promise-resolve-static-method-handle-arguments-of-the-function",
+  "detail": {
+    "longDescription": "I am learning JavaScript Promises by reading MDN docs. While learning a static method of the Promise class Promise.try() I read the following statement ( source ): You may have an API that takes a callback. The callback may be synchronous or asynchronous. You want to handle everything uniformly by wrapping the result in a promise. The most straightforward way might be Promise.resolve(func()). The problem is that if func() synchronously throws an error, this error would not be caught and turned into a rejected promise. They didn't mention the code example to verify their statement. When I wrote and executed the code using JavaScript, the results were completely different from their explanation mentioned above. Code ( JavaScript + TypeScript) function throwErr():Error { //Line# 435 return new Error('Synch Error from a Function!') } const rejectedPrms:Promise<Error> = new Promise( function(resolve:Function, reject:Function):void { reject(new Error('Sync Error from a Promise')) } ) const res1:Promise<Error> = Promise.resolve(throwErr()) const res2:Promise<Error> = Promise.resolve(rejectedPrms) console.log(res1) console.log(res2) console.log('Job queue is empty!') //Line# 450 The Results: Promise {<fulfilled>: Error: Synch Error from a Function! at throwErr (http://127.0.0.1:5500/ts/dist/index.js:403:12)…} index.ts:448 Promise {<rejected>: Error: Sync Error from a Promise at http://127.0.0.1:5500/ts/dist/index.js:406:12 at new Pr…} index.ts:450 Job queue is empty! index.ts:440 Uncaught (in promise) Error: Sync Error from a Promise at index.ts:440:16 at new Promise (<anonymous>) at index.ts:438:37 The function throwErr throws an error synchronously. According to the MDN doc's explanation, in my code res1 must have a rejected promise instead of fulfilled. Am I missing something, or is there an error in the MDN documentation?",
+    "developer": "Muhammad Falak Sher",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "118"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwy3xy",
+  "sourceItemId": "1xwy3xy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xwy3xy/attest_11_capture_an_agent_run_replay_it_in_ci/",
+  "detail": {
+    "longDescription": "I maintain Attest, an Apache-2.0 testing framework for LLM agents in Python and TypeScript. No paid tier, no hosted service, no telemetry. 1.1 went out on November 10.\n\n**The failure it's built around.** Agent tests usually assert on the reply. The demo repo has a synthetic incident where that isn't enough: the payments API commits a refund, then times out; the agent retries without an idempotency key; the customer gets refunded twice. The reply is \"Your refund of $84.00 has been processed.\" Every output assertion passes.\n\n**The workflow.**\n\n1. `attest capture --name inc-1042 -- <command>` runs the agent behind a loopback proxy for OpenAI (Chat Completions, Responses) and Anthropic Messages, plus an OTLP receiver. It records the trace and every model exchange, redacts secrets, templates volatile values (ids, timestamps, emails), drafts contracts from what it saw and checks them against the run.\n2. A behavior contract states the rule that broke:\n\n       expect(trace).tool_cardinality(\"issue_refund\", per=\"order_id\", at_most=1)\n\n   An effect contract checks the end state of the simulated payments API: exactly one refund for that order.\n3. In PR CI the agent's *current* code runs while the proxy answers from the recording: `0 live model calls · $0.00`. A changed prompt is a replay miss with a re-record command, not a silent mismatch.\n4. `attest policy evaluate` turns the report into a merge gate (0 pass, 1 block, 2 warn), and each failure is annotated on the failing test's line in the PR.\n5. `attest mutate` drops, duplicates and reorders tool calls in the recording to measure the suite. Output-only tests: 0 of 29 mutants caught. With contracts: 10 of 29.\n\nLLM judges (OpenAI, Anthropic, Gemini, any OpenAI-compatible endpoint) run after the deterministic layers. A judge outage or malformed reply is \"not evaluated\" with a reason, never a pass.\n\n**What 1.1 fixed.** An audit of 1.0 logged 73 findings, each with a reproduction or a code trace. Four made a failing assertion come back as passing: an engine notification on the stdio pipe shifted later verdicts by one, a timed-out response was read by the next test, concurrent Vitest tests swapped responses, and a pytest-xdist run wrote an empty report that the gate accepted. 1.1 fixes those, fails any `expect()` chain that was built but never evaluated, and blocks a PR that deletes baseline assertions.\n\n**How it was built.** Most of the code was written by coding agents (Claude Code and Codex) executing milestone plans I wrote and reviewed. The audit above was part of that loop.\n\n**What I'm looking for.** It has no external users yet. If you run an agent that changes real systems (payments, tickets, infra) and have an incident you'd want a test to block, the design-partner form is below. Criticism of the approach is just as useful.\n\n- Repo: https://github.com/attest-framework/attest\n- Web Page: https://attest-framework.github.io/\n- Demo (no API key, about two minutes): https://github.com/attest-framework/refund-desk\n- Design partners: https://github.com/attest-framework/attest/issues/new?template=design-partner.yml",
+    "externalUrl": "https://v.redd.it/pqj1fh83ns1i1",
+    "developer": "tom_mathews",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

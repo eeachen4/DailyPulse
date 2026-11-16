@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwrh6v",
+  "sourceItemId": "1xwrh6v",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xwrh6v/hows_everyone_handling_secret_zero_outside/",
+  "detail": {
+    "longDescription": "vault or openbao handing out short lived postgres logins is ok and nothing sits in a k8s secret anymore. but the app still has to log into vault first\n\ninside the cluster thats mostly solved, vault checks the pods service account token against the TokenReview api and theres even a patch on pgsql-hackers so postgres cert auth can match spiffe ids. outside kubernetes its murkier. cloud instance identity covers vms on aws or gcp, spiffe setups like spire or hush security go wider and a lot of the rest ends up with an approle secret id baked in somewhere which is the same problem one step back\n\nwhats ideal to use for that first login outside the cluster?",
+    "developer": "aidenclarke_12",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

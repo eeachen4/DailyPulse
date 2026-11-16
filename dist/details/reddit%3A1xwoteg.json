@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwoteg",
+  "sourceItemId": "1xwoteg",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1xwoteg/akshara_preserving_bpe_v3_32k_and_silent_bpb/",
+  "detail": {
+    "longDescription": "​While training a 253M parameter language model across 4 anchor Dravidian languages (Kannada, Tamil, Telugu and Malayalam), 4 low resource Dravidian languages (Tulu, Koya, Kuvi and Kolami) and English. We ran into two things on the tokenization and multilingual training side that might be useful for anyone working on Indic scripts.\n\n​1st, standard byte level BPE tokenizers shred South Indian scripts into short UTF-8 fragments (around 3.67 bytes per token on a typical 48k GPT style baseline). Using Unicode NFC normalization and a pre-tokenization regex that groups \\\\\\[\\\\\\\\p{L}\\\\\\\\p{M}\\\\\\\\u200c\\\\\\\\u200d\\\\\\]+ with a 32768 vocabulary brought our token-weighted average up to 9.680 UTF-8 bytes per token across Kannada (9.717), Tamil (9.654), Telugu (8.910) and Malayalam (10.531). Across all 8 Dravidian languages, it averages 8.693 bytes per token, compared to 3.159 on English.\n\n​2nd, raw training loss hid a clear regression when we mixed in STEM, math and Python data during pretraining. Training loss dropped from \\\\\\~2.9 to \\\\\\~2.0, while held out bits per byte got worse across all 9 languages, including a 7% jump on Kuvi and Kannada moving from 0.489 to 0.500. Switching the next phase to a 50/50 split with multilingual replay recovered BPB across all 11 validation sets.\n\n​​On a 300 prompt held out check the final model gets 100% script purity across Kannada, Tamil, Telegu and Malayalam(80/80) and 96.25% format conformance (77/80 with all three misses in Tamil) alongsside 17.18% average (25.00% best) on Belebele Dravidian. Tulu, Koya, Kuvi and Kolami are still experimental because clean, commercially usable text and validation sets are thin.\n\n​The tokenizer regex, byte per token numbers and eval notes are written up in the technical documentation.\n\nFor anyone else working on agglutinative or low resource Indic languages: have you found that akshara level pre-tokenization hurts morphological generalization compared to finer subwords annd what replay ratios or data sources have worked for you when mixing in English code or STEM? ",
+    "developer": "uncoalesced",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80016697",
   "sourceItemId": "80016697",
+  "fetchedAt": "2026-11-16T03:05:53.285Z",
   "sourceUrl": "https://stackoverflow.com/questions/80016697/vkbottle-4-11-0-waitermachine-wait-default-argument-is-ignored-not-triggeri",
   "detail": {
     "longDescription": "I am trying to create a step-by-step dialogue using WaiterMachine in vkbottle . I want to validate user input using RegexRule . If the user enters an invalid string, the default argument should trigger and send an error message. However, when I enter an invalid string, nothing happens. The bot just silently ignores the message. There are no errors in the console. When I enter a valid string (matching the regex), the bot correctly proceeds to the next step of the dialogue. This means wm.wait() is correctly intercepting events, but the 'default' behavior is failing. Code Example: @self.bot.on.message(payload={\"command\": \"new_post\"}) async def handle_new_post(message: Message): # Attempt 1: async function async def on_invalid_date(m: Message): print(f\"DEBUG: Default triggered! User entered: {m.text}\") await m.answer(\"Invalid format. Please enter date as HH:MM,DD.MM.YYYY\") await message.answer(\"Enter date in format HH:MM,DD.MM.YYYY\") date, _ = await wm.wait( self.bot.on.message_view, message, RegexRule(r\"^\\d{1,2}\\:\\d{1,2}\\,\\s*\\d{1,2}\\.\\d{1,2}\\.\\d{4}$\"), default=on_invalid_date # Passing async function here ) What I have tried: Passing a synchronous lambda m: print(\"test\") into default (nothing printed). Passing an asynchronous async def function into default (nothing printed). Checking the method signature in the library source, which clearly shows default: Behaviour[Event] = None . Temporarily disabling all custom middlewares to ensure the invalid message is not being intercepted/cancelled by them before reaching WaiterMachine . Passing a plain text string directly to default (e.g., default=\"Invalid format\" ), which is mentioned in the official documentation. The bot still remains silent and does not send any message to the user. Additional Context: I noticed that inside the library source, default is passed to a ShortState object as default_behaviour . I tried using default_behaviour=on_invalid_date instead of default=... , but it raised a TypeError because wait() does not accept default_behaviour as an argument in version 4.11.0. I am using vkbottle 4.11.0 under Python 3.12 on Windows. Why is the default argument being ignored when the rule fails to match? How can I properly handle invalid input in WaiterMachine ?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "39"
+        "value": "72"
       },
       {
         "label": "状态",

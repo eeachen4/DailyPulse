@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx9npp",
+  "sourceItemId": "1xx9npp",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xx9npp/how_do_you_keep_kubernetes_rightsizing_and/",
+  "detail": {
+    "longDescription": "When running different types of clusters (prod, staging, dev), how do you keep resource allocation and autoscaling settings aligned with workload requirements as they change, to avoid unnecessary increases in the cloud bill?  \n  \nOver the lifetime of a product, new services get added in a cluster, traffic patterns would change, requirements evolve, etc. CPU/memory requests could get padded, limits and replica counts can become outdated, and the node types originally chosen may no longer fit the current workload mix particularly well.  \n  \nI'm particularly interested in continuous pod rightsizing alongside tools like Karpenter and KEDA. As a simple example, cpu/mem requests could remain significantly higher than workloads actually need over time. This usually leaves the cluster running far more nodes than necessary (even for smaller workloads with a few nodes, even 1 or 2 of overprovisioned and unutilized nodes could cause a significant dent in the final bill). This can be overprovisioned intentionally, but over time it does become a bottleneck in a sense that there's not enough time to address everything.\n\nHow do you keep those settings appropriate as workloads evolve? How are you handling this in practice, and lately with AI?\n\n\\- Do you review the full cluster regularly, leave it to application teams to right size (where applicable), or just accept the overprovisioned capacity?\n\n\\- How do you distinguish necessary headroom from avoidable waste?\n\n\\- Are you using any tools that recommend specific changes and explain the expected savings and risks, ideally across the major clouds? I know this can get very workload-specific, but still would like to hear general thoughts.\n\n\\- Does anyone use automated tools that continuously adjust pod resources, scaling settings, or node selection and placement? Can you share your experience with such tools? Does any of these run internally within own clusters, or do they all offer managed control plane?\n\nThanks",
+    "developer": "njofce",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

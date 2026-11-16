@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwy16i",
+  "sourceItemId": "1xwy16i",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xwy16i/regression_tests_for_langgraph_agents_from_a/",
+  "detail": {
+    "longDescription": "I built Attest, an open-source (Apache-2.0) testing framework for agents, and recently got its capture working with LangGraph. Sharing the setup and the gaps.\n\n**Recording a LangGraph run.** Attest's capture reads OpenTelemetry spans, and LangSmith has an OTel mode. Point it at a tracer provider you own and the spans go only to Attest's local receiver; the LangSmith key is never used:\n\n    export LANGSMITH_TRACING=true LANGSMITH_TRACING_MODE=otel LANGSMITH_API_KEY=unused\n    attest capture --name refund-bug -- python run_graph.py\n\nCapture keeps the `chat` and `execute_tool` spans (runnable/chain spans are ignored), records every model exchange through a local proxy, and redacts secrets. One wart: LangChain's own message and `lc_run--` ids inside the LangSmith prompt strings aren't templated, so they show up when you diff two captures. Replay matching ignores them.\n\n**Testing against the recording.** The test runs your current graph while the proxy answers model calls from the recording, so CI makes no model calls. Then you assert on behavior:\n\n    chain = (\n        expect(trace)\n        .tools_called_in_order([\"lookup_order\", \"issue_refund\"])\n        .tool_cardinality(\"issue_refund\", per=\"order_id\", at_most=1)\n    )\n    attest.evaluate(chain)\n\nIf you only want callbacks without capture, there's also a callback adapter:\n\n    from attest import LangChainAdapter\n    adapter = LangChainAdapter(agent_id=\"support\")\n    with adapter.capture() as handler:\n        graph.invoke(inputs, config={\"callbacks\": [handler]})\n    trace = adapter.trace\n\n**Gaps, plainly:**\n\n* The capture route is tested on Python with `langgraph` 1.2.19 and LangSmith 0.14.17. LangGraph for TypeScript has no instrumentation that emits GenAI spans yet, so LangGraph.js capture doesn't work; the LangChain.js callback adapter does (beta).\n* The Python LangChain adapter is beta.\n* Most of Attest was written by coding agents from plans I wrote and reviewed.\n\nThe full walkthrough (a double-refund incident, captured, replayed and blocked in CI) uses a plain OpenAI-client agent rather than LangGraph, but the workflow is the same.\n\n* Repo: [https://github.com/attest-framework/attest](https://github.com/attest-framework/attest)\n* Web Page: [https://attest-framework.github.io/](https://attest-framework.github.io/)\n* Capture guide, LangGraph section: [https://github.com/attest-framework/attest/blob/main/docs/guides/capture.md](https://github.com/attest-framework/attest/blob/main/docs/guides/capture.md)\n* Demo: [https://github.com/attest-framework/refund-desk](https://github.com/attest-framework/refund-desk)",
+    "externalUrl": "https://v.redd.it/nhpm870kms1i1",
+    "developer": "tom_mathews",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

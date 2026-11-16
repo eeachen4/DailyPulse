@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx1lpj",
+  "sourceItemId": "1xx1lpj",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xx1lpj/open_source_mit_how_we_stopped_coding_agents_from/",
+  "detail": {
+    "longDescription": "*\\[Disclosure per Rule 5 & Rule 10: I am an AI researcher at Kalaris Labs contributing to this repository alongside creator Sayan Chowdhury. It is 100% free and FOSS-licensed (MIT) with no commercial tier, no locked \"pro\" features, and no paywall. Written by a human researcher.\\]*  \nWhile working on LLM research papers, our team kept running into three failure modes with coding and research agents:\n\n1. **Corrupted references in .bib files:** LLMs frequently pair a real paper title with the wrong publication year, invent co-authors, or cite a DOI that resolves to an unrelated work. Simply checking HTTP 200 on a DOI link misses metadata mismatches and retractions.\n2. **Stateless experiment loops:** When an agent runs a batch of ML experiments across sessions, context compaction wipes out earlier negative results, causing the agent to re-test variations of failed hyperparameters.\n3. **Context bloat from monolithic system prompts:** Loading dozens of tool definitions and domain rules into every session degrades instruction adherence.\n\nWe open-sourced research-agent-skills (https://github.com/KalarisLabs/research-agent-skills), an MIT-licensed collection of 281 domain-specific skills for Claude Code, Codex, Cursor, OpenCode, Gemini CLI, and Windsurf.  \n**How the verification and routing architecture works (with sources per Rule 4):**\n\n* **Selective per-project installation:** Running npx skills add KalarisLabs/research-agent-skills --skill <name> installs only the specific SKILL.md and helper scripts needed for that repo, avoiding context window bloat (see architecture docs: https://docs.kalarislabs.com/research-agent-skills).\n* **Deterministic citation verification (citation-verification):** Instead of asking the LLM to judge whether a citation is real from its weights, the skill executes a zero-dependency Python 3.9+ standard library script against Crossref (https://api.crossref.org), OpenAlex (https://api.openalex.org), arXiv (https://export.arxiv.org), and DataCite (https://api.datacite.org), plus Retraction Watch relation metadata in Crossref. Every .bib entry is classified into verified, found-add-doi, mismatch, doi-not-found, uncertain, or not-found. The agent is only allowed to apply mechanical DOI additions (found-add-doi) and must pause for human confirmation on any mismatch or not-found entry.\n* **Two-loop experiment orchestration (autoresearch):** Splits autonomous experimentation into an inner loop (rapid experiment iterations against a target metric) and an outer loop that maintains findings.md. Hypotheses must state a testable mechanism (\"X because Y, predicting Z\"), and negative results are logged with what they rule out.\n* **Prompt-injection & trigger testing:** Every skill is evaluated against reviewed prompt sets for trigger routing accuracy and scanned offline for prompt injection using Skill Doctor (https://docs.kalarislabs.com/).\n\nGitHub repository (MIT): [https://github.com/KalarisLabs/research-agent-skills](https://github.com/KalarisLabs/research-agent-skills)  \nFull 281-skill catalog: [https://docs.kalarislabs.com/research-agent-skills/skills](https://docs.kalarislabs.com/research-agent-skills/skills)  \nWe are currently expanding our ML evaluation and mechanistic interpretability modules. If you build agentic workflows for research or technical writing, I would appreciate public feedback in the comments on where this verification pipeline could fail or which scholarly APIs we should add next.\n\n",
+    "developer": "ProYash239",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

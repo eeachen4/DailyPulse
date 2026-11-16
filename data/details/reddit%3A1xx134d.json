@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx134d",
+  "sourceItemId": "1xx134d",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xx134d/apps_built_on_ai_platforms_base44_manus_call_llms/",
+  "detail": {
+    "longDescription": "While auditing our GitHub AI-work analyzer, we found a hackathon app doing real LLM engineering: vision-LLM OCR of government documents into a JSON schema, structured-output case routing, and a RAG answer builder. Our judge scored it near zero on NLP/LLMs.\n\nAll the calls went through `base44.integrations.Core.InvokeLLM(...)` with no `openai` import and no provider SDK, so to a pattern matcher there was “no LLM”. The same happens with Manus’s `invokeLLM` and with home-made helpers like `callClaude()`.\n\nWhat we changed:\n\n* model calls written inside identifiers are now recognised;\n* the judge is told explicitly that “these are model API calls”.\n\nCurious how others handle it: **if you’ve built LLM tooling that analyses codebases, how do you detect model usage when the provider is abstracted away?** Tracing call sites, or something smarter? I genuinely want a feedback from you guys! :)",
+    "developer": "EmuAfter5933",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

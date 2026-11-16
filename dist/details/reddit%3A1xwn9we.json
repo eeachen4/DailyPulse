@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xwn9we",
+  "sourceItemId": "1xwn9we",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xwn9we/prunefalse_on_every_namespace_with_argo_cd/",
+  "detail": {
+    "longDescription": "Sorry first, english is not my first language and I write this with a translator.\n\nI never worked in a big SRE or platform team, so I want to check if what I did is normal. I run a small k3s cluster at home, plus EKS at work and a small AKS for a client. A read-only audit tool I made for my own clusters (kubegap) flagged that my Argo CD apps with automated prune also track their own Namespace.\n\nSo I tested it with throwaway apps on Argo CD 3.2.0. I removed namespace.yaml from kustomization.yaml and pushed. 2 min 48 s later the Namespace was pruned, and a Secret I had created by hand inside it was gone too.\n\nRemoving an app's directory under an ApplicationSet git generator is a different path. The Application itself gets deleted and the finalizer cascades. Prune=false does nothing there, Delete=false does.\n\nWhat I changed: every Namespace manifest now has [argocd.argoproj.io/sync-options:](http://argocd.argoproj.io/sync-options:) Prune=false,Delete=false (8 of them). The istio app owns 23 CRDs, so I turned automated prune off for that one. And I added an alert for apps that stay OutOfSync for 30 minutes, because a skipped prune just leaves the app OutOfSync and nobody looks.\n\nQuestions for people who run this in production:\n\nDo you keep Namespaces inside the app at all, or use CreateNamespace=true or a separate app just for namespaces?\n\nIs per-resource Prune=false normal, or do teams just turn automated prune off?\n\nI read that a force sync can still delete a namespace even with Prune=false. Do you guard against that somehow?",
+    "developer": "KKHdevs",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

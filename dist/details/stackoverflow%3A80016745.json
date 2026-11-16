@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016745",
+  "sourceItemId": "80016745",
+  "sourceUrl": "https://stackoverflow.com/questions/80016745/order-of-prints-when-deleting-object-references-in-python",
+  "detail": {
+    "longDescription": "I create an object using a class. The class has a __del__ method. I then create an alias to the object variable. I then delete the 2 variable references to the object. After this has happened Python automatically calls __del__ but in the Python shell, prints from __del__ appear before other top-level prints. Is this because __del__ is run as a higher priority thread than top-level prints? class MyClass: def __del__(self): print(\"Object finalized\") obj1 = MyClass() obj2 = obj1 del obj1 print(\"First reference removed\") del obj2 print(\"Second reference removed\") Shell output: First reference removed Object finalized Second reference removed",
+    "developer": "hatenoone",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "151"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx1xdm",
+  "sourceItemId": "1xx1xdm",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xx1xdm/trainingfree_early_exit_for_reasoning_models_a/",
+  "detail": {
+    "longDescription": "Reasoning models often reach the right answer early and then keep double-checking it for thousands of tokens. **I got the model to stop at that point  by changing a single row of weights.** There's no training and no extra code at inference time; the edited model is an ordinary weights file that runs anywhere.\n\nhttps://i.redd.it/5yk991rjlt1i1.png\n\nBackground, \n\n* Reasoning models (DeepSeek, Qwen, and so on) \"think\" in a scratchpad before answering. The scratchpad ends when the model writes a special token, </think>.\n* To pick each next token, the model first computes a summary of everything so far: a long list of numbers called the hidden state. The last layer, the output layer, has one row of weights per word in the vocabulary. Each word's score is its row multiplied by the hidden state, and the highest-scoring words are the likeliest next words.\n* So the score for \"stop thinking now\" (</think>) comes from exactly one row of that layer.\n\nWhat I did\n\n1. Ran the model on 24 maths problems and recorded its hidden state at every token of its thinking.\n2. **Marked the points where the right answer had already appeared and the model was only re-checking (specifically, the ends of paragraphs after that point), and treated everything else as \"still working\".**\n3. Found the direction in the hidden state that best separates those two groups. This is a probe: a simple linear classifier (linear discriminant analysis), computed directly with linear algebra, with no gradient training.\n4. **Added that direction, times a strength of 14, to the </think> row. The \"stop\" score now rises only when the model's state looks like \"done, just re-checking\". While it's still solving, nothing measurable changes.**\n\nA useful side effect: because only one token's score changes, I can compute exactly what the edited model would do from recordings of the original, without rerunning it. That's how I picked the strength and searched for cases where it would stop too early.\n\nhttps://i.redd.it/0r3nr3xrlt1i1.png\n\nOn a problem it never saw: the answer appears at token 567, the original keeps thinking until token 7,415, and the edited model stops by token \\~2,000 with 98% probability.\n\nResults (small samples, one run per setting)\n\nhttps://i.redd.it/psaikkt6lt1i1.png\n\n* Qwen3.5-4B (runs in stock llama.cpp): same accuracy on 8 unseen MATH-500 problems with 54% fewer tokens. On 3 AIME 2025 problems with a 32k-token limit, the original ran out of tokens on all three while re-checking answers it already had; the edited model solved 2.\n* DeepSeek V4.1 Flash (763B parameters, 2-bit, on my laptop with an 8 GB GPU, streaming weights from the SSD): 7/7 maths problems vs 6/7, with 40% fewer tokens.\n* As a coding agent building a small website: 84% less thinking. It still thinks after an error or anything unexpected, and skips thinking after routine steps. Page quality held up; an LLM rating put it highest, and the screenshots are below so you can judge for yourself.\n\nhttps://i.redd.it/3q1n1yp8lt1i1.png\n\nWhat isn't new: using a probe on the hidden state to stop reasoning early is published (e.g. Zhang et al. 2025, arXiv 2504.05419). What's new is putting the probe inside that one row of weights, so nothing extra runs, plus these measurements.\n\nLimitations: small sample sizes; the probe was fitted on maths only (the agent results are transfer); the AIME comparison uses a 32k budget, below the 81,920 Qwen recommends for competition maths.\n\nWrite-up: [https://think-graft.vercel.app](https://think-graft.vercel.app) Code and all logs: [https://github.com/nextgen-user/think-graft](https://github.com/nextgen-user/think-graft) Model (GGUF): [https://huggingface.co/vaibhavrpi/Qwen3.5-4B-think-graft-GGUF](https://huggingface.co/vaibhavrpi/Qwen3.5-4B-think-graft-GGUF)",
+    "developer": "Good-Presentation-23",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

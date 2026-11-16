@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx7qbf",
+  "sourceItemId": "1xx7qbf",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xx7qbf/i_have_created_a_tool_to_observe_what_happens/",
+  "detail": {
+    "longDescription": "What changes between different quantizations of the same model? And what if you could SEE what actually sets them apart?\n\nTo help answer that question, I’ve created a small project called inside-llm—an open-source tool that loads one or two GGUF models using llama.cpp and displays, right in your browser, what the model is doing as it generates text.\n\n**What it shows**\n\n* **Stream:** the text, one column per model, brightness = probability of each token. A magenta mark wherever A and B would pick differently. Two modes: *lockstep* (both models read the same text, so you get a clean per-position comparison) and *free* (each follows its own picks until they split).\n* **Candidates:** the full distribution behind each pick, mirrored bars for A and B, entropy, effective number of options, Jensen-Shannon divergence and KL in both directions.\n* **Gates:** the sampler chain (penalties, top-k, top-p, min-p, temperature, GBNF grammar) traced stage by stage and very visual: how many candidates survive each one, and the distribution after it. Chain order and seed are configurable.\n* **Timeline:** entropy of A and B and their divergence along the whole text, plus the tree of branches.\n* **Branching:** click any candidate and generation continues from there. Every branch stays in the tree, and jumping back to a node is exact (each model keeps KV-state snapshots, so nothing is regenerated).\n* **Logit lens** (`--lens`): what each layer would predict, as a 2D map and as a 3D relief.\n* **Model picker:** choose A and B from a folder or search Hugging Face and download two quants of a repo in one click easily. It only offers B models with the same tokenizer as A and estimates whether the pair fits in VRAM.\n\n**How it's built**\n\n* One C++17 process linking llama.cpp directly (stable branch at the moment). For every step it reads the full logits of A (and of B on the same context), computes the metrics and the sampler chain, and draws the token with its own seeded sampler, so runs are reproducible.\n* Compact binary frames over a WebSocket to a Svelte 5 + Canvas 2D page (three.js only for the 3D relief, lazy-loaded). The web is embedded in the binary as well.\n* The same frame stream, compressed, is a recorded session: you can replay it later in a static page with no engine, no model and no GPU.\n\n**Run it**\n\nSelf-contained packages for Linux (glibc 2.35+) and Windows, with CUDA or Vulkan (Vulkan covers AMD, Intel Arc and NVIDIA). Unpack, run, the browser opens with the model picker. Or `inside-llm -a A.gguf -b B.gguf`. Local only: listens on [127.0.0.1](http://127.0.0.1), no accounts, no telemetry. MIT. One click download, one click execute.\n\n**Limitations (honest list)**\n\n* A and B must share the tokenizer (two quants, base + fine-tune, or sizes of one family that keep it). Example: Qwen3.5-0.8B\\_Q4\\_K\\_M and Qwen3.5-0.8B\\_Q8\\_0\n* Both models must fit into VRAM simultaneously; only one GPU is used at a time. Integrated GPUs (iGPUs) are never used; if no dedicated GPU is available, the process falls back to the CPU (which is slow). (You must calculate the size of both models before loading them to ensure they fit into your VRAM)\n* Text only. No split (multi-part) GGUFs, no embedding models.\n* Windows packages are built and smoke-tested, but I haven't tested them on a real Windows GPU yet; reports welcome.\n\n**Links**\n\n* Code + releases: [https://github.com/manuelgscom/inside-llm](https://github.com/manuelgscom/inside-llm)\n* Project page: [https://manuelgs.com/en/inside-llm/](https://manuelgs.com/en/inside-llm/)\n\nI'd love feedback, especially: which pairs would you compare first (imatrix vs non-imatrix, base vs abliterated/fine-tune, Unsloth UD vs standard quants…)? And is there a metric you'd want per position that isn't there?",
+    "externalUrl": "https://v.redd.it/252aeq6ciu1i1",
+    "developer": "AlternativeEnough352",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

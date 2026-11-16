@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016706",
+  "sourceItemId": "80016706",
+  "sourceUrl": "https://stackoverflow.com/questions/80016706/how-do-i-change-a-list-item-in-an-unordered-list-upon-a-button-in-that-list-item",
+  "detail": {
+    "longDescription": "Say I have React code that looks like this (as an example): export default function Page() { const [items, setItems] = useState<CustomObject[] / null>(null); return ( <ul className=\"unordered-list\"> {items?.map((l) => ( <li className=\"list-item\"> {/* More HTML */} <button className=\"change-li\" onClick={() => change(l)}></button> </li> ))} </ul> ); When the change-li button is pressed, l is rendered differently. (as in, a complete rework of everything in it, with different styling and content) I've tried passing it to a function such as change, but that would only really help with changing something inherent in that item item in the back-end. The issue I'm facing is that React doesn't seem to be very happy with conditional rendering when it comes to mapped items inside of unordered list, as regardless of where I place a conditional such as {isChanged ? () : ()} , I get errors. If I try return ( <ul className=\"unordered-list\"> {isChanged ? (<li><p>I'm something new!</p></li>) : ( {items?.map((l) => ( {/* Original HTML */} ))}) )} </ul> ); That obviously gives several errors, such as Error: ',' expected. and Error: Property 'map' does not exist on type '{ items: CustomObject[] | null; }'. on the line {items?.map((l) => ( , Error: ')' expected. on the line ))} Error: Unexpected token. Did you mean {'}'} or } ? on the line `)} If I try return ( <ul className=\"unordered-list\"> {items?.map((l) => ( {isChanged ? (<li><p>I'm something new!</p></li>): ( <li> {/* Original HTML */} </li> )} ))} </ul> ); Then that gives several different errors, such as l being considered undeclared. How can I get my desired behavior?",
+    "developer": "Joshua White",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-4"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "177"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

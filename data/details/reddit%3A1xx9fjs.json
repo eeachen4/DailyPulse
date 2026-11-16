@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xx9fjs",
+  "sourceItemId": "1xx9fjs",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xx9fjs/ui_native_scheduling_engine_swap_board_and_more/",
+  "detail": {
+    "longDescription": "I’m providing an update! We have around 300 berth users now so the project is moving fast. \n\n**Recent updates for v0.6.0:**\n\n**-** v0.6.0 gives each card a schedule  \n\\- berth train runs a training that nothing automated can interrupt   \n\\- learned engine sizes (berth learns your engines resource claims) \n\n\\## A month on the reference workstation\n\nberthd counts every handoff it makes, and the harbor's board shows every handoff from one RTX 4090 workstation between 2026-10-12 and 2026-11-13, running llama-swap, NInfer, Strata, ComfyUI,  \ncoding agents and games:\n\n| What Berth did | Count |  \n|---|---|  \n| Requests that waited for the card instead of loading on top of the engine holding it | 1,136 |  \n| Engines drained at a reply or job boundary to make room | 901 |  \n| VRAM handed from one engine to the next | 23.9 TiB |  \n| Processes holding VRAM without a lease, reported and left running | 573 |  \n| Swaps between two engines of equal priority that the ranking stopped | 57 |  \n| Releases that stalled and were caught before the card stayed full | 4 |  \n| Requests refused after their wait ran out | 24 |\n\nIn the last 7 days, 23 engines and jobs held the card for 143 lease-hours. Leases that share the card count their  \nown hours each.\n\nProject: [berth](https://github.com/T-Crypt/berth) ",
+    "developer": "Distinct-Pie2389",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

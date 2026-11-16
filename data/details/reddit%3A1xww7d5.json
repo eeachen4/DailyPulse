@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xww7d5",
+  "sourceItemId": "1xww7d5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xww7d5/i_built_a_controller_that_restores_my/",
+  "detail": {
+    "longDescription": "So this started because I realised I had no idea if my CNPG backups would actually restore. The Backup objects said completed, archiving said fine, the bucket kept growing. None of that tells you whether a restore works, how long it takes, or how much data you'd actually get back.\n\nSo I built cnpg-restore-check. You create a RestoreCheck next to your cluster, and on a schedule it:\n\n\\- spins up a temporary 1-instance cluster from your real backup (same recovery path a real restore uses)\n\n\\- times how long it takes to come up (your actual RTO)\n\n\\- runs amcheck plus any SQL assertions you write\n\n\\- checks how old the newest restored data is (your actual RPO)\n\n\\- deletes the cluster, exports Prometheus metrics, and alerts if anything's off\n\n\n\nTwo things I found while testing that honestly surprised me:\n\n1. If a single WAL segment goes missing from the archive, a restore to latest just stops at the gap and comes up Ready. Pods are healthy, amcheck passes, nothing errors. It's just quietly missing the last hour of data. Only the data age check caught it.\n\n2. A backup taken from a standby on a quiet database can't be restored until the primary switches WAL. It says completed the whole time. That's a known plugin-barman-cloud issue, and I got it reproduced in the test suite.\n\n  \nIt's also careful not to make things worse: the temp cluster can never archive WAL, and it refuses to use an object store that your real cluster writes to.\n\nRepo, design doc and a kind quickstart (about 10 min, and you break a backup on purpose at the end): [https://github.com/shanurwan/cnpg-restore-check](https://github.com/shanurwan/cnpg-restore-check)\n\nIt's v0.1.0, so I'd really like to hear from anyone already doing restore tests. What do you check that this doesn't?",
+    "developer": "Lucky_Tomatillo7895",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
