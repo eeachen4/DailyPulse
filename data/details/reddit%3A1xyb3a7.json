@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyb3a7",
+  "sourceItemId": "1xyb3a7",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xyb3a7/inflect_v3_a_owensong_collection/",
+  "detail": {
+    "longDescription": "Inflect v3: compact local text-to-speech. Six English voices, three model sizes, reference-voice tuning, event tags and optional 48 kHz output. Apache 2.0.\n\nInflect is a family of compact English text-to-speech models. Choose a voice, enter your text, and generate a WAV locally. Start with **Mini** for the most features, **Micro** for a smaller neural model, or **Atom** for the smallest learned synthesis core.\n\n* **GitHub** : [https://github.com/owenawsong/Inflect](https://github.com/owenawsong/Inflect)\n* **Space** : [https://huggingface.co/spaces/owensong/Inflect-v3](https://huggingface.co/spaces/owensong/Inflect-v3)\n\n# Choose your model\n\n[](https://github.com/owenawsong/Inflect#choose-your-model)\n\n||[**Mini**](https://huggingface.co/owensong/Inflect-Mini-v3)|[**Micro**](https://huggingface.co/owensong/Inflect-Micro-v3)|[**Atom**](https://huggingface.co/owensong/Inflect-Atom-v3)|\n|:-|:-|:-|:-|\n|Best starting point|**Quality and features**|Compact neural speech|Smallest learned core|\n|Learned synthesis core|**34.31M**|**11.79M**|**157.19K**|\n|English preset voices|6|6|6|\n|Native output|24 kHz|24 kHz|24 kHz|\n|Optional 48 kHz enhancement|Yes|Not included|Not included|\n|Reference-voice tuning|Yes|Not included|Not included|\n|Optional vocal events|8 tags, all 6 voices|Not included|Not included|\n|Download|[Mini package](https://huggingface.co/owensong/Inflect-Mini-v3/tree/main)|[Micro package](https://huggingface.co/owensong/Inflect-Micro-v3/tree/main)|[Atom package](https://huggingface.co/owensong/Inflect-Atom-v3/tree/main)|\n\nThese are **learned synthesis-core counts**, not total installation size or RAM. Pronunciation assets, dependencies, voice conditioning and optional components are additional. Atom uses signal-processing-based waveform generation rather than a separate learned neural vocoder.\n\n# Benchmarks\n\n[](https://github.com/owenawsong/Inflect#benchmarks)\n\nMeasured speech quality, intelligibility and speed answer different questions. The following results describe **published Mini native 24 kHz base speech**, not tuned voices, event performances or enhanced output.\n\n|Measure|Mini result|What was measured|\n|:-|:-|:-|\n|**Average WER**|**0.739%**|1,688 Open TTS evaluation texts per voice, all six voices; self-run|\n|**UTMOSv2**|**3.917**|180 clips, 30 per voice|\n|**UTMOS22Strong**|**4.479**|The same 180-clip panel|\n|**Warm GPU throughput**|**162.1x real time**|RTX 5090, optimized CUDA; small 12-render probe|\n|**Warm CPU throughput**|**1.81x real time**|Ryzen 9 3900X, 2 Torch threads; small 12-render probe|\n\nThe WER result is **not an official leaderboard placement or an independent held-out evaluation**. Quality predictors are not human ratings. CPU and GPU results use different systems and runtime paths; they are not a controlled hardware speedup comparison or a latency guarantee.",
+    "externalUrl": "https://huggingface.co/collections/owensong/inflect-v3",
+    "developer": "pmttyji",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "huggingface.co"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

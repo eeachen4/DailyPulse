@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy75u4",
+  "sourceItemId": "1xy75u4",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xy75u4/removed_by_moderator/",
+  "detail": {
+    "longDescription": "I made **Isopod**, a web dashboard for running Minecraft servers in Docker.  I built it since I was having trouble using crafty and similar hosting tools for mods.\n\n**The short version:**\n\n* Each server is an isolated container built on itzg/minecraft-server\n* Install mods from Modrinth (with dependency resolution) or full modpacks from Modrinth/CurseForge\n* Optional Geyser/Floodgate so Bedrock players can join Java servers\n* Scheduled backups with retention, plus automatic snapshots before any version/mod change\n* Crash watchdog with restart policies\n* Updates itself from the dashboard and rolls back if the new version won't start\n\n**Setup:** `git clone` the repo, then `docker compose -f isopod-compose.yml up -d --build`. The dashboard is on :8000, and the first visit creates the admin account.\n\n**Security note, since someone will ask:** it needs the Docker socket to manage server containers, and it serves plain HTTP. Keep it on your LAN or behind a VPN or reverse proxy with auth. Don't port-forward 8000. PRs and releases go through an automated security audit.\n\n**How it compares:** Pterodactyl is built for hosting providers (panel + wings) and takes a lot to set up for a home server. Isopod is one compose file and is aimed at someone running servers for themselves and their friends.\n\nhttps://i.redd.it/ii2php32q22i1.png\n\nRepo: [https://github.com/Isopod-Project/Isopod](https://github.com/Isopod-Project/Isopod) · Docs: [https://isopod-project.github.io/Isopod-Website/](https://isopod-project.github.io/Isopod-Website/)\n\nFeedback and issues are very welcome.",
+    "developer": "cole-codes",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50517803",
+  "sourceItemId": "50517803",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50517803",
+  "detail": {
+    "longDescription": "Hi HN, I&#x27;m James, one of the co-founders of Coral. Coral is an open-source, self-hosted gateway that sits between your agents and the systems they work on. Agents call tools by writing short TypeScript programs that they can save as custom tools to reuse. You can publish custom tools for groups of agents, so your team’s library of tools adapts to your unique systems, data and use cases. Custom tools help agent performance and give more precise units of permission control. Here’s a short demo: https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=p0PKOlHLyVI We started on this while building an AI SRE. To investigate an incident, the agent had to connect the dots across an ocean of telemetry data and undocumented relationships across internal and external systems. It took broad permissions, a lot of tokens and it would start from scratch the next time. We built Coral so that the agent remembers the route. Once a task succeeds, the agent writes the steps that worked into a program and saves it as a custom tool. Next time, the agent finds that custom tool in the same search as standard provider tools (e.g. Datadog, Slack), and reuses it. It started with SRE, but we (and our early users) now use Coral for agent work across the org. For our tasks across GitHub, Linear and Slack with Opus 5.5, custom tools help agents work 29% faster, at 31% lower cost (tasks here: https:&#x2F;&#x2F;withcoral.com&#x2F;docs&#x2F;examples&#x2F;custom-tools ). Coral builds on code mode, adding custom tools, policy controls and managed identities. Each program runs in a V8 isolate with no network access or credentials. Coral checks every tool call against workspace policy before attaching credentials and forwarding it to the provider. You can configure each provider to use the caller’s own account, so teammates can share tools without sharing API tokens. (e.g. https:&#x2F;&#x2F;withcoral.com&#x2F;blog&#x2F;slackbot-works-better-with-coral ) Coral is written in Rust, and you can run it as a desktop app or as a shared server. The core is Apache 2.0 and has no limits on users, agents or volume. Everything I&#x27;ve described here is in the OSS edition. SAML, SCIM, and org-wide governance features will be available soon under an enterprise licence. We&#x27;d love for you to try it and share your feedback. You can download it here https:&#x2F;&#x2F;withcoral.com&#x2F;download . I&#x27;ll be in the comments here and on Slack: https:&#x2F;&#x2F;withcoral.com&#x2F;slack",
+    "externalUrl": "https://github.com/withcoral/coral",
+    "developer": "jcs",
+    "comments": 24,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "52"
+      },
+      {
+        "label": "评论",
+        "value": "24"
+      }
+    ]
+  }
+}

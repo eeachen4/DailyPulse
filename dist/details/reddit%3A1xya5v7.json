@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xya5v7",
+  "sourceItemId": "1xya5v7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xya5v7/layerhot_decoding_an_approach_to_check_a_guessed/",
+  "detail": {
+    "longDescription": "Language models read all their weights from memory once for every token they generate. I tested whether a second, guessed token could ride along in the same read for almost no extra cost. The full model checks the guess, and a wrong guess is thrown away, so the output never changes.\n\nTested on Qwen3 0.6B, 1.7B and 4B with MLX, on a MacBook Air M4 (16/256).\n\nThe ride-along part works. Running a second token through each layer added only 2 to 11% to the time.\n\nThe guessing part does not. The guess comes from the first few layers, and those layers only get the next token right about a third of the time. Almost all of those right guesses are commas and small words like \"the\" and \"and\". A small trained guess head in the style of EAGLE did no better with the first layer's output than with the plain token, 28.9% against 29.4%.\n\nEach pass gained about 1.2 tokens, and the extra Python and GPU coordination cost more than that. On the 4B model the whole thing ran about 14% slower than plain mlx-lm.\n\nThe best speedup I found on this laptop came from an existing tool, llama.cpp with a DFlash2 draft model. It ran 22% faster than plain llama.cpp, and 31% faster on code.\n\nI stopped at a checkpoint I had set before starting. Even a guess that is right 60% of the time would only reach about 18% faster at the cost I measured.\n\nCode, plan and all results are in the repo.  \n[github.com/azterizm/layer-hot-decoding](http://github.com/azterizm/layer-hot-decoding)",
+    "developer": "azterizm",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

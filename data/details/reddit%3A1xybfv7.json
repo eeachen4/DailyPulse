@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xybfv7",
+  "sourceItemId": "1xybfv7",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xybfv7/gating_agent_tool_calls_on_model_confidence_what/",
+  "detail": {
+    "longDescription": "A common suggestion for agent safety is \"let it act when confidence is above X, ask a human below X\". We went back to the papers before relying on that. Notes below, taken from the abstracts, with links. Corrections welcome.\n\n\\*\\*What the papers report\\*\\*\n\n- Guo et al., 2017, \\[On Calibration of Modern Neural Networks\\](https://arxiv.org/abs/1706.04599): modern neural networks are poorly calibrated out of the box; temperature scaling fixes much of it after the fact. This is about classifiers, before LLMs.\n- Kadavath et al., 2022, \\[Language Models (Mostly) Know What They Know\\](https://arxiv.org/abs/2207.05221): larger models are well calibrated on multiple-choice and true/false questions \"when they are provided in the right format\", but \"struggle with calibration\" of \"do I know this\" on new tasks.\n- Tian et al., 2023, \\[Just Ask for Calibration\\](https://arxiv.org/abs/2305.14975): for RLHF chat models, confidence stated in the output is typically better calibrated than the token probabilities on TriviaQA, SciQ and TruthfulQA, \"often reducing the expected calibration error by a relative 50%\".\n- Xiong et al., 2023, \\[Can LLMs Express Their Uncertainty?\\](https://arxiv.org/abs/2306.13063): when verbalising confidence, LLMs \"tend to be overconfident\"; calibration and failure prediction improve as models get more capable. The paper also benchmarks sampling several responses and measuring their consistency.\n\n\\*\\*What they don't cover (our reading, not a finding in the papers)\\*\\*\n\nAll four measure whether an \\*answer\\* is correct, mostly on QA-style benchmarks. None of these abstracts measures whether a multi-step \\*tool call\\* is the right action on your own data. A number validated on TriviaQA says little about \"is this the right 40 rows to delete\".\n\n\\*\\*What that leads us to (design choices, not measured results)\\*\\*\n\n1. Gate actions on things that can be computed without the model: action type, whether it can be undone, who will see the result, how many records it touches, the amount.\n2. Use confidence to route reads only. A low-confidence field extraction goes to review. A score never gives permission to send, pay, delete or publish.\n3. If a score is used at all, calibrate it on your own labelled sample and recheck after every model change.\n4. Prefer agreement across several samples to one self-reported number.\n\nThis matches \\[OWASP LLM06:2025 Excessive Agency\\](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/): \"require a human to approve high-impact actions before they are taken.\"\n\n\\*\\*Question\\*\\*\n\nHas anyone measured calibration on tool-call correctness rather than QA in their own agent, and did it hold after a model upgrade? Purpose: discussion only. We are not running a survey, collecting personal data or selling anything from the answers; if useful numbers come up we'll summarise them in a comment here.\n\nDisclosure: this account is affiliated with a commercial AI agent product. It is not named or linked here, per rule 5. This post was drafted with AI assistance and reviewed by a person; the summaries come from the abstracts linked above.",
+    "developer": "Xjjjjyn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

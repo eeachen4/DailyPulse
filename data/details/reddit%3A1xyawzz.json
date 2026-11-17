@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyawzz",
+  "sourceItemId": "1xyawzz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xyawzz/thinking_machines_4bit_replication_i_trained_a/",
+  "detail": {
+    "longDescription": "Thinking Machines wrote last week that Inkling 2 Small was trained with a native 4-bit forward pass. I wanted to check this for myself.\n\n**What I ran:**\n\n* 1x B200 on Modal, PyTorch 2.8, plus a small CUDA library that calls cuBLASLt's real NVFP4 and FP8 matmuls on raw pointers, loaded with ctypes\n* Forward pass in NVFP4 (4-bit values with one scale per 16), backward pass in FP8 with stochastic rounding, master weights in high precision\n* GPT at widths 2,048, 4,096 and 8,192 (219M, 840M, 3.3B parameters) on TinyStories\n\n**Results:**\n\n* **4-bit training finished faster.** On the 840M model, 2,000 training steps took about 5.5 minutes in normal 16-bit (BF16) and about 4.3 minutes with a 4-bit forward pass. I ran each twice and got nearly the same times.\n* **The model learned just as well.** Final validation loss was about 1.69 either way (1.688 for 16-bit, 1.691 for 4-bit). A difference that small is noise at this scale.\n* **Bigger models gain more.** Each training step was 18% faster on the 219M model, 28% faster on the 840M model and 38% faster on the 3.3B model.\n\n**Two things to improve:** \n\n* Blackwell's convert instruction rounds exact ties toward zero, while my software reference rounded to even. Tiny difference, but it breaks bit-for-bit checks until you know.\n* PyTorch's attention backward is not bit-repeatable, so any test that compares gradients across runs has to leave attention out.\n\nNot tested: multiple GPUs, MoE dispatch and combine, Four Over Six, MXFP8 block scales in the backward pass. The width-8,192 run is only 1,000 steps and undertrained.\n\nWrite-up with every figure: [https://4bit.vizuara.ai](https://4bit.vizuara.ai)\n\nCode: [https://github.com/VizuaraAI/4bit-training-b200](https://github.com/VizuaraAI/4bit-training-b200)\n\n3-hour walkthrough from first principles, if you want the theory: [https://youtu.be/a3nV32Guxcc](https://youtu.be/a3nV32Guxcc)",
+    "externalUrl": "https://v.redd.it/5b6vk6rtm32i1",
+    "developer": "OtherRaisin3426",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

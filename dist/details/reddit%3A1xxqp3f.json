@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xxqp3f",
+  "sourceItemId": "1xxqp3f",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xxqp3f/when_a_memory_leaderboard_drops_which_capability/",
+  "detail": {
+    "longDescription": "Something I have noticed while reading memory launch posts and public boards. The headline score travels everywhere. The breakdown behind it rarely gets quoted.\n\nThat feels backwards to me. People here debug systems for a living. A single blended number is almost impossible to debug against.\n\nA memory score usually mixes three things. What the memory stored, what it handed back, and what the model did with it. Untangling them from the outside is mostly guesswork.\n\nThe Agent Memory Leaderboard is set up differently: entries only implement Add and Search. Search returns evidence, never a final answer. Answering and grading are fixed by the platform for every entry, so a gap between two entries on the same board mostly points at the memory.\n\nIts Cycle 2 results are expected to land in mid-November, with Textual, Coding and Multimodal published separately.\n\nBefore they land, the Cycle 1 numbers are worth a second look. The board's own analysis of the Cycle 1 Textual Open-source Methods leaderboard says first and third were separated by just 0.22 points. It also says none of the overall top three won any of the seven top-level capabilities. And the seven capability winners came from four different systems.\n\nThose capabilities are Explicit Fact Recall, Compositional Inference, Temporal & Event Reasoning, Memory Governance, Personalization & Care, Context Learning & Execution, and Safety & Privacy.\n\nMemory Governance is the one that jumps out at me. The board describes it as update, conflict, deletion, forgetting. In plain terms, a big part of that is the stale fact failure. Context Learning & Execution sounds like the agent that can recite a rule but cannot follow it.\n\n**Controversial maybe: the overall rank is the number that gets shared, while the capability scores are the numbers worth acting on.**\n\nWhen the Cycle 2 Textual boards land, which capability will you check first, given the memory failure you fight most often?",
+    "developer": "Few-Tie5420",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

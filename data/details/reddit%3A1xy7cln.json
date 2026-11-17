@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy7cln",
+  "sourceItemId": "1xy7cln",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xy7cln/lipi_what_started_as_a_voice_editor_for_kannada/",
+  "detail": {
+    "longDescription": "I originally built Lipi as a lightweight browser voice editor for Kannada (`ಲಿಪಿ`). It just got better with 12 Indic languages running 100% locally in your browser with zero server audio uploads.\n\nTwo things bothered me in the first version:\n1. The browser Web Speech API pipes audio to cloud servers, struggles on Indic scripts, and fails in Firefox, Brave, and mobile browsers.\n2. Eagerly downloading translation weights at startup slowed down users who just wanted direct Indic speech-to-text.\n\nHow it works now:\n- **16 kHz In-Browser Neural STT (`Swanada`)**: Capability-routed Conformer-CTC INT8 in ONNX Runtime Web WASM SIMD (`25.35 MiB` Conformer-Small on mobile, `177.4 MiB` Conformer-Large on desktop, `0.009x` to `0.021x` RTF) with `+EN` code-switching.\n- **Lazy On-Demand Translation (`Paar`)**: When you switch from `Indic STT` to `EN -> <Lang>` or hit `Translate`, a Web Worker loads Udgam Labs' `17.7 MB` quantized (`q8`) Paar ONNX model via Transformers.js (`udgamlabs/Paar-en-*`).\n- **12 Scripts + BiDi**: Hindi, Bengali, Marathi, Telugu, Tamil, Gujarati, Urdu (RTL Nastaliq), Kannada, Malayalam, Punjabi, Odia, and Assamese, plus phonetic Kannada typing (`ಕ`), voice punctuation commands, `localStorage` autosave, and `.txt` export.\n\nLinks:\n- [Live app](https://h3manth.com/ai/lipi/)\n- [Source code (MIT)](https://github.com/hemanth/lipi)\n- [Swanada STT weights](https://huggingface.co/gnumanth/swanada)\n- [Paar NMT models (Udgam Labs)](https://udgamlabs.com/models/paar)\n\nWould love feedback if you test your native language!",
+    "developer": "init0",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

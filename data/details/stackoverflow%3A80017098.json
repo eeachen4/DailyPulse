@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017098",
+  "sourceItemId": "80017098",
+  "sourceUrl": "https://stackoverflow.com/questions/80017098/dynamic-equivalent-to-the-import-statement-in-python-3-15",
+  "detail": {
+    "longDescription": "importlib.import_module() (and the discouraged builltins.__import__() / importlib.__import__ ) allow dynamically importing a module. However, it has one important difference from the import statement: it doesn't respect lazy filters (a feature in Python 3.15+). For example, let's make all imports lazy: import sys make_normal_imports_also_lazy = lambda importing, imported, fromlist: True sys.set_lazy_imports('all') sys.set_lazy_imports_filter(make_normal_imports_also_lazy) Now if I use the import stmt, I get a lazy import: import json print(type(globals()['json'])) # <class 'lazy_import'> But if I use import_module() , I get an eager import: json = importlib.import_module('json') print(type(globals()['json'])) # <class 'module'> Same with __import__ . Is there a dynamic way to import a module in Python 3.15+ while respecting lazy filters?",
+    "developer": "JadenV15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "64"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

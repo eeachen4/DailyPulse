@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy9269",
+  "sourceItemId": "1xy9269",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xy9269/anthropics_new_alwayson_agents_guide_requires/",
+  "detail": {
+    "longDescription": "If you read Anthropic's *Building always-on agents* guide from last week, the architecture makes total sense—and immediately highlights why most people never get past prototypes:\n\nTo run a single agent that wakes up on its own, remembers what it did, and doesn't wreck your repo while you're asleep, you have to wire up five separate pieces of plumbing:\n\n1. **An Event Inbox** (durable queue + deduplication + crash recovery so concurrent events don't race)\n2. **Timers** (cron schedules + self-scheduled follow-ups)\n3. **Structured Memory** (so runs don't suffer from context rot or contradict themselves across sessions)\n4. **Permissions** (blocking high-risk mutations and prompt injections when nobody is watching)\n5. **An Outbox** (quiet status tracking that only pings you when a human decision is actually required)\n\nBy the time you spin up a server, database, scheduler, and Telegram/Slack bridge, you've spent a weekend building infrastructure before your agent has done a single useful task.\n\nI wanted to see if all of that could collapse into **one plain-English prompt inside Claude Code—with zero servers, zero YAML, and zero external daemons.**\n\nSo I built **Quarterdeck**, an open-source Claude Code plugin backed by local SQLite. You type `/goal-new` and describe what you want watched or handled in plain English (e.g., *\"Watch this repo for new issues, refine specs, open PRs, and ask me before pushing\"*), and it provisions the entire loop out of the box:\n\n* **Inbox & Timers (Local SQLite):** Watches shell commands, git/GitHub/GitLab (`gh`/`glab`), or any MCP connector on intervals or cron schedules, with single-worker serialization and automatic retry/crash recovery.\n* **Memory + \"Dreaming\" Curation:** Every wake-up gets a fresh context window loaded with a structured brief (objective, user-pinned rules, open items, recent run summaries)—no 20-tab context rot. User-pinned rules stay locked so background memory curation never drifts away from your constraints.\n* **Deterministic Guardrails (**`off / propose / auto`**):** A pre-tool hook intercepts external writes and taints runs that touch untrusted inputs (like public GitHub issues or emails), routing risky actions into an approval queue instead of letting an unattended run execute them.\n* **Outbox (\"Needs You\" Queue):** Routine runs stay quiet in a sidebar pane. When an agent hits an ambiguity or queues a PR/action for approval, it pauses and pings your phone via Claude Code Remote Control so you can approve or reply in one tap.\n\nFor repo workflows, there's also a bundled setup (`/goal-new`) that wires up four coordinated goals in one shot—**Issue Refiner → Issue Fixer → PR Reviewer → CI Fixer**—using issue labels as a state handshake so they don't race each other.\n\nI'm curious how others here are handling the setup overhead for standing agents: are you rolling custom scripts/LangGraph/n8n pipelines, or keeping everything inside your CLI/IDE harness?\n\n*(Repo link is in the first comment per sub rules — happy to answer questions on the SQLite queue, taint tracking, or memory curation setup!)*",
+    "developer": "InternationalData569",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

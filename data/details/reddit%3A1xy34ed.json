@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy34ed",
+  "sourceItemId": "1xy34ed",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xy34ed/how_did_you_start_how_do_you_end_up_now/",
+  "detail": {
+    "longDescription": "Here is my timeline\n\n# Text Generation\n\n1. `Ollama` but quite have bad experience with it.\n2. `LM studio` which still feel half-bake at that time.\n3. `Msty` which easy to use like plug and play but not much I could do custom (or I just don't know at that time).\n4. `Oobabooga Text Generation-Webui` this is the one that make me stick to AI, easy to use and deep custom; I like its function feature that take prompt as method/processed then input value in other prompt and then it just output an outcome, no chat history.\n\nI run 1 - 4 with my mini pc with i5 6400T, 24GB DDR4 with onboard gpu... Llama 3.1 8B generate so slow at that time like 1 tok/s but I really enjoy using it with that very limited and the roleplay start from here, just my mini pc and `Oobabooga Text Generation-Webui`.\n\nAlso some missing thing I forgot at that time, I even mess around with windows WSL then docker for `Open WebUI` and `SearXNG`.\n\nI finally can help but want it more so arise old gen pc, at that time DDR3 and thing relate to it is very cheap so I brought Xeon E3-1270 V2 with a Chinese mainboard and 32 GB DDR3 while I cancel the sell order of my GTX 1080 Ti.\n\n5. `SillyTavern` and `KoboldCPP` I found `SillyTavern` first but it has quite a trouble with `Oobabooga Text Generation-Webui` so I follow their guideline and try `KoboldCPP` which quite harder than `Oobabooga Text Generation-Webui` for me as `KoboldCPP` at that time still act like a zip that need to extract (in temp folder) every time I use so I copy from its temp folder, it could run but loss UI, only command-line left so I start to write a bat file to run it like this.\n\n    pushd %~dp0\n        uv run kobold\\koboldcpp.py ^\n        --config kobold_default_setting.kcpps ^\n        --model %gguf%%model%.gguf ^\n        --usecublas %cublas% \"0\" \"mmq\" ^\n        --contextsize %length%  ^\n        --gpulayers %layer% ^\n        --quantkv %level%\n    popd\n\n6. `Llamafile` As I don't want to extract `KoboldCPP` on every update, I found `Llamafile`, it quite easy for me to switch as the bat file I create for `KoboldCPP` just need a little change to work with this one, anyway it also lead me to the real on.\n\n7. `Llama.CPP` I found it on the right time as `Llama.CPP` just start to has their own WebUI and its speed is the real thing, at that time still not has `router mode` so my bat file has its `Llama.CPP` version.\n\n# Image Generation\n\nA single Youtube video from `ChameleonAi` name [Stable Diffusion Models Explained Once and for All (1.5, 2, XL, Cascade, 3)](https://www.youtube.com/watch?v=n233GPgOHJg) lead me to this rabbit hole.\n\n1. `stable-diffusion-webui-Forge` aka `Forge`, Thank to `ChameleonAi` that lead me to `CivitAI` which after read a guideline I have 2 choices which this or `ComfyUI`, as my AI user interface root from `Oobabooga Text Generation-Webui` so I choose this instead.\n2. `reForge` as `Forge` no longer update so I move on.\n3. `Classic Forge` same problem as `reForge` no longer update as a new model, Anima unable to run on `reForge` so I'm move on again.\n\n# Audio Generation\n\nI try to do it via `Llama.CPP` but could not make it work so I wait for more update; While waiting, I finally give a chance for `unsloth studio` which quite disappoint for me in term of performance so I dig to the one that called via `unsloth studio`.\n\n1. `Audio.CPP` I try it before but at that time it still CLI only and I'm unsuccessful to make it work, but now it's also come their WebUI so another rabbit hole for me to fall.\n\nThis is my AI journey up until now, how about your ?",
+    "developer": "revennest",
+    "comments": 18,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

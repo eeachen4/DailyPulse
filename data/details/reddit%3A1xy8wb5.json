@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy8wb5",
+  "sourceItemId": "1xy8wb5",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1xy8wb5/nvidias_vera_rubin_makes_its_mlperf_debut_up_to/",
+  "detail": {
+    "longDescription": "NVIDIA released its first MLPerf results for the Vera Rubin platform today (MLPerf Training v6.1 and MLPerf Endpoints v1.0).\n\nThe numbers, from NVIDIA's blog post:\n- Vera Rubin NVL72 swept all seven MLPerf Training v6.1 benchmarks, with up to 2x more performance per GPU than a highly optimized GB300 NVL72 baseline. On DeepSeek-V3 671B it trained in 4.14 minutes on 1,024 GPUs, vs 8.03 minutes for GB300 at the same scale, with about 97% scaling efficiency going from 256 to 1,024 GPUs.\n- On MLPerf Endpoints, NVIDIA claims more than 10x the throughput per watt on agentic inference (Kimi K3) vs GB300 at the same response speed.\n\nThe caveat worth flagging: the 10x Endpoints figure is provisional, pending MLCommons verification, and it comes from one specific configuration pairing - 32 Vera Rubin accelerators at 1,024 concurrent queries vs 48 GB300 accelerators at 48 queries. Time to first token was actually slower on Vera Rubin in that run (4,673.9 ms vs 2,305.1 ms at P90).\n\nThe training sweep is the more solid part of the story, and it's the first independent-style benchmark showing of the Rubin generation.\n\nWhat do you make of it - does the training result alone move the needle on the hardware race, or is agentic inference throughput the number that actually matters now?\n\nSource: https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+    "developer": "winer666",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

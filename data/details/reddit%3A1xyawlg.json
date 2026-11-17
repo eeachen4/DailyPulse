@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyawlg",
+  "sourceItemId": "1xyawlg",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xyawlg/testing_a_langfuse_release_gate_with_one_missing/",
+  "detail": {
+    "longDescription": "I maintain [Langfuse Prompt Release Tools](https://github.com/AtharvaBondre/langfuse-prompt-release-tools), an MIT Python/JavaScript project. In the 0.8 alpha, I added a test for a specific release check: all local evaluations pass, but one required run-level score is absent from Langfuse.\n\nThe demo runs three synthetic cases on disposable servers. First it exports everything. Then the test harness skips one score write while keeping that evaluation in the local result.\n\n| Test | Remote evidence | Release importer |\n|---|---|---|\n| Complete export | Confirmed | Passing receipt |\n| One run score withheld | Pending | Refuses a passing receipt |\n\nThe second result stays pending after `flush()` and bounded polling. The verifier checks the captured experiment and dataset, required cases, and score types and values across the required pages.\n\nThis tests the toolkit's refusal path; it doesn't demonstrate a Langfuse bug. If your release policy requires stored evaluation evidence, this gives you a small failure case to test before trusting a passing local result.\n\nLangfuse already provides experiments, scores and prompt labels. This project adds checks around the evidence used to approve a release.\n\n[Demo source](https://github.com/AtharvaBondre/langfuse-prompt-release-tools/blob/872df4f765ebd59f44b906c35168cc3b31861bdb/examples/hosted_dataset_demo.py#L256-L285) · [Recorded release CI](https://github.com/AtharvaBondre/langfuse-prompt-release-tools/actions/runs/43197955369)\n\nThe recorded runs used Python SDK 5.2.0 with Langfuse 4.59.0 and 4.78.0, with no model calls. The code and this write-up use AI assistance.",
+    "developer": "MongooseWonderful198",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

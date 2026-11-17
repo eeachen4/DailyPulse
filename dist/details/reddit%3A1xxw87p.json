@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xxw87p",
+  "sourceItemId": "1xxw87p",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xxw87p/layerhot_decoding_an_approach_to_check_a_guessed/",
+  "detail": {
+    "longDescription": "Language models read all their weights from memory once for every word they write. I tested whether a second, guessed word could ride along in the same read for almost no extra cost. The full model checks the guess, and a wrong guess is thrown away, so the output never changes.\n\nThe ride-along part works. Running a second word through each layer added only a few percent to the time on a MacBook Air M4 (16/256).\n\nThe guessing part does not. The guess comes from the first few layers, and those layers only get the next word right about a third of the time. Almost all of those right guesses are commas and small words like \"the\" and \"and\". In the end the whole thing ran about 14% slower than normal decoding.\n\nThe best speedup I found on this laptop came from an existing tool, llama.cpp with a small helper model that drafts words ahead. It ran about 20% faster than normal, and about 30% faster on code.\n\nI stopped at a checkpoint I had set before starting. Code, plan and all results are in the repo.\n\n[github.com/azterizm/layer-hot-decoding](http://github.com/azterizm/layer-hot-decoding)",
+    "developer": "azterizm",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

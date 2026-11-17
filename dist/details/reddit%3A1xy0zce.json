@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy0zce",
+  "sourceItemId": "1xy0zce",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xy0zce/i_thought_aggregates_were_safe_enough_to_let_ai/",
+  "detail": {
+    "longDescription": "I've been working on access rules for AI agents querying a Postgres database. Some fields are sensitive, like payment amounts, so if an agent wants to read individual records, someone has to approve it first.\n\nBut I allowed aggregates without approval. The thinking was that an agent asking for \"total refunds this quarter\" should be able to get an answer without seeing anyone's individual payments.\n\nThen I started looking at the SQL the agent was actually generating, and that assumption didn't hold up.\n\nFor example, `MAX(amount)` returns an actual value from the underlying data. Same with `MIN(amount)`. And `SUM(amount) GROUP BY customer_id` gives you a total for each customer. If a customer only has one payment, you've effectively exposed that payment amount.\n\nAll of these went through without approval because the policy saw them as aggregates.\n\nThe funny thing is, the agent wasn't even trying to get around the rules. Those were perfectly reasonable queries for what it was asked to do.\n\nSo the problem was really with my policy. I was checking whether a query used an aggregate function instead of thinking about what the result could reveal. An aggregate over a million rows and one over a single row were treated exactly the same.\n\nI've since changed the policy so `MIN` and `MAX` require the same approval as reading individual records.\n\nBut `GROUP BY` is where I'm still stuck.\n\nI could treat grouping by identifiers as row-level access, but then you have columns that aren't explicitly identifiers yet are practically unique, like emails or precise timestamps.\n\nOr I could enforce a minimum group size, something like k-anonymity. But that comes with its own problems, especially when someone can run multiple overlapping queries and work backwards to individual values. And agents are pretty good at doing exactly that.\n\nI wrote up the full investigation and tradeoffs, which I'll link in a comment.\n\nI'm curious how others are approaching this. If you're letting AI agents query production databases, are you allowing them to generate SQL directly, or do you have something enforcing access rules in between? And how are you handling aggregates over sensitive fields?",
+    "developer": "Then_Respect_1964",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

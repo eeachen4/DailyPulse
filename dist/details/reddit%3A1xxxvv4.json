@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xxxvv4",
+  "sourceItemId": "1xxxvv4",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xxxvv4/karpodecision31b_local_deployment_top_decision/",
+  "detail": {
+    "longDescription": "Karpo-Decision-31B has downloadable weights and open-source inference code, so you can run it locally. It takes text and images and returns probabilities for multiple questions in one forward pass. The team reports twice the speed of Jev at 20% lower cost.  \nIt scored 73.9 on the Nov 12 Decision Index board, the highest Full score and a shared #1 rank with GLiDE 27B. Two results from the team's comparisons stood out to me:  \nWhen2Call: 90.4%, compared with 79.9% for Google's Gemini Decision 1.\n\nMind2Web: 90.0%, compared with 86.2%.\n\nThe When2Call result is the one I'd look at for a tool router. Say someone asks an agent to book a hotel but leaves out the dates. The router might pick the right tool, but it still doesn't have enough information to make a useful call.  \nI'd split that into two questions: \"Do we have enough information to proceed?\" and \"Which action should we take?\" Karpo can score both against the same state. That also means putting ask\\_for\\_clarification in the action list. If you only give it tools to choose from, you've left out the action you need in this case.  \nThere's a useful timing result for that setup: in the team's reported long-page test, median latency was 371 ms for one question and 653 ms for requests containing 16–63 questions. That makes me interested in testing several checks against the same page state, such as whether the required fields are present and which action to take next.  \nThey also report an expected calibration error (ECE) of 0.023 on JevBench. That's relevant if you're using the probabilities to decide which requests can run automatically and which need review. I'd still set those thresholds on labeled examples from my own workflow, particularly requests with missing information.  \nTo try it locally, download the Hugging Face checkpoint, install karpo-decision, and use Decider in Python or start the included /v1/systemone server; the repo has examples and Docker instructions. Budget for about 62.5 GB for the BF16 weights alone, plus runtime memory\n\nlinks:  \n[https://karpo.ai/models/decision](https://karpo.ai/models/decision)   \n[https://huggingface.co/MachinePulseAI/karpo-decision-31B](https://huggingface.co/MachinePulseAI/karpo-decision-31B)",
+    "externalUrl": "https://i.redd.it/473qncm4v02i1.jpeg",
+    "developer": "Negative-Whereas3307",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

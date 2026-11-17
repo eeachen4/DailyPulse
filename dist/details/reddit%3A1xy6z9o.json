@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy6z9o",
+  "sourceItemId": "1xy6z9o",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xy6z9o/ok_i_think_this_is_really_fast_qwen_38_27b_with/",
+  "detail": {
+    "longDescription": "Benchmarks are all nice and easy (got 900 tok/s) until you have to optimize for parallel agent load. I've been a GPU programmer for most of my career, and optimizing throughput is a really interesting challenge.\n\nI've spent a few days on this, and I think it's now tuned nicely for doing actual work. For example, send 4 review agents through your codebase, and they are done in minutes... All on a laptop, which I find really impressive.\n\nThe model is Qwen 3.8 27B with nvfp4 weights and KV cache. This allows 4 slots with a 196k context window. The engine has speculative decoding, some internal caches, and a lot of kernel tweaks. Will continue next weekend. Maybe there is even more to gain...",
+    "externalUrl": "https://v.redd.it/j0rsl7pgl22i1",
+    "developer": "tebjan",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

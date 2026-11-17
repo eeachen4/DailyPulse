@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyb7jw",
+  "sourceItemId": "1xyb7jw",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xyb7jw/clover_2_dense_278b_base_7_lora_experts_routed/",
+  "detail": {
+    "longDescription": "Disclosure: I’m with the team that built this.\n\nWanted to share something a little different from the usual finetune drop. Clover 2 keeps a base model and 7 trained LoRA adapters (roleplay, general assistant, security, math, long-document, efficiency, knowledge) separate at inference time. A trained router picks the right expert(s) per token live, with a null slot that falls back to plain base when nothing specialized applies. So it’s not a merged blend, the model actually makes a decision at every token.\n\nReal benchmark gains over the untouched base: meaningful jumps on GSM8K/MATH-500/GSM-Hard, a solid bump on LongBench-v2, and a measurable drop in generic AI-writing tics on creative writing specifically.\n\nEverything’s public: base model, all 7 adapters in standard PEFT format, the trained router, and the vLLM plugin to run it with the real per-token behavior: https://huggingface.co/kitaniai/clover-2\n\nHeads up if you’re planning to self-host: no GGUF yet, the hybrid attention architecture’s llama.cpp support is still bleeding-edge. vLLM is the supported path right now. If anyone wants to try it, it's free for the next week at https://kitani.ai/, with no card required. We also support ZDR and have a clear privacy policy.",
+    "developer": "bakatristan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

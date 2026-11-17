@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyamk6",
+  "sourceItemId": "1xyamk6",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xyamk6/maxwellmodelmaxwellv1flash_hugging_face/",
+  "detail": {
+    "longDescription": "# Model Introduction\n\n**Maxwell-V1.0-Flash** is a next-generation, high-performance Mixture-of-Experts (MoE) language model developed by the Maxwell Team, with **35B total parameters and 3B active parameters per token** (both excluding embeddings) and support for context lengths up to 256K tokens. It is designed for strong reasoning, agentic, and long-context capabilities at a practical inference cost.\n\n# Key Features\n\n* **Maxwell Block Sparse Attention (MBSA).** Each KV group keeps fixed coverage of 8 prefix and 8 local 128-token blocks and adds up to 16 remote blocks chosen by a learned indexer, bounding main attention at 4,096 tokens per KV group while the full-history KV cache stays available. The MBSA kernel is 6.7x faster than dense GQA at 256K.\n* **Manifold-Constrained Hyper-Connections.** Multiple residual streams with learned, input-dependent aggregation and constrained mixing, widening information flow without extra attention or feed-forward evaluations.\n* **Fine-Grained Mixture of Experts.** A mostly-MoE backbone pairing fine-grained routed experts with always-active shared experts, using a dynamic routing correction bias alongside a lightweight sequence-wise load-balancing loss.\n\n**Pre-training.** Approximately **26T tokens** of multilingual data, with the Muon optimizer on most hidden weight matrices. Training starts dense; block-sparse attention enters at 128K mid-training, once the indexer is warmed up against dense full-history attention, then trains jointly with the backbone.\n\n**Tokenizer and Long Context.** A script-aware multilingual tokenizer stays compact across languages, especially low-resource Southeast Asian ones such as Thai, Lao, Myanmar, Khmer, and Shan. Long-context training then extends the sequence length in stages from 4K to 256K.\n\n**Post-training.** Two-stage all-domain SFT builds general, reasoning, and agentic capabilities, then targets harder reasoning problems and agent trajectories. Independent RL branches cover general tasks, verifiable reasoning (mathematics, science, logic, code), and agentic tasks (search, terminal use, function calling, software engineering). Multi-teacher on-policy distillation then merges them into one model by supervising student-generated responses.\n\n* **GitHub** : [https://github.com/maxwell-model/Maxwell-V1-Flash](https://github.com/maxwell-model/Maxwell-V1-Flash)\n* **Project** : [https://maxwell-llm.ai/](https://maxwell-llm.ai/)",
+    "externalUrl": "https://huggingface.co/maxwell-model/Maxwell-V1-Flash",
+    "developer": "pmttyji",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "huggingface.co"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

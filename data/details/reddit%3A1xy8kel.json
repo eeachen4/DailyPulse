@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xy8kel",
+  "sourceItemId": "1xy8kel",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xy8kel/ran_the_breakeven_math_on_20turn_codingagent/",
+  "detail": {
+    "longDescription": "Been auditing real token logs from multi-turn coding and tool-use agents (Claude Code, Kilo Code, OpenCode, and custom LangGraph/MCP loops), and the biggest surprise is how badly single-turn $/1M tables mislead you once an agent runs 15–25 sequential tool turns.\n\nIn a 20-turn loop with a 12K system + repo/MCP schema prefix and ~1.8K new tool output added per turn, turn 1 reads ~14K input tokens, while turn 20 re-reads ~48K input tokens. Across all 20 turns, a single task consumes **~620,000 cumulative input tokens** vs only ~12,000 output tokens.\n\nHere is where the actual monthly break-even lands across the 4 main ways teams are running these right now:\n\n| Setup | Effective Input Rate | Cost per 20-Turn Task | Break-Even / Sweet Spot | Main Production Gotcha |\n| :--- | :--- | :--- | :--- | :--- |\n| **Uncached Frontier API** (Sonnet / GPT-6.1) | $2.00–$3.00 / 1M | **$1.35 – $2.05** | < 15 tasks/mo | One dev running 40 loops/day burns $55–$80/day |\n| **Claude Max ($100 5x / $200 20x)** | Flat seat | Fixed $100–$200/mo | **Solo interactive CLI** (>60 heavy loops/mo) | Rolling 5-hour quota lockouts; can't use for CI/CD or multi-user SaaS |\n| **BYOK API + 90% Prefix Cache + 80/20 Router** | $0.10–$0.30 cached + $0.15 open-weight | **$0.14 – $0.26** | **15 – 1,200 tasks/mo** & SaaS apps | Stateless OpenRouter auto-failover hops hosts and evicts your KV cache unless `provider.order` is pinned |\n| **Dedicated 1x H100 80GB (vLLM / SGLang)** | ~$1.99–$2.69/hr GPU | ~$0 marginal | **> 45M tokens/day** sustained (>60% duty cycle) | Idle overnight/weekend GPU troughs flip effective $/1M above serverless |\n\nThree practical fixes that cut our multi-turn API burn by ~76% without hurting patch quality:\n\n1. **Pin `provider.order` when routing open-weight models on OpenRouter / HF Inference.** Dynamic lowest-price failover hops between DeepInfra, Fireworks, Together, and Nebius mid-session. Every hop lands on a cold KV cache and wipes out your 75%–90% cached-read discount.\n2. **Keep volatile state out of the system prompt.** Injecting timestamps, git status, or changing directory trees above your static repo context invalidates prefix caching on every single turn. Append dynamic state at the tail of the user message instead.\n3. **Batch parallel read-only tool calls.** Reading 6 files in parallel in 1 turn instead of 6 sequential turns cuts quadratic history re-reads roughly in half.\n\n*(Full disclosure: I maintain an open, zero-signup calculator at https://tokenmargin.dev/guides/claude-max-vs-api-key-cursor-max-mode-cost-break-even-calculator.html?ref=reddit where I keep the live 470-model pricing & break-even sliders updated if you want to plug in your own turn counts and cache hit rates.)*\n\nCurious what everyone else here is seeing in prod—especially anyone running SGLang RadixAttention vs serverless endpoints for multi-turn agents?",
+    "developer": "TokenMarginDev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80016561",
+  "sourceItemId": "80016561",
+  "sourceUrl": "https://stackoverflow.com/questions/80016561/why-does-this-code-for-populating-a-leaflet-map-page-return-referenceerror-til",
+  "detail": {
+    "longDescription": "I found this Leaflet HTML map script below by a browser search. The Leaflet website has a very similar script. In both instances, the zoom up/down button is shown, but no mapping tiles are shown. The main issue is I do not know how to request mapping tiles with Leaflet. I need to use tile request to Leaflet in order to use the osrm API + the openstreetmap API to create a map route between two markers and display the results on a map. How can I get this code to work as I described above? <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <title>OSRM + OpenStreetMap Route (No Google Key)</title> <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" crossorigin=\"\" /> <style> html, body, #map { height: 100%; margin: 0; padding: 0; } .notice { position: absolute; top: 10px; left: 10px; z-index: 1000; background: rgba(255, 255, 255, 0.95); padding: 10px; font-family: Arial, sans-serif; font-size: 12px; border-radius: 4px; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2); max-width: 430px; line-height: 1.35; } .notice a { color: #0b57d0; text-decoration: none; font-weight: 600; } </style> </head> <body> <div class=\"notice\" id=\"status\">Loading route from OSRM...</div> <div id=\"map\"></div> <script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" crossorigin=\"\"></script> <script> // Works in most modern browsers Object.defineProperty(navigator, 'userAgent', { get: function () { return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'; } }); // Marker points (latitude, longitude) const start = { lat: 44.9778, lng: -93.2650 }; const end = { lat: 44.9537, lng: -93.0900 }; const map = L.map(\"map\").setView([start.lat, start.lng], 12); new TileLayer(\"https://tile.openstreetmap.org/{z}/{x}/{y}.png\", { attribution: \"&copy; OpenStreetMap contributors\" }).addTo(map); L.marker([start.lat, start.lng]).addTo(map).bindPopup(\"Start\"); L.marker([end.lat, end.lng]).addTo(map).bindPopup(\"End\"); function formatMeters(meters) { if (meters < 1000) { return `${Math.round(meters)} m`; } return `${(meters / 1000).toFixed(1)} km`; } function formatSeconds(seconds) { const totalMinutes = Math.round(seconds / 60); const hours = Math.floor(totalMinutes / 60); const minutes = totalMinutes % 60; if (hours === 0) { return `${minutes} min`; } return `${hours}h ${minutes}m`; } function buildGoogleMapsDirectionsLink(startPoint, endPoint) { const origin = `${startPoint.lat},${startPoint.lng}`; const destination = `${endPoint.lat},${endPoint.lng}`; return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`; } async function drawRoute() { const status = document.getElementById(\"status\"); const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson`; try { const response = await fetch(osrmUrl); if (!response.ok) { throw new Error(`OSRM HTTP ${response.status}`); } const data = await response.json(); if (!data.routes || data.routes.length === 0) { throw new Error(\"OSRM returned no routes.\"); } const route = data.routes[0]; const latLngs = route.geometry.coordinates.map(c => [c[1], c[0]]); const line = L.polyline(latLngs, { color: \"#1A73E8\", weight: 5, opacity: 0.95 }).addTo(map); map.fitBounds(line.getBounds(), { padding: [20, 20] }); const googleLink = buildGoogleMapsDirectionsLink(start, end); status.innerHTML = `${formatMeters(route.distance)} • ${formatSeconds(route.duration)}<br/>` + `Route drawn with OSRM + OSM (no Google key). ` + `<a href=\"${googleLink}\" target=\"_blank\" rel=\"noopener noreferrer\">Open same markers in Google Maps</a>`; } catch (error) { console.error(error); status.textContent = `Unable to draw route: ${error.message}`; } } drawRoute(); </script> </body> </html>",
+    "developer": "King Coffee",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "143"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

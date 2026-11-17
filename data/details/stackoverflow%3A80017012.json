@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017012",
+  "sourceItemId": "80017012",
+  "sourceUrl": "https://stackoverflow.com/questions/80017012/python-sqlmodel-get-all-items-from-different-tables-in-1-response",
+  "detail": {
+    "longDescription": "I have this API where i want to get all item s that has been added to different table s. @app.get(\"/items/{creator_id}\") def get_items(*, session: Session = Depends(get_session), creator_id: UUID): get_all_items = session.exec( select(Table_1, Table_2, Table_3, Table_4) .where(Table_1.creator_id == creator_id ) .where(Table_2.creator_id == creator_id ) .where(Table_3.creator_id == creator_id ) .where(Table_4.creator_id == creator_id ) ).all() all_items = [] for table_1_item, table_2_item, table_3_item, table_4_item in get_all_items: items= { \"table_1_items\": [table_1_item.model_dump()], \"table_2_items\": [table_2_item.model_dump()], \"table_3_items\": [table_3_item.model_dump()], \"table_4_items\": [table_4_item.model_dump()], } all_items.append(items) return get_all_items My expectation is to get this response: [ { \"table_1_items\": [ { \"table_1_column\": string, \"table_1_column\": string, }, // Second item and so on { \"table_1_column\": string, \"table_1_column\": string, }, ] \"table_2_items\": [ { \"table_2_column\": string, \"table_2_column\": string, }, // Second item and so on { \"table_2_column\": string, \"table_2_column\": string, }, ] ] With the current code I only get 1 item instead of all item s. What do I need to adjust so i can get the desired response?",
+    "developer": "xAvareS",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "96"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
