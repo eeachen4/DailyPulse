@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz4htp",
+  "sourceItemId": "1xz4htp",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1xz4htp/noterpiper_a_pluginbased_notification_engine_that/",
+  "detail": {
+    "longDescription": "I wanted reminders and alerts on my phone without running another always-on service for it. So I built **NoterPiper** — a notification engine where the scheduling runs on **free GitHub Actions** (every \\~2 min) instead of a box you have to keep up.\n\n**How it's wired:**\n\n\\- **Sources** decide *what* to notify you about\n\n\\- The **engine** collects and de-duplicates (so you're never pinged twice for the same thing)\n\n\\- **Channels** decide *how* it reaches you — **ntfy** push, or a **webhook** to Discord/Slack/Home Assistant/any URL\n\nThe engine is decoupled from both ends, so a new reminder type or a new delivery target drops in as a plugin without touching the core. Plugins live in their own repos and auto-register on \\`pip install\\`.\n\n**Ships with two plugins:** a prayer-times reminder and a **Habitica** reminder (evening nudge of your open dailies/to-dos). Two more optional ones included: Ramadan times and date-based reminders (birthdays/bills).\n\n**The self-hosting angle:** it runs entirely in *your* GitHub repo. No central server, no account with me, no telemetry — your config and data stay yours. Setup is \\~10 min. Config is a small phone-friendly page plus env secrets.\n\nMIT, Python 3.12, zero dependencies: https://github.com/Zulqarnain-cc34/NoterPiper",
+    "externalUrl": "https://i.redd.it/dw9lu2lifa2i1.jpeg",
+    "developer": "precision16918",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyh0m9",
+  "sourceItemId": "1xyh0m9",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xyh0m9/how_do_you_make_sure_the_agent_did_its_job_in_the/",
+  "detail": {
+    "longDescription": "we run agents that take real actions: booking appointments, issuing refunds, updating CRM records. We use Langfuse for tracing so we can see every LLM call, tool call and tool response.\n\nWhat we cannot see is whether the action actually landed correctly in the business system.   \nFor example:\n\n* The tool returns 200, the agent tells the customer booked, but the event never shows up in the calendar\n* A refund goes through, but for the full order instead of the one item the customer asked about\n* A webhook returns that the workflow started before the workflow actually runs, and the agent reports success\n\nFrom what I can tell, Langfuse code evaluators run without network access, so they can only judge what’s in the trace. Braintrust scorers look like they might allow outbound calls, but I haven’t seen anyone use them to check against a CRM or Stripe.\n\nso a genuine question for people running agents in production:\n\n1. Is there a tool that does this, i.e. checks the trace against the system of record, not just the trace content?\n2. If you built something yourself, what does it look like? A reconciliation job, a scorer, something else?\n3. Or is this just not a problem worth solving in your setup?\n\nWould love to hear how others handle it.",
+    "developer": "Ok-Machine7983",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

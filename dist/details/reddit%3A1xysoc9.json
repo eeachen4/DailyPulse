@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xysoc9",
+  "sourceItemId": "1xysoc9",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xysoc9/catching_a_dependency_that_phones_home_with_falco/",
+  "detail": {
+    "longDescription": "Hi all, just published this tutorial on scoping Falco rules to the pods of one change, so you catch things like a dependency that phones home before merge. Thought it might be useful if you already run Falco in production.\n\nSome problems only show in what code does at runtime, like a new dependency opening a connection to the internet or a handler that shells out, and neither review nor tests look for them. Scoping the rules to one change's pods means only that change alerts. Tuning notes, like the `outbound` macro and sidecars, are in the write-up. The Falco side works with any pod label or per-PR namespace. Signadot runs just the changed service next to shared ones so you don't deploy the whole stack per PR.\n\nHope it's useful, and happy to answer any questions. Full transparency, I work for Signadot.\n\n[https://www.signadot.com/docs/tutorials/falco-runtime-security](https://www.signadot.com/docs/tutorials/falco-runtime-security)",
+    "developer": "Signadot",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

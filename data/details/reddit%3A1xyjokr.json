@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyjokr",
+  "sourceItemId": "1xyjokr",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xyjokr/for_those_running_llms_in_banks_or_other/",
+  "detail": {
+    "longDescription": "Disclosure up front: I work on a self-hosted LLM gateway for exactly this use case, so I'm biased. Not linking it here, I'm more interested in how others solved this.\n\n\n\nWe work with banks and other regulated companies in Turkey. Every one of them wanted to use LLMs, and every one hit the same wall:\n\n\n\n\\- Each team had its own provider API keys, with no central control\n\n\\- Nobody knew the monthly bill until it arrived\n\n\\- There was no reliable record of who sent what to which model\n\n\\- Security asked \"what stops someone from pasting customer data or a secret into a prompt?\" and nobody had a good answer\n\n\n\nWhat ended up being required before company-wide rollout, in our experience:\n\n\n\n1. A single internal endpoint, so apps never hold provider keys\n\n2. Limits per project, key, user and model, plus hard monthly budgets\n\n3. Secret scanning and personal data masking before the request leaves the network\n\n4. All checks run before the model call, so a blocked request costs nothing\n\n5. A tamper-evident audit log that goes to the existing SIEM\n\n6. Everything running on their own infrastructure, not a SaaS proxy\n\n\n\nCurious how this looks elsewhere:\n\n\n\n\\- Did you build this in-house, use LiteLLM/Portkey/a cloud gateway, or just restrict access?\n\n\\- Was PII masking actually a requirement, or was a data processing agreement with the provider enough?\n\n\\- What did auditors ask for that you didn't expect?\n\n",
+    "developer": "Pleasant-Whole-3220",
+    "comments": 17,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

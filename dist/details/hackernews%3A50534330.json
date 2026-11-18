@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50534330",
+  "sourceItemId": "50534330",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50534330",
+  "detail": {
+    "longDescription": "I wanted to watch my IPTV subscription on the Steam Deck, both handheld and docked to a TV. But any existing option was either a desktop app or a Kodi setup (or worse, an Android emulator setup) that fought with Game Mode, so I wrote a player that treats the Deck as the main target. It is purposefully simple. It plays live TV, movies, and series from your own Xtream Codes account or M3U playlist. It ships no channels or content. It doesn&#x27;t have a ton of options - just the basics that are enough for my daily use, and perhaps yours too. Some tech bits for others doing similar work: - SteamOS has a read-only root filesystem and no libmpv. Instead of redistributing binaries, the installer downloads pinned mpv packages from Valve&#x27;s own SteamOS package mirror, checks them against SHA-256 hashes in a lock file, and bundles the shared libraries into the user&#x27;s home directory. - Text entry in Game Mode: the app opens and closes the Steam on-screen keyboard through steam:&#x2F;&#x2F;open&#x2F;keyboard, and reads properties of the Steam UI window on the X display to know whether the keyboard is showing. I did this to avoid rolling my own and to follow what worked well in Android apps. Bonus side effect is that your customized Steam keyboard appears here, rather than something generic. - Video uses libmpv&#x27;s render API to draw into an OpenGL framebuffer inside egui, so the video and the controller-driven UI share one window under gamescope. - Some providers have catalogs of more than 180,000 movies and series. The app indexes them once and draws only the visible rows, so lists stay responsive on the Deck. Sorting (default and alphabetic) is there because providers often send seemingly random order. - Arabic and Persian titles needed bidi reordering, because egui does not reorder right-to-left text on its own. Not super exhaustively tested but enough to make it workable. - The installer adds the app to Steam as a non-Steam game by writing Steam&#x27;s binary shortcuts.vdf with a stable app ID, so the library artwork shows up. Install in Desktop Mode: `curl -fsSL https:&#x2F;&#x2F;github.com&#x2F;bikemazzell&#x2F;skjalf-tv&#x2F;releases&#x2F;latest&#x2F;download&#x2F;install.sh | sh` (yes, not everyone&#x27;s fave approach, so the repo has releases you can download and deploy yourself and steps to build your own from source) About 20,000 lines of Rust including tests, MIT licensed. If it is of interest or usefulness to you, I appreciate feedback, especially from people who run it on other SteamOS devices. Thanks!",
+    "externalUrl": "https://github.com/bikemazzell/skjalf-tv",
+    "developer": "ctbellmar",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

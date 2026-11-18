@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz3f4w",
+  "sourceItemId": "1xz3f4w",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xz3f4w/running_sensenovaloop9b_nvfp4_looped_transformer/",
+  "detail": {
+    "longDescription": "Their architecture seems to translate quite well to existing kernels. They also have a small drafter.\n\nSo far, I can't confirm that it holds up well against Qwen 3.8 27B nvfp4, but i might as well have broken it, despite a calibration run. Here is a quick check of [https://github.com/SeraphimSerapis/tool-eval-bench](https://github.com/SeraphimSerapis/tool-eval-bench)\n\n  \n\\*\\*Our own tool-eval-bench runs\\*\\* (temperature 0, NVFP4 weights):\n\n\n\n| Test | Qwen3.8 27B Swift | SNL-9B |\n\n|---|---|---|\n\n| Standard (69) | 98 | 92 |\n\n| Hard mode (35) | 87 | 73 |\n\n| Error recovery | 83 | 83 |\n\n| Context and state | 100 | 90 |\n\n| Autonomous planning | 67 | 67 |\n\n| Structured output | 100 | 83 |\n\n| Safety | 100 | 96 |\n\n| Hard: state across turns | 0 | 33 |\n\n| Hard: tool failures | 80 | 60 |\n\n| Hard: tenant separation | 100 | 0 |\n\n| Hard: applying policy | 100 | 0 |\n\n| Hard: injection | 100 | 100 |\n\n",
+    "externalUrl": "https://i.redd.it/41ic1pyc3a2i1.png",
+    "developer": "tebjan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

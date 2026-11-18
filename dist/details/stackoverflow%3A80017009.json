@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017009",
   "sourceItemId": "80017009",
+  "fetchedAt": "2026-11-18T04:46:45.564Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017009/how-do-i-remove-primeng-v21-popover-arrow-in-angular-v21",
   "detail": {
     "longDescription": "The default PrimeNG popover does not contain any options to disable or adjust the arrow that appears on the popover (other than letting you pick which side it shows on). I'm trying to remove the arrow altogether via CSS/SCSS and I can't seem to do that. I'm having the following issues: The popover element won't accept any \"class\" inputs and instead only accepts \"styleClass\" (it just ignores anything you put in for class, even if you use ng-deep). The arrow seems to take priority over everything else, but when I look at it in the CSS, it's just listed as \"element\". It also contains custom lines such as \"--p-popover-arrow-left\" which I can't change in my own code as TypeScript and CSS won't recognize the value. I've tried the following solutions, but none of them worked: ::ng-deep .mode-menu-popover.p-popover:before,.p-popover:after { display: none !important; //This just makes the arrow have no outline, but it's still there } ::ng-deep .mode-menu-popover.arrow{ display: none !important;//\".arrow\" doesn't seem to actually exist in PrimeNG } ::ng-deep. mode-menu-popover.p-popover-arrow { display: none !important; //\"p-popover-arrow\" doesn't exist in PrimeNG } My code (snippet): <p-popover styleClass=\"mode-menu-popover\" #modeMenu id=\"mode-menu\">...<p-popover> I've also tried without ng-deep and just setting the entire style for \".p-popover\" in styles.scss but that also didn't work. It only seems to let me change the box (.p-popover) and nothing else. I'm trying to get rid of the little arrow on the left that points up, which seems to be an entirely different element that I can't modify. I'm thinking I'm going to have to just create a custom element for this and not use PrimeNG for it, but I figured I'd ask here before assuming the worst.",
     "developer": "Deoxys_0",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
-      },
-      {
-        "label": "回答",
         "value": "1"
       },
       {
+        "label": "回答",
+        "value": "2"
+      },
+      {
         "label": "浏览",
-        "value": "68"
+        "value": "110"
       },
       {
         "label": "状态",

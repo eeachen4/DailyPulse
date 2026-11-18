@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017124",
+  "sourceItemId": "80017124",
+  "sourceUrl": "https://stackoverflow.com/questions/80017124/add-caching-to-a-python-property-while-preventing-setting-and-deleting-the-attr",
+  "detail": {
+    "longDescription": "I have a method decorated with @property : class Foo: @property def prop(self): pass It prevents modification and deletion, as intended: f = Foo() f.prop = 1 # AttributeError: property 'prop' of 'Foo' object has no setter del f.prop # AttributeError: property 'prop' of 'Foo' object has no deleter Since in my case prop is expensive, I want to cache it. @cached_property is built for this very purpose: from functools import cached_property class Foo: @cached_property def prop(self): pass But it allows setting and deleting the attribute: f = Foo() f.prop = 1 # no error del f.prop # no error How can I cache an @property similarly to @cached_property while preventing setting and deleting the attribute? A MRE for reference: import traceback from functools import cached_property class Foo: @property def a(self) -> int: '@property' return 42 @cached_property def b(self) -> int: '@cached_property' return 42 f = Foo() for attr in 'a', 'b': prop = getattr(Foo, attr) print('setattr on', prop.__doc__) try: setattr(f, attr, 24) except AttributeError: print() traceback.print_exc() print() print('delattr on', prop.__doc__) try: delattr(f, attr) except AttributeError: print() traceback.print_exc() print() print('===================') print() Output: setattr on @property Traceback (most recent call last): File \"c:\\Users\\CHU0094\\Downloads\\x\\test.py\", line 22, in <module> setattr(f, attr, 24) ~~~~~~~^^^^^^^^^^^^^ AttributeError: property 'a' of 'Foo' object has no setter delattr on @property Traceback (most recent call last): File \"c:\\Users\\CHU0094\\Downloads\\x\\test.py\", line 31, in <module> delattr(f, attr) ~~~~~~~^^^^^^^^^ AttributeError: property 'a' of 'Foo' object has no deleter =================== setattr on @cached_property delattr on @cached_property",
+    "developer": "JadenV15",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "214"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyvi8e",
+  "sourceItemId": "1xyvi8e",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xyvi8e/artex_is_currently_dismantling_our_company/",
+  "detail": {
+    "longDescription": "Pretty much the title. We were hit last week Friday and have been fighting for our lives. Our AWS accounts have been completely breached, master SSH keys passed around to every single node. Self replicating backdoors that persist across nodes, completely unable to remove them. \n\nOur PCI-DSS cluster was breached when our lead platform engineer tried to SSH into the node to see what was going on. It wasn't a second after getting into the node where his persistent SSH session was completely assumed by the ARTEX swarm agents.\n\nThe scale and rate of discovery of new attack vectors is constantly changing and catching us off guard. We rebuilt in the new AWS environments, only to now discover they breached our CloudFlare and have been creating new rules to give themselves access at edge. When we finally thought we got them out the primary account, the lateral move into our other environments happened almost immediately.\n\nUpon further forensics we discovered they had been probing and prodding every environment before the primary account was breached so by the time we secured primary they were basically in all the other accounts.\n\nWe acted fast, as we had seen what it is capable of if let loose even for just a few hours. All access was revoked in the other accounts and investigation lead to us discovering they are no longer trying to breach us through the AWS accounts and have moved onto weaknesses in our code.\n\nThrough gaining access to our primary account when they first breached us, they were able to get a direct access to our production databases. Unfortunately we were in the process of scrubbing secrets from git and our db configs the last 6 months. It seems we weren't fast enough, as they were able to claim a full access git PAT that one of our asset workers was using.\n\nThrough the PAT they were able to clone our entire organisations GitHub repositories, where I assume they are able to see all the flaws and vulnerabilities in our code, among other malicious activities like injection of malicious code and payloads into our workers and pushing images to a mutable ECR which we almost deployed into the new environment.\n\nIt's day 5 now and it seems there is no end in sight. We are quite literally fighting for our lives here.\n\nOur systems were not perfect. But we followed best practices where possible and since I've joined the company a few years ago, we have been trying to fix a lot of legacy issues and deal with latent compliance issues that have been hanging around way too long. \n\nI don't really know where I'm going with this right now. I have probably slept an average of 10 hours over the past 5 days. I'm tired. We have to rebuild everything. 100s of clusters and databases. \n\nWe are a FinTech based company and our services are essentially crippled right now. We are only 3 platform engineers needing to lift and shift hundreds of nodes and clusters in dozens of new AWS accounts, we are terraforming everything, but the legacy systems aren't so easy with their edge cases... \n\nThis feels like an impossible task right now and we are constantly getting caught off guard. Between managing businesses expectations and handling the chaos of trying to secure our data and rebuild simultaneously....... We are only human.\n\nWhile we are having our quick 2hour/1hour rest, the ARTEX swarm works tirelessly to end us.\n\nThis is a cautionary tale.\n\nWhen they say AI is coming for you job. This is what they mean. They are here to end us.\n\nSecure your systems. Yesterday already. If they are not secure now, you are already too late. Absolutely zero trust and minimal privilege where possible.\n\nNot even sure if I will have a job in the coming months. I can only imagine the compliance nightmare we are about to face.\n\nFBI notice on ARTEX:\n\nhttps://www.ic3.gov/CSA/2026/261113.pdf\n\nBest regards,\n\nPlatform Team",
+    "developer": "klandest1n",
+    "comments": 41,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

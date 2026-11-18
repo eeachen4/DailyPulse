@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz5m3j",
+  "sourceItemId": "1xz5m3j",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xz5m3j/i_benchmarked_a_plain_whileloop_vs_langchain_15/",
+  "detail": {
+    "longDescription": "I wrote a LangChain 1.x manual with one rule: every claim has to point at a recorded run. Pinned to langchain 1.5.0, LangGraph 1.2 and Deep Agents 0.7, rechecked Nov 14.\n\n**TL;DR:** the harness barely moved the scores, the model decided almost everything, and crash recovery is where you can get hurt.\n\n**Setup**\n\n- 99 tasks in five families: tool chains, SQL, retrieval, files, multi-turn\n- Checkers read the state the tools left behind, not the model's final reply\n- Models: Claude Haiku 5.5, Sonnet 5.5, Qwen3 4B / 8B / 14B / 30B-A3B, gpt-oss 20B. Qwen3 4B ran on Ollama at temp 0\n- Whole bench: 2,589 API calls for $0.93\n\n**1. The harness didn't change the score**\n\nA plain loop, `create_agent` and a hand-built StateGraph gave identical outcomes on the shared tasks. Haiku 5.5 went 99/99 as a plain loop and 99/99 as a deep agent. `create_agent` added 15.6 ms to a 1.8 s run, and framework time stayed under 1.7% of task time in every cell.\n\n**2. Deep Agents hurt the small model**\n\nQwen3 4B passed 70/99 in a plain loop and 55/99 as a deep agent, while sending 3.6–4.3x the prompt tokens. The default file backend writes to agent state rather than disk, which explains its losses on the file tasks. On Haiku with prompt caching, the cost gap shrank to 1.16x.\n\n**3. Resume re-runs side effects**\n\nI killed runs mid-flight and resumed from the checkpoint. A Postgres charge tool with no idempotency key charged the order twice in 331 of 560 trials. With a key on thread + order id, 0 of 140. A simpler file-write version: 80/150 duplicates without a key, 0/150 with one. If the process dies after a tool's side effect but before its result is checkpointed, resume runs it again. Write your tools for at-least-once.\n\n**4. Retries stack**\n\nWith the model client's default retries left on and `ModelRetryMiddleware` added, a failing call made 9 attempts. Turn client retries off and you get the 3 you configured.\n\n**5. Checking the final reply isn't enough**\n\nQwen3 8B told me it saved 150. The store held 129. An eval that reads only the reply marks that as a pass.\n\n**6. Four documented claims didn't hold at the pinned release**\n\nThe retry count, the server recursion limit, the default jobs per worker, and a Python version rule. The manual flags each one.\n\n**Where it's thin:** only Haiku, Qwen3 4B and Qwen3 8B ran the full suite. The rest ran a 30-task subset, and a few results are marked \"next edition\" because I couldn't confirm them yet.\n\nFull manual (MIT, nine parts, from the first `create_agent` call to a FastAPI + Postgres service with approvals and evals): https://aiengineeringfromscratch.com/manual-langchain-101\n\nFor anyone running LangGraph in production: how are you keying idempotency for tools that touch payments or external APIs? Thread id + business id, or something else?",
+    "developer": "SeveralSeat2176",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

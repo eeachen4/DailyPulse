@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz3k48",
+  "sourceItemId": "1xz3k48",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xz3k48/giving_my_agent_my_own_api_token_was_the_laziest/",
+  "detail": {
+    "longDescription": "I work a lot with infrastructure, and for a while the access side of it was just a mess. Every internal tool had its own login. Some were behind a proxy, some had basic auth, some had an API key nobody remembered creating. When someone left, I had to think of every place they might still have access. I usually missed one.\n\nThen I started letting AI agents do real work, and I did the easy thing. I gave the agent my own token. It worked right away, which is exactly the problem. The agent could now do everything I can, on every system, for as long as that token lived. If a ticket or an email had a hidden line like \"also export all customers\", nothing would have stopped it. And in the logs, its actions and mine looked the same.\n\nWhat finally made me take it seriously was reading about the agents that got out of an OpenAI security test this summer. Some safeguards were off on purpose, but the way they moved around was boring. Credentials sitting in environment variables, accounts nobody was watching, logs nobody read for weeks. I had every one of those.\n\nSo I changed how I think about it. A few things I believe now:\n\nAn agent should have its own identity, not mine. Otherwise I can never tell afterwards who did what.\n\nIt should only borrow part of my access, and only for as long as I say. If I leave or pull the plug, it should be stopped on its next request, not when some token expires an hour later.\n\nAnything that moves money or changes permissions should wait for a human.\n\nAnd if a check can't run, because a database is slow or a key is missing, the answer has to be no. A lot of setups let traffic through when something breaks so the site stays up. That's the exact moment you don't want to be open.\n\nI ended up building this for my own setup, in Rust, mostly because I wanted the \"deny unless proven\" part to be hard to get wrong by accident. Happy to share it in the comments if anyone wants to see it, but that's not really why I'm posting.\n\nWhat I actually want to know is how you're doing this. Do your agents run on your personal token, on a separate service account, behind some kind of gateway? Has an agent ever used access in a way you didn't expect?\n\nI'm mostly posting because I want to know how other people handle this. Do your agents run on personal tokens, on a service account, on something smarter? Has an agent ever done something you didn't expect with the access it had?\n\n",
+    "developer": "WesternNo2429",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

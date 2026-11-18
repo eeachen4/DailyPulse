@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz13u5",
+  "sourceItemId": "1xz13u5",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xz13u5/looking_for_tester_glm_53_flash_at_10_ts_on/",
+  "detail": {
+    "longDescription": "I'm still looking for people who want to try out the engine I'm building (obviously with the help of Claude). I wanted decent speed for RP with a good model like GLM-5.3-Flash. Before that I only used Gemma 31B and Gemma 4 26B-A4B, which are good, but not good enough for me.\n\nI first built it only to get the best performance out of my own hardware: RX 9070 XT (16 GB), Core Ultra 7 265KF, 32 GB DDR5 and two NVMe drives. On that machine it now does (all numbers in this post are for the IQ4\\_XS quant):\n\n\\- Linux: about 11 tok/s, and reads a long prompt at about 280 tok/s (ROCm and Vulkan are about equal now)\n\n\\- Windows: about 10 tok/s, and reads a long prompt at about 250 tok/s (Vulkan; ROCm is a bit slower there)\n\nSince my last post a few people tried it, and it now also runs on Intel and NVIDIA cards. What they measured, and what I expect after the update that goes out now:\n\n\\- Intel Arc Pro B70 (32 GB) with a Ryzen 9 7900X: about 11 tok/s, I expect 12 to 13\n\n\\- RTX 3090 + RTX 3060 in an older PC with two PCIe 3.0 drives: 5.6 tok/s, I expect 6.5 to 7\n\nThe expected numbers are calculated from their logs, not measured. I can't measure them myself, that is what the testers are for.\n\nWhat it does:\n\n\\- Reads only the experts each token actually needs and keeps the hot ones on the GPU and in RAM\n\n\\- Uses several NVMe drives at once: put a copy of the model on each, and every read goes to the drive that will finish it first\n\n\\- Can use two GPUs together, also two different ones\n\n\\- Measures your drives and your GPU at start and sets itself up for them, so slow hardware is not treated like fast hardware\n\n\\- Predicts the next layer's experts and reads them ahead\n\n\\- Can prefer experts that are already in memory when the router's scores are nearly tied (small quality trade-off, can be switched off)\n\n\\- In a chat, only the new message is processed each turn, even after the context is full\n\n\\- Saves the chat state to disk: after a restart a 29000-token chat answered after 9 seconds instead of reading everything again\n\n\\- KoboldCpp-compatible API, so it works with SillyTavern (Chat Completion works too)\n\nTwo NVMe drives are probably important for the best speed, but you can try it with one or even more than two. On my Windows machine the second drive is worth about 25%.\n\nWhere it stands: it runs on Linux and on Windows, with three backends: ROCm (AMD), Vulkan (any card) and CUDA (NVIDIA RTX 30 series and newer). For Windows there is a package with prebuilt engines, nothing to compile and no SDK to install, you only need your GPU driver and Python. Everything is tuned on my one machine. The last round of changes was made for slower hardware (old drives, a second smaller GPU, a slower CPU), but I could only imitate that hardware here, so I don't know yet how much it really helps. That is exactly why I need you. Old and weak machines are as welcome as new ones.\n\nTesting is easy now on Windows: there is one file you start, it runs all tests that fit your machine by itself and writes one report file you send me.\n\nYou need a CPU with AVX2, 32 GB of RAM and about 157 GB on a fast NVMe for the model (the IQ4\\_XS GGUF, bring your own). A GPU with 16 GB holds all of the model's layers, less has not been tried.\n\nI'm having a blast RPing with it, and if you are willing to try it out just dm me or reply to this post and I invite you to my private github repo.",
+    "developer": "Mediocre-Ad-8594",
+    "comments": 22,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

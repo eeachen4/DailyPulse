@@ -5,9 +5,9 @@
   "fetchedAt": "2026-11-16T03:05:53.285Z",
   "sourceUrl": "https://stackoverflow.com/questions/80016606/why-numba-produces-faster-binary-than-ispc-for-this-simple-function",
   "detail": {
-    "longDescription": "I'm testing on Ubuntu 24.04.5, Intel(R) Core(TM) Ultra 5 125H (x64) CPU, Python 3.14.10, numba 0.68.1 and ISPC 1.32.0. This script: import numpy as np, timeit as ti, numba as nb, ctypes lib = ctypes.CDLL(\"./ispc0.so\") lib.ispc0.argtypes = [ np.ctypeslib.ndpointer(dtype=np.uint8, ndim=1, flags=\"C_CONTIGUOUS\"), np.ctypeslib.ndpointer(dtype=np.bool, ndim=1, flags=\"C_CONTIGUOUS\"), ctypes.c_int, ] lib.ispc0.restype = None def ispc0(a, b): lib.ispc0(a, b, a.size) @nb.njit(fastmath=True) def numba0(a, b): rp2 = b[2:-2] am2 = a # formerly a[i-2] am1 = a[1:] # formerly a[i-1] a0 = a[2:] # formerly a[i] ap1 = a[3:] # formerly a[i+1] ap2 = a[4:] # formerly a[i+2] for i in range(a.size-4): rp2[i] = ((am1[i] == a0[i]) & (am2[i] < am1[i]) | (am1[i] < a0[i])) & \\ ((ap1[i] == a0[i]) & (ap2[i] < ap1[i]) | (ap1[i] < a0[i])) return None a = np.random.randint(0, 256, (500, 500)).astype(np.uint8).ravel() b = np.zeros_like(a, dtype=np.bool) c = np.zeros_like(a, dtype=np.bool) ispc0(a, b) numba0(a, c) print(np.allclose(b, c)) print(f'Minimum, median and maximum execution time in us:') for fun in ('numba0(a, b)', 'ispc0(a, b)'): t = 10**6 * np.array(ti.repeat(stmt=fun, setup=fun, globals=globals(), number=1, repeat=999)) print(f'{fun:20} {np.amin(t):8,.3f} {np.median(t):8,.3f} {np.amax(t):8,.3f}') and ISPC function: export void ispc0(uniform uint8 a[], uniform bool b[], uniform int len) { foreach (i = 2 ... len-2) { b[i] = ((a[i-1] == a[i]) & (a[i-2] < a[i-1]) | (a[i-1] < a[i])) & ((a[i+1] == a[i]) & (a[i+2] < a[i+1]) | (a[i+1] < a[i])); } } compiled with: #!/usr/bin/env bash set -euo pipefail BASE=\"$1\" echo \"Compiling ${BASE}.ispc...\" ispc \"${BASE}.ispc\" -o \"${BASE}.o\" -h \"${BASE}.h\" -O3\\ --target=avx2-i8x32 --pic --opt=fast-math --opt=disable-assertions g++ -shared \"${BASE}.o\" -o \"${BASE}.so\" echo \"Built ${BASE}.h, ${BASE}.o and ${BASE}.so\" produces: True Minimum, median and maximum execution time in us: numba0(a, b) 12.708 14.473 40.796 ispc0(a, b) 16.089 18.239 216.175 showing ISPC consistently performing worse than Numba. What is the reason? The files are available at https://github.com/pauljurczak/python-benchmarks/tree/main/so-1",
+    "longDescription": "I'm testing on Ubuntu 24.04.5, Intel(R) Core(TM) Ultra 5 125H (x64) CPU, Python 3.14.10, numba 0.68.1 and ISPC 1.32.0. This script: import numpy as np, timeit as ti, numba as nb, ctypes lib = ctypes.CDLL(\"./ispc0.so\") lib.ispc0.argtypes = [ np.ctypeslib.ndpointer(dtype=np.uint8, ndim=1, flags=\"C_CONTIGUOUS\"), np.ctypeslib.ndpointer(dtype=np.bool, ndim=1, flags=\"C_CONTIGUOUS\"), ctypes.c_int, ] lib.ispc0.restype = None def ispc0(a, b): lib.ispc0(a, b, a.size) @nb.njit(fastmath=True) def numba0(a, b): rp2 = b[2:-2] am2 = a # formerly a[i-2] am1 = a[1:] # formerly a[i-1] a0 = a[2:] # formerly a[i] ap1 = a[3:] # formerly a[i+1] ap2 = a[4:] # formerly a[i+2] for i in range(a.size-4): rp2[i] = ((am1[i] == a0[i]) & (am2[i] < am1[i]) | (am1[i] < a0[i])) & \\ ((ap1[i] == a0[i]) & (ap2[i] < ap1[i]) | (ap1[i] < a0[i])) return None a = np.random.randint(0, 256, (500, 500)).astype(np.uint8).ravel() b = np.zeros_like(a, dtype=np.bool) c = np.zeros_like(a, dtype=np.bool) ispc0(a, b) numba0(a, c) print(np.allclose(b, c)) print(f'Minimum, median and maximum execution time in us:') for fun in ('numba0(a, b)', 'ispc0(a, b)'): t = 10**6 * np.array(ti.repeat(stmt=fun, setup=fun, globals=globals(), number=1, repeat=999)) print(f'{fun:20} {np.amin(t):8,.3f} {np.median(t):8,.3f} {np.amax(t):8,.3f}') and ISPC function: export void ispc0(uniform uint8 a[], uniform bool b[], uniform int len) { foreach (i = 2 ... len-2) { b[i] = ((a[i-1] == a[i]) & (a[i-2] < a[i-1]) | (a[i-1] < a[i])) & ((a[i+1] == a[i]) & (a[i+2] < a[i+1]) | (a[i+1] < a[i])); } } compiled with: #!/usr/bin/env bash set -euo pipefail BASE=\"$1\" echo \"Compiling ${BASE}.ispc...\" ispc \"${BASE}.ispc\" -o \"${BASE}.o\" -h \"${BASE}.h\" -O3\\ --target=avx2-i8x32 --pic --opt=fast-math --opt=disable-assertions g++ -shared \"${BASE}.o\" -o \"${BASE}.so\" echo \"Built ${BASE}.h, ${BASE}.o and ${BASE}.so\" produces: True Minimum, median and maximum execution time in us: numba0(a, b) 12.708 14.473 40.796 ispc0(a, b) 16.089 18.239 216.175 showing ISPC consistently performing worse than Numba. What is the reason? The files are available at https://github.com/pauljurczak/python-benchmarks/tree/main/so-1 I observed an interesting timing profile for numba0 function. It was run on shielded core and CPU frequency fixed to 800 MHz. You can see a consistent slowdown after about 0.2ms.",
     "developer": "Paul Jurczak",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "182"
+        "value": "262"
       },
       {
         "label": "状态",

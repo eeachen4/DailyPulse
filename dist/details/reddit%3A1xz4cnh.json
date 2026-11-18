@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz4cnh",
+  "sourceItemId": "1xz4cnh",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1xz4cnh/headphone_control_free_native_macos_menubar_app/",
+  "detail": {
+    "longDescription": "If you own Sony WH-1000XM headphones and use a Mac, you've probably noticed that Sony only ships the Sound Connect app for phones. On macOS you can play audio, but you can't change noise cancelling, ambient sound level, EQ or auto power-off without reaching for your phone.\n\n**What exists today (as far as I could find, and checked on their own pages):**\n\n- Sony Sound Connect on iOS/Android: full control, phone only.\n- **SonyBridge**: open source (MIT), macOS 12+, also Windows beta/Linux. Free, installed via Homebrew or a direct download (ad-hoc signed, not notarized). Its README says WH-CH720N is the hardware-verified model.\n- **Open Sound Connect**: open source (MIT), $9.99 direct download, macOS 15+, with scenes and a published model list; XM5/XM6 support is marked experimental in its README.\n- Gadgetbridge on Android, which is where a lot of the protocol knowledge comes from.\n\nBoth Mac apps above are worth a look, and if you want open source, pick one of them. I wanted something free, sandboxed, App Store-distributable and tested on the XM5 I actually own, so I wrote my own.\n\n**What I built:** Headphone Control, a small native SwiftUI menu-bar app for macOS 14+. It talks to the headphones directly over Bluetooth RFCOMM (no account, no cloud, no telemetry):\n\n- Noise cancelling / ambient / off, ambient level, focus on voice\n- EQ presets, speak-to-chat, auto power-off\n- Battery level in the menu bar\n- A demo mode so you can look at the UI without Sony hardware\n\n**How it works, briefly**, in case it's useful to anyone poking at the same thing: the headphones expose an RFCOMM service (UUID 956C7B26-…). Messages are framed as `3E | type | seq | length | payload | checksum | 3C`, with byte-escaping for the start/end markers. It's stop-and-wait: every command has to be ACKed before the next one goes out, and the sequence number only flips between 0 and 1. Most of the \"it randomly stops responding\" bugs I hit came from getting that ACK dance wrong.\n\n**Honest status:**\n\n- I've only tested on my own **WH-1000XM5**. One beta tester reported that a **WH-CH720N** works too. Other models (XM4, XM6, WF earbuds) may work and may not; that's exactly why it's in beta.\n- Free to use. There's an optional tip in-app, no paywalled features.\n- Closed source for now.\n\n**Free TestFlight beta:** https://testflight.apple.com/join/e7S1TqA1\nSite: https://kulaklikkontrol.github.io\n\nIf you try it on a model other than the XM5, a one-line \"works / doesn't work + model name\" reply here is the most useful feedback I can get.",
+    "developer": "azardandona26",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

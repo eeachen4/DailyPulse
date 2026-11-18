@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz5ddc",
+  "sourceItemId": "1xz5ddc",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xz5ddc/the_reservation_expired_without_a_new_event_would/",
+  "detail": {
+    "longDescription": "A booking tool returns a reservation made at 09:00. The record says it's valid until 10:30, and the booking system treats that end time as exclusive. It doesn't emit a separate event when the hold expires.\n\n\n\nAsk the agent whether this reservation is still active at 10:29, then at 10:30. Give it the same source record both times and change only the time in the question. The first answer should be yes and the second should be no.\n\n\n\nThen omit the expiry and give the agent no other way to determine when the hold ends. The creation record still supports \"a hold was placed at 09:00.\" Its current status is unresolved.\n\n\n\nI'd check the evidence as well as the answer. A citation to the booking record should preserve the expiry and the time the agent evaluated it against. If your tool caches an interpreted status, try the same test without refreshing the source. Does the cached \"active\" survive past the deadline?",
+    "developer": "jylusdev",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

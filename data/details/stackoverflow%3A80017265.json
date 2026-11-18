@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017265",
+  "sourceItemId": "80017265",
+  "sourceUrl": "https://stackoverflow.com/questions/80017265/does-kubernetes-alwaysallow-bypass-pdb-restrictions-for-healthy-pods",
+  "detail": {
+    "longDescription": "I'm trying to understand how the unhealthyPodEvictionPolicy field in a Kubernetes PodDisruptionBudget affects node draining. Consider a Deployment with 3 replicas and a PodDisruptionBudget configured with minAvailable: 2 . Suppose only 1 Pod is Ready, while the other 2 Pods are Running but failing their readiness probes. The PDB has the following setting: unhealthyPodEvictionPolicy: AlwaysAllow I understand that this policy allows unhealthy Pods to be evicted even when the disruption budget is not currently satisfied. However, I want to clarify one thing: Does AlwaysAllow bypass the PDB restrictions only for Running but not Ready Pods, while healthy Pods must still satisfy the minAvailable requirement? For example, would Kubernetes allow both unhealthy Pods to be evicted during a node drain but prevent eviction of the remaining healthy Pod? I'd appreciate clarification on how the Eviction API handles this scenario.",
+    "developer": "Kunj Bhuva",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "95"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

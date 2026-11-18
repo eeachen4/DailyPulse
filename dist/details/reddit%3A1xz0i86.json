@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz0i86",
+  "sourceItemId": "1xz0i86",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xz0i86/been_building_a_localfirst_central_nervous_system/",
+  "detail": {
+    "longDescription": "Hi everyone, been building a local-first central nervous system tool for a while now and finally putting it out here. Would really appreciate it if you could stress-test it.\n\nObvious question: why use this over Microsoft Copilot, Claude Code, Cursor, or any other AI tool out there?\n\nRight now, foundation models are the Brain, and your tools are isolated Organs. Think about the body: if the nerve connection to the skin is severed, the brain cannot sense heat and cannot tell the heart how to regulate blood. Copilot and current AI assistants live in isolated silos. They predict tokens blindly with zero holistic view of your environment, forget everything across sessions, and have no real safety net when running actions across multiple tools. That is why they hallucinate and break things.\n\nInstead of another wrapper, I built a local-first Central Nervous System connecting your AI to your actual environment:\n\n1. Holistic Environment & Local Knowledge Graph: Unlike cloud wrappers that reset every session, it keeps a time-aware knowledge graph straight on your own hard drive, learning from real interactions over time so hallucinations and errors drop by default.\n\n2. Isolated Tool Partitions: When the AI installs or runs utilities (LibreOffice, DuckDB, CLI binaries), they live inside an isolated local partition so your host OS stays completely untouched.\n\n3. AEP Protocol & Rollbacks: Before touching anything, it checks cross-tool dependencies. If an action breaks, the Autonomous Execution Protocol (AEP) runs transactional rollbacks to revert state cleanly.\n\n4. Bring Your Own Brain: Completely model-agnostic. Plug in your own Claude or Gemini API keys, run local weights, or use managed models, with local PII and secret masking running first.\n\nHere is the honest catch: pretty sure when you run it right now, it is going to be buggy and crash in places.\n\nThat is actually why I am posting this. Instead of guessing in a vacuum, I want early testers to run it, break it, make memes out of whatever fails, and tell me straight up where the architecture falls short so every fix from here matches how builders want this tool to work.\n\nCurrently packaged as a Windows installer. Drop a comment or DM if you want to test it out and I will send the link over.",
+    "developer": "bankhosa_01",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

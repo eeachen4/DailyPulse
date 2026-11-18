@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50535716",
+  "sourceItemId": "50535716",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50535716",
+  "detail": {
+    "longDescription": "I work on Chiron. We provide a “lossless consolidation” solution for log savings on high-fidelity stores like Splunk, where you don’t lose any data, your query results stay intact, and you still meet your compliance needs. On a Palo Alto firewall log sample we published, the lossless merge came to about 40%. Method and numbers: https:&#x2F;&#x2F;medium.com&#x2F;@chironvision_inc&#x2F;keeping-palo-alto-logs-... We built this estimator tool so that people can get a savings number on their own logs before they reach out to us. It is a binary tool with an MCP server plus a skill. Point your Claude, Cursor or similar at a local folder where your log sample is located. The tool produces a savings estimate report. It makes sure that no data leaves your network, and no data goes to your model either. The model only gets a statistical summary and metadata. Install (or grab the tarball from the same path; checksums.txt is there, and releases are Sigstore signed): curl -fsSL https:&#x2F;&#x2F;www.chironvision.com&#x2F;dl&#x2F;ea324478d02311d6b42f939c08b0... | bash -s -- --target claude The tool comes with a zookeeper sample bundled so you can quickly test and validate the setup. Currently supported log formats: Splunk exports, OTLP JSON, k8s container logs, plain text. The detailed README on how to use the tool is included in the download. How the tool works: it reads the logs from the provided folder or files and runs the analyzer to compute the lossless savings. The tool interacts via the MCP server with your Claude console or similar. You can run it from your Claude or Cursor console. The engine is a binary, not open source; the license is at the download path. Run the sample, then a few minutes of your own logs",
+    "developer": "rinkash",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

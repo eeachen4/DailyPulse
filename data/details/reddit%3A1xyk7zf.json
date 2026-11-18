@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyk7zf",
+  "sourceItemId": "1xyk7zf",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xyk7zf/i_ran_an_automated_attackpattern_miner_on_two/",
+  "detail": {
+    "longDescription": "*Disclosure: I’m the author of the write-up linked at the bottom, and this is my own research project.*\n\nFor the past two weeks I’ve been testing whether a static analysis pipeline can learn attack patterns by itself, without a human writing rules for each framework. The short version of how it works:\n\n1. Build a graph of the codebase: classes, method calls, data flow.\n2. Propose likely sources, sinks, guards and validators from that graph.\n3. Have a model filter out candidates that aren’t security-relevant, then check that real data flow exists.\n4. Turn the survivors into queries, run them against the index, and score each from 0 to 1.\n5. Confirm what’s left by running it for real.\n\nAcross the run it proposed over 700 candidate paths. Three survived, and all three were confirmed dynamically. Most of the work is in saying no.\n\nI also pointed it at two agent harness frameworks. The issues are with the vendors and still in triage, so I’m not naming the projects or giving specifics. The patterns are general, though, and I think they apply to most agent setups:\n\n**1. Model output is untrusted input.** If your harness executes what the model returns outside a sandbox, then anything that can influence the prompt can influence what runs on your machine. Treat it the way you’d treat a form field from the internet.\n\n**2. Fetch tools can see your internal network.** A web-fetch tool that can request any URL can also request services that were only meant to be reachable from inside. Restrict it from internal endpoints by default.\n\n**3. Permissions should be narrow and per-app.** No write access unless the task needs it, and no default that lets a tool walk the filesystem.\n\nSo, in case you are working on building agents or harnesses around them, it is going to be a good idea to run with a zero trust framework both from user query point of view as well as LLM response point of view to avoid any data losses or breaches.\n\nQuestions for people running agents in production: do you sandbox tool execution by default, and how do you scope what a fetch tool can reach?",
+    "developer": "_h4xr",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

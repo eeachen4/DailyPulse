@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz1seu",
+  "sourceItemId": "1xz1seu",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xz1seu/opencomputer_an_open_source_self_hostable/",
+  "detail": {
+    "longDescription": "We've been building OpenComputer since March & we just open sourced the entire thing - it's a cloud coding agent you can run entirely in your own AWS/GCP/Azure account.\n\nTL;DR on how it works:\n\n\\- Mention @ computer in any Slack channel, each thread becomes its own isolated session.\n\n\\- There's one \"always on\" VM per team, with each session in its own git worktree. Repos and packages stay cached on a persistent local disk, so there's no cold start per task.\n\n\\- Session files are backed up to a private repo after every turn, so a session can be restored on a different VM.\n\n\\- The agent harness runs on the same machine as the sandbox, which removes the network round trips. On our benchmark, first push took 24s vs 53–72s for the other setups we tested, and four PRs with green CI took 56s vs 85–185s. (so effectively, our tool was 3.3x faster than devin, bechmarks are on the site if you're keen.)\n\n\\- Self-host on AWS, GCP, Azure or OCI (Kubernetes coming soon). At the small end it runs on a single VM.",
+    "developer": "utpalnadiger",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

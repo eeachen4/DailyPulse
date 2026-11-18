@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017146",
+  "sourceItemId": "80017146",
+  "sourceUrl": "https://stackoverflow.com/questions/80017146/why-does-react-invoke-a-component-function-for-an-identical-state-update-in-one",
+  "detail": {
+    "longDescription": "I am trying to understand how React handles state updates when the new state is identical to the previous state. Consider the following React component: import { useState, useEffect } from 'react'; export default function App() { const [resource, setResource] = useState(\"user\"); console.log(\"render\"); useEffect(() => { console.log(\"resource changed\"); }); return ( <> <button onClick={() => setResource(\"user\")}>User</button> <button onClick={() => setResource(\"posts\")}>Posts</button> <button onClick={() => setResource(\"admin\")}>Admin</button> <h2>{resource}</h2> </> ); } When I run the application, I observe the following console outputs: Initial render: render resource changed Click the User button (initial state is already \"user\" ): No output is printed. Click the Posts button (state changes from \"user\" to \"posts\" ): render resource changed Click the Posts button again (state is already \"posts\" ): render Interestingly, clicking the User button when the state is already \"user\" does not print anything, whereas clicking the Posts button again, when the state is already \"posts\" , prints \"render\" but not \"resource changed\" . According to React documentation, React uses Object.is() to compare the previous state with the new state. If both values are identical, React can skip re-rendering the component. However, in my observation, React sometimes invokes the component function even when the state has not changed. Why does React invoke the component function when Posts is clicked for the second time but not when User is clicked? I would appreciate an explanation of the underlying React rendering mechanism rather than just the general rule that React skips updates when the state remains unchanged.",
+    "developer": "Arnav Sharma",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "3"
+      },
+      {
+        "label": "浏览",
+        "value": "129"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

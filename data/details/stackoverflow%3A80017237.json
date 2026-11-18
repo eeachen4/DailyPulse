@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017237",
+  "sourceItemId": "80017237",
+  "sourceUrl": "https://stackoverflow.com/questions/80017237/problems-defining-derivative-of-a-function",
+  "detail": {
+    "longDescription": "I have to get acquainted with my python, integrating the new syntax. I have used the book Python 3 by Johannes Ernesti and Peter Kaiser. (corrected in 2018 from Rheinwerk Computing). This content is a bit outdated and several modules like scipy.misc are no longer supported and will disappear soonish as far as I have understood. So in this simple program it is just the task to plot certain functions, among which is also(!) the derivative which creates huge problems. It is the line with plotting the function Y1. Regarding the definition I tried already a myriad of things, such as import scipy.misc , defining sp.misc.derivative import scipy.differentiate , defining sp.differentiate.derivative from scipy.differentiate import derivative , defining derivative or sp.differentiate.derivative before ... The compiler gave me a bunch of errors which are not in my code but in the imported libraries. And ONLY if I try to plot it: it will be however a matter of properly defining the 1st derivative. Can anyone help me in this? import numpy as np import scipy as sp import matplotlib as mpl import matplotlib.pyplot as plt import scipy.integrate from scipy.differentiate import derivative def f(x): return x**3 - 10*np.sin(x)-4 def df(x): return derivative(f,x) @np.vectorize def F(x): return sp.integrate.quad(f,0,x) X=np.linspace(-3,3,200) Y=f(X) Y1=df(X) Y2=F(X)[0] plt.plot(X,Y,linewidth=2,label=\"f\") plt.plot(X,Y1,linewidth=2,label=\"f'\") plt.plot(X,Y2,linewidth=2,linestyle=\"dotted\",label=\"F\") plt.legend() plt.show() here is the error message to this specific trial: Traceback (most recent call last): File \"/Users/andreaso/Work/Python/mathtest.py\", line 19, in <module> plt.plot(X,Y1,linewidth=2,label=\"f'\") ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/pyplot.py\", line 3829, in plot return gca().plot( ~~~~~~~~~~^ *args, ^^^^^^ ...<3 lines>... **kwargs, ^^^^^^^^^ ) ^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/axes/_axes.py\", line 1777, in plot lines = [*self._get_lines(self, *args, data=data, **kwargs)] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/axes/_base.py\", line 297, in __call__ yield from self._plot_args( ~~~~~~~~~~~~~~~^ axes, this, kwargs, ambiguous_fmt_datakey=ambiguous_fmt_datakey, ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ return_kwargs=return_kwargs ^^^^^^^^^^^^^^^^^^^^^^^^^^^ ) ^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/axes/_base.py\", line 491, in _plot_args axes.yaxis.update_units(y) ~~~~~~~~~~~~~~~~~~~~~~~^^^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/axis.py\", line 1765, in update_units default = self._converter.default_units(data, self) File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/category.py\", line 106, in default_units axis.set_units(UnitData(data)) ~~~~~~~~^^^^^^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/category.py\", line 182, in __init__ self.update(data) ~~~~~~~~~~~^^^^^^ File \"/Users/andreaso/opt/anaconda3/envs/quantlib-test/lib/python3.13/site-packages/matplotlib/category.py\", line 215, in update for val in OrderedDict.fromkeys(data): ~~~~~~~~~~~~~~~~~~~~^^^^^^ TypeError: unhashable type: '_RichResult' Error messages are longer or shorter with different trials.",
+    "developer": "user32986171",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "141"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

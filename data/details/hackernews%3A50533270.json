@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50533270",
+  "sourceItemId": "50533270",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50533270",
+  "detail": {
+    "longDescription": "Hi HN, Sanchit here from RunAnywhere (YC W26). We just open-sourced TrnRT: Trainium RunTime, our inference engine for AWS Trainium. We started 3 weeks back, and currently we’re able to serve and run GLM 5.3 flash (FP8) on AWS trn2.48xlarge, and will bring more models support soon. It’s open to contributions :) What it does today: - Serves 2 instances of GLM-5.3 flash on a single box, 8 trn2 with a cache aware router. - Can process 3.57M TPM (tokens per minute) on SemiAnalysis&#x27;s AgentX benchmarks. - Runs decode as one NKI kernel per layer half, or for the 11 sparse-attention layers fuses both blocks into a single kernel, for faster performance. We started working on Trn2 because we wanted to explore it and see if we can come close to beating it’s performance in terms of cost efficiency compared to H100&#x2F;H200. A big MoE with 1M context window such as GLM-5.3 flash requires a lot of memory, and memory&#x2F;tb on a trn2.48xlarge costs less than half compared to 8x h200 on AWS, and hence we wanted to experiment with it and now we’re sharing some early results. But AWS&#x27;s own stack didn&#x27;t support the model: vLLM Neuron&#x27;s latest release did not register any GLM model, and NxDI, AWS&#x27;s own distributed inference framework, is no longer under active development. We also saw the drop of SGLang Neuron implementation yesterday, but there is no good support for Trn2, which is the only chip available for public use right now. We ran semiAnalysis&#x27;s AgentX benchmarks, which replays real coding agent sessions: - 1 box served 28.9 RPM(requests per minute) with 32 agents at batch 12 (also known as concurrency) -The P50 TTFT with a cached prompt at 16 agents is ~1.24 seconds with a decode of 35.9 tps. Initially, the recurrence in one kda (linear attention) layer was ~2% of the layer&#x27;s attention time at batch 1, and the rest was projections, transposes and XLA glue between small kernels. So we wrote the megakernel so that it covers the whole layer in 2 kernel dispatch, which made decode 25% faster at batch 8. The sparse attention kernel keep a layer’s working weights in SBUF, distributing weighted streaming across the cores and handling the interchip communication within There’s an approximation in the sparse-attention prefill, affecting about 1.2% of block selections. You can refer to the write-up for the profiling results: https:&#x2F;&#x2F;runanywhere.ai&#x2F;blog&#x2F;glm-5-3-flash-trainium2-nki-mega... Please give it a try yourself on a trn2.48xlarge and reproduce the AgentX results by following the steps in docs&#x2F;RESULTS.md. Happy to collaborate and hear any feedback. Deploying high performant dedicated inference at lab like performance and half the price for open models such as the GLM-5.3 family, Kimi K3, Deepseek flash etc. is how we make money. You can talk to us regarding the same at founders@runanywhere.ai. We hope you find this useful. If you are working with Trainium or have experience with NKI kernels, we&#x27;d love to get your honest feedback. Feel free to share the models you want support for next, and we welcome any contributions to the repository.",
+    "externalUrl": "https://github.com/RunanywhereAI/trnrt",
+    "developer": "sanchitmonga22",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "47"
+      },
+      {
+        "label": "评论",
+        "value": "7"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xykd7y",
+  "sourceItemId": "1xykd7y",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xykd7y/same_4_vcpu_16_gib_node_how_much_memory_is_left/",
+  "detail": {
+    "longDescription": "I compared EKS, GKE and AKS on the same node size: 4 vCPU, 16 GiB.\n\nThe scheduler uses allocatable memory, which is what remains after reservations:\n\n`allocatable = capacity − kube-reserved − system-reserved − eviction threshold`\n\nKubernetes defines the settings, but the providers choose the values. Applying their published formulas at each provider's default max pods gives:\n\n|Provider|Max pods|Memory reserved, incl. eviction|Left for pods|\n|:-|:-|:-|:-|\n|EKS, Amazon Linux AMI (m5.xlarge)|58|993Mi|15.03Gi|\n|GKE, pool created on 1.37+|110|2.2Gi|13.8Gi|\n|GKE, pool created on 1.36 or earlier|110|2.7Gi|13.3Gi|\n|AKS, Azure CNI Overlay|250|4.1Gi|11.9Gi|\n\nCPU reservations are much closer: 80m on GKE and EKS, 140m on AKS.\n\nThe memory formulas explain the gap:\n\n* **EKS:** 11Mi per pod + 255Mi, plus 100Mi for eviction. The pod count is the instance type's supported maximum: 58 for an m5.xlarge. Changing maxPods in your kubelet config doesn't change that reservation.\n* **GKE:** the tiered formula reserves 25% of the first 4 GiB, 20% of the next 4, 10% of the next 8, 6% up to 128 GiB, then 2% above that. On Container-Optimized OS, pools created on 1.37+ use the lower of that and 15Mi × max pods + 500Mi. A pool keeps the formula of the version it was created on, so identical machine types can have different allocatable memory.\n* **AKS:** 20 MB × max pods + 50 MB, capped at 25% of node memory. At the default 250 pods, this node hits the cap. Set max pods to 110 and it leaves 13.71Gi instead.\n\nSo on AKS and newer GKE pools, raising max pods can reduce allocatable memory even if you never run that many pods.\n\nOne caveat: these numbers start from the advertised machine size, and actual capacity can be lower. AWS gives the example of an 8 GB instance reporting 7,748 MiB. Custom kubelet settings, Windows nodes and other node images also change the result. Check `kubectl describe node` → Allocatable on your actual nodes.\n\nIf you want to try another node size or pod count, I put these formulas in a free calculator (I made it). It runs in your browser and links to each provider's docs: [https://opsmath.com/kubernetes-allocatable-calculator/](https://opsmath.com/kubernetes-allocatable-calculator/)\n\nIf the numbers don't match your nodes, I'd like to hear the provider, instance type and node image.",
+    "developer": "lookawayyouarefilthy",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xyu198",
+  "sourceItemId": "1xyu198",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xyu198/inkling_2_small_achieves_frontierlevel_results_in/",
+  "detail": {
+    "longDescription": "You don’t need that many edits in weight space to fix a model.  \n  \nIn “Sparks of Weight-Space Programming,” GPT-6 Astra repaired a broken car policy by changing 6,073 weights, and cut Qwen3.5-0.8B’s math looping by changing 130k.  \n  \nInkling 2 Small did the same with just 10 and 8k edits: \\~600× and \\~16× fewer, with no loss in performance on either task.  \n  \n**Broken Car policy:** Inkling found that almost all of Astra’s 6,073 changes just zero out old weights to free up neurons, and only about 55 do the actual work. It then wrote a 10-weight fix from scratch that teaches the car a move PPO never discovered: back up until it stalls against the wall, then launch, triggered by a velocity-detecting neuron the network already had.  \n  \n**Qwen3.5-0.8B & MATH-500:** Astra’s edit removes a “looping” direction from 64 neurons in each of two MLP layers, and Inkling pruned it by keeping only the 4,096 largest-magnitude changes in each layer. Those 8k entries match the full edit’s accuracy (58.2% vs 58.6% on our screen), and layer 15 alone recovers most of the gain.  \n  \nRun and visualize the experiments in a marimo notebook: [https://molab.marimo.io/github/alphaXiv/weight-edit-minimization/blob/main/weight-edit-minimization.py](https://molab.marimo.io/github/alphaXiv/weight-edit-minimization/blob/main/weight-edit-minimization.py)\n\nWe used OpenResearch for this project: [https://github.com/alphaXiv/OpenResearch](https://github.com/alphaXiv/OpenResearch)",
+    "developer": "mools04",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

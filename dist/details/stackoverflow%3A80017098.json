@@ -2,15 +2,16 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017098",
   "sourceItemId": "80017098",
+  "fetchedAt": "2026-11-18T04:46:45.564Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017098/dynamic-equivalent-to-the-import-statement-in-python-3-15",
   "detail": {
-    "longDescription": "importlib.import_module() (and the discouraged builltins.__import__() / importlib.__import__ ) allow dynamically importing a module. However, it has one important difference from the import statement: it doesn't respect lazy filters (a feature in Python 3.15+). For example, let's make all imports lazy: import sys make_normal_imports_also_lazy = lambda importing, imported, fromlist: True sys.set_lazy_imports('all') sys.set_lazy_imports_filter(make_normal_imports_also_lazy) Now if I use the import stmt, I get a lazy import: import json print(type(globals()['json'])) # <class 'lazy_import'> But if I use import_module() , I get an eager import: json = importlib.import_module('json') print(type(globals()['json'])) # <class 'module'> Same with __import__ . Is there a dynamic way to import a module in Python 3.15+ while respecting lazy filters?",
+    "longDescription": "importlib.import_module() was a dynamic equivalent* to the import statement. Starting from Python 3.15+, the bare import statement (i.e. without the lazy keyword) can perform lazy imports . Given: import sys sys.set_lazy_imports('all') # both `import` and `lazy import` become potentially lazy Then: import json print(globals()['json']) # <lazy_import 'json'> Thus, the import stmt binds a ModuleType (eager module) or a LazyImportType (lazy module) depending on lazy settings. However, the import_module() func returns only a ModuleType (eager module) regardless of lazy settings. Given the previous sys.set_lazy_imports setup: json = importlib.import_module('json') print(globals()['json']) # <module 'json' from 'C:\\\\Program Files\\\\Python315\\\\Lib\\\\json\\\\__init__.py'> Same for the now-discouraged __import__() and importlib.__import__() . Is there a func that returns a ModuleType or a LazyImportType depending on lazy settings? Such a func would be a dynamic equivalent to the import statement in Python 3.15+. Note: there is already a dynamic equivalent to the lazy import statement in Python 3.15+ - __lazy_import__ . ( source ) The lazy import stmt binds a LazyImportType or a ModuleType depending on lazy settings. Accordingly, the __lazy_import__() func returns a LazyImportType or a ModuleType depending on lazy settings. I'm looking for the equivalent of that but for the import statement. Thus, my question can approximately be condensed as: In Python 3.15+, lazy import ... is to ... = __lazy_import__(...) as import ... is to _____? *To nitpick myself, replace occurrences of \"equivalent\" above with \"approximation\".",
     "developer": "JadenV15",
     "comments": 1,
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,11 +19,11 @@
       },
       {
         "label": "浏览",
-        "value": "64"
+        "value": "268"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

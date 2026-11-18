@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz3h7k",
+  "sourceItemId": "1xz3h7k",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xz3h7k/weave_the_llm_writes_one_small_script_a_rust/",
+  "detail": {
+    "longDescription": "Instead of the usual loop where an agent makes one tool call per model turn, the model writes one short script in a small Python-like language, and a Rust runtime figures out which calls are independent and runs them at the same time.\n\nWhat I measured (all numbers are in the repo, losses included):\n\n- Fan-out tasks: 40/40 correct vs 27/40 for normal tool calling, about 2.1–2.7 s vs 4.3 s, at roughly half the cost.\n- BFCL, 378 fresh tasks: 159 vs 140 at 0.91x the cost (p=0.07, so not a slam dunk).\n- Where it lost: GPT-5.4 mini did worse in one round (18/60 vs 27/60), and on tau-bench customer-support chats it was a draw.\n\nSo it helps when an agent needs lots of parallel or chained tool calls, not for turn-by-turn chat.\n\n`pip install weave-lang`, MIT licensed. Repo: https://github.com/AtharvRaotole/weave\n\nThere are a few good-first-issues open if anyone wants to contribute. Feedback on the language design is very welcome.",
+    "developer": "Business_Rain_1042",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

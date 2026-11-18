@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz5lex",
+  "sourceItemId": "1xz5lex",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xz5lex/langchain_101_qwen3_4b_scored_7099_on_agent_tasks/",
+  "detail": {
+    "longDescription": "    I ran a 99-task agent bench (tool chains, SQL, retrieval, files, multi-turn) with checkers that read the state the tools left, not the model's reply. Qwen3 4B on Ollama at temp 0.\n    \n    A plain loop, create_agent and a hand-built LangGraph StateGraph all scored the same, so for small models the extra scaffolding didn't help. Deep Agents' planning and subagent prompts cost 15 tasks and a lot of context. Haiku 5.5 got 99/99 under every harness, so the gap shows up only when the model is weak.\n    \n    The same bench caught Qwen3 8B claiming it saved 150 while the store held 129. If your evals read only the final text, small models will look better than they are.\n    \n    Whole bench was 2,589 calls for $0.93. Write-up with every run recorded: https://aiengineeringfromscratch.com/manual-langchain-101\n    \n    Has anyone found a harness that actually helps 4B–8B models on multi-step tool use, or is a bare loop still the best option?\n\n",
+    "externalUrl": "https://aiengineeringfromscratch.com/manual-langchain-101",
+    "developer": "SeveralSeat2176",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "aiengineeringfromscratch.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

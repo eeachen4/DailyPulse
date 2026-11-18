@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xygytj",
+  "sourceItemId": "1xygytj",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1xygytj/our_staging_aws_key_got_used_by_someone_else_for/",
+  "detail": {
+    "longDescription": "Small company, 9 engineers, I'm the closest thing we have to a devops person.\n\nWhat happened. Last Tuesday finance asked why our AWS bill had a $1,900 line for GPU instances in a region we've never used. Someone was mining on our account. Took me about an hour to find the key. It was an access key for a staging IAM user that had been created in 2024 \"for a quick test\", given way more permissions than it needed, and never deleted.\n\nHow it got out. It took longer to work out than the fix did. It was never in git. It was in a .env file on a contractor's laptop, from a project he finished in the summer. His laptop got hit by one of those npm packages that steal credentials from the local machine. He didn't know until we called him.\n\nWhat we did. Deactivated the key, terminated the instances, opened a case with AWS (still waiting on the refund). Went through CloudTrail for the 3 days. It was only EC2 in that one region, no S3 reads, nothing touched prod. We got lucky that the user was staging only.\n\nWhat I learned, mostly about us.\n\nWe had no idea how many keys existed. When I listed them it was 23 active IAM access keys across 11 users, 6 of them older than a year. Nobody owned them.\n\nThe secret was \"shared\" by pasting a .env file in Slack. That's how every new person got set up. So every laptop that ever joined had a copy, and nobody took it back when people left.\n\nWe had a budget alert. It fired. It went to an email address nobody reads.\n\nWhat I need to figure out. We're moving off long lived keys wherever we can (SSO for people, roles for workloads). But there's still a set of API keys and DB passwords that apps and laptops need, and right now that's .env in Slack.\n\nI'm looking at Vault, Infisical and AWS Secrets Manager for that. The things I care about are getting secrets to laptops without files, revoking access when someone leaves, and an audit log of who read what. We're small, so I can't run something that needs a full time person.\n\nFor people who were in the same spot, what held up after a year? And how did you get the team to stop asking for the .env in Slack?",
+    "developer": "Top-Test4279",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

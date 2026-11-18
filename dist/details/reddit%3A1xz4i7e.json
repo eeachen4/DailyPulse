@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz4i7e",
+  "sourceItemId": "1xz4i7e",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1xz4i7e/ramen_10_evals_and_skill_scans_as_deploy_gates/",
+  "detail": {
+    "longDescription": "🍜 If you ship MCP tools to a team, Ramen (BSD-3, self-hosted) treats them like code with a release process:\n\n\\- put \\`mcp/evals/promptfooconfig.yaml\\` in the repo → every deploy runs it against the canary; a failure can stop the\n\n  rollout (\\*no eval, no deploy\\*);\n\n\\- NVIDIA SkillSpector scans the repo's skills \\*\\*and\\*\\* a skill synthesized from what the zone actually serves;\n\n\\- NeMo rails per tool — \\`self\\_check\\_input\\`, \\`jailbreak\\_detection\\`, \\`topical\\`, \\`hallucination\\`… — through a judge\n\n  proxy, so provider keys stay on the console;\n\n\\- the group's client configs (CLAUDE.md block, Cursor rule, settings) are versioned and every call must carry the\n\n  accepted version;\n\n\\- MCP 2026-07-28: tasks, multi round-trip/elicitation, MCP Apps, Skills over MCP.\n\nTry it: https://bkraad47.github.io/ramen/get-started/ · repo https://github.com/bkraad47/ramen · Discussions:\n\nhttps://github.com/bkraad47/ramen/discussions. Fork it, extend the rails, send PRs. (Built largely with Claude\n\nCode agents under my direction.)",
+    "developer": "Ok_Plum3595",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

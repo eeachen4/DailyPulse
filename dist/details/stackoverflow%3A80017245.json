@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017245",
+  "sourceItemId": "80017245",
+  "sourceUrl": "https://stackoverflow.com/questions/80017245/how-to-deal-with-confusing-pull-requests-due-to-following-gitflow-branching-stra",
+  "detail": {
+    "longDescription": "Gitflow strategy: main: Stores official, production-ready releases. develop: Serves as the integration branch for upcoming features. feature/*: Branches off develop for new features; merges back into develop. release/*: Branches off develop to prep a release (bug fixes/metadata); merges into both main and develop. hotfix/*: Branches off main for urgent production bugs; merges into both main and develop. We have rulesets that enforce pull requests to develop and main. The confusion arises when hotfix or release branch is merged with develop. I don't know how it happens, but sometimes the PR would show commits that already exist in the develop branch. Note that I do not squash-merge or rebase. Also note that I am talking about commits that have the exact same commit hash as the one on develop. I am not talking about merge commits. I searched far and wide and found no one talking about this issue. AI said it is caused by \"crisscross merges\" and its solution is as follows: Merge hotfix with main only. Make a new branch from develop. Merge master into that branch. Make a PR from that branch into develop. A new branch is created for making the PR, instead of making a PR directly from master, because our rulesets prevent direct pushes to master branch, so any conflicts in the master to develop PR cannot be resolved. Do you know a better solution?",
+    "developer": "EMN",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "63"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
