@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzgzal",
+  "sourceItemId": "1xzgzal",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xzgzal/when_your_langgraph_run_fails_how_do_you_figure/",
+  "detail": {
+    "longDescription": "Genuine question first, because it's why I built this: when a multi-agent run (LangGraph, or a graph calling different models per node) produces a wrong final answer, how do you currently find the cause? Every time I've watched someone debug this, it's hours of reading trace logs by hand — and half the time the actual break was the handoff, a value that changed between one node's output and the next node's input, not the node everyone suspected.  \nSo I built BlameGraph (part of AgentsChecked). You upload a run trace and it reconstructs the actual workflow graph, traces important fields from source to final output, and when a handoff fails it names the responsible step with the supporting evidence — the field, the value before, the value after. The checks are deterministic, no LLM judge: values mutated in transit, fields dropped, fields an agent invented, two agents disagreeing with no resolution, retry loops, outputs nobody consumed, cost outliers, and final-answer values that appear in no step's output. You get a per-agent blame %, a score per handoff, and cost per task. Policy weights are customizable, results are exportable through the API, and a run is reproducible with the same trace, engine and policy versions.  \nOne design choice I'd defend: results are counted separately as passed / failed / insufficient\\_evidence / not\\_auditable. If the evidence in a trace isn't enough to judge a handoff, the tool says so instead of guessing either way.  \nOn testing, since a blame tool has to earn trust: the engine (v2.1.0) went through an external review batch that closed at effectively 108/108 checks — including one finding the reviewer later conceded was an error in their own test trace, which the tool had flagged correctly.  \nIt's free during early access (the paid tiers are on the site, struck through at $0 for now):   \nFull disclosure, also stated on the page: the engine runs server-side, and traces you upload and their results are collected and may be used anonymised — please don't upload anything sensitive.  \nI'm not a coder by background — I'm the founder; this was built with an AI dev team. What I actually need from this sub: run a real trace through it and tell me where the attribution lands wrong. And what do you export traces as today? That's the next thing I'd build.",
+    "developer": "nickzoomer",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

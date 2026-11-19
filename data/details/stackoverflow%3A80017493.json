@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017493",
+  "sourceItemId": "80017493",
+  "sourceUrl": "https://stackoverflow.com/questions/80017493/is-this-type-inference-trick-using-undocumented-unspecified-rust-semantics-or-is",
+  "detail": {
+    "longDescription": "I was writing a macro that deals with array literal syntax ( [foo, bar, ...] ) and emits vectors. I ran into the problem that empty arrays/vectors would lead to \"type annotations required\" errors. For my purpose the type of an empty vector didn't matter at all, so I just wanted it to default to () . I found this trick: trait OrUnit<T> {} impl<T> OrUnit<T> for u8 {} impl OrUnit<()> for i32 {} fn empty_vec<T, I: OrUnit<T>>(_: I) -> Vec<T> { Vec::new() } Using empty_vec(0) instead of vec![] falls back to () only if no type can be inferred otherwise. Lets take the nested case. ∅ is either vec![] or empty_vec(0) . ∅ = vec![] ∅ = empty_vec(0) vec![∅, vec![true]] Vec<Vec<bool>> Vec<Vec<bool>> vec![vec!['a'], ∅] Vec<Vec<char>> Vec<Vec<char>> vec![∅, ∅] ERROR Vec<Vec<()>> Nice! So it works for my purpose, it does exactly what I want and only falls back to () if absolutely necessary. How \"hacky\" is that? How likely is this going to break in future Rust versions? So it uses two quirks of Rust, I believe. One is the integer literal fallback to i32 if nothing else can be inferred, which is well known and documented. And it also depends on the fact that if there is only one viable trait impl, that it can influence type inference (to the nuisance of library maintainers, since adding an impl can be a breaking change). And then these two things are combined. So if from the context, the expression empty_vec(0) must be a Vec<char> , then the OrUnit<()> impl doesn't apply, so the OrUnit<T> for u8 one is taken, also fixing the literal type (of 0) to u8. If it's not constraint, both impls are possible but since there is no other information, the literal at some point is turned into an i32 and that determines the impl then. How much would you rely on this working in all future Rust version? Is this a well known trick used elsewhere? I couldn't find anything. ( Full Playground )",
+    "developer": "Lukas Kalbertodt",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "4"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "119"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

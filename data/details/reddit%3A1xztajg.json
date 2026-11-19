@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xztajg",
+  "sourceItemId": "1xztajg",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xztajg/does_the_stale_fact_multistep_failure_match_what/",
+  "detail": {
+    "longDescription": "A while back I asked this sub how people stop agents from making multi-step mistakes, and the answers shaped my capstone. The failure that kept coming up: every tool call is fine on its own, but the sequence acts on a fact that changed. The agent reads a record, an action gets approved, the record changes underneath, and the agent acts on the old value. One-call-at-a-time checks never see it.\n\nI built a guardrail that re-reads the facts an irreversible action depends on right before it fires, and blocks if a relevant one moved since approval. On a 27-scenario benchmark it reports two numbers separately: how many real failures it catches, and how often it wrongly blocks a safe run. The false-alarm side turned out to be the hard part, not the catching.\n\nMostly I want to know if the problem is real for you:\n\n* does the stale-fact failure match something you’ve actually hit, or is it a problem you don’t really have?\n* what’s a multi-step failure you’d want caught that this wouldn’t?",
+    "developer": "Professional-Mine681",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xztu2s",
+  "sourceItemId": "1xztu2s",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xztu2s/ai_outbound_calling_api_why_giving_a_calling/",
+  "detail": {
+    "longDescription": "apparently, default instinct before connecting an agent to an AI outbound calling API is to turn web search grounding on so the model finds working phone numbers and hours first. recently started reading Local Search Benchmark of voygr and placecall which do kinds of voice agents (there, like, 345 prompts across 50+ cities, 2,415 evaluations of gpt-5.2, gemini-2.5-flash, claude-sonnet-4-5, and sonar-pro, verified against ground truth and direct phone calls), discovery gains masked a surprise drop on execution.\n\n3 takeaways stood out across the runs (structured this with llms a bit to make it readable enough, huh)\n\n1. Search boosted general discovery (+10 to +21 points, led by gpt-5.2 at 90.7 overall down to 80.4 on sonar-pro), yet degraded transactional contact and AI book restaurant reservation phone tasks. Both claude-sonnet-4-5 and gemini-2.5-flash lost over 5 points with search turned on because search ranks Yelp, TripAdvisor, and old food blogs carrying expired forwarding numbers ahead of the venue's real counter line.\n2. Search never erased closed businesses. Without search, \\~20% of claude-sonnet-4-5 results had fatal errors (shuttered, nonexistent, or wrong district). Search cut that to \\~8% on gpt-5.2, yet all 7 configurations still gave confident booking advice for a Buenos Aires restaurant permanently closed for over a year.\n3. Constraint accuracy varied by 16 points (85% down to 69%), because directories snapshot static text and miss live capacity or stock.\n\nand i would say that an architectural lessonwould be to keep rough search separate from callable phone validation before dialing. For US business inquiries only, we pair pre-dial place lookup with PlaceCall (an AI calling service that starts every call stating it is an automated AI on a recorded line so undisclosed speech never hits transcription never sells anything, and settles at $0.10 per quoted staff answer, $0 on dead lines or holds). and, Google's dontbeevil free \"Let Google call\" fits single personal checks in Search, while DIY Vapi or Retell works best for inbound or non-US stacks if you scrub aggregator numbers yourself.   \n  \nanyways, how are you, yr colleagues, and others filtering dead directory numbers before dialing? and what do you think on that idea overall?",
+    "developer": "Evening_Hawk_7470",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

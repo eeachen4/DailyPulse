@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xz9bpb",
+  "sourceItemId": "1xz9bpb",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1xz9bpb/i_found_a_mlsys_paper_with_455_citations_with_a/",
+  "detail": {
+    "longDescription": "Paper link: [https://arxiv.org/abs/2311.04934](https://arxiv.org/abs/2311.04934)\n\nThe simplified core idea of this paper is that chunking a past prompt, processing each chunk to obtain its KV cache, and saving each chunk's KV cache allows us to quickly prefill future prompts that contain some of those chunks (since we can reuse those chunks' KV caches). The purpose of this is that different LLM requests' prompts often share commonalities and overlaps, making inter-prompt KV sharing potentially worthwhile.\n\nSome notes:\n\n1. Each chunk corresponds to \\*fixed\\* token positions, since each token's KV has that token's positional encoding embedded into it. If the chunk does not occur in the prompt, the token positions of that chunk are still conceptually \"occupied\", but they are simply ignored/not attended to.\n2. When each chunk is processed to obtain its KV cache, that chunk is processed in \\*isolation\\*. E.g. earlier chunks' KV values are masked/ignored/not attended to. The intuition is that each chunk represents something like a standalone document or file, so KV information from outside its scope isn't useful. This allows us to maximize the reuse of a cached chunk in future prompts that might contain that chunk.\n\nIf you are familiar with sparse attention, this setup should sound familiar to you. Furthermore, you would also know that manipulating the KV history, whether it be through selectively ignoring/masking certain tokens' KVs or using approximated KV values can often degrade the quality of the LLM output.\n\nThis paper experimentally \"demonstrates\" that this method does not significantly impact the quality of LLM outputs, which is one of their central claims. Except here's the thing:\n\n1. In their tests, every single cached chunk was always included in the prompt. They never tested what would happen if there were \"holes\" in the positional context from excluding certain cached chunks from the prompt. And then... wait for it...\n2. **\\*\\*In their implementation, they didn't actually process each chunk in isolation. Each chunk's tokens actually attended to every token in the full positional history (which includes previous chunks) using full causal attention. TLDR: They implemented what is equivalent to full causal attention, not their claimed method where each chunk has its KV cache generated in isolation from the other chunks.\\*\\***\n\nSo their quality tests were quite literally equivalent to full causal attention on an ordinary prompt... They did not implement the claimed isolated KV cache processing per chunk. They did not test the holes in the context positions that would result from excluding chunks from the prompt... of COURSE the output quality would remain the same! Your implementation literally sees the same KV history as ordinary LLM implementations! You didn't actually implement what you said you implemented, which was isolated KV cache processing per chunk and allowing for there to be holes in the positional context due to excluded chunks...\n\nIn fact, a later paper ( [https://arxiv.org/abs/2405.16444](https://arxiv.org/abs/2405.16444) ) implements something similar and finds that yes, quality can degrade from isolated per-chunk KV cache processing.\n\nI have other criticisms about this paper, particularly how it often uses incorrect reasoning to explain its latency improvements, but that's far more forgivable than this.\n\nI probably explained it really poorly, but TLDR: they did not correctly implement the method their paper described, in a way that invalidated the entire premise of their experiment to see if output quality would degrade",
+    "developer": "PsychologicalSoup251",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

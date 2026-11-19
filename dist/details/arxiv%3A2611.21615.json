@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.21615",
+  "sourceItemId": "2611.21615",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.21615",
+  "detail": {
+    "longDescription": "arXiv:2611.21615v1 Announce Type: new Abstract: We report an experience paper applying round-trip offset---an automated testing oracle for location-dependent software---at deployment scale across 32,019 GPS delivery transactions, corresponding to 24,501 unique coordinates, from a single USDA COVID-19 food assistance deployment in Bayam\\'on, Puerto Rico. The oracle tests each geocoder's implicit spatial accuracy claim by measuring the deviation between an input coordinate and the coordinate recovered after reverse-then-forward geocoding, without requiring manual labeling of correctness. We evaluated one community-contributed and two commercial geocoders against this operationally validated corpus. The experience surfaces two distinct failure classes, which we report with their respective denominators because they are not comparable quantities. First, 2,441 of the 24,501 unique coordinates (10.0%) are invisible to all three platforms: an acknowledged failure with no resolution, and a property of the corpus rather than of any one geocoder. Second, and platform-specific: 10.0% of the 13,221 coordinates Google resolves to a civic address exhibit round-trip offsets exceeding 2~km---5.4% of the full corpus---returned with no error signal, against 0.5% for the second commercial platform and 0.04% for the community geocoder. Round-trip offset detects all large-offset failures observed in this dataset while standard resolution-rate evaluation detects none. We document an eight-mode fault taxonomy, a structured comparison of detection methods, and concrete lessons for integrating automated geocoder verification into CI/CD pipelines. The key lesson: resolution rate measures availability; round-trip offset measures correctness. In non-standard addressing environments these two metrics select for opposite behaviors, and only the latter catches the failures that matter for autonomous action.",
+    "developer": "Juan A. Padilla",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Juan A. Padilla"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

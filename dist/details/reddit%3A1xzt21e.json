@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzt21e",
+  "sourceItemId": "1xzt21e",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xzt21e/how_do_you_diagnose_drift_when_desired_observed/",
+  "detail": {
+    "longDescription": "Disclosure: I work on Zen Mesh; this is an engineering question from our work on distributed reconciliation.\n\n\n\nConsider a remote workload where the desired generation is 8, the runtime reports 7, and the reconciler records 6 as the last generation it successfully applied. That gap alone doesn’t tell us whether an observation is delayed, a controller restarted before recording the result, or something else changed the runtime.\n\n\n\nWe’re trying to keep those three facts separate, with clear ownership, rather than collapsing them into one “drift” flag. A related case: a plan is computed for a remote session, the session disconnects and reconnects, and the old plan resumes even though the desired object hasn’t changed. The desired revision alone may not tell us the plan is stale.\n\n\n\nFor those operating controllers or GitOps across clusters: what information has actually helped you distinguish delayed observation from an out-of-band change? Do you record last-applied state separately, and how do you prevent an old plan from acting after a reconnect?",
+    "developer": "zenmesh",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

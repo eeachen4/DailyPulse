@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.21616",
+  "sourceItemId": "2611.21616",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.21616",
+  "detail": {
+    "longDescription": "arXiv:2611.21616v1 Announce Type: new Abstract: Editing agents query repositories while simultaneously changing them. Source content, symbols, graph relations, and retrieval state may be maintained by different stores and refreshed at different times. During an update, a successful query can therefore combine facts that never belonged to the same repository state. We call this condition mixed-revision code context. This paper proposes an Agent-visible complete-revision publication contract for composite code-intelligence queries. Before a query-visible publication point, a service must wait, report unavailability, or serve a complete old revision; after that point, it serves the complete new revision. The contract requires a shared version identity and publication boundary across every view returned in one response. We instantiate the method in Codetrip, whose brief operation joins source, symbol, and graph facts. In a controlled comparison on frozen Gin v1.12.0, live-source composition produced two unsafe responses in 150 update trials, whereas complete-revision publication produced none under the same five edit scenarios. We further implement journaled, idempotent publication and terminate the real MCP process at five durable boundaries. All 300 evaluable recovery trials on frozen Gin and Cobra returned complete-new context equivalent to a clean full rebuild, with median restart-to-context latency of 77--131 ms. In a separate rename probe, mixed context occurred in 0/30 Codetrip trials and 30/30 trials for both CodeGraph and codebase-memory-mcp before clean-full-equivalent convergence. The contribution is an Agent-facing safety contract, implementation pattern, and measurement protocol for joining live repository bytes with asynchronously derived facts. Every successful composite response consequently has a testable repository-state meaning, including after interruption.",
+    "developer": "Meng Shi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Meng Shi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

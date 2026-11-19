@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.00993",
+  "sourceItemId": "2609.00993",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.00993",
+  "detail": {
+    "longDescription": "arXiv:2609.00993v3 Announce Type: replace Abstract: In agentic reinforcement learning (RL), asynchronous multi-turn trajectories repeatedly introduce continuation prefills (P) while other trajectories remain in decode (D). Efficient rollout completion therefore requires D to advance during long P executions. In-place multiplexing shares devices, model weights, and KV state, but phase-specific communication in distributed MoE introduces two constraints: cross-rank collective ordering and ownership of mutable communication state. Whole-prefill coordination can ensure safe ordering but delays D. DeepEP's normal and low-latency paths suit large P and small D batches, respectively, but safely overlapping them requires separating their mutable communication state. We present AInfer-PD, which extends in-place P/D multiplexing to distributed MoE rollouts. AInfer-PD establishes rank-consistent collective ordering at safe communication boundaries, allowing successive D iterations to advance without waiting for an entire prefill execution to be enqueued or completed. It gives P and D separate communication buffers and protocol state within one DeepEP runtime, allowing P to use the normal path while D retains the low-latency path. Together, these mechanisms preserve useful P/D overlap while sharing model weights and KV storage on the same devices. Across repeated single-node prefill-intensive workloads, AInfer-PD reduces fixed-workload rollout completion time by 7.1-22.5% relative to the same AInfer engine with P/D multiplexing disabled and by 24.8-32.9% relative to SGLang. On two nodes, the reductions are 18.0-35.3% and 18.3-31.8%, respectively. In a same-engine ablation, fine-grained boundaries reduce completion time by a further 8.6-19.8% over whole-prefill asynchronous enqueue.",
+    "developer": "Guowei Wang, Chaokun Yang, Zhenxuan Pan, Yipeng Wei, Yuhong Guo, Minghua Zhu, Zechuan Zhang, Shuo Wan, Xiaowei Zhu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Guowei Wang, Chaokun Yang, Zhenxuan Pan, Yipeng Wei, Yuhong Guo, Minghua Zhu, Zechuan Zhang, Shuo Wan, Xiaowei Zhu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

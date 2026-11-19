@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzt8ya",
+  "sourceItemId": "1xzt8ya",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1xzt8ya/three_frontier_llms_asked_to_design_a_neural_net/",
+  "detail": {
+    "longDescription": "Researchers at POSTECH (Hyunjong Ok and Jaeho Lee) gave Claude Opus 5.5, GPT-6.1 Sol and GPT-6 Astra ten labeled questions, a code sandbox, and complete freedom to design any neural architecture - with no gradient descent in the loop. All three independently compiled plain-text facts into sparse lookup tables queried by a fixed procedure, instead of building transformer blocks.\n\nThe best design, from Claude Opus 5.5, reached 54.4% test accuracy on the ARC benchmark with 3.35M parameters. A same-sized two-layer transformer trained by gradient descent scored 29.8%. The paper reports the lookup-table model beats the most accurate LLM-written transformer while using about 1,800x fewer parameters, and runs up to 17x faster on GPU, with each prediction traceable to one editable fact row.\n\nCaveats, and they are big: the scope is narrow - MMLU sits near chance at roughly 25% - and these models still lag far behind pretrained baselines (Qwen3.5-0.8B gets 82.1% on the same ARC benchmark). Code is public on the authors' GitHub.\n\nPaper posted Nov 18, 2026. Write-up: https://emergent.sh/news/llms-design-1-800x-smaller-models-beat\n\nDiscussion: if transformers are the default largely because gradient descent needs them, what does it mean that LLMs writing weights by hand do not want them at all?",
+    "developer": "winer666",
+    "comments": 24,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

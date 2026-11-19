@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.22373",
+  "sourceItemId": "2611.22373",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.22373",
+  "detail": {
+    "longDescription": "arXiv:2611.22373v1 Announce Type: new Abstract: The Radio Access Network (RAN) today does not have a reliable way to identify GenAI traffic (ChatGPT, Microsoft Copilot, or Google Gemini traffic) at the bearer level. TLS~1.3 moves SNI into the encrypted handshake record, and Encrypted ClientHello (ECH) removes it entirely from passive inspection; Gemini has partly shifted to QUIC where SNI visibility also depends on whether ECH is deployed. Without per-flow application identity, differentiated QoS for GenAI services is not possible. HiGAI-Net tackles this using only packet-header metadata, stacking three independently trained classifiers: a binary AI/Non-AI gate (98.5 % weighted F1), a per-service resolver across ChatGPT, Copilot, and Gemini (86.4 %), and a text-vs-voice/video mode classifier (61.0 %). The core innovation is a suite of sliding-window temporal features that track how DL/UL byte-ratios evolve within a session -- the per-quarter and per-half ratio trends, a trend differential $\\Delta R$, and a streaming regularity index. Tested on 44,492 labeled flows, gradient-boosted tree models consistently outperformed all deep-learning variants; a per-flow label cache brings amortised inference below 1~$\\mu$s per packet.",
+    "developer": "Madhan Raj Kanagarathinam, Jaheon Gu, Krishna M. Sivalingam, Kapal Dev",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI"
+      },
+      {
+        "label": "第一作者",
+        "value": "Madhan Raj Kanagarathinam, Jaheon Gu, Krishna M. Sivalingam, Kapal Dev"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

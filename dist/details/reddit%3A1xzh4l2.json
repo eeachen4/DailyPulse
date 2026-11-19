@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzh4l2",
+  "sourceItemId": "1xzh4l2",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xzh4l2/stop_letting_your_langgraph_agent_write_to_the/",
+  "detail": {
+    "longDescription": "A pattern that saved us in production (an AI assistant used by 25k+ people): the agent never  \nwrites data directly. It proposes the write, the graph pauses, a human approves, and then it resumes.  \n  \nLangGraph makes this simple with \\`interrupt\\` + a checkpointer:  \n  \n`from langgraph.types import interrupt, Command`  \n  \n`def apply_change(state):`  \n`decision = interrupt({`  \n`\"action\": \"update_record\",`  \n`\"proposed\": state[\"proposed_change\"],`  \n`})`  \n`if decision[\"approved\"]:`  \n`save(state[\"proposed_change\"])`  \n`return {\"status\": \"applied\"}`  \n`return {\"status\": \"rejected\", \"reason\": decision.get(\"reason\")}`  \n`# graph compiled with a checkpointer (Postgres in prod)`  \n`# ...later, when the user clicks Approve in the UI:`  \n`graph.invoke(Command(resume={\"approved\": True}), config)`  \n  \nWhat we learned:  \n\\- **Checkpoint in Postgres, not memory.** Approvals can take hours, and servers restart.  \n\\- **Show the diff, not the raw tool call.** Users approve \"Change end date: Mar 1 → Apr 1\",  \n  not JSON.  \n\\- **Cap iterations per mode.** A loop that keeps proposing and getting rejected burns tokens fast.  \n\\- **Trace every interrupt** (we use Langfuse) so you can see where users reject the agent most.  \n  That's your roadmap.  \n  \nHow are others handling approval UX? Batch approvals, or one at a time?",
+    "developer": "Krushang120303",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

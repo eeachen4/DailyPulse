@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzxcog",
+  "sourceItemId": "1xzxcog",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xzxcog/autoresearch_to_improve_qwen38_fn_decode_speed_on/",
+  "detail": {
+    "longDescription": "First and foremost, to automod: I typed this post, all by myself, not even using LLM for edit or fixing spelling/grammars error, so please be easy on me :) \n\n\\---\n\nHey everyone! I want to share a bit about my latest experiment. The goal is to see how fast my RTX 5060 Ti can run Qwen3.8 Flash Next with llama.cpp.\n\nTo save your time, I'll show the result first, all the numbers are **mean decode speed**:\n\n\\- **Unsloth IQ1\\_S**: went from **24 tok/s to 40.6 tok/s** (peak was 70 tok/s but that's for a cached prompt, still interesting)  \n\\- **Unsloth IQ4\\_XS**: went from **8.4 tok/s to 20.1 tok/s**\n\n\\---\n\nNow, the details of the experiment.\n\nFirst, about the hardware:\n\n\\- CPU: AMD Ryzen 7 7700X  \n\\- GPU: RTX 5060 Ti 16GB  \n\\- RAM: 32 GB DDR5-6000\n\nPreviously, I have always try to tune the llama.cpp params here and there, but manually. This time, I think, why don't I let the LLM do all the work automatically (well \"the LLM\" here is a cloud LLM that I paid, not a local LLM, sorry 😁)\n\nMy target model is Unsloth's IQ1\\_S, since it's the most realistic model that I can run. But I also tried the IQ4\\_XS model as well, it's more like a stretch goal, nobody with a sane mind would run Qwen3.8 FN Q4 on a 5060 :))) The context window is 128k.\n\nHere's how the loop look like:\n\n1. A set of 12 test prompts across coding, math, Q&A, general knowledge, with various expected output token length\n\n2. Since I have limited resource, and my goal is just decode speed, I'm not going for KLD or PPL metrics, instead, I have a small program to compare byte-by-byte for the model output against the base model\n\n3. For each run, measure the decode speed, cache hit rate, bytes read from disk (because spill over to disk is unavoidable for my VRAM+RAM), etc... \n\n4. After each change, if the metrics beat the previous run, and the byte-to-byte comparision pass, then record the result to a log file.\n\nLong story short, I left it run for almost 20 hours and came back with some interesting result, the LLM tried a lot of options:\n\n\\- Tuning the flags, like \\`-np\\`, KV cache quant, trying various \\`batch\\` and \\`ubatch\\` sizes  \n\\- Trying different sizes of expert cache in VRAM  \n\\- When the flag tuning hit the dead end, it started making code changes in llama.cpp for many other things (for this part, it's above my knowledge so not sure if I can tell in details what it did, if you are interested in the code, you can [have a look on my github](https://github.com/huytd/llama.cpp/tree/moe-opt))\n\nA lot of other options are tried and discarded:\n\n\\- \\`-lm dio\\`: load the whole model to heaps, worked with a huge speed improvement for IQ1\\_S but crash the computer for IQ4\\_XS  \n\\- ngram speculative deocding: hurt the speed because a verified draft touches 20–32 experts per layer and evicts the VRAM cache.  \n\\- offloading misses to CPU (no gain)  \n\\- lookahead prefetch (no gain, cause huge disk read for IQ4\\_XS)  \n\\- changing CPU threads (hurt speed)  \n\\- requantize the model with many different approaches (in one case the speed improved from 20 tok/s to 24 tok/s but quality drop, so discarded)\n\nWhat I found interesting about this approach is I can (well, the LLM can) actually dig into llama.cpp to make code changes or find more clues on what to tune, so we could make more progress. The downside is, well, I can't claim the credit on the progress made here because I lacks of knowledge to understand everything it does. Gotta start learning from basic, I guess.",
+    "developer": "bobaburger",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzwna5",
+  "sourceItemId": "1xzwna5",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1xzwna5/lighthouse_audit_of_tiktokcom_desktop_web_51s_js/",
+  "detail": {
+    "longDescription": "I was curious why the TikTok desktop web client feels so sluggish on initial load, so I ran a Chrome DevTools Lighthouse audit (v13.5.0) on [tiktok.com](http://tiktok.com) to inspect the bundle breakdown and main-thread bottlenecks.\n\nThe category scores came back at 34 for Performance, 73 for Accessibility, 54 for Best Practices, and 77 for SEO.\n\nLooking at the performance trace, First Contentful Paint hits 8.0s, Largest Contentful Paint takes 14.9s, Time to Interactive reaches 20.5s, and Total Blocking Time is 1,090 ms. Out of 8.5s of total main-thread work, 5.1s is spent purely evaluating JavaScript. Almost all of that CPU time is eaten up by cache.react\\_dom (around 2.5s) and their anti-bot/fingerprinting script webmssdk.js (around 1.8s).\n\nThe initial network payload is 4,475 KiB, and there is a surprising amount of dead weight in the build: 236 KiB of unused JavaScript on initial load (their regional cookie consent script alone accounts for \\~90 KiB of unused code) 26 KiB of unused CSS 65 KiB of legacy JavaScript polyfills and Babel transforms (transpiling classes, spread operators, Array.prototype.includes, and Promise.allSettled) An unminified security SDK (secsdk-lastest.umd.js) leaving \\~15 KiB on the table A 400x400 PNG logo scaled down via CSS to 112x112, plus custom woff2 fonts missing font-display rules\n\nA few other details stood out in Best Practices and Accessibility. Their privacy loader triggers repeated Permissions-Policy console violations by registering unload handlers, which combined with Cache-Control: no-store completely breaks Back/Forward Cache restoration. On the markup side, multiple header icon buttons and the search link lack aria-labels, four text inputs have no associated labels, and white text on their #fe2c55 buttons drops to a 3.68:1 contrast ratio.\n\nFor those of you working on large-scale consumer web apps, how do your teams balance heavy client-side fingerprinting and anti-bot SDKs against Core Web Vitals? Also, is there any practical reason a major frontend build is still shipping Babel transforms for Baseline features like Array.prototype.includes and Promise.allSettled in 2026?",
+    "developer": "Putrid_Draft378",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

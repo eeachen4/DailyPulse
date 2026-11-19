@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzyri1",
+  "sourceItemId": "1xzyri1",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xzyri1/i_handscored_my_own_did_the_ai_actually_do_it/",
+  "detail": {
+    "longDescription": "follow up to my post from last week about building a checker that watches long AI chats and flags when the assistant says it did something but didn't.\n\n\n\nafter that post i stopped trusting my own numbers and went back and scored the checks by hand. it was humbling.\n\n\n\n\\*\\*what i found\\*\\*\n\n\n\n\\- one check was judging the wrong person. it was supposed to track what the assistant promised to do, but it was mostly tracking what \\*i\\* said i'd do. my homework, basically. so it was flagging stuff that wasn't the AI's fault at all.\n\n\\- another one made claims about work it couldn't see. if the assistant did something outside the chat page, like a file, a commit or a terminal command, the check still had an opinion on it. it scored 3 right, 7 wrong. i retired it.\n\n\\- a third had a nice looking 10/0 score that i had to withdraw, because it turned out it was counting things, not checking whether the claim was true.\n\n\\- my labelling gate (blind, me scoring without seeing the model's answer) failed twice.\n\n\n\n\\*\\*the trap i walked into\\*\\*\n\n\n\nevery time i fixed a check, its accuracy history was meaningless, because the history belonged to the old version. so i was fixing constantly and never had a number i could stand behind.\n\n\n\n\\*\\*what i changed\\*\\*\n\n\n\ni froze the two checks that actually decide the verdict. there's now a test that fails if their code changes before they've been scored on 30 real panels at that exact version. right now they're at 0/30, which is honest at least. the shaky checks still run, but only as info and they don't count.\n\n\n\n\\*\\*re last week's comments\\*\\*\n\n\n\nsomeone suggested running a pass with only the original ask and the final artifact, since anything the agent wrote mid-run is its own framing. that's a really good point. haven't run it yet, it's next on my list.\n\n\n\nsomeone else talked me out of calling old rows \"uncheckable\". they're recoverable by hand, just slow. fair.\n\n\n\n\\*\\*the actual question\\*\\*\n\n\n\nfor anyone running agents on real work: how do you check the checker? do you spot-check by hand, use a second model, or just trust it?\n\n\n\nand if you'd like to try mine on your own chats and tell me where it's wrong, DM me. i need people who'll be mean about it.",
+    "developer": "chich2017",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

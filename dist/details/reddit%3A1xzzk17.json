@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzzk17",
+  "sourceItemId": "1xzzk17",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1xzzk17/i_deleted_a_bad_memory_from_my_ai_agent_but/",
+  "detail": {
+    "longDescription": "I have been using AI for a while now, mostly for architecture and software development. I often come across a scenario where I wrongly asked AI to remember something that turned out to be wrong and it quietly backfired on me over the time without my knowledge. The instant I found (when AI itself told me I asked for it) I ask it to remove that memory, but still noticed traces of it. My initial analysis fetched that the summary or derived memory based on the original stayed back, even though the level of residue varied across the models. Latest claude opus did better than haiku for example. I also use frontiers plus local LLMs like qwen, so it is hard to expect same results from all, in revoking a bad memory. I found this to be really scary in production usage of the automated AI agents where human monitoring is low.  \n  \nSince memory poisoning is a greater topic in AI world, that is where such issues affects the production systems badly when memory is not handled properly. \n\n  \nLately the opus 5.5 able to warn at least if there is any memory poisoning it smelled, but cleaning up that memory seems worked in small memory sizes but missed out few times when I tested with synthetic notes and longer test conversations.\n\nI am wondering if any of you faced any such issues? Me personally tried to write an app layer with MCP to integrate it with external data store like **SQLite**, then realised I am building a whole app (MCP tools and schema transformations) and performance on long hierarchy is not great either. Neo4j and the likes, can model it in a cool way, but deleting a source leaves orphaned memories behind or blocks the delete with an error. And end up writing app layer of **Cypher** again to enforce such rules (back to square one). \n\n  \nMem0, you can tag memories with “source” metadata but they don’t follow the full hierarchy (do they?). Based on the tag (a source tag) it catch only the direct facts. There are open GitHub issues on both Mem0 and **Graphiti** on the same issues.\n\nI think a memory engine for AI agents needs revoke, integrity and agent isolation built in from the start, not added on top. So I started writing my own small storage engine designed around exactly that.  \n  \nHow do you guys handle these situations, or have you come across such scenario where your memory management was pain with AI agent? Are there any example you guys have that could help others know the importance of it?\n\nMay be, experts can help us by sharing their experience in real world usage? ",
+    "developer": "govinargo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

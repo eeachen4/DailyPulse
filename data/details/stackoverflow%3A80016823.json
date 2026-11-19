@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "When using tokenize to remove a line from source code, untokenize adds back in blank lines for all those lines which I have removed: import tokenize as t from io import StringIO source_code = \"\"\"a = 'one' b = 'two' c = 'three' d = 'four' e = 'five' \"\"\" modi_toks = [] toks = t.generate_tokens(StringIO(source_code).readline) for tok in toks: if not ( 1 < tok.start[0] < 4): modi_toks.append(tok) modi_source = t.untokenize(modi_toks) print(f\"{source_code=}\") print(modi_source) I have tried writing only (tok.type, tok.string) to the new tokens list but that then causes the white space between the '=' and the string to disappear. modi_toks = [] toks = t.generate_tokens(StringIO(source_code).readline) for tok in toks: if not ( 1 < tok.start[0] < 4): modi_toks.append((tok.type, tok.string)) modi_source = t.untokenize(modi_toks) print(modi_source)",
     "developer": "NickC",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,11 +15,11 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "195"
+        "value": "242"
       },
       {
         "label": "状态",

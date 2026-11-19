@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.03181",
+  "sourceItemId": "2611.03181",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.03181",
+  "detail": {
+    "longDescription": "arXiv:2611.03181v2 Announce Type: replace-cross Abstract: GPU acceleration of finite element assembly is well established for standard formulations, but mixed-dimensional problems, in which volumetric subdomains are coupled via lower-dimensional interfaces, remain unsupported in automated frameworks such as FEniCS. We extend cuDOLFINx, a GPU-enabled extension of the DOLFINx finite element framework, to assemble such interface problems on GPUs while preserving the high-level FEniCS programming model. Combined with GPU-resident Krylov solvers and algebraic multigrid preconditioning, this enables end-to-end GPU execution of the EMI (Extracellular--Membrane--Intracellular) model, an elliptic interface problem from cardiac modeling in which many intracellular subdomains are coupled through membranes. We compare the GPU implementation against a CPU-based one through strong and weak scaling experiments on regular and realistic 3D cardiac geometries with up to 8000 cells and 22 million degrees of freedom. In terms of assembly, a single GH200 node is roughly equivalent to two 144-core CPU nodes in strong scaling, and to two to three nodes in weak scaling, depending on geometry. For the linear solver, performance depends on geometry, preconditioning, and problem scale. On the regular geometry, GPU advantages emerge mainly at larger problem sizes and node counts. On the realistic geometry, with the same algebraic multigrid preconditioner for both architectures, the GPU is faster at all tested scales. The implementation is available as open-source software and applies to other problems with interface coupling.",
+    "developer": "Edoardo Centofanti, Benjamin Pachev, Joshua Steyer, James D. Trotter, Pietro Benedusi",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "math.NA, cs.DC, cs.MS, cs.NA"
+      },
+      {
+        "label": "第一作者",
+        "value": "Edoardo Centofanti, Benjamin Pachev, Joshua Steyer, James D. Trotter, Pietro Benedusi"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

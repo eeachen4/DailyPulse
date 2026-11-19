@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.22183",
+  "sourceItemId": "2611.22183",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.22183",
+  "detail": {
+    "longDescription": "arXiv:2611.22183v1 Announce Type: new Abstract: Efficient execution on modern parallel machines requires more than abundant parallelism; it demands instruction coherence, memory coherence, and load balance to maximize SIMD utilization and memory bandwidth. Efficiently mapping \\textit{divergent} parallel workloads to modern machines, where control flow, memory accesses, and unbounded iteration depend on per-thread runtime values, often requires global program restructuring that trades off increased coherence with reduced locality, parallelism, or extra work. We observe that the key optimizations used to accelerate divergent parallel programs can be expressed as compositions of well-known program transformations from the functional programming and loop optimization communities. We operationalize this insight through \\textit{parallel dispatch graphs}: a compilation model that represents divergent programs by representing control flow, data flow between logical stages, and parallel loops within a single abstraction. To facilitate rapid exploration of points in the optimization space, we provide a scheduling language that includes composable transformations of data-dependent control flow and data flow, together with standard loop transformations and hardware bindings. This separation of concerns allows the core algorithm to remain portable, while the execution schedule can be specialized to the specifics of target hardware and input data values. We evaluate our system using popular applications from the domain of spatial computing, and show that the optimization strategies of hand-optimized parallel tree traversals, path tracers, and Monte Carlo PDE solvers can be reproduced as schedules in our system. Our generated code matches or outperforms the hand-optimized implementations (geomeans $1.02$--$2.95\\times$ faster). Additionally, we demonstrate empirically that the best schedule varies across programs, machines, and inputs.",
+    "developer": "Alexander J Root, Christophe Gyurgyik, Devanshu Ladsaria, Rohan Sawhney, Jonathan Ragan-Kelley, Andrew Adams, Matt Pharr, Kayvon Fatahalian, Fredrik Kjolstad",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Alexander J Root, Christophe Gyurgyik, Devanshu Ladsaria, Rohan Sawhney, Jonathan Ragan-Kelley, Andrew Adams, Matt Pharr, Kayvon Fatahalian, Fredrik Kjolstad"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

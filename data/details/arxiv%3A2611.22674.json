@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.22674",
+  "sourceItemId": "2611.22674",
+  "fetchedAt": "2026-11-19T04:33:02.305Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.22674",
+  "detail": {
+    "longDescription": "arXiv:2611.22674v1 Announce Type: new Abstract: We present a bare-metal Apache Kafka producer implemented on a Zynq-7000 System-on-Chip (SoC) for event-driven data acquisition. Events are generated in Programmable Logic (PL), transferred to the Processing System (PS) through AXI4-Stream and AXI DMA, and published to a standard Kafka broker without an intermediate gateway computer. The PS constructs ProduceRequest messages and transmits them through the lwIP raw TCP/IP API. A configurable pipeline limits the number of outstanding Kafka requests. Pipeline depths of D = 1, 2, 4, and 8 were evaluated with two independent DMA sources. For each depth, 20 independent runs of 5,000 events were acquired, for 400,000 event records in total. Each event carries a 32-bit frame counter and a 32-bit PL timestamp. PS-side instrumentation records DMA start and completion, publication, successful local tcp_write() acceptance, and reception of the corresponding Kafka acknowledgement. Measurement records are exported to a separate Kafka topic after the timed event stream has completed. Each of the 80 runs contained 5,000 records with frame values from 0 to 4,999, with no sequence discontinuities in the exported metric records and no recorded Kafka errors. Mean operational throughput was approximately 5.3 kevents/s at D = 1, 9.4-9.6 kevents/s at D = 2, 16.2 kevents/s at D = 4, and 16.8-17.5 kevents/s at D = 8. The median publish-to-acknowledgement interval was 1.62-1.64 ms at D = 1, 0.98 ms at D = 2, 0.66 ms at D = 4, and 0.83-0.86 ms at D = 8. At D = 4, the corresponding P95 values were 0.81-0.83 ms.",
+    "developer": "Fernanda Zapata Bascu\\~n\\'an, Mat\\'ias Hampel",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.NI, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Fernanda Zapata Bascu\\~n\\'an, Mat\\'ias Hampel"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

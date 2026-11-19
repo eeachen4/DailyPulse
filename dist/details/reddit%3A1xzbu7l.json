@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzbu7l",
+  "sourceItemId": "1xzbu7l",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1xzbu7l/i_built_a_policy_checkpoint_for_agent_tool_calls/",
+  "detail": {
+    "longDescription": "If your agent can call tools, anything it reads can try to give it orders. A support agent that reads email and can issue refunds is one crafted email away from sending money it should not have sent.\n\nI built a small package that sits in front of tool execution: guardrail-middleware. Before a tool runs, you pass the proposed action (tool, operation, params, the role the agent is acting as, and where the instruction came from) to an evaluate() call. It returns APPROVE, APPROVE\\_WITH\\_CONDITIONS, ESCALATE\\_TO\\_HUMAN, or BLOCK. Seven deterministic detectors produce the verdict: prompt injection in the source content, role authorization, financial limits with a hard ceiling, bulk operation thresholds, PII/secret exfiltration, destructive actions, and untrusted sources. Every decision can be written to a SHA-256 hash-chained audit log.\n\nIt is framework-agnostic, so in a LangChain or LangGraph setup it wraps the tool node: evaluate the call, execute only if allowed. There is also a FastAPI middleware and a function decorator. The core has zero dependencies. Real-world tool names classify automatically, so send\\_payment, stripe\\_refund, and delete\\_user are understood without mapping code.\n\nThis is the enforcement core of a larger system I built (GuardRail) that was red-teamed against 42 adversarial scenarios. Plan-level (multi-step) validation is the next thing I am porting over.\n\nTry it in the browser, no install: [https://colab.research.google.com/github/Niraj21-star/guardrail-middleware/blob/main/examples/guardrail\\_middleware\\_demo.ipynb](https://colab.research.google.com/github/Niraj21-star/guardrail-middleware/blob/main/examples/guardrail_middleware_demo.ipynb)  \nCode: [https://github.com/Niraj21-star/guardrail-middleware](https://github.com/Niraj21-star/guardrail-middleware)  \npip install guardrail-middleware\n\nPosting as the author and happy to answer questions. Especially interested in how others here gate tool calls today, and what the LangGraph integration should look like.",
+    "developer": "MidnightHeavy3064",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzhmzp",
+  "sourceItemId": "1xzhmzp",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xzhmzp/pod_ran_out_of_pids_every_subsystem_failed_with_a/",
+  "detail": {
+    "longDescription": "Writing this up because the symptoms looked like four unrelated outages and the actual cause was one number.\n\nWe run a service in a pod that shells out a lot (`az`, `kubectl`, some bash pipelines). One morning it started throwing errors from everywhere at once:\n\n* DB client: `connection reset by peer`\n* shell runner: `fork/exec /usr/bin/bash: resource temporarily unavailable`\n* a fetcher: “config not initialized”\n* a cloud integration marked INVALID with `az login failed` and 500+ retries behind it\n\nDifferent errors, different components, same minute. And the liveness probe was green the whole time, so nothing restarted it.\n\n`resource temporarily unavailable` is EAGAIN. On fork it means the kernel wouldn’t give the container another PID. The pod had hit its pids cgroup limit. Everything that needed to spawn a process was failing, each in its own words. The health endpoint is a plain HTTP handler that never forks, so it answered 200 right through the outage.\n\nWhat was eating the PIDs: subprocesses that never exited. Some execs had no timeout at all. The one that did have a timeout killed the `bash -c` wrapper on expiry, but not the `az` and `kubectl` it had started, which got reparented and kept running. `kubectl` in particular was hanging forever on auth for clusters where our service principal was missing a role. A few leaked per scan, a scan every hour, for weeks.\n\nHow we confirmed it from inside the pod:\n\ncat /sys/fs/cgroup/pids.current /sys/fs/cgroup/pids.max   # cgroup v2\n\ncat /sys/fs/cgroup/pids/pids.current /sys/fs/cgroup/pids/pids.max   # cgroup v1\n\nps -eo pid,etime,cmd | sort -k2 -r | head    # oldest processes first\n\ncurrent was at max, and the oldest entries were weeks-old `kubectl` processes.\n\nWhat we changed:\n\n1. Every exec gets a context with a deadline, and cancellation kills the whole process group, not just the direct child (in Go: `Setpgid` on the child, signal the negative pid). This was the actual bug.\n2. Explicit `podPidsLimit` on the kubelet (`--pod-max-pids`), low enough that a leaking pod dies before the node does. We were on the default, which is high enough to take the node down first.\n3. Alert on `container_processes` from cAdvisor trending up against the limit. It had been climbing in a straight line for weeks and nobody was looking at it.\n4. Considering a liveness probe that actually forks something, since an HTTP 200 told us nothing here.\n\nThe lesson I keep coming back to: when several unrelated things break in the same minute, stop reading the individual errors and look for what they share. Here it was the kernel saying no to fork.\n\nCurious what people use for the liveness side. Is “probe that execs something” a thing, or do you just alert on the pids metric and leave liveness alone?",
+    "developer": "Horror_Farmer_2875",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

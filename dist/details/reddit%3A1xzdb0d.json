@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xzdb0d",
+  "sourceItemId": "1xzdb0d",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1xzdb0d/k8sman_an_open_source_ide_for_cluster_management/",
+  "detail": {
+    "longDescription": "I've released [k8sman](https://github.com/matty234/k8sman), an open source (Apache 2.0) desktop app for managing Kubernetes clusters. I'd really value feedback.\n\n![img](u5cbcn71vc2i1 \"Not just 'container exited': k8sman tells you why and gets you to the root cause faster\")\n\nI've noticed that the majority of Kubernetes management tools are either closed source or feature-sparse. We manage 100s of individual applications on our clusters and having issues surfaced immediately is helpful. I released k8sman for this scenario: if it doesn't have a plugin to manage a tool you run, contributing a new one is easy.\n\nIt's built with client-go and Flutter, not Electron. In my testing it uses roughly half the memory of Lens. It runs on macOS (signed!), Linux and Windows (not signed yet). There's no telemetry, and nothing is installed on your cluster.\n\n**Some features:**\n\n* Issues and alerts surfaced across the cluster: crash loops, failed rollouts, OOM kills, Alertmanager\n* Declarative YAML [plugins](https://github.com/matty234/k8sman-plugins) (CEL + jq) from a Marketplace: KubeVirt, CloudNativePG, Flux, Karpenter, Crossplane, External Secrets, Kyverno, cert-manager\n* Built-in support for Argo CD (sync and live vs desired diffs), Argo Workflows, Helm with Artifact Hub, Gateway API, NVIDIA DCGM, Cilium Hubble flows (visualisations and asking 'why x can reach y?')\n* Security view for hardening issues, plus Trivy reports if you run trivy-operator\n* Logs with JSON/logfmt highlighting and stern-style aggregation & port-forwards in a dock\n* CPU/memory from Prometheus or metrics.k8s.io\n* Every native resource and CRD, with k9s-style shortcuts, regex search, jq filters & columns\n* Prod contexts start read-only (enforced by the backend) and multi-tenant cluster support\n* Shareable short links to resources that don't expose cluster details\n* An opportunity to suggest a better name than *k8sman*\n\nIssues and PRs are very welcome, and I'll review them all.\n\nRepo: [https://github.com/matty234/k8sman](https://github.com/matty234/k8sman) · Site/downloads: [https://k8sman.dev](https://k8sman.dev)",
+    "developer": "maybenotthereorhere",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

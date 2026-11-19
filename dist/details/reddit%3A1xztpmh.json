@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1xztpmh",
+  "sourceItemId": "1xztpmh",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xztpmh/hy4flash_is_great_and_finally_some_model_is/",
+  "detail": {
+    "longDescription": "It is going to be my goto model, I guess. Despite being slower, it finishes answers with less tokens. I've ran it on my benchmark, it is far from finished, but it is on the way on topping it:\n\nhttps://i.redd.it/9kvhpxntbg2i1.png\n\nMy 2xRTX3090 + 128 GB DDR4 RAM presets file excerpt (used in llama-server router mode):\n\n    [Hy4-Flash-Q3]\n    load-on-startup = true\n    hf = AngelSlim/Hy4-flash-GGUF:Q3_K\n    ctx-size = 131072\n    ctk = q8_0\n    ctv = q8_0\n    no-mmproj-offload = true\n    fit = off\n    cmoe = true\n    moe-cache-mib = 33768\n    load-mode = none\n\nWhich translates into llama-server command\n\n`./build/bin/llama-server -hf AngelSlim/Hy4-flash-GGUF:Q3_K --ctx-size 131072 -ctk q8_0 -ctv q8_0 --no-mmproj-offload -cmoe --moe-cache-mib 33768 -load-mode none`\n\nIf you wonder what is the `--moe-cache-mib 33768`, then it is expert streaming (llama.cpp feature inspired by Strata I guess).\n\nI get PP \\~60-65 tps, TG \\~ 20-24 tps.\n\n    Nov 19 00:56:05 builder llama-server[1270042]: [54519] 397.49.817.617 I slot print_timing: id  0 | task 442246 | prompt processing, n_tokens =   4091, progress = 1.00, t =  63.38 s / 64.54 tokens per second\n    Nov 19 00:56:10 builder llama-server[1270042]: [54519] 397.54.518.918 I slot print_timing: id  0 | task 442246 | n_gen =    100, tg =  21.95 t/s, tg_3s =  22.18 t/s\n    \n\nI am using [https://huggingface.co/AngelSlim/Hy4-flash-GGUF](https://huggingface.co/AngelSlim/Hy4-flash-GGUF) Q3\\_K quant and llama.cpp PR [https://github.com/ggml-org/llama.cpp/pull/32517](https://github.com/ggml-org/llama.cpp/pull/32517) , it rebased on the master fine.",
+    "developer": "EmilPi",
+    "comments": 19,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
