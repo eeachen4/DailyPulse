@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017366",
   "sourceItemId": "80017366",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017366/why-does-filtering-an-int64-field-named-iso-fail-in-milvusclient-query",
   "detail": {
     "longDescription": "I am using Milvus 3.0.2 with PyMilvus 3.0.2 . My collection stores camera metadata, including an INT64 field named iso . Creating the collection and inserting data both succeed. I can also retrieve the iso value by querying the primary key. However, filtering directly on iso produces a parsing error. Here is a minimal example: from pymilvus import DataType, MilvusClient client = MilvusClient(uri=\"http://localhost:19530\") name = \"iso_repro\" schema = client.create_schema(enable_dynamic_field=True) schema.add_field(\"pk\", DataType.INT64, is_primary=True) schema.add_field(\"vec\", DataType.FLOAT_VECTOR, dim=2) schema.add_field(\"iso\", DataType.INT64) schema.add_field(\"interval\", DataType.INT64) schema.add_field(\"frames\", DataType.INT64) client.create_collection(name, schema=schema) indexes = client.prepare_index_params() indexes.add_index( \"vec\", index_type=\"FLAT\", metric_type=\"L2\", ) client.create_index(name, indexes) client.load_collection(name) client.insert( name, [{ \"pk\": 1, \"vec\": [0.1, 0.2], \"iso\": 400, \"interval\": 5, \"frames\": 1200, }], ) print(client.query( name, filter=\"pk == 1\", output_fields=[\"iso\", \"interval\"], )) print(client.query(name, filter=\"frames > 1000\")) These queries return the stored metadata and the matching record: [{'iso': 400, 'interval': 5, 'pk': 1}] [{'pk': 1}] But this query fails: client.query(name, filter=\"iso == 400\") The error is: failed to create query plan: cannot parse expression: iso == 400: line 1:7 mismatched input '400' expecting Identifier: query plan failed: invalid parameter Changing the expression to ISO == 400 gives the same parsing error. Changing it to Iso == 400 returns an empty result instead. I expected iso == 400 to return the same record as frames > 1000 , since both fields are INT64 and their values were inserted successfully. How can I filter on the existing iso field without changing its name?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "204"
+        "value": "270"
       },
       {
         "label": "状态",

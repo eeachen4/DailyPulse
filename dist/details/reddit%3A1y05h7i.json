@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y05h7i",
+  "sourceItemId": "1y05h7i",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y05h7i/kubernetes_secrets_management_after_eso_reloads/",
+  "detail": {
+    "longDescription": "External Secrets Operator is where most clusters stop. It's also where the second round of problems starts.\n\nESO pulls from your backend every refreshInterval. Someone rotates the DB password, ESO updates the Kubernetes Secret within a minute. Your pods keep using the old one, because env vars are read once at startup.\n\nSo you add Reloader and an annotation, and deployments roll when the Secret changes. Now rotation actually reaches the app. But that DB password is still one long lived credential shared by every replica, and rotating it restarts everything at once.\n\nSo you move to dynamic secrets. OpenBao or Vault database engine, each pod gets its own username and password with a TTL. A leaked credential dies on its own in an hour. But now you're running an OpenBao cluster. Unseal, upgrades, storage, someone on call for it.\n\nSo for anything in the cloud you drop the secret completely. IRSA or EKS Pod Identity, GKE Workload Identity, Azure Workload Identity, IAM auth on the database. There's no password left to leak.\n\nWhat's left is third party keys. Stripe, OpenAI, Twilio. They can't use workload identity, and in most clusters they're the only things that really need a secrets manager. All on AWS with a handful of them, Secrets Manager at $0.40 a secret is fine. Want dynamic secrets and open governance, OpenBao. Devs need the same secrets locally and in CI, Infisical, whose operator reloads deployments by itself so you skip Reloader (dynamic secrets are on their paid plan though).\n\nMost clusters don't need every step. Know which problem you're solving and stop there.",
+    "developer": "CriticalPhen",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

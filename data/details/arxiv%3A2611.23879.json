@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23879",
+  "sourceItemId": "2611.23879",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23879",
+  "detail": {
+    "longDescription": "arXiv:2611.23879v1 Announce Type: new Abstract: Stateful Serverless (Function-as-a-Service) environment are increasingly used for stream processing applications. These applications are often structured as pipelines where data flows through a sequence of distinct processing operators. Many operators are stateful and require access to the processing state during execution. To address this, stateful serverless platforms introduce state servers on worker nodes, co-locating state with computation to dramatically reduce access latency. In serverless, these data pipelines are realized by chaining function invocations, passing the processed data from one function to the next. To reduce network overhead, state-of-the-art scheduling approaches employ a distributed worker-level scheduling model, routing locally generated chained requests directly to destination workers, bypassing centralized schedulers. However, these approaches always co-locate state and execution for the same operator in the same worker, which forces most invocations to the next operator to be transferred across workers, thereby increasing both latency and I/O overhead. As a result, this paper proposes LcSched, a novel distributed scheduling strategy tailored for stream processing applications in stateful serverless environments. LcSched seeks to maximise local execution of chained function invocations while ensuring that each execution accesses its state from the local worker. It also monitors workload at runtime to maintain workload balance between workers. Experimental results show that LcSched improves throughput by up to 3.6x and reduces end-to-end latency by up to 79% compared to the state-of-the-art distributed scheduling strategy for stateful serverless environments.",
+    "developer": "Tianyu Qi, Maria A. Rodriguez, Rajkumar Buyya",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Tianyu Qi, Maria A. Rodriguez, Rajkumar Buyya"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

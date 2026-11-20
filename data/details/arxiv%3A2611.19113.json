@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.19113",
+  "sourceItemId": "2611.19113",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.19113",
+  "detail": {
+    "longDescription": "arXiv:2611.19113v2 Announce Type: replace Abstract: Algebraic data types (ADTs) decouple the logical structure of data from physical layout choices that affect performance. For example, packing small fields into a word improves spatial locality, while storing co-accessed fields contiguously can enable vectorization. Such choices reinforce or undermine one another, with ramifications for compiler optimizations and memory management. Their interplay creates a combinatorial space of layouts with different runtime costs and memory footprints. The most favorable layout depends on the program's construction and destruction patterns, the characteristics of input data, and the target machine. Exploring this space requires control over layout decisions and a way to compose them while preserving program semantics. We provide both through rewrite rules over layouts, independent of any particular source language or bit-level encoding. Starting from a canonical layout derived from the ADT, these rules transform its representation while leaving the source program intact. We identify a local refinement criterion for proving each rewrite rule correct, so that layouts continue to represent every value and keep distinct values apart. Adding a new rule therefore only requires a proof satisfying this local criterion. We realize these rules in Isomer, a new pure functional programming language whose compiler specializes construction, pattern matching, and memory management to the chosen layouts. Using a default layout for all ADTs, Isomer achieves competitive performance against established functional compilers that automatically select layouts. Our rewrites further improve performance by tailoring layouts to each workload, permitting representations that prior work cannot attain or can only achieve through explicit changes to the source code.",
+    "developer": "Christophe Gyurgyik, Alexander J Root, Benjamin Driscoll, Gabriel Radanne, Fredrik Kjolstad, Cl\\'ement Pit-Claudel",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Christophe Gyurgyik, Alexander J Root, Benjamin Driscoll, Gabriel Radanne, Fredrik Kjolstad, Cl\\'ement Pit-Claudel"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

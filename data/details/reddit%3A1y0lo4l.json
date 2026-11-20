@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0lo4l",
+  "sourceItemId": "1y0lo4l",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y0lo4l/openais_models_rewrote_amds_gpu_circuits_for_up/",
+  "detail": {
+    "longDescription": "OpenAI published a technical write-up yesterday (Nov 18) on using its models for chip design, and the AMD numbers are the headline:\n\n- Up to 14% power/performance/area (PPA) improvement on AMD's flagship GPU IP, measured against baselines AMD's engineers had already heavily optimized. The models rewrote SystemVerilog RTL block by block, with Synopsys tools checking that each rewrite kept the same behavior. OpenAI frames it as roughly a year of optimization progress in under five months.\n- AMD has already put some of these changes into a design sent for manufacturing, with more added to production design files for future versions. AMD also verified single-digit percentage PPA gains across key blocks of an upcoming flagship CPU using model-written designs.\n- On OpenAI's own inference chip, Jalapeno, model-proposed changes cut standard-cell area by about 13% in the vector unit and 10% in the matrix unit - verified in silicon at bring-up, not just in simulation. One multiplier redesign used about 15% less area while cutting latency from two cycles to one.\n- OpenAI is also partnering with Synopsys to train GPT-Synopsys, a model meant to use EDA tools the way expert chip designers do.\n\nCaveats worth keeping in mind: the 14% is an \"up to\" figure for specific GPU IP, not the whole chip; OpenAI does not split it into power vs. performance vs. area; and AMD has not published its own numbers, so the verification is second-hand. The Jalapeno silicon results are the harder evidence here.\n\nIf models can now squeeze a year of PPA progress out of already-optimized flagship designs in months, what does that do to the chip design cycle - and to the value of RTL expertise itself? Is this mostly a better optimizer inside the existing flow, or the start of models doing real microarchitecture?\n\nSource: https://www.unite.ai/openai-reports-model-driven-gains-in-amd-flagship-chip-designs/",
+    "developer": "winer666",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

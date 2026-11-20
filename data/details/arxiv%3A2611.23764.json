@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23764",
+  "sourceItemId": "2611.23764",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23764",
+  "detail": {
+    "longDescription": "arXiv:2611.23764v1 Announce Type: cross Abstract: Blockchain-based supply chain finance can turn the sensor-recorded production history of smallholder farms into verifiable credit evidence, but only if every record is authenticated and anchored at a cost that scales to large device fleets. Ethereum's 2025 Pectra and Fusaka upgrades changed this cost landscape: they added precompiles for BLS12-381 and P-256, repriced calldata and MODEXP, and capped transaction gas at $2^{24}$. We organize the authentication and anchoring of IoT records into three trust levels, from posting a Merkle root through a trusted aggregator to verifying every device signature on-chain, and implement four replay-protected signature designs: ECDSA over secp256k1 and P-256, BLS aggregate signatures with on-chain hash-to-curve, and a pseudonymous identity-based signature with batch verification. Measured as signed transactions under the rules before and after both upgrades, the upgrades mainly changed which designs are feasible, not their cost. Batching and Merkle anchoring cut the cost of ECDSA authentication sixfold, to 8,963 gas per record, and secp256k1 ECDSA remains the cheapest authenticated design: P-256 costs 1.6 times as much, the identity-based design 2.7 times and BLS aggregation 3.9 times, dominated by on-chain hashing to the curve. One transaction carries at most 1,754 ECDSA-authenticated records but only 411 BLS-aggregated ones. On a Raspberry Pi Zero 2 W, pairing-based signing takes 5.7 ms against 0.29 ms for ECDSA. Pairing-based designs pay off only when the application needs their additional properties, and the identity-based design adds key escrow at the key generation centre. The benchmark harness is released for reproducibility.",
+    "developer": "Ming-Fong Sie, Jian-Hong Chen, Gwan-yen Lin, Yen-Shuo Chen, Shih-wei Liao",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CR, cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ming-Fong Sie, Jian-Hong Chen, Gwan-yen Lin, Yen-Shuo Chen, Shih-wei Liao"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0d08t",
+  "sourceItemId": "1y0d08t",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y0d08t/how_to_deal_with_ai_slop_produced_by_other_people/",
+  "detail": {
+    "longDescription": "Spoiler: rant below\n\nI'm working on a shared project of another company. Basically consultancy, but I'm not physically there, and I also some stuff for the company I'm hired in when needed.\n\nOn this project, the infra team (~20 people) are full on convinced that AI is great and anyone that writes anything by hand is a complete idiot.\n\nOn the other hand there's me, former pentester (yeah, horrible choice to change career looking at the past couple months lol), strongly believing that, while AI is indeed useful, it must not be used to basically write entire Helm charts and stuff.\n\nThe current situation is embarrassing, and no one seems to be able to either understand or care about it. Helm charts are never being reused, instead they are written from scratch every time (except external ones).\n\nFor example, every single time a PSQL database is needed, an entire new template is created, with its own values, no backups or WAL archiving, no alerting if WAL replication stop, and different structure of values and templates. There's more than 30 different templates by now, and when asking whether it would be fine to attempt a migration of these to a ce\n\nSecurity-wise, there's more than half a million CVEs in scanned images. No filtering on EPSS/KEV, no patching, no will to use secure base images, nothing.\n\nThis project has been running for more than 3 years, how the fuck do you even get to this point with such basic stuff missing? I don't get it.",
+    "developer": "A-kalex",
+    "comments": 43,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

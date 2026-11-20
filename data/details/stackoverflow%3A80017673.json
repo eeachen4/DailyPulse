@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017673",
+  "sourceItemId": "80017673",
+  "sourceUrl": "https://stackoverflow.com/questions/80017673/get-reference-to-parents-locals-from-imported-module",
+  "detail": {
+    "longDescription": "Is there some way to establish a reference from with a module being `imported ` to its parent (importer) module's, locals() so that I can read an variable from there as the file gets imported? I can establish the name of the importer like this, albeit I had hoped the might be a cleaner way, but how can I get a reference to its locals? import inspect if __name__ != '__main__': for frame in inspect.stack()[1:]: if frame.filename[0] != '<': print(f\"{frame.filename=}\") break -- Why I would want this? I want to completely automate a library import so that if any configuration options (variables) have been set in the parent the importee can configure itself based on these settings as it is being constructed. unfortunately AFAIK Python doesn't provide any way of sending parameters to a module being imported. Although this could be achieved using an application level builtins variable; that doesn't feel like the right approach to this as here we only need the variable to be available between the importer and the importee not to the rest of the modules.",
+    "developer": "NickC",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "112"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

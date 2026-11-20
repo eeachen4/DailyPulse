@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0ajxx",
+  "sourceItemId": "1y0ajxx",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y0ajxx/built_an_azure_functions_pipeline_that_turns_ops/",
+  "detail": {
+    "longDescription": "https://i.redd.it/o894fxe7wk2i1.png\n\nI kept running into recurring infra issues in my own setups, so I built a small event-driven pipeline on Azure Functions, Storage Queues/Tables, and OpenTofu to automate turning them into standalone scripts.\n\nA daily job pulls ops problems from HN and Reddit, sends candidates to Discord (Ed25519 verified) for manual approval, and runs generated Python, PowerShell, or OpenTofu fixes through Python AST, PowerShell parser, tofu validate, and a fail-closed secret gate before opening a PR.\n\nTwo things stay manual on purpose: case triage in Discord, so nothing runs blindly, and merging the PR, so broken or weird output never lands on main.\n\n  \nLet me know what you think.\n\nArchitecture: [https://github.com/AdrianStudio/fubanx](https://github.com/AdrianStudio/fubanx)\n\nSolutions catalogue: [https://github.com/AdrianStudio/fubanx-solutions](https://github.com/AdrianStudio/fubanx-solutions)",
+    "developer": "pppopocec",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

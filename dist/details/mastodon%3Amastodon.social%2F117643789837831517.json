@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117643789837831517",
+  "sourceItemId": "mastodon.social/117643789837831517",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://defcon.social/@srfaudio/117643789780980271",
+  "detail": {
+    "longDescription": "I've been a fan of the work that @SUSE@fosstodon.org puts into #Rancher for a while now.\n\nAt work I use and recommend #RKE2, and at home I've been running #k3s in a cluster on #FedoraCoreOS VMs on #Proxmox for a while.\n\nk3s, in general, is just a really useful #Kubernetes distro.\n\nIt's been mostly rock solid. The only time I ever had an issue with a node crash was partially my fault. I left the Zincati config at its default of immediate, rather than having it be in fleet lock. That cascaded, because I also didn't have Proxmox's HA manager active for a hung VM.\n\nI own that it was my own lack of understanding about how the base OS's immutable updates would interact with the underlying infra. No data was lost, and it was a relatively easy fix.\n\nBut that also just got me thinking about how my chosen homelab architecture was perhaps unnecessarily hard to reason about for not much benefit. And that's not even mentioning the additional resource overhead of the hypervisor and VM OSes.\n\nSo, I'm finally doing some real testing of #Talos and I think I'm ready to migrate the homelab over to it.\n\nI use VMs once in a blue moon, and the original backup/snapshot reasoning for using Proxmox falls apart for an HA #k8s cluster anyway.\n\nFor my use case, it makes way more sense to be k8s-native on bare metal without the overhead, and then just run #KubeVirt for the occasional times when I need a VM for something.",
+    "developer": "@srfaudio@defcon.social",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "0"
+      },
+      {
+        "label": "网站",
+        "value": "DEF CON Social"
+      }
+    ]
+  }
+}

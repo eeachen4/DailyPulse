@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0tdak",
+  "sourceItemId": "1y0tdak",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y0tdak/i_run_several_coding_agents_in_parallel_on_one/",
+  "detail": {
+    "longDescription": "Been running a few Claude Code agents in parallel on the same repo for about 2 months, each in its own git worktree.\n\nThe pain is simple: a session dies or the context gets compacted, and the next agent shows up with no clue what the last one did.\n\nWhat fixed most of it for me:\n\n* One checkpoint file per task, committed on the task branch. Real commits, uncommitted files, test results (fails and skips too), and the exact next step.\n* A copy of it in a shared folder inside the git common dir, so every worktree sees what the others are doing before anything is committed.\n* Claiming a task is just `mkdir` on the task folder, no `-p`. Folder already there? Claim fails, go read the checkpoint instead of starting fresh.\n* An old timestamp does not mean the task is free. The new agent has to make sure the old one actually stopped.\n* Checkpoint every 30 minutes at least, and always before a long command.\n\nThe file itself is nothing fancy:\n\n    task / branch / updated\n    commits so far: hash + what changed\n    uncommitted: file + what state it is in\n    tests: passed / failed / skipped\n    next safe step: one exact action\n\nAbout 180 checkpoints in, it mostly works. Still broken:\n\n* Worktrees pile up, and so does disk usage. Every worktree gets its own build output, so storage grows very fast. I have to stop regularly to review and clean up. One day I removed 28 worktrees, and I had to check each one for unmerged work first.\n* The checkpoint saves the notes, not the code. Lose a worktree and the uncommitted changes are gone with it.\n* Agents love writing \"done\". A merged branch got reported as a finished plan more than once, so I added a rule: a merge proves nothing.\n* The claim is only advisory. It stops two agents taking the same task, but not several tasks touching the same shared file.\n\nFor people running parallel agents:\n\nDo you trust the agent’s own notes, or do you rebuild state from git every time?  \nHas anyone solved “many tasks, one shared file” without running everything in sequence?  \nAny tips for keeping disk usage under control? Shared build cache, auto cleanup, something else?",
+    "developer": "linhtoji",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0qo0q",
+  "sourceItemId": "1y0qo0q",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0qo0q/how_i_made_lunas_memory_99x_stronger_literally/",
+  "detail": {
+    "longDescription": "https://reddit.com/link/1y0qo0q/video/bpobjbnlr92i1/player\n\n(not written with ai..?)\n\n**TLDR:** Slaunt gives you, the developer, a platform to manage your agents. Context, rules, etc.\n\nBasically, a few months ago, I hated the fact that memory.md files & claude.md took up a huuuuge chunk of my context window during model switching/effort switching (& during cache refreshes).\n\nDidn't really find any definitive solutions outside of relatively complex LangChain, Mem0, and Supermemory implementations (where you have to install unnecessary SDKs and all), s**o my goal was to make a simple, one-shot memory solution where you can have your agent recall basically anything, whether from live context or from old events.**\n\nMem0/MemHub/Supermemory and all are great, but they have two functional limitations: A, don't have actual live memory. Your agents are basically working on historical events, nothing new. B, they can't see what your other agents are doing. Two of your agents could create conflicts in your work and you'd have no idea till u saw the diff.\n\n**It's called Slaunt and it uses vector embeddings over a simple MCP server that connects instantly (one-click) to all of your agents, and it enables your agents to see what happens across multiple sources too (eg. Vercel, Supabase, AWS, Railway, Linear, Notion, etc.).**\n\nSlaunt can enable your agents to recall literally anything, from failed deployments from three months ago, to what a subagent said last week.\n\nWe also have governance tools that enable you to enforce strict guardrails, such as restricting certain tool calls, remote shutdowns (achieving <1.9s time-to-shutdown in benchmarks)\n\nWe ran benchmarks- 99% of the time, agents using slaunt MCP recalled the correct context- without slaunt, agents were unable to recall things from months ago (obviously).\n\nWe beat Supermemory by 13% (adj. p-value 0.0352), Mem0 (OSS) by 38% (adj. p-value 0.0029), and LangGraph by 38% (adj. p-value 0.0029)\n\n**We're free right now with a really usage-heavy free tier. Pls DM me if you have any questions- I've also included a banner where you can meet with me if you want direct setup help (it's in the signup).**\n\n**You can sign up at** [**https://slaunt.ai**](https://slaunt.ai)\n\nAMA : - )",
+    "developer": "karatyma_dev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

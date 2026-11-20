@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0qrum",
+  "sourceItemId": "1y0qrum",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y0qrum/is_anyone_here_making_coding_ai_agents/",
+  "detail": {
+    "longDescription": "I'm a developer who recently got into the fundamentals of agents and the MCP and I think I've come to the realisation that *most* agents out there are simply an endless loop of querying the LLM with a prompt and providing it the tools to accomplish the initial prompt/goal.\n\nAs one reddit comment humorously put it - \n\n    context = [user_goal]\n    while not done:\n        response = llm(context, tools)\n        if response.has_tool_call:\n            result = execute(response.tool_call)\n            context += [response, result]\n        else:\n            done = True\n    return response.text\n\nAnyways, I'm actually just looking for resources on best practices/frameworks for agent development so if anyone has resources for that it would be greatly appreciated!\n\nAlso - I did look into LangChain but I'm more specifically looking for a architectural framework, where I'm guessing LangChain would be a tech used in the middle.",
+    "developer": "hamster_drive",
+    "comments": 14,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

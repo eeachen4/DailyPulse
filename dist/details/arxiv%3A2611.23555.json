@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23555",
+  "sourceItemId": "2611.23555",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23555",
+  "detail": {
+    "longDescription": "arXiv:2611.23555v1 Announce Type: new Abstract: Peephole optimizations replace short source instruction sequences with more efficient equivalents, typically guarded by preconditions such as requiring a constant operand to be a power of two. Since every new rewrite adds maintenance burden and compile-time cost, compiler developers need to know how often real-world programs both match the source pattern and satisfy its preconditions before committing to an implementation. Existing workflows fall short: structural search over an intermediate representation (IR) corpus of 4.8 million functions ignores preconditions and therefore overcounts, whereas implementing the rewrite and recompiling the corpus yields exact counts only after paying the engineering cost, with each run of the corpus's on-demand recompilation pipeline taking a median of 47 minutes. This delay is especially limiting when generalizing a rewrite, as developers often iterate over multiple variants to trade off coverage against complexity. We introduce MetaphIR, a system pairing a domain-specific language for expressing LLVM peephole optimizations with an indexed search engine over large IR corpora. Using a syntax modeled on LLVM's C++ matchers, MetaphIR patterns augment LLVM IR with holes and Boolean preconditions over matched values. To answer queries at interactive speed, MetaphIR builds compact per-function summaries ahead of time and uses abstract interpretation over those summaries to soundly filter out functions that cannot satisfy a query's constraints. Across twenty recent peephole optimizations from LLVM's InstCombine pass, MetaphIR recovers the exact set of functions where each rewrite applies in isolation, achieving 100% precision and recall. Queries complete in a median of 1.27 seconds---a 22x speedup over a full corpus scan---enabling developers to quickly gauge an optimization's reach and generality prior to implementation.",
+    "developer": "Hongxu Xu, Xintong Zhou, Chunhao Liao, Chengnian Sun",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hongxu Xu, Xintong Zhou, Chunhao Liao, Chengnian Sun"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

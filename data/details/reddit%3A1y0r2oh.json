@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0r2oh",
+  "sourceItemId": "1y0r2oh",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0r2oh/i_think_we_were_giving_our_agent_way_too_many/",
+  "detail": {
+    "longDescription": "We had a research agent with around 35 functions available, and something weird kept happening. it'd pick an endpoint that wasn't relevant, pass parameters that didn't exist or get confused when a task involved more than one data source. initially we thought the descriptions weren't clear enough, so we kept changing them and adding more instructions. didn't really help. then i started looking at the traces and noticed how much of the context was being taken up by tool definitions. most requests only needed a couple of functions, but we were loading everything at the beginning anyway. some of the tools also had pretty similar descriptions, which made the whole thing harder to reason about.\n\n\n\nWe've been experimenting with only exposing a few basic commands initially and letting the agent discover the exact endpoint when it needs one.  I testing this with a bunch of tools like Monid's CLI for some external research tasks. instead of loading a huge list of social and company data schemas into every session, the agent can look up what's available, inspect the parameters and then make the request. we also cache schemas we've already fetched because there's no point repeatedly asking for the same definitions. one thing i noticed is that debugging became a lot easier once i could see exactly which endpoint the agent had discovered and why it chose it. still working on the setup, how others are handling this with MCP. do you expose everything at startup or let the agent discover tools as needed?\n\n",
+    "developer": "for-entire-phonly",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

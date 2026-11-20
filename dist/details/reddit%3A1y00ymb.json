@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y00ymb",
+  "sourceItemId": "1y00ymb",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y00ymb/keeping_things_updated_is_annoying/",
+  "detail": {
+    "longDescription": "Yeah, I know, big surprise. But I just started to put together my entire structure and even added GitOps to keep track and sync of what I run. However, in doing so, I realized that I had no \"update strategy\" - and so I went looking and found... pain.\n\nFor reference, I use Flux for my GitOps, it is immediately installed via k0s' `k0sctl` so that it is available as soon as possible. And that mostly just works. Once Flux is alive, I can apply a GitRepo + Kustomization that points at the root of it all and it just goes. That part is solved and works nice. But of course, things get updated.\n\nI use this structure in my repo:\n```\n- docker/...\n- opentofu/...\n- kubernetes/\n  - root.yaml # GitRepo + Kustomization\n  - kustomization.yaml # Points at each <component>/flux.yaml\n  - <app or component name>/\n    - flux.yaml # Tells flux where this component's kustomization.yaml is\n    - kustomization.yaml # Actually lists all related files\n  - <other thing>/\n    - install/... # HelmRepo + HelmRelease\n    - config/... # CRD based objects - be that a config or something else\n    - flux.yaml # Is a \"---\" separated YAML for both with dependency tracking\n```\n\nThis structure is easy to maintain - although it has an absolute number of repeatance but... its okay. It does bother me but realisticaly, this is just a homelab doing homelab things, I can copy and paste a bit.\n\nThe real problem is trying to receive updates. Right now, I _bend_ updatecli in a cronjob to my will using updatecli compose. But this falls apart quickly because the policies for patch, minor and major updates fight each other - a lot. And it falls apart on image tags like Vaultwarden's `1.37.5-alpine`; the `-alpine` tag throws off the comparison and borks the check completely.\n\nSo... what can I use to help me here? What do you use to keep track of updates across helm charts and plain container images?\n\nI looked into Kargo but that would instantly explode complexity by a lot - especially since I want a write-back to Git to track what happened when and by whom. (I do use a PAT right now, but I plan on using a GH app in the future for better separation.)\n\nAny recommendations or tips...? Thanks!",
+    "developer": "IngwiePhoenix",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

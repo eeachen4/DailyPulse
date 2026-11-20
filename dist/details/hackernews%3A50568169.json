@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50568169",
+  "sourceItemId": "50568169",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50568169",
+  "detail": {
+    "longDescription": "What if every Erlang process were an operating-system process? With as much system code and drivers written in Erlang itself. This is something I was pondering for a while, and finally was able to prototype thanks to AI coding agents. erXos is a capability-based microkernel OS in Erlang: drivers, filesystems, and the network stack are all supervised Erlang processes, same as any app. The kernel itself is Fiasco, in C++, slightly modified for erXos needs. This is an OS I wanted for a long time: an Erlang machine where every BEAM process is a process visible to the OS and scheduler, not something bolted on top. You can try it right now with nothing to install: there is an emulator on the website that boots the whole OS in the browser ARM64 emulator. At the rc prompt, try `ps`, `top`, `ping` or `erl` and write any kind of erlang code. There&#x27;s a Pi 4 SD image and a QEMU image too. The goal is to build an ultra-reliable microkernel OS with hot code loading and both system and BEAM-based isolation. The latter is one thing that would allow you to run millions of processes on the system, something that would be prohibitive on a microkernel alone due to the context switch overhead. Capabilities keep every component least-privileged, supervision keeps the machine running when drivers or subsystems crash, and hot code loading would let you fix a broken driver without reboot. The secondary goal is to keep as much of a UNIX face as possible. Too many novel OSes change things for no particular reason that makes them hard to use. erXos tries to preserve as many existing UNIX&#x2F;FreeBSD concepts as much as possible to remove the learning curve. What works today: - Boots in the browser&#x2F;v64, in QEMU, and on a Raspberry Pi 4 from an SD card - A real shell (plan9 rc) with job control, pipes, `ps`, `grep`. It feels like UNIX on the surface - Erlang versions of basic UNIX apps. - Drivers written in Erlang: UART, virtio, SD card, Ethernet (GENET), display - A pure Erlang EROFS filesystem for root images - A TCP&#x2F;IP stack in Erlang based on FreeBSD network stack and verified for correctness against it - Domains: every app runs as its own address space or Erlang node, isolated from others - Plan 9 namespaces and 9P everywhere; windows are files like RIO and 9P is a file protocol between OS servers - Supervision end to end: if a driver fails, its supervisor resets the device and restarts it I also have 2 demo apps built on app sdk: a full-screen kiosk app with live crypto quotes and clock and, of course Doom, which ships on the Pi 4 card image (type `doom`). What&#x27;s coming: - Raspberry Pi 5 support - Full display on the Pi - WIFI - Bluetooth - POSIX-lite for C programs, so existing code can run as a domain - Performance, debugging and tracing features. The code is all available under the BSD license. Would love to hear all and any feedback!",
+    "externalUrl": "https://stass.github.io/erXos/",
+    "developer": "stass",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "3"
+      }
+    ]
+  }
+}

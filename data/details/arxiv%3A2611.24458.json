@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.24458",
+  "sourceItemId": "2611.24458",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.24458",
+  "detail": {
+    "longDescription": "arXiv:2611.24458v1 Announce Type: new Abstract: To avoid scheduling delays when running concurrent workloads on a GPU, Streaming Multiprocessor (SM) partitioning mechanisms such as CUDA Green Contexts restrict each workload to separate SMs. Despite this partitioning, concurrent workloads still significantly slow down latency-critical workloads, which recent studies attribute to shared L2 cache and memory contention. However, contention also occurs at the crossbar ports connecting each Graphics Processing Cluster (GPC) of SMs to the L2 cache, as all SMs in a GPC share one port. Green Contexts spread workloads across GPCs, placing concurrent workloads in the same GPCs and forcing latency-critical memory requests to queue behind background requests. Packing workloads into separate GPCs avoids this contention, but forces latency-critical memory requests through fewer ports, limiting memory bandwidth. Consequently, neither spreading nor packing is always faster across workloads and GPUs. Based on these observations, we present GPCPlace, a runtime system that dynamically selects between spreading and packing by profiling workloads on the target GPU to estimate both slowdowns, and hooks kernel launches in the CUDA driver to set SM masks without application modifications. Across 14 GPUs and 112 workload cases, GPCPlace speeds up latency-critical workloads by up to 1.15x on average and 2.38x maximum over Green Contexts without degrading throughput.",
+    "developer": "Ziwen Wang, Qi Luo, Kunlin Li, Changxi Liu, Dongsheng Wang, Yun Chen",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Ziwen Wang, Qi Luo, Kunlin Li, Changxi Liu, Dongsheng Wang, Yun Chen"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

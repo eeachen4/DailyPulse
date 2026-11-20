@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0awj6",
+  "sourceItemId": "1y0awj6",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0awj6/evaluating_llm_outputs_with_independent_judges/",
+  "detail": {
+    "longDescription": "Hi all,\n\nI built an n8n workflow that evaluates an LLM with other LLMs, and put it on GitHub.\n\nHow it works\n\n1. A small test set (5 questions with reference answers and a human score)\n\n2. A candidate model answers each question (Groq: gpt-oss-20b and gpt-oss-120b, tested in separate runs)\n\n3. Two judges from different providers score each answer from 1 to 5 against the reference: Gemini 3.5 Flash Lite and Nemotron 3.5 Lightning (OpenRouter free)\n\n4. Code calculates pass rate, judge-human agreement, mean absolute error and judge disagreement\n\n5. Results go to Slack, email and Postgres\n\nWhy two judges from other providers: neither judge is the candidate model, so no self-preference, and when they disagree by 2 points or more it shows up as a metric.\n\nLimits: it is a 5-question demo, so don't read much into the numbers. A real eval needs a bigger labeled set.\n\nWorkflow JSON, setup and table SQL:\n\nhttps://github.com/ztsprofessionalaiid7-alt/llm-judge-eval-pipeline-n8n\n\nFeedback welcome: would you add a third judge, or a tie-break rule when the two disagree?",
+    "developer": "ZtasnimS75",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

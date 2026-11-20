@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23584",
+  "sourceItemId": "2611.23584",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23584",
+  "detail": {
+    "longDescription": "arXiv:2611.23584v1 Announce Type: new Abstract: The Linux kernel's eBPF verifier uses abstract interpretation to ensure the safety of user-provided programs before execution. It tracks each register with multiple interval domains and a bitwise domain (tristate numbers). Refining the abstract state at conditional branches can produce mutually contradictory constraints across domains, indicating an unreachable path. However, the verifier lacks an empty-set ($\\bot$) representation and cannot detect when these domains have an empty intersection, causing it to analyze dead paths. Passing such contradictory states into domain reduction or downstream operators violates their implicit non-emptiness precondition, triggering domain invariant violations. This has been a multi-year issue in the Linux kernel causing production outages, false rejections, and state explosion. This paper presents a sound and complete constant-time emptiness check across the eBPF verifier's abstract domains to prune dead branches. We introduce abstract step functions, a general framework that tests whether intervals and non-convex domains intersect in O(1) time without scanning individual values. We develop tnum_step, a formally verified constant-time operator that jumps to the next integer satisfying a tristate bitmask. Using tnum_step, we design a multi-domain emptiness check that detects contradictory states during branch refinement and immediately prunes unreachable branches, eliminating the root cause of dead-branch invariant violations. Our technique prevents invariant violations, state explosion, and false rejections while incurring negligible (1.48%) overhead across Linux kernel selftests and production suites such as Cilium. Our tnum_step operator has been upstreamed into the mainline Linux kernel.",
+    "developer": "Harishankar Vishwanatha, Srinivas Narayana, Santosh Nagarakatte",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Harishankar Vishwanatha, Srinivas Narayana, Santosh Nagarakatte"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

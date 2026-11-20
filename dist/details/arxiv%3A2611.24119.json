@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.24119",
+  "sourceItemId": "2611.24119",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.24119",
+  "detail": {
+    "longDescription": "arXiv:2611.24119v1 Announce Type: new Abstract: Datacenters can procure electricity in day-ahead markets by committing to energy purchases for individual hours. For LLM services operating within these hourly budgets, maximizing aggregate throughput alone may still leave individual requests waiting or receiving much slower service than desired. Fair serving therefore requires improving service for poorly served requests while reserving electricity for later arrivals whose timing and demand are unknown. To compare service across requests, we define normalized throughput as each request's actual output rate divided by the product of its standalone throughput and its service entitlement, a positive weight representing its desired service level. Using this measure, we formulate fair serving as leximin optimization under an hourly electricity constraint, prioritizing requests with the lowest normalized throughput. To address this problem, we present eFAIR, an online scheduler that coordinates request dispatching, electricity budget allocation, and GPU frequency selection through a common normalized-throughput target. Specifically, request dispatching prioritizes requests by desired service level and progress; electricity budget allocation reserves electricity for current and expected future work; and frequency selection uses electricity savings to raise GPU frequencies for requests with higher desired service levels. Evaluations on H20 and H200 configurations, each with 32 replicas, show that eFAIR improves the tenth percentile of normalized throughput by 28.0%-31.0% over the best budget-feasible baseline, while keeping absolute deviations from the hourly electricity commitment below 0.26%. eFAIR also improves throughput balance among concurrent requests and aligns electricity allocation more closely with service demand over time. Together, these results demonstrate how eFAIR improves request-level fairness within an hourly commitment.",
+    "developer": "You Peng, Youhe Jiang, Chen Wang, Binhang Yuan",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "You Peng, Youhe Jiang, Chen Wang, Binhang Yuan"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

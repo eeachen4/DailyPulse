@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23857",
+  "sourceItemId": "2611.23857",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23857",
+  "detail": {
+    "longDescription": "arXiv:2611.23857v1 Announce Type: new Abstract: Modern HPC workloads increasingly stall on the memory hierarchy rather than on compute, and page faults from mmap'd files, swap, and tiered memory are a growing fraction of wall time. Heuristic prefetchers in the kernel handle stride-like and temporally clustered patterns well but degrade sharply on the irregular, data-dependent access streams typical of these workloads. Learned prefetchers have been shown to capture such patterns in simulation but have not been taken to a deployed pipeline running against live workloads on real hardware. We present Overseer, an end-to-end learned page-prefetching system. An eBPF collector observes page faults on the target host, a transformer predictor (OverNet) runs on network-attached inference hardware and emits future page addresses, and a kernel-resident enforcer materializes those pages into the target's address space before they are demanded. OverNet encodes fault sequences through per-instance ordinal ranks over deltas, which lets a single trained model serve any target process without retraining. On two page-fault-heavy workloads, Overseer reduces runtime by roughly 35% on Hilbert-curve traversal and by roughly an order of magnitude on dense matrix multiplication, with corresponding reductions in major-fault counts.",
+    "developer": "Michael Zizov, Boris Morose",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG, cs.OS"
+      },
+      {
+        "label": "第一作者",
+        "value": "Michael Zizov, Boris Morose"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

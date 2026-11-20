@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0a0ft",
+  "sourceItemId": "1y0a0ft",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0a0ft/i_tested_whether_embedding_similarity_is_safe_for/",
+  "detail": {
+    "longDescription": "\n\nA lot of \"semantic cache\" tutorials say: embed the incoming question, and if it's close enough (cosine similarity) to a cached one, reuse the answer. I wanted to know how safe that actually is, so I measured it.\n\n\n\nI built a set of 138 real question pairs: 69 paraphrases that should share an answer, and 69 look-alikes that must NOT — e.g. \"do you deliver to Bobo?\" vs \"do you deliver to Ouaga?\", or \"return after 7 days?\" vs \"return after 30 days?\".\n\n\n\nResults for a pure-embedding cache:\n\n\\- threshold 0.97: basically never fires (0% reuse) → no savings\n\n\\- threshold 0.90: 3% wrong answers\n\n\\- threshold 0.85: 19% wrong answers\n\n\n\nThere's no good threshold. Embeddings measure topic similarity, not same meaning.\n\n\n\nWhat worked: use the embedding only as a fast filter to find candidates, then have a cheap model (gpt-4o-mini) confirm \"do these two questions mean the same thing?\" before reusing. On the same 138 pairs: 0 wrong answers, 72.5% of paraphrases still reused. The whole test set is replayed in CI so a regression fails the build.\n\n\n\nOne caveat people skip: the verifier isn't free, so the honest metric is net savings (money avoided minus judge + embedding cost), not hit rate.\n\n\n\nFull write-up with numbers: [https://caelum-ai.com/blog/semantic-cache-llm-trap](https://caelum-ai.com/blog/semantic-cache-llm-trap)\n\nI packaged all of it (exact + semantic cache, retries, cost journal) into an open-source library if useful: [https://github.com/kanazoeissouf83-ops/caelum](https://github.com/kanazoeissouf83-ops/caelum)\n\n\n\nCurious how others here handle false positives in semantic caches.",
+    "developer": "Narrow_Side_7778",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

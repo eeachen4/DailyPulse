@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0jgik",
+  "sourceItemId": "1y0jgik",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0jgik/agentic_graphrag_an_opensource_framework_for_the/",
+  "detail": {
+    "longDescription": "\n\nWe're building [Agentic GraphRAG](https://github.com/ontogr/agentic-graphrag) ([https://github.com/ontogr/agentic-graphrag](https://github.com/ontogr/agentic-graphrag)), an open source library for connecting the documents an agent reads with its task history and decisions.\n\nI've worked on RAG systems and LLM training for the past three and a half years. Lately, I've been following how agents retain work across sessions, especially for non-coding tasks. Our project explores how that memory can stay connected to the knowledge an agent used, so a later session can recover both the information and its steps efficiently.\n\nThe implementation constructs three connected graph layers:\n\n1. **Knowledge Layer:** holds documents, source passages, and extracted entities and relationships. Passages retain their document version and location, including page positions for PDFs.\n2. **Working memory:** records tasks, progress, messages, and tool activity. The built-in agent uses DeepAgents/LangGraph and saves task events so work can continue across sessions.\n3. **Decision memory:** stores conclusions, assumptions, and open questions. Decisions link to source passages, recorded events, or earlier decisions, and keep their history when reviewed or replaced.\n\nFor example, an agent can record a contract recommendation with the policy passage it relied on. If that policy changes, the recommendation and its explicit dependent decisions are flagged for review. The agent now is aware when in a later session that the decision needs another look.\n\nThe ingestion pipeline uses Docling for loading documents and captures the full document hierarchy. The sections, tables, and passage hierarchy are connected using edges and stored in the graph.\n\nYou define a schema for your domain (we also ship ontology presets so it is easy to get started). The schema guides extraction, validation, and search. We use GLiNER for local extraction, so its virtually free (and fast) to construct the graph and no LLM calls are needed.\n\nRetrieval combines full-text and vector rankings with reciprocal rank fusion. Agents can search original passages even when extraction misses a fact, navigate surrounding sections and table rows with headers, and follow entity relationships back to supporting text.\n\nWe offer a built-in agent you can use out of the box and you can also connect your agents through MCP.\n\nWe will be releasing extensive benchmarks very soon.\n\n# TL;DR\n\nAgentic GraphRAG is an open source library that stores document knowledge, agent work, and decisions in one connected graph. Agents can resume tasks and trace saved decisions to their original evidence, while source changes flag affected decisions for review.\n\nTry it out. Feedback, criticism, issues, and contributions are all welcome!",
+    "externalUrl": "https://github.com/ontogr/agentic-graphrag",
+    "developer": "Aggressive-Judge-448",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

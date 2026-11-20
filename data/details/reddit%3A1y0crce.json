@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0crce",
+  "sourceItemId": "1y0crce",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y0crce/open_source_agent_memory_that_handles_different/",
+  "detail": {
+    "longDescription": "CtxVault, open source (MIT): [https://github.com/Filippo-Venturini/ctxvault](https://github.com/Filippo-Venturini/ctxvault)\n\nAs an AI engineer I wanted to start an open source project, and during my work I was missing a solid way to handle memory in agentic systems (especially when multiple agents are involved). I also thought it would be cool to have a memory the user fully controls: just plain folders on your machine, that you can open and edit with anything. Since I knew almost nothing about cognitive science and memory in general, I started reading papers like CoALA and came up with CtxVault.\n\nIn very few words: you have 3 types of memory slots (vaults):\n\n* semantic: store documents and do RAG, basically\n* procedural: skills and procedures for the agents\n* episodic: bi-temporal memory for facts, which you can inspect to know what the agent knew at a specific instant in time\n\nYou can mix these vault types in any shape you like, and if you have a multi-agent system you choose which agent accesses which vault, so you keep control of the memory.\n\nYou use them via Python, HTTP, MCP or CLI, and most important you can see everything in a local UI (try it here without installing, it’s a snapshot of example 07 from the repo: [https://filippo-venturini.github.io/ctxvault/demo.html](https://filippo-venturini.github.io/ctxvault/demo.html)).\n\nThe last release (v0.10.0) added an optional consolidation layer that extracts facts from conversations with a model you point it at (local only by default, every fact links back to the transcript it came from), and a LongMemEval harness: right now our objective is to collect some benchmarks, we don’t have numbers yet.\n\nIf any of you have ideas, improvements or want to discuss, I’d love to hear it, or if you want to try the library in one of your projects.\n\nCheers!",
+    "externalUrl": "https://i.redd.it/xb4bzvydbl2i1.gif",
+    "developer": "Comfortable_Poem_866",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

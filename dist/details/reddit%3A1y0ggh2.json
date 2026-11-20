@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y0ggh2",
+  "sourceItemId": "1y0ggh2",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y0ggh2/shiftmox_openshiftokd_5_on_proxmox_ve_from_a/",
+  "detail": {
+    "longDescription": "I've been building a homelab project to run \\*\\*OpenShift 5 (or OKD) on Proxmox VE\\*\\* completely from code. The part I'm most happy with: \\*\\*workers that scale themselves\\*\\*, either from \\*Compute › MachineSets › Edit Machine count\\* or the ClusterAutoscaler, with the worker VMs created in Proxmox only when they're actually needed.\n\n\n\n\\* \\*\\*Repo:\\*\\* [https://github.com/jwklijnsma/shift-mox](https://github.com/jwklijnsma/shift-mox)\n\n\\* \\*\\*Docs:\\*\\* [https://jwklijnsma.github.io/shift-mox/](https://jwklijnsma.github.io/shift-mox/)\n\n\n\n\\## What it does\n\n\n\n\\* \\*\\*One file describes the cluster\\*\\* (\\`cluster.yml\\`): counts, sizes, network. VM names, VMIDs, IPs, MACs and Proxmox placement are generated.\n\n\\* \\*\\*Agent-based installer\\*\\*: Ansible renders install-config/agent-config, builds the ISO, uploads it, creates the VMs through the Proxmox API and waits for install-complete. No PXE, no bootstrap VM, no external load balancer.\n\n\\* SNO, compact or standard; \\*\\*OpenShift or OKD\\*\\* with one setting; \\*\\*Calico\\*\\* or OVN-Kubernetes.\n\n\\* \\`./ocp.sh deploy\\` runs everything from the Proxmox host itself (in tmux), or use the GitHub Actions workflow with a self-hosted runner in an LXC.\n\n\n\n\\## How the autoscaling works\n\n\n\nProxmox isn't a supported platform, so there's no Machine API provider for it. Instead I reused what OpenShift already has for bare metal:\n\n\n\n\\* \\*\\*Metal3\\*\\* (platform \\`baremetal\\`) with one \\`BareMetalHost\\` per worker slot\n\n\\* A \\*\\*Redfish BMC for Proxmox\\*\\*: the sushy-tools emulator plus a small Proxmox driver, so Ironic can power VMs, set the boot order and mount its ISO as virtual media through the Proxmox API\n\n\\* \\*\\*VMs on demand\\*\\*: a slot has no VM until Ironic first touches it. After scale-down a reaper deletes the VM again, but only after checking the API that the host is really released\n\n\\* \\*\\*DHCP with static leases\\*\\* per MAC, a MachineConfig for \\`/etc/hosts\\` + hostname, and a CronJob that re-registers hosts stuck in an error state\n\n\\* The native \\*\\*ClusterAutoscaler + MachineAutoscaler\\*\\* on the worker MachineSet\n\n\n\nSo: pods go \\`Pending\\` → ClusterAutoscaler scales the MachineSet → Metal3 claims a slot → Redfish → Proxmox creates the VM → RHCOS installs → node joins. And back again when it's idle.\n\n\n\n\\## Things I learned the hard way\n\n\n\n\\* \\*\\*A DNS wildcard on a parent domain\\*\\* (e.g. \\`\\*.example.com\\` at your DNS provider) makes the agent installer refuse to start (\\`dns-wildcard-not-configured\\`), and you only find out after the \\~1 h bootstrap timeout. The preflight now checks for it.\n\n\\* \\*\\*NIC names on q35 VMs aren't \\`ens18\\`.\\*\\* The agent installer copes because it maps interfaces by MAC; Metal3's \\`preprovisioningNetworkData\\` doesn't. The non-matching static config got copied into the installed system, which then skipped DHCP and booted without any network (Ignition: \\`network is unreachable\\`, forever). New workers now use DHCP only.\n\n\\* \\*\\*Re-applying a BareMetalHost that a worker runs on resets \\`spec.online\\` and powers the worker off.\\*\\* Ask me how I know. :)\n\n\\* New workers boot the release's older boot image first and update to the cluster OS on first boot, so don't panic when GRUB says RHCOS 9.x on a 10.x cluster.\n\n\n\n\\## Caveats\n\n\n\nThis is a \\*\\*lab/test\\*\\* setup: Proxmox VE is not a supported platform for OpenShift. It runs well for me on a single Proxmox host; multi-host should work but has seen less testing.\n\n\n\nFeedback, ideas and \"you're doing it wrong\" are all welcome, especially from anyone who has run Metal3 with virtual BMCs on other hypervisors.",
+    "developer": "Additional-Bowler776",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.23512",
+  "sourceItemId": "2611.23512",
+  "fetchedAt": "2026-11-20T04:19:23.008Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.23512",
+  "detail": {
+    "longDescription": "arXiv:2611.23512v1 Announce Type: new Abstract: Sparse attention reduces computation, but distributed execution may still transfer unnecessary data and incur substantial per-operation overhead. Mask-aware assignment and scheduling can reduce these costs, but replanning for dynamic masks must be cheaper than the execution time it saves. We present DexAttention, a distributed sparse attention system that co-designs fast online planning with persistent execution. Its assigner uses GPU-accelerated, topology-aware clustering to balance computational load and reduce communication. A lightweight greedy scheduler orders coarse communication and computation operations, while a persistent kernel on each GPU enforces fine-grained dependencies and dispatches ready tasks. This division keeps detailed synchronization out of planning while enabling overlap without repeated attention launches. The framework supports static and dynamic per-head masks across multiple attention compute kernels. On a four-node, 16-GPU cluster, DexAttention achieves a $1.39\\times$ geometric-mean end-to-end training speedup over the fastest applicable baseline across 11 configurations. For dynamic video attention, it achieves $2.11$--$2.37\\times$ speedups over Ring Attention including planning.",
+    "developer": "Sirui Chen, Xuehai Qian",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Sirui Chen, Xuehai Qian"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}
