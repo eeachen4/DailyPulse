@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017779",
+  "sourceItemId": "80017779",
+  "sourceUrl": "https://stackoverflow.com/questions/80017779/cpython-compiler-flags-changed-in-3-15-for-armv7",
+  "detail": {
+    "longDescription": "I have a Linux (debian 12) container running on ARMv7. Through uv I install the pre-built CPython version 3.15.2. There I try to install the Python Package cffi which is compiled during the installation (there are no Binaries for the ARMv7 platform). Now I got the error: [stderr] cc: error: unrecognized command-line option ‘-mno-omit-leaf-frame-pointer’; did you mean ‘-fno-omit-frame-pointer’? cc: error: unrecognized command-line option ‘-mno-thumb’; did you mean ‘-mthumb’? cc: error: unrecognized command-line option ‘-mno-omit-leaf-frame-pointer’; did you mean ‘-fno-omit-frame-pointer’? cc: error: unrecognized command-line option ‘-mno-thumb’; did you mean ‘-mthumb’? No working compiler found, or bogus compiler options passed to the compiler from Python's standard \"distutils\" module. See the error messages above. Likely, the problem is not related to CFFI but generic to the setup.py of any Python package that tries to compile C code. (Hints: on OS/X 10.8, for errors about -mno-fused-madd see http://stackoverflow.com/questions/22313407/ Otherwise, see https://wiki.python.org/moin/CompLangPython or the IRC channel #python on irc.libera.chat.) Trying to continue anyway. If you are trying to install CFFI from a build done in a different context, you can ignore this warning. cc: error: unrecognized command-line option ‘-mno-omit-leaf-frame-pointer’; did you mean ‘-fno-omit-frame-pointer’? cc: error: unrecognized command-line option ‘-mno-thumb’; did you mean ‘-mthumb’? error: Command ['cc', '-pthread', '-fno-omit-frame-pointer', '-mno-omit-leaf-frame-pointer', '-marm', '-mno-thumb', '-fno-strict-overflow', '-Wsign-compare', '-Wunreachable-code', '-DNDEBUG', '-g', '-O3', '-Wall', '-O3', '-mfloat-abi=hard', '-mfpu=vfpv3-d16', '-fstack-protector', '-U_FORTIFY_SOURCE', '-D_FORTIFY_SOURCE=2', '-fPIC', '-fPIC', '-DFFI_BUILDING=1', '-I/home/dev/.cache/uv/builds-v0/.tmpN96kG4/include', '-I/home/dev/.local/share/uv/python/cpython-3.15.2-linux-armv7-gnueabihf/include/python3.15', '-c', 'src/c/_cffi_backend.c', '-o', 'build/temp.linux-armv7l-cpython-315/src/c/_cffi_backend.o'] returned non-zero exit status 1. With Python 3.14, it works as expected. The differences is in the compiler flags. python - <<'PY' import sysconfig print(sysconfig.get_config_var(\"CFLAGS\")) PY returns in Python 3.14.10 -fno-strict-overflow -Wsign-compare -Wunreachable-code -DNDEBUG -g -O3 -Wall -O3 -mfloat-abi=hard -mfpu=vfpv3-d16 -fstack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -fPIC and in Python 3.15.2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -marm -mno-thumb -fno-strict-overflow -Wsign-compare -Wunreachable-code -DNDEBUG -g -O3 -Wall -O3 -mfloat-abi=hard -mfpu=vfpv3-d16 -fstack-protector -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -fPIC So it seems, that the new compiler flags are not compatible with gcc12 on debian12? Is this known or is there any minimum requirements for the compiler? And if I have to stay on that compiler version, is there any way to get the package build working?",
+    "developer": "moudi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "104"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

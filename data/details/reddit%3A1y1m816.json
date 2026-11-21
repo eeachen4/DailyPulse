@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1m816",
+  "sourceItemId": "1y1m816",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y1m816/i_finetuned_qwen354b_to_design_web_pages_that_are/",
+  "detail": {
+    "longDescription": "I trained Qwen3.5-4B to turn a plain request (\"a landing page for my coffee shop\", \"a portfolio for a security student\") into one self-contained HTML page that has more taste than base qwen, and fails less. It thinks briefly (\\~400 tokens), then writes the page.\n\n**Same prompt, base vs ours:** first two images. The third is more of its pages, unedited.\n\n**Numbers** (74 prompts it never saw in training, 2 pages each, every page opened in a headless browser and checked for JS errors, failed loads and dead buttons):\n\n||Qwen3.5-4B|Web-Designer (Q4\\_K\\_M)|\n|:-|:-|:-|\n|Pages that work|35%|**53%**|\n|Pages finished|75%|**95%**|\n\n**Training:** 1,443 prompt-to-page examples. Real web-design requests from LMArena's WebDev arena prompts plus my own, answered by DeepSeek V4.1 Flash with a short design plan and a page, and every page browser-checked before it went into training. \n\nQLoRA, rank 16, 2 epochs, 4,096 tokens, on one RTX 4060 Laptop (8 GB).\n\n\n\n**Run it:**\n\n    llama-server -m Qwen3.5-4B-Web-Designer-Q4_K_M.gguf --jinja -c 10240 -ngl 99\n\nTemperature 0.7, top-p 0.95, top-k 20. \n\n* Model + GGUF: [https://huggingface.co/banyohavlusu23/Qwen3.5-4B-Web-Designer](https://huggingface.co/banyohavlusu23/Qwen3.5-4B-Web-Designer)\n* Gallery (148 pages, the failing ones too): [https://huggingface.co/spaces/banyohavlusu23/Qwen3.5-4B-Web-Designer-Gallery](https://huggingface.co/spaces/banyohavlusu23/Qwen3.5-4B-Web-Designer-Gallery)\n\nApache-2.0. Feedback and your best (or worst) pages are very welcome.\n\nSmall note: I noticed ccore released Web-Coder around the same time! We've been working on these independently, so it's a pretty funny coincidence. His work looks really interesting, and I'm especiallly excited for the design-dataset he will share.\n\n",
+    "developer": "MuzafferMahi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1c7pd",
+  "sourceItemId": "1y1c7pd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y1c7pd/how_do_you_check_whether_an_llm_used_the_numbers/",
+  "detail": {
+    "longDescription": "I’m building CAEL, a chat assistant that runs on a CPU and uses rules and retrieval. There’s no neural network in it. I’d like feedback from people who check LLM outputs, because one part of mine only needs the original question and a proposed answer.\n\nSay I ask, “I bought three £4 notebooks and paid with £20. How much change should I get?” If a solver answers £12, I can see exactly where that came from. It worked out what the notebooks cost and stopped one step early. The unused £20 is a useful clue.\n\nThe check I wrote is about 40 lines. It searches for a way to make the proposed answer from the numbers in the question and gives it less weight if it leaves numbers unused. Where this gets tricky is a detail like “I paid at till 6.” A good answer *should* ignore that six. And sometimes you can use every number and still do the wrong calculation.\n\nIn CAEL, that check gets one vote. Small solvers try a few readings of the conversation, including one with earlier turns joined together and one with the facts separated from the question. I also check whether the reply gives the kind of answer requested. If two interpretations pass the checks and give different answers, CAEL asks for clarification. There’s a final check for cases where retrieval pulls in generic advice that has little to do with the question. The main limitation is coverage. The solvers are handwritten, and unfamiliar questions often get a refusal.\n\nI tried a related idea on ARC-AGI-1. Each of 53 handwritten rule families has to reproduce the examples before it gets a vote. I also try eight rotations and reflections, then hold one example back to see whether a leading rule can predict it. That run solved **62 of 400 evaluation tasks** at pass@2, with a 10-second CPU limit per task. I developed the rules on the training set and checked the evaluation score several times along the way, so that score was visible during development.\n\nThe repo is source available for noncommercial use. It includes the per task results and the script I ran: `python evaluate_arc.py --data ARC-AGI/data/evaluation`. [Vovala14/CAEL on GitHub](https://github.com/Vovala14/CAEL)\n\nFor anyone doing this with an LLM, how do you tell when the model skipped a quantity it needed versus correctly ignored a distractor? I’d be especially interested in an example where your checker accepted the wrong answer.",
+    "developer": "Silver_Employ2617",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

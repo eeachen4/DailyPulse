@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1ip5f",
+  "sourceItemId": "1y1ip5f",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y1ip5f/discussion_in_the_age_of_loops_what_do_active/",
+  "detail": {
+    "longDescription": "Seems like looped models are gaining prominence (finally!), which raises a question about what the meaning of terms \"total parameters\" and \"active parameters\" are.\n\nHistorically, it mostly applied to MoE models, as most experts would not be activated for a given token. The total parameters represented the amount of memory needed to hold the model weights, while active parameters represented the memory read per token (or similarly, FLOPs per token)\n\nWith looped transformers, I argue the best way to extend the definition is to increase the active parameters in a way that preserves its use as an estimate of GB/token (TG) and FLOP/token (PP)\n\nI think it's OK to keep excluding PLE, Engrams and token embeddings (if no weight tying) from both those counts, since they are extremely sparse, and can even be off-loaded to the SSD.\n\nNow, an example: imagine a dense model with 4B individual parameters (excluding embeddings)\n\n* If every layer runs twice, it's 4B total, 8B active\\*.\n* If only 50% of layers run twice, it would be 4B total, 6B active.\n\nFor other real examples:\n\n* Inkling 2 Mini, an MoE, is 26B total, 5B active (50% of layers run thrice)\\*\\*\n* SenseNova-Loop-9B, a dense model, is 9B total, 15B active (75% of layers run twice)\n* Nanbeige4.2-3B, a dense model, is 3B total, 5.5B active (100% of layers run twice)\n\nI argue this is more useful for what we care about, which is the cost or speed of running a given model, and will likely end up being a good proxy for the \"intelligence\" of the model as well. wdyt?\n\n^(\\* This is an overestimate, as it ignores the size of the output layer and assumes all layers are the same. If you know that size, you can exclude it from the multiplication, e.g. if it was 1B params, then the 50% case would actually be (4-1)\\*1.5+1 = 5.5B active. I did this for the real examples.)\n\n^(\\*\\* For Inkling 2 Mini, my math doesn't add up to their numbers, theirs seems too high? I get 2.7B ignoring loops and 4.9B with loops, while they state 3.4B and 5.4B, even after counting each tensor in their GGUF individually. Not sure where the difference is.)",
+    "developer": "z_latent",
+    "comments": 19,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

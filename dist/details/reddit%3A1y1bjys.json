@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1bjys",
+  "sourceItemId": "1y1bjys",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y1bjys/cert_doctor_diagnose_problems_with_certificates/",
+  "detail": {
+    "longDescription": "  \n\n\n[Cert Doctor](https://github.com/donislawdev/certdoctor) is a open source GUI/CLI program that helps with diagnosing connections issues (certificates) using six layers, the program is for Windows/Linux/macOS.\n\nIf there is a problem, the program will show how to fix it, but the program by iself NEVER execute the commands (security reassons). The program comes also with some nice tools like offline JWT/PEM/CRT/CSR decoder, NO\\_Proxy tester and more things will come in the future :-)\n\nOh, and we can just generate .html files with report. **If you like the repo, please start it on** [GitHub](https://github.com/donislawdev/certdoctor)**:-)**\n\nSome features:\n\n\\- Say whose problem it is - this machine, or the server. A server that does not send its intermediate certificate is named as the server's fault, with the evidence to paste into a ticket.\n\n\\- One row per trust store, not per runtime - the Windows store as your account sees it and as services see it, the Linux CA bundle, every JDK and JRE separately, every git, curl, node, Python and pip it finds. On the machine it was built on, one run in November 2026 read seventeen stores, eight of them Java runtimes.\n\n\\- Print the command that fixes each store - certutil, keytool with the real cacerts path of that JDK, an append to git's own bundle - and say when it needs administrator rights. It prints them. It never runs them.\n\n\\- Notice TLS inspection without accusing anyone - who signed the certificate, how many stores on this machine know that authority, and the product's name when it is one Cert Doctor recognises.\n\n\\- Read your proxy settings the way your programs do - the environment variables, the Windows Internet Settings that Edge, Chrome and .NET follow, and the WinHTTP settings that services follow, side by side. It runs your PAC script in a sandbox to see where your URL really goes, and asks the proxy whether it wants credentials.\n\n\\- Look at DNS twice - every configured resolver asked directly, and the system resolver, with the difference classified: split horizon, a leak past a VPN, a name that resolves nowhere.\n\n\\- Try every address - a TCP connection to each address the name resolves to, and the full certificate chain from each one, with fingerprints and validity dates.\n\n\\- Write a report for the ticket - terminal, Markdown, one self-contained HTML page, or JSON with a schema for CI. --redact masks host names, paths and user names. Credentials are masked always.\n\n\\- Change nothing and call nobody - the only file it writes is the report, at the path you name, and the window keeps one setting of its own. It connects only where you pointed it: no telemetry, no update check.\n\n\\- Ship the command line as one static binary - nothing to install next to it, and it runs as it is inside Alpine and Ubuntu images.\n\n\\- Show the same report in a window - certdoctor-gui, for Windows, Linux and macOS: type the address, press Diagnose, read the report and save it as HTML, Markdown or JSON. The window runs the command line next to it, so it knows nothing the command line does not.\n\n\\- Decode and test offline - a JWT decoder, a certificate decoder for PEM, CRT and DER files and whole chains, a CSR decoder that says what a public certificate authority will refuse, and a NO\\_PROXY tester that shows which programs go through the proxy for an address. Each reads only what you give it and connects to nothing - certdoctor tool in a terminal, Tools in the window. More in Tools below.\n\n[Website](https://certdoctor.donislawdev.com/)",
+    "externalUrl": "https://i.redd.it/fgp8wh8edt2i1.gif",
+    "developer": "DonislawDev",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

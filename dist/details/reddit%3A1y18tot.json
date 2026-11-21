@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y18tot",
+  "sourceItemId": "1y18tot",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y18tot/i_dont_understand_wud/",
+  "detail": {
+    "longDescription": "Hello everybody, I thought I got the Idea of WUD but apparently I'm not:  \nI have WUD configured, that he ignores all Containers in first sight:\n\n# wud docker-compose.yml\n\n`environment:`  \n`- WUD_WATCHER_LOCAL_WATCHBYDEFAULT=false`\n\nThat works, no Containers show up in the Container list in the Webinterface of WUD.\n\nThen I have a **forgejo** Container. I want to stay in the LTS Branch, which is actually Version Number 15 [https://endoflife.date/forgejo](https://endoflife.date/forgejo) Because I want to have the minor updates and patches I want to update my forgejo-Instance.  \nI thought the Idea of WUD is now, I pin the Version Number 15, WUD collects the digest of the local Container and compares it, with the actual digest of Version 15. This is what I tried:\n\n# forgejo docker-compose.yml\n\nimage: [`codeberg.org/forgejo/forgejo:15`](http://codeberg.org/forgejo/forgejo:15)\n\nlabels:\n\n\\- wud.watch=true\n\n\\- wud.watch.digest=true\n\n\\- wud.image.digest=true\n\nThe Versions of forgejo are listed here: [https://codeberg.org/forgejo/-/packages/container/forgejo/versions](https://codeberg.org/forgejo/-/packages/container/forgejo/versions)\n\nBut WUD tells me: There is an upgrade to Version 17: (little red Batch with 17 in the \"Update\" Coloumn of WUD Containers Overview.\n\nWhere I'm thinking wrong? Any help is welcome!\n\nKindly regards!",
+    "developer": "Big_Gate_3183",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y17a77",
+  "sourceItemId": "1y17a77",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y17a77/jev_was_more_confident_when_a_prompt_injection/",
+  "detail": {
+    "longDescription": "In September someone ran 300 support tickets through Jev 1.13.0 with a prompt injection pasted into each. 247 got hijacked. Median confidence was 0.73 on the hijacked answers and 0.57 on the 53 that resisted.\n\nJev is TypeSafe's decision model. You send a question plus the answers you allow (Choice, Score, or a yes/no Noul) and get probabilities back, which people put in front of routing, triage and approval with a cutoff.\n\nWe went through four independent audits (numbers on the card):\n\n\\- Injection test: a 0.85 cutoff blocked 171 of the 247 hijacked decisions and let 76 through (31%). Only 3.3% of clean, correct ones got blocked.  \n\\- CLINC150, 200 items: confidence of exactly 1.0 on 102 of them, and 6 of those were wrong.  \n\\- 900 rule-generated support tickets: 89% right on \"which queue\", with some misses still at 1.00. On a priority rule nobody gave it, 44.7% right at an average stated 0.74. Yes/no questions ran underconfident, so the error flips direction by question type.  \n\\- 2,000 emails, half phishing: Jev 62.6%, Claude Haiku 4.5 81.3%, and 2.2% of answers changed on a rerun. Jev's own five signal answers fed into a logistic regression hit 95.1%.\n\nThe CLINC150 study's two pre-registered verdicts came back ambiguous, so treat all of this as a reason to test your own cutoff.\n\nThe \"was Jev actually useful?\" thread here this week matches. One person runs it as an auto-approval gate for commands, another ruled it out as \"too susceptible to suggestion\" from instructions in the input, and a third saw accuracy fall sharply past 50 categories but still cut review time by 70%.\n\nWhat we'd do before trusting a cutoff:\n\n1. Label 200 to 300 of your own items, plot accuracy against confidence per question type.  \n2. Keep a salted set of injected inputs and rerun it on every model or prompt change.  \n3. Send the uncertain band to a bigger model or a person.  \n4. Recheck after deploy. Live traffic drifts from your test set.\n\nWe added Jev, Perplexity's Decider and OpenAI's Decisions API to the open-source gateway we build, on one /v1/decisions endpoint with the same per-key rate limits, budgets and cost tracking as chat. The same repo can run a continuous eval on new logged decisions and alert you when the pass rate drops below its normal range from the past week.\n\nHow are you picking the threshold per question type, and do you recheck it after deploy?",
+    "externalUrl": "https://i.redd.it/35gb7jwpjs2i1.png",
+    "developer": "Future_AGI",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1ghl1",
+  "sourceItemId": "1y1ghl1",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y1ghl1/i_built_an_opensource_model_router_that_factors/",
+  "detail": {
+    "longDescription": "I built an Apache-2.0 OpenCode V2 plugin inspired by Pi’s smart-router, and I’d appreciate feedback on its routing and evaluation approach.\n\nIt uses a small judge—such as Qwen 4B served locally—to assess each turn, then selects from a user-configured pool of local and cloud models. Users can favor cost, quality, or a balance. If the judge times out, deterministic heuristics take over.\n\nSwitching to a cheaper model can end up costing more if it has to read the whole context again. To account for that, the router estimates the current model’s cached input cost against a new model’s cold input cost. It keeps the current model pinned unless the alternative scores enough better, the task needs more capability, or an adequate model is much cheaper. There’s also a guard against switching straight back and forth.\n\nIn a 24-turn modeled long-session benchmark, balanced mode made 7 switches versus 18 in switch mode. The modeled cost was $4.212 versus $4.190 respectively—so in that scenario switching more often was slightly cheaper despite the cold-prefill assumption.\n\nImportant limitations: this models published prices and assumes 80% cache reuse when the model stays the same. The decisions use recorded verdicts; the quality pass checks estimated model quality against the verdict, not whether a model solved the task. Judge latency isn’t included. It’s a routing and cost simulation, not proof of real-world savings or answer quality.\n\nI’d welcome feedback on the scoring and pinning design, and especially on how to evaluate end-to-end task success, retries, actual cache hits, and judge overhead across multi-turn workloads. If you try the plugin, issues and bad routing examples would be very useful too.\n\nCode: https://github.com/231self/opencode-router\nBenchmark and assumptions: https://github.com/231self/opencode-router/blob/main/docs/benchmarks/2026-11-17-routing-long.md",
+    "developer": "Broad_Abies9390",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

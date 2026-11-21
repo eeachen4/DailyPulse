@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y10dh5",
+  "sourceItemId": "1y10dh5",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y10dh5/smallball_detection_for_amateur_football_heldout/",
+  "detail": {
+    "longDescription": "I'm building an iPhone + phone stabilizer setup (DJI Osmo Mobile 8P) that films amateur football by itself: a ball detector and the players decide where to look, the gimbal's motors move the camera. This post is about the ball detector, where the ball is often ≤ 16 px, at night.\n\nCode, model and dataset (faces blurred) are open source: [https://github.com/Thibault-GILLARD/box2boxcam-football-vision](https://github.com/Thibault-GILLARD/box2boxcam-football-vision)\n\n**Setup.** YOLO26s fine-tuned at 960 px. Train/val/test = 1,673 / 292 / 396 images; the test split is a whole match reserved before any experiment (219 balls, 149 of them ≤ 16 px). Labels: model proposals reviewed by a human.\n\n**Results (IoU ≥ 0.5, conf 0.25).** Stock YOLO26s: 51 TP / 55 FP. Fine-tuned: 99 / 100, and 55 of the 149 small balls against 23. Paired bootstrap over frames: +48 TP (95 % CI +36 to +61).\n\n**What didn't work:** published WASB weights, three stacked frames, low-threshold re-detection, copy-pasting small balls, and a scale-augmentation \"gain\" that vanished with another seed.\n\n**Limits.** Recall under 50 %, one test match, one stadium.\n\nThe iPhone app that runs it live (Core ML + gimbal control) is open source too: [https://github.com/Thibault-GILLARD/box2boxcam-ios](https://github.com/Thibault-GILLARD/box2boxcam-ios)\n\nTell me what you think, and if you'd like to get involved, I'd be glad to hear from you!",
+    "externalUrl": "https://i.redd.it/21rqywueyq2i1.gif",
+    "developer": "Pale_Sell",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

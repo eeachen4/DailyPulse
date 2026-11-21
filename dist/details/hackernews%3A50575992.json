@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50575992",
+  "sourceItemId": "50575992",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50575992",
+  "detail": {
+    "longDescription": "I already spent the time building rubrics for a set of ~100 tasks on various criterias (accuracy, thoroughness communication style ). Then ran these on a few models and now have a labelled-set where I know for each task which is the cheapest&#x2F;fastest model that gets a minimum threshold ( say 80 ). How does one go on to build a router based on this ? There appears to be no good literature &#x2F; open source projects on this. I tried a bunch of approaches with the help of claude: - trying to use Jev via a serious of probe Yes&#x2F;No questions ( does task contain x, does the world have y ...etc ). But this didn&#x27;t yield good results. - kNN on embeddings of the task - in retrospect this was set to fail from the tasks, as now I think we do need some sort of NN to figure out the world&#x2F;task complexity. - classifying prompt-complexity - something like https:&#x2F;&#x2F;catalog.ngc.nvidia.com&#x2F;orgs&#x2F;nvidia&#x2F;nemo&#x2F;models&#x2F;prompt-task-and-complexity-classifier&#x2F;- The main issue from a conceptual standpoint is that one cannot fully predict how hard a task is until you are into the task - like you might encounter unknown nuances or issues in later stages, but classification has to happen at start. So I am starting to doubt if this is even possible tbh",
+    "developer": "zodwick",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

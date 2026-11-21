@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1eyo2",
+  "sourceItemId": "1y1eyo2",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1y1eyo2/removed_by_moderator/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nIt's been a while since I last posted about this little project (see [previous post](https://www.reddit.com/r/Ubiquiti/s/ugBwnifN5K) on r/Ubiquiti). Back then, UniFi Voucher Manager (UVM) was at version 1.1.0, and the idea was pretty simple: make it easy for people to create and manage guest WiFi vouchers without giving them access to the full UniFi console.\n\nI've kept working on it over the past year, and I'm happy to share that version 2.0.0 is now out!\n\nQuite a bit has been added since that first post. Here's a quick overview of the bigger changes:\n\n* **WiFi QR codes:** Guests can scan a QR code to connect to the network. There's also a dedicated kiosk page that can display the QR code and current voucher.\n* **Printing:** You can now print individual vouchers or batches of them, choose which vouchers to print, customize the print layout, and use your own logo. Printing should support thermal printers (I don't have one, but the list printing-style should work).\n* **Rolling vouchers:** UVM can automatically generate a new voucher when the current one gets used, which is handy for a shared guest network. Expired rolling vouchers are cleaned up automatically, and there's an option to periodically purge all expired vouchers.\n* **Kiosk mode:** A simpler page designed to be left open on a tablet or other shared display. It updates automatically as rolling vouchers change.\n* **More customization:** Custom voucher durations, WiFi configuration through environment variables, custom SVG logos, and a few other display and configuration options.\n* **A bunch of smaller improvements:** Better handling of large numbers of vouchers, bulk operations, UI polish, and plenty of fixes along the way.\n\n**The main addition in 2.0.0 is multi-site support.**\n\nUVM can now discover the sites available on your UniFi controller, or you can specify which sites you want to manage. You can switch between them from the interface, and the kiosk page supports this too.\n\nThe original idea hasn't really changed: keep voucher management simple, make it usable by people who don't need access to UniFi itself, and make it easy to run in a homelab. It's just grown quite a few extra features along the way!\n\nThe project is still Docker-ready, with a Compose file provided.\n\nHere's the repo: [https://github.com/etiennecollin/unifi-voucher-manager](https://github.com/etiennecollin/unifi-voucher-manager)\n\nAnd here are the [2.0.0 release notes](https://github.com/etiennecollin/unifi-voucher-manager/releases/tag/2.0.0).\n\nAs always, feedback, suggestions, and PRs are very welcome. Thanks to everyone who has tried it out, provided feedback or starred it on GitHub so far!\n\n>**AI disclaimer:** No vibe-coding slop here! I'm an embedded software developer working in aerospace, so I know my way around code. I do use AI as a tool when appropriate. For example, to debug weird CSS behaviour (I'm not a frontend developer), troubleshoot a React hydration issue, or draft release-note summaries. But that's all it is: a tool. I review the code and modify it myself, and everything that makes it into a release is reviewed before it ships. AI doesn't directly modify code or push changes.  \nThis is also just a side project, and I want to keep it fun. I'm not trying to turn it into a second job or run a development team with AI agents. I build it because I enjoy it!\n\n>For the mods: I hope this self-promotion is not against your rules! My goal is simply to share something I have worked on with other users that might benefit from it! AI usage was really low, which is why I used the Release (No AI), as Release (AI) to me means that it was pretty much vibe coded.",
+    "developer": "EKINOOX",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

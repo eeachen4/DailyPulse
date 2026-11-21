@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1cqdz",
+  "sourceItemId": "1y1cqdz",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y1cqdz/meta_fairs_selfimproving_memory_agents_write/",
+  "detail": {
+    "longDescription": "Meta FAIR (Jason Weston's RAM team, with UW and Johns Hopkins) just published 'Self-Improving Memory', a two-stage method for continual-learning agents.\n\nHow it works:\n- Meta-optimization: the agent (Kimi-K2.6, a 1T-param MoE) rewrites its own file-based memory prompts, searching for instructions that work better than the human-written seed.\n- Harness distillation: the best runs are distilled into the model with LoRA fine-tuning, so the memory skills survive even when the agent is back on generic prompts at test time.\n\nResults on their Continual Learning Bench (three tasks: Database/SQL, Codebase/repo fixes, Spectrum/radio scans):\n- Self-discovered prompts average 56.0 vs 44.6 for the best hand-written harness. Biggest gain on Codebase: 64.3, +20.6 points.\n- After distillation, with only generic prompts at test time: 43.1 vs 37.6 for SFT on generic runs.\n- No-memory baseline: 20.4.\n\nHonest caveats, straight from the post: the search was noisy - 37 of 44 generated prompt revisions failed to beat the previous best. And this is a blog post, not a peer-reviewed paper; all numbers are the authors' own, on their own benchmark.\n\nStill, the direction is interesting: memory design for agents is usually hand-crafted by researchers. Here the model finds better memory instructions than the humans did, then learns them. If that generalizes beyond three tasks, 'how should an agent remember' stops being a prompt-engineering problem and becomes something the agent improves itself.\n\nSource: Meta research blog post, summarized here: https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/",
+    "developer": "winer666",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

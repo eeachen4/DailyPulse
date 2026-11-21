@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.07593",
+  "sourceItemId": "2610.07593",
+  "fetchedAt": "2026-11-21T04:20:20.137Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.07593",
+  "detail": {
+    "longDescription": "arXiv:2610.07593v2 Announce Type: replace Abstract: The growing memory requirements of large language models (LLMs) increasingly force distributed training jobs to span multiple GPU nodes to accommodate their training state. This reduces per-GPU computational efficiency, increases network traffic, and exacerbates job queueing delays. To address these inefficiencies, we introduce TRANSIT, a system that transparently enables efficient distributed LLM training on fewer GPUs through memory oversubscription. TRANSIT optimizes CPU-GPU data movement during oversubscription by coordinating driver-managed page residency with execution-guided zero-copy access, exploiting recurring kernel execution patterns across training iterations. We evaluate TRANSIT on dense and mixture-of-experts (MoE) models across different parallelization strategies using up to 64 NVIDIA H100-80GB GPUs interconnected over RDMA over Converged Ethernet (RoCE). Compared with the minimum GPU count required to accommodate the training state in GPU memory, TRANSIT enables training on up to 50% fewer GPUs while retaining over 90% of the baseline per-GPU computational throughput. In some configurations, training on 17-33% fewer GPUs even improves throughput due to reduced distributed communication overhead. When training on fewer GPUs, TRANSIT achieves up to 243% and 87% higher throughput than conventional driver-runtime-managed memory oversubscription and framework-managed CPU offloading, respectively, while reducing CPU memory consumption by up to 79% compared with the latter. Training on fewer GPUs with TRANSIT also reduces per-node network traffic by up to 33% and improves throughput by up to 44% under constrained network bandwidth. Production-trace-driven simulations further show 15-49% lower inter-rack network traffic and up to 2-95% shorter job queue times for different cluster capacities.",
+    "developer": "Hyungyo Kim, Nicholas Satchanov, Hrishi Shah, Gaohan Ye, Jiaqi Lou, Robert Walkup, Shweta Salaria, I-Hsin Chung, Hubertus Franke, Seetharami Seelam, Apoorve Mohan, Nam Sung Kim",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AR"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hyungyo Kim, Nicholas Satchanov, Hrishi Shah, Gaohan Ye, Jiaqi Lou, Robert Walkup, Shweta Salaria, I-Hsin Chung, Hubertus Franke, Seetharami Seelam, Apoorve Mohan, Nam Sung Kim"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

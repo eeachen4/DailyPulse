@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1h3qz",
+  "sourceItemId": "1y1h3qz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y1h3qz/how_to_compile_llamacpp_in_ubuntu_2604/",
+  "detail": {
+    "longDescription": "Wanted HDR, so upgraded to 26.04. But now I cannot compile llama.cpp with CUDA backend with this error.\n\n```\nCall Stack (most recent call first):\n  /usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)\n  /usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:53 (__determine_compiler_id_test)\n  /usr/share/cmake-4.2/Modules/CMakeDetermineCUDACompiler.cmake:163 (CMAKE_DETERMINE_COMPILER_ID)\n  ggml/src/ggml-cuda/CMakeLists.txt:73 (enable_language)\n\n\n-- Configuring incomplete, errors occurred!\n```\n\nI asked AI and it says it is because the CUDA headers and my system’s glibc headers disagree. I suppose that means I need to upgrade my CUDA toolkit. I am running CUDA 13.0.2 and torch 2.9.1. I find that at Nvidia site, the only CUDA version that supports 26.04 is 13.4.x. Does that mean I need to upgrade to 13.4.x? As a result, since only torch 2.15.0 supports CUDA 13.4, I also need to upgrade torch to 2.15.0?\n\nAnyone else in the same boat?",
+    "developer": "Ok_Warning2146",
+    "comments": 22,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

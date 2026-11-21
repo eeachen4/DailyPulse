@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y105ai",
+  "sourceItemId": "1y105ai",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y105ai/should_argocd_ever_be_used_to_gate_syncs_in_any/",
+  "detail": {
+    "longDescription": "My current team uses ArgoCD with autosync permanently disabled for anything that isn't DEV, and it is also disabled for anything infrastructure related (e.g. Kafka, otel, ...).\n\nArgoCD has basically became a \"gate\" for updates. Moreover, an OutOfSync in ArgoCD doesn't mean anything anymore since it is now normal to have those. \n\nMy personal opinion is that this is an anti-pattern. Moreover, I would argue that you are not really doing GitOps if you handle stuff this way. The state on Git may or may not represent the state in the cluster, but you have no way to know that unless you check the actual state (e.g. if ArgoCD app is OutOfSync).\n\nWhat's your thoughts on this?",
+    "developer": "A-kalex",
+    "comments": 43,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

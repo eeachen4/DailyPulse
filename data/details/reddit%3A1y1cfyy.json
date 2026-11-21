@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1cfyy",
+  "sourceItemId": "1y1cfyy",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y1cfyy/how_do_you_decide_whether_a_dependency_update_is/",
+  "detail": {
+    "longDescription": "I'm interested in how teams handle automated dependency-update PRs from tools like Dependabot and Renovate.\n\nA version bump can be:\n\n`1.4.2 → 1.5.0`\n\nwhile the actual risk depends on whether the application uses APIs that changed or disappeared between those versions.\n\nI've been experimenting with a Python tool called **BumpCheck** that combines API diffing with static usage analysis to estimate that risk.\n\nThe output isn't simply \"safe/unsafe\":\n\n`SAFE` → no relevant changes detected  \n`REVIEW` → potentially relevant changes  \n`LIKELY_BREAKING` → changed API is actually used  \n`UNKNOWN` → analysis can't establish safety\n\nI'm curious how people handle this in real CI/CD pipelines.\n\nDo you rely mainly on:\n\n* automated tests?\n* Dependabot/Renovate metadata?\n* changelogs?\n* API compatibility tools?\n* manual review?\n* some combination?\n\nAnd what would you want an automated dependency-risk tool to tell you before merging the PR?\n\nI've implemented an early version of this idea here:\n\n[https://github.com/Sushit-prog/Bumpcheck](https://github.com/Sushit-prog/Bumpcheck)",
+    "developer": "Possible_Essay_9617",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

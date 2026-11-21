@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017754",
+  "sourceItemId": "80017754",
+  "sourceUrl": "https://stackoverflow.com/questions/80017754/treating-vectors-as-entire-symbolic-objects-using-sympy",
+  "detail": {
+    "longDescription": "I'm using Sympy to verify some physics calculations I'm doing. The way Sympy handles vectors (entirely as sums of basis vectors) is aesthetically annoying to me and makes my results harder to parse and harder to manipulate. Simplified example of what I'm doing: import sympy as sp from sympy.vector import CoordSys3D # set up vectors R3 = CoordSys3D('R3') Ex, Ey, Ez = sp.symbols(\"E_x E_y E_z\") E = Ex * R3.i + Ey * R3.j + Ez * R3.k Hx, Hy, Hz = sp.symbols(\"H_x H_y H_z\") H = Hx * R3.i + Hy * R3.j + Hz * R3.k nx, ny, nz = sp.symbols(\"n_x n_y n_z\") n = nx * R3.i + ny * R3.j + nz * R3.k # do my calculations n.cross(E) + H This gives a result like (-E_y*n_z + E_z*n_y + H_x)*R3.i + (E_x*n_z - E_z*n_x + H_y)*R3.j + (-E_x*n_y + E_y*n_x + H_z)*R3.k Useful if that's all I need, but cumbersome I intend to use that expression as part of a larger equation! There's also the undocumented Cross function (see Sympy Cross and dot products without evaluating ), but that doesn't support addition. from sympy.vector import CoordSys3D Cross(n, E) + H AttributeError: 'Mul' object has no attribute 'components' What I'd really like is something like this, if possible, where the cross product isn't evaluated and the vector isn't broken down into parts unless I ask it to be: E = SomeSymbolicVectorType(symbol=\"E\", components=[Ex, Ey, Ez]) H = SomeSymbolicVectorType(symbol=\"H\", components=[Hx, Hy, Hz]) n = SomeSymbolicVectorType(symbol=\"n\", components=[nx, ny, nz]) n.cross(E) + H n x E + H How can I get around this? Is there a way to do it in Sympy, or is my best bet to define new symbols then substitute them back out later?",
+    "developer": "a52",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "139"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

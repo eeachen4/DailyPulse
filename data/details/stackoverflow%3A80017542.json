@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017542",
   "sourceItemId": "80017542",
+  "fetchedAt": "2026-11-21T04:20:20.137Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017542/how-to-determine-number-of-epochs-and-batch-size-for-yolov11-training",
   "detail": {
     "longDescription": "I am preparing the training pipeline for the Maritime object detection model using YOLOv11s ( yolo11s.pt ) at an image resolution of 960×960 on my local workstation (NVIDIA GeForce RTX 5080 Laptop GPU with 16 GB VRAM, Intel Core Ultra 9 275HX, 32 GB RAM). Currently, the script is configured with the following parameters: Batch size: 8 (with Automatic Mixed Precision amp=True and 8 dataloader workers) Epochs: 150 ceiling with cosine learning rate decay ( cos_lr=True ) and early stopping ( patience=30 ) Before launching the run, I wanted to get input on two points: Given that I have 16 GB of VRAM and am using yolo11s with AMP enabled, should I increase the batch size from 8 to 16 (or use batch=-1 for Ultralytics' auto-batching) to improve BatchNorm stability and GPU utilization at 960px? Does a 150-epoch ceiling with a patience of 30 align well with maritime dataset size, or would you guys recommend any adjustment?",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "85"
+        "value": "91"
       },
       {
         "label": "状态",

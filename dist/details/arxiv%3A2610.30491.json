@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.30491",
+  "sourceItemId": "2610.30491",
+  "fetchedAt": "2026-11-21T04:20:20.137Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.30491",
+  "detail": {
+    "longDescription": "arXiv:2610.30491v2 Announce Type: replace-cross Abstract: LLM agents are often evaluated by reducing execution traces to labels such as final-answer correctness, tool verification, and fault propagation. These labels are measurements produced by parsers, behavioral detectors, and harness rules, yet evaluations rarely report whether a measurement actually fits the trace it describes. We study what happens when those measurements do not fully capture the trace's behavior. Agents solve GSM8K problems with a calculator whose outputs are occasionally corrupted, which gives ground truth for what the tool returned, what the model later used, and what the detectors reported; a chemistry task with search and retrieval tests the case where the model cannot recompute the tool's output. Across eight models and up to 1,000 traces per model, final correctness, visible re-verification, and fault propagation disagree in systematic ways. The most common gap is the silent tool-output override: the model replaces a corrupted value without calling the tool again, so the error stops propagating while a verification detector records no re-check. Human review finds verification labels the least reliable (\\k{appa} =0.29), and checking depends on the task: the same calculator that several models re-checked on arithmetic was never re-checked on chemistry. Execution limits and serving failures also change what is measured. These findings motivate measurement transparency: an automated label should be reported with its evidence, whether the detector's question applied, whether the run was censored, and any human corrections. Our trace viewer makes this information inspectable alongside the reported results.",
+    "developer": "Idunnuoluwa A. Adeniji, Shilpika, Michael E. Papka",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.AI, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Idunnuoluwa A. Adeniji, Shilpika, Michael E. Papka"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

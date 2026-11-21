@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1iorl",
+  "sourceItemId": "1y1iorl",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y1iorl/how_i_stopped_parallel_coding_agents_from/",
+  "detail": {
+    "longDescription": "I’ve been shipping client code with CLI coding agents for the last few months, and the biggest bottleneck wasn't model intelligence—it was orchestration. Single chat loops turn to mush once a task touches more than a few files, parallel sessions overwrite each other's edits, and asking one model to review its own output is basically confirmation bias.\n\nTo keep things predictable, I started enforcing a strict manual flow: isolated steps, separate models for writing vs. reviewing, and disposable branches. Eventually I extracted that setup into a small MIT-licensed TypeScript engine called **Indaba** (`@indaba/engine`).\n\nInstead of an autonomous loop deciding its own next move, you define a deterministic DAG in `workflow.ai.yml`. Parallel nodes run inside isolated `git worktree` directories, and you can wire different runners (CLI tools like Claude Code/Codex, ACP agents, or raw APIs) into review/consensus steps before anything merges.\n\nA minimal pipeline looks like this:\n\nYAML\n\n    name: feature-delivery\n    nodes:\n      - id: spec\n        runner: claude-cli\n        prompt: \"Write technical spec from requirements.md\"\n    \n      - id: implement\n        dependsOn: [spec]\n        worktree: isolated\n        runner: codex-cli\n        prompt: \"Implement changes strictly matching spec\"\n    \n      - id: review\n        dependsOn: [implement]\n        runner: openrouter/anthropic/claude-sonnet-4\n        consensus:\n          maxRounds: 2\n        prompt: \"Audit diff against spec; reject on regressions\"\n    \n\nI dogfooded this exact workflow to build and ship a zero-dependency React data grid (`@apsw/gridwright`) that's currently running in production for a client.\n\nThe engine itself is still early alpha with zero outside eyes on it yet, so I’d love honest architectural feedback: where does a strict DAG break down for your real-world coding workflows, and how are you handling multi-agent isolation right now?\n\nCode & docs:[https://github.com/yaotzin1/indaba](https://github.com/yaotzin1/indaba)",
+    "developer": "yaotzin1",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

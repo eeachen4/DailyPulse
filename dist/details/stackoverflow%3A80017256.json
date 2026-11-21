@@ -7,19 +7,19 @@
   "detail": {
     "longDescription": "I noticed that typo mistakes in QML files are sometimes not notified neither at build-time nor at run-time. This results in the program running but not as intended and spending a lot of time searching for the source of the problem. In my example, the \"unnoticed error\" is a property from a C++ custom module called point2D (in form of a QML_VALUE_TYPE) My question is: is there a way or a tool in QtCreator that highlights this type of \"errors\"? During my research I found mentions of qmllint , when used (I activate it like shown in the screenshot) , it does indeed issue a warning, but only in the first typo mistake I'am using QtCreator 17.0.0 and Qt 6.9.1 example QML code snippet : Window { property point2D windowPosition //my custom C++ module width: 640 height: 480 visible: true x: windowPosition.coordinate1 y: windowPosition.coordinte2 //this typo was detected (only when qmllint was activated) Text { id: mainText anchors.centerIn: parent } Component.onCompleted: { windowPosition.coordinate1 = Screen.width - width //below is the \"unnoticed\" typo mistake, \"coordnate2\" does not exit yet the program runs and uses a default value instead windowPosition.coordnate2 = Screen.height - height mainText.text = \"Window's initial position %1\".arg(windowPosition.positionInfo()) } } And as requested in the comment below, here is a partial definition of the point2D C++ type class Point2D { Q_GADGET QML_VALUE_TYPE(point2D) Q_PROPERTY(float coordinate1 READ coordinate1 WRITE setCoordinate1 FINAL) Q_PROPERTY(float coordinate2 READ coordinate2 WRITE setCoordinate2 FINAL) public: enum CoordinateSystem { Cartesian = 0, Polar }; Q_ENUM(CoordinateSystem) Point2D(float coord1 = 0.0 , float coord2 = 0.0 , CoordinateSystem system = CoordinateSystem::Cartesian); float coordinate1() const; void setCoordinate1(float newCoordinate1); float coordinate2() const; void setCoordinate2(float newCoordinate2); private: float m_coordinate1; float m_coordinate2; };",
     "developer": "Hayfa",
-    "comments": 0,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "3"
+        "value": "4"
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "206"
+        "value": "247"
       },
       {
         "label": "状态",

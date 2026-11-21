@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.30059",
+  "sourceItemId": "2609.30059",
+  "fetchedAt": "2026-11-21T04:20:20.137Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.30059",
+  "detail": {
+    "longDescription": "arXiv:2609.30059v3 Announce Type: replace Abstract: Deep learning inference and training performance depends critically on GPU kernel efficiency. Modern compilers such as PyTorch Inductor automatically generate GPU kernels from high-level model code, but frequently underperform expert-written implementations by wide margins. Recent LLM-assisted optimizers explore these opportunities through kernel generation and refinement; yet translating isolated kernel improvements into model-level gains remains a challenge. We present KernelOPT, a profiling-guided multi-agent system for GPU kernel optimization. It inspects generated Triton kernels and external library calls in compiler artifacts to guide synthesis and refinement, then assembles and evaluates the resulting model. Four stages of validation combine execution checks, multi-seed numerical comparison, model-level checking with a float64 fallback and end-to-end performance gating ($\\gamma{=}1.03$). The system supports PyTorch nn.Modules, standalone Triton kernels, and Helion kernels. It is evaluated on all 250 KernelBench problems on NVIDIA H200 which includes 100 single-operator problems (Level1), 100 composite operators (Level2), and 50 model architectures (Level3). KernelOPT achieves geometric mean speedups over torch.compile of 1.40$\\times$, 1.15$\\times$ and 1.07$\\times$ respectively across L1, L2 and L3. Among problems exceeding 1.03$\\times$ speedup, the geomeans are 2.54$\\times$ (36 L1), 1.84$\\times$ (23 L2), and 1.37$\\times$ (11 L3). These gains include arithmetic-precision changes and task-specific algebraic simplifications under the evaluated numerical tolerances. The evaluation also reveals discrepancies between isolated kernel improvements and end-to-end performance, motivating model-level measurement alongside kernel-level optimization. Code is available at https://github.com/TorchedHat/KernelOPT.",
+    "developer": "Aheli Poddar, Sanskar Prasad, Arindam Samanta, Subha Chakraborty, Vishal Goyal, Rohit Singh Rathaur",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.AI, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Aheli Poddar, Sanskar Prasad, Arindam Samanta, Subha Chakraborty, Vishal Goyal, Rohit Singh Rathaur"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

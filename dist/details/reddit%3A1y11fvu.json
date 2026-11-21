@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y11fvu",
+  "sourceItemId": "1y11fvu",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y11fvu/why_dont_optimizes_like_shampoo_soap_and_adam/",
+  "detail": {
+    "longDescription": "It always felt unintuitive to me that Muon matched the performance of Shampoo despite dropping the actual second moments L and R.\n\nBut I then I realized, Shampoo itself isn't actually measuring the true second moments.\n\nFor each sample `i` in the batch, we have a gradient `G_i.`\n\nAnd the gradient we use during SGD is:\n\n`G = E(G_i)`\n\nThe factors of Shampoo are:\n\n`L = EMA GG^T`\n\n`R = EMA G^TG`\n\nWhereas, the true second moments are:\n\n`L = EMA E(G_i G_i^T)`\n\n`R = EMA E(G_i^T G_i)`\n\nWe can also write them as:\n\n`D_i = G_i - G`\n\n`L = EMA (GG^T + E(D_i D_i^T))`\n\n`R = EMA (G^TG + E(D_i^T D_i))`\n\nWhat shampoo is doing is dropping the covariance terms like `E(D_i D_i^T)` from the factors.\n\nIt's an approximation.\n\nAnd, Muon does the same thing. It takes things one step further:\n\n`M = EMA G`\n\n`L = MM^T`\n\n`R = M^TM`\n\nShampoo's factors are\n\n`L_C = EMA (G - M) (G - M)^T`  \n`R_C = EMA (G - M)^T (G - M)`\n\n`L = MM^T + L_C`\n\n`R = M^TM - R_C`\n\n\n\nShampoo drops the covariance across the samples in the batch.\n\nMuon drops the covariance across the batches in the optimization path.\n\nAdam does the same thing except it's doing it to the diagonal of the Fischer. It drops the per sample variance terms from its second moment.\n\nThese approximations are sufficient when the covariance terms are small enough.\n\nBut the strange thing is, when I tried using the actual second factors for Shampoo and Adam, they underperformed compared to their approximate versions...\n\nI don't understand this at all.",
+    "developer": "Future_Pace_5290",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

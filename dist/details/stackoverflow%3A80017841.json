@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80017841",
+  "sourceItemId": "80017841",
+  "sourceUrl": "https://stackoverflow.com/questions/80017841/trying-to-blit-an-image-onto-rect-in-pygame",
+  "detail": {
+    "longDescription": "I'm trying to blit an image onto a rect and make it an interactive block, but I'm currently stuck on the part of blitting the image as it is not showing up in the output. class Sprite(Illust): def __init__(self, filename, filename_collision, x, y, width, height,): super().__init__(filename) #inherit methods and attributes from class illust self.filename_collision = pygame.image.load(filename_collision) self.width = width/2048 * 500 self.height = height/2048 * 500 self.rect = pygame.Rect(x, y, width, height) def display(self, filename, x, y, width, height, filename_collision): pygame.transform.smoothscale(filename, (width, height)) filename_rect = pygame.Rect(x, y, width, height) screen.blit(filename, filename_rect) pygame.display.update(rectangle = filename_rect) collide = False mouse_pos = pygame.mouse.get_pos() collide = (filename_rect).collidepoint(mouse_pos) if collide == True: screen.blit(filename_collision, filename_rect) pygame.display.update(rectangle = filename_rect) I am trying to make the image that will be stored as 'filename', to be displayed within a rect, and for it to change to a different image if the mouse is detected to be hovering over it. The problem is that it isn't even displaying.",
+    "developer": "Austine",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "93"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
