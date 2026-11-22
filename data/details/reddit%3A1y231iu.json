@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y231iu",
+  "sourceItemId": "1y231iu",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y231iu/is_ultrasparse_moe_200ba3b_style_a_bad_idea_for/",
+  "detail": {
+    "longDescription": "Pulling this out of the Hy AMA thread for its own discussion, because it argues against something this sub asks for a lot. Someone asked them to push sparsity way further, something like 200B-A3B with engrams. They said no, [and explained why:](https://www.reddit.com/r/LocalLLaMA/s/cPVTacsfcY)  \n• overly sparse MoE is inference-unfriendly: it eats GPU memory without using the FLOPs  \n• they ran scaling ladders on sparsity (they compared it to the MAI-Thinking-1 paper) and found that at fixed active params, more sparsity does improve compute efficiency  \n• but keeping total params fixed and cutting active params (their example was 156B-A8B or A5B) should hurt quality a lot, because active params are basically your compute budget  \nTheir line was \"increasing sparsity recovers some efficiency, but not all.\"  \nI mostly buy it for serving on datacenter GPUs. What I'm less sure about is local. A lot of us are already offloading experts to system RAM, where memory is cheap and compute is the bottleneck, so the trade-off kind of flips. They did say on-device models would get a different design, so maybe they agree.  \nAlso a fun detail: they went back and forth between GQA and MLA for a while. MLA has better quality at the same KV cache size but was making spec decoding compute-bound, and DSA is what tipped it toward MLA.  \nAnyone here have numbers on ultra-sparse models running from RAM vs denser ones at the same total size?",
+    "developer": "douglovefishing12",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y28zgp",
+  "sourceItemId": "1y28zgp",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y28zgp/5_researchbacked_coding_agent_orchestration/",
+  "detail": {
+    "longDescription": "Most multi-agent coding setups I see in the wild still default to \"spin up more subagents in parallel and hope.\" A practical guide published this week by YK Sugi (Google Cloud) pulls together the empirical research behind when multi-agent orchestration actually helps vs. when it backfires.\n\nThe headline numbers are a good reality check: on cleanly independent subtasks, multi-agent setups improved results by up to +80.8%, while on tightly coupled planning tasks they dropped performance by 39% to 70%.\n\nHere are the 5 patterns from the guide and the decision boundary for each:\n\n1. **Separate Builder + Verifier** — One agent writes the code; a second, read-only agent in a fresh thread checks the diff against the goal. Models are weak judges of their own reasoning in the same context window, so isolating the verifier removes self-review bias. Good default for any non-trivial change.\n2. **Split Work into Lanes** — Only parallelize when file ownership divides cleanly (e.g., frontend, backend, docs). A 2026 study found overlapping edits cut success rates by ~30%. If two agents will touch the same files or coupled state, a single thread usually wins.\n3. **Best of N** — Run the same hard task N times in parallel worktrees and let an automated test suite or eval gate pick the winner. On real GitHub issues, pass rates jumped from 15.9% (1 try) to 56% (250 tries) — the catch is it only scales when you have an objective automated check.\n4. **Council of Models** — When there is no deterministic test (architecture, UX, open-ended design), ask multiple different models for independent proposals, then have fresh judges score them blind (model names hidden) before merging the best parts.\n5. **Team of Reviewers** — For large changes, run parallel read-only reviewers where each agent owns a single lens (UX, simplicity, edge cases, security) instead of one giant checklist. Specialized review lenses caught ~35% more defects than general checklists.\n\nQuick routing heuristic:\n- Simple task -> single thread\n- Medium task -> Builder + Verifier\n- Independent folders/modules -> Split into Lanes\n- Hard + deterministic tests -> Best of N\n- Hard + open-ended -> Council of Models\n- Large PR / risky change -> finish with Team of Reviewers\n\nCurious what patterns folks here are actually getting consistent wins with in production — especially whether you're seeing better ROI from isolated verifiers or parallel lanes.",
+    "developer": "BorderlineImmigrant",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

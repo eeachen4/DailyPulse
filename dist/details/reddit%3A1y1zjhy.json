@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1zjhy",
+  "sourceItemId": "1y1zjhy",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y1zjhy/i_built_a_free_36mparam_tool_that_lets_llms_watch/",
+  "detail": {
+    "longDescription": "hey, i built this as a learning project ([v0.1 post here](https://www.reddit.com/r/computervision/comments/1xyuaia/built_a_tiny_vision_model_from_scratch_just_for/)) and v1.0 is out now. its free, apache-2.0, no paid version or anything.\n\n**the problem:** a lot of LLM assistants can look at images but cant open a video file. so tiny-vision runs locally next to your LLM, splits the video into scenes, captions them, and gives the LLM a text breakdown with timestamps. then the LLM does the actual reasoning (“what happens in this video”, “find the part where people are on the beach”). nothing gets uploaded.\n\n**how the LLM gets it:**\n\n* MCP server (stdio) with `summarize_video`, `describe_video`, `caption_image`. tested in claude desktop + claude code, should work in cursor, vs code, lm studio etc (havent tested those). with lm studio + a local model its fully offline\n* no MCP? [`caption.py`](http://caption.py) `clip.mp4 --summary` prints plain text, so you can pipe it into anything, like `| ollama run qwen2.5 \"Summarize this video:\"`\n\nwhat the LLM actually sees looks like this:\n\n    video: trip.mp4 · 00:09 long · 3 scenes (3 shots) · avg scene 3s\n    recurring: dogs (2 scenes)\n    \n    scene 1 [00:00–00:03] (3s)\n      seen: a group of dogs running in a field. | three dogs running in a field with a bench in the background.\n      keywords: dogs, running, field, bench\n\ni tested it on a 10-15 min youtube video and it still works fine.\n\n**how it works:**\n\n* frames are picked on scene changes (hard cuts + slow camera drift), not one every N seconds, so the timestamps land on the real cuts and a static shot costs one caption. only \\~5 frames/sec get decoded, so high-fps phone video stays cheap\n* each shot gets captioned at the start, middle and end, then similar shots are grouped into scenes\n* captioner: Meta’s DINOv2-small as a frozen image encoder (not fine-tuned), plus my own adapter + caption decoder (14M params) trained from scratch on COCO. 36M params total\n\n**numbers** (same 1000 COCO test images, same scorer, Apple M5; cpu = one image at a time, greedy decoding):\n\n* \\~89% of florence-2-base’s caption score (CIDEr 1.196 vs 1.348)\n* 6x smaller (36M vs 231M)\n* 8x faster on gpu, 75x faster on cpu (54ms per image vs 4 sec)\n* on the full 5k COCO Karpathy test: CIDEr 1.163 with beam 3\n\nnot saying its better than florence, its not. it just does a lot with very little. benchmark scripts and full details are in the repo and the model card.\n\n**limitations:**\n\n* no audio yet, so it describes what it sees, not what is said. speech is next (probably whisper)\n* it doesnt understand motion: it captions frames, it doesnt compare them\n* captions are COCO style, so no OCR, no names, no counting\n* i took a lot of help from claude to build this, so its not entirely mine\n\ncode: [https://github.com/amar683/tiny-vision](https://github.com/amar683/tiny-vision)  \nmodel: [https://huggingface.co/amartomar683/tiny-vision](https://huggingface.co/amartomar683/tiny-vision)\n\nif anyone tries it with other MCP clients, let me know if it breaks",
+    "developer": "Safe-Escape197",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

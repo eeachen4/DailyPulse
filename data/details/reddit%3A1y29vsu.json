@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y29vsu",
+  "sourceItemId": "1y29vsu",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y29vsu/inkling_2_mini_26b_on_an_rtx_3060_12_gb_31_toks/",
+  "detail": {
+    "longDescription": "I got request to add it in RustingStrata in guthub and I kinda like this model.  \nThinking Machines' Inkling 2 Mini is a strange one: 24 layers, but 12 of them run three times per token, so every token is 48 layer runs. The IQ4\\_NL GGUF is 17.6 GB and my card has 12.\n\nI added it to RustingStrata, my Rust GGUF engine. It runs on CUDA, on Vulkan and on the CPU alone.\n\nBox: RTX 3060 12 GB, Ryzen 5 7600X, 30 GB RAM. Greedy, 64 tokens written, tok/s:\n\n||Reads 512 tokens|Reads 2048|Writes|\n|:-|:-|:-|:-|\n|RustingStrata, CUDA|259|220|31.2|\n|RustingStrata, Vulkan (same card)|227|183|27.5|\n|RustingStrata, CPU only|50|48|11.6|\n|llama.cpp CUDA, `-ngl 18`|384|323|8.7|\n|llama.cpp CUDA, `-ngl 0`|378|312|10.5|\n\nSo it writes 3 to 3.5 times as fast as llama.cpp on this card, and it reads the prompt slower: llama.cpp is 1.5 times faster there.\n\nWhy writing is fast: the model does not fit, so the engine keeps the experts that are used most in VRAM and computes the others on the CPU, and it moves that split while it runs. Why reading is slower: the attention scores of a prompt chunk are still computed on the CPU. That is the next thing to move to the card.\n\nThe RustingStrata \"writes\" numbers are after the 512-token prompt. `llama-bench` writes from an empty context. `-ngl 99` runs out of VRAM; 12, 16 and 20 layers gave the same as 18.\n\n**Long context: 40,960-token prompt, then 64 tokens written**\n\n||Reads|Writes|RAM|\n|:-|:-|:-|:-|\n|RustingStrata, CUDA|78.0|16.7|16.6 GB|\n|RustingStrata, Vulkan|74.7|14.3|16.5 GB|\n|llama.cpp CUDA, `-ngl 18 -ub 128`|113.8|2.86||\n\nllama.cpp does not start at 40k with the default batch: it asks for a 13.2 GB compute buffer (11.3 GB with `-fa on`). `-ub 128` is what fits on a 12 GB card.\n\nWriting drops from 31 to 17 tok/s at 40k. Some of that is the model: 8 of its 48 layer runs per token are full attention, and their cached rows are 32 KB per position, so every token reads about 1.3 GB of them at 40k. Qwen3.6-35B-A3B reads about a third of that, since most of its layers are linear attention. Some of it is mine: the attention kernel does not yet share those reads between the query heads of a group, and the cache takes VRAM from the experts. Both are next.\n\nIs it the same model? I fed llama.cpp's own greedy tokens through my forward and compared the top token at each step. Short prompt: 24 of 24. Prompt of several hundred tokens: 47 of 48, the one miss is a near tie. Same on CUDA, Vulkan and CPU. No perplexity table for this model yet.\n\nWhat is missing: text only (no vision projector), greedy only. Context goes up to the 1M the model was trained on, or `--ctx`; RAM and VRAM are the real limit. Vulkan was run on the 3060 only, so I would like to see numbers from an AMD or Intel card.\n\n    rustingstrata chat --model Inkling-2-Mini-IQ4_NL.gguf\n\nNo flags needed: CUDA on NVIDIA, Vulkan on everything else, `STRATA_DS_GPU=0` for the CPU.\n\nSetup: llama.cpp c622f62, `llama-bench -t 6 -r 2 -p 512,2048 -n 64`. RustingStrata 9ef1dcf, `bench --pp 512,2048 --tg 64 --reps 2`, plus `--backend vulkan` for the Vulkan row. Mean of two runs each. 40k: `bench --pp 40960 --tg 64 --reps 1`; `llama-bench -ngl 18 -ub 128 -t 6`, `-p 40960` and `-n 64 -d 40960`. One run each.\n\nRepo: [RustingStrata](https://github.com/RustingStudio/RustingStrata)",
+    "developer": "Serious_Scarcity7818",
+    "comments": 17,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

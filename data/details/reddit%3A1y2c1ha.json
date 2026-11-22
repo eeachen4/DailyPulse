@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2c1ha",
+  "sourceItemId": "1y2c1ha",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y2c1ha/longrunning_agents_dont_usually_fail_by_crashing/",
+  "detail": {
+    "longDescription": "A failure mode I've been thinking about for agents (and coding assistants) that work across multiple sessions: when context is compacted or replaced, the visible failure is rarely an error. It's a conversation you already had. The agent, with only a summary, proposes an approach that was tried and rejected, and it does so confidently, because nothing in what it has says otherwise.\n\nAn example from an article I wrote (hypothetical, not a real system): a refactor moves retry logic from the client into the gateway. The day-one summary says \"moved retries to the gateway, tests passing.\" It leaves out that client-side retry was tried first and dropped because some requests aren't safe to send twice. On day three, a different motive (reduce gateway load) leads to proposing client-side retry again.\n\nA way I've been splitting what to carry between sessions (my own framing, not a standard):\n\n|Kind of information|Example|Failure if lost|\n|:-|:-|:-|\n|**State**|What changed, what passes, what's next|The agent redoes or skips work|\n|**Facts**|Stable context: commands, conventions, off-limits areas|The agent re-discovers or violates them|\n|**Decisions**|The choice, the reason, **what was rejected and why**|The agent re-litigates|\n\nSummaries tend to preserve the first, stable-context files preserve the second, and the third is the one that gets lost, because a rejected option only becomes important later, when someone proposes it again.\n\nOpen questions I don't have good answers to:\n\n* **Where should decisions live** so a new session reads them: a file in the repo, a memory store, the system prompt, or retrieval over past sessions?\n* **How do you retire decisions** when they change? A stale entry that confidently says the wrong thing seems worse than none.\n* **How much is too much?** A decision log that grows without limit is just more noise for the agent to read.\n* **Does the agent actually use it?** A clear record seems to improve the odds, but I wouldn't expect it to guarantee behavior.\n\nFor people building agents with persistent memory: what do you store for decisions specifically, and how do you test that the agent honors it?",
+    "developer": "ClickOk5811",
+    "comments": 17,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

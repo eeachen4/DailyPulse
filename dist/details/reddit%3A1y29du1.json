@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y29du1",
+  "sourceItemId": "1y29du1",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y29du1/culler_a_local_open_source_software_factory/",
+  "detail": {
+    "longDescription": "Culler is an MIT licensed software factory that runs containerized agents on your Mac, finds work worth doing, and presents you a queue of comprehensible review packets with their rationale.\n\nIts agents run as five roles in the following order:\n\n1. **Strategist** proactively proposes high-leverage work based on your open-ended **Vision**.\n2. **Arbiter** judges each proposal and promotes the most effective one.\n3. **Worker** works the task in its own repository copy.\n4. **Verifier** checks the work against acceptance criteria and asks Worker to correct any gaps.\n5. **Packager** creates an illustrative review packet meant for a human mind.\n\nConfigure each agent role with your AI model of choice. Put your smartest model as Strategist and a workhorse as Worker.\n\nDepending on the AI provider used for a run, Culler leverages one of three proven harnesses: Codex, Claude Code, or OpenCode. Configure agents to run with your ChatGPT or Claude subscription. Or use API keys compatible with any of the 200+ providers supported by the OpenCode catalog.\n\nIf you have already concrete work in mind, either define new tasks yourself or with the help of **Collie**, your Culler assistant.\n\nCuller opts out of shipping its own memory system and instead uses **Openwiki**. After initializing the wiki for you, and on a schedule, **Scribe** pores over recent changes in the Project to maintain it.\n\nThe wiki serves three purposes:\n\n1. Acts as index into the repository's ground truth to enable more efficient search for agents.\n2. Acts as a knowledgebase to help the Strategist prioritize work.\n3. Provides a viewer so you can re-familiarize yourself with your project as it continually develops.\n\nFor agent observability, Culler uses **AgentsView**. It supports each trace format Culler uses. It allows for inspecting context, tool calls, token usage, and other metrics.\n\nOn security, Projects are never mounted into agent containers. Each container run receives only a Git copy of the repo, and only changes approved by you are merged back onto the host. Agent credentials never reach inside the container. Culler runs a proxy on the host that swaps dummy tokens for real ones when model requests are made.\n\nNext on the Roadmap - **Worksources and MCPs**:\n\nEnable smooth integration of additional services to allow agents to query/leverage data from them. Instead of seeding work only from your Vision, use connected data sources such as Github Issues, Linear, Gmail etc. to act as *Worksources*.\n\n\\---\n\nI built Culler with the solopreneur and project junkie in mind. Start from scratch. Or import your active/retired projects, give a description of what you imagine the project to be, and let the emergent properties of gradient descent work its magic. The user experience is designed around the premise that human attention is paramount, now and in perpetuity.\n\n[https://github.com/vinchenkov/Culler](https://github.com/vinchenkov/Culler)\n\n* Feedback/contributions - on GitHub",
+    "developer": "SufficientDrop4141",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

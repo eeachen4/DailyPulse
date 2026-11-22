@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y24jgp",
+  "sourceItemId": "1y24jgp",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y24jgp/valid_json_isnt_always_grounded_how_are_you/",
+  "detail": {
+    "longDescription": "In most structured-output setups, schema enforcement stops at syntax and types (valid JSON, string/float matching). In practice, the trickier failure mode is **semantically invalid but syntactically valid** output—like a model returning a source\\_id that wasn't in the retrieved context, or a score outside domain bounds.  \nI put together a minimal, zero-dependency Python prototype (neuroformatting) to test separating structural checks from context-aware semantic rules on streamed chunks:  \n[https://github.com/furkandemirtass/neuroformatting](https://github.com/furkandemirtass/neuroformatting)  \nCurious how others here structure this layer in production:  \nDo you run semantic/grounding checks inside the stream consumer before committing output, or strictly post-hoc?  \nWhen a grounding check fails, do you trigger a targeted repair prompt with the exact validation error, or fall back deterministically?",
+    "developer": "demirtasfurkan_",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

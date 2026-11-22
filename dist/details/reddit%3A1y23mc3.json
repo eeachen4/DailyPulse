@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y23mc3",
+  "sourceItemId": "1y23mc3",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y23mc3/i_built_an_opensource_ai_sre_agent_that_gathers/",
+  "detail": {
+    "longDescription": "Hi everyone. I’ve been working on this for a while and just open-sourced it: **Root Cause Console**, a self-hosted AI SRE agent for root-cause analysis.\n\n**The problem I wanted to solve:** most AI “ask your logs” tools answer immediately and confidently, even when they’re wrong. During an incident, a wrong answer is worse than no answer.\n\n**How it works:**\n\n* It continuously watches your metrics, logs and cluster state, and keeps a **live context** up to date. That’s what goes to the model.\n* Before answering, the agent **gathers evidence**: it can run up to 10 **read-only** queries against your sources.\n* It answers with a proposed fix and a **confidence level**.\n* Then it **checks its own answer**: cited numbers are compared with your data, cited queries are re-run, and full reports must name a competing explanation.\n* Related alerts across sources are grouped under one likely cause (**multi-source RCA**), and it tracks the **golden signals** (latency, traffic, errors, saturation) per service.\n\n**Sources:** Prometheus (and managed variants), Loki, Kubernetes, CloudWatch, Azure Monitor, Alertmanager, and CI/CD webhooks.\n\n**Models:** run it fully local with **Ollama**, or use Claude or Gemini (with a monthly budget and a per-investigation token cap). If you use a public provider, you’ll want a data processing agreement with them, which is why the local option exists.\n\n**Design choices:** read-only by design (it reads everything and changes nothing; humans decide), roles and audit log, OIDC SSO, runs with `docker compose`. Apache 2.0. The image is part of the **Docker-Sponsored Open Source** program.\n\n**Honest limitations:** the checks reduce made-up answers, but they can’t prove a diagnosis is right. It’s an assistant for the on-call engineer, not a replacement.\n\nI built it with heavy help from Claude Code, and I’d really value feedback from people who run on-call:\n\n1. Would you trust a read-only agent like this in production? What would you need to see first?\n2. Which data source or integration is missing for you?\n3. Is the confidence level useful, or noise?\n\n* **Live demo** (simulated incident: a Postgres outage causing payment crash-loops): [https://rootcauseconsole.online](https://rootcauseconsole.online)\n\n`docker pull root-cause-console/rootcauseconsole:6.0.2` this image has no known vulnerabilities after Docker scout scan and The image is part of the **Docker-Sponsored Open Source** program. \n\nhttps://i.redd.it/aeadcn8eb03i1.png\n\n",
+    "developer": "RedJ_ohn",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

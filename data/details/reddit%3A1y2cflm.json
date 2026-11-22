@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2cflm",
+  "sourceItemId": "1y2cflm",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y2cflm/hy4_flash_added_to_int8vllm_4x_mi100_c8_tg128/",
+  "detail": {
+    "longDescription": "Hi all, I'm happy to announce that Hy4 Flash has been added with optimized support to int8-vllm. This is a milestone because this is the first INT4 model added to the project. At INT4, Hy4 Flash fits completely on 128 GB of VRAM with room for 1.3M tok of shared context.\n\n||tg128 (llama-bench style)|pp512 (llama-bench style)|tg256 w/ 2048 context|\n|:-|:-|:-|:-|\n|Concurrency 8|222.4 tok/s|1655 tok/s|96.7 tok/s|\n|Concurrency 1|86.3 tok/s|1602 tok/s|48.3 tok/s|\n\nThis project focuses on AMD MI100 support, with docker compose files for all optimized models, and support for 2-4 cards with Infinity Fabric or PCIe. MI210 has been confirmed to work well, with a user reporting over 1,000 tok/s decode for Qwen3.8 27B on 2x MI210s at C8. I am looking for users with MI50, MI60, or multiple RDNA1-3 cards who would like to help the project improve support. Please post a github issue with your setup and technical ability.\n\nProject link: [https://github.com/curvedinf/int8-vllm](https://github.com/curvedinf/int8-vllm)\n\nAn MI100 is currently $1,300 on ebay, so it represents an underlooked used card option. How does it compare to modern cards? As a rule of thumb, similarly priced new cards offer about double (or more) the compute but half of the memory bandwidth. That means to expect from MI100 something like half the theoretical prompt processing speed but double the token generation speed of newer cards at the same precision.\n\nWhile the project is directed at INT8 because older cards prefer this datatype, INT4 is easily compatible with INT8 instructions and useful for larger models, so it fits the project's goals. In the MI100's case, its vector ALUs support INT4 natively at 185 TOPs. To support Hy4 Flash, W4A8 GEMM support has been thoroughly added to the companion AITER fork: [https://github.com/curvedinf/int8-aiter](https://github.com/curvedinf/int8-aiter)\n\nAdditionally with Hy4 Flash, I found a 15% optimization to many of the GEMMs of the project by deferring epilogue work into later fused kernels so both the vector ALUs and matrix cores of MI100 compute units are fully utilized. These cores can run at the same time on a given CU but often the matrix cores are the only thing running by default. For more modern cards this isn't a big deal because the matrix cores are much more powerful, but in the MI100's case, its vector ALUs are proportionally large compared to the matrix cores. This optimization in effect gives MI100 185 INT8 + 185 INT4 TOPs per card of burst capability. Paired with the 1.2 Gbps of memory bandwidth and 552 Gbps of interlink bandwidth, MI100 has a lot of capability to optimize toward.\n\nThe Hy4 Flash checkpoint for the optimized recipe is the first INT4 checkpoint on huggingface, and specially created using the NeUQI calibration technique at INT4 group size 128 with FP16 scales. NeUQI paper: [https://arxiv.org/abs/2505.17595](https://arxiv.org/abs/2505.17595)\n\nThe DFly2 model and vision encoder are INT8 quants that were retrained with PTQR for improved INT8 rounding.\n\nModel link: [https://huggingface.co/voodooquant/Hy4-flash-NeUQI-INT4-W4A8-GS128](https://huggingface.co/voodooquant/Hy4-flash-NeUQI-INT4-W4A8-GS128)\n\nDraft link: [https://huggingface.co/voodooquant/Hy4-flash-DFly2-PTQR-INT8-W8A8-GS128](https://huggingface.co/voodooquant/Hy4-flash-DFly2-PTQR-INT8-W8A8-GS128)",
+    "developer": "1ncehost",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

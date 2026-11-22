@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2aj49",
+  "sourceItemId": "1y2aj49",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y2aj49/inkling_2_mini_on_2_rtx_3090_557k_context_vision/",
+  "detail": {
+    "longDescription": "This post is 100% written by Claude Code:\n\nI got Thinking Machines' Inkling 2 Mini (26.4B looped MoE, 3.4B active) running on 2× RTX 3090 without llama.cpp.\n\n\\*\\*TL;DR\\*\\*\n\n\\- \\*\\*vLLM: no.\\*\\* The official NVFP4/MXFP8 checkpoint needs sm\\_90+. I patched four gates in the \\`inkling-2-mini\\` image and it loads on a 3090, but the expert GEMMs have no working Ampere kernel (Humming: \"no kernel image\"; Triton: no fp8e4nv).  \n\\- \\*\\*\\[NInfer-all\\](https://github.com/iamwavecut/ninfer-all): yes.\\*\\* Unsloth UD-IQ4\\_XS + DSpark drafter + vision: \\*\\*557K context at \\~100 tok/s\\*\\* on two cards, or 174K at \\~127 tok/s on one.  \n\\- \\*\\*The prefix cache in RAM\\*\\* means a long document is prefilled once. A new chat over the same 63K document started in \\*\\*0.85 s\\*\\*.\n\n\\*\\*Setup:\\*\\* 2× 3090 (no NVLink, no P2P), 128 GB RAM, driver 615.71 / CUDA 13.4, NInfer-all \\`2026-11-21.3\\`. Power caps are below stock: 320 W on the KV card, 200 W on the other. Converting GGUF to \\`.ninfer\\` took about 10 s on CPU (WaveCut also publishes ready \\`.ninfer\\` files on HF).\n\n\\## Context\n\nKV for this family is \\*\\*BF16 only\\*\\* (no int8/fp8), about 36 KiB/token, and it all sits on the first \\`--devices\\` card. Only the routed experts split across cards. So push the experts to card 2 and leave card 1 for KV:\n\n| Setup | Max context (vision + DSpark) |  \n|---|---:|  \n| One 3090 | 174,080 |  \n| Two, default split | 360,448 |  \n| Two, \\`--tensor-split 1,15\\` | 524,288 |  \n| Two, \\`--tensor-split 1,127 --vision-residency overlay --prefill-chunk 1024\\` | \\*\\*557,056\\*\\* |\n\n\\`1,127\\` leaves 1 of 128 experts per layer on the KV card. \\`overlay\\` keeps the vision tower in pinned RAM and borrows VRAM per image; images still work. 561,152 also fits, but the server drops the prefill chunk to 512 and prefill gets 11% slower, so I give up 4K tokens. The model's native window is 1M, so memory is the limit here.\n\n\\## Speed\n\n| | One card (174K) | Two cards (557K) |  \n|---|---:|---:|  \n| Decode, 4 mixed prompts × temp 0/1, DSpark | 127 tok/s (code up to 144) | 98-104 tok/s |  \n| Decode, no drafter | 105 tok/s | - |  \n| Prefill 4K / 32K (\\`ninfer\\_bench\\`) | 2,371 / 1,307 tok/s | - / \\~1,140 tok/s |  \n| Prefill 63K / 162K (server) | 873 / 367 tok/s | \\~700 tok/s at 63K, 512 chunk |\n\nTwo cards are slower because every MoE block crosses PCIe through host RAM (no P2P).\n\nDidn't help: bigger prefill chunks on one card, \\`--prefill-cublas\\`, more DSpark drafts (5 adaptive 93.6, 4 fixed 67.7 tok/s), \\`--lookup-ngram\\`, min-p tweaks. \\`--tensor-parallel-prompt-partials\\` and \\`--tensor-attention positions\\` exist only for Qwen. \\*\\*The defaults are already the fastest.\\*\\*\n\n\\*\\*Prefix reuse is the real win for long context.\\*\\* I ran a 63K document in a chat (90 s to first token), then three unrelated chats, then a \\*\\*new\\*\\* chat with the same document: TTFT 0.85 s, with 62,973 of 62,996 tokens from cache (\\`--host-cache-mib 32768\\`).\n\nCorrectness: needle in a haystack correct at 5K / 63K / 162K. Multi-turn over 63K correct.\n\n\\## Run it\n\nninfer-serve Inkling-2-Mini-UD-IQ4\\_XS-ninfer-v3.ninfer --model-id inkling-2-mini \\\\  \n\\--vision --vision-residency overlay \\\\  \n\\--devices 1,0 --tensor-parallel --tensor-split 1,127 \\\\  \n\\--max-context 557056 --prefill-chunk 1024 --host-cache-mib 32768\n\nCaveats: one machine, short runs. Not tested: a needle near 557K, two-card prefill beyond 63K, an image when the context is almost full, or tool calls. If anyone gets Humming NVFP4 working on sm\\_86, I'd love to hear about it.\n\nThanks to iamwavecut for NInfer-all, Unsloth for the GGUFs, and Thinking Machines for the open weights.",
+    "developer": "Sisuuu",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

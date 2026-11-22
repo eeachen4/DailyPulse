@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1um1s",
+  "sourceItemId": "1y1um1s",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y1um1s/moving_videoediting_work_out_of_an_llms_context/",
+  "detail": {
+    "longDescription": "I've been building AutoCut and FrameAtlas to let an agent edit my videos while keeping the heavy media work local. I'm the developer of these projects; both repos are open source.\n\n\n\nThe architecture is a hybrid workflow:\n\n\n\n1. FrameAtlas catalogues footage from local files, Google Photos and 360-camera media. It stores scene-level descriptions and timestamps so a later edit can retrieve the relevant segments.\n\n2. Claude Code can query that catalogue and drive AutoCut through its CLI/MCP command interface. The agent plans and makes edits; it doesn't need to repeatedly inspect the entire media library.\n\n3. Local tools handle media analysis, transcription, narration, 360-degree reframing/stabilization and rendering. RAEA adds code-driven animations and transitions.\n\n4. The result remains an editable AutoCut project that I can inspect and correct in the app.\n\n\n\nAutoCut is an independent fork of FilmCraft, so the editor engine is built on that project's work. FrameAtlas grew out of the need to make the same footage reusable across editing sessions.\n\n\n\nThe aim is to save cloud-model context and quota by reusing a catalogue and local outputs. Cloud orchestration still consumes tokens, and retries/corrections change the total; this isn't a claim that the whole workflow is offline or that every edit saves a fixed percentage.\n\n\n\nCode:\n\n[https://github.com/moheshmohan/AutoCut](https://github.com/moheshmohan/AutoCut)\n\n[https://github.com/moheshmohan/FrameAtlas](https://github.com/moheshmohan/FrameAtlas)\n\n\n\nI recorded the workflow and a Claude Code editing example here (Malayalam narration, with English subtitles):\n\n[https://youtu.be/P3VMqTmsAlM](https://youtu.be/P3VMqTmsAlM)\n\n\n\nImplementation notes:\n\n[https://www.h4hacks.com/2026/11/blog-post\\_21.html](https://www.h4hacks.com/2026/11/blog-post_21.html)\n\n\n\nFor others building agents around media tools: what would you keep in the catalogue versus retrieve on demand?",
+    "developer": "moheshmohan",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

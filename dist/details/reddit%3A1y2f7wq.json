@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2f7wq",
+  "sourceItemId": "1y2f7wq",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y2f7wq/approving_an_agents_command_doesnt_limit_what_it/",
+  "detail": {
+    "longDescription": "I contribute to Cluaiz, an open-source AI engine that runs models, tools, MCP servers and an agent. Something that bugged us: the agent asks before running a command (allow / ask / deny), but once you approve \"npm test\", nothing stopped that command from reading \\~/.ssh or \\~/.aws. Approval decides whether something runs. It doesn't decide what it can touch.\n\nSo we added a second layer: every agent command, MCP server and native plugin now runs inside an OS sandbox (bubblewrap on Linux, sandbox-exec on macOS, AppContainer on Windows). The project folder is writable, the rest of the disk is read-only, home and secrets are hidden. Network stays on for commands you approved, since installing packages needs it. A tool that declares it needs no network gets none.\n\nThen we tested it on real machines, and it broke three times:\n\n1. Stock Ubuntu 24.04 blocked it before a single command ran. AppArmor restricts unprivileged user namespaces, so bubblewrap failed with \"setting up uid map: Permission denied\". A startup probe caught it and auto mode fell back to running unconfined with a warning, instead of failing every command.\n\n2. With an AppArmor profile for bubblewrap, every command failed with \"Can't mkdir \\~/.cargo/credentials: Read-only file system\". We were hiding a secret file that didn't exist on that machine. Now only existing ones are masked.\n\n3. In CI on GitHub's Ubuntu runner, every command failed with \"Can't find source path /home/runner/.local/bin\". That folder was on PATH but didn't exist. Same class of bug, different place.\n\nAfter the fixes: 9 of 9 checks pass on macOS and Ubuntu runners, 8 of 8 on an Ubuntu VM. Windows works too, with a catch: Node.js and a per-user Python install can't even start inside an AppContainer, so on Windows it's opt-in. Turning it on by default would break normal agent commands.\n\nNot done yet: the full path through the agent and MCP servers in strict mode is covered by unit tests only, and it's on main, not in the 0.1.0 release.\n\nThe question I keep going back and forth on: when the sandbox can't start (stock Ubuntu, WSL1, inside a container), should an agent refuse to run anything, or run with a warning? We picked \"warn\" by default and \"refuse\" in strict mode. How do you handle this in your agents?\n\nTest logs and setup scripts are in the first comment.",
+    "developer": "CommissionOdd3082",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

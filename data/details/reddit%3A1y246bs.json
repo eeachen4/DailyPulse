@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y246bs",
+  "sourceItemId": "1y246bs",
+  "sourceUrl": "https://www.reddit.com/r/programming/comments/1y246bs/how_to_make_shell_scripts_invisible_to_kernel/",
+  "detail": {
+    "longDescription": "shc (Shell Script Compiler) simply wraps a shell script in C language and turns it into a binary. To execute the shell script inside the binary, it passes the script to a system shell such as /bin/sh. At that moment, kernel monitoring tools such as auditd and bpftrace can intercept the shell script being passed.\n\nHimitsuShell, introduced on HackTricks, uses a method that packs both the shell interpreter and the shell script into a single static binary. Therefore, it can execute the shell script on its own without passing it to a system shell such as /bin/sh. Because the shell script is not passed outside the binary as an argument to a system shell, this approach can significantly reduce its exposure to kernel monitoring.  \n\n\nThere are some limitations.\n\nReverse engineering cannot be completely prevented. HimitsuShell uses LLVM-based obfuscation and anti-debugging to make analysis more difficult and discourage script extraction.  \n\n\nBeyond the content covered on HackTricks, I wanted to explain the technical principles behind my HimitsuShell project.\n\nHimitsuShell Github: [https://github.com/HimitsuShell/HimitsuShell](https://github.com/HimitsuShell/HimitsuShell)",
+    "externalUrl": "https://hacktricks.wiki/en/generic-methodologies-and-resources/basic-forensic-methodology/anti-forensic-techniques.html#static-embedded-shell-execution",
+    "developer": "masiroo",
+    "comments": 11,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "hacktricks.wiki"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

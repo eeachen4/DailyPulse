@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y24yfm",
+  "sourceItemId": "1y24yfm",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y24yfm/benchmark_kiri_vs_orbstack/",
+  "detail": {
+    "longDescription": "I benchmarked Kiri against OrbStack on a real workload, not a hello-world container. 🐳\n\n\n\nKiri is a new Rust container runtime for macOS that speaks the Docker API, so it can stand in for Docker Desktop or OrbStack. I wanted to know whether it holds up for day-to-day PHP development.\n\n\n\n💻 The setup\n\n\\- MacBook with an Apple M4 Pro, 12 cores, 24 GB RAM\n\n\\- The same DDEV stack on both engines:\n\n\\* PHP (FrankenPHP) API\n\n\\* Postgres 18\n\n\\* LocalStack\n\n\\* Mutagen file sync\n\n\n\nEach engine ran alone, with the other fully stopped, macOS top sampled the engine's host processes every 2 s for CPU, memory and energy impact\n\n\n\n🧪 What I tested\n\n\\- Engine boot, the first project start, and a restart\n\n\\- Idle CPU and RAM, with the engine alone and with the project running\n\n\\- File IO: 1 GiB reads and writes, plus a many-small-files copy of vendor/\n\n\\- App tasks: Symfony cache warmup, composer dump-autoload\n\n\\- Postgres: pgbench with 8 clients for 30 s\n\n\\- HTTP latency through the DDEV router (300 requests)\n\n\\- The full test suite: 1,405 tests\n\n\n\n📊 Results\n\n\\- RAM, engine idle: 0.33 GB vs 1.93 GB → Kiri, about 6× less\n\n\\- RAM, peak under load: 2.9 GB vs 4.1 GB → Kiri\n\n\\- Postgres: 5,453 vs 2,091 transactions/s → Kiri, 2.6×\n\n\\- Large sequential writes: 782–886 vs 523–697 MB/s → Kiri\n\n\\- Idle CPU with the project running: 35.6% vs 11.7% → OrbStack, 3× less\n\n\\- Energy during the test suite: OrbStack used 24% less\n\n\\- Small-file IO, cache warmup, autoload: OrbStack is 20–50% faster\n\n\\- HTTP p95: 40 ms vs 19 ms → OrbStack\n\n\\- First project start: 44.6 s vs 31.9 s → OrbStack\n\nFull test suite: 125 s vs 131 s → a tie\n\n\n\n🎯 Takeaway Raw speed came out a tie:\n\nthe test suite, the closest thing to real daily work, took the same time on both. What separates the two is what they cost to run. Kiri is much lighter on memory and faster on database work. OrbStack is lighter on CPU and battery, and quicker on small files.\n\n\n\n➡️ On a laptop running unplugged, OrbStack wins. When you run several stacks at once and RAM is short, Kiri wins. Kiri is only at v0.2, so it's worth watching.\n\n\n\n(Single runs, and energy is macOS's relative \"energy impact\" score, not watts. Treat gaps under \\~15% as noise.)",
+    "developer": "makraz_hamza",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

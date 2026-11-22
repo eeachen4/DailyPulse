@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y1zieg",
+  "sourceItemId": "1y1zieg",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y1zieg/incontext_learning_in_lms_is_becoming/",
+  "detail": {
+    "longDescription": "I think we are severely under-estimating the In-Context Learning ability of the language models. Today you can curate a context which is a highly representative of your task \\~around 150k context and feed it to a Frontier LM and it is able to fully learn it on the fly and even work with it like it has known that for years. without fine tuning. Just to clarify I am not saying \"Oh this model works perfectly in this new codebase which it has never seen before\". Models today are trained for that distributions. what I am saying is much broader i.e. ability to take a completely novel context and still be able to fully ingest, understand completely and work with it fluidly like you were trained on it already.\n\n**Two examples from my personal experience:**\n\nSo there is some math stuff I do which is highly niche and I have spent months searching for materials related to it and found very little to nothing (not on internet, any university materials, or in books), it is almost impossible to have training data related to it. Another one is experience with BEND-2, a new programming language.\n\nwhat i mean by curated context is that it is a good compressed representation of what ur whole task is about. core rules. distribution of output. etc.\n\n  \nI feed the curated context to the model and it is able to work with it like it without any issues at all. The model didn't know about the BEND and yet it was able to produce laws & proof files that were actually meaningful and worked. With the math stuff the model understood what the curated context was and also was able to produce some new results that take me 2 or 3 weeks to do.\n\nTo further test the continual learning capabilities, I put the model to a test where the model first sees the initial curated context > work for some time (could go through auto-compaction)  > produce its own work > update the curated context > work in loop. I then check if the updated curated context is fully consistent and follows all the rules. And yes, the progress was measurably good (based on rules adherence, consistency etc). Although this is still not perfect because some models do make wrong assumptions or break the consistency or taste. But aren't these glimpses of continual learning literally?",
+    "developer": "Ryoiki-Tokuiten",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

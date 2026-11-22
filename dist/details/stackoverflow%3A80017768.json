@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017768",
   "sourceItemId": "80017768",
+  "fetchedAt": "2026-11-22T03:30:38.347Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017768/getting-an-entry-from-tar-gz-using-flate2-taking-more-time-when-zlib-rs-backend",
   "detail": {
     "longDescription": "I have a tar.gz (compressed size: 380MiB, uncompressed size: 5.8GiB) file which has many entries inside of it. I need to get a particular entry (entry size: 5.79GiB) from this archive. Since I was using the default features of flate2 crate which defaults to miniz_oxide , I thought of switching the back-end to zlib-rs , to get better performance. Surprisingly the performance of miniz_oxide back-end was almost twice that of zlib-rs back-end. Am I doing something wrong here? main.rs : use anyhow::{Result, bail}; use flate2::read::GzDecoder; use std::ffi::OsStr; use std::fs::File; use std::io::{Read, Seek, SeekFrom, Write}; use std::path::Path; use std::time::Instant; use tar::{Archive, Entry}; fn get_archive(archive_path: &Path) -> Archive<Box<dyn Read>> { println!(\"{}\", module_path!()); let file = File::open(archive_path).expect(&format!(\"Failed to open archive {archive_path:?}\")); Archive::new(Box::new(GzDecoder::new(file))) } fn get_entry<'a, R: Read>( archive: &'a mut Archive<R>, entry_name: &'a str, ) -> Result<Entry<'a, R>> { println!(\"{}\", module_path!()); for entry in archive.entries()? { let entry = entry?; if entry .path() .as_ref() .ok() .and_then(|path| path.file_name()) .and_then(OsStr::to_str) .map(|name| name == entry_name) .unwrap_or(false) { return Ok(entry); } } bail!(\"Entry '{entry_name}' not found in archive\"); } fn main() { let instant = Instant::now(); let mut archive = get_archive(Path::new(\"archive.tar.gz\")); println!(\"get_archive elapsed duration: {:?}\", instant.elapsed()); let mut entry = get_entry(&mut archive, \"./entryA\"); println!(\"get_entry elapsed duration: {:?}\", instant.elapsed()); } Cargo.toml : [package] name = \"flate2_demo\" version = \"0.1.0\" edition = \"2024\" [dependencies] anyhow = \"1.0.104\" flate2 = { version = \"1.1.11\", default-features = false, features = [\"zlib-rs\", \"runtime_detection\"] } # flate2 = { version = \"1.1.11\" } tar = \"0.4.46\" Performance with miniz_oxide : flate2_demo get_archive elapsed duration: 206.498µs flate2_demo get_entry elapsed duration: 16.96826981s Performance with zlib-rs : flate2_demo get_archive elapsed duration: 102.607µs flate2_demo get_entry elapsed duration: 33.138560864s",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "77"
+        "value": "100"
       },
       {
         "label": "状态",

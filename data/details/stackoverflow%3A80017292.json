@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017292",
   "sourceItemId": "80017292",
+  "fetchedAt": "2026-11-22T03:30:38.347Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017292/getting-combination-permutations-of-several-lists-with-segments-of-length-n",
   "detail": {
     "longDescription": "Edit: i talked to a classmate and we found a better solution to this not involving permutations like this, so this post is no longer helpful to me, but im gonna clean up the question and generalize it in case its helpful to someone else later. thanks for the help, sorry for the confusion earlier. im new to SO and didn't expect others to be able to edit this, so i got a bit flustered and defensive. my bad yall The problem I am trying to solve is a modified version of the Traveling Salesman Problem for Hamiltonian paths using a genetic algorithm . It's likened to like two trucks doing deliveries from a depot: Truck 1 starts at depot, visits half the cities, and returns to the depot. Truck 2 then starts at the depot, leaves the depot, visits the other half of the cities, and returns to the depot. So my final path should have the starting point at the beginning, middle, and end of the path, and each city should only be visited once across the two equally-sized subpaths for trucks 1 and 2. The part I want tips for is the crossover step of the genetic algorithm . Taking the fittest of the parent population, I want to take their paths and split them into segments of length n, then find all possible permutations of those segments. I can trim invalid paths and select the fittest paths later, so don't worry about making them valid- I just want all permutations of those segments right now . My parameters are n, which is the segment length, and parent_population, which is a list of tuples where each tuple is a valid path of format (depot, subpath_1, depot, subpath_2, depot). My output should be a list of tuples of the resulting permutations. It should account for paths that have an uneven amount of cities, meaning that subpath_1 and subpath_2 are of different lengths. It should also account for if the subpaths cannot be cleanly divided by n. Example with a segment length of 2 with expected output and formatting: depot in the start, middle, and end : parent_pop = [ (Depot, A, B, Depot, C, D, Depot), (Depot, D, C, Depot, B, A, Depot) ] segment_len = 2 # returns: [ (Depot, A, B, Depot, A, B, Depot), (Depot, A, B, Depot, B, A, Depot), (Depot, A, B, Depot, C, D, Depot), (Depot, A, B, Depot, D, C, Depot), (Depot, B, A, Depot, A, B, Depot), (Depot, B, A, Depot, B, A, Depot), (Depot, B, A, Depot, C, D, Depot), (Depot, B, A, Depot, D, C, Depot), (Depot, C, D, Depot, A, B, Depot), ... ]",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-1"
+        "value": "-2"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "314"
+        "value": "400"
       },
       {
         "label": "状态",

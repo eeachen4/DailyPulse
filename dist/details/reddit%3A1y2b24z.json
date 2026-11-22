@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2b24z",
+  "sourceItemId": "1y2b24z",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y2b24z/inkling2small_unsloth_q4_on_m3_ultra_19_toks/",
+  "detail": {
+    "longDescription": "**Setup**\n\n- Quant: https://huggingface.co/unsloth/Inkling-2-Mini-GGUF?show_file_info=Inkling-2-Mini-UD-Q4_K_XL.gguf\n- llama.cpp: b12618\n- Mac Studio M3 Ultra\n\nTested with llama-benchy with settings: `--pp 1000 --tg 500 --depth 100`\n\n\n\n**Results**\n\n| model           |           test |           t/s |     peak t/s |         ttfr (ms) |      est_ppt (ms) |     e2e_ttft (ms) |\n|:----------------|---------------:|--------------:|-------------:|------------------:|------------------:|------------------:|\n| inkling-2-small | pp1000 @ d1000 | 154.81 ± 0.45 |              | 12638.47 ± 322.56 | 12624.96 ± 322.56 | 12672.29 ± 294.99 |\n| inkling-2-small |  tg500 @ d1000 |  18.45 ± 0.06 | 19.00 ± 0.00 |                   |                   |                   |",
+    "developer": "rm-rf-rm",
+    "comments": 12,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
