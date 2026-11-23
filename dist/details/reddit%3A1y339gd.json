@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y339gd",
+  "sourceItemId": "1y339gd",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y339gd/how_are_you_deciding_what_an_agent_should/",
+  "detail": {
+    "longDescription": "been going down the agent memory rabbit hole lately and the storage part feels mostly solved. the hard part is deciding what's worth keeping.\n\nright now I think of it as roughly 3 buckets: stuff from the current session, things that happened before (episodic), and facts about the user or the world (semantic). the problem is everything ends up getting saved, and retrieval gets noisy fast.\n\nstuff I've been looking at on github:\n\n- mem0, pretty plug and play\n- Letta (the MemGPT folks), where the agent manages its own memory\n- Zep / Graphiti if you want a temporal knowledge graph\n- langmem-ts, more of a from the ground up modular memory module. it went with Postgres and pgvector for storage, which I kinda like since it's one DB for everything\n\ncurious what's working for people in practice:\n\n- do you let the model decide what to save, or use rules?\n- how do you handle facts that change over time, like a user's role or preferences?\n- do you ever expire or summarize old memories, or just keep everything and rely on retrieval?\n\nwould love to hear what broke for you, not just what worked lol",
+    "developer": "Aide_Sea",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

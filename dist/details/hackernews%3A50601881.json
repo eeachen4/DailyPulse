@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50601881",
+  "sourceItemId": "50601881",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50601881",
+  "detail": {
+    "longDescription": "Hi HN! I want to show you a project which I&#x27;m using myself to save time on worktrees creation and management. My case is a bit specific because I&#x27;m normally working on a really big monorepo, where creation of a worktree takes around a minute and 20+GB of disk space. Previously I was using a pool of worktrees which were managed by my own sessions manager. It worked, but was a bit clunky and sometimes I was running out of the worktrees anyway. As a fun side-project I decided to create a VFS for serving git branches directly from the git object store, with only one real checkout needed. I started with read only version to speed-up the reviews (I often checkout the PRs code to get LLM support) and that is very easy to do with FUSE, but it would not let me fully replace my old solution. Adding write capabilities was a bit more involved, and writing without full kernel passthrough turned out to be a few times slower. But interestingly for my workflows it does not matter. I was also running some external tests like full Linux kernel build (allmodconfig) and the performance hit vs a native build was around 2.5%. So far so good! After building the core I realised that having VFS allows me to play with other interesting features. And I implemented a few: - tree structure of branch dependencies; you can e.g. have branch &#x27;api&#x27;, on which &#x27;store&#x27; and &#x27;ui&#x27; depend. When you add or fetch new commits to &#x27;api&#x27;, whole tree rebases automatically - read only views showing &quot;merged&quot; state of each node in the tree from the previous point; e.g. you can check how &#x27;api&#x27; branch would look like, if both &#x27;store&#x27; and &#x27;ui&#x27; would be merged as is; currently it has two modes: only committed or all changes - command for showing conflicts between current worktree and all other open worktrees - command for showing all worktrees touching given file of interest - agents getting real time notifications about potential conflicts What is also important is that it works without an issue with all native git commands. Git sees those workspaces as normal worktrees. So you can e.g. normally rebase every such worktree separately (which is one of the main differences compared to overlayfs). I&#x27;m sure some people will think this project is very similar to GitFS, EdenFS, OverlayFS, ArtifactFS, etc... spoiler alert: it is not. Most of those projects are focusing on fetching objects from remote git server lazily. Which I can imagine is very useful if you need a fresh checkout on a new instance (eg. in a CI). But that is not my use case. I have a full local checkout, and need to be able to create and delete on demand a lot of worktrees. That is it :) But I also prepared a full comparison, just in case: https:&#x2F;&#x2F;github.com&#x2F;pkukielka&#x2F;gitfold&#x2F;blob&#x2F;main&#x2F;docs&#x2F;comparis... I&#x27;m happy to answer any questions!",
+    "externalUrl": "https://github.com/pkukielka/gitfold",
+    "developer": "pkuki",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

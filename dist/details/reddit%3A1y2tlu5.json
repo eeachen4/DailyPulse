@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2tlu5",
+  "sourceItemId": "1y2tlu5",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y2tlu5/i_got_tired_of_paying_004paper_for_llamaparse_so/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\n\n\nLike many of you building RAG pipelines or local agent research monitors, my biggest headache has always been academic PDFs. \n\n\n\nTools like LlamaParse and Unstructured do great work, but they charge \\~$0.003/page. When you're indexing hundreds of 15–30 page papers, that quickly runs into $50–$100 bills for simple batch jobs—and vision-based models often hallucinate equation numbers or fail on two-column layouts.\n\n\n\nSo I wrote a deterministic, sub-3-second extractor in Python combining PyMuPDF (\\`fitz\\` in C) with the official ArXiv Atom API, and packaged it as a Pay-Per-Event (PPE) Actor on Apify.\n\n\n\n\\### What it extracts cleanly:\n\n1. \\*\\*Authoritative Metadata\\*\\*: Title, authors, affiliations, date, canonical ArXiv ID, and DOI.\n\n2. \\*\\*Decomposed Sections\\*\\*: Headings (\\`1. Introduction\\`, \\`3.2 Methodology\\`) with automatic hyphenation de-wrapping.\n\n3. \\*\\*Analytics\\*\\*: Exact count of display equation blocks and table captions with context.\n\n4. \\*\\*Structured Citations\\*\\*: Parses references into \\`{raw\\_text, title\\_guess, year, arxiv\\_id\\_if\\_present}\\` so you can build paper-citation graphs.\n\n5. \\*\\*RAG-Ready Chunks\\*\\*: Overlapping, token-bounded chunks pre-tagged with section breadcrumbs (\\`\\[Section: Methodology\\]\\\\n...\\`), ready to drop straight into Qdrant/Pinecone/Chroma.\n\n\n\n\\### Cost & Speed Benchmark (15-page Paper: \"Attention Is All You Need\"):\n\n\\- \\*\\*LlamaParse\\*\\*: \\~$0.045 / paper (12–25 seconds)\n\n\\- \\*\\*This Actor\\*\\*: $0.005 / paper (3.8 seconds)\n\n\\- \\*\\*Failure Guarantee\\*\\*: If an invalid PDF or 404 occurs, Apify charges $0.00.\n\n\n\nCode is open on GitHub: [https://github.com/ali1556/arxiv-pdf-structured-extractor](https://github.com/ali1556/arxiv-pdf-structured-extractor)\n\nApify Store Actor: [https://apify.com/ali1556/arxiv-pdf-structured-extractor](https://apify.com/ali1556/arxiv-pdf-structured-extractor)\n\n\n\nWould love feedback from anyone running paper RAG pipelines—what fields or chunk formats are you missing most?",
+    "developer": "ali1556",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

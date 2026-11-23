@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y31w4p",
+  "sourceItemId": "1y31w4p",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y31w4p/i_built_an_opensource_digital_painting_manga_app/",
+  "detail": {
+    "longDescription": "Hey! I wanted to share a project I’ve been pouring months into: Ink Studio, an open-source (GPL-3.0) desktop illustration and manga app built with Tauri v2, Rust, React 19, TypeScript, and WebGL.\n\n**Repo:** [https://github.com/praisesora/inkstudio](https://github.com/praisesora/inkstudio)\n\n**Windows Build:** [https://github.com/praisesora/inkstudio/releases/latest](https://github.com/praisesora/inkstudio/releases/latest)\n\n>(macOS & Linux currently need to be built from source.)\n\n# Why Tauri v2 & how it’s put together\n\nI wanted native-feeling desktop performance and a small footprint without giving up fast UI iteration for a complex dockable workspace (panels, brush settings, rulers, animation timeline, etc.):\n\n\\- Rendering (WebGL + Three.js): Custom WebGL brush engine supporting pen pressure, tilt, velocity, dual brush tips, wet edges, color mixing, and stabilization. Raster layers use a sparse-tile architecture to keep memory usage reasonable on large canvases, alongside editable vector layers and 17 blend modes. There’s also an embedded Three.js viewport with a posable IK mannequin that syncs its camera with 1/2/3-point perspective rulers.\n\n\\- Rust Backend (Tauri v2): Handles an embedded Axum WebSocket server for real-time multiplayer (up to 16 peers over LAN or an optional Cloudflare Tunnel, with tile-level sync, layer reservation, and browser guest join), an LZ4-compressed scratch disk, WAL-based crash recovery, and auto-updates.\n\n\\- Format Interop: Opens \\`.clip\\`/\\`.csp\\`, \\`.psd\\`/\\`.psb\\`, \\`.svg\\`, and imports Clip Studio Paint \\`.sut\\` brush files (using \\`ag-psd\\`, \\`sql.js\\`, \\`fflate\\`, etc.), and saves layered \\`.ink\\` and \\`.psd\\` files.\n\nNo telemetry and no AI features.\n\nHappy to answer any questions about the architecture, experience, or trade-offsand any feedback on the codebase or app is super welcome!",
+    "developer": "Big-Interaction5837",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

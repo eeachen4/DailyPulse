@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2xd9x",
+  "sourceItemId": "1y2xd9x",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y2xd9x/layerpool_finetuning_one_model_across_mixed/",
+  "detail": {
+    "longDescription": "layerpool splits a transformers model by its layers across mixed devices (NVIDIA, AMD, Apple Silicon, CPUs) and trains it with the normal HF Trainer.\n\nThe main machine runs the training loop and keeps the embeddings and the head. Each block is replaced by a stand-in that sends the hidden state through the devices and brings the gradient back, so autograd and the Trainer don't see the split.\n\n* Devices can be on different networks\n* Layers are split by each device's memory and speed, and moved while training runs\n* If a device drops out, the others take its layers and replay the lost steps from checkpoints\n\nIt's bound by the network, so it's for memory, not speed.\n\n[https://github.com/abdallah-swe/layerpool](https://github.com/abdallah-swe/layerpool)",
+    "externalUrl": "https://i.redd.it/asgjfk4er73i1.png",
+    "developer": "Historical_Syrup_461",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

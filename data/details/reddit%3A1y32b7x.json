@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y32b7x",
+  "sourceItemId": "1y32b7x",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y32b7x/sharing_one_memory_between_claude_code_codex/",
+  "detail": {
+    "longDescription": "I built a free, open-source (GPLv3) Mac app around this, so disclosure up front, but the design is the interesting bit and I'd like other people's takes on it.\n\nThe setup: several coding agents and local models work on the same project at different times. Without shared state each one starts cold. So there's one memory per project, a plain SQLite file on disk, exposed as an MCP server with a handful of tools: remember, recall, supersede, forget, and a short project brief that gets injected at session start.\n\nThings that mattered more than I expected:\n\n- **Provenance.** Every fact records which agent, model and machine wrote it. When a recalled fact is wrong, you can see whether it came from a small local model or a frontier one and weight it accordingly.\n- **Decay.** Facts that are never recalled fade out. Without this the memory filled with one-off trivia and recall quality dropped fast.\n- **Explicit supersede.** Replacing a fact is its own operation. Otherwise old and new versions coexist and agents pick whichever ranks higher, which is often the stale one.\n- **Small facts, not summaries.** One decision or gotcha per fact recalls far better than session summaries.\n- **Local models are first-class.** Ollama / LM Studio / llama.cpp models get the same tools, so a cheap local model can do follow-up work using what a bigger model already figured out, without anything leaving the machine.\n\nRepo if you want to read the code: https://github.com/joexk1/JoeBro\n\nOpen questions I'm still unsure about: how aggressive decay should be, and whether recall should be pure lexical (what it is now) or hybrid with embeddings. How are others handling cross-agent memory?",
+    "developer": "JoeBro121211",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

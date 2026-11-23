@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017977",
   "sourceItemId": "80017977",
+  "fetchedAt": "2026-11-23T04:02:23.937Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017977/is-this-the-correct-way-to-use-and-interpret-principal-component-analysis",
   "detail": {
     "longDescription": "I'm trying to learn PCA using R, but I'm unsure whether I'm using the results correctly. I have included the code for my attempt at using PCA to analyse the decathlon2 dataset in R with a scree plot, loadings and biplots with brief notes on what they show, and would like to know if these are sound conclusions or if I am misinterpreting the results. library(ggplot2) library(corrr) library(ggbiplot) library(factoextra) library(ggcorrplot) library(corrplot) library(dplyr) library(gt) Decathlon Data The data used contains scores for athletes in two decathlons. data(decathlon2) head(decathlon2) Data Exploration # Create data frame with relevant variables df <- decathlon2[, 1:10] M <- cor(as.matrix(df)) corrplot.mixed(M, upper='number', lower='square') Negative correlations between shorter running and throwing events. Negative correlation between high jump and pole vault (lower vs. upper body). Positive correlations between running events (require lower body and stamina). Strong positive correlation between shot put and discus throw and shot put with high jump. There are a few strong correlations for pole vault, 1500 m or javelin. Except a weaker correlation with javelin and shot put and a negative correlation between pole vault and high jump. It suggests they require unique training, e.g., higher stamina or unique body movement. PCA Screen plot # Perform PCA pca.data <- prcomp(df, scale=TRUE) pc.var <- pca.data$sdev^2 pc.var.perc <- round(pc.var/sum(pc.var) *100, 1) # Screenplot barplot(pc.var.perc, main=\"Scree plot\", xlab=\"Principle component\", ylab=\"Percent variation\") abline(h=mean(pc.var.perc), col=\"red\") The screen plot suggests we need four PCs to explain most of the variance in the data. Loadings rounded<-round(pca.data$rotation, 3) data.frame(Event=rownames(pca.data$rotation), rounded[,1:4]) %>% gt() %>% data_color( columns=-Event, fn=scales::col_numeric( palette=\"RdBu\", domain=c(-1,1)) ) PC1 has roughly even magnitude values for all events, except for pole vault, javelin and 1500 m. Accounts for the general difference in upper body/strength based and stamina based athletes. PC2 is positively influenced mainly by 1500 m and pole vault, with a negative contribution from high jump. Represents athletes who excel at pole vault. PC3 is mainly influenced by javelin with very little influence from high jump, long jump or 100 m. Possibly represents athletes who excel at javelin. PC4 has a major positive contribution from 1500 m and notable negative contribution by javelin. It represents athletes who excel at long distance running with trade off of upper body strength for javelin. Biplots ggbiplot(pca.data, groups=decathlon2$Competition, obs.scale=1, var.scale=1, ellipse=TRUE, cirlce=TRUE, ellipse.prob=0.6,) + scale_colour_discrete(name='') The biplot shows that PC1 generally represents the strength/stamina split in athletes. PC2 is influenced positively by pole vault and 1500 m and negatively by high jump, possibly accounting for more unique events. ggbiplot(pca.data, groups=decathlon2$Competition, choices=c(1,3), obs.scale=1, var.scale=1, ellipse=TRUE, cirlce=TRUE, ellipse.prob=0.6,) + scale_colour_discrete(name='') It still maintains general strength/stamina split. No negative influences for PC3 suggests pole vault is easier to fit into a general training program. ggbiplot(pca.data, groups=decathlon2$Competition, choices=c(1,4), obs.scale=1, var.scale=1, ellipse=TRUE, cirlce=TRUE, ellipse.prob=0.6,) + scale_colour_discrete(name='') The strength/stamina split with strong opposing 1500 m and javelin influence for PC4. Suggests these events generally require focusing more on one or the other. The trend across all biplots show OlympicG results score more positive in PC1 than Decastar, suggesting Decastar had better performance in races and weaker performance in strength-based events compared to OlympicG.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-4"
+        "value": "-5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "93"
+        "value": "134"
       },
       {
         "label": "状态",

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y37hmk",
+  "sourceItemId": "1y37hmk",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y37hmk/i_tested_the_fastest_engines_for_inkling_2_mini/",
+  "detail": {
+    "longDescription": "Hi Everyone.\n\n**Setup**\n\n\\- MacBook Pro M5 Max, 128 GB  \n\\- Inkling 2 Mini, the official unquantised weights (20.2 GB), loaded by all three engines  \n\\- One stream, the model's own sampler: temperature 1.0, no top-p, no top-k  \n\\- Same prompts and seeds for all three, each engine through its own server at its defaults  \n\\- MTPLX 2.13.2, mlx-serve 26.11.4 pre-release, oMLX 0.8.3\n\n**Decode speed in tokens per second (MTPLX / mlx-serve / oMLX)**\n\n\\- 4K coding prompt, first request after load: 96.2 / 79.0 / 62.9  \n\\- 4K coding prompt, repeat request: 90.5 / 73.9 / 57.6  \n\\- Short prompt: 75.0 / 72.3 / 56.8  \n\\- 1,500-token answer: 78.1 / 70.1 / 53.0  \n\\- Average of the four: 85.0 / 73.8 / 57.6\n\nI also ran each engine on the pack it ships for speed (MTPLX Optimized Speed 17.2 GB, mlx-serve 8-bit 18.7 GB, oMLX oQ4e 16.9 GB). Average of the same four tests: 97.1 / 85.7 / 68.9.\n\n**Where MTPLX is not the best**\n\nTime to first token. On a cold 4K prompt mlx-serve starts answering in about 1.5 seconds, MTPLX in about 1.8 and oMLX in about 2.5. With the prompt already cached, mlx-serve and oMLX start in about 0.2 seconds and MTPLX takes about 0.8. I am working on that.\n\n**Caveats**\n\nI created MTPLX, so take this with the usual grain of salt, but I tried to make it a fair test and I am sharing the details so you can poke holes in it. And I’m very proud of my work. \n\nOne Mac, one model, 2 to 9 runs per number, and I only measured one request at a time. If you have an M1 to M4 or less memory your numbers will be different, and I would love to see them.\n\nHappy to share the raw rows or rerun anything you think is unfair.",
+    "externalUrl": "https://i.redd.it/lqx5f76c3a3i1.jpeg",
+    "developer": "YoussofAl",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

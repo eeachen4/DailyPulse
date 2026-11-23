@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y32rch",
+  "sourceItemId": "1y32rch",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y32rch/in_20_heldout_repos_smaller_agent_context_reduced/",
+  "detail": {
+    "longDescription": "    I'm maintaining SigMap, an open-source repository retrieval layer for coding agents. I recently ran a study comparing complete agent tasks, rather than just comparing the size of retrieved context.\n    \n    \n    One result I didn't expect: with a short index and two MCP lookup tools, a held-out Messages-API/Haiku 5.5 test across 20 repositories showed:\n    \n    \n    - API cost: -7% [95% interval -13%, -2%]\n    - Task time: +1%\n    - Total tokens: +18%\n    \n    \n    So lower cost emphatically didn't mean fewer tokens or a faster run.\n    \n    \n    A different approach — prefetched file rankings inserted before the first turn — showed time -18% and tokens -26%, but the cost interval crossed zero, and five of the repositories became more expensive. The installed Claude Code hook is also not identical to directly injecting that text into a prompt; its measured effect was smaller.\n    \n    \n    The experiments were paired on the same questions, with the repository as the unit for held-out comparisons. They test finding code, not making correct patches. We also failed to find a reliable offline predictor of which repositories benefit, so I don't think it is defensible to promise a saving on an arbitrary codebase.\n    \n    \n    I'd be interested in how others evaluate retrieval layers for agents: do you prioritize end-to-end success, dollars, wall-clock time, or a combination? And how do you handle cases where cheaper runs become less accurate?\n    \n    \n    ",
+    "developer": "Independent-Flow3408",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -2,23 +2,24 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017959",
   "sourceItemId": "80017959",
+  "fetchedAt": "2026-11-23T04:02:23.937Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017959/connect-to-local-ollama-server-from-n8n-docker-container-on-linux-arch",
   "detail": {
     "longDescription": "Cannot get through my docker container and connect to my local ollama server. Ollama server is up and running : http://localhost:11434 returns \"Ollama is running\" When adding n8n credentials for ollama, I get the following : Couldn't connect with these settings ECONNREFUSED Here's my n8n credentials config : Base URL : http://host.docker.internal:11434 API Key : not needed for local install and running models (?!) Allowed HTTP Request Domains : All According to what I've found, looks like we need to provide manually the host.docker.internal:host-gateway flags for linux hosts. This can be done either in compose.yaml or by command line : # compose.yaml n8n extra-hosts : - host.docker.internal:host-gateway # command line docker run --add-host=\"host.docker.internal:host-gateway\" <image-name> This should resolve DNS requests from internal docker container to the local host. Detail Config : Docker version 29.10.0 Docker Compose version 5.8.0 n8n version 2.48.7",
     "developer": "lucsar",
-    "comments": 1,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
-        "value": "-3"
+        "value": "-4"
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "110"
+        "value": "159"
       },
       {
         "label": "状态",

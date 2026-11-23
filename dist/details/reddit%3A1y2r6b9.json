@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2r6b9",
+  "sourceItemId": "1y2r6b9",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y2r6b9/if_your_gpu_inference_pods_scale_to_zero_what/",
+  "detail": {
+    "longDescription": "Been reading abt KEDA scale-to-zero for llm inference\n\nTurning off idle gpu pods make sense, but what happen when an ai agent needs the model again?🤔\n\nIf u r scaling base on vllm metrics, those metrics disappear once all the pods r gone. So something else has to catch the request n wake them up again.\n\nKEDA’s HTTP interceptor can hold request while the backend starts, but u r still waiting on gpu provisionong n model loading\n\nN what if the agent time out n retries before the model is ready?\n\nFor people running this in production, r u keeping one warm replica or just queueing request until the gpu is ready? Especially for agent making multiple llms call between tool runs",
+    "developer": "Chamelon_DE",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

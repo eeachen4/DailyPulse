@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y34x5e",
+  "sourceItemId": "1y34x5e",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y34x5e/finetuned_qwen34b_as_a_singletoken_risk/",
+  "detail": {
+    "longDescription": "I spent the weekend experimenting with fine-tuning Qwen3-4B for a binary KYC refresh classification task.\n\nThe setup:\n\n* Qwen3-4B + QLoRA / Unsloth\n* 1,000 training examples\n* Free Kaggle T4 GPUs\n* Fully synthetic banking customer dataset\n* 20,000 held-out test cases\n\n**Results:**\n\n* Recall: 90.5%\n* Precision: 59.7%\n* AUPRC: 0.745\n* Training: approximately 5 GPU-hours\n\nThe most interesting finding wasn't the recall.\n\nThe model learned to recognize changes in customer behaviour, but struggled to determine whether those changes were significant enough to trigger a KYC refresh.\n\n97% of false positives involved genuine but below-threshold behavioural changes.\n\n\n\nI'm also curious how this would compare against CatBoost or LightGBM on the same structured data.\n\nI documented the experiment, implementation decisions, mistakes, and failure analysis here:\n\n[https://medium.com/@sidicamara/teaching-a-4b-llm-to-say-yes-or-no-fine-tuning-qwen3-to-trigger-kyc-refreshes-3b415a810cec](https://medium.com/@sidicamara/teaching-a-4b-llm-to-say-yes-or-no-fine-tuning-qwen3-to-trigger-kyc-refreshes-3b415a810cec)\n\nWould you approach this problem with an LLM, traditional ML, or a hybrid model?",
+    "developer": "Silver_Tip260",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

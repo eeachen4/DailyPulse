@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2x9ba",
+  "sourceItemId": "1y2x9ba",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y2x9ba/layerpool_finetune_a_model_split_across_several/",
+  "detail": {
+    "longDescription": "layerpool splits a transformers model by its layers across your devices. The main machine runs the training loop and keeps the embeddings and the output head, and the other devices hold the layers in between. The only change to your code is the import:\n\n    import layerpool.hf as lp\n    model = lp.AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen3-14B\")\n\nThe Trainer, TRL, LoRA and QLoRA work as before, and each device downloads only its own layers.\n\nIt won't beat one GPU that fits the whole model, since the network sets the speed. It's for training models that don't fit otherwise.\n\n[https://github.com/abdallah-swe/layerpool](https://github.com/abdallah-swe/layerpool)",
+    "externalUrl": "https://i.redd.it/1thmm6hjq73i1.png",
+    "developer": "Historical_Syrup_461",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

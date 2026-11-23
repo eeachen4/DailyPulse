@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2x1kt",
+  "sourceItemId": "1y2x1kt",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y2x1kt/built_a_tiny_ondevice_intent_model_for_smarthome/",
+  "detail": {
+    "longDescription": "\n\nI built a small local 'intent' model (that I'm calling 'Hunch-1) that works out what someone wants their smart home to do and runs on the device itself. Been exploring concept of human input / intent and how to convey that better / faster for better Human-Agent interactions, and smart homes felt like a good first tangible test of this outside the computer (also was fed up with Siri).\n\nIt maps each sentence into a learned space and reads the intent from where it lands: what action and what kind of device, or \"not for me\", which it passes on to whatever assistant you already use. New commands can come from a few examples, with no retraining, which is kinda neat for this application as does not need fine-tuning / retraining.\n\nOn a public benchmark of voice-assistant commands (SLURP) it scored level with Claude Opus (88.3% against 88.4%), and answered in 21 ms on my laptop (Mac M1 Pro) where the cloud model took 1.6 s. Straight from audio, with no transcript, it gets 78.3% in 87 ms. \n\nThe more interesting result was on real people's commands, taken from public posts and videos. The first version only got 38% there, because people talk to their homes very differently from benchmark phrasing. So I collected about a thousand real sentences from TikTok, YouTube, Reels and Reddit, labelled them and added them as examples. On a held-out set of 474 (kept separate from the examples) it now gets 71% right, 12% wrong and 17% declined.\n\nLimits: English only, one domain (home commands), and follow-ups like \"turn it off\" don't work yet. Audio from a far-away microphone is weaker. (The Siri clip in the images is informal, not a controlled test.)\n\nNext I'm applying the same idea to computer use and robotics, where a system has to know what someone wants before it acts and a cloud round trip is too slow. If you're working on either, I'd love to hear where intent breaks for you: ambiguity, missing context, or latency?\n\nI've also released it as a free Home Assistant app (40 to 70 ms a sentence on a Raspberry Pi) if anyone wants to try it. Open weights under CC BY-NC 4.0, code under Apache 2.0.\n\nModel card and full tables: [https://huggingface.co/xevall/hunch-1-home](https://huggingface.co/xevall/hunch-1-home)\n\nHome Assistant app: [https://github.com/yungbose/hunch-home](https://github.com/yungbose/hunch-home)\n\nBrowser demo: [https://xevall.com/hunch-home](https://xevall.com/hunch-home)\n\n\n\nThanks for reading!\n\n",
+    "developer": "yungbose",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

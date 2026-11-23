@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y324en",
+  "sourceItemId": "1y324en",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y324en/followup_i_added_the_fixes_people_suggested_for/",
+  "detail": {
+    "longDescription": "A few days ago I posted here about what broke when my agent started replying to recruiters on its own. Several of you suggested fixes, and I added most of them.\n\n1. Idempotency key (u/novai-max). The send call made a fresh key on every attempt, so a manual retry could send the same message twice. The key is now a uuid5 of the chat, the employer's message and the reply text, so a retry reuses it.\n2. Facts checked in code (u/bostonaholic). The drafting model returns the exact quotes from my two fact files behind each claim, and code looks for every quote word for word. When the model gives no quotes at all (it happened on a real salary question), there's nothing to check and only the second LLM pass is left.\n3. A canary for the checker (u/ChemicalExcellent463). Once a day the daemon feeds the checker three replies I know are bad. First run: 3 of 3 rejected.\n4. Employer-side features (u/dawedev). The board and a named contact in the listing added nothing (the contact appeared in 6 of 147 listings, AUC stayed at 0.645). Posting age got a weight near zero.\n\nThe fit model on 147 outcomes with 18 invites:\n\n- Opus's own 0 to 10 fit score: AUC 0.47\n- small logistic regression: 0.645 in cross-validation, 0.556 when trained on applications before Nov 10 and tested on later ones\n- one feature alone, \"fewer than 20 applicants when I applied\": 0.631\n\nSo most of what the model knows is \"apply early, before many people do\". The LLM's score is still at coin-flip level.\n\nCode: github.com/nivokvo/job-watch-cloud",
+    "developer": "nivokvo",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

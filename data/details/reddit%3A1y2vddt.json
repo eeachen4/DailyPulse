@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2vddt",
+  "sourceItemId": "1y2vddt",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y2vddt/i_built_tensgo_a_singlebinary_cli_to_fail_cicd/",
+  "detail": {
+    "longDescription": "*Disclaimer: I am the creator and maintainer of tensgo (open-source, MIT licensed).*\n\nHey r/devops,\n\nI’ve been working on **tensgo** (`v0.2.0`), a zero-dependency, single-binary API load and stress testing CLI/TUI written in Go.\n\nI built it because I wanted something lighter than spinning up `k6` or `JMeter` in CI pipelines, while still having strict exit-code quality gates and multi-step authenticated flows that `hey`/`wrk` lack:\n\n* **CI/CD Quality Gates:** Fail builds automatically when P95 latency or error rates cross your thresholds (`--max-p95 250ms --max-error-rate 1.0`).\n* **OpenAPI / Swagger Auto-Discovery:** Point `--openapi` at a spec to auto-discover routes, generate sample payloads, and extract Bearer tokens from login endpoints.\n* **Chaos Profiles & Stateful YAML:** Built-in Spike, Ramp-Up, and Soak profiles plus multi-step flows (`Login -> Profile -> Checkout`) with per-VU isolated tokens.\n* **Interactive TUI + Single-File HTML Export:** Live RPS/P95/P99 metrics in the terminal, press `[h]` anytime to export a standalone HTML report.\n\n**Install:**\n```bash\ngo install github.com/Errtu0/tensgo@latest\n```\n(Pre-built binaries for Linux, macOS, and Windows are also in Releases.)\n\nGitHub & Docs: https://github.com/Errtu0/tensgo\n\nWould love feedback from folks running load tests in CI/CD pipelines on what flags or output formats (JUnit XML, Prometheus, JSON) would be most useful next!",
+    "developer": "Errtu0",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

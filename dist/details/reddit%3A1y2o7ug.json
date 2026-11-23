@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2o7ug",
+  "sourceItemId": "1y2o7ug",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y2o7ug/best_economical_gpu_cloud_for_realtime_voice_ai/",
+  "detail": {
+    "longDescription": "Hello devs.\n\nI built an e-commerce site for a client (Next.js, Shopify, Sanity CMS, currently on Vercel free plan). The client now wants a real-time voice AI assistant on the website, actual spoken conversations with customers in 10 languages using custom voice models he owns (Whisper for STT, VoxCPM2/Qwen3-TTS for speech generation, Claude API for the brain).\n\nHe's built a working prototype on his MacBook but latency is 12-15 seconds because it's all running on CPU. Needs under 2 seconds. He doesn't want third-party voice services like ElevenLabs, he wants full control over his models and voices.\n\nHe's considering buying an NVIDIA DGX Spark ($4,700) to self-host from his office. I think cloud GPU makes more sense, same ownership and control over his models without the risks of running production from his home internet.\n\n**My questions:**\n\nCan Vercel handle any of this? I know serverless functions have a 10s timeout and no WebSocket support, so I'm assuming the voice AI backend has to live somewhere else regardless. But am I wrong, is there any way to make Vercel work for the real-time streaming part?\n\nWhat's the most economical yet suitable cloud GPU option for running Whisper + custom TTS models in production? Traffic would be low , maybe 5-20 voice conversations per day. Customers are UK/EU based. I've been looking at Hetzner (\\~€214/mo), RunPod (\\~$245/mo), and Vast.ai, but I'm not sure what's the right fit for this scale and use case.\n\nIs there a better option I'm not considering? Some managed platform or a different architecture altogether that would simplify this?\n\nAppreciate any guidance.",
+    "developer": "Tasty_Reason_688",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

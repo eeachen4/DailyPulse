@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y32c1b",
+  "sourceItemId": "1y32c1b",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y32c1b/update_built_the_3_fixes_you_gave_my_agents/",
+  "detail": {
+    "longDescription": "Yesterday I posted here about my agents needing 20 posts of proof before they pitch me an idea, and asked how you keep them from grading their own homework. The comments found three holes. I built all three and ran them on the posts I'd already saved.\n\n1. Blind recount. The agent that rechecked a count could see the first agent's labels. Now the recount gets only the raw titles and subreddit, labels stripped, order shuffled, split across three fresh agents that never saw the first answers. They agreed with the first labels on 1,177 of 1,327 posts, about 89%.\n\nThe part I didn't expect: for people asking for a website over 30 days, the earlier read and the blind one both counted 10. Only 8 were the same people. Each found 2 the other missed. A matching total doesn't mean they agreed.\n\n2\\. Miss rate. One of you said to check a random 50 from the \"other\" bucket. An agent read those 50 one by one (seeded, so I can redraw the same 50). 2 were real asks the matcher had filed as \"other\". That's 4%, but with only 50 posts the honest range is 1% to 13%.\n\nThe 4% looked fine until I split it by lane. Both misses were video editing posts, 2 of the 9 sampled from that lane. The blind agents, reading that whole bucket, flagged 19 of 78. The pooled number was hiding a bad lane.\n\n3\\. Baseline. My control search only proved the tool could reach the site. Now every run logs four boring topics on Hacker News (coffee, chess, weather, bicycle) to compare against. Someone here pointed out a jumpy control just moves the noise, so they don't count until they've stayed flat across at least 3 runs. Right now there's 1, and nothing gets compared to them yet. Reddit doesn't have a baseline yet; that one will have to be counted by hand.\n\nWhen your agents' totals match but the individual calls don't, which do you trust, or do you go read the disagreements yourself?",
+    "developer": "armanidev_",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

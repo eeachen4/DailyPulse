@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y306lc",
+  "sourceItemId": "1y306lc",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y306lc/balancing_security_and_business_continuity_an/",
+  "detail": {
+    "longDescription": "A critical Java vulnerability, CVE-2026-114938 (Java4Shell), required us to upgrade Java across our production VMs.  \nThe challenge was a mission-critical legacy application running on internal infrastructure, behind a VPN and an internal ALB. We couldn’t casually interrupt it for maintenance.  \nWe had two things to protect: the security of the infrastructure and the continuity of the business.  \nInstead of treating this as a straightforward patch-and-restart exercise, we looked for an interim approach that would reduce exposure while giving us time to perform the upgrade safely.  \nWe updated AWS WAF’s AWSManagedRulesKnownBadInputsRuleSet to version 1.28. Since we hadn’t tested the new rules against our application traffic, we enabled them in **Count mode** rather than blocking requests.  \nWe also configured a CloudWatch alarm. If the rules detected a matching request, we’d be alerted, escalate the situation and seek management approval for downtime so we could take the necessary action immediately.  \nFortunately, we didn’t observe any matching events.  \nThis was not a replacement for patching. It was a temporary detection and escalation measure while we waited for an approved maintenance window.  \nWe planned to perform the JDK upgrade on Sunday night, when the business impact would be more manageable.  \nI think this is an important part of infrastructure engineering that doesn’t always get enough attention.  \nSecurity requirements don’t exist in isolation. Neither do business requirements. Sometimes our job is to find a practical way to satisfy both, rather than blindly choosing one at the expense of the other.\n\n**But when we finally started inspecting the machines, we discovered something we hadn’t anticipated — and I learned something new about Linux that I hadn’t noticed in my last 13 years of working with it.**",
+    "developer": "syamj",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

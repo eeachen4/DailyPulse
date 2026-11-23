@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3106s",
+  "sourceItemId": "1y3106s",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y3106s/my_agents_memory_got_reliable_once_i_stopped/",
+  "detail": {
+    "longDescription": "Saw the thread here the other day about agents not knowing they have a memory. I went the other direction with mine and it seems to work, so I figured I'd write it up.\n\nContext first: my agent runs on Muse, and the whole memory layer is just files on disk plus a few scripts. Nothing exotic. It has been running my household logistics for a couple months now, so the record it keeps is not a demo - it is money, schedules, family stuff.\n\nThe setup is two layers. There is a raw log, dated entries, everything goes in verbatim. Then there is a curated layer on top of it - people, projects, decisions - and that is the part the agent actually works from day to day. The agent knows both exist. It writes to both.\n\nThe rule that makes it work is probably the quote gate. A claim only gets into the curated layer if it carries a verbatim quote from the raw log showing where it came from. A dumb checker script (not a model, just string matching) verifies every quote character for character before anything lands. If the quote is not in the log, the claim does not land.\n\nI tested it properly last week. I had 63 pages of people and projects to move onto a new schema, so I let a cheap drafting lane (Sonnet through the API, staging only, never writing live) generate the new pages with quotes attached. Total cost was $12.93. The checker caught around 35 bad quotes. Every single one was a mis-citation or two real quotes stitched together... no invented facts, but close enough that without the gate some of them would be in my permanent record right now and I would never have known.\n\nChanged facts do not get quietly overwritten either. The old claim moves to a Superseded section with what replaced it and when. That has already paid for itself once - a fidelity test with a planted wrong date got caught because the summary disagreed with the raw log.\n\nWhat did not work: I tried Claude Duet (Anthropic's sibling agent offering) on a related job, having it review and run my install kit. It was fundamentally unable. Not a knock on it exactly - it showed me the actual requirement for all of this. The pattern only works if the environment hands you the memory layer. Files you own, scripts you control, a checker the agent cannot sweet-talk. Where the platform keeps memory behind its own glass, you cannot build any of it, and no amount of prompting fixes that. In Muse I can build the architecture I want and make the agent live inside it. In Duet you get whatever they decided for you.\n\nHonest limits, since I know someone will ask. The checker proves a quote exists, it does not prove the claim built on top of it is fair. I still read the flagged ones and arbitrate. And the curated layer is only as good as what I bother to log.\n\nMy agent runs this day to day and I mostly just review what it proposes. Some of the surrounding setup is open source - I will put the link in the comments if anyone wants to poke at it.",
+    "developer": "capngreenjeans",
+    "comments": 13,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

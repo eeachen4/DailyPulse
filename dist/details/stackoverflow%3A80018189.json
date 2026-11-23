@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018189",
+  "sourceItemId": "80018189",
+  "sourceUrl": "https://stackoverflow.com/questions/80018189/preventing-memory-fragmentation-when-streaming-large-wasm-allocated-binary-buffe",
+  "detail": {
+    "longDescription": "I am building a high-throughput client-side application that processes real-time sensor telemetry using a C++ module compiled to WebAssembly . The data streams in via a WebSocket connection directly into a SharedArrayBuffer to avoid main-thread serialization overhead. The Problem: Because the incoming payload frequency fluctuates unpredictably (from 10 KB/s up to 50 MB/s bursts), frequent reallocations and resizing of the linear memory inside the WASM heap cause severe memory fragmentation. Even after calling explicit cleanup routines in C++, the browser's JavaScript engine (V8) does not release the underlying pages back to the OS promptly, leading to out-of-memory crashes during extended streaming sessions (>2 hours). What I've Tried: Implementing a custom memory pool/allocator inside the C++ code to reuse blocks, but the underlying WASM memory growth ( memory.grow ) still retains high watermark pages. Transferring ArrayBuffers via postMessage to dedicated Workers instead of a shared buffer, which introduces garbage collection pressure and latency spikes exceeding 15ms. So the question is... What is the recommended design pattern or memory management strategy in WebAssembly to prevent heap fragmentation when handling bursty, high-frequency binary streams via WebSockets without triggering constant memory.grow page retention spikes?",
+    "developer": "CacoonCoder",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "13"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

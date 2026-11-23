@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50604195",
+  "sourceItemId": "50604195",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50604195",
+  "detail": {
+    "longDescription": "Thinking Machines Lab gives 32GB as the minimum RAM requirement for Inkling 2 Mini on Mac, but with the Q3 quant I felt it must be possible to get somewhere reasonable on my 24GB M2 MacBook Air. Llama.cpp wasn&#x27;t cutting it even with patches, so I spent this week&#x27;s Fable allowance (with a sprinkling of Astra) on this custom inference engine, and took the opportunity to add some optimisations and ergonomics for running on a memory-constrained laptop: - strictly one model loaded at a time, requests queued; - KV cache gets saved and model unloaded after every response (or configurable delay), so RAM stays at 50MB between calls, but reload is fast; - menu bar app shows status and icon changes when prefilling&#x2F;generating. So far I&#x27;ve been using it with hax [1] with my normal system prompt + tool list, which runs to about 2,800 tokens, and getting near-instant responses in new sessions due to the cache-and-reload. Works great as a local agent setup for infrequent messages too, e.g. via a Telegram bridge. I&#x27;m sure this vibecoded engine and the model itself will be superseded in time, but for now it&#x27;s by far the best local model setup I&#x27;ve ever managed on this machine, so wanted to share for others in the same boat. Please do hack away at it. 1. https:&#x2F;&#x2F;github.com&#x2F;OleksandrChekhovskyi&#x2F;hax",
+    "externalUrl": "https://github.com/ltrgoddard/gall",
+    "developer": "ltrg",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "5"
+      },
+      {
+        "label": "评论",
+        "value": "2"
+      }
+    ]
+  }
+}

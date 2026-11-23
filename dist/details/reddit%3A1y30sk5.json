@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y30sk5",
+  "sourceItemId": "1y30sk5",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y30sk5/showoff_saturday_i_built_a_windows_terminal_for/",
+  "detail": {
+    "longDescription": "I run 3–4 AI coding agents at once (Claude Code, Codex) and kept missing the one waiting for my permission in a background tab. So I built SplitNest, an open-source terminal workspace for Windows.\n\n\n\nWhat it does:\n\n\\- Project workspaces with split PowerShell and WSL panes\n\n\\- Each tab shows the agent's state: Working / Needs you / Done / Error, plus a notification and one inbox for waiting agents\n\n\\- Each agent can run in its own Git worktree, with a live diff and one-click merge\n\n\n\nThe web-tech lessons were the interesting part:\n\n\n\n1. Keep terminals outside React. Each xterm.js instance lives in a plain controller object that owns its DOM element; React only attaches and detaches it. Splitting panes, switching workspaces or StrictMode double-renders never recreate a terminal or kill a shell, and terminal output never goes through React state.\n\n\n\n2. Never call fit() inside requestAnimationFrame with xterm.js's WebGL renderer. The canvas gets cleared one frame before it's redrawn, so you get a visible flash on every resize. A normal timer fixes it.\n\n\n\n3. Resizing on Windows is its own battle. ConPTY redraws the whole screen after a resize and expects lines to re-wrap the way the old Windows console did, which xterm.js doesn't. I ended up with a resize protocol: one resize in flight at a time, the PTY confirms the new size before xterm resizes, and the console's redraw is held until it's safe.\n\n\n\n4. Run the shells in a separate process. All PTYs live in an Electron utility process, so a misbehaving shell never freezes the UI.\n\n\n\nHappy to answer questions about xterm.js, node-pty or Electron packaging. Has anyone else fought ConPTY resizing?\n\n\n\nGitHub: [https://github.com/chafian/splitnest](https://github.com/chafian/splitnest)\n\nFull write-up: [https://dev.to/chafian/i-built-a-windows-terminal-for-running-ai-coding-agents-in-parallel-heres-what-i-learned-169b](https://dev.to/chafian/i-built-a-windows-terminal-for-running-ai-coding-agents-in-parallel-heres-what-i-learned-169b)\n\n\n\nHappy to answer questions about xterm.js, node-pty or Electron packaging.",
+    "developer": "chafian1",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

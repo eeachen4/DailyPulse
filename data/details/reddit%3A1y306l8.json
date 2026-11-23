@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y306l8",
+  "sourceItemId": "1y306l8",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y306l8/a_sixcase_starter_test_for_document_qa_that/",
+  "detail": {
+    "longDescription": "A document-Q&A demo can hide two different failures: answering when the source is silent, and picking a side when the sources disagree. A controlled test can separate them.\n\nThis is a proposed starter fixture, not a benchmark result. All records are fictional:\n\n* A: Policy v1, effective 1 January: returns accepted within 14 days.\n* B: Policy v2, effective 1 March: returns accepted within 30 days; explicitly replaces v1.\n* C: Delivery FAQ: delivery takes 3-5 working days; no return policy stated.\n* D: Policy v2, also effective 1 March: returns accepted within 21 days; no statement that it replaces B.\n\nAsk \"What is the return window?\" with six context packets:\n\n1. A only: 14 days, citing A.\n2. C only: insufficient evidence. Delivery time is not a return window.\n3. A+B, for an April purchase: 30 days, citing B and its replacement clause.\n4. B+D: report conflicting policies. No supplied rule chooses 21 over 30 or the reverse.\n5. D+B: still report the conflict. Context position should not decide policy.\n6. A+B, for a February purchase: 14 days under the supplied effective dates, rather than blindly using the newest record.\n\nScore answer, supporting citation, and uncertainty handling separately for each row. A real citation earns no credit if it does not support the claim. Keep the row results visible instead of hiding a conflict failure inside an average. Record model, prompt, context order and settings; repeat the packets to look for variability.\n\nThis is a tiny smoke test of the answer step with supplied context. It does not establish retrieval quality, access control or full-system reliability. Add actual user cases and domain review before treating it as release evidence.\n\nOpenAI's [evaluation-design guide](https://developers.openai.com/api/docs/guides/evaluation-best-practices) recommends task-specific tests, typical/edge/adversarial cases, and calibrating automated scoring with human judgment. These fictional fixtures apply that general advice; they are not a vendor-provided test set.\n\nWhat case would you add before allowing this assistant to answer a real customer?\n\nAI-assisted educational note, checked against the linked guide. No personal experiment or measured result claimed.",
+    "developer": "Heavy-Confidence1826",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

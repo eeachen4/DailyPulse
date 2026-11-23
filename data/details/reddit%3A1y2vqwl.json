@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2vqwl",
+  "sourceItemId": "1y2vqwl",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y2vqwl/i_finetuned_inkling_2_mini_to_route_tickets/",
+  "detail": {
+    "longDescription": "I built **Inkling 2 Mini Decision**, an Apache 2.0 fine-tune that takes a piece of text and a set of questions, then returns probabilities for the allowed answers. I wanted to see if a looped transformer could spend less compute on easy decisions and save the extra passes for harder ones.\n\nThe demo has a duplicate-charge ticket with two questions. It routed the ticket to billing after one loop with 98.7% probability. On whether to escalate the same ticket, it ran all three loops and still came back almost 50/50. The demo shows the probabilities and where each decision stopped. [Try the demo](https://huggingface.co/spaces/hugging-apps/inkling-2-mini-decision)\n\nOn `decision-v7/test`, 54.2% of questions stopped after one loop. Early exit brought median batch-one GPU latency from **136.8 ms to 81.4 ms** on an RTX PRO 6000, compared with forcing the same fine-tune to run all three loops. Accuracy moved from **85.56% to 85.49%**. On the external Typed Decisions benchmark, **89.6%** of questions still ran all three loops at the same threshold. [Benchmark details](https://huggingface.co/eltokh7/inkling-2-mini-decision#benchmarks)\n\nI’d like to compare this against stock Inkling with constrained label output on the same GPU. If you’ve built a local routing system, what baseline was hardest to beat?\n\n[Model weights and quickstart](https://huggingface.co/eltokh7/inkling-2-mini-decision) · [Eval scripts and predictions](https://huggingface.co/eltokh7/inkling-2-mini-decision/tree/main/eval)\n\n*I used OpenAI Codex to help draft this post.*",
+    "developer": "eltokh7",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

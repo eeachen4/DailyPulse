@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y2w5if",
+  "sourceItemId": "1y2w5if",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y2w5if/ataraxosuno_imperfectinformation_selfplay_vrpo/",
+  "detail": {
+    "longDescription": "I adapted the Ataraxos framework (Sokota et al., *Nature* 2026) from Stratego to 1v1 UNO, including same-type draw stacking. The interesting part was getting the entire test-time search loop (belief sampling + 192 parallel rollouts) running in the browser, with no backend, using ONNX Runtime Web.\n\n* **Play:** [https://tanishkbansode.github.io/uno-ataraxos/](https://tanishkbansode.github.io/uno-ataraxos/)\n* **Code:** [https://github.com/TanishkBansode/uno-ataraxos](https://github.com/TanishkBansode/uno-ataraxos)\n* **Technical writeup:** [RESEARCH.md](https://github.com/TanishkBansode/uno-ataraxos/blob/main/docs/RESEARCH.md)\n\n# How it works\n\n1. **C++17 game engine:** 7.8M steps/sec across 512 parallel environments on Apple Silicon. Exact 10,000-game parity with `uno-gym`, including reshuffle provenance tracking.\n2. **Blueprint:** A 100M-step RL model (\\~2.45M games, \\~5 hours on Apple Silicon MPS). Hybrid SwiGLU ResMLP, dilated-conv history and cross-attention, trained using VRPO Expected SARSA(λ), with symmetry handling for UNO's four colours.\n3. **Belief network:** Trained on 20M positions to predict opponents' hidden cards. Uses a hard-masked autoregressive decoder and history dropout. It outperformed an exact hypergeometric prior by 1.19 nats/hand on validation. You can see its predictions live using X-RAY.\n4. **Test-time search:** Blueprint-only search initially looked good against itself but struggled against greedy opponents. Turns out, it had learned to expect opponents to hoard Wilds, just like itself. I ended up using three opponent styles (Blueprint / Aggressive / Unpredictable) with entropic soft-minimax to reduce this overfitting.\n\n# Results (Mirrored Duplicate Decks)\n\n* vs. ExpertHeuristicBot: 66.0% (132–68, 200 games) vs. Blueprint's 61.0%\n* vs. 3-opponent suite: 58.3% vs. Blueprint's 55.3% (+3.0 percentage points, 600 duplicate games)\n\nI'd be interested in feedback, especially on handling non-alternating turn chains in imperfect-information games and reducing rollout overfitting against opponents that don't necessarily play like the agent.",
+    "developer": "FutureCTOofMicrosoft",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
