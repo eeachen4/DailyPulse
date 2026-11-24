@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3updq",
+  "sourceItemId": "1y3updq",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y3updq/iac_scanning_in_a_gitops_repo_how_do_you_handle/",
+  "detail": {
+    "longDescription": "Hi all,\n\nI'm adding IaC security scanning (Kubescape, Checkov) to the CI of a GitOps repo deployed by Argo CD. \n\nCI renders each component the way Argo CD does and scans the rendered output.\n\nSome components are our own Kustomize or Helm code, so findings there are easy to patch. Others are Helm charts that live in other teams' Git repos, pulled by Argo CD at a pinned commit with our values files. Those charts set no securityContext or resources and expose no values for them, so most findings come from code we don't own.\n\nHow do you handle this in practice? And do findings from external charts block your PRs, or are they only reported?  \nThe  goal is minimize the maintenance , we don't want to fork those repos and patch them .",
+    "developer": "BrotherGlad4572",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

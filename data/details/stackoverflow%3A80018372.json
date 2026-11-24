@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018372",
+  "sourceItemId": "80018372",
+  "sourceUrl": "https://stackoverflow.com/questions/80018372/why-this-attr-class-adds-any-to-its-attributes-type-annotations",
+  "detail": {
+    "longDescription": "I have this attr class: import attr @attr.s class Foo: a = attr.ib() # type: int f = Foo(1, 2) I have latest Pyright and Python 3.10. Pyright warns Error: Expected 0 positional arguments in the line Foo(1, 2) . Therefore, I added a type-checking-only __init__ : @attr.s class Foo: a = attr.ib() # type: int if TYPE_CHECKING: def __init__(self, a: int): ... reveal_type(Foo.a) # Type of \"Foo.a\" is \"int\" Warning disappears, and Foo.a is correctly typed as int . Hooray. Now, I realised there is another way of writing the class (by removing the type comment and assigning a to self ): @attr.s class Foo: a = attr.ib() if TYPE_CHECKING: def __init__(self, a: int): self.a = a reveal_type(Foo.a) # Type of \"Foo.a\" is \"Any | int\" Warning also disappears. But Foo.a is now typed as Any | int . Where did the Any come from? Edit : since attr.ib() returns Any , I tried replacing the assignment with a manual annotation: @attr.s class Foo: a: Any # instead of attr.ib() if TYPE_CHECKING: def __init__(self, a: int): self.a = a reveal_type(Foo.a) # Type of \"Foo.a\" is \"Any\" But the type is now Any . int is completely erased.",
+    "developer": "JadenV15",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "85"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

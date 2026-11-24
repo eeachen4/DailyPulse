@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y43rky",
+  "sourceItemId": "1y43rky",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y43rky/for_teams_running_production_ai_agents_on/",
+  "detail": {
+    "longDescription": "I'm designing an agentic document-verification system for high-compliance financial/audit workflows (10–25 linked PDFs per case—bank statements, invoices, agreements, workpapers—checked against a **buyer's own Excel/SOP checklist**).\n\nThe core pattern is a hierarchical case graph (`Case → Document → Page → ExtractedField → RuleResult → AuditEvent`) with a strict split:\n\n* **Extraction:** Native PDF text first, escalating scans to OCR/VLM into structured JSON with `[file_id, page_num, bounding_box]` provenance.\n* **Deterministic Verification:** Pure Python/SQL runs all arithmetic, totals, and date/threshold checks (never letting an LLM do math).\n* **Agentic Exception Triage:** Because real financial documents constantly disagree for *innocent* reasons (timing lags, cash vs. accrual, partial payments, parent/child entity names), an AI agent investigates flagged mismatches, groups them by probable cause with side-by-side page evidence, and routes them to a HITL Exception Queue where analysts clear items with logged reason codes.\n\nFor engineers shipping multi-step agents in production at scale:\n\n1. **Dynamic buyer rules:** How are you compiling a customer's messy Excel/SOP checklist into versioned deterministic + agentic checks without writing custom Python per tenant?\n2. **Triage without false negatives:** When an agent classifies a mismatch as \"innocent timing lag\" vs. \"genuine anomaly,\" how do you guard against the agent hallucinating away a real error?\n3. **Provenance & evals across agent steps:** How do you keep exact PDF page/bounding-box citations intact across multi-step agent runs, and how do you structure golden-set evals for cause-classification precision?\n\nr/LLMDevs r/MLOps r/AI_Agents ",
+    "developer": "Unique_Geologist6888",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

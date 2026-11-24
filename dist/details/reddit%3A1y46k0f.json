@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y46k0f",
+  "sourceItemId": "1y46k0f",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1y46k0f/the_next_generation_of_llms_probably_needs_memory/",
+  "detail": {
+    "longDescription": "Current serving still relies mostly on brute force. Appending huge context windows to frozen weights or querying external vector databases both feel like temporary fixes.\n\nIf we want models that can actually handle extended workflows without constant retraining, memory needs to move directly into the architecture:\n\n\\- Shifting from prompt stuffing to internal state. Jamming full project histories into context hits quadratic scaling and degrades long-term consistency. Historical constraints need to live in dynamic latent states instead of token caches.\n\n\\- Native layer memory instead of external retrieval. Decoupled databases add latency and shallow matching issues. Setups like MemT 1.0 explore encoding history into an updatable internal memory state—dynamic local memory for interaction traces, and trained hyper memory for learned read/write—updated token by token with a Gated DeltaNet-2-style mechanism, rather than treating memory as a post-hoc query. This is not the same thing as calling the whole model a memory-native MoE.\n\n\\- Aggressive sparsity. Firing dense layers on predictable tokens wastes compute and dilutes error signals. Routing inputs only to task-specific sub-networks keeps the bulk of the network idle.\n\n\\- Retaining correction feedback across sessions. Right now, mid-task corrections disappear when a session closes, guaranteeing identical mistakes later. Validated feedback needs to stick around as persistent adjustments.\n\nBrute-forcing longer context buffers is hitting obvious diminishing returns. The real challenge is keeping structural consistency over long horizons without letting inference compute explode.",
+    "developer": "Mountain-Pick-9411",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

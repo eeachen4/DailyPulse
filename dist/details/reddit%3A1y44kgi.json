@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y44kgi",
+  "sourceItemId": "1y44kgi",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y44kgi/be_honest_when_did_you_last_actually_read_a_plan/",
+  "detail": {
+    "longDescription": "Hot take: most \"human in the loop\" setups are a human pressing Enter.\n\nBe honest about your last week with a coding agent. It showed you a plan. You typed \"approved\". It showed you a 900-line diff. You scrolled, saw green tests, typed \"LGTM\". You did not review anything. You were a slower, more expensive \\`--yes\\` flag, and your name is on the commit.\n\nWe spend all our effort making agents more trustworthy and none checking the human. Everyone assumes the human is the safe part. I think the human is the part that fails first, because the agent gets better every month and our attention gets worse.\n\n\n\nSo I built the opposite of a guardrail for the agent. I built one for me. It's a workflow for Claude Code, and it does a few rude things:\n\nIt refuses my approval if I didn't read. Roughly one in N approval requests contains one planted item that must not be approved: a test that proves nothing, an assumption I never made, a required check quietly deleted. If I type \"approved\" without pointing at it, I get this:\n\n\n\n\\> \\[blocked\\] You didn't really review this, did you, human? Keep approving like that and the AI really will take your job. lol. Review it again.\n\n\n\nA separate agent writes the plant for that specific feature. The agent asking for my approval never sees it, and the plant only exists in the review table, never in the plan that runs.\n\nThe agent can't approve for me. An approval counts only if it quotes my latest chat message, and it is bound to a hash of the plan and the code tree. Change either one and the approval is void.\n\n\n\n\"Tests pass\" is not a sentence, it's a record. Exit code, commit, log hash. Change the code and the result goes stale.\n\nIt doesn't waste my time on trivia. A CSS fix just gets done. Auth, secrets, destructive migrations get questions, a design, and gates.\n\nThe uncomfortable part: the easy plants are easy. The ones where a real row is slightly changed are what a real mistake looks like, and those are the ones people miss.\n\nWhat it does not do: it checks that I read what I approve, not that I understand the code. It's evidence, not a security boundary.\n\n\n\nAm I the only one? Curious if this matches your experience:\n\n\\- Do you actually read the plans and diffs your agent shows you, or do you also catch yourself typing \"approved\" on autopilot?\n\n\\- Would a drill like this help you, or would you turn it off the first time it blocked you?\n\n\\- Does \"human in the loop\" feel real in your workflow, or does it mostly mean a human is there to take the blame?",
+    "developer": "justshipit77",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

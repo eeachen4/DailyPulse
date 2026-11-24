@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80017295",
   "sourceItemId": "80017295",
+  "fetchedAt": "2026-11-24T07:10:07.238Z",
   "sourceUrl": "https://stackoverflow.com/questions/80017295/monaco-failing-to-load-web-worker-from-cdn",
   "detail": {
     "longDescription": "I'm trying to get monaco-editor to work from a CDN. I've done it before, but not encountered this issue. I get these errors: Uncaught Error: Uncaught TypeError: Failed to fetch dynamically imported module: https://esm.sh/common/services/editorWebWorkerMain.js null Unhandled Promise Rejection: Uncaught TypeError: Failed to fetch dynamically imported module: https://esm.sh/common/services/editorWebWorkerMain.js null Unhandled Promise Rejection: Uncaught TypeError: Failed to fetch dynamically imported module: https://esm.sh/common/services/editorWebWorkerMain.js null Unhandled Promise Rejection: Uncaught TypeError: Failed to fetch dynamically imported module: https://esm.sh/common/services/editorWebWorkerMain.js null I am only directly importing https://esm.sh/monaco-editor into my code. I think the error is from it trying to set a web worker from the root of the CDN instead of the relative path, but I obviously can't fix that. The error stops showing up when I don't create a monaco editor, but I obviously need to do that. I'm thinking that this is an error with esm.sh . Below is an MRE of my code. The editor will load, but the errors remain and probably limit some sort of functionality. (Sorry, but as I was writing this question, I was debugging too, so it might seem a little confusing) <script type=\"importmap\"> { \"imports\": { \"monaco\": \"https://esm.sh/monaco-editor\" } } </script> <link rel=\"stylesheet\" href=\"https://esm.sh/monaco-editor/min/vs/editor/editor.main.css\"> <script type=\"module\"> import * as monaco from \"monaco\"; const editor = monaco.editor.create(document.body, { theme: \"vs-dark\", value: \"<p>Hi!\", language: \"html\", }); </script>",
     "developer": "Twineee The JavaScript Wizard",
-    "comments": 0,
+    "comments": 2,
     "stats": [
       {
         "label": "分数",
@@ -14,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "0"
+        "value": "2"
       },
       {
         "label": "浏览",
-        "value": "84"
+        "value": "214"
       },
       {
         "label": "状态",
-        "value": "未回答"
+        "value": "已回答"
       }
     ]
   }

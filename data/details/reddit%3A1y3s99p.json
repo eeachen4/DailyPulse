@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3s99p",
+  "sourceItemId": "1y3s99p",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y3s99p/why_valid_json_200_ok_from_an_llm_still_breaks/",
+  "detail": {
+    "longDescription": "A lot of teams treat schema validation as the finish line for LLM outputs. In practice, an LLM can return valid JSON, pass basic type checks, and still cause real damage downstream:\n\n\n\n1. \\*\\*Silent hallucinations / ungrounded values:\\*\\* Fields look plausible, yet aren't backed by the provided context.\n\n2. \\*\\*Cross-field contradictions:\\*\\* Two valid fields that don't make logical sense together.\n\n3. \\*\\*Untrusted target / provenance drift:\\*\\* An agent or tool call picks up a recipient, ID, or path from retrieved/untrusted text right before a side effect runs.\n\n\n\nIn my open-source Python repo (\\`neuroformatting\\`), I've been combining Pydantic v2 validation with \\*\\*pre-execution target pinning\\*\\* (\\`PinnedTarget\\` / \\`guard\\_side\\_effect\\`) so side-effecting actions only run when the target's provenance and allowed IDs match what was actually pinned.\n\n\n\nI put together a small runnable demo (\\`examples/quick\\_audit\\_demo.py\\`) showing allowed vs. blocked cases (\\`UNTRUSTED\\_TARGET\\_SOURCE\\`, \\`UNPINNED\\_TARGET\\_ID\\`) alongside failure scenarios (\\`examples/production\\_failures.py\\`).\n\n\n\nCurious how others here handle side-effect safety right before tool/API execution—do you enforce provenance/allowlists in code, or rely mostly on prompts and model retries?\n\n",
+    "developer": "demirtasfurkan_",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018239",
+  "sourceItemId": "80018239",
+  "sourceUrl": "https://stackoverflow.com/questions/80018239/aws-multi-country-org-india-australia-where-should-guardduty-and-wazuh-live",
+  "detail": {
+    "longDescription": "We run the same platform in two countries, India and Australia. Each country has its own workload accounts in its own AWS region: India: ap-south-1 (Mumbai) Australia: ap-southeast-2 (Sydney) Each country has its own data protection and record keeping rules, so we want each country's data, including security and audit data, to stay in that country where possible. We also want to keep the setup simple and the cost reasonable. To keep the question focused, only production is shown below. Dev and test follow the same pattern. Current organization structure: Root ├── Management account (Organizations, IAM Identity Center, billing - no workloads) │ ├── Security OU (org-wide) │ ├── Log Archive (central, immutable audit/ops logs: CloudTrail, Config, VPC Flow Logs) │ └── Security Tooling (intended delegated admin for GuardDuty / Security Hub / etc.) │ ├── Infrastructure OU │ ├── Utils (internal tools) │ ├── India OU │ │ ├── Shared Services - IN (country CI/CD, artifacts) │ └── Australia OU │ ├── Shared Services - AU │ └── Workloads OU ├── India OU │ └── Prod - IN (EKS, RDS, MSK, ElastiCache in ap-south-1) └── Australia OU └── Prod - AU (same stack in ap-southeast-2) Logging (what we have so far) The log archive account has separate S3 buckets per country, each in that country's region: audit-in in ap-south-1 audit-au in ap-southeast-2 Each country's organization CloudTrail and other audit logs go only to that country's bucket. The buckets have object lock, so the logs can't be changed or deleted, and each has its own KMS key. Our view is that this meets data residency for logs while keeping a single log archive account. Question 1 - GuardDuty (and Security Hub) As far as I understand, an AWS Organization can have only one delegated administrator account for GuardDuty, and it must be the same account in every Region. So I don't think we can simply have one GuardDuty admin account per country. The options I can see: One Security Tooling account, GuardDuty enabled per Region. The Mumbai detector covers India and the Sydney detector covers Australia. There is no cross-region aggregation, so findings stay in their own Region. The same as option 1, plus Security Hub cross-region aggregation into one home Region, for a single view. This moves the other country's findings out of that country. Two security accounts, one per country. I'm not sure this is possible with Organizations-level delegated admin, or what it costs in management overhead. What is the recommended architecture to: keep each country's GuardDuty and Security Hub findings in that country; still give the security team a manageable view of both; avoid paying for duplicated tooling? Is a findings record (with resource IDs, IPs and account IDs) generally treated as data that falls under residency rules, or do people usually aggregate it centrally? Question 2 - Wazuh (SIEM/XDR) We also want to run Wazuh, for host intrusion detection, file integrity monitoring and compliance reporting. Placement: where should the Wazuh manager and indexer run in this structure? Options include the Security Tooling account, a dedicated SIEM account, or one deployment per country to respect data residency. Connectivity: how should agents on the EKS nodes in the Prod accounts reach the manager? We use Transit Gateway today; PrivateLink is an alternative. And which account should own that path? Data sources: should Wazuh read CloudTrail, VPC Flow Logs and GuardDuty findings from the Log Archive buckets in each Region, or receive them another way? Overlap: does Wazuh overlap enough with GuardDuty and Security Hub that one of them is redundant, or do they usually run side by side? What I'm looking for The best architecture for security, compliance (per-country data residency) and cost given the structure above. Specifically: where GuardDuty and Security Hub should be administered; where Wazuh should sit; how both connect to the Log Archive and workload accounts. If any part of the structure itself works against this (for example, one Log Archive account with per-country buckets), I'd like to know that too.",
+    "developer": "utkarsh tyagi",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "72"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

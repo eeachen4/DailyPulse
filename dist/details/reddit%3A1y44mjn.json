@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y44mjn",
+  "sourceItemId": "1y44mjn",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y44mjn/i_built_orchard_cde_an_opensource_selfhosted_dev/",
+  "detail": {
+    "longDescription": "Hey everyone,\n\nI've spent most of this year building Orchard CDE, and I'm looking for feedback.\n\n**Why I built it**\n\nI used to run a self-hosted Ona (formerly Gitpod) setup on AWS at work. Giving each workspace its own VM is a great model: no cross-contamination between projects, and a real security boundary if you let AI coding agents run autonomously. But I couldn't find a free, open-source, self-hosted option that worked this way without commercial licensing or Kubernetes-sized overhead.\n\n**How it works**\n\nEach environment (a \"grove\") provisions an isolated VM (a \"seedling\") and runs your devcontainer or Devfile workspace inside it.\n\n* Uses standard `devcontainer.json` or Devfile configs\n* QEMU by default for homelabs (Linux amd64/arm64 via KVM, macOS arm64 via HVF), or EC2 for cloud. GCP and Azure are planned.\n* `trowel dev-server start` runs everything locally on an embedded H2 database, so no PostgreSQL is needed to try it\n* CLI: `trowel grove plant <repo>`, then `trowel grove connect <grove-id>`. The README has a short demo of the full flow.\n* Canopy web UI for managing workspaces, plus VS Code Remote SSH with a companion extension\n\n**Roadmap / feature requests**\n\nI've written up several feature requests as GitHub issues, including GCP and Azure providers. If something there matches your use case, a 👍 helps me prioritize, and if something's missing, please open an issue or tell me here.\n\nIf you run a homelab or manage dev environments for a team, what would make this most useful for you?\n\n**Links**\n\n* Docs: [https://orchardcde.org](https://orchardcde.org)\n* GitHub: [https://github.com/orchard-cde/orchard](https://github.com/orchard-cde/orchard)\n* Feature requests: [https://github.com/orchard-cde/orchard/issues](https://github.com/orchard-cde/orchard/issues)",
+    "developer": "scuba10steve",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

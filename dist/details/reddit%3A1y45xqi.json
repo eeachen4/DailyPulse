@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y45xqi",
+  "sourceItemId": "1y45xqi",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y45xqi/anyone_else_on_windows_recently_started_to_get/",
+  "detail": {
+    "longDescription": "Windows 11: two different inference engines both started failing to load with out of memory. Plenty of VRAM and RAM free.\n\nHas anyone recently started experinecing this in Windows? **Changing pagefile to manually set size** rather than system managed and an Nvidia driver setting fixed both engines \\[Ninfer and llama.cpp\\]. \n\nDoes anyone know what changed under the hood in windows specifically to cause this, or was there something else going on that I'm overlooking?\n\nBox Setup:\n\n* Windows 11 26H2, RTX 5090 (32GB VRAM), 32GB system RAM\n* Nvidia driver kept at v581.94 (for PCVR reasons)\n* llama-swap (v174) windows .exe, started on boot via task scheduler, which loads the engines/models on demand. \n* Two engines in rotation and multiple models via the config.yaml of llama-swap:\n* llama.cpp (precompiled from github) with a Q6 GGUF (\\~22GB, all layers on GPU). Ran without issue since Qwen 27B released.\n* NInfer ((headpiece747). Using 27B nvfp4qat Loads 17GB to the GPU, then pins 8GB of system RAM for a host cache via cudaMallocHost. Ran fine for about a year.\n\nPagefile has been system managed the entire time I never touched that setting. Nothing else has changed that I am aware of other than the usual windows updates. This new failure started somewhere around maybe 1-2 months ago.\n\n`ERROR startup failed | pinning host context | 43 ms`\n\n`FATAL server failed during startup | cudaMallocHost: out of memory`\n\nAt the time of the failure the box had \\~28GB free RAM and \\~31GB free VRAM. \n\nA 256MB pin succeeded instantly. 1, 2, 4 and 8GB were all refused in under 30ms. That is an instant refusal, not a slow running-out-of-memory.\n\nSo with Ninfer failing I switched back to vanilla llama.cpp but then in teh last two days llama.cpp was also failing to load models.\n\n`allocating 887.99 MiB on device 0: cudaMalloc failed: out of memory`\n\n`GGML_ASSERT(buffer) failed`\n\n  \nSo two engines, two different allocation types (GPU buffer vs pinned host memory), both failing with OOM while the machine looks like it has plenty free.\n\nI changed two settings:\n\nPagefile: system managed > fixed 64GB (commit went from \\~49GB to \\~95GB)\n\nNVIDIA driver setting: CUDA sysmem fallback to \"Prefer No Sysmem Fallback\"\n\nSince then everything loads fine again and back to working normally",
+    "developer": "munkiemagik",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

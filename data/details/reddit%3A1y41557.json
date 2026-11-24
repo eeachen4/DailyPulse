@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y41557",
+  "sourceItemId": "1y41557",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y41557/i_built_a_readonly_kubernetes_investigator_that/",
+  "detail": {
+    "longDescription": "When I was on call, I was just going through circles: get the pods, describe them, get the logs, look at the events, look at the rollout history, and just try and work it out in my head. The events were a particular pain, as Kubernetes only keeps them for about an hour, so by the time you get round to looking at them, they're often already gone.\n\nI also tried the AI assistant, and that introduced its own set of problems. It just dumped thousands of raw log lines into its context, made a best guess as to what the issue was and suggested a series of commands that I didn't want to run at all.\n\nThat’s why I built **Klew**. Just point it at a namespace and it will:\n\n* collect pods, events, logs, and rollout history, then watch for a short time\n* summarize thousands of log lines into a few patterns\n* connect events to those patterns and to recent spec changes, showing a field-level diff between revisions\n* Give you a verdict: what failed, the likely trigger, the causal chain, how confident it is and what to check next.\n\n**It's read only - you can** list, get and watch only. There's no code path that will actually change your cluster and your kubeconfig RBAC is the only limit.\n\nYou can use the same engine in three ways:\n\n* **CLI:** klew investigate -n <namespace>, with text or JSON output for scripts and CI\n* **MCP server:** Klew MCP for Claude, Cursor or Copilot. The agent gets a succinct verdict rather than raw dumps (saves on context and tokens). Credential shaped values and emails are masked (best effort), log samples can be switched off and suggested commands are returned as text and are never actually executed.\n* **Desktop app (macOS):** browse resources, investigate, and keep events after Kubernetes expires them\n\nYou can add your own checks as YAML collectors and CEL rules (cert-manager, Kyverno, quotas etc). There are examples in the repo.\n\n**Honest limits:**\n\n* The desktop app is currently macOS only. The CLI and MCP server are both macOS and Linux.\n* Each investigation covers one namespace.\n* The verdict is based on heuristics and correlation so it could be wrong.\n\nI'd be very interested to hear where the verdict gets the cause wrong on your clusters and whether you'd actually permit an agent to go through something of that nature.\n\n  \nRepo: [https://github.com/glnreddy421/klew](https://github.com/glnreddy421/klew)\n\n[https://klew.dev/](https://klew.dev/)",
+    "externalUrl": "https://v.redd.it/72h70mitxg3i1",
+    "developer": "glnreddy",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

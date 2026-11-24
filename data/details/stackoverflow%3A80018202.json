@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018202",
+  "sourceItemId": "80018202",
+  "sourceUrl": "https://stackoverflow.com/questions/80018202/openstack-metadata-retrieving-error-in-master-node-cinder-csi-pod",
+  "detail": {
+    "longDescription": "As I have created csi-cinder pod ,the worker node's pod is up but the master node pod is not up. And when I take logs it says like below:-- Registration process failed with error: RegisterPlugin error -- plugin registration failed with err: rpc error: code = Internal desc = [NodeGetInfo] unable to retrieve instance id of node unexpected status code when reading metadata from http://169.254.169.254/openstack/latest/meta_data.json : 404 Not Found, restarting registration container. whereas for worker node the connectivity is showing : [root@worker-node-an ~]# curl -v http://169.254.169.254/openstack/latest/meta_data.json * Trying 169.254.169.254:80... * Connected to 169.254.169.254 (169.254.169.254) port 80 (#0) \\> GET /openstack/latest/meta_data.json HTTP/1.1 \\> Host: 169.254.169.254 \\> User-Agent: curl/7.76.1 \\> Accept: */* \\> * Mark bundle as not supporting multiuse < HTTP/1.1 200 OK < Content-Type: application/json < Content-Length: 937 < Date: Mon, 23 Nov 2026 04:27:03 GMT < * Connection #0 to host 169.254.169.254 left intact For master node it's showing : [root@master-node-an ~]# curl -v http://169.254.169.254/openstack/latest/meta_data.json * Trying 169.254.169.254:80... * Connected to 169.254.169.254 (169.254.169.254) port 80 (#0) > GET /openstack/latest/meta_data.json HTTP/1.1 > Host: 169.254.169.254 > User-Agent: curl/7.76.1 > Accept: */* > * Mark bundle as not supporting multiuse < HTTP/1.1 404 Not Found < Content-Length: 154 < Content-Type: text/html; charset=UTF-8 < Date: Sun, 22 Nov 2026 16:46:25 GMT < <html> <head> <title>404 Not Found</title> </head> <body> <h1>404 Not Found</h1> The resource could not be found.<br /><br /> </body> * Connection #0 to host 169.254.169.254 left intact",
+    "developer": "Nirjhar Mallick ",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "56"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

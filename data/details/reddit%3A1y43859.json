@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y43859",
+  "sourceItemId": "1y43859",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y43859/baiduernie55flashpreview_hugging_face/",
+  "detail": {
+    "longDescription": "# Introduction\n\nERNIE 5.5 Flash Preview is the first post-trained model built on [ERNIE 5.5 Flash Base](https://huggingface.co/baidu/ERNIE-5.5-Flash-Base), which we released earlier. It is a Mixture-of-Experts (MoE) language model with **280B total parameters, 14B of them active per token**, and a **1M-token context window**. It does well at coding, 3D modeling, knowledge work and content creation, scores competitively on major benchmarks, and still decodes quickly.\n\nThe Preview shares its architecture and tokenizer with ERNIE 5.5 Flash Base. Its new capabilities come from mid-training and post-training, and mid-training also extends the training context length from 128K to 1M tokens. Our [blog post](https://ernie.baidu.com/release/ernie-5-5-flash-preview/) shows work the model completed end to end in an agent harness.\n\nERNIE 5.5 Flash Preview is an intermediate checkpoint from post-training. It already performs competitively among models of its size, but some capabilities may still fall short because training is not finished. Post-training is ongoing and ERNIE 5.5 Flash is improving quickly. We will watch how the Preview performs in real use, listen to user feedback, and address what we learn in the official release.\n\n# [](https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview#highlights)Highlights\n\nThe Preview is trained for the following kinds of work.\n\n**Coding and game development**: Handles coding work that ranges from fixes in real codebases to building complex applications from scratch, and plans, executes and iterates steadily over long tasks. It knows how development is done in Unreal Engine, Unity and Godot. In a single 11-hour coding task it wrote a complete third-person wuxia game in C++ on Unreal Engine 5.8, and from game design documents it built nearly 100 mobile mini-games.\n\n**3D modeling and design**: Works out shape, proportion and spatial relationships from a text description, then writes scripts that drive Blender and CAD software to build anything from engine parts to buildings. It can also bring existing assets into the same workflow to assemble large, detailed scenes.\n\n**Knowledge work**: Takes scattered material, works through the steps a request calls for, and delivers professional-quality spreadsheets, documents or slide decks. It was trained in 300,000 workspaces for domains such as finance and law, holding 10 million reference files in more than 40 file types.\n\n**Video creation**: Gathers, generates and arranges material, sets the visuals and pacing, and delivers a finished video, working for one to two hours on a single piece. It was trained in more than 150,000 creation environments for popular-science explainers, motion comics, creative edits and takes on trending topics.\n\n**Fast to serve, easy to build on**: FP4 expert weights and the DSpark draft head make long-running agent tasks much faster, with little loss in accuracy. The architecture and tokenizer match ERNIE 5.5 Flash Base, so tooling built for the Base model carries over.\n\n# [](https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview#model-overview)Model Overview\n\nERNIE 5.5 Flash Preview keeps the architecture of ERNIE 5.5 Flash Base and adds a DSpark draft head for speculative decoding. See the [Base model card](https://huggingface.co/baidu/ERNIE-5.5-Flash-Base) for architecture details.\n\n|Key|Value|\n|:-|:-|\n|Modality|Text in, text out|\n|Total Params|280B|\n|Activated Params per Token|14B|\n|Layers|43 (1 dense + 42 MoE)|\n|Hidden Size|4096|\n|Attention|37 × HCA (head dim 512) + 6 × MLA-DSA (head dim 256), 64 heads|\n|Experts|512 routed (top-10) + 1 shared|\n|Vocabulary|201,216|\n|Context Length|1,048,576|\n|Thinking|Always on; reasoning is returned in `reasoning_content`|\n|Precision|Blockwise FP8; routed experts in MXFP4 (W4A8, quantization-aware trained); FP8 KV cache; FP4 DSA indexer|",
+    "externalUrl": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview",
+    "developer": "jacek2023",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "huggingface.co"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

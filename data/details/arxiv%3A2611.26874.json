@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.26874",
+  "sourceItemId": "2611.26874",
+  "fetchedAt": "2026-11-24T07:10:07.238Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.26874",
+  "detail": {
+    "longDescription": "arXiv:2611.26874v1 Announce Type: new Abstract: Many language-model tasks reduce to selecting among structured alternatives, yet we still lack a simple picture of how a decoder-only transformer organizes an entire selection prompt across depth. We introduce token covariance maps, a prompt-level geometric view that tracks how token positions co-vary in hidden-state space at each layer. This turns a structured prompt into a depth-indexed sequence of maps whose spectral and block structure can be aligned with instructions, context, and candidate answers. Across 14 decoder-only models from 4 families and 12 structured-selection benchmarks, token covariance maps reveal a robust compress-then-compare organization. Early layers represent prompts diffusely, middle layers compress them into a shared low-rank bottleneck, and late layers re-expand into context-option and option-option geometry. This organization recurs across larger fixed-template samples, deterministic prompt rewrites, pairwise reranking reformulations, and controlled answer-set manipulations, while also emerging during training from an initially flat depth profile. Its timing aligns with behavior: useful answer discrimination appears well after the bottleneck, and low-rank intervention around the bottleneck preferentially disrupts late comparison geometry. We additionally show that the same geometric profile appears in instruction-tuned models, across several languages, and during open-ended generation. We further show that changing the internal representation of one candidate around the compressed region can shift which candidate the model later prefers. These results show that token covariance maps are a diagnostic tool for comparing how models organize information across prompts, model families, and stages of training.",
+    "developer": "Moshe Eliasof",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Moshe Eliasof"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

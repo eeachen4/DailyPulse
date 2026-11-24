@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y405gg",
+  "sourceItemId": "1y405gg",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y405gg/mac_users_have_superwhisper_and_wispr_flow/",
+  "detail": {
+    "longDescription": "Every time I saw someone on a Mac hit a hotkey, mumble a messy thought into Slack, and watch a clean message appear at their cursor, I got jealous.\n\nOn Windows, my options were either paying $15/month to stream my microphone to someone else's cloud, or running a slow Whisper script in a terminal window. And I don't even have a dedicated NVIDIA GPU, just a regular laptop with Intel Iris Xe graphics.\n\nSo a few weeks ago I started hacking on a tiny local script with NVIDIA's **Parakeet TDT 0.6B v3 (INT8)** on CPU. It was shockingly fast. That small script snowballed into **Eloquent**, a minimalist Apple-style Dynamic Island that floats quietly at the top of Windows without ever stealing focus.\n\nThe hardest part wasn't the transcription. It was all the real-world chaos that breaks toy demos:\n\n* **Meetings with multiple people:** I added TitaNet-Small + pyannote-segmentation-3.0 on a single low-priority background thread so identifying speakers never slows down live captions, and wired Windows WASAPI loopback so you can transcribe Zoom/YouTube directly with zero room echo.\n* **People talking over each other:** Local pyannote masks overlapping frames so crosstalk doesn't wreck speaker voiceprints, and if you opt in, a dedicated AI audio pass can separate both overlapping voices in place using short RAM-only voice anchors.\n* **Bilingual & Arabic speakers getting ignored:** Most open-source tools completely break on Arabic dialects or code-switching. Pressing Ctrl+Alt+M hot-swaps locally to \\*\\*Cohere Arabic (\\*\\*Q4\\_K\\_M **GGUF)** on Vulkan iGPU/CPU with full right-to-left captions and transcripts.\n* **Dictating anywhere:** Ctrl+Alt+Space dictates into any app and restores your clipboard; highlighting text and pressing Ctrl+Alt+A lets you say *\"make this shorter\"* or *\"write a reply\"* right in place.\n\nIt runs **100% offline** out of the box (MIT licensed), and optionally plugs into a free Google AI Studio key for background polishing, Ask AI, and 1-click Meeting Minutes or Lecture Notes (with LaTeX math).\n\nRepo: [https://github.com/EllouziMedAmin/Eloquent](https://github.com/EllouziMedAmin/Eloquent)\n\nI'm still actively building it (next up: Ollama / local OpenAI-compatible LLM support and a standalone .exe installer). If you try it on Windows, tear it apart and tell me what breaks or what's missing!",
+    "developer": "Top-Branch-6085",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

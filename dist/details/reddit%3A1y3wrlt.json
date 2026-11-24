@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3wrlt",
+  "sourceItemId": "1y3wrlt",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y3wrlt/i_made_an_opensource_site_that_animates_what_a/",
+  "detail": {
+    "longDescription": "This is a side project I've been working on: interactive lessons that show what Kubernetes components do and in what order.\n\nEach lesson runs on a diagram of a small cluster. You see the API calls, etcd writes, watch events, CRI calls and packets as they happen, and you can pause on any of them to see the fields. For networking lessons it goes down to the packet headers, including VXLAN encapsulation across nodes.\n\nThere are 25 lessons so far, including:\n\n* what happens after kubectl apply until the Pod is running\n* how a request to a Service reaches a Pod (kube-proxy, iptables, endpoints)\n* Pod-to-Pod traffic on the same node vs across nodes\n* rolling updates, probes, graceful shutdown\n* a node going NotReady and Pods being evicted\n* OOMKilled, RBAC, NetworkPolicy, StatefulSets, HPA, Cilium/eBPF\n\nIt runs entirely in the browser, no cluster needed.\n\nSite: [https://kubelearn.joesabbagh.com](https://kubelearn.joesabbagh.com)   \nCode: [https://github.com/joesabbagh1/k8s-simplified](https://github.com/joesabbagh1/k8s-simplified)\n\nI'm going to keep adding lessons. If you spot something that's wrong or oversimplified, please tell me, I'd rather fix it than have people learn it wrong. Suggestions for topics are welcome too.",
+    "developer": "bata-ta",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4385w",
+  "sourceItemId": "1y4385w",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y4385w/made_a_small_offline_tool_to_check_if_a_quantized/",
+  "detail": {
+    "longDescription": ">Hey everyone,  \n>  \n>I got tired of switching from FP16 to a smaller quant (like Q4\\_K\\_M) and thinking everything worked just because the output was still valid JSON. Half the time it quietly dropped a required key, changed a number by 20%, flipped a label, or got way slower on P95 latency.  \n>  \n>I didn't want to spend money on LLM-as-a-judge APIs or download big embedding models just to catch those bugs in CI. So I made a small open-source Python CLI called **llm-drift-bench**.  \n>  \n>Repo: [https://github.com/anant-goel/llm-drift-bench](https://github.com/anant-goel/llm-drift-bench)  \nInstall: `pip install llm-drift-bench` (Python 3.10+, MIT)  \n>  \n>Basically you save outputs from your baseline model and your new/quantized model as JSONL, and it compares them offline by `prompt_id`:  \n>  \n>  \n>  \n>Here is how a quick test looks on the sample files in the repo:  \n>  \n>  \n>  \n>Just to be clear, this doesn't check if an answer is factually true. It only checks if a new model or quant drifted away from your baseline outputs and schemas.  \n>  \n>If you test different quants (GGUF, AWQ, EXL2, etc.) in your own projects, what kind of silent bugs usually slip past your checks? Happy to take feedback or feature ideas.",
+    "externalUrl": "https://v.redd.it/3ek2845sgh3i1",
+    "developer": "Worldly-Knowledge-90",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

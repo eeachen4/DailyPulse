@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3j4fj",
+  "sourceItemId": "1y3j4fj",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y3j4fj/how_we_designed_a_selfhosted_job_queue_control/",
+  "detail": {
+    "longDescription": "One of the patterns that always bugged me when running background job queues (Sidekiq, BullMQ, Celery) in production is how third-party monitoring/control planes usually want direct TLS access to your Redis instance—or force you into unpredictable per-job SaaS billing when a retry loop goes sideways.\n\nWhile building [`joobq.io`](http://joobq.io) (a compiled background job engine with polyglot workers), I took a different architectural route:\n\n* **Outbound-only telemetry:** Workers talk locally to a lightweight agent that pushes telemetry outbound to the control plane, using a command mailbox pattern for queue/job management—no inbound firewall holes to Redis required.\n* **Offline Ed25519 licensing:** Self-hosted deployments verify licenses locally so an external billing outage never takes down your workers.\n* **Flat pricing:** Built to avoid per-job or per-seat surprise bills during traffic spikes.\n\nI’m doing an early whisper launch and would love brutally honest ops feedback from people who run heavy queues in production. What’s the first red flag you’d look for before letting a tool like this into your cluster?\n\n*(Full disclosure: I built this. If anyone wants to stress-test it in staging, happy to set up a few free accounts in exchange for honest critique.)*",
+    "developer": "eliasjpr",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

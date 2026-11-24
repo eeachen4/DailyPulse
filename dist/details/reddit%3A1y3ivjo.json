@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3ivjo",
+  "sourceItemId": "1y3ivjo",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y3ivjo/the_agent_sandbox_is_not_the_application/",
+  "detail": {
+    "longDescription": "With Agent Sandbox (the SIG Apps project) getting attention, I think two things get mixed up when people move coding agents to Kubernetes: where the agent runs, and where the app it changes runs.  \n  \nThe agent sandbox is the agent's runtime: the agent process, a checkout of the repo, and credentials scoped to its work. The application environment is the app actually deployed: frontend, backend, databases, queues. Agent Sandbox manages the first one, not the second.  \n  \nMy argument is to keep them separate. The sandbox stays a small pod. Each agent gets its own namespace, where it deploys the app, then runs the tests and reads logs and events through the Kubernetes API. Namespaces already provide the isolation layer for this approach.  \n  \n[https://www.okteto.com/blog/how-to-run-ai-coding-agents-on-kubernetes/](https://www.okteto.com/blog/how-to-run-ai-coding-agents-on-kubernetes/)",
+    "developer": "pchico83",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

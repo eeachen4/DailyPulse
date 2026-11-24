@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y456q5",
+  "sourceItemId": "1y456q5",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y456q5/vllm_72gb_vram_64gb_ddr5_multi_user_can_we_run/",
+  "detail": {
+    "longDescription": "Hi guys!\n\n(human post, non ai edited - excuse my slop)\n\nAt work we are a very small team of 4 people and have a small AI server for stuff we aren't allowed to use public AI for (RTX Pro 5000 72GB, 64GB DDR5, Epyc 9115). \n\nWe are currently running Q3.8 27B at FP8, with 900k kv fp8 context (shared across all sessions) using vLLM to serve. This runs 100% on GPU and is a pretty nice experience, around 50-60 t/s generation.\n\nHowever, with the release of Q3.8FN we are obviously intrigued, both in terms of speed and quality. Strata doesn't seem the best when it comes to context handling when serving to multiple people, or at least it's not discussed very often.\n\nTherefore a few questions:\n\n1. Does anybody use Strata to serve multiple people? How is the experience?\n\n2. Does anybody use Q3.8FN (or other similar models like Deepseek or Hy) with CPU offloading in vLLM (we obviously cannot fit that model purely in VRAM)? Is it a decent experience?\n\n3. Do you have any other recommendations for our setup to try out? Or just \"wait for the release of Qwen 4 27B\"?\n\nThanks a lot! :)",
+    "developer": "Unlucky-Home-4077",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

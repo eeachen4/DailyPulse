@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3qffn",
+  "sourceItemId": "1y3qffn",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y3qffn/neuralzip_perfile_neural_text_compression_with/",
+  "detail": {
+    "longDescription": "I’m sharing Neuralzip, an open-source experiment in lossless text compression with a small neural model.\n\nThe model learns from the text being compressed. Its byte probabilities are used by an arithmetic coder, and the archive stores the model weights together with the encoded stream. Decoding restores the exact original bytes without retraining.\n\nThe quantity I’m measuring is the **complete archive size**, including the cost of storing the model.\n\nOn one five-book collection:\n\n* Original: **3,120,899 bytes**\n* gzip-9: **1,191,527 bytes**\n* Neuralzip: **791,134 bytes**\n\nThat is **33.6% smaller than gzip-9**, including weights, stream, metadata, and checksum. Reconstruction was verified against the original bytes.\n\nThe result doesn’t extend uniformly across inputs: gzip beat the saved Alice model, and PPMd beat Neuralzip on the five-book collection. Training and inference costs are also substantial compared with conventional compression.\n\nThese results use completed research checkpoints. Fresh training runs can produce different archive sizes.\n\nThe implementation is available as a Python package:\n\n    python -m pip install neuralzip\n    neuralzip encode notes.txt\n    neuralzip decode notes.txt.nzip\n    \n\n[Code](https://github.com/CodeGeek04/neuralzip) · [Browser demo](https://neuralzip-web.vercel.app/)\n\nI’m interested in feedback on model overhead versus stream savings, evaluation methodology, and how to make deterministic decoding more efficient.",
+    "developer": "Agatsuma_Zenitsu_21",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

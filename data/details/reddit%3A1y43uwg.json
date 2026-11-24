@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y43uwg",
+  "sourceItemId": "1y43uwg",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y43uwg/seeing_less_quality_on_high_quants_with_basalt/",
+  "detail": {
+    "longDescription": "**TL;DR:** \n\n* Comparing UD-Q4\\_K\\_XL, Q5\\_K\\_XL and Q6\\_K\\_XL with Qwen3.8 Flash Next on Basalt\n* Noticed low quality chats in Open WebUI so did my own quality benchmark.\n* Lower quant performed much better than high quant.\n* Low token bench (built-in to Basalt) ranks PPL/KLD the right way around (might be an issue with long context?)\n* Screenshots attached\n\n\n\n**Setup:**\n\n* Intel Core Ultra 225 (no AVX-512), RTX 5060 Ti 16GB, 128GB DDR5, NVMe\n* Basalt, kv int8, max-context 262144, vision dynamic\n* Settings: [See Issue](https://github.com/jesdga95/basalt/issues/538) / resident-experts true, ram-reserve 5120, vram-reserve 600, conversation-cache-mib 6144, slots 6, min-tokens 15000\n* Only the model filename changed between the three runs.\n\n**My test:**\n\nA prompt to build a three.js corporate office with some specifications. It was run through the Pi harness and the session + caches were deleted between each run to ensure no cheating.\n\nQ6 performed poorly and had a lot of defects. Q5 was average with some defects. Q4 looked pretty good.\n\n\n\n|Metric|Q6|Q5|Q6|\n|:-|:-|:-|:-|\n|User msg|1|1|1|\n|Assistant|1270|337|224|\n|Tool call|281|345|252|\n|Total msg|553|684|498|\n|Input|886,760|1,083,048|719,152|\n|Output|364,896|376,842|300,859|\n|Cache hit|56.7%|54.7%|97.7%|\n|CPU offload|72%|59.4%|53.1%|\n|SSD read|5.5%|\\-|\\-|\n\nI also see a quality difference when chatting with the model in Open WebUI chat. Q5/Q6 feel worse than Q4.\n\nScreenshots attached.\n\n**Basalt --quality test:**\n\nThis came out as expected. However, it doesn't use many tokens. Q6 performed better than Q5, and Q5 was better than Q4. No anomaly here.\n\n  \n\n\nI raised an issue on GH but haven't heard back in a few days. [https://github.com/jesdga95/basalt/issues/538](https://github.com/jesdga95/basalt/issues/538)\n\n  \nAny thoughts or ideas?",
+    "developer": "lukyjay",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

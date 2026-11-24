@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50617240",
+  "sourceItemId": "50617240",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50617240",
+  "detail": {
+    "longDescription": "As you probably know, Let&#x27;s Encrypt stopped sending expiry reminder emails in June 2025. Furthermore, certificate lifetimes are shrinking: 200 days since March 2026, 100 days from March 2027, 47(!) days by 2029. Automation is supposed to handle that, and it does most of the time, but it can fail. More often than not, you find out about a missed renewal when your users report a big warning in their browser tabs. This might lead to frustration, angry emails, and rushing to find out the extent of the affected domains. I built CertNudge, a small tool that checks what each host actually serves. Every six hours it connects with SNI and verifies the chain to check that SSL certificates are valid and not about to expire. Additionally it checks the domain registration expiry over RDAP once a day. For failed checks and upcoming expiry it alerts you by email (or Slack&#x2F;Discord&#x2F;Telegram on Pro) 30, 14, 7, 3, 1 and 0 days before expiry. I&#x27;ve deliberately decided to keep the stack as low to the ground as possible: Flask, SQLite, server-rendered pages that work fully without JavaScript (although there are some JS goodies and animations that are non-essential). Payments go through Stripe over plain HTTPS without the SDK. Account management is simple as possible, login goes through an email link, no passwords are generated or stored. The service is free for up to 3 hosts. If you want more, the Pro tier is 5 €&#x2F;month or 50 €&#x2F;year for up to 100 hosts plus Slack&#x2F;Discord webhooks and Telegram alerts. There&#x27;s also a one-off checker and a bulk checker you can use without an account. Hopefully this proves useful for somebody! I&#x27;ll be happy to discuss possible extensions and welcome all critique.",
+    "externalUrl": "https://certnudge.dev/",
+    "developer": "HallowDance",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

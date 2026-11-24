@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y427c0",
+  "sourceItemId": "1y427c0",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y427c0/sensenovau168bmot_writes_a_fix_list_with_box/",
+  "detail": {
+    "longDescription": "SenseNova-U1.6-8B-MoT weights are public now, Apache 2.0. Same idea as U1.5, a single model that both reads and generates images, but this version adds self-correction. After the first pass it checks its own output against the prompt, writes a list of fixes with box coordinates, then redraws from the prompt plus that draft before returning anything.\n\nThe picture is one of their examples. An outfit breakdown page came out with six garbled labels, and the panel underneath is the fix list the model wrote, copied as is. All six labels are right on the second pass and the rest of the page reads the same.\n\nThe release says the self-check was trained on infographics. ComfyUI 0.46.0 and newer runs it on built-in nodes, and the repo has self-correction workflows with a Turbo switch for an 8-step LoRA. The repo's inference scripts also load FP8, INT8 and GGUF (Q4_0, Q6_K, Q8_0) conversions, and the conversion scripts are in there too: https://github.com/OpenSenseNova/SenseNova-U1",
+    "externalUrl": "https://i.redd.it/arnwunjz6h3i1.jpeg",
+    "developer": "Binary_orchid",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

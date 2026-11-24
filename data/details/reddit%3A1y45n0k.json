@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y45n0k",
+  "sourceItemId": "1y45n0k",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y45n0k/17_days_running_a_selfrepairing_game_agent_the/",
+  "detail": {
+    "longDescription": "Setup: an agent plays an MMO about 20 hours a day. When it fails (dies, gets stuck, fights without dealing damage), the failure is logged. Repeats become a ticket, and a separate coding agent writes a fix plus a replay test from the real episode.\n\nWhat I learned:\n1. Unit tests told me almost nothing. I deleted most of them and kept only replays of real failures. Each replay must fail without the fix.\n2. \"The test passes\" isn't \"it helped\". A judge compares the failure rate per opportunity before and after, with a minimum sample size. Example: death loops went from 8.1% (7 of 86) to 0% (0 of 59).\n3. The first fix is often wrong. In that same ticket, fix #1 targeted the wrong cause (players instead of mobs). The judge caught it, and fix #2 worked.\n4. Many fixes don't help at all. Without the before/after numbers I would have kept stacking patches.\n\nCurious how others measure whether an agent's self-fix actually improved anything, beyond \"tests are green\".",
+    "developer": "IndiBestEngineer",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

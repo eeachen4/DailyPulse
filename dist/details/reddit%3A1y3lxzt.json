@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3lxzt",
+  "sourceItemId": "1y3lxzt",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y3lxzt/nextconcept_modeling_ncm_stanfords_hazy_research/",
+  "detail": {
+    "longDescription": "Most LLMs still hit a wall on single-request latency because autoregressive decoding forces one forward pass per token, leaving GPUs memory-bandwidth bound. Text diffusion models try to solve this with parallel generation, but usually require dozens of full-sequence denoising steps to get coherent output.\n\nStanford’s Hazy Research lab recently introduced **Next-Concept Modeling (NCM)**, which takes a middle path inspired by visual autoregressive models (like VAR): generating text from coarse to fine in a fixed number of parallel passes.\n\n**How it works**:\n\n**Multiscale Tokenizer**: Instead of a flat sequence of subword tokens, text is encoded into a hierarchy of discrete codes across multiple resolution levels. The coarsest level uses just a handful of codes to represent the high-level structure/gist of the response, while deeper levels add finer semantic and lexical details.\n\n**Coarse-to-Fine Generator:** A shared transformer predicts the hierarchy one level at a time. Within each level, all codes are predicted in parallel in a single forward pass, conditioned on the summed representation of previous levels.\n\n**Why it’s interesting:**\n\n**Fixed pass count**: Generation takes a constant number of forward passes (roughly 9–11 levels) regardless of output length, and early passes are tiny because the sequence length at coarse levels is short.\n\n**Speed gains**: In their benchmarks (tested at \\~100M–725M scale on summarization, translation, and reasoning tasks like Sudoku), NCM hit 10–31× faster generation than diffusion baselines and beat matched autoregressive models on single-user latency.\n\n**The catch:**\n\n**No token streaming**: Like diffusion models, the output isn't human-readable until the final fine-grained level completes—you can't stream word-by-word to a UI.\n\nBatching trade-offs: Its speed advantage shrinks under heavy server batching, where standard autoregressive models become compute-bound rather than memory-bound.\n\n**Scale**: Still tested at sub-1B parameter scales, so it remains to be seen how well multiscale tokenization holds up on frontier-scale general reasoning or open-ended coding.",
+    "developer": "Simpli-curious",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

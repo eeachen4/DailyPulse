@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y41tea",
+  "sourceItemId": "1y41tea",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y41tea/showoff_saturday_i_built_a_107tool_textcode/",
+  "detail": {
+    "longDescription": "I have been building CaseConvert, a static browser-based toolkit for text, code, and small security tasks. It started as a case converter and grew into 107 tools in one app.\n\n\n\nStack: plain HTML, CSS, and JavaScript. No framework and no backend. Every tool is defined in one metadata registry, and that registry drives the modal workspace, search, command palette, keyboard shortcuts, and the generated static tool pages.\n\n\n\nA few technical decisions I would like feedback on:\n\n\n\n\\- Large dependencies are split into lazy vendor bundles: the OpenAI tokenizer, Prettier/sql-formatter/js-beautify, Mermaid, highlight.js, and marked/DOMPurify. Mermaid alone is about 5 MB, so it only loads when the Mermaid panel opens.\n\n\\- Crypto tools use Web Crypto. AES envelopes carry their own salt, IV, algorithm, and iteration count, and RSA/AES run locally.\n\n\\- The Studio contains separate tools for Markdown, live HTML/JS/React, SVG, Mermaid, canvas, notepad, API testing, passwords, and HTML-to-JSX/TS conversion. The React preview is sandboxed and pulls React/Babel from unpkg.\n\n\\- The 100+ static tool pages, category pages, Studio guides, sitemap, canonical tags, Open Graph tags, and JSON-LD are generated from the same metadata as the app.\n\n\\- The layout is responsive and keyboard accessible. I ran axe across the main flows and fixed the issues it found.\n\n\n\nLive: [https://caseconvert.info](https://caseconvert.info) — free, no signup.\n\n\n\nI am the developer and I am not here to sell anything. I would genuinely like feedback on the architecture:\n\n\n\n1. Would you keep the modal-based tool workspace, or move the most-used tools onto dedicated pages?\n\n2. Would you split the lazy-loaded libraries differently for a site with this many utilities?\n\n3. Is generating 100+ pages from metadata the right trade-off, or would you hand-write fewer, deeper pages?\n\n\n\nHappy to share implementation details in the comments.",
+    "developer": "Various-Course-1942",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

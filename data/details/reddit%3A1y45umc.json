@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y45umc",
+  "sourceItemId": "1y45umc",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y45umc/i_hacked_together_a_214_mb_onnx_cpu_ocr_stack/",
+  "detail": {
+    "longDescription": "Been messing around for the past few weeks trying to see how far you can push a strictly CPU-only, pure-ONNX OCR pipeline (no GPU, no PyTorch, no PaddlePaddle, no vLLM) before you hit a wall and actually need a VLM.\n\nWrapped the final stack into a small package + OpenAI-compatible HTTP server here:\n\nhttps://github.com/Im-Jam/toaster-ocr\n\nIt starts from Datalab's `indra-ocr` (`1.1.2`) and patches the three places where small CPU OCR pipelines usually fall apart:\n\n1. **Tables (`59.6% → 73.3%` on OPB Tables):** Swapped in a 5-fold-CV router between `SLANet-plus` (7.4 MB ONNX), `InfiniFlow/deepdoc` `tsr.onnx` (12.2 MB), and native Indra with a sparse-grid fallback and a fragment-conserving `<br>` matcher (so table structure fixes never silently drop OCR'd cell text).\n2. **Display math on CPU (`old_scans_math` `3.5% → 40.6%`):** Added `PP-DocLayout-S` ONNX (4.7 MB, ~73 ms on 2 ARM64 cores) to catch display equations and routed them to `pix2text-mfr-1.5`. Upstream's ONNX decoder has no KV cache, so `toaster-ocr download` splits `decoder_model.onnx` locally into `mfr_dec_init.onnx` + `mfr_dec_step.onnx` (about `~9.6x` faster decode on ARM64 CPU with exact token parity).\n3. **Adaptive LM + PDF text-layer fix:** Only cranks Indra's n-gram beam search (`LM_BEAM=16`) on pages with median line confidence `< 0.91` so clean pages stay fast, and stops `textlayer.py` from tossing valid born-digital PDFs over PUA checkbox glyphs.\n\nThe speed is very close for table improvements. But math using `pix2text-mfr-1.5` (despite KV cache) is still considerably slow. keep that in mind!\n\n\n**1. Omni Parse Bench — 2,937 pages / 16,288 tests** *(note: Datalab maintains both OPB and Indra)*:\n- **Overall:** `71.37%` → **`77.97%`** (`+6.60 pts`, `+1,308` net passing tests, `1.21 s/page` median on 4 vCPUs)\n- **Tables:** `59.60%` → **`73.32%`** (`+13.72 pts`)\n- **Text:** `62.55%` → **`69.49%`** (`+6.94 pts`)\n- **Layout:** `91.97%` → **`91.09%`** (`-0.87`)\n- *(For context on the OPB leaderboard, `DeepSeek-OCR-2` is `75.43%` and `LightOnOCR-3-0.8B` is `81.9%`.)*\n\n\nBUT WAIT! this barely cracks the bottom barrel of OlmBench! OPB is made by datalab themselves so beating deepseek and lightonocr's small version isn't exactly valid. Olm shows this is still nowhere near GPU VLMs on hard pages. For comparison, **LightOnOCR-3-0.8B** hits **`85.5%`** and **Falcon-OCR (270M)** reports **`82.4%`** on olmOCR-bench. Here's where the pure-CPU pipeline lands (both runs kept headers/footers via furniture=True, which costs points on headers_footers):\n\n\n**2. Independent check on `allenai/olmOCR-bench` — all 1,403 PDFs / 7,019 tests**:\n- **Macro overall:** `46.12%` → **`53.60%`** (`+7.48 pts`, `+534` net passing tests)\n- `old_scans_math`: `3.49%` → **`40.61%`** (`+37.12 pts`)\n- `arxiv_math`: `55.93%` → **`66.72%`** (`+10.79 pts`)\n- `table_tests`: `64.29%` → **`68.69%`** (`+4.40 pts`)\n\n\nHonestly, this feels pretty close to the saturation point for modular ONNX/CTC pipelines on CPU. It's fast and solid on printed docs, born-digital PDFs, multi-column pages, wired/borderless tables, and display math **BUUUUUT** it still gets wrecked on 19th-century cursive handwriting (`~18%`) and heavily degraded historical prose scans (`~23–31%`). We tested `Falcon-OCR` (270M), `LFM2.5-VL-450M`, fine-tuned CTC models, and captcha solvers — if you need `80%+` on cursive/ancient scans, you really do want a ~0.8B VLM on GPU like `LightOnOCR-3-0.8B` or `Falcon-OCR`.\n\nAnyways, if you wanna try it:\n\n```bash\npip install git+https://github.com/Im-Jam/toaster-ocr.git\ntoaster-ocr download\ntoaster-ocr ocr doc.pdf -o doc.md\n# or OpenAI-compatible local server:\ntoaster-ocr serve --port 8129\n```\n\n*(Note on licenses: our glue code, `SLANet-plus`, `DeepDoc TSR`, and `PP-DocLayout-S` are Apache-2.0, `pix2text-mfr-1.5` is MIT, and `datalab-to/indra-ocr` weights are OpenRAIL-M.)*\n\nHappy to answer questions on the ONNX KV-cache splitter or where the bottlenecks showed up.",
+    "externalUrl": "https://v.redd.it/trjgdh426i3i1",
+    "developer": "YogurtExternal7923",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

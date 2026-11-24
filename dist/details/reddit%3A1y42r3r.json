@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y42r3r",
+  "sourceItemId": "1y42r3r",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y42r3r/the_semantic_merge_conflict_why_running_parallel/",
+  "detail": {
+    "longDescription": "The standard pattern once you want coding agents to move faster is to spin up three or four of them in parallel on isolated git worktrees or branches. Each agent gets a well scoped task, works in its own sandbox, runs its local build, and commits once tests pass.\n\nThe failure mode that shows up immediately is the semantic merge conflict. Git is built to detect line based textual collisions. If Agent A alters a payload schema in a shared internal package and Agent B adds a consumer in a separate service using the previous shape, git merges both branches into main with zero conflict markers. Both agents saw green builds on their respective branches, the PRs merge cleanly, and the integration suite fails five minutes later on staging.\n\nThe root issue is that isolation hides contract drift. When humans work on parallel branches, Slack discussions or PR reviews usually surface shared interface changes before merge. Agents have no peripheral vision across worktrees, assuming the HEAD of their branch represents permanent ground truth.\n\nTwo common workarounds fail at scale. Running a full monorepo CI run on every agent commit burns through runner budgets and slows the agent iteration loop to a crawl. The other extreme, relying on PR review, dumps the burden of mentally mapping cross branch symbol dependencies back onto the developer, defeating the speed advantage of parallel runs.\n\nWhat works mechanically is tracking exported symbol diffs across active worktree branches. Rather than running full builds or diffing raw files, you generate an exported symbol manifest (functions, types, schemas) from the base branch, diff it against the agent working branch at commit time, and check whether any other active branch imports the touched symbols.\n\nIf an exported symbol shape changes, the system flags a contract collision immediately and triggers an automated rebase and typecheck on the dependent branch while the agent is still running, rather than letting it write fifty lines of consumer code against a dead interface.",
+    "developer": "Avinash2k5",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

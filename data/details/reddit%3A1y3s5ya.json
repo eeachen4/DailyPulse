@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y3s5ya",
+  "sourceItemId": "1y3s5ya",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y3s5ya/i_containerized_a_2005_mmorpg_metin2_into_a/",
+  "detail": {
+    "longDescription": "Hey r/selfhosted,\n\n\n\nTraditionally, self-hosting an old-school Metin2 server meant wrestling with legacy FreeBSD VirtualBox images, manual MySQL dumps, and an empty, lifeless world unless you convinced dozens of people to join.\n\n\n\nOver the last few months, I built a self-hosted \\*\\*Metin2 Singleplayer / Co-op stack\\*\\* that runs in \\*\\*Docker\\*\\* (Windows via Docker Desktop or directly on a \\*\\*Linux VPS\\*\\*) and populates the world with \\*\\*autonomous server-side Playerbots\\*\\* so the server feels genuinely alive even when you're playing solo or with 2–3 friends.\n\n\n\n\\### Technical highlights for self-hosters:\n\n\\* \\*\\*Dockerized deployment (no FreeBSD VM):\\*\\* Everything runs cleanly inside Docker containers. On Windows, a GUI launcher handles initial environment setup, server/client updates, difficulty presets, and automated world backups. On Linux, it can be deployed directly on a VPS or home server.\n\n\\* \\*\\*Persistent server-side AI population:\\*\\* These aren't external client-botting scripts. The Playerbots live directly inside the server core and database. Every bot has persistent character state, inventory, bonused gear, skills, Yang, and guild membership that survives container restarts.\n\n\\* \\*\\*Simulated economy & world lifecycle:\\*\\* Bots run offline shops, price items based on market demand and bonuses, buy gear/materials from each other, hold flash auctions, form parties, clear dungeons, and fight guild wars. Some log off during the day while new ones start from level 1.\n\n\\* \\*\\*Web Admin Panel & live inspection:\\*\\* Includes a browser-based admin/inspection panel where you can monitor the live world map, active bot population, rankings, economy/shops, and tweak server rates, drops, events, and bot count on the fly (plus an in-game GM panel on \\`F9\\`).\n\n\\* \\*\\*Free Co-op over LAN / Tailscale / Internet:\\*\\* Host the server container on your home lab or VPS, and friends only need the game client to join your world.\n\n\\* \\*\\*13 languages (community-translated):\\*\\* Full UI, quests, NPC dialogs, and even bot chat/whispers work in 13 languages, with a public GitHub repo for community translation PRs.\n\n\n\n\\### Transparency note on source code:\n\nTo be completely upfront with r/selfhosted: versions up to \\`2.2.16\\` were published with full source code (still available in the GitHub repo history). Newer Playerbot AI cores (\\`2.2.155\\` currently) are distributed as prebuilt protected server binaries to prevent 1:1 copying into commercial private servers. All game data, quests, drops, maps, server configs, web panels, and translations remain customizable, and the project is 100% free.\n\n\n\n\\### Links:\n\n\\* Website & Wiki (13 languages): [https://mt2sp.com](https://mt2sp.com)\n\n\\* GitHub (releases & changelog): [https://github.com/TieruYT/metin2-playerbots](https://github.com/TieruYT/metin2-playerbots)\n\n\\* Translations repo: [https://github.com/TieruYT/metin2-singleplayer-translations](https://github.com/TieruYT/metin2-singleplayer-translations)\n\n\n\nHappy to answer any technical questions about the Docker setup, Linux VPS hosting, or how we handle simulating hundreds/thousands of persistent bot characters without melting CPU/RAM!",
+    "developer": "Horror-Weight-5272",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y43jjv",
+  "sourceItemId": "1y43jjv",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1y43jjv/what_actually_fits_on_a_4_gb_vps_next_to_a/",
+  "detail": {
+    "longDescription": "I wanted to know if a small LLM can live on the same cheap VPS as a website without killing it. So I tested on a 1 vCPU / 3.8 GB box, no GPU, website + PostgreSQL running the whole time.  \n  \nWhat I found:  \n\\- 0.6B to 4B models (Q4\\_K\\_M) all fit. 4B peaked at 2.59 GB for the whole machine, website included  \n\\- one request takes the full vCPU. 0.6B gives \\~36 tokens/s, 3B \\~9 tokens/s  \n\\- 1 hour soak with Qwen3 1.7B, one request processed at a time, 16-32 waiting in queue: llama.cpp server, Ollama and Cluaiz (I contribute to it) all had zero failed requests. Ollama used \\~400 MB more memory  \n\\- then 1 hour of chat + embeddings + text to speech + speech to text from the same server: 1,063 / 1,063 OK, machine peak 2.4 GB, website never went down. llama.cpp server and Ollama have no speech endpoint so this one is Cluaiz only  \n\\- with 4 requests at once on 2 vCPU, Ollama was 12-15% faster. With 1 at a time it was level or slower  \n  \nCharts below. Biggest surprise for me was how little RAM the 1.7B actually needs.  \n  \nAnyone running a model on a small VPS for real work? What model size did you settle on, and did you have to limit it to 1 request at a time?",
+    "developer": "CommissionOdd3082",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

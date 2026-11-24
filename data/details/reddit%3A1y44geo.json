@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y44geo",
+  "sourceItemId": "1y44geo",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y44geo/how_cognicore_differs_from_mem0_and_claudemem/",
+  "detail": {
+    "longDescription": "I'm one of the builders of CogniCore (Apache 2.0), so take everything below with that bias. I'm not claiming it's better than mem0 or claude-mem. mem0 has a far bigger ecosystem and more users than we do. I want to explain what we did differently and show the numbers so you can check them.\n\n**The design differences**\n\n1. **A handoff, not a pile of facts.** At the end of a session CogniCore stores a structured brief: the goal, current state, what was finished (with commit or file), decisions with the reason, open tasks, and exact IDs and values. The next session, in any connected tool, starts from that brief instead of searching a fact store.\n\n2. **Mistakes as first-class records.** A \"lesson\" has four fields: the mistake, the fix, why it happened, and the situation. The aim is for an agent not to repeat a specific error.\n\n3. **Memories can be replaced.** Entries can be marked as superseding or invalidated by another, with a reason, so \"we use X\" and later \"we switched to Y\" don't both look current.\n\n4. **Local first.** The Python package is plain SQLite with full-text search. No vector database, no GPU, and no model call to save a memory. There's also a hosted MCP server so Claude, ChatGPT and Cursor can share one memory.\n\n5. **Secrets are redacted on write.**\n\n**The numbers, and what they do and don't show**\n\n\\- On one of my own Claude Code projects, the context an agent had to re-read went from about 165K tokens (full history) to about 700 (the brief). Measured with \\`cognicore usage\\`. This is against resending full history, not against a good AGENTS.md or another memory tool, and it's one project.\n\n\\- On our comparison against claude-mem, we saw similar accuracy with 2.4 to 4.1 times fewer tokens. \\[Link to the benchmark script, dataset and exact setup.\\] It's our own benchmark, run by us, so it may favour our design. I'd love for someone to run it on a different set of tasks and tell me if it holds.\n\n**Where it's weaker (honestly)**\n\n\\- Far fewer users and integrations than mem0.\n\n\\- It's young, and I'm sure there are rough edges in the install and setup.\n\n\\- For a small repo and one tool, a good AGENTS.md is probably enough.\n\n**What I'd like from you**\n\n\\- Run the benchmark, or tell me what test would be fairer.\n\n\\- Tell me if the install fails on your machine.\n\n\\- Tell me what you'd need to see before trusting a memory tool with project context.\n\nRepo: github.com/cognicore-dev/cognicore-env\n\nInstall: pip install cognicore-env\n\nHappy to answer anything, including criticism.",
+    "developer": "TwistNo5735",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

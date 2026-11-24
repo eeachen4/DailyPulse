@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018016",
+  "sourceItemId": "80018016",
+  "sourceUrl": "https://stackoverflow.com/questions/80018016/merging-csv-time-series-with-fixed-value-dataframe",
+  "detail": {
+    "longDescription": "My aim is to take CSV-formatted data (collected by a microcontroller-datalogger, and saved to an SD card), which is formatted on the SD card as Timestamp,Z1,Z2,Z3,Z4,Z5,Z6......etc. where Z-values are the recorded temperature-values for each of many sensors identified as Z1 through Zn, which sensors are physically arrayed on a plane with which can be described by an X-Y grid system. The actual stored data consists of multiple lines (rows) each identified by a Timestamp, but always having the Z-values stored in the same order. However the system can only be configured to retrieve (and then, to store) the sensor's temperature data in a pattern that does not reflect the physical (X,Y) location on the plane. Because of this fact, after creating the physical layout I must probe the grid of sensors to determine the (X,Y) coordinates associated with each Z-value that is recorded in the linear array of Z1, Z2...etc. Because the sensors are literally glued to the plane of study, the (Xn,Yn) values are constant for each (Zn). Because the CSV linear array of sensor data doesn't store any of the (X,Y) location data, for the purposes of plotting the temperature as contours on the X-Y plane, I need to merge the *.csv temperature data with the constant / fixed ( X,Y ) coordinates of each sensor. I imagine a data-frame of constants for the sensor locations as something like: Sensor # X-coord Y-coord Sensor#1 X1 Y1 Sensor#2 X2 Y2 etc. etc. etc. My intention is to use Plotly to contour the data because I would eventually like to animate the time-series of data to show how the temperature across the plane of the sensors varies with time. However, I am open to using Matplotlib or any other package if anybody can provide an alternative to Plotly that is easier to implement. What would be the best method to \"merge\" the time-stamped CSV data with the fixed-coordinate data-frame, to produce (x,y,z) triples at the stage of plotting each of the time-stamped snapshots?",
+    "developer": "Birdman",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "144"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}
