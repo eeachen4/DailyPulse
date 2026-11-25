@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018496",
+  "sourceItemId": "80018496",
+  "sourceUrl": "https://stackoverflow.com/questions/80018496/detecting-input-prompts-from-ssh2-commands",
+  "detail": {
+    "longDescription": "How can we detect a remote input prompt after executing an SSH2 command? At first, I was sure to just handle data event on the stream.stdin , but I found through testing that it is not the case, and the handler gets notifications even when there is no input prompt of any kind. import {Client as SSH2Client} from 'ssh2'; function executeCommand(client: SSH2Client, cmd: string) { client.exec(cmd, (err, stream) => { stream.stdin.on('data', (chunk: Buffer) => { // why is it called when there is no input prompt? }); }); } But if this doesn't work, then how else can we detect input prompts? Normal (non-input) console output is supposed to go into stream.on('data', handler) only, it's not expected inside stream.stdin when it is not an input prompt.",
+    "developer": "vitaly-t",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "89"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

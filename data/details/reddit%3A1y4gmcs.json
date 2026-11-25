@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4gmcs",
+  "sourceItemId": "1y4gmcs",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y4gmcs/testing_a_changed_dapr_service_on_a_shared/",
+  "detail": {
+    "longDescription": "Hi all, just published this tutorial on testing a changed Dapr service on a shared cluster. Thought it might be useful if you run Dapr and want to test one service without a full copy of the app.\n\nPicking a test version by request header stops working with Dapr, because the caller's headers ride inside the mTLS gRPC message between sidecars, where no proxy or mesh can read them. What works instead is plain Dapr: the caller resolves the target app ID before invoking, and for pub/sub every consumer gets every message and checks whether it owns it before acting. Signadot only supplies the per-change copies and the ownership map. The example is Python on Dapr 1.18, with HTTP service invocation and Redis Streams.\n\nHope it's useful, and happy to answer any questions. Full transparency, I work for Signadot.\n\n[https://www.signadot.com/docs/tutorials/testing-dapr-services](https://www.signadot.com/docs/tutorials/testing-dapr-services)",
+    "developer": "Signadot",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4sb45",
+  "sourceItemId": "1y4sb45",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y4sb45/how_do_i_give_my_hermes_agents_permanent_memory/",
+  "detail": {
+    "longDescription": "I fundamentally want two things from my Hermes agents: I want them to *fucking remember everything I ever tell them*, and I want them to develop an institutional memory comparable to that of an actual organization.\n\nBy persistent memory, I mean the ability to reliably recall previous conversations, decisions, preferences, instructions, and their underlying rationale, irrespective of how much time has elapsed, how many sessions have occurred, or which model is being used. If I explain why we abandoned a particular strategy six months ago, I want the agent to recall that discussion when the strategy resurfaces without my having to remind it. I don't expect everything to reside in the context window, but I do expect agents to know when and how to consult their own history.\n\nInstitutional memory is somewhat different. I want knowledge accumulated by individual agents to outlive their respective sessions and become part of the organization's collective intelligence. For example, if one agent spends a week researching a methodology and discovers a fundamental flaw, another agent should be able to benefit from that discovery without repeating the research. Likewise, a newly appointed agent should be able to acquaint itself with the organization's history, established procedures, previous failures, and the rationale behind executive decisions.\n\nPresently, I'm running Hermes on AWS Lightsail, with individual agents operating in separate Docker containers. Each has its own persistent SQLite conversation database with automatic pruning disabled, native Hermes memory, and encrypted S3 backups every four hours. They also have access to a shared S3 organizational knowledge repository, to which they contribute curated institutional knowledge through Hermes skills and scheduled reviews.\n\nMy concern is less about whether the information is stored and more about whether the agents will reliably and autonomously retrieve and apply it when pertinent. A filing cabinet full of documents is not necessarily an institutional memory.\n\nSeparately, I'd like automatic model selection. If an agent is performing routine administrative work, it should use an inexpensive model; if it's undertaking sophisticated mathematical reasoning or reviewing a consequential decision, it should select a more capable model. I want the agents to exercise that discretion without my having to manually switch models throughout the day. Unfortunately, the model picker plugin I came across is Windows-only, whereas my deployment is hosted on AWS Lightsail running Linux.\n\nHas anyone accomplished something comparable with Hermes? Are there any plugins, configurations, or architectural improvements you'd recommend for either memory or intelligent model selection? I'd prefer to avoid unnecessarily overengineering what may already be a solved problem.",
+    "developer": "NetwatchTerminal66",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

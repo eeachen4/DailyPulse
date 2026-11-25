@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4e2dw",
+  "sourceItemId": "1y4e2dw",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1y4e2dw/pull_request_target_gets_blocked_on_public_repos/",
+  "detail": {
+    "longDescription": "GitHub is turning off pull\\_request\\_target by default for public repositories on December 2. A pull\\_request from a fork stays read only and has no secrets. pull\\_request\\_target runs in the base repository, with a write token and the repository secrets. That is the right trigger for labeling. It is the wrong one if the job checks out the pull request head and runs it, because anyone with a GitHub account can open that pull request. Brownouts already ran on November 9 and November 16. Until December 2 the block is in evaluate mode, so Insights shows which workflows it would stop. Team and Enterprise can set one org policy. Free is one repository at a time. If you maintain a public repo, are you deleting the trigger, or writing an Actions policy that allows it only for the workflows that never check out the head? [https://github.blog/changelog/2026-11-02-pull\\_request\\_target-blocked-by-default-december-2/](https://github.blog/changelog/2026-11-02-pull_request_target-blocked-by-default-december-2/)",
+    "developer": "Minute-Age9938",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

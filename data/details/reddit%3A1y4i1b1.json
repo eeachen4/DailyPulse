@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4i1b1",
+  "sourceItemId": "1y4i1b1",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y4i1b1/selfhosting_an_ai_agent_doesnt_automatically_mean/",
+  "detail": {
+    "longDescription": "There's a distinction that gets lost in discussions about self-hosted AI agents.\n\nRunning the control plane on your own infrastructure doesn't necessarily mean the agent itself is running in a restricted environment.\n\nThose are two different things.\n\nSay an agent is working on a repository hosted on an internal server. The dashboard, database, and task history might all be private.\n\nBut what about the process actually executing commands?\n\nIf that process has access to deployment credentials, other directories, or a mounted Docker socket, self-hosting the controller hasn't done much to limit what the agent can touch.\n\nThere's also the model connection to consider. A locally hosted application can still send prompts and file contents to an external model provider.\n\nSo there are really three boundaries worth separating: where task data lives, what the execution environment can access, and where model inference happens.\n\nSoduWork's documentation makes a similar distinction. Its Hub can be self-hosted, but the runners aren't general-purpose security sandboxes, and model requests still go to whichever provider is configured.\n\nThat seems like an important limitation to be explicit about rather than treating self-hosting as a security feature that covers everything.\n\nFor an actual deployment, I'd be more concerned with the runner's effective permissions than whether the management UI is hosted locally.\n\nA dedicated execution identity, limited filesystem access, scoped credentials, network restrictions, and separate environments for tasks that shouldn't touch production would matter more.\n\nAnd even then, those controls need to be verified against the actual runtime, not just assumed from the deployment architecture.\n\nSelf-hosting answers where the application runs.\n\nIt doesn't answer what the agent is allowed to do once it starts executing commands.",
+    "developer": "Prize_Pin6251",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

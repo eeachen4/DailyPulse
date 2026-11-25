@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50634239",
+  "sourceItemId": "50634239",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50634239",
+  "detail": {
+    "longDescription": "tl;dr: We just open-sourced Wakeshift, which lets any MCP server serve interoperable events via MCP Events or harness-specific bridges. This allows MCP servers to push events to harnesses that don&#x27;t support MCP Events today, including Claude Code, Codex and Cursor. Hi folks! The MCP Events spec was approved and merged five days ago, allowing MCP servers to emit events directly to agent subscribers. ( https:&#x2F;&#x2F;github.com&#x2F;modelcontextprotocol&#x2F;modelcontextprotocol... ) This allows MCP developers to push events directly to agents for long-running tasks (e.g. CI, crawls, starting agents) or external actions (e.g. emails, human approvals, alerts). However, the catch is that support for MCP Events is very light. Claude Code and Codex don&#x27;t support it at all, and most of the implementations support the draft version rather than the merged spec. Many harnesses can work around this with plugins or hooks, but every MCP server has to build it for each harness. Wakeshift provides interoperable events to your MCP server. You call emit() and Wakeshift pushes the event to each subscribed agent in whatever format they accept: per the MCP Events final spec, an earlier draft, or through a hook &#x2F; plugin where needed. If the harness requires a hook &#x2F; plugin and it&#x27;s not already installed, the agent will be notified and receive instructions on how to install it for the user. Additionally, the MCP Events spec defines three delivery mechanisms: webhook, push (via held HTTP request) and pull (via HTTP polling). The Wakeshift SDK serves push and poll from your MCP server, so agents that can&#x27;t accept inbound HTTP webhooks (e.g. most agents running on laptops) can still get events within seconds. Subscriptions only start when an agent calls a tool that subscribes it, and users can list or stop them anytime. Some harnesses can only be woken by putting a message into the conversation, so Wakeshift wraps the content as an external event to reduce the risk of prompt injection. The repo linked has a quickstart guide to get this working locally in a few minutes. Or you can try our hosted webhook service to test it yourself without an installation. ( https:&#x2F;&#x2F;try.wakeshift.ai ) We&#x27;d love feedback, PRs for harnesses we don&#x27;t cover, reports when it doesn&#x27;t work. As you can imagine, there&#x27;s a combinatorial explosion of servers, harnesses, models, OSs, etc. so we expect there to be some rough edges. Are there any MCP servers you&#x27;re using that you think could benefit from having events today?",
+    "externalUrl": "https://github.com/wakeshift/server",
+    "developer": "ericlevine",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "4"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

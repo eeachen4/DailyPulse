@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018466",
+  "sourceItemId": "80018466",
+  "sourceUrl": "https://stackoverflow.com/questions/80018466/pylance-possibly-unbound-in-if-statement",
+  "detail": {
+    "longDescription": "I have a code where some part depends on a global constant defined on top of the code (like which algorithm to use for doing my stuff). In the core of the function, if have a if statement in which some variables are defined, then later I do the same if statement to monitor values, as in this example MAGIC = True def func(): if MAGIC: a_magic = \"magic\" else: a_not_magic = \"not magic\" ... # some other stuff is done if MAGIC: print(a_magic) # \"a_magic\" is possibly unbound else: print(a_not_magic) # \"a_not_magic\" is possibly unbound Pylance in VS Code catches two errors reportPossiblyUnboundVariable , but when I execute the code, there is no issue as in all cases the variables are defined in the first if statement. (In my specific case, the second if lays inside a for loop, but I simplified for the MWE, the error is the same.) It's similar to Python/Pylance throws unexpected error \"conn\" is possibly unbound? , instead in my case, the variable needed in the second if will always be defined",
+    "developer": "Thomas",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "201"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

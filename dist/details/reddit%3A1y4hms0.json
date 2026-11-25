@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4hms0",
+  "sourceItemId": "1y4hms0",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y4hms0/how_we_turn_helm_charts_into_kubernetes_apis_and/",
+  "detail": {
+    "longDescription": "I'm Diego, CTO at Krateo. We maintain Krateo PlatformOps, an open-source (Apache-2.0) control plane, and I'd like to share how we use Kubernetes under the hood and hear where you'd have done it differently.\n\nThe idea is simple: everything a platform team offers (an environment, a database, a repo, a call to some external API, even the portal itself) should be a Kubernetes API. That way validation, RBAC, versioning and drift correction come from the API server and a reconcile loop, not from scripts and a ticket queue. Below is how we got there, and the choices we're least sure about.\n\n**Helm charts as APIs.** You register a chart with a `CompositionDefinition`. core-provider reads its `values.schema.json`, generates a versioned CRD and starts a controller that reconciles each instance. A golden path ends up being something you `kubectl apply`, with schema validation and RBAC from the API server.\n\n**Any REST API as a resource.** oasgen-provider does the same from an OpenAPI spec: CRD plus controller, so an external service is managed declaratively.\n\n**The portal is CRs too.** Pages, forms and the API calls behind them are Kubernetes resources, so they live in Git and go through RBAC like everything else.\n\n**The platform installs itself the same way.** One Helm chart registers every component as a blueprint, rolls them out in dependency order, and registers itself as an `Installer` composition, so upgrades and teardown go through the same reconcile loop. The composition engine no longer runs an admission webhook and relies on `MutatingAdmissionPolicy`, which is why we now require 1.36.\n\nRepo: [https://github.com/krateo-platformops/krateo](https://github.com/krateo-platformops/krateo)\n\nThings I'd really like your take on:\n\n* Generating one CRD per chart version: does that scale for you, or would you rather have a single generic CRD?\n* Dropping webhooks for `MutatingAdmissionPolicy`: anyone else done this, and what bit you?\n* If you build platforms with Crossplane, plain Helm + Argo CD or something else: what would make you look at a different approach, and what would make you walk away?\n\nHappy to answer anything in the comments, including \"why not just use X\".",
+    "developer": "braghettosvr",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

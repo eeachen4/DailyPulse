@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018056",
+  "sourceItemId": "80018056",
+  "sourceUrl": "https://stackoverflow.com/questions/80018056/reliably-finding-and-screenshotting-windows-11-xaml-context-menus-popuphost-wi",
+  "detail": {
+    "longDescription": "I'm trying to automate taking cropped screenshots of Windows 11 UI steps (context menus, Run dialog, Registry Editor, Task Manager) using Python ( pywinauto with backend=\"uia\" , pyautogui , and mss ). The script works fine on classic Win32 dialogs, but it breaks constantly on Windows 11's newer XAML / WinUI 3 surfaces: On the new right-click context menu ( PopupHost ), Desktop(backend=\"uia\") either times out traversing the tree or returns stale coordinates, and the menu immediately closes if anything steals focus. Using pygetwindow.getActiveWindow() + mss often captures the underlying Explorer window instead of the popup menu or modal dialog. As a workaround I tried overlaying a 200px coordinate grid on full-screen captures and using visual detection/OCR instead of UIA, which works around the tree hangs, but still feels fragile for small menu items. Here is the simplified capture + UIA lookup I started with: import time import pyautogui from pywinauto import Desktop pyautogui.rightClick(500, 300) time.sleep(0.5) desktop = Desktop(backend=\"uia\") # Often hangs or misses \"Show more options\" inside Win11 XAML context menu popup = desktop.window(class_name=\"PopupHost\") item = popup.child_window(title=\"Show more options\", control_type=\"MenuItem\") rect = item.rectangle() Is there a reliable way in Python to query bounding boxes of Windows 11 XAML popups (like PopupHost ) without hanging UIA or dismissing the menu? Or is calling the Windows UI Automation COM API directly (e.g., via comtypes / uiautomation ) significantly more stable than pywinauto for WinUI 3?",
+    "developer": "Oleksii Kulakov",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "158"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

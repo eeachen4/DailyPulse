@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4j958",
+  "sourceItemId": "1y4j958",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y4j958/how_to_find_signature_pages_in_thousands_of/",
+  "detail": {
+    "longDescription": "&#x200B;\n\nWe have around 27,000 folders of documents, including full contracts, partially signed contracts, doc edit versions, and multiple versions of the same contract. We're a manufacturing company with global outreach, so a contract can be from any part of the world, and there is no particular layout for a contract.\n\nThe idea is to automatically reject unsigned and partially signed versions and save only the full contract. A contract is fully signed if all the signature pages are signed by all the parties.\n\nThere is no fixed layout for the signature either. In some contracts it will be on the front page, in others on the back, the second page, or anywhere. There is no standard type for how the signature will be. Sometimes there will be name, date, title, and signature, with dotted lines or complete lines. Otherwise it will be just \"accepted and agreed\", with blank space where people write their name and sign, and no label like \"Name\" or \"Signature\".\n\nOne approach we decided on was to classify each page in a document as a signature candidate page or not, and then give only the candidate pages to an LLM, so that cost can be saved.\n\nHow do I distinguish these pages, understand them, and flag them? I have 2,700 documents, and each document may contain around 200 pages, maybe even more. How do I find the pages that are highly probable to be signature pages?\n\nI tried creating some rules, like a signature always comes with blank lines and name, date, title, and mostly the page will be blank after the signature. But the business is adamant that we should not misclassify any full contract and reject it.\n\nWe're using Azure Document Intelligence for OCR. Any ideas or experience with this would be really helpful!",
+    "developer": "overwhelmed_coconut",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

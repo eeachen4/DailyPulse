@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4vomv",
+  "sourceItemId": "1y4vomv",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y4vomv/how_alwayson_agents_split_routing_and_execution/",
+  "detail": {
+    "longDescription": "DeepSeek open-sourced \\`dsh-superagent\\` on Oct 31. Since it's the only always-on agent with public prototype code and ablation numbers, we read through the repo and compared how it splits routing and execution against Grok Bot, Claude Duet, and our own implementation.\n\n\n\n\\*\\*What stands out in DeepSeek's \\`dsh-superagent\\` code:\\*\\*\n\n\\- All coordination state lives in SQLite, not prompt history. The router pulls context on demand through paginated read tools addressed by resource path, and oversized worker reports are truncated with read pointers attached, treating the context window as a cache.\n\n\\- Foreground commands and task waits auto-background after 5 seconds and wake the session when done. The code explicitly blocks the router from running \\`sleep\\`.\n\n\\- External replies are funneled through the router behind engine state gates, with a hard 100-word cap on IM sinks enforced in code (workers send only a short ack).\n\n\\- Admission control is deterministic first (watch scopes, per-platform allowlists, no cross-platform identity mapping), and subscribed-thread messages bypass router evaluation directly to workers. On cost, their Section 7 ablation is the only controlled number any of the four has published: removing that direct fan-out left completion time unchanged, raised router decisions \\~30%, and pushed cache reads from 23.23M to 31.77M tokens (caveat: synthetic \\~300-message workload with timed stubs, 5 runs per variant, unpublished dataset—directional, not a product ranking).\n\n\n\n\\*\\*How the other three make different cuts:\\*\\*\n\n\\- \\*\\*Grok Bot\\*\\* uses a two-tier split: an entry router assigns events to isolated per-conversation contexts (owner messages preempt background work), a main orchestrator delegates heavy tasks to helpers and replies through a single \\`send user\\` tool, and a primary Bot coordinates across a user's other Bots. Permissions isolate mainly by person—even Team Bot owners and Managers cannot read a member's private chat, and personal chats run on separate cloud VMs from shared channels.\n\n\\- \\*\\*Claude Duet\\*\\* (currently single-user) puts the split directly into the UI: an \\`Everything\\` main chat sits above topic channels, with a status-grouped task list (\\`Ready for review\\`, \\`Needs input\\`, \\`Resolved\\`) and scheduled Check-ins. Intermediate updates stay in the task panel so the main conversation speaks only when a task finishes or needs a decision.\n\n\\- \\*\\*AgentConnect\\*\\* (ours, built for multi-user workspaces) avoids a single global LLM router: each place (channel, DM, webchat) gets its own coordinator with a live work-board index, and tasks reply directly in their own threads to avoid an egress bottleneck. The main reason is multi-user permissions—read-time auth blocks the \\*next\\* read, not excerpts already sitting in a long-lived context, which pushed us toward per-place coordinators, permission-split batching, and audience-scoped memory (\\`person\\` / \\`place\\` / \\`shared\\`). Splitting also surfaced failure modes that don't happen in single-session agents, like sibling tasks colliding on the same config when two related alerts arrive minutes apart.\n\n\n\nCurious how others building always-on agents are handling router/worker state, sibling task collisions, and multi-user permission boundaries. (Full write-up and DeepSeek's repo linked in the comments.)\n\n\n\nDisclosure: I work on AgentConnect, which is one of the four compared.",
+    "developer": "sophon11d",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

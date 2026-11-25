@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4nruz",
+  "sourceItemId": "1y4nruz",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y4nruz/agentic_graphrag_built_a_3dknowledge_graph_to/",
+  "detail": {
+    "longDescription": "We're building [Agentic GraphRAG](https://github.com/ontogr/agentic-graphrag), an open source library that stores your enterprise knowledge and agent memory in the same knowledge graph.\n\nI've worked on RAG systems and LLM training for the past three and a half years. Lately, I've been following how agents retain work across sessions, especially for non-coding tasks. Most projects treat Memory and Retrieval as two separate problems, we're trying to bring them together to get more efficient agents that can improve over time.\n\nWe construct three connected graph layers:\n\n1. **Knowledge Layer:** stores documents and source passages with their extracted entities and relationships.\n2. **Working memory:** records tasks, progress, messages, and tool activity. \n3. **Decision memory:** stores conclusions, assumptions, and open questions encountered by the agent.\n\nThings which make us different from other frameworks out there:\n\n\\- **Structure Aware:** The ingestion pipeline uses Docling for loading documents and captures the full document hierarchy. The sections, tables, and passage hierarchy are connected using edges and stored in the graph.\n\n\\- **Ontology Grounded:** You define a schema for your domain (we also ship ontology presets so it is easy to get started). The schema guides extraction, validation, and search. We use GLiNER for local extraction, so its virtually free (and fast) to construct the graph and no LLM calls are needed.\n\n\\- **Robust Agent Search:** Retrieval combines graph, full-text and vector search. Agents can reach original passages even when extraction misses a fact, navigate surrounding sections and table rows with headers, and follow entity relationships back to supporting text.\n\nWe offer a built-in agent you can use out of the box. The built-in agent uses DeepAgents and saves task events as part of the graph. The are decisions the agent made are linked to the sources it retrieved, giving us citations, but also self-improving memory.\n\nYou can also connect your agents through MCP.\n\nWe will be releasing extensive benchmarks very soon.\n\n# TL;DR\n\nAgentic GraphRAG is an open source library that stores document knowledge, agent work, and decisions in one connected graph. Agents can resume tasks and trace saved decisions to their original evidence, while source changes flag affected decisions for review.\n\nTry it out. Feedback, criticism, issues, and contributions are all welcome!",
+    "externalUrl": "https://i.redd.it/03tieeh7cm3i1.png",
+    "developer": "Aggressive-Judge-448",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

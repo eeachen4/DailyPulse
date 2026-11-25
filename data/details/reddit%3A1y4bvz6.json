@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4bvz6",
+  "sourceItemId": "1y4bvz6",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y4bvz6/my_client_keeps_telling_me_chatgpt_answers/",
+  "detail": {
+    "longDescription": "Back in the spring I built a support bot for a company that sells commercial kitchen equipment, mostly fryers and combi ovens. It answers from their manuals and warranty PDFs and it can look up an order by number. Since September the owner has been on at me about the speed. A typical answer takes around 20 seconds and his line every time is “ChatGPT answers instantly”.\n\nI upgraded it to glm-5.3 in September. The answers on order questions got a lot better, but the older model had let me switch thinking off and this one does not. I put timestamps on every step for a few days of real traffic. Retrieval and the order lookup together were under three seconds, nearly all the rest was the model thinking on high before it wrote a word.\n\nI know the first reply here is going to be stream it. It is streamed. The thinking comes down the stream first in its own field and the answer only starts once that is done, so the customer sits looking at three dots for most of the 20 seconds anyway.\n\nSo I set reasoning effort to low. Answers came down to about half and the client was happy for a week or so. Then I went through the logs. It was fine on anything the manuals cover. When they do not cover something, it answered from whatever chunk was closest. Someone asked about the warranty on a fryer the company stopped selling in 2022 and got the terms for the current model. They asked again, got the same answer, and called the office.\n\nHigh effort mostly tells people it has no information on that model, so they ring the office after the first try instead of the second.\n\nClient read the logs and still wants it on low. His view is that most questions are ones the manuals cover and people would rather have a fast answer that is sometimes wrong. I think the people with the old fryers are the ones who ring the office annoyed. It is on low for now because it is his company, and I am counting how often the same person asks the same thing twice.",
+    "developer": "Fast_Sherbert3066",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y47dr6",
+  "sourceItemId": "1y47dr6",
+  "sourceUrl": "https://www.reddit.com/r/github/comments/1y47dr6/running_multiple_ai_coding_agents_on_one_repo/",
+  "detail": {
+    "longDescription": "The title says it but I'll explain briefly.\n\n\n\nLike a lot of people this year I went from one coding agent to several. Claude Code in one terminal, Codex in another, Cursor on the side. Writing code got really fast. Merging it got really painful.\n\n\n\nI thought it was just me, so I looked around. It's everyone. Worktrees everywhere, agents overwriting each other, PRs that pass on their own and break main together, and me sat in the middle rebasing all day.\n\n\n\nSo I spent the last few months trying to fix it. The main problems I kept hitting:\n\n\n\n\\- two agents edit the same code and nobody knows until the merge fails\n\n\\- every merge changes main, so every other branch goes stale and has to be fixed and retested\n\n\\- changes that are fine alone break when combined\n\n\\- the review queue fills up faster than anyone can read it\n\n\n\nI tried to solve all of these with Switchyard.\n\n\n\nEach agent gets its own task. If two of them touch the same code they both get warned while they're still working. When work is done it gets tested together with everything else that's ready, and it all lands on main in one push. If one change breaks the batch, that one gets sent back and the rest still merge.\n\n\n\nIt works with Claude Code, Codex, Cursor or plain Git, and GitHub stays your source of truth.\n\n\n\nI'd love some honest feedback on this, especially from anyone running more than a couple of agents. I'll personally help anyone who signs up get it working on their repo.\n\n\n\n[switchyard.so](http://switchyard.so) is the site. All the best!",
+    "developer": "IntrepidResearch8448",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.github"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

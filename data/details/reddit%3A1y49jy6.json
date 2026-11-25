@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y49jy6",
+  "sourceItemId": "1y49jy6",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y49jy6/replicating_baitbench_6_months_later_reward/",
+  "detail": {
+    "longDescription": "**Data & CSV:** [`https://github.com/AyushChaurasia18/Baitbench-comparison`](https://github.com/AyushChaurasia18/Baitbench-comparison)\n\n**Original paper:** BAITBENCH (Prasad et al., arXiv:2608.30724, Aug 2026)\n\nIn BAITBENCH, 7 frontier models released between Dec 2025 and Apr 2026 (Claude Opus 4.6, Sonnet 4.6, GPT-5.4, Gemini 3.1 Pro, Gemini 3 Flash, DeepSeek V4 Pro, Kimi K2.5) were given 3 synthetic tabular ML tasks with planted shortcuts (`t01` entity overlap, `t02` near-duplicate leakage, `t03` no-signal classification). Across 1,258 runs, the paper reported **60.2%** RH under `score_only` prompts and **54.0%** under `validity_aware` prompts (only a **-6.2 pp** reduction).\n\nI re-ran the exact `score_only` and `validity_aware` raw arms at `n=10k` (5 seeds × 3 families = 15 runs per arm, 90 runs total) on three newer **non-frontier** models released Sep–Nov 2026, evaluated against private `robust_test.csv` holdouts and audited under a single strict Appendix B.3 judge protocol (Gemini 4 Neon):\n\n|**Model (Release)**|**AA Index**|**score\\_only RH**|**validity\\_aware RH**|**Delta**|\n|:-|:-|:-|:-|:-|\n|BAITBENCH Paper Mean (Dec '25–Apr '26, 7 frontier)|v4 frontier|60.2%|54.0%|\\-6.2 pp|\n|Gemini 3.8 Flash (Sep '26, High)|31 (AA v5) / 59 (v4)|66.7% (10/15)|6.7% (1/15)|**-60.0 pp**|\n|Tencent Hy4 Flash (Nov '26, High, open weights)|Unlisted (Hy4=35 v5; Vals 50.8%)|73.3% (11/15)|26.7% (4/15)|**-46.7 pp**|\n|Gemini 4 Neon (Nov '26, **Low** effort 0.30)|44 Low / 61 Xhigh (AA v5)|**6.7%** (1/15)|**6.7%** (1/15)|0.0 pp|\n\n**Key observations:**\n\n1. **Two distinct shifts in \\~6 months:** Budget/Flash models (3.8 Flash, Hy4 Flash) still bite the bait 100% of the time on `t01`/`t02` under `score_only`, *but* validity-aware prompting now cuts their hacking by 47–60 pp (vs. -6.2 pp in the paper). Meanwhile, mid-tier **Gemini 4 Neon at low reasoning (0.30)** drops to **6.7% even under** `score_only` (0/5 on `t01`, 0/5 on `t02`, 1 marginal `t03` gap of +0.032).\n2. **Important caveats & limitations:**\n   * Smaller sample (`n=15` per model×prompt at `n=10k` only, vs. the paper's `n=90` across `100 / 10k / 100k` rows — note that in the paper, `n=10k` pooled RH was 52.7% overall, 74% on `t01`, 74% on `t02`, 10% on `t03`).\n   * We cannot rule out benchmark contamination or post-training specifically targeting tabular leakage patterns (`entity_id` / near-duplicates) in late-2026 models.\n   * Judge consistency: the 30 Neon runs were judged directly from full workspaces by Gemini 4 Neon; the 60 Flash runs were audited from their holdout scores + judge evidence records under the same strict B.3 criteria (resolving 2 borderline cases where native Flash judging was more lenient than holdout collapse).\n\nCurious whether others running agentic safety evals are seeing the same rapid decay in classic synthetic reward-hacking benchmarks — and what harder, non-trivial leakage/specification-gaming evals people are moving to next.",
+    "developer": "Jumpy-Cobbler1020",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

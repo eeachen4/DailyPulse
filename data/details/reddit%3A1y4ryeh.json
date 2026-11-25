@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y4ryeh",
+  "sourceItemId": "1y4ryeh",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1y4ryeh/old_ipad_into_restaurant_kitchen_display_screen/",
+  "detail": {
+    "longDescription": "Title: Turned a jailbroken 2013 iPad Air into a kitchen display for my bar, running off a home server + my AI agent\n\nI own a small neighborhood bar in Portland and had an original iPad Air (iOS 12, jailbroken) sitting in a drawer. Our kitchen comms were a chalkboard and a group chat nobody reads, so we kept running out of stuff without anyone knowing. Spent an afternoon turning the iPad into a mounted back-of-house screen and it's honestly the best thing I've built for the business.\n\nWhat it does:\n\n- Home screen with the clock, tonight's event, who's on shift, the 86 list, running low items, specials and shout-outs\n- Stock tab: big buttons for the stuff we always run out of. Tap once = low (posts to our grocery Slack channel), tap again = 86'd. Clear button when it's restocked, which stays silent so Slack doesn't get spammed\n- Timers tab, color coded presets (fries 3:30, wings 4:00, etc). When one finishes the whole screen turns that color and chimes until someone taps it\n- Opening and closing checklists with timestamps that reset every morning\n- Full screen alerts I can push from anywhere that stay up until someone taps them, and it logs who/when\n\nThe stack is pretty simple:\n\n- One Python file, standard library only, running as a systemd user service on an old ASUS G14 running Fedora at home\n- The iPad just loads a plain HTML page as a home screen web app and polls every 3 seconds. iOS 12 Safari can't handle modern frameworks so it's all ES5 vanilla JS\n- Tailscale Funnel gives it a public HTTPS address so the iPad works from the bar's wifi (the Tailscale app won't install on iOS 12, Funnel gets around that). Locked with a secret key in the URL\n- Slack incoming webhooks for the low/86 posts\n- I run Hermes (open source agent) on the same box, connected to Telegram, so I can text \"86 the catfish\" or \"start a wings timer\" from anywhere and it runs the CLI commands\n- Guided Access locks the iPad to the app\n\nFun side effect: the same URL works on my phone, so if I start a timer on my phone it shows up on the kitchen screen. I can check if the closing list got finished from bed.\n\nThe jailbreak was mostly useful for SSH during setup. You could do almost all of this on a stock old iPad.\n\nBuilt it with a lot of back and forth with Claude. Happy to answer questions or share how any piece works.\n\nScreenshots are from the companion iPhone formatted version, it’s built for landscape mounted iPad use in the kitchen.",
+    "developer": "Brotimus",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
