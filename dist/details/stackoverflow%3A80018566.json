@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80018566",
   "sourceItemId": "80018566",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
   "sourceUrl": "https://stackoverflow.com/questions/80018566/retrieval-augmented-generation-rag-and-structured-data",
   "detail": {
     "longDescription": "I'm experimenting with Retrieval-Augmented Generation (RAG) systems and investigating how document chunking affects retrieval accuracy. One problem I'm interested in is handling structured data, particularly tables inside PDF documents. Consider the following table: ProductModelPriceLaptopX100$900PhoneP200$500TabletT300$350 When a document is split into smaller chunks based on token limits, the table headers and corresponding values can end up in separate chunks. For example, one chunk might contain: Product | Model | Price Laptop | X100 | $900 Phone | P200 | $500 Another chunk might contain: Product | Model | Price Tablet | T300 | $350 However, with more complex tables, merged cells, nested headers, and multi-page tables, preserving these relationships becomes difficult. My questions are: What are the most reliable approaches to preserve table structure and header-value relationships during document chunking? Is it better to convert tables into structured JSON before generating embeddings? Can parent-child retrieval or metadata-based retrieval solve this problem without significantly increasing retrieval costs? Are there techniques that work particularly well for large PDF documents containing mixed paragraphs, tables, and diagrams? I'm interested in practical approaches that can be implemented in a production RAG pipeline, rather than simply increasing the chunk size. I'd appreciate explanations of the trade-offs between these approaches.",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "-2"
+        "value": "-5"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "41"
+        "value": "114"
       },
       {
         "label": "状态",

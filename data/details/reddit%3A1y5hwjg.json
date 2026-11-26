@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5hwjg",
+  "sourceItemId": "1y5hwjg",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y5hwjg/i_moved_jsonserver_a_whole_node_server_to_a/",
+  "detail": {
+    "longDescription": "[https://github.com/erkamyaman/rust-anything](https://github.com/erkamyaman/rust-anything)\n\nThe scary part of rewriting a backend isn't writing the new code. It's knowing it still behaves the same: same status codes, same headers, same JSON, same weird edge cases your frontend quietly depends on.\n\nSo I built a tool that doesn't trust the rewrite. It records what your original server actually does, and checks the new one against that recording before anything switches over.\n\n**How it works on a Node server**\n\n1. **Record:** it starts your server and replays real requests against it: the `curl` examples in your README, your own inputs, generated edge cases. It saves every status, header, body, and any outgoing HTTP or email.\n2. **Port:** you (or a coding agent like Claude Code or Codex) write the Rust one piece at a time, behind a front door, so the app keeps running the whole time.\n3. **Check:** every recorded request is replayed against the new build. Nothing moves on until they all match exactly.\n4. **Lift:** when every piece passes, the app becomes one Rust binary. Your original code is never touched.\n\n**json-server, measured on an Apple M4, every response compared first**\n\n||Node|Rust|\n|:-|:-|:-|\n|Memory at idle|74 MB|3.5 MB|\n|Start to first response|79 to 85 ms|8 to 10 ms|\n|Recorded HTTP cases matching||514 / 514|\n|What you deploy|Node + node\\_modules|one 5.3 MB binary|\n\n**Not just whole servers**\n\nYou can also move only the slow part. Prettier's hot paths came out 19x faster on 2,360 files with byte-identical output, and Fuse.js search went from 91.2 ms to 2.8 ms per query over 50,000 strings, with the rest still running as JavaScript.\n\n**Honest limits**\n\n* It can only catch what the recording covers. A request you never recorded isn't checked.\n* Recording runs your server for real, so use a copy with a test database and no production keys.\n* Rust isn't automatically faster. Calling it for tiny functions can lose to V8's JIT. The tool profiles first and moves the loop that actually takes the time.\n\nWorks with Node/TypeScript, Python, Go, Ruby, Java/Kotlin and C. Free and MIT. Ask me anything about how the request recording works, and if you point it at your own server and it trips, I'd love the report.\n\n[https://github.com/erkamyaman/rust-anything](https://github.com/erkamyaman/rust-anything)",
+    "developer": "erkamyaman",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

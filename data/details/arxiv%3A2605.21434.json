@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2605.21434",
+  "sourceItemId": "2605.21434",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2605.21434",
+  "detail": {
+    "longDescription": "arXiv:2605.21434v2 Announce Type: replace Abstract: Verifying large software systems is difficult. Formal specifications are rarely available, and the assumptions that code relies on are often encoded implicitly at call sites rather than enforced at function boundaries. This paper presents agentic model checking, a verification scheme that combines LLM agents with bounded model checking (BMC) under the principle that agents propose, solvers verify: agents perform semantic reasoning such as specification inference and verification planning, while the formal backend checks the resulting bounded verification queries. We realize this scheme in BMC-Agent, an agentic verification system built on an off-the-shelf bounded model checker. The key contribution of this paper is agentic orchestration of the model checker. Rather than fixing a single verification recipe, BMC-Agent plans how bounded model checking should be applied to each verification task. It infers function specifications, configures the verification task, decomposes the analysis using specification-constrained stubs, validates counterexamples through deterministic checks and replay, and iteratively refines specifications in response to spurious witnesses. This orchestration enables the same BMC engine to scale from individual functions to large software systems, preserving solver-backed verification. We evaluate BMC-Agent on LLM-generated operating-system and compiler code, standard verification benchmarks, and mature OSS-Fuzz-hardened libraries. Across these workloads, BMC-Agent discovers confirmed defects in heavily tested software and produces bounded verification results without requiring manually written specifications. These results demonstrate that agentic orchestration substantially extends the practical scalability of bounded model checking for real-world software.",
+    "developer": "Youcheng Sun, Jiawen Liu, Humaid Alqasimi, Lucas Cordeiro, Daniel Kroening, Chun Jason Xue",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Youcheng Sun, Jiawen Liu, Humaid Alqasimi, Lucas Cordeiro, Daniel Kroening, Chun Jason Xue"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

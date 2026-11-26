@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.11533",
+  "sourceItemId": "2611.11533",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.11533",
+  "detail": {
+    "longDescription": "arXiv:2611.11533v2 Announce Type: replace Abstract: Language-model agents increasingly run on local workstations with consumer GPUs, where quantized mixture-of-experts (MoE) models split routed experts between GPU and host memory. Prefix-cached agent sessions alternate single-token decode with short tool-return prefills, typically up to a few hundred tokens. Short tool turns touch more experts than consumer GPUs can hold, yet direct roughly 85% of DeepSeek-V4-Flash's routes to a static GPU pool while leaving 3.3-5.5 tokens per cold expert. Widely used local engines such as llama.cpp and KTransformers either copy tens of gigabytes over PCIe per turn, compute every route on the CPU while idling resident GPU experts, or budget GPU memory by whole layers and uniform per-layer quotas. We present Ostinato, a CPU-GPU MoE engine that reuses one static cross-layer GPU pool in place across every forward pass. During decode and short tool turns, Ostinato computes resident routes on the GPUs and sparse cold routes on the CPU, so short turns copy no expert weights; on long prefills, it deduplicates cold uploads; and for multi-GPU decode, all-zero expert slots with device-side synchronization capture each GPU's decode step in one CUDA graph. Across held-out SWE and -bench sessions on three MoE models, Ostinato cuts median tool-turn waits by 2.5-6.6x and finishes sessions 1.36-3.83x faster than default baselines, staying 1.30-1.94x faster when baselines align their upload threshold and weight loading. It finishes sessions fastest across seven agent workloads, one to four GPUs, and up to eight concurrent sessions, while its cross-layer pool speeds up 335 GB DeepSeek-V4.1-Flash by 1.81-2.19x over llama.cpp's expert cache.",
+    "developer": "Junning Zhu, Jianxiong Guo",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Junning Zhu, Jianxiong Guo"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

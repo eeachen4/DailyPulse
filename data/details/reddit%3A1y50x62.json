@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y50x62",
+  "sourceItemId": "1y50x62",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y50x62/letting_each_attention_head_choose_which_earlier/",
+  "detail": {
+    "longDescription": "In a Transformer, a head chooses which tokens to attend to, but which earlier heads it reads from is fixed by the weights once training is done. When two circuits share heads, the only thing the model can do per token is switch a whole head off, usually by parking its attention on a sink token.\n\nWe tried making that second choice per token too. Each token carries a small matrix next to the residual stream (2n slots, each as wide as one head). Heads write their outputs into slots, later heads read from slots, and the read/write addresses are computed from the residual stream at every token. The q, k and v of ordinary attention are then read from this matrix instead of from the residual stream. This vertical attention (warp) is interwoven with the conventional horizontal attention (weft), and the wiring pattern is controlled by the residual stream, working just like a drawloom.\n\nTrained on the same 300B Pile tokens as Pythia with the same parameter budget, the 2.8B model ends up level with Pythia-12B on a 10-task average: 59.9 vs 59.9 zero-shot, 61.6 vs 60.8 five-shot, also significantly outperforms mHC. In layers 17-32 of Pythia-2.8B only 23% of heads are attending to something other than a sink token; in ours it is 74%.\n\nThe cost: FLOPs go up by 2-4%, but wall-clock is 8-16% slower than a plain Transformer even with fused kernels, because of memory traffic on the matrix and many small projections. The largest model we trained is 2.8B.\n\nThe paper is \"Rewirable Circuits in Transformers with Loom Attention\", arXiv 2611.30634. Code and the 2.8B weights are public.\n\nStatic residual (Transformer) -> static dense (Denseformer) -> dynamic dense (HC/mHC, AttnRes) -> dynamic dense per QKV input (our MUDDFormer) -> dynamic dense per head (our LoomFormer). Can we advance further along the residual enhancement axis? How far away are we from the ultimate architecture?",
+    "developer": "Alternative_Cellist1",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

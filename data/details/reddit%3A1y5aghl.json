@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5aghl",
+  "sourceItemId": "1y5aghl",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y5aghl/how_are_you_enforcing_peruser_tool_permissions_in/",
+  "detail": {
+    "longDescription": "The LangChain tools docs show how to filter tools per user with wrap\\_model\\_call, and a neighbouring example carries the comment \"Only enable sensitive tools after authentication\". We reran the repro from issue #41801 on langchain 1.5.2 this week, and create\\_agent still ran a delete tool for a viewer.\n\nThe filter we used, close to the docs version:\n\n    from langchain.agents.middleware import wrap_model_call\n    \n    def viewer_tools(request, handler):\n        if request.runtime.context.user_role != \"admin\":\n            request = request.override(\n                tools=[t for t in request.tools if t.name.startswith(\"read_\")]\n            )\n        return handler(request)\n\nWith a viewer context the model only saw read\\_data. We had the model call delete\\_data anyway (a scripted fake model, so this tests what the framework does once the call shows up). create\\_agent ran it and returned \"deleted r2\" as the tool result.\n\nThe filter edits the tool list sent to the model and nothing else. When a call comes back, the tool node checks the name against every tool registered on the agent. A made-up name gets an \"is not a valid tool\" error, and delete\\_data passes that check because it is still registered.\n\nHosted models send these calls too. In the same issue, the author kept an admin's earlier delete in the message history and had a viewer ask for the same thing. By their count, claude-haiku-4-5 called the hidden tool in 3 of 3 runs and claude-haiku-5-5 in 5 of 6. gpt-4o-mini and gpt-6-luna didn't call it in their runs. The issue has been open since Nov 11 with no fix merged yet.\n\nThe workaround suggested in the issue thread, a second check where the tool executes, keyed on the same role, stopped it for us:\n\n    from langchain.agents.middleware import wrap_tool_call\n    from langchain_core.messages import ToolMessage\n    \n    def enforce_tools(request, handler):\n        role = request.runtime.context.user_role\n        name = request.tool_call[\"name\"]\n        if role != \"admin\" and not name.startswith(\"read_\"):\n            return ToolMessage(\n                content=f\"{name} is not allowed for this user\",\n                tool_call_id=request.tool_call[\"id\"],\n                status=\"error\",\n            )\n        return handler(request)\n\nWith both middlewares on, the viewer run gets \"delete\\_data is not allowed for this user\" back as an error ToolMessage, and the delete never executes. Admin runs still go through. In a real app we would check an explicit allowlist per role. The read\\_ prefix only keeps the example short. We kept the filter as well, since the same docs page notes that too many tools can overwhelm the model and increase errors.\n\nFor tools served over MCP, the open-source gateway we build checks each tools/call request against the calling API key's allowed and denied lists when key auth is on, so a tool a key can't see also can't be called.\n\nWhere do your tool permissions live today, in agent middleware like this or down at the tool and MCP server level?",
+    "developer": "Future_AGI",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

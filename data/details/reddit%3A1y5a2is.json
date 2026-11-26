@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5a2is",
+  "sourceItemId": "1y5a2is",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y5a2is/four_unrelated_errors_in_one_minute_one_cause_the/",
+  "detail": {
+    "longDescription": "Sharing this because the symptoms looked like four separate outages and it took me too long to see they were one thing.\n\nOne morning a pod of ours started failing everywhere at once:\n\n- a shell command: `fork/exec /usr/bin/bash: resource temporarily unavailable`\n- a cloud login marked invalid, with 500+ retries behind it\n- a database connection reset\n- a fetcher saying its config file was missing\n\nNothing in those messages points at the others. `resource temporarily unavailable` is EAGAIN, and on fork that means the kernel would not give us another process. The pod had reached its pids limit. Every part of the service that needed to start a process failed, each in its own words.\n\nWhere the processes came from: the service runs `az` and `kubectl` a lot. Some of those calls had no timeout. The ones that did killed the shell on timeout but not the `az` and `kubectl` the shell had started, so those got reparented and lived on. For a bunch of clusters our service principal was missing a role, so `kubectl` just hung on auth instead of failing. A scan every hour, a few stuck processes each time, for weeks. Then one day the pod could not even fork a health check.\n\nThings I would tell past me:\n\n1. Put a `pids` limit on the pod on purpose. The node had a default limit per pod anyway, which is the only reason this stayed inside one pod. Setting it yourself means you know the number and you can alert on it.\n\n2. The metric already exists. cAdvisor exports `container_processes` for every container. Our leak was a slow straight line going up for weeks on a graph nobody looked at. An alert at 80% of the limit would have caught it a month early.\n\n3. On the code side, a timeout that only kills the direct child does not help. The fix was a process group per exec and a kill on the whole group (Go: `Setpgid` plus a negative pid in `Kill`). Same idea applies in any language.\n\n4. When several unrelated things break in the same minute, look for what they share before chasing any one of them. Here every one of them needed a new process.\n\nCurious how others watch for this. Do you alert on `container_processes` against the limit, or only find out when something cannot fork?",
+    "developer": "Horror_Farmer_2875",
+    "comments": 10,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

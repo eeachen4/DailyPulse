@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5rkiz",
+  "sourceItemId": "1y5rkiz",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y5rkiz/inkling_2_mini_ggufs_various_sizes_for_mac_gpu/",
+  "detail": {
+    "longDescription": "Hey all,\n\nI guess you've tried the TML model Inkling 2 mini which is really good. We made GGUFs of it at various sizes / quant formats and are sharing them here:  \n[https://huggingface.co/QUASAR-QAT/Inkling-2-Mini-GGUF](https://huggingface.co/QUASAR-QAT/Inkling-2-Mini-GGUF)\n\n12 sizes in total, 7.8 GB to 27.8 GB (plus the vision projector).\n\n**Everything runs on the GPU even on a Mac**\n\nPart of the official model is stored in NVFP4 and llama.cpp can't run NVFP4 on a Mac GPU yet. So these fallback to CPU. Ours only use GGUF so everything stays on the GPU.\n\n**Performance / quality**\n\n* At the same size and speed they have 8–56% lower KL divergence than bartowski's files (lower is better)\n* notably, the 7.8 GB file scores 96.9 on GSM8K, the same as Q8\\_0.\n* IQ4\\_XS (15.7 GB) matches Q8\\_0 within error bars on GSM8K, MMLU-Pro, IFEval, HumanEval+, MBPP+ and GPQA-Diamond.\n\n**By memory**\n\n* 16 GB Mac or 12 GB GPU: Q2\\_K (9.1 GB)\n* 24 GB Mac or 16 GB GPU: Q3\\_K\\_M (13.6 GB)\n* 32 GB Mac or 20 GB GPU: Q4\\_K\\_M (16.6 GB)\n* 48 GB Mac or 32 GB GPU: Q8\\_0 (27.8 GB)\n\n**To run it**\n\n    llama-server -hf QUASAR-QAT/Inkling-2-Mini-GGUF --jinja\n\nThat gets you Q4\\_K\\_M and to pick a different size add it to the end like `:Q2_K`.\n\nLM Studio works too as long as its llama.cpp runtime is b12600 or plus.\n\nFull tables are on the model card on HF. Hope you like it",
+    "externalUrl": "https://i.redd.it/gt8u7zbqtv3i1.png",
+    "developer": "Mindless_Ad_407",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5r80g",
+  "sourceItemId": "1y5r80g",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y5r80g/inkling_2_mini_ggufs_that_run_fully_on_your_macs/",
+  "detail": {
+    "longDescription": "Hey all,\n\nWe made GGUFs of Inkling 2 Mini and wanted to share them here first: [https://huggingface.co/QUASAR-QAT/Inkling-2-Mini-GGUF](https://huggingface.co/QUASAR-QAT/Inkling-2-Mini-GGUF)\n\nThere are 12 sizes, from 7.8 GB to 27.8 GB, plus the vision projector.\n\n**Everything runs on the GPU, even on a Mac**\n\nPart of the official model is stored in NVFP4. llama.cpp can't run NVFP4 on a Mac GPU yet, so GGUFs that keep those weights fall back to the CPU for part of every token. Ours use only regular GGUF types, so the whole model stays on the GPU. All you need is stock llama.cpp b12600 or newer, on Metal, CUDA, Vulkan or CPU.\n\n**They stay close to the full model**\n\n* At the same size and speed, they have 8–56% lower KL divergence than bartowski's files. Lower means the output is closer to the full model. That's across 6 same-size pairs, on wikitext and on held-out chats.\n* The 7.8 GB file scores 96.9 on GSM8K, the same as Q8\\_0.\n* IQ4\\_XS (15.7 GB) matches Q8\\_0 within error bars on GSM8K, MMLU-Pro, IFEval, HumanEval+, MBPP+ and GPQA-Diamond.\n\n**Pick a file by your memory**\n\n* 16 GB Mac or 12 GB GPU: Q2\\_K (9.1 GB)\n* 24 GB Mac or 16 GB GPU: Q3\\_K\\_M (13.6 GB)\n* 32 GB Mac or 20 GB GPU: Q4\\_K\\_M (16.6 GB)\n* 48 GB Mac or 32 GB GPU: Q8\\_0 (27.8 GB)\n\n**Run it**\n\n    llama-server -hf QUASAR-QAT/Inkling-2-Mini-GGUF --jinja\n\nThat gets you Q4\\_K\\_M. To pick a different size, add it to the end, like `:Q2_K`. The vision projector downloads on its own.\n\nLM Studio works too, as long as its llama.cpp runtime is b12600 or newer. Ollama can't load Inkling 2 GGUFs yet.\n\nFull tables are on the model card. Big thanks to Thinking Machines for the model and to everyone working on llama.cpp. Hope you enjoy it!",
+    "externalUrl": "https://i.redd.it/rjyixb09qv3i1.png",
+    "developer": "Mindless_Ad_407",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018604",
+  "sourceItemId": "80018604",
+  "sourceUrl": "https://stackoverflow.com/questions/80018604/a-better-way-to-filter-dataframe-using-key-words",
+  "detail": {
+    "longDescription": "I have analysed a database of bacterial samples. I originally used this code to separate food samples from other samples, but now I must also compare the food samples to other \"environmental\" samples. At first, I thought I just needed to switch the selected and unselected keywords, but I now realised some rows are being left out. How should I change the code so that I can select every \"non-food\" row? df = pd.read_csv(path+'Raw_L_data.tsv', sep='\\t') with open(path+'List_of_Foodstuff.txt', 'r') as file: lof = file.read().splitlines() with open(path+'Taboos_list.txt', 'r') as file2: tsl = file2.read().splitlines() #these two are just lists: #['chicken', 'fox', 'steak', 'porcine', 'wurst', 'pig', ...] #Old code from previous analysis food_pattern = '|'.join(map(re.escape, lof)) #I asked how to do it, and this was given as example. Not pretty but does work. taboo_pattern = '|'.join(map(re.escape, tsl)) f1 = df[df['Isolation type'].str.contains('environmental/other')] # Can also be 'clinical' or just empty. column = 'Isolation source' #from what the sample was taken from. mask_food = df1[column].str.contains(food_pattern, case=False, na=False) mask_taboo = df1[column].str.contains(taboo_pattern, case=False, na=False) food = df1[mask_food & ~mask_taboo] #PS I just need remove mask_taboo from here, don' I? environment = df1[mask_taboo & ~mask_food] (In other words: the food DF contains rows A, and the environment DF contains rows B, but I think I am losing rows C that don't contain the food and taboo keywords. I would like to add rows B and C into the environment DF.)",
+    "developer": "Dragoran21",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "173"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

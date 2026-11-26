@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5rgoi",
+  "sourceItemId": "1y5rgoi",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y5rgoi/samba_share_via_netbird_container/",
+  "detail": {
+    "longDescription": "I'm posting this here since I think this problem relies on how docker networking works and how docker containers interact with the kernel; please correct me if I'm wrong: if necessary, I can delete this and forward the question to a more appropriate sub.   \n\n\nTL;DR: help me troubleshoot a failed samba share mount.\n\n  \nI am running a small linux server which I'm able to access remotely using netbird. I configured the netbird client at system level to route all traffic through its interface.   \nsome time ago, a friend who runs a similar (but larger) server offered me to make a shared samba folder between our machines, with their one acting as a server and mine running as a client. \n\nsince they also use netbird for remote connection, and we couldn't merge our existing netbird networks, we figured out that the best way to do this would be to setup a second instance of netbird on my machine, running in a docker container (setup with docker compose) without the option '-network\\_mode: host' so it would not conflict with the other existing instance. the container would then be connected to their netbird network.  \nthe connection via netbird works (my machine is currently a peer on my friends' network) but I can't manage to make the samba share to work.\n\n  \nmy understanding was that once the folder was mounted correctly, I could rsync files to my mounted folder (at system level) and they would \"appear\" also on my friends' machine (correct me about this if needed; I feel I have not a strong understanding of how samba works, yet).   \nthis is what I've tried:  \n1. netcat scan (to my friends' server) from the netbird container (via 'docker compose exec ...'): works, smb port is open.  \n2. mount -t cifs from the netbird container (via 'docker compose exec ...'): fails for denied permission. I did not understand why, since the container runs as root, the owner of both the destination folder on the system and of the bind mount inside the container are owned by root and have the privileges set correctly; also the path I specified is the one of the bind mount.  \n3. mount.cifs from the netbird container (via 'docker compose exec ...'): fails; output is 'Unable to apply new capability set'. the capabilities of the container are NET\\_ADMIN, NET\\_RAW, SYS\\_ADMIN, SYS\\_RESOURCE, DAC\\_READ\\_SEARCH. however, I do not understand to what capabilites the error message is referring to.   \n4. netcat scan at system level: fails. the packets are likely never sent (output at interrupt with -vv is 'sent 0, rcvd 0'. this happens despite the fact that I've added a route (sudo ip route add ...) specifying that connections directed to my friends' server ip should go through the container ip address (obtained by running 'docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container-netbird-name'. \n\nI didn't go further, as my other option was to run the mount outside the container, but the netcat fail made it pointless, since I couldn't establish a connection. \n\nnote that both actions 3 and 4 required an ephimeral setup, since I ad to install cifs-utils in the container after it started, so it gets deleted when I stop and restart the container, and by doing this also the route I added gets deleted, because (I think) it relied on the default docker bridge of that container that obv changes after a restart. so, even if I manage to make one of these work, I'd still have to find a way to not have to repeat the whole process after a simple update.\n\nI am writing here as a last resort to troubleshoot this; please forgive me for the length and mistakes (not english native speaker). any help is truly appreciated, but feel free to tell me if I'm not going in the right direction, if you think I misunderstood some basic concepts, if there is a simpler way to achieve what I want, of if you think this is a bad idea altogether. :)\n\n",
+    "developer": "mala394",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

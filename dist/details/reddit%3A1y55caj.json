@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y55caj",
+  "sourceItemId": "1y55caj",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y55caj/your_python_docker_build_compiling_from_source_on/",
+  "detail": {
+    "longDescription": "When a pip install in a Dockerfile starts compiling, it's usually one dependency with no wheel for that image's platform (arm64, musl/Alpine, or a new Python like 3.15). I built wheelgap to find it without building: point it at the Dockerfile and it reads the requirements the final stage installs, on the image's Python and platform.  \nuvx wheelgap --dockerfile Dockerfile --dockerfile-inputs  \nWith --fix it names the release that has the wheel. In 83 popular Python projects, most 3.15 gaps were just stale pins. Free and open source (MIT): github.com/wheelgap/wheelgap  \nHappy to hear where it gets your Dockerfile wrong. Wrong answers are the bugs I care most about.",
+    "developer": "ManufacturerKey6917",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

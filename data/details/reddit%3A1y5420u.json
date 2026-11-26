@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5420u",
+  "sourceItemId": "1y5420u",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y5420u/lazy_agents_answer_against_their_own_beliefs/",
+  "detail": {
+    "longDescription": "Sharing RLVB from our team at DeCLaRe Lab, a way to give evidence-seeking agents a reward at every turn, computed from the exact posterior instead of a learned reward model.\n\nThe problem we started from: VLM agents often answer while their own belief still lists several possible answers. An end-of-episode reward can't show which step was the mistake, and it still pays for a lucky guess. In many hidden-information tasks, though, the simulator knows the rules linking the hidden answer to the evidence, so it can compute the exact posterior after every step.\n\nA few details about the setup:\n\n* Before each action, the agent writes a belief line (the answers it still thinks are possible), and the update trains this line together with the action.\n* Each action is scored against a teacher that acts on the exact posterior: another step is right while several answers remain, and answering is right once the evidence identifies one.\n* No judge, no critic, no reward model. The reward comes only from the simulator's rules.\n* Training uses one task suite only. Two of the three test benchmarks (RoboQuest and Pro-Worlds) are never seen in training.\n\nOn Qwen3-VL-4B, Qwen3-VL-8B and Qwen3.5-4B across 3 benchmarks, RLVB improves on the base model in all 9 settings (+17.1 points on average with GRPO as the learner, +10.4 with EM). GRPO and PPO with the outcome reward lose accuracy on average. The rate of committing while the belief still names several answers drops from 3–68% to 0.1–2.2%.\n\nThe method needs a task where the exact posterior is computable, so open-ended tasks are out of scope for this work.\n\n[Paper](https://huggingface.co/papers/2611.32884) · [Code](https://github.com/declare-lab/RLVB) · [Website](https://declare-lab.github.io/RLVB/)\n\nOne question we would like other views on: when the exact posterior isnt available, what would you use as the signal that the agent has seen enough to commit?",
+    "developer": "Dry-Chapter-5678",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

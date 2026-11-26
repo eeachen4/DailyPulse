@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5q3q2",
+  "sourceItemId": "1y5q3q2",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y5q3q2/using_my_old_16gb_mac_mini_tiiny_pocket_as_a/",
+  "detail": {
+    "longDescription": "been using my m4 16gb mac mini for local llm for a while but I was pretty much limited to smaller models. Earlier this year I backed tiiny on kickstarter. The earlybird price was pretty appealing and I was already looking for something that could run larger models, so I decided to back it.\n\nMy tiiny arrived about a week ago, now I still keep mac mini as my always on machine for running Hermes and automation, while Tiiny handles LLM inference through its openai api. The two work together pretty good.\n\nFor anyone unfamiliar with tiiny, it got 32gb of soc memory and 48gb of dnpu memory. It's not unified memory like Apple but it has been more than enough for 9B and 35B models I've been using. I get roughly 60 tok/s on the Qwen 9B (INT4) and 35 tok/s on the 35B (INT4). For everyday agent tasks, that's pretty responsive to me.\n\nI use this setup for morning briefings sent to telegram before I wake up (news sources, Github repos, or whatever I want it to watch), email triage, file organization, and scheduled automations. Having mac mini does the agent workflow while Tiiny does the inference makes the whole thing more seamless\n\nAnother appeal for me is the running cost. There's no token bill for local inference, and neither machine uses much power for this kind of workload. Tiiny draws around 10W at idle and up to 40W under full load. Assuming 25W on average for Tiiny and another 17W for mac doing agent tasks, that's roughly 42W combined. Running both 24/7 would use around 368 kwh per year, about 55bucks annually at $0.15/kwh.\n\nThere are still some trade offs. Tiiny's model selection is more restricted than a typical Ollama setup, and I wouldn't suggest it for complex coding tasks that require extremely long context windows. For my own usage, though, this is the best balance of performance and cost I've found so far. Instead of replacing my mac mini with something more expensive, I can keep using it for what it does well and let tiiny handle the inference.\n\nIf you're thinking about replacing an older machine just to run larger local models or trying to get more tops out of hardware you already own, I think this setup is worth considering. at least for my needs it's the best balance of performance and cost I've found so far. Also I'd love to hear if anyone else runs a similar setup? What does your setup look like and have you found any useful/interesting workflows?",
+    "externalUrl": "https://i.redd.it/gqvbfgkpfv3i1.jpeg",
+    "developer": "EfficientSystem123",
+    "comments": 3,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

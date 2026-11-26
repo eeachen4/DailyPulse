@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.33490",
+  "sourceItemId": "2611.33490",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.33490",
+  "detail": {
+    "longDescription": "arXiv:2611.33490v1 Announce Type: cross Abstract: Migrating C code to Rust can significantly improve software security, but understanding the performance implications of such migrations remains challenging. While Rust is often claimed to match C's performance, runtime safety checks, compiler optimizations, and hardware microarchitecture interact in ways that complicate performance diagnosis. We first conduct a systematic cross-layer characterization of 12 benchmarks comprising C implementations and their Rust counterparts. Our study reveals that runtime safety checks do not necessarily dominate performance overhead, as compiler and microarchitectural optimizations often mitigate their costs. Across 8 of the 12 benchmarks, at least one Rust implementation performs within 10% of its C counterpart or outperforms it. Motivated by these findings, we introduce FerroScope, an AI-assisted performance debugger that integrates source-level analysis, compiler optimization remarks, dynamic instruction traces, and hardware performance counters to diagnose performance differences between C and Rust. FerroScope reproduces our manual findings while providing more precise explanations in several cases, including identifying compiler optimizations inhibited by redundant bounds checks. Guided by these diagnoses, we develop an LLVM compiler pass that hoists redundant bounds checks through guarded loop versioning while preserving Rust's panic behavior. The pass enables downstream compiler optimizations, including loop unrolling and conditional-move conversion, reducing Selection Sort's overhead from 2.95x to 1.00x and improving Merge Sort from 1.43x to 0.91x relative to C. Together, our results demonstrate how cross-layer performance characterization and AI-assisted diagnosis can guide safety-preserving compiler optimizations for efficient C-to-Rust migration.",
+    "developer": "Dalton Davis, Kunal Pai, Tapti Palit",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PF, cs.PL, cs.SE"
+      },
+      {
+        "label": "第一作者",
+        "value": "Dalton Davis, Kunal Pai, Tapti Palit"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

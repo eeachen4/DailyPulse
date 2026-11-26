@@ -2,19 +2,20 @@
   "schemaVersion": 2,
   "id": "hackernews:50634426",
   "sourceItemId": "50634426",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
   "sourceUrl": "https://news.ycombinator.com/item?id=50634426",
   "detail": {
     "longDescription": "Hey HN, we’re Harshith, Param, and Vishnu and we&#x27;re building Versine ( https:&#x2F;&#x2F;versine.com ). Versine lets you send and request money just by talking or texting with your AI (think Venmo with an MCP). We’re software engineers who have worked on distributed systems at Stripe, Databricks, and Amazon. Versine is an MCP that sits in front of a wallet with a balance. With it, your agent can do things like: - Send money to someone with your approval (via passkey in our app) - Send and request money to&#x2F;from up to 100 people at once - Send money to people without a Versine account (they cash out to their bank in 2 mins) - Pay people without your explicit approval to trusted contacts (you can set this) Here’s a demo: https:&#x2F;&#x2F;youtube.com&#x2F;shorts&#x2F;Q9X7zioEqi0 We started working on this because assistants are frustratingly hands-off when it comes to finance and money movement. You can have your assistant go through a receipt and map out all the amounts owed taking care of splitting the subtotal, taxes, tips, but at the end of it the assistant hands back work to you when you have to go out and make the Venmo transfer. Our current solution is oriented towards power users: those who want to automate everything through their agent use us to split dinners, group trips, or settle poker ledgers. We see ourselves unlocking more value for the general consumer as 1. More people turn into power users of agents, and 2. We expand to a more complete banking solution: deposits, transfers, wires, everything you can (and more) do with your bank offered as an MCP. Behind the scenes, each user has a self-custodial stablecoin wallet storing USDC on Base. With self-custodial wallets, users own their keys, meaning money can’t be sent without their approval. Interestingly, we were almost forced into this solution because we had around 4 weeks to build this product (after a pivot), and traditional fiat with a partner bank would have caused far too many regulatory and compliance slowdowns. Because of that, the only fast option that remained was using stablecoin wallets. It also ensures we aren&#x27;t a Money Services Business (MSB) since we don’t hold control or access to the user’s funds. Each call to the wallet creates what we call one-time or recurring standing permissions. For a one-time payment, your agent makes an MCP call, and you receive a notification in our mobile app. Once you swipe up in the app and approve with a passkey (or your device’s biometric method), we create a one-time permission that instructs your wallet to send $X to your recipient’s address. Trusted contacts let your agent send money to people that you’ve previously authorized without explicit passkey approval. Generally, these are people that you’d trust to send your money back even if your agent made a mistake. We’re also able to support sending money to someone off Versine using claim forwarding, where the user authorizes us to forward a specific amount to a future address (which we create once we verify a recipient&#x27;s OTP). Param worked on scaling vector search at Databricks and harness evals at Glean. Harshith worked on core Stripe Connect fee-processing infrastructure and built an AWS Fargate autoscaler at Amazon. Vishnu worked on intent-based agent testing infrastructure at Amazon. None of us were experienced in stablecoin or crypto infra before working on Versine but our distributed systems experience has helped us a lot. We&#x27;d love for you guys to try it! It&#x27;s available on iOS and Android and as an MCP on ChatGPT and Claude. We also support a public MCP and REST API for other agents. Please let us know how you find it and if it works as you&#x27;d hoped! https:&#x2F;&#x2F;versine.com",
     "developer": "harshithl1777",
-    "comments": 65,
+    "comments": 103,
     "stats": [
       {
         "label": "积分",
-        "value": "81"
+        "value": "105"
       },
       {
         "label": "评论",
-        "value": "65"
+        "value": "103"
       }
     ]
   }

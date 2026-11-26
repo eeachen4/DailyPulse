@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5247b",
+  "sourceItemId": "1y5247b",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y5247b/hosted_control_planes_how_do_you_handle_customer/",
+  "detail": {
+    "longDescription": "Hey!\n\nWe host 100+ clusters for customers and internal departments on our own infrastructure, and we're currently working on improving the patching and maintenance experience the team.\n\n  \nOur biggest issue while patching is people creating deployments, CNPG clusters and more where they have PDBs that block drain. People have full admin to their clusters and can create whatever they want, and they usually do not think about how their deployments affect our maintenance tasks.\n\n  \nWe just had a patching day and I have gathered a list of \"trouble\" clusters where I would reach out and ask them to adjust their changes, but ideally we'd either not allow PDBs of with 0 allowed disruptions (with exceptions such as CNPG primaries) or at least send a warning to them when something like that is created so we dont need to constantly monitor\n\n  \nDo any of you have any experience dealing with this?",
+    "developer": "xTennno",
+    "comments": 24,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

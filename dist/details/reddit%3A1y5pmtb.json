@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5pmtb",
+  "sourceItemId": "1y5pmtb",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y5pmtb/my_first_metamorphic_test_of_an_llm_extractor/",
+  "detail": {
+    "longDescription": "I wrote a small open-source library (MIT, no paid tier) for checking LLM output without labels, and my first real run of it was embarrassing.\n\nThe idea: change the input in a way that shouldn't change the answer, run the extractor on both, and flag any case where the answer moves. For receipts, reordering the line items shouldn't change the total.\n\nI ran it on 535 scanned receipts (ICDAR-SROIE). The first run flagged 72. I was pleased for about ten minutes, then read the flags. 68 of the 72 came from my transform, not the extractor. I was shuffling every line, which broke extractors that were working fine.\n\nThe fix was to permute whole blocks (header, items, totals) as units and leave the lines inside each block alone. I flagged without reading labels, then opened the labels only to score the flags.\n\nResults on held-out data:\n\n* Flagged receipts were 2.7x more likely to be wrong than unflagged ones\n* About 75% of flags were real errors\n* Recall was about 8%, so it misses most bugs\n\nSo it is a cheap spot-check, not a replacement for a labelled test set. What surprised me is that the transform design mattered more than the model.\n\nFull write-up with the method: [https://pub.towardsai.net/your-llm-extracted-10-000-numbers-which-ones-are-wrong-7a5d54050dd3](https://pub.towardsai.net/your-llm-extracted-10-000-numbers-which-ones-are-wrong-7a5d54050dd3)\n\nHas anyone else had their own test harness turn out to be the thing producing the false positives?",
+    "developer": "Beneficial_Use2116",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

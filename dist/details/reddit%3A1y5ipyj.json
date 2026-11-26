@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5ipyj",
+  "sourceItemId": "1y5ipyj",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y5ipyj/in_my_pipeline_the_model_doesnt_choose_which/",
+  "detail": {
+    "longDescription": "**The problem I started with**: I planted a three-step calculation in a test case, with the numbers coming from three different sources. A general agent with complete arithmetic tools couldn't find it. He knew how to multiply, but he didn't know which numbers belonged to which group!\n\n*The usual method is for the model to write the equation and for a tool to calculate it. But this way, the model still chooses the inputs, and that's where the problem lies.*\n\n*So my pipeline ended up like this:*\n\n1. **extract** => two models extract every quantity => unit => denominator => scope (structured output).\n2. **reconcile** => keep a value only if both extractions agree, or a verbatim source quote settles it.\n3. **enumerate** => code tries every combination of 2-4 quantities whose units produce a decision unit.\n4. **compute** => unit library (pint), never the model.\n5. **reject** => 6 deterministic checks on the numbers\n6. **accept** => 6 gates in order; one failure drops the candidate\n7. **explain** => the model only writes up what survived; \"no discovery\" is the default\n\nIn a prototype: 230 candidate accounts, two remained, with the one planted in between. The second was disguised, passing because a number in it had no denominator. Hence the rejection gates: recalculation, an impossible number due to its lack of a denominator, a quantity without a denominator or unit, discrepancies between the extractors, mixing ranges (weekly with monthly), and the fragility of the conclusion with a 5% change.\n\nThen the admission gates in order: new to the file, then new to the field, then non-intuitive, then influential, then case-specific, then change the decision.\n\nThe assessment method was recorded in advance before any case was built: 100 cases, of which 30 were empty and 20 were misleading, with a false positive limit of 5%: [https://doi.org/10.5281/zenodo.24506889](https://doi.org/10.5281/zenodo.24506889)\n\nQuestions I haven't thought of yet; \n\n1. How could you extract units and denominators with organized outputs? This is my weakest point.\n2. Has anyone thought of building a layer to verify the deterministic outputs after the agent's outputs? What could you put in it?\n3. What happens when the combinations get too large? I have a maximum of 4 quantities, and I'm considering trimming by units before counting.",
+    "developer": "RhubarbFlat6247",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

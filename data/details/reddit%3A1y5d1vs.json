@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5d1vs",
+  "sourceItemId": "1y5d1vs",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y5d1vs/after_months_of_job_rejections_i_spent_2_years/",
+  "detail": {
+    "longDescription": "After struggling to land a job in 2024, when the market was pretty rough, I decided to take a different route and build something real. Two years and around 90 hours a week later, VisuaLeaf is now listed in Microsoft's Azure DocumentDB documentation as a way to connect, and it feels surreal:  \n  \n[https://learn.microsoft.com/en-us/azure/documentdb/how-to-connect-visualeaf](https://learn.microsoft.com/en-us/azure/documentdb/how-to-connect-visualeaf)  \n  \nIt started as a MongoDB GUI, but I realized that everything I was building could apply to other databases too.  \n  \nNested objects and arrays should be easy to read in a table, not squashed into one cell... The same goes for JSONB. You shouldn't have to stare at an entire JSON object in a single cell. I made it so you can expand nested data one level at a time in both the tree view and table view.  \n  \nI wanted everything in VisuaLeaf to feel as intuitive and straightforward as possible, from browsing data to performing more complex operations.  \n  \nToday, VisuaLeaf supports MongoDB, Postgres, MySQL, SQLite, DuckDB, and 30+ more database engines.\n\n**What it does:**\n\n* **Table + tree grid, built from scratch:** This might not seem like much at first, but it actually took the most work to get right. The tree view can recursively expand thousands of rows almost instantly ,while the table view scrolls smoothly even with thousands of rows and columns.  I ended up building my own AG Grid from scratch because libraries didn't support the nested column expansion I wanted. Getting both views optimized took about a year of work alone... but dang, was it worth it.\n* **Visual query builder/ SQL Scripts:** Build queries by clicking or dragging fields directly from the table and tree views, or write SQL scripts with real-time syntax error highlighting and intelligent autocomplete. Generated queries are readable and can be copied or executed.\n* **Data transfers with transformation:** Move data between database engines (MySQL → Postgres, SQL → MongoDB), mask emails, phone numbers, and IDs along the way, or transform fields using custom JavaScript. You can also look up data from other tables, include it in your output, and apply transformations to those fields too.\n* **Compare and sync:** Compare two tables or databases, including their structure and data, and synchronize them. For example, you can use this to keep staging and production databases in sync.\n* **Performance:** Stress-tested with up to 1.6 GB of data, both tree and table views remain smooth even with large datasets. In my testing, VisuaLeaf also loaded data several seconds faster than most other database tools I compared it against.\n* **AI / MCP:**  A built-in AI assistant, plus an MCP server (Wouldn't be an app in 2026 without it)\n* **ERDs, charts, dashboards, mock data, index management, query profilers**, and a lot more than I can fit into one post...\n\nThere's a free version that covers what most people need day to day:\n\n[https://visualeaf.com](https://visualeaf.com/)  \nI'd really appreciate feedback! And happy to answer any questions!\n\n",
+    "externalUrl": "https://i.redd.it/dyvj7tycls3i1.gif",
+    "developer": "Fun-Chicken6946",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

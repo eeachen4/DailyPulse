@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018711",
+  "sourceItemId": "80018711",
+  "sourceUrl": "https://stackoverflow.com/questions/80018711/how-to-make-pyright-obey-my-annotated-type-instead-of-narrowing-it",
+  "detail": {
+    "longDescription": "I was testing out typing.assert_type() in Pyright: from typing import assert_type value: int = 10 assert_type(value, int) I expected no warning, but got one: Error: \"assert_type\" mismatch: expected \"int\" but received \"Literal[10]\" I tested the type: reveal_type(value) # Type of \"value\" is \"Literal[10]\" Why does Pyright narrow value to Literal[10] despite my explicit int annotation? How can I avoid this? I also tested with a function argument, as shown in the docs. This worked as expected: def foo(value: int): assert_type(value, int) # no type checker error So how come it fails in my original scenario?",
+    "developer": "JadenV15",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "2"
+      },
+      {
+        "label": "浏览",
+        "value": "119"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

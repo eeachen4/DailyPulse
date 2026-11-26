@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y50h5c",
+  "sourceItemId": "1y50h5c",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y50h5c/opensource_gpu_dashboard_for_training_runs_true/",
+  "detail": {
+    "longDescription": "GPU Pulse is an MIT-licensed GPU monitor built for watching training runs. It ships as two tools that share the same rules and history format: a VS Code extension (it runs on the GPU machine over Remote-SSH and WSL, so it monitors the server, not your laptop) and a terminal dashboard (\\`gpu-pulse\\`) for SSH and tmux.\n\nRepo: https://github.com/Optimizer077/gpu-pulse\n\nWhy another GPU monitor? \\`nvidia-smi\\`'s \"GPU utilization\" is the share of time that at least one kernel was running. A small kernel keeping one SM busy reads 100% while most of the chip sits idle. Where the driver exposes NVML's GPM counters, GPU Pulse shows SM activity, SM occupancy, Tensor Core activity and DRAM bandwidth, and flags cases like \"util 95% but SM 15%\".\n\nWhat it does\n\n\\- Bottleneck diagnosis. It reads the last 3 minutes of samples and names the likely limit, with evidence and a suggested fix: input-bound (gaps between steps, so more DataLoader workers or pin\\_memory), CPU-bound (including a single pegged core), disk- or network-bound, memory-bandwidth-bound, power- or thermal-capped, low SM parallelism, or VRAM held by an idle process. There's also a 0–100 efficiency score for the last hour.\n\n\\- Alerts: job finished (with duration and average utilization), VRAM held while the GPU idles for 15 min (the forgotten notebook kernel), running hot, VRAM nearly full. They work as VS Code notifications or headless via \\`gpu-pulse log --alerts\\`.\n\n\\- Usage history: 5 min / 30 min / 1 h / 24 h averages, a per-minute 24-hour heatmap, auto-detected training sessions with energy used (Wh), and CSV export. A background logger records even when no dashboard is open.\n\n\\- Multi-GPU: every GPU at once, plus cross-GPU checks for a likely straggler, uneven VRAM, one GPU throttling alone, or a card on a narrower PCIe link.\n\n\\- Architecture card: compute capability, SM count, Tensor Core generation, memory bandwidth, FP32 TFLOPS, PCIe link.\n\nOverhead (measured on one Windows machine, as a share of one CPU core): the VS Code extension uses \\~0.2–0.6% at 500 ms sampling. The terminal dashboard uses \\~5% on the animated Overview tab and \\~0.5–1% on the others; \\`--fps 0\\` turns animation off.\n\nTry it. The demo needs no GPU:\n\npip install \"git+https://github.com/Optimizer077/gpu-pulse.git#subdirectory=pip\"\n\ngpu-pulse --demo                 # simulated training load\n\ngpu-pulse --demo --demo-gpus 4   # multi-GPU view with a simulated straggler\n\ngpu-pulse                        # your real GPU\n\ngpu-pulse status                 # one-shot snapshot, handy over SSH\n\nThe VS Code extension is a \\`.vsix\\` on the Releases page (\\`code --install-extension gpu-pulse-0.3.0.vsix\\`). It isn't on PyPI or the VS Code Marketplace yet.\n\nPlatforms\n\n\\- NVIDIA on Windows and Linux: full support. The true-usage panels need NVML GPM support (recent GPUs and drivers; tested on an RTX 50-series card). Older cards fall back to plain utilization, and the dashboard says which one it is using.\n\n\\- AMD on Linux: utilization, VRAM, power and temperature via sysfs, best effort.\n\n\\- Apple Silicon: GPU utilization and shared memory via \\`ioreg\\`, no sudo. Beta (v0.4.0-beta.1).\n\n\\- No telemetry and no network calls. History stays on your machine.\n\nKnown limits: Windows (WDDM) doesn't report per-process VRAM. The diagnosis rules are heuristics, so treat a verdict as a starting point for profiling, not a replacement for Nsight or the PyTorch profiler.\n\nFeedback is welcome, especially verdicts that are wrong on your workloads, and GPUs where the GPM counters do or don't show up.",
+    "developer": "DebateAccurate6097",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

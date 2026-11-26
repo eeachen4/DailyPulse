@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.32920",
+  "sourceItemId": "2611.32920",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.32920",
+  "detail": {
+    "longDescription": "arXiv:2611.32920v2 Announce Type: replace Abstract: Static analysis tools operate on an Intermediate Representation (IR) --- an internal model of the program on which dataflow analysis computes and stores facts against IR object identifiers. Incremental dataflow analysis reuses these cached facts across consecutive program versions, but requires an accurate mapping between IR objects in the old and new versions. When this mapping is imprecise, the consequence is not merely a missed optimization: unmapped IR objects inflate the change set, increasing the number of program points that the analyzer must recompute and forcing it to redo work that a more precise mapping would have avoided. This cost is not specific to any one kind of IR object; it arises wherever IR-level identity is unstable across versions. Any IR that decomposes nested source expressions generates temporary variables which are assigned names by a method-local counter that shifts whenever a statement is inserted or deleted earlier in the method, breaking any name- or attribute-based mapping. We present a systematic algorithm that establishes a sound, oneto-one mapping of these temporary variables across consecutive versions, and formalize and prove the soundness of the mapping, guaranteeing that every produced mapping is semantically correct. The resulting precise mapping shrinks the change set, reducing the number of program points the incremental analysis must recompute. Implemented within the Soot framework for Jimple IR and evaluated on 8 real-world Java projects with genuine edits from the BUGSWARM dataset, our approach reduces the IR change set by over 82% on average compared to Reviser's graph-differencing algorithm, while completing the full pipeline within 250 ms per project---directly countering the common assumption that a more precise change set necessarily costs more time to compute.",
+    "developer": "Anushri Jana, Kush Goradiya, Uday P Khedker",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Anushri Jana, Kush Goradiya, Uday P Khedker"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

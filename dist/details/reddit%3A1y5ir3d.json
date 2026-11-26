@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5ir3d",
+  "sourceItemId": "1y5ir3d",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y5ir3d/i_got_tired_of_bloated_and_heavy_mic_software_so/",
+  "detail": {
+    "longDescription": "I wanted a simple way to control my mic in Windows without running 500mb - 1gb of ram with Steelseries Sonar, Wave Link or Voicemod. I also didnt like how bloated some of the alternative mic apps were (like how sonar always opens the app in the store to view their products). So I built Voxis Mic Control.\n\nMy app runs at about 150 - 200mb of ram if you have it always fully open but if you use the app from the system tray then it only runs at 15 - 20mb.  \nId love some feedback about it since ive spent a lot of time on it. Everything is fully open source:\n\n[https://github.com/Squibble34/Voxis-Mic-Control](https://github.com/Squibble34/Voxis-Mic-Control)\n\n**How it actually works and what it does:**  \nVoxis creates a virtual USB microphone using [usbip-win2](https://github.com/vadimgrn/usbip-win2). Your physical mic goes through a DSP and noise suppression chain first, and then Discord, OBS, games and other apps receive the processed audio\n\nFor noise suppression you can pick between RNNoise if you want lower cpu usage and latency or DeepFilterNet for stronger voice isolation (drawback of a little more cpu usage and more mic latency). You can tune things like a noise gate, compressor, low cut, basic EQ presets, and a volume boost. Theres also live sidetone so you can hear what youre changing as you tweak it.  \nOutside of the audio side, I added a few qol things I wanted from other apps: global mute hotkeys (toggle or push to talk), auto mute when youre idle, a small popup if you start talking while muted, and a tracker that shows which apps are currently using your mic.\n\nA big thing for me was performance, I wanted to make my app as lightweight as possible while still having all the functionality as I needed. On my pc Voxis runs at about 0.3% - 0.6% cpu usage.\n\nNote: Since I dont want to pay for a code signing certificate, Windows Defender or SmartScreen may flag it on first run. This is not a sign of anything actually malicious, as I said above this whole app is open source if you want to check yourself.\n\nIm still actively working on it so any feedback would be really nice.",
+    "developer": "Creative-Election302",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

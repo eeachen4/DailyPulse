@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2610.13474",
+  "sourceItemId": "2610.13474",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2610.13474",
+  "detail": {
+    "longDescription": "arXiv:2610.13474v2 Announce Type: replace Abstract: Modern attention workloads require diverse masks whose shapes depend on per-sequence parameters, yet efficient attention kernels natively support only a small set of mask patterns. Existing methods for custom masks face an expressiveness-efficiency trade-off. Predicate-based methods are expressive but evaluate a user-defined predicate on every element at substantial cost, whereas interval-based methods execute efficiently but lack the expressiveness for complex masks. We present CompileMask, which bridges this gap by compiling the mask predicate users write into an Execution Descriptor that the attention kernel executes efficiently. We design a compiler that automatically lowers a mask predicate into an intermediate representation and generates a mask-specific preprocessing kernel, which builds the descriptor for each batch with a few expressions per row rather than by evaluating the predicate on every element. We further propose Tile-local Records, a compact representation of row visibility within each tile that lets the attention kernel check every element with a few integer operations, so that masking stays efficient even for complex masks. Experiments show that CompileMask achieves up to $3.3\\times$ speedup over FlexAttention and up to $1.2\\times$ over FlashMask in single-operator benchmarks, while supporting complex masks that FlashMask cannot express.",
+    "developer": "Hongzheng Li, Jiacheng Wan, Zhaolong Xing, Zhida Jiang, Yuanhang Yang, Junhua Shu, Jiaxing Wang, Xupeng Miao, Yingxia Shao, Zhen Chen, Ke Zhang",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC"
+      },
+      {
+        "label": "第一作者",
+        "value": "Hongzheng Li, Jiacheng Wan, Zhaolong Xing, Zhida Jiang, Yuanhang Yang, Junhua Shu, Jiaxing Wang, Xupeng Miao, Yingxia Shao, Zhen Chen, Ke Zhang"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

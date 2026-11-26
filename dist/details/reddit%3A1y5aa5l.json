@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5aa5l",
+  "sourceItemId": "1y5aa5l",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y5aa5l/github_viberntcupel_know_which_tests_protect_you/",
+  "detail": {
+    "longDescription": "Author of Cupel here, an open-source test-quality CLI. Fault (mutation) testing is usually too slow for CI. 0.5.0 is mostly about making it fit:\n\n* **Only covering tests run,** and each fault stops after two catches, or one in pull requests.\n* `--reuse <previous result>` copies unchanged answers and runs each fault's previous catchers first.\n* `cupel mutate --plan` estimates the work and suggests a slice count per runner. Then `--shard I/N` and `merge-mutations`.\n* **For Rust,** `--prepare --cache-dir DIR` **builds once,** and every slice restores the cache with `tar` (Cargo needs the original file timestamps) and skips the cold build.\n* `sessionEnvIgnore` lets you list job variables like `GITHUB_*` so cache reuse survives across runners.\n\nExit codes are plain: 0 ok, 1 guard failed, 2 usage, 3 environment. No network calls from the tool itself. Speed and CI recipes: [https://vibernt.github.io/cupel/speed.html](https://vibernt.github.io/cupel/speed.html) · [https://github.com/Vibernt/cupel](https://github.com/Vibernt/cupel)",
+    "externalUrl": "https://github.com/Vibernt/cupel",
+    "developer": "turtle_par_iter",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

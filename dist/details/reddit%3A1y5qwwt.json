@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5qwwt",
+  "sourceItemId": "1y5qwwt",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y5qwwt/nvidia_quietly_releases_open_weights_for/",
+  "detail": {
+    "longDescription": "NVIDIA has quietly published the weights for Nemotron-Labs-Image-30B-A3B on Hugging Face. It's an autoregressive image generator -- it predicts discrete visual tokens that get decoded into pixels, rather than using diffusion.\n\nSome key details:\n- 30B total parameters, only 3B active per token (MoE), built on the Nemotron-H hybrid architecture (Mamba-2 + attention), initialized from Nemotron 3 Nano\n- It's the raster image component of NVIDIA's broader Nemotron-Labs-VisualCreation framework, pitched as 'Pixel as Code'. The full framework is meant to also produce editable artifacts like webpages, slides, charts and scientific figures, but those VisionCode models are still pending legal clearance\n- On NVIDIA's own benchmarks, the full framework scores 92.86 on GenEval vs 89.00 for GPT Image 2, and 97.98 on LongTextBench vs 96.00. The standalone model scores 80.97 on GenEval, so the agentic setup does a lot of the heavy lifting\n- One caveat: the weights are under NVIDIA's non-commercial research/evaluation license, not a permissive open-source license, and the reference inference setup uses 4x H100 80GB\n\nSources: https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B and the paper (arXiv:2611.31358, Nov 23).\n\nAutoregressive image models have been closing the gap on diffusion for a while -- do you think the LLM-style token-prediction approach eventually wins for image generation, or does diffusion keep the edge for pure image quality?",
+    "developer": "winer666",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

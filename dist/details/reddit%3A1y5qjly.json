@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5qjly",
+  "sourceItemId": "1y5qjly",
+  "sourceUrl": "https://www.reddit.com/r/LangChain/comments/1y5qjly/how_are_you_handling_authorization_and/",
+  "detail": {
+    "longDescription": "I've been building around agents that call internal APIs and tools, and I keep running into the same question: where do teams actually draw the line before shipping?\n\nWhat I've tested so far:\n\n•An OpenAPI-driven scanner that checks for broken object-level and function-level authorization (BOLA/BFLA) across multi-tenant endpoints.\n\n•A gateway between the agent and internal services that allowlists egress and checks parameters before a tool call runs.\n\n•A CI replay setup so agent test suites run without live model calls.\n\nThese are all tested on synthetic apps and sample data, not production systems, so I'm not claiming they're battle-tested.\n\nTwo questions for people shipping agents now:\n\n\\-Which of these worries you most before launch: authorization, prompt injection, or flaky CI? Why?\n\n\\-If someone offered a scoped two-week review of one of these areas, what would a fair price be, and what would make you say no?\n\nHappy to share the repos in the comments if anyone wants to look at the code. I'm mainly trying to learn where the real pain sits, not sell anything.",
+    "developer": "ShivaCodex",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LangChain"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

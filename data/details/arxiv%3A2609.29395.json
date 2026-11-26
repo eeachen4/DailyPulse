@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2609.29395",
+  "sourceItemId": "2609.29395",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2609.29395",
+  "detail": {
+    "longDescription": "arXiv:2609.29395v2 Announce Type: replace Abstract: Parallel Split Learning with Global Sampling (GPSL) trains a split model on a fixed-size batch drawn from the data of all clients. When the client population is much larger than the batch, most clients contribute no data in a round, and additional server capacity does not change this. We propose Global Clustered Parallel Split Learning (GCPSL), which assigns clients to stable clusters, runs one GPSL workload per cluster concurrently, and periodically fuses the split-model replicas. We derive the expected direct data participation under the batch sampler, which separates repeated sampling of the same clients from idling at the fusion barrier. With 256 clients, more clusters raise participation but reduce the client diversity seen by each workload. In three paired runs on four H100 GPUs, GCPSL raises direct data participation from 22% to 57-60%. With random or size-balanced clusters, it reaches 85% CIFAR-10 validation accuracy in 5.7 minutes, 1.6 times faster than GPSL with its batch sharded across the same GPUs. It matches per-step synchronized data-parallel GPSL at 85% and reaches 88% in about 10 instead of 19.5 minutes, without per-step global gradient or BatchNorm synchronization. Concurrent execution is 3.11 times faster than sequential execution of the same workloads.",
+    "developer": "Mohammad Kohankhaki, Valentin Rentschler, Carsten Kamp, Sigrid Brell-Cokcan, Anke Schmeink",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.DC, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mohammad Kohankhaki, Valentin Rentschler, Carsten Kamp, Sigrid Brell-Cokcan, Anke Schmeink"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

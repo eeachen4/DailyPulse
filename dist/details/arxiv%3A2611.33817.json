@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.33817",
+  "sourceItemId": "2611.33817",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.33817",
+  "detail": {
+    "longDescription": "arXiv:2611.33817v1 Announce Type: new Abstract: Modern GPU kernels overlap asynchronous data movement, computation on general-purpose cores (e.g., CUDA cores), and computation on specialized cores (e.g., tensor cores) using warp specialization. These asynchronous-overlap optimizations introduce complex synchronization requirements, where incorrect ordering of asynchronous operations can lead to data races, premature resource reuse, and incorrect results. Testing alone cannot guarantee correctness because such errors are nondeterministic and may only manifest in rare execution schedules, and existing GPU formal verification techniques have limited support for warp-specialized kernels. We present SentryWard, a framework for formally verifying warp-specialized GPU kernels. SentryWard integrates synchronization verification, data-race and resource-lifetime analysis, and functional equivalence checking. The key idea is to establish that synchronization induces the same ordering constraints across all possible execution schedules. SentryWard extends this well-synchronization analysis to modern GPU barriers with asynchronous transaction tracking and derives a schedule-independent happens-before graph. It then uses this graph to verify memory safety and construct symbolic output expressions for functional equivalence checking. While SentryWard generally assumes tensor shapes and kernel launch configurations are given and unrolls loops, it uses compact representations of repeated structures across threads and tensor computations to improve scalability. SentryWard is publicly available at https://github.com/gpu-verifier/sentryward.",
+    "developer": "Mengdi Wu, Sreeram Vennam, Stephen Mell, Ziwei Zhou, Advay Kadam, Xinhao Cheng, Francois Costa, Alex Aiken, Oded Padon, Zhihao Jia",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.PL"
+      },
+      {
+        "label": "第一作者",
+        "value": "Mengdi Wu, Sreeram Vennam, Stephen Mell, Ziwei Zhou, Advay Kadam, Xinhao Cheng, Francois Costa, Alex Aiken, Oded Padon, Zhihao Jia"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

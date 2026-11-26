@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "arxiv:2611.33314",
+  "sourceItemId": "2611.33314",
+  "fetchedAt": "2026-11-26T05:29:16.076Z",
+  "sourceUrl": "https://arxiv.org/abs/2611.33314",
+  "detail": {
+    "longDescription": "arXiv:2611.33314v1 Announce Type: new Abstract: AI-assisted coding ranges from fully agentic coding to inline code suggestions in the editor. Inline suggestions require predicting a developer's most likely next edit from an editing session. The next edit may lie at the cursor, in nearby lines, or farther away, and one editing intent can span several of these. The preceding system queries separate completion, nearby edit, and long-distance edit models, each with its own output format, in a fixed sequence; it thus cannot express intents spanning distant locations in one response, can require several sequential model calls per suggestion, and prioritizes completion even when a correction would serve better. We present a unified model that predicts all three edit types in one output space: a sequence of anchored diff patches specifying locations, deleted lines, and added lines. This representation permits multiple edits per response, so the client can serve later edits from a cache without further model calls. We train this model in two phases, first unifying next edit and long-distance edit prediction, then adding code completion. We synthesize multi-edit supervision from single-edit data via model pseudolabeling and edit history playback. We use a binary LLM-graded reward, a patch validity taxonomy shared by data filtering, reward, and evaluation, and grader boosting for targeted failure modes. Phase 2 also adapts how the client processes and presents model outputs. In controlled online A/B experiments in GitHub Copilot, Phase 1 significantly reduces time to display by 6.77% and output tokens by 58.93% relative to the three-model baseline. In Phase 2, the 3-in-1 model and client adaptations reduce dismissed suggestions per user by 10.06% relative to the 2-in-1 model paired with the completion model. Throughout this report, we also share our methodology and learnings in evaluation, training, and end-to-end model and system design.",
+    "developer": "Microsoft CodeAI Team, Microsoft VS Code Team, Julia Gong, Benjamin Liggett, Shengjie Ma, Ulugbek Abdullaev, Zhehui Liao, Benjamin Steenhoek, Gaurav Mittal, Fuhui Fang, Satarupa Guha, Hang Zhao, Anand Mooga, Cheng Long, Benjamin Simmonds, Soojin Choi, Luciana Abud, Nathan Halstead, Alexandru Dima, Yu Hu, Elsie Nallipogu",
+    "stats": [
+      {
+        "label": "作者",
+        "value": "1"
+      },
+      {
+        "label": "分类",
+        "value": "cs.SE, cs.CL, cs.LG"
+      },
+      {
+        "label": "第一作者",
+        "value": "Microsoft CodeAI Team, Microsoft VS Code Team, Julia Gong, Benjamin Liggett, Shengjie Ma, Ulugbek Abdullaev, Zhehui Liao, Benjamin Steenhoek, Gaurav Mittal, Fuhui Fang, Satarupa Guha, Hang Zhao, Anand Mooga, Cheng Long, Benjamin Simmonds, Soojin Choi, Luciana Abud, Nathan Halstead, Alexandru Dima, Yu Hu, Elsie Nallipogu"
+      },
+      {
+        "label": "网站",
+        "value": "arXiv.org"
+      }
+    ]
+  }
+}

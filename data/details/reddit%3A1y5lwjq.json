@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5lwjq",
+  "sourceItemId": "1y5lwjq",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y5lwjq/i_built_a_local_windows_tool_that_searches_inside/",
+  "detail": {
+    "longDescription": "Windows Search kept missing my old invoices and scanned contracts because the scans had no text layer. Everything is great for filenames and can search file contents, but it doesn't OCR scans. Uploading private PDFs to a cloud AI tool wasn't an option.\n\n  \nUp front: closed source, Windows 10/11 x64. Filename and exact-word search is free for personal use. OCR, semantic and photo search are Pro (from $10 one-time, 7-day trial, no card; models need a one-time download).\n\n  \nA few technical problems I had to solve while building it (Linda Probe 2.0): keeping filename search under 50 ms on large drives meant writing a native C# name engine alongside SQLite FTS5 for exact text inside PDF/DOCX/office files. For scanned PDFs, a single OCR pass failed on blurry or rotated pages, so I added page-level parallelism, deskew/angle fallback between RapidOCR and Tesseract, and a confidence gate so garbage OCR text does not pollute the index. Everything runs locally with no telemetry.\n\n  \nFor r/software: 30% off Pro with code LINDAC01 at checkout.\n\n  \nLink: [https://lendarixon.github.io/Linda/probe.html?utm\\_source=reddit](https://lendarixon.github.io/Linda/probe.html?utm_source=reddit)\n\nMicrosoft Store (signed, may temporarily lag behind the newest standalone build during Store review): [https://apps.microsoft.com/detail/9PGM1V68193X](https://apps.microsoft.com/detail/9PGM1V68193X)\n\nThe standalone GitHub installer is unsigned so Windows SmartScreen may warn (SHA-256 is published on the release page).\n\nhttps://i.redd.it/k1wtujb9eu3i1.png\n\n",
+    "developer": "LibrarianValuable946",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

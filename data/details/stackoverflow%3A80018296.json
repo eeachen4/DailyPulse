@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I have a simple Excel (*.xlsx) file with \"virtual cards\" which I use it to study a language. The file is very simple -- it has 1 sheet, 1 workbook, 3 columns with text, no index/header and up to 3000 rows. Each row is for one word; two columns in a row have a word and its meaning in English, and the third column has a \"difficulty level\" index. A python script uses pandas to open the file (df.read_excel()), shuffles the rows, shows randomly column 1 or 2 from row N, and then I press a numeric button (1-5) to change the difficulty level of a row and save the file (to_excel()). I create and edit the file in Excel b.c. it's convenient, and I would like to keep all the formatting in it (columns width, text flow, text wrapping, font, colors etc). However, df.to_excel() strips all the formatting and sets them to defaults -- adds an index and a header, changes the font size, collapses the widths of the columns etc. etc. It's not a big deal for this simple task, but in the future I might deal with more complex excel files. I've figured out how to preserve certain settings, but not all. Is there a way to \"simply\" inherit all the formatting/metadata from the original Excel file in Pandas, without manually re-creating the file in Pandas from scratch? [Excel does not lose formatting when saving a copy of an excel file, so I hope there is a way to keep it that way in Pandas]. from pandas.io.formats import excel excel.ExcelFormatter.header_style = None excel.ExcelFormatter.index = None filename = askopenfilename() spreadsheet = pandas.read_excel(filename) spreadsheet.iat[row,col] = new_diff_level spreadsheet.to_excel(filename) There have been several helpful discussions on this over the years, but the most relevant one (as far as I understand) was a while ago (below). It's asking a specific formatting question on how preserve sub/superscripts which I do not believe applies to the general case of preserving all formatting. Other posts I found also deal with specific formatting (e.g. conditional coloring of specific cells) which all can be manually coded. How to preserve Excel text formatting when reading/writing Excel files with Pandas?",
     "developer": "runcyclexcski",
-    "comments": 1,
+    "comments": 0,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "1"
+        "value": "0"
       },
       {
         "label": "浏览",
-        "value": "183"
+        "value": "205"
       },
       {
         "label": "状态",
-        "value": "已回答"
+        "value": "未回答"
       }
     ]
   }

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y53rh5",
+  "sourceItemId": "1y53rh5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y53rh5/treebind_an_operator_that_syncs_a_git_repo_and_an/",
+  "detail": {
+    "longDescription": "I've been building an open-source operator called Treebind. The first alpha releases are out, and I'd like feedback from people who run stateful apps on Kubernetes before I go further.\n\nThe problem: some apps keep their config in files on a volume and get edited from a UI. git-sync pulls in one direction. Argo CD and Flux apply manifests, but they don't sync an app's own files. So changes made in the app never reach Git, and changes made in Git don't reach the app. \\[One sentence from you: the real case that made you build this.\\]\n\nWhat it does: you create a Treebind resource that names a Git repo, an existing PVC and a sync policy. A sync agent pulls Git changes into the volume, commits the edits the app made, and can push them back. Conflicts show up as a condition on the resource.\n\nWhere it is: alpha (v0.0.1-alpha.4), tested on kind only, v1alpha1 API with a placeholder group name. Please don't point it at data you can't lose yet. Install is a Helm chart from an OCI registry, or install.yaml. The quickstart checks both directions end to end, and CI runs it on kind.\n\nWhat I'd like to know:  \n\\- Which storage setups do you run (CephFS, NFS, local-path, cloud disks)? I've only tested kind.  \n\\- How would you want merge conflicts handled?  \n\\- Which app would you want to try this with first?\n\nRepo: [https://github.com/mohanedmoh/treebind](https://github.com/mohanedmoh/treebind) (Apache-2.0, I'm the author)\n\n",
+    "developer": "mohanedmoh123",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
