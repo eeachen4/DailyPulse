@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5xf2p",
+  "sourceItemId": "1y5xf2p",
+  "sourceUrl": "https://www.reddit.com/r/docker/comments/1y5xf2p/aws_architecture_guidance_needed_deploying_a/",
+  "detail": {
+    "longDescription": "Hi everyone,  \nI am working on a full-stack application and would appreciate some guidance on the right way to deploy it on AWS.  \nMy application has:  \nReact frontend  \nNode.js and Express backend  \nMySQL database  \nI have already created Docker images for the frontend and backend and thinking to store them in Amazon ECR(later to use these images for Kubernetes).\n\nI am working on the following architecture:  \n1. EC2 Instance 1: Install Docker and use Docker Compose, pull the frontend image from ECR and run the frontend container.  \n2. EC2 Instance 2: Install Docker and use Docker Compose, pull the backend image from ECR and run the backend container.  \n3. Amazon RDS: Use RDS MySQL instead of running MySQL in a Docker container.  \n4. Security Groups: Configure separate Security Groups for the frontend EC2, backend EC2 and RDS.\n\nI would like to understand the following:  \nFrom a real-world production perspective, what would you recommend for a small application?\n\nMy objective is to understand the actual deployment process, is it the right way of deploying and testing a docker project on aws. Later I would like to use the same image stored in ECR for Kubernetes deployment. I have tested this project locally and is working fine.  \nI am learning AWS deployment and would appreciate practical advice from people who have implemented similar architectures.\n\nThank you!",
+    "developer": "Wide_Impact_9392",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.docker"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

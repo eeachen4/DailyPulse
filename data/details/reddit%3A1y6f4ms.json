@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6f4ms",
+  "sourceItemId": "1y6f4ms",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y6f4ms/whats_everyones_inkling_2_mini_speed_getting/",
+  "detail": {
+    "longDescription": "I don't know if there's something wrong with the upstream llama.cpp or just my setup, but I was only getting \\~500t/s prefill and \\~36t/s decode and it was even worse at higher context, less than \\~200t/s prefill and \\~28t/s decode and I couldn't do more than 256 ubatch since it'd take around 22GB VRAM in total.\n\n|ubatch|each tensor|total|\n|:-|:-|:-|\n|256|3.2 GB|6.4 GB|\n|512|6.4 GB|12.9 GB|\n|1024|12.9 GB|25.8 GB|\n\nI'm using:\n\n* `Inkling-2-Mini-UD-Q3\\_K\\_XL` from Unsloth mainline support\n* No draft model, no mmproj\n* Q8\n* RTX 4070 TiS 16 GB VRAM\n* R5 7600 + 32 GB RAM\n\nI ended up doing some optimizations to get my speed up and I'm planning to make a PR if that's the case, but I'm not sure if I had misconfigured my base llama.cpp:\n\n    llama-server.exe --model \"<model>\" -ngl 99 -ot \"blk\\.([0-5]|1[89]|2[0-3])\\.ffn_.*_exps=CPU\" -t 6 -fa on -c 131072 -np 1 -ctk q8_0 -ctv q8_0 -lm none --host 127.0.0.1 --port 18080 --temp 1.0 --top-p 1.0 --top-k 0 --min-p 0.0 --moe-cache-mib 2000 --moe-cache-cpu-share 0.0 -b 1024 -ub 1024\n    \n    No MoE cache and uses b256 and ub256 on master\n\n|config|pp t/s|tg t/s|peak VRAM|\n|:-|:-|:-|:-|\n|mine, `-ub 1024 -b 1024`, MoE cache 2000 MiB|980.63|41.22|13,846 MiB|\n|mine, same, layers 0-3 on GPU (8 CPU layers), cache 1500 MiB|1038.09|43.10|14,866 MiB|\n|master, `-ub 256 -b 256` (ub512 does not fit at 131k), no cache|262.06|28.20|15,825 MiB|\n\n    llama-bench.exe -m \"<model>\" -p 512 -n 64 -r 2 -ngl 99 -fa on -ctk q8_0 -ctv q8_0 -t 6 -ot \"blk\\.([0-5]|1[89]|2[0-3])\\.ffn_.*_exps=CPU\" -b 1024 -ub 1024 -d 0,16384,131072 -o csv\n\n|depth|mine ub1024|mine ub1024, layers 0-3 on GPU|master ub256|\n|:-|:-|:-|:-|\n|0|818.59 / 34.90|1014.24 / 38.83|531.33 / 36.50|\n|16384|907.02 / 34.52|1030.72 / 39.12|414.12 / 34.78|\n|131072|683.42 / 29.93|751.91 / 33.40|83.81 / 27.43|\n\nI also did server test with `Q4_K_M` with 131,072 context limit\n\n|config|mine|master|\n|:-|:-|:-|\n|`-ub 1024 -b 1024`|907.75 pp / 35.62 tg, 14,186 MiB|did not run: 25.8 GB compute buffer, out of memory|\n|`-ub 256 -b 256`|514.67 pp / 37.43 tg, 13,616 MiB|183.67 pp / 34.69 tg, 15,919 MiB|\n\nDuring actual use with Hermes Agent, it was even faster. At \\~64k context used out of 131,072, I was hitting 1026t/s prefill and 40t/s decode.\n\n    226.26.768.225 I slot print_timing: id  0 | task 161404 | prompt eval time =   62451.19 ms / 63987 tokens (    0.98 ms per token,  1024.59 tokens per second)\n    226.26.768.230 I slot print_timing: id  0 | task 161404 |        eval time =   21357.13 ms /   863 tokens (   24.78 ms per token,    40.36 tokens per second)\n    226.26.768.230 I slot print_timing: id  0 | task 161404 |       total time =   83808.32 ms / 64850 tokens\n\nI've read through some posts and I haven't found similar setups yet (either more RAM, better CPU, or uses different KV cache). I feel like I'm getting low baseline speed here.",
+    "developer": "samuel-christlie",
+    "comments": 16,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

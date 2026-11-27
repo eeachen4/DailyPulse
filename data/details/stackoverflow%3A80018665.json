@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80018665",
   "sourceItemId": "80018665",
+  "fetchedAt": "2026-11-27T05:23:41.848Z",
   "sourceUrl": "https://stackoverflow.com/questions/80018665/why-does-the-behaviour-of-the-in-operator-contains-method-differ-from-manual",
   "detail": {
     "longDescription": "I found out that it is possible to check whether certain Numpy result are of a specific Numpy dtype, by checking whether they occur in a list of dtype-class objects: Python 3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0] on linux Type \"help\", \"copyright\", \"credits\" or \"license\" for more information. >>> import numpy as np >>> np.__version__ '2.3.3' >>> np.equal(1,1) in [np.dtypes.BoolDType()] True It seems to indeed perform some check that it is actually the specific dtype: >>> np.equal(1,1) in [np.dtypes.Float32DType()] False I always assumed that the in operator, aka the __contains__ method, was equivalent to just looping over the list and checking each element for equality. What's a bit bizarre here is that np.equal(1,1) should rather be an instance of BoolDType , whereas the in check appears to look whether it occurs as a value in the list. Indeed, none of the usual checks work when directly comparing with the element of that list: >>> np.equal(1,1) == np.dtypes.BoolDType() False >>> np.equal(1,1) is np.dtypes.BoolDType() False >>> isinstance(np.equal(1,1), np.dtypes.BoolDType()) Traceback (most recent call last): File \"<stdin>\", line 1, in <module> TypeError: isinstance() arg 2 must be a type, a tuple of types, or a union isinstance does work for the class of BoolDType , i.e. by not generating an instance of it, but then the comparisons just yield False : >>> isinstance(np.equal(1,1), np.dtypes.BoolDType) False >>> np.equal(1,1) == np.dtypes.BoolDType False >>> np.equal(1,1) is np.dtypes.BoolDType False How does the in list check actually give a sensible behaviour here? How can this behaviour be achieved without querying a list? I'm interested in the behaviour for this Numpy-specific use, but would prefer to understand the general principle",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "139"
+        "value": "160"
       },
       {
         "label": "状态",

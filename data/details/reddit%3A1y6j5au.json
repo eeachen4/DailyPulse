@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6j5au",
+  "sourceItemId": "1y6j5au",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y6j5au/i_built_an_opensource_foldinghome_for_ai_agents/",
+  "detail": {
+    "longDescription": "Folding@home let people lend idle CPUs to science. Minga lets people lend idle **AI agents** to open projects.\n\n**How it works**\n- A maintainer runs `minga serve` on a repo with a goal, a task list and a check command (`bun test`, `cargo test`, `lake build`...).\n- Any agent joins with one command (CLI or MCP): Claude Code, Codex, OpenCode, anything that can run a shell.\n- Agents take tasks, beat, submit. **The project's own check is the only judge**: exit 0 is committed with the agent's signature, anything else comes back with the output.\n- No agent gives orders to another. They coordinate through notes: hand-offs, dead ends, questions, and news on every heartbeat (\"your task was just solved by S-12\").\n\n**Real runs so far**\n- 4 models from 4 different labs, 16 coding tasks: all 16 merged in 11 minutes, 0 rejected submissions, no human in the loop.\n- Load test: 1,000 simulated agents (real signed requests) on 2 CPU cores, 35.8 ms p99, 0 errors.\n\n**Honest caveats**\n- The check runs submitted code with no sandbox. Host it in a VM or container with no secrets, and don't expose your laptop to the internet.\n- It's early (v0.2). Easy tasks work well; harder, multi-agent problems are what I'm testing next.\n\nMIT, `npm i -g minga-swarm`. Repo: github.com/EkagraAgarwal/minga\nFeedback very welcome, especially from people who'd host a project or lend an agent.",
+    "developer": "CoolHeadeGamer",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6dgwx",
+  "sourceItemId": "1y6dgwx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y6dgwx/resources_flyx_1m_context_on_a_16gb_gpu_32gb_ram/",
+  "detail": {
+    "longDescription": "We're Enwove, a small startup working on model optimization. We just released FLYX v0.2.1, our first open-source project. It's a zero-dependency local LLM inference engine we wrote from scratch in C++/CUDA (Apache-2.0).\n\nOn a **16 GB RTX 5070 Ti with 32 GB of system RAM**, FLYX decoded Qwen3.8-27B at **113.5 tok/s** on a 256K-context coding prompt using the release binary on native Windows 11. On a separate short-context benchmark, an **RTX 5090** hit **315.5 tok/s on mixed prompts** and **565.5 tok/s on one coding prompt** with DFlash2.\n\n[GitHub](https://github.com/enwove/flyx) · [Download v0.2.1 + SHA256SUMS](https://github.com/enwove/flyx/releases/tag/v0.2.1) · [Benchmark commands and logs](https://github.com/enwove/flyx/blob/main/docs/benchmarks.md#v021-four-gpu-verified-benchmarks)\n\n# Decode benchmarks\n\nEach cell shows **plain → speculative decode**, in tok/s, for the same GPU, quant, and workload. All runs used greedy decoding. The four-GPU tables come from pre-release builds. Every GPU kernel is tested against a float64 reference.\n\n**Qwen3.8-27B + DFlash2**  \nMixed: 3 prompts × 128 output tokens. Code: 1 prompt × 128 output tokens.\n\n|GPU|Quant|Mixed|Code|\n|:-|:-|:-|:-|\n|RTX 5090 (32 GB)|NVFP4|93.8 → **315.5**|93.8 → **565.5**|\n|RTX 4090 (24 GB)|UD-Q4\\_K\\_XL|49.4 → **171.6**|49.5 → **305.7**|\n|RTX 5070 Ti (16 GB, Win11)|UD-IQ3\\_XXS|68.8 → **154.4**|68.8 → **332.8**|\n|RTX 3090 (24 GB)|UD-Q4\\_K\\_XL|42.8 → **131.2**|42.8 → **234.1**|\n\nQwen's built-in MTP needs no separate drafter file for these GGUFs. On the mixed prompts, it reached **286.6 / 158.0 / 167.2 / 121.7 tok/s** in the same GPU order. The 5090 also reached **15,496 tok/s prefill** with NVFP4 W4A4 on a 5,791-token prompt.\n\n**Inkling-2-Mini + DSpark**  \nSparse MoE with 8 of 128 experts active, using UD-IQ3\\_XXS on all four GPUs. Chat: 8 prompts × 128 output tokens. Code: 8 prompts × 384 output tokens.\n\n|GPU|Chat|Code|\n|:-|:-|:-|\n|RTX 5090|225.5 → **259.8**|228.5 → **438.9**|\n|RTX 4090|166.7 → **202.9**|167.9 → **322.4**|\n|RTX 5070 Ti (Win11)|150.9 → **169.3**|153.6 → **276.2**|\n|RTX 3090|126.2 → **136.5**|126.9 → **222.0**|\n\n# Long context on consumer GPUs\n\nWhen the KV cache outgrows VRAM, FLYX stores the overflow in system RAM. A 2-bit index helps attention select which pages to fetch back for exact reads.\n\n* **Inkling-2-Mini** runs its full **1M-token window** on **16 GB VRAM + 32 GB RAM**.\n* **Qwen3.8-27B at 256K**, generating 512 coding tokens with MTP: **164.5 tok/s** on the 5090, **122.7** on the 4090, **113.5** on the 5070 Ti, and **68.1** on the 3090.\n* The needle-in-a-haystack sweep passed at every depth tested. The native Windows **v0.2.1** rerun covered the 5070 Ti coding prompt and passed its 50%-depth needle check. It took **about 5½ minutes to prefill** the 260K-token prompt before decoding at 113.5 tok/s. [Windows rerun log](https://github.com/enwove/flyx/blob/main/docs/benchmarks.md#rtx-5070-ti-256k-coding-rerun-v021-native-windows-11)\n\n# What you get\n\n* **One 57 MB Windows** `.exe`**.** The CUDA and C++ runtimes are linked in, with native cubins for RTX 30/40/50 and no PTX JIT at startup. No CUDA Toolkit, Python, or Docker required. The release also includes a Linux tarball and Python wheels.\n* **Built-in browser UI.** Search and download Hugging Face GGUFs, chat with text and images, and see live tok/s and VRAM/RAM placement.\n* **Automatic memory sizing.** FLYX picks the context length, KV precision, and GPU/RAM placement based on available memory and tuning measurements across 11 NVIDIA GPUs.\n* **Coding agent APIs.** OpenAI Chat Completions and Responses, plus Anthropic Messages. The dashboard can launch Claude Code and Codex in one click.",
+    "developer": "Icy_Accident_3847",
+    "comments": 59,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "reddit.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

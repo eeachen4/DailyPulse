@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6krse",
+  "sourceItemId": "1y6krse",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y6krse/metas_business_agent_went_global_in_june_whos/",
+  "detail": {
+    "longDescription": "Since Meta rolled out Business Agent globally in June, there are suddenly a lot of agents on WhatsApp, Messenger and Instagram answering questions, booking appointments, qualifying leads, and in some cases selling, all inside the chat.\n\nThe demos look great. What I don't see discussed much is what happens after launch, when nobody's reading the conversations anymore.\n\nTwo failure modes worry me most:\n\n- **The confident wrong answer.** The agent quotes a price that changed last week, confirms a slot that's already taken, or promises a refund it can't issue. It doesn't error, it just sounds sure. Usually you find out when the customer replies in all caps.\n- **The quiet loop.** A downstream API starts returning something slightly off, and the agent keeps retrying the same tool call. Every reply looks fine; the bill doesn't.\n\nAnd chat makes both worse. People treat WhatsApp like texting a friend, so you get off-topic questions, half-sentences, and plenty of people trying to break the bot on purpose.\n\nFor those running customer-facing agents in production:\n\n1. How do you find out an answer was wrong before the customer tells you? Spot checks, live evals, a judge model, something else?\n2. Where do you cap retries and tool calls: inside the agent, or in code around it?\n3. Is anyone tracking cost per conversation, or just the monthly total?\n\nCurious what's working for people, and what turned out to be a waste of time.",
+    "developer": "aman041",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

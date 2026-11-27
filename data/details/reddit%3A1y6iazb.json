@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6iazb",
+  "sourceItemId": "1y6iazb",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y6iazb/how_we_calculate_prometheus_tsdb_pvc_size_in/",
+  "detail": {
+    "longDescription": "Hey r/kubernetes,\n\n\n\nWe got tired of guessing Prometheus PVC sizes (20Gi / 50Gi) and waking up to PrometheusTSDBCompactionsFailing or node DiskPressure alerts whenever pod churn or high-cardinality labels spiked.\n\n\n\nSo I put together a practical sizing guide + an interactive estimator that calculates:\n\n\\- Sample ingestion rate (active\\_series / scrape\\_interval)\n\n\\- Raw TSDB disk usage (\\~1.5 bytes/sample baseline)\n\n\\- Recommended PVC size with 30% WAL + compaction headroom\n\n\\- Ready-to-use --storage.tsdb.retention.size flag\n\n\n\nInteractive article & quick estimator: [https://opshubs.space/prometheus-storage-sizing-kubernetes-tsdb-retention/](https://opshubs.space/prometheus-storage-sizing-kubernetes-tsdb-retention/)\n\nFull calculator (with RAM & IOPS): [https://opshubs.space/tools/prometheus-storage-calculator/](https://opshubs.space/tools/prometheus-storage-calculator/)\n\n\n\nFree and no login required. Curious what retention.size vs PVC headroom ratio works best in your production clusters?",
+    "developer": "kkkevinkkkk",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

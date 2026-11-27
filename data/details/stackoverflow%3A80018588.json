@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80018588",
   "sourceItemId": "80018588",
+  "fetchedAt": "2026-11-27T05:23:41.848Z",
   "sourceUrl": "https://stackoverflow.com/questions/80018588/why-does-array-length-reject-greater-than-comparisons-in-milvus-2-3-3",
   "detail": {
     "longDescription": "I am using Milvus 2.3.3 in standalone mode with PyMilvus 2.3.3 . My collection contains an array field named test , which stores strings. I want to retrieve records where this array contains more than two elements. Filtering by an exact array length works, but using a greater-than comparison produces an error. The array field is defined as follows: from pymilvus import DataType, FieldSchema array_field = FieldSchema( name=\"test\", dtype=DataType.ARRAY, element_type=DataType.VARCHAR, max_capacity=100, max_length=65535, ) With the collection already created and loaded, this query works: collection.query( expr=\"array_length(test) == 2\", output_fields=[\"test\"], ) However, changing the expression to array_length(test) > 2 fails: collection.query( expr=\"array_length(test) > 2\", output_fields=[\"test\"], ) The error is: MilvusException: (code=65535, message=cannot parse expression: array_length(test) > 2, error: GreaterThan is not supported in execution backend) I expected this query to return records whose test array contains three or more elements. The field definition is unchanged, and the equality comparison works on the same collection. Is this a limitation of array_length() in Milvus 2.3.3 , or is there another way to express this filter?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "3"
+        "value": "4"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "111"
+        "value": "117"
       },
       {
         "label": "状态",

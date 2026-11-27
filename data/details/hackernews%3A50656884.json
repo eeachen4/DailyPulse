@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50656884",
+  "sourceItemId": "50656884",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50656884",
+  "detail": {
+    "longDescription": "Six years ago I posted &quot;Turn your read later folder into a physical book&quot; here ( https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=24690310 ) and went to watch a movie. I’ve been lurking in HN but didn’t really think much of it. Soon enough, people put all sorts of articles in our engine, commenting in the thread, sharing stories. I was definitely not prepared for this. The idea seemed to resonate, or at least the problem did, so we got excited and built the full thing. And when we eventually launched, people ordered books and seemed to enjoy the reading experience, but it quickly became clear this wasn&#x27;t going to turn into a habit. It was aspirational, maybe cool, but it didn’t solve the actual problem, which is when you decide you want to read something properly, you need to get off the feed. So lots of books have been in bedside tables instead of reading later folders, as the intent didn’t match the delivery. The people who stuck around actually used it as a print button - curating reading experiences and when they wanted to invest time in reading, printed at home (or at staples) and did just that. But Screenbreak wasn’t getting any meaningful traction, so we put it on autopilot and focused on other things. But when AI came around, I started thinking more about what we should build now that we weren’t able back then, and what we would do differently knowing what we&#x27;d learned? The first thing I wanted to check is how good our engine could become with minimal effort. Our latest version on Zyte&#x27;s article extraction benchmark ( https:&#x2F;&#x2F;github.com&#x2F;scrapinghub&#x2F;article-extraction-benchmark ), scored 0.896 (not bad). So we split the benchmark in half and tuned our engine in one half, and it reached 0.96 for this half. But on the other half, it scored 0.924, so there was a bit more work to do to reach readability (0.947) or trafilatura (0.958). But we knew extraction was half of the struggle. The other half is typesetting. How you handle images, captions, tables and page breaks, across different designs. And with AI allowing us to work with Javascript more, we ported our typesetting rules and rebuilt the extraction engine around Mozilla&#x27;s Readability, so it could run in your browser, and get those speed gains as well, on top of a higher baseline. With our extraction rules around it, we&#x27;re at 0.957 (almost as trafilatura), and the typesetting rules sit on top of that. With that working, we started thinking about what the product should actually be this time around. And we decided to focus on the simplest action, what we wanna call the print button of the web. No account, free, instantly accessible. But we also knew a big part of the pain was the read later folders sitting there. So instead of building new workflows, we tried to build as simply as possible around existing workflows. Import the bookmarks that matter from your browser or send your newsletters directly. And as the pile grows longer, maybe use your agent to sift through it and propose a reading experience by asking ”build a 45’ booklet of good science reading”. And if e-ink is your thing, you can send it to your Kindle. We haven’t gone back full time, but it&#x27;s a fun way to keep building on the side with speed :)",
+    "externalUrl": "https://www.myscreenbreak.com/",
+    "developer": "yorgos_kats",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "2"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

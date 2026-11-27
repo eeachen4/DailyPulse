@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5twyq",
+  "sourceItemId": "1y5twyq",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y5twyq/consistent_pointintime_backup_across_multiple_db/",
+  "detail": {
+    "longDescription": "We run several k3s clusters (1 or 3 nodes, on VMs) in our factories, hosting an in-house production management app. It uses CNPG, MongoDB and RabbitMQ as an event bus.\n\nKasten K10 works fine for single-DB failures. But after a total failure we can't restore everything to the same point in time, because each backup is taken at a different moment, so the system comes back inconsistent.\n\nWe thought about VM snapshots, but everything online says that's a bad idea for DBs.\n\nHow do you handle this? Is it the classic \"would be nice, but impossible\"?",
+    "developer": "Shot_System5888",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

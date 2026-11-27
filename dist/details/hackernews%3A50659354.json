@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50659354",
+  "sourceItemId": "50659354",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50659354",
+  "detail": {
+    "longDescription": "For awhile now, I thought it&#x27;d be cool to be able to try out various instrument &#x2F; effect plugins in the browser without having to download them and open up a DAW. I saw this as a challenge, so I spent the last few weeks working on a demo app. One thing I wanted to avoid was making this obscenely costly. Plugins can be CPU and memory intensive, so larger EC2 instances would be needed. However, running even one of these continuously is very expensive, let alone a fleet of them. I initially tried working with a single instance and attempting a sort of preemptive scheduling &#x2F; context switching, but this quickly fell apart: the signal chain between sessions would become polluted, and it was extremely brittle. It&#x27;s around this time that I found that EC2 spot instances can be considerably cheaper. With aggressive session cleanup and instance lifetime limits, I could probably keep this doable. Limitations: * Max session time is an hour. * Only a single signal chain is supported, with an instrument being the root node and one or more effects after it. Parallel chains are technically supported by the engine, but I decided against implementing it in the browser for simplicity. * Plugins marked with &quot;demo&quot; are paid products with a publicly available demo version. These demos will emit crackles or dropouts, so if you like the plugin, consider purchasing it from the developer. * Snapshots allow you to freeze your graph (plugin order, parameter values) at a specific time, and also share your snapshot with others. Currently, snapshots are stored in memory only, as I didn&#x27;t want to over engineer a durable store for a demo app. Also, once your session is over, snapshots are deleted along with it. * Some plugins may work better than others. Implementation details: * Sessions provision EC2 spot instances, or grab hibernating instances from a pool if one is available. * Each EC2 instance runs a worker binary that maintains a graph of nodes, with each node being a Podman container that communicates with the worker via Unix sockets. * Podman images include WINE and yabridge for VST3 only plugins; container initialization time is kept low thanks to fuse-overlayfs preventing redundant copying of the WINE prefix. * Each container has a small VST&#x2F;CLAP host that reads input via the control socket; output can be GUI frames or audio blocks. * Output is streamed over a WebSocket, with WebAudio for scheduling playback",
+    "externalUrl": "https://vst.run/",
+    "developer": "mrmufungo",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

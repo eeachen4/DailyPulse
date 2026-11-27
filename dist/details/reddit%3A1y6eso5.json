@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6eso5",
+  "sourceItemId": "1y6eso5",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y6eso5/i_built_a_free_prometheus_tsdb_storage_kubernetes/",
+  "detail": {
+    "longDescription": "Hey folks,\n\n\n\nAfter getting burned one too many times by PrometheusTSDBCompactionsFailing and sudden PVC exhaustion from high-cardinality label leaks in Kubernetes, I put together a quick write-up and an interactive sizing estimator.\n\n\n\nIt calculates:\n\n\\- Sample ingestion rate (active\\_series / scrape\\_interval)\n\n\\- Raw TSDB disk footprint (\\~1.5 bytes/sample baseline)\n\n\\- Safe Kubernetes PVC size with 30% WAL + compaction headroom\n\n\\- Suggested --storage.tsdb.retention.size flag value\n\n\n\nInteractive guide & quick estimator: [https://opshubs.space/prometheus-storage-sizing-kubernetes-tsdb-retention/](https://opshubs.space/prometheus-storage-sizing-kubernetes-tsdb-retention/)\n\nFull standalone calculator (with memory & IOPS): [https://opshubs.space/tools/prometheus-storage-calculator/](https://opshubs.space/tools/prometheus-storage-calculator/)\n\n\n\nCompletely free, no login required. Curious what compression ratio (bytes/sample) you're seeing in your clusters—let me know if any default assumptions look off!",
+    "developer": "kkkevinkkkk",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.kubernetes"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

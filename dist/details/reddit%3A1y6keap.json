@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6keap",
+  "sourceItemId": "1y6keap",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y6keap/agents_that_loop_on_tool_errors_the_fix_was/",
+  "detail": {
+    "longDescription": "one failure mode we keep seeing on agent builds: a tool call fails, the model retries it with the exact same args, it fails again, and it keeps going until it hits the step limit or burns through the budget. no crash, just a lot of wasted calls.\n\nmost of the time the cause is the error message the tool hands back. stuff like \"Error 400\" or a raw stack trace gives the model nothing to work with, so retrying the same thing is honestly a reasonable guess from its side. when we changed tools to return short, specific errors with a hint (for example \"order_id must be numeric, got 'ABC-123'. use search_orders to look up the id first\") the loops mostly went away. the model actually corrects itself if you tell it what was wrong.\n\nthe second thing was a retry guard in the loop itself, not in the prompt. we hash the tool name plus args, and if the same call fails twice the loop stops sending it and injects a message saying that call already failed, try something else or ask the user. prompt instructions like \"don't repeat failed calls\" helped a little but the model ignores them once the context gets long.\n\nthird, separate \"retryable\" from \"not retryable\" in the error itself. a timeout is worth retrying with backoff in code, the model doesn't even need to see it. a validation error or a permission error should never be retried as is, and saying that explicitly in the response cuts a lot of noise.\n\ncurious what others do here. do you let the model see transient errors at all, or handle all retries in code and only surface the ones it can actually fix?",
+    "developer": "block_intelligence",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

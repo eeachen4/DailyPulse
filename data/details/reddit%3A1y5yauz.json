@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y5yauz",
+  "sourceItemId": "1y5yauz",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y5yauz/where_are_you_running_your_ai_agents_and_are_they/",
+  "detail": {
+    "longDescription": "I'm curious how people are actually deploying and operating AI agents beyond the prototype stage.\n\nI've been building a tool to help developers observe, benchmark, and optimise agent workloads across cloud and local infrastructure. I'd love to hear what's genuinely difficult in real-world deployments rather than make assumptions about what developers need.\n\n**Part 1: Where are your agents primarily running?**\n\n1. AWS — ECS, Lambda, EC2, Bedrock, etc.\n2. Azure — Container Apps, AKS, Azure AI, etc.\n3. GCP — Cloud Run, GKE, Vertex AI, etc.\n4. GPU clouds — RunPod, Modal, etc.\n5. Local / office computers — Home PCs, Mac minis, company machines.\n6. Dedicated AI workstations / on-premises servers / colocation.\n7. Hybrid / other / still developing locally.\n\nDo you run your agent orchestration and LLM inference on the same infrastructure, or are they hosted separately?\n\n**Part 2: What operational questions are you struggling to answer?**\n\n* **Latency & bottlenecks:** How long does an agent run actually take? Which agent, workflow step, tool call, or LLM invocation is slowing everything down?\n* **Infrastructure & scaling:** Are CPU, memory, and GPU resources being used efficiently? Would adding more workers or replicas actually improve throughput?\n* **Model selection & quality:** Would switching to a smaller or cheaper model maintain acceptable accuracy? How do you benchmark different models against the same workload?\n* **Cost optimisation:** How much does a successful agent run actually cost? Could another model, GPU, or inference provider deliver the same results for less?\n* **Cross-cloud & local inference:** Is it worth moving inference between managed LLM APIs, dedicated GPU clouds, and local hardware?\n* **Reliability:** How do you diagnose failed runs, retries, timeouts, and unexpected agent behaviour across multiple services?\n\nAre you solving these problems with existing tools, custom dashboards, manual benchmarking, or simply not monitoring them yet?\n\nI'd also be interested in hearing what existing observability tools are missing.\n\nIf you're interested in testing an early-stage tool focused on these problems, particularly for Azure-hosted agents, feel free to DM me.  \nI'm looking for a few developers willing to try it for free and provide honest feedback.\n\nNo sales pitch — mainly looking to understand what actually matters when operating agents in production.",
+    "developer": "Remarkable_Ad_282",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

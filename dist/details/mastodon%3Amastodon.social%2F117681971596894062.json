@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117681971596894062",
+  "sourceItemId": "mastodon.social/117681971596894062",
+  "fetchedAt": "2026-11-27T05:23:41.848Z",
+  "sourceUrl": "https://infosec.exchange/@decio/117681971506226099",
+  "detail": {
+    "longDescription": "Attached: 1 image\n\nTiens, dans l'air du temps… \n\nShadowserver et ONYPHE ont publié hier deux rapports complémentaires sur les frameworks d'attaque agentiques exposés sur Internet (ARTEX, CyberStrikeAI, PentAGI, Cairn & cie).\n\n[Détection active->scan]\n⬇️ \n\"ARTEX, CyberStrikeAI, PentAGI et cie : cartographie des frameworks IA offensifs exposés\"\n👇\nhttps://blog.onyphe.io/cartographie-des-frameworks-ia-offensifs-exposes/\n\n[Détection passive->honeypots]\n⬇️ \n\"Agentic AI Attack Frameworks in the Wild: What Our Scans and Honeypots Show\"\n👇\nhttps://www.shadowserver.org/news/agentic-ai-attack-frameworks-in-the-wild-what-our-scans-and-honeypots-show/\n\nQuelques chiffres :\n🔹 ONYPHE : 22 frameworks identifiables sur 7'739 IP en 30 jours, honeypots exclus. Hong Kong + Chine ≈ 41 % des IP.\n🔹 Shadowserver : ~4'200 instances exposées au 23.11, scan quotidien de 15 frameworks.\n🔹 ARTEX domine les deux relevés (60 à 70 %).\n\nCôté honeypots Shadowserver : plus de 10'000 événements en deux semaines, depuis 80+ IP hébergeant ces frameworks (près de 9 sur 10 ARTEX).\nLe plus parlant : ~6 IP sur 10 ont tenté d'utiliser les capteurs comme relais, dont plus de 40 % des requêtes vers des services de paiement, bancaires ou crypto.\nPour le reste : chasse aux .env et clés API (LLM compris), VPN, vSphere, Jenkins (admin/admin, évidemment), et l'IA qui attaque l'IA (n8n, Dify, Flowise, MCP…). Côté CVE, Metabase en tête… et PHPUnit CVE-2017-9841. De l'IA agentique pour une CVE de 2017. Cela raconte bien la dette.🙃\n\nCertaines IP tournent 24h/24 pendant plusieurs jours.\n\nConstat savoureux d'ONYPHE : les opérateurs s'exposent eux-mêmes. Sur ARTEX, c'est le premier visiteur d'une console fraîche qui choisit le mot de passe ; Cairn n'a pas d'authentification du tout. Et près de la moitié des « CyberStrikeAI » sont des honeypots déguisés.\n\nPas que théorique : Microsoft a documenté l'usage d'ARTEX par Storm-0940 (tentatives sur 2'250+ environnements M365), et notre OFCS a confirmé mardi les premiers cas en Suisse 🇨🇭 : des entreprises et des exploitants d'infrastructures critiques d'au moins deux secteurs, compromis à chaque fois via des failles connues et des mots de passe faibles. L'office note aussi que le nombre d'agents type ARTEX/CyberStrikeAI visibles sur Internet a presque doublé depuis octobre, et recommande de patcher les failles critiques exposées sous 24 h.\n👇\nhttps://www.bacs.admin.ch/fr/26-ki-agenten-1-fr\n\nMais console exposée ≠ activité malveillante, beaucoup de ces outils servent aussi au pentest légitime.\n\nCôté CTI, Shadowserver intègre ces données dans ses rapports quotidiens (device_type: ai-attack-framework). Un de ces frameworks détéctés sur ton réseau sans autorisation → ce n'est pas la red team, c'est Skynet qui a signé un bail. 🔴\n\nPetit rappel : toute organisation qui gère directement des actifs sur Internet (plages IP, ASN, domaines)peut s'abonner gratuitement aux rapports de scan quotidiens de la Fondation Shadowserver :\nhttps://www.shadowserver.org/what-we-do/network-reporting/get-reports/\n\n#CyberVeille #AgenticAI #ARTEX",
+    "developer": "@decio@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

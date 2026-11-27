@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50656688",
+  "sourceItemId": "50656688",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50656688",
+  "detail": {
+    "longDescription": "Neui is an AI agent and a web framework built as one stack. The core is a server-driven Go web framework ( https:&#x2F;&#x2F;github.com&#x2F;doors-dev&#x2F;doors ); neui ( https:&#x2F;&#x2F;github.com&#x2F;doors-dev&#x2F;neui ) turns each page into an agent harness. FEATURES: The agent sees &amp; operates UI. Annotate what agent can access (links, inputs, buttons), so agent sees it and can assist user with UI operations or even automate it with scripting. ~&gt;neui.Use{ Desc:&quot;submit the form&quot; } &lt;button&gt;Submit&lt;&#x2F;button&gt; or expose context data for the agent: &lt;div class=&quot;card&quot;&gt; ~neui.Data{Text: &quot;the product shown in the card&quot;, Object: product} ... &lt;&#x2F;div&gt; Dynamic tools, right in the markup Same way as you render a button to the user, you give the agent a tool. No endpoints or lifecycle management needed. ~(if user.IsAdmin() { ~neui.Tool[Refund, Receipt]{ Name: &quot;refund&quot;, Desc: &quot;Refund the order&quot;, Handler: orders.Refund, } }) Work environment Isolated file workspaces and sandboxed scripting (&quot;code mode&quot;) out of the box. Agentic apps When a user needs something your UI doesn&#x27;t have, agent builds it on demand. Complete chat experience Thread list, history, message edits, full-text search, a message queue and automatic compaction. Batteries included MCP connector, web search and .xlsx tools, rich building blocks library for generative apps. COMPARED TO COPILOT KIT: - Agent thread runs on the server, so browser can&#x27;t rewrite the history&#x2F;tools to use your LLM backend + less traffic and faster tool-loops - System prompt and provided tool list do not change during operation - it caches and stays hot (because it&#x27;s usually the same for all your users!) - Pull-based, targeted UI sync; agent monitors only parts of UI that are relevant to the task (compared to full state attached to any user message) - Neui is already a harness with its own sandbox - just bring your model. - For generative UI agent writes a small app on specialized micro framework; agent doesn&#x27;t need to answer each click or load user input&#x2F;API responses into context - CON: Is not stack-agnostic, like AG-UI stuff TRY IT: The repo has a demo app with all of this: git clone https:&#x2F;&#x2F;github.com&#x2F;doors-dev&#x2F;neui &amp;&amp; cd neui DEEPSEEK_API_KEY=... go run .&#x2F;examples&#x2F;business-systems&#x2F;backoffice Then open http:&#x2F;&#x2F;localhost:8095. Claude, GPT, Gemini, DeepSeek and any OpenAI-compatible provider will work. STATUS: Both doors and neui are Apache-2.0. I released the first version about 3 weeks ago, so it&#x27;s early and I am still optimizing some system instructions. Neui itself took me 3 months, on top of the 2 years I spent on the framework underneath (it&#x27;s awesome, btw), which made it possible.",
+    "externalUrl": "https://github.com/doors-dev/neui",
+    "developer": "derstruct",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "1"
+      },
+      {
+        "label": "评论",
+        "value": "0"
+      }
+    ]
+  }
+}

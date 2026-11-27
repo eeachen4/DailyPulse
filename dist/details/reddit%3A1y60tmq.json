@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y60tmq",
+  "sourceItemId": "1y60tmq",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y60tmq/which_token_logits_rise_or_fall_after_a_small/",
+  "detail": {
+    "longDescription": "I'm a co-author of DV-Lens. We wanted to test a prediction you can make from a weight matrix: if you perturb a particular parameter direction, which tokens should become more likely on the next step?\n\nWe estimate how the output logits respond to changes in each attention or feed-forward module on a reference set of prompts. That gives each parameter column a signed score for every token. We then apply a small perturbation and compare the predicted signs with the changes we actually measure.\n\nAcross 720 test cases from nine models, the signs agreed on 98.0% of vocabulary coordinates on average. Predicting the exact top movers was harder. For attention keys, for example, only about 21% of the tokens in the predicted top and bottom 32 also appeared in the corresponding measured sets. I'd be interested in how other people evaluate lenses when the sign is right but the ranking shifts.\n\n[Paper and per-module results, Table 2](https://arxiv.org/abs/2610.04489)",
+    "developer": "Flashy-Fisherman-503",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y65oyb",
+  "sourceItemId": "1y65oyb",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y65oyb/the_line_item_that_doubled_our_ci_usage_without_a/",
+  "detail": {
+    "longDescription": "Sharing a diagnostic that took us embarrassingly long to see, in case it helps someone else's bill review.\n\n\n\nGitHub bills hosted runners per minute, rounded up per job. We run a busy merge queue (agent-generated PRs, lots of small jobs), and when I finally grouped our usage by job duration instead of by workflow, a huge share of our billed minutes were jobs under 30 seconds — each billed as a full minute. Real work and billed work were two different numbers, and we'd been optimizing the real one.\n\n\n\nThree things that actually moved it for us:\n\n1. Consolidating convenience matrices (splits that existed for tidiness, not parallelism).\n\n2. Cancelling superseded runs aggressively — a cancelled 50-second job still bills its minute if it started, so keeping it from starting matters more than killing it fast.\n\n3. Moving the short-job traffic to per-second metering.\n\n\n\nOn (3), full disclosure: I operate SolveLang, which is the per-second service we ended up building for this (Standard $0.004/min, 10-second minimum, fresh machine per job, 300 free minutes to test it). Not the cheapest per-minute rate out there — the metering is the feature. There's also a free check that prices any public repo's recent real runs under both models if you want your own rounding number first: [https://www.solve-lang.com/ci-bill-check/](https://www.solve-lang.com/ci-bill-check/)\n\n\n\nOur own audited numbers, for scale (our queue, Nov 3–6, 2026 — dogfood, not a benchmark): 34.3 CI job-hours per merged PR before we attacked this, 42.4% of CI time spent in queue wait.\n\n\n\nCurious how others are handling the rounding tax — especially anyone who's modeled whether GitHub's postponed $0.002/min self-hosted fee (announced Dec 2025, postponed before the Mar 2026 start) changes the self-host math if it comes back.",
+    "developer": "SAIIDZ1",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

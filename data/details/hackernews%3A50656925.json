@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50656925",
+  "sourceItemId": "50656925",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50656925",
+  "detail": {
+    "longDescription": "As I started developing more projects using AI assistance over this year, I started facing the problem that most people have voiced against using AI - the overall architecture&#x2F;design of the project becomes known only to the agent, and you lose control of the project. I thought what if we could map the architecture, calls, routes, table schemas etc. from the code - that is how this project was born in October. Now I searched a little bit and came upon a few different projects, but none of them did what I wanted to do - at least in full. And quite a few of them used LLMs themselves to do that - which could be plausibly wrong (hallucinated) and non deterministic. Therefore I have built this over the last 2 months to create a base which: 1. Extracts routes, table schema, request and response bodies across HTTP requests, Tauri calls etc. 2. Gives you an overview of the architecture which you can dive into including how each handler is linked to routes or tables - it works in both directions in a fan out mode from any layer 3. Gives you an overview of the table schema extracted from the project and how they link together 4. An OpenAPI spec extracted from the project, with a try-it mode like Swagger 5. Change impact and what changing a particular piece of code might impact across the stack 6. It supports zero or more frontends, and one or more backends together in a project and how they all link together It supports TypeScript &#x2F; JavaScript (Express, Next.js, Angular, Angular HttpClient, hey-api, fetch, axios, Prisma, Drizzle, Sequelize, TypeORM, Orval and Supabase clients), Python (FastAPI, SQLModel), Go (net&#x2F;http, chi, gin, GORM), and Rust (Axum, Tauri commands, Diesel). Database support is for SQL (tested with Postgres) and Java, C# and Dart get structure only in this preview release. It also has a read-only MCP server which agents can use to get Graphvein-verified information and not have to grep around files to figure things out. No data leaves your computer (other than the try it environments you configure yourself), and everything is done locally, without any LLM (not even local LLMs). I do plan on adding LLM support in the future, but only building upon this base - for gap-filling, generation of wikis and other features which can use the deterministic core and build upon it. And it will remain opt-in even then. Please feel free to check out the GitHub repo or the website ( https:&#x2F;&#x2F;graphvein.com&#x2F; ) to get more details. Please let me know which language support&#x2F;framework would make this more appealing to use, or if you have any other feature requests.",
+    "externalUrl": "https://github.com/graphvein/graphvein/",
+    "developer": "saptashwa",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "1"
+      }
+    ]
+  }
+}

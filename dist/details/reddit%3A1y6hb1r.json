@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6hb1r",
+  "sourceItemId": "1y6hb1r",
+  "sourceUrl": "https://www.reddit.com/r/selfhosted/comments/1y6hb1r/removed_by_moderator/",
+  "detail": {
+    "longDescription": "Hey r/selfhosted! I wanted to share a homelab project I've been building solo on my Linux server: **AntiCord** (v1.1.0), a real-time chat and WebRTC voice/video platform running entirely in Docker.\n\n**The Stack & Architecture:**\n- **Reverse Proxy & Edge:** Cloudflare Tunnel (`cftunnel`) -> Nginx Proxy Manager -> 3 lightweight Docker containers (`anticord-backend`, `anticord-frontend`, `anticord-web`).\n- **Backend:** Python 3.12 + FastAPI + native WebSockets (`/gateway`) + **SQLite** on a persistent volume (`/data/anticord.db`) using an `extra_json` column pattern for painless schema evolution.\n- **Automated Backups:** Daily `cron` job at 03:30 using SQLite's online `.backup()` API, gzipped with 7-day rotation.\n- **Voice & Media:** WebRTC P2P mesh with automatic server Relay fallback + local **RNNoise WASM** noise cancellation running in the browser's AudioWorklet (zero server CPU overhead).\n- **Security & Extras:** RFC 6238 TOTP 2FA, active device session revocation, SSRF-protected link previews, incoming channel webhooks, and a live public status page.\n\nYou can test the live instance right in your browser (with a **1-click Guest Mode**, no signup/download needed): https://anticord.nexoapp.dpdns.org\nPublic status page: https://anticord.nexoapp.dpdns.org/status.html\n\nWould love any architectural feedback from fellow self-hosters (especially around SQLite scaling, WebRTC relay handling, or Docker hardening)!",
+    "developer": "Hot-Cancel-8292",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.selfhosted"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

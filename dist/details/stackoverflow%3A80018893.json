@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018893",
+  "sourceItemId": "80018893",
+  "sourceUrl": "https://stackoverflow.com/questions/80018893/confusion-between-text-and-number-while-reading-excel-using-xlrd",
+  "detail": {
+    "longDescription": "I am trying to read an Excel file using xlrd, inside cells containing a formula using IF : in one case the cell contains a string, otherwise it is the result of a calculation. I get a very odd behaviour : some cells which clearly contain text are considered to be numbers after being read by xlrd. This is annoying because in the code I'm trying to write, there should be a test based on the content of a cell : if the cell contains text then it should be ignored, otherwise I use the value to some other purpose And even weirder, if I modify the formula inside the Excel file (for example I change only the string that should be printed), it can alter the type of cell obtained after reading the file with xlrd. Here is a sample code : import xlrd import os os.chdir(\"C:\\\\Users\\\\Olivier\\\\Downloads\") document = xlrd.open_workbook(\"test.xls\") feuille_1 = document.sheet_by_index(0) for i in range(4): cell=feuille_1.cell(rowx=i, colx=0) print(cell) print(cell.ctype) Here is the content of the Excel file test.xls : A B 1 =IF(B1>0;\"YES\";\"NO\") 1 2 YES 3 =IF(AL15=\"\";\"hello\";AL15/AM15) 4 =IF(A5=\"\";\"hello\";A5/B5) All other cells are empty. After execution of the code, here is what I get : number:0.0 2 text:'YES' 1 text:'hello' 1 number:0.0 2",
+    "developer": "O Janin",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "100"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

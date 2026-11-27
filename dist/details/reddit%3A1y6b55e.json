@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6b55e",
+  "sourceItemId": "1y6b55e",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y6b55e/bytedance_seed_opensources_laminar_an_async_rl/",
+  "detail": {
+    "longDescription": "ByteDance Seed has open-sourced Laminar, the framework behind its EuroSys 2026 paper on asynchronous RL post-training for language models. It is Apache 2.0, published under the verl-project org on GitHub, and built on verl with vLLM for generation.\n\nThe problem it targets: in RL post-training, a few very long rollouts stall everything, because the trainer and inference replicas normally swap weights in lockstep. Laminar decouples them - finished trajectories go into an experience buffer, relay workers stage new weights, and a \"dynamic repack\" step moves straggling long trajectories onto a few replicas so the rest can update.\n\nSelf-reported numbers from the paper and repo:\n\n- Up to 5.48x higher training throughput on a 1,024-GPU cluster\n- Their software-engineering recipe (Qwen3-Coder-30B-A3B-Instruct on SWE-rebench, 64 H800 GPUs) lifted SWE-bench Verified from 46.6% to 52.2%, above the baseline's 51.4% peak - with 33% fewer trained samples and 64% fewer GPU-hours\n\nCaveat, as always with vendor numbers: these are the authors' own figures, and independent reproductions on other clusters are what to watch next.\n\nSource: https://thelatentdaily.com/articles/open-source-ai-week-laminar-harness-adapters/\n\nDo you think async RL infra like this meaningfully changes who can afford to RL-train coding models, or is it mostly a win for labs already running thousand-GPU clusters?",
+    "developer": "winer666",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

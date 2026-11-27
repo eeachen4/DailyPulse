@@ -7,7 +7,7 @@
   "detail": {
     "longDescription": "I am using MobaXterm, and have an SSH tunnel connecting port 9997 and 3306 (MySQL). I can access MySQL fine through the command line, but when I try to access it from a Python script (using python3 myscript.py on the command line), I get the error: DatabaseError: 2003 (HY000): Can't connect to MySQL server on '127.0.0.1:9997' (111). Here is myscript.py : import mysql.connector conn = mysql.connector.connect(port=9997, user='---', password='---', database='---') csr = conn.cursor() csr.execute(\"SELECT * FROM mytable LIMIT 10;\") for i in csr: print(i) Why does it not work? I am using a remote SSH terminal. port=3306 does not work either. I discovered that using unix_socket= instead of port and host works though. Why doesn't port=3306 work?",
     "developer": "calcitecrow",
-    "comments": 2,
+    "comments": 1,
     "stats": [
       {
         "label": "分数",
@@ -15,15 +15,15 @@
       },
       {
         "label": "回答",
-        "value": "2"
+        "value": "1"
       },
       {
         "label": "浏览",
-        "value": "286"
+        "value": "294"
       },
       {
         "label": "状态",
-        "value": "已回答"
+        "value": "未回答"
       }
     ]
   }

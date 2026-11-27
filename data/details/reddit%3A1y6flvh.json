@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6flvh",
+  "sourceItemId": "1y6flvh",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y6flvh/inkling2minicyber_surgical_00065_weight_edit_for/",
+  "detail": {
+    "longDescription": "I've been working on getting [thinkingmachines/Inkling-2-Mini](https://huggingface.co/thinkingmachines/Inkling-2-Mini) usable as a fast, offline local model for **authorized cybersecurity research, red-team engineering, and CTI workflows**.\n\n**Hugging Face:** [https://huggingface.co/sergiogmn/Inkling-2-Mini-Cyber-GGUF](https://huggingface.co/sergiogmn/Inkling-2-Mini-Cyber-GGUF)\n\n# What's technically interesting \n\n* **Only 0.0065% of parameters were touched (**`20 / 704` **tensors,** `1.72M` **params):** Trained a rank-16 LoRA (`alpha=32`) strictly on `layers.{4..23}.self_attn.o_proj` using a 555-row eval-disjoint SFT mix (382 on-policy Inkling + 173 Qwen3.8-27B-abliterated MITRE rows, \\~49 min on 1× A100-80GB).\n* **Zero-PyTorch GGUF splicing:** Spliced the adapter directly into the 20 `Q8_0` `attn_output.weight` matrices (`--scale 1.55`) while copying all 128 MoE experts and the other 684 tensors byte-for-byte. Runs out of the box in vanilla `llama.cpp`, Ollama, and LM Studio with zero custom hooks.\n* **Quants included:** `IQ4_NL` (`17.63 GB`, 24 GB VRAM), `Q6_K` (`24.70 GB`), `Q8_0` (`27.82 GB`), stock `mmproj-F16.gguf` for vision, plus the `6.89 MB` BF16 PEFT `adapter/` and the NumPy splicing script so you can patch any other quant yourself.\n\n# Benchmarks (IQ4_NL, same harness + Qwen3Guard-Gen-8B judge, zero hooks)\n\n* **CyberSecEval MITRE-120:** Refusals `100 → 1` (`68.3%` full / `75.8%` full+partial @ 4K vs. stock `0% / 0.8%`)\n* **CTIBench CVE→CWE-100:** `66.0%` (stock `63.0%`, `Qwen3.8-27B-abliterated Q4_K_M` `60.0%`)\n* **CyberMetric-500 / CTIBench MCQ-250:** `92.8%` / `74.0%` (within \\~1% of both stock and Qwen3.8-27B, at \\~4× the decode speed of 27B dense)\n* **AdvBench (104,** `medium`**):** `95.2%` (`0` refusals), `0/104` harmless over-refusals\n* **Agentic tool use (**`pi_bench`**, 5 multi-step tasks):** `5/5` (`14` calls, `49.6s`)\n\n# Trade-offs\n\n* Full `HumanEval+` (164) dips from stock `93.3%` (`153/164`) to `82.9%` (`136/164`, including 10 length-cap hits; `code_16` screen stays `16/16`). `GSM8K-128` is `91.4%`, `MMLU-256` is `78.5%`.\n* Non-thinking (`reasoning_effort=none`) compliance is partial (`64.4%` AdvBench) because only 5% of the v1 SFT rows were `none`\\-mode. **Thinking mode (**`medium`**) is recommended**.\n\n*(Teacher generation and evals were run on* [*Tintero*](https://github.com/GodGMN/tintero)*, my custom engine for Inkling which is still a WIP, though the released GGUFs run on stock* `llama.cpp` *with no special flags. Feedback and quant/eval requests for v2 are very welcome!)*",
+    "externalUrl": "https://i.redd.it/84pq0qkkr14i1.png",
+    "developer": "GodGMN",
+    "comments": 5,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
