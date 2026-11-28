@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80019073",
+  "sourceItemId": "80019073",
+  "sourceUrl": "https://stackoverflow.com/questions/80019073/updating-a-pyside6-label-with-each-keystroke",
+  "detail": {
+    "longDescription": "I have a beginner exercise where I need to make a label that shows the input text, but in uppercase. I tried to create a function with the same name, before I realized setText was a built-in function. The current code just repeats the input text as each character is typed in, without upcasing. I have no idea how to make it work properly. import sys from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget class MainWindow(QMainWindow): def __init__(self): super().__init__() self.setWindowTitle(\"ALL CAPS\") layout = QVBoxLayout() self.input = QLineEdit() self.label = QLabel(\"\") self.input.textChanged.connect(self.label.setText) layout.addWidget(self.input) layout.addWidget(self.label) widget = QWidget() widget.setLayout(layout) self.setCentralWidget(widget) app = QApplication(sys.argv) w = MainWindow() w.show() app.exec()",
+    "developer": "honestlywhatever",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "0"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "78"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

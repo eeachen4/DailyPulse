@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7c4nx",
+  "sourceItemId": "1y7c4nx",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y7c4nx/which_amd_kernel_would_you_optimize_next_inkling/",
+  "detail": {
+    "longDescription": "A seven-token draft window had our 9070 XT check 233 guesses to keep 93 of them. We dropped the window to five and it kept the same 93 out of 168. Decode went from 79.01 to 97.50 tok/s on the same prompt.\n\nI work on ZINC. I want AMD to be a first choice for running models locally, and I’d like more people who own these cards to write the kernels. The 16 GB RX 9070 XT fit the 13.9 GiB Inkling 2 Mini checkpoint and the drafter. In our DSpark memory probe it had 271 MiB left.\n\nWe ran both engines as servers on the same cards, with a single slot and a 4,096-token context. This is the incident prompt, 336 tokens in and 128 out. The numbers are medians of three requests after a warmup, in prefill / decode tok/s. llama.cpp was v1.1.0. Both engines used the same Q4\\_0 target and, with DSpark enabled, the same Q8\\_0 drafter. [Exact target GGUF](https://huggingface.co/codegood/Inkling-2-Mini-GGUF/blob/7d95146e8e432955d714c17db9a3d9703cd53263/Inkling-2-Mini-Q4_0.gguf)\n\n|Card and draft mode|ZINC ROCm|llama.cpp ROCm|llama.cpp Vulkan|\n|:-|:-|:-|:-|\n|RX 9070 XT, off|746.71 / 59.65|87.07 / 34.97|534.05 / 50.72|\n|RX 9070 XT, on|743.58 / 96.95|60.79 / 21.05|373.47 / 80.71|\n|R9700, off|746.25 / 63.99|226.00 / 41.46|713.71 / 45.99|\n|R9700, on|742.40 / 91.35|153.64 / 35.87|495.60 / 62.34|\n\nThe 9070 XT’s ZINC numbers come from the tuned runs. For llama.cpp Vulkan I kept the fastest measured decode median and its corresponding prefill. Across four prompts, the RX 9070 XT's smallest decode lead over Vulkan was 17.6% with drafts off and 20.1% with them on. The R9700's was 39.0% and 46.5%.\n\nThe 32 GB R9700 also recovered three planted codes from a 62,591-token prompt in a 65,536-token window. We could allocate 401,408 tokens with DSpark and generate from a 3,167-token prompt. [Full timings and context tests](https://zolotukhin.ai/blog/2026-11-26-inkling-2-mini-amd-rx-9070-xt-radeon-ai-pro-r9700-benchmarks/)\n\nTwo places I’d start with a profiler.\n\n* **HIP.** Time the packed Q4\\_0 expert projection during ordinary decode. Does it spend more time loading the routed weights or doing dot products? [HIP kernel](https://github.com/zolotukhin/zinc/blob/88360b9fda3c23cd32b799c36dfe347b0d36ac67/src/shaders/cuda/inkling.cu#L230)\n* **Vulkan.** Our own path did about 34–36 tok/s and trailed llama.cpp Vulkan on both cards. I’d profile the packed dot-product shader before changing how it distributes rows and loads weights. [GLSL shader](https://github.com/zolotukhin/zinc/blob/88360b9fda3c23cd32b799c36dfe347b0d36ac67/src/shaders/inkling_q4_0_q8.comp)\n\nThese are Inkling development builds. ZINC v0.1.2 is out for Linux and Apple Silicon has a Metal preview. [Source](https://github.com/zolotukhin/zinc) · [Release notes](https://github.com/zolotukhin/zinc/releases/tag/v0.1.2)\n\nIf you have either card and feel like writing a kernel, I’d love to compare a before/after trace on the same GGUF.",
+    "developer": "Mammoth_Radish2",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LocalLLaMA"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

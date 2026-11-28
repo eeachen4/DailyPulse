@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80019038",
+  "sourceItemId": "80019038",
+  "sourceUrl": "https://stackoverflow.com/questions/80019038/why-use-foreignkey-ondelete-cascade-if-relationship-cascade-all-d",
+  "detail": {
+    "longDescription": "I’m using SQLAlchemy 2.x with PostgreSQL and declarative models. I have a parent-child relationship between User and Testimonial . from __future__ import annotations from datetime import datetime from sqlalchemy import String, ForeignKey, DateTime, func, create_engine from sqlalchemy.orm import ( DeclarativeBase, Mapped, mapped_column, relationship, Session, ) class Base(DeclarativeBase): pass class User(Base): __tablename__ = \"users\" id: Mapped[str] = mapped_column(String, primary_key=True) testimonials: Mapped[list[\"Testimonial\"]] = relationship( \"Testimonial\", back_populates=\"user\", cascade=\"all, delete-orphan\", ) class Testimonial(Base): __tablename__ = \"testimonials\" id: Mapped[str] = mapped_column(String, primary_key=True) user_id: Mapped[str] = mapped_column( String, ForeignKey(\"users.id\", ondelete=\"CASCADE\"), nullable=False, ) user: Mapped[\"User\"] = relationship( \"User\", back_populates=\"testimonials\", ) created_at: Mapped[datetime] = mapped_column( DateTime(timezone=True), server_default=func.now(), nullable=False, ) I understand that this part: cascade=\"all, delete-orphan\" is SQLAlchemy ORM-level cascade behavior. But I also added this database-level foreign key behavior: ForeignKey(\"users.id\", ondelete=\"CASCADE\") Why do I need both? Specifically: Is ForeignKey(..., ondelete=\"CASCADE\") redundant if relationship(..., cascade=\"all, delete-orphan\") is already defined? If I delete a user using SQLAlchemy ORM like this: session.delete(user) session.commit() does SQLAlchemy use the ORM cascade, the database cascade, or both? If I delete a user using raw SQL directly in PostgreSQL: DELETE FROM users WHERE id = 'some-user-id'; will the ORM cascade run? I assume not, because the ORM is not involved. In that case, is the database-level ON DELETE CASCADE required to avoid orphaned rows or foreign key errors? What is the recommended pattern when using both database-level ON DELETE CASCADE and SQLAlchemy ORM relationships? Should I also use passive_deletes=True ? For example, should this: testimonials: Mapped[list[\"Testimonial\"]] = relationship( \"Testimonial\", back_populates=\"user\", cascade=\"all, delete-orphan\", ) become: testimonials: Mapped[list[\"Testimonial\"]] = relationship( \"Testimonial\", back_populates=\"user\", cascade=\"all, delete-orphan\", passive_deletes=True, ) I searched the SQLAlchemy documentation, but I’m still confused about the exact difference between: ForeignKey(..., ondelete=\"CASCADE\") and: relationship(..., cascade=\"all, delete-orphan\") Are they protecting against different scenarios? Is one optional? What happens if I remove either one?",
+    "developer": "user30892144",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "3"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "71"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

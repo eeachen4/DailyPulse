@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80018899",
   "sourceItemId": "80018899",
+  "fetchedAt": "2026-11-28T05:00:28.891Z",
   "sourceUrl": "https://stackoverflow.com/questions/80018899/does-reassignment-with-the-same-variable-name-in-rust-not-allow-for-reclamation",
   "detail": {
     "longDescription": "Take the following snippet as an example (from the Rust bible): let x = 5; //A let x = x+1; //B My understanding is as follows: The program implicitly defines x as a u32 integer (or some other int type) with a value of 5 (A). It defaults to an immutable type, which means it can only be 'modified' (even though no modification of the original memory is being done) by using the let keyword. The program then reserves new memory for whatever type was implicitly defined in the prior step and binds it to the value 6. Since the new x is not bound yet/not in scope, the 'x' used during the assignment is A. x is now 'B'. Since there is no scope separation between the two variables, there is never a way to access the original x again. If we had used separate names for the variable (let x = ...; let y = ...; ) then I can still do whatever I want with the x variable later. But in the example case, I'm failing to see how we haven't just used memory with no way to get it back until we exit the scope. I come from CPP, and to me this renaming looks a bit like reassigning where a pointer is pointing to without freeing the original memory. We just have this dangling 'x' whose memory I can never reclaim within the scope. It 'smells' like a memory leak, at least within the active scope, for lack of a better term (I understand the pointer still exists and will get cleaned up when the program exits scope). Is there really no way to ever access the original x again? What if I want that memory later on within the same scope?",
@@ -10,7 +11,7 @@
     "stats": [
       {
         "label": "分数",
-        "value": "0"
+        "value": "1"
       },
       {
         "label": "回答",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "74"
+        "value": "111"
       },
       {
         "label": "状态",

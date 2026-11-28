@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y792y3",
+  "sourceItemId": "1y792y3",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y792y3/the_booking_went_through_the_agent_only_saw_a/",
+  "detail": {
+    "longDescription": "Suppose I ask an agent to book a room for Tuesday at ten. The booking service creates reservation B42, but the connection drops before the agent gets the confirmation. I'm still looking at a spinner. A minute later I refresh the page and a second worker picks up my request. It has the room, the time and my original instruction. The only thing missing is the answer that matters to me: do I have the room?\n\n\n\nHere's how I'd test that handoff. I'd give the first worker a booking reference before it sends anything, then have the test booking service save the reservation and deliberately drop the response. I'd restart the worker and watch what it does while the service's search screen still shows an empty result. That interval is where I'd expect a second reservation to sneak in.\n\n\n\nIf the service lets me look up my booking reference, I'd use that. A matching confirmation gives the agent something it can show me. If the service promises that sending the same reference again returns the original booking, I'd test that promise too, including how long it lasts. Some booking systems give you neither option. In that case I'd want the agent to tell me it's checking, leave the slot alone, and give the person taking over the room, time and reference to check with the venue.\n\n\n\nAt the end of the test I'd open the venue's reservation list myself. One reservation and two entries in the worker log tell a very different story from two reservations and one cheerful confirmation.\n\n\n\nIf your booking search can lag behind a successful write, what evidence lets your worker safely try again?",
+    "developer": "builds_small_things",
+    "comments": 9,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

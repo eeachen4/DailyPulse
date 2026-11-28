@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6ymzt",
+  "sourceItemId": "1y6ymzt",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y6ymzt/a_coding_agent_committed_a_credential_to_a_public/",
+  "detail": {
+    "longDescription": "I'm the founder of ExecLayer, which works on AI execution governance, so this is my area. No link here, just the incident and a question.\n\nOn November 21, Together AI disclosed that an AI coding agent working on its public GitHub repository, xorl, committed a credential. That credential gave access to a private Hugging Face repository holding customer prompt samples collected for authorized software testing, mostly from June and July 2026.\n\nAutomated scanning caught it and the commit was reverted. By then an unauthorized party had already taken the credential and downloaded the prompts. It then tested credentials it found in those samples. Five of the ones it tested were canaries from a security experiment by Dragos. Together AI brought in outside investigators and law enforcement and hasn't said how many customers were affected.\n\nA scanner that reports a leak after publishing helps you respond, but by then the key has left your control. The decision that was missing came before publication.\n\nWhat I'd look at anywhere an agent can push to a public repo:\n\n- A blocking check before public release, not only scanning after.\n- Sensitive samples, and the credentials that protect them, kept out of environments that publish code.\n- Agent credentials with only the access they need, and an expiration.\n\nIf your coding agent publishes a change today, what stops a secret access key from going out with it? Pre-commit hooks, push protection on the host, review, or nothing yet?",
+    "developer": "ExecLayer_io",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

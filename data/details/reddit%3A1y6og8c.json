@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6og8c",
+  "sourceItemId": "1y6og8c",
+  "sourceUrl": "https://www.reddit.com/r/kubernetes/comments/1y6og8c/open_source_plugin_that_shows_the_cost_of_each/",
+  "detail": {
+    "longDescription": "Hi all, I work at Octopus Deploy, and I'm one of the Argo CD maintainers. If you deploy with Argo CD and run OpenCost, this might be useful.\n\nOpenCost shows cost per namespace, pod, or label, but application teams think in Argo CD applications and syncs. After a release, they kept asking me whether the sync made their application more expensive, and neither tool had a direct answer. So we built Cost Intelligence for Argo CD, an open source plugin (Apache 2.0) that adds a cost tab to each application in the Argo CD UI.\n\nA few things that make devs' lives easier:\n\n* It splits the cost by application even when several applications share a namespace, using the resources Argo CD lists for each one instead of pod labels.\n* It measures each application after every successful sync, so the tab shows the change since the last sync.\n* It keeps a daily history in its own database, so the trend remains even after Prometheus no longer has those days.\n\nIt is compatible with Argo CD 3.4, 3.5, or 3.6 and OpenCost on the same cluster, and it measures only that cluster. It's an early release, so Helm values may still change between minor versions. We already have pull requests open from outside Octopus for Kubecost support and multi-cluster costs, so contributions are very welcome.\n\nRepo: [https://github.com/OctopusDeploy/cost-intelligence-argocd](https://github.com/OctopusDeploy/cost-intelligence-argocd)  \nDocs: [https://cost-intelligence-argocd.readthedocs.io/en/stable/](https://cost-intelligence-argocd.readthedocs.io/en/stable/)\n\nI'd like to hear how you track cost per team or per application today, and what you'd want a tool like this to show.",
+    "externalUrl": "https://i.redd.it/t4y5xknob44i1.jpeg",
+    "developer": "PatPapapetrou",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y72pgs",
+  "sourceItemId": "1y72pgs",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y72pgs/self_taught_backend_engineer_looking_for_feedback/",
+  "detail": {
+    "longDescription": "TL;DR: Running a Dockerized Node.js backend on a single EC2 instance with Nginx, blue-green deployments, and SSH-based CI/CD. Serving 20–30K DAUs comfortably. Looking to improve security, filter junk traffic, and adopt better deployment practices without unnecessary complexity.\n\nCurrent architecture:\n\n\\- Single EC2 instance with a public IP.\n\n\\- API domain resolves directly to the instance's public IP (which doesn't feel right).\n\n\\- Nginx and Node.js backend run in Docker on the same network.\n\n\\- Port 443 is publicly accessible and mapped to Nginx.\n\n\\- GitHub Actions connects via SSH, pulls the latest image from Docker Hub, starts the inactive container, waits for the health check, switches Nginx traffic, and stops the previous container.\n\n\\- Self hosted Prometheus and Grafana on a separate instance.\n\nBlue-green deployments work well with zero downtime. We rarely exceed 20 requests/sec, so scaling isn't currently a concern.\n\nWhat I need advice on:\n\n1. Security and architecture: What would you change in this architecture to make it more secure and production-grade?\n\n2. Junk traffic: I've noticed increasing requests from automated scanners probing paths like \"/.env\". I'm considering moving EC2 into a private subnet behind an ALB. Would that help, or should I consider something like WAF? Is there a simpler, more cost effective solution?\n\n3. SSH-based deployments: Is keeping port 22 publicly accessible a bad practice? If I close it, what's the recommended approach for automated deployments?\n\nA little background:\n\nI joined this company as a full stack engineer. When my company needed someone to handle DevOps, I volunteered despite having no prior DevOps experience. I learned along the way and built the current deployment and monitoring infrastructure myself.\n\nEverything works well so far, but I want to understand what experienced DevOps engineers would do differently.\n\nI want to do things right, not just make them work. I want to follow the best industry practices and I'm willing to embrace complexity where it's justified, but I don't want to engineer solutions for problems we don't have.\n\nWould appreciate any advice, architectural suggestions, or resources.",
+    "developer": "ahmedshahid786",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

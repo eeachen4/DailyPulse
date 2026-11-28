@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6ni0s",
+  "sourceItemId": "1y6ni0s",
+  "sourceUrl": "https://www.reddit.com/r/LanguageTechnology/comments/1y6ni0s/sentiment_models_really_cannot_handle_polite/",
+  "detail": {
+    "longDescription": "been cleaning up some customer survey data at work and our off the shelf sentiment tagger keeps scoring passive aggressive feedback as strongly positive just because people use softeners and polite phrasing.\n\nsomeone will write something like \"well i appreciate the effort even if the whole order arrived broken, bless their hearts\" and the model sees appreciate and bless and gives it a 0.92 positive score. even fine tuning on a few hundred examples barely dents it when the sarcasm is wrapped in nice manners\n\ni ended up writing a dumb little rule check just to catch phrases like \"at least\" and \"i suppose\" paired with product nouns so they get flagged for manual review instead of going straight into the happy bucket. feels backwards building regex patches on top of a transformer in 2026 but here we are",
+    "developer": "MundaneFoothold",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LanguageTechnology"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

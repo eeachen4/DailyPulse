@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "id": "mastodon:mastodon.social/117689464378919910",
+  "sourceItemId": "mastodon.social/117689464378919910",
+  "fetchedAt": "2026-11-28T05:00:28.891Z",
+  "sourceUrl": "https://infosec.exchange/@hasamba/117689464355679827",
+  "detail": {
+    "longDescription": "----------------\n\n🎯 AI: Command Speed in AI-Assisted Intrusions\n===================\n\nA vendor describes attacks in which AI agents executed context-aware commands and made decisions during an intrusion. One reported campaign involved 117 unique scripts and more than 8,000 unique commands over 12 days. The supplied excerpt does not identify the actor or victim, or provide evidence for independent verification.\n\n🔹 Scope and findings\n\nThe article describes a separate attack with a human-operated phase followed by an agentic AI phase. During the human phase, the mean interval between commands was approximately 24 seconds. The vendor reports typing errors, repeated manual checks and confusion about the environment. During the agentic phase, the median interval was 1.4 seconds, and the observed commands reportedly had no syntax errors.\n\nThe two timing figures use different statistics: a mean for the human phase and a median for the agentic phase. They indicate a difference in the reported observations, but do not support a precise speed ratio. The excerpt does not provide the underlying command sequence, sample size for the timing comparison, or a method for attributing the second phase to an AI agent.\n\n🔹 Attack Chain Analysis\n\nThe article describes activities that an instructed AI agent can perform, rather than a complete, ordered chain for either named observation:\n• 🔍 Reconnaissance: scan networks and enumerate the environment.\n• 🛡️ Privilege escalation: attempt to obtain higher privileges.\n• ⚙️ Execution: use legitimate native tools while operating in the environment.\n\nInitial access, specific commands, persistence mechanisms and outcomes are not documented in the supplied excerpt. Data extraction and encryption appear as possible consequences of delayed response, not as confirmed outcomes of the reported campaign.\n\n🔹 Detection and response\n\nThe vendor argues for local AI-based detection on endpoints and next-generation firewalls. Its examples include terminating malicious web shell sessions and blocking active privilege escalation locally. In its own deployment, it reports processing in milliseconds, compared with minutes for agentic LLMs. The excerpt provides no benchmark methodology or workload details for that comparison.\n\nLocal processing is also presented as a way to maintain coverage without continuous cloud connectivity and keep sensitive telemetry on site. The article further proposes combining network, endpoint, identity and cloud telemetry through normalization into a common schema. The supplied text ends while describing how related data would be joined, so the implementation details are incomplete.\n\n🔹 Limitations\n\nThe findings are vendor observations, not independently verified in the excerpt. No IoCs, CVEs, detection rules, affected organizations or command artifacts are supplied. Command timing and error rate are reported characteristics of one comparison, not validated standalone signatures for AI attribution. The article also promotes a defensive approach in an area where the vendor has related products.\n\n🔹 AI #AgenticAI #EndpointDetection #NGFW\n\n🔗 Source: https://unit42.paloaltonetworks.com/ai-threat-horizon/",
+    "developer": "@hasamba@infosec.exchange",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "收藏",
+        "value": "0"
+      },
+      {
+        "label": "转发",
+        "value": "1"
+      },
+      {
+        "label": "网站",
+        "value": "Infosec Exchange"
+      }
+    ]
+  }
+}

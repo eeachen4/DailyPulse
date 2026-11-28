@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7c1dy",
+  "sourceItemId": "1y7c1dy",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y7c1dy/i_built_a_nav_bar_that_shrinks_to_icons_as_you/",
+  "detail": {
+    "longDescription": "I first noticed this on District: scroll down and the bottom nav quietly shrinks to its icons, scroll back up and the labels return. Nothing hides, so the tabs are always one tap away. I wanted it in React Native, so I built it as a package.\n\nThe site has a phone running the real component (React Native Web in an iframe) with controls next to it. Change the layout, active tab colour, glass, placement or action button, then scroll the phone and see how it behaves.\n\n[react-native-shrinking-tab-bar](https://www.npmjs.com/package/react-native-shrinking-tab-bar)\n\nA few things I ran into building the playground:\n\n• The phone is the real app, not a video. It's an Expo web export of a small demo, and the settings panel talks to it with postMessage. \n\n• Reanimated's animated lists didn't forward onScroll on the web, so the hook returns a plain listener there and the demo uses a normal FlatList. \n\n• A mouse doesn't scroll like a finger, so I added drag to scroll with a bit of momentum and a round \"fingertip\" cursor. \n\n• Only transforms animate. The bar's layout box stays 346 × 66 in both states. The rounded bar is drawn in three pieces so scaleX doesn't squash its ends. \n\n• The icon colour on the active tab is picked from contrast (WCAG luminance), so any colour you choose stays readable. \n\nDemo: [https://ninadsutrave.github.io/react-native-shrinking-tab-bar/](https://ninadsutrave.github.io/react-native-shrinking-tab-bar/)   \nCode: [https://github.com/ninadsutrave/react-native-shrinking-tab-bar](https://github.com/ninadsutrave/react-native-shrinking-tab-bar)\n\nFeedback on the site or the component is welcome, and a ⭐ helps if you like it.",
+    "externalUrl": "https://i.redd.it/krrrlwn8w94i1.gif",
+    "developer": "OnARockSomewhere",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

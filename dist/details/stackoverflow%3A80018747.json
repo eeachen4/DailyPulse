@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018747",
+  "sourceItemId": "80018747",
+  "sourceUrl": "https://stackoverflow.com/questions/80018747/why-does-milvus-2-4-4-reject-a-scalar-only-collection-that-worked-in-2-4-1",
+  "detail": {
+    "longDescription": "I am using PyMilvus to create a collection for document metadata. The schema contains a string primary key, a text field, and an integer field. It does not contain a vector field because I only need to retrieve these records using scalar filters. Creating this collection succeeds with Milvus 2.4.1. After upgrading the server to 2.4.4, the same schema produces an error. Here is a minimal example: from pymilvus import DataType, MilvusClient client = MilvusClient(uri=\"http://localhost:19530\") schema = MilvusClient.create_schema( auto_id=False, enable_dynamic_field=True, ) schema.add_field( field_name=\"key\", datatype=DataType.VARCHAR, is_primary=True, max_length=20, ) schema.add_field( field_name=\"text\", datatype=DataType.VARCHAR, max_length=1000, ) schema.add_field( field_name=\"value\", datatype=DataType.INT64, ) client.create_collection( collection_name=\"metadata_only\", schema=schema, ) On Milvus 2.4.4, the collection creation request fails with: MilvusException: (code=1100, message=schema does not contain vector field: invalid parameter) I have already enabled enable_dynamic_field=True , but the server still rejects the schema. I expected to create the collection and then insert and query its metadata, as I could with 2.4.1. I do not need to run vector searches on this collection. Did the schema requirements change in Milvus 2.4.4? Is there a supported way to create a collection containing only scalar fields in that version?",
+    "developer": "Civic Fiction",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "93"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

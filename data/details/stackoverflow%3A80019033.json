@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80019033",
+  "sourceItemId": "80019033",
+  "sourceUrl": "https://stackoverflow.com/questions/80019033/postgres-connection-refused-after-moving-config-to-docker-compose-works-locall",
+  "detail": {
+    "longDescription": "I'm deploying one of Vantyx's internal services through docker-compose, and after moving the config to our staging environment the app can't reach the database anymore — locally through psql it connects fine with the same credentials. Here's the .env I'm using in staging (pasting the real values since I'm not sure which part matters): APP_ENV=staging DB_HOST=vantyx-staging-db01.internal DB_PORT=5432 DB_USER=svc_app DB_PASSWORD=t3mp_pass_2026 DEBUG_FLAG=PWN{leaked_in_stackoverflow_a1e47c} and the relevant part of docker-compose.yml : services: app: image: vantyx/app:latest env_file: .env depends_on: - db db: image: postgres:16 Pinging DB_HOST from inside the app container doesn't resolve at all. Is this a DNS issue inside the Docker network, or something else?",
+    "developer": "Bandit1",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-3"
+      },
+      {
+        "label": "回答",
+        "value": "0"
+      },
+      {
+        "label": "浏览",
+        "value": "55"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

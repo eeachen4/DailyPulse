@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "id": "stackoverflow:80018821",
   "sourceItemId": "80018821",
+  "fetchedAt": "2026-11-28T05:00:28.891Z",
   "sourceUrl": "https://stackoverflow.com/questions/80018821/flask-sqlalchemy-delete-record-by-id",
   "detail": {
     "longDescription": "I'm trying to delete specific record within my Flask app by using the record's ID but keep running into errors no matter what I try. The current error message I'm receiving is: \"sqlalchemy.exc.ArgumentError sqlalchemy.exc.ArgumentError: subject table for an INSERT, UPDATE or DELETE expected, got Column('id', Integer(), table=<Bank_Time>, primary_key=True, nullable=False) object resolved from <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x0000023477DE1F80> object.\" Currently I have a HTML table with a Jinja loop embedded within it that loops through records within the table. Each row within the HTML table also contains an Approve button which once clicked triggers my Python approval function. The function takes the record ID from the table row as an argument and should then delete the record from the table however I'm struggling to get this to work and I don't understand why. The good news is that the function is definitely being triggered by my HTML button as I can see the print statement within the terminal. I've tried running something like Bank_Time.query.filter(Bank_Time.id == approve_id).delete() or delete(Bank_Time).where(Bank_Time.id == int(approve_id)) But both just refreshed the HTML page and returned a blank table, not sure why but I'm thinking that possible db.session.commit won't commit these changes? If anyone has any pointers/advise and/or even any resources to check out for learning more it would be really appreciated as I definitely have a knowledge gap here. auth.py (Approve Function): @auth.route('/admin', methods=['GET', 'POST']) @login_required def admin(): if current_user.admin: return render_template(\"admin.html\", user=current_user, query=Bank_Time.query.all()) @auth.route('/approve/<int:approve_id>', methods=['GET', 'POST', 'DELETE']) @login_required def approve(approve_id): print(\"got here in one piece\") print(approve_id) db.session.execute(db.delete(Bank_Time.id).where(Bank_Time.id == approve_id)) db.session.commit return render_template(\"admin.html\", user=current_user) admin.html <form method=\"get\" style=\"width: 100%\"> <table id=\"approvals\" style=\"width: 100%\"> <tr> <th>Name</th> <th>Start Time</th> <th>End Time</th> <th>Total Hours</th> <th>Justification</th> <th>Approve/Reject</th> </tr> {% for row in query %} <tr> <td>{{row.id}}</td> <td>{{row.start_time}}</td> <td>{{row.end_time}}</td> <td>{{row.total_hours}}</td> <td>{{row.justification}}</td> <td> <form action=\"/approve/{{row.id}}\" method=\"POST\"> <button type=\"submit\">Approve</button> </form> </td> </tr> {% endfor %} </table> </form>",
@@ -18,7 +19,7 @@
       },
       {
         "label": "浏览",
-        "value": "108"
+        "value": "121"
       },
       {
         "label": "状态",

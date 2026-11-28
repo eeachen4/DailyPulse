@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7bxcj",
+  "sourceItemId": "1y7bxcj",
+  "sourceUrl": "https://www.reddit.com/r/AI_Agents/comments/1y7bxcj/an_ai_coding_agent_committed_a_key_to_together/",
+  "detail": {
+    "longDescription": "Together AI put out a security notice on 21 Nov. Short version: while working on their public GitHub repo (xorl), an AI coding agent committed a credential for a private Hugging Face repo where they kept samples of customer prompts. Their scanning caught it and they reverted the commit. During that window someone else grabbed the key, downloaded the prompts, then searched them for more credentials and tested those. Five of the ones tested were canary keys from a Dragos research project, which is partly how this came out.\n\nThey don't say which agent it was or how long the key was exposed.\n\nWhat gets me is they did the textbook thing. Scanning on, caught it, reverted. Still too slow. A revert only changes the latest version, the old commit is still there for anyone who already pulled it.\n\nWorth running on your own repos:\n\n    gitleaks git -v\n\nand a rough grep if you don't have gitleaks:\n\n    git log -p --all | grep -nE 'hf_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9_-]{20,}|ghp_|github_pat_|AKIA[0-9A-Z]{16}'\n\nplus whether any agent log folders got committed, because Backslash found 708 secrets in public repos that had AI coding tool chat logs, most of them put there by the agent itself and not pasted by a person:\n\n    git log --all --name-only --format='' | grep -E '^\\.(specstory|claude|cursor|aider)' | sort -u\n\nThe cheap fixes: turn on GitHub push protection for your account, run gitleaks as a pre-commit hook so the agent's commit just fails, and put .env on the read deny list in Claude Code (or your tool's ignore file). If anything does turn up, rotate first. Deleting or reverting doesn't kill the key.\n\nFor people running agents with commit/push rights unattended, are you scanning before the push, or relying on GitHub to catch it after? Curious what's actually working.\n\nDisclosure: I build abbilabs dot xyz, a free checker for the public side of live apps (keys in frontend JS, exposed .env/.git). It doesn't read repos or git history, so the commands above are what matter here. Longer write-up with sources in the comments.",
+    "developer": "Round-Metal6269",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.AI_Agents"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

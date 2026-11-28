@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7alt6",
+  "sourceItemId": "1y7alt6",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y7alt6/redis_was_pinned_at_85_cpu_while_the_replica_sat/",
+  "detail": {
+    "longDescription": "Got pulled into a production app on AWS (ECS Fargate, RDS, ElastiCache, CloudFront) after signups jumped about 15x in a day. The API slowed down at peak and the bill climbed fast. A few things I didn't expect:\n\nRedis was the bottleneck, and a bigger node wouldn't have helped. The primary was at 70-87% EngineCPU because Redis runs on one main thread. The replica was at under 1%. The code already supported a reader endpoint, but the env var was never set. There were also cache invalidations doing full-keyspace scans, which we removed.\n\nCloudFront bills for bytes delivered, and cache hits count. Adding cache headers doesn't lower the bill. Sending fewer bytes does.\n\nWe moved raw MP4 to HLS and raw video traffic dropped a lot, but total bytes only fell about 35%. Our first estimate was much higher. The next biggest source was audio: full-length tracks at around 200 kbps with no preview, so one popular track was downloaded thousands of times a day.\n\nWe also found that CPU-based ECS autoscaling can't start a service from zero tasks. For the encoding workers, we're looking at scaling on queue depth with Spot instead.\n\nQuestions for people who've done this:\n\n1. Has anyone split BullMQ onto its own Redis, and was it worth it?\n2. How do you scale ECS workers from zero on queue depth? Custom CloudWatch metric, or something simpler?\n\n# ",
+    "developer": "DeathVader_21",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.devops"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

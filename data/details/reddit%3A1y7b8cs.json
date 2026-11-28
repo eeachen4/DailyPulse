@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7b8cs",
+  "sourceItemId": "1y7b8cs",
+  "sourceUrl": "https://www.reddit.com/r/software/comments/1y7b8cs/i_ran_one_probe_pdf_through_9_browser_tools_7/",
+  "detail": {
+    "longDescription": "Method, so you can repeat it: one 1.27 MB PDF, five unique strings written into different metadata fields, one action (compress), nine browser-based tools. Each output was read with a full parser and then re-read byte by byte, not just through the properties panel.\n\nWhat came back:\n\n\\- 7 of 9 returned the name I put in /Author.\n\n\\- 6 kept it in the Info dictionary that the properties panel displays: iLovePDF, Sejda, PDF24, PDF Candy, Xodo, PDFgear.\n\n\\- PDF2Go showed an empty Author field but left the same string in the XMP packet — visually clean, still there.\n\n\\- 4 of 9 kept the original producer string.\n\nTwo takeaways that are not about any single vendor: clearing a field is not deleting it, and recompressing images does not rebuild the document dictionary.\n\nI built a free checker that shows what is still readable in a file before you send it. It parses in the browser, so there is no upload: [https://privacypdf.org/pdf-metadata-checker/?utm\\_source=reddit&utm\\_medium=social&utm\\_campaign=pdf\\_metadata](https://privacypdf.org/pdf-metadata-checker/?utm_source=reddit&utm_medium=social&utm_campaign=pdf_metadata)\n\nFull write-up with the per-tool results: [https://privacypdf.org/pdf-tool-privacy-index/?utm\\_source=reddit&utm\\_medium=social&utm\\_campaign=pdf\\_metadata](https://privacypdf.org/pdf-tool-privacy-index/?utm_source=reddit&utm_medium=social&utm_campaign=pdf_metadata)\n\n\n\nDisclosure: I made these tools, so this is not a neutral review. Mods, remove it if it breaks the sub's self-promo rules.",
+    "developer": "bitearcade",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.software"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

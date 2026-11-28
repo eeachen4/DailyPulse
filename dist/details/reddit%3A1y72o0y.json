@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y72o0y",
+  "sourceItemId": "1y72o0y",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y72o0y/my_first_finetuning_experiment_with_qwen352b/",
+  "detail": {
+    "longDescription": "I’m an independent developer building **Sublayer AI**, an early-stage AI model development project. I’m currently experimenting with training and evaluating smaller language models, and this is my first published experiment.\n\nFor this experiment, I fine-tuned Qwen3.5-2B using LoRA to turn messy customer-support messages into structured JSON containing six fields:\n\n* Category\n* Urgency\n* Customer email\n* Order ID\n* Action required\n* Summary\n\nI compared the fine-tuned adapter against the untouched base model on the same held-out test set of 100 examples.\n\n**Results:**  \n**Metric**  \n**Base model**  \n**Fine-tuned**  \nStrict exact match  \n34%  \n42%  \nUrgency accuracy  \n51%  \n57%  \nCategory accuracy  \n88%  \n82%  \nSchema validity  \n100%  \n97%\n\nThe fine-tuning improved strict exact match by 8 percentage points, but it didn’t improve every metric. Category accuracy and schema validity both decreased.\n\nThis is a narrow research experiment, not a production-ready model or a claim of general intelligence improvement.\n\nI’m publishing the work openly and would appreciate feedback, particularly on the evaluation methodology, the results, and what I could investigate in future experiments.\n\nI’m 16 and building Sublayer AI independently. I’m still early in my journey, so feedback from people with more experience in model development would genuinely mean a lot.\n\n**Links:**\n\n* **Model:** https://huggingface.co/sublayerAI/sublayer-specialist-v2.1-lora\n* **Training code:** https://github.com/sublayer-ai/sublayer-specialist-v1\n* **Evaluation report:** https://github.com/sublayer-ai/sublayer-specialist-v1/blob/main/docs/eval\\_ablation\\_report.md",
+    "developer": "PossibleSpot5734",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

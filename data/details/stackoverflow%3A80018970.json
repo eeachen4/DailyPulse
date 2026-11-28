@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018970",
+  "sourceItemId": "80018970",
+  "sourceUrl": "https://stackoverflow.com/questions/80018970/tk-window-geometry-functions-are-returning-the-wrong-values-on-linux-kde-plasma",
+  "detail": {
+    "longDescription": "An application I contribute to , which uses Tk for its UI, has subpanes which follow the main window around. While attempting to add proper Linux support I found that the subpanes jump downwards and slightly to the right whenever the program moves them (due to following the main window, resizing widgets, etc.) After some experimentation I determined that every function for getting window geometry seems to return the top-left corner inside the window border, while setting the geometry places it according to the outside of the window border. (The Tk docs by comparison say that both should be using the outside-border position.) That results in a big shift when attempting to move the window relative to what is supposedly its \"current\" position. I have spent the last few weeks pulling my hair out trying to figure out why this happens and find a proper fix for it: Using Tk's various different window position functions - the original code interchangeably used winfo_x/y() and winfo_rootx/y() , which I found both return an even more wrong position which is also offset by the menu bar height for some reason. Switching to the (more unwieldy) geometry() return value fixed that, but didn't fix the title bar offset, nor did any of the other options I tried. Upgrading to Tk 9.0 - this didn't fix the problem Calling positionfrom('program') before setting the position to make sure it knows the window is being placed by the application code. This didn't seem to do anything. Random little things like including/excluding the equals sign at the start of the geometry specifier or always setting width/height along with position, which also didn't do anything My current workaround is to compute the offset on startup and correct for it manually. This generally works, but fails as soon as something happens that triggers Tk to update window geometry on its own (like widgets changing size) or if the user switches to a theme with taller/shorter title bars while the app is open. It's also just a massive ugly hack which makes the code a mess and might not even work on every system. At this point I'm pretty much at a total loss for what else to try. It seems unbelievable that the library could just be broken like this, and yet I can't figure out for the life of me what we could be doing wrong. I was able to reproduce the problem with the most basic version of this setup possible: from tkinter import * from tkinter import ttk import re root = Tk() def test_win_geo(): # Extract components from geometry string since winfo_x/y can be wrong(er) geom = re.split(r'[=x+]', root.geometry()) root.geometry(f'{geom[0]}x{geom[1]}+{int(geom[2]) + 1}+{int(geom[3]) + 1}') ttk.Button(root, text='Test window geometry', command=test_win_geo).grid(row=0, column=0) ttk.Label(root, text='The window should move EXACTLY 1 pixel down and to the right.').grid(row=1, column=0) root.mainloop() The biggest other possibility I can think of is that this is related to XWayland, as I'm running this in a Plasma Wayland session and Tk seems to be X11-only. Whatever the case, the issue does seem to be specific to Tk, because when I replicated the same setup in a Qt app as a test (and ran that under XWayland) it worked exactly as you'd expect. Any ideas for what else to try at this point? Is this even something I can fix or is it just a bug that's internal to Tk itself? Does the same thing happen on other window managers/OSes?",
+    "developer": "Kelsey",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "2"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "125"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

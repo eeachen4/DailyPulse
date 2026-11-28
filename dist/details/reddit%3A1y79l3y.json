@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y79l3y",
+  "sourceItemId": "1y79l3y",
+  "sourceUrl": "https://www.reddit.com/r/webdev/comments/1y79l3y/if_your_app_signs_users_in_with_a_cookie_smaxage/",
+  "detail": {
+    "longDescription": "Disclosure: I work in security and build a scanner for AI-built apps. No link, and the scanner doesn't check this, so it's just the check.\n\nThe bug report usually sounds impossible. \"I logged in and saw someone else's name.\" Database rules are fine. What happened is a route like /api/me or /dashboard got `Cache-Control: public, s-maxage=60` (to make it faster, or copied from a caching example), and the CDN kept the first person's response and handed it to the next people asking for that URL.\n\nOn Vercel, a function response is cacheable when it has s-maxage (or CDN-Cache-Control / Vercel-CDN-Cache-Control) and:\n\n- the request is GET/HEAD with no Authorization header\n- the response has no set-cookie\n- Cache-Control doesn't contain private, no-cache or no-store\n- there's no Vary: * and no Vary: Cookie\n\nThe Authorization rule is what people lean on, but cookie sessions never send that header. So a cookie-authenticated GET to /api/me with s-maxage is cacheable.\n\nHow to check:\n\n1. Sign in, DevTools > Network, click a request that returns your own data. Look at `x-vercel-cache` (HIT or STALE = came from the CDN) and `age`. Don't look for s-maxage. Vercel strips it before the response reaches the browser unless you also set CDN-Cache-Control.\n2. Two browsers. Load the per-user URL as account A, then open it in a private window as B (or signed out) within the cache time. If you see A's data, there's your answer.\n3. Grep the repo for s-maxage, stale-while-revalidate and CDN-Cache-Control, including next.config.js headers() and vercel.json. A single rule on `/api/(.*)` covers every API route.\n\nFix, on anything per-user:\n\n    return Response.json(data, {\n      headers: { \"Cache-Control\": \"private, no-store\" },\n    });\n\nKeep s-maxage for things that are the same for everyone. Don't try Vary: Cookie to cache per user, Vercel's CDN won't cache that at all.\n\nThen clear what's already stored. Cache keys include the deployment URL so a new deploy starts clean, or purge from the dashboard (project > CDN > Caches > Purge, `*` for the whole project). If you run another CDN in front, purge that too.\n\nAnyone found a cleaner way to stop a project-wide header rule catching per-user routes than listing the public paths one by one?",
+    "developer": "Round-Metal6269",
+    "comments": 7,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.webdev"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

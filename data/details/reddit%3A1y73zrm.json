@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y73zrm",
+  "sourceItemId": "1y73zrm",
+  "sourceUrl": "https://www.reddit.com/r/artificial/comments/1y73zrm/how_an_llm_can_have_higher_overall_accuracy_while/",
+  "detail": {
+    "longDescription": "A worked example for reading LLM evaluation reports. These numbers are invented, not results from real models.\n\n  \nModel A:\n\nEasy questions: 90/100 correct = 90%.\n\nHard questions: 1/10 correct = 10%.\n\nOverall: 91/110 = 82.7%.\n\n  \nModel B:\n\nEasy questions: 19/20 correct = 95%.\n\nHard questions: 20/100 correct = 20%.\n\nOverall: 39/120 = 32.5%.\n\n  \nA wins on the headline score. B does better within BOTH task types. A's test is mostly easy questions; B's is mostly hard ones. Those overall scores describe different task mixes.\n\n  \nThis is a Simpson's-paradox-style reversal, not evidence that either report is dishonest.\n\n  \nFor a useful comparison, I would run both models on the same held-out examples with the same scoring rule and comparable tool/token budgets. Report denominators and scores by task type. If deployment needs a weighted score, choose the weights in advance and apply the SAME weights to both models.\n\n  \nA hypothetical 50/50 easy/hard mix gives A 50% and B 57.5% using the rates above. That is a standardized summary, not a new measurement. These tiny samples are too small for a confident model-selection claim.\n\n  \nA related check: if accuracy is reported only on answered requests, report coverage separately. Refusing more difficult requests can change the apparent accuracy without improving answers.\n\n  \nWhat breakdown has caught a misleading headline metric for you: language, difficulty, document length, or something else?",
+    "developer": "Heavy-Confidence1826",
+    "comments": 6,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.artificial"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

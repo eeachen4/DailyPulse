@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y7c7zg",
+  "sourceItemId": "1y7c7zg",
+  "sourceUrl": "https://www.reddit.com/r/opensource/comments/1y7c7zg/zapfast_plus_native_rust_whatsapp_desktop_client/",
+  "detail": {
+    "longDescription": "I maintain ZapFast Plus, an open-source (MIT) fork of [crmne/zapfast](https://github.com/crmne/zapfast). It is written in Rust with `egui`, `fastframe`, and `whatsapp-rust`, so it runs as a native desktop binary without Electron or an embedded browser.\n\nVersion 0.23.0 is out with packages for Linux, Windows, and macOS.\n\nMain additions compared to upstream:\n\n- Privacy controls: Ghost Mode freezes last seen and online status, hides the second grey tick, suppresses typing indicators, and blocks read, played, and status receipts. You can also send read receipts only after replying, keep deleted messages and deleted status updates locally, blur the chat list and open bubbles with `Ctrl+Shift+B`, and set an inactivity auto-lock timer (1 to 60 minutes).\n- View-Once preservation: incoming view-once photos, videos, and voice notes are decrypted and cached locally when media keys arrive, with unlimited replay, one-click saving, and an optional click-to-reveal mask. There is an opt-in Android pairing mode so WhatsApp delivers live view-once media keys.\n- Audio stickers and always-playing animations: supports WhatsApp audio stickers (`audio_sticker_message` and `StickerMessage.audio`) with click-to-play sound, and plays regular animated stickers (WebP, Lottie) and audio stickers continuously in chats instead of freezing them until hovered.\n- Built-in sticker creator and sync: a button in the bottom-left bar turns static images (PNG, JPG, WebP), animated images (GIF, WebP), and videos (MP4, WebM, MOV, MKV) into 512x512 WhatsApp stickers with square cropping, video trimming up to 6 seconds, live preview, and a button to upload and add the sticker directly to your WhatsApp Favorites. QR logins sync your phone's stickers automatically, and the sticker picker includes a manual resync button if anything goes missing.\n- Messaging tools: scheduled messages, keyword and time-window auto-replies, multi-chat broadcast, `/shortcut` quick replies, messaging unsaved phone numbers, inline message translation, message reminders, anonymous status viewer with one-click download, bulk media export from a conversation, and voice note playback speeds up to `2.5x`.\n- Theme and in-app updates: defaults to a pure black (`#000000`) AMOLED theme with white text and crimson accents, optional top filter tabs (Chats, Unread, Groups, Favorites), unlimited local pinned chats, and per-chat wallpapers. When a new GitHub release comes out, an in-app modal with a blurred backdrop detects your OS and package format (Windows MSI/ZIP, macOS Universal DMG, Linux AppImage, `.deb`, `.rpm`, Flatpak, or local binary), checks SHA-256 sums, installs the update, and restarts while keeping your login and chats intact.\n\nDownloads and source:\n\n- Repository: https://github.com/lucasapolinarioo/zapfast-plus\n- Release v0.23.0 (Linux x64/ARM64 AppImage, `.deb`, `.rpm`, `.tar.gz`, Flatpak; Windows x64/ARM64 `.msi` and `.zip`; macOS Universal `.dmg`): https://github.com/lucasapolinarioo/zapfast-plus/releases/tag/v0.23.0\n\nNotes before installing:\n\n- This is an unofficial WhatsApp client with no affiliation with Meta, WhatsApp, or ZapFast upstream. Using unofficial clients can violate WhatsApp's Terms of Service and carries account suspension risk.\n- Windows and macOS builds are not signed with paid certificates, so SmartScreen (More info -> Run anyway) or macOS Gatekeeper (right-click -> Open, or `xattr -cr /Applications/ZapFast.app`) will prompt on first launch.\n\nFeedback and bug reports on GitHub are welcome.",
+    "externalUrl": "https://github.com/lucasapolinarioo/zapfast-plus",
+    "developer": "Efficient-Cancel-465",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "github.com"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

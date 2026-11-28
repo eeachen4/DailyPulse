@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y774rl",
+  "sourceItemId": "1y774rl",
+  "sourceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1y774rl/we_quantized_inkling_2_mini_and_compared_the/",
+  "detail": {
+    "longDescription": "Me and my team made Atomic Dynamic GGUF quants for Inkling 2 Mini, so we wanted to see how each quant handles autonomous agent work. Every quant got the same task to build a Thanksgiving dinner table in Blender and worked on it in a loop with no human in it. The model builds the scene, Blender runs it and any crash goes straight back to the model to fix on its own, up to 6 tries. After the first working scene each quant got one follow-up asking for a more realistic turkey and food. Everything ran on llama.cpp b12810 on a rented RTX 5090\n\nNone of the quants built the scene on the first try. 23 of the 30 crashes were Blender API mistakes like PointLight.distance, SpotLight.angle or a capsule primitive that doesn't exist. More than half of the output tokens were the model fixing its own crashes, so the token gap is mostly about how many times each quant had to fix itself\n\n|quant|size|top-1 vs BF16|mean KLD|crashed runs|output tokens|decode|\n|:-|:-|:-|:-|:-|:-|:-|\n|AD-Q4\\_K|16.5 GB|96.3%|0.0080|5|88.6k|105 tok/s|\n|AD-Q5\\_K|19.1 GB|97.1%|0.0052|9|148.2k|105 tok/s|\n|AD-Q6\\_K|23.8 GB|97.6%|0.0037|4|88.2k|101 tok/s|\n|Q8\\_0|27.7 GB|97.7%|0.0033|12|183.1k|97 tok/s|\n\nAD-Q4\\_K and AD-Q6\\_K got there on the first seed. AD-Q5\\_K and Q8\\_0 crashed all 6 times and the loop restarted them with a second seed. Q8\\_0 also spent 43.6k tokens on its very first answer, most of it reasoning, while the others were at 24-26k\n\nOur favorite is the AD-Q6\\_K table with full place settings, red napkins and wine glasses. Q8\\_0 made the best looking turkey and the only pie that looks like pumpkin pie but split the table into weird compartments. AD-Q5\\_K is the weakest one here, its turkey looks more like a pot\n\nIt's one working run per quant so a lot of this can be luck. For the video we hid the walls and chairs and gave every scene the same lights and camera spin, the geometry and materials are what each quant made\n\nI'm from the [atomic.chat ](https://atomic.chat/)team, the quants are on huggingface [https://huggingface.co/AtomicChat/Inkling-2-Mini-GGUF](https://huggingface.co/AtomicChat/Inkling-2-Mini-GGUF) (any feedback is appreciated, we're trying to make the models as good for you guys as possible)",
+    "externalUrl": "https://v.redd.it/g24qbk49o84i1",
+    "developer": "Top-Eye-8104",
+    "comments": 18,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "v.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

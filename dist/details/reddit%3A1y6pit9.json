@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6pit9",
+  "sourceItemId": "1y6pit9",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y6pit9/how_are_teams_gating_continual_model_updates/",
+  "detail": {
+    "longDescription": "Most ML discussion right now is focused on post-training loops, continual RL, and faster model iteration. I have been researching the step right after that: what happens when a shared model keeps getting updated over time, and downstream sites (specific hospitals, tenants, or business units) have to decide whether to accept each new checkpoint without breaking what already works.\n\nWe ran a controlled multi-site continual-update study (\\~100 multi-release trajectories across 4 distinct sites receiving sequential updates to a shared backbone) and ran into four failure modes that surprised us:\n\n1. **Naive local refitting still regresses \\~15% of releases.** Even when a site refits its local head on its own labelled archive with cross-validated regularization, 14.6% of updates still caused a >0.02 AUC drop on unseen local cases.\n2. **Operating thresholds break silently.** Raw upstream updates caused 0.14 excess operating-point error relative to an oracle threshold, even when overall ranking looked acceptable.\n3. **Upstream regression checks fail as downstream vetoes.** Even an upstream early-step canary that detected vendor-head regressions with 0.89–0.90 AUC actually hurt net accuracy when used as a site-level veto, because the upstream check monitors the vendor head rather than the locally adapted system running at the site.\n4. **Reusing a private validation panel inflates gains by 40–62%.** Repeatedly gating sequential releases against the same \\~440-label local holdout set overstated real unseen gains by 40% (+0.0118 reported on the panel vs. +0.0071 actual on unseen cases), and up to 62% on smaller split panels.\n\nWe also saw a subtle Day-1 onboarding trap (\\~6% failure rate): comparing a vendor model out-of-sample against a locally cross-validated fit on a small site archive (160–330 cases) systematically biases toward the vendor model, occasionally locking in a worse-than-random start (0.47 vs. 0.66 AUC).\n\nFor people running continually updated models in production (medical, security/SOC, fraud, multi-tenant enterprise, robotics):\n\n* How are you actually deciding when to promote vs. reject a new checkpoint per site or customer?\n* Do teams just freeze working models and avoid frequent updates, pay for fresh human labels every cycle, or accept some eval overfitting?\n* Are there open tools, papers, or real production patterns tackling this Day-2 release-gating layer well today, or is it mostly custom glue and shadow A/B tests?\n\nGenuinely trying to understand where the field stands on this problem and whether it is a real bottleneck in practice or still mostly a research concern.",
+    "developer": "Loner_Indian",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

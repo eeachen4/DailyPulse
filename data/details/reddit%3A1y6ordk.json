@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6ordk",
+  "sourceItemId": "1y6ordk",
+  "sourceUrl": "https://www.reddit.com/r/devops/comments/1y6ordk/everyone_hypes_customerfacing_ai_agents_while_the/",
+  "detail": {
+    "longDescription": "there is a weird split in agent engineering right now that i see. on social media, everyone demos flashy consumer agents booking flights and negotiating bills, even though real q3 numbers showed uber had roughly 320 million halloween-week trips with only 4 booked by agents and big banks are blocking external agent logins completely\n\nmeanwhile.... the quiet setups actually paying for themselves look painfully boring: small, narrowly scoped internal ops agents with strict verification gates. saw a small infrastructure team (voygr) share how running six focused internal agents against their own stack helped cut their aws spend by roughly 30% by hunting idle resources and noisy jobs, and the exact same design principle shows up in their real-world place data tools: instead of letting one big agent hallucinate across dirty directories, separate cheap pre-checks (validating whether a business even exists and looks open via a poi validation pass) from live narrow outbound calls (placecall or voygr only dial listed us businesses, states upfront at second zero it is an automated assistant on a recorded line, /importantly/ never sells anything, and bills only when a real staff quote answers the single question)\n\nevery production agent win i have seen this year follows the same boring rule which is: cut the blast radius down to one verifiable job, keep deterministic gates in front of expensive actions, and skip \"autonomous do-everything\" prompts\n\nand i also would like to discuss what is the most boring internal agent, if any, currently saving your team real money or hours in production? what do you think of such an approach?",
+    "externalUrl": "https://i.redd.it/pcx6s8p9f44i1.png",
+    "developer": "whowasntright",
+    "comments": 8,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "i.redd.it"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

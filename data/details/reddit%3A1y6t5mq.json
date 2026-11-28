@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6t5mq",
+  "sourceItemId": "1y6t5mq",
+  "sourceUrl": "https://www.reddit.com/r/MachineLearning/comments/1y6t5mq/can_a_tiny_encoder_catch_reasoning_flaws_like_an/",
+  "detail": {
+    "longDescription": "Write-up + evaluation breakdown: [https://elei.io/research/fallacy-encoder/](https://elei.io/research/fallacy-encoder/)\n\nLive CPU playground & API (/docs): [https://didistutter.dev](https://didistutter.dev)\n\n\n\nI trained two small bidirectional encoders — mmBERT-base (307M) and BidirLM-1.7B — to score 23 reasoning and tone flaws in a single forward pass, distilled from GPT-6.1 Sol and benchmarked against an unseen second full-size LLM (DeepSeek V4.1 Flash) as an independent referee.\n\n\n\nEvaluation design:\n\n\\- 3 frozen held-out sets (URL-grouped to avoid thread/page leakage): 501 web val (epoch selection + probability calibration), 1,000 real web test texts, and 400 exam passages across 16 published fallacy datasets.\n\n\\- Primary metric: Macro Average Precision across all 23 labels.\n\n\n\nMain empirical findings:\n\n\\- BidirLM-1.7B matches/edges out the second full-size LLM on exam passages (0.743 vs. 0.721 Macro AP) and lands at 0.646 vs. 0.693 on open web text (mmBERT-307M distilled: 0.559), while staying quiet on 95% of clean ordinary comments and running in <0.5s on CPU.\n\n\\- Soft-target distillation matters massively: on the same 7,673 texts, training on the teacher's 0–100 confidence scores instead of binary labels boosted mmBERT-307M by +0.068 Macro AP on web (0.386 -> 0.454) and +0.091 on exam (0.452 -> 0.543).\n\n\\- Unexpected scaling wall: past 19,673 real texts, adding 12,000 mined comments or 8,208 synthetic examples failed to clearly improve Macro AP.\n\n\\- Calibration note: per-flaw thresholds fitted on the 501-text val set were noisy (0.06–0.68) and did not beat a single flat cut-off (0.35) on calibrated probabilities.\n\n\n\nMain limitation: 11 of the 23 labels have <20 positive examples in the 1,000-text web test set, so tail-class precision remains high-variance.\n\n\n\nCurious whether others distilling multi-label LLM judges into encoders have hit a similar \\~20k-example plateau, and happy to hear feedback on the eval setup or failure modes on the live demo.",
+    "developer": "IntroductionFlimsy56",
+    "comments": 0,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.MachineLearning"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

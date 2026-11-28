@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80019137",
+  "sourceItemId": "80019137",
+  "sourceUrl": "https://stackoverflow.com/questions/80019137/how-to-uncheck-an-input-radio-in-react-and-typescript",
+  "detail": {
+    "longDescription": "I am trying to uncheck the input in a system for 5-star reviews. I want to allow the user to uncheck the input, and therefore uncheck the review, if they click on the same clicked star once again. How can I do this? PS: This IntRange is a type I created myself that treats the numbers within a range, in this case, from 1 to 5. It's written 6 because it takes a number after the maximum, but it should be treated as five. const [rating, setRating] = useState<IntRange<1, 6> | undefined>(undefined) ... const handlerReview = (e: React.ChangeEvent<HTMLInputElement>) => { setRating(Number(e.target.value) as 1 | 2 | 3 | 4 | 5) } const handlerUncheck = (e: React.MouseEvent<HTMLInputElement>) => { setRating(prev => prev === Number(e.currentTarget.value) ? undefined : Number(e.currentTarget.value) as 1 | 2 | 3 | 4 | 5 ) } ... <section className='profile_tag_reviews'> <div className=\"profile_tag_stars\"> <input type=\"radio\" name='rating' id='star-5' value='5' onChange={handlerReview} onClick={handlerUncheck} checked={rating === 5} /> <label htmlFor=\"star-5\"><div className=\"player_tag_star\"></div></label> <input type=\"radio\" name='rating' id='star-4' value='4' onChange={handlerReview} checked={rating === 4} /> <label htmlFor=\"star-4\"><div className=\"player_tag_star\"></div></label> <input type=\"radio\" name='rating' id='star-3' value='3' onChange={handlerReview} checked={rating === 3} /> <label htmlFor=\"star-3\"><div className=\"player_tag_star\"></div></label> <input type=\"radio\" name='rating' id='star-2' value='2' onChange={handlerReview} checked={rating === 2} /> <label htmlFor=\"star-2\"><div className=\"player_tag_star\"></div></label> <input type=\"radio\" name='rating' id='star-1' value='1' onChange={handlerReview} checked={rating === 1} /> <label htmlFor=\"star-1\"><div className=\"player_tag_star\"></div></label> </div> </section>",
+    "developer": "Arthur Vieira",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "51"
+      },
+      {
+        "label": "状态",
+        "value": "未回答"
+      }
+    ]
+  }
+}

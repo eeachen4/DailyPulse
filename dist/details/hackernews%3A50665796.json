@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "hackernews:50665796",
+  "sourceItemId": "50665796",
+  "sourceUrl": "https://news.ycombinator.com/item?id=50665796",
+  "detail": {
+    "longDescription": "For those who are tracking, Anthropic released an announcement last week about their experimental code mode for Claude Code, claiming some bonkers token savings when it comes to tool calls (95% on some workloads(1)). I haven&#x27;t benchmarked it myself, but independent studies come in somewhere closer to 60~70% savings (2), but I digress. TLDR; I built an open-source version for the community. Context: I&#x27;m writing an AI RPG engine called Spookery, and I immediately wanted to try this technique for myself when I heard of it. Agent deployment is currently dominated by token costs, especially during tool calling (single prompt generating tens or hundreds of tool calls). Unfortunately, it looks like the only ones who are doing this seriously are big agentic products like Claude Code and Codex. So, I thought it&#x27;d be fun to try it myself and bring it to you all! The idea of Code Mode is simple but powerful. Instead of passing back tool call results back to the LLM one at a time, let the LLM batch calls by letting it write a short script using your tools. Basically taking 30 trips to the grocery store for 30 items and turning it into one trip to the store with a list in-hand. There&#x27;s a few near-ish open-source options, but they used TypeScript backends, we&#x27;re a little boilerplate heavy, and I wanted to have something a little faster and Rust friendly for my game engine. Pydantic&#x27;s Monty seemed a good candidate--their self-reports are around 5x faster on execution and 100x faster on startup (3). I wouldn&#x27;t take the numbers to the bank, but it&#x27;s written on a Rust framework and the python backend is entirely built from Rust too. Anyway, I had a couple of days off unexpectedly. So, I went temporarily insane and built a Rust tool to bring code mode to the greater community for free. In enough days to fit on one hand (and just as many hours of sleep), I came up with the implementation linked. I call it Ghost Mode. It&#x27;s MIT licensed. It&#x27;s a drop-in for your agent that already makes traditional tool calls. With ~20 lines of setup, you can convert your existing agent to a Code Mode agent. I hope you get something out of this, and maybe I can save you some money. Considering how limiting token economics are right now, I think this could be a game changer for the industry. If there&#x27;s interest, I can imagine we can build also add some great new features, language compatibility, and other great things. Thanks for reading :) Sources: (1) https:&#x2F;&#x2F;www.marktechpost.com&#x2F;2026&#x2F;11&#x2F;17&#x2F;anthropic-claude-cod... (2) https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2611.19123 (3) https:&#x2F;&#x2F;pydantic.dev&#x2F;docs&#x2F;monty&#x2F;get-started&#x2F;",
+    "externalUrl": "https://github.com/legend-of-alan/ghostmode",
+    "developer": "legend-of-alan",
+    "comments": 4,
+    "stats": [
+      {
+        "label": "积分",
+        "value": "3"
+      },
+      {
+        "label": "评论",
+        "value": "4"
+      }
+    ]
+  }
+}

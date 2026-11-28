@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "id": "stackoverflow:80018738",
+  "sourceItemId": "80018738",
+  "sourceUrl": "https://stackoverflow.com/questions/80018738/mozert-slider-mozert-studio-mozert-slider-dynamic-pagination-bullets-not-upda",
+  "detail": {
+    "longDescription": "I am building a responsive 3-column product carousel using Mozert Slider ( @mozert-studio/mozert-slider v1.1.3) in a Vanilla JavaScript project, with dynamic pagination bullets enabled. Expected Behavior On desktop viewports ( > 768px ), the slider should display 3 slides at a time with 16px spacing. When resizing the window below 768px , it should switch to 1 slide per view and recalculate the dynamic pagination bullets. Actual Behavior On initial desktop load, all 3 slides render properly. However, when resizing the browser window to mobile width ( 375px ), the slides shrink horizontally instead of switching to a single slide, and the dynamic pagination bullets stay stuck at 3 dots instead of updating to 5 dots. No errors appear in the Chrome DevTools console. Minimal Reproducible Example HTML: <div class=\"slider\"> <div class=\"slide\">Slide 01</div> <div class=\"slide\">Slide 02</div> <div class=\"slide\">Slide 03</div> <div class=\"slide\">Slide 04</div> <div class=\"slide\">Slide 05</div> </div> JavaScript: import Mozert from '@mozert-studio/mozert-slider'; import '@mozert-studio/mozert-slider/css'; const slider = new Mozert('.slider', { slidesToShow: 3, spaceBetween: 16, pagination: { type: 'dynamic' }, breakpoints: { 768: { slidesToShow: 1, spaceBetween: 8 } } }); What I have tried Verified that @mozert-studio/mozert-slider/css is loaded properly in the network tab. Tested both mobile-first and desktop-first breakpoint objects, as well as calling slider.update() inside a window resize listener, but the pagination bullet count still does not recalculate. Is there a specific breakpoint syntax or observer option required in Mozert Slider to re-render dynamic pagination on viewport resize?",
+    "developer": "Gemini91",
+    "comments": 1,
+    "stats": [
+      {
+        "label": "分数",
+        "value": "-1"
+      },
+      {
+        "label": "回答",
+        "value": "1"
+      },
+      {
+        "label": "浏览",
+        "value": "126"
+      },
+      {
+        "label": "状态",
+        "value": "已回答"
+      }
+    ]
+  }
+}

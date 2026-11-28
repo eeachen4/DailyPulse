@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y72o6g",
+  "sourceItemId": "1y72o6g",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y72o6g/before_you_add_another_agent_ask_where_the_ai/",
+  "detail": {
+    "longDescription": "Something I keep seeing, and did myself: an LLM demo looks great, then falls apart when you try to make it dependable. The usual fix is more agents, more prompts, or a bigger model. In my experience, the real problem was usually earlier. We had given the model the wrong job.\n\nWe were using the LLM to do everything. The outputs were right often enough to impress people and not often enough to trust. When one was wrong, we couldn't tell why, because everything happened inside one black box.\n\n**What fixed it wasn't a better model. It was moving the AI layer.**\n\nThe model now handles the interpretation: messy language, facts buried in prose, apparent conflicts. Plain code handles anything with a fixed answer, like date ordering, required fields, ID matching and known rules, because an **LLM there only adds uncertainty**.\n\nTesting got much easier as a side effect. I could tell where a failure came from, and change a rule without touching a prompt.\n\nFor every step I now ask two questions. Does it need interpretation? Does it have to behave identically every time? If the answer to the second is yes, it's code, no matter how capable the model is. Capability isn't responsibility.\n\nIf your agent system feels flaky, try this check: can you locate where a failure happened, rerun one part alone, enforce the fixed rules, and show a human what matters? If not, more agents won't help. The AI probably sits too high in your process.\n\nIt's the old ML lesson about problem framing showing up again with LLMs. Google's Rules of ML literally start with \"**don't be afraid to launch without ML**\".\n\nI wrote up a longer version here if anyone wants it: [https://abubakar-siddik.com/essays/the-ai-layer-is-the-new-problem-framing](https://abubakar-siddik.com/essays/the-ai-layer-is-the-new-problem-framing)",
+    "developer": "Abu_BakarSiddik",
+    "comments": 2,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "id": "reddit:1y6tqkj",
+  "sourceItemId": "1y6tqkj",
+  "sourceUrl": "https://www.reddit.com/r/LLMDevs/comments/1y6tqkj/designing_a_costcapped_email_triage_extraction/",
+  "detail": {
+    "longDescription": "Technical/operations mailboxes for a fleet of \\~30-50 assets. About 100 emails a day per asset, spread across several mailboxes with lots of cc'd copies, broken threads, and PDF/Excel attachments (periodic reports, maintenance schedules, incident notices, spare parts requests, invoices).\n\nEach email needs: a category (\\~25 types), the right asset tag, structured fields from attachments saved to a DB, a \"needs attention\" list refreshed through the day, and a morning brief. Plus on-demand draft replies and chat Q&A (about 10 questions per user per day, 4 users per asset).\n\nBudget: roughly $30-50 per asset per month all-in. Raw mail is sensitive, so no free tiers that train on prompts. On a small test, classification with a small hosted model cost about 0.06 cents per email. What blows the budget is per-thread summaries, repeated refreshes and chat.\n\nMy plan: rules and parsers first, a small trained classifier with an LLM fallback, a cheap model for extraction on the important types only, and routine questions answered from the database instead of the LLM.\n\n1. Which small or open models do you use for classification and extraction on messy business email, and how do they compare to a mid-tier model?\n\n2. Is a trained classifier plus LLM fallback worth the complexity?\n\n3. How do you keep chat over this data cheap when many people ask many questions?\n\nWhat am I missing?",
+    "developer": "Beneficial_Use2116",
+    "comments": 15,
+    "stats": [
+      {
+        "label": "域名",
+        "value": "self.LLMDevs"
+      },
+      {
+        "label": "采集",
+        "value": "公开归档降级"
+      }
+    ]
+  }
+}
